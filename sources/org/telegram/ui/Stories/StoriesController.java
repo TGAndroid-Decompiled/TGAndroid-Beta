@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.webkit.MimeTypeMap;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.collection.LongSparseArray;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.google.android.exoplayer2.audio.AacUtil;
 import com.google.android.exoplayer2.util.Consumer;
 import j$.util.Comparator$CC;
 import j$.util.Objects;
+import j$.util.function.Consumer$CC;
 import java.io.File;
 import java.util.AbstractSet;
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.TreeSet;
-import org.telegram.messenger.AiTonesController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
@@ -45,6 +45,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SecretChatHelper$$ExternalSyntheticLambda29;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -58,37 +59,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.ChatMessageCell$$ExternalSyntheticLambda5;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda19;
+import org.telegram.ui.Cells.ChatMessageCell$$ExternalSyntheticLambda7;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda103;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda63;
-import org.telegram.ui.LocationActivity$$ExternalSyntheticLambda44;
-import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda0;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda17;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda3;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda126;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda12;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda116;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda149;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda65;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda70;
-import org.telegram.ui.Stars.BotStarsActivity$$ExternalSyntheticLambda24;
-import org.telegram.ui.StickersActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda17;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda51;
+import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda4;
+import org.telegram.ui.Stars.BotStarsActivity$$ExternalSyntheticLambda21;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda100;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda87;
+import org.telegram.ui.Storage.CacheModel$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.bots.BotPreviewsEditContainer;
 import org.telegram.ui.Stories.recorder.DraftsController;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 import org.telegram.ui.Stories.recorder.StoryUploadingService;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda31;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.bots.BotSensors$1$$ExternalSyntheticLambda0;
+import org.telegram.ui.bots.BotVerifySheet$$ExternalSyntheticLambda7;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda53;
 import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 import org.telegram.ui.iv.TableModel$$ExternalSyntheticLambda0;
 import org.telegram.ui.iv.TableModel$$ExternalSyntheticLambda1;
 
 public final class StoriesController {
-    public static final Comparator storiesComparator = Comparator$CC.comparingInt(new TableModel$$ExternalSyntheticLambda1(18));
+    public static final Comparator storiesComparator = Comparator$CC.comparingInt(new TableModel$$ExternalSyntheticLambda1(13));
     public int blocklistCount;
     public final int currentAccount;
     public final DraftsController draftsController;
@@ -101,7 +98,7 @@ public final class StoriesController {
     public final SharedPreferences mainSettings;
     public final HashSet requestingUnsupportedStories;
     public final ArrayList sendAs;
-    public final OAuthSheet$$ExternalSyntheticLambda17 sortStoriesRunnable;
+    public final Theme$$ExternalSyntheticLambda19 sortStoriesRunnable;
     public String state;
     public String stateHidden;
     public TL_stories.TL_storiesStealthMode stealthMode;
@@ -132,7 +129,7 @@ public final class StoriesController {
     public final HashMap[] storiesLists = new HashMap[5];
     public final HashMap storiesAlbumsLists = new HashMap();
     public final ArrayList attachedSearchLists = new ArrayList();
-    public final TableModel$$ExternalSyntheticLambda0 peerStoriesComparator = new TableModel$$ExternalSyntheticLambda0(this, 13);
+    public final TableModel$$ExternalSyntheticLambda0 peerStoriesComparator = new TableModel$$ExternalSyntheticLambda0(this, 7);
     public final HashSet blocklist = new HashSet();
     public final LongSparseArray blockedOverride = new LongSparseArray();
     public boolean blocklistFull = false;
@@ -140,17 +137,17 @@ public final class StoriesController {
     public long lastBlocklistRequested = 0;
 
     public final class AnonymousClass1 implements RequestDelegate {
-        public final LaunchActivity$$ExternalSyntheticLambda103 val$consumer;
+        public final LaunchActivity$$ExternalSyntheticLambda51 val$consumer;
         public final long val$hash;
 
-        public AnonymousClass1(long j, LaunchActivity$$ExternalSyntheticLambda103 launchActivity$$ExternalSyntheticLambda103) {
+        public AnonymousClass1(long j, LaunchActivity$$ExternalSyntheticLambda51 launchActivity$$ExternalSyntheticLambda51) {
             this.val$hash = j;
-            this.val$consumer = launchActivity$$ExternalSyntheticLambda103;
+            this.val$consumer = launchActivity$$ExternalSyntheticLambda51;
         }
 
         @Override
         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new PhotoViewer$$ExternalSyntheticLambda126(this, tLObject, this.val$hash, this.val$consumer, 11));
+            AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda87(this, tLObject, this.val$hash, this.val$consumer, 2));
         }
     }
 
@@ -165,7 +162,7 @@ public final class StoriesController {
 
         @Override
         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new PhotoViewer$$ExternalSyntheticLambda126(this, tLObject, this.val$hash, this.val$consumer, 12));
+            AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda87(this, tLObject, this.val$hash, this.val$consumer, 3));
         }
     }
 
@@ -198,8 +195,8 @@ public final class StoriesController {
         public boolean loading;
         public int reqId;
 
-        public BotPreviewsList(int i, long j, String str, VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7) {
-            super(i, j, 4, -1, voIPFragment$$ExternalSyntheticLambda7);
+        public BotPreviewsList(int i, long j, String str, RichEditor$$ExternalSyntheticLambda53 richEditor$$ExternalSyntheticLambda53) {
+            super(i, j, 4, -1, richEditor$$ExternalSyntheticLambda53);
             this.lang_codes = new ArrayList();
             this.fakeDays = new ArrayList();
             this.lastId = 0;
@@ -207,6 +204,9 @@ public final class StoriesController {
         }
 
         public final void delete(ArrayList arrayList) {
+            if (arrayList == null) {
+                return;
+            }
             int i = 0;
             while (true) {
                 ArrayList arrayList2 = this.messageObjects;
@@ -234,9 +234,9 @@ public final class StoriesController {
                 deletepreviewmedia.media.add(MessagesController.toInputMedia((TLRPC.MessageMedia) arrayList.get(i4)));
             }
             ConnectionsManager.getInstance(i3).sendRequest(deletepreviewmedia, null);
-            StoriesController$StoriesList$$ExternalSyntheticLambda0 storiesController$StoriesList$$ExternalSyntheticLambda0 = this.notify;
-            AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
-            AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
+            StoriesController$StoriesList$$ExternalSyntheticLambda1 storiesController$StoriesList$$ExternalSyntheticLambda1 = this.notify;
+            AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
+            AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
         }
 
         public final void edit(TLRPC.InputMedia inputMedia, TL_bots.botPreviewMedia botpreviewmedia) {
@@ -297,9 +297,9 @@ public final class StoriesController {
             }
             ((ArrayList) arrayList2.get(0)).add(i, Integer.valueOf(messageObject2.getId()));
             arrayList.add(i, messageObject2);
-            StoriesController$StoriesList$$ExternalSyntheticLambda0 storiesController$StoriesList$$ExternalSyntheticLambda0 = this.notify;
-            AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
-            AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
+            StoriesController$StoriesList$$ExternalSyntheticLambda1 storiesController$StoriesList$$ExternalSyntheticLambda1 = this.notify;
+            AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
+            AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
         }
 
         @Override
@@ -370,7 +370,7 @@ public final class StoriesController {
                 tLObject = getpreviewmedias;
             }
             this.loading = true;
-            this.reqId = ConnectionsManager.getInstance(i).sendRequest(tLObject, new ProfileActivity$$ExternalSyntheticLambda65(28, this, runnable));
+            this.reqId = ConnectionsManager.getInstance(i).sendRequest(tLObject, new StarGiftSheet$$ExternalSyntheticLambda0(25, this, runnable));
             return true;
         }
 
@@ -399,9 +399,9 @@ public final class StoriesController {
             }
             ((ArrayList) arrayList.get(0)).add(0, Integer.valueOf(messageObject.getId()));
             this.messageObjects.add(0, messageObject);
-            StoriesController$StoriesList$$ExternalSyntheticLambda0 storiesController$StoriesList$$ExternalSyntheticLambda0 = this.notify;
-            AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
-            AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
+            StoriesController$StoriesList$$ExternalSyntheticLambda1 storiesController$StoriesList$$ExternalSyntheticLambda1 = this.notify;
+            AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
+            AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
         }
 
         @Override
@@ -483,7 +483,7 @@ public final class StoriesController {
             int i = this.currentAccount;
             tL_createAlbum.peer = MessagesController.getInstance(i).getInputPeer(this.dialogId);
             tL_createAlbum.title = str;
-            ConnectionsManager.getInstance(i).sendRequest(tL_createAlbum, new ProfileActivity$$ExternalSyntheticLambda65(29, this, callback));
+            ConnectionsManager.getInstance(i).sendRequest(tL_createAlbum, new StarGiftSheet$$ExternalSyntheticLambda0(26, this, callback));
         }
 
         public final StoryAlbum findById(int i) {
@@ -524,12 +524,23 @@ public final class StoriesController {
             long j = this.dialogId;
             int i = this.currentAccount;
             if (!z) {
-                MessagesStorage.getInstance(i).loadStoryAlbumsCache(j, new ProfileActivity$$ExternalSyntheticLambda70(this, 1));
+                MessagesStorage.getInstance(i).loadStoryAlbumsCache(j, new java.util.function.Consumer() {
+                    @Override
+                    public final void s(Object obj) {
+                        StoriesController.StoriesCollections storiesCollections = this.f$0;
+                        storiesCollections.getClass();
+                        AndroidUtilities.runOnUIThread(new LivePlayer$$ExternalSyntheticLambda17(29, storiesCollections, (List) obj));
+                    }
+
+                    public final java.util.function.Consumer andThen(java.util.function.Consumer consumer) {
+                        return Consumer$CC.$default$andThen(this, consumer);
+                    }
+                });
                 return;
             }
             TL_stories.TL_getAlbums tL_getAlbums = new TL_stories.TL_getAlbums();
             tL_getAlbums.peer = MessagesController.getInstance(i).getInputPeer(j);
-            ConnectionsManager.getInstance(i).sendRequest(tL_getAlbums, new RichMediaUploader$$ExternalSyntheticLambda0(this, 4));
+            ConnectionsManager.getInstance(i).sendRequest(tL_getAlbums, new RichMediaUploader$$ExternalSyntheticLambda0(this, 25));
         }
 
         public final void sendOrder() {
@@ -773,12 +784,6 @@ public final class StoriesController {
         }
 
         public final void cleanup() {
-            android.util.LongSparseArray longSparseArray;
-            BotPreviewsEditContainer botPreviewsEditContainer;
-            android.util.LongSparseArray longSparseArray2;
-            android.util.LongSparseArray longSparseArray3;
-            BotPreviewsEditContainer botPreviewsEditContainer2;
-            android.util.LongSparseArray longSparseArray4;
             HashMap map;
             ArrayList arrayList;
             StoriesController storiesController = StoriesController.this;
@@ -810,83 +815,16 @@ public final class StoriesController {
             }
             if (this.previewMedia != null) {
                 StoriesList storiesList = storiesController.getStoriesList(this.dialogId, 4, -1, false);
-                if (storyEntry != null && storyEntry.isEdit) {
-                    if (storiesList instanceof BotPreviewsList) {
-                        ((BotPreviewsList) storiesList).edit(storyEntry.editingBotPreview, this.previewMedia);
-                    }
-                    String str = storyEntry.botLang;
-                    TLRPC.InputMedia inputMedia = storyEntry.editingBotPreview;
-                    TL_bots.botPreviewMedia botpreviewmedia = this.previewMedia;
-                    android.util.LongSparseArray longSparseArray5 = BotPreviewsEditContainer.cachedLists;
-                    if (longSparseArray5 != null && (longSparseArray4 = (android.util.LongSparseArray) longSparseArray5.get(i)) != null) {
-                        BotPreviewsList botPreviewsList = (BotPreviewsList) longSparseArray4.get(j);
-                        if (botPreviewsList.currentAccount == i) {
-                            if (TextUtils.equals(botPreviewsList.lang_code, str)) {
-                                botPreviewsList.edit(inputMedia, botpreviewmedia);
-                            } else if (!TextUtils.isEmpty(str)) {
-                                ArrayList arrayList3 = botPreviewsList.lang_codes;
-                                if (!arrayList3.contains(str)) {
-                                    arrayList3.add(str);
-                                    StoriesController$StoriesList$$ExternalSyntheticLambda0 storiesController$StoriesList$$ExternalSyntheticLambda0 = botPreviewsList.notify;
-                                    AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
-                                    AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
-                                }
-                            }
-                        }
-                    }
-                    android.util.LongSparseArray longSparseArray6 = BotPreviewsEditContainer.attachedContainers;
-                    if (longSparseArray6 != null && (longSparseArray3 = (android.util.LongSparseArray) longSparseArray6.get(i)) != null && (botPreviewsEditContainer2 = (BotPreviewsEditContainer) longSparseArray3.get(j)) != null) {
-                        int i2 = 0;
-                        while (true) {
-                            ArrayList arrayList4 = botPreviewsEditContainer2.langLists;
-                            if (i2 >= arrayList4.size()) {
-                                break;
-                            }
-                            BotPreviewsList botPreviewsList2 = (BotPreviewsList) arrayList4.get(i2);
-                            if (botPreviewsList2.currentAccount == i && TextUtils.equals(botPreviewsList2.lang_code, str)) {
-                                botPreviewsList2.edit(inputMedia, botpreviewmedia);
-                            }
-                            i2++;
-                        }
-                    }
-                } else {
+                if (storyEntry == null || !storyEntry.isEdit) {
                     if (storiesList instanceof BotPreviewsList) {
                         ((BotPreviewsList) storiesList).push(this.previewMedia);
                     }
-                    String str2 = storyEntry.botLang;
-                    TL_bots.botPreviewMedia botpreviewmedia2 = this.previewMedia;
-                    android.util.LongSparseArray longSparseArray7 = BotPreviewsEditContainer.cachedLists;
-                    if (longSparseArray7 != null && (longSparseArray2 = (android.util.LongSparseArray) longSparseArray7.get(i)) != null) {
-                        BotPreviewsList botPreviewsList3 = (BotPreviewsList) longSparseArray2.get(j);
-                        if (botPreviewsList3.currentAccount == i) {
-                            if (TextUtils.equals(botPreviewsList3.lang_code, str2)) {
-                                botPreviewsList3.push(botpreviewmedia2);
-                            } else if (!TextUtils.isEmpty(str2)) {
-                                ArrayList arrayList5 = botPreviewsList3.lang_codes;
-                                if (!arrayList5.contains(str2)) {
-                                    arrayList5.add(str2);
-                                    StoriesController$StoriesList$$ExternalSyntheticLambda0 storiesController$StoriesList$$ExternalSyntheticLambda1 = botPreviewsList3.notify;
-                                    AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
-                                    AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
-                                }
-                            }
-                        }
+                    BotPreviewsEditContainer.push(i, j, storyEntry.botLang, this.previewMedia);
+                } else {
+                    if (storiesList instanceof BotPreviewsList) {
+                        ((BotPreviewsList) storiesList).edit(storyEntry.editingBotPreview, this.previewMedia);
                     }
-                    android.util.LongSparseArray longSparseArray8 = BotPreviewsEditContainer.attachedContainers;
-                    if (longSparseArray8 != null && (longSparseArray = (android.util.LongSparseArray) longSparseArray8.get(i)) != null && (botPreviewsEditContainer = (BotPreviewsEditContainer) longSparseArray.get(j)) != null) {
-                        int i3 = 0;
-                        while (true) {
-                            ArrayList arrayList6 = botPreviewsEditContainer.langLists;
-                            if (i3 >= arrayList6.size()) {
-                                break;
-                            }
-                            BotPreviewsList botPreviewsList4 = (BotPreviewsList) arrayList6.get(i3);
-                            if (botPreviewsList4.currentAccount == i && TextUtils.equals(botPreviewsList4.lang_code, str2)) {
-                                botPreviewsList4.push(botpreviewmedia2);
-                            }
-                            i3++;
-                        }
-                    }
+                    BotPreviewsEditContainer.edit(storiesController.currentAccount, this.dialogId, storyEntry.botLang, storyEntry.editingBotPreview, this.previewMedia);
                 }
                 this.previewMedia = null;
             }
@@ -1264,7 +1202,7 @@ public final class StoriesController {
             } else {
                 File fileMakeCacheFile = StoryEntry.makeCacheFile(StoriesController.this.currentAccount, "jpg");
                 this.path = fileMakeCacheFile.getAbsolutePath();
-                Utilities.themeQueue.postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(2, this, fileMakeCacheFile));
+                Utilities.themeQueue.postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(5, this, fileMakeCacheFile));
             }
             Intent intent = new Intent(ApplicationLoader.applicationContext, (Class<?>) StoryUploadingService.class);
             intent.putExtra("path", this.path);
@@ -1321,8 +1259,8 @@ public final class StoriesController {
         }
         this.stealthMode = tL_storiesStealthModeTLdeserialize;
         StoriesStorage storiesStorage = this.storiesStorage;
-        storiesStorage.storage.getStorageQueue().postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(5, storiesStorage, new StoriesController$$ExternalSyntheticLambda2(this, 0)));
-        this.sortStoriesRunnable = new OAuthSheet$$ExternalSyntheticLambda17(this, i, 27);
+        storiesStorage.storage.getStorageQueue().postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(9, storiesStorage, new StoriesController$$ExternalSyntheticLambda2(this, 0)));
+        this.sortStoriesRunnable = new Theme$$ExternalSyntheticLambda19(this, i, 18);
         this.draftsController = new DraftsController(i);
     }
 
@@ -1572,7 +1510,7 @@ public final class StoriesController {
         TL_stories.TL_stories_canSendStory tL_stories_canSendStory = new TL_stories.TL_stories_canSendStory();
         int i = this.currentAccount;
         tL_stories_canSendStory.peer = MessagesController.getInstance(i).getInputPeer(j);
-        ConnectionsManager.getInstance(i).sendRequest(tL_stories_canSendStory, new BotStarsActivity$$ExternalSyntheticLambda24(this, z, j, consumer, resourcesProvider), 1024);
+        ConnectionsManager.getInstance(i).sendRequest(tL_stories_canSendStory, new BotStarsActivity$$ExternalSyntheticLambda21(this, z, j, consumer, resourcesProvider), 1024);
     }
 
     public final void checkExpireStories(ArrayList arrayList) {
@@ -1666,7 +1604,7 @@ public final class StoriesController {
         }
         TL_stories.TL_stories_canSendStory tL_stories_canSendStory = new TL_stories.TL_stories_canSendStory();
         tL_stories_canSendStory.peer = MessagesController.getInstance(i).getInputPeer(UserConfig.getInstance(i).getClientUserId());
-        ConnectionsManager.getInstance(i).sendRequest(tL_stories_canSendStory, new StoriesController$$ExternalSyntheticLambda0(this, 1), 1024);
+        ConnectionsManager.getInstance(i).sendRequest(tL_stories_canSendStory, new StoriesController$$ExternalSyntheticLambda0(this, 5), 1024);
         return null;
     }
 
@@ -1681,7 +1619,7 @@ public final class StoriesController {
         int i2 = this.currentAccount;
         tL_stories_getStoriesByID.peer = MessagesController.getInstance(i2).getInputPeer(j);
         tL_stories_getStoriesByID.id.add(Integer.valueOf(i));
-        ConnectionsManager.getInstance(i2).sendRequest(tL_stories_getStoriesByID, new MessageSeenView$$ExternalSyntheticLambda0(this, i, str, j, 7));
+        ConnectionsManager.getInstance(i2).sendRequest(tL_stories_getStoriesByID, new MessageSeenView$$ExternalSyntheticLambda4(this, i, str, j, 6));
     }
 
     public final void cleanup() {
@@ -1691,7 +1629,7 @@ public final class StoriesController {
         this.mainSettings.edit().putBoolean("stories_loaded", false).remove("last_stories_state").putBoolean("stories_loaded_hidden", false).remove("last_stories_state_hidden").putBoolean("read_loaded", false).apply();
         DraftsController draftsController = this.draftsController;
         Objects.requireNonNull(draftsController);
-        AndroidUtilities.runOnUIThread(new LivePlayer$1$$ExternalSyntheticLambda0(draftsController, 15));
+        AndroidUtilities.runOnUIThread(new BotSensors$1$$ExternalSyntheticLambda0(draftsController, 1));
         loadStories();
         if (this.storiesReadLoaded) {
             return;
@@ -1703,6 +1641,9 @@ public final class StoriesController {
         TLRPC.ChatFull chatFull;
         TL_stories.PeerStories peerStories;
         TLRPC.UserFull userFull;
+        if (arrayList == null) {
+            return;
+        }
         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
         int i = this.currentAccount;
         TLRPC.InputPeer inputPeer = MessagesController.getInstance(i).getInputPeer(j);
@@ -1748,7 +1689,7 @@ public final class StoriesController {
         updateDeletedStoriesInLists(j, arrayList);
         ArrayList<Integer> arrayList2 = tL_stories_deleteStories.id;
         StoriesStorage storiesStorage = this.storiesStorage;
-        storiesStorage.storage.getStorageQueue().postRunnable(new PollItemMenu$$ExternalSyntheticLambda12(storiesStorage, arrayList2, j, 28));
+        storiesStorage.storage.getStorageQueue().postRunnable(new GiftSheet$$ExternalSyntheticLambda17(storiesStorage, arrayList2, j, 13));
         NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
     }
 
@@ -1840,7 +1781,7 @@ public final class StoriesController {
             if (storiesList != null || !z) {
                 return storiesList;
             }
-            StoriesList storiesList2 = new StoriesList(this.currentAccount, j, i, i2, new VoIPFragment$$ExternalSyntheticLambda7(this, 9));
+            StoriesList storiesList2 = new StoriesList(this.currentAccount, j, i, i2, new RichEditor$$ExternalSyntheticLambda53(this, 6));
             map3.put(Integer.valueOf(i2), storiesList2);
             return storiesList2;
         }
@@ -1855,13 +1796,13 @@ public final class StoriesController {
         if (i == 4) {
             HashMap map4 = mapArr[i];
             Long lValueOf = Long.valueOf(j);
-            BotPreviewsList botPreviewsList = new BotPreviewsList(this.currentAccount, j, null, new VoIPFragment$$ExternalSyntheticLambda7(this, 9));
+            BotPreviewsList botPreviewsList = new BotPreviewsList(this.currentAccount, j, null, new RichEditor$$ExternalSyntheticLambda53(this, 6));
             map4.put(lValueOf, botPreviewsList);
             return botPreviewsList;
         }
         HashMap map5 = mapArr[i];
         Long lValueOf2 = Long.valueOf(j);
-        StoriesList storiesList4 = new StoriesList(this.currentAccount, j, i, i2, new VoIPFragment$$ExternalSyntheticLambda7(this, 9));
+        StoriesList storiesList4 = new StoriesList(this.currentAccount, j, i, i2, new RichEditor$$ExternalSyntheticLambda53(this, 6));
         map5.put(lValueOf2, storiesList4);
         return storiesList4;
     }
@@ -2017,7 +1958,7 @@ public final class StoriesController {
         if (arrayList == null || arrayList.isEmpty()) {
             return false;
         }
-        return ((UploadingStory) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList)).failed;
+        return ((UploadingStory) Fragment$$ExternalSyntheticOutline0.m(1, arrayList)).failed;
     }
 
     public final void loadAllStoriesForDialog(long j) {
@@ -2030,7 +1971,7 @@ public final class StoriesController {
         TL_stories.TL_stories_getPeerStories tL_stories_getPeerStories = new TL_stories.TL_stories_getPeerStories();
         int i = this.currentAccount;
         tL_stories_getPeerStories.peer = MessagesController.getInstance(i).getInputPeer(j);
-        ConnectionsManager.getInstance(i).sendRequest(tL_stories_getPeerStories, new LocationActivity$$ExternalSyntheticLambda44(this, j, 6));
+        ConnectionsManager.getInstance(i).sendRequest(tL_stories_getPeerStories, new SecretChatHelper$$ExternalSyntheticLambda29(this, j, 5));
     }
 
     public final void loadBlocklist() {
@@ -2042,7 +1983,7 @@ public final class StoriesController {
         tL_contacts_getBlocked.my_stories_from = true;
         tL_contacts_getBlocked.offset = this.blocklist.size();
         tL_contacts_getBlocked.limit = 25;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_getBlocked, new StoriesController$$ExternalSyntheticLambda0(this, 2));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_contacts_getBlocked, new StoriesController$$ExternalSyntheticLambda0(this, 1));
     }
 
     public final void loadFromServer(boolean z) {
@@ -2078,7 +2019,7 @@ public final class StoriesController {
             return;
         }
         this.loadingSendAs = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_stories.TL_stories_getChatsToSend(), new StoriesController$$ExternalSyntheticLambda0(this, 3));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_stories.TL_stories_getChatsToSend(), new StoriesController$$ExternalSyntheticLambda0(this, 2));
     }
 
     public final void loadSkippedStories(final TL_stories.PeerStories peerStories, final boolean z) {
@@ -2125,7 +2066,7 @@ public final class StoriesController {
             this.loadingFromDatabase = true;
             StoriesController$$ExternalSyntheticLambda2 storiesController$$ExternalSyntheticLambda2 = new StoriesController$$ExternalSyntheticLambda2(this, 1);
             StoriesStorage storiesStorage = this.storiesStorage;
-            storiesStorage.storage.getStorageQueue().postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(6, storiesStorage, storiesController$$ExternalSyntheticLambda2));
+            storiesStorage.storage.getStorageQueue().postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(10, storiesStorage, storiesController$$ExternalSyntheticLambda2));
         } else {
             loadFromServer(false);
             loadFromServer(true);
@@ -2134,7 +2075,7 @@ public final class StoriesController {
     }
 
     public final void markStoriesAsReadFromServer(int i, long j) {
-        AndroidUtilities.runOnUIThread(new ChatMessageCell$$ExternalSyntheticLambda5(this, j, i, 8));
+        AndroidUtilities.runOnUIThread(new ChatMessageCell$$ExternalSyntheticLambda7(this, j, i, 8));
     }
 
     public final boolean markStoryAsRead(TL_stories.PeerStories peerStories, TL_stories.StoryItem storyItem, boolean z) {
@@ -2195,9 +2136,7 @@ public final class StoriesController {
                                 FileLoader.getInstance(i).loadFile(tL_availableReaction.select_animation, visibleReactionFromTL, 0, 0);
                             }
                         } else {
-                            AnimatedEmojiDrawable animatedEmojiDrawable = new AnimatedEmojiDrawable(1, i, visibleReactionFromTL.documentId);
-                            animatedEmojiDrawable.preloading = true;
-                            animatedEmojiDrawable.updateAttachState();
+                            new AnimatedEmojiDrawable(1, i, visibleReactionFromTL.documentId).preload();
                         }
                     }
                 }
@@ -2303,13 +2242,13 @@ public final class StoriesController {
         }
         if (!z2) {
             ArrayList<TL_stories.PeerStories> arrayList4 = tL_stories_allStories.peer_stories;
-            VoIPFragment$$ExternalSyntheticLambda31 voIPFragment$$ExternalSyntheticLambda31 = new VoIPFragment$$ExternalSyntheticLambda31(5);
+            GiftSheet$$ExternalSyntheticLambda2 giftSheet$$ExternalSyntheticLambda2 = new GiftSheet$$ExternalSyntheticLambda2(23);
             StoriesStorage storiesStorage = this.storiesStorage;
-            storiesStorage.storage.getStorageQueue().postRunnable(new ProfileActivity$$ExternalSyntheticLambda116(storiesStorage, arrayList4, z3, z, voIPFragment$$ExternalSyntheticLambda31, 6));
+            storiesStorage.storage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda10(storiesStorage, arrayList4, z3, z, giftSheet$$ExternalSyntheticLambda2, 0));
         }
-        OAuthSheet$$ExternalSyntheticLambda17 oAuthSheet$$ExternalSyntheticLambda17 = this.sortStoriesRunnable;
-        AndroidUtilities.cancelRunOnUIThread(oAuthSheet$$ExternalSyntheticLambda17);
-        oAuthSheet$$ExternalSyntheticLambda17.run();
+        Theme$$ExternalSyntheticLambda19 theme$$ExternalSyntheticLambda19 = this.sortStoriesRunnable;
+        AndroidUtilities.cancelRunOnUIThread(theme$$ExternalSyntheticLambda19);
+        theme$$ExternalSyntheticLambda19.run();
     }
 
     public final void processUpdate(TL_stories.TL_updateStory tL_updateStory) {
@@ -2326,13 +2265,13 @@ public final class StoriesController {
         if (peerDialogId > 0) {
             user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(peerDialogId));
             if (user != null && (isContactOrService(user) || user.self)) {
-                storiesStorage.storage.getStorageQueue().postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(4, storiesStorage, tL_updateStory));
+                storiesStorage.storage.getStorageQueue().postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(8, storiesStorage, tL_updateStory));
             }
         } else {
-            storiesStorage.storage.getStorageQueue().postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(4, storiesStorage, tL_updateStory));
+            storiesStorage.storage.getStorageQueue().postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(8, storiesStorage, tL_updateStory));
             user = null;
         }
-        AndroidUtilities.runOnUIThread(new PhotoViewer$$ExternalSyntheticLambda126(this, peerDialogId, tL_updateStory, user, 10));
+        AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda87(this, peerDialogId, tL_updateStory, user));
     }
 
     public final void putStories(long j, TL_stories.PeerStories peerStories) {
@@ -2341,12 +2280,12 @@ public final class StoriesController {
         int i = this.currentAccount;
         if (j <= 0) {
             if (ChatObject.isInChat(MessagesController.getInstance(i).getChat(Long.valueOf(-j)))) {
-                storiesStorage.storage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda13(storiesStorage, peerStories, 0));
+                storiesStorage.storage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda2(storiesStorage, peerStories, 0));
             }
         } else {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
             if (isContactOrService(user) || user.self) {
-                storiesStorage.storage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda13(storiesStorage, peerStories, 0));
+                storiesStorage.storage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda2(storiesStorage, peerStories, 0));
             }
         }
     }
@@ -2456,14 +2395,14 @@ public final class StoriesController {
         this.stealthMode = tL_storiesStealthMode;
         int i = this.currentAccount;
         NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stealthModeChanged, new Object[0]);
-        SharedPreferences.Editor editorM = AiTonesController$$ExternalSyntheticOutline0.m(i);
+        SharedPreferences.Editor editorEdit = MessagesController.getInstance(i).getMainSettings().edit();
         if (tL_storiesStealthMode == null) {
-            editorM.remove("stories_stealth_mode").apply();
+            editorEdit.remove("stories_stealth_mode").apply();
             return;
         }
         SerializedData serializedData = new SerializedData(tL_storiesStealthMode.getObjectSize());
         tL_storiesStealthMode.serializeToStream(serializedData);
-        editorM.putString("stories_stealth_mode", Utilities.bytesToHex(serializedData.toByteArray())).apply();
+        editorEdit.putString("stories_stealth_mode", Utilities.bytesToHex(serializedData.toByteArray())).apply();
     }
 
     public final void setStoryReaction(long j, TL_stories.StoryItem storyItem, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
@@ -2492,7 +2431,7 @@ public final class StoriesController {
             storyItem.sent_reaction = tL_reactionEmoji;
         }
         updateStoryItem(j, storyItem, false);
-        ConnectionsManager.getInstance(i).sendRequest(tL_stories_sendReaction, new PassportActivity$$ExternalSyntheticLambda1(18));
+        ConnectionsManager.getInstance(i).sendRequest(tL_stories_sendReaction, new StealthModeAlert$$ExternalSyntheticLambda3(5));
     }
 
     public final void toggleHidden(long j, boolean z, boolean z2) {
@@ -2521,9 +2460,9 @@ public final class StoriesController {
             while (true) {
                 if (i2 >= arrayList2.size()) {
                     arrayList2.add(0, peerStories);
-                    OAuthSheet$$ExternalSyntheticLambda17 oAuthSheet$$ExternalSyntheticLambda17 = this.sortStoriesRunnable;
-                    AndroidUtilities.cancelRunOnUIThread(oAuthSheet$$ExternalSyntheticLambda17);
-                    oAuthSheet$$ExternalSyntheticLambda17.run();
+                    Theme$$ExternalSyntheticLambda19 theme$$ExternalSyntheticLambda19 = this.sortStoriesRunnable;
+                    AndroidUtilities.cancelRunOnUIThread(theme$$ExternalSyntheticLambda19);
+                    theme$$ExternalSyntheticLambda19.run();
                     break;
                 }
                 if (DialogObject.getPeerDialogId(((TL_stories.PeerStories) arrayList2.get(i2)).peer) == j) {
@@ -2551,7 +2490,7 @@ public final class StoriesController {
             TL_stories.TL_stories_togglePeerStoriesHidden tL_stories_togglePeerStoriesHidden = new TL_stories.TL_stories_togglePeerStoriesHidden();
             tL_stories_togglePeerStoriesHidden.peer = MessagesController.getInstance(i3).getInputPeer(j);
             tL_stories_togglePeerStoriesHidden.hidden = z;
-            ConnectionsManager.getInstance(i3).sendRequest(tL_stories_togglePeerStoriesHidden, new PassportActivity$$ExternalSyntheticLambda1(18));
+            ConnectionsManager.getInstance(i3).sendRequest(tL_stories_togglePeerStoriesHidden, new StealthModeAlert$$ExternalSyntheticLambda3(5));
         }
     }
 
@@ -2784,7 +2723,7 @@ public final class StoriesController {
         togglepinned.pinned = z;
         int i3 = this.currentAccount;
         togglepinned.peer = MessagesController.getInstance(i3).getInputPeer(j);
-        ConnectionsManager.getInstance(i3).sendRequest(togglepinned, new RichMediaUploader$$ExternalSyntheticLambda0(peerStoriesView$38$$ExternalSyntheticLambda1, 1));
+        ConnectionsManager.getInstance(i3).sendRequest(togglepinned, new RichMediaUploader$$ExternalSyntheticLambda0(peerStoriesView$38$$ExternalSyntheticLambda1, 22));
     }
 
     public final void updateStoryItem(long j, TL_stories.StoryItem storyItem, boolean z) {
@@ -2820,7 +2759,7 @@ public final class StoriesController {
         public final int albumId;
         public final AbstractSet cachedObjects;
         public final int currentAccount;
-        public final StickersActivity$$ExternalSyntheticLambda18 destroyRunnable;
+        public final StoryViewer$5$$ExternalSyntheticLambda0 destroyRunnable;
         public final long dialogId;
         public boolean done;
         public boolean error;
@@ -2829,7 +2768,7 @@ public final class StoriesController {
         public boolean loading;
         public boolean preloading;
         public boolean saving;
-        public StoriesController$StoriesList$$ExternalSyntheticLambda5 toLoad;
+        public StoriesController$StoriesList$$ExternalSyntheticLambda7 toLoad;
         public final int type;
         public int maxLinkId = 0;
         public final ArrayList links = new ArrayList();
@@ -2841,7 +2780,7 @@ public final class StoriesController {
         public boolean showPhotos = true;
         public boolean showVideos = true;
         public final ArrayList tempArr = new ArrayList();
-        public final StoriesController$StoriesList$$ExternalSyntheticLambda0 notify = new StoriesController$StoriesList$$ExternalSyntheticLambda0(this, 0);
+        public final StoriesController$StoriesList$$ExternalSyntheticLambda1 notify = new StoriesController$StoriesList$$ExternalSyntheticLambda1(this, 0);
         public int totalCount = -1;
         public int reqId = -1;
 
@@ -2850,7 +2789,7 @@ public final class StoriesController {
             this.dialogId = j;
             this.type = i2;
             this.albumId = i3;
-            this.destroyRunnable = new StickersActivity$$ExternalSyntheticLambda18(28, this, callback);
+            this.destroyRunnable = new StoryViewer$5$$ExternalSyntheticLambda0(2, this, callback);
             if (i2 != 0 || i3 <= 0) {
                 this.cachedObjects = new TreeSet(Comparator$CC.reverseOrder());
                 this.loadedObjects = new TreeSet(Comparator$CC.reverseOrder());
@@ -2912,9 +2851,9 @@ public final class StoriesController {
         public final void fill(boolean z) {
             fill(this.messageObjects, this.showPhotos, this.showVideos);
             if (z) {
-                StoriesController$StoriesList$$ExternalSyntheticLambda0 storiesController$StoriesList$$ExternalSyntheticLambda0 = this.notify;
-                AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
-                AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
+                StoriesController$StoriesList$$ExternalSyntheticLambda1 storiesController$StoriesList$$ExternalSyntheticLambda1 = this.notify;
+                AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
+                AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
             }
         }
 
@@ -2934,7 +2873,7 @@ public final class StoriesController {
         public ArrayList getDays() {
             HashMap map = this.groupedByDay;
             ArrayList arrayList = new ArrayList(map.keySet());
-            Collections.sort(arrayList, new OAuthSheet$$ExternalSyntheticLambda3(16));
+            Collections.sort(arrayList, new CacheModel$$ExternalSyntheticLambda0(15));
             ArrayList arrayList2 = new ArrayList();
             int i = this.type;
             int i2 = 0;
@@ -2997,7 +2936,7 @@ public final class StoriesController {
                 map.remove(Integer.valueOf(Objects.hash(Integer.valueOf(i2), Integer.valueOf(this.type), Long.valueOf(this.dialogId), Integer.valueOf(this.albumId))));
             }
             MessagesStorage messagesStorage = MessagesStorage.getInstance(i2);
-            messagesStorage.getStorageQueue().postRunnable(new StoriesController$StoriesList$$ExternalSyntheticLambda4(this, messagesStorage, i));
+            messagesStorage.getStorageQueue().postRunnable(new StoriesController$StoriesList$$ExternalSyntheticLambda6(this, messagesStorage, i));
         }
 
         public boolean isLoading() {
@@ -3039,7 +2978,7 @@ public final class StoriesController {
                 return false;
             }
             if (this.preloading) {
-                this.toLoad = new StoriesController$StoriesList$$ExternalSyntheticLambda5(this, z, i, list);
+                this.toLoad = new StoriesController$StoriesList$$ExternalSyntheticLambda7(this, z, i, list);
                 return false;
             }
             int i3 = this.type;
@@ -3076,7 +3015,7 @@ public final class StoriesController {
             }
             FileLog.d("StoriesList " + i3 + "{" + j + "} load");
             this.loading = true;
-            this.reqId = ConnectionsManager.getInstance(i4).sendRequest(tLObject, new LaunchActivity$$ExternalSyntheticLambda63(this, iLastLoadedId, 7));
+            this.reqId = ConnectionsManager.getInstance(i4).sendRequest(tLObject, new StarGiftSheet$$ExternalSyntheticLambda100(this, iLastLoadedId, 4));
             return true;
         }
 
@@ -3091,7 +3030,7 @@ public final class StoriesController {
             int i2 = this.currentAccount;
             tL_stories_incrementStoryViews.peer = MessagesController.getInstance(i2).getInputPeer(this.dialogId);
             tL_stories_incrementStoryViews.id.add(Integer.valueOf(i));
-            ConnectionsManager.getInstance(i2).sendRequest(tL_stories_incrementStoryViews, new PassportActivity$$ExternalSyntheticLambda1(1));
+            ConnectionsManager.getInstance(i2).sendRequest(tL_stories_incrementStoryViews, new StealthModeAlert$$ExternalSyntheticLambda3(4));
             NotificationCenter.getInstance(i2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesReadUpdated, new Object[0]);
             return true;
         }
@@ -3102,7 +3041,7 @@ public final class StoriesController {
             }
             this.preloading = true;
             MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-            messagesStorage.getStorageQueue().postRunnable(new StoriesController$StoriesList$$ExternalSyntheticLambda4(this, messagesStorage, 0));
+            messagesStorage.getStorageQueue().postRunnable(new StoriesController$StoriesList$$ExternalSyntheticLambda6(this, messagesStorage, 0));
         }
 
         public final void pushObject(MessageObject messageObject, boolean z) {
@@ -3151,7 +3090,7 @@ public final class StoriesController {
             ArrayList arrayList2 = new ArrayList(this.pinnedIds);
             fill(arrayList, true, true);
             MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-            messagesStorage.getStorageQueue().postRunnable(new ProfileActivity$$ExternalSyntheticLambda149(this, arrayList, messagesStorage, arrayList2, 21));
+            messagesStorage.getStorageQueue().postRunnable(new BotVerifySheet$$ExternalSyntheticLambda7(1, this, arrayList, messagesStorage, arrayList2));
         }
 
         public final void updateDeletedStories(List list) {
@@ -3219,7 +3158,7 @@ public final class StoriesController {
                 TL_stories.TL_togglePinnedToTop tL_togglePinnedToTop = new TL_stories.TL_togglePinnedToTop();
                 tL_togglePinnedToTop.id.addAll(arrayList3);
                 tL_togglePinnedToTop.peer = MessagesController.getInstance(i).getInputPeer(j);
-                ConnectionsManager.getInstance(i).sendRequest(tL_togglePinnedToTop, new PassportActivity$$ExternalSyntheticLambda1(20));
+                ConnectionsManager.getInstance(i).sendRequest(tL_togglePinnedToTop, new StealthModeAlert$$ExternalSyntheticLambda3(6));
             }
         }
 
@@ -3508,9 +3447,9 @@ public final class StoriesController {
                             } else {
                                 searchStoriesList.count = 0;
                                 searchStoriesList.last_offset = "";
-                                StoriesController$StoriesList$$ExternalSyntheticLambda0 storiesController$StoriesList$$ExternalSyntheticLambda0 = searchStoriesList.notify;
-                                AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
-                                AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda0);
+                                StoriesController$StoriesList$$ExternalSyntheticLambda1 storiesController$StoriesList$$ExternalSyntheticLambda1 = searchStoriesList.notify;
+                                AndroidUtilities.cancelRunOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
+                                AndroidUtilities.runOnUIThread(storiesController$StoriesList$$ExternalSyntheticLambda1);
                             }
                         }
                     });
@@ -3521,7 +3460,7 @@ public final class StoriesController {
                 tL_stories_searchPosts.flags |= 4;
                 tL_stories_searchPosts.peer = MessagesController.getInputPeer(userOrChat);
             }
-            this.reqId = ConnectionsManager.getInstance(i2).sendRequest(tL_stories_searchPosts, new RichMediaUploader$$ExternalSyntheticLambda0(this, 3));
+            this.reqId = ConnectionsManager.getInstance(i2).sendRequest(tL_stories_searchPosts, new RichMediaUploader$$ExternalSyntheticLambda0(this, 24));
             return true;
         }
 

@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkm;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.ArticleViewer$10$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.RecyclerListView;
 
@@ -51,7 +51,7 @@ public final class PaintTypefaceListView extends RecyclerListView implements Not
     }
 
     public PaintTypefaceListView(Context context) {
-        super(context, null);
+        super(context);
         this.mask = new Path();
         setWillNotDraw(false);
         setLayoutManager(new LinearLayoutManager(1, false));
@@ -101,7 +101,7 @@ public final class PaintTypefaceListView extends RecyclerListView implements Not
 
     @Override
     public final void onMeasure(int i, int i2) {
-        super.onMeasure(i, zzkm.m(16.0f, AndroidUtilities.dp(48.0f) * Math.min(PaintTypeface.get().size(), 6)));
+        super.onMeasure(i, ArticleViewer$10$$ExternalSyntheticOutline0.m(16.0f, AndroidUtilities.dp(48.0f) * Math.min(PaintTypeface.get().size(), 6), 1073741824));
     }
 
     public void setMaskProvider(Consumer consumer) {

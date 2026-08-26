@@ -13,7 +13,7 @@ public final class SendGiftSheet$$ExternalSyntheticLambda3 implements Runnable {
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.lambda$showGiftOfferSheet$15();
+                this.f$0.lambda$fillItems$15();
                 break;
             case 1:
                 this.f$0.onGiftSuccess(false);
@@ -22,13 +22,13 @@ public final class SendGiftSheet$$ExternalSyntheticLambda3 implements Runnable {
                 this.f$0.onGiftSuccess(true);
                 break;
             case 3:
-                this.f$0.lambda$fillItems$15$1();
+                this.f$0.lambda$fillItems$16();
                 break;
             case 4:
-                this.f$0.lambda$fillItems$16$1();
+                this.f$0.lambda$fillItems$17();
                 break;
             default:
-                this.f$0.lambda$fillItems$17();
+                this.f$0.lambda$showGiftOfferSheet$15();
                 break;
         }
     }

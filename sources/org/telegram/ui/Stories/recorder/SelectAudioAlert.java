@@ -11,7 +11,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.FrameLayout;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +28,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaController$$ExternalSyntheticOutline1;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -44,11 +45,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Cells.SharedAudioCell;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda18;
 import org.telegram.ui.Components.FragmentSearchField;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -58,23 +58,21 @@ import org.telegram.ui.Components.blur3.Blur3HashImpl;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
 import org.telegram.ui.Components.blur3.RenderNodeWithHash;
+import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
-import org.telegram.ui.MessageEnterTransitionContainer;
-import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.blur3.utils.Blur3Utils;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
-import org.telegram.ui.Stories.LiveCommentsView$$ExternalSyntheticLambda6;
 import org.telegram.ui.Stories.StoryViewer$5$$ExternalSyntheticLambda0;
-import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 import org.telegram.ui.recyclerview.LinearSmoothScrollerCustom;
-import org.telegram.ui.web.WebActionBar$$ExternalSyntheticLambda9;
 
 public final class SelectAudioAlert extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener, FactorAnimator.Target {
     public UniversalAdapter adapter;
     public final BoolAnimator animatorFadeVisible;
     public MessageObject downloadingMessageObject;
-    public final MessageEnterTransitionContainer fadeView;
+    public final ChatAttachAlert.SearchFadeView fadeView;
     public boolean failedToResolveGlobalAudioBot;
     public final FrameLayout frameLayout;
     public final ArrayList globalAudio;
@@ -82,7 +80,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
     public boolean globalAudioHasMore;
     public int globalAudioId;
     public String globalAudioOffset;
-    public final EmojiView$$ExternalSyntheticLambda18 iBlur3Capture;
+    public final SelectAudioAlert$$ExternalSyntheticLambda3 iBlur3Capture;
     public final BlurredBackgroundDrawableViewFactory iBlur3FactoryLiquidGlass;
     public final RectF iBlur3PositionActionBar;
     public final ArrayList iBlur3Positions;
@@ -117,7 +115,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
     public boolean withoutSavedMusic;
 
     public SelectAudioAlert(Context context, boolean z, SelectAudioAlert selectAudioAlert, Utilities.Callback callback, DarkThemeResourceProvider darkThemeResourceProvider) {
-        super(context, null, true, false, false, false, false, 2, darkThemeResourceProvider);
+        super(context, null, true, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, darkThemeResourceProvider);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorFadeVisible = new BoolAnimator(0, this, cubicBezierInterpolator, 380L, false);
         this.localAudio = new ArrayList();
@@ -195,9 +193,10 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
             this.iBlur3SourceGlass = blurredBackgroundSourceRenderNode;
             blurredBackgroundSourceRenderNode.setupRenderer(new RenderNodeWithHash.Renderer() {
                 @Override
-                public final void renderNodeCalculateHash(Blur3HashImpl blur3HashImpl) {
+                public final void renderNodeCalculateHash(IBlur3Hash iBlur3Hash) {
+                    Blur3HashImpl blur3HashImpl = (Blur3HashImpl) iBlur3Hash;
                     blur3HashImpl.hash = MediaDataController.calcHash(blur3HashImpl.hash, SelectAudioAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    blur3HashImpl.add(SharedConfig.chatBlurEnabled());
+                    ((Blur3HashImpl) iBlur3Hash).add(SharedConfig.chatBlurEnabled());
                 }
 
                 @Override
@@ -214,9 +213,10 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
             this.iBlur3SourceGlassFrosted = blurredBackgroundSourceRenderNode2;
             blurredBackgroundSourceRenderNode2.setupRenderer(new RenderNodeWithHash.Renderer() {
                 @Override
-                public final void renderNodeCalculateHash(Blur3HashImpl blur3HashImpl) {
+                public final void renderNodeCalculateHash(IBlur3Hash iBlur3Hash) {
+                    Blur3HashImpl blur3HashImpl = (Blur3HashImpl) iBlur3Hash;
                     blur3HashImpl.hash = MediaDataController.calcHash(blur3HashImpl.hash, SelectAudioAlert.this.getThemedColor(Theme.key_windowBackgroundWhite));
-                    blur3HashImpl.add(SharedConfig.chatBlurEnabled());
+                    ((Blur3HashImpl) iBlur3Hash).add(SharedConfig.chatBlurEnabled());
                 }
 
                 @Override
@@ -239,11 +239,21 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
             this.iBlur3SourceGlass = null;
             this.iBlur3FactoryLiquidGlass = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceColor);
         }
-        this.iBlur3Capture = new EmojiView$$ExternalSyntheticLambda18(this, 6);
+        this.iBlur3Capture = new IBlur3Capture() {
+            @Override
+            public final void capture(Canvas canvas, RectF rectF2) {
+                this.f$0.lambda$new$0(canvas, rectF2);
+            }
+
+            @Override
+            public final void captureCalculateHash(IBlur3Hash iBlur3Hash, RectF rectF2) {
+                ((Blur3HashImpl) iBlur3Hash).unsupported = true;
+            }
+        };
         int i3 = Theme.key_windowBackgroundGray;
-        MessageEnterTransitionContainer messageEnterTransitionContainer = new MessageEnterTransitionContainer(context, i3, darkThemeResourceProvider);
-        this.fadeView = messageEnterTransitionContainer;
-        messageEnterTransitionContainer.setVisibility(4);
+        ChatAttachAlert.SearchFadeView searchFadeView = new ChatAttachAlert.SearchFadeView(context, i3, darkThemeResourceProvider);
+        this.fadeView = searchFadeView;
+        searchFadeView.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.frameLayout = frameLayout;
         FragmentSearchField fragmentSearchField = new FragmentSearchField(context, darkThemeResourceProvider);
@@ -253,17 +263,11 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
                 if (z2) {
                     SelectAudioAlert selectAudioAlert2 = SelectAudioAlert.this;
                     selectAudioAlert2.ignoreScroll = true;
-                    LinearLayoutManager linearLayoutManager = (LinearLayoutManager) selectAudioAlert2.recyclerListView.getLayoutManager();
-                    LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(selectAudioAlert2.getContext(), 2);
-                    linearSmoothScrollerCustom.mTargetPosition = 1;
-                    linearSmoothScrollerCustom.offset = (ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(1.0f);
-                    linearLayoutManager.startSmoothScroll(linearSmoothScrollerCustom);
+                    SelectAudioAlert.access$600(selectAudioAlert2);
                 }
             }
         });
-        fragmentSearchField.isSectionBackground = true;
-        fragmentSearchField.setPadding(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        fragmentSearchField.updateColors$1();
+        fragmentSearchField.setSectionBackground();
         fragmentSearchField.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         fragmentSearchField.editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -313,7 +317,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
             }
         });
         fragmentSearchField.editText.setHint(LocaleController.getString(R.string.Search));
-        frameLayout.addView(messageEnterTransitionContainer, LayoutHelper.createFrame(-1.0f, -1));
+        frameLayout.addView(searchFadeView, LayoutHelper.createFrameMatchParent());
         frameLayout.addView(fragmentSearchField, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
         fragmentSearchField.setupBlurredBackground(this.iBlur3FactoryLiquidGlass.create(fragmentSearchField, BlurredBackgroundProviderImpl.topPanel(darkThemeResourceProvider), false));
         frameLayout.setPadding(AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0);
@@ -324,14 +328,11 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
         recyclerListView.setPadding(i4, 0, i4, 0);
         this.recyclerListView.setSections();
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        defaultItemAnimator.delayAnimations = false;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setInterpolator(cubicBezierInterpolator);
         defaultItemAnimator.setDurations(350L);
-        this.recyclerListView.setItemAnimator(defaultItemAnimator);
+        this.recyclerListView.lambda$onCellEnter$52(defaultItemAnimator);
         if (z) {
             this.savedMusicList = null;
             if (this.local && !this.loadingLocalAudio) {
@@ -371,6 +372,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
         this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public final void onScrollStateChanged(RecyclerView recyclerView, int i7) {
+                super.onScrollStateChanged(recyclerView, i7);
                 if (i7 == 0) {
                     SelectAudioAlert selectAudioAlert2 = SelectAudioAlert.this;
                     if (selectAudioAlert2.ignoreScroll) {
@@ -383,14 +385,22 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
             public final void onScrolled(RecyclerView recyclerView, int i7, int i8) {
                 SelectAudioAlert selectAudioAlert2 = SelectAudioAlert.this;
                 selectAudioAlert2.updateSearchY();
-                selectAudioAlert2.blur3_InvalidateBlur$1();
-                if (!selectAudioAlert2.recyclerListView.scrollingByUser || selectAudioAlert2.ignoreScroll) {
+                selectAudioAlert2.blur3_InvalidateBlur();
+                if (!((BottomSheetWithRecyclerListView) selectAudioAlert2).recyclerListView.scrollingByUser || selectAudioAlert2.ignoreScroll) {
                     return;
                 }
                 AndroidUtilities.hideKeyboard(((BottomSheet) selectAudioAlert2).containerView);
             }
         });
-        this.recyclerListView.setOnItemClickListener(new LiveCommentsView$$ExternalSyntheticLambda6(this, callback, darkThemeResourceProvider, 3));
+        this.recyclerListView.setOnItemClickListener(new StoryLinkSheet$$ExternalSyntheticLambda6(this, callback, darkThemeResourceProvider, 1));
+    }
+
+    public static void access$600(SelectAudioAlert selectAudioAlert) {
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) selectAudioAlert.recyclerListView.getLayoutManager();
+        LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(selectAudioAlert.getContext(), 2);
+        linearSmoothScrollerCustom.setTargetPosition(1);
+        linearSmoothScrollerCustom.setOffset((ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(1.0f));
+        linearLayoutManager.startSmoothScroll(linearSmoothScrollerCustom);
     }
 
     public static boolean matches(String str, String str2, String str3) {
@@ -440,41 +450,38 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
                 if (arrayList.isEmpty() || arrayList.size() <= 1) {
                     iDp = 0;
                 } else {
-                    UItem uItem = new UItem(7);
-                    uItem.text = null;
-                    arrayList.add(uItem);
+                    arrayList.add(UItem.asShadow(null));
                     iDp = AndroidUtilities.dp(12.0f);
                 }
                 this.adapter.whiteSectionStart();
-                UItem uItem2 = new UItem(0);
-                uItem2.text = str;
-                arrayList.add(uItem2);
+                arrayList.add(UItem.asHeader(str));
                 int size2 = arrayList3.size();
                 while (i2 < size2) {
                     Object obj2 = arrayList3.get(i2);
                     i2++;
-                    WebActionBar$$ExternalSyntheticLambda9 webActionBar$$ExternalSyntheticLambda9 = new WebActionBar$$ExternalSyntheticLambda9(this, 11);
+                    Utilities.CallbackReturn callbackReturn = new Utilities.CallbackReturn() {
+                        @Override
+                        public final Object run(Object obj3) {
+                            MessageObject messageObject2 = (MessageObject) obj3;
+                            this.f$0.playingAudio = messageObject2;
+                            return Boolean.valueOf(MediaController.getInstance().setPlaylist(MediaController$$ExternalSyntheticOutline1.m(messageObject2), messageObject2, 0L));
+                        }
+                    };
                     int i4 = SharedAudioCell.Factory.$r8$clinit;
                     UItem uItemOfFactory = UItem.ofFactory(SharedAudioCell.Factory.class);
                     uItemOfFactory.object = (MessageObject) obj2;
-                    uItemOfFactory.object2 = webActionBar$$ExternalSyntheticLambda9;
+                    uItemOfFactory.object2 = callbackReturn;
                     arrayList.add(uItemOfFactory);
                     iDp += AndroidUtilities.dp(56.0f);
                 }
                 if (z2) {
-                    UItem uItem3 = new UItem(34);
-                    uItem3.intValue = 4;
-                    UItem uItemM = ArticleViewer.IBlock.CC.m(arrayList, uItem3, 34);
-                    uItemM.intValue = 4;
-                    UItem uItemM2 = ArticleViewer.IBlock.CC.m(arrayList, uItemM, 34);
-                    uItemM2.intValue = 4;
-                    arrayList.add(uItemM2);
+                    arrayList.add(UItem.asFlicker(4));
+                    arrayList.add(UItem.asFlicker(4));
+                    arrayList.add(UItem.asFlicker(4));
                     iDp += AndroidUtilities.dp(56.0f) * 3;
                 }
                 if (z3 && !z2) {
-                    UItem uItemAsButton = UItem.asButton(i, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore));
-                    uItemAsButton.accent = true;
-                    arrayList.add(uItemAsButton);
+                    arrayList.add(UItem.asButton(i, R.drawable.arrow_more, LocaleController.getString(R.string.ShowMore)).accent());
                     iDp += AndroidUtilities.dp(50.0f);
                 }
                 this.adapter.whiteSectionEnd();
@@ -484,7 +491,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
         return 0;
     }
 
-    public final void blur3_InvalidateBlur$1() {
+    public final void blur3_InvalidateBlur() {
         DownscaleScrollableNoiseSuppressor downscaleScrollableNoiseSuppressor;
         if (Build.VERSION.SDK_INT < 31 || (downscaleScrollableNoiseSuppressor = this.scrollableViewNoiseSuppressor) == null) {
             return;
@@ -492,7 +499,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
         this.iBlur3PositionActionBar.set(0.0f, ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, this.containerView.getMeasuredWidth(), AndroidUtilities.dp(64.0f) + ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight);
         ArrayList arrayList = this.iBlur3Positions;
         ArrayList arrayList2 = this.iBlur3PositionsMerged;
-        downscaleScrollableNoiseSuppressor.setupRenderNodes(FBool.mergeOverlapping(arrayList, 1, arrayList2), arrayList2);
+        downscaleScrollableNoiseSuppressor.setupRenderNodes(FBool.mergeOverlapping(arrayList, arrayList2, 1), arrayList2);
         downscaleScrollableNoiseSuppressor.invalidateResultRenderNodes(this.iBlur3Capture, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
     }
 
@@ -521,10 +528,10 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, false, new SelectAudioAlert$$ExternalSyntheticLambda0(this, 0), this.resourcesProvider);
+        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, new SelectAudioAlert$$ExternalSyntheticLambda0(this, 0), this.resourcesProvider);
         this.adapter = universalAdapter;
-        universalAdapter.applyBackground = false;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override
@@ -697,7 +704,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
         } catch (Exception e) {
             FileLog.e(e);
         }
-        AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(26, this, arrayList));
+        AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(29, this, arrayList));
     }
 
     public final void lambda$loadSharedAudio$2(TLObject tLObject) {
@@ -731,6 +738,11 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
             this.nextSearchRate = 0;
         }
         this.adapter.update(true);
+    }
+
+    public final void lambda$new$0(Canvas canvas, RectF rectF) {
+        RecyclerListView recyclerListView = this.recyclerListView;
+        Blur3Utils.captureRelativeParent(recyclerListView, canvas, rectF, recyclerListView, getContainerView(), 255);
     }
 
     public final void lambda$new$1(Utilities.Callback callback, DarkThemeResourceProvider darkThemeResourceProvider, View view, int i) {
@@ -807,7 +819,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
                     return;
                 }
                 this.resolvingGlobalAudioBot = true;
-                MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str2, new QrActivity$5$$ExternalSyntheticLambda0(this, 13));
+                MessagesController.getInstance(this.currentAccount).getUserNameResolver().resolve(str2, new SelectAudioAlert$$ExternalSyntheticLambda5(this, 0));
                 return;
             }
             this.loadingGlobalAudio = true;
@@ -854,7 +866,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
             tL_messages_searchGlobal.q = str4;
             tL_messages_searchGlobal.limit = 20;
             if (arrayList.size() > 0) {
-                MessageObject messageObject = (MessageObject) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList);
+                MessageObject messageObject = (MessageObject) Fragment$$ExternalSyntheticOutline0.m(1, arrayList);
                 tL_messages_searchGlobal.offset_id = messageObject.getId();
                 tL_messages_searchGlobal.offset_rate = this.nextSearchRate;
                 tL_messages_searchGlobal.offset_peer = MessagesController.getInstance(this.currentAccount).getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
@@ -863,7 +875,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
                 tL_messages_searchGlobal.offset_id = 0;
                 tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
             }
-            this.loadingSharedAudioRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new RichMediaUploader$$ExternalSyntheticLambda0(this, 6));
+            this.loadingSharedAudioRequestId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_searchGlobal, new StoryEntry$$ExternalSyntheticLambda12(this, 2));
             this.adapter.update(true);
         }
     }
@@ -881,15 +893,15 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
     public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
         if (i == 0) {
-            MessageEnterTransitionContainer messageEnterTransitionContainer = this.fadeView;
-            messageEnterTransitionContainer.setAlpha(f);
-            messageEnterTransitionContainer.setVisibility(f > 0.0f ? 0 : 4);
+            ChatAttachAlert.SearchFadeView searchFadeView = this.fadeView;
+            searchFadeView.setAlpha(f);
+            searchFadeView.setVisibility(f > 0.0f ? 0 : 4);
         }
     }
 
@@ -922,7 +934,7 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
     @Override
     public final void preDrawInternal(Canvas canvas, View view) {
         if (Build.VERSION.SDK_INT >= 31 && this.scrollableViewNoiseSuppressor != null) {
-            blur3_InvalidateBlur$1();
+            blur3_InvalidateBlur();
             BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = this.iBlur3SourceGlassFrosted;
             if (blurredBackgroundSourceRenderNode != null) {
                 blurredBackgroundSourceRenderNode.setSize(this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
@@ -940,18 +952,11 @@ public final class SelectAudioAlert extends BottomSheetWithRecyclerListView impl
 
     public final void updateSearchY() {
         float y = AndroidUtilities.displaySize.y;
-        int i = 0;
-        while (true) {
-            RecyclerListView recyclerListView = this.recyclerListView;
-            if (i >= recyclerListView.getChildCount()) {
-                break;
-            }
-            View childAt = recyclerListView.getChildAt(i);
-            recyclerListView.getClass();
-            if (RecyclerView.getChildAdapterPosition(childAt) >= 1 && childAt.getY() < y) {
+        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+            View childAt = this.recyclerListView.getChildAt(i);
+            if (this.recyclerListView.getChildAdapterPosition(childAt) >= 1 && childAt.getY() < y) {
                 y = childAt.getY();
             }
-            i++;
         }
         this.frameLayout.setTranslationY(Math.max(ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, y));
         this.animatorFadeVisible.setValue(y <= ((float) (ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight)), true);

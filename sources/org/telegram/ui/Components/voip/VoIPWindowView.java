@@ -1,29 +1,141 @@
 package org.telegram.ui.Components.voip;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
 import android.app.Activity;
+import android.transition.TransitionValues;
 import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.VelocityTracker;
-import android.view.WindowInsets;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.PhotoViewer$41$1;
 import org.telegram.ui.VoIPFragment;
 import org.webrtc.OrientationHelper;
 
 public abstract class VoIPWindowView extends FrameLayout {
-    public final Activity activity;
-    public boolean finished;
-    public boolean lockOnScreen;
-    public final AnimationNotificationsLocker notificationsLocker;
-    public boolean runEnterTransition;
-    public boolean startDragging;
-    public float startX;
-    public float startY;
-    public VelocityTracker velocityTracker;
+    Activity activity;
+    boolean finished;
+    protected boolean lockOnScreen;
+    private AnimationNotificationsLocker notificationsLocker;
+    boolean runEnterTransition;
+    boolean startDragging;
+    float startX;
+    float startY;
+    VelocityTracker velocityTracker;
+
+    public final class AnonymousClass1 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass1(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public final void onAnimationEnd(Animator animator) {
+            AnimatorSet animatorSet;
+            switch (this.$r8$classId) {
+                case 0:
+                    ((VoIPWindowView) this.this$0).notificationsLocker.unlock();
+                    AndroidUtilities.unlockOrientation(((VoIPWindowView) this.this$0).activity);
+                    if (((VoIPWindowView) this.this$0).getParent() != null) {
+                        WindowManager windowManager = (WindowManager) ((VoIPWindowView) this.this$0).activity.getSystemService("window");
+                        ((VoIPWindowView) this.this$0).setVisibility(8);
+                        try {
+                            windowManager.removeView((VoIPWindowView) this.this$0);
+                            break;
+                        } catch (Exception unused) {
+                        }
+                        OrientationHelper.cameraRotationDisabled = false;
+                    }
+                    break;
+                case 1:
+                    super.onAnimationEnd(animator);
+                    ((TransitionValues) this.this$0).view.setEnabled(true);
+                    break;
+                case 2:
+                    GroupCallMiniTextureView.AnonymousClass1 anonymousClass1 = (GroupCallMiniTextureView.AnonymousClass1) this.this$0;
+                    if (GroupCallMiniTextureView.this.blurredFlippingStub.getParent() != null) {
+                        GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
+                        groupCallMiniTextureView.textureView.removeView(groupCallMiniTextureView.blurredFlippingStub);
+                    }
+                    break;
+                case 3:
+                    super.onAnimationEnd(animator);
+                    PrivateVideoPreviewDialog privateVideoPreviewDialog = (PrivateVideoPreviewDialog) this.this$0;
+                    if (privateVideoPreviewDialog.getParent() != null) {
+                        ((ViewGroup) privateVideoPreviewDialog.getParent()).removeView(privateVideoPreviewDialog);
+                    }
+                    break;
+                case 4:
+                    VoIPBackgroundProvider voIPBackgroundProvider = (VoIPBackgroundProvider) this.this$0;
+                    voIPBackgroundProvider.hasVideo = false;
+                    voIPBackgroundProvider.darkPaint.setAlpha(35);
+                    voIPBackgroundProvider.darkVideoPaint.setAlpha(102);
+                    voIPBackgroundProvider.whiteVideoPaint.setAlpha(35);
+                    voIPBackgroundProvider.invalidateViews();
+                    break;
+                case 5:
+                    VoIPFloatingLayout voIPFloatingLayout = VoIPFloatingLayout.this;
+                    voIPFloatingLayout.switchingToFloatingMode = false;
+                    voIPFloatingLayout.requestLayout();
+                    break;
+                case 6:
+                    VoIPTextureView voIPTextureView = (VoIPTextureView) this.this$0;
+                    voIPTextureView.currentClipVertical = 0.0f;
+                    voIPTextureView.currentClipHorizontal = 0.0f;
+                    voIPTextureView.renderer.setScaleX(voIPTextureView.scaleTextureToFill);
+                    voIPTextureView.renderer.setScaleY(voIPTextureView.scaleTextureToFill);
+                    TextureView textureView = voIPTextureView.blurRenderer;
+                    if (textureView != null) {
+                        textureView.setScaleX(voIPTextureView.scaleTextureToFillBlur);
+                        voIPTextureView.blurRenderer.setScaleY(voIPTextureView.scaleTextureToFillBlur);
+                    }
+                    voIPTextureView.setTranslationY(0.0f);
+                    voIPTextureView.setTranslationX(0.0f);
+                    voIPTextureView.currentThumbScale = voIPTextureView.scaleThumb;
+                    voIPTextureView.currentAnimation = null;
+                    break;
+                case 7:
+                    VoIPToggleButton voIPToggleButton = (VoIPToggleButton) this.this$0;
+                    voIPToggleButton.checkedProgress = voIPToggleButton.checked ? 1.0f : 0.0f;
+                    voIPToggleButton.setBackgroundColor(voIPToggleButton.backgroundCheck1, voIPToggleButton.backgroundCheck2);
+                    break;
+                case 8:
+                    VoIpGradientLayout voIpGradientLayout = (VoIpGradientLayout) this.this$0;
+                    voIpGradientLayout.showClip = false;
+                    voIpGradientLayout.backgroundProvider.isReveal = false;
+                    if (voIpGradientLayout.allowAnimations && (animatorSet = voIpGradientLayout.defaultAnimatorSet) != null) {
+                        animatorSet.cancel();
+                        voIpGradientLayout.defaultAnimatorSet.start();
+                    }
+                    voIpGradientLayout.switchToConnectedAnimator();
+                    break;
+                default:
+                    ((VoIpSwitchLayout) this.this$0).newTextView.setVisibility(8);
+                    break;
+            }
+        }
+
+        @Override
+        public void onAnimationStart(Animator animator) {
+            switch (this.$r8$classId) {
+                case 1:
+                    super.onAnimationStart(animator);
+                    ((TransitionValues) this.this$0).view.setEnabled(false);
+                    break;
+                default:
+                    super.onAnimationStart(animator);
+                    break;
+            }
+        }
+    }
 
     public VoIPWindowView(Activity activity, boolean z) {
         super(activity);
@@ -38,7 +150,7 @@ public abstract class VoIPWindowView extends FrameLayout {
         this.runEnterTransition = true;
     }
 
-    public static WindowManager.LayoutParams createWindowLayoutParams() {
+    public WindowManager.LayoutParams createWindowLayoutParams() {
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.height = -1;
         layoutParams.format = -2;
@@ -51,73 +163,52 @@ public abstract class VoIPWindowView extends FrameLayout {
         return layoutParams;
     }
 
-    public final void finish(long j) {
-        if (this.finished) {
-            return;
-        }
-        this.finished = true;
-        if (VoIPFragment.instance != null) {
-            if (VoIPService.getSharedInstance() != null) {
-                int measuredHeight = VoIPFragment.instance.windowView.getMeasuredHeight();
-                if (VoIPFragment.instance.canSwitchToPip && !VoIPService.getSharedInstance().isConverting()) {
-                    VoIPFragment voIPFragment = VoIPFragment.instance;
-                    VoIPPiPView.show(voIPFragment.activity, voIPFragment.currentAccount, voIPFragment.windowView.getMeasuredWidth(), measuredHeight, 0);
-                    WindowInsets windowInsets = VoIPFragment.instance.lastInsets;
-                    if (windowInsets != null) {
-                        VoIPPiPView.topInset = windowInsets.getSystemWindowInsetTop();
-                        VoIPFragment.instance.lastInsets.getSystemWindowInsetBottom();
-                    }
-                }
-            }
-            VoIPFragment.instance.callingUserTextureView.renderer.release();
-            VoIPFragment.instance.currentUserTextureView.renderer.release();
-            VoIPFragment.instance.callingUserMiniTextureRenderer.release();
-            VoIPFragment.instance.destroy$1$1();
-        }
-        VoIPFragment.instance = null;
-        if (this.lockOnScreen) {
-            try {
-                ((WindowManager) this.activity.getSystemService("window")).removeView(this);
-            } catch (Exception unused) {
-            }
-        } else {
-            this.notificationsLocker.lock();
-            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new PhotoViewer$41$1(this, 2)).setDuration(j).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+    public void finish() {
+        finish(330L);
+    }
+
+    public void finishImmediate() {
+        if (getParent() != null) {
+            AndroidUtilities.unlockOrientation(this.activity);
+            WindowManager windowManager = (WindowManager) this.activity.getSystemService("window");
+            setVisibility(8);
+            windowManager.removeView(this);
+            OrientationHelper.cameraRotationDisabled = false;
         }
     }
 
+    public boolean isLockOnScreen() {
+        return this.lockOnScreen;
+    }
+
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         return onTouchEvent(motionEvent);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         if (this.runEnterTransition) {
             return;
         }
         this.runEnterTransition = true;
-        if (this.lockOnScreen) {
-            return;
-        }
-        setTranslationY(getMeasuredHeight());
-        setAlpha(0.0f);
-        animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+        startEnterTransition();
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.lockOnScreen) {
-            if (motionEvent.getAction() == 0) {
-                this.startX = motionEvent.getX();
-                this.startY = motionEvent.getY();
-                if (this.velocityTracker == null) {
-                    this.velocityTracker = VelocityTracker.obtain();
-                }
-                this.velocityTracker.clear();
-                return false;
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.lockOnScreen) {
+            return false;
+        }
+        if (motionEvent.getAction() == 0) {
+            this.startX = motionEvent.getX();
+            this.startY = motionEvent.getY();
+            if (this.velocityTracker == null) {
+                this.velocityTracker = VelocityTracker.obtain();
             }
+            this.velocityTracker.clear();
+        } else {
             if (motionEvent.getAction() == 2) {
                 float x = motionEvent.getX() - this.startX;
                 float y = motionEvent.getY() - this.startY;
@@ -150,13 +241,46 @@ public abstract class VoIPWindowView extends FrameLayout {
                     animate().translationY(0.0f).start();
                 }
                 this.startDragging = false;
-                return false;
             }
         }
         return false;
     }
 
+    public void requestFullscreen(boolean z) {
+        if (z) {
+            setSystemUiVisibility(getSystemUiVisibility() | 4);
+        } else {
+            setSystemUiVisibility(getSystemUiVisibility() & (-5));
+        }
+    }
+
     public void setLockOnScreen(boolean z) {
         this.lockOnScreen = z;
+    }
+
+    public void startEnterTransition() {
+        if (this.lockOnScreen) {
+            return;
+        }
+        setTranslationY(getMeasuredHeight());
+        setAlpha(0.0f);
+        animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+    }
+
+    public void finish(long j) {
+        if (this.finished) {
+            return;
+        }
+        this.finished = true;
+        VoIPFragment.clearInstance();
+        if (this.lockOnScreen) {
+            try {
+                ((WindowManager) this.activity.getSystemService("window")).removeView(this);
+            } catch (Exception unused) {
+            }
+        } else {
+            this.notificationsLocker.lock();
+            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new AnonymousClass1(this, 0)).setDuration(j).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+        }
     }
 }

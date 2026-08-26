@@ -13,6 +13,7 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -28,25 +29,22 @@ import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda57;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda286;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda9;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda155;
 import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.AvatarsImageView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.DialogsActivity;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda17;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda5;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda31;
+import org.telegram.ui.bots.BotShareSheet$$ExternalSyntheticLambda3;
+import org.telegram.ui.bots.BotShareSheet$$ExternalSyntheticLambda7;
 import org.telegram.ui.community.cells.CommunityPendingRequestCell;
-import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda57;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
 
 public abstract class CommunityUtils {
 
@@ -136,7 +134,7 @@ public abstract class CommunityUtils {
         public final Context context;
         public final int currentAccount;
         public Delegate delegate;
-        public ChatActivity$$ExternalSyntheticLambda286 doCommitRunnable;
+        public ChatActivity$$ExternalSyntheticLambda155 doCommitRunnable;
         public boolean finished;
         public long lastViewTime;
         public boolean loading;
@@ -216,9 +214,7 @@ public abstract class CommunityUtils {
             if (this.finished) {
                 return;
             }
-            UItem uItem = new UItem(34);
-            uItem.intValue = 29;
-            arrayList.add(uItem);
+            arrayList.add(UItem.asFlicker(29));
         }
 
         public final void loadNext() {
@@ -241,7 +237,7 @@ public abstract class CommunityUtils {
             TextView textView;
             if (this.progressDialog == null && this.reqId == 0) {
                 if (z2) {
-                    AlertDialog alertDialogCreateSimpleConfirmAlert = AlertsCreator.createSimpleConfirmAlert(this.context, this.resourcesProvider, LocaleController.getString(z ? R.string.CommunityAddAllChatsTitle : R.string.CommunityDeclineAllTitle), AndroidUtilities.replaceTags(LocaleController.formatPluralString(z ? "CommunityAddAllChatsMessage" : "CommunityDeclineAllMessage", this.totalCount, new Object[0])), LocaleController.getString(z ? R.string.Add : R.string.Decline), new TodoItemMenu$$ExternalSyntheticLambda5(16, this, z));
+                    AlertDialog alertDialogCreateSimpleConfirmAlert = AlertsCreator.createSimpleConfirmAlert(this.context, this.resourcesProvider, LocaleController.getString(z ? R.string.CommunityAddAllChatsTitle : R.string.CommunityDeclineAllTitle), AndroidUtilities.replaceTags(LocaleController.formatPluralString(z ? "CommunityAddAllChatsMessage" : "CommunityDeclineAllMessage", this.totalCount, new Object[0])), LocaleController.getString(z ? R.string.Add : R.string.Decline), new FileLoader$$ExternalSyntheticLambda1(this, z, 22));
                     alertDialogCreateSimpleConfirmAlert.show();
                     if (z || (textView = (TextView) alertDialogCreateSimpleConfirmAlert.getButton(-1)) == null) {
                         return;
@@ -249,14 +245,14 @@ public abstract class CommunityUtils {
                     textView.setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
                     return;
                 }
-                ChatActivity$$ExternalSyntheticLambda286 chatActivity$$ExternalSyntheticLambda286 = this.doCommitRunnable;
-                if (chatActivity$$ExternalSyntheticLambda286 != null) {
-                    chatActivity$$ExternalSyntheticLambda286.run();
+                ChatActivity$$ExternalSyntheticLambda155 chatActivity$$ExternalSyntheticLambda155 = this.doCommitRunnable;
+                if (chatActivity$$ExternalSyntheticLambda155 != null) {
+                    chatActivity$$ExternalSyntheticLambda155.run();
                 }
                 this.doCommitRunnable = null;
                 AlertDialog alertDialog = new AlertDialog(this.context, 3, this.resourcesProvider);
                 this.progressDialog = alertDialog;
-                alertDialog.setOnCancelListener(new LinkManager$$ExternalSyntheticLambda17(this, 10));
+                alertDialog.setOnCancelListener(new BotShareSheet$$ExternalSyntheticLambda3(this, 3));
                 AlertDialog alertDialog2 = this.progressDialog;
                 AndroidUtilities.cancelRunOnUIThread(alertDialog2.showRunnable);
                 AndroidUtilities.runOnUIThread(alertDialog2.showRunnable, 500L);
@@ -267,62 +263,51 @@ public abstract class CommunityUtils {
         public final void onResolveJoinRequest(long j, boolean z) {
             int i;
             this.hiddenJoinRequests.put(null, j);
-            int i2 = 1;
             this.totalCount--;
             calcUnreadPendingRequests();
             Delegate delegate = this.delegate;
             if (delegate != null) {
                 delegate.updateAdapter();
             }
-            int i3 = z ? R.string.CommunityRequestApprovedToast : R.string.CommunityRequestDeclinedToast;
-            int i4 = this.currentAccount;
-            SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i3, DialogObject.getShortName(i4, j)));
-            ChatActivity$$ExternalSyntheticLambda286 chatActivity$$ExternalSyntheticLambda286 = this.doCommitRunnable;
-            if (chatActivity$$ExternalSyntheticLambda286 != null) {
-                chatActivity$$ExternalSyntheticLambda286.run();
+            int i2 = z ? R.string.CommunityRequestApprovedToast : R.string.CommunityRequestDeclinedToast;
+            int i3 = this.currentAccount;
+            SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(i2, DialogObject.getShortName(i3, j)));
+            ChatActivity$$ExternalSyntheticLambda155 chatActivity$$ExternalSyntheticLambda155 = this.doCommitRunnable;
+            if (chatActivity$$ExternalSyntheticLambda155 != null) {
+                chatActivity$$ExternalSyntheticLambda155.run();
             }
-            this.doCommitRunnable = new ChatActivity$$ExternalSyntheticLambda286(this, j, z, 6);
+            this.doCommitRunnable = new ChatActivity$$ExternalSyntheticLambda155(this, j, z, 7);
             Context context = this.context;
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            Bulletin.UsersLayout usersLayout = new Bulletin.UsersLayout(context, resourcesProvider, false);
-            TLObject userOrChat = MessagesController.getInstance(i4).getUserOrChat(j);
-            AvatarsImageView avatarsImageView = usersLayout.avatarsImageView;
+            Bulletin.UsersLayout usersLayout = new Bulletin.UsersLayout(context, false, resourcesProvider);
+            TLObject userOrChat = MessagesController.getInstance(i3).getUserOrChat(j);
             if (userOrChat != null) {
-                avatarsImageView.setCount(1);
-                avatarsImageView.avatarsDrawable.setObject(0, userOrChat, UserConfig.selectedAccount);
+                usersLayout.avatarsImageView.setCount(1);
+                usersLayout.avatarsImageView.setObject(0, UserConfig.selectedAccount, userOrChat);
                 i = 1;
             } else {
                 i = 0;
             }
-            avatarsImageView.setTranslationX(AndroidUtilities.dp(7.0f));
-            avatarsImageView.setScaleX(1.333f);
-            avatarsImageView.setScaleY(1.333f);
-            avatarsImageView.avatarsDrawable.commitTransition(false, true);
-            LinkSpanDrawable.LinksTextView linksTextView = usersLayout.textView;
-            linksTextView.setSingleLine(false);
-            linksTextView.setMaxLines(2);
-            linksTextView.setTextSize(1, 14.0f);
-            linksTextView.setText(spannableStringBuilderReplaceTags);
-            if (linksTextView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            usersLayout.avatarsImageView.setTranslationX(AndroidUtilities.dp(7.0f));
+            usersLayout.avatarsImageView.setScaleX(1.333f);
+            usersLayout.avatarsImageView.setScaleY(1.333f);
+            usersLayout.avatarsImageView.commitTransition(false);
+            usersLayout.textView.setSingleLine(false);
+            usersLayout.textView.setMaxLines(2);
+            usersLayout.textView.setTextSize(1, 14.0f);
+            usersLayout.textView.setText(spannableStringBuilderReplaceTags);
+            if (usersLayout.textView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
                 int iDp = AndroidUtilities.dp(74 - ((3 - i) * 12));
                 if (LocaleController.isRTL) {
-                    ((ViewGroup.MarginLayoutParams) linksTextView.getLayoutParams()).rightMargin = iDp;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).rightMargin = iDp;
                 } else {
-                    ((ViewGroup.MarginLayoutParams) linksTextView.getLayoutParams()).leftMargin = iDp;
+                    ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).leftMargin = iDp;
                 }
             }
             if (LocaleController.isRTL) {
-                avatarsImageView.setTranslationX(AndroidUtilities.dp(32 - ((i - 1) * 12)));
+                usersLayout.avatarsImageView.setTranslationX(AndroidUtilities.dp(32 - ((i - 1) * 12)));
             }
-            Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, resourcesProvider, true, true);
-            String string = LocaleController.getString(R.string.UndoNoCaps);
-            TextView textView = undoButton.undoTextView;
-            if (textView != null) {
-                textView.setText(string);
-            }
-            undoButton.undoAction = new RichEditor$$ExternalSyntheticLambda57(this, j, i2);
-            undoButton.delayedAction = this.doCommitRunnable;
-            usersLayout.setButton(undoButton);
+            usersLayout.setButton(new Bulletin.UndoButton(context, true, true, resourcesProvider).setText(LocaleController.getString(R.string.UndoNoCaps)).setUndoAction(new RichEditor$$ExternalSyntheticLambda48(this, j, 21)).setDelayedAction(this.doCommitRunnable));
             this.bulletinFactory.create(usersLayout, 5000).show();
         }
     }
@@ -468,7 +453,7 @@ public abstract class CommunityUtils {
                     ((ActionBarLayout) parentLayout).removeFragmentFromStack(baseFragment3, false);
                 }
                 baseFragment.finishFragment();
-                AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda9(i, chatActivity, zIsChannelAndNotMegaGroup), 250L);
+                AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda31(i, chatActivity, zIsChannelAndNotMegaGroup), 250L);
             }
             chatActivity = null;
         }
@@ -487,14 +472,14 @@ public abstract class CommunityUtils {
             ((ActionBarLayout) parentLayout).removeFragmentFromStack(baseFragment4, false);
         }
         baseFragment.finishFragment();
-        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda9(i, chatActivity, zIsChannelAndNotMegaGroup), 250L);
+        AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda31(i, chatActivity, zIsChannelAndNotMegaGroup), 250L);
     }
 
     public static void showChatsToAddToCommunity(final AlertDialog[] alertDialogArr, BaseFragment baseFragment, final int i, TLRPC.Chat chat) {
         if (alertDialogArr[0] != null) {
             return;
         }
-        final int iFetchChatsToAddToCommunity = MessagesController.getInstance(i).fetchChatsToAddToCommunity(new ArticleViewer$$ExternalSyntheticLambda57(alertDialogArr, baseFragment, i, chat, 7));
+        final int iFetchChatsToAddToCommunity = MessagesController.getInstance(i).fetchChatsToAddToCommunity(new BotShareSheet$$ExternalSyntheticLambda7(alertDialogArr, baseFragment, i, chat));
         ConnectionsManager.getInstance(i).bindRequestToGuid(iFetchChatsToAddToCommunity, baseFragment.getClassGuid());
         AlertDialog alertDialog = new AlertDialog(baseFragment.getContext(), 3, null);
         alertDialogArr[0] = alertDialog;
@@ -521,7 +506,7 @@ public abstract class CommunityUtils {
         } else {
             string = LocaleController.getString(R.string.CommunityCommunityPending);
         }
-        bulletinFactory.createSimpleBulletin(i2, i3, string).show();
+        bulletinFactory.createSimpleBulletin(i2, string, i3).show();
     }
 
     public static int getCommunityChatType(TL_communities.CommunityPeer communityPeer, TLRPC.Chat chat, TLRPC.User user, TLRPC.Dialog dialog) {

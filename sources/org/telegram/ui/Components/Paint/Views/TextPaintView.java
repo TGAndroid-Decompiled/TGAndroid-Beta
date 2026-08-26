@@ -6,7 +6,6 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Build;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,13 +18,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.Paint.Swatch;
-import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.RectOld;
-import org.telegram.ui.LoginActivity;
 
 public final class TextPaintView extends EntityView {
     public int align;
@@ -39,93 +37,6 @@ public final class TextPaintView extends EntityView {
     public Runnable onFontChange;
     public Swatch swatch;
     public PaintTypeface typeface;
-
-    public final class AnonymousClass2 implements TextWatcher {
-        public final int $r8$classId = 0;
-        public boolean pasted;
-        public final ViewGroup this$0;
-
-        public AnonymousClass2(TextPaintView textPaintView) {
-            this.this$0 = textPaintView;
-        }
-
-        @Override
-        public final void afterTextChanged(Editable editable) {
-            int iClamp;
-            switch (this.$r8$classId) {
-                case 0:
-                    boolean z = this.pasted;
-                    TextPaintView textPaintView = (TextPaintView) this.this$0;
-                    if (z && textPaintView.minFontSize > 0 && textPaintView.maxFontSize > 0 && !textPaintView.disableAutoresize) {
-                        AnonymousClass1 anonymousClass1 = textPaintView.editText;
-                        if (anonymousClass1.getLayout() != null) {
-                            int height = anonymousClass1.getLayout().getHeight();
-                            float f = AndroidUtilities.displaySize.y / 3.0f;
-                            float f2 = height;
-                            if (f2 > f && (iClamp = Utilities.clamp((int) ((f / f2) * textPaintView.getBaseFontSize()), textPaintView.maxFontSize, textPaintView.minFontSize)) != textPaintView.getBaseFontSize()) {
-                                textPaintView.setBaseFontSize(iClamp);
-                                Runnable runnable = textPaintView.onFontChange;
-                                if (runnable != null) {
-                                    runnable.run();
-                                }
-                            }
-                        }
-                    }
-                    int length = textPaintView.editText.getText().length();
-                    AnonymousClass1 anonymousClass2 = textPaintView.editText;
-                    if (length > 0) {
-                        anonymousClass2.setHint((CharSequence) null);
-                    } else {
-                        anonymousClass2.setHint(LocaleController.getString(R.string.TextPlaceholder));
-                        anonymousClass2.setHintTextColor(1627389951);
-                    }
-                    break;
-                default:
-                    if (this.pasted) {
-                        LoginActivity.LoginActivityNewPasswordView loginActivityNewPasswordView = (LoginActivity.LoginActivityNewPasswordView) this.this$0;
-                        if (loginActivityNewPasswordView.passwordButton.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
-                            if (loginActivityNewPasswordView.isPasswordVisible) {
-                                loginActivityNewPasswordView.passwordButton.callOnClick();
-                            }
-                            AndroidUtilities.updateViewVisibilityAnimated(loginActivityNewPasswordView.passwordButton, true, 0.1f, true);
-                            break;
-                        } else if (loginActivityNewPasswordView.passwordButton.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
-                            AndroidUtilities.updateViewVisibilityAnimated(loginActivityNewPasswordView.passwordButton, false, 0.1f, true);
-                            break;
-                        }
-                    }
-                    break;
-            }
-        }
-
-        @Override
-        public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            switch (this.$r8$classId) {
-                case 0:
-                    this.pasted = i3 > 3;
-                    break;
-            }
-        }
-
-        @Override
-        public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            int i4 = this.$r8$classId;
-        }
-
-        public AnonymousClass2(LoginActivity.LoginActivityNewPasswordView loginActivityNewPasswordView, boolean z) {
-            this.this$0 = loginActivityNewPasswordView;
-            this.pasted = z;
-        }
-
-        private final void beforeTextChanged$org$telegram$ui$LoginActivity$LoginActivityNewPasswordView$1(int i, int i2, int i3, CharSequence charSequence) {
-        }
-
-        private final void onTextChanged$org$telegram$ui$Components$Paint$Views$TextPaintView$2(int i, int i2, int i3, CharSequence charSequence) {
-        }
-
-        private final void onTextChanged$org$telegram$ui$LoginActivity$LoginActivityNewPasswordView$1(int i, int i2, int i3, CharSequence charSequence) {
-        }
-    }
 
     public TextPaintView(Context context, PointF pointF, int i, CharSequence charSequence, Swatch swatch, int i2) {
         super(context, pointF);
@@ -195,7 +106,48 @@ public final class TextPaintView extends EntityView {
         setSwatch(swatch);
         setType(i2);
         updatePosition();
-        r5.addTextChangedListener(new AnonymousClass2(this));
+        r5.addTextChangedListener(new TextWatcher() {
+            public boolean pasted;
+
+            @Override
+            public final void afterTextChanged(Editable editable) {
+                int iClamp;
+                boolean z = this.pasted;
+                TextPaintView textPaintView = TextPaintView.this;
+                if (z && textPaintView.minFontSize > 0 && textPaintView.maxFontSize > 0 && !textPaintView.disableAutoresize) {
+                    AnonymousClass1 anonymousClass1 = textPaintView.editText;
+                    if (anonymousClass1.getLayout() != null) {
+                        int height = anonymousClass1.getLayout().getHeight();
+                        float f = AndroidUtilities.displaySize.y / 3.0f;
+                        float f2 = height;
+                        if (f2 > f && (iClamp = Utilities.clamp((int) ((f / f2) * textPaintView.getBaseFontSize()), textPaintView.maxFontSize, textPaintView.minFontSize)) != textPaintView.getBaseFontSize()) {
+                            textPaintView.setBaseFontSize(iClamp);
+                            Runnable runnable = textPaintView.onFontChange;
+                            if (runnable != null) {
+                                runnable.run();
+                            }
+                        }
+                    }
+                }
+                int length = textPaintView.editText.getText().length();
+                AnonymousClass1 anonymousClass2 = textPaintView.editText;
+                if (length > 0) {
+                    anonymousClass2.setHint((CharSequence) null);
+                } else {
+                    anonymousClass2.setHint(LocaleController.getString(R.string.TextPlaceholder));
+                    anonymousClass2.setHintTextColor(1627389951);
+                }
+            }
+
+            @Override
+            public final void beforeTextChanged(CharSequence charSequence2, int i4, int i5, int i6) {
+                this.pasted = i6 > 3;
+            }
+
+            @Override
+            public final void onTextChanged(CharSequence charSequence2, int i4, int i5, int i6) {
+            }
+        });
     }
 
     public final void beginEditing() {
@@ -204,7 +156,7 @@ public final class TextPaintView extends EntityView {
         anonymousClass1.setClickable(true);
         anonymousClass1.requestFocus();
         anonymousClass1.setSelection(anonymousClass1.getText().length());
-        AndroidUtilities.runOnUIThread(new PasscodeView$9$$ExternalSyntheticLambda0(this, 3), 300L);
+        AndroidUtilities.runOnUIThread(new ChatbotSheet$$ExternalSyntheticLambda0(this, 25), 300L);
     }
 
     @Override
@@ -348,7 +300,7 @@ public final class TextPaintView extends EntityView {
     }
 
     public void setSwatch(Swatch swatch) {
-        this.swatch = new Swatch(swatch.brushWeight, swatch.color);
+        this.swatch = new Swatch(swatch.color, swatch.brushWeight);
         updateColor();
     }
 

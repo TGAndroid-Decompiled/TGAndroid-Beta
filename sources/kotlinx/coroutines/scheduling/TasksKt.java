@@ -1,17 +1,17 @@
 package kotlinx.coroutines.scheduling;
 
+import com.google.android.gms.dynamite.zzn;
 import java.util.concurrent.TimeUnit;
 import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.SystemPropsKt__SystemPropsKt;
-import org.telegram.ui.CastSync;
 
 public abstract class TasksKt {
-    public static final CastSync.AnonymousClass1 BlockingContext;
+    public static final zzn BlockingContext;
     public static final int CORE_POOL_SIZE;
     public static final String DEFAULT_SCHEDULER_NAME;
     public static final long IDLE_WORKER_KEEP_ALIVE_NS;
     public static final int MAX_POOL_SIZE;
-    public static final CastSync.AnonymousClass1 NonBlockingContext;
+    public static final zzn NonBlockingContext;
     public static final long WORK_STEALING_TIME_RESOLUTION_NS;
     public static final NanoTimeSource schedulerTimeSource;
 
@@ -36,7 +36,7 @@ public abstract class TasksKt {
         MAX_POOL_SIZE = AtomicKt.systemProp$default(2097150, 4, "kotlinx.coroutines.scheduler.max.pool.size");
         IDLE_WORKER_KEEP_ALIVE_NS = TimeUnit.SECONDS.toNanos(AtomicKt.systemProp("kotlinx.coroutines.scheduler.keep.alive.sec", 60L, 1L, Long.MAX_VALUE));
         schedulerTimeSource = NanoTimeSource.INSTANCE;
-        NonBlockingContext = new CastSync.AnonymousClass1(0);
-        BlockingContext = new CastSync.AnonymousClass1(1);
+        NonBlockingContext = new zzn(0);
+        BlockingContext = new zzn(1);
     }
 }

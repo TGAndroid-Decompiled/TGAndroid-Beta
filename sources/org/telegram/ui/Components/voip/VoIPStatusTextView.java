@@ -3,7 +3,9 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -16,10 +18,9 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.ComposeDrawable$$ExternalSyntheticLambda0;
-import org.telegram.ui.LoginActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda14;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
+import org.telegram.ui.Stars.SuperRipple$$ExternalSyntheticLambda7;
+import org.telegram.ui.recyclerview.ChatListItemAnimator;
 
 public final class VoIPStatusTextView extends FrameLayout {
     public boolean animationInProgress;
@@ -53,42 +54,64 @@ public final class VoIPStatusTextView extends FrameLayout {
         }
     }
 
-    public VoIPStatusTextView(Activity activity, VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(activity);
+    public VoIPStatusTextView(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(context);
         this.textView = new TextView[2];
         for (int i = 0; i < 2; i++) {
-            this.textView[i] = new TextView(activity);
+            this.textView[i] = new TextView(context);
             this.textView[i].setTextSize(1, 15.0f);
             this.textView[i].setTextColor(-1);
             this.textView[i].setGravity(1);
             addView(this.textView[i]);
         }
-        FrameLayout frameLayout = new FrameLayout(activity);
+        FrameLayout frameLayout = new FrameLayout(context);
         this.badConnectionLayer = frameLayout;
-        LoginActivity.LoadingTextView loadingTextView = new LoginActivity.LoadingTextView(this, activity, voIPBackgroundProvider);
-        loadingTextView.setTextSize(1, 15.0f);
-        loadingTextView.setTextColor(-1);
-        loadingTextView.setGravity(1);
-        loadingTextView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f));
-        loadingTextView.setText(LocaleController.getString(R.string.VoipWeakNetwork));
-        frameLayout.addView(loadingTextView, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 0.0f, 0.0f, 0.0f));
-        frameLayout.setVisibility(8);
-        addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 44.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(activity);
-        this.reconnectTextView = textView;
+        TextView textView = new TextView(context, voIPBackgroundProvider) {
+            public final RectF bgRect = new RectF();
+            public final VoIPBackgroundProvider val$backgroundProvider;
+
+            {
+                this.val$backgroundProvider = voIPBackgroundProvider;
+                voIPBackgroundProvider.views.add(this);
+            }
+
+            @Override
+            public final void onDraw(Canvas canvas) {
+                RectF rectF = this.bgRect;
+                rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                float x = ((View) getParent()).getX() + getX();
+                VoIPStatusTextView voIPStatusTextView = VoIPStatusTextView.this;
+                float x2 = ((View) voIPStatusTextView.getParent()).getX() + voIPStatusTextView.getX() + x;
+                float y = ((View) voIPStatusTextView.getParent()).getY() + voIPStatusTextView.getY() + ((View) getParent()).getY() + getY();
+                VoIPBackgroundProvider voIPBackgroundProvider2 = this.val$backgroundProvider;
+                voIPBackgroundProvider2.setDarkTranslation(x2, y);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), voIPBackgroundProvider2.getDarkPaint());
+                super.onDraw(canvas);
+            }
+        };
         textView.setTextSize(1, 15.0f);
         textView.setTextColor(-1);
         textView.setGravity(1);
-        addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
+        textView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(2.0f));
+        textView.setText(LocaleController.getString(R.string.VoipWeakNetwork));
+        frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 0.0f, 0.0f, 0.0f));
+        frameLayout.setVisibility(8);
+        addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 44.0f, 0.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.reconnectTextView = textView2;
+        textView2.setTextSize(1, 15.0f);
+        textView2.setTextColor(-1);
+        textView2.setGravity(1);
+        addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 22.0f, 0.0f, 0.0f));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.VoipReconnecting));
         SpannableString spannableString = new SpannableString(".");
-        spannableString.setSpan(new VoIPEllipsizeSpan(new View[]{textView}), 0, 1, 33);
+        spannableString.setSpan(new VoIPEllipsizeSpan(new View[]{textView2}), 0, 1, 33);
         spannableStringBuilder.append((CharSequence) spannableString);
-        textView.setText(spannableStringBuilder);
-        textView.setVisibility(8);
-        VoIPTimerView voIPTimerView = new VoIPTimerView(activity);
+        textView2.setText(spannableStringBuilder);
+        textView2.setVisibility(8);
+        VoIPTimerView voIPTimerView = new VoIPTimerView(context);
         this.timerView = voIPTimerView;
-        addView(voIPTimerView, LayoutHelper.createFrame(-2.0f, -1));
+        addView(voIPTimerView, LayoutHelper.createFrame(-1, -2.0f));
     }
 
     public final void replaceViews(View view, View view2, Runnable runnable) {
@@ -99,8 +122,8 @@ public final class VoIPStatusTextView extends FrameLayout {
         this.animationInProgress = true;
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.animator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda14(19, view2, view));
-        this.animator.addListener(new ProfileActivity.AnonymousClass47(this, view, view2, runnable, 4));
+        valueAnimatorOfFloat.addUpdateListener(new SuperRipple$$ExternalSyntheticLambda7(10, view2, view));
+        this.animator.addListener(new ChatListItemAnimator.AnonymousClass3(this, view, view2, runnable));
         this.animator.setDuration(250L).setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.animator.start();
     }
@@ -147,7 +170,7 @@ public final class VoIPStatusTextView extends FrameLayout {
                 return;
             }
             textViewArr[1].setText(charSequence);
-            replaceViews(textViewArr[0], textViewArr[1], new ComposeDrawable$$ExternalSyntheticLambda0(this, 1));
+            replaceViews(textViewArr[0], textViewArr[1], new GiftSheet$$ExternalSyntheticLambda9(this, 21));
         }
     }
 

@@ -13,6 +13,6 @@ public abstract class CastSync$$ExternalSyntheticApiModelOutline0 {
         return new Magnifier(view);
     }
 
-    public static void m1070m() {
+    public static void m1178m() {
     }
 }

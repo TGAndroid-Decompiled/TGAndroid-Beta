@@ -4,14 +4,19 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
 import j$.time.LocalDate;
 import j$.time.Period;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BirthdayController;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaDataController;
@@ -22,35 +27,43 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Cells.TextDetailCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 
-public final class ProfileBirthdayEffect extends View {
-    public static final String[] interactions = {"🎉", "🎆", "🎈"};
-    public boolean attached;
-    public boolean autoplayed;
-    public BirthdayEffectFetcher fetcher;
-    public BirthdayEffectFetcher fetcherToSet;
-    public boolean isPlaying;
-    public long lastTime;
-    public final ProfileActivity profileActivity;
-    public final PointF sourcePoint;
-    public float t;
+public class ProfileBirthdayEffect extends View {
+    private static final long duration = 4200;
+    public static String[] interactions = {"🎉", "🎆", "🎈"};
+    public static String interactionsPack = "EmojiAnimations";
+    public static String numbersEmojipack = "FestiveFontEmoji";
+    private boolean attached;
+    private boolean autoplayed;
+    private final int currentAccount;
+    private final long dialogId;
+    private BirthdayEffectFetcher fetcher;
+    private BirthdayEffectFetcher fetcherToSet;
+    private boolean isPlaying;
+    private long lastTime;
+    private final ProfileActivity profileActivity;
+    public PointF sourcePoint;
+    private float t;
 
-    public final class BirthdayEffectFetcher {
+    public static class BirthdayEffectFetcher {
         public final int age;
-        public boolean detachLater;
+        public final int currentAccount;
+        private boolean detachLater;
         public ImageReceiverAsset interactionAsset;
-        public boolean loaded;
-        public final boolean[] setsLoaded;
-        public final ArrayList digitAssets = new ArrayList();
-        public final ArrayList allAssets = new ArrayList();
-        public final ArrayList loadedAssets = new ArrayList();
-        public final ArrayList callbacks = new ArrayList();
-        public final ArrayList views = new ArrayList();
+        private boolean loaded;
+        private final boolean[] setsLoaded;
+        public ArrayList<ImageReceiverAsset> digitAssets = new ArrayList<>();
+        public ArrayList<ImageReceiverAsset> allAssets = new ArrayList<>();
+        public ArrayList<ImageReceiverAsset> loadedAssets = new ArrayList<>();
+        private ArrayList<Runnable> callbacks = new ArrayList<>();
+        public ArrayList<ProfileBirthdayEffect> views = new ArrayList<>();
 
-        public BirthdayEffectFetcher(int i, int i2) {
+        private BirthdayEffectFetcher(int i, int i2) {
             boolean[] zArr = new boolean[2];
             this.setsLoaded = zArr;
+            this.currentAccount = i;
             this.age = i2;
             if (i2 <= 0) {
                 zArr[0] = true;
@@ -66,14 +79,135 @@ public final class ProfileBirthdayEffect extends View {
                     }
                 }
                 TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-                String[] strArr = ProfileBirthdayEffect.interactions;
-                tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
-                MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName, 0, false, new ArticleViewer$$ExternalSyntheticLambda33(this, hashSet, arrayList, 13));
+                tL_inputStickerSetShortName.short_name = ProfileBirthdayEffect.numbersEmojipack;
+                MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName, 0, false, new ArticleViewer$$ExternalSyntheticLambda27(this, hashSet, arrayList, 7));
             }
-            String str = ProfileBirthdayEffect.interactions[Utilities.random.nextInt(3)];
+            String str = ProfileBirthdayEffect.interactions[Utilities.random.nextInt(ProfileBirthdayEffect.interactions.length)];
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
-            tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
-            MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new OAuthSheet$$ExternalSyntheticLambda13(22, this, str));
+            tL_inputStickerSetShortName2.short_name = ProfileBirthdayEffect.interactionsPack;
+            MediaDataController.getInstance(i).getStickerSet(tL_inputStickerSetShortName2, 0, false, new OAuthSheet$$ExternalSyntheticLambda1(28, this, str));
+        }
+
+        public void lambda$new$0(ImageReceiverAsset imageReceiverAsset) {
+            this.loadedAssets.add(imageReceiverAsset);
+            checkWhenLoaded();
+        }
+
+        public void lambda$new$1(HashSet hashSet, ArrayList arrayList, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+            HashMap map = new HashMap();
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                Integer num = (Integer) it.next();
+                TLRPC.Document documentFindSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, num + "️⃣");
+                if (documentFindSticker == null) {
+                    documentFindSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, num + "⃣");
+                }
+                if (documentFindSticker == null) {
+                    FileLog.e("couldn't find " + num + "️⃣ emoji in " + ProfileBirthdayEffect.numbersEmojipack);
+                    return;
+                }
+                map.put(num, documentFindSticker);
+            }
+            HashMap map2 = new HashMap();
+            for (Map.Entry entry : map.entrySet()) {
+                Integer num2 = (Integer) entry.getKey();
+                num2.getClass();
+                ImageReceiverAsset imageReceiverAsset = new ImageReceiverAsset();
+                this.allAssets.add(imageReceiverAsset);
+                imageReceiverAsset.setEmoji((TLRPC.Document) entry.getValue(), "80_80", tL_messages_stickerSet, new PhotoViewer$7$$ExternalSyntheticLambda0(4, this, imageReceiverAsset));
+                imageReceiverAsset.onAttachedToWindow();
+                map2.put(num2, imageReceiverAsset);
+            }
+            for (int i = 0; i < arrayList.size(); i++) {
+                Integer num3 = (Integer) arrayList.get(i);
+                num3.getClass();
+                this.digitAssets.add((ImageReceiverAsset) map2.get(num3));
+            }
+            this.setsLoaded[0] = true;
+            checkWhenLoaded();
+        }
+
+        public void lambda$new$2() {
+            this.loadedAssets.add(this.interactionAsset);
+            checkWhenLoaded();
+        }
+
+        public void lambda$new$3(String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+            TLRPC.Document documentFindSticker = SelectAnimatedEmojiDialog.findSticker(tL_messages_stickerSet, str);
+            if (documentFindSticker == null) {
+                StringBuilder sbM80m = Fragment$$ExternalSyntheticOutline0.m80m("couldn't find ", str, " sticker in ");
+                sbM80m.append(ProfileBirthdayEffect.interactionsPack);
+                FileLog.e(sbM80m.toString());
+                return;
+            }
+            ImageReceiverAsset imageReceiverAsset = new ImageReceiverAsset();
+            this.interactionAsset = imageReceiverAsset;
+            this.allAssets.add(imageReceiverAsset);
+            int filterWidth = EmojiAnimationsOverlay.getFilterWidth();
+            this.interactionAsset.setAutoRepeat(0);
+            this.interactionAsset.setEmoji(documentFindSticker, filterWidth + "_" + filterWidth + "_precache", tL_messages_stickerSet, new MainTabsLayout$$ExternalSyntheticLambda0(this, 18));
+            this.interactionAsset.onAttachedToWindow();
+            this.setsLoaded[1] = true;
+            checkWhenLoaded();
+        }
+
+        public static BirthdayEffectFetcher of(int i, TLRPC.UserFull userFull) {
+            return of(i, userFull, null);
+        }
+
+        public void addView(ProfileBirthdayEffect profileBirthdayEffect) {
+            this.views.add(profileBirthdayEffect);
+        }
+
+        public void checkWhenLoaded() {
+            if (this.loaded || this.loadedAssets.size() < this.allAssets.size()) {
+                return;
+            }
+            boolean[] zArr = this.setsLoaded;
+            int i = 0;
+            if (zArr[0] && zArr[1]) {
+                this.loaded = true;
+                ArrayList<Runnable> arrayList = this.callbacks;
+                int size = arrayList.size();
+                while (i < size) {
+                    Runnable runnable = arrayList.get(i);
+                    i++;
+                    runnable.run();
+                }
+                this.callbacks.clear();
+            }
+        }
+
+        public void detach(boolean z) {
+            if (!z && !this.views.isEmpty()) {
+                this.detachLater = true;
+                return;
+            }
+            this.callbacks.clear();
+            for (int i = 0; i < this.allAssets.size(); i++) {
+                this.allAssets.get(i).onDetachedFromWindow();
+            }
+            this.allAssets.clear();
+        }
+
+        public boolean isLoaded() {
+            return this.loaded;
+        }
+
+        public void removeView(ProfileBirthdayEffect profileBirthdayEffect) {
+            this.views.remove(profileBirthdayEffect);
+            if (this.views.isEmpty() && this.detachLater) {
+                detach(true);
+                this.detachLater = false;
+            }
+        }
+
+        public void subscribe(Runnable runnable) {
+            if (this.loaded) {
+                runnable.run();
+            } else {
+                this.callbacks.add(runnable);
+            }
         }
 
         public static BirthdayEffectFetcher of(int i, TLRPC.UserFull userFull, BirthdayEffectFetcher birthdayEffectFetcher) {
@@ -94,71 +228,36 @@ public final class ProfileBirthdayEffect extends View {
             }
             return new BirthdayEffectFetcher(i, years);
         }
-
-        public final void checkWhenLoaded() {
-            if (this.loaded || this.loadedAssets.size() < this.allAssets.size()) {
-                return;
-            }
-            boolean[] zArr = this.setsLoaded;
-            int i = 0;
-            if (zArr[0] && zArr[1]) {
-                this.loaded = true;
-                ArrayList arrayList = this.callbacks;
-                int size = arrayList.size();
-                while (i < size) {
-                    Object obj = arrayList.get(i);
-                    i++;
-                    ((Runnable) obj).run();
-                }
-                arrayList.clear();
-            }
-        }
-
-        public final void detach(boolean z) {
-            if (!z && !this.views.isEmpty()) {
-                this.detachLater = true;
-                return;
-            }
-            this.callbacks.clear();
-            int i = 0;
-            while (true) {
-                ArrayList arrayList = this.allAssets;
-                if (i >= arrayList.size()) {
-                    arrayList.clear();
-                    return;
-                } else {
-                    ((ImageReceiverAsset) arrayList.get(i)).onDetachedFromWindow();
-                    i++;
-                }
-            }
-        }
     }
 
-    public final class ImageReceiverAsset extends ImageReceiver {
+    public static class ImageReceiverAsset extends ImageReceiver {
 
-        public final class AnonymousClass1 implements ImageReceiver.ImageReceiverDelegate {
-            public final Runnable[] val$callback;
+        public class AnonymousClass1 implements ImageReceiver.ImageReceiverDelegate {
+            final Runnable[] val$callback;
 
             public AnonymousClass1(Runnable[] runnableArr) {
                 this.val$callback = runnableArr;
             }
 
+            public static void lambda$didSetImage$0(Runnable[] runnableArr) {
+                runnableArr[0].run();
+                runnableArr[0] = null;
+            }
+
             @Override
-            public final void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-                if (imageReceiver.hasBitmapImage()) {
-                    Runnable[] runnableArr = this.val$callback;
-                    if (runnableArr[0] != null) {
-                        RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
-                        if (lottieAnimation == null) {
-                            runnableArr[0].run();
-                            runnableArr[0] = null;
-                        } else if (lottieAnimation.isGeneratingCache()) {
-                            lottieAnimation.whenCacheDone = new ProfileActivity$9$$ExternalSyntheticLambda1(runnableArr, 4);
-                        } else {
-                            runnableArr[0].run();
-                            runnableArr[0] = null;
-                        }
-                    }
+            public void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+                if (!imageReceiver.hasBitmapImage() || this.val$callback[0] == null) {
+                    return;
+                }
+                RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
+                if (lottieAnimation == null) {
+                    this.val$callback[0].run();
+                    this.val$callback[0] = null;
+                } else if (lottieAnimation.isGeneratingCache()) {
+                    lottieAnimation.whenCacheDone = new VoIPFragment$8$$ExternalSyntheticLambda1(this.val$callback, 10);
+                } else {
+                    this.val$callback[0].run();
+                    this.val$callback[0] = null;
                 }
             }
 
@@ -172,74 +271,87 @@ public final class ProfileBirthdayEffect extends View {
                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
             }
         }
+
+        private ImageReceiverAsset() {
+        }
+
+        public void setEmoji(TLRPC.Document document, String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, Runnable runnable) {
+            setDelegate(new AnonymousClass1(new Runnable[]{runnable}));
+            setImage(ImageLocation.getForDocument(document), str, null, null, tL_messages_stickerSet, 0);
+        }
     }
 
     public ProfileBirthdayEffect(ProfileActivity profileActivity, BirthdayEffectFetcher birthdayEffectFetcher) {
-        super(profileActivity.getParentActivity());
+        super(profileActivity.getContext());
         this.sourcePoint = new PointF();
         this.t = 1.0f;
         this.isPlaying = false;
+        this.currentAccount = profileActivity.getCurrentAccount();
+        this.dialogId = profileActivity.getDialogId();
         this.profileActivity = profileActivity;
         this.fetcher = birthdayEffectFetcher;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.fetcher.views.add(this);
+    private void updateSourcePoint() {
+        RecyclerListView listView = this.profileActivity.getListView();
+        int i = this.profileActivity.birthdayRow;
+        if (i < 0) {
+            return;
+        }
+        for (int i2 = 0; i2 < listView.getChildCount(); i2++) {
+            View childAt = listView.getChildAt(i2);
+            if (i == listView.getChildAdapterPosition(childAt) && (childAt instanceof TextDetailCell)) {
+                SpoilersTextView spoilersTextView = ((TextDetailCell) childAt).textView;
+                this.sourcePoint.set(spoilersTextView.getX() + childAt.getX() + listView.getX() + AndroidUtilities.dp(12.0f), (spoilersTextView.getMeasuredHeight() / 2.0f) + spoilersTextView.getY() + childAt.getY() + listView.getY());
+                return;
+            }
+        }
+    }
+
+    public void hide() {
+        animate().alpha(0.0f).setDuration(200L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.fetcher.addView(this);
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         if (this.attached) {
             for (int i = 0; i < this.fetcher.allAssets.size(); i++) {
-                ((ImageReceiverAsset) this.fetcher.allAssets.get(i)).setParentView(null);
+                this.fetcher.allAssets.get(i).setParentView(null);
             }
             this.attached = false;
         }
-        BirthdayEffectFetcher birthdayEffectFetcher = this.fetcher;
-        birthdayEffectFetcher.views.remove(this);
-        if (birthdayEffectFetcher.views.isEmpty() && birthdayEffectFetcher.detachLater) {
-            birthdayEffectFetcher.detach(true);
-            birthdayEffectFetcher.detachLater = false;
-        }
+        this.fetcher.removeView(this);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         if (this.fetcher.loaded) {
+            int i = 1;
             if (!this.attached) {
-                for (int i = 0; i < this.fetcher.allAssets.size(); i++) {
-                    ((ImageReceiverAsset) this.fetcher.allAssets.get(i)).setParentView(this);
+                for (int i2 = 0; i2 < this.fetcher.allAssets.size(); i2++) {
+                    this.fetcher.allAssets.get(i2).setParentView(this);
                 }
                 this.attached = true;
                 if (!this.autoplayed) {
                     this.autoplayed = true;
-                    post(new ProfileActivity$9$$ExternalSyntheticLambda1(this, 2));
+                    post(new MainTabsLayout$$ExternalSyntheticLambda0(this, 17));
                 }
             }
             if (this.isPlaying) {
                 long jCurrentTimeMillis = System.currentTimeMillis();
                 this.t = Utilities.clamp(this.t + (Utilities.clamp(jCurrentTimeMillis - this.lastTime, 20L, 0L) / 4200.0f), 1.0f, 0.0f);
                 this.lastTime = jCurrentTimeMillis;
-                ProfileActivity profileActivity = this.profileActivity;
-                ProfileActivity.AnonymousClass12 anonymousClass12 = profileActivity.listView;
-                int i2 = profileActivity.birthdayRow;
-                PointF pointF = this.sourcePoint;
-                float f = 2.0f;
-                if (i2 >= 0) {
-                    for (int i3 = 0; i3 < anonymousClass12.getChildCount(); i3++) {
-                        View childAt = anonymousClass12.getChildAt(i3);
-                        if (i2 == RecyclerView.getChildAdapterPosition(childAt) && (childAt instanceof TextDetailCell)) {
-                            SpoilersTextView spoilersTextView = ((TextDetailCell) childAt).textView;
-                            pointF.set(spoilersTextView.getX() + childAt.getX() + anonymousClass12.getX() + AndroidUtilities.dp(12.0f), (spoilersTextView.getMeasuredHeight() / 2.0f) + spoilersTextView.getY() + childAt.getY() + anonymousClass12.getY());
-                            break;
-                        }
-                    }
-                }
+                updateSourcePoint();
                 float filterWidth = EmojiAnimationsOverlay.getFilterWidth();
-                this.fetcher.interactionAsset.setImageCoords((getWidth() - AndroidUtilities.dp(filterWidth)) / 2.0f, Math.max(0.0f, pointF.y - (AndroidUtilities.dp(filterWidth) * 0.5f)), AndroidUtilities.dp(filterWidth), AndroidUtilities.dp(filterWidth));
+                float f = 2.0f;
+                this.fetcher.interactionAsset.setImageCoords((getWidth() - AndroidUtilities.dp(filterWidth)) / 2.0f, Math.max(0.0f, this.sourcePoint.y - (AndroidUtilities.dp(filterWidth) * 0.5f)), AndroidUtilities.dp(filterWidth), AndroidUtilities.dp(filterWidth));
                 canvas.save();
                 canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
                 this.fetcher.interactionAsset.draw(canvas);
@@ -248,23 +360,24 @@ public final class ProfileBirthdayEffect extends View {
                 int iDp = AndroidUtilities.dp(110.0f);
                 int size = this.fetcher.digitAssets.size() - 1;
                 while (size >= 0) {
-                    ImageReceiverAsset imageReceiverAsset = (ImageReceiverAsset) this.fetcher.digitAssets.get(size);
+                    ImageReceiverAsset imageReceiverAsset = this.fetcher.digitAssets.get(size);
                     float f2 = size;
                     float fCascade = AndroidUtilities.cascade(this.t, f2, this.fetcher.digitAssets.size(), 1.8f);
                     float f3 = iDp;
                     float f4 = 0.88f * f3;
-                    float fM = SvgHelper$SvgDrawable$$ExternalSyntheticOutline0.m(f4, this.fetcher.digitAssets.size() - 1, getWidth(), f);
+                    float fM = SvgHelper$SvgDrawable$$ExternalSyntheticOutline0.m(f4, this.fetcher.digitAssets.size() - i, getWidth(), f);
+                    PointF pointF = this.sourcePoint;
                     float f5 = pointF.x;
                     float f6 = pointF.y;
-                    int i4 = iDp;
+                    float f7 = ((fM - f5) * fCascade) + (f4 * f2) + f5;
                     float fPow = f6 - ((f6 + f3) * ((float) Math.pow(this.t, 2.0d)));
                     float interpolation = CubicBezierInterpolator.EASE_OUT_QUINT.getInterpolation(Utilities.clamp(fCascade / 0.4f, 1.0f, 0.0f));
-                    float f7 = (f3 / 2.0f) * interpolation;
-                    float f8 = f3 * interpolation;
-                    imageReceiverAsset.setImageCoords((((fM - f5) * fCascade) + ((f4 * f2) + f5)) - f7, fPow - f7, f8, f8);
+                    float f8 = (f3 / 2.0f) * interpolation;
+                    float f9 = f3 * interpolation;
+                    imageReceiverAsset.setImageCoords(f7 - f8, fPow - f8, f9, f9);
                     imageReceiverAsset.draw(canvas);
                     size--;
-                    iDp = i4;
+                    i = 1;
                     f = 2.0f;
                 }
                 if (this.t < 1.0f) {
@@ -278,13 +391,12 @@ public final class ProfileBirthdayEffect extends View {
         }
     }
 
-    public final boolean start() {
-        BirthdayEffectFetcher birthdayEffectFetcher = this.fetcher;
-        if (!birthdayEffectFetcher.loaded || this.t < 1.0f) {
+    public boolean lambda$onDraw$0() {
+        if (!this.fetcher.loaded || this.t < 1.0f) {
             return false;
         }
-        if (birthdayEffectFetcher.interactionAsset.getLottieAnimation() != null) {
-            this.fetcher.interactionAsset.getLottieAnimation().setCurrentFrame(0, false, false);
+        if (this.fetcher.interactionAsset.getLottieAnimation() != null) {
+            this.fetcher.interactionAsset.getLottieAnimation().setCurrentFrame(0, false);
             this.fetcher.interactionAsset.getLottieAnimation().restart(true);
         }
         this.isPlaying = true;
@@ -293,7 +405,7 @@ public final class ProfileBirthdayEffect extends View {
         return true;
     }
 
-    public final void updateFetcher(BirthdayEffectFetcher birthdayEffectFetcher) {
+    public void updateFetcher(BirthdayEffectFetcher birthdayEffectFetcher) {
         if (this.fetcher == birthdayEffectFetcher || birthdayEffectFetcher == null) {
             return;
         }
@@ -301,32 +413,20 @@ public final class ProfileBirthdayEffect extends View {
             this.fetcherToSet = birthdayEffectFetcher;
             return;
         }
-        int i = 0;
         if (this.attached) {
-            for (int i2 = 0; i2 < this.fetcher.allAssets.size(); i2++) {
-                ((ImageReceiverAsset) this.fetcher.allAssets.get(i2)).setParentView(null);
+            for (int i = 0; i < this.fetcher.allAssets.size(); i++) {
+                this.fetcher.allAssets.get(i).setParentView(null);
             }
             this.attached = false;
         }
-        BirthdayEffectFetcher birthdayEffectFetcher2 = this.fetcher;
-        birthdayEffectFetcher2.views.remove(this);
-        if (birthdayEffectFetcher2.views.isEmpty() && birthdayEffectFetcher2.detachLater) {
-            birthdayEffectFetcher2.detach(true);
-            birthdayEffectFetcher2.detachLater = false;
-        }
+        this.fetcher.removeView(this);
         this.fetcher = birthdayEffectFetcher;
         if (this.attached) {
             return;
         }
-        while (true) {
-            ArrayList arrayList = birthdayEffectFetcher.allAssets;
-            if (i >= arrayList.size()) {
-                this.attached = true;
-                return;
-            } else {
-                ((ImageReceiverAsset) arrayList.get(i)).setParentView(this);
-                i++;
-            }
+        for (int i2 = 0; i2 < birthdayEffectFetcher.allAssets.size(); i2++) {
+            birthdayEffectFetcher.allAssets.get(i2).setParentView(this);
         }
+        this.attached = true;
     }
 }

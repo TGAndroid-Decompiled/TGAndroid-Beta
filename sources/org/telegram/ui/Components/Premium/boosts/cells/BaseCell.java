@@ -34,19 +34,19 @@ public abstract class BaseCell extends FrameLayout {
 
     public BaseCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
         this.avatarDrawable = avatarDrawable;
         this.dividerPaint = new Paint(1);
         this.resourcesProvider = resourcesProvider;
         View view = new View(context);
         addView(view, LayoutHelper.createLinear(-1, -1));
         view.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
-        avatarDrawable.roundRadius = AndroidUtilities.dp(40.0f);
+        avatarDrawable.setRoundRadius(AndroidUtilities.dp(40.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
         addView(backupImageView);
-        UserCell2.AnonymousClass1 anonymousClass1 = new UserCell2.AnonymousClass1(context, 4);
+        UserCell2.AnonymousClass1 anonymousClass1 = new UserCell2.AnonymousClass1(context, 3);
         this.titleTextView = anonymousClass1;
         NotificationCenter.listenEmojiLoading(anonymousClass1);
         NotificationCenter.listenEmojiLoading(backupImageView);
@@ -64,11 +64,7 @@ public abstract class BaseCell extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        int color = Theme.getColor(Theme.key_checkboxDisabled, resourcesProvider);
-        int color2 = Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider);
-        radioButton.color = color;
-        radioButton.checkedColor = color2;
-        radioButton.invalidate();
+        radioButton.setColor(Theme.getColor(Theme.key_checkboxDisabled, resourcesProvider), Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider));
         addView(radioButton);
         updateLayouts();
         if (needCheck()) {
@@ -133,7 +129,7 @@ public abstract class BaseCell extends FrameLayout {
         } else {
             anonymousClass1.setTranslationY(AndroidUtilities.dp(-9.0f));
             simpleTextView.setTranslationY(AndroidUtilities.dp(12.0f));
-            simpleTextView.setText(charSequence, false);
+            simpleTextView.setText(charSequence);
             simpleTextView.setVisibility(0);
         }
         if (this.imageView.getVisibility() == 8) {
@@ -186,7 +182,7 @@ public abstract class BaseCell extends FrameLayout {
     public final SpannableStringBuilder withArrow(CharSequence charSequence) {
         SpannableString spannableString = new SpannableString(">");
         Drawable drawable = getContext().getResources().getDrawable(R.drawable.attach_arrow_right);
-        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(2, drawable);
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(drawable, 2);
         drawable.setBounds(0, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(12.0f));
         spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();

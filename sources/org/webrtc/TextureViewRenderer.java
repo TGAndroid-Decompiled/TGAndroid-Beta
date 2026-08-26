@@ -7,14 +7,13 @@ import android.graphics.SurfaceTexture;
 import android.os.Looper;
 import android.view.TextureView;
 import android.view.View;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda8;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda26;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda194;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda167;
 
 public class TextureViewRenderer extends TextureView implements TextureView.SurfaceTextureListener, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "TextureViewRenderer";
@@ -135,7 +134,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         sb.append(", frame size: ");
         sb.append(this.rotatedFrameWidth);
         sb.append("x");
-        SurfaceContainer$$ExternalSyntheticOutline0.m(sb, this.rotatedFrameHeight, ", requested surface size: ", iMin, "x");
+        Fragment$$ExternalSyntheticOutline0.m(sb, this.rotatedFrameHeight, ", requested surface size: ", iMin, "x");
         sb.append(iMin2);
         sb.append(", old surface size: ");
         sb.append(this.surfaceWidth);
@@ -186,9 +185,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                 if (runnable != null) {
                     AndroidUtilities.cancelRunOnUIThread(runnable);
                 }
-                ArticleViewer$$ExternalSyntheticLambda26 articleViewer$$ExternalSyntheticLambda26 = new ArticleViewer$$ExternalSyntheticLambda26(this, i2, i3, 14);
-                this.updateScreenRunnable = articleViewer$$ExternalSyntheticLambda26;
-                postOrRun(articleViewer$$ExternalSyntheticLambda26);
+                SurfaceViewRenderer$$ExternalSyntheticLambda0 surfaceViewRenderer$$ExternalSyntheticLambda0 = new SurfaceViewRenderer$$ExternalSyntheticLambda0(this, i2, i3, 9);
+                this.updateScreenRunnable = surfaceViewRenderer$$ExternalSyntheticLambda0;
+                postOrRun(surfaceViewRenderer$$ExternalSyntheticLambda0);
             } catch (Throwable th) {
                 throw th;
             }
@@ -298,9 +297,9 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
                             throw th;
                         }
                     }
-                    ChatActivity$$ExternalSyntheticLambda194 chatActivity$$ExternalSyntheticLambda194 = new ChatActivity$$ExternalSyntheticLambda194(this, i, i2, i9, i5, 2);
-                    this.updateScreenRunnable = chatActivity$$ExternalSyntheticLambda194;
-                    postOrRun(chatActivity$$ExternalSyntheticLambda194);
+                    ChatActivity$$ExternalSyntheticLambda167 chatActivity$$ExternalSyntheticLambda167 = new ChatActivity$$ExternalSyntheticLambda167(this, i, i2, i9, i5, 2);
+                    this.updateScreenRunnable = chatActivity$$ExternalSyntheticLambda167;
+                    postOrRun(chatActivity$$ExternalSyntheticLambda167);
                 } catch (Throwable th3) {
                     th = th3;
                     th = th;
@@ -638,7 +637,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
             ThreadUtils.checkIsOnMainThread();
             CountDownLatch countDownLatch = new CountDownLatch(1);
-            releaseEglSurface(new Theme$$ExternalSyntheticLambda8(countDownLatch, 17), false);
+            releaseEglSurface(new Theme$$ExternalSyntheticLambda8(countDownLatch, 18), false);
             ThreadUtils.awaitUninterruptibly(countDownLatch);
             return true;
         }

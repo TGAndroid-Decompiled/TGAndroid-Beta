@@ -52,9 +52,9 @@ public final class Emoji$$ExternalSyntheticLambda0 implements Comparator {
             case 17:
                 return MessagesController.lambda$processChannelsUpdatesQueue$326((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
             case 18:
-                return MessagesController.lambda$processLoadedMessages$190((MessageObject) obj, (MessageObject) obj2);
-            case 19:
                 return MessagesController.lambda$processLoadedDialogFilters$21((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
+            case 19:
+                return MessagesController.lambda$processLoadedMessages$190((MessageObject) obj, (MessageObject) obj2);
             case 20:
                 return MessagesController.lambda$processLoadedMessages$191((MessageObject) obj, (MessageObject) obj2);
             case 21:

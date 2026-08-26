@@ -9,12 +9,12 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Base64;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.car.app.utils.RemoteUtils$$ExternalSyntheticLambda2;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.gms.common.api.internal.zack;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import com.google.android.play.core.integrity.IntegrityManagerFactory;
 import com.google.android.play.core.integrity.IntegrityTokenRequest;
 import com.google.android.play.core.integrity.IntegrityTokenResponse;
@@ -66,21 +66,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.SharedConfig$$ExternalSyntheticLambda1;
 import org.telegram.messenger.StatsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ActionBar.EmojiThemes$$ExternalSyntheticLambda4;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda26;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda74;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda136;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda464;
-import org.telegram.ui.ChatActivity$126$$ExternalSyntheticLambda0;
-import org.telegram.ui.ChatActivity$70$$ExternalSyntheticLambda1;
+import org.telegram.ui.ActionBar.EmojiThemes$$ExternalSyntheticLambda5;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda19;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda54;
 import org.telegram.ui.Components.VideoPlayer;
-import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda1;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda42;
-import org.telegram.ui.LinkManager$3$$ExternalSyntheticLambda0;
+import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda5;
 import org.telegram.ui.LoginActivity;
+import org.telegram.ui.Stars.GiftOfferSheet$$ExternalSyntheticLambda12;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
+import org.webrtc.SurfaceViewRenderer$$ExternalSyntheticLambda0;
 
 public class ConnectionsManager extends BaseController {
     private static final int CORE_POOL_SIZE;
@@ -665,7 +663,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void getHostByName(String str, long j) {
-        AndroidUtilities.runOnUIThread(new LinkManager$3$$ExternalSyntheticLambda0(str, j, 6));
+        AndroidUtilities.runOnUIThread(new RichEditor$$ExternalSyntheticLambda48(str, j, 8));
     }
 
     public static int getInitFlags() {
@@ -703,7 +701,7 @@ public class ConnectionsManager extends BaseController {
     private String getRegId() {
         String strM = SharedConfig.pushString;
         if (!TextUtils.isEmpty(strM) && SharedConfig.pushType == 13) {
-            strM = zzil.m("huawei://", strM);
+            strM = zzii.m("huawei://", strM);
         }
         if (TextUtils.isEmpty(strM) && !TextUtils.isEmpty(SharedConfig.pushStringStatus)) {
             strM = SharedConfig.pushStringStatus;
@@ -711,10 +709,10 @@ public class ConnectionsManager extends BaseController {
         if (!TextUtils.isEmpty(strM)) {
             return strM;
         }
-        StringBuilder sbM4m = SurfaceContainer$$ExternalSyntheticOutline0.m4m("__", SharedConfig.pushType == 2 ? "FIREBASE" : "HUAWEI", "_GENERATING_SINCE_");
-        sbM4m.append(getCurrentTime());
-        sbM4m.append("__");
-        String string = sbM4m.toString();
+        StringBuilder sbM80m = Fragment$$ExternalSyntheticOutline0.m80m("__", SharedConfig.pushType == 2 ? "FIREBASE" : "HUAWEI", "_GENERATING_SINCE_");
+        sbM80m.append(getCurrentTime());
+        sbM80m.append("__");
+        String string = sbM80m.toString();
         SharedConfig.pushStringStatus = string;
         return string;
     }
@@ -803,7 +801,7 @@ public class ConnectionsManager extends BaseController {
         sb.append(" nonce = ");
         SQLitePreparedStatement$$ExternalSyntheticOutline0.m(str2, sb);
         try {
-            IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new EmojiThemes$$ExternalSyntheticLambda4(i, jCurrentTimeMillis, str2, i2)).addOnFailureListener(new EmojiThemes$$ExternalSyntheticLambda4(i, jCurrentTimeMillis, str2, i2));
+            IntegrityManagerFactory.create(ApplicationLoader.applicationContext).requestIntegrityToken(IntegrityTokenRequest.builder().setNonce(str2).setCloudProjectNumber(Long.parseLong(str)).build()).addOnSuccessListener(new EmojiThemes$$ExternalSyntheticLambda5(i, i2, jCurrentTimeMillis, str2)).addOnFailureListener(new EmojiThemes$$ExternalSyntheticLambda5(i, i2, jCurrentTimeMillis, str2));
         } catch (Exception unused) {
             FileLog.d("account" + i + ": integrity check failes to parse project id");
             native_receivedIntegrityCheckClassic(i, i2, str2, "PLAYINTEGRITY_FAILED_EXCEPTION_NOPROJECT");
@@ -1007,7 +1005,7 @@ public class ConnectionsManager extends BaseController {
             } else {
                 tL_error = tL_error2;
             }
-            Utilities.stageQueue.postRunnable(new ChatActivity$$ExternalSyntheticLambda136(this, requestDelegate, tLObjectDeserializeResponse, tL_error, requestDelegateTimestamp, j3, 1));
+            Utilities.stageQueue.postRunnable(new ChatActivity$$ExternalSyntheticLambda54(this, requestDelegate, tLObjectDeserializeResponse, tL_error, requestDelegateTimestamp, j3, 1));
         } catch (Exception e4) {
             e = e4;
             FileLog.e(e);
@@ -1016,7 +1014,7 @@ public class ConnectionsManager extends BaseController {
 
     public static void lambda$sendRequestTyped$3(Executor executor, Utilities.Callback2 callback2, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (executor != null) {
-            executor.execute(new RemoteUtils$$ExternalSyntheticLambda2(callback2, tLObject, tL_error, 11));
+            executor.execute(new RemoteUtils$$ExternalSyntheticLambda2(callback2, tLObject, tL_error, 15));
         } else {
             callback2.run(tLObject, tL_error);
         }
@@ -1027,7 +1025,7 @@ public class ConnectionsManager extends BaseController {
             getMessagesController().processUpdates(updates, false);
         }
         if (executor != null) {
-            executor.execute(new RemoteUtils$$ExternalSyntheticLambda2(callback2, updates, tL_error, 12));
+            executor.execute(new RemoteUtils$$ExternalSyntheticLambda2(callback2, updates, tL_error, 16));
         } else {
             callback2.run(updates, tL_error);
         }
@@ -1153,11 +1151,11 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onConnectionStateChanged(int i, int i2) {
-        AndroidUtilities.runOnUIThread(new GroupCallSheet$$ExternalSyntheticLambda1(i2, i, 2));
+        AndroidUtilities.runOnUIThread(new GroupCallSheet$$ExternalSyntheticLambda5(i2, i, 2));
     }
 
     public static void onIntegrityCheckClassic(int i, int i2, String str, String str2) {
-        AndroidUtilities.runOnUIThread(new ChatActivity$126$$ExternalSyntheticLambda0(i, i2, str, str2));
+        AndroidUtilities.runOnUIThread(new ConnectionsManager$$ExternalSyntheticLambda20(i, i2, str, str2));
     }
 
     public static void onInternalPushReceived(int i) {
@@ -1165,7 +1163,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onLogout(int i) {
-        AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda42(i, 9));
+        AndroidUtilities.runOnUIThread(new SharedConfig$$ExternalSyntheticLambda1(i, 8));
     }
 
     public static void onPremiumFloodWait(int i, int i2, boolean z) {
@@ -1210,7 +1208,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onRequestNewServerIpAndPort(int i, int i2) {
-        Utilities.globalQueue.postRunnable(new GroupCallSheet$$ExternalSyntheticLambda1(i, i2, 3));
+        Utilities.globalQueue.postRunnable(new GroupCallSheet$$ExternalSyntheticLambda5(i, i2, 3));
     }
 
     public static void onRequestQuickAck(int i, int i2) {
@@ -1234,11 +1232,10 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onSessionCreated(int i) {
-        Utilities.stageQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda42(i, 8));
+        Utilities.stageQueue.postRunnable(new SharedConfig$$ExternalSyntheticLambda1(i, 7));
     }
 
     public static void onUnparsedMessageReceived(long j, int i, long j2) {
-        int i2 = 0;
         try {
             NativeByteBuffer nativeByteBufferWrap = NativeByteBuffer.wrap(j);
             nativeByteBufferWrap.setDataSourceType(TLDataSourceType.NETWORK);
@@ -1255,7 +1252,7 @@ public class ConnectionsManager extends BaseController {
                     FileLog.d("java received " + tLObjectTLdeserialize);
                 }
                 KeepAliveJob.finishJob();
-                Utilities.stageQueue.postRunnable(new ConnectionsManager$$ExternalSyntheticLambda5(i, (TLRPC.Updates) tLObjectTLdeserialize, i2));
+                Utilities.stageQueue.postRunnable(new Theme$$ExternalSyntheticLambda19(i, (TLRPC.Updates) tLObjectTLdeserialize, 5));
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -1263,7 +1260,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public static void onUpdate(int i) {
-        Utilities.stageQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda42(i, 7));
+        Utilities.stageQueue.postRunnable(new SharedConfig$$ExternalSyntheticLambda1(i, 6));
     }
 
     public static void onUpdateConfig(long j, int i) {
@@ -1272,7 +1269,7 @@ public class ConnectionsManager extends BaseController {
             nativeByteBufferWrap.reused = true;
             TLRPC.TL_config tL_configTLdeserialize = TLRPC.TL_config.TLdeserialize(nativeByteBufferWrap, nativeByteBufferWrap.readInt32(true), true);
             if (tL_configTLdeserialize != null) {
-                Utilities.stageQueue.postRunnable(new ArticleViewer$$ExternalSyntheticLambda74(i, tL_configTLdeserialize, 4));
+                Utilities.stageQueue.postRunnable(new Theme$$ExternalSyntheticLambda19(i, tL_configTLdeserialize, 4));
             }
         } catch (Exception e) {
             FileLog.e(e);
@@ -1335,16 +1332,16 @@ public class ConnectionsManager extends BaseController {
 
     public static void setRegId(String str, int i, String str2) {
         if (!TextUtils.isEmpty(str) && i == 13) {
-            str = zzil.m("huawei://", str);
+            str = zzii.m("huawei://", str);
         }
         if (!TextUtils.isEmpty(str) || TextUtils.isEmpty(str2)) {
             str2 = str;
         }
         if (TextUtils.isEmpty(str2)) {
-            StringBuilder sbM4m = SurfaceContainer$$ExternalSyntheticOutline0.m4m("__", i == 2 ? "FIREBASE" : "HUAWEI", "_GENERATING_SINCE_");
-            sbM4m.append(getInstance(0).getCurrentTime());
-            sbM4m.append("__");
-            str2 = sbM4m.toString();
+            StringBuilder sbM80m = Fragment$$ExternalSyntheticOutline0.m80m("__", i == 2 ? "FIREBASE" : "HUAWEI", "_GENERATING_SINCE_");
+            sbM80m.append(getInstance(0).getCurrentTime());
+            sbM80m.append("__");
+            str2 = sbM80m.toString();
             SharedConfig.pushStringStatus = str2;
         }
         for (int i2 = 0; i2 < 4; i2++) {
@@ -1403,7 +1400,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void discardConnection(int i, int i2) {
-        Utilities.stageQueue.postRunnable(new ArticleViewer$$ExternalSyntheticLambda26(this, i, i2, 5));
+        Utilities.stageQueue.postRunnable(new SurfaceViewRenderer$$ExternalSyntheticLambda0(this, i, i2, 5));
     }
 
     public void failNotRunningRequest(int i) {
@@ -1658,7 +1655,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void setIsUpdating(boolean z) {
-        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda1(10, this, z));
+        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda1(this, z, 10));
     }
 
     public void setPushConnectionEnabled(boolean z) {
@@ -1679,7 +1676,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void cancelRequest(int i, boolean z, Runnable runnable) {
-        Utilities.stageQueue.postRunnable(new ChatActivity$70$$ExternalSyntheticLambda1(i, 2, this, runnable, z));
+        Utilities.stageQueue.postRunnable(new ConnectionsManager$$ExternalSyntheticLambda12(this, runnable, z, i, 0));
     }
 
     public int sendRequest(TLObject tLObject, RequestDelegate requestDelegate, int i) {
@@ -1691,7 +1688,7 @@ public class ConnectionsManager extends BaseController {
     }
 
     public int sendRequestTypedAndProcessUpdates(TLMethod<TLRPC.Updates> tLMethod, Executor executor, Utilities.Callback2<TLRPC.Updates, TLRPC.TL_error> callback2, int i, int i2) {
-        return sendRequestTyped(tLMethod, null, new ChatActivity$$ExternalSyntheticLambda464(this, executor, callback2, 1), i, i2);
+        return sendRequestTyped(tLMethod, null, new GiftOfferSheet$$ExternalSyntheticLambda12(this, executor, callback2, 1), i, i2);
     }
 
     public int sendRequest(TLObject tLObject, RequestDelegate requestDelegate, int i, int i2) {

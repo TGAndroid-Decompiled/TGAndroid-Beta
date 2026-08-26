@@ -14,10 +14,10 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzld;
-import com.google.android.gms.internal.mlkit_vision_common.zzle;
-import com.google.android.gms.internal.mlkit_vision_common.zzlg;
-import com.google.android.gms.internal.mlkit_vision_common.zzlh;
+import com.google.android.gms.internal.mlkit_vision_common.zzkm;
+import com.google.android.gms.internal.mlkit_vision_common.zzkn;
+import com.google.android.gms.internal.mlkit_vision_common.zzkp;
+import com.google.android.gms.internal.mlkit_vision_common.zzkq;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -35,7 +35,6 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -53,7 +52,7 @@ public final class SharingLiveLocationCell extends FrameLayout {
     public boolean distanceTextViewSingle;
     public Drawable foreverDrawable;
     public int foreverDrawableColor;
-    public final BubbleActivity.AnonymousClass1 invalidateRunnable;
+    public final SendLocationCell.AnonymousClass1 invalidateRunnable;
     public double lastLat;
     public double lastLong;
     public CharSequence lastName;
@@ -66,19 +65,19 @@ public final class SharingLiveLocationCell extends FrameLayout {
     public final RectF rect;
     public final Theme.ResourcesProvider resourcesProvider;
 
-    public SharingLiveLocationCell(int i, Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public SharingLiveLocationCell(Context context, boolean z, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.rect = new RectF();
         this.location = new Location("network");
         this.currentAccount = UserConfig.selectedAccount;
-        this.invalidateRunnable = new BubbleActivity.AnonymousClass1(this, 8);
+        this.invalidateRunnable = new SendLocationCell.AnonymousClass1(this, 3);
         this.lastName = "";
         this.resourcesProvider = resourcesProvider;
         this.padding = i;
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(21.0f));
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         NotificationCenter.listenEmojiLoading(simpleTextView);
@@ -190,7 +189,7 @@ public final class SharingLiveLocationCell extends FrameLayout {
                 this.foreverDrawableColor = color2;
                 drawable.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.SRC_IN));
             }
-            this.foreverDrawable.setBounds(zzle.m((int) rectF.centerX(), this.foreverDrawable), zzld.m((int) rectF.centerY(), this.foreverDrawable), zzlh.m((int) rectF.centerX(), this.foreverDrawable), zzlg.m((int) rectF.centerY(), this.foreverDrawable));
+            this.foreverDrawable.setBounds(zzkn.m((int) rectF.centerX(), this.foreverDrawable), zzkm.m((int) rectF.centerY(), this.foreverDrawable), zzkq.m((int) rectF.centerX(), this.foreverDrawable), zzkp.m((int) rectF.centerY(), this.foreverDrawable));
             this.foreverDrawable.draw(canvas);
         }
     }
@@ -203,8 +202,8 @@ public final class SharingLiveLocationCell extends FrameLayout {
     }
 
     public final void setDialog(MessageObject messageObject, Location location, boolean z) {
-        float f;
         CharSequence name;
+        float f;
         TLRPC.Message message;
         SimpleTextView simpleTextView = this.nameTextView;
         BackupImageView backupImageView = this.avatarImageView;
@@ -215,16 +214,10 @@ public final class SharingLiveLocationCell extends FrameLayout {
             drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_location_sendLocationIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
             int color = Theme.getColor(Theme.key_location_placeLocationBackground, resourcesProvider);
             CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(42.0f), color, color), drawable);
-            int iDp = AndroidUtilities.dp(42.0f);
-            int iDp2 = AndroidUtilities.dp(42.0f);
-            combinedDrawable.backWidth = iDp;
-            combinedDrawable.backHeight = iDp2;
-            int iDp3 = AndroidUtilities.dp(24.0f);
-            int iDp4 = AndroidUtilities.dp(24.0f);
-            combinedDrawable.iconWidth = iDp3;
-            combinedDrawable.iconHeight = iDp4;
+            combinedDrawable.setCustomSize(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
+            combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             backupImageView.setImageDrawable(combinedDrawable);
-            simpleTextView.setText(Emoji.replaceEmoji(MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id)), simpleTextView.getPaint().getFontMetricsInt(), false), false);
+            simpleTextView.setText(Emoji.replaceEmoji(MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(messageObject.messageOwner.peer_id)), simpleTextView.getPaint().getFontMetricsInt(), false));
             this.distanceTextViewSingle = false;
             textView.setSingleLine(false);
             String str = messageObject.messageOwner.media.address;
@@ -249,24 +242,20 @@ public final class SharingLiveLocationCell extends FrameLayout {
                 if (user != null) {
                     this.avatarDrawable = new AvatarDrawable(user);
                     name = UserObject.getUserName(user);
-                    f = 24.0f;
-                    backupImageView.imageReceiver.setForUserOrChat(user, this.avatarDrawable);
-                    backupImageView.onNewImageSet();
+                    backupImageView.setForUserOrChat(user, this.avatarDrawable);
                 } else {
-                    f = 24.0f;
                     TLRPC.GeoPoint geoPoint = messageObject.messageOwner.media.geo;
                     name = getName(geoPoint.lat, geoPoint._long);
                     zIsEmpty = false;
                 }
             } else {
-                f = 24.0f;
                 TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-fromChatId));
                 if (chat != null) {
                     AvatarDrawable avatarDrawable = new AvatarDrawable(chat);
                     this.avatarDrawable = avatarDrawable;
-                    name = chat.title;
-                    backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-                    backupImageView.onNewImageSet();
+                    String str3 = chat.title;
+                    backupImageView.setForUserOrChat(chat, avatarDrawable);
+                    name = str3;
                 } else {
                     TLRPC.GeoPoint geoPoint2 = messageObject.messageOwner.media.geo;
                     name = getName(geoPoint2.lat, geoPoint2._long);
@@ -274,16 +263,20 @@ public final class SharingLiveLocationCell extends FrameLayout {
                 }
             }
         } else {
-            f = 24.0f;
             name = "";
         }
         if (TextUtils.isEmpty(name)) {
             if (this.loadingString == null) {
                 SpannableString spannableString = new SpannableString("dkaraush has been here");
                 this.loadingString = spannableString;
-                spannableString.setSpan(new LoadingSpan(AndroidUtilities.dp(100.0f), 0, simpleTextView, resourcesProvider), 0, this.loadingString.length(), 33);
+                f = 24.0f;
+                spannableString.setSpan(new LoadingSpan(simpleTextView, AndroidUtilities.dp(100.0f), 0, resourcesProvider), 0, this.loadingString.length(), 33);
+            } else {
+                f = 24.0f;
             }
             name = this.loadingString;
+        } else {
+            f = 24.0f;
         }
         if (!zIsEmpty) {
             if (!TextUtils.isEmpty(messageObject.messageOwner.media.title)) {
@@ -293,17 +286,11 @@ public final class SharingLiveLocationCell extends FrameLayout {
             drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_location_sendLocationIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
             int color2 = Theme.getColor(Theme.key_location_placeLocationBackground, resourcesProvider);
             CombinedDrawable combinedDrawable2 = new CombinedDrawable(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(42.0f), color2, color2), drawable2);
-            int iDp5 = AndroidUtilities.dp(42.0f);
-            int iDp6 = AndroidUtilities.dp(42.0f);
-            combinedDrawable2.backWidth = iDp5;
-            combinedDrawable2.backHeight = iDp6;
-            int iDp7 = AndroidUtilities.dp(f);
-            int iDp8 = AndroidUtilities.dp(f);
-            combinedDrawable2.iconWidth = iDp7;
-            combinedDrawable2.iconHeight = iDp8;
+            combinedDrawable2.setCustomSize(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
+            combinedDrawable2.setIconSize(AndroidUtilities.dp(f), AndroidUtilities.dp(f));
             backupImageView.setImageDrawable(combinedDrawable2);
         }
-        simpleTextView.setText(name, false);
+        simpleTextView.setText(name);
         Location location2 = this.location;
         location2.setLatitude(messageObject.messageOwner.media.geo.lat);
         location2.setLongitude(messageObject.messageOwner.media.geo._long);
@@ -338,9 +325,8 @@ public final class SharingLiveLocationCell extends FrameLayout {
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(sharingLocationInfo.did));
             if (user != null) {
                 this.avatarDrawable.setInfo(this.currentAccount, user);
-                simpleTextView.setText(ContactsController.formatName(user.first_name, user.last_name), false);
-                backupImageView.imageReceiver.setForUserOrChat(user, this.avatarDrawable);
-                backupImageView.onNewImageSet();
+                simpleTextView.setText(ContactsController.formatName(user.first_name, user.last_name));
+                backupImageView.setForUserOrChat(user, this.avatarDrawable);
                 return;
             }
             return;
@@ -348,9 +334,8 @@ public final class SharingLiveLocationCell extends FrameLayout {
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-sharingLocationInfo.did));
         if (chat != null) {
             this.avatarDrawable.setInfo(this.currentAccount, chat);
-            simpleTextView.setText(chat.title, false);
-            backupImageView.imageReceiver.setForUserOrChat(chat, this.avatarDrawable);
-            backupImageView.onNewImageSet();
+            simpleTextView.setText(chat.title);
+            backupImageView.setForUserOrChat(chat, this.avatarDrawable);
         }
     }
 }

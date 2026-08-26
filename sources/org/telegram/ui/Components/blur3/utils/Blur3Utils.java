@@ -59,6 +59,6 @@ public abstract class Blur3Utils {
     }
 
     public static Theme.AnonymousClass6 wrapCenteredDrawable(BlurredBackgroundDrawable blurredBackgroundDrawable, int i, int i2) {
-        return new Theme.AnonymousClass6(i, i2, blurredBackgroundDrawable);
+        return new Theme.AnonymousClass6(blurredBackgroundDrawable, i, i2);
     }
 }

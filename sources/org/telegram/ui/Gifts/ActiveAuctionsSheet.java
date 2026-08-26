@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
 import android.util.LongSparseArray;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
@@ -29,8 +28,7 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
-import org.telegram.ui.Components.VideoEditTextureView$$ExternalSyntheticLambda1;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda12;
+import org.telegram.ui.Stars.GiftOfferSheet$$ExternalSyntheticLambda2;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
@@ -55,32 +53,28 @@ public final class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView i
             super(context);
             Paint paint = new Paint(1);
             this.paint = paint;
-            this.timer = new CountdownTimer(new VideoEditTextureView$$ExternalSyntheticLambda1(this, 23));
+            this.timer = new CountdownTimer(new GiftSheet$$ExternalSyntheticLambda6(this, 12));
             this.cs = new ColoredImageSpan(R.drawable.filled_gift_sell_24);
             this.spanRefStars = new ColoredImageSpan[1];
             this.auction = auction;
             setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(9.0f));
             paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, 0.0f, 536870912);
             paint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, null, true);
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, null);
             this.buttonView = buttonWithCounterView;
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = buttonWithCounterView.text;
-            animatedTextDrawable.splitByWords = false;
-            animatedTextDrawable.preserveIndex = true;
-            animatedTextDrawable.startFromEnd = true;
-            animatedTextDrawable.enforceByLetter = true;
+            buttonWithCounterView.setTextHacks(false, true, true, true);
             RLottieImageView rLottieImageView = new RLottieImageView(context);
-            AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+            AnimatedTextView animatedTextView = new AnimatedTextView(context);
             this.titleView = animatedTextView;
             animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
             animatedTextView.setTypeface(AndroidUtilities.bold());
             animatedTextView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, false, false);
+            AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
             this.messageView = animatedTextView2;
             animatedTextView2.setTextSize(AndroidUtilities.dp(12.0f));
             TLRPC.Document document = auction.gift.sticker;
             if (document != null) {
-                rLottieImageView.setAnimation(44, 44, document);
+                rLottieImageView.setAnimation(document, 44, 44);
             }
             addView(animatedTextView, LayoutHelper.createFrame(-1, 18.0f, 51, 64.0f, 15.0f, 15.0f, 0.0f));
             addView(animatedTextView2, LayoutHelper.createFrame(-1, 17.0f, 51, 64.0f, 34.0f, 15.0f, 0.0f));
@@ -105,31 +99,31 @@ public final class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView i
 
         @Override
         public final void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(146), 1073741824));
+            super.onMeasure(i, LayoutHelper.measureSpecExactlyDp(146));
         }
 
         public final void updateStatus(boolean z) {
             GiftAuctionController.Auction auction = this.auction;
             TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = auction.auctionStateActive;
             if (tL_starGiftAuctionState != null) {
-                this.titleView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z, true);
+                this.titleView.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveRound, LocaleController.formatNumber(tL_starGiftAuctionState.current_round, ','), LocaleController.formatNumber(auction.auctionStateActive.total_rounds, ',')), z);
             }
             String strM = BillingController$$ExternalSyntheticOutline0.m(auction.auctionUserState.bid_amount, ',', new StringBuilder("⭐️"));
             boolean zIsOutbid = auction.getBidStatus().isOutbid();
             AnimatedTextView animatedTextView = this.messageView;
             ColoredImageSpan[] coloredImageSpanArr = this.spanRefStars;
             if (zIsOutbid) {
-                animatedTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidOutbid, strM)), 0.66f, coloredImageSpanArr), z, true);
+                animatedTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidOutbid, strM)), 0.66f, coloredImageSpanArr), z);
                 animatedTextView.setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
             } else {
-                animatedTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidActive, strM, Integer.valueOf(auction.getApproximatedMyPlace()))), 0.66f, coloredImageSpanArr), z, true);
+                animatedTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveBidActive, strM, Integer.valueOf(auction.getApproximatedMyPlace()))), 0.66f, coloredImageSpanArr), z);
                 animatedTextView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
             }
         }
     }
 
     public ActiveAuctionsSheet(Context context) {
-        super(context, null, false, false, false, false, false, 2, null);
+        super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
         int i = 0;
         this.activeAuctionCells = new LongSparseArray();
         this.activeAuctions = new ArrayList();
@@ -154,7 +148,7 @@ public final class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView i
             i++;
             GiftAuctionController.Auction auction2 = auction;
             ActiveAuctionCell activeAuctionCell = new ActiveAuctionCell(context, auction2);
-            activeAuctionCell.buttonView.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(this, context, auction2, 3));
+            activeAuctionCell.buttonView.setOnClickListener(new GiftOfferSheet$$ExternalSyntheticLambda2(this, context, auction2, 5));
             linearLayout.addView(activeAuctionCell, LayoutHelper.createLinear(-1, -2));
             this.activeAuctionCells.put(auction2.giftId, activeAuctionCell);
         }
@@ -163,10 +157,10 @@ public final class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView i
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 23), this.resourcesProvider);
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 16), this.resourcesProvider);
         this.adapter = universalAdapter;
-        universalAdapter.applyBackground = false;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override
@@ -211,7 +205,7 @@ public final class ActiveAuctionsSheet extends BottomSheetWithRecyclerListView i
                 spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.Gift2ActiveAuctionsActiveRaiseBid));
                 spannableStringBuilder.append((CharSequence) "  ");
                 spannableStringBuilder.append((CharSequence) durationNoHours);
-                activeAuctionCell.buttonView.setText(spannableStringBuilder, z, true);
+                activeAuctionCell.buttonView.setText(spannableStringBuilder, z);
                 activeAuctionCell.timer.start(jMax);
             }
         }

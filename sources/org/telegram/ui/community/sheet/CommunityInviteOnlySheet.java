@@ -13,44 +13,42 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
-import org.telegram.ui.Components.ColorPicker;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Stories.LiveCommentsView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda28;
-import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda1;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda2;
+import org.telegram.ui.bots.BotDownloads$$ExternalSyntheticLambda0;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
 
 public final class CommunityInviteOnlySheet extends BottomSheetWithRecyclerListView {
     public UniversalAdapter adapter;
-    public final ColorPicker.AnonymousClass1 cell;
+    public final LiveCommentsView.LiveCommentView.AnonymousClass1 cell;
 
     public CommunityInviteOnlySheet(Context context, TLRPC.Chat chat, Runnable runnable) {
-        super(context, null, false, true, false, false, false, 2, null);
+        super(context, null, false, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
         this.headerMoveTop = AndroidUtilities.dp(30.0f);
         RecyclerListView recyclerListView = this.recyclerListView;
         int i = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(130.0f) + AndroidUtilities.navigationBarHeight);
         this.recyclerListView.setClipToPadding(false);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, this.resourcesProvider);
         buttonWithCounterView.setText(LocaleController.getString(R.string.Cancel));
         buttonWithCounterView.setNeutral();
-        buttonWithCounterView.setRoundRadius(24);
-        buttonWithCounterView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda1(this, 9));
+        buttonWithCounterView.setRound();
+        buttonWithCounterView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 27));
         boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, this.resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, true, this.resourcesProvider);
         buttonWithCounterView2.setText(LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.CommunityInviteOnlyChannelMessageOwner : R.string.CommunityInviteOnlyGroupMessageOwner));
-        buttonWithCounterView2.setRoundRadius(24);
-        buttonWithCounterView2.setOnClickListener(new VoIPFragment$$ExternalSyntheticLambda28(7, this, runnable));
-        ColorPicker.AnonymousClass1 anonymousClass1 = new ColorPicker.AnonymousClass1(context);
+        buttonWithCounterView2.setRound();
+        buttonWithCounterView2.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(23, this, runnable));
+        LiveCommentsView.LiveCommentView.AnonymousClass1 anonymousClass1 = new LiveCommentsView.LiveCommentView.AnonymousClass1(context);
         this.cell = anonymousClass1;
         anonymousClass1.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(17.0f));
-        BackupImageView backupImageView = (BackupImageView) anonymousClass1.rect;
-        backupImageView.imageReceiver.setForUserOrChat(chat, new AvatarDrawable(chat));
-        backupImageView.onNewImageSet();
-        TextView textView = (TextView) anonymousClass1.paint;
+        ((BackupImageView) anonymousClass1.particles).setForUserOrChat(chat, new AvatarDrawable(chat));
+        TextView textView = (TextView) anonymousClass1.clipPath;
         textView.setText(DialogObject.getName(chat));
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(getThemedColor(i2));
@@ -61,17 +59,17 @@ public final class CommunityInviteOnlySheet extends BottomSheetWithRecyclerListV
         TextView textView2 = (TextView) anonymousClass1.this$0;
         textView2.setTextColor(getThemedColor(i2));
         textView2.setText(spannableStringBuilder);
-        this.containerView.addView(buttonWithCounterView2, LayoutHelper.createFrameMarginPx(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
-        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(buttonWithCounterView2, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(70.0f) + AndroidUtilities.navigationBarHeight));
+        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
         this.adapter.update(false);
     }
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new TodoItemMenu$$ExternalSyntheticLambda17(this, 17), this.resourcesProvider);
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new BotDownloads$$ExternalSyntheticLambda0(this, 16), this.resourcesProvider);
         this.adapter = universalAdapter;
-        universalAdapter.applyBackground = false;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override

@@ -12,12 +12,12 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
-public final class FolderDrawable extends Drawable {
-    public final Drawable drawable;
-    public final Paint fillPaint;
-    public final Path path;
-    public boolean pathInvalidated = true;
-    public final Paint strokePaint;
+public class FolderDrawable extends Drawable {
+    private final Drawable drawable;
+    private final Paint fillPaint;
+    private final Path path;
+    private boolean pathInvalidated = true;
+    private final Paint strokePaint;
 
     public FolderDrawable(Context context, int i, int i2) {
         this.drawable = context.getResources().getDrawable(i);
@@ -45,63 +45,67 @@ public final class FolderDrawable extends Drawable {
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Path path = this.path;
-        Drawable drawable = this.drawable;
-        if (path == null) {
-            drawable.setBounds(getBounds());
-            drawable.draw(canvas);
+    public void draw(Canvas canvas) {
+        if (this.path == null) {
+            this.drawable.setBounds(getBounds());
+            this.drawable.draw(canvas);
             return;
         }
         canvas.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, 255);
-        drawable.setBounds(getBounds());
-        drawable.draw(canvas);
-        boolean z = this.pathInvalidated;
-        Paint paint = this.strokePaint;
-        if (z) {
-            path.rewind();
-            path.moveTo(AndroidUtilities.lerp(getBounds().left, getBounds().right, 0.4871f), AndroidUtilities.lerp(getBounds().top, getBounds().bottom, 0.6025f));
-            path.lineTo(AndroidUtilities.lerp(getBounds().left, getBounds().right, 0.8974f), AndroidUtilities.lerp(getBounds().top, getBounds().bottom, 0.6025f));
-            path.lineTo(AndroidUtilities.lerp(getBounds().left, getBounds().right, 1.0f), AndroidUtilities.lerp(getBounds().top, getBounds().bottom, 0.7564f));
-            path.lineTo(AndroidUtilities.lerp(getBounds().left, getBounds().right, 0.8974f), AndroidUtilities.lerp(getBounds().top, getBounds().bottom, 0.9102f));
-            path.lineTo(AndroidUtilities.lerp(getBounds().left, getBounds().right, 0.4871f), AndroidUtilities.lerp(getBounds().top, getBounds().bottom, 0.9102f));
-            path.close();
+        this.drawable.setBounds(getBounds());
+        this.drawable.draw(canvas);
+        if (this.pathInvalidated) {
+            this.path.rewind();
+            this.path.moveTo(x(0.4871f), y(0.6025f));
+            this.path.lineTo(x(0.8974f), y(0.6025f));
+            this.path.lineTo(x(1.0f), y(0.7564f));
+            this.path.lineTo(x(0.8974f), y(0.9102f));
+            this.path.lineTo(x(0.4871f), y(0.9102f));
+            this.path.close();
             this.pathInvalidated = false;
-            paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+            this.strokePaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         }
-        canvas.drawPath(path, paint);
-        canvas.drawPath(path, this.fillPaint);
+        canvas.drawPath(this.path, this.strokePaint);
+        canvas.drawPath(this.path, this.fillPaint);
         canvas.restore();
     }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return this.drawable.getIntrinsicHeight();
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return this.drawable.getIntrinsicWidth();
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return this.drawable.getOpacity();
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
         this.drawable.setAlpha(i);
     }
 
     @Override
-    public final void setBounds(int i, int i2, int i3, int i4) {
+    public void setBounds(int i, int i2, int i3, int i4) {
         super.setBounds(i, i2, i3, i4);
         this.pathInvalidated = true;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
         this.drawable.setColorFilter(colorFilter);
+    }
+
+    public int x(float f) {
+        return AndroidUtilities.lerp(getBounds().left, getBounds().right, f);
+    }
+
+    public int y(float f) {
+        return AndroidUtilities.lerp(getBounds().top, getBounds().bottom, f);
     }
 }

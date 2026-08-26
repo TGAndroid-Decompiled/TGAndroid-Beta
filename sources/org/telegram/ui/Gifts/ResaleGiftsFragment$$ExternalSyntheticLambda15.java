@@ -19,7 +19,7 @@ public final class ResaleGiftsFragment$$ExternalSyntheticLambda15 implements Uti
     }
 
     @Override
-    public final void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public final void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         int i = this.$r8$classId;
         UItem uItem = (UItem) obj;
         ResaleGiftsFragment resaleGiftsFragment = this.f$0;

@@ -8,7 +8,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda16;
+import org.telegram.ui.Cells.PhotoEditToolCell$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.UItem;
 
 public final class LocationActivity$$ExternalSyntheticLambda1 implements Utilities.Callback5, AlertDialog.OnButtonClickListener {
@@ -44,7 +44,7 @@ public final class LocationActivity$$ExternalSyntheticLambda1 implements Utiliti
     }
 
     @Override
-    public void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         LocationActivity locationActivity = this.f$0;
         UItem uItem = (UItem) obj;
         ((Integer) obj3).getClass();
@@ -54,11 +54,11 @@ public final class LocationActivity$$ExternalSyntheticLambda1 implements Utiliti
         if (i != 1 && uItem.view != locationActivity.mapPreviewContainer) {
             if (i == 2) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(locationActivity.getParentActivity(), 0, null);
-                builder.alertDialog.title = LocaleController.getString(R.string.BusinessLocationClearTitle);
-                builder.alertDialog.message = LocaleController.getString(R.string.BusinessLocationClearMessage);
+                builder.setTitle(LocaleController.getString(R.string.BusinessLocationClearTitle));
+                builder.setMessage(LocaleController.getString(R.string.BusinessLocationClearMessage));
                 builder.setPositiveButton(LocaleController.getString(R.string.Remove), new LocationActivity$$ExternalSyntheticLambda1(locationActivity, 3));
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                locationActivity.showDialog(builder.alertDialog);
+                locationActivity.showDialog(builder.create());
                 return;
             }
             return;
@@ -73,14 +73,14 @@ public final class LocationActivity$$ExternalSyntheticLambda1 implements Utiliti
             TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
             tL_channelLocation.address = locationActivity.address;
             tL_channelLocation.geo_point = locationActivity.geo;
-            locationActivity2.initialLocation = tL_channelLocation;
+            locationActivity2.setInitialLocation(tL_channelLocation);
         }
-        locationActivity2.delegate = new ArticleViewer$$ExternalSyntheticLambda16(22, locationActivity, locationActivity2);
+        locationActivity2.setDelegate(new PhotoEditToolCell$$ExternalSyntheticLambda0(28, locationActivity, locationActivity2));
         if (locationActivity.geo != null || TextUtils.isEmpty(locationActivity.address)) {
             locationActivity.presentFragment(locationActivity2);
             return;
         }
-        AlertDialog alertDialog = new AlertDialog(locationActivity.getParentActivity(), 3, null);
+        AlertDialog alertDialog = new AlertDialog(locationActivity.getContext(), 3, null);
         alertDialog.canCacnel = false;
         AndroidUtilities.cancelRunOnUIThread(alertDialog.showRunnable);
         AndroidUtilities.runOnUIThread(alertDialog.showRunnable, 200L);

@@ -36,12 +36,12 @@ public final class UserSelectorBottomSheet$$ExternalSyntheticLambda0 implements 
             case 4:
                 UserSelectorBottomSheet userSelectorBottomSheet3 = this.f$0;
                 userSelectorBottomSheet3.getClass();
-                userSelectorBottomSheet3.searchField.editText.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
+                userSelectorBottomSheet3.searchField.setHintText(LocaleController.getString(R.string.GiftPremiumUsersSearchHint), true);
                 break;
             case 5:
                 UserSelectorBottomSheet userSelectorBottomSheet4 = this.f$0;
                 userSelectorBottomSheet4.getClass();
-                userSelectorBottomSheet4.searchField.editText.setHintText(LocaleController.getString(R.string.Search), true);
+                userSelectorBottomSheet4.searchField.setHintText(LocaleController.getString(R.string.Search), true);
                 break;
             case 6:
                 this.f$0.lambda$didReceivedNotification$24();
@@ -60,11 +60,11 @@ public final class UserSelectorBottomSheet$$ExternalSyntheticLambda0 implements 
                 userSelectorBottomSheet6.updateList(true, false);
                 break;
             case 10:
-                BaseFragment baseFragment = this.f$0.baseFragment;
-                if (baseFragment != null) {
+                UserSelectorBottomSheet userSelectorBottomSheet7 = this.f$0;
+                if (userSelectorBottomSheet7.getBaseFragment() != null) {
                     BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
                     bottomSheetParams.transitionFromLeft = true;
-                    baseFragment.showAsSheet(new PrivacyControlActivity(11, false), bottomSheetParams);
+                    userSelectorBottomSheet7.getBaseFragment().showAsSheet(new PrivacyControlActivity(11), bottomSheetParams);
                     break;
                 }
                 break;

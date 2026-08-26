@@ -5,7 +5,6 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.Stories.PeerStoriesView$8$$ExternalSyntheticLambda54;
 import org.telegram.ui.Stories.StoriesController;
 
 public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda6 implements Utilities.Callback {
@@ -45,24 +44,24 @@ public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda6 implem
                 if (callback != null) {
                     callback.run(storyPrivacyBottomSheet.selectedPeer);
                 }
-                StoryRecorder$$ExternalSyntheticLambda19 storyRecorder$$ExternalSyntheticLambda19 = storyPrivacyBottomSheet.onSelectedAlbums;
-                if (storyRecorder$$ExternalSyntheticLambda19 != null) {
-                    storyRecorder$$ExternalSyntheticLambda19.run(new HashSet(hashSet));
+                StoryRecorder$$ExternalSyntheticLambda14 storyRecorder$$ExternalSyntheticLambda14 = storyPrivacyBottomSheet.onSelectedAlbums;
+                if (storyRecorder$$ExternalSyntheticLambda14 != null) {
+                    storyRecorder$$ExternalSyntheticLambda14.run(new HashSet(hashSet));
                 }
                 page2.updateItems(true, true);
                 break;
             case 2:
                 StoryPrivacyBottomSheet storyPrivacyBottomSheet2 = StoryPrivacyBottomSheet.this;
-                storyPrivacyBottomSheet2.done(new StoryPrivacyBottomSheet.StoryPrivacy(5, ((BottomSheet) storyPrivacyBottomSheet2).currentAccount, (ArrayList) obj), new PeerStoriesView$8$$ExternalSyntheticLambda54(storyPrivacyBottomSheet2, 1), false);
+                storyPrivacyBottomSheet2.done(new StoryPrivacyBottomSheet.StoryPrivacy(5, ((BottomSheet) storyPrivacyBottomSheet2).currentAccount, (ArrayList) obj), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda8(storyPrivacyBottomSheet2, 1), false);
                 break;
             default:
                 StoryPrivacyBottomSheet.Page page3 = this.f$0;
                 StoryPrivacyBottomSheet storyPrivacyBottomSheet3 = StoryPrivacyBottomSheet.this;
                 storyPrivacyBottomSheet3.selectedAlbums.add(Integer.valueOf(((StoriesController.StoryAlbum) obj).album_id));
                 page3.updateItems(true, true);
-                StoryRecorder$$ExternalSyntheticLambda19 storyRecorder$$ExternalSyntheticLambda110 = storyPrivacyBottomSheet3.onSelectedAlbums;
-                if (storyRecorder$$ExternalSyntheticLambda110 != null) {
-                    storyRecorder$$ExternalSyntheticLambda110.run(new HashSet(storyPrivacyBottomSheet3.selectedAlbums));
+                StoryRecorder$$ExternalSyntheticLambda14 storyRecorder$$ExternalSyntheticLambda15 = storyPrivacyBottomSheet3.onSelectedAlbums;
+                if (storyRecorder$$ExternalSyntheticLambda15 != null) {
+                    storyRecorder$$ExternalSyntheticLambda15.run(new HashSet(storyPrivacyBottomSheet3.selectedAlbums));
                 }
                 break;
         }

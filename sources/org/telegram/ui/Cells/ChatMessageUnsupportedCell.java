@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.UnsupportedBlockDrawable;
 
 public final class ChatMessageUnsupportedCell extends View implements Theme.Colorable {
@@ -25,19 +25,19 @@ public final class ChatMessageUnsupportedCell extends View implements Theme.Colo
     public ChatMessageUnsupportedCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
-        UnsupportedBlockDrawable unsupportedBlockDrawable = new UnsupportedBlockDrawable();
+        UnsupportedBlockDrawable unsupportedBlockDrawable = new UnsupportedBlockDrawable(resourcesProvider);
         this.unsupportedBlockDrawable = unsupportedBlockDrawable;
         unsupportedBlockDrawable.setCallback(this);
-        unsupportedBlockDrawable.title = LocaleController.getString(R.string.UnsupportedMessageTitle);
-        unsupportedBlockDrawable.subtitle = LocaleController.getString(R.string.UnsupportedMessageMessage);
-        unsupportedBlockDrawable.buttonText = LocaleController.getString(R.string.UnsupportedUpdate);
-        unsupportedBlockDrawable.onClickListener = new ArticleViewer$$ExternalSyntheticLambda3(this, 25);
+        unsupportedBlockDrawable.setTitle(LocaleController.getString(R.string.UnsupportedMessageTitle));
+        unsupportedBlockDrawable.setSubtitle(LocaleController.getString(R.string.UnsupportedMessageMessage));
+        unsupportedBlockDrawable.setButtonText(LocaleController.getString(R.string.UnsupportedUpdate));
+        unsupportedBlockDrawable.setOnClickListener(new ChatbotSheet$$ExternalSyntheticLambda0(this, 7));
     }
 
     public final void drawBackground(Canvas canvas) {
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         if (resourcesProvider != null) {
-            resourcesProvider.applyServiceShaderMatrix(0.0f, this.mViewTop, getMeasuredWidth(), this.mParentH);
+            resourcesProvider.applyServiceShaderMatrix(getMeasuredWidth(), this.mParentH, 0.0f, this.mViewTop);
         } else {
             Theme.applyServiceShaderMatrix(Theme.serviceBitmap, Theme.serviceBitmapShader, Theme.serviceBitmapMatrix, getMeasuredWidth(), this.mParentH, 0.0f, this.mViewTop);
         }
@@ -88,7 +88,7 @@ public final class ChatMessageUnsupportedCell extends View implements Theme.Colo
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.unsupportedBlockDrawable.clickHelper.onTouchEvent(motionEvent, this);
+        return this.unsupportedBlockDrawable.onTouchEvent(this, motionEvent);
     }
 
     public void setDelegate(ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate) {
@@ -101,7 +101,7 @@ public final class ChatMessageUnsupportedCell extends View implements Theme.Colo
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         this.unsupportedBlockDrawable.updateColors();
     }
 

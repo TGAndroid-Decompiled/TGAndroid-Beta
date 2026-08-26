@@ -5,11 +5,10 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.WorkSource;
-import androidx.activity.FullyDrawnReporter;
 import androidx.appcompat.widget.TooltipPopup;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.collection.ArrayMap;
 import androidx.core.util.Consumer;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.android.billingclient.api.zzct;
 import com.android.billingclient.api.zzcu;
 import com.google.android.exoplayer2.text.ExoplayerCuesDecoder;
@@ -26,6 +25,7 @@ import com.google.android.gms.common.api.internal.TaskApiCall;
 import com.google.android.gms.common.api.internal.zabe;
 import com.google.android.gms.common.api.internal.zat;
 import com.google.android.gms.common.internal.zzah;
+import com.google.android.gms.common.internal.zzv;
 import com.google.android.gms.internal.location.zzax;
 import com.google.android.gms.internal.location.zzbk;
 import com.google.android.gms.internal.location.zzbp;
@@ -167,7 +167,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         zzbp zzbpVar = (zzbp) settingsClient;
         zzbpVar.getClass();
         ExoplayerCuesDecoder exoplayerCuesDecoderBuilder = TaskApiCall.builder();
-        exoplayerCuesDecoderBuilder.inputBuffer = new zzcu(locationSettingsRequest, 29);
+        exoplayerCuesDecoderBuilder.inputBuffer = new zzcu(locationSettingsRequest, 25);
         exoplayerCuesDecoderBuilder.inputBufferState = 2426;
         zzbpVar.zae(0, exoplayerCuesDecoderBuilder.build()).addOnCompleteListener(new GoogleMapsProvider$GoogleMapImpl$$ExternalSyntheticLambda0(consumer, 2));
     }
@@ -274,7 +274,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
                     boolean zEquals = hashSet.equals(hashSet2);
                     String str = api3.zac;
                     if (!zEquals) {
-                        throw new IllegalStateException(SurfaceContainer$$ExternalSyntheticOutline0.m("Must not set scopes in GoogleApiClient.Builder when using ", str, ". Set account in GoogleSignInOptions.Builder instead."));
+                        throw new IllegalStateException(Fragment$$ExternalSyntheticOutline0.m("Must not set scopes in GoogleApiClient.Builder when using ", str, ". Set account in GoogleSignInOptions.Builder instead."));
                     }
                 }
                 zabe zabeVar = new zabe(context2, new ReentrantLock(), looper, tooltipPopup2, arrayMap5, arrayList, arrayList2, arrayMap6, zabe.zad(arrayMap6.values(), true), arrayList4);
@@ -305,7 +305,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
             arrayMap4.put(api4.zab, clientBuildClient);
             if (clientBuildClient.providesSignIn()) {
                 if (api3 != null) {
-                    throw new IllegalStateException(SurfaceContainer$$ExternalSyntheticOutline0.m$1(api4.zac, " cannot be used with ", api3.zac));
+                    throw new IllegalStateException(Fragment$$ExternalSyntheticOutline0.m$1(api4.zac, " cannot be used with ", api3.zac));
                 }
                 api3 = api4;
             }
@@ -355,15 +355,15 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
             zzah.checkNotNull(mainLooper, "invalid null looper");
         }
         ListenerHolder listenerHolderCreateListenerHolder = zzct.createListenerHolder(mainLooper, locationCallback, "LocationCallback");
-        FullyDrawnReporter fullyDrawnReporter = new FullyDrawnReporter();
-        fullyDrawnReporter.onReportCallbacks = zzbpVar;
-        fullyDrawnReporter.reportedFullyDrawn = true;
-        fullyDrawnReporter.lock = listenerHolderCreateListenerHolder;
-        zzw zzwVar = new zzw(21, fullyDrawnReporter, locationRequest);
+        zzv zzvVar = new zzv();
+        zzvVar.zzb = zzbpVar;
+        zzvVar.zzc = true;
+        zzvVar.zza = listenerHolderCreateListenerHolder;
+        zzw zzwVar = new zzw(zzvVar, locationRequest, false, 15);
         BagRandomizer bagRandomizer = new BagRandomizer();
         bagRandomizer.reshuffleIfEnd = true;
         bagRandomizer.bag = zzwVar;
-        bagRandomizer.shuffledBag = fullyDrawnReporter;
+        bagRandomizer.shuffledBag = zzvVar;
         bagRandomizer.random = listenerHolderCreateListenerHolder;
         bagRandomizer.currentIndex = 2436;
         zzbpVar.doRegisterEventListener(bagRandomizer.build());

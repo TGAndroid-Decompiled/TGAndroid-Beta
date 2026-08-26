@@ -1,8 +1,6 @@
 package org.telegram.ui;
 
-import android.view.View;
-
-public final class MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda0 implements View.OnClickListener {
+public final class MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
     public final MultiContactsSelectorBottomSheet f$0;
 
@@ -12,16 +10,16 @@ public final class MultiContactsSelectorBottomSheet$$ExternalSyntheticLambda0 im
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                MultiContactsSelectorBottomSheet multiContactsSelectorBottomSheet = this.f$0;
-                multiContactsSelectorBottomSheet.selectedIds.clear();
-                multiContactsSelectorBottomSheet.searchField.spansContainer.removeAllSpans(true);
-                multiContactsSelectorBottomSheet.updateList$2(true, false);
+                this.f$0.lambda$showGiftOfferSheet$15();
+                break;
+            case 1:
+                this.f$0.lambda$new$5();
                 break;
             default:
-                this.f$0.lambda$new$2$17$1();
+                this.f$0.lambda$new$3();
                 break;
         }
     }

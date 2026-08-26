@@ -1,6 +1,6 @@
 package kotlin.collections;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,6 +15,31 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.StringsKt__AppendableKt;
 
 public abstract class CollectionsKt extends CollectionsKt__MutableCollectionsKt {
+    public static boolean contains(Iterable iterable, Object obj) {
+        int iIndexOf;
+        Intrinsics.checkNotNullParameter(iterable, "<this>");
+        if (iterable instanceof Collection) {
+            return ((Collection) iterable).contains(obj);
+        }
+        if (iterable instanceof List) {
+            iIndexOf = ((List) iterable).indexOf(obj);
+        } else {
+            int i = 0;
+            for (Object obj2 : iterable) {
+                if (i < 0) {
+                    throw new ArithmeticException("Index overflow has happened.");
+                }
+                if (Intrinsics.areEqual(obj, obj2)) {
+                    iIndexOf = i;
+                } else {
+                    i++;
+                }
+            }
+            iIndexOf = -1;
+        }
+        return iIndexOf >= 0;
+    }
+
     public static ArrayList filterNotNull(Iterable iterable) {
         ArrayList arrayList = new ArrayList();
         for (Object obj : iterable) {
@@ -59,7 +84,7 @@ public abstract class CollectionsKt extends CollectionsKt__MutableCollectionsKt 
         Object next;
         Intrinsics.checkNotNullParameter(iterable, "<this>");
         if (i < 0) {
-            throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, "Requested element count ", " is less than zero.").toString());
+            throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(i, "Requested element count ", " is less than zero.").toString());
         }
         EmptyList emptyList = EmptyList.INSTANCE;
         if (i == 0) {

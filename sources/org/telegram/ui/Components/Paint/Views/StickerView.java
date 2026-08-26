@@ -8,21 +8,21 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.ProfileGooeyView$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Components.Size;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
+import org.telegram.ui.TON.TONIntroActivity;
 
 public class StickerView extends EntityView {
     public final int anchor;
     public final Size baseSize;
     public final ImageReceiver centerImage;
-    public final ChatActivity.AnonymousClass60 containerView;
+    public final TONIntroActivity.AnonymousClass2 containerView;
     public final AnimatedFloat mirrorT;
     public boolean mirrored;
     public final Object parentObject;
@@ -49,15 +49,15 @@ public class StickerView extends EntityView {
                 break;
             }
         }
-        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(this, context);
-        this.containerView = anonymousClass60;
-        addView(anonymousClass60, LayoutHelper.createFrame(-1.0f, -1));
-        this.mirrorT = new AnimatedFloat(anonymousClass60, 0L, 500L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = new TONIntroActivity.AnonymousClass2(this, context);
+        this.containerView = anonymousClass2;
+        addView(anonymousClass2, LayoutHelper.createFrame(-1, -1.0f));
+        this.mirrorT = new AnimatedFloat(anonymousClass2, 0L, 500L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.centerImage.setAspectFit(true);
         this.centerImage.setInvalidateAll(true);
-        this.centerImage.setParentView(anonymousClass60);
+        this.centerImage.setParentView(anonymousClass2);
         this.centerImage.setImage(ImageLocation.getForDocument(document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document), (String) null, "webp", obj, 1);
-        this.centerImage.setDelegate(new ProfileGooeyView$$ExternalSyntheticLambda0(this, 10));
+        this.centerImage.setDelegate(new GiftSheet$$ExternalSyntheticLambda6(this, 1));
         updatePosition();
     }
 
@@ -85,7 +85,7 @@ public class StickerView extends EntityView {
         }
         AnimatedFileDrawable animation = imageReceiver.getAnimation();
         if (animation != null) {
-            return animation.metaData[4];
+            return animation.getDurationMs();
         }
         return 0L;
     }

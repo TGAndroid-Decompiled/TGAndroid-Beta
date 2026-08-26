@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkl;
+import com.google.android.gms.internal.mlkit_vision_common.zzkd;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -20,21 +20,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda5;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.AboutLinkCell$$ExternalSyntheticLambda1;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.Premium.boosts.cells.ActionBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.HeaderCell;
 import org.telegram.ui.Components.Premium.boosts.cells.LinkCell;
 import org.telegram.ui.Components.Premium.boosts.cells.TableCell;
 import org.telegram.ui.Components.Premium.boosts.cells.TextInfoCell;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.SearchField$$ExternalSyntheticLambda0;
-import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda8;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda26;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter {
@@ -83,10 +83,9 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
     @Override
     public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         final int i2 = 0;
-        int i3 = viewHolder.mItemViewType;
-        View view = viewHolder.itemView;
-        if (i3 == 0) {
-            HeaderCell headerCell = (HeaderCell) view;
+        int itemViewType = viewHolder.getItemViewType();
+        if (itemViewType == 0) {
+            HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
             if (this.isUnused) {
                 headerCell.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
                 headerCell.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllows", R.string.BoostingLinkAllows, new Object[0])));
@@ -97,20 +96,20 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = this.giftCode;
             if (tL_payments_checkedGiftCode.boost != null) {
                 long j = tL_payments_checkedGiftCode.to_id;
-                final PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14 = new PollItemMenu$$ExternalSyntheticLambda14(this, 2);
+                final DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda6 = new DialogCell$$ExternalSyntheticLambda6(this, 16);
                 headerCell.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
                 SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingLinkAllowsToUser));
                 final TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
-                final int i4 = 1;
+                final int i3 = 1;
                 headerCell.subtitleView.setText(AndroidUtilities.replaceCharSequence("%1$s", spannableStringBuilderReplaceTags, AndroidUtilities.replaceSingleTag("**" + UserObject.getUserName(user) + "**", Theme.key_chat_messageLinkIn, 2, new Runnable() {
                     @Override
                     public final void run() {
-                        switch (i4) {
+                        switch (i3) {
                             case 0:
-                                pollItemMenu$$ExternalSyntheticLambda14.run(user);
+                                dialogCell$$ExternalSyntheticLambda6.run(user);
                                 break;
                             default:
-                                pollItemMenu$$ExternalSyntheticLambda14.run(user);
+                                dialogCell$$ExternalSyntheticLambda6.run(user);
                                 break;
                         }
                     }
@@ -123,8 +122,8 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             }
             return;
         }
-        if (i3 == 1) {
-            LinkCell linkCell = (LinkCell) view;
+        if (itemViewType == 1) {
+            LinkCell linkCell = (LinkCell) viewHolder.itemView;
             linkCell.setSlug(this.slug);
             if (this.giftCode.boost != null && this.slug == null) {
                 linkCell.hideSlug(new GiftInfoAdapter$$ExternalSyntheticLambda2(this, 1));
@@ -136,27 +135,27 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             }
             return;
         }
-        if (i3 != 2) {
-            if (i3 != 3) {
-                if (i3 != 4) {
+        if (itemViewType != 2) {
+            if (itemViewType != 3) {
+                if (itemViewType != 4) {
                     return;
                 }
-                ActionBtnCell actionBtnCell = (ActionBtnCell) view;
+                ActionBtnCell actionBtnCell = (ActionBtnCell) viewHolder.itemView;
                 actionBtnCell.setOkStyle(this.isUnused);
-                actionBtnCell.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(9, this, actionBtnCell));
+                actionBtnCell.setOnClickListener(new AlertDialog$$ExternalSyntheticLambda5(20, this, actionBtnCell));
                 TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode2 = this.giftCode;
                 if (tL_payments_checkedGiftCode2.boost != null || tL_payments_checkedGiftCode2.flags == -1) {
                     actionBtnCell.drawDivider = false;
                     ButtonWithCounterView buttonWithCounterView = actionBtnCell.button;
                     buttonWithCounterView.setShowZero(false);
                     buttonWithCounterView.setEnabled(true);
-                    buttonWithCounterView.setText(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
-                    actionBtnCell.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 20));
+                    buttonWithCounterView.setText(LocaleController.formatString("Close", R.string.Close, new Object[0]), false);
+                    actionBtnCell.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 22));
                     return;
                 }
                 return;
             }
-            TextInfoCell textInfoCell = (TextInfoCell) view;
+            TextInfoCell textInfoCell = (TextInfoCell) viewHolder.itemView;
             textInfoCell.setTextGravity(17);
             textInfoCell.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
             textInfoCell.setTopPadding(14);
@@ -182,15 +181,15 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 return;
             }
         }
-        TableCell tableCell = (TableCell) view;
+        TableCell tableCell = (TableCell) viewHolder.itemView;
         final TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode4 = this.giftCode;
-        final PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda15 = new PollItemMenu$$ExternalSyntheticLambda14(this, 2);
+        final DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda7 = new DialogCell$$ExternalSyntheticLambda6(this, 16);
         tableCell.getClass();
         Date date2 = new Date(((long) tL_payments_checkedGiftCode4.date) * 1000);
         tableCell.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date2), LocaleController.getInstance().getFormatterDay().format(date2)));
-        int i5 = tL_payments_checkedGiftCode4.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack;
+        int i4 = tL_payments_checkedGiftCode4.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack;
         Theme.ResourcesProvider resourcesProvider = tableCell.resourcesProvider;
-        int color = Theme.getColor(i5, resourcesProvider);
+        int color = Theme.getColor(i4, resourcesProvider);
         TextView textView = tableCell.reasonTextView;
         textView.setTextColor(color);
         TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_payments_checkedGiftCode4.from_id)));
@@ -205,21 +204,21 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 public final void run() {
                     switch (i2) {
                         case 0:
-                            pollItemMenu$$ExternalSyntheticLambda15.run(tL_payments_checkedGiftCode4);
+                            dialogCell$$ExternalSyntheticLambda7.run(tL_payments_checkedGiftCode4);
                             break;
                         default:
-                            pollItemMenu$$ExternalSyntheticLambda15.run(tL_payments_checkedGiftCode4);
+                            dialogCell$$ExternalSyntheticLambda7.run(tL_payments_checkedGiftCode4);
                             break;
                     }
                 }
             }, resourcesProvider));
-            textView.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(11, pollItemMenu$$ExternalSyntheticLambda15, tL_payments_checkedGiftCode4));
+            textView.setOnClickListener(new AlertDialog$$ExternalSyntheticLambda5(22, dialogCell$$ExternalSyntheticLambda7, tL_payments_checkedGiftCode4));
         } else {
             textView.setText(LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.BoostingYouWereSelected : R.string.BoostingYouWereSelectedGroup));
             textView.setOnClickListener(null);
         }
-        int i6 = tL_payments_checkedGiftCode4.months;
-        tableCell.giftTextView.setText(LocaleController.formatString("BoostingTelegramPremiumFor", R.string.BoostingTelegramPremiumFor, i6 == 12 ? LocaleController.formatPluralString("Years", 1, new Object[0]) : LocaleController.formatPluralString("Months", i6, new Object[0])));
+        int i5 = tL_payments_checkedGiftCode4.months;
+        tableCell.giftTextView.setText(LocaleController.formatString("BoostingTelegramPremiumFor", R.string.BoostingTelegramPremiumFor, i5 == 12 ? LocaleController.formatPluralString("Years", 1, new Object[0]) : LocaleController.formatPluralString("Months", i5, new Object[0])));
         FrameLayout frameLayout = tableCell.fromFrameLayout;
         BackupImageView backupImageView = tableCell.fromImageView;
         TextView textView2 = tableCell.fromTextView;
@@ -228,25 +227,22 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             spannableStringBuilder2.append((CharSequence) "**");
             spannableStringBuilder2.append((CharSequence) chat.title);
             spannableStringBuilder2.append((CharSequence) "**");
-            textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), Theme.key_chat_messageLinkIn, 0, new ImageUpdater$$ExternalSyntheticLambda2(29, pollItemMenu$$ExternalSyntheticLambda15, chat), resourcesProvider), textView2.getPaint().getFontMetricsInt(), false));
-            backupImageView.imageReceiver.setForUserOrChat(chat, new AvatarDrawable(chat));
-            backupImageView.onNewImageSet();
-            frameLayout.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(12, pollItemMenu$$ExternalSyntheticLambda15, chat));
+            textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), Theme.key_chat_messageLinkIn, 0, new GiftSheet$$ExternalSyntheticLambda26(9, dialogCell$$ExternalSyntheticLambda7, chat), resourcesProvider), textView2.getPaint().getFontMetricsInt(), false));
+            backupImageView.setForUserOrChat(chat, new AvatarDrawable(chat));
+            frameLayout.setOnClickListener(new AlertDialog$$ExternalSyntheticLambda5(23, dialogCell$$ExternalSyntheticLambda7, chat));
         } else {
             final TLRPC.User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tL_payments_checkedGiftCode4.from_id.user_id));
-            final int i7 = 0;
             textView2.setText(Emoji.replaceEmoji(UserObject.getFirstName(user2), textView2.getPaint().getFontMetricsInt(), false));
-            backupImageView.imageReceiver.setForUserOrChat(user2, new AvatarDrawable(user2));
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(user2, new AvatarDrawable(user2));
             frameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view2) {
-                    switch (i7) {
+                public final void onClick(View view) {
+                    switch (i2) {
                         case 0:
-                            pollItemMenu$$ExternalSyntheticLambda15.run(user2);
+                            dialogCell$$ExternalSyntheticLambda7.run(user2);
                             break;
                         default:
-                            pollItemMenu$$ExternalSyntheticLambda15.run(user2);
+                            dialogCell$$ExternalSyntheticLambda7.run(user2);
                             break;
                     }
                 }
@@ -260,16 +256,16 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             spannableStringBuilder3.append((CharSequence) "**");
             spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.BoostingIncompleteGiveaway));
             spannableStringBuilder3.append((CharSequence) "**");
-            final int i8 = 1;
+            final int i6 = 1;
             textView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
                 public final void run() {
-                    switch (i8) {
+                    switch (i6) {
                         case 0:
-                            pollItemMenu$$ExternalSyntheticLambda15.run(tL_payments_checkedGiftCode4);
+                            dialogCell$$ExternalSyntheticLambda7.run(tL_payments_checkedGiftCode4);
                             break;
                         default:
-                            pollItemMenu$$ExternalSyntheticLambda15.run(tL_payments_checkedGiftCode4);
+                            dialogCell$$ExternalSyntheticLambda7.run(tL_payments_checkedGiftCode4);
                             break;
                     }
                 }
@@ -286,32 +282,30 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 spannableStringBuilder4.append((CharSequence) "**");
                 spannableStringBuilder4.append((CharSequence) UserObject.getFirstName(user3));
                 spannableStringBuilder4.append((CharSequence) "**");
-                final int i9 = 0;
                 textView3.setText(Emoji.replaceEmoji(AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                     @Override
                     public final void run() {
-                        switch (i9) {
+                        switch (i2) {
                             case 0:
-                                pollItemMenu$$ExternalSyntheticLambda15.run(user3);
+                                dialogCell$$ExternalSyntheticLambda7.run(user3);
                                 break;
                             default:
-                                pollItemMenu$$ExternalSyntheticLambda15.run(user3);
+                                dialogCell$$ExternalSyntheticLambda7.run(user3);
                                 break;
                         }
                     }
                 }, resourcesProvider), textView3.getPaint().getFontMetricsInt(), false));
-                backupImageView2.imageReceiver.setForUserOrChat(user3, new AvatarDrawable(user3));
-                backupImageView2.onNewImageSet();
-                final int i10 = 1;
+                backupImageView2.setForUserOrChat(user3, new AvatarDrawable(user3));
+                final int i7 = 1;
                 tableCell.toFrameLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view2) {
-                        switch (i10) {
+                    public final void onClick(View view) {
+                        switch (i7) {
                             case 0:
-                                pollItemMenu$$ExternalSyntheticLambda15.run(user3);
+                                dialogCell$$ExternalSyntheticLambda7.run(user3);
                                 break;
                             default:
-                                pollItemMenu$$ExternalSyntheticLambda15.run(user3);
+                                dialogCell$$ExternalSyntheticLambda7.run(user3);
                                 break;
                         }
                     }
@@ -340,7 +334,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             linkCell = new ActionBtnCell(context, resourcesProvider);
             linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(14.0f));
         }
-        return zzkl.m(linkCell, linkCell);
+        return zzkd.m(linkCell, linkCell, -2);
     }
 
     public abstract void onHiddenLinkClicked();

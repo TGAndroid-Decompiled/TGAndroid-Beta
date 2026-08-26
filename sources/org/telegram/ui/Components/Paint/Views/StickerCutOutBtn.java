@@ -1,31 +1,37 @@
 package org.telegram.ui.Components.Paint.Views;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
-import android.view.ContextThemeWrapper;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public abstract class StickerCutOutBtn extends ButtonWithCounterView {
-    public final BlurringShader.StoryBlurDrawer blurDrawer;
-    public final RectF bounds;
+    private static final int STATE_CANCEL = 2;
+    private static final int STATE_CUT_OUT = 0;
+    private static final int STATE_ERASE = 3;
+    private static final int STATE_OUTLINE = 6;
+    private static final int STATE_RESTORE = 4;
+    private static final int STATE_UNDO = 5;
+    private static final int STATE_UNDO_CAT = 1;
+    protected final BlurringShader.StoryBlurDrawer blurDrawer;
+    protected final RectF bounds;
     public int rad;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public int state;
-    public final StickerMakerView stickerMakerView;
-    public boolean wrapContent;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private int state;
+    private final StickerMakerView stickerMakerView;
+    private boolean wrapContent;
 
-    public StickerCutOutBtn(StickerMakerView stickerMakerView, ContextThemeWrapper contextThemeWrapper, Theme.ResourcesProvider resourcesProvider, BlurringShader.BlurManager blurManager) {
-        super(contextThemeWrapper, resourcesProvider, false);
+    public StickerCutOutBtn(StickerMakerView stickerMakerView, Context context, Theme.ResourcesProvider resourcesProvider, BlurringShader.BlurManager blurManager) {
+        super(context, false, resourcesProvider);
         this.bounds = new RectF();
         this.rad = 8;
         this.resourcesProvider = resourcesProvider;
@@ -34,28 +40,45 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
         setWillNotDraw(false);
         setTextColor(-1);
         setFlickeringLoading(true);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.text;
-        animatedTextDrawable.textPaint.setTypeface(AndroidUtilities.bold());
-        removeView(this.rippleView);
+        this.text.setTypeface(AndroidUtilities.bold());
+        disableRippleView();
         setForeground(Theme.createRadSelectorDrawable(Theme.multAlpha(0.08f, -1), 8, 8));
         setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
     }
 
+    public void clean() {
+        setCutOutState(false);
+    }
+
+    public void invalidateBlur() {
+        invalidate();
+    }
+
+    public boolean isCancelState() {
+        return this.state == 2;
+    }
+
+    public boolean isCutOutState() {
+        return this.state == 0;
+    }
+
+    public boolean isUndoCutState() {
+        return this.state == 1;
+    }
+
     @Override
     public void onDraw(Canvas canvas) {
-        boolean z = this.wrapContentDynamic;
-        RectF rectF = this.bounds;
-        if (z) {
+        if (this.wrapContentDynamic) {
             float currentWidth = this.text.getCurrentWidth() + getPaddingLeft() + getPaddingRight();
-            rectF.set((getMeasuredWidth() - currentWidth) / 2.0f, 0.0f, (getMeasuredWidth() + currentWidth) / 2.0f, getMeasuredHeight());
+            this.bounds.set((getMeasuredWidth() - currentWidth) / 2.0f, 0.0f, (getMeasuredWidth() + currentWidth) / 2.0f, getMeasuredHeight());
         } else {
-            rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            this.bounds.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         }
         super.onDraw(canvas);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         if (this.wrapContent) {
             i = View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.text.getCurrentWidth()), 1073741824);
         }
@@ -74,7 +97,7 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
 
     public void setCancelState(boolean z) {
         this.state = 2;
-        setText(LocaleController.getString(R.string.Cancel), z, true);
+        setText(LocaleController.getString(R.string.Cancel), z);
     }
 
     public void setCutOutState(boolean z) {
@@ -87,7 +110,7 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
         coloredImageSpan.spaceScaleX = 1.2f;
         spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationCutObject));
-        setText(spannableStringBuilder, z, true);
+        setText(spannableStringBuilder, z);
     }
 
     public void setEraseState(boolean z) {
@@ -98,7 +121,7 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
         coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
         spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationErase));
-        setText(spannableStringBuilder, z, true);
+        setText(spannableStringBuilder, z);
     }
 
     public void setOutlineState(boolean z) {
@@ -109,7 +132,7 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
         coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
         spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationOutline));
-        setText(spannableStringBuilder, z, true);
+        setText(spannableStringBuilder, z);
     }
 
     public void setRad(int i) {
@@ -125,7 +148,7 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
         coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
         spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationRestore));
-        setText(spannableStringBuilder, z, true);
+        setText(spannableStringBuilder, z);
     }
 
     public void setUndoCutState(boolean z) {
@@ -140,7 +163,7 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
         coloredImageSpan.setTranslateX(AndroidUtilities.dp(-3.0f));
         spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 0);
         spannableStringBuilder.append((CharSequence) " ").append((CharSequence) LocaleController.getString(R.string.SegmentationUndo));
-        setText(spannableStringBuilder, z, true);
+        setText(spannableStringBuilder, z);
     }
 
     @Override
@@ -150,5 +173,9 @@ public abstract class StickerCutOutBtn extends ButtonWithCounterView {
         } else {
             super.setVisibility(i);
         }
+    }
+
+    public void wrapContent() {
+        this.wrapContent = true;
     }
 }

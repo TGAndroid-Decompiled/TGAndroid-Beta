@@ -3,9 +3,8 @@ package org.telegram.ui.Components.Reactions;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.view.View;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjd;
-import com.google.android.gms.internal.mlkit_vision_label.zzcw;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.google.android.gms.internal.mlkit_language_id_common.zzir;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
@@ -19,6 +18,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.FlickerLoadingView$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.EmojiAnimationsOverlay;
 
@@ -58,10 +58,10 @@ public final class AnimatedEmojiEffect {
             this.progress = 0.0f;
             float fRandX = randX();
             AnimatedEmojiEffect animatedEmojiEffect = AnimatedEmojiEffect.this;
-            float fM = (zzcw.m(Utilities.fastRandom, 100) / 100.0f) * animatedEmojiEffect.bounds.height() * 0.5f;
+            float fM = (FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100) / 100.0f) * animatedEmojiEffect.bounds.height() * 0.5f;
             for (int i = 0; i < 20; i++) {
                 float fRandX2 = randX();
-                float fM2 = (zzcw.m(Utilities.fastRandom, 100) / 100.0f) * animatedEmojiEffect.bounds.height() * 0.5f;
+                float fM2 = (FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100) / 100.0f) * animatedEmojiEffect.bounds.height() * 0.5f;
                 float f2 = 2.1474836E9f;
                 for (int i2 = 0; i2 < animatedEmojiEffect.particles.size(); i2++) {
                     float f3 = ((Particle) animatedEmojiEffect.particles.get(i2)).toX - fRandX2;
@@ -88,20 +88,20 @@ public final class AnimatedEmojiEffect {
                     this.toX = fWidth - 0.1f;
                 }
             }
-            this.fromY = zzjd.m(zzcw.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.height() * 0.1f, animatedEmojiEffect.bounds.height() * 0.45f);
+            this.fromY = zzir.m(FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.height() * 0.1f, animatedEmojiEffect.bounds.height() * 0.45f);
             boolean z = animatedEmojiEffect.longAnimation;
             Rect rect = animatedEmojiEffect.bounds;
             if (z) {
-                float fM3 = zzjd.m(zzcw.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.width() * 0.1f, rect.width() * 0.05f);
+                float fM3 = zzir.m(FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.width() * 0.1f, rect.width() * 0.05f);
                 this.fromSize = fM3;
-                this.toSize = (((zzcw.m(Utilities.fastRandom, 100) / 100.0f) * 1.5f) + 1.5f) * fM3;
-                this.toY1 = zzjd.m(zzcw.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.height() * 0.1f, this.fromSize / 2.0f);
+                this.toSize = (((FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100) / 100.0f) * 1.5f) + 1.5f) * fM3;
+                this.toY1 = zzir.m(FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.height() * 0.1f, this.fromSize / 2.0f);
                 this.toY2 = animatedEmojiEffect.bounds.height() + this.fromSize;
                 this.duration = Math.abs(Utilities.fastRandom.nextInt() % 600) + 1000;
             } else {
-                float fM4 = zzjd.m(zzcw.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.width() * 0.1f, rect.width() * 0.05f);
+                float fM4 = zzir.m(FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.width() * 0.1f, rect.width() * 0.05f);
                 this.fromSize = fM4;
-                this.toSize = (((zzcw.m(Utilities.fastRandom, 100) / 100.0f) * 0.5f) + 1.5f) * fM4;
+                this.toSize = (((FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100) / 100.0f) * 0.5f) + 1.5f) * fM4;
                 this.toY1 = fM;
                 this.toY2 = fM + animatedEmojiEffect.bounds.height();
                 this.duration = 1800L;
@@ -116,9 +116,9 @@ public final class AnimatedEmojiEffect {
             boolean z = animatedEmojiEffect.longAnimation;
             Rect rect = animatedEmojiEffect.bounds;
             if (!z) {
-                return (zzcw.m(Utilities.fastRandom, 100) / 100.0f) * rect.width();
+                return (FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100) / 100.0f) * rect.width();
             }
-            return zzjd.m(zzcw.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.width() * 1.5f, rect.width() * (-0.25f));
+            return zzir.m(FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 100), 100.0f, animatedEmojiEffect.bounds.width() * 1.5f, rect.width() * (-0.25f));
         }
     }
 
@@ -246,7 +246,7 @@ public final class AnimatedEmojiEffect {
             return;
         }
         imageReceiver.onAttachedToWindow();
-        TLRPC.Document document2 = animatedEmojiDrawable.document;
+        TLRPC.Document document2 = animatedEmojiDrawable.getDocument();
         TLRPC.TL_messages_stickerSet stickerSetByName = null;
         String strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document2, null);
         boolean z3 = this.longAnimation;
@@ -301,7 +301,7 @@ public final class AnimatedEmojiEffect {
         }
         if (!z2) {
             int i4 = R.raw.custom_emoji_reaction;
-            imageReceiver.setImageBitmap(new RLottieDrawable(i4, SurfaceContainer$$ExternalSyntheticOutline0.m(i4, ""), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+            imageReceiver.setImageBitmap(new RLottieDrawable(i4, Fragment$$ExternalSyntheticOutline0.m(i4, ""), AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
         } else {
             if (imageReceiver.getLottieAnimation() != null) {
                 imageReceiver.getLottieAnimation().setCurrentFrame(0, false, z);

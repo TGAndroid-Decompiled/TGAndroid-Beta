@@ -15,16 +15,16 @@ public final class SenderSelectPopup$$ExternalSyntheticLambda0 implements Dynami
     public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
         switch (this.$r8$classId) {
             case 0:
-                setScaleX(1.0f / f);
+                this.f$0.lambda$startDismissAnimation$6(dynamicAnimation, f, f2);
                 break;
             case 1:
-                setScaleY(1.0f / f);
+                this.f$0.lambda$startDismissAnimation$7(dynamicAnimation, f, f2);
                 break;
             case 2:
-                setScaleX(1.0f / f);
+                this.f$0.lambda$startShowAnimation$3(dynamicAnimation, f, f2);
                 break;
             default:
-                setScaleY(1.0f / f);
+                this.f$0.lambda$startShowAnimation$4(dynamicAnimation, f, f2);
                 break;
         }
     }

@@ -24,7 +24,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
@@ -64,12 +63,12 @@ public final class ManageChatUserCell extends FrameLayout {
         super(context);
         this.dividerColor = -1;
         this.currentAccount = UserConfig.selectedAccount;
-        this.storyAvatarParams = new StoriesUtilities.AvatarStoryParams(null, false);
+        this.storyAvatarParams = new StoriesUtilities.AvatarStoryParams(false, null);
         this.resourcesProvider = resourcesProvider;
         this.statusColor = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider);
         this.statusOnlineColor = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider);
         this.namePadding = i2;
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         ?? r5 = new BackupImageView(context) {
             @Override
             public final void onDraw(Canvas canvas) {
@@ -120,7 +119,7 @@ public final class ManageChatUserCell extends FrameLayout {
             imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_stickers_menu, resourcesProvider), PorterDuff.Mode.MULTIPLY));
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             addView(imageView, LayoutHelper.createFrame(60, 64, (LocaleController.isRTL ? 3 : 5) | 48));
-            imageView.setOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 25));
+            imageView.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 14));
             imageView.setContentDescription(LocaleController.getString(R.string.AccDescrUserOptions));
         }
     }
@@ -202,8 +201,8 @@ public final class ManageChatUserCell extends FrameLayout {
             this.currentStatus = null;
             this.currentName = null;
             this.currentObject = null;
-            simpleTextView2.setText("", false);
-            simpleTextView.setText("", false);
+            simpleTextView2.setText("");
+            simpleTextView.setText("");
             setImageDrawable(null);
             return;
         }
@@ -346,36 +345,35 @@ public final class ManageChatUserCell extends FrameLayout {
                 CharSequence charSequence = this.currentName;
                 if (charSequence != null) {
                     this.lastName = null;
-                    simpleTextView.setText(charSequence, false);
+                    simpleTextView.setText(charSequence);
                 } else {
                     if (str == null) {
                         str = chat.title;
                     }
                     this.lastName = str;
-                    simpleTextView.setText(str, false);
+                    simpleTextView.setText(str);
                 }
                 if (this.currentStatus != null) {
                     simpleTextView2.setTextColor(this.statusColor);
-                    simpleTextView2.setText(this.currentStatus, false);
+                    simpleTextView2.setText(this.currentStatus);
                 } else {
                     simpleTextView2.setTextColor(this.statusColor);
                     if (chat.participants_count != 0) {
                         if (!ChatObject.isChannel(chat) || chat.megagroup) {
-                            simpleTextView2.setText(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]), false);
+                            simpleTextView2.setText(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
                         } else {
-                            simpleTextView2.setText(LocaleController.formatPluralString("Subscribers", chat.participants_count, new Object[0]), false);
+                            simpleTextView2.setText(LocaleController.formatPluralString("Subscribers", chat.participants_count, new Object[0]));
                         }
                     } else if (chat.has_geo) {
-                        simpleTextView2.setText(LocaleController.getString(R.string.MegaLocation), false);
+                        simpleTextView2.setText(LocaleController.getString(R.string.MegaLocation));
                     } else if (ChatObject.isPublic(chat)) {
-                        simpleTextView2.setText(LocaleController.getString(R.string.MegaPublic), false);
+                        simpleTextView2.setText(LocaleController.getString(R.string.MegaPublic));
                     } else {
-                        simpleTextView2.setText(LocaleController.getString(R.string.MegaPrivate), false);
+                        simpleTextView2.setText(LocaleController.getString(R.string.MegaPrivate));
                     }
                 }
                 this.lastAvatar = fileLocation3;
-                anonymousClass1.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-                anonymousClass1.onNewImageSet();
+                anonymousClass1.setForUserOrChat(chat, avatarDrawable);
                 return;
             }
             return;
@@ -418,41 +416,40 @@ public final class ManageChatUserCell extends FrameLayout {
         CharSequence charSequence2 = this.currentName;
         if (charSequence2 != null) {
             this.lastName = null;
-            simpleTextView.setText(charSequence2, false);
+            simpleTextView.setText(charSequence2);
         } else {
             if (userName == null) {
                 userName = UserObject.getUserName(user);
             }
             this.lastName = userName;
-            simpleTextView.setText(Emoji.replaceEmoji(userName, simpleTextView.getPaint().getFontMetricsInt(), false), false);
+            simpleTextView.setText(Emoji.replaceEmoji(userName, simpleTextView.getPaint().getFontMetricsInt(), false));
         }
         if (this.currentStatus != null) {
             simpleTextView2.setTextColor(this.statusColor);
-            simpleTextView2.setText(this.currentStatus, false);
+            simpleTextView2.setText(this.currentStatus);
         } else {
             String publicUsername = DialogObject.getPublicUsername(user);
             if (user.bot) {
                 simpleTextView2.setTextColor(this.statusColor);
                 if (this.subtitleUsername && !TextUtils.isEmpty(publicUsername)) {
-                    simpleTextView2.setText(publicUsername, false);
+                    simpleTextView2.setText(publicUsername);
                 } else if (user.bot_chat_history || this.isAdmin) {
-                    simpleTextView2.setText(LocaleController.getString(R.string.BotStatusRead), false);
+                    simpleTextView2.setText(LocaleController.getString(R.string.BotStatusRead));
                 } else {
-                    simpleTextView2.setText(LocaleController.getString(R.string.BotStatusCantRead), false);
+                    simpleTextView2.setText(LocaleController.getString(R.string.BotStatusCantRead));
                 }
             } else if (this.subtitleUsername && !TextUtils.isEmpty(publicUsername)) {
-                simpleTextView2.setText(publicUsername, false);
+                simpleTextView2.setText(publicUsername);
                 simpleTextView2.setTextColor(this.statusColor);
             } else if (user.id == UserConfig.getInstance(i2).getClientUserId() || (((userStatus = user.status) != null && userStatus.expires > ConnectionsManager.getInstance(i2).getCurrentTime()) || MessagesController.getInstance(i2).onlinePrivacy.containsKey(Long.valueOf(user.id)))) {
                 simpleTextView2.setTextColor(this.statusOnlineColor);
-                simpleTextView2.setText(LocaleController.getString(R.string.Online), false);
+                simpleTextView2.setText(LocaleController.getString(R.string.Online));
             } else {
                 simpleTextView2.setTextColor(this.statusColor);
-                simpleTextView2.setText(LocaleController.formatUserStatus(i2, user), false);
+                simpleTextView2.setText(LocaleController.formatUserStatus(i2, user));
             }
         }
         this.lastAvatar = fileLocation4;
-        anonymousClass1.imageReceiver.setForUserOrChat(user, avatarDrawable);
-        anonymousClass1.onNewImageSet();
+        anonymousClass1.setForUserOrChat(user, avatarDrawable);
     }
 }

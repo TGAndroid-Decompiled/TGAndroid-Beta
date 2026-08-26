@@ -1,13 +1,13 @@
 package kotlin.text;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.ranges.IntRange;
 
 public abstract class StringsKt__StringsKt extends StringsKt__StringNumberConversionsJVMKt {
     public static boolean contains$default(String str, String str2) {
         Intrinsics.checkNotNullParameter(str, "<this>");
-        return indexOf(0, str, str2, false) >= 0;
+        return indexOf(str, str2, 0, false) >= 0;
     }
 
     public static final int getLastIndex(CharSequence charSequence) {
@@ -15,7 +15,7 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringNumberConver
         return charSequence.length() - 1;
     }
 
-    public static final int indexOf(int i, String str, String string, boolean z) {
+    public static final int indexOf(String str, String string, int i, boolean z) {
         char upperCase;
         char upperCase2;
         String str2;
@@ -36,10 +36,10 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringNumberConver
             length = length2;
         }
         IntRange intRange = new IntRange(i, length, 1);
-        boolean zM6m = SurfaceContainer$$ExternalSyntheticOutline0.m6m((Object) str);
+        boolean zM82m = Fragment$$ExternalSyntheticOutline0.m82m((Object) str);
         int i2 = intRange.step;
         int i3 = intRange.last;
-        if (zM6m && SurfaceContainer$$ExternalSyntheticOutline0.m6m((Object) string)) {
+        if (zM82m && Fragment$$ExternalSyntheticOutline0.m82m((Object) string)) {
             if ((i2 <= 0 || i > i3) && (i2 >= 0 || i3 > i)) {
                 return -1;
             }
@@ -106,7 +106,7 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringNumberConver
         CharSequence charSequenceSubSequence;
         Intrinsics.checkNotNullParameter(str, "<this>");
         if (i < 0) {
-            throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, "Desired length ", " is less than zero."));
+            throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(i, "Desired length ", " is less than zero."));
         }
         if (i <= str.length()) {
             charSequenceSubSequence = str.subSequence(0, str.length());
@@ -132,7 +132,7 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringNumberConver
     public static String replace$default(String str, String str2, String newValue) {
         Intrinsics.checkNotNullParameter(str, "<this>");
         Intrinsics.checkNotNullParameter(newValue, "newValue");
-        int iIndexOf = indexOf(0, str, str2, false);
+        int iIndexOf = indexOf(str, str2, 0, false);
         if (iIndexOf < 0) {
             return str;
         }
@@ -151,7 +151,7 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringNumberConver
             if (iIndexOf >= str.length()) {
                 break;
             }
-            iIndexOf = indexOf(iIndexOf + i, str, str2, false);
+            iIndexOf = indexOf(str, str2, iIndexOf + i, false);
         } while (iIndexOf > 0);
         sb.append((CharSequence) str, i2, str.length());
         String string = sb.toString();
@@ -167,7 +167,7 @@ public abstract class StringsKt__StringsKt extends StringsKt__StringNumberConver
 
     public static String substringAfter(String str, String delimiter, String str2) {
         Intrinsics.checkNotNullParameter(delimiter, "delimiter");
-        int iIndexOf = indexOf(0, str, delimiter, false);
+        int iIndexOf = indexOf(str, delimiter, 0, false);
         if (iIndexOf == -1) {
             return str2;
         }

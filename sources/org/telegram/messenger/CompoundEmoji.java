@@ -80,7 +80,7 @@ public class CompoundEmoji {
                 if (this.leftUpdateT == null) {
                     this.leftUpdateT = new AnimatedFloat(0.0f, new ANRDetector$$ExternalSyntheticLambda0(this, 16), 0L, 320L, CubicBezierInterpolator.EASE_OUT);
                 }
-                float f = this.leftUpdateT.set(1.0f, false);
+                float f = this.leftUpdateT.set(1.0f);
                 drawDrawableInfo(canvas, this.newLeft, drawRect, Math.min(1.0f, f * 1.5f));
                 drawDrawableInfo(canvas, this.left, drawRect, 1.0f - f);
                 if (f >= 1.0f) {
@@ -97,7 +97,7 @@ public class CompoundEmoji {
             if (this.rightUpdateT == null) {
                 this.rightUpdateT = new AnimatedFloat(0.0f, new ANRDetector$$ExternalSyntheticLambda0(this, 16), 0L, 320L, CubicBezierInterpolator.EASE_OUT);
             }
-            float f2 = this.rightUpdateT.set(1.0f, false);
+            float f2 = this.rightUpdateT.set(1.0f);
             drawDrawableInfo(canvas, this.newRight, drawRect, Math.min(1.0f, 1.5f * f2));
             drawDrawableInfo(canvas, this.right, drawRect, 1.0f - f2);
             if (f2 >= 1.0f) {

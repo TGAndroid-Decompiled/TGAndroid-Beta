@@ -17,9 +17,7 @@ import org.telegram.messenger.camera.CameraView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.Views.RoundView;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
-import org.telegram.ui.WebviewActivity;
-import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda8;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda6;
 
 public abstract class RoundVideoRecorder extends FrameLayout {
     public float alpha;
@@ -30,7 +28,7 @@ public abstract class RoundVideoRecorder extends FrameLayout {
     public float destroyT;
     public final File file;
     public CaptionStory$$ExternalSyntheticLambda0 onDestroyCallback;
-    public BotBiometry$$ExternalSyntheticLambda8 onDoneCallback;
+    public BotBiometry$$ExternalSyntheticLambda6 onDoneCallback;
     public final Paint progressPaint;
     public long recordingStarted;
     public long recordingStopped;
@@ -112,8 +110,8 @@ public abstract class RoundVideoRecorder extends FrameLayout {
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.destroyT, 1.0f);
         this.destroyAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 13));
-        this.destroyAnimator.addListener(new WebviewActivity.AnonymousClass3.AnonymousClass1(this, 4));
+        valueAnimatorOfFloat.addUpdateListener(new HintView2$$ExternalSyntheticLambda1(this, 8));
+        this.destroyAnimator.addListener(new HintView2.AnonymousClass2(this, 8));
         this.destroyAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.destroyAnimator.setDuration(280L);
         this.destroyAnimator.start();

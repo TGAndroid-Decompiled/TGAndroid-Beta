@@ -6,9 +6,9 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda1;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
 
 public final class RecentVotersCell$$ExternalSyntheticLambda2 implements Utilities.Callback2 {
     public final int $r8$classId;
@@ -36,7 +36,7 @@ public final class RecentVotersCell$$ExternalSyntheticLambda2 implements Utiliti
                     long peerDialogId = DialogObject.getPeerDialogId(messagePeerVote.peer);
                     TLObject userOrChat = MessagesController.getInstance(votesList.currentAccount).getUserOrChat(peerDialogId);
                     int i2 = messagePeerVote.date;
-                    GiftSheet$$ExternalSyntheticLambda1 giftSheet$$ExternalSyntheticLambda1 = new GiftSheet$$ExternalSyntheticLambda1(votesList, peerDialogId, 2);
+                    GiftSheet$$ExternalSyntheticLambda1 giftSheet$$ExternalSyntheticLambda1 = new GiftSheet$$ExternalSyntheticLambda1(votesList, peerDialogId, 1);
                     int i3 = RecentVotersCell.Factory.$r8$clinit;
                     UItem uItemOfFactory = UItem.ofFactory(RecentVotersCell.Factory.class);
                     uItemOfFactory.object = userOrChat;
@@ -73,9 +73,9 @@ public final class RecentVotersCell$$ExternalSyntheticLambda2 implements Utiliti
                     votesList.nextOffset = str;
                     votesList.completed = str == null;
                     votesList.votes.addAll(tL_messages_votesList.votes);
-                    Tooltip$$ExternalSyntheticLambda0 tooltip$$ExternalSyntheticLambda0 = votesList.onUpdate;
-                    if (tooltip$$ExternalSyntheticLambda0 != null) {
-                        tooltip$$ExternalSyntheticLambda0.run();
+                    GiftSheet$$ExternalSyntheticLambda9 giftSheet$$ExternalSyntheticLambda9 = votesList.onUpdate;
+                    if (giftSheet$$ExternalSyntheticLambda9 != null) {
+                        giftSheet$$ExternalSyntheticLambda9.run();
                     }
                 }
                 break;

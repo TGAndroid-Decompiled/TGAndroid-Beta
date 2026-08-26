@@ -5,15 +5,14 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.SparseBooleanArray;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.collection.LongSparseArray;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GoogleApiAvailabilityLight;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.Store;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.nio.ByteBuffer;
@@ -21,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.concurrent.CountDownLatch;
+import kotlinx.coroutines.flow.SafeFlow;
 import me.vkryl.android.util.ClickHelper$$ExternalSyntheticLambda0;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,7 +29,6 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda42;
 
 public class PushListenerController {
     public static final int NOTIFICATION_ID = 1;
@@ -66,13 +65,13 @@ public class PushListenerController {
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
                 FirebaseApp.initializeApp(ApplicationLoader.applicationContext);
-                Store store = FirebaseMessaging.store;
+                SafeFlow safeFlow = FirebaseMessaging.store;
                 synchronized (FirebaseMessaging.class) {
                     firebaseMessaging = FirebaseMessaging.getInstance(FirebaseApp.getInstance());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.initExecutor.execute(new ClickHelper$$ExternalSyntheticLambda0(3, firebaseMessaging, taskCompletionSource));
+                firebaseMessaging.initExecutor.execute(new ClickHelper$$ExternalSyntheticLambda0(2, firebaseMessaging, taskCompletionSource));
                 taskCompletionSource.getTask().addOnCompleteListener(new BillingController$$ExternalSyntheticLambda0(this, 12));
             } catch (Throwable th) {
                 FileLog.e(th);
@@ -609,12 +608,12 @@ public class PushListenerController {
                                     return;
                                 }
                                 if (b2 != 2) {
-                                    AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda42(r11 == true ? 1 : 0, 5));
+                                    AndroidUtilities.runOnUIThread(new SharedConfig$$ExternalSyntheticLambda1(r11 == true ? 1 : 0, 5));
                                     countDownLatch.countDown();
                                     return;
                                 }
                                 if (b2 != 3) {
-                                    Utilities.stageQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda42(r11 == true ? 1 : 0, 4));
+                                    Utilities.stageQueue.postRunnable(new SharedConfig$$ExternalSyntheticLambda1(r11 == true ? 1 : 0, 4));
                                     countDownLatch.countDown();
                                     return;
                                 }
@@ -22867,12 +22866,12 @@ public class PushListenerController {
                         return;
                     }
                     if (b2 != 2) {
-                        AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda42(r11 == true ? 1 : 0, 5));
+                        AndroidUtilities.runOnUIThread(new SharedConfig$$ExternalSyntheticLambda1(r11 == true ? 1 : 0, 5));
                         countDownLatch.countDown();
                         return;
                     }
                     if (b2 != 3) {
-                        Utilities.stageQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda42(r11 == true ? 1 : 0, 4));
+                        Utilities.stageQueue.postRunnable(new SharedConfig$$ExternalSyntheticLambda1(r11 == true ? 1 : 0, 4));
                         countDownLatch.countDown();
                         return;
                     }
@@ -38108,9 +38107,9 @@ public class PushListenerController {
         } catch (Throwable unused) {
         }
         if (BuildVars.DEBUG_VERSION) {
-            StringBuilder sbM4m = SurfaceContainer$$ExternalSyntheticOutline0.m4m("finished ", str2, " service, time = ");
-            sbM4m.append(SystemClock.elapsedRealtime() - jElapsedRealtime);
-            FileLog.d(sbM4m.toString());
+            StringBuilder sbM80m = Fragment$$ExternalSyntheticOutline0.m80m("finished ", str2, " service, time = ");
+            sbM80m.append(SystemClock.elapsedRealtime() - jElapsedRealtime);
+            FileLog.d(sbM80m.toString());
         }
     }
 

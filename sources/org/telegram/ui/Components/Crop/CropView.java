@@ -18,10 +18,10 @@ import android.view.ViewTreeObserver;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import com.stripe.android.Stripe;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import kotlinx.coroutines.flow.SafeFlow;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject$Call$$ExternalSyntheticOutline0;
@@ -33,11 +33,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda24;
 import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.VideoEditTextureView;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda17;
+import org.telegram.ui.Stories.StoryViewer;
+import org.telegram.ui.bots.BotShareSheet$$ExternalSyntheticLambda3;
+import org.telegram.ui.iv.RichEditor;
 
 public class CropView extends FrameLayout implements CropAreaView.AreaViewListener {
     public boolean animating;
@@ -61,7 +61,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     public final RectF sizeRect;
     public CropState state;
     public final Matrix tempMatrix;
-    public final Stripe.AnonymousClass1 tempRect;
+    public final SafeFlow tempRect;
     public float topPadding;
     public final float[] values;
     public VideoEditTextureView videoEditTextureView;
@@ -145,7 +145,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         this.previousAreaRect = new RectF();
         this.initialAreaRect = new RectF();
         this.overlayMatrix = new Matrix();
-        this.tempRect = new Stripe.AnonymousClass1(26);
+        this.tempRect = new SafeFlow();
         this.tempMatrix = new Matrix();
         this.animating = false;
         ImageView imageView = new ImageView(context);
@@ -350,9 +350,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     }
 
     public final void fillAreaView(RectF rectF) {
-        float f;
         boolean z;
-        boolean z2 = false;
+        int i = 3;
         if (this.state == null) {
             return;
         }
@@ -360,26 +359,26 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         float fWidth = rectF.width();
         CropAreaView cropAreaView = this.areaView;
         float fMax = Math.max(fWidth / cropAreaView.getCropWidth(), rectF.height() / cropAreaView.getCropHeight());
-        float f2 = this.state.scale;
-        if (f2 * fMax > 30.0f) {
-            f = 30.0f / f2;
+        float f = this.state.scale;
+        if (f * fMax > 30.0f) {
+            fMax = 30.0f / f;
             z = true;
         } else {
-            f = fMax;
             z = false;
         }
+        float f2 = fMax;
         float f3 = !this.inBubbleMode ? AndroidUtilities.statusBarHeight : 0;
         float fCenterX = rectF.centerX();
         ImageView imageView = this.imageView;
         float width = (fCenterX - (imageView.getWidth() / 2)) / cropAreaView.getCropWidth();
         CropState cropState = this.state;
-        float f4 = ((cropState.orientation + cropState.baseRotation) % 180.0f != 0.0f ? cropState.height : cropState.width) * width;
+        float f4 = width * ((cropState.orientation + cropState.baseRotation) % 180.0f != 0.0f ? cropState.height : cropState.width);
         float fCenterY = (rectF.centerY() - ((((imageView.getHeight() - this.bottomPadding) + f3) + this.topPadding) / 2.0f)) / cropAreaView.getCropHeight();
         CropState cropState2 = this.state;
         float f5 = (cropState2.orientation + cropState2.baseRotation) % 180.0f != 0.0f ? cropState2.width : cropState2.height;
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        valueAnimatorOfFloat.addUpdateListener(new CropView$$ExternalSyntheticLambda0(this, f, fArr, f4, f5 * fCenterY, 0));
-        valueAnimatorOfFloat.addListener(new ChatActivity.AnonymousClass77(20, this, z));
+        valueAnimatorOfFloat.addUpdateListener(new CropView$$ExternalSyntheticLambda0(this, f2, fArr, f4, f5 * fCenterY, 0));
+        valueAnimatorOfFloat.addListener(new StoryViewer.AnonymousClass7(this, z, i));
         AnimatorSet animatorSet = cropAreaView.animator;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -399,7 +398,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         objectAnimatorOfFloat4.setInterpolator(accelerateDecelerateInterpolator);
         valueAnimatorOfFloat.setInterpolator(accelerateDecelerateInterpolator);
         animatorSet2.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, objectAnimatorOfFloat3, objectAnimatorOfFloat4, valueAnimatorOfFloat);
-        animatorSet2.addListener(new ChatActivity.AnonymousClass74(cropAreaView, rectF, z2, 16));
+        animatorSet2.addListener(new RichEditor.AnonymousClass1(7, cropAreaView, rectF));
         animatorSet2.start();
         this.initialAreaRect.set(rectF);
     }
@@ -425,8 +424,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         RectF rectF2 = new RectF(0.0f, 0.0f, f3, f4);
         CropState cropState2 = this.state;
         float f6 = cropState2.scale;
-        Stripe.AnonymousClass1 anonymousClass1 = this.tempRect;
-        float[] fArr = (float[]) anonymousClass1.this$0;
+        SafeFlow safeFlow = this.tempRect;
+        float[] fArr = (float[]) safeFlow.block;
         float f7 = rectF2.left;
         fArr[0] = f7;
         float f8 = rectF2.top;
@@ -447,7 +446,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         matrix3.setTranslate(rectF2.centerX(), rectF2.centerY());
         matrix3.setConcat(matrix3, matrix2);
         matrix3.preTranslate(-rectF2.centerX(), -rectF2.centerY());
-        float[] fArr2 = (float[]) anonymousClass1.this$0;
+        float[] fArr2 = (float[]) safeFlow.block;
         matrix3.mapPoints(fArr2);
         matrix3.reset();
         matrix3.preRotate(-f5, f3 / 2.0f, f4 / 2.0f);
@@ -836,8 +835,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     }
 
     public final void showAspectRatioDialog() {
-        int i = 6;
-        int i2 = 4;
+        int i = 0;
+        int i2 = 1;
         if (this.state == null || this.hasAspectRatioDialog) {
             return;
         }
@@ -856,12 +855,10 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
             }
             i3++;
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, null);
-        builder.setItems(strArr, new ArticleViewer$$ExternalSyntheticLambda24(i2, this, numArr));
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.setCanceledOnTouchOutside(true);
-        alertDialog.setOnCancelListener(new LinkManager$$ExternalSyntheticLambda17(this, i));
-        alertDialog.show();
+        AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext(), 0, null).setItems(strArr, new CropView$$ExternalSyntheticLambda1(i, this, numArr)).create();
+        alertDialogCreate.setCanceledOnTouchOutside(true);
+        alertDialogCreate.setOnCancelListener(new BotShareSheet$$ExternalSyntheticLambda3(this, i2));
+        alertDialogCreate.show();
     }
 
     public final void start(int i, CropTransform cropTransform, final MediaController.CropState cropState) {

@@ -1,6 +1,6 @@
 package kotlinx.coroutines.internal;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.Result;
@@ -47,7 +47,7 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
     @Override
     public final CoroutineStackFrame getCallerFrame() {
         ContinuationImpl continuationImpl = this.continuation;
-        if (SurfaceContainer$$ExternalSyntheticOutline0.m6m((Object) continuationImpl)) {
+        if (Fragment$$ExternalSyntheticOutline0.m82m((Object) continuationImpl)) {
             return continuationImpl;
         }
         return null;
@@ -67,8 +67,8 @@ public final class DispatchedContinuation extends DispatchedTask implements Coro
     public final void resumeWith(Object obj) {
         ContinuationImpl continuationImpl = this.continuation;
         CoroutineContext context = continuationImpl.getContext();
-        Throwable thM139exceptionOrNullimpl = Result.m139exceptionOrNullimpl(obj);
-        Object completedExceptionally = thM139exceptionOrNullimpl == null ? obj : new CompletedExceptionally(thM139exceptionOrNullimpl, false);
+        Throwable thM144exceptionOrNullimpl = Result.m144exceptionOrNullimpl(obj);
+        Object completedExceptionally = thM144exceptionOrNullimpl == null ? obj : new CompletedExceptionally(thM144exceptionOrNullimpl, false);
         CoroutineDispatcher coroutineDispatcher = this.dispatcher;
         if (coroutineDispatcher.isDispatchNeeded()) {
             this._state = completedExceptionally;

@@ -3,7 +3,7 @@ package org.telegram.ui.bots;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda9;
+import org.telegram.ui.iv.RichTableCell$$ExternalSyntheticLambda3;
 
 public final class AffiliateProgramFragment$$ExternalSyntheticLambda0 implements Utilities.Callback {
     public final int $r8$classId;
@@ -18,7 +18,7 @@ public final class AffiliateProgramFragment$$ExternalSyntheticLambda0 implements
     public final void run(Object obj) {
         switch (this.$r8$classId) {
             case 0:
-                AndroidUtilities.runOnUIThread(new TodoItemMenu$$ExternalSyntheticLambda9(29, this.f$0, (TLRPC.UserFull) obj));
+                AndroidUtilities.runOnUIThread(new RichTableCell$$ExternalSyntheticLambda3(11, this.f$0, (TLRPC.UserFull) obj));
                 break;
             case 1:
                 AffiliateProgramFragment affiliateProgramFragment = this.f$0;

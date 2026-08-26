@@ -1,10 +1,11 @@
 package org.telegram.ui.iv;
 
 import android.animation.ValueAnimator;
-import com.google.android.gms.internal.mlkit_vision_common.zzkv;
 import java.net.URL;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.CalendarActivity$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Stars.SuperRipple$$ExternalSyntheticLambda7;
 
 public final class RichBlockInset {
     public Object animator;
@@ -24,9 +25,9 @@ public final class RichBlockInset {
             iDp = 0;
         } else {
             int size = blockRow.quoteIds.size();
-            int iDp2 = size <= 0 ? 0 : AndroidUtilities.dp(zzkv.m(size, 1, 16, 12));
+            int iDp2 = size <= 0 ? 0 : AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(size, 1, 16, 12));
             int iMax = Math.max(0, blockRow.level);
-            iDp = iDp2 + (iMax <= 0 ? 0 : AndroidUtilities.dp(zzkv.m(iMax, 1, 24, 28)));
+            iDp = iDp2 + (iMax <= 0 ? 0 : AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(iMax, 1, 24, 28)));
         }
         long j = blockRow != null ? blockRow.id : Long.MIN_VALUE;
         boolean z = j == this.boundRowId && this.currentPx >= 0;
@@ -42,7 +43,7 @@ public final class RichBlockInset {
             return;
         }
         ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(i, iDp);
-        valueAnimatorOfInt.addUpdateListener(new RichBlockInset$$ExternalSyntheticLambda0(0, this, richBlockCell$$ExternalSyntheticLambda0));
+        valueAnimatorOfInt.addUpdateListener(new SuperRipple$$ExternalSyntheticLambda7(15, this, richBlockCell$$ExternalSyntheticLambda0));
         valueAnimatorOfInt.setInterpolator(CubicBezierInterpolator.DEFAULT);
         valueAnimatorOfInt.setDuration(200L);
         this.animator = valueAnimatorOfInt;

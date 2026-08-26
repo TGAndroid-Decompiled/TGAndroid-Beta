@@ -6,7 +6,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 
 public final class RingtoneUploader implements NotificationCenter.NotificationCenterDelegate {
     public boolean canceled;
@@ -37,7 +37,7 @@ public final class RingtoneUploader implements NotificationCenter.NotificationCe
                 } else {
                     uploadringtone.mime_type = "audio/mpeg";
                 }
-                ConnectionsManager.getInstance(this.currentAccount).sendRequest(uploadringtone, new CallLogActivity$$ExternalSyntheticLambda1(this, 2));
+                ConnectionsManager.getInstance(this.currentAccount).sendRequest(uploadringtone, new RichMediaUploader$$ExternalSyntheticLambda0(this, 2));
             }
         }
     }

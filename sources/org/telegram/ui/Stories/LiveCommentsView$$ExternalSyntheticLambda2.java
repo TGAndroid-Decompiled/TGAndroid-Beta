@@ -4,7 +4,7 @@ import org.telegram.messenger.AiTonesController$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda18;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda10;
 
 public final class LiveCommentsView$$ExternalSyntheticLambda2 implements Runnable {
     public final int $r8$classId;
@@ -25,7 +25,7 @@ public final class LiveCommentsView$$ExternalSyntheticLambda2 implements Runnabl
                     anonymousClass10.polling = true;
                     TL_phone.getGroupCallStars getgroupcallstars = new TL_phone.getGroupCallStars();
                     getgroupcallstars.call = anonymousClass10.inputCall;
-                    ConnectionsManager.getInstance(anonymousClass10.currentAccount).sendRequestTyped(getgroupcallstars, new AiTonesController$$ExternalSyntheticLambda0(), new OAuthSheet$$ExternalSyntheticLambda18(24, anonymousClass10, getgroupcallstars));
+                    ConnectionsManager.getInstance(anonymousClass10.currentAccount).sendRequestTyped(getgroupcallstars, new AiTonesController$$ExternalSyntheticLambda0(), new BotBiometry$$ExternalSyntheticLambda10(9, anonymousClass10, getgroupcallstars));
                     break;
                 }
                 break;
@@ -33,7 +33,7 @@ public final class LiveCommentsView$$ExternalSyntheticLambda2 implements Runnabl
                 this.f$0.cancelStars();
                 break;
             case 2:
-                this.f$0.lambda$new$12$3$1();
+                this.f$0.lambda$new$12$2$1();
                 break;
             default:
                 PeerStoriesView.AnonymousClass10 anonymousClass11 = this.f$0;

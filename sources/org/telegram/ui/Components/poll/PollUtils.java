@@ -2,7 +2,7 @@ package org.telegram.ui.Components.poll;
 
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 import me.vkryl.core.BitwiseUtils;
 import org.telegram.messenger.AndroidUtilities;
@@ -48,7 +48,7 @@ public abstract class PollUtils {
         return i2;
     }
 
-    public static SpannableStringBuilder getVoteRestrictedToastText(MessageObject messageObject, int i) {
+    public static SpannableStringBuilder getVoteRestrictedToastText(int i, MessageObject messageObject) {
         if (messageObject.type != 17) {
             return null;
         }
@@ -93,6 +93,6 @@ public abstract class PollUtils {
             }
             stringBuffer.append((String) arrayList.get(i4));
         }
-        return AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PollV2ToastOnlySubscribersFromCountriesCanVoteOther : R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOther, stringBuffer, SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList)));
+        return AndroidUtilities.replaceTags(LocaleController.formatString(z ? R.string.PollV2ToastOnlySubscribersFromCountriesCanVoteOther : R.string.PollV2ToastOnlyUsersFromCountriesCanVoteOther, stringBuffer, Fragment$$ExternalSyntheticOutline0.m(1, arrayList)));
     }
 }

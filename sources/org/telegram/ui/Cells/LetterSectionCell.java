@@ -4,8 +4,7 @@ import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
-import com.google.android.gms.internal.mlkit_vision_common.zzkr;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -18,8 +17,9 @@ public final class LetterSectionCell extends FrameLayout {
         setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(64.0f)));
         TextView textView = new TextView(getContext());
         this.textView = textView;
-        zzkk.m(22.0f, 1, textView);
-        zzkr.m(Theme.key_windowBackgroundWhiteGrayText4, textView, 17);
+        zzkb.m(22.0f, 1, textView);
+        textView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText4, false));
+        textView.setGravity(17);
         addView(textView, LayoutHelper.createFrame(-1, -1.0f, 119, 12.0f, 0.0f, 0.0f, 0.0f));
     }
 

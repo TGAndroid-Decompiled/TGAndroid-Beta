@@ -11,15 +11,15 @@ import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
-public final class PlayPauseDrawable extends Drawable {
-    public int alpha = 255;
-    public float duration = 300.0f;
-    public long lastUpdateTime;
-    public final Paint paint;
-    public View parent;
-    public boolean pause;
-    public float progress;
-    public final int size;
+public class PlayPauseDrawable extends Drawable {
+    private int alpha = 255;
+    float duration = 300.0f;
+    private long lastUpdateTime;
+    private final Paint paint;
+    private View parent;
+    private boolean pause;
+    private float progress;
+    private final int size;
 
     public PlayPauseDrawable(int i) {
         this.size = AndroidUtilities.dp(i);
@@ -29,7 +29,7 @@ public final class PlayPauseDrawable extends Drawable {
     }
 
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         float f;
         float f2;
         View view;
@@ -104,45 +104,59 @@ public final class PlayPauseDrawable extends Drawable {
         } else {
             interpolation = f5 < 484.0f ? (CubicBezierInterpolator.EASE_BOTH.getInterpolation((f5 - 100.0f) / 384.0f) * 95.0f) - 5.0f : 90.0f;
         }
-        int i2 = this.size;
-        canvas2.scale((i2 * 1.45f) / AndroidUtilities.dp(28.0f), (i2 * 1.5f) / AndroidUtilities.dp(28.0f));
+        canvas2.scale((this.size * 1.45f) / AndroidUtilities.dp(28.0f), (this.size * 1.5f) / AndroidUtilities.dp(28.0f));
         canvas2.rotate(interpolation);
         PathAnimator pathAnimator = Theme.playPauseAnimator;
         if (pathAnimator != null) {
-            Paint paint = this.paint;
-            pathAnimator.draw(canvas2, paint, f5);
+            pathAnimator.draw(canvas2, this.paint, f5);
             canvas2.scale(1.0f, -1.0f);
-            Theme.playPauseAnimator.draw(canvas2, paint, f5);
+            Theme.playPauseAnimator.draw(canvas2, this.paint, f5);
         }
         canvas2.restore();
     }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return this.size;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return this.size;
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
         this.alpha = i;
     }
 
+    public void setColor(int i) {
+        this.paint.setColor(i);
+    }
+
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
         this.paint.setColorFilter(colorFilter);
     }
 
-    public final void setPause(boolean z, boolean z2) {
+    public void setDuration(int i) {
+        this.duration = i;
+    }
+
+    public void setParent(View view) {
+        this.parent = view;
+    }
+
+    public void setPause(boolean z) {
+        setPause(z, true);
+    }
+
+    public void setPause(boolean z, boolean z2) {
         if (this.pause != z) {
             this.pause = z;
             if (!z2) {

@@ -5,7 +5,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import java.io.FileNotFoundException;
 import org.telegram.messenger.ApplicationLoader;
 
@@ -33,7 +33,7 @@ public class CallNotificationSoundProvider extends ContentProvider {
     @Override
     public ParcelFileDescriptor openFile(Uri uri, String str) throws FileNotFoundException {
         if (!"r".equals(str)) {
-            throw new SecurityException(zzil.m("Unexpected file mode ", str));
+            throw new SecurityException(zzii.m("Unexpected file mode ", str));
         }
         if (ApplicationLoader.applicationContext == null) {
             throw new FileNotFoundException("Unexpected application state");

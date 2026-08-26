@@ -4,20 +4,28 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
+import com.google.android.gms.internal.mlkit_vision_common.zzjx;
+import java.util.ArrayList;
+import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stats;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -28,63 +36,61 @@ import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.StoriesUtilities;
 
 public abstract class StatisticPostInfoCell extends FrameLayout {
-    public final AvatarDrawable avatarDrawable;
-    public final TLRPC.ChatFull chat;
-    public final TextView date;
-    public final Paint dividerPaint;
-    public final AnonymousClass1 imageView;
-    public final TextView likes;
-    public final AnonymousClass2 message;
-    public boolean needDivider;
-    public StatisticActivity.RecentPostInfo postInfo;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public final TextView shares;
-    public final StoriesUtilities.AvatarStoryParams storyAvatarParams;
-    public final TextView views;
+    private final AvatarDrawable avatarDrawable;
+    private final TLRPC.ChatFull chat;
+    private final TextView date;
+    private final Paint dividerPaint;
+    private final BackupImageView imageView;
+    private final TextView likes;
+    private final SimpleTextView message;
+    private boolean needDivider;
+    private StatisticActivity.RecentPostInfo postInfo;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private final TextView shares;
+    private final StoriesUtilities.AvatarStoryParams storyAvatarParams;
+    private final TextView views;
 
     public final class AnonymousClass2 extends SimpleTextView {
         @Override
         public final boolean setText(CharSequence charSequence) {
-            return setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
+            return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false));
         }
     }
 
     public StatisticPostInfoCell(Context context, TLRPC.ChatFull chatFull, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.dividerPaint = new Paint(1);
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-        this.storyAvatarParams = new StoriesUtilities.AvatarStoryParams(null, false);
+        this.avatarDrawable = new AvatarDrawable();
+        this.storyAvatarParams = new StoriesUtilities.AvatarStoryParams(false, null);
         this.chat = chatFull;
         this.resourcesProvider = resourcesProvider;
-        ?? r3 = new BackupImageView(context) {
+        BackupImageView backupImageView = new BackupImageView(context) {
             @Override
             public final void onDraw(Canvas canvas) {
                 StatisticPostInfoCell statisticPostInfoCell = StatisticPostInfoCell.this;
-                StatisticActivity.RecentPostInfo recentPostInfo = statisticPostInfoCell.postInfo;
-                if (recentPostInfo == null || !(recentPostInfo.counters instanceof TL_stats.TL_postInteractionCountersStory)) {
+                if (statisticPostInfoCell.postInfo == null || !statisticPostInfoCell.postInfo.isStory()) {
                     super.onDraw(canvas);
                     return;
                 }
                 int iDp = AndroidUtilities.dp(1.0f);
                 float f = iDp;
                 statisticPostInfoCell.storyAvatarParams.originalAvatarRect.set(f, f, getMeasuredWidth() - iDp, getMeasuredHeight() - iDp);
-                StoriesUtilities.AvatarStoryParams avatarStoryParams = statisticPostInfoCell.storyAvatarParams;
-                avatarStoryParams.drawSegments = false;
-                avatarStoryParams.animate = false;
-                avatarStoryParams.drawInside = true;
-                avatarStoryParams.isArchive = false;
-                avatarStoryParams.forceState = 1;
-                avatarStoryParams.resourcesProvider = resourcesProvider;
-                StoriesUtilities.drawAvatarWithStory(0L, canvas, this.imageReceiver, avatarStoryParams);
+                statisticPostInfoCell.storyAvatarParams.drawSegments = false;
+                statisticPostInfoCell.storyAvatarParams.animate = false;
+                statisticPostInfoCell.storyAvatarParams.drawInside = true;
+                statisticPostInfoCell.storyAvatarParams.isArchive = false;
+                statisticPostInfoCell.storyAvatarParams.forceState = 1;
+                statisticPostInfoCell.storyAvatarParams.resourcesProvider = resourcesProvider;
+                StoriesUtilities.drawAvatarWithStory(0L, canvas, this.imageReceiver, statisticPostInfoCell.storyAvatarParams);
             }
         };
-        this.imageView = r3;
+        this.imageView = backupImageView;
         setClipChildren(false);
         boolean z = LocaleController.isRTL;
-        addView((View) r3, LayoutHelper.createFrame(46, 46.0f, (!z ? 8388611 : 8388613) | 16, !z ? 12.0f : 16.0f, 0.0f, !z ? 16.0f : 12.0f, 0.0f));
+        addView(backupImageView, LayoutHelper.createFrame(46, 46.0f, (!z ? 8388611 : 8388613) | 16, !z ? 12.0f : 16.0f, 0.0f, !z ? 16.0f : 12.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        LinearLayout linearLayoutM = zzkf.m(context, 0);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context);
         AnonymousClass2 anonymousClass2 = new AnonymousClass2(context);
         this.message = anonymousClass2;
         NotificationCenter.listenEmojiLoading(anonymousClass2);
@@ -121,7 +127,7 @@ public abstract class StatisticPostInfoCell extends FrameLayout {
         textView4.setTextSize(1, 13.0f);
         textView4.setTextColor(-16777216);
         textView4.setGravity(16);
-        LinearLayout linearLayoutM2 = zzkf.m(context, 0);
+        LinearLayout linearLayoutM2 = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context);
         if (LocaleController.isRTL) {
             linearLayoutM2.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 10, 0));
             linearLayoutM2.addView(textView4, LayoutHelper.createLinear(-2, -2, 16));
@@ -146,32 +152,25 @@ public abstract class StatisticPostInfoCell extends FrameLayout {
         Drawable drawableMutate2 = context.getDrawable(R.drawable.mini_stats_shares).mutate();
         drawableMutate2.setTint(Theme.getColor(null, i2, false));
         CombinedDrawable combinedDrawable = new CombinedDrawable(null, drawableMutate, 0, AndroidUtilities.dp(1.0f));
-        int intrinsicWidth = drawableMutate2.getIntrinsicWidth();
-        int intrinsicHeight = drawableMutate2.getIntrinsicHeight();
-        combinedDrawable.backWidth = intrinsicWidth;
-        combinedDrawable.backHeight = intrinsicHeight;
+        combinedDrawable.setCustomSize(drawableMutate2.getIntrinsicWidth(), drawableMutate2.getIntrinsicHeight());
         textView4.setCompoundDrawablesWithIntrinsicBounds(combinedDrawable, (Drawable) null, (Drawable) null, (Drawable) null);
         textView4.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
         CombinedDrawable combinedDrawable2 = new CombinedDrawable(null, drawableMutate2, 0, AndroidUtilities.dp(1.0f));
-        int intrinsicWidth2 = drawableMutate2.getIntrinsicWidth();
-        int intrinsicHeight2 = drawableMutate2.getIntrinsicHeight();
-        combinedDrawable2.backWidth = intrinsicWidth2;
-        combinedDrawable2.backHeight = intrinsicHeight2;
+        combinedDrawable2.setCustomSize(drawableMutate2.getIntrinsicWidth(), drawableMutate2.getIntrinsicHeight());
         textView3.setCompoundDrawablesWithIntrinsicBounds(combinedDrawable2, (Drawable) null, (Drawable) null, (Drawable) null);
         textView3.setCompoundDrawablePadding(AndroidUtilities.dp(2.0f));
         setWillNotDraw(false);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.needDivider) {
-            Paint paint = this.dividerPaint;
-            paint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
+            this.dividerPaint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
             if (LocaleController.isRTL) {
-                canvas.drawRect(0.0f, getHeight() - 1, getWidth() - AndroidUtilities.dp(72), getHeight(), paint);
+                canvas.drawRect(0.0f, getHeight() - 1, getWidth() - AndroidUtilities.dp(72), getHeight(), this.dividerPaint);
             } else {
-                canvas.drawRect(AndroidUtilities.dp(72), getHeight() - 1, getWidth(), getHeight(), paint);
+                canvas.drawRect(AndroidUtilities.dp(72), getHeight() - 1, getWidth(), getHeight(), this.dividerPaint);
             }
         }
     }
@@ -189,27 +188,80 @@ public abstract class StatisticPostInfoCell extends FrameLayout {
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.storyAvatarParams.reset();
+        this.storyAvatarParams.onDetachFromWindow();
+    }
+
+    public void setData(StatisticActivity.RecentPostInfo recentPostInfo, boolean z) {
+        CharSequence string;
+        this.postInfo = recentPostInfo;
+        this.needDivider = !z;
+        MessageObject messageObject = recentPostInfo.message;
+        ArrayList<TLRPC.PhotoSize> arrayList = messageObject.photoThumbs;
+        if (arrayList != null) {
+            this.imageView.setImage(ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize()), messageObject.photoThumbsObject), "50_50", ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50), messageObject.photoThumbsObject), "b1", 0, messageObject);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(9.0f));
+            this.imageView.setScaleX(0.96f);
+            this.imageView.setScaleY(0.96f);
+        } else if (this.chat.chat_photo.sizes.size() > 0) {
+            this.imageView.setImage(ImageLocation.getForPhoto(this.chat.chat_photo.sizes.get(0), this.chat.chat_photo), "50_50", (String) null, (Drawable) null, this.chat);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
+            this.imageView.setScaleX(0.96f);
+            this.imageView.setScaleY(0.96f);
+        } else {
+            TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(this.chat.id));
+            this.avatarDrawable.setInfo(chat);
+            this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
+            this.imageView.setScaleX(1.0f);
+            this.imageView.setScaleY(1.0f);
+        }
+        if (messageObject.isStory()) {
+            this.imageView.setScaleX(1.0f);
+            this.imageView.setScaleY(1.0f);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
+        }
+        if (messageObject.isMusic()) {
+            string = zzjx.m(messageObject.getMusicTitle().trim(), ", ", messageObject.getMusicAuthor().trim());
+        } else if (messageObject.isStory()) {
+            string = LocaleController.getString(R.string.Story);
+        } else {
+            string = messageObject.caption;
+            if (string == null) {
+                string = messageObject.messageText;
+            }
+        }
+        if (string == null) {
+            string = "";
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
+        for (URLSpan uRLSpan : (URLSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), URLSpan.class)) {
+            spannableStringBuilder.removeSpan(uRLSpan);
+        }
+        this.message.setText(AndroidUtilities.trim(AndroidUtilities.replaceNewLines(spannableStringBuilder), null));
+        this.views.setText(String.format(LocaleController.getPluralString("Views", recentPostInfo.getViews()), AndroidUtilities.formatWholeNumber(recentPostInfo.getViews(), 0)));
+        Date date = new Date(recentPostInfo.getDate() * 1000);
+        this.date.setText(LocaleController.formatString(R.string.formatDateAtTime, LocaleController.getInstance().getFormatterYear().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
+        this.shares.setText(AndroidUtilities.formatWholeNumber(recentPostInfo.getForwards(), 0));
+        this.likes.setText(AndroidUtilities.formatWholeNumber(recentPostInfo.getReactions(), 0));
+        this.shares.setVisibility(recentPostInfo.getForwards() != 0 ? 0 : 8);
+        this.likes.setVisibility(recentPostInfo.getReactions() == 0 ? 8 : 0);
+        invalidate();
+    }
+
+    public void setImageViewAction(View.OnClickListener onClickListener) {
+        this.imageView.setOnClickListener(onClickListener);
     }
 
     public void setData(StatisticActivity.MemberData memberData) {
-        AvatarDrawable avatarDrawable = this.avatarDrawable;
-        avatarDrawable.setInfo(UserConfig.selectedAccount, memberData.user);
-        TLRPC.User user = memberData.user;
-        AnonymousClass1 anonymousClass1 = this.imageView;
-        anonymousClass1.imageReceiver.setForUserOrChat(user, avatarDrawable);
-        anonymousClass1.onNewImageSet();
-        anonymousClass1.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
+        this.avatarDrawable.setInfo(memberData.user);
+        this.imageView.setForUserOrChat(memberData.user, this.avatarDrawable);
+        this.imageView.setRoundRadius(AndroidUtilities.dp(46.0f) >> 1);
         this.message.setText(memberData.user.first_name);
         this.date.setText(memberData.description);
         this.views.setVisibility(8);
         this.shares.setVisibility(8);
         this.likes.setVisibility(8);
-    }
-
-    public void setImageViewAction(View.OnClickListener onClickListener) {
-        setOnClickListener(onClickListener);
     }
 }

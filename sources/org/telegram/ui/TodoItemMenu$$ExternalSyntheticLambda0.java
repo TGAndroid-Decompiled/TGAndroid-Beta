@@ -13,13 +13,13 @@ public final class TodoItemMenu$$ExternalSyntheticLambda0 implements Runnable {
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.dismiss(false);
+                this.f$0.lambda$setupMessageOptions$9();
                 break;
             case 1:
-                this.f$0.lambda$dismiss$14();
+                this.f$0.lambda$setupMessageOptions$10();
                 break;
             default:
-                this.f$0.dismiss(false);
+                this.f$0.lambda$dismiss$14();
                 break;
         }
     }

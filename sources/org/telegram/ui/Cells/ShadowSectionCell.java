@@ -4,15 +4,17 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.Theme;
 
 public final class ShadowSectionCell extends View {
     public final int backgroundColor;
     public boolean bottom;
+    public final Theme.ResourcesProvider resourcesProvider;
     public int size;
     public boolean top;
 
     public ShadowSectionCell(Context context) {
-        this(context, (Object) null);
+        this(context, null, 0);
     }
 
     private int getBackgroundResId() {
@@ -35,24 +37,25 @@ public final class ShadowSectionCell extends View {
         this.size = i;
     }
 
-    public ShadowSectionCell(Context context, int i) {
-        this(context, (Object) null);
+    public ShadowSectionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, resourcesProvider, 0);
     }
 
-    public ShadowSectionCell(Context context, Object obj) {
+    public ShadowSectionCell(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context);
         this.top = true;
         this.bottom = true;
+        this.resourcesProvider = resourcesProvider;
         this.size = 12;
-        int i = this.backgroundColor;
-        if (i == 0) {
+        int i2 = this.backgroundColor;
+        if (i2 == 0) {
             setBackground(null);
         } else {
-            setBackgroundColor(i);
+            setBackgroundColor(i2);
         }
     }
 
-    public ShadowSectionCell(Context context, int i, int i2) {
+    public ShadowSectionCell(Context context, int i) {
         super(context);
         this.top = true;
         this.bottom = true;

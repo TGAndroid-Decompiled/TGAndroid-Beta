@@ -84,29 +84,24 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
         this.currentAccount = i;
         this.isExplanation = z;
-        this.radialProgress = new RadialProgress2(resourcesProvider, chatMessageCell);
+        this.radialProgress = new RadialProgress2(chatMessageCell, resourcesProvider);
         this.parent = chatMessageCell;
         SeekBar seekBar = new SeekBar(chatMessageCell);
         this.seekBar = seekBar;
-        seekBar.delegate = this;
-        this.animatorIsPlaying = new BoolAnimator(180L, chatMessageCell, AnimatorUtils.DECELERATE_INTERPOLATOR);
+        seekBar.setDelegate(this);
+        this.animatorIsPlaying = new BoolAnimator(chatMessageCell, AnimatorUtils.DECELERATE_INTERPOLATOR, 180L);
         this.TAG = DownloadController.getInstance(i).generateObserverTag();
-    }
-
-    public final void attach() {
-        this.imageReceiver.onAttachedToWindow();
-        this.radialProgress.overlayImageView.onAttachedToWindow();
     }
 
     public final void checkColors(boolean z) {
         Text text = this.fileNameText;
         if (text != null) {
-            text.paint.setColor(Theme.getColor(null, z ? Theme.key_chat_outFileNameText : Theme.key_chat_inFileNameText, false));
+            text.setColor(Theme.getColor(null, z ? Theme.key_chat_outFileNameText : Theme.key_chat_inFileNameText, false));
         }
         this.durationBackgroundPaint.setColor(1711276032);
         Text text2 = this.videoDurationText;
         if (text2 != null) {
-            text2.paint.setColor(-1);
+            text2.setColor(-1);
         }
         SvgHelper.SvgDrawable svgDrawable = this.locationSvgThumb;
         if (svgDrawable != null) {
@@ -115,44 +110,23 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
         boolean z2 = this.isMusic;
         RadialProgress2 radialProgress2 = this.radialProgress;
         if (!z2 && !this.isFile) {
-            int i = Theme.key_chat_mediaLoaderPhoto;
-            int i2 = Theme.key_chat_mediaLoaderPhotoSelected;
-            int i3 = Theme.key_chat_mediaLoaderPhotoIcon;
-            int i4 = Theme.key_chat_mediaLoaderPhotoIconSelected;
-            radialProgress2.circleColorKey = i;
-            radialProgress2.circlePressedColorKey = i2;
-            radialProgress2.iconColorKey = i3;
-            radialProgress2.iconPressedColorKey = i4;
+            radialProgress2.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
             return;
         }
         SeekBar seekBar = this.seekBar;
         if (z) {
             int color = Theme.getColor(null, Theme.key_chat_outAudioSeekbar, false);
             int color2 = Theme.getColor(null, Theme.key_chat_outAudioCacheSeekbar, false);
-            int i5 = Theme.key_chat_outAudioSeekbarFill;
-            seekBar.setColors(color, color2, Theme.getColor(null, i5, false), Theme.getColor(null, i5, false), Theme.getColor(null, Theme.key_chat_outAudioSeekbarSelected, false));
-            int i6 = Theme.key_chat_outLoader;
-            int i7 = Theme.key_chat_outLoaderSelected;
-            int i8 = Theme.key_chat_outMediaIcon;
-            int i9 = Theme.key_chat_outMediaIconSelected;
-            radialProgress2.circleColorKey = i6;
-            radialProgress2.circlePressedColorKey = i7;
-            radialProgress2.iconColorKey = i8;
-            radialProgress2.iconPressedColorKey = i9;
+            int i = Theme.key_chat_outAudioSeekbarFill;
+            seekBar.setColors(color, color2, Theme.getColor(null, i, false), Theme.getColor(null, i, false), Theme.getColor(null, Theme.key_chat_outAudioSeekbarSelected, false));
+            radialProgress2.setColorKeys(Theme.key_chat_outLoader, Theme.key_chat_outLoaderSelected, Theme.key_chat_outMediaIcon, Theme.key_chat_outMediaIconSelected);
             return;
         }
-        int i10 = Theme.key_chat_inLoader;
-        int i11 = Theme.key_chat_inLoaderSelected;
-        int i12 = Theme.key_chat_inMediaIcon;
-        int i13 = Theme.key_chat_inMediaIconSelected;
-        radialProgress2.circleColorKey = i10;
-        radialProgress2.circlePressedColorKey = i11;
-        radialProgress2.iconColorKey = i12;
-        radialProgress2.iconPressedColorKey = i13;
+        radialProgress2.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
         int color3 = Theme.getColor(null, Theme.key_chat_inAudioSeekbar, false);
         int color4 = Theme.getColor(null, Theme.key_chat_inAudioCacheSeekbar, false);
-        int i14 = Theme.key_chat_inAudioSeekbarFill;
-        seekBar.setColors(color3, color4, Theme.getColor(null, i14, false), Theme.getColor(null, i14, false), Theme.getColor(null, Theme.key_chat_inAudioSeekbarSelected, false));
+        int i2 = Theme.key_chat_inAudioSeekbarFill;
+        seekBar.setColors(color3, color4, Theme.getColor(null, i2, false), Theme.getColor(null, i2, false), Theme.getColor(null, Theme.key_chat_inAudioSeekbarSelected, false));
     }
 
     public final void checkFileTexts(boolean z) {
@@ -170,7 +144,7 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
             String str2 = this.authorInfo;
             if (str2 != null) {
                 if (this.authorInfoText == null) {
-                    this.authorInfoText = new Text(str2, 14.0f, null);
+                    this.authorInfoText = new Text(str2, 14.0f);
                 }
                 Text text2 = this.authorInfoText;
                 text2.setText(TextUtils.ellipsize(this.authorInfo, text2.paint, iWidth, TextUtils.TruncateAt.END));
@@ -178,13 +152,13 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
             String str3 = this.fileInfo;
             if (str3 != null) {
                 if (this.fileInfoText == null) {
-                    this.fileInfoText = new Text(str3, 12.0f, null);
+                    this.fileInfoText = new Text(str3, 12.0f);
                 }
                 Text text3 = this.fileInfoText;
                 text3.setText(TextUtils.ellipsize(this.fileInfo, text3.paint, iWidth, TextUtils.TruncateAt.END));
             }
             if (this.isVideo && this.videoDurationText == null) {
-                this.videoDurationText = new Text(AndroidUtilities.formatLongDuration(this.videoDuration), 12.0f, null);
+                this.videoDurationText = new Text(AndroidUtilities.formatLongDuration(this.videoDuration), 12.0f);
             }
         }
     }
@@ -208,7 +182,7 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
             int iDp3 = this.isMusic ? 0 : AndroidUtilities.dp(3.0f);
             Text text = this.fileNameText;
             if (text != null) {
-                text.draw(canvas, AndroidUtilities.dp(56.0f) + iDp, AndroidUtilities.dp(15.0f) + iDp2 + iDp3, 1.0f);
+                text.draw(canvas, AndroidUtilities.dp(56.0f) + iDp, AndroidUtilities.dp(15.0f) + iDp2 + iDp3);
             }
             if (this.isMusic) {
                 float f = this.animatorIsPlaying.floatValue;
@@ -217,13 +191,13 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
                     float f2 = 1.0f - f;
                     int i3 = iDp2 + iDp3;
                     canvas.scale(f2, f2, AndroidUtilities.dp(56.0f) + iDp, AndroidUtilities.dp(35.0f) + i3);
-                    this.authorInfoText.paint.setAlpha((int) (f2 * 255.0f));
-                    this.authorInfoText.draw(canvas, AndroidUtilities.dp(56.0f) + iDp, AndroidUtilities.dp(35.0f) + i3, 1.0f);
+                    this.authorInfoText.setAlpha((int) (f2 * 255.0f));
+                    this.authorInfoText.draw(canvas, AndroidUtilities.dp(56.0f) + iDp, AndroidUtilities.dp(35.0f) + i3);
                     canvas.restore();
                 }
                 if (f > 0.0f) {
                     SeekBar seekBar = this.seekBar;
-                    seekBar.alpha = f;
+                    seekBar.setAlpha(f);
                     seekBar.setSize(OKLCH.m$1(56.0f, iDp, bounds.right), AndroidUtilities.dp(30.0f));
                     canvas.save();
                     float fDp = AndroidUtilities.dp(45.0f) + iDp;
@@ -237,7 +211,7 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
             }
             Text text2 = this.fileInfoText;
             if (text2 != null) {
-                text2.draw(canvas, AndroidUtilities.dp(56.0f) + iDp, AndroidUtilities.dp((this.isMusic ? 20 : 2) + 34) + iDp3 + iDp2, 1.0f);
+                text2.draw(canvas, AndroidUtilities.dp(56.0f) + iDp, AndroidUtilities.dp((this.isMusic ? 20 : 2) + 34) + iDp3 + iDp2);
             }
             int iDp4 = AndroidUtilities.dp(2.0f) + iDp;
             this.fileButtonX = iDp4;
@@ -260,8 +234,8 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
             }
             radialProgress2.setProgressRect(bounds.centerX() - AndroidUtilities.dp(22.0f), bounds.centerY() - AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f) + bounds.centerX(), AndroidUtilities.dp(22.0f) + bounds.centerY());
             if (this.isVideo && this.videoDurationText != null) {
-                canvas.drawRoundRect(AndroidUtilities.dp(6.0f) + bounds.left, AndroidUtilities.dp(6.0f) + bounds.top, bounds.left + this.videoDurationText.width + AndroidUtilities.dp(18.0f), AndroidUtilities.dp(23.0f) + bounds.top, AndroidUtilities.dp(8.5f), AndroidUtilities.dp(8.5f), this.durationBackgroundPaint);
-                this.videoDurationText.draw(canvas, AndroidUtilities.dp(12.0f) + bounds.left, AndroidUtilities.dp(15.0f) + bounds.top, 1.0f);
+                canvas.drawRoundRect(AndroidUtilities.dp(6.0f) + bounds.left, AndroidUtilities.dp(6.0f) + bounds.top, AndroidUtilities.dp(18.0f) + this.videoDurationText.getCurrentWidth() + bounds.left, AndroidUtilities.dp(23.0f) + bounds.top, AndroidUtilities.dp(8.5f), AndroidUtilities.dp(8.5f), this.durationBackgroundPaint);
+                this.videoDurationText.draw(canvas, AndroidUtilities.dp(12.0f) + bounds.left, AndroidUtilities.dp(15.0f) + bounds.top);
             }
         }
         if (this.isLocation) {
@@ -344,6 +318,11 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
 
     public final boolean isCurrentPlayingMessageMusic() {
         return this.isMusic && MediaController.getInstance().isPlayingMessage(this.messageObject) && MediaController.getInstance().getPlayingMessageObject() != null && MediaController.getInstance().getPlayingMessageObject().isPlayingExplanationObject == this.isExplanation;
+    }
+
+    @Override
+    public final boolean isSeekBarDragAllowed() {
+        return SeekBar.SeekBarDelegate.CC.$default$isSeekBarDragAllowed(this);
     }
 
     public final boolean miniButtonOnTouch(float f, float f2, int i) {
@@ -454,12 +433,27 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
     }
 
     @Override
+    public final void onSeekBarPressed() {
+        this.parent.requestDisallowInterceptTouchEvent(true);
+    }
+
+    @Override
+    public final void onSeekBarReleased() {
+        this.parent.requestDisallowInterceptTouchEvent(false);
+    }
+
+    @Override
     public final void onSuccessDownload(String str) {
         FileState fileState = this.fileState;
         if (fileState != null) {
             fileState.checkState();
         }
         this.parent.invalidate();
+    }
+
+    @Override
+    public final boolean reverseWaveform() {
+        return SeekBar.SeekBarDelegate.CC.$default$reverseWaveform(this);
     }
 
     @Override
@@ -680,11 +674,11 @@ public final class PollContentDrawable extends Drawable implements DownloadContr
         } else {
             i = playingMessageObject.audioProgressSec;
             SeekBar seekBar = this.seekBar;
-            if (!seekBar.pressed) {
+            if (!seekBar.isDragging()) {
                 seekBar.setProgress(playingMessageObject.audioProgress);
-                seekBar.bufferedProgress = playingMessageObject.bufferedProgress;
+                seekBar.setBufferedProgress(playingMessageObject.bufferedProgress);
             }
-            seekBar.updateTimestamps(playingMessageObject);
+            seekBar.updateTimestamps(playingMessageObject, null);
         }
         if (this.lastTime != i) {
             this.lastTime = i;

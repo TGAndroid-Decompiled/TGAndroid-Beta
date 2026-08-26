@@ -16,10 +16,10 @@ public final class FilterGLThread$$ExternalSyntheticLambda8 implements SurfaceTe
     public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
         switch (this.$r8$classId) {
             case 0:
-                ((FilterGLThread) this.f$0).requestRender(false, true, true);
+                ((FilterGLThread) this.f$0).lambda$initGL$2(surfaceTexture);
                 break;
             default:
-                ((InstantCameraView.CameraGLThread) this.f$0).requestRender(true, false);
+                ((InstantCameraView.CameraGLThread) this.f$0).lambda$handleMessage$3(surfaceTexture);
                 break;
         }
     }

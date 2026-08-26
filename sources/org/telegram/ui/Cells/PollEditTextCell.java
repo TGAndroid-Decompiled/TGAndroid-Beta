@@ -1,5 +1,6 @@
 package org.telegram.ui.Cells;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -8,6 +9,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Property;
 import android.view.ActionMode;
 import android.view.View;
@@ -24,10 +26,8 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
@@ -37,21 +37,25 @@ import org.telegram.ui.Components.poll.PollAttachButton;
 import org.telegram.ui.Gifts.AuctionBidSheet;
 
 public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.AnchorViewDelegate, FactorAnimator.Target {
-    public boolean alwaysShowText2;
-    public final BoolAnimator animatorCheckboxMultiselect;
-    public final BoolAnimator animatorEmojiButtonVisible;
+    private static final int ANIMATOR_ID_CHECKBOX_MULTISELECT = 0;
+    private static final int ANIMATOR_ID_EMOJI_BUTTON_VISIBLE = 1;
+    public static final int TYPE_DEFAULT = 0;
+    public static final int TYPE_EMOJI = 1;
+    private boolean alwaysShowText2;
+    private final BoolAnimator animatorCheckboxMultiselect;
+    private final BoolAnimator animatorEmojiButtonVisible;
     public PollAttachButton attachView;
-    public final CheckBox2 checkBox;
-    public AnimatorSet checkBoxAnimation;
-    public final ImageView deleteImageView;
-    public final ChatActivityEnterViewAnimatedIconView emojiButton;
-    public final ImageView moveImageView;
-    public boolean needDivider;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public Integer right;
-    public boolean showNextButton;
-    public final AuctionBidSheet.AnonymousClass4 textView;
-    public SimpleTextView textView2;
+    private CheckBox2 checkBox;
+    private AnimatorSet checkBoxAnimation;
+    public ImageView deleteImageView;
+    private ChatActivityEnterViewAnimatedIconView emojiButton;
+    public ImageView moveImageView;
+    private boolean needDivider;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private Integer right;
+    private boolean showNextButton;
+    public EditTextBoldCursor textView;
+    private SimpleTextView textView2;
 
     public PollEditTextCell(Context context, int i, View.OnClickListener onClickListener, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -62,61 +66,65 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         AuctionBidSheet.AnonymousClass4 anonymousClass4 = new AuctionBidSheet.AnonymousClass4(this, context, resourcesProvider, 1);
         this.textView = anonymousClass4;
         anonymousClass4.setAllowTextEntitiesIntersection(true);
-        anonymousClass4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-        anonymousClass4.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
-        anonymousClass4.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
-        anonymousClass4.setTextSize(1, 16.0f);
-        anonymousClass4.setMaxLines(Integer.MAX_VALUE);
-        anonymousClass4.setBackground(null);
-        anonymousClass4.setImeOptions(anonymousClass4.getImeOptions() | 268435456);
-        anonymousClass4.setInputType(anonymousClass4.getInputType() | 16384);
-        anonymousClass4.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(11.0f));
+        this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        this.textView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
+        this.textView.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
+        this.textView.setTextSize(1, 16.0f);
+        this.textView.setMaxLines(Integer.MAX_VALUE);
+        this.textView.setBackground(null);
+        EditTextBoldCursor editTextBoldCursor = this.textView;
+        editTextBoldCursor.setImeOptions(editTextBoldCursor.getImeOptions() | 268435456);
+        EditTextBoldCursor editTextBoldCursor2 = this.textView;
+        editTextBoldCursor2.setInputType(editTextBoldCursor2.getInputType() | 16384);
+        this.textView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(11.0f));
         if (onClickListener != null) {
             int i2 = i == 1 ? 92 : 58;
+            EditTextBoldCursor editTextBoldCursor3 = this.textView;
             boolean z = LocaleController.isRTL;
-            addView(anonymousClass4, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 16, z ? i2 : 54.0f, 0.0f, !z ? i2 : 54.0f, 0.0f));
+            addView(editTextBoldCursor3, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 16, z ? i2 : 54.0f, 0.0f, !z ? i2 : 54.0f, 0.0f));
             ImageView imageView = new ImageView(context);
             this.moveImageView = imageView;
             imageView.setFocusable(false);
+            ImageView imageView2 = this.moveImageView;
             ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-            imageView.setScaleType(scaleType);
-            imageView.setImageResource(R.drawable.menu_poll_order_24);
+            imageView2.setScaleType(scaleType);
+            this.moveImageView.setImageResource(R.drawable.menu_poll_order_24);
+            ImageView imageView3 = this.moveImageView;
             int i3 = Theme.key_windowBackgroundWhiteGrayIcon;
             int color = Theme.getColor(i3, resourcesProvider);
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
-            addView(imageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 48, 6.0f, 2.0f, 6.0f, 0.0f));
-            ImageView imageView2 = new ImageView(context);
-            this.deleteImageView = imageView2;
-            imageView2.setFocusable(false);
-            imageView2.setScaleType(scaleType);
-            imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector, resourcesProvider), 1, -1));
-            imageView2.setImageResource(R.drawable.poll_remove);
-            imageView2.setOnClickListener(onClickListener);
-            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3, resourcesProvider), mode));
-            imageView2.setContentDescription(LocaleController.getString(R.string.Delete));
+            imageView3.setColorFilter(new PorterDuffColorFilter(color, mode));
+            addView(this.moveImageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 48, 6.0f, 2.0f, 6.0f, 0.0f));
+            ImageView imageView4 = new ImageView(context);
+            this.deleteImageView = imageView4;
+            imageView4.setFocusable(false);
+            this.deleteImageView.setScaleType(scaleType);
+            this.deleteImageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector, resourcesProvider), 1, -1));
+            this.deleteImageView.setImageResource(R.drawable.poll_remove);
+            this.deleteImageView.setOnClickListener(onClickListener);
+            this.deleteImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3, resourcesProvider), mode));
+            this.deleteImageView.setContentDescription(LocaleController.getString(R.string.Delete));
+            ImageView imageView5 = this.deleteImageView;
             boolean z2 = LocaleController.isRTL;
-            addView(imageView2, LayoutHelper.createFrame(48, 50.0f, (z2 ? 3 : 5) | 48, z2 ? 3.0f : 0.0f, 0.0f, z2 ? 0.0f : 3.0f, 0.0f));
+            addView(imageView5, LayoutHelper.createFrame(48, 50.0f, (z2 ? 3 : 5) | 48, z2 ? 3.0f : 0.0f, 0.0f, z2 ? 0.0f : 3.0f, 0.0f));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.textView2 = simpleTextView;
             simpleTextView.setTextSize(13);
             this.textView2.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
-            View view = this.textView2;
+            SimpleTextView simpleTextView2 = this.textView2;
             boolean z3 = LocaleController.isRTL;
-            addView(view, LayoutHelper.createFrame(48, 24.0f, (z3 ? 3 : 5) | 48, z3 ? 20.0f : 0.0f, 43.0f, z3 ? 0.0f : 20.0f, 0.0f));
+            addView(simpleTextView2, LayoutHelper.createFrame(48, 24.0f, (z3 ? 3 : 5) | 48, z3 ? 20.0f : 0.0f, 43.0f, z3 ? 0.0f : 20.0f, 0.0f));
             CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox2;
-            int i4 = Theme.key_checkboxCheck;
-            CheckBoxBase checkBoxBase = checkBox2.checkBoxBase;
-            checkBoxBase.setColor(-1, i3, i4);
-            checkBox2.setContentDescription(LocaleController.getString(R.string.AccDescrQuizCorrectAnswer));
-            checkBox2.setDrawUnchecked(true);
-            checkBoxBase.setChecked(-1, true, false);
-            checkBox2.setAlpha(0.0f);
-            checkBox2.setDrawBackgroundAsArc(8);
-            addView(checkBox2, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 48, 6.0f, 2.0f, 6.0f, 0.0f));
-            final int i5 = 0;
-            checkBox2.setOnClickListener(new View.OnClickListener(this) {
+            checkBox2.setColor(-1, i3, Theme.key_checkboxCheck);
+            this.checkBox.setContentDescription(LocaleController.getString(R.string.AccDescrQuizCorrectAnswer));
+            this.checkBox.setDrawUnchecked(true);
+            this.checkBox.setChecked(true, false);
+            this.checkBox.setAlpha(0.0f);
+            this.checkBox.setDrawBackgroundAsArc(8);
+            addView(this.checkBox, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 48, 6.0f, 2.0f, 6.0f, 0.0f));
+            final int i4 = 0;
+            this.checkBox.setOnClickListener(new View.OnClickListener(this) {
                 public final PollEditTextCell f$0;
 
                 {
@@ -124,42 +132,38 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
                 }
 
                 @Override
-                public final void onClick(View view2) {
-                    switch (i5) {
+                public final void onClick(View view) {
+                    switch (i4) {
                         case 0:
-                            PollEditTextCell pollEditTextCell = this.f$0;
-                            CheckBox2 checkBox3 = pollEditTextCell.checkBox;
-                            if (checkBox3.getTag() != null) {
-                                pollEditTextCell.onCheckBoxClick(pollEditTextCell, !checkBox3.checkBoxBase.isChecked);
-                                break;
-                            }
+                            this.f$0.lambda$new$0$14(view);
                             break;
                         default:
-                            PollEditTextCell pollEditTextCell2 = this.f$0;
-                            pollEditTextCell2.onEmojiButtonClicked(pollEditTextCell2);
+                            this.f$0.lambda$new$1$10(view);
                             break;
                     }
                 }
             });
         } else {
-            int i6 = i == 1 ? 70 : 19;
+            int i5 = i == 1 ? 70 : 19;
+            EditTextBoldCursor editTextBoldCursor4 = this.textView;
             boolean z4 = LocaleController.isRTL;
-            addView(anonymousClass4, LayoutHelper.createFrame(-1, -2.0f, (z4 ? 5 : 3) | 16, z4 ? i6 : 19.0f, 0.0f, z4 ? 19.0f : i6, 0.0f));
+            addView(editTextBoldCursor4, LayoutHelper.createFrame(-1, -2.0f, (z4 ? 5 : 3) | 16, z4 ? i5 : 19.0f, 0.0f, z4 ? 19.0f : i5, 0.0f));
         }
         if (i == 1) {
-            ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = new ChatActivityEnterViewAnimatedIconView(context, 32);
+            ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = new ChatActivityEnterViewAnimatedIconView(context);
             this.emojiButton = chatActivityEnterViewAnimatedIconView;
             chatActivityEnterViewAnimatedIconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
-            chatActivityEnterViewAnimatedIconView.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
+            this.emojiButton.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
             int iDp = AndroidUtilities.dp(9.5f);
-            chatActivityEnterViewAnimatedIconView.setPadding(iDp, iDp, iDp, iDp);
-            chatActivityEnterViewAnimatedIconView.setVisibility(8);
-            int i7 = this.deleteImageView == null ? 3 : 38;
+            this.emojiButton.setPadding(iDp, iDp, iDp, iDp);
+            this.emojiButton.setVisibility(8);
+            int i6 = this.deleteImageView == null ? 3 : 38;
+            ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView2 = this.emojiButton;
             boolean z5 = LocaleController.isRTL;
-            addView(chatActivityEnterViewAnimatedIconView, LayoutHelper.createFrame(48, 48.0f, z5 ? 3 : 5, z5 ? i7 : 0.0f, 0.0f, z5 ? 0.0f : i7, 0.0f));
-            chatActivityEnterViewAnimatedIconView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector, resourcesProvider), 1, -1));
-            final int i8 = 1;
-            chatActivityEnterViewAnimatedIconView.setOnClickListener(new View.OnClickListener(this) {
+            addView(chatActivityEnterViewAnimatedIconView2, LayoutHelper.createFrame(48, 48.0f, z5 ? 3 : 5, z5 ? i6 : 0.0f, 0.0f, z5 ? 0.0f : i6, 0.0f));
+            this.emojiButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector, resourcesProvider), 1, -1));
+            final int i7 = 1;
+            this.emojiButton.setOnClickListener(new View.OnClickListener(this) {
                 public final PollEditTextCell f$0;
 
                 {
@@ -167,37 +171,31 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
                 }
 
                 @Override
-                public final void onClick(View view2) {
-                    switch (i8) {
+                public final void onClick(View view) {
+                    switch (i7) {
                         case 0:
-                            PollEditTextCell pollEditTextCell = this.f$0;
-                            CheckBox2 checkBox3 = pollEditTextCell.checkBox;
-                            if (checkBox3.getTag() != null) {
-                                pollEditTextCell.onCheckBoxClick(pollEditTextCell, !checkBox3.checkBoxBase.isChecked);
-                                break;
-                            }
+                            this.f$0.lambda$new$0$14(view);
                             break;
                         default:
-                            PollEditTextCell pollEditTextCell2 = this.f$0;
-                            pollEditTextCell2.onEmojiButtonClicked(pollEditTextCell2);
+                            this.f$0.lambda$new$1$10(view);
                             break;
                     }
                 }
             });
-            chatActivityEnterViewAnimatedIconView.setContentDescription(LocaleController.getString(R.string.Emoji));
+            this.emojiButton.setContentDescription(LocaleController.getString(R.string.Emoji));
         }
     }
 
-    public final PollAttachButton addAttachView() {
+    public View addAttachView() {
         ImageView imageView = this.deleteImageView;
         if (imageView != null) {
             imageView.setVisibility(8);
         }
-        PollAttachButton pollAttachButton = new PollAttachButton(getContext(), 38);
+        PollAttachButton pollAttachButton = new PollAttachButton(getContext(), this.resourcesProvider, 38);
         this.attachView = pollAttachButton;
         pollAttachButton.setFocusable(false);
         this.attachView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector, this.resourcesProvider), 1, -1));
-        ScaleStateListAnimator.apply(this.attachView, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this.attachView);
         PollAttachButton pollAttachButton2 = this.attachView;
         boolean z = LocaleController.isRTL;
         addView(pollAttachButton2, LayoutHelper.createFrame(48, 50.0f, (z ? 3 : 5) | 48, z ? 4.0f : 0.0f, 0.0f, z ? 0.0f : 4.0f, 0.0f));
@@ -206,27 +204,40 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             boolean z2 = LocaleController.isRTL;
             chatActivityEnterViewAnimatedIconView.setLayoutParams(LayoutHelper.createFrame(48, 48.0f, (z2 ? 3 : 5) | 48, z2 ? 44 : 0.0f, 1.0f, z2 ? 0.0f : 44, 0.0f));
         }
-        AuctionBidSheet.AnonymousClass4 anonymousClass4 = this.textView;
-        if (anonymousClass4 != null) {
-            float f = (LocaleController.isRTL ? ((ViewGroup.MarginLayoutParams) anonymousClass4.getLayoutParams()).rightMargin : ((ViewGroup.MarginLayoutParams) anonymousClass4.getLayoutParams()).leftMargin) / AndroidUtilities.density;
-            int i = (chatActivityEnterViewAnimatedIconView != null ? 70 : 19) + 24;
+        EditTextBoldCursor editTextBoldCursor = this.textView;
+        if (editTextBoldCursor != null) {
+            float f = (LocaleController.isRTL ? ((ViewGroup.MarginLayoutParams) editTextBoldCursor.getLayoutParams()).rightMargin : ((ViewGroup.MarginLayoutParams) editTextBoldCursor.getLayoutParams()).leftMargin) / AndroidUtilities.density;
+            int i = (this.emojiButton != null ? 70 : 19) + 24;
+            EditTextBoldCursor editTextBoldCursor2 = this.textView;
             boolean z3 = LocaleController.isRTL;
             int i2 = (z3 ? 5 : 3) | 16;
             float f2 = z3 ? i : f;
             if (!z3) {
                 f = i;
             }
-            anonymousClass4.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i2, f2, 0.0f, f, 0.0f));
+            editTextBoldCursor2.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, i2, f2, 0.0f, f, 0.0f));
         }
         return this.attachView;
     }
 
     @Override
-    public final void addTextChangedListener(ArticleViewer.AnonymousClass16 anonymousClass16) {
-        this.textView.addTextChangedListener(anonymousClass16);
+    public void addTextChangedListener(TextWatcher textWatcher) {
+        this.textView.addTextChangedListener(textWatcher);
     }
 
-    public final void createErrorTextView() {
+    public void addTextWatcher(TextWatcher textWatcher) {
+        this.textView.addTextChangedListener(textWatcher);
+    }
+
+    public void callOnDelete() {
+        ImageView imageView = this.deleteImageView;
+        if (imageView == null) {
+            return;
+        }
+        imageView.callOnClick();
+    }
+
+    public void createErrorTextView() {
         this.alwaysShowText2 = true;
         SimpleTextView simpleTextView = new SimpleTextView(getContext());
         this.textView2 = simpleTextView;
@@ -261,9 +272,8 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
 
     @Override
     public CharSequence getFieldText() {
-        AuctionBidSheet.AnonymousClass4 anonymousClass4 = this.textView;
-        if (anonymousClass4.length() > 0) {
-            return anonymousClass4.getText();
+        if (this.textView.length() > 0) {
+            return this.textView.getText();
         }
         return null;
     }
@@ -289,36 +299,47 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         return false;
     }
 
+    public final void lambda$new$0$14(View view) {
+        if (this.checkBox.getTag() == null) {
+            return;
+        }
+        onCheckBoxClick(this, !this.checkBox.isChecked());
+    }
+
+    public int length() {
+        return this.textView.length();
+    }
+
+    public void onActionModeStart(EditTextBoldCursor editTextBoldCursor, ActionMode actionMode) {
+    }
+
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        CheckBox2 checkBox2 = this.checkBox;
-        if (checkBox2 != null) {
+        if (this.checkBox != null) {
             setShowCheckBox(shouldShowCheckBox(), false);
-            checkBox2.checkBoxBase.setChecked(-1, isChecked(this), false);
+            this.checkBox.setChecked(isChecked(this), false);
         }
     }
 
     public void onCheckBoxClick(PollEditTextCell pollEditTextCell, boolean z) {
-        this.checkBox.checkBoxBase.setChecked(-1, z, true);
+        this.checkBox.setChecked(z, true);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         float fDp;
         int iDp;
         if (this.needDivider && drawDivider()) {
-            boolean z = LocaleController.isRTL;
-            ImageView imageView = this.moveImageView;
-            if (z) {
+            if (LocaleController.isRTL) {
                 fDp = 0.0f;
             } else {
-                fDp = AndroidUtilities.dp(imageView != null ? 58.0f : 20.0f);
+                fDp = AndroidUtilities.dp(this.moveImageView != null ? 58.0f : 20.0f);
             }
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
             if (LocaleController.isRTL) {
-                iDp = AndroidUtilities.dp(imageView != null ? 58.0f : 20.0f);
+                iDp = AndroidUtilities.dp(this.moveImageView != null ? 58.0f : 20.0f);
             } else {
                 iDp = 0;
             }
@@ -326,29 +347,27 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         }
     }
 
+    public void onEditTextDraw(EditTextBoldCursor editTextBoldCursor, Canvas canvas) {
+    }
+
     public void onEditTextFocusChanged(boolean z) {
     }
 
-    public void onEmojiButtonClicked(PollEditTextCell pollEditTextCell) {
+    public void lambda$new$1$10(PollEditTextCell pollEditTextCell) {
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
-    public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
         ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView;
         if (i == 0) {
             CheckBox2 checkBox2 = this.checkBox;
             if (checkBox2 != null) {
-                CheckBoxBase checkBoxBase = checkBox2.getCheckBoxBase();
-                float f3 = this.animatorCheckboxMultiselect.floatValue;
-                if (checkBoxBase.customRadiusFactor != f3) {
-                    checkBoxBase.customRadiusFactor = f3;
-                    checkBoxBase.invalidate();
-                }
-                checkBox2.invalidate();
+                checkBox2.getCheckBoxBase().setCustomRadiusFactor(this.animatorCheckboxMultiselect.floatValue);
+                this.checkBox.invalidate();
                 return;
             }
             return;
@@ -356,83 +375,78 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         if (i != 1 || (chatActivityEnterViewAnimatedIconView = this.emojiButton) == null) {
             return;
         }
-        float f4 = this.animatorEmojiButtonVisible.floatValue;
-        float f5 = 0.85f * f4;
-        chatActivityEnterViewAnimatedIconView.setScaleX(f5);
-        chatActivityEnterViewAnimatedIconView.setScaleY(f5);
-        chatActivityEnterViewAnimatedIconView.setAlpha(f4);
-        chatActivityEnterViewAnimatedIconView.setVisibility(f4 > 0.0f ? 0 : 8);
+        float f3 = this.animatorEmojiButtonVisible.floatValue;
+        float f4 = 0.85f * f3;
+        chatActivityEnterViewAnimatedIconView.setScaleX(f4);
+        this.emojiButton.setScaleY(f4);
+        this.emojiButton.setAlpha(f3);
+        this.emojiButton.setVisibility(f3 > 0.0f ? 0 : 8);
         SimpleTextView simpleTextView = this.textView2;
         if (simpleTextView != null && this.deleteImageView == null && simpleTextView.getVisibility() == 0) {
             if (this.attachView != null) {
                 this.textView2.setTranslationY(AndroidUtilities.dp(36.0f));
             } else {
-                this.textView2.setTranslationY(AndroidUtilities.dp(26.0f) * f4);
+                this.textView2.setTranslationY(AndroidUtilities.dp(26.0f) * f3);
             }
         }
     }
 
+    public void onFieldTouchUp(EditTextBoldCursor editTextBoldCursor) {
+    }
+
     @Override
-    public final void onMeasure(int i, int i2) {
-        ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView;
-        ImageView imageView;
-        AuctionBidSheet.AnonymousClass4 anonymousClass4;
+    public void onMeasure(int i, int i2) {
         int iIntValue;
         int size = View.MeasureSpec.getSize(i);
-        int i3 = 0;
-        while (true) {
-            int childCount = getChildCount();
-            chatActivityEnterViewAnimatedIconView = this.emojiButton;
-            imageView = this.deleteImageView;
-            anonymousClass4 = this.textView;
-            if (i3 >= childCount) {
-                break;
-            }
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
             View childAt = getChildAt(i3);
-            if (childAt != anonymousClass4) {
+            if (childAt != this.textView) {
+                ImageView imageView = this.deleteImageView;
                 if (childAt == imageView) {
                     imageView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-                } else if (childAt == chatActivityEnterViewAnimatedIconView) {
-                    chatActivityEnterViewAnimatedIconView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                 } else {
-                    ImageView imageView2 = this.moveImageView;
-                    if (childAt == imageView2) {
-                        imageView2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                    ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = this.emojiButton;
+                    if (childAt == chatActivityEnterViewAnimatedIconView) {
+                        chatActivityEnterViewAnimatedIconView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                     } else {
-                        SimpleTextView simpleTextView = this.textView2;
-                        if (childAt == simpleTextView) {
-                            simpleTextView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
+                        ImageView imageView2 = this.moveImageView;
+                        if (childAt == imageView2) {
+                            imageView2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                         } else {
-                            CheckBox2 checkBox2 = this.checkBox;
-                            if (childAt == checkBox2) {
-                                checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+                            SimpleTextView simpleTextView = this.textView2;
+                            if (childAt == simpleTextView) {
+                                simpleTextView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
                             } else {
-                                ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
-                                if (layoutParams != null) {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, 1073741824), View.MeasureSpec.makeMeasureSpec(layoutParams.height, 1073741824));
+                                CheckBox2 checkBox2 = this.checkBox;
+                                if (childAt == checkBox2) {
+                                    checkBox2.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
                                 } else {
-                                    childAt.measure(i, i2);
+                                    ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
+                                    if (layoutParams != null) {
+                                        childAt.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, 1073741824), View.MeasureSpec.makeMeasureSpec(layoutParams.height, 1073741824));
+                                    } else {
+                                        childAt.measure(i, i2);
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-            i3++;
         }
         Integer num = this.right;
         if (num != null) {
             iIntValue = num.intValue();
         } else if (this.textView2 == null) {
             iIntValue = 42;
-        } else if (imageView == null) {
+        } else if (this.deleteImageView == null) {
             iIntValue = 70;
         } else {
-            iIntValue = chatActivityEnterViewAnimatedIconView != null ? 144 : 122;
+            iIntValue = this.emojiButton != null ? 144 : 122;
         }
-        anonymousClass4.measure(OKLCH.m((size - getPaddingLeft()) - getPaddingRight(), iIntValue, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-        int measuredHeight = anonymousClass4.getMeasuredHeight();
-        setMeasuredDimension(size, Math.max(AndroidUtilities.dp(50.0f), anonymousClass4.getMeasuredHeight()) + (this.needDivider ? 1 : 0));
+        this.textView.measure(OKLCH.m(iIntValue, (size - getPaddingLeft()) - getPaddingRight(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
+        int measuredHeight = this.textView.getMeasuredHeight();
+        setMeasuredDimension(size, Math.max(AndroidUtilities.dp(50.0f), this.textView.getMeasuredHeight()) + (this.needDivider ? 1 : 0));
         SimpleTextView simpleTextView2 = this.textView2;
         if (simpleTextView2 == null || this.alwaysShowText2) {
             return;
@@ -440,12 +454,24 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         simpleTextView2.setAlpha(measuredHeight >= AndroidUtilities.dp(52.0f) ? 1.0f : 0.0f);
     }
 
-    public boolean onPastedMultipleLines(ArrayList arrayList) {
+    public boolean onPastedMultipleLines(ArrayList<CharSequence> arrayList) {
         return false;
+    }
+
+    public void setCheckboxMultiselect(boolean z, boolean z2) {
+        this.animatorCheckboxMultiselect.setValue(z, z2);
+    }
+
+    public void setChecked(boolean z, boolean z2) {
+        this.checkBox.setChecked(z, z2);
     }
 
     public void setEmojiButtonVisibility(boolean z) {
         this.animatorEmojiButtonVisible.setValue(z, true);
+    }
+
+    public void setEnabled(boolean z, ArrayList<Animator> arrayList) {
+        setEnabled(z);
     }
 
     @Override
@@ -455,23 +481,21 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
 
     public void setIconsColor(int i) {
         ImageView imageView = this.moveImageView;
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         if (imageView != null) {
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
         }
         ImageView imageView2 = this.deleteImageView;
         if (imageView2 != null) {
-            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
         }
         ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = this.emojiButton;
         if (chatActivityEnterViewAnimatedIconView != null) {
-            chatActivityEnterViewAnimatedIconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.SRC_IN));
+            chatActivityEnterViewAnimatedIconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
         }
     }
 
-    public final void setShowCheckBox(boolean z, boolean z2) {
-        CheckBox2 checkBox2 = this.checkBox;
-        if (z == (checkBox2.getTag() != null)) {
+    public void setShowCheckBox(boolean z, boolean z2) {
+        if (z == (this.checkBox.getTag() != null)) {
             return;
         }
         AnimatorSet animatorSet = this.checkBoxAnimation;
@@ -479,18 +503,18 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
             animatorSet.cancel();
             this.checkBoxAnimation = null;
         }
-        checkBox2.setTag(z ? 1 : null);
-        ImageView imageView = this.moveImageView;
+        this.checkBox.setTag(z ? 1 : null);
         if (!z2) {
-            checkBox2.setAlpha(z ? 1.0f : 0.0f);
-            imageView.setAlpha(z ? 0.0f : 1.0f);
+            this.checkBox.setAlpha(z ? 1.0f : 0.0f);
+            this.moveImageView.setAlpha(z ? 0.0f : 1.0f);
             return;
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.checkBoxAnimation = animatorSet2;
+        CheckBox2 checkBox2 = this.checkBox;
         float[] fArr = {z ? 1.0f : 0.0f};
         Property property = View.ALPHA;
-        animatorSet2.playTogether(ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property, fArr), ObjectAnimator.ofFloat(imageView, (Property<ImageView, Float>) property, z ? 0.0f : 1.0f));
+        animatorSet2.playTogether(ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property, fArr), ObjectAnimator.ofFloat(this.moveImageView, (Property<ImageView, Float>) property, z ? 0.0f : 1.0f));
         this.checkBoxAnimation.setDuration(180L);
         this.checkBoxAnimation.start();
     }
@@ -499,25 +523,31 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         this.showNextButton = z;
     }
 
+    public void setText(CharSequence charSequence, boolean z) {
+        this.textView.setText(charSequence);
+        this.needDivider = z;
+        setWillNotDraw(!z);
+    }
+
     public void setText2(String str) {
         SimpleTextView simpleTextView = this.textView2;
         if (simpleTextView == null) {
             return;
         }
-        simpleTextView.setText(str, false);
+        simpleTextView.setText(str);
     }
 
-    public final void setTextAndHint(CharSequence charSequence, String str, boolean z) {
+    public void setTextAndHint(CharSequence charSequence, String str, boolean z) {
         ImageView imageView = this.deleteImageView;
         if (imageView != null) {
             imageView.setTag(null);
         }
-        AuctionBidSheet.AnonymousClass4 anonymousClass4 = this.textView;
-        anonymousClass4.setText(charSequence);
+        this.textView.setText(charSequence);
         if (!TextUtils.isEmpty(charSequence)) {
-            anonymousClass4.setSelection(anonymousClass4.length());
+            EditTextBoldCursor editTextBoldCursor = this.textView;
+            editTextBoldCursor.setSelection(editTextBoldCursor.length());
         }
-        anonymousClass4.setHint(str);
+        this.textView.setHint(str);
         this.needDivider = z;
         setWillNotDraw(!z);
     }
@@ -534,9 +564,11 @@ public class PollEditTextCell extends FrameLayout implements SuggestEmojiView.An
         return false;
     }
 
-    public void onFieldTouchUp(AuctionBidSheet.AnonymousClass4 anonymousClass4) {
-    }
-
-    public void onActionModeStart(AuctionBidSheet.AnonymousClass4 anonymousClass4, ActionMode actionMode) {
+    public void supportMultiselect() {
+        CheckBox2 checkBox2 = this.checkBox;
+        if (checkBox2 != null) {
+            checkBox2.getCheckBoxBase().setCustomRadius(AndroidUtilities.dp(6.0f));
+            this.checkBox.getCheckBoxBase().setCustomRadiusFactor(this.animatorCheckboxMultiselect.floatValue);
+        }
     }
 }

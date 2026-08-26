@@ -36,6 +36,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.EditTextEmoji;
 import org.telegram.ui.Components.EmptyTextProgressView;
+import org.telegram.ui.Components.GroupCreateCheckBox;
 import org.telegram.ui.Components.GroupCreateSpan;
 import org.telegram.ui.Components.LetterDrawable;
 import org.telegram.ui.Components.LineProgressView;
@@ -55,6 +56,7 @@ public final class ThemeDescription {
     public final int alphaOverride;
     public final HashMap cachedFields;
     public final int changeFlags;
+    public int currentColor;
     public final int currentKey;
     public ThemeDescriptionDelegate delegate;
     public final Drawable[] drawablesToUpdate;
@@ -133,15 +135,15 @@ public final class ThemeDescription {
                         if (background2 != null) {
                             if ((i3 & 16) == 0) {
                                 if (background2 instanceof CombinedDrawable) {
-                                    background2 = ((CombinedDrawable) background2).icon;
+                                    background2 = ((CombinedDrawable) background2).getIcon();
                                 } else if ((background2 instanceof StateListDrawable) || (background2 instanceof RippleDrawable)) {
                                     Theme.setSelectorDrawableColor(background2, i, (i3 & 65536) != 0);
                                 }
                                 background2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                             } else if (background2 instanceof CombinedDrawable) {
-                                Drawable drawable = ((CombinedDrawable) background2).background;
-                                if (drawable instanceof ColorDrawable) {
-                                    ((ColorDrawable) drawable).setColor(i);
+                                Drawable background3 = ((CombinedDrawable) background2).getBackground();
+                                if (background3 instanceof ColorDrawable) {
+                                    ((ColorDrawable) background3).setColor(i);
                                 }
                             }
                         }
@@ -193,17 +195,17 @@ public final class ThemeDescription {
                                 }
                                 String str2 = this.lottieLayerName;
                                 if (str2 != null && (background instanceof RLottieImageView)) {
-                                    ((RLottieImageView) background).setLayerColor(i, str2);
+                                    ((RLottieImageView) background).setLayerColor(str2, i);
                                 }
                                 if ((131072 & i3) != 0 && (background instanceof View)) {
                                     background = ((View) background).getBackground();
                                 }
                                 if ((i3 & 1) != 0 && (background instanceof View)) {
                                     View view2 = (View) background;
-                                    Drawable background3 = view2.getBackground();
-                                    if (background3 instanceof MessageBackgroundDrawable) {
-                                        ((MessageBackgroundDrawable) background3).paint.setColor(i);
-                                        ((MessageBackgroundDrawable) background3).customPaint = null;
+                                    Drawable background4 = view2.getBackground();
+                                    if (background4 instanceof MessageBackgroundDrawable) {
+                                        ((MessageBackgroundDrawable) background4).setColor(i);
+                                        ((MessageBackgroundDrawable) background4).setCustomPaint(null);
                                     } else {
                                         view2.setBackgroundColor(i);
                                     }
@@ -227,9 +229,9 @@ public final class ThemeDescription {
                                     if ((i3 & 8) != 0) {
                                         Drawable[] compoundDrawables = textView2.getCompoundDrawables();
                                         if (compoundDrawables != null) {
-                                            for (Drawable drawable2 : compoundDrawables) {
-                                                if (drawable2 != null) {
-                                                    drawable2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                            for (Drawable drawable : compoundDrawables) {
+                                                if (drawable != null) {
+                                                    drawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                                 }
                                             }
                                         }
@@ -240,7 +242,7 @@ public final class ThemeDescription {
                                         CharSequence text = textView2.getText();
                                         if ((text instanceof SpannedString) && (typefaceSpanArr3 = (TypefaceSpan[]) ((SpannedString) text).getSpans(0, ((SpannedString) text).length(), TypefaceSpan.class)) != null && typefaceSpanArr3.length > 0) {
                                             for (TypefaceSpan typefaceSpan : typefaceSpanArr3) {
-                                                typefaceSpan.color = i;
+                                                typefaceSpan.setColor(i);
                                             }
                                         }
                                     } else {
@@ -248,21 +250,21 @@ public final class ThemeDescription {
                                     }
                                 } else if (background instanceof ImageView) {
                                     ImageView imageView = (ImageView) background;
-                                    Drawable drawable3 = imageView.getDrawable();
-                                    if (!(drawable3 instanceof CombinedDrawable)) {
+                                    Drawable drawable2 = imageView.getDrawable();
+                                    if (!(drawable2 instanceof CombinedDrawable)) {
                                         imageView.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                     } else if ((i3 & 32) != 0) {
-                                        ((CombinedDrawable) drawable3).background.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                        ((CombinedDrawable) drawable2).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                     } else {
-                                        ((CombinedDrawable) drawable3).icon.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                        ((CombinedDrawable) drawable2).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                     }
                                 } else if (background instanceof BackupImageView) {
                                     Drawable staticThumb = ((BackupImageView) background).getImageReceiver().getStaticThumb();
                                     if (staticThumb instanceof CombinedDrawable) {
                                         if ((i3 & 32) != 0) {
-                                            ((CombinedDrawable) staticThumb).background.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                            ((CombinedDrawable) staticThumb).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                         } else {
-                                            ((CombinedDrawable) staticThumb).icon.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                            ((CombinedDrawable) staticThumb).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                         }
                                     } else if (staticThumb != null) {
                                         staticThumb.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
@@ -270,23 +272,22 @@ public final class ThemeDescription {
                                 } else if (background instanceof Drawable) {
                                     if (background instanceof LetterDrawable) {
                                         if ((i3 & 32) != 0) {
-                                            ((LetterDrawable) background).getClass();
-                                            LetterDrawable.paint.setColor(i);
+                                            ((LetterDrawable) background).setBackgroundColor(i);
                                         } else {
-                                            ((LetterDrawable) background).textPaint.setColor(i);
+                                            ((LetterDrawable) background).setColor(i);
                                         }
                                     } else if (background instanceof CombinedDrawable) {
                                         if ((i3 & 32) != 0) {
-                                            ((CombinedDrawable) background).background.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                            ((CombinedDrawable) background).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                         } else {
-                                            ((CombinedDrawable) background).icon.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                                            ((CombinedDrawable) background).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                                         }
                                     } else if ((background instanceof StateListDrawable) || (background instanceof RippleDrawable)) {
-                                        Drawable drawable4 = (Drawable) background;
+                                        Drawable drawable3 = (Drawable) background;
                                         if ((i3 & 65536) == 0) {
                                             z2 = false;
                                         }
-                                        Theme.setSelectorDrawableColor(drawable4, i, z2);
+                                        Theme.setSelectorDrawableColor(drawable3, i, z2);
                                     } else if (background instanceof GradientDrawable) {
                                         ((GradientDrawable) background).setColor(i);
                                     } else {
@@ -298,6 +299,8 @@ public final class ThemeDescription {
                                     } else if ((i3 & 16384) != 0) {
                                         ((CheckBox) background).setCheckColor(i);
                                     }
+                                } else if (background instanceof GroupCreateCheckBox) {
+                                    ((GroupCreateCheckBox) background).updateColors();
                                 } else if (background instanceof Integer) {
                                     declaredField.set(view, Integer.valueOf(i));
                                 } else if (background instanceof RadioButton) {
@@ -340,7 +343,7 @@ public final class ThemeDescription {
                                                 CharSequence text2 = textView3.getText();
                                                 if ((text2 instanceof SpannedString) && (typefaceSpanArr2 = (TypefaceSpan[]) ((SpannedString) text2).getSpans(0, ((SpannedString) text2).length(), TypefaceSpan.class)) != null && typefaceSpanArr2.length > 0) {
                                                     for (TypefaceSpan typefaceSpan2 : typefaceSpanArr2) {
-                                                        typefaceSpan2.color = i;
+                                                        typefaceSpan2.setColor(i);
                                                     }
                                                 }
                                             }
@@ -355,7 +358,7 @@ public final class ThemeDescription {
                                                 CharSequence text3 = textView4.getText();
                                                 if ((text3 instanceof SpannedString) && (typefaceSpanArr = (TypefaceSpan[]) ((SpannedString) text3).getSpans(0, ((SpannedString) text3).length(), TypefaceSpan.class)) != null && typefaceSpanArr.length > 0) {
                                                     for (TypefaceSpan typefaceSpan3 : typefaceSpanArr) {
-                                                        typefaceSpan3.color = i;
+                                                        typefaceSpan3.setColor(i);
                                                     }
                                                 }
                                             }
@@ -378,12 +381,12 @@ public final class ThemeDescription {
     }
 
     public final void setColor(int i, boolean z, boolean z2) {
-        RecyclerListView.FastScroll fastScroll;
         Drawable[] compoundDrawables;
         int i2 = this.currentKey;
         if (z2) {
             Theme.setColor(i2, i, z);
         }
+        this.currentColor = i;
         int i3 = this.alphaOverride;
         if (i3 > 0) {
             i = Color.argb(i3, Color.red(i), Color.green(i), Color.blue(i));
@@ -417,26 +420,18 @@ public final class ThemeDescription {
                     } else if (drawable instanceof RLottieDrawable) {
                         String str = this.lottieLayerName;
                         if (str != null) {
-                            RLottieDrawable rLottieDrawable = (RLottieDrawable) drawable;
-                            OKLCH.m(i, rLottieDrawable.newColorUpdates, str, rLottieDrawable);
+                            ((RLottieDrawable) drawable).setLayerColor(str, i);
                         }
                     } else if (drawable instanceof CombinedDrawable) {
                         if ((i4 & 32) != 0) {
-                            ((CombinedDrawable) drawable).background.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                            ((CombinedDrawable) drawable).getBackground().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                         } else {
-                            ((CombinedDrawable) drawable).icon.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
+                            ((CombinedDrawable) drawable).getIcon().setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                         }
                     } else if (drawable instanceof AvatarDrawable) {
-                        AvatarDrawable avatarDrawable = (AvatarDrawable) drawable;
-                        avatarDrawable.hasGradient = false;
-                        avatarDrawable.hasAdvancedGradient = false;
-                        avatarDrawable.color2 = i;
-                        avatarDrawable.color = i;
-                        avatarDrawable.needApplyColorAccent = false;
+                        ((AvatarDrawable) drawable).setColor(i);
                     } else if (drawable instanceof AnimatedArrowDrawable) {
-                        AnimatedArrowDrawable animatedArrowDrawable = (AnimatedArrowDrawable) drawable;
-                        animatedArrowDrawable.paint.setColor(i);
-                        animatedArrowDrawable.invalidateSelf();
+                        ((AnimatedArrowDrawable) drawable).setColor(i);
                     } else {
                         drawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
                     }
@@ -450,8 +445,8 @@ public final class ThemeDescription {
                 Drawable background = view.getBackground();
                 if (background instanceof MessageBackgroundDrawable) {
                     MessageBackgroundDrawable messageBackgroundDrawable = (MessageBackgroundDrawable) background;
-                    messageBackgroundDrawable.paint.setColor(i);
-                    messageBackgroundDrawable.customPaint = null;
+                    messageBackgroundDrawable.setColor(i);
+                    messageBackgroundDrawable.setCustomPaint(null);
                 } else {
                     view.setBackgroundColor(i);
                 }
@@ -460,7 +455,7 @@ public final class ThemeDescription {
                 if ((i4 & 2048) == 0) {
                     Drawable background2 = view.getBackground();
                     if (background2 instanceof CombinedDrawable) {
-                        background2 = (i4 & 65536) != 0 ? ((CombinedDrawable) background2).background : ((CombinedDrawable) background2).icon;
+                        background2 = (i4 & 65536) != 0 ? ((CombinedDrawable) background2).getBackground() : ((CombinedDrawable) background2).getIcon();
                     }
                     if (background2 != null) {
                         if ((background2 instanceof StateListDrawable) || (background2 instanceof RippleDrawable)) {
@@ -593,8 +588,8 @@ public final class ThemeDescription {
             if ((i4 & 4096) != 0) {
                 recyclerListView.setListSelectorColor(Integer.valueOf(i));
             }
-            if ((33554432 & i4) != 0 && (fastScroll = recyclerListView.fastScroll) != null) {
-                fastScroll.updateColors();
+            if ((33554432 & i4) != 0) {
+                recyclerListView.updateFastScrollColors();
             }
             if ((32768 & i4) != 0) {
                 recyclerListView.setGlowColor(i);

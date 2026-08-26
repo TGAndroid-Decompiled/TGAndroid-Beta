@@ -22,7 +22,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import com.google.android.gms.internal.mlkit_vision_common.zzks;
+import com.google.android.gms.internal.mlkit_vision_common.zzkh;
+import j$.util.Objects;
 import java.util.ArrayList;
 import me.vkryl.android.animator.BoolAnimator;
 import org.telegram.messenger.AndroidUtilities;
@@ -42,17 +43,16 @@ import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda33;
+import org.telegram.ui.Cells.ChatLoadingCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.PollEditTextCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
-import org.telegram.ui.ChatActivity$26$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -65,30 +65,24 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
-import org.telegram.ui.Components.Reactions.HwEmojis;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
-import org.telegram.ui.ComposeDrawable$$ExternalSyntheticLambda0;
-import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda89;
-import org.telegram.ui.IntroActivity;
+import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda149;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda12;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda97;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.SelectAnimatedEmojiDialog;
-import org.telegram.ui.SelectAnimatedEmojiDialog$SearchBox$2$$ExternalSyntheticLambda0;
-import org.telegram.ui.StakedDiceSheet$$ExternalSyntheticLambda3;
 import org.telegram.ui.Stars.BalanceCloud;
+import org.telegram.ui.Stars.GiftOfferSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda140;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet;
 import org.telegram.ui.Stories.HighlightMessageSheet;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.bots.BotLocation$$ExternalSyntheticLambda14;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda0;
+import org.telegram.ui.bots.BotLocation$$ExternalSyntheticLambda13;
 
 public final class AuctionBidSheet extends BottomSheetWithRecyclerListView implements GiftAuctionController.OnAuctionUpdateListener {
     public static final int $r8$clinit = 0;
@@ -102,14 +96,14 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
     public final AnonymousClass2 buttonView;
     public Runnable closeParentSheet;
     public final long giftId;
-    public final IntroActivity.AnonymousClass1 giftsLeftCell;
+    public final ChatLoadingCell.AnonymousClass1 giftsLeftCell;
     public final UItem headerItem;
     public boolean isFirstCheck;
     public boolean isOpenAnimationEnd;
     public long lastAcquiredCount;
     public long lastRecipientDialogId;
-    public final IntroActivity.AnonymousClass1 minimumBidCell;
-    public final IntroActivity.AnonymousClass1 nextRoundCell;
+    public final ChatLoadingCell.AnonymousClass1 minimumBidCell;
+    public final ChatLoadingCell.AnonymousClass1 nextRoundCell;
     public final BoolAnimator outbidColor;
     public final Params params;
     public final ColoredImageSpan[] refS;
@@ -160,10 +154,62 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
     public final class AnonymousClass2 extends ButtonWithCounterView {
         @Override
         public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-            if (this.enabled) {
+            if (isEnabled()) {
                 return super.dispatchTouchEvent(motionEvent);
             }
             return false;
+        }
+    }
+
+    public final class AnonymousClass3 implements Bulletin.Delegate {
+        @Override
+        public final boolean allowLayoutChanges() {
+            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+        }
+
+        @Override
+        public final boolean bottomOffsetAnimated() {
+            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+        }
+
+        @Override
+        public final boolean clipWithGradient(int i) {
+            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+        }
+
+        @Override
+        public final int getBottomOffset(int i) {
+            return AndroidUtilities.dp(64.0f);
+        }
+
+        @Override
+        public final int getLeftPadding() {
+            return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+        }
+
+        @Override
+        public final int getRightPadding() {
+            return Bulletin.Delegate.CC.$default$getRightPadding(this);
+        }
+
+        @Override
+        public final int getTopOffset(int i) {
+            return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
+        }
+
+        @Override
+        public final void onBottomOffsetChange(float f) {
+            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+        }
+
+        @Override
+        public final void onHide(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+        }
+
+        @Override
+        public final void onShow(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
         }
     }
 
@@ -208,21 +254,6 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         }
 
         @Override
-        public void invalidate() {
-            switch (this.$r8$classId) {
-                case 3:
-                    if (!HwEmojis.hwEnabled) {
-                        super.invalidate();
-                        break;
-                    }
-                    break;
-                default:
-                    super.invalidate();
-                    break;
-            }
-        }
-
-        @Override
         public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
             switch (this.$r8$classId) {
                 case 1:
@@ -245,7 +276,7 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             switch (this.$r8$classId) {
                 case 1:
                     super.onDraw(canvas);
-                    ((PollEditTextCell) this.val$drawable).getClass();
+                    ((PollEditTextCell) this.val$drawable).onEditTextDraw(this, canvas);
                     break;
                 default:
                     super.onDraw(canvas);
@@ -260,15 +291,7 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
                     super.onFocusChanged(z, i, rect);
                     ((PollEditTextCell) this.val$drawable).onEditTextFocusChanged(z);
                     break;
-                case 2:
                 default:
-                    super.onFocusChanged(z, i, rect);
-                    break;
-                case 3:
-                    if (z) {
-                        ((SelectAnimatedEmojiDialog.SearchBox) ((SelectAnimatedEmojiDialog.AnonymousClass18) this.val$drawable)).this$0.onInputFocus();
-                        AndroidUtilities.runOnUIThread(new SelectAnimatedEmojiDialog$SearchBox$2$$ExternalSyntheticLambda0(this, 0), 200L);
-                    }
                     super.onFocusChanged(z, i, rect);
                     break;
             }
@@ -279,7 +302,7 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             switch (this.$r8$classId) {
                 case 2:
                     super.onSizeChanged(i, i2, i3, i4);
-                    postOnAnimation(new Tooltip$$ExternalSyntheticLambda0(this, 21));
+                    postOnAnimation(new GiftSheet$$ExternalSyntheticLambda9(this, 12));
                     break;
                 default:
                     super.onSizeChanged(i, i2, i3, i4);
@@ -294,7 +317,7 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
                 case 1:
                     if (i == 16908322 && (primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip()) != null && primaryClip.getItemCount() == 1 && AndroidUtilities.charSequenceIndexOf(primaryClip.getItemAt(0).getText(), "\n") > 0) {
                         CharSequence text = primaryClip.getItemAt(0).getText();
-                        ArrayList arrayList = new ArrayList();
+                        ArrayList<CharSequence> arrayList = new ArrayList<>();
                         StringBuilder sb = new StringBuilder();
                         for (int i2 = 0; i2 < text.length(); i2++) {
                             char cCharAt = text.charAt(i2);
@@ -329,15 +352,8 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
                         ((PollEditTextCell) this.val$drawable).onFieldTouchUp(this);
                     }
                     return super.onTouchEvent(motionEvent);
-                case 2:
                 default:
                     return super.onTouchEvent(motionEvent);
-                case 3:
-                    if (motionEvent.getAction() != 1 || !((SelectAnimatedEmojiDialog.SearchBox) ((SelectAnimatedEmojiDialog.AnonymousClass18) this.val$drawable)).this$0.prevWindowKeyboardVisible()) {
-                        return super.onTouchEvent(motionEvent);
-                    }
-                    AndroidUtilities.runOnUIThread(new SelectAnimatedEmojiDialog$SearchBox$2$$ExternalSyntheticLambda0(this, 1), 200L);
-                    return false;
             }
         }
 
@@ -384,20 +400,20 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             super(context);
             this.ref = new ColoredImageSpan[1];
             setOrientation(0);
-            AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+            AnimatedTextView animatedTextView = new AnimatedTextView(context);
             this.nameTextView = animatedTextView;
             int i = Theme.key_windowBackgroundWhiteBlackText;
             animatedTextView.setTextColor(Theme.getColor(i, resourcesProvider));
             animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
             animatedTextView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
             animatedTextView.setEllipsizeByGradient(true);
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, false, false);
+            AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
             this.bidTextView = animatedTextView2;
             animatedTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
             animatedTextView2.setTextSize(AndroidUtilities.dp(15.0f));
             BackupImageView backupImageView = new BackupImageView(context);
             this.backupImageView = backupImageView;
-            AnimatedTextView animatedTextView3 = new AnimatedTextView(context, false, false, false);
+            AnimatedTextView animatedTextView3 = new AnimatedTextView(context);
             this.placeTextView = animatedTextView3;
             animatedTextView3.setTextSize(AndroidUtilities.dp(15.0f));
             animatedTextView3.setPadding(AndroidUtilities.dp(20.0f), 0, 0, 0);
@@ -450,15 +466,15 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
                 } else {
                     animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
                 }
-                animatedTextView.setText(Integer.toString(i), z2, true);
+                animatedTextView.setText(Integer.toString(i), z2);
                 return;
             }
             if (i == 1) {
-                animatedTextView.setText(Emoji.replaceWithRestrictedEmoji("🥇", animatedTextView.getPaint().getFontMetricsInt(), (Runnable) null), z2, true);
+                animatedTextView.setText(Emoji.replaceWithRestrictedEmoji("🥇", animatedTextView.getPaint().getFontMetricsInt(), (Runnable) null), z2);
             } else if (i == 2) {
-                animatedTextView.setText(Emoji.replaceWithRestrictedEmoji("🥈", animatedTextView.getPaint().getFontMetricsInt(), (Runnable) null), z2, true);
+                animatedTextView.setText(Emoji.replaceWithRestrictedEmoji("🥈", animatedTextView.getPaint().getFontMetricsInt(), (Runnable) null), z2);
             } else if (i == 3) {
-                animatedTextView.setText(Emoji.replaceWithRestrictedEmoji("🥉", animatedTextView.getPaint().getFontMetricsInt(), (Runnable) null), z2, true);
+                animatedTextView.setText(Emoji.replaceWithRestrictedEmoji("🥉", animatedTextView.getPaint().getFontMetricsInt(), (Runnable) null), z2);
             }
         }
     }
@@ -476,7 +492,8 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
     }
 
     public AuctionBidSheet(Context context, Theme.ResourcesProvider resourcesProvider, Params params, GiftAuctionController.Auction auction) {
-        super(context, null, false, false, false, false, false, 2, resourcesProvider);
+        super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
+        int i = 100000;
         this.topBidderCells = new BidderCell[3];
         this.isFirstCheck = true;
         this.refS = new ColoredImageSpan[1];
@@ -493,13 +510,13 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         this.topPadding = 0.2f;
         GiftAuctionController.Auction auctionSubscribeToGiftAuction = GiftAuctionController.getInstance(this.currentAccount).subscribeToGiftAuction(j, this);
         this.timer = new CountdownTimer(new AuctionBidSheet$$ExternalSyntheticLambda0(this));
-        int i = 0;
+        int i2 = 0;
         this.ignoreTouchActionBar = false;
         this.headerMoveTop = AndroidUtilities.dp(12.0f);
         fixNavigationBar();
-        BottomSheetWithRecyclerListView.AnonymousClass4 anonymousClass4 = this.actionBar;
-        anonymousClass4.setActionBarMenuOnItemClick(new AuctionJoinSheet.AnonymousClass4(context, resourcesProvider, auctionSubscribeToGiftAuction.gift));
-        ActionBarMenuItem actionBarMenuItemAddItem = anonymousClass4.createMenu().addItem(0, R.drawable.ic_ab_other);
+        ActionBar actionBar = this.actionBar;
+        actionBar.setActionBarMenuOnItemClick(new AuctionJoinSheet.AnonymousClass4(context, resourcesProvider, auctionSubscribeToGiftAuction.gift));
+        ActionBarMenuItem actionBarMenuItemAddItem = actionBar.createMenu().addItem(0, R.drawable.ic_ab_other);
         actionBarMenuItemAddItem.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
         actionBarMenuItemAddItem.addSubItem(4, R.drawable.msg_info, LocaleController.getString(R.string.MoreInfo));
         actionBarMenuItemAddItem.addSubItem(3, R.drawable.menu_feature_links, LocaleController.getString(R.string.CopyLink));
@@ -517,7 +534,11 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         this.auction.getMinimumBid();
         this.auction.getCurrentMyBid();
         long currentTopBid = this.auction.getCurrentTopBid();
-        int i2 = currentTopBid > 100000 ? ((((int) currentTopBid) * 3) / 2000) * 1000 : currentTopBid > 30000 ? 100000 : 50000;
+        if (currentTopBid > 100000) {
+            i = ((((int) currentTopBid) * 3) / 2000) * 1000;
+        } else if (currentTopBid <= 30000) {
+            i = 50000;
+        }
         int[] iArr = {50, 100, 500, 1000, 2000, 5000, 7500, 10000, 25000, 50000, 100000, 500000, 1000000, 5000000, 10000000};
         ArrayList arrayList = new ArrayList();
         int i3 = 0;
@@ -526,13 +547,13 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             int i5 = iArr[i3];
             if (i5 >= 50) {
                 z = i5 == 50 ? false : z;
-                if (i5 <= i2) {
+                if (i5 <= i) {
                     arrayList.add(Integer.valueOf(i5));
-                    if (iArr[i3] == i2) {
+                    if (iArr[i3] == i) {
                         break;
                     }
                 } else {
-                    arrayList.add(Integer.valueOf(i2));
+                    arrayList.add(Integer.valueOf(i));
                     break;
                 }
             } else {
@@ -557,29 +578,29 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         linearLayout.addView(anonymousClass2, LayoutHelper.createLinear(-1, -2, 0, 0, -40, 0, -48));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
-        IntroActivity.AnonymousClass1 anonymousClass3 = new IntroActivity.AnonymousClass1(context, 20, resourcesProvider);
+        ChatLoadingCell.AnonymousClass1 anonymousClass3 = new ChatLoadingCell.AnonymousClass1(context, resourcesProvider, 6);
         this.minimumBidCell = anonymousClass3;
         int iDp = AndroidUtilities.dp(12.0f);
         int i7 = Theme.key_windowBackgroundGray;
         int themedColor = getThemedColor(i7);
         int iCompositeColors = ColorUtils.compositeColors(getThemedColor(Theme.key_listSelector), getThemedColor(i7));
         anonymousClass3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, themedColor, iCompositeColors, iCompositeColors));
-        anonymousClass3.setOnClickListener(new AuctionBidSheet$$ExternalSyntheticLambda2(this, i));
+        anonymousClass3.setOnClickListener(new AuctionBidSheet$$ExternalSyntheticLambda2(this, i2));
         ((TextView) anonymousClass3.this$0).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoMinimumBid));
-        IntroActivity.AnonymousClass1 anonymousClass5 = new IntroActivity.AnonymousClass1(context, 20, resourcesProvider);
-        this.nextRoundCell = anonymousClass5;
+        ChatLoadingCell.AnonymousClass1 anonymousClass4 = new ChatLoadingCell.AnonymousClass1(context, resourcesProvider, 6);
+        this.nextRoundCell = anonymousClass4;
+        anonymousClass4.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(12.0f), getThemedColor(i7)));
+        ((TextView) anonymousClass4.this$0).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoUntilNextRound));
+        ChatLoadingCell.AnonymousClass1 anonymousClass5 = new ChatLoadingCell.AnonymousClass1(context, resourcesProvider, 6);
+        this.giftsLeftCell = anonymousClass5;
         anonymousClass5.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(12.0f), getThemedColor(i7)));
-        ((TextView) anonymousClass5.this$0).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoUntilNextRound));
-        IntroActivity.AnonymousClass1 anonymousClass6 = new IntroActivity.AnonymousClass1(context, 20, resourcesProvider);
-        this.giftsLeftCell = anonymousClass6;
-        anonymousClass6.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(12.0f), getThemedColor(i7)));
-        ((TextView) anonymousClass6.this$0).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoLeft));
-        linearLayout2.addView(anonymousClass3, LayoutHelper.createLinear(1.0f, 0, -1));
-        linearLayout2.addView(new View(context), LayoutHelper.createLinear(0.0f, 10, -1));
-        linearLayout2.addView(anonymousClass5, LayoutHelper.createLinear(1.0f, 0, -1));
-        linearLayout2.addView(new View(context), LayoutHelper.createLinear(0.0f, 10, -1));
-        linearLayout2.addView(anonymousClass6, LayoutHelper.createLinear(1.0f, 0, -1));
-        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(16.0f, 0.0f, 16.0f, 15.0f, -1, 56));
+        ((TextView) anonymousClass5.this$0).setText(LocaleController.getString(R.string.Gift2AuctionBidInfoLeft));
+        linearLayout2.addView(anonymousClass3, LayoutHelper.createLinear(0, -1, 1.0f));
+        linearLayout2.addView(new View(context), LayoutHelper.createLinear(10, -1, 0.0f));
+        linearLayout2.addView(anonymousClass4, LayoutHelper.createLinear(0, -1, 1.0f));
+        linearLayout2.addView(new View(context), LayoutHelper.createLinear(10, -1, 0.0f));
+        linearLayout2.addView(anonymousClass5, LayoutHelper.createLinear(0, -1, 1.0f));
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, 56, 16.0f, 0.0f, 16.0f, 15.0f));
         if (auctionSubscribeToGiftAuction.auctionUserState.acquired_count > 0) {
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
             linksTextView.setGravity(17);
@@ -587,70 +608,68 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             int i8 = Theme.key_windowBackgroundWhiteLinkText;
             linksTextView.setTextColor(Theme.getColor(i8, resourcesProvider));
             linksTextView.setLinkTextColor(Theme.getColor(i8, resourcesProvider));
-            linksTextView.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(this, new boolean[1], resourcesProvider, 4));
+            linksTextView.setOnClickListener(new GiftOfferSheet$$ExternalSyntheticLambda2(this, new boolean[1], resourcesProvider, 6));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
-            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auctionSubscribeToGiftAuction.giftDocumentId, 1.2f, linksTextView.getPaint().getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auctionSubscribeToGiftAuction.giftDocumentId, linksTextView.getPaint().getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
             linksTextView.setText(TextUtils.concat(AndroidUtilities.replaceArrows(LocaleController.formatPluralSpannable("Gift2AuctionsItemsBought2", auctionSubscribeToGiftAuction.auctionUserState.acquired_count, spannableStringBuilder), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f))));
             ScaleStateListAnimator.apply(linksTextView, 0.02f, 1.5f);
-            linearLayout.addView(linksTextView, LayoutHelper.createLinear(16.0f, 4.0f, 16.0f, 4.0f, -1, -2));
+            linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 16.0f, 4.0f, 16.0f, 4.0f));
         }
         int i9 = Theme.key_windowBackgroundWhiteBlueHeader;
-        int i10 = 1;
-        int i11 = 0;
+        int i10 = 0;
         HeaderCell headerCell = new HeaderCell(context, i9, 21, 0, 0, false, true, resourcesProvider);
         this.selfBidderHeader = headerCell;
-        linearLayout.addView(headerCell, LayoutHelper.createLinear(0.0f, 5.0f, 0.0f, 0.0f, -1, -2));
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+        linearLayout.addView(headerCell, LayoutHelper.createLinear(-1, -2, 0.0f, 5.0f, 0.0f, 0.0f));
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
         this.selfBidderFutureGift = animatedTextView;
         animatedTextView.setTextSize(AndroidUtilities.dp(12.5f));
         animatedTextView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         animatedTextView.setSizeableBackground(Theme.createRadSelectorDrawable(0, 0, 9, 9));
         animatedTextView.setHideBackgroundIfEmpty(true);
-        headerCell.setOnWidthUpdateListener(new ComposeDrawable$$ExternalSyntheticLambda0(this, 26));
+        headerCell.setOnWidthUpdateListener(new GiftSheet$$ExternalSyntheticLambda9(this, 26));
         headerCell.addView(animatedTextView, LayoutHelper.createFrame(-1, 17.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
         BidderCell bidderCell = new BidderCell(context, resourcesProvider);
         this.selfBidderCell = bidderCell;
         bidderCell.placeTextView.setTextColor(getThemedColor(i9));
-        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-        avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setInfo(user);
         BackupImageView backupImageView = bidderCell.backupImageView;
-        backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-        backupImageView.onNewImageSet();
+        backupImageView.setForUserOrChat(user, avatarDrawable);
         backupImageView.setRoundRadius(AndroidUtilities.dp(16.0f));
         bidderCell.nameTextView.setText(UserObject.getUserName(user));
-        linearLayout.addView(bidderCell, LayoutHelper.createLinear(0.0f, 0.0f, 0.0f, -7.0f, -1, -2));
+        linearLayout.addView(bidderCell, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, -7.0f));
         HeaderCell headerCell2 = new HeaderCell(context, i9, 21, 15, 0, false, false, resourcesProvider);
         headerCell2.setText(LocaleController.getString(R.string.Gift2AuctionTop3Winners));
         linearLayout.addView(headerCell2, LayoutHelper.createLinear(-1, -2));
-        int i12 = 0;
+        int i11 = 0;
         while (true) {
             BidderCell[] bidderCellArr = this.topBidderCells;
-            if (i12 >= bidderCellArr.length) {
+            if (i11 >= bidderCellArr.length) {
                 break;
             }
-            bidderCellArr[i12] = new BidderCell(context, resourcesProvider);
-            int i13 = i12 + 1;
-            this.topBidderCells[i12].setPlace(i13, true, false);
-            this.topBidderCells[i12].setBackground(Theme.getSelectorDrawable(false));
-            BidderCell bidderCell2 = this.topBidderCells[i12];
-            bidderCell2.drawDivider = i12 < 2;
-            bidderCell2.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(15));
-            linearLayout.addView(this.topBidderCells[i12], LayoutHelper.createLinear(-1, -2));
-            i12 = i13;
+            bidderCellArr[i11] = new BidderCell(context, resourcesProvider);
+            int i12 = i11 + 1;
+            this.topBidderCells[i11].setPlace(i12, true, false);
+            this.topBidderCells[i11].setBackground(Theme.getSelectorDrawable(false));
+            BidderCell bidderCell2 = this.topBidderCells[i11];
+            bidderCell2.drawDivider = i11 < 2;
+            bidderCell2.setOnClickListener(new BotAdView$$ExternalSyntheticLambda0(8));
+            linearLayout.addView(this.topBidderCells[i11], LayoutHelper.createLinear(-1, -2));
+            i11 = i12;
         }
-        AnonymousClass2 anonymousClass7 = new AnonymousClass2(context, resourcesProvider, true);
-        this.buttonView = anonymousClass7;
-        anonymousClass7.setRoundRadius(24);
+        AnonymousClass2 anonymousClass6 = new AnonymousClass2(context, true, resourcesProvider);
+        this.buttonView = anonymousClass6;
+        anonymousClass6.setRound();
         FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
-        int i14 = layoutParamsCreateFrame.leftMargin;
-        int i15 = this.backgroundPaddingLeft;
-        layoutParamsCreateFrame.leftMargin = i14 + i15;
-        layoutParamsCreateFrame.rightMargin += i15;
-        this.containerView.addView(anonymousClass7, layoutParamsCreateFrame);
+        int i13 = layoutParamsCreateFrame.leftMargin;
+        int i14 = this.backgroundPaddingLeft;
+        layoutParamsCreateFrame.leftMargin = i13 + i14;
+        layoutParamsCreateFrame.rightMargin += i14;
+        this.containerView.addView(anonymousClass6, layoutParamsCreateFrame);
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i16 = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i16, 0, i16, AndroidUtilities.dp(64.0f));
-        this.recyclerListView.setOnItemClickListener(new AuctionBidSheet$$ExternalSyntheticLambda6(i11));
+        int i15 = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i15, 0, i15, AndroidUtilities.dp(64.0f));
+        this.recyclerListView.setOnItemClickListener(new AuctionBidSheet$$ExternalSyntheticLambda6(i10));
         long j2 = auctionSubscribeToGiftAuction.auctionUserState.bid_amount;
         if (j2 > 0) {
             this.slider.setValue((int) j2);
@@ -667,12 +686,12 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         balanceCloud.setEnabled(false);
         balanceCloud.setClickable(false);
         this.container.addView(balanceCloud, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
-        ScaleStateListAnimator.apply(balanceCloud, 0.1f, 1.5f);
-        balanceCloud.setOnClickListener(new StakedDiceSheet$$ExternalSyntheticLambda3(context, i10, resourcesProvider));
+        ScaleStateListAnimator.apply(balanceCloud);
+        balanceCloud.setOnClickListener(new AuctionBidSheet$$ExternalSyntheticLambda7(context, resourcesProvider, i10));
         FrameLayout frameLayout = new FrameLayout(context);
         this.bulletinContainer = frameLayout;
         this.container.addView(frameLayout, LayoutHelper.createFrame(-1, 100, 48));
-        updateColors$9();
+        updateColors$1();
         this.adapter.update(false);
     }
 
@@ -680,7 +699,7 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         auctionBidSheet.slider.setColor(HighlightMessageSheet.getTierOption(auctionBidSheet.currentAccount, i, 3), HighlightMessageSheet.getTierOption(auctionBidSheet.currentAccount, i, 4), true);
         auctionBidSheet.updateSelfBidderCell(auctionBidSheet.isOpenAnimationEnd);
         auctionBidSheet.updateSelfBidderHeader(auctionBidSheet.isOpenAnimationEnd);
-        auctionBidSheet.updateButtonText$1(auctionBidSheet.isOpenAnimationEnd);
+        auctionBidSheet.updateButtonText(auctionBidSheet.isOpenAnimationEnd);
         auctionBidSheet.checkSliderSubText();
     }
 
@@ -725,10 +744,10 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 24), this.resourcesProvider);
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 17), this.resourcesProvider);
         this.adapter = universalAdapter;
-        universalAdapter.applyBackground = false;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override
@@ -750,7 +769,7 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             return;
         }
         zArr[0] = true;
-        GiftAuctionController.getInstance(this.currentAccount).getOrRequestAcquiredGifts(this.giftId, new ArticleViewer$$ExternalSyntheticLambda33(this, zArr, resourcesProvider, 11));
+        GiftAuctionController.getInstance(this.currentAccount).getOrRequestAcquiredGifts(this.giftId, new StarGiftSheet$$ExternalSyntheticLambda140(this, zArr, resourcesProvider, 1));
     }
 
     public final void lambda$sendBid$10(long j, Boolean bool, String str) {
@@ -761,29 +780,27 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             boolean z = j > 0;
             Bulletin.TwoLineLayout twoLineLayout = new Bulletin.TwoLineLayout(getContext(), this.resourcesProvider);
             twoLineLayout.imageView.setImageResource(R.drawable.filled_gift_sell_24);
-            TextView textView = twoLineLayout.titleTextView;
-            textView.setText(LocaleController.getString(z ? R.string.Gift2AuctionsBidHasBeenIncreased : R.string.Gift2AuctionsBidHasBeenPlaced));
-            textView.setSingleLine(true);
-            textView.setTextSize(1, 15.0f);
-            textView.setMaxLines(1);
-            textView.setTypeface(AndroidUtilities.bold());
-            TextView textView2 = twoLineLayout.subtitleTextView;
-            textView2.setText(LocaleController.formatString(R.string.Gift2AuctionPlaceACustomBidHint, Integer.valueOf(this.auction.gift.gifts_per_round)));
-            textView2.setSingleLine(false);
-            textView2.setMaxLines(5);
+            twoLineLayout.titleTextView.setText(LocaleController.getString(z ? R.string.Gift2AuctionsBidHasBeenIncreased : R.string.Gift2AuctionsBidHasBeenPlaced));
+            twoLineLayout.titleTextView.setSingleLine(true);
+            twoLineLayout.titleTextView.setTextSize(1, 15.0f);
+            twoLineLayout.titleTextView.setMaxLines(1);
+            twoLineLayout.titleTextView.setTypeface(AndroidUtilities.bold());
+            twoLineLayout.subtitleTextView.setText(LocaleController.formatString(R.string.Gift2AuctionPlaceACustomBidHint, Integer.valueOf(this.auction.gift.gifts_per_round)));
+            twoLineLayout.subtitleTextView.setSingleLine(false);
+            twoLineLayout.subtitleTextView.setMaxLines(5);
             Drawable drawable = this.shadowDrawable;
             if (drawable != null && this.containerView != null && frameLayout != null) {
                 frameLayout.setTranslationY(Math.max(0.0f, ((this.containerView.getY() + drawable.getBounds().top) - frameLayout.getMeasuredHeight()) + AndroidUtilities.dp(10.0f)));
             }
-            Bulletin.make(frameLayout, twoLineLayout, 2750).show();
-            StarsController.getInstance(this.currentAccount, false).getBalance(false, true, null);
+            BulletinFactory.of(frameLayout, this.resourcesProvider).create(twoLineLayout, 2750).show();
+            StarsController.getInstance(this.currentAccount, false).getBalance(null, false, true);
         }
         if (str != null) {
             Drawable drawable2 = this.shadowDrawable;
             if (drawable2 != null && this.containerView != null && frameLayout != null) {
                 frameLayout.setTranslationY(Math.max(0.0f, ((this.containerView.getY() + drawable2.getBounds().top) - frameLayout.getMeasuredHeight()) + AndroidUtilities.dp(10.0f)));
             }
-            zzks.m(R.string.UnknownErrorCode, new Object[]{str}, new BulletinFactory(frameLayout, this.resourcesProvider), R.raw.error);
+            zzkh.m(R.string.UnknownErrorCode, new Object[]{str}, BulletinFactory.of(frameLayout, this.resourcesProvider), R.raw.error);
         }
     }
 
@@ -794,7 +811,7 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             sendBid(value);
         } else {
             AndroidUtilities.shakeView(this.buttonView);
-            new BulletinFactory(this.container, this.resourcesProvider).createSimpleBulletinWithIconSize(R.raw.info, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("Gift2AuctionMinimumBidIncreased", minimumBid, new Object[0]))).show();
+            BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.info, AndroidUtilities.replaceTags(LocaleController.formatPluralString("Gift2AuctionMinimumBidIncreased", minimumBid, new Object[0]))).show();
         }
     }
 
@@ -814,7 +831,7 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
                 bundle.putLong("chat_id", -j);
             }
             bundle.putBoolean("open_gifts", true);
-            safeLastFragment.presentFragment(new ProfileActivity(bundle, null));
+            safeLastFragment.presentFragment(new ProfileActivity(bundle));
         }
         Runnable runnable = this.closeParentSheet;
         if (runnable != null) {
@@ -842,7 +859,7 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         super.onOpenAnimationEnd();
         this.isOpenAnimationEnd = true;
         checkBalanceCloudVisibility();
-        Bulletin.addDelegate(this.container, new LaunchActivity.AnonymousClass7(9));
+        Bulletin.addDelegate(this.container, new AnonymousClass3());
     }
 
     @Override
@@ -861,17 +878,18 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             j2 -= j;
         }
         long j3 = j2;
-        if (StarsController.getInstance(this.currentAccount, false).balanceLoaded && StarsController.getInstance(this.currentAccount, false).getBalance(false, false, null).amount < j3) {
+        if (StarsController.getInstance(this.currentAccount, false).balanceLoaded && StarsController.getInstance(this.currentAccount, false).getBalance(null, false, false).amount < j3) {
             new StarsIntroActivity.StarsNeededSheet(getContext(), this.resourcesProvider, j3, 14, null, null, 0L).show();
             return;
         }
         this.bidIsPending = true;
         this.buttonView.setLoading(true);
-        GiftAuctionController.getInstance(this.currentAccount).sendBid(this.giftId, this.params, i, new LaunchActivity$$ExternalSyntheticLambda149(this, j, 2));
+        GiftAuctionController.getInstance(this.currentAccount).sendBid(this.giftId, this.params, i, new AuctionBidSheet$$ExternalSyntheticLambda18(this, j, 0));
     }
 
     public final void showCustomPlaceABid() {
         int i = 0;
+        int i2 = 1;
         Context context = getContext();
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
@@ -880,10 +898,8 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         }
         final View[] viewArr = new View[1];
         AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, this.resourcesProvider);
-        String string = LocaleController.getString(R.string.Gift2AuctionPlaceACustomBid);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = LocaleController.formatString(R.string.Gift2AuctionPlaceACustomBidHint, Integer.valueOf(this.auction.gift.gifts_per_round));
+        builder.setTitle(LocaleController.getString(R.string.Gift2AuctionPlaceACustomBid));
+        builder.setMessage(LocaleController.formatString(R.string.Gift2AuctionPlaceACustomBidHint, Integer.valueOf(this.auction.gift.gifts_per_round)));
         AnonymousClass4 anonymousClass4 = new AnonymousClass4(context, this.resourcesProvider, context.getResources().getDrawable(R.drawable.star_small_inner).mutate());
         anonymousClass4.setTextSize(1, 18.0f);
         anonymousClass4.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
@@ -912,26 +928,26 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             }
 
             @Override
-            public final void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            public final void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
             }
 
             @Override
-            public final void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            public final void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        linearLayout.addView(anonymousClass4, LayoutHelper.createLinear(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
+        linearLayout.addView(anonymousClass4, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
         builder.makeCustomMaxHeight();
         builder.setView(linearLayout);
-        alertDialog.customWidth = AndroidUtilities.dp(300.0f);
-        builder.setPositiveButton(LocaleController.getString(R.string.Gift2AuctionPlaceABid), new DialogsActivity$$ExternalSyntheticLambda89(5, this, anonymousClass4));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new PhotoViewer$$ExternalSyntheticLambda97(4));
-        AlertDialog[] alertDialogArr = {alertDialog};
+        builder.setWidth(AndroidUtilities.dp(300.0f));
+        builder.setPositiveButton(LocaleController.getString(R.string.Gift2AuctionPlaceABid), new RateCallLayout$$ExternalSyntheticLambda1(11, this, anonymousClass4));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new LivePlayer$$ExternalSyntheticLambda1(25));
+        AlertDialog[] alertDialogArr = {builder.create()};
         if (lastFragment != null) {
             AndroidUtilities.requestAdjustNothing(activityFindActivity, lastFragment.getClassGuid());
         }
-        alertDialogArr[0].setOnDismissListener(new BotLocation$$ExternalSyntheticLambda14(anonymousClass4, lastFragment, activityFindActivity, 3));
+        alertDialogArr[0].setOnDismissListener(new BotLocation$$ExternalSyntheticLambda13(anonymousClass4, lastFragment, activityFindActivity, i2));
         alertDialogArr[0].setOnShowListener(new AuctionBidSheet$$ExternalSyntheticLambda15(i, anonymousClass4));
         alertDialogArr[0].show();
         View button = alertDialogArr[0].getButton(-1);
@@ -941,13 +957,13 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         anonymousClass4.setSelection(anonymousClass4.getText().length());
     }
 
-    public final void updateButtonText$1(boolean z) {
+    public final void updateButtonText(boolean z) {
+        int i = 1;
         long value = this.slider.getValue();
         long currentMyBid = this.auction.getCurrentMyBid();
-        int i = 1;
         AnonymousClass2 anonymousClass2 = this.buttonView;
         if (value == currentMyBid) {
-            anonymousClass2.setText(LocaleController.getString(R.string.OK), z, true);
+            anonymousClass2.setText(LocaleController.getString(R.string.OK), z);
             anonymousClass2.setOnClickListener(new AuctionBidSheet$$ExternalSyntheticLambda2(this, i));
             return;
         }
@@ -955,14 +971,14 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         long j = tL_StarGiftAuctionUserState.bid_amount;
         ColoredImageSpan[] coloredImageSpanArr = this.spanRefStars;
         if (j >= value || tL_StarGiftAuctionUserState.returned) {
-            anonymousClass2.setText(StarsIntroActivity.replaceStars(false, LocaleController.formatString(R.string.Gift2AuctionPlaceBid, LocaleController.formatNumber(value, ',')), coloredImageSpanArr), z, true);
+            anonymousClass2.setText(StarsIntroActivity.replaceStars(false, LocaleController.formatString(R.string.Gift2AuctionPlaceBid, LocaleController.formatNumber(value, ',')), coloredImageSpanArr), z);
         } else {
-            anonymousClass2.setText(StarsIntroActivity.replaceStars(false, LocaleController.formatString(R.string.Gift2AuctionPlaceBidAdd, LocaleController.formatNumber(value - j, ',')), coloredImageSpanArr), z, true);
+            anonymousClass2.setText(StarsIntroActivity.replaceStars(false, LocaleController.formatString(R.string.Gift2AuctionPlaceBidAdd, LocaleController.formatNumber(value - j, ',')), coloredImageSpanArr), z);
         }
         anonymousClass2.setOnClickListener(new AuctionBidSheet$$ExternalSyntheticLambda2(this, 2));
     }
 
-    public final void updateColors$9() {
+    public final void updateColors$1() {
         int iBlendARGB = ColorUtils.blendARGB(this.winningColor.floatValue, ColorUtils.blendARGB(this.outbidColor.floatValue, getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader), getThemedColor(Theme.key_text_RedBold)), getThemedColor(Theme.key_color_green));
         this.selfBidderHeader.setTextColor(iBlendARGB);
         AnimatedTextView animatedTextView = this.selfBidderFutureGift;
@@ -973,17 +989,13 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
         }
     }
 
-    public final void updateCountdownCell(long j, boolean z) {
-        ((AnimatedTextView) this.nextRoundCell.val$themeFrameLayout).setText(j >= 3600 ? AndroidUtilities.formatFullDuration((int) j) : AndroidUtilities.formatDurationNoHours((int) j, true), z, true);
-    }
-
     public final void updateSelfBidderCell(boolean z) {
         long value = this.slider.getValue();
         int approximatedMyPlace = this.auction.getApproximatedMyPlace();
         int iApproximatePlaceFromStars = this.auction.approximatePlaceFromStars(value);
         long jMax = Math.max(value, this.auction.getCurrentMyBid());
         BidderCell bidderCell = this.selfBidderCell;
-        bidderCell.bidTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, BillingController$$ExternalSyntheticOutline0.m((int) jMax, ',', new StringBuilder("⭐️")), 0.78f, bidderCell.ref), false, true);
+        bidderCell.bidTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, BillingController$$ExternalSyntheticOutline0.m((int) jMax, ',', new StringBuilder("⭐️")), 0.78f, bidderCell.ref), false);
         if (approximatedMyPlace > 0) {
             iApproximatePlaceFromStars = Math.min(approximatedMyPlace, iApproximatePlaceFromStars);
         }
@@ -1032,24 +1044,25 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
     public final void updateTable(boolean z) {
         BaseFragment lastFragment;
         int i;
-        ((AnimatedTextView) this.minimumBidCell.val$themeFrameLayout).setText(StarsIntroActivity.replaceStarsWithPlain(false, "⭐️" + LocaleController.formatNumberWithMillion((int) this.auction.getMinimumBid(), ','), 0.78f, this.refS), z, true);
+        ((AnimatedTextView) this.minimumBidCell.rect).setText(StarsIntroActivity.replaceStarsWithPlain(false, "⭐️" + LocaleController.formatNumberWithMillion((int) this.auction.getMinimumBid(), ','), 0.78f, this.refS), z);
         if (this.auction.auctionStateActive != null) {
             int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
             boolean zIsUpcoming = this.auction.isUpcoming(currentTime);
             CountdownTimer countdownTimer = this.timer;
+            ChatLoadingCell.AnonymousClass1 anonymousClass1 = this.nextRoundCell;
             if (zIsUpcoming) {
                 long jMax = Math.max(0, this.auction.auctionStateActive.start_date - currentTime);
                 countdownTimer.start(jMax);
-                updateCountdownCell(jMax, z);
+                ((AnimatedTextView) anonymousClass1.rect).setText(jMax >= 3600 ? AndroidUtilities.formatFullDuration((int) jMax) : AndroidUtilities.formatDurationNoHours((int) jMax, true), z);
             } else {
                 long jMax2 = Math.max(0, this.auction.auctionStateActive.next_round_at - currentTime);
                 countdownTimer.start(jMax2);
-                updateCountdownCell(jMax2, z);
+                ((AnimatedTextView) anonymousClass1.rect).setText(jMax2 >= 3600 ? AndroidUtilities.formatFullDuration((int) jMax2) : AndroidUtilities.formatDurationNoHours((int) jMax2, true), z);
             }
             AnimatedEmojiSpan animatedEmojiSpan = this.animatedEmojiSpan;
-            IntroActivity.AnonymousClass1 anonymousClass1 = this.giftsLeftCell;
+            ChatLoadingCell.AnonymousClass1 anonymousClass2 = this.giftsLeftCell;
             if (animatedEmojiSpan == null && this.auction.gift.sticker != null) {
-                this.animatedEmojiSpan = new AnimatedEmojiSpan(this.auction.gift.sticker.id, 1.2f, ((AnimatedTextView) anonymousClass1.val$themeFrameLayout).getPaint().getFontMetricsInt());
+                this.animatedEmojiSpan = new AnimatedEmojiSpan(this.auction.gift.sticker.id, ((AnimatedTextView) anonymousClass2.rect).getPaint().getFontMetricsInt());
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (this.animatedEmojiSpan != null) {
@@ -1057,8 +1070,8 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
                 spannableStringBuilder.setSpan(this.animatedEmojiSpan, 0, 1, 33);
             }
             spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(this.auction.auctionStateActive.gifts_left, ','));
-            ((AnimatedTextView) anonymousClass1.val$themeFrameLayout).setText(spannableStringBuilder, z, true);
-            TextView textView = (TextView) this.nextRoundCell.this$0;
+            ((AnimatedTextView) anonymousClass2.rect).setText(spannableStringBuilder, z);
+            TextView textView = (TextView) anonymousClass1.this$0;
             if (this.auction.isUpcoming()) {
                 i = R.string.Gift2AuctionBidInfoUntilStart;
             } else {
@@ -1078,29 +1091,28 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
                     if (user != null) {
                         BidderCell bidderCell = bidderCellArr[i2];
                         bidderCell.getClass();
-                        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-                        avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+                        AvatarDrawable avatarDrawable = new AvatarDrawable();
+                        avatarDrawable.setInfo(user);
                         BackupImageView backupImageView = bidderCell.backupImageView;
-                        backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-                        backupImageView.onNewImageSet();
+                        backupImageView.setForUserOrChat(user, avatarDrawable);
                         backupImageView.setRoundRadius(AndroidUtilities.dp(16.0f));
                         bidderCell.nameTextView.setText(UserObject.getUserName(user));
                     }
                     BidderCell bidderCell2 = bidderCellArr[i2];
-                    bidderCell2.bidTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, BillingController$$ExternalSyntheticOutline0.m((int) this.auction.approximateBidAmountFromPlace(i3), ',', new StringBuilder("⭐️")), 0.78f, bidderCell2.ref), z, true);
-                    bidderCellArr[i2].setOnClickListener(new GiftSheet$$ExternalSyntheticLambda1(this, jLongValue, 4));
+                    bidderCell2.bidTextView.setText(StarsIntroActivity.replaceStarsWithPlain(false, BillingController$$ExternalSyntheticOutline0.m((int) this.auction.approximateBidAmountFromPlace(i3), ',', new StringBuilder("⭐️")), 0.78f, bidderCell2.ref), z);
+                    bidderCellArr[i2].setOnClickListener(new GiftSheet$$ExternalSyntheticLambda1(this, jLongValue, 2));
                     i2 = i3;
                 }
             }
         }
         GiftAuctionController.Auction auction = this.auction;
         long jApproximateBidAmountFromPlace = auction.approximateBidAmountFromPlace(auction.gift.gifts_per_round) + 1;
-        AnonymousClass1 anonymousClass2 = this.slider;
-        anonymousClass2.setStarsTop(jApproximateBidAmountFromPlace);
-        anonymousClass2.setTopText(LocaleController.formatPluralString("StarsReactionTopX", this.auction.gift.gifts_per_round, new Object[0]));
+        AnonymousClass1 anonymousClass3 = this.slider;
+        anonymousClass3.setStarsTop(jApproximateBidAmountFromPlace);
+        anonymousClass3.setTopText(LocaleController.formatPluralString("StarsReactionTopX", this.auction.gift.gifts_per_round, new Object[0]));
         updateSelfBidderCell(z);
         updateSelfBidderHeader(z);
-        updateButtonText$1(z);
+        updateButtonText(z);
         checkSliderSubText();
         long peerDialogId = DialogObject.getPeerDialogId(this.auction.auctionUserState.peer);
         long j = this.auction.auctionUserState.acquired_count;
@@ -1108,7 +1120,8 @@ public final class AuctionBidSheet extends BottomSheetWithRecyclerListView imple
             long j2 = this.lastRecipientDialogId;
             if (j2 != 0) {
                 ChatActivity chatActivityOf = ChatActivity.of(j2);
-                chatActivityOf.whenFullyVisible(new ChatActivity$26$$ExternalSyntheticLambda2(chatActivityOf, 11));
+                Objects.requireNonNull(chatActivityOf);
+                chatActivityOf.whenFullyVisible(new AuctionBidSheet$$ExternalSyntheticLambda10(chatActivityOf, 0));
                 lastFragment.presentFragment(chatActivityOf);
                 Runnable runnable = this.closeParentSheet;
                 if (runnable != null) {

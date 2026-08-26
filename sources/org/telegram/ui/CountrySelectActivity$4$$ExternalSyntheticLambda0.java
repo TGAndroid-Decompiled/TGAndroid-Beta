@@ -8,7 +8,7 @@ public final class CountrySelectActivity$4$$ExternalSyntheticLambda0 implements 
     public final int $r8$classId;
     public final View f$0;
 
-    public CountrySelectActivity$4$$ExternalSyntheticLambda0(int i, View view) {
+    public CountrySelectActivity$4$$ExternalSyntheticLambda0(View view, int i) {
         this.$r8$classId = i;
         this.f$0 = view;
     }
@@ -17,12 +17,10 @@ public final class CountrySelectActivity$4$$ExternalSyntheticLambda0 implements 
     public final void didReceivedNotification(int i, int i2, Object[] objArr) {
         switch (this.$r8$classId) {
             case 0:
-                if (i == NotificationCenter.emojiLoaded) {
-                    ((TextSettingsCell) this.f$0).getTextView().invalidate();
-                }
+                CountrySelectActivity.AnonymousClass4.lambda$$0((TextSettingsCell) this.f$0, i, i2, objArr);
                 break;
             default:
-                ((NewContactBottomSheet.AnonymousClass1) this.f$0).invalidate();
+                ((NewContactBottomSheet.AnonymousClass1) this.f$0).lambda$$0(i, i2, objArr);
                 break;
         }
     }

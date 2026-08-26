@@ -260,14 +260,14 @@ public class BirthdayController {
             this.state = BirthdayState.from(contactbirthdays);
             MessagesController.getInstance(this.currentAccount).putUsers(contactbirthdays.users, false);
             MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(contactbirthdays.users, null, true, true);
-            SharedPreferences.Editor editorM = AiTonesController$$ExternalSyntheticOutline0.m(this.currentAccount);
-            editorM.putLong("bday_check", this.lastCheckDate);
+            SharedPreferences.Editor editorEdit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
+            editorEdit.putLong("bday_check", this.lastCheckDate);
             TL_birthdays tL_birthdays = new TL_birthdays();
             tL_birthdays.contacts = contactbirthdays.contacts;
             SerializedData serializedData = new SerializedData(tL_birthdays.getObjectSize());
             tL_birthdays.serializeToStream(serializedData);
-            editorM.putString("bday_contacts", Utilities.bytesToHex(serializedData.toByteArray()));
-            editorM.apply();
+            editorEdit.putString("bday_contacts", Utilities.bytesToHex(serializedData.toByteArray()));
+            editorEdit.apply();
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
             this.loading = false;
         }
@@ -335,9 +335,9 @@ public class BirthdayController {
             return;
         }
         this.hiddenDays.add(this.state.todayKey);
-        SharedPreferences.Editor editorM = AiTonesController$$ExternalSyntheticOutline0.m(this.currentAccount);
-        editorM.putStringSet("bday_hidden", this.hiddenDays);
-        editorM.apply();
+        SharedPreferences.Editor editorEdit = MessagesController.getInstance(this.currentAccount).getMainSettings().edit();
+        editorEdit.putStringSet("bday_hidden", this.hiddenDays);
+        editorEdit.apply();
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
     }
 

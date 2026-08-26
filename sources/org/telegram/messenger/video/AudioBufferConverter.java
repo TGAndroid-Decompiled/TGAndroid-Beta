@@ -1,28 +1,28 @@
 package org.telegram.messenger.video;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.android.billingclient.api.zzcm;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.ShortBuffer;
 import org.telegram.messenger.video.remix.AudioRemixer;
 import org.telegram.messenger.video.resample.AudioResampler;
-import org.telegram.ui.PollItemMenu;
 
 public class AudioBufferConverter {
     private static final int BYTES_PER_SHORT = 2;
     private static final String TAG = "AudioBufferConverter";
-    private final AudioRemixer mRemixer = new PollItemMenu.AnonymousClass8(23);
-    private final AudioResampler mResampler = new PollItemMenu.AnonymousClass8(24);
+    private final AudioRemixer mRemixer = new zzcm();
+    private final AudioResampler mResampler = new zzcm();
 
     private void checkChannels(int i, int i2) {
         if (i == 6 && (i2 == 1 || i2 == 2)) {
             return;
         }
         if (i != 1 && i != 2) {
-            throw new UnsupportedOperationException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, "Input channel count (", ") not supported."));
+            throw new UnsupportedOperationException(Fragment$$ExternalSyntheticOutline0.m(i, "Input channel count (", ") not supported."));
         }
         if (i2 != 1 && i2 != 2) {
-            throw new UnsupportedOperationException(SurfaceContainer$$ExternalSyntheticOutline0.m(i2, "Output channel count (", ") not supported."));
+            throw new UnsupportedOperationException(Fragment$$ExternalSyntheticOutline0.m(i2, "Output channel count (", ") not supported."));
         }
     }
 

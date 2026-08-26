@@ -18,7 +18,7 @@ public final class PollAttachedMediaMusic extends PollAttachedMedia {
 
     public PollAttachedMediaMusic(MessageObject messageObject) {
         this.messageObject = messageObject;
-        RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
+        RadialProgress2 radialProgress2 = new RadialProgress2(null);
         this.radialProgress = radialProgress2;
         TLRPC.Document document = messageObject.getDocument();
         if (MessageObject.isDocumentHasThumb(document)) {
@@ -32,14 +32,7 @@ public final class PollAttachedMediaMusic extends PollAttachedMedia {
                 radialProgress2.setImageOverlay(artworkUrl);
             }
         }
-        int i = Theme.key_chat_inLoader;
-        int i2 = Theme.key_chat_inLoaderSelected;
-        int i3 = Theme.key_chat_inMediaIcon;
-        int i4 = Theme.key_chat_inMediaIconSelected;
-        radialProgress2.circleColorKey = i;
-        radialProgress2.circlePressedColorKey = i2;
-        radialProgress2.iconColorKey = i3;
-        radialProgress2.iconPressedColorKey = i4;
+        radialProgress2.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
     }
 
     @Override
@@ -49,14 +42,14 @@ public final class PollAttachedMediaMusic extends PollAttachedMedia {
         imageReceiver.onAttachedToWindow();
         RadialProgress2 radialProgress2 = this.radialProgress;
         radialProgress2.setParent(view);
-        radialProgress2.overlayImageView.onAttachedToWindow();
+        radialProgress2.onAttachedToWindow();
         radialProgress2.setIcon(0, false, false);
     }
 
     @Override
     public final void detach() {
         this.imageReceiver.onDetachedFromWindow();
-        this.radialProgress.overlayImageView.onDetachedFromWindow();
+        this.radialProgress.onDetachedFromWindow();
     }
 
     @Override

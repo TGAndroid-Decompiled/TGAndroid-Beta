@@ -31,6 +31,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -41,8 +42,8 @@ import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkh;
-import com.google.android.gms.internal.mlkit_vision_common.zzlj;
+import androidx.recyclerview.widget.SnapHelper;
+import com.google.android.gms.internal.mlkit_vision_common.zzkr;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -51,7 +52,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
-import org.telegram.messenger.AiTonesController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline1;
 import org.telegram.messenger.ChatObject;
@@ -71,62 +71,45 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline1;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.EmojiThemes$$ExternalSyntheticLambda3;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.CacheControlActivity;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.GroupCreateSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
-import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell;
-import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell$SpansContainer$2;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.ScrimOptions$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.ViewPagerFixed;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda13;
-import org.telegram.ui.PaymentFormActivity;
-import org.telegram.ui.PollItemMenu;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda22;
-import org.telegram.ui.QrActivity;
-import org.telegram.ui.SelectAnimatedEmojiDialog$SelectStatusDurationDialog$$ExternalSyntheticLambda10;
+import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
-import org.telegram.ui.Stories.PeerStoriesView$8$$ExternalSyntheticLambda54;
 import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.TodoItemMenu;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda9;
-import org.telegram.ui.TopicsFragment$$ExternalSyntheticLambda25;
-import org.telegram.ui.UsersSelectActivity;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda42;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
-import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
-import org.telegram.ui.WebviewActivity;
+import org.telegram.ui.Stories.StoryViewer;
+import org.telegram.ui.bots.BotWebViewSheet$$ExternalSyntheticLambda2;
 import org.telegram.ui.community.CommunitySheet;
+import org.telegram.ui.iv.RichEditor;
+import org.telegram.ui.iv.RichTableCell$$ExternalSyntheticLambda3;
 import org.telegram.ui.recyclerview.LinearSmoothScrollerCustom;
+import org.telegram.ui.web.AddressBarList;
 
 public final class StoryPrivacyBottomSheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
     public static final int $r8$clinit = 0;
@@ -153,7 +136,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
     public Utilities.Callback onDismiss;
     public DoneCallback onDone;
     public StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda6 onDone2;
-    public StoryRecorder$$ExternalSyntheticLambda19 onSelectedAlbums;
+    public StoryRecorder$$ExternalSyntheticLambda14 onSelectedAlbums;
     public Utilities.Callback onSelectedPeer;
     public final HashSet selectedAlbums;
     public final ArrayList selectedContacts;
@@ -165,9 +148,61 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
     public boolean startedFromSendAsMessage;
     public int storiesCount;
     public int storyPeriod;
-    public PollItemMenu.AnonymousClass3 viewPager;
+    public CommunitySheet.AnonymousClass9 viewPager;
     public ArrayList warnUsers;
-    public StoryRecorder$$ExternalSyntheticLambda7 whenCoverClicked;
+    public StoryRecorder$$ExternalSyntheticLambda5 whenCoverClicked;
+
+    public final class AnonymousClass2 implements Bulletin.Delegate {
+        @Override
+        public final boolean allowLayoutChanges() {
+            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+        }
+
+        @Override
+        public final boolean bottomOffsetAnimated() {
+            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+        }
+
+        @Override
+        public final boolean clipWithGradient(int i) {
+            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+        }
+
+        @Override
+        public final int getBottomOffset(int i) {
+            return Bulletin.Delegate.CC.$default$getBottomOffset(this, i);
+        }
+
+        @Override
+        public final int getLeftPadding() {
+            return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+        }
+
+        @Override
+        public final int getRightPadding() {
+            return Bulletin.Delegate.CC.$default$getRightPadding(this);
+        }
+
+        @Override
+        public final int getTopOffset(int i) {
+            return AndroidUtilities.statusBarHeight;
+        }
+
+        @Override
+        public final void onBottomOffsetChange(float f) {
+            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+        }
+
+        @Override
+        public final void onHide(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+        }
+
+        @Override
+        public final void onShow(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+        }
+    }
 
     public final class ChoosePeerSheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate {
         public final Adapter adapter;
@@ -197,27 +232,26 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
 
             @Override
             public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                return viewHolder.mItemViewType == 2;
+                return viewHolder.getItemViewType() == 2;
             }
 
             @Override
             public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 boolean z;
-                if (viewHolder.mItemViewType == 2) {
+                if (viewHolder.getItemViewType() == 2) {
                     UserCell userCell = (UserCell) viewHolder.itemView;
                     userCell.setIsSendAs(true, true);
                     ChoosePeerSheet choosePeerSheet = ChoosePeerSheet.this;
                     TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) choosePeerSheet.peers.get(i - 2);
                     boolean z2 = inputPeer instanceof TLRPC.TL_inputPeerSelf;
-                    int i2 = choosePeerSheet.currentAccount;
                     if (z2) {
-                        userCell.setUser(UserConfig.getInstance(i2).getCurrentUser());
+                        userCell.setUser(UserConfig.getInstance(choosePeerSheet.currentAccount).getCurrentUser());
                     } else if (inputPeer instanceof TLRPC.TL_inputPeerUser) {
-                        userCell.setUser(MessagesController.getInstance(i2).getUser(Long.valueOf(inputPeer.user_id)));
+                        userCell.setUser(MessagesController.getInstance(choosePeerSheet.currentAccount).getUser(Long.valueOf(inputPeer.user_id)));
                     } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
-                        userCell.setChat(0, MessagesController.getInstance(i2).getChat(Long.valueOf(inputPeer.chat_id)));
+                        userCell.setChat(0, MessagesController.getInstance(choosePeerSheet.currentAccount).getChat(Long.valueOf(inputPeer.chat_id)));
                     } else if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
-                        userCell.setChat(0, MessagesController.getInstance(i2).getChat(Long.valueOf(inputPeer.channel_id)));
+                        userCell.setChat(0, MessagesController.getInstance(choosePeerSheet.currentAccount).getChat(Long.valueOf(inputPeer.channel_id)));
                     }
                     userCell.checkBox.setVisibility(8);
                     userCell.radioButton.setVisibility(0);
@@ -225,7 +259,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                     if (inputPeer2 == null && i == 2) {
                         z = true;
                     } else {
-                        if ((inputPeer2 instanceof TLRPC.TL_inputPeerSelf ? UserConfig.getInstance(i2).getClientUserId() : DialogObject.getPeerDialogId(inputPeer2)) == (z2 ? UserConfig.getInstance(i2).getClientUserId() : DialogObject.getPeerDialogId(inputPeer))) {
+                        if ((inputPeer2 instanceof TLRPC.TL_inputPeerSelf ? UserConfig.getInstance(choosePeerSheet.currentAccount).getClientUserId() : DialogObject.getPeerDialogId(inputPeer2)) == (z2 ? UserConfig.getInstance(choosePeerSheet.currentAccount).getClientUserId() : DialogObject.getPeerDialogId(inputPeer))) {
                             z = true;
                         } else {
                             z = false;
@@ -252,7 +286,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         }
 
         public ChoosePeerSheet(Context context, final int i, boolean z, TLRPC.InputPeer inputPeer, final Utilities.Callback callback, final Theme.ResourcesProvider resourcesProvider) {
-            super(context, resourcesProvider, false, false);
+            super(context, false, false, resourcesProvider);
             fixNavigationBar();
             MessagesController.getInstance(i).getStoriesController().loadSendAs();
             this.currentAccount = i;
@@ -274,7 +308,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                     float fLerp = AndroidUtilities.lerp(fMax, 0.0f, animatedFloat.set(z2));
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(((BottomSheet) choosePeerSheet).backgroundPaddingLeft, fLerp, getWidth() - ((BottomSheet) choosePeerSheet).backgroundPaddingLeft, AndroidUtilities.dp(14.0f) + getHeight());
-                    float fDp = (1.0f - animatedFloat.value) * AndroidUtilities.dp(14.0f);
+                    float fDp = (1.0f - animatedFloat.get()) * AndroidUtilities.dp(14.0f);
                     canvas.drawRoundRect(rectF, fDp, fDp, paint);
                     choosePeerSheet.headerView.setTranslationY(Math.max(AndroidUtilities.dp(8.0f) + AndroidUtilities.statusBarHeight, AndroidUtilities.dp(14.0f) + fLerp));
                     canvas.save();
@@ -305,7 +339,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             this.containerView.addView(recyclerListView, LayoutHelper.createFrame(-1, -1, 119));
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
-                public final void onItemClick(int i3, View view) {
+                public final void onItemClick(View view, int i3) {
                     StoryPrivacyBottomSheet.ChoosePeerSheet choosePeerSheet = this.f$0;
                     if (i3 <= 1) {
                         choosePeerSheet.getClass();
@@ -325,7 +359,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                     AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
                     AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
                     AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 200L);
-                    MessagesController.getInstance(i).getStoriesController().canSendStoryFor(DialogObject.getPeerDialogId(inputPeer2), new LinkManager$$ExternalSyntheticLambda13(alertDialog, callback2, inputPeer2, 6), true, resourcesProvider2);
+                    MessagesController.getInstance(i).getStoriesController().canSendStoryFor(DialogObject.getPeerDialogId(inputPeer2), new ScannedLinkPreview$ResolvedLink$$ExternalSyntheticLambda0(alertDialog, callback2, inputPeer2, 1), true, resourcesProvider2);
                     choosePeerSheet.lambda$showGiftOfferSheet$15();
                 }
             });
@@ -342,7 +376,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             textView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
             textView.setTypeface(AndroidUtilities.bold());
             textView.setText(LocaleController.getString(z ? R.string.StoryPrivacyPublishLiveAs : R.string.StoryPrivacyPublishAs));
-            this.containerView.addView(textView, LayoutHelper.createFrame(-2.0f, -1));
+            this.containerView.addView(textView, LayoutHelper.createFrame(-1, -2.0f));
         }
 
         @Override
@@ -354,7 +388,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         public final void didReceivedNotification(int i, int i2, Object... objArr) {
             if (i == NotificationCenter.storiesSendAsUpdate) {
                 this.peers = MessagesController.getInstance(this.currentAccount).getStoriesController().sendAs;
-                this.adapter.mObservable.notifyChanged();
+                this.adapter.notifyDataSetChanged();
             }
         }
 
@@ -371,6 +405,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         }
 
         public final float top$1() {
+            int childAdapterPosition;
             float measuredHeight = this.containerView.getMeasuredHeight();
             int i = 0;
             while (true) {
@@ -379,12 +414,8 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                     return measuredHeight;
                 }
                 View childAt = recyclerListView.getChildAt(i);
-                if (childAt != null) {
-                    recyclerListView.getClass();
-                    int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt);
-                    if (childAdapterPosition != -1 && childAdapterPosition > 0) {
-                        measuredHeight = Math.min(AndroidUtilities.lerp(measuredHeight, childAt.getY(), childAt.getAlpha()), measuredHeight);
-                    }
+                if (childAt != null && (childAdapterPosition = recyclerListView.getChildAdapterPosition(childAt)) != -1 && childAdapterPosition > 0) {
+                    measuredHeight = Math.min(AndroidUtilities.lerp(measuredHeight, childAt.getY(), childAt.getAlpha()), measuredHeight);
                 }
                 i++;
             }
@@ -392,7 +423,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
     }
 
     public interface DoneCallback {
-        void done(StoryPrivacy storyPrivacy, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, ButtonWithCounterView$$ExternalSyntheticLambda3 buttonWithCounterView$$ExternalSyntheticLambda3, VoIPFragment$12$$ExternalSyntheticLambda0 voIPFragment$12$$ExternalSyntheticLambda0);
+        void done(StoryPrivacy storyPrivacy, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, ButtonWithCounterView$$ExternalSyntheticLambda1 buttonWithCounterView$$ExternalSyntheticLambda1, PreviewView$$ExternalSyntheticLambda12 previewView$$ExternalSyntheticLambda12);
     }
 
     public final class HeaderCell extends FrameLayout {
@@ -409,7 +440,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             this.resourcesProvider = resourcesProvider;
             TextView textView = new TextView(context);
             this.textView = textView;
-            zzkh.m(20.0f, textView);
+            AccountFrozenAlert$$ExternalSyntheticOutline1.m(20.0f, 1, textView);
             textView.setGravity(LocaleController.isRTL ? 5 : 3);
             textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
             boolean z = LocaleController.isRTL;
@@ -425,7 +456,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             backDrawable.invalidateSelf();
             backDrawable.animationTime = 220.0f;
             addView(imageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-            imageView.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(this, 28));
+            imageView.setOnClickListener(new PaintView$$ExternalSyntheticLambda63(this, 6));
         }
 
         @Override
@@ -454,15 +485,17 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
     }
 
     public final class HeaderCell2 extends LinearLayout {
+        public final Theme.ResourcesProvider resourcesProvider;
         public final TextView subtitleTextView;
         public final TextView titleTextView;
 
         public HeaderCell2(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
             super(context);
             setOrientation(1);
+            this.resourcesProvider = resourcesProvider;
             TextView textView = new TextView(context);
             this.titleTextView = textView;
-            zzlj.m(Theme.key_dialogTextBlack, resourcesProvider, textView, 20.0f);
+            zzkr.m(Theme.key_dialogTextBlack, resourcesProvider, textView, 20.0f);
             addView(textView, LayoutHelper.createLinear(-1, -2, 55, 27, 16, 27, z ? 4 : 13));
             TextView textView2 = new TextView(context);
             this.subtitleTextView = textView2;
@@ -637,7 +670,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             public final Theme.ResourcesProvider resourcesProvider;
             public final AnonymousClass1 searchField;
 
-            public Adapter(Context context, Theme.ResourcesProvider resourcesProvider, AnonymousClass1 anonymousClass1, PeerStoriesView$8$$ExternalSyntheticLambda54 peerStoriesView$8$$ExternalSyntheticLambda54) {
+            public Adapter(Context context, Theme.ResourcesProvider resourcesProvider, AnonymousClass1 anonymousClass1, StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda8 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda8) {
                 this.context = context;
                 this.resourcesProvider = resourcesProvider;
                 this.searchField = anonymousClass1;
@@ -664,16 +697,16 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
 
             @Override
             public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                int i = viewHolder.mItemViewType;
-                return (i == 3 && StoryPrivacyBottomSheet.this.canChangePeer) || i == 7 || i == 9 || i == 10;
+                return (viewHolder.getItemViewType() == 3 && StoryPrivacyBottomSheet.this.canChangePeer) || viewHolder.getItemViewType() == 7 || viewHolder.getItemViewType() == 9 || viewHolder.getItemViewType() == 10;
             }
 
             @Override
             public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 int iMax;
                 int i2;
+                int i3 = 7;
+                int i4 = 9;
                 boolean z = true;
-                z = true;
                 Page page = Page.this;
                 ArrayList arrayList = page.items;
                 if (arrayList == null || i < 0 || i >= arrayList.size()) {
@@ -681,20 +714,19 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 }
                 ArrayList arrayList2 = page.items;
                 ItemInner itemInner = (ItemInner) arrayList2.get(i);
-                int i3 = viewHolder.mItemViewType;
-                int i4 = i + 1;
-                ItemInner itemInner2 = i4 < arrayList2.size() ? (ItemInner) arrayList2.get(i4) : null;
-                boolean z2 = itemInner2 != null && ((i2 = itemInner2.viewType) == i3 || (i2 == 9 && itemInner2.id == 1));
+                int itemViewType = viewHolder.getItemViewType();
+                int i5 = i + 1;
+                ItemInner itemInner2 = i5 < arrayList2.size() ? (ItemInner) arrayList2.get(i5) : null;
+                boolean z2 = itemInner2 != null && ((i2 = itemInner2.viewType) == itemViewType || (i2 == 9 && itemInner2.id == 1));
                 StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
-                View view = viewHolder.itemView;
-                if (i3 == 3) {
-                    UserCell userCell = (UserCell) view;
+                if (itemViewType == 3) {
+                    UserCell userCell = (UserCell) viewHolder.itemView;
                     boolean z3 = itemInner.sendAs;
                     userCell.setIsSendAs(z3, !z3);
-                    int i5 = itemInner.type;
+                    int i6 = itemInner.type;
                     float f = 1.0f;
-                    if (i5 > 0) {
-                        userCell.setType(i5, itemInner.user, itemInner.typeCount);
+                    if (i6 > 0) {
+                        userCell.setType(i6, itemInner.user, itemInner.typeCount);
                         userCell.setCheckboxAlpha(1.0f, false);
                     } else {
                         TLRPC.User user = itemInner.user;
@@ -720,58 +752,58 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                     userCell.drawArrow = storyPrivacyBottomSheet.canChangePeer;
                     return;
                 }
-                if (i3 == 2) {
+                if (itemViewType == 2) {
                     return;
                 }
-                if (i3 == 0) {
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
+                if (itemViewType == 0) {
+                    viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
                     return;
                 }
-                if (i3 == -1) {
+                if (itemViewType == -1) {
                     if (itemInner.subtractHeight > 0) {
                         RecyclerListView recyclerListView = this.listView;
                         iMax = Math.max(((recyclerListView == null || recyclerListView.getMeasuredHeight() <= 0) ? AndroidUtilities.displaySize.y : this.listView.getMeasuredHeight() + page.keyboardHeight) - itemInner.subtractHeight, AndroidUtilities.dp(120.0f));
-                        view.setTag(33);
+                        viewHolder.itemView.setTag(33);
                     } else {
                         iMax = itemInner.padHeight;
                         if (iMax >= 0) {
-                            view.setTag(null);
+                            viewHolder.itemView.setTag(null);
                         } else {
                             iMax = (int) (AndroidUtilities.displaySize.y * 0.3f);
-                            view.setTag(33);
+                            viewHolder.itemView.setTag(33);
                         }
                     }
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, iMax));
+                    viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, iMax));
                     return;
                 }
-                if (i3 == 1) {
-                    view.setLayoutParams(new RecyclerView.LayoutParams(-1, Math.min(AndroidUtilities.dp(150.0f), this.searchField.resultContainerHeight)));
+                if (itemViewType == 1) {
+                    viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, Math.min(AndroidUtilities.dp(150.0f), this.searchField.resultContainerHeight)));
                     return;
                 }
-                if (i3 == 4) {
-                    HeaderCell2 headerCell2 = (HeaderCell2) view;
+                if (itemViewType == 4) {
+                    HeaderCell2 headerCell2 = (HeaderCell2) viewHolder.itemView;
                     CharSequence charSequence = itemInner.text;
                     ?? r0 = itemInner.text2;
                     headerCell2.titleTextView.setText(charSequence);
                     headerCell2.subtitleTextView.setText((CharSequence) r0);
                     return;
                 }
-                if (i3 == 11) {
-                    HeaderCell2 headerCell3 = (HeaderCell2) view;
+                if (itemViewType == 11) {
+                    HeaderCell2 headerCell3 = (HeaderCell2) viewHolder.itemView;
                     headerCell3.titleTextView.setText(itemInner.text);
                     headerCell3.subtitleTextView.setText((CharSequence) null);
                     return;
                 }
-                if (i3 == 5) {
+                if (itemViewType == 5) {
                     try {
-                        ((StickerEmptyView) view).stickerView.getImageReceiver().startAnimation();
+                        ((StickerEmptyView) viewHolder.itemView).stickerView.getImageReceiver().startAnimation();
                         return;
                     } catch (Exception unused) {
                         return;
                     }
                 }
-                if (i3 == 6) {
-                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) view;
+                if (itemViewType == 6) {
+                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                     if (itemInner.text == null) {
                         textInfoPrivacyCell.setFixedSize(12);
                         textInfoPrivacyCell.setText(null);
@@ -782,46 +814,47 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                         return;
                     }
                 }
-                if (i3 == 7) {
-                    int i6 = itemInner.resId;
-                    if (i6 == 0) {
-                        ((TextCell) view).setTextAndCheck(itemInner.text, storyPrivacyBottomSheet.allowScreenshots, z2);
+                if (itemViewType == 7) {
+                    int i7 = itemInner.resId;
+                    if (i7 == 0) {
+                        ((TextCell) viewHolder.itemView).setTextAndCheck(itemInner.text, storyPrivacyBottomSheet.allowScreenshots, z2);
                         return;
-                    } else if (i6 == 1) {
-                        ((TextCell) view).setTextAndCheck(itemInner.text, storyPrivacyBottomSheet.keepOnMyPage, z2);
+                    } else if (i7 == 1) {
+                        ((TextCell) viewHolder.itemView).setTextAndCheck(itemInner.text, storyPrivacyBottomSheet.keepOnMyPage, z2);
                         return;
                     } else {
-                        if (i6 == 2) {
-                            ((TextCell) view).setTextAndCheck(itemInner.text, storyPrivacyBottomSheet.allowComments, z2);
+                        if (i7 == 2) {
+                            ((TextCell) viewHolder.itemView).setTextAndCheck(itemInner.text, storyPrivacyBottomSheet.allowComments, z2);
                             return;
                         }
                         return;
                     }
                 }
-                if (i3 == 9) {
+                if (itemViewType == 9) {
                     BitmapDrawable bitmapDrawable = itemInner.drawable;
                     if (bitmapDrawable != null) {
-                        ((TextCell) view).setTextAndValueDrawable(itemInner.text, bitmapDrawable, z2);
+                        ((TextCell) viewHolder.itemView).setTextAndValueDrawable(itemInner.text, bitmapDrawable, z2);
                         return;
                     } else {
-                        ((TextCell) view).setTextAndValue(itemInner.text, itemInner.text2, false, z2);
+                        ((TextCell) viewHolder.itemView).setTextAndValue(itemInner.text, itemInner.text2, z2);
                         return;
                     }
                 }
-                if (i3 == 8) {
-                    ((org.telegram.ui.Cells.HeaderCell) view).setText(itemInner.text);
+                if (itemViewType == 8) {
+                    ((org.telegram.ui.Cells.HeaderCell) viewHolder.itemView).setText(itemInner.text);
                     return;
                 }
-                if (i3 == 10) {
-                    int i7 = (int) MessagesController.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).starsPaidMessageAmountMax;
-                    int[] iArrCut = SlideIntChooseView.cut(i7, new int[]{0, 1, 10, 50, 100, 200, 250, 400, 500, 1000, 2500, 5000, 7500, 9000, 10000});
-                    int iClamp = Utilities.clamp(storyPrivacyBottomSheet.commentsPrice, i7, 0);
-                    TopicsFragment$$ExternalSyntheticLambda25 topicsFragment$$ExternalSyntheticLambda25 = new TopicsFragment$$ExternalSyntheticLambda25(true ? 1 : 0);
+                if (itemViewType == 10) {
+                    int i8 = (int) MessagesController.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).starsPaidMessageAmountMax;
+                    int[] iArrCut = SlideIntChooseView.cut(i8, new int[]{0, 1, 10, 50, 100, 200, 250, 400, 500, 1000, 2500, 5000, 7500, 9000, 10000});
+                    SlideIntChooseView slideIntChooseView = (SlideIntChooseView) viewHolder.itemView;
+                    int iClamp = Utilities.clamp(storyPrivacyBottomSheet.commentsPrice, i8, 0);
+                    BotWebViewSheet$$ExternalSyntheticLambda2 botWebViewSheet$$ExternalSyntheticLambda2 = new BotWebViewSheet$$ExternalSyntheticLambda2(i3);
                     SlideIntChooseView.Options options = new SlideIntChooseView.Options();
                     options.steps = iArrCut;
                     options.betweenSteps = 20;
-                    options.toString = topicsFragment$$ExternalSyntheticLambda25;
-                    ((SlideIntChooseView) view).set(iClamp, options, new VoIPFragment$$ExternalSyntheticLambda7(this, 19));
+                    options.toString = botWebViewSheet$$ExternalSyntheticLambda2;
+                    slideIntChooseView.set(iClamp, options, new HintView2$$ExternalSyntheticLambda0(this, i4));
                 }
             }
 
@@ -855,7 +888,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                             headerCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
                             slideIntChooseView = headerCell;
                         } else if (i == 5) {
-                            StickerEmptyView stickerEmptyView = new StickerEmptyView(1, resourcesProvider, context, null);
+                            StickerEmptyView stickerEmptyView = new StickerEmptyView(context, null, 1, resourcesProvider);
                             stickerEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
                             stickerEmptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
                             stickerEmptyView.linearLayout.setTranslationY(AndroidUtilities.dp(24.0f));
@@ -870,7 +903,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                             } else if (i == 9) {
                                 textCell = new TextCell(23, this.context, this.resourcesProvider, true, false);
                             } else {
-                                slideIntChooseView = i == 10 ? new SlideIntChooseView(context, resourcesProvider) : new PaymentFormActivity.AnonymousClass2(context, 27);
+                                slideIntChooseView = i == 10 ? new SlideIntChooseView(context, resourcesProvider) : new AddressBarList.AnonymousClass2(context, 9);
                             }
                             slideIntChooseView = textCell;
                         }
@@ -902,7 +935,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 int i = Theme.key_windowBackgroundGray;
                 Page page = Page.this;
                 paint.setColor(Theme.getColor(i, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider));
-                paint.setAlpha((int) (this.alpha.set(page.listView.canScrollVertically(1) ? 1.0f : 0.0f, false) * 255.0f));
+                paint.setAlpha((int) (this.alpha.set(page.listView.canScrollVertically(1) ? 1.0f : 0.0f) * 255.0f));
                 canvas.drawRect(0.0f, 0.0f, getWidth(), 1.0f, paint);
             }
 
@@ -922,7 +955,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.translationY2, z ? getMeasuredHeight() : 0.0f);
                 this.hideAnimator = valueAnimatorOfFloat;
                 valueAnimatorOfFloat.addUpdateListener(new StoryPrivacyBottomSheet$Page$ButtonContainer$$ExternalSyntheticLambda0(this, 0));
-                this.hideAnimator.addListener(new TodoItemMenu.AnonymousClass15(12, this, z));
+                this.hideAnimator.addListener(new StoryViewer.AnonymousClass7(this, z, 17));
                 this.hideAnimator.setDuration(320L);
                 this.hideAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.hideAnimator.start();
@@ -980,16 +1013,16 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             this.listView = recyclerListView;
             recyclerListView.setClipToPadding(false);
             recyclerListView.setTranslateSelector(true);
-            Adapter adapter = new Adapter(context, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider, anonymousClass1, new PeerStoriesView$8$$ExternalSyntheticLambda54(StoryPrivacyBottomSheet.this, 2));
+            Adapter adapter = new Adapter(context, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider, anonymousClass1, new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda8(StoryPrivacyBottomSheet.this, 0));
             this.adapter = adapter;
             recyclerListView.setAdapter(adapter);
             adapter.listView = recyclerListView;
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(1, false);
             this.layoutManager = linearLayoutManager;
             recyclerListView.setLayoutManager(linearLayoutManager);
-            recyclerListView.setOnScrollListener(new CacheControlActivity.AnonymousClass5(this, 2));
-            recyclerListView.setOnItemClickListener(new SelectAnimatedEmojiDialog$SelectStatusDurationDialog$$ExternalSyntheticLambda10(24, this, context));
-            frameLayout.addView(recyclerListView, LayoutHelper.createFrame(-1.0f, -1));
+            recyclerListView.setOnScrollListener(new SnapHelper.AnonymousClass1(this));
+            recyclerListView.setOnItemClickListener(new RateCallLayout$$ExternalSyntheticLambda1(22, this, context));
+            frameLayout.addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
             DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
                 @Override
                 public final boolean canReuseUpdatedViewHolder(RecyclerView.ViewHolder viewHolder) {
@@ -997,14 +1030,14 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 }
 
                 @Override
-                public final void onAddAnimationUpdate() {
+                public final void onAddAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     Page page = Page.this;
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     page.contentView.invalidate();
                 }
 
                 @Override
-                public final void onChangeAnimationUpdate() {
+                public final void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     Page page = Page.this;
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     page.contentView.invalidate();
@@ -1019,21 +1052,17 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 }
 
                 @Override
-                public final void onRemoveAnimationUpdate() {
+                public final void onRemoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     Page page = Page.this;
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     page.contentView.invalidate();
                 }
             };
             defaultItemAnimator.setDurations(350L);
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.delayAnimations = false;
-            defaultItemAnimator.mSupportsChangeAnimations = false;
-            recyclerListView.setItemAnimator(defaultItemAnimator);
+            defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            defaultItemAnimator.setDelayAnimations(false);
+            defaultItemAnimator.setSupportsChangeAnimations(false);
+            recyclerListView.lambda$onCellEnter$52(defaultItemAnimator);
             frameLayout.addView(anonymousClass1, LayoutHelper.createFrame(-1, -2, 55));
             frameLayout.addView(graySectionCell, LayoutHelper.createFrame(-1, 32, 55));
             addView(headerCell, LayoutHelper.createFrame(-1, -2, 55));
@@ -1043,15 +1072,15 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             buttonContainer.setOrientation(1);
             buttonContainer.setPadding(((BottomSheet) StoryPrivacyBottomSheet.this).backgroundPaddingLeft + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), ((BottomSheet) StoryPrivacyBottomSheet.this).backgroundPaddingLeft + AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
             buttonContainer.setBackgroundColor(Theme.getColor(i, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider));
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider, true);
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider);
             this.button = buttonWithCounterView;
             buttonWithCounterView.setOnClickListener(new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3(this, 1));
-            buttonWithCounterView.setRoundRadius(24);
+            buttonWithCounterView.setRound();
             buttonContainer.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
-            ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider, false);
+            ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, false, ((BottomSheet) StoryPrivacyBottomSheet.this).resourcesProvider);
             this.button2 = buttonWithCounterView2;
             buttonWithCounterView2.setOnClickListener(new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3(this, 2));
-            buttonWithCounterView2.setRoundRadius(24);
+            buttonWithCounterView2.setRound();
             buttonContainer.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48, 87, 0, 8, 0, 0));
             View view = new View(context);
             this.underKeyboardView = view;
@@ -1149,7 +1178,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
 
         public final float getSearchFieldTop() {
             int i = 0;
-            float f = -BotFullscreenButtons$$ExternalSyntheticOutline1.m(Math.min(AndroidUtilities.dp(150.0f), this.searchField.resultContainerHeight), 150.0f, 0);
+            float f = -BotFullscreenButtons$$ExternalSyntheticOutline1.m(150.0f, Math.min(AndroidUtilities.dp(150.0f), this.searchField.resultContainerHeight), 0);
             while (true) {
                 RecyclerListView recyclerListView = this.listView;
                 if (i >= recyclerListView.getChildCount()) {
@@ -1176,7 +1205,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 return;
             }
             GroupCreateSpan groupCreateSpan = (GroupCreateSpan) view;
-            if (!groupCreateSpan.deleting) {
+            if (!groupCreateSpan.isDeleting()) {
                 GroupCreateSpan groupCreateSpan2 = anonymousClass1.currentDeletingSpan;
                 if (groupCreateSpan2 != null) {
                     groupCreateSpan2.cancelDeleteAnimation();
@@ -1188,7 +1217,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             }
             anonymousClass1.currentDeletingSpan = null;
             SearchUsersCell.SpansContainer spansContainer = anonymousClass1.spansContainer;
-            SearchUsersCell searchUsersCell = (SearchUsersCell) spansContainer.this$0;
+            SearchUsersCell searchUsersCell = SearchUsersCell.this;
             searchUsersCell.ignoreScrollEvent = true;
             searchUsersCell.allSpans.remove(groupCreateSpan);
             groupCreateSpan.setOnClickListener(null);
@@ -1196,7 +1225,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             spansContainer.animationStarted = false;
             AnimatorSet animatorSet = new AnimatorSet();
             spansContainer.currentAnimation = animatorSet;
-            animatorSet.addListener(new QrActivity.AnonymousClass4(20, spansContainer, groupCreateSpan));
+            animatorSet.addListener(new RichEditor.AnonymousClass1(20, spansContainer, groupCreateSpan));
             ArrayList arrayList = spansContainer.removingSpans;
             arrayList.clear();
             arrayList.add(groupCreateSpan);
@@ -1259,8 +1288,8 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 float searchFieldTop = getSearchFieldTop();
                 if (((BottomSheet) storyPrivacyBottomSheet).keyboardVisible && searchFieldTop + Math.min(AndroidUtilities.dp(150.0f), this.searchField.resultContainerHeight) > recyclerListView.getPaddingTop()) {
                     LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.7f);
-                    linearSmoothScrollerCustom.mTargetPosition = 1;
-                    linearSmoothScrollerCustom.offset = -AndroidUtilities.dp(56.0f);
+                    linearSmoothScrollerCustom.setTargetPosition(1);
+                    linearSmoothScrollerCustom.setOffset(-AndroidUtilities.dp(56.0f));
                     this.layoutManager.startSmoothScroll(linearSmoothScrollerCustom);
                 }
                 int i4 = this.pageType;
@@ -1278,15 +1307,15 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                     ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
                     buttonContainer.animator = valueAnimatorOfFloat;
                     valueAnimatorOfFloat.addUpdateListener(new StoryPrivacyBottomSheet$Page$ButtonContainer$$ExternalSyntheticLambda0(buttonContainer, 1));
-                    buttonContainer.animator.addListener(new WebviewActivity.AnonymousClass3.AnonymousClass1(buttonContainer, 6));
+                    buttonContainer.animator.addListener(new HintView2.AnonymousClass2(buttonContainer, 10));
                     buttonContainer.animator.setDuration(250L);
                     ValueAnimator valueAnimator2 = buttonContainer.animator;
-                    CubicBezierInterpolator cubicBezierInterpolator = AdjustPanLayoutHelper.keyboardInterpolator;
-                    valueAnimator2.setInterpolator(cubicBezierInterpolator);
+                    Interpolator interpolator = AdjustPanLayoutHelper.keyboardInterpolator;
+                    valueAnimator2.setInterpolator(interpolator);
                     buttonContainer.animator.start();
                     view.setTranslationY(((BottomSheet) storyPrivacyBottomSheet).keyboardVisible ? this.keyboardHeight : -this.keyboardHeight);
                     this.keyboardMoving = true;
-                    view.animate().translationY(0.0f).setDuration(250L).setInterpolator(cubicBezierInterpolator).withEndAction(new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1(this, i3)).start();
+                    view.animate().translationY(0.0f).setDuration(250L).setInterpolator(interpolator).withEndAction(new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1(this, i3)).start();
                 }
                 this.wasKeyboardVisible = ((BottomSheet) storyPrivacyBottomSheet).keyboardVisible;
             }
@@ -1329,17 +1358,10 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 return;
             }
             if (arrayList.isEmpty()) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider);
-                builder.alertDialog.message = "All group members are not in your contact list.";
-                builder.setNegativeButton("Cancel", null);
-                builder.show();
+                new AlertDialog.Builder(getContext(), 0, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).setMessage("All group members are not in your contact list.").setNegativeButton("Cancel", null).show();
                 return;
             }
-            AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext(), 0, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider);
-            builder2.alertDialog.message = arrayList2.size() + " members are not in your contact list";
-            builder2.setPositiveButton("Add " + arrayList.size() + " contacts", new ProfileActivity$$ExternalSyntheticLambda22(this, j, arrayList, 10));
-            builder2.setNegativeButton("Cancel", null);
-            builder2.show();
+            new AlertDialog.Builder(getContext(), 0, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).setMessage(arrayList2.size() + " members are not in your contact list").setPositiveButton("Add " + arrayList.size() + " contacts", new EmojiThemes$$ExternalSyntheticLambda3(this, j, arrayList)).setNegativeButton("Cancel", null).show();
         }
 
         public final void updateButton(boolean z) {
@@ -1353,13 +1375,13 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 buttonWithCounterView2.setEnabled(true);
                 buttonWithCounterView2.setCount(0, z);
                 if (storyPrivacyBottomSheet.liveSettings || storyPrivacyBottomSheet.isEdit) {
-                    buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z, true);
+                    buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z);
                 } else {
                     int i3 = storyPrivacyBottomSheet.storiesCount;
                     if (i3 == 1) {
-                        buttonWithCounterView2.setText(LocaleController.getString(storyPrivacyBottomSheet.isLive ? R.string.StoryLivePrivacyButtonPost : R.string.StoryPrivacyButtonPost), z, true);
+                        buttonWithCounterView2.setText(LocaleController.getString(storyPrivacyBottomSheet.isLive ? R.string.StoryLivePrivacyButtonPost : R.string.StoryPrivacyButtonPost), z);
                     } else {
-                        buttonWithCounterView2.setText(LocaleController.formatPluralStringComma("StoryPrivacyButtonPostMultiple", i3), z, true);
+                        buttonWithCounterView2.setText(LocaleController.formatPluralStringComma("StoryPrivacyButtonPostMultiple", i3), z);
                     }
                 }
                 buttonWithCounterView.setVisibility(8);
@@ -1369,18 +1391,19 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             if (i == 1) {
                 buttonWithCounterView2.setShowZero(false);
                 buttonWithCounterView2.setEnabled(true);
-                buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSaveCloseFriends), z, true);
+                buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSaveCloseFriends), z);
                 buttonWithCounterView2.setCount(arrayList.size(), z);
                 buttonWithCounterView.setVisibility(8);
                 return;
             }
             ButtonContainer buttonContainer = this.buttonContainer;
             if (i == 3) {
+                HashMap map = this.selectedUsersByGroup;
                 int i4 = StoryPrivacyBottomSheet.$r8$clinit;
                 storyPrivacyBottomSheet.getClass();
-                int size = StoryPrivacyBottomSheet.mergeUsers(arrayList, this.selectedUsersByGroup).size();
+                int size = StoryPrivacyBottomSheet.mergeUsers(arrayList, map).size();
                 storyPrivacyBottomSheet.selectedContactsCount = size;
-                buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z, true);
+                buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z);
                 buttonWithCounterView2.setShowZero(false);
                 buttonContainer.hide(size <= 0, z);
                 buttonWithCounterView2.setCount(size, z);
@@ -1392,10 +1415,10 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 buttonWithCounterView2.setShowZero(false);
                 buttonWithCounterView2.setEnabled(true);
                 if (arrayList.isEmpty()) {
-                    buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z, true);
+                    buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z);
                     buttonWithCounterView2.setCount(0, z);
                 } else {
-                    buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonExcludeContacts), z, true);
+                    buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonExcludeContacts), z);
                     buttonWithCounterView2.setCount(arrayList.size(), z);
                 }
                 buttonWithCounterView.setVisibility(8);
@@ -1412,7 +1435,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 if (i == 4) {
                     int size2 = StoryPrivacyBottomSheet.mergeUsers(storyPrivacyBottomSheet.excludedEveryone, storyPrivacyBottomSheet.excludedEveryoneByGroup).size();
                     storyPrivacyBottomSheet.excludedEveryoneCount = size2;
-                    buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z, true);
+                    buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSave), z);
                     buttonWithCounterView2.setShowZero(false);
                     buttonContainer.hide(false, z);
                     buttonWithCounterView2.setCount(size2, z);
@@ -1424,7 +1447,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             }
             buttonWithCounterView2.setShowZero(false);
             buttonWithCounterView2.setEnabled(true);
-            buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSaveCloseFriends), z, true);
+            buttonWithCounterView2.setText(LocaleController.getString(R.string.StoryPrivacyButtonSaveCloseFriends), z);
             StoriesController storiesController = MessagesController.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).getStoriesController();
             if (!storiesController.blocklistFull) {
                 while (true) {
@@ -1520,7 +1543,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                     return;
                 }
                 View childAt = recyclerListView.getChildAt(i6);
-                if ((childAt instanceof UserCell) && (childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt)) >= 0 && childAdapterPosition < arrayList.size() && ((UserCell) childAt) != null) {
+                if ((childAt instanceof UserCell) && (childAdapterPosition = recyclerListView.getChildAdapterPosition(childAt)) >= 0 && childAdapterPosition < arrayList.size() && ((UserCell) childAt) != null) {
                     ItemInner itemInner2 = (ItemInner) arrayList.get(childAdapterPosition);
                     UserCell userCell = (UserCell) childAt;
                     userCell.setChecked(itemInner2.checked || itemInner2.halfChecked, z);
@@ -1617,9 +1640,9 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             StoriesController.StoryAlbum storyAlbumFindById;
             String pluralString3;
             int i21;
-            ArrayList arrayList4 = this.oldItems;
+            ArrayList<? extends AdapterWithDiffUtils.Item> arrayList4 = this.oldItems;
             arrayList4.clear();
-            ArrayList arrayList5 = this.items;
+            ArrayList<? extends AdapterWithDiffUtils.Item> arrayList5 = this.items;
             arrayList4.addAll(arrayList5);
             arrayList5.clear();
             int i22 = this.pageType;
@@ -1966,7 +1989,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                         } else {
                             storyPrivacyBottomSheet = storyPrivacyBottomSheet3;
                         }
-                        if (this.layoutManager.mReverseLayout) {
+                        if (this.layoutManager.getReverseLayout()) {
                             Collections.reverse(arrayList5);
                         }
                         adapter = this.adapter;
@@ -2312,7 +2335,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 } else {
                     storyPrivacyBottomSheet = storyPrivacyBottomSheet3;
                 }
-                if (this.layoutManager.mReverseLayout) {
+                if (this.layoutManager.getReverseLayout()) {
                     Collections.reverse(arrayList5);
                 }
                 adapter = this.adapter;
@@ -3225,7 +3248,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             } else {
                 storyPrivacyBottomSheet = storyPrivacyBottomSheet3;
             }
-            if (this.layoutManager.mReverseLayout) {
+            if (this.layoutManager.getReverseLayout()) {
                 Collections.reverse(arrayList5);
             }
             adapter = this.adapter;
@@ -3245,9 +3268,11 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             if (graySectionCell == null) {
                 return;
             }
+            ArrayList arrayList = this.selectedUsers;
+            HashMap map = this.selectedUsersByGroup;
             int i2 = StoryPrivacyBottomSheet.$r8$clinit;
             StoryPrivacyBottomSheet.this.getClass();
-            if (StoryPrivacyBottomSheet.mergeUsers(this.selectedUsers, this.selectedUsersByGroup).size() > 0) {
+            if (StoryPrivacyBottomSheet.mergeUsers(arrayList, map).size() > 0) {
                 graySectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3(this, i));
                 return;
             }
@@ -3256,7 +3281,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 return;
             }
             GraySectionCell.AnonymousClass1 anonymousClass1 = graySectionCell.rightTextView;
-            anonymousClass1.setText(null, false, true);
+            anonymousClass1.setText(null, false);
             anonymousClass1.setOnClickListener(null);
             anonymousClass1.setVisibility(0);
         }
@@ -3322,7 +3347,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 return;
             }
             SearchUsersCell.SpansContainer spansContainer = anonymousClass1.spansContainer;
-            SearchUsersCell searchUsersCell = (SearchUsersCell) spansContainer.this$0;
+            SearchUsersCell searchUsersCell = SearchUsersCell.this;
             searchUsersCell.ignoreScrollEvent = true;
             ArrayList arrayList5 = searchUsersCell.allSpans;
             arrayList5.removeAll(arrayList3);
@@ -3408,8 +3433,8 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 this.searchTranslationAnimatingTo = searchFieldTop;
                 ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(translationY, searchFieldTop);
                 this.searchFieldAnimator = valueAnimatorOfFloat;
-                valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 15));
-                this.searchFieldAnimator.addListener(new WebviewActivity.AnonymousClass3.AnonymousClass1(this, 5));
+                valueAnimatorOfFloat.addUpdateListener(new HintView2$$ExternalSyntheticLambda1(this, 10));
+                this.searchFieldAnimator.addListener(new HintView2.AnonymousClass2(this, 9));
                 this.searchFieldAnimator.setInterpolator(new LinearInterpolator());
                 this.searchFieldAnimator.setDuration(180L);
                 this.searchFieldAnimator.start();
@@ -3444,6 +3469,481 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         }
     }
 
+    public abstract class SearchUsersCell extends ScrollView {
+        public final ArrayList allSpans;
+        public final LinearGradient bottomGradient;
+        public final AnimatedFloat bottomGradientAlpha;
+        public final Matrix bottomGradientMatrix;
+        public final Paint bottomGradientPaint;
+        public float containerHeight;
+        public GroupCreateSpan currentDeletingSpan;
+        public final EmojiBottomSheet.SearchField.AnonymousClass2 editText;
+        public int fieldY;
+        public final int hintTextWidth;
+        public boolean ignoreScrollEvent;
+        public boolean ignoreTextChange;
+        public Utilities.Callback onSearchTextChange;
+        public final Theme.ResourcesProvider resourcesProvider;
+        public int resultContainerHeight;
+        public boolean scroll;
+        public final SpansContainer spansContainer;
+        public final LinearGradient topGradient;
+        public final AnimatedFloat topGradientAlpha;
+        public final Matrix topGradientMatrix;
+        public final Paint topGradientPaint;
+        public final StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 updateHeight;
+
+        public final class SpansContainer extends ViewGroup {
+            public final ArrayList animAddingSpans;
+            public final ArrayList animRemovingSpans;
+            public boolean animationStarted;
+            public final ArrayList animators;
+            public AnimatorSet currentAnimation;
+            public final ArrayList removingSpans;
+
+            public final class AnonymousClass2 extends AnimatorListenerAdapter {
+                public final int $r8$classId;
+                public final SpansContainer this$1;
+                public final ArrayList val$toDelete;
+
+                public AnonymousClass2(SpansContainer spansContainer, ArrayList arrayList, int i) {
+                    this.$r8$classId = i;
+                    this.this$1 = spansContainer;
+                    this.val$toDelete = arrayList;
+                }
+
+                @Override
+                public final void onAnimationEnd(Animator animator) {
+                    switch (this.$r8$classId) {
+                        case 0:
+                            int i = 0;
+                            while (true) {
+                                ArrayList arrayList = this.val$toDelete;
+                                int size = arrayList.size();
+                                SpansContainer spansContainer = this.this$1;
+                                if (i >= size) {
+                                    spansContainer.getClass();
+                                    spansContainer.removingSpans.clear();
+                                    spansContainer.currentAnimation = null;
+                                    spansContainer.animationStarted = false;
+                                    SearchUsersCell searchUsersCell = SearchUsersCell.this;
+                                    searchUsersCell.editText.setAllowDrawCursor(true);
+                                    StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 = searchUsersCell.updateHeight;
+                                    if (storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 != null) {
+                                        storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1.run();
+                                    }
+                                    if (searchUsersCell.scroll) {
+                                        searchUsersCell.fullScroll(130);
+                                        searchUsersCell.scroll = false;
+                                    }
+                                } else {
+                                    spansContainer.removeView((View) arrayList.get(i));
+                                    i++;
+                                }
+                                break;
+                            }
+                            break;
+                        default:
+                            int i2 = 0;
+                            while (true) {
+                                ArrayList arrayList2 = this.val$toDelete;
+                                int size2 = arrayList2.size();
+                                SpansContainer spansContainer2 = this.this$1;
+                                if (i2 >= size2) {
+                                    spansContainer2.removingSpans.clear();
+                                    spansContainer2.currentAnimation = null;
+                                    spansContainer2.animationStarted = false;
+                                    SearchUsersCell searchUsersCell2 = SearchUsersCell.this;
+                                    searchUsersCell2.editText.setAllowDrawCursor(true);
+                                    StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda2 = searchUsersCell2.updateHeight;
+                                    if (storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda2 != null) {
+                                        storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda2.run();
+                                    }
+                                    if (searchUsersCell2.scroll) {
+                                        searchUsersCell2.fullScroll(130);
+                                        searchUsersCell2.scroll = false;
+                                    }
+                                } else {
+                                    spansContainer2.removeView((View) arrayList2.get(i2));
+                                    i2++;
+                                }
+                                break;
+                            }
+                            break;
+                    }
+                }
+            }
+
+            public SpansContainer(Context context) {
+                super(context);
+                this.animAddingSpans = new ArrayList();
+                this.animRemovingSpans = new ArrayList();
+                this.animators = new ArrayList();
+                this.removingSpans = new ArrayList();
+            }
+
+            @Override
+            public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                int childCount = getChildCount();
+                for (int i5 = 0; i5 < childCount; i5++) {
+                    View childAt = getChildAt(i5);
+                    childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+                }
+            }
+
+            @Override
+            public final void onMeasure(int i, int i2) {
+                ArrayList arrayList;
+                ArrayList arrayList2;
+                Property property;
+                Property property2;
+                int iM$2;
+                float f;
+                int i3;
+                int childCount = getChildCount();
+                int size = View.MeasureSpec.getSize(i);
+                int iDp = size - AndroidUtilities.dp(14.0f);
+                int iDp2 = AndroidUtilities.dp(10.0f);
+                int iDp3 = AndroidUtilities.dp(10.0f);
+                int i4 = 0;
+                int iM = 0;
+                int iM2 = 0;
+                while (true) {
+                    arrayList = this.removingSpans;
+                    arrayList2 = this.animators;
+                    property = View.TRANSLATION_Y;
+                    property2 = View.TRANSLATION_X;
+                    if (i4 >= childCount) {
+                        break;
+                    }
+                    View childAt = getChildAt(i4);
+                    if (childAt instanceof GroupCreateSpan) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
+                        boolean zContains = arrayList.contains(childAt);
+                        if (!zContains && childAt.getMeasuredWidth() + iM > iDp) {
+                            iDp2 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(4.0f, childAt.getMeasuredHeight(), iDp2);
+                            iM = 0;
+                        }
+                        if (childAt.getMeasuredWidth() + iM2 > iDp) {
+                            iDp3 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(4.0f, childAt.getMeasuredHeight(), iDp3);
+                            iM2 = 0;
+                        }
+                        int iDp4 = AndroidUtilities.dp(7.0f) + iM;
+                        if (!this.animationStarted) {
+                            if (zContains) {
+                                childAt.setTranslationX(AndroidUtilities.dp(7.0f) + iM2);
+                                childAt.setTranslationY(iDp3);
+                            } else if (arrayList.isEmpty()) {
+                                childAt.setTranslationX(iDp4);
+                                childAt.setTranslationY(iDp2);
+                            } else {
+                                float f2 = iDp4;
+                                if (childAt.getTranslationX() != f2) {
+                                    i3 = 1;
+                                    arrayList2.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property2, f2));
+                                } else {
+                                    i3 = 1;
+                                }
+                                float f3 = iDp2;
+                                if (childAt.getTranslationY() != f3) {
+                                    float[] fArr = new float[i3];
+                                    fArr[0] = f3;
+                                    arrayList2.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property, fArr));
+                                }
+                            }
+                        }
+                        if (zContains) {
+                            f = 4.0f;
+                        } else {
+                            f = 4.0f;
+                            iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(4.0f, childAt.getMeasuredWidth(), iM);
+                        }
+                        iM2 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(f, childAt.getMeasuredWidth(), iM2);
+                    }
+                    i4++;
+                    childCount = childCount;
+                }
+                if (AndroidUtilities.isTablet()) {
+                    iM$2 = AndroidUtilities.dp(394.0f) / 3;
+                } else {
+                    Point point = AndroidUtilities.displaySize;
+                    iM$2 = OKLCH.m$2(136.0f, Math.min(point.x, point.y), 3);
+                }
+                if (iDp - iM < iM$2) {
+                    iDp2 += AndroidUtilities.dp(36.0f);
+                    iM = 0;
+                }
+                if (iDp - iM2 < iM$2) {
+                    iDp3 += AndroidUtilities.dp(36.0f);
+                }
+                SearchUsersCell searchUsersCell = SearchUsersCell.this;
+                searchUsersCell.editText.measure(View.MeasureSpec.makeMeasureSpec(iDp - iM, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
+                EmojiBottomSheet.SearchField.AnonymousClass2 anonymousClass2 = searchUsersCell.editText;
+                anonymousClass2.setHintVisible(anonymousClass2.getMeasuredWidth() > searchUsersCell.hintTextWidth, true);
+                if (!this.animationStarted) {
+                    int iDp5 = AndroidUtilities.dp(38.0f) + iDp3;
+                    int iDp6 = AndroidUtilities.dp(16.0f) + iM;
+                    searchUsersCell.fieldY = iDp2;
+                    AnimatorSet animatorSet = this.currentAnimation;
+                    StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 = searchUsersCell.updateHeight;
+                    if (animatorSet != null) {
+                        int iDp7 = AndroidUtilities.dp(38.0f) + iDp2;
+                        searchUsersCell.resultContainerHeight = iDp7;
+                        float f4 = searchUsersCell.containerHeight;
+                        float f5 = iDp7;
+                        if (f4 != f5) {
+                            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f4, f5);
+                            valueAnimatorOfFloat.addUpdateListener(new HintView2$$ExternalSyntheticLambda1(searchUsersCell, 11));
+                            arrayList2.add(valueAnimatorOfFloat);
+                        }
+                        float f6 = iDp6;
+                        if (anonymousClass2.getTranslationX() != f6) {
+                            arrayList2.add(ObjectAnimator.ofFloat(anonymousClass2, (Property<EmojiBottomSheet.SearchField.AnonymousClass2, Float>) property2, f6));
+                        }
+                        float translationY = anonymousClass2.getTranslationY();
+                        float f7 = searchUsersCell.fieldY;
+                        if (translationY != f7) {
+                            arrayList2.add(ObjectAnimator.ofFloat(anonymousClass2, (Property<EmojiBottomSheet.SearchField.AnonymousClass2, Float>) property, f7));
+                        }
+                        anonymousClass2.setAllowDrawCursor(false);
+                        this.currentAnimation.playTogether(arrayList2);
+                        this.currentAnimation.setDuration(180L);
+                        this.currentAnimation.setInterpolator(new LinearInterpolator());
+                        this.currentAnimation.start();
+                        this.animationStarted = true;
+                        if (storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 != null) {
+                            storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1.run();
+                        }
+                    } else {
+                        searchUsersCell.resultContainerHeight = iDp5;
+                        searchUsersCell.containerHeight = iDp5;
+                        anonymousClass2.setTranslationX(iDp6);
+                        anonymousClass2.setTranslationY(searchUsersCell.fieldY);
+                        if (storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 != null) {
+                            storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1.run();
+                        }
+                        if (searchUsersCell.scroll) {
+                            post(new PreviewView$$ExternalSyntheticLambda12(this, 18));
+                            searchUsersCell.scroll = false;
+                        }
+                    }
+                } else if (this.currentAnimation != null) {
+                    if (!searchUsersCell.ignoreScrollEvent && arrayList.isEmpty()) {
+                        anonymousClass2.bringPointIntoView(anonymousClass2.getSelectionStart());
+                    }
+                    if (searchUsersCell.scroll) {
+                        searchUsersCell.fullScroll(130);
+                        searchUsersCell.scroll = false;
+                    }
+                }
+                setMeasuredDimension(size, (int) searchUsersCell.containerHeight);
+            }
+
+            public final void removeAllSpans() {
+                SearchUsersCell searchUsersCell = SearchUsersCell.this;
+                int i = 1;
+                searchUsersCell.ignoreScrollEvent = true;
+                ArrayList arrayList = searchUsersCell.allSpans;
+                ArrayList arrayList2 = new ArrayList(arrayList);
+                ArrayList arrayList3 = this.removingSpans;
+                arrayList3.clear();
+                arrayList3.addAll(arrayList);
+                arrayList.clear();
+                for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                    ((GroupCreateSpan) arrayList2.get(i2)).setOnClickListener(null);
+                }
+                setupEndValues();
+                this.animationStarted = false;
+                AnimatorSet animatorSet = new AnimatorSet();
+                this.currentAnimation = animatorSet;
+                animatorSet.addListener(new AnonymousClass2(this, arrayList2, i));
+                ArrayList arrayList4 = this.animators;
+                arrayList4.clear();
+                ArrayList arrayList5 = this.animAddingSpans;
+                arrayList5.clear();
+                this.animRemovingSpans.clear();
+                for (int i3 = 0; i3 < arrayList2.size(); i3++) {
+                    GroupCreateSpan groupCreateSpan = (GroupCreateSpan) arrayList2.get(i3);
+                    arrayList5.add(groupCreateSpan);
+                    arrayList4.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
+                    arrayList4.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
+                    arrayList4.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
+                }
+                requestLayout();
+            }
+
+            public final void setupEndValues() {
+                ArrayList arrayList;
+                AnimatorSet animatorSet = this.currentAnimation;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                }
+                int i = 0;
+                int i2 = 0;
+                while (true) {
+                    arrayList = this.animAddingSpans;
+                    if (i2 >= arrayList.size()) {
+                        break;
+                    }
+                    ((View) arrayList.get(i2)).setScaleX(1.0f);
+                    ((View) arrayList.get(i2)).setScaleY(1.0f);
+                    ((View) arrayList.get(i2)).setAlpha(1.0f);
+                    i2++;
+                }
+                while (true) {
+                    ArrayList arrayList2 = this.animRemovingSpans;
+                    if (i >= arrayList2.size()) {
+                        arrayList.clear();
+                        arrayList2.clear();
+                        return;
+                    } else {
+                        ((View) arrayList2.get(i)).setScaleX(0.0f);
+                        ((View) arrayList2.get(i)).setScaleY(0.0f);
+                        ((View) arrayList2.get(i)).setAlpha(0.0f);
+                        i++;
+                    }
+                }
+            }
+        }
+
+        public SearchUsersCell(Context context, Theme.ResourcesProvider resourcesProvider, StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1) {
+            super(context);
+            this.allSpans = new ArrayList();
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            this.topGradientAlpha = new AnimatedFloat(this, 0L, 300L, cubicBezierInterpolator);
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
+            this.topGradient = linearGradient;
+            Paint paint = new Paint(1);
+            this.topGradientPaint = paint;
+            this.topGradientMatrix = new Matrix();
+            this.bottomGradientAlpha = new AnimatedFloat(this, 0L, 300L, cubicBezierInterpolator);
+            LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
+            this.bottomGradient = linearGradient2;
+            Paint paint2 = new Paint(1);
+            this.bottomGradientPaint = paint2;
+            this.bottomGradientMatrix = new Matrix();
+            paint.setShader(linearGradient);
+            PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
+            paint.setXfermode(new PorterDuffXfermode(mode));
+            paint2.setShader(linearGradient2);
+            paint2.setXfermode(new PorterDuffXfermode(mode));
+            this.resourcesProvider = resourcesProvider;
+            this.updateHeight = storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1;
+            setVerticalScrollBarEnabled(false);
+            AndroidUtilities.setScrollViewEdgeEffectColor(this, Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+            SpansContainer spansContainer = new SpansContainer(context);
+            this.spansContainer = spansContainer;
+            addView(spansContainer, LayoutHelper.createFrame(-1, -2.0f));
+            EmojiBottomSheet.SearchField.AnonymousClass2 anonymousClass2 = new EmojiBottomSheet.SearchField.AnonymousClass2(this, context, 2);
+            this.editText = anonymousClass2;
+            if (Build.VERSION.SDK_INT >= 25) {
+                anonymousClass2.setRevealOnFocusHint(false);
+            }
+            anonymousClass2.setTextSize(1, 16.0f);
+            anonymousClass2.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
+            anonymousClass2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+            int i = Theme.key_groupcreate_cursor;
+            anonymousClass2.setCursorColor(Theme.getColor(i, resourcesProvider));
+            anonymousClass2.setHandlesColor(Theme.getColor(i, resourcesProvider));
+            anonymousClass2.setCursorWidth(1.5f);
+            anonymousClass2.setInputType(anonymousClass2.getInputType() | 176);
+            anonymousClass2.setSingleLine(true);
+            anonymousClass2.setBackgroundDrawable(null);
+            anonymousClass2.setVerticalScrollBarEnabled(false);
+            anonymousClass2.setHorizontalScrollBarEnabled(false);
+            anonymousClass2.setTextIsSelectable(false);
+            anonymousClass2.setPadding(0, 0, 0, 0);
+            anonymousClass2.setImeOptions(268435462);
+            anonymousClass2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+            spansContainer.addView(anonymousClass2);
+            int i2 = R.string.Search;
+            anonymousClass2.setHintText(LocaleController.getString(i2));
+            this.hintTextWidth = (int) anonymousClass2.getPaint().measureText(LocaleController.getString(i2));
+            anonymousClass2.addTextChangedListener(new TextWatcher() {
+                @Override
+                public final void afterTextChanged(Editable editable) {
+                    Utilities.Callback callback;
+                    SearchUsersCell searchUsersCell = SearchUsersCell.this;
+                    if (searchUsersCell.ignoreTextChange || (callback = searchUsersCell.onSearchTextChange) == null || editable == null) {
+                        return;
+                    }
+                    callback.run(editable.toString());
+                }
+
+                @Override
+                public final void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+                }
+
+                @Override
+                public final void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+                }
+            });
+        }
+
+        @Override
+        public final void dispatchDraw(Canvas canvas) {
+            int scrollY = getScrollY();
+            float f = scrollY;
+            canvas.saveLayerAlpha(0.0f, f, getWidth(), getHeight() + scrollY, 255, 31);
+            super.dispatchDraw(canvas);
+            canvas.save();
+            float f2 = this.topGradientAlpha.set(canScrollVertically(-1));
+            Matrix matrix = this.topGradientMatrix;
+            matrix.reset();
+            matrix.postTranslate(0.0f, f);
+            this.topGradient.setLocalMatrix(matrix);
+            Paint paint = this.topGradientPaint;
+            paint.setAlpha((int) (f2 * 255.0f));
+            canvas.drawRect(0.0f, f, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, paint);
+            float f3 = this.bottomGradientAlpha.set(canScrollVertically(1));
+            Matrix matrix2 = this.bottomGradientMatrix;
+            matrix2.reset();
+            matrix2.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
+            this.bottomGradient.setLocalMatrix(matrix2);
+            Paint paint2 = this.bottomGradientPaint;
+            paint2.setAlpha((int) (f3 * 255.0f));
+            canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), getHeight() + scrollY, paint2);
+            canvas.restore();
+            canvas.restore();
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(150.0f), Integer.MIN_VALUE));
+        }
+
+        @Override
+        public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
+            if (this.ignoreScrollEvent) {
+                this.ignoreScrollEvent = false;
+                return false;
+            }
+            rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
+            rect.top = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(20.0f, this.fieldY, rect.top);
+            rect.bottom = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(50.0f, this.fieldY, rect.bottom);
+            return super.requestChildRectangleOnScreen(view, rect, z);
+        }
+
+        public void setContainerHeight(float f) {
+            this.containerHeight = f;
+            SpansContainer spansContainer = this.spansContainer;
+            if (spansContainer != null) {
+                spansContainer.requestLayout();
+            }
+        }
+
+        public void setOnSearchTextChange(Utilities.Callback<String> callback) {
+            this.onSearchTextChange = callback;
+        }
+
+        public void setText(CharSequence charSequence) {
+            this.ignoreTextChange = true;
+            this.editText.setText(charSequence);
+            this.ignoreTextChange = false;
+        }
+    }
+
     public final class UserCell extends FrameLayout {
         public Paint arrowPaint;
         public Path arrowPath;
@@ -3464,7 +3964,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
 
         public UserCell(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
             this.avatarDrawable = avatarDrawable;
             this.dividerPaint = new Paint(1);
             this.sendAs = false;
@@ -3472,7 +3972,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             this.drawArrow = true;
             this.isOnline = new boolean[1];
             this.resourcesProvider = resourcesProvider;
-            avatarDrawable.roundRadius = AndroidUtilities.dp(40.0f);
+            avatarDrawable.setRoundRadius(AndroidUtilities.dp(40.0f));
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
@@ -3497,22 +3997,16 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             this.checkBox = checkBox2;
             int i2 = Theme.key_dialogRoundCheckBox;
             int i3 = Theme.key_checkboxDisabled;
-            int i4 = Theme.key_dialogRoundCheckBoxCheck;
-            CheckBoxBase checkBoxBase = checkBox2.checkBoxBase;
-            checkBoxBase.setColor(i2, i3, i4);
+            checkBox2.setColor(i2, i3, Theme.key_dialogRoundCheckBoxCheck);
             checkBox2.setDrawUnchecked(true);
             checkBox2.setDrawBackgroundAsArc(10);
             addView(checkBox2);
-            checkBoxBase.setChecked(-1, false, false);
+            checkBox2.setChecked(false, false);
             checkBox2.setVisibility(8);
             RadioButton radioButton = new RadioButton(context);
             this.radioButton = radioButton;
             radioButton.setSize(AndroidUtilities.dp(20.0f));
-            int color = Theme.getColor(i3, resourcesProvider);
-            int color2 = Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider);
-            radioButton.color = color;
-            radioButton.checkedColor = color2;
-            radioButton.invalidate();
+            radioButton.setColor(Theme.getColor(i3, resourcesProvider), Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider));
             addView(radioButton);
             radioButton.setVisibility(8);
             updateLayouts();
@@ -3527,7 +4021,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             } else {
                 simpleTextView.setTranslationY(AndroidUtilities.dp(-9.0f));
                 simpleTextView2.setTranslationY(AndroidUtilities.dp(12.0f));
-                simpleTextView2.setText(charSequence, false);
+                simpleTextView2.setText(charSequence);
                 simpleTextView2.setVisibility(0);
             }
         }
@@ -3582,7 +4076,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             }
             if (z || z2) {
                 accessibilityNodeInfo.setCheckable(true);
-                accessibilityNodeInfo.setChecked(z ? checkBox2.checkBoxBase.isChecked : radioButton.isChecked);
+                accessibilityNodeInfo.setChecked(z ? checkBox2.isChecked() : radioButton.isChecked());
                 accessibilityNodeInfo.setClassName(z ? "android.widget.CheckBox" : "android.widget.RadioButton");
             }
         }
@@ -3629,7 +4123,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             } else if (obj instanceof String) {
                 simpleTextView.setTypeface(null);
                 simpleTextView.setTranslationX((-AndroidUtilities.dp(52.0f)) * (LocaleController.isRTL ? -1 : 1));
-                simpleTextView.setText((String) obj, false);
+                simpleTextView.setText((String) obj);
             }
         }
 
@@ -3637,14 +4131,13 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             String lowerCase;
             this.dialogId = chat == null ? 0L : -chat.id;
             AvatarDrawable avatarDrawable = this.avatarDrawable;
-            avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
+            avatarDrawable.setInfo(chat);
             BackupImageView backupImageView = this.imageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(chat) ? 12.0f : 20.0f));
-            backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(chat, avatarDrawable);
             String str = chat.title;
             SimpleTextView simpleTextView = this.titleTextView;
-            simpleTextView.setText(Emoji.replaceEmoji(str, simpleTextView.getPaint().getFontMetricsInt(), false), false);
+            simpleTextView.setText(Emoji.replaceEmoji(str, simpleTextView.getPaint().getFontMetricsInt(), false));
             boolean[] zArr = this.isOnline;
             zArr[0] = false;
             if (this.sendAs) {
@@ -3700,7 +4193,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         public final void setChecked(boolean z, boolean z2) {
             CheckBox2 checkBox2 = this.checkBox;
             if (checkBox2.getVisibility() == 0) {
-                checkBox2.checkBoxBase.setChecked(-1, z, z2);
+                checkBox2.setChecked(z, z2);
             }
             RadioButton radioButton = this.radioButton;
             if (radioButton.getVisibility() == 0) {
@@ -3727,8 +4220,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         }
 
         public void setRedCheckbox(boolean z) {
-            CheckBox2 checkBox2 = this.checkBox;
-            checkBox2.checkBoxBase.setColor(z ? Theme.key_color_red : Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
+            this.checkBox.setColor(z ? Theme.key_color_red : Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
         }
 
         public final void setType(int i, TLRPC.User user, int i2) {
@@ -3737,7 +4229,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             AvatarDrawable avatarDrawable = this.avatarDrawable;
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             if (i == 4) {
-                simpleTextView.setText(LocaleController.getString(R.string.StoryPrivacyOptionEveryone), false);
+                simpleTextView.setText(LocaleController.getString(R.string.StoryPrivacyOptionEveryone));
                 if (i2 == 1 && user != null) {
                     setSubtitle(withArrow(Emoji.replaceEmoji(LocaleController.formatString(R.string.StoryPrivacyOptionExcludePerson, UserObject.getUserName(user)), simpleTextView2.getPaint().getFontMetricsInt(), false)));
                 } else if (i2 > 0) {
@@ -3749,7 +4241,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 avatarDrawable.setAvatarType(7);
                 avatarDrawable.setColor(-15292942, -15630089);
             } else if (i == 2) {
-                simpleTextView.setText(LocaleController.getString(R.string.StoryPrivacyOptionContacts), false);
+                simpleTextView.setText(LocaleController.getString(R.string.StoryPrivacyOptionContacts));
                 if (i2 == 1 && user != null) {
                     setSubtitle(withArrow(Emoji.replaceEmoji(LocaleController.formatString(R.string.StoryPrivacyOptionExcludePerson, UserObject.getUserName(user)), simpleTextView2.getPaint().getFontMetricsInt(), false)));
                 } else if (i2 > 0) {
@@ -3761,7 +4253,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 avatarDrawable.setAvatarType(4);
                 avatarDrawable.setColor(-3905294, -6923014);
             } else if (i == 1) {
-                simpleTextView.setText(LocaleController.getString(R.string.StoryPrivacyOptionCloseFriends), false);
+                simpleTextView.setText(LocaleController.getString(R.string.StoryPrivacyOptionCloseFriends));
                 if (i2 == 1 && user != null) {
                     setSubtitle(withArrow(Emoji.replaceEmoji(UserObject.getUserName(user), simpleTextView2.getPaint().getFontMetricsInt(), false)));
                 } else if (i2 > 0) {
@@ -3773,7 +4265,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
                 avatarDrawable.setAvatarType(15);
                 avatarDrawable.setColor(-7808710, -13781445);
             } else if (i == 3) {
-                simpleTextView.setText(LocaleController.getString(R.string.StoryPrivacyOptionSelectedContacts), false);
+                simpleTextView.setText(LocaleController.getString(R.string.StoryPrivacyOptionSelectedContacts));
                 if (i2 == 1 && user != null) {
                     setSubtitle(withArrow(Emoji.replaceEmoji(UserObject.getUserName(user), simpleTextView2.getPaint().getFontMetricsInt(), false)));
                 } else if (i2 > 0) {
@@ -3795,14 +4287,13 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         public void setUser(TLRPC.User user) {
             this.dialogId = user == null ? 0L : user.id;
             AvatarDrawable avatarDrawable = this.avatarDrawable;
-            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+            avatarDrawable.setInfo(user);
             BackupImageView backupImageView = this.imageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-            backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(user, avatarDrawable);
             String userName = UserObject.getUserName(user);
             SimpleTextView simpleTextView = this.titleTextView;
-            simpleTextView.setText(Emoji.replaceEmoji(userName, simpleTextView.getPaint().getFontMetricsInt(), false), false);
+            simpleTextView.setText(Emoji.replaceEmoji(userName, simpleTextView.getPaint().getFontMetricsInt(), false));
             boolean[] zArr = this.isOnline;
             zArr[0] = false;
             boolean z = this.sendAs;
@@ -3862,7 +4353,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         public final SpannableStringBuilder withArrow(CharSequence charSequence) {
             SpannableString spannableString = new SpannableString(">");
             Drawable drawable = getContext().getResources().getDrawable(R.drawable.attach_arrow_right);
-            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(2, drawable);
+            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(drawable, 2);
             drawable.setBounds(0, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(12.0f));
             spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -3872,7 +4363,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
     }
 
     public StoryPrivacyBottomSheet(final Context context, int i, DarkThemeResourceProvider darkThemeResourceProvider) {
-        super(context, darkThemeResourceProvider, true, false);
+        super(context, true, false, darkThemeResourceProvider);
         this.excludedEveryone = new ArrayList();
         this.excludedEveryoneByGroup = new HashMap();
         this.excludedEveryoneCount = 0;
@@ -3974,61 +4465,33 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         this.excludedEveryoneCount = mergeUsers(this.excludedEveryone, this.excludedEveryoneByGroup).size();
         this.allowScreenshots = !MessagesController.getInstance(this.currentAccount).getMainSettings().getBoolean("story_noforwards", false);
         this.keepOnMyPage = MessagesController.getInstance(this.currentAccount).getMainSettings().getBoolean("story_keep", true);
-        init$2(context);
-        final int i4 = 0;
-        this.viewPager.setAdapter(new ViewPagerFixed.Adapter(this) {
-            public final StoryPrivacyBottomSheet this$0;
-
-            {
-                this.this$0 = this;
+        init$1(context);
+        this.viewPager.setAdapter(new ViewPagerFixed.Adapter() {
+            @Override
+            public final void bindView(View view, int i4, int i5) {
+                ((Page) view).bind(i5);
             }
 
             @Override
-            public final void bindView(View view, int i5, int i6) {
-                switch (i4) {
-                    case 0:
-                        ((Page) view).bind(i6);
-                        break;
-                    default:
-                        ((Page) view).bind(i6);
-                        break;
-                }
-            }
-
-            @Override
-            public final View createView(int i5) {
-                switch (i4) {
-                    case 0:
-                        break;
-                }
-                return this.this$0.new Page(context);
+            public final View createView(int i4) {
+                return StoryPrivacyBottomSheet.this.new Page(context);
             }
 
             @Override
             public final int getItemCount() {
-                switch (i4) {
-                    case 0:
-                        return 2;
-                    default:
-                        return 1;
-                }
+                return 2;
             }
 
             @Override
-            public final int getItemViewType(int i5) {
-                switch (i4) {
-                    case 0:
-                        if (i5 == 0) {
-                            return 0;
-                        }
-                        return this.this$0.activePage;
-                    default:
-                        return 5;
+            public final int getItemViewType(int i4) {
+                if (i4 == 0) {
+                    return 0;
                 }
+                return StoryPrivacyBottomSheet.this.activePage;
             }
         });
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new TodoItemMenu$$ExternalSyntheticLambda9(2, this, messagesStorage));
+        messagesStorage.getStorageQueue().postRunnable(new RichTableCell$$ExternalSyntheticLambda3(5, this, messagesStorage));
         MessagesController.getInstance(this.currentAccount).getStoriesController().loadBlocklist();
         MessagesController.getInstance(this.currentAccount).getStoriesController().loadSendAs();
     }
@@ -4138,9 +4601,9 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
 
     public final void allowCover(boolean z) {
         this.allowCover = z;
-        PollItemMenu.AnonymousClass3 anonymousClass3 = this.viewPager;
-        if (anonymousClass3 != null) {
-            for (View view : anonymousClass3.getViewPages()) {
+        CommunitySheet.AnonymousClass9 anonymousClass9 = this.viewPager;
+        if (anonymousClass9 != null) {
+            for (View view : anonymousClass9.getViewPages()) {
                 if (view instanceof Page) {
                     ((Page) view).updateButton(false);
                 }
@@ -4173,13 +4636,13 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        PollItemMenu.AnonymousClass3 anonymousClass3 = this.viewPager;
-        if (anonymousClass3 == null) {
+        CommunitySheet.AnonymousClass9 anonymousClass9 = this.viewPager;
+        if (anonymousClass9 == null) {
             return;
         }
         int i3 = 0;
         if (i == NotificationCenter.contactsDidLoad) {
-            View[] viewPages = anonymousClass3.getViewPages();
+            View[] viewPages = anonymousClass9.getViewPages();
             View view = viewPages[0];
             if (view instanceof Page) {
                 ((Page) view).updateItems(true, true);
@@ -4193,7 +4656,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         }
         if (i != NotificationCenter.storiesBlocklistUpdate) {
             if (i == NotificationCenter.storiesSendAsUpdate) {
-                View[] viewPages2 = anonymousClass3.getViewPages();
+                View[] viewPages2 = anonymousClass9.getViewPages();
                 while (i3 < viewPages2.length) {
                     View view3 = viewPages2[i3];
                     if (view3 instanceof Page) {
@@ -4208,7 +4671,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             }
             return;
         }
-        View[] viewPages3 = anonymousClass3.getViewPages();
+        View[] viewPages3 = anonymousClass9.getViewPages();
         while (i3 < viewPages3.length) {
             View view4 = viewPages3[i3];
             if (view4 instanceof Page) {
@@ -4276,7 +4739,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             sb2.append(",");
             sb2.append(TextUtils.join(",", (Iterable) entry2.getValue()));
         }
-        AiTonesController$$ExternalSyntheticOutline0.m(this.currentAccount).putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb2.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.allowScreenshots).putBoolean("story_keep", this.keepOnMyPage).apply();
+        MessagesController.getInstance(this.currentAccount).getMainSettings().edit().putString("story_prv_everyoneexcept", TextUtils.join(",", arrayList2)).putString("story_prv_grpeveryoneexcept", sb2.toString()).putString("story_prv_contacts", TextUtils.join(",", arrayList3)).putString("story_prv_grpcontacts", sb.toString()).putString("story_prv_excluded", TextUtils.join(",", arrayList)).putBoolean("story_noforwards", !this.allowScreenshots).putBoolean("story_keep", this.keepOnMyPage).apply();
         super.lambda$showGiftOfferSheet$15();
     }
 
@@ -4315,7 +4778,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             }
             DoneCallback doneCallback = this.onDone;
             if (doneCallback != null) {
-                doneCallback.done(storyPrivacy, this.allowComments, this.allowScreenshots, this.keepOnMyPage, this.isRtmpStream, this.selectedPeer, this.commentsPrice, new ButtonWithCounterView$$ExternalSyntheticLambda3(buttonWithCounterView, runnable, 1), new VoIPFragment$12$$ExternalSyntheticLambda0(buttonWithCounterView, 15));
+                doneCallback.done(storyPrivacy, this.allowComments, this.allowScreenshots, this.keepOnMyPage, this.isRtmpStream, this.selectedPeer, this.commentsPrice, new ButtonWithCounterView$$ExternalSyntheticLambda1(buttonWithCounterView, runnable, 1), new PreviewView$$ExternalSyntheticLambda12(buttonWithCounterView, 17));
                 return;
             } else {
                 runnable.run();
@@ -4331,13 +4794,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             spannableString.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString.length(), 33);
             spannableStringBuilder.append((CharSequence) spannableString);
         }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider);
-        String string = LocaleController.getString(R.string.StoryRestrictions);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder);
-        builder.setPositiveButton(LocaleController.getString(R.string.Proceed), new VoIPFragment$$ExternalSyntheticLambda42(this, storyPrivacy, runnable, 23));
-        ArticleViewer.IBlock.CC.m(R.string.Cancel, builder, (AlertDialog.OnButtonClickListener) null);
+        new AlertDialog.Builder(getContext(), 0, this.resourcesProvider).setTitle(LocaleController.getString(R.string.StoryRestrictions)).setMessage(AndroidUtilities.replaceCharSequence("%s", LocaleController.getString(R.string.StoryRestrictionsInfo), spannableStringBuilder)).setPositiveButton(LocaleController.getString(R.string.Proceed), new StoryPrivacyBottomSheet$$ExternalSyntheticLambda2(this, storyPrivacy, runnable)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
     }
 
     public final ArrayList getContacts() {
@@ -4363,8 +4820,8 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         return MessagesController.getInstance(this.currentAccount).getStoriesController();
     }
 
-    public final void init$2(Context context) {
-        Bulletin.addDelegate(this.container, new LaunchActivity.AnonymousClass7(12));
+    public final void init$1(Context context) {
+        Bulletin.addDelegate(this.container, new AnonymousClass2());
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.contactsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesBlocklistUpdate);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesSendAsUpdate);
@@ -4372,18 +4829,18 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         this.backgroundPaint.setColor(Theme.getColor(i, this.resourcesProvider));
         fixNavigationBar(Theme.getColor(i, this.resourcesProvider));
         this.containerView = new CommunitySheet.ContainerView(this, context);
-        PollItemMenu.AnonymousClass3 anonymousClass3 = new PollItemMenu.AnonymousClass3(this, context, 6);
-        this.viewPager = anonymousClass3;
+        CommunitySheet.AnonymousClass9 anonymousClass9 = new CommunitySheet.AnonymousClass9(this, context, 2);
+        this.viewPager = anonymousClass9;
         int i2 = this.backgroundPaddingLeft;
-        anonymousClass3.setPadding(i2, 0, i2, 0);
+        anonymousClass9.setPadding(i2, 0, i2, 0);
         this.containerView.addView(this.viewPager, LayoutHelper.createFrame(-1, -1, 119));
     }
 
     public final void isEdit(boolean z) {
         this.isEdit = z;
-        PollItemMenu.AnonymousClass3 anonymousClass3 = this.viewPager;
-        if (anonymousClass3 != null) {
-            for (View view : anonymousClass3.getViewPages()) {
+        CommunitySheet.AnonymousClass9 anonymousClass9 = this.viewPager;
+        if (anonymousClass9 != null) {
+            for (View view : anonymousClass9.getViewPages()) {
                 if (view instanceof Page) {
                     Page page = (Page) view;
                     page.updateItems(false, true);
@@ -4400,15 +4857,15 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
             return;
         }
         closeKeyboard();
-        PollItemMenu.AnonymousClass3 anonymousClass3 = this.viewPager;
-        anonymousClass3.scrollToPosition$1(anonymousClass3.getCurrentPosition() - 1);
+        CommunitySheet.AnonymousClass9 anonymousClass9 = this.viewPager;
+        anonymousClass9.scrollToPosition(anonymousClass9.getCurrentPosition() - 1);
     }
 
     public final void setCount(int i) {
         this.storiesCount = i;
-        PollItemMenu.AnonymousClass3 anonymousClass3 = this.viewPager;
-        if (anonymousClass3 != null) {
-            for (View view : anonymousClass3.getViewPages()) {
+        CommunitySheet.AnonymousClass9 anonymousClass9 = this.viewPager;
+        if (anonymousClass9 != null) {
+            for (View view : anonymousClass9.getViewPages()) {
                 if (view instanceof Page) {
                     ((Page) view).updateButton(false);
                 }
@@ -4418,9 +4875,9 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
 
     public final void setCover(Bitmap bitmap) {
         this.coverDrawable = bitmap == null ? null : new BitmapDrawable(bitmap);
-        PollItemMenu.AnonymousClass3 anonymousClass3 = this.viewPager;
-        if (anonymousClass3 != null) {
-            for (View view : anonymousClass3.getViewPages()) {
+        CommunitySheet.AnonymousClass9 anonymousClass9 = this.viewPager;
+        if (anonymousClass9 != null) {
+            for (View view : anonymousClass9.getViewPages()) {
                 if (view instanceof Page) {
                     Page page = (Page) view;
                     page.updateItems(false, true);
@@ -4495,760 +4952,6 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         if (view2 instanceof Page) {
             Page page2 = (Page) view2;
             page2.bind(page2.pageType);
-        }
-    }
-
-    public abstract class SearchUsersCell extends ScrollView {
-        public final ArrayList allSpans;
-        public final LinearGradient bottomGradient;
-        public final AnimatedFloat bottomGradientAlpha;
-        public final Matrix bottomGradientMatrix;
-        public final Paint bottomGradientPaint;
-        public float containerHeight;
-        public GroupCreateSpan currentDeletingSpan;
-        public final UsersSelectActivity.AnonymousClass4 editText;
-        public int fieldY;
-        public final int hintTextWidth;
-        public boolean ignoreScrollEvent;
-        public boolean ignoreTextChange;
-        public Utilities.Callback onSearchTextChange;
-        public int resultContainerHeight;
-        public boolean scroll;
-        public final SpansContainer spansContainer;
-        public final LinearGradient topGradient;
-        public final AnimatedFloat topGradientAlpha;
-        public final Matrix topGradientMatrix;
-        public final Paint topGradientPaint;
-        public final StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 updateHeight;
-
-        public SearchUsersCell(Context context, Theme.ResourcesProvider resourcesProvider, StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1) {
-            super(context);
-            this.allSpans = new ArrayList();
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            this.topGradientAlpha = new AnimatedFloat(this, 0L, 300L, cubicBezierInterpolator);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
-            this.topGradient = linearGradient;
-            Paint paint = new Paint(1);
-            this.topGradientPaint = paint;
-            this.topGradientMatrix = new Matrix();
-            this.bottomGradientAlpha = new AnimatedFloat(this, 0L, 300L, cubicBezierInterpolator);
-            LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
-            this.bottomGradient = linearGradient2;
-            Paint paint2 = new Paint(1);
-            this.bottomGradientPaint = paint2;
-            this.bottomGradientMatrix = new Matrix();
-            paint.setShader(linearGradient);
-            PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
-            paint.setXfermode(new PorterDuffXfermode(mode));
-            paint2.setShader(linearGradient2);
-            paint2.setXfermode(new PorterDuffXfermode(mode));
-            this.updateHeight = storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1;
-            setVerticalScrollBarEnabled(false);
-            AndroidUtilities.setScrollViewEdgeEffectColor(this, Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
-            SpansContainer spansContainer = new SpansContainer(this, context);
-            this.spansContainer = spansContainer;
-            addView(spansContainer, LayoutHelper.createFrame(-2.0f, -1));
-            UsersSelectActivity.AnonymousClass4 anonymousClass4 = new UsersSelectActivity.AnonymousClass4(this, context, 11);
-            this.editText = anonymousClass4;
-            if (Build.VERSION.SDK_INT >= 25) {
-                anonymousClass4.setRevealOnFocusHint(false);
-            }
-            anonymousClass4.setTextSize(1, 16.0f);
-            anonymousClass4.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
-            anonymousClass4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-            int i = Theme.key_groupcreate_cursor;
-            anonymousClass4.setCursorColor(Theme.getColor(i, resourcesProvider));
-            anonymousClass4.setHandlesColor(Theme.getColor(i, resourcesProvider));
-            anonymousClass4.setCursorWidth(1.5f);
-            anonymousClass4.setInputType(anonymousClass4.getInputType() | 176);
-            anonymousClass4.setSingleLine(true);
-            anonymousClass4.setBackgroundDrawable(null);
-            anonymousClass4.setVerticalScrollBarEnabled(false);
-            anonymousClass4.setHorizontalScrollBarEnabled(false);
-            anonymousClass4.setTextIsSelectable(false);
-            anonymousClass4.setPadding(0, 0, 0, 0);
-            anonymousClass4.setImeOptions(268435462);
-            anonymousClass4.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            spansContainer.addView(anonymousClass4);
-            int i2 = R.string.Search;
-            anonymousClass4.setHintText(LocaleController.getString(i2));
-            this.hintTextWidth = (int) anonymousClass4.getPaint().measureText(LocaleController.getString(i2));
-            anonymousClass4.addTextChangedListener(new TextWatcher() {
-                @Override
-                public final void afterTextChanged(Editable editable) {
-                    Utilities.Callback callback;
-                    SearchUsersCell searchUsersCell = SearchUsersCell.this;
-                    if (searchUsersCell.ignoreTextChange || (callback = searchUsersCell.onSearchTextChange) == null || editable == null) {
-                        return;
-                    }
-                    callback.run(editable.toString());
-                }
-
-                @Override
-                public final void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-                }
-
-                @Override
-                public final void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
-                }
-            });
-        }
-
-        @Override
-        public final void dispatchDraw(Canvas canvas) {
-            int scrollY = getScrollY();
-            float f = scrollY;
-            canvas.saveLayerAlpha(0.0f, f, getWidth(), getHeight() + scrollY, 255, 31);
-            super.dispatchDraw(canvas);
-            canvas.save();
-            float f2 = this.topGradientAlpha.set(canScrollVertically(-1));
-            Matrix matrix = this.topGradientMatrix;
-            matrix.reset();
-            matrix.postTranslate(0.0f, f);
-            this.topGradient.setLocalMatrix(matrix);
-            Paint paint = this.topGradientPaint;
-            paint.setAlpha((int) (f2 * 255.0f));
-            canvas.drawRect(0.0f, f, getWidth(), AndroidUtilities.dp(8.0f) + scrollY, paint);
-            float f3 = this.bottomGradientAlpha.set(canScrollVertically(1));
-            Matrix matrix2 = this.bottomGradientMatrix;
-            matrix2.reset();
-            matrix2.postTranslate(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f));
-            this.bottomGradient.setLocalMatrix(matrix2);
-            Paint paint2 = this.bottomGradientPaint;
-            paint2.setAlpha((int) (f3 * 255.0f));
-            canvas.drawRect(0.0f, (getHeight() + scrollY) - AndroidUtilities.dp(8.0f), getWidth(), getHeight() + scrollY, paint2);
-            canvas.restore();
-            canvas.restore();
-        }
-
-        @Override
-        public final void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(150.0f), Integer.MIN_VALUE));
-        }
-
-        @Override
-        public final boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z) {
-            if (this.ignoreScrollEvent) {
-                this.ignoreScrollEvent = false;
-                return false;
-            }
-            rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());
-            rect.top = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(this.fieldY, 20.0f, rect.top);
-            rect.bottom = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(this.fieldY, 50.0f, rect.bottom);
-            return super.requestChildRectangleOnScreen(view, rect, z);
-        }
-
-        public void setContainerHeight(float f) {
-            this.containerHeight = f;
-            SpansContainer spansContainer = this.spansContainer;
-            if (spansContainer != null) {
-                spansContainer.requestLayout();
-            }
-        }
-
-        public void setOnSearchTextChange(Utilities.Callback<String> callback) {
-            this.onSearchTextChange = callback;
-        }
-
-        public void setText(CharSequence charSequence) {
-            this.ignoreTextChange = true;
-            this.editText.setText(charSequence);
-            this.ignoreTextChange = false;
-        }
-
-        public final class SpansContainer extends ViewGroup {
-            public final int $r8$classId = 1;
-            public final ArrayList animAddingSpans;
-            public final ArrayList animRemovingSpans;
-            public boolean animationStarted;
-            public final ArrayList animators;
-            public AnimatorSet currentAnimation;
-            public final ArrayList removingSpans;
-            public final ScrollView this$0;
-
-            public final class AnonymousClass2 extends AnimatorListenerAdapter {
-                public final int $r8$classId;
-                public final SpansContainer this$1;
-                public final ArrayList val$toDelete;
-
-                public AnonymousClass2(SpansContainer spansContainer, ArrayList arrayList, int i) {
-                    this.$r8$classId = i;
-                    this.this$1 = spansContainer;
-                    this.val$toDelete = arrayList;
-                }
-
-                @Override
-                public final void onAnimationEnd(Animator animator) {
-                    switch (this.$r8$classId) {
-                        case 0:
-                            int i = 0;
-                            while (true) {
-                                ArrayList arrayList = this.val$toDelete;
-                                int size = arrayList.size();
-                                SpansContainer spansContainer = this.this$1;
-                                if (i >= size) {
-                                    spansContainer.getClass();
-                                    spansContainer.removingSpans.clear();
-                                    spansContainer.currentAnimation = null;
-                                    spansContainer.animationStarted = false;
-                                    SearchUsersCell searchUsersCell = (SearchUsersCell) spansContainer.this$0;
-                                    searchUsersCell.editText.setAllowDrawCursor(true);
-                                    StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 = searchUsersCell.updateHeight;
-                                    if (storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 != null) {
-                                        storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1.run();
-                                    }
-                                    if (searchUsersCell.scroll) {
-                                        searchUsersCell.fullScroll(130);
-                                        searchUsersCell.scroll = false;
-                                    }
-                                } else {
-                                    spansContainer.removeView((View) arrayList.get(i));
-                                    i++;
-                                }
-                                break;
-                            }
-                            break;
-                        default:
-                            int i2 = 0;
-                            while (true) {
-                                ArrayList arrayList2 = this.val$toDelete;
-                                int size2 = arrayList2.size();
-                                SpansContainer spansContainer2 = this.this$1;
-                                if (i2 >= size2) {
-                                    spansContainer2.removingSpans.clear();
-                                    spansContainer2.currentAnimation = null;
-                                    spansContainer2.animationStarted = false;
-                                    SearchUsersCell searchUsersCell2 = (SearchUsersCell) spansContainer2.this$0;
-                                    searchUsersCell2.editText.setAllowDrawCursor(true);
-                                    StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda2 = searchUsersCell2.updateHeight;
-                                    if (storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda2 != null) {
-                                        storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda2.run();
-                                    }
-                                    if (searchUsersCell2.scroll) {
-                                        searchUsersCell2.fullScroll(130);
-                                        searchUsersCell2.scroll = false;
-                                    }
-                                } else {
-                                    spansContainer2.removeView((View) arrayList2.get(i2));
-                                    i2++;
-                                }
-                                break;
-                            }
-                            break;
-                    }
-                }
-            }
-
-            public SpansContainer(SelectorSearchCell selectorSearchCell, Context context) {
-                super(context);
-                this.this$0 = selectorSearchCell;
-                this.animAddingSpans = new ArrayList();
-                this.animRemovingSpans = new ArrayList();
-                this.animators = new ArrayList();
-                this.removingSpans = new ArrayList();
-            }
-
-            @Override
-            public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-                switch (this.$r8$classId) {
-                    case 0:
-                        int childCount = getChildCount();
-                        for (int i5 = 0; i5 < childCount; i5++) {
-                            View childAt = getChildAt(i5);
-                            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-                        }
-                        break;
-                    default:
-                        int childCount2 = getChildCount();
-                        for (int i6 = 0; i6 < childCount2; i6++) {
-                            View childAt2 = getChildAt(i6);
-                            childAt2.layout(0, 0, childAt2.getMeasuredWidth(), childAt2.getMeasuredHeight());
-                        }
-                        break;
-                }
-            }
-
-            @Override
-            public final void onMeasure(int i, int i2) {
-                int iM$2;
-                ?? r6;
-                int i3;
-                float f;
-                boolean z;
-                float f2;
-                int i4;
-                char c;
-                int iM$3;
-                int i5;
-                int iM;
-                int i6;
-                ScrollView scrollView;
-                int i7;
-                ScrollView scrollView2 = this.this$0;
-                int i8 = Integer.MIN_VALUE;
-                int i9 = 1073741824;
-                Property property = View.TRANSLATION_X;
-                Property property2 = View.TRANSLATION_Y;
-                ArrayList arrayList = this.animators;
-                ArrayList arrayList2 = this.removingSpans;
-                switch (this.$r8$classId) {
-                    case 0:
-                        int size = View.MeasureSpec.getSize(i);
-                        int iDp = size - AndroidUtilities.dp(14.0f);
-                        int iDp2 = AndroidUtilities.dp(10.0f);
-                        int iDp3 = AndroidUtilities.dp(10.0f);
-                        int i10 = 0;
-                        int iM2 = 0;
-                        int iM3 = 0;
-                        for (int childCount = getChildCount(); i10 < childCount; childCount = childCount) {
-                            View childAt = getChildAt(i10);
-                            if (childAt instanceof GroupCreateSpan) {
-                                childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
-                                boolean zContains = arrayList2.contains(childAt);
-                                if (zContains || childAt.getMeasuredWidth() + iM2 <= iDp) {
-                                    f = 4.0f;
-                                } else {
-                                    f = 4.0f;
-                                    iDp2 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(childAt.getMeasuredHeight(), 4.0f, iDp2);
-                                    iM2 = 0;
-                                }
-                                if (childAt.getMeasuredWidth() + iM3 > iDp) {
-                                    iDp3 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(childAt.getMeasuredHeight(), f, iDp3);
-                                    iM3 = 0;
-                                }
-                                int iDp4 = AndroidUtilities.dp(7.0f) + iM2;
-                                if (this.animationStarted) {
-                                    z = zContains;
-                                } else if (zContains) {
-                                    childAt.setTranslationX(AndroidUtilities.dp(7.0f) + iM3);
-                                    childAt.setTranslationY(iDp3);
-                                    z = zContains;
-                                } else if (arrayList2.isEmpty()) {
-                                    z = zContains;
-                                    childAt.setTranslationX(iDp4);
-                                    childAt.setTranslationY(iDp2);
-                                } else {
-                                    float f3 = iDp4;
-                                    z = zContains;
-                                    if (childAt.getTranslationX() != f3) {
-                                        i4 = 1;
-                                        c = 0;
-                                        arrayList.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property, f3));
-                                    } else {
-                                        i4 = 1;
-                                        c = 0;
-                                    }
-                                    float f4 = iDp2;
-                                    if (childAt.getTranslationY() != f4) {
-                                        float[] fArr = new float[i4];
-                                        fArr[c] = f4;
-                                        arrayList.add(ObjectAnimator.ofFloat(childAt, (Property<View, Float>) property2, fArr));
-                                    }
-                                }
-                                if (z) {
-                                    f2 = 4.0f;
-                                } else {
-                                    f2 = 4.0f;
-                                    iM2 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(childAt.getMeasuredWidth(), 4.0f, iM2);
-                                }
-                                iM3 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(childAt.getMeasuredWidth(), f2, iM3);
-                            }
-                            i10++;
-                        }
-                        if (AndroidUtilities.isTablet()) {
-                            iM$2 = AndroidUtilities.dp(394.0f) / 3;
-                        } else {
-                            Point point = AndroidUtilities.displaySize;
-                            iM$2 = OKLCH.m$2(136.0f, Math.min(point.x, point.y), 3);
-                        }
-                        if (iDp - iM2 < iM$2) {
-                            iDp2 += AndroidUtilities.dp(36.0f);
-                            iM2 = 0;
-                        }
-                        if (iDp - iM3 < iM$2) {
-                            iDp3 += AndroidUtilities.dp(36.0f);
-                        }
-                        SearchUsersCell searchUsersCell = (SearchUsersCell) scrollView2;
-                        searchUsersCell.editText.measure(View.MeasureSpec.makeMeasureSpec(iDp - iM2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
-                        UsersSelectActivity.AnonymousClass4 anonymousClass4 = searchUsersCell.editText;
-                        anonymousClass4.setHintVisible(anonymousClass4.getMeasuredWidth() > searchUsersCell.hintTextWidth, true);
-                        if (!this.animationStarted) {
-                            int iDp5 = AndroidUtilities.dp(38.0f) + iDp3;
-                            int iDp6 = AndroidUtilities.dp(16.0f) + iM2;
-                            searchUsersCell.fieldY = iDp2;
-                            AnimatorSet animatorSet = this.currentAnimation;
-                            StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 = searchUsersCell.updateHeight;
-                            if (animatorSet != null) {
-                                int iDp7 = AndroidUtilities.dp(38.0f) + iDp2;
-                                searchUsersCell.resultContainerHeight = iDp7;
-                                float f5 = searchUsersCell.containerHeight;
-                                float f6 = iDp7;
-                                if (f5 != f6) {
-                                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f5, f6);
-                                    valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(searchUsersCell, 16));
-                                    arrayList.add(valueAnimatorOfFloat);
-                                }
-                                float f7 = iDp6;
-                                if (anonymousClass4.getTranslationX() != f7) {
-                                    i3 = 1;
-                                    r6 = 0;
-                                    arrayList.add(ObjectAnimator.ofFloat(anonymousClass4, (Property<UsersSelectActivity.AnonymousClass4, Float>) property, f7));
-                                } else {
-                                    r6 = 0;
-                                    i3 = 1;
-                                }
-                                float translationY = anonymousClass4.getTranslationY();
-                                float f8 = searchUsersCell.fieldY;
-                                if (translationY != f8) {
-                                    float[] fArr2 = new float[i3];
-                                    fArr2[r6] = f8;
-                                    arrayList.add(ObjectAnimator.ofFloat(anonymousClass4, (Property<UsersSelectActivity.AnonymousClass4, Float>) property2, fArr2));
-                                }
-                                anonymousClass4.setAllowDrawCursor(r6);
-                                this.currentAnimation.playTogether(arrayList);
-                                this.currentAnimation.setDuration(180L);
-                                this.currentAnimation.setInterpolator(new LinearInterpolator());
-                                this.currentAnimation.start();
-                                this.animationStarted = true;
-                                if (storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 != null) {
-                                    storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1.run();
-                                }
-                            } else {
-                                searchUsersCell.resultContainerHeight = iDp5;
-                                searchUsersCell.containerHeight = iDp5;
-                                anonymousClass4.setTranslationX(iDp6);
-                                anonymousClass4.setTranslationY(searchUsersCell.fieldY);
-                                if (storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 != null) {
-                                    storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1.run();
-                                }
-                                if (searchUsersCell.scroll) {
-                                    post(new VoIPFragment$12$$ExternalSyntheticLambda0(this, 16));
-                                    searchUsersCell.scroll = false;
-                                }
-                            }
-                        } else if (this.currentAnimation != null) {
-                            if (!searchUsersCell.ignoreScrollEvent && arrayList2.isEmpty()) {
-                                anonymousClass4.bringPointIntoView(anonymousClass4.getSelectionStart());
-                            }
-                            if (searchUsersCell.scroll) {
-                                searchUsersCell.fullScroll(130);
-                                searchUsersCell.scroll = false;
-                            }
-                        }
-                        setMeasuredDimension(size, (int) searchUsersCell.containerHeight);
-                        break;
-                    default:
-                        int childCount2 = getChildCount();
-                        int size2 = View.MeasureSpec.getSize(i);
-                        int iDp8 = size2 - AndroidUtilities.dp(28.0f);
-                        int iDp9 = AndroidUtilities.dp(10.0f);
-                        int iDp10 = AndroidUtilities.dp(10.0f);
-                        int iDp11 = iDp9;
-                        int i11 = 0;
-                        int i12 = 0;
-                        int iM4 = 0;
-                        while (i11 < childCount2) {
-                            View childAt2 = getChildAt(i11);
-                            if (childAt2 instanceof GroupCreateSpan) {
-                                childAt2.measure(View.MeasureSpec.makeMeasureSpec(size2, i8), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), i9));
-                                boolean zContains2 = arrayList2.contains(childAt2);
-                                if (zContains2 || childAt2.getMeasuredWidth() + i12 <= iDp8) {
-                                    iM = i12;
-                                } else {
-                                    iDp11 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(childAt2.getMeasuredHeight(), 4.0f, iDp11);
-                                    iM = 0;
-                                }
-                                if (childAt2.getMeasuredWidth() + iM4 > iDp8) {
-                                    iDp10 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(childAt2.getMeasuredHeight(), 4.0f, iDp10);
-                                    i6 = 0;
-                                } else {
-                                    i6 = iM4;
-                                }
-                                int iDp12 = AndroidUtilities.dp(14.0f) + iM;
-                                if (this.animationStarted) {
-                                    scrollView = scrollView2;
-                                } else if (zContains2) {
-                                    childAt2.setTranslationX(AndroidUtilities.dp(14.0f) + i6);
-                                    childAt2.setTranslationY(iDp10);
-                                    scrollView = scrollView2;
-                                } else if (arrayList2.isEmpty()) {
-                                    scrollView = scrollView2;
-                                    childAt2.setTranslationX(iDp12);
-                                    childAt2.setTranslationY(iDp11);
-                                } else {
-                                    float f9 = iDp12;
-                                    scrollView = scrollView2;
-                                    if (childAt2.getTranslationX() != f9) {
-                                        i7 = 1;
-                                        arrayList.add(ObjectAnimator.ofFloat(childAt2, (Property<View, Float>) property, f9));
-                                    } else {
-                                        i7 = 1;
-                                    }
-                                    float f10 = iDp11;
-                                    if (childAt2.getTranslationY() != f10) {
-                                        float[] fArr3 = new float[i7];
-                                        fArr3[0] = f10;
-                                        arrayList.add(ObjectAnimator.ofFloat(childAt2, (Property<View, Float>) property2, fArr3));
-                                    }
-                                }
-                                if (!zContains2) {
-                                    iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(childAt2.getMeasuredWidth(), 6.0f, iM);
-                                }
-                                iM4 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(childAt2.getMeasuredWidth(), 6.0f, i6);
-                                i12 = iM;
-                            } else {
-                                childCount2 = childCount2;
-                                scrollView = scrollView2;
-                            }
-                            i11++;
-                            iDp8 = iDp8;
-                            childCount2 = childCount2;
-                            scrollView2 = scrollView;
-                            i8 = Integer.MIN_VALUE;
-                            i9 = 1073741824;
-                        }
-                        int i13 = iDp8;
-                        ScrollView scrollView3 = scrollView2;
-                        if (AndroidUtilities.isTablet()) {
-                            iM$3 = AndroidUtilities.dp(376.0f) / 3;
-                        } else {
-                            Point point2 = AndroidUtilities.displaySize;
-                            iM$3 = OKLCH.m$2(154.0f, Math.min(point2.x, point2.y), 3);
-                        }
-                        if (i13 - i12 < iM$3) {
-                            iDp11 += AndroidUtilities.dp(36.0f);
-                            i12 = 0;
-                        }
-                        if (i13 - iM4 < iM$3) {
-                            iDp10 += AndroidUtilities.dp(36.0f);
-                        }
-                        SelectorSearchCell selectorSearchCell = (SelectorSearchCell) scrollView3;
-                        selectorSearchCell.editText.measure(View.MeasureSpec.makeMeasureSpec(i13 - i12, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
-                        UsersSelectActivity.AnonymousClass4 anonymousClass5 = selectorSearchCell.editText;
-                        anonymousClass5.setHintVisible(anonymousClass5.getMeasuredWidth() > selectorSearchCell.hintTextWidth, true);
-                        if (!this.animationStarted) {
-                            int iDp13 = AndroidUtilities.dp(38.0f) + iDp10;
-                            int iDp14 = AndroidUtilities.dp(16.0f) + i12;
-                            selectorSearchCell.fieldY = iDp11;
-                            if (this.currentAnimation != null) {
-                                int iDp15 = AndroidUtilities.dp(38.0f) + iDp11;
-                                float f11 = selectorSearchCell.containerHeight;
-                                float f12 = iDp15;
-                                if (f11 != f12) {
-                                    ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(f11, f12);
-                                    valueAnimatorOfFloat2.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(selectorSearchCell, 2));
-                                    arrayList.add(valueAnimatorOfFloat2);
-                                }
-                                float f13 = iDp14;
-                                if (anonymousClass5.getTranslationX() != f13) {
-                                    i5 = 1;
-                                    arrayList.add(ObjectAnimator.ofFloat(anonymousClass5, (Property<UsersSelectActivity.AnonymousClass4, Float>) property, f13));
-                                } else {
-                                    i5 = 1;
-                                }
-                                float translationY2 = anonymousClass5.getTranslationY();
-                                float f14 = selectorSearchCell.fieldY;
-                                if (translationY2 != f14) {
-                                    float[] fArr4 = new float[i5];
-                                    fArr4[0] = f14;
-                                    arrayList.add(ObjectAnimator.ofFloat(anonymousClass5, (Property<UsersSelectActivity.AnonymousClass4, Float>) property2, fArr4));
-                                }
-                                anonymousClass5.setAllowDrawCursor(false);
-                                this.currentAnimation.playTogether(arrayList);
-                                this.currentAnimation.setDuration(180L);
-                                this.currentAnimation.setInterpolator(new LinearInterpolator());
-                                this.currentAnimation.start();
-                                this.animationStarted = true;
-                            } else {
-                                selectorSearchCell.containerHeight = iDp13;
-                                anonymousClass5.setTranslationX(iDp14);
-                                anonymousClass5.setTranslationY(selectorSearchCell.fieldY);
-                            }
-                        } else if (this.currentAnimation != null && !selectorSearchCell.ignoreScrollEvent && arrayList2.isEmpty()) {
-                            anonymousClass5.bringPointIntoView(anonymousClass5.getSelectionStart());
-                        }
-                        setMeasuredDimension(size2, (int) selectorSearchCell.containerHeight);
-                        break;
-                }
-            }
-
-            public void removeAllSpans() {
-                SearchUsersCell searchUsersCell = (SearchUsersCell) this.this$0;
-                int i = 1;
-                searchUsersCell.ignoreScrollEvent = true;
-                ArrayList arrayList = searchUsersCell.allSpans;
-                ArrayList arrayList2 = new ArrayList(arrayList);
-                ArrayList arrayList3 = this.removingSpans;
-                arrayList3.clear();
-                arrayList3.addAll(arrayList);
-                arrayList.clear();
-                for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-                    ((GroupCreateSpan) arrayList2.get(i2)).setOnClickListener(null);
-                }
-                setupEndValues();
-                this.animationStarted = false;
-                AnimatorSet animatorSet = new AnimatorSet();
-                this.currentAnimation = animatorSet;
-                animatorSet.addListener(new AnonymousClass2(this, arrayList2, i));
-                ArrayList arrayList4 = this.animators;
-                arrayList4.clear();
-                ArrayList arrayList5 = this.animAddingSpans;
-                arrayList5.clear();
-                this.animRemovingSpans.clear();
-                for (int i3 = 0; i3 < arrayList2.size(); i3++) {
-                    GroupCreateSpan groupCreateSpan = (GroupCreateSpan) arrayList2.get(i3);
-                    arrayList5.add(groupCreateSpan);
-                    arrayList4.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
-                    arrayList4.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
-                    arrayList4.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
-                }
-                requestLayout();
-            }
-
-            public void removeSpan(GroupCreateSpan groupCreateSpan) {
-                SelectorSearchCell selectorSearchCell = (SelectorSearchCell) this.this$0;
-                selectorSearchCell.ignoreScrollEvent = true;
-                selectorSearchCell.allSpans.remove(groupCreateSpan);
-                groupCreateSpan.setOnClickListener(null);
-                setupEndValues();
-                this.animationStarted = false;
-                AnimatorSet animatorSet = new AnimatorSet();
-                this.currentAnimation = animatorSet;
-                animatorSet.addListener(new ChatActivity.AnonymousClass74(this, groupCreateSpan, false, 25));
-                ArrayList arrayList = this.removingSpans;
-                arrayList.clear();
-                arrayList.add(groupCreateSpan);
-                ArrayList arrayList2 = this.animAddingSpans;
-                arrayList2.clear();
-                this.animRemovingSpans.clear();
-                arrayList2.add(groupCreateSpan);
-                ArrayList arrayList3 = this.animators;
-                arrayList3.clear();
-                arrayList3.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
-                arrayList3.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
-                arrayList3.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
-                requestLayout();
-            }
-
-            public final void setupEndValues() {
-                switch (this.$r8$classId) {
-                    case 0:
-                        AnimatorSet animatorSet = this.currentAnimation;
-                        if (animatorSet != null) {
-                            animatorSet.cancel();
-                        }
-                        int i = 0;
-                        int i2 = 0;
-                        while (true) {
-                            ArrayList arrayList = this.animAddingSpans;
-                            if (i2 >= arrayList.size()) {
-                                while (true) {
-                                    ArrayList arrayList2 = this.animRemovingSpans;
-                                    if (i >= arrayList2.size()) {
-                                        arrayList.clear();
-                                        arrayList2.clear();
-                                    } else {
-                                        ((View) arrayList2.get(i)).setScaleX(0.0f);
-                                        ((View) arrayList2.get(i)).setScaleY(0.0f);
-                                        ((View) arrayList2.get(i)).setAlpha(0.0f);
-                                        i++;
-                                    }
-                                }
-                            } else {
-                                ((View) arrayList.get(i2)).setScaleX(1.0f);
-                                ((View) arrayList.get(i2)).setScaleY(1.0f);
-                                ((View) arrayList.get(i2)).setAlpha(1.0f);
-                                i2++;
-                            }
-                            break;
-                        }
-                        break;
-                    default:
-                        AnimatorSet animatorSet2 = this.currentAnimation;
-                        if (animatorSet2 != null) {
-                            animatorSet2.cancel();
-                        }
-                        int i3 = 0;
-                        int i4 = 0;
-                        while (true) {
-                            ArrayList arrayList3 = this.animAddingSpans;
-                            if (i4 >= arrayList3.size()) {
-                                while (true) {
-                                    ArrayList arrayList4 = this.animRemovingSpans;
-                                    if (i3 >= arrayList4.size()) {
-                                        arrayList3.clear();
-                                        arrayList4.clear();
-                                    } else {
-                                        ((View) arrayList4.get(i3)).setScaleX(0.0f);
-                                        ((View) arrayList4.get(i3)).setScaleY(0.0f);
-                                        ((View) arrayList4.get(i3)).setAlpha(0.0f);
-                                        i3++;
-                                    }
-                                }
-                            } else {
-                                ((View) arrayList3.get(i4)).setScaleX(1.0f);
-                                ((View) arrayList3.get(i4)).setScaleY(1.0f);
-                                ((View) arrayList3.get(i4)).setAlpha(1.0f);
-                                i4++;
-                            }
-                            break;
-                        }
-                        break;
-                }
-            }
-
-            public SpansContainer(SearchUsersCell searchUsersCell, Context context) {
-                super(context);
-                this.this$0 = searchUsersCell;
-                this.animAddingSpans = new ArrayList();
-                this.animRemovingSpans = new ArrayList();
-                this.animators = new ArrayList();
-                this.removingSpans = new ArrayList();
-            }
-
-            public void removeAllSpans(boolean z) {
-                SelectorSearchCell selectorSearchCell = (SelectorSearchCell) this.this$0;
-                int i = 1;
-                selectorSearchCell.ignoreScrollEvent = true;
-                ArrayList arrayList = selectorSearchCell.allSpans;
-                ArrayList arrayList2 = new ArrayList(arrayList);
-                ArrayList arrayList3 = this.removingSpans;
-                arrayList3.clear();
-                arrayList3.addAll(arrayList);
-                arrayList.clear();
-                for (int i2 = 0; i2 < arrayList2.size(); i2++) {
-                    ((GroupCreateSpan) arrayList2.get(i2)).setOnClickListener(null);
-                }
-                setupEndValues();
-                if (z) {
-                    this.animationStarted = false;
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    this.currentAnimation = animatorSet;
-                    animatorSet.addListener(new SelectorSearchCell$SpansContainer$2(this, arrayList2, i));
-                    ArrayList arrayList4 = this.animators;
-                    arrayList4.clear();
-                    ArrayList arrayList5 = this.animAddingSpans;
-                    arrayList5.clear();
-                    this.animRemovingSpans.clear();
-                    for (int i3 = 0; i3 < arrayList2.size(); i3++) {
-                        GroupCreateSpan groupCreateSpan = (GroupCreateSpan) arrayList2.get(i3);
-                        arrayList5.add(groupCreateSpan);
-                        arrayList4.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_X, 1.0f, 0.01f));
-                        arrayList4.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.SCALE_Y, 1.0f, 0.01f));
-                        arrayList4.add(ObjectAnimator.ofFloat(groupCreateSpan, (Property<GroupCreateSpan, Float>) View.ALPHA, 1.0f, 0.0f));
-                    }
-                } else {
-                    for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-                        removeView((View) arrayList2.get(i4));
-                    }
-                    arrayList3.clear();
-                    this.currentAnimation = null;
-                    this.animationStarted = false;
-                    selectorSearchCell.editText.setAllowDrawCursor(true);
-                }
-                requestLayout();
-            }
         }
     }
 
@@ -5585,7 +5288,7 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
     }
 
     public StoryPrivacyBottomSheet(final Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider, true, false);
+        super(context, true, false, resourcesProvider);
         this.excludedEveryone = new ArrayList();
         this.excludedEveryoneByGroup = new HashMap();
         this.excludedEveryoneCount = 0;
@@ -5610,57 +5313,26 @@ public final class StoryPrivacyBottomSheet extends BottomSheet implements Notifi
         this.backgroundPaint = new Paint(1);
         this.allowSmallChats = true;
         this.isEdit = false;
-        init$2(context);
-        final int i = 1;
-        this.viewPager.setAdapter(new ViewPagerFixed.Adapter(this) {
-            public final StoryPrivacyBottomSheet this$0;
-
-            {
-                this.this$0 = this;
+        init$1(context);
+        this.viewPager.setAdapter(new ViewPagerFixed.Adapter() {
+            @Override
+            public final void bindView(View view, int i, int i2) {
+                ((Page) view).bind(i2);
             }
 
             @Override
-            public final void bindView(View view, int i5, int i6) {
-                switch (i) {
-                    case 0:
-                        ((Page) view).bind(i6);
-                        break;
-                    default:
-                        ((Page) view).bind(i6);
-                        break;
-                }
-            }
-
-            @Override
-            public final View createView(int i5) {
-                switch (i) {
-                    case 0:
-                        break;
-                }
-                return this.this$0.new Page(context);
+            public final View createView(int i) {
+                return StoryPrivacyBottomSheet.this.new Page(context);
             }
 
             @Override
             public final int getItemCount() {
-                switch (i) {
-                    case 0:
-                        return 2;
-                    default:
-                        return 1;
-                }
+                return 1;
             }
 
             @Override
-            public final int getItemViewType(int i5) {
-                switch (i) {
-                    case 0:
-                        if (i5 == 0) {
-                            return 0;
-                        }
-                        return this.this$0.activePage;
-                    default:
-                        return 5;
-                }
+            public final int getItemViewType(int i) {
+                return 5;
             }
         });
     }

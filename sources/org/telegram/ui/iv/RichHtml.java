@@ -1,11 +1,13 @@
 package org.telegram.ui.iv;
 
+import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -16,7 +18,6 @@ import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.URLSpanReplacement;
-import org.telegram.ui.PhotoViewer;
 
 public abstract class RichHtml {
 
@@ -189,7 +190,7 @@ public abstract class RichHtml {
                 int iNextSpanTransition = spanned.nextSpanTransition(iMin, length, CharacterStyle.class);
                 int i2 = 0;
                 for (TextStyleSpan textStyleSpan : (TextStyleSpan[]) spanned.getSpans(iMin, iNextSpanTransition, TextStyleSpan.class)) {
-                    TextStyleSpan.TextStyleRun textStyleRun = textStyleSpan.style;
+                    TextStyleSpan.TextStyleRun textStyleRun = textStyleSpan.getTextStyleRun();
                     if (textStyleRun != null) {
                         i2 |= textStyleRun.flags;
                     }
@@ -509,7 +510,7 @@ public abstract class RichHtml {
         spannableStringBuilder.append((CharSequence) str);
         int length2 = spannableStringBuilder.length();
         if (j != 0) {
-            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(j, 1.2f, null), length, length2, 33);
+            spannableStringBuilder.setSpan(new AnimatedEmojiSpan(j, (Paint.FontMetricsInt) null), length, length2, 33);
         }
         if (i != 0) {
             TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
@@ -890,7 +891,7 @@ public abstract class RichHtml {
         return true;
     }
 
-    public static ArrayList parse(String str, HashMap map) {
+    public static ArrayList parse(HashMap map, String str) {
         char c;
         Node node;
         String strSubstring;
@@ -918,7 +919,7 @@ public abstract class RichHtml {
                         if (arrayList3.isEmpty()) {
                             arrayList2.add(node2);
                         } else {
-                            ((Node) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList3)).children.add(node2);
+                            ((Node) Fragment$$ExternalSyntheticOutline0.m(1, arrayList3)).children.add(node2);
                         }
                     }
                     length = iIndexOf;
@@ -959,7 +960,7 @@ public abstract class RichHtml {
                             if (arrayList3.isEmpty()) {
                                 arrayList2.add(node3);
                             } else {
-                                ((Node) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList3)).children.add(node3);
+                                ((Node) Fragment$$ExternalSyntheticOutline0.m(1, arrayList3)).children.add(node3);
                             }
                         }
                         parseBlocks(arrayList2, arrayList, map);
@@ -971,7 +972,7 @@ public abstract class RichHtml {
                         int i7 = i6 + 1;
                         boolean zEndsWith = strSubstring4.endsWith("/");
                         if (zEndsWith) {
-                            strSubstring4 = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 0, strSubstring4);
+                            strSubstring4 = Fragment$$ExternalSyntheticOutline0.m(1, 0, strSubstring4);
                         }
                         String strTrim = strSubstring4.trim();
                         if (strTrim.isEmpty()) {
@@ -1048,7 +1049,7 @@ public abstract class RichHtml {
                             if (arrayList3.isEmpty()) {
                                 arrayList2.add(node);
                             } else {
-                                ((Node) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList3)).children.add(node);
+                                ((Node) Fragment$$ExternalSyntheticOutline0.m(1, arrayList3)).children.add(node);
                             }
                             if (!zEndsWith) {
                                 String str2 = node.tag;
@@ -1077,7 +1078,7 @@ public abstract class RichHtml {
                     for (int size = arrayList3.size() - 1; size >= 0; size += i4) {
                         if (((Node) arrayList3.get(size)).tag.equals(lowerCase3)) {
                             while (arrayList3.size() > size) {
-                                SurfaceContainer$$ExternalSyntheticOutline0.m5m(1, arrayList3);
+                                Fragment$$ExternalSyntheticOutline0.m81m(1, arrayList3);
                             }
                             length = length2;
                         }
@@ -1251,7 +1252,7 @@ public abstract class RichHtml {
         }
     }
 
-    public static void serializeRange(StringBuilder sb, ArrayList arrayList, int[] iArr, int i, int i2, int i3, int i4, int i5, PhotoViewer.AnonymousClass49 anonymousClass49, boolean z, int i6, HashMap map) {
+    public static void serializeRange(StringBuilder sb, ArrayList arrayList, int[] iArr, int i, int i2, int i3, int i4, int i5, Stripe.AnonymousClass1 anonymousClass1, boolean z, int i6, HashMap map) {
         BlockRow blockRow;
         ArrayList arrayList2;
         int i7;
@@ -1277,7 +1278,7 @@ public abstract class RichHtml {
                         iArr[0] = iArr[0] + 1;
                     }
                 } else if (blockRow.quoteIds.size() > i6) {
-                    anonymousClass49.closeAll(sb2);
+                    anonymousClass1.closeAll(sb2);
                     Long l = (Long) ((BlockRow) arrayList4.get(iArr[0])).quoteIds.get(i6);
                     long jLongValue = l.longValue();
                     int i10 = iArr[0];
@@ -1294,9 +1295,9 @@ public abstract class RichHtml {
                         }
                     }
                     sb2.append("<blockquote>");
-                    PhotoViewer.AnonymousClass49 anonymousClass410 = new PhotoViewer.AnonymousClass49();
-                    serializeRange(sb2, arrayList4, iArr, i10, i2, i3, i4, i5, anonymousClass410, z, i6 + 1, map);
-                    anonymousClass410.closeAll(sb2);
+                    Stripe.AnonymousClass1 anonymousClass2 = new Stripe.AnonymousClass1(16);
+                    serializeRange(sb2, arrayList4, iArr, i10, i2, i3, i4, i5, anonymousClass2, z, i6 + 1, map);
+                    anonymousClass2.closeAll(sb2);
                     if (map == null || (richText = (TL_iv.RichText) map.get(l)) == null || (richText instanceof TL_iv.textEmpty)) {
                         spannableStringBuilder = null;
                     } else {
@@ -1321,19 +1322,19 @@ public abstract class RichHtml {
                 }
             }
             if (RichEditorListView.isDetailsHeader(blockRow)) {
-                anonymousClass49.closeAll(sb2);
+                anonymousClass1.closeAll(sb2);
                 BlockRow blockRow3 = (BlockRow) arrayList4.get(iArr[0]);
                 sb2.append(((TL_iv.pageBlockDetails) blockRow3.block).open ? "<details open>" : "<details>");
                 sb2.append("<summary>");
                 appendInline(sb2, slicedStyled(blockRow3, iArr[0], i2, i3, i4, i5));
                 sb2.append("</summary>");
                 iArr[0] = iArr[0] + 1;
-                PhotoViewer.AnonymousClass49 anonymousClass411 = new PhotoViewer.AnonymousClass49();
+                Stripe.AnonymousClass1 anonymousClass3 = new Stripe.AnonymousClass1(16);
                 int i12 = i8;
-                serializeRange(sb2, arrayList4, iArr, i12, i2, i3, i4, i5, anonymousClass411, true, i6, map);
+                serializeRange(sb2, arrayList4, iArr, i12, i2, i3, i4, i5, anonymousClass3, true, i6, map);
                 arrayList2 = arrayList4;
                 i7 = i12;
-                anonymousClass411.closeAll(sb2);
+                anonymousClass3.closeAll(sb2);
                 int i13 = iArr[0];
                 if (i13 <= i7 && i13 < arrayList2.size() && ((BlockRow) arrayList2.get(iArr[0])).detailsEnd) {
                     iArr[0] = iArr[0] + 1;
@@ -1343,7 +1344,7 @@ public abstract class RichHtml {
                 arrayList2 = arrayList4;
                 i7 = i8;
                 if (blockRow.level <= 0 || blockTag(blockRow.block) == null) {
-                    anonymousClass49.closeAll(sb2);
+                    anonymousClass1.closeAll(sb2);
                     int i14 = iArr[0];
                     TL_iv.PageBlock pageBlock = blockRow.block;
                     if (pageBlock instanceof TL_iv.pageBlockDivider) {
@@ -1560,7 +1561,7 @@ public abstract class RichHtml {
                     int i17 = blockRow.level;
                     boolean z3 = blockRow.num > 0;
                     while (true) {
-                        arrayList3 = (ArrayList) anonymousClass49.this$0;
+                        arrayList3 = (ArrayList) anonymousClass1.this$0;
                         String str6 = "</ul>";
                         if (arrayList3.size() <= i17) {
                             break;
@@ -1581,7 +1582,7 @@ public abstract class RichHtml {
                         sb2.append(str7);
                         arrayList3.add(Boolean.valueOf(z3));
                     }
-                    if (!arrayList3.isEmpty() && ((Boolean) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList3)).booleanValue() != z3) {
+                    if (!arrayList3.isEmpty() && ((Boolean) Fragment$$ExternalSyntheticOutline0.m(1, arrayList3)).booleanValue() != z3) {
                         sb2.append(((Boolean) arrayList3.remove(arrayList3.size() - 1)).booleanValue() ? "</ol>" : "</ul>");
                         sb2.append(z3 ? "<ol>" : "<ul>");
                         arrayList3.add(Boolean.valueOf(z3));

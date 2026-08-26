@@ -91,7 +91,7 @@ public abstract class CustomHtml {
                 if (textStyleSpanArr != null) {
                     for (TextStyleSpan textStyleSpan : textStyleSpanArr) {
                         if (textStyleSpan != null) {
-                            textStyleSpanBegin(textStyleSpan.style, sb);
+                            textStyleSpanBegin(textStyleSpan.getTextStyleRun(), sb);
                         }
                     }
                 }
@@ -104,7 +104,7 @@ public abstract class CustomHtml {
                     String str3 = "\">";
                     if (uRLSpanReplacementArr != null) {
                         for (URLSpanReplacement uRLSpanReplacement : uRLSpanReplacementArr) {
-                            textStyleSpanBegin(uRLSpanReplacement.style, sb);
+                            textStyleSpanBegin(uRLSpanReplacement.getTextStyleRun(), sb);
                             sb.append("<a href=\"");
                             sb.append(uRLSpanReplacement.getURL());
                             sb.append("\">");
@@ -299,7 +299,7 @@ public abstract class CustomHtml {
                     if (uRLSpanReplacementArr != null) {
                         for (URLSpanReplacement uRLSpanReplacement2 : uRLSpanReplacementArr) {
                             sb.append("</a>");
-                            textStyleSpanEnd(uRLSpanReplacement2.style, sb);
+                            textStyleSpanEnd(uRLSpanReplacement2.getTextStyleRun(), sb);
                         }
                     }
                     length = i28;
@@ -314,7 +314,7 @@ public abstract class CustomHtml {
                 if (textStyleSpanArr != null) {
                     for (TextStyleSpan textStyleSpan2 : textStyleSpanArr) {
                         if (textStyleSpan2 != null) {
-                            textStyleSpanEnd(textStyleSpan2.style, sb);
+                            textStyleSpanEnd(textStyleSpan2.getTextStyleRun(), sb);
                         }
                     }
                 }

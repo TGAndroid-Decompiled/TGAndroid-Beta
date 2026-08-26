@@ -12,7 +12,7 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticApiModelOutline3;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticApiModelOutline1;
 import org.telegram.ui.bots.BotStorage$$ExternalSyntheticApiModelOutline0;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
@@ -249,12 +249,12 @@ public class WebRtcAudioRecord {
                 try {
                     MediaProjection mediaProjection = VideoCapturerDevice.getMediaProjection();
                     if (mediaProjection != null) {
-                        PhotoViewer$$ExternalSyntheticApiModelOutline3.m1096m();
-                        AudioPlaybackCaptureConfiguration.Builder builderM = PhotoViewer$$ExternalSyntheticApiModelOutline3.m(mediaProjection);
+                        WebRtcAudioRecord$$ExternalSyntheticApiModelOutline8.m();
+                        AudioPlaybackCaptureConfiguration.Builder builderM = PhotoViewer$$ExternalSyntheticApiModelOutline1.m(mediaProjection);
                         builderM.addMatchingUsage(1);
                         builderM.addMatchingUsage(14);
                         builderM.addMatchingUsage(0);
-                        BotStorage$$ExternalSyntheticApiModelOutline0.m1101m();
+                        WebRtcAudioRecord$$ExternalSyntheticApiModelOutline5.m();
                         AudioRecord.Builder builderM2 = BotStorage$$ExternalSyntheticApiModelOutline0.m();
                         builderM2.setAudioPlaybackCaptureConfig(builderM.build());
                         builderM2.setAudioFormat(new AudioFormat.Builder().setChannelMask(iChannelCountToConfiguration).setSampleRate(i).setEncoding(2).build());
@@ -425,11 +425,11 @@ public class WebRtcAudioRecord {
         }
         int iMax = Math.max(minBufferSize * 2, this.deviceByteBuffer.capacity());
         try {
-            PhotoViewer$$ExternalSyntheticApiModelOutline3.m1096m();
-            AudioPlaybackCaptureConfiguration.Builder builderM = PhotoViewer$$ExternalSyntheticApiModelOutline3.m(mediaProjection);
+            WebRtcAudioRecord$$ExternalSyntheticApiModelOutline8.m();
+            AudioPlaybackCaptureConfiguration.Builder builderM = PhotoViewer$$ExternalSyntheticApiModelOutline1.m(mediaProjection);
             builderM.addMatchingUsage(1);
             builderM.addMatchingUsage(14);
-            BotStorage$$ExternalSyntheticApiModelOutline0.m1101m();
+            WebRtcAudioRecord$$ExternalSyntheticApiModelOutline5.m();
             AudioRecord.Builder builderM2 = BotStorage$$ExternalSyntheticApiModelOutline0.m();
             builderM2.setAudioPlaybackCaptureConfig(builderM.build());
             builderM2.setAudioFormat(new AudioFormat.Builder().setChannelMask(iChannelCountToConfiguration).setSampleRate(this.requestedSampleRate).setEncoding(2).build());

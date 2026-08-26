@@ -1,36 +1,25 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.browser.Browser;
+import android.content.DialogInterface;
 
-public final class SettingsActivity$$ExternalSyntheticLambda4 implements Runnable {
+public final class SettingsActivity$$ExternalSyntheticLambda4 implements DialogInterface.OnDismissListener {
     public final int $r8$classId;
-    public final SettingsActivity f$0;
 
-    public SettingsActivity$$ExternalSyntheticLambda4(SettingsActivity settingsActivity, int i) {
+    public SettingsActivity$$ExternalSyntheticLambda4(int i) {
         this.$r8$classId = i;
-        this.f$0 = settingsActivity;
     }
 
     @Override
-    public final void run() {
+    public final void onDismiss(DialogInterface dialogInterface) {
         switch (this.$r8$classId) {
             case 0:
-                SettingsActivity settingsActivity = this.f$0;
-                settingsActivity.listView.postOnAnimation(new SettingsActivity$$ExternalSyntheticLambda4(settingsActivity, 2));
+                SettingsActivity.lambda$createView$2(dialogInterface);
                 break;
             case 1:
-                Browser.openUrl(this.f$0.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
-                break;
-            case 2:
-                this.f$0.blur3_InvalidateBlur$9();
-                break;
-            case 3:
-                this.f$0.listView.adapter.update(true);
+                AccountFrozenAlert.shown = false;
                 break;
             default:
-                this.f$0.lambda$createView$1$5$2();
+                GroupCallActivity.lambda$processSelectedOption$73(dialogInterface);
                 break;
         }
     }

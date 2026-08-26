@@ -8,7 +8,6 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.ImageSpan;
 import android.view.View;
@@ -20,10 +19,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.BlurSettingsBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.TranscribeButton;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
@@ -61,83 +59,37 @@ public final class SettingsSearchCell extends FrameLayout {
     }
 
     public final class VerticalImageSpan extends ImageSpan {
-        public static TranscribeButton.LoadingPointsDrawable drawable;
-        public final int $r8$classId = 1;
-
-        public VerticalImageSpan(Drawable drawable2) {
-            super(drawable2);
+        @Override
+        public final void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+            Drawable drawable = getDrawable();
+            canvas.save();
+            Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
+            int i6 = fontMetricsInt.descent;
+            canvas.translate(f, ((i4 + i6) - ((i6 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
+            if (LocaleController.isRTL) {
+                canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
+            }
+            drawable.draw(canvas);
+            canvas.restore();
         }
 
         @Override
-        public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-            switch (this.$r8$classId) {
-                case 0:
-                    Drawable drawable2 = getDrawable();
-                    canvas.save();
-                    Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
-                    int i6 = fontMetricsInt.descent;
-                    canvas.translate(f, ((i4 + i6) - ((i6 - fontMetricsInt.ascent) / 2)) - ((drawable2.getBounds().bottom - drawable2.getBounds().top) / 2));
-                    if (LocaleController.isRTL) {
-                        canvas.scale(-1.0f, 1.0f, drawable2.getIntrinsicWidth() / 2, drawable2.getIntrinsicHeight() / 2);
-                    }
-                    drawable2.draw(canvas);
-                    canvas.restore();
-                    break;
-                default:
-                    super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
-                    break;
+        public final int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+            Rect bounds = getDrawable().getBounds();
+            if (fontMetricsInt != null) {
+                Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
+                int i3 = fontMetricsInt2.descent;
+                int i4 = fontMetricsInt2.ascent;
+                int i5 = ((i3 - i4) / 2) + i4;
+                int i6 = (bounds.bottom - bounds.top) / 2;
+                int i7 = i5 - i6;
+                fontMetricsInt.ascent = i7;
+                fontMetricsInt.top = i7;
+                int i8 = i5 + i6;
+                fontMetricsInt.bottom = i8;
+                fontMetricsInt.descent = i8;
             }
-        }
-
-        @Override
-        public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-            switch (this.$r8$classId) {
-                case 0:
-                    Rect bounds = getDrawable().getBounds();
-                    if (fontMetricsInt != null) {
-                        Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
-                        int i3 = fontMetricsInt2.descent;
-                        int i4 = fontMetricsInt2.ascent;
-                        int i5 = ((i3 - i4) / 2) + i4;
-                        int i6 = (bounds.bottom - bounds.top) / 2;
-                        int i7 = i5 - i6;
-                        fontMetricsInt.ascent = i7;
-                        fontMetricsInt.top = i7;
-                        int i8 = i5 + i6;
-                        fontMetricsInt.bottom = i8;
-                        fontMetricsInt.descent = i8;
-                    }
-                    return bounds.right;
-                default:
-                    return super.getSize(paint, charSequence, i, i2, fontMetricsInt);
-            }
-        }
-
-        @Override
-        public void updateDrawState(TextPaint textPaint) {
-            switch (this.$r8$classId) {
-                case 1:
-                    float textSize = textPaint.getTextSize() * 0.89f;
-                    int i = (int) (0.02f * textSize);
-                    getDrawable().setBounds(0, i, (int) textSize, ((int) (textSize * 1.25f)) + i);
-                    super.updateDrawState(textPaint);
-                    break;
-                default:
-                    super.updateDrawState(textPaint);
-                    break;
-            }
-        }
-
-        public VerticalImageSpan() {
-            TranscribeButton.LoadingPointsDrawable loadingPointsDrawable = drawable;
-            if (loadingPointsDrawable == null) {
-                loadingPointsDrawable = new TranscribeButton.LoadingPointsDrawable(Theme.chat_msgTextPaint);
-                drawable = loadingPointsDrawable;
-            }
-            super(loadingPointsDrawable, 0);
-            float textSize = Theme.chat_msgTextPaint.getTextSize() * 0.89f;
-            int i = (int) (0.02f * textSize);
-            getDrawable().setBounds(0, i, (int) textSize, ((int) (textSize * 1.25f)) + i);
+            return bounds.right;
         }
     }
 
@@ -156,7 +108,9 @@ public final class SettingsSearchCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 16.0f : 71.0f, 10.0f, z ? 71.0f : 16.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        ArticleViewer.IBlock.CC.m(textView2, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), 13.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView2, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), 1, 13.0f, 1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
         boolean z2 = LocaleController.isRTL;
         addView(textView2, LayoutHelper.createFrame(-2, -2.0f, z2 ? 5 : 3, z2 ? 16.0f : 71.0f, 33.0f, z2 ? 71.0f : 16.0f, 0.0f));

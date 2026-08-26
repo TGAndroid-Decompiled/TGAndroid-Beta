@@ -24,9 +24,8 @@ import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline1;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline0;
+import org.telegram.ui.Stories.StealthModeAlert$$ExternalSyntheticLambda3;
 
 public abstract class DualCameraView extends CameraView {
     public static final int[] dualWhitelistByDevice = {1893745684, -215458996, -862041025, -1258375037, -1320049076, -215749424, 1901578030, -215451421, 1908491424, -1321491332, -1155551678, 1908524435, 976847578, -1489198134, 1910814392, -713271737, -2010722764, 1407170066, -821405251, -1394190955, -1394190055, 1407170066, 1407159934, 1407172057, 1231389747, -2076538925, 41497626, 846150482, -1198092731, -251277614, -2073158771, 1273004781};
@@ -154,7 +153,7 @@ public abstract class DualCameraView extends CameraView {
                 tL_inputAppEvent.data = tL_jsonObject;
                 tL_inputAppEvent.peer = (z ? 1 : 0) | (zDualAvailableDefault ? 2 : 0);
                 tL_help_saveAppLog.events.add(tL_inputAppEvent);
-                ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_help_saveAppLog, new PassportActivity$$ExternalSyntheticLambda1(21));
+                ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_help_saveAppLog, new StealthModeAlert$$ExternalSyntheticLambda3(8));
             } catch (Exception unused) {
             }
         }
@@ -233,7 +232,7 @@ public abstract class DualCameraView extends CameraView {
         if (this.enabledSavedDual) {
             StoryRecorder.AnonymousClass25 anonymousClass25 = (StoryRecorder.AnonymousClass25) this;
             if (MessagesController.getGlobalMainSettings().getInt("storysvddualhint", 0) < 2) {
-                AndroidUtilities.runOnUIThread(new VoIPFragment$12$$ExternalSyntheticLambda0(anonymousClass25, 20), 340L);
+                AndroidUtilities.runOnUIThread(new PreviewView$$ExternalSyntheticLambda12(anonymousClass25, 23), 340L);
             }
             StoryRecorder storyRecorder = StoryRecorder.this;
             storyRecorder.dualButton.setValue(anonymousClass25.isDual());
@@ -251,12 +250,7 @@ public abstract class DualCameraView extends CameraView {
                 SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
                 this.dualAvailable = false;
                 editorEdit.putBoolean("dual_available", false).apply();
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, null);
-                String string = LocaleController.getString(R.string.DualErrorTitle);
-                AlertDialog alertDialog = builder.alertDialog;
-                alertDialog.title = string;
-                alertDialog.message = LocaleController.getString(R.string.DualErrorMessage);
-                ChatActivity$$ExternalSyntheticOutline1.m(R.string.OK, builder);
+                ChatActivity$$ExternalSyntheticOutline0.m(R.string.OK, new AlertDialog.Builder(getContext(), 0, null).setTitle(LocaleController.getString(R.string.DualErrorTitle)).setMessage(LocaleController.getString(R.string.DualErrorMessage)), null);
             }
             log(false);
             toggleDual();

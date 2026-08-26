@@ -1,10 +1,9 @@
 package org.aspectj.runtime.reflect;
 
-import androidx.recyclerview.widget.AdapterHelper;
+import androidx.emoji2.text.MetadataRepo;
 import java.util.Hashtable;
 import java.util.StringTokenizer;
-import org.commonmark.parser.Parser;
-import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.iv.RichMapCell;
 
 public final class Factory {
     public static final Object[] NO_ARGS;
@@ -55,11 +54,11 @@ public final class Factory {
         }
     }
 
-    public static Parser makeJP(PhotoViewer.AnonymousClass18 anonymousClass18, Object obj, Object obj2) {
-        return new Parser(anonymousClass18, obj, obj2, NO_ARGS);
+    public static MetadataRepo makeJP(RichMapCell.AnonymousClass1 anonymousClass1, Object obj, Object obj2) {
+        return new MetadataRepo(anonymousClass1, obj, obj2, NO_ARGS);
     }
 
-    public final AdapterHelper makeMethodSig(String str, String str2, String str3, String str4, String str5) {
+    public final MethodSignatureImpl makeMethodSig(String str, String str2, String str3, String str4, String str5) {
         int i = Integer.parseInt("1", 16);
         ClassLoader classLoader = this.lookupClassLoader;
         Class clsMakeClass = makeClass(classLoader, str2);
@@ -82,22 +81,22 @@ public final class Factory {
             clsArr2[i4] = makeClass(classLoader, stringTokenizer3.nextToken());
         }
         Class clsMakeClass2 = makeClass(classLoader, str5);
-        AdapterHelper adapterHelper = new AdapterHelper(2);
-        adapterHelper.mExistingUpdateTypes = i;
-        adapterHelper.mUpdateOpPool = str;
-        adapterHelper.mPostponedList = clsMakeClass;
-        adapterHelper.mCallback = clsArr;
-        adapterHelper.mOpReorderer = clsMakeClass2;
-        return adapterHelper;
+        MethodSignatureImpl methodSignatureImpl = new MethodSignatureImpl(0);
+        methodSignatureImpl.modifiers = i;
+        methodSignatureImpl.name = str;
+        methodSignatureImpl.declaringType = clsMakeClass;
+        methodSignatureImpl.parameterTypes = clsArr;
+        methodSignatureImpl.returnType = clsMakeClass2;
+        return methodSignatureImpl;
     }
 
-    public final PhotoViewer.AnonymousClass18 makeSJP(AdapterHelper adapterHelper) {
-        PhotoViewer.AnonymousClass18 anonymousClass18 = new PhotoViewer.AnonymousClass18(8, false);
-        anonymousClass18.this$0 = adapterHelper;
-        return anonymousClass18;
+    public final RichMapCell.AnonymousClass1 makeSJP(MethodSignatureImpl methodSignatureImpl) {
+        RichMapCell.AnonymousClass1 anonymousClass1 = new RichMapCell.AnonymousClass1(11);
+        anonymousClass1.this$0 = methodSignatureImpl;
+        return anonymousClass1;
     }
 
-    public static Parser makeJP(PhotoViewer.AnonymousClass18 anonymousClass18, Object obj, Object obj2, Object obj3) {
-        return new Parser(anonymousClass18, obj, obj2, new Object[]{obj3});
+    public static MetadataRepo makeJP(RichMapCell.AnonymousClass1 anonymousClass1, Object obj, Object obj2, Object obj3) {
+        return new MetadataRepo(anonymousClass1, obj, obj2, new Object[]{obj3});
     }
 }

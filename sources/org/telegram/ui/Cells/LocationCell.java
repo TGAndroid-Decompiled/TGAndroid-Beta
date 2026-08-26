@@ -52,39 +52,27 @@ public final class LocationCell extends FrameLayout {
         ShapeDrawable shapeDrawableCreateCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), -1);
         this.circleDrawable = shapeDrawableCreateCircleDrawable;
         backupImageView.setBackground(shapeDrawableCreateCircleDrawable);
-        int iDp = AndroidUtilities.dp(30.0f);
-        int iDp2 = AndroidUtilities.dp(30.0f);
-        backupImageView.width = iDp;
-        backupImageView.height = iDp2;
-        backupImageView.invalidate();
+        backupImageView.setSize(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
         boolean z = LocaleController.isRTL;
         addView(backupImageView, LayoutHelper.createFrame(42, 42.0f, (z ? 5 : 3) | 48, z ? 0.0f : 15.0f, 11.0f, z ? 15.0f : 0.0f, 0.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
         this.nameTextView = animatedTextView;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = animatedTextView.drawable;
-        animatedTextDrawable.moveAmplitude = 0.4f;
-        animatedTextDrawable.animateDuration = 350L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextView.setAnimationProperties(0.4f, 0L, 350L, cubicBezierInterpolator);
         animatedTextView.setScaleProperty(0.6f);
         animatedTextView.setTextSize(AndroidUtilities.dp(16.0f));
         animatedTextView.setEllipsizeByGradient(true);
         animatedTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         animatedTextView.setTypeface(AndroidUtilities.bold());
         animatedTextView.setGravity(LocaleController.isRTL ? 5 : 3);
-        animatedTextView.getDrawable().overrideFullWidth = AndroidUtilities.displaySize.x;
+        animatedTextView.getDrawable().setOverrideFullWidth(AndroidUtilities.displaySize.x);
         NotificationCenter.listenEmojiLoading(animatedTextView);
         boolean z2 = LocaleController.isRTL;
         addView(animatedTextView, LayoutHelper.createFrame(-1, 22.0f, (z2 ? 5 : 3) | 48, z2 ? 16 : 73, 10.0f, z2 ? 73 : 16, 0.0f));
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
         this.addressTextView = animatedTextView2;
         animatedTextView2.setScaleProperty(0.6f);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = animatedTextView2.drawable;
-        animatedTextDrawable2.moveAmplitude = 0.4f;
-        animatedTextDrawable2.animateDuration = 350L;
-        animatedTextDrawable2.animateWave = 1.0f;
-        animatedTextDrawable2.animateInterpolator = cubicBezierInterpolator;
+        animatedTextView2.setAnimationProperties(0.4f, 0L, 350L, cubicBezierInterpolator);
         animatedTextView2.setTextSize(AndroidUtilities.dp(14.0f));
         animatedTextView2.setEllipsizeByGradient(true);
         animatedTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, resourcesProvider));
@@ -129,16 +117,9 @@ public final class LocationCell extends FrameLayout {
             globalGradientView = flickerLoadingView2;
             flickerLoadingView2.setIsSingleCell(true);
         }
-        int iIndexOfChild = getParent() instanceof ViewGroup ? ((ViewGroup) getParent()).indexOfChild(this) : 0;
-        FlickerLoadingView flickerLoadingView3 = globalGradientView;
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        int iDp = AndroidUtilities.dp(56.0f);
-        flickerLoadingView3.parentWidth = measuredWidth;
-        flickerLoadingView3.parentHeight = measuredHeight;
-        flickerLoadingView3.parentXOffset = iDp * (-iIndexOfChild);
+        globalGradientView.setParentSize(getMeasuredWidth(), getMeasuredHeight(), AndroidUtilities.dp(56.0f) * (-(getParent() instanceof ViewGroup ? ((ViewGroup) getParent()).indexOfChild(this) : 0)));
         globalGradientView.setViewType(4);
-        globalGradientView.updateColors$1();
+        globalGradientView.updateColors();
         globalGradientView.updateGradient();
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
         canvas.translate(AndroidUtilities.dp(2.0f), OKLCH.m$2(56.0f, getMeasuredHeight(), 2));
@@ -183,11 +164,11 @@ public final class LocationCell extends FrameLayout {
                 this.lastTitle = tL_messageMediaVenue.title;
                 this.lastCompleteTitle = charSequenceReplaceEmoji;
             }
-            animatedTextView.setText(charSequenceReplaceEmoji, this.allowTextAnimation && !LocaleController.isRTL && z2, true);
+            animatedTextView.setText(charSequenceReplaceEmoji, this.allowTextAnimation && !LocaleController.isRTL && z2);
         }
         AnimatedTextView animatedTextView2 = this.addressTextView;
         if (tL_messageMediaVenue != null) {
-            animatedTextView2.setText(tL_messageMediaVenue.address, this.allowTextAnimation && !LocaleController.isRTL && z2, true);
+            animatedTextView2.setText(tL_messageMediaVenue.address, this.allowTextAnimation && !LocaleController.isRTL && z2);
         }
         int colorForIndex = getColorForIndex(i);
         BackupImageView backupImageView = this.imageView;
@@ -196,14 +177,8 @@ public final class LocationCell extends FrameLayout {
                 Drawable drawableMutate = getResources().getDrawable(R.drawable.pin).mutate();
                 drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_location_sendLocationIcon, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
                 CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), 0), drawableMutate);
-                int iDp = AndroidUtilities.dp(42.0f);
-                int iDp2 = AndroidUtilities.dp(42.0f);
-                combinedDrawable.backWidth = iDp;
-                combinedDrawable.backHeight = iDp2;
-                int iDp3 = AndroidUtilities.dp(24.0f);
-                int iDp4 = AndroidUtilities.dp(24.0f);
-                combinedDrawable.iconWidth = iDp3;
-                combinedDrawable.iconHeight = iDp4;
+                combinedDrawable.setCustomSize(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
+                combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
                 backupImageView.setImageDrawable(combinedDrawable);
             } else {
                 backupImageView.setImage(tL_messageMediaVenue.icon, null, null);

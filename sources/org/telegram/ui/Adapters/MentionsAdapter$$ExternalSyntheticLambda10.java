@@ -20,7 +20,6 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.MentionsContainerView;
 import org.telegram.ui.TwoStepVerificationActivity;
 
 public final class MentionsAdapter$$ExternalSyntheticLambda10 implements Runnable {
@@ -56,14 +55,14 @@ public final class MentionsAdapter$$ExternalSyntheticLambda10 implements Runnabl
                 String str2 = (String) this.f$1;
                 if (str2.equals(str)) {
                     mentionsAdapter.contextQueryReqid = 0;
+                    MentionsAdapter.MentionsAdapterDelegate mentionsAdapterDelegate = mentionsAdapter.delegate;
                     boolean z2 = this.f$2;
                     TLObject tLObject = (TLObject) this.f$3;
                     String str3 = (String) this.f$5;
-                    MentionsContainerView.AnonymousClass4 anonymousClass4 = mentionsAdapter.delegate;
                     if (z2 && tLObject == null) {
                         mentionsAdapter.searchForContextBotResults(false, (TLRPC.User) this.f$4, str2, str3);
-                    } else if (anonymousClass4 != null) {
-                        MentionsContainerView.this.onContextSearch(false);
+                    } else if (mentionsAdapterDelegate != null) {
+                        mentionsAdapterDelegate.onContextSearch(false);
                     }
                     if (tLObject instanceof TLRPC.TL_messages_botResults) {
                         TLRPC.TL_messages_botResults tL_messages_botResults = (TLRPC.TL_messages_botResults) tLObject;
@@ -112,13 +111,13 @@ public final class MentionsAdapter$$ExternalSyntheticLambda10 implements Runnabl
                         mentionsAdapter.searchResultCommandsHelp = null;
                         mentionsAdapter.searchResultCommandsUsers = null;
                         mentionsAdapter.visibleByStickersSearch = false;
-                        anonymousClass4.needChangePanelVisibility((mentionsAdapter.searchResultBotContext.isEmpty() && mentionsAdapter.searchResultBotContextSwitch == null && mentionsAdapter.searchResultBotWebViewSwitch == null) ? false : true);
+                        mentionsAdapterDelegate.needChangePanelVisibility((mentionsAdapter.searchResultBotContext.isEmpty() && mentionsAdapter.searchResultBotContextSwitch == null && mentionsAdapter.searchResultBotWebViewSwitch == null) ? false : true);
                         if (!z) {
                             mentionsAdapter.notifyDataSetChanged();
                         } else {
                             int i2 = (mentionsAdapter.searchResultBotContextSwitch == null && mentionsAdapter.searchResultBotWebViewSwitch == null) ? 0 : 1;
-                            mentionsAdapter.notifyItemChanged(((mentionsAdapter.searchResultBotContext.size() - tL_messages_botResults.results.size()) + i2) - 1);
-                            mentionsAdapter.mObservable.notifyItemRangeInserted((mentionsAdapter.searchResultBotContext.size() - tL_messages_botResults.results.size()) + i2, tL_messages_botResults.results.size());
+                            mentionsAdapter.lambda$onBindViewHolder$31(((mentionsAdapter.searchResultBotContext.size() - tL_messages_botResults.results.size()) + i2) - 1);
+                            mentionsAdapter.notifyItemRangeInserted((mentionsAdapter.searchResultBotContext.size() - tL_messages_botResults.results.size()) + i2, tL_messages_botResults.results.size());
                         }
                     }
                     break;

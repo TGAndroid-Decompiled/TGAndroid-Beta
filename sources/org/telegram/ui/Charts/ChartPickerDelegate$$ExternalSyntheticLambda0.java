@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.SenderSelectView;
 import org.telegram.ui.Stories.recorder.CaptionStory;
 import org.telegram.ui.Stories.recorder.RoundVideoRecorder;
 
@@ -45,37 +44,22 @@ public final class ChartPickerDelegate$$ExternalSyntheticLambda0 implements Valu
                 ((AnimatedEmojiSpan) this.f$0).lambda$animateChanges$2(this.f$1, this.f$2, this.f$3, this.f$4, valueAnimator);
                 break;
             case 2:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f$0;
-                chatActivityEnterView.getClass();
-                float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f5 = this.f$2;
-                float f6 = this.f$1;
-                float fM = DiffUtil.m(f5, f6, fFloatValue2, f6);
-                SenderSelectView senderSelectView = chatActivityEnterView.senderSelectView;
-                if (senderSelectView != null) {
-                    float f7 = this.f$4;
-                    float f8 = this.f$3;
-                    senderSelectView.setAlpha(((f7 - f8) * fFloatValue2) + f8);
-                    chatActivityEnterView.senderSelectView.setTranslationX(fM);
-                }
-                chatActivityEnterView.emojiButton.setTranslationX(fM);
-                chatActivityEnterView.messageTextTranslationX = fM;
-                chatActivityEnterView.updateMessageTextParams();
+                ((ChatActivityEnterView) this.f$0).lambda$updateSendAsButton$88(this.f$1, this.f$2, this.f$3, this.f$4, valueAnimator);
                 break;
             default:
                 CaptionStory.AnonymousClass1 anonymousClass1 = (CaptionStory.AnonymousClass1) this.f$0;
-                float fFloatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f9 = this.f$1;
-                float f10 = this.f$2;
-                float fLerp = AndroidUtilities.lerp(f9, f10, fFloatValue3);
+                float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f5 = this.f$1;
+                float f6 = this.f$2;
+                float fLerp = AndroidUtilities.lerp(f5, f6, fFloatValue2);
                 RoundVideoRecorder.AnonymousClass1 anonymousClass2 = anonymousClass1.cameraView;
                 anonymousClass2.setScaleX(fLerp);
-                anonymousClass2.setScaleY(AndroidUtilities.lerp(f9, f10, fFloatValue3));
-                anonymousClass2.setTranslationX(this.f$3 * fFloatValue3);
-                anonymousClass2.setTranslationY(this.f$4 * fFloatValue3);
-                float f11 = 1.0f - fFloatValue3;
-                anonymousClass2.setAlpha(f11);
-                anonymousClass1.alpha = f11;
+                anonymousClass2.setScaleY(AndroidUtilities.lerp(f5, f6, fFloatValue2));
+                anonymousClass2.setTranslationX(this.f$3 * fFloatValue2);
+                anonymousClass2.setTranslationY(this.f$4 * fFloatValue2);
+                float f7 = 1.0f - fFloatValue2;
+                anonymousClass2.setAlpha(f7);
+                anonymousClass1.alpha = f7;
                 anonymousClass1.invalidate();
                 break;
         }

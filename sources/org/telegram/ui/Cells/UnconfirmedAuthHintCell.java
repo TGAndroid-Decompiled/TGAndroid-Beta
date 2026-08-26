@@ -1,6 +1,6 @@
 package org.telegram.ui.Cells;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -30,8 +30,8 @@ public final class UnconfirmedAuthHintCell extends FrameLayout {
         public final AnimatedFloat loadingT;
         public CircularProgressDrawable progressDrawable;
 
-        public TextViewWithLoading(Activity activity) {
-            super(activity);
+        public TextViewWithLoading(Context context) {
+            super(context);
             this.loadingT = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         }
 
@@ -59,10 +59,10 @@ public final class UnconfirmedAuthHintCell extends FrameLayout {
                 this.progressDrawable = circularProgressDrawable;
                 circularProgressDrawable.setCallback(this);
             }
-            this.progressDrawable.paint.setColor(getCurrentTextColor());
+            this.progressDrawable.setColor(getCurrentTextColor());
             float f3 = 1.0f - f;
             this.progressDrawable.setBounds(getWidth() / 2, (getHeight() / 2) + ((int) (AndroidUtilities.dp(12.0f) * f3)), getWidth() / 2, (getHeight() / 2) + ((int) (f3 * AndroidUtilities.dp(12.0f))));
-            this.progressDrawable.paint.setAlpha((int) (f * 255.0f));
+            this.progressDrawable.setAlpha((int) (f * 255.0f));
             this.progressDrawable.draw(canvas2);
             invalidate();
         }
@@ -91,46 +91,45 @@ public final class UnconfirmedAuthHintCell extends FrameLayout {
         }
     }
 
-    public UnconfirmedAuthHintCell(Activity activity) {
-        super(activity);
+    public UnconfirmedAuthHintCell(Context context) {
+        super(context);
         setClickable(true);
-        LinearLayout linearLayout = new LinearLayout(activity);
+        LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);
-        TextView textView = new TextView(activity);
+        TextView textView = new TextView(context);
         this.titleTextView = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 55, 28, 8, 28, 0));
-        TextView textView2 = new TextView(activity);
-        this.messageTextView = textView2;
-        textView2.setGravity(17);
-        textView2.setTextSize(1, 13.0f);
-        textView2.setLineSpacing(AndroidUtilities.dpf2(2.0f), 1.0f);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 55, 28, 2, 28, 0));
-        LinearLayout linearLayout2 = new LinearLayout(activity);
+        TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 0.0f, 55, 28, 8, 28, 0), context);
+        this.messageTextView = textViewM;
+        textViewM.setGravity(17);
+        textViewM.setTextSize(1, 13.0f);
+        textViewM.setLineSpacing(AndroidUtilities.dpf2(2.0f), 1.0f);
+        linearLayout.addView(textViewM, LayoutHelper.createLinear(-1, -2, 0.0f, 55, 28, 2, 28, 0));
+        LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         linearLayout2.setGravity(17);
-        linearLayout2.addView(new Space(activity), LayoutHelper.createLinear(-2, 1, 17.0f, 1));
-        TextViewWithLoading textViewWithLoading = new TextViewWithLoading(activity);
+        linearLayout2.addView(new Space(context), LayoutHelper.createLinear(-2, 1, 17.0f, 1));
+        TextViewWithLoading textViewWithLoading = new TextViewWithLoading(context);
         this.yesButton = textViewWithLoading;
         textViewWithLoading.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
         textViewWithLoading.setTypeface(AndroidUtilities.bold());
         textViewWithLoading.setTextSize(1, 14.22f);
         textViewWithLoading.setText(LocaleController.getString(R.string.UnconfirmedAuthConfirm));
         linearLayout2.addView(textViewWithLoading, LayoutHelper.createLinear(-2, 30));
-        linearLayout2.addView(new Space(activity), LayoutHelper.createLinear(-2, 1, 17.0f, 1));
-        TextViewWithLoading textViewWithLoading2 = new TextViewWithLoading(activity);
+        linearLayout2.addView(new Space(context), LayoutHelper.createLinear(-2, 1, 17.0f, 1));
+        TextViewWithLoading textViewWithLoading2 = new TextViewWithLoading(context);
         this.noButton = textViewWithLoading2;
         textViewWithLoading2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(7.0f));
         textViewWithLoading2.setTypeface(AndroidUtilities.bold());
         textViewWithLoading2.setTextSize(1, 14.22f);
         textViewWithLoading2.setText(LocaleController.getString(R.string.UnconfirmedAuthDeny));
         linearLayout2.addView(textViewWithLoading2, LayoutHelper.createLinear(-2, 30));
-        linearLayout2.addView(new Space(activity), LayoutHelper.createLinear(-2, 1, 17.0f, 1));
-        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(28.0f, 4.0f, 28.0f, 8.0f, -1, -2));
+        linearLayout2.addView(new Space(context), LayoutHelper.createLinear(-2, 1, 17.0f, 1));
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 28.0f, 4.0f, 28.0f, 8.0f));
         addView(linearLayout, LayoutHelper.createFrame(-1, -1, 119));
         updateColors();
     }

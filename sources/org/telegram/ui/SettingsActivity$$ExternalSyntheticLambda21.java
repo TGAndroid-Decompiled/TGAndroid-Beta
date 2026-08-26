@@ -1,53 +1,25 @@
 package org.telegram.ui;
 
 import android.content.DialogInterface;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.ThemeEditorView;
-import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 
-public final class SettingsActivity$$ExternalSyntheticLambda21 implements DialogInterface.OnDismissListener {
+public final class SettingsActivity$$ExternalSyntheticLambda21 implements DialogInterface.OnClickListener {
     public final int $r8$classId;
+    public final int f$0;
 
-    public SettingsActivity$$ExternalSyntheticLambda21(int i) {
-        this.$r8$classId = i;
-    }
-
-    private final void onDismiss$org$telegram$ui$Components$AlertsCreator$$ExternalSyntheticLambda168(DialogInterface dialogInterface) {
-    }
-
-    private final void onDismiss$org$telegram$ui$SettingsActivity$$ExternalSyntheticLambda21(DialogInterface dialogInterface) {
+    public SettingsActivity$$ExternalSyntheticLambda21(int i, int i2) {
+        this.$r8$classId = i2;
+        this.f$0 = i;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
+    public final void onClick(DialogInterface dialogInterface, int i) {
         switch (this.$r8$classId) {
             case 0:
-                break;
-            case 1:
-                AccountFrozenAlert.shown = false;
-                break;
-            case 2:
-                break;
-            case 3:
-                SharedConfig.BackgroundActivityPrefs.increaseDismissedCount();
-                break;
-            case 4:
-                MediaController.forceBroadcastNewPhotos = false;
-                break;
-            case 5:
-                int i = ThemeEditorView.AnonymousClass1.$r8$clinit;
-                break;
-            case 6:
-                GroupCallActivity groupCallActivity = GroupCallActivity.groupCallInstance;
+                SettingsActivity.lambda$openDebugMenu$20(this.f$0, dialogInterface, i);
                 break;
             default:
-                int i2 = EmojiBottomSheet.savedPosition;
+                ProfileActivity.AnonymousClass15.lambda$onItemClick$2(this.f$0, dialogInterface, i);
                 break;
         }
-    }
-
-    public SettingsActivity$$ExternalSyntheticLambda21(boolean[] zArr) {
-        this.$r8$classId = 2;
     }
 }

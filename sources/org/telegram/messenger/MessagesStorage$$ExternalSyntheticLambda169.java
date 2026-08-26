@@ -28,17 +28,7 @@ public final class MessagesStorage$$ExternalSyntheticLambda169 implements Runnab
                 ((MessagesStorage) this.f$0).lambda$markMessagesAsDeleted$229(this.f$1, (ArrayList) this.f$2, this.f$3, this.f$4, this.f$5);
                 break;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f$0;
-                chatActivityEnterView.moveToSendStateRunnable = null;
-                chatActivityEnterView.hideTopView(true);
-                ChatActivityEnterView.AnonymousClass50 anonymousClass50 = chatActivityEnterView.messageEditText;
-                if (anonymousClass50 != null) {
-                    anonymousClass50.setText("");
-                }
-                ChatActivityEnterView.ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = chatActivityEnterView.delegate;
-                if (chatActivityEnterViewDelegate != null) {
-                    chatActivityEnterViewDelegate.onMessageSend((CharSequence) this.f$2, this.f$3, this.f$4, this.f$5, this.f$1);
-                }
+                ((ChatActivityEnterView) this.f$0).lambda$sendMessageInternal$62((CharSequence) this.f$2, this.f$3, this.f$4, this.f$5, this.f$1);
                 break;
         }
     }

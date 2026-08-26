@@ -10,7 +10,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.BlurSettingsBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
 
@@ -24,11 +24,13 @@ public final class TextCheckBoxCell extends FrameLayout {
         boolean z = LocaleController.isRTL;
         TextView textView = new TextView(activity);
         this.textView = textView;
-        ArticleViewer.IBlock.CC.m(textView, Theme.getColor(null, Theme.key_dialogTextBlack, false), 16.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView, Theme.getColor(null, Theme.key_dialogTextBlack, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         addView(textView, LayoutHelper.createFrame(-1, -1.0f, (z ? 5 : 3) | 48, z ? 66.0f : 21.0f, 0.0f, z ? 21.0f : 66.0f, 0.0f));
-        CheckBoxSquare checkBoxSquare = new CheckBoxSquare(activity, null, true);
+        CheckBoxSquare checkBoxSquare = new CheckBoxSquare(activity, true);
         this.checkBox = checkBoxSquare;
         checkBoxSquare.setDuplicateParentStateEnabled(false);
         checkBoxSquare.setFocusable(false);
@@ -55,7 +57,7 @@ public final class TextCheckBoxCell extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.checkBox.isChecked);
+        accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
     }
 
     @Override

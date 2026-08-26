@@ -1,6 +1,6 @@
 package kotlinx.coroutines.internal;
 
-import com.google.android.gms.wearable.zzy;
+import com.google.mlkit.common.sdkinternal.zzb;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import kotlin.coroutines.CoroutineContext;
 import kotlinx.coroutines.CancellableContinuationImpl;
@@ -43,7 +43,7 @@ public final class LimitedDispatcher extends CoroutineDispatcher implements Dela
                 if (runnableObtainTaskOrDeallocateWorker == null) {
                     return;
                 }
-                this.dispatcher.dispatch(this, new zzy(9, this, runnableObtainTaskOrDeallocateWorker));
+                this.dispatcher.dispatch(this, new zzb(8, this, runnableObtainTaskOrDeallocateWorker));
             }
         }
     }

@@ -55,7 +55,7 @@ public final class FencedCodeBlockParser extends AbstractBlockParser {
             char c = fencedCodeBlock.fenceChar;
             int i4 = fencedCodeBlock.fenceLength;
             int iSkip = Parsing.skip(c, charSequence, i, charSequence.length()) - i;
-            if (iSkip >= i4 && Parsing.skipSpaceTab(i + iSkip, charSequence.length(), charSequence) == charSequence.length()) {
+            if (iSkip >= i4 && Parsing.skipSpaceTab(charSequence, i + iSkip, charSequence.length()) == charSequence.length()) {
                 return new BlockContinueImpl(-1, -1, true);
             }
         }

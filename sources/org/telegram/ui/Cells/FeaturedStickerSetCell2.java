@@ -6,6 +6,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.View;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -30,8 +31,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
+import org.telegram.ui.BlurSettingsBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumButtonView;
@@ -42,6 +42,7 @@ import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 
 public final class FeaturedStickerSetCell2 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public static final int $r8$clinit = 0;
     public final ProgressButton addButton;
     public boolean bindedObserver;
     public final int currentAccount;
@@ -52,6 +53,7 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
     public boolean isInstalled;
     public boolean isLocked;
     public boolean needDivider;
+    public final Theme.ResourcesProvider resourcesProvider;
     public TLRPC.StickerSetCovered stickersSet;
     public final TextView textView;
     public final PremiumButtonView unlockButton;
@@ -82,9 +84,12 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
     public FeaturedStickerSetCell2(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
+        this.resourcesProvider = resourcesProvider;
         TextView textView = new TextView(context);
         this.textView = textView;
-        ArticleViewer.IBlock.CC.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 16.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
@@ -92,7 +97,9 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
         addView(textView, LayoutHelper.createFrame(-2, -2.0f, z ? 5 : 3, z ? 22.0f : 71.0f, 10.0f, z ? 71.0f : 22.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        ArticleViewer.IBlock.CC.m(textView2, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), 13.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView2, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), 1, 13.0f, 1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
         boolean z2 = LocaleController.isRTL;
@@ -111,13 +118,13 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
         TextView textView3 = new TextView(context);
         this.delButton = textView3;
         textView3.setGravity(17);
-        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(14.0f, Theme.getColor(null, Theme.key_featuredStickers_removeButtonText, false), 1, textView3);
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView3, Theme.getColor(null, Theme.key_featuredStickers_removeButtonText, false), 1, 14.0f);
         textView3.setText(LocaleController.getString(R.string.StickersRemove));
         addView(textView3, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f));
-        PremiumButtonView premiumButtonView = new PremiumButtonView(AndroidUtilities.dp(4.0f), context, resourcesProvider, false);
+        PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(4.0f), false, resourcesProvider);
         this.unlockButton = premiumButtonView;
         premiumButtonView.setIcon(R.raw.unlock_icon);
-        premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new CallLogActivity$$ExternalSyntheticLambda38(this, 22), false);
+        premiumButtonView.setButton(LocaleController.getString(R.string.Unlock), new AboutLinkCell$$ExternalSyntheticLambda1(this, 11), false);
         premiumButtonView.setVisibility(8);
         try {
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) premiumButtonView.getIconView().getLayoutParams();
@@ -132,10 +139,7 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
         }
         addView(this.unlockButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 10.0f, 0.0f));
         this.addButton.setProgressColor(Theme.getColor(null, Theme.key_featuredStickers_buttonProgress, false));
-        ProgressButton progressButton2 = this.addButton;
-        int color = Theme.getColor(null, Theme.key_featuredStickers_addButton, false);
-        Theme.getColor(null, Theme.key_featuredStickers_addButtonPressed, false);
-        progressButton2.setBackgroundRoundRect(14.0f, color);
+        this.addButton.setBackgroundRoundRect(Theme.getColor(null, Theme.key_featuredStickers_addButton, false), Theme.getColor(null, Theme.key_featuredStickers_addButtonPressed, false));
     }
 
     @Override
@@ -202,10 +206,9 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
     }
 
     public final void setStickersSet(TLRPC.StickerSetCovered stickerSetCovered, boolean z, boolean z2, boolean z3) {
-        char c;
+        TLRPC.StickerSetCovered stickerSetCovered2;
         TLRPC.StickerSet stickerSet;
         ArrayList<TLRPC.Document> arrayList;
-        TLRPC.StickerSetCovered stickerSetCovered2 = stickerSetCovered;
         AnimatorSet animatorSet = this.currentAnimation;
         TLRPC.Document document = null;
         if (animatorSet != null) {
@@ -213,37 +216,37 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
             this.currentAnimation = null;
         }
         this.needDivider = z;
-        this.stickersSet = stickerSetCovered2;
+        this.stickersSet = stickerSetCovered;
         setWillNotDraw(!z);
         TextView textView = this.textView;
         textView.setText(this.stickersSet.set.title);
         textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
         TextView textView2 = this.valueTextView;
-        TLRPC.StickerSet stickerSet2 = stickerSetCovered2.set;
+        TLRPC.StickerSet stickerSet2 = stickerSetCovered.set;
         textView2.setText(LocaleController.formatPluralString(stickerSet2.emojis ? "EmojiCount" : "Stickers", stickerSet2.count, new Object[0]));
-        boolean z4 = stickerSetCovered2 instanceof TLRPC.TL_stickerSetNoCovered;
+        boolean z4 = stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered;
         int i = this.currentAccount;
-        if (!z4 || (stickerSet = stickerSetCovered2.set) == null) {
-            TLRPC.Document document2 = stickerSetCovered2.cover;
+        if (!z4 || (stickerSet = stickerSetCovered.set) == null) {
+            TLRPC.Document document2 = stickerSetCovered.cover;
             if (document2 != null) {
                 document = document2;
-            } else if (!stickerSetCovered2.covers.isEmpty()) {
-                document = stickerSetCovered2.covers.get(0);
-                if (stickerSetCovered2.set != null) {
-                    for (int i2 = 0; i2 < stickerSetCovered2.covers.size(); i2++) {
-                        if (stickerSetCovered2.covers.get(i2).id == stickerSetCovered2.set.thumb_document_id) {
-                            document = stickerSetCovered2.covers.get(i2);
+            } else if (!stickerSetCovered.covers.isEmpty()) {
+                document = stickerSetCovered.covers.get(0);
+                if (stickerSetCovered.set != null) {
+                    for (int i2 = 0; i2 < stickerSetCovered.covers.size(); i2++) {
+                        if (stickerSetCovered.covers.get(i2).id == stickerSetCovered.set.thumb_document_id) {
+                            document = stickerSetCovered.covers.get(i2);
                             break;
                         }
                     }
                 }
-            } else if (stickerSetCovered2 instanceof TLRPC.TL_stickerSetFullCovered) {
-                TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered2;
+            } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
+                TLRPC.TL_stickerSetFullCovered tL_stickerSetFullCovered = (TLRPC.TL_stickerSetFullCovered) stickerSetCovered;
                 if (!tL_stickerSetFullCovered.documents.isEmpty()) {
                     ArrayList<TLRPC.Document> arrayList2 = tL_stickerSetFullCovered.documents;
                     document = arrayList2.get(0);
                     for (int i3 = 0; i3 < arrayList2.size(); i3++) {
-                        if (arrayList2.get(i3).id == stickerSetCovered2.set.thumb_document_id) {
+                        if (arrayList2.get(i3).id == stickerSetCovered.set.thumb_document_id) {
                             document = arrayList2.get(i3);
                             break;
                         }
@@ -256,11 +259,11 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
                 NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.groupStickersDidLoad);
                 this.bindedObserver = true;
             }
-            TLRPC.TL_messages_stickerSet stickerSet3 = MediaDataController.getInstance(i).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered2.set), Integer.valueOf(stickerSetCovered2.set.hash), false);
+            TLRPC.TL_messages_stickerSet stickerSet3 = MediaDataController.getInstance(i).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), false);
             if (stickerSet3 != null && (arrayList = stickerSet3.documents) != null && !arrayList.isEmpty()) {
                 document = stickerSet3.documents.get(0);
                 for (int i4 = 0; i4 < stickerSet3.documents.size(); i4++) {
-                    if (stickerSet3.documents.get(i4).id == stickerSetCovered2.set.thumb_document_id) {
+                    if (stickerSet3.documents.get(i4).id == stickerSetCovered.set.thumb_document_id) {
                         document = stickerSet3.documents.get(i4);
                         break;
                     }
@@ -269,44 +272,38 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
         }
         BackupImageView backupImageView = this.imageView;
         if (document == null) {
-            c = 4;
             stickerSetCovered2 = stickerSetCovered;
-            backupImageView.setImage(null, null, null, null, null, "webp", 0, stickerSetCovered2);
+            backupImageView.setImage((ImageLocation) null, (String) null, "webp", (Drawable) null, stickerSetCovered2);
         } else if (MessageObject.canAutoplayAnimatedSticker(document)) {
-            TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerSetCovered2.set.thumbs, 90);
+            TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerSetCovered.set.thumbs, 90);
             if (closestPhotoSizeWithSize == null) {
                 closestPhotoSizeWithSize = document;
             }
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered2.set.thumbs, Theme.key_windowBackgroundGray, 1.0f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.set.thumbs, Theme.key_windowBackgroundGray, 1.0f);
             boolean z5 = closestPhotoSizeWithSize instanceof TLRPC.Document;
-            ImageLocation forDocument = z5 ? ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document) : ImageLocation.getForSticker((TLRPC.PhotoSize) closestPhotoSizeWithSize, document, stickerSetCovered2.set.thumb_version);
-            if (!z5 || (!MessageObject.isAnimatedStickerDocument(document, true) && !MessageObject.isVideoSticker(document))) {
-                ImageLocation imageLocation = forDocument;
-                c = 4;
-                if (imageLocation == null || imageLocation.imageType != 1) {
-                    stickerSetCovered2 = stickerSetCovered;
-                    backupImageView.setImage(imageLocation, "50_50", null, null, svgThumb, "webp", 0, stickerSetCovered2);
+            ImageLocation forDocument = z5 ? ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document) : ImageLocation.getForSticker((TLRPC.PhotoSize) closestPhotoSizeWithSize, document, stickerSetCovered.set.thumb_version);
+            if (z5 && (MessageObject.isAnimatedStickerDocument(document, true) || MessageObject.isVideoSticker(document))) {
+                if (svgThumb != null) {
+                    backupImageView.setImage(ImageLocation.getForDocument(document), "50_50", svgThumb, 0, stickerSetCovered);
                 } else {
-                    stickerSetCovered2 = stickerSetCovered;
-                    backupImageView.setImage(imageLocation, "50_50", null, null, svgThumb, "tgs", 0, stickerSetCovered2);
+                    backupImageView.setImage(ImageLocation.getForDocument(document), "50_50", forDocument, (String) null, 0, stickerSetCovered);
                 }
-            } else if (svgThumb != null) {
-                backupImageView.setImage$1(ImageLocation.getForDocument(document), "50_50", svgThumb, stickerSetCovered2);
-                c = 4;
-            } else {
-                c = 4;
-                backupImageView.setImage(ImageLocation.getForDocument(document), "50_50", forDocument, null, null, null, 0, stickerSetCovered2);
                 stickerSetCovered2 = stickerSetCovered;
+            } else if (forDocument == null || forDocument.imageType != 1) {
+                stickerSetCovered2 = stickerSetCovered;
+                backupImageView.setImage(forDocument, "50_50", "webp", svgThumb, stickerSetCovered2);
+            } else {
+                stickerSetCovered2 = stickerSetCovered;
+                backupImageView.setImage(forDocument, "50_50", "tgs", svgThumb, stickerSetCovered2);
             }
         } else {
-            c = 4;
             TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
             if (closestPhotoSizeWithSize2 != null) {
                 stickerSetCovered2 = stickerSetCovered;
-                backupImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), "50_50", null, null, null, "webp", 0, stickerSetCovered2);
+                backupImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), "50_50", "webp", (Drawable) null, stickerSetCovered2);
             } else {
                 stickerSetCovered2 = stickerSetCovered;
-                backupImageView.setImage(ImageLocation.getForDocument(document), "50_50", null, null, null, "webp", 0, stickerSetCovered2);
+                backupImageView.setImage(ImageLocation.getForDocument(document), "50_50", "webp", (Drawable) null, stickerSetCovered2);
             }
         }
         ProgressButton progressButton = this.addButton;
@@ -317,108 +314,93 @@ public final class FeaturedStickerSetCell2 extends FrameLayout implements Notifi
         this.isLocked = z6;
         PremiumButtonView premiumButtonView = this.unlockButton;
         TextView textView3 = this.delButton;
-        if (!z3) {
+        if (z3) {
             if (z6) {
                 premiumButtonView.setVisibility(0);
-                premiumButtonView.setAlpha(1.0f);
-                premiumButtonView.setScaleX(1.0f);
-                premiumButtonView.setScaleY(1.0f);
-                progressButton.setVisibility(4);
-                progressButton.setAlpha(0.0f);
-                progressButton.setScaleX(0.0f);
-                progressButton.setScaleY(0.0f);
-                textView3.setVisibility(4);
-                textView3.setAlpha(0.0f);
-                textView3.setScaleX(0.0f);
-                textView3.setScaleY(0.0f);
-                return;
-            }
-            premiumButtonView.setVisibility(8);
-            premiumButtonView.setAlpha(0.0f);
-            premiumButtonView.setScaleX(0.0f);
-            premiumButtonView.setScaleY(0.0f);
-            if (this.isInstalled) {
                 textView3.setVisibility(0);
-                textView3.setAlpha(1.0f);
-                textView3.setScaleX(1.0f);
-                textView3.setScaleY(1.0f);
-                progressButton.setVisibility(4);
-                progressButton.setAlpha(0.0f);
-                progressButton.setScaleX(0.0f);
-                progressButton.setScaleY(0.0f);
-                return;
+                progressButton.setVisibility(0);
+            } else {
+                premiumButtonView.setVisibility(0);
+                if (this.isInstalled) {
+                    textView3.setVisibility(0);
+                } else {
+                    progressButton.setVisibility(0);
+                }
             }
-            progressButton.setVisibility(0);
-            progressButton.setAlpha(1.0f);
-            progressButton.setScaleX(1.0f);
-            progressButton.setScaleY(1.0f);
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.currentAnimation = animatorSet2;
+            animatorSet2.setDuration(250L);
+            AnimatorSet animatorSet3 = this.currentAnimation;
+            float[] fArr = {(!this.isInstalled || this.isLocked) ? 0.0f : 1.0f};
+            Property property = View.ALPHA;
+            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property, fArr);
+            float[] fArr2 = {(!this.isInstalled || this.isLocked) ? 0.0f : 1.0f};
+            Property property2 = View.SCALE_X;
+            ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property2, fArr2);
+            float[] fArr3 = {(!this.isInstalled || this.isLocked) ? 0.0f : 1.0f};
+            Property property3 = View.SCALE_Y;
+            animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, fArr3), ObjectAnimator.ofFloat(progressButton, (Property<ProgressButton, Float>) property, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(progressButton, (Property<ProgressButton, Float>) property2, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f), ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property2, !this.isLocked ? 0.0f : 1.0f), ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f));
+            this.currentAnimation.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public final void onAnimationEnd(Animator animator) {
+                    FeaturedStickerSetCell2 featuredStickerSetCell2 = FeaturedStickerSetCell2.this;
+                    boolean z7 = featuredStickerSetCell2.isLocked;
+                    ProgressButton progressButton2 = featuredStickerSetCell2.addButton;
+                    if (z7) {
+                        progressButton2.setVisibility(4);
+                        featuredStickerSetCell2.delButton.setVisibility(4);
+                        featuredStickerSetCell2.unlockButton.setVisibility(0);
+                    } else {
+                        if (featuredStickerSetCell2.isInstalled) {
+                            progressButton2.setVisibility(4);
+                        } else {
+                            featuredStickerSetCell2.delButton.setVisibility(4);
+                        }
+                        featuredStickerSetCell2.unlockButton.setVisibility(8);
+                    }
+                }
+            });
+            this.currentAnimation.setInterpolator(new OvershootInterpolator(1.02f));
+            this.currentAnimation.start();
+            return;
+        }
+        if (z6) {
+            premiumButtonView.setVisibility(0);
+            premiumButtonView.setAlpha(1.0f);
+            premiumButtonView.setScaleX(1.0f);
+            premiumButtonView.setScaleY(1.0f);
+            progressButton.setVisibility(4);
+            progressButton.setAlpha(0.0f);
+            progressButton.setScaleX(0.0f);
+            progressButton.setScaleY(0.0f);
             textView3.setVisibility(4);
             textView3.setAlpha(0.0f);
             textView3.setScaleX(0.0f);
             textView3.setScaleY(0.0f);
             return;
         }
-        if (z6) {
-            premiumButtonView.setVisibility(0);
+        premiumButtonView.setVisibility(8);
+        premiumButtonView.setAlpha(0.0f);
+        premiumButtonView.setScaleX(0.0f);
+        premiumButtonView.setScaleY(0.0f);
+        if (this.isInstalled) {
             textView3.setVisibility(0);
-            progressButton.setVisibility(0);
-        } else {
-            premiumButtonView.setVisibility(0);
-            if (this.isInstalled) {
-                textView3.setVisibility(0);
-            } else {
-                progressButton.setVisibility(0);
-            }
+            textView3.setAlpha(1.0f);
+            textView3.setScaleX(1.0f);
+            textView3.setScaleY(1.0f);
+            progressButton.setVisibility(4);
+            progressButton.setAlpha(0.0f);
+            progressButton.setScaleX(0.0f);
+            progressButton.setScaleY(0.0f);
+            return;
         }
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.currentAnimation = animatorSet2;
-        animatorSet2.setDuration(250L);
-        AnimatorSet animatorSet3 = this.currentAnimation;
-        float[] fArr = {(!this.isInstalled || this.isLocked) ? 0.0f : 1.0f};
-        Property property = View.ALPHA;
-        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property, fArr);
-        float[] fArr2 = {(!this.isInstalled || this.isLocked) ? 0.0f : 1.0f};
-        Property property2 = View.SCALE_X;
-        ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property2, fArr2);
-        float[] fArr3 = {(!this.isInstalled || this.isLocked) ? 0.0f : 1.0f};
-        Property property3 = View.SCALE_Y;
-        ObjectAnimator objectAnimatorOfFloat3 = ObjectAnimator.ofFloat(textView3, (Property<TextView, Float>) property3, fArr3);
-        ObjectAnimator objectAnimatorOfFloat4 = ObjectAnimator.ofFloat(progressButton, (Property<ProgressButton, Float>) property, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f);
-        ObjectAnimator objectAnimatorOfFloat5 = ObjectAnimator.ofFloat(progressButton, (Property<ProgressButton, Float>) property2, (this.isInstalled || this.isLocked) ? 0.0f : 1.0f);
-        ObjectAnimator objectAnimatorOfFloat6 = ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f);
-        ObjectAnimator objectAnimatorOfFloat7 = ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property2, !this.isLocked ? 0.0f : 1.0f);
-        ObjectAnimator objectAnimatorOfFloat8 = ObjectAnimator.ofFloat(premiumButtonView, (Property<PremiumButtonView, Float>) property3, !this.isLocked ? 0.0f : 1.0f);
-        Animator[] animatorArr = new Animator[8];
-        animatorArr[0] = objectAnimatorOfFloat;
-        animatorArr[1] = objectAnimatorOfFloat2;
-        animatorArr[2] = objectAnimatorOfFloat3;
-        animatorArr[3] = objectAnimatorOfFloat4;
-        animatorArr[c] = objectAnimatorOfFloat5;
-        animatorArr[5] = objectAnimatorOfFloat6;
-        animatorArr[6] = objectAnimatorOfFloat7;
-        animatorArr[7] = objectAnimatorOfFloat8;
-        animatorSet3.playTogether(animatorArr);
-        this.currentAnimation.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public final void onAnimationEnd(Animator animator) {
-                FeaturedStickerSetCell2 featuredStickerSetCell2 = FeaturedStickerSetCell2.this;
-                boolean z7 = featuredStickerSetCell2.isLocked;
-                ProgressButton progressButton2 = featuredStickerSetCell2.addButton;
-                if (z7) {
-                    progressButton2.setVisibility(4);
-                    featuredStickerSetCell2.delButton.setVisibility(4);
-                    featuredStickerSetCell2.unlockButton.setVisibility(0);
-                } else {
-                    if (featuredStickerSetCell2.isInstalled) {
-                        progressButton2.setVisibility(4);
-                    } else {
-                        featuredStickerSetCell2.delButton.setVisibility(4);
-                    }
-                    featuredStickerSetCell2.unlockButton.setVisibility(8);
-                }
-            }
-        });
-        this.currentAnimation.setInterpolator(new OvershootInterpolator(1.02f));
-        this.currentAnimation.start();
+        progressButton.setVisibility(0);
+        progressButton.setAlpha(1.0f);
+        progressButton.setScaleX(1.0f);
+        progressButton.setScaleY(1.0f);
+        textView3.setVisibility(4);
+        textView3.setAlpha(0.0f);
+        textView3.setScaleX(0.0f);
+        textView3.setScaleY(0.0f);
     }
 }

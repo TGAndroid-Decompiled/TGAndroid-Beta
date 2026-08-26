@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
 import java.nio.ByteBuffer;
 
 public class YuvHelper {
@@ -80,7 +80,7 @@ public class YuvHelper {
         if (t != null) {
             return t;
         }
-        throw new NullPointerException(zzhr.m(str, " should not be null"));
+        throw new NullPointerException(zzhp.m(str, " should not be null"));
     }
 
     public static void copyPlane(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, int i3, int i4) {

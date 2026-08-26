@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import java.io.File;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.ActionBar.Theme;
 
 public final class OtherAudioInfo extends AudioInfo {
     public final boolean failed;
@@ -55,7 +55,7 @@ public final class OtherAudioInfo extends AudioInfo {
         try {
             MediaMetadataRetriever mediaMetadataRetriever2 = this.r;
             if (mediaMetadataRetriever2 != null) {
-                ArticleViewer.IBlock.CC.m(mediaMetadataRetriever2);
+                Theme.ResourcesProvider.CC.m(mediaMetadataRetriever2);
             }
         } catch (Exception e2) {
             FileLog.e(e2);

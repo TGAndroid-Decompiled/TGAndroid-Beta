@@ -19,9 +19,9 @@ public final class PremiumPreviewGiftLinkBottomSheet$$ExternalSyntheticLambda0 i
             case 0:
                 PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet = this.f$0;
                 String str = "https://t.me/giftcode/" + premiumPreviewGiftLinkBottomSheet.slug;
-                DialogsActivity dialogsActivity = new DialogsActivity(TelegramMediaSession$$ExternalSyntheticOutline0.m(3, "onlySelect", "dialogsType", true));
-                dialogsActivity.delegate = new RateCallLayout$$ExternalSyntheticLambda1(14, premiumPreviewGiftLinkBottomSheet, str);
-                premiumPreviewGiftLinkBottomSheet.baseFragment.presentFragment(dialogsActivity);
+                DialogsActivity dialogsActivity = new DialogsActivity(TelegramMediaSession$$ExternalSyntheticOutline0.m("onlySelect", "dialogsType", 3, true));
+                dialogsActivity.setDelegate(new RateCallLayout$$ExternalSyntheticLambda1(6, premiumPreviewGiftLinkBottomSheet, str));
+                premiumPreviewGiftLinkBottomSheet.getBaseFragment().presentFragment(dialogsActivity);
                 premiumPreviewGiftLinkBottomSheet.lambda$showGiftOfferSheet$15();
                 break;
             default:

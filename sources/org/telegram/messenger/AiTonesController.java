@@ -42,7 +42,7 @@ public final class AiTonesController {
         tL_tones.tones.addAll(this.tones);
         SerializedData serializedData = new SerializedData(tL_tones.getObjectSize());
         tL_tones.serializeToStream(serializedData);
-        AiTonesController$$ExternalSyntheticOutline0.m(this.currentAccount).putString("ai_styles", Base64.getEncoder().encodeToString(serializedData.toByteArray())).apply();
+        MessagesController.getInstance(this.currentAccount).getMainSettings().edit().putString("ai_styles", Base64.getEncoder().encodeToString(serializedData.toByteArray())).apply();
     }
 
     public void add(TL_aicompose.AiComposeTone aiComposeTone) {

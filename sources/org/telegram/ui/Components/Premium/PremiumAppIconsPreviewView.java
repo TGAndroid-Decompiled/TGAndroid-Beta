@@ -60,7 +60,7 @@ public final class PremiumAppIconsPreviewView extends FrameLayout implements Pag
             canvas.save();
             float f2 = 1.0f - this.particlesScale;
             canvas.scale(f2, f2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-            drawable.onDraw(canvas, 1.0f);
+            drawable.onDraw(canvas);
             canvas.restore();
             invalidate();
             RectF rectF = AndroidUtilities.rectTmp;
@@ -86,14 +86,14 @@ public final class PremiumAppIconsPreviewView extends FrameLayout implements Pag
             FileLog.e(new IllegalArgumentException("There should be at least 3 premium icons!"));
             this.isEmpty = true;
         } else {
-            this.topIcon = newIconView(context, 0);
-            this.bottomLeftIcon = newIconView(context, 1);
-            this.bottomRightIcon = newIconView(context, 2);
+            this.topIcon = newIconView(0, context);
+            this.bottomLeftIcon = newIconView(1, context);
+            this.bottomRightIcon = newIconView(2, context);
             setClipChildren(false);
         }
     }
 
-    public final AdaptiveIconImageView newIconView(Context context, int i) {
+    public final AdaptiveIconImageView newIconView(int i, Context context) {
         LauncherIconController.LauncherIcon launcherIcon = (LauncherIconController.LauncherIcon) this.icons.get(i);
         AdaptiveIconImageView adaptiveIconImageView = new AdaptiveIconImageView(this, context, i);
         adaptiveIconImageView.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 52.0f, 0.0f, 0.0f));

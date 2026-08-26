@@ -67,7 +67,7 @@ public abstract class Parsing {
         return i2;
     }
 
-    public static int skipSpaceTab(int i, int i2, CharSequence charSequence) {
+    public static int skipSpaceTab(CharSequence charSequence, int i, int i2) {
         while (i < i2) {
             char cCharAt = charSequence.charAt(i);
             if (cCharAt != '\t' && cCharAt != ' ') {

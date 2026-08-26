@@ -1,5 +1,6 @@
 package kotlinx.coroutines.internal;
 
+import com.google.common.base.Joiner;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
@@ -13,7 +14,7 @@ public final class LockFreeTaskQueueCore {
     public final boolean singleConsumer;
     public static final AtomicReferenceFieldUpdater _next$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(LockFreeTaskQueueCore.class, Object.class, "_next$volatile");
     public static final AtomicLongFieldUpdater _state$volatile$FU = AtomicLongFieldUpdater.newUpdater(LockFreeTaskQueueCore.class, "_state$volatile");
-    public static final Symbol REMOVE_FROZEN = new Symbol("REMOVE_FROZEN", 0);
+    public static final Joiner REMOVE_FROZEN = new Joiner("REMOVE_FROZEN", 2);
 
     public final class Placeholder {
         public final int index;

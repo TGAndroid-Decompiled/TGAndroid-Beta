@@ -553,7 +553,6 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void lambda$onDownloadFail$8(MessageObject messageObject, int i) {
-        LaunchActivity launchActivity;
         TLRPC.Document document = messageObject.getDocument();
         for (int i2 = 0; i2 < this.downloadingFiles.size(); i2++) {
             TLRPC.Document document2 = this.downloadingFiles.get(i2).getDocument();
@@ -564,10 +563,10 @@ public class DownloadController extends BaseController implements NotificationCe
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 1, LocaleController.formatString("MessageNotFound", R.string.MessageNotFound, new Object[0]));
                     return;
                 } else {
-                    if (i != -1 || (launchActivity = LaunchActivity.staticInstanceForAlerts) == null) {
+                    if (i == -1) {
+                        LaunchActivity.checkFreeDiscSpaceStatic(2);
                         return;
                     }
-                    launchActivity.checkFreeDiscSpace(2);
                     return;
                 }
             }

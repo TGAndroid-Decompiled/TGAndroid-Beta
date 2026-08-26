@@ -15,22 +15,13 @@ public final class FolderBottomSheet$Button$$ExternalSyntheticLambda0 implements
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                FolderBottomSheet.Button button = this.f$0;
-                button.getClass();
-                button.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                button.invalidate();
+                this.f$0.lambda$setLoading$0(valueAnimator);
                 break;
             case 1:
-                FolderBottomSheet.Button button2 = this.f$0;
-                button2.getClass();
-                button2.enabledT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                button2.invalidate();
+                this.f$0.lambda$setEnabled$2(valueAnimator);
                 break;
             default:
-                FolderBottomSheet.Button button3 = this.f$0;
-                button3.getClass();
-                button3.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                button3.invalidate();
+                this.f$0.lambda$animateCount$1(valueAnimator);
                 break;
         }
     }

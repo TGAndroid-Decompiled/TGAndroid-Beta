@@ -1,14 +1,12 @@
 package org.telegram.messenger;
 
 import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.media.RingtoneManager;
 import com.google.android.exoplayer2.util.Log;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda37;
+import org.telegram.ui.NotificationsSoundActivity;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda199;
 
 public class NotificationsSettingsFacade {
     public static final String PROPERTY_CONTENT_PREVIEW = "content_preview_";
@@ -40,17 +38,16 @@ public class NotificationsSettingsFacade {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         NotificationsController notificationsController = NotificationsController.getInstance(this.currentAccount);
-        int iM = ArticleViewer.IBlock.CC.m("notify2_", sharedPrefKey, getPreferences(), -1);
-        boolean z2 = true;
-        int iM2 = ArticleViewer.IBlock.CC.m("notifyuntil_", sharedPrefKey, getPreferences(), 0);
+        int i3 = getPreferences().getInt("notify2_" + sharedPrefKey, -1);
+        int i4 = getPreferences().getInt("notifyuntil_" + sharedPrefKey, 0);
         SharedPreferences.Editor editorEdit = getPreferences().edit();
         if ((peerNotifySettings.flags & 2) != 0) {
-            editorEdit.putBoolean(zzil.m("silent_", sharedPrefKey), peerNotifySettings.silent);
+            editorEdit.putBoolean(zzii.m("silent_", sharedPrefKey), peerNotifySettings.silent);
         } else {
             editorEdit.remove("silent_" + sharedPrefKey);
         }
         if ((peerNotifySettings.flags & 64) != 0) {
-            editorEdit.putBoolean(zzil.m("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
+            editorEdit.putBoolean(zzii.m("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
         } else {
             editorEdit.remove("stories_" + sharedPrefKey);
         }
@@ -59,64 +56,69 @@ public class NotificationsSettingsFacade {
             dialog.notify_settings = peerNotifySettings;
         }
         if ((peerNotifySettings.flags & 4) == 0) {
-            boolean z3 = true;
-            if (iM != -1) {
+            z = true;
+            if (i3 != -1) {
                 if (dialog != null) {
                     dialog.notify_settings.mute_until = 0;
                 }
                 editorEdit.remove("notify2_" + sharedPrefKey);
             } else {
-                z3 = false;
+                z = false;
             }
             if (j2 == 0) {
                 messagesStorage.setDialogFlags(j, 0L);
             }
-            z2 = z3;
         } else if (peerNotifySettings.mute_until > connectionsManager.getCurrentTime()) {
-            if (peerNotifySettings.mute_until <= connectionsManager.getCurrentTime() + 31536000) {
-                if (iM == 3 && iM2 == peerNotifySettings.mute_until) {
-                    z2 = false;
+            if (peerNotifySettings.mute_until > connectionsManager.getCurrentTime() + 31536000) {
+                if (i3 != 2) {
+                    editorEdit.putInt("notify2_" + sharedPrefKey, 2);
+                    if (dialog != null) {
+                        dialog.notify_settings.mute_until = Integer.MAX_VALUE;
+                    }
+                    z = true;
+                } else {
+                    z = false;
+                }
+                i2 = 0;
+            } else {
+                if (i3 == 3 && i4 == peerNotifySettings.mute_until) {
+                    z = false;
                 } else {
                     editorEdit.putInt("notify2_" + sharedPrefKey, 3);
                     editorEdit.putInt("notifyuntil_" + sharedPrefKey, peerNotifySettings.mute_until);
                     if (dialog != null) {
                         dialog.notify_settings.mute_until = 0;
                     }
+                    z = true;
                 }
                 i2 = peerNotifySettings.mute_until;
-            } else if (iM != 2) {
-                editorEdit.putInt("notify2_" + sharedPrefKey, 2);
-                if (dialog != null) {
-                    dialog.notify_settings.mute_until = Integer.MAX_VALUE;
-                }
-                i2 = 0;
-            } else {
-                i2 = 0;
-                z2 = false;
             }
             if (j2 == 0) {
                 messagesStorage.setDialogFlags(j, (((long) i2) << 32) | 1);
                 notificationsController.removeNotificationsForDialog(j);
             }
         } else {
-            if (iM == 0 || iM == 1) {
-                z = false;
-            } else {
-                if (dialog != null) {
-                    TLRPC.PeerNotifySettings peerNotifySettings2 = dialog.notify_settings;
-                    i = 0;
-                    peerNotifySettings2.mute_until = 0;
-                } else {
-                    i = 0;
-                }
-                editorEdit.putInt("notify2_" + sharedPrefKey, i);
+            if (i3 != 0) {
                 z = true;
+                if (i3 != 1) {
+                    if (dialog != null) {
+                        i = 0;
+                        dialog.notify_settings.mute_until = 0;
+                    } else {
+                        i = 0;
+                    }
+                    editorEdit.putInt("notify2_" + sharedPrefKey, i);
+                } else {
+                    z = false;
+                }
+            } else {
+                z = false;
             }
             if (j2 == 0) {
                 messagesStorage.setDialogFlags(j, 0L);
             }
-            z2 = z;
         }
+        boolean z2 = z;
         applySoundSettings(peerNotifySettings.android_sound, editorEdit, j, j2, 0, false);
         editorEdit.apply();
         if (z2) {
@@ -128,26 +130,21 @@ public class NotificationsSettingsFacade {
         if (peerNotifySettings == null) {
             return;
         }
-        Utilities.globalQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda37(7, j, j2, this, peerNotifySettings));
+        Utilities.globalQueue.postRunnable(new StarGiftSheet$$ExternalSyntheticLambda199(this, j, j2, peerNotifySettings, 9));
     }
 
     public void applySoundSettings(TLRPC.NotificationSound notificationSound, SharedPreferences.Editor editor, long j, long j2, int i, boolean z) {
         String strM;
         String strM2;
         String strM3;
-        int i2;
-        TLRPC.NotificationSound tL_notificationSoundNone;
-        String string;
         if (notificationSound == null) {
             return;
         }
-        int i3 = 1;
-        int i4 = (j > 0L ? 1 : (j == 0L ? 0 : -1));
-        if (i4 != 0) {
+        if (j != 0) {
             String sharedPrefKey = NotificationsController.getSharedPrefKey(j, j2, true);
-            strM = zzil.m("sound_", sharedPrefKey);
-            strM3 = zzil.m("sound_path_", sharedPrefKey);
-            strM2 = zzil.m("sound_document_id_", sharedPrefKey);
+            strM = zzii.m("sound_", sharedPrefKey);
+            strM3 = zzii.m("sound_path_", sharedPrefKey);
+            strM2 = zzii.m("sound_document_id_", sharedPrefKey);
         } else if (i == 0) {
             strM = "GroupSound";
             strM2 = "GroupSoundDocId";
@@ -169,119 +166,48 @@ public class NotificationsSettingsFacade {
             strM2 = "ChannelSoundDocId";
             strM3 = "ChannelSoundPath";
         }
-        String str = strM3;
-        String str2 = strM;
-        String str3 = strM2;
         if (notificationSound instanceof TLRPC.TL_notificationSoundLocal) {
             TLRPC.TL_notificationSoundLocal tL_notificationSoundLocal = (TLRPC.TL_notificationSoundLocal) notificationSound;
             if ("Default".equalsIgnoreCase(tL_notificationSoundLocal.data)) {
-                tL_notificationSoundNone = new TLRPC.TL_notificationSoundDefault();
+                notificationSound = new TLRPC.TL_notificationSoundDefault();
             } else if ("NoSound".equalsIgnoreCase(tL_notificationSoundLocal.data)) {
-                tL_notificationSoundNone = new TLRPC.TL_notificationSoundNone();
+                notificationSound = new TLRPC.TL_notificationSoundNone();
             } else {
-                String str4 = tL_notificationSoundLocal.title;
-                if (str4 == null) {
-                    i2 = i4;
-                    string = null;
-                } else {
-                    try {
-                        RingtoneManager ringtoneManager = new RingtoneManager(ApplicationLoader.applicationContext);
-                        ringtoneManager.setType(2);
-                        Cursor cursor = ringtoneManager.getCursor();
-                        while (true) {
-                            if (cursor.moveToNext()) {
-                                String string2 = cursor.getString(i3);
-                                StringBuilder sb = new StringBuilder();
-                                i2 = i4;
-                                try {
-                                    sb.append(cursor.getString(2));
-                                    sb.append("/");
-                                    sb.append(cursor.getString(0));
-                                    string = sb.toString();
-                                    if (!str4.equalsIgnoreCase(string2)) {
-                                        i4 = i2;
-                                        i3 = 1;
-                                    }
-                                } catch (Throwable th) {
-                                    th = th;
-                                    FileLog.e(th);
-                                    string = null;
-                                }
-                            } else {
-                                i2 = i4;
-                                string = null;
-                            }
-                        }
-                    } catch (Throwable th2) {
-                        th = th2;
-                        i2 = i4;
-                    }
-                }
-                if (string == null) {
+                String strFindRingtonePathByName = NotificationsSoundActivity.findRingtonePathByName(tL_notificationSoundLocal.title);
+                if (strFindRingtonePathByName == null) {
                     return;
                 } else {
-                    tL_notificationSoundLocal.data = string;
+                    tL_notificationSoundLocal.data = strFindRingtonePathByName;
                 }
             }
-            i2 = i4;
-            if (tL_notificationSoundNone instanceof TLRPC.TL_notificationSoundDefault) {
-                editor.putString(str2, "Default");
-                editor.putString(str, "Default");
-                editor.remove(str3);
-                return;
-            }
-            if (tL_notificationSoundNone instanceof TLRPC.TL_notificationSoundNone) {
-                editor.putString(str2, "NoSound");
-                editor.putString(str, "NoSound");
-                editor.remove(str3);
-                return;
-            }
-            if (tL_notificationSoundNone instanceof TLRPC.TL_notificationSoundLocal) {
-                TLRPC.TL_notificationSoundLocal tL_notificationSoundLocal2 = (TLRPC.TL_notificationSoundLocal) tL_notificationSoundNone;
-                editor.putString(str2, tL_notificationSoundLocal2.title);
-                editor.putString(str, tL_notificationSoundLocal2.data);
-                editor.remove(str3);
-                return;
-            }
-            if (tL_notificationSoundNone instanceof TLRPC.TL_notificationSoundRingtone) {
-                TLRPC.TL_notificationSoundRingtone tL_notificationSoundRingtone = (TLRPC.TL_notificationSoundRingtone) tL_notificationSoundNone;
-                editor.putLong(str3, tL_notificationSoundRingtone.id);
-                MediaDataController.getInstance(this.currentAccount).checkRingtones(true);
-                if (z && i2 != 0) {
-                    editor.putBoolean("custom_" + j, true);
-                }
-                MediaDataController.getInstance(this.currentAccount).ringtoneDataStore.getDocument(tL_notificationSoundRingtone.id);
-            }
         }
-        i2 = i4;
-        tL_notificationSoundNone = notificationSound;
-        if (tL_notificationSoundNone instanceof TLRPC.TL_notificationSoundDefault) {
-            editor.putString(str2, "Default");
-            editor.putString(str, "Default");
-            editor.remove(str3);
+        if (notificationSound instanceof TLRPC.TL_notificationSoundDefault) {
+            editor.putString(strM, "Default");
+            editor.putString(strM3, "Default");
+            editor.remove(strM2);
             return;
         }
-        if (tL_notificationSoundNone instanceof TLRPC.TL_notificationSoundNone) {
-            editor.putString(str2, "NoSound");
-            editor.putString(str, "NoSound");
-            editor.remove(str3);
+        if (notificationSound instanceof TLRPC.TL_notificationSoundNone) {
+            editor.putString(strM, "NoSound");
+            editor.putString(strM3, "NoSound");
+            editor.remove(strM2);
             return;
         }
-        if (tL_notificationSoundNone instanceof TLRPC.TL_notificationSoundLocal) {
-            TLRPC.TL_notificationSoundLocal tL_notificationSoundLocal3 = (TLRPC.TL_notificationSoundLocal) tL_notificationSoundNone;
-            editor.putString(str2, tL_notificationSoundLocal3.title);
-            editor.putString(str, tL_notificationSoundLocal3.data);
-            editor.remove(str3);
+        if (notificationSound instanceof TLRPC.TL_notificationSoundLocal) {
+            TLRPC.TL_notificationSoundLocal tL_notificationSoundLocal2 = (TLRPC.TL_notificationSoundLocal) notificationSound;
+            editor.putString(strM, tL_notificationSoundLocal2.title);
+            editor.putString(strM3, tL_notificationSoundLocal2.data);
+            editor.remove(strM2);
             return;
         }
-        if (tL_notificationSoundNone instanceof TLRPC.TL_notificationSoundRingtone) {
-            TLRPC.TL_notificationSoundRingtone tL_notificationSoundRingtone2 = (TLRPC.TL_notificationSoundRingtone) tL_notificationSoundNone;
-            editor.putLong(str3, tL_notificationSoundRingtone2.id);
+        if (notificationSound instanceof TLRPC.TL_notificationSoundRingtone) {
+            TLRPC.TL_notificationSoundRingtone tL_notificationSoundRingtone = (TLRPC.TL_notificationSoundRingtone) notificationSound;
+            editor.putLong(strM2, tL_notificationSoundRingtone.id);
             MediaDataController.getInstance(this.currentAccount).checkRingtones(true);
-            if (z) {
+            if (z && j != 0) {
                 editor.putBoolean("custom_" + j, true);
             }
-            MediaDataController.getInstance(this.currentAccount).ringtoneDataStore.getDocument(tL_notificationSoundRingtone2.id);
+            MediaDataController.getInstance(this.currentAccount).ringtoneDataStore.getDocument(tL_notificationSoundRingtone.id);
         }
     }
 

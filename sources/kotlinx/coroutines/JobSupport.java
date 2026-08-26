@@ -1,7 +1,8 @@
 package kotlinx.coroutines;
 
 import androidx.car.app.HostException;
-import com.google.android.gms.internal.mlkit_vision_common.zzjj;
+import com.google.android.gms.internal.mlkit_vision_common.zzjf;
+import com.google.common.base.Joiner;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +23,6 @@ import kotlin.sequences.Sequence;
 import kotlin.text.StringsKt__StringsKt$lineSequence$$inlined$Sequence$1;
 import kotlinx.coroutines.internal.LockFreeLinkedListNode;
 import kotlinx.coroutines.internal.OpDescriptor;
-import kotlinx.coroutines.internal.Symbol;
 
 public class JobSupport implements Job, ChildJob, ParentJob {
     private volatile Object _parentHandle$volatile;
@@ -302,7 +302,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                 return JobKt.unboxState(state$kotlinx_coroutines_core);
             }
         } while (startInternal(state$kotlinx_coroutines_core) < 0);
-        AwaitContinuation awaitContinuation = new AwaitContinuation(zzjj.intercepted(continuation), this);
+        AwaitContinuation awaitContinuation = new AwaitContinuation(zzjf.intercepted(continuation), this);
         awaitContinuation.initCancellability();
         awaitContinuation.invokeOnCancellationImpl(new DisposeOnCancel(JobKt.invokeOnCompletion$default(this, false, new InvokeOnCompletion(awaitContinuation, 2), 3), i));
         Object result = awaitContinuation.getResult();
@@ -324,7 +324,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
         Finishing finishing;
         boolean z;
         Throwable rootCause;
-        Symbol symbol;
+        Joiner joiner;
         Incomplete incomplete;
         NodeList orPromoteCancellingList;
         Finishing finishing2;
@@ -356,7 +356,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                                         z = false;
                                     }
                                     if (z) {
-                                        symbol = JobKt.TOO_LATE_TO_CANCEL;
+                                        joiner = JobKt.TOO_LATE_TO_CANCEL;
                                     } else {
                                         boolean zIsCancelling = ((Finishing) state$kotlinx_coroutines_core).isCancelling();
                                         if (thCreateCauseException == null) {
@@ -367,7 +367,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                                         if (rootCause != null) {
                                             notifyCancelling(((Finishing) state$kotlinx_coroutines_core).list, rootCause);
                                         }
-                                        symbol = JobKt.COMPLETING_ALREADY;
+                                        joiner = JobKt.COMPLETING_ALREADY;
                                     }
                                 } catch (Throwable th) {
                                     throw th;
@@ -388,7 +388,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                                         atomicReferenceFieldUpdater = _state$volatile$FU;
                                         if (atomicReferenceFieldUpdater.compareAndSet(this, incomplete, finishing2)) {
                                             notifyCancelling(orPromoteCancellingList, thCreateCauseException);
-                                            symbol = JobKt.COMPLETING_ALREADY;
+                                            joiner = JobKt.COMPLETING_ALREADY;
                                         } else if (atomicReferenceFieldUpdater.get(this) != incomplete) {
                                         }
                                     }
@@ -404,9 +404,9 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                                 }
                             }
                         } else {
-                            symbol = JobKt.TOO_LATE_TO_CANCEL;
+                            joiner = JobKt.TOO_LATE_TO_CANCEL;
                         }
-                        objTryMakeCompleting2 = symbol;
+                        objTryMakeCompleting2 = joiner;
                         break;
                     }
                 }
@@ -433,7 +433,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                                 z = false;
                             }
                             if (z) {
-                                symbol = JobKt.TOO_LATE_TO_CANCEL;
+                                joiner = JobKt.TOO_LATE_TO_CANCEL;
                             } else {
                                 boolean zIsCancelling2 = ((Finishing) state$kotlinx_coroutines_core).isCancelling();
                                 if (thCreateCauseException == null) {
@@ -445,7 +445,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                                 if (rootCause != null) {
                                     notifyCancelling(((Finishing) state$kotlinx_coroutines_core).list, rootCause);
                                 }
-                                symbol = JobKt.COMPLETING_ALREADY;
+                                joiner = JobKt.COMPLETING_ALREADY;
                             }
                         }
                     } else if (state$kotlinx_coroutines_core instanceof Incomplete) {
@@ -463,7 +463,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                                     atomicReferenceFieldUpdater = _state$volatile$FU;
                                     if (atomicReferenceFieldUpdater.compareAndSet(this, incomplete, finishing2)) {
                                         notifyCancelling(orPromoteCancellingList, thCreateCauseException);
-                                        symbol = JobKt.COMPLETING_ALREADY;
+                                        joiner = JobKt.COMPLETING_ALREADY;
                                     } else if (atomicReferenceFieldUpdater.get(this) != incomplete) {
                                     }
                                 }
@@ -479,9 +479,9 @@ public class JobSupport implements Job, ChildJob, ParentJob {
                             }
                         }
                     } else {
-                        symbol = JobKt.TOO_LATE_TO_CANCEL;
+                        joiner = JobKt.TOO_LATE_TO_CANCEL;
                     }
-                    objTryMakeCompleting2 = symbol;
+                    objTryMakeCompleting2 = joiner;
                     break;
                 }
             }
@@ -942,7 +942,7 @@ public class JobSupport implements Job, ChildJob, ParentJob {
             JobKt.ensureActive(continuation.getContext());
             return unit;
         }
-        CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(1, zzjj.intercepted(continuation));
+        CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(1, zzjf.intercepted(continuation));
         cancellableContinuationImpl.initCancellability();
         cancellableContinuationImpl.invokeOnCancellationImpl(new DisposeOnCancel(JobKt.invokeOnCompletion$default(this, false, new InvokeOnCompletion(cancellableContinuationImpl, 3), 3), 0));
         Object result = cancellableContinuationImpl.getResult();

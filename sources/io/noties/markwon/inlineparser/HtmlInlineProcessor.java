@@ -1,7 +1,7 @@
 package io.noties.markwon.inlineparser;
 
 import java.util.regex.Pattern;
-import org.commonmark.node.Code;
+import org.commonmark.node.HtmlInline;
 import org.commonmark.node.Node;
 
 public final class HtmlInlineProcessor extends InlineProcessor {
@@ -13,9 +13,9 @@ public final class HtmlInlineProcessor extends InlineProcessor {
         if (strMatch == null) {
             return null;
         }
-        Code code = new Code(1);
-        code.literal = strMatch;
-        return code;
+        HtmlInline htmlInline = new HtmlInline();
+        htmlInline.literal = strMatch;
+        return htmlInline;
     }
 
     @Override

@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -31,8 +30,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.Cells.AppIconsSelectorCell;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -40,24 +38,26 @@ import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.Premium.boosts.adapters.SelectorAdapter;
 import org.telegram.ui.Components.Premium.boosts.cells.BoostTypeCell;
+import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorCountryCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorHeaderCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
-import org.telegram.ui.Components.ProfileGooeyView$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.ShareAlert$$ExternalSyntheticLambda15;
 import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
-import org.telegram.ui.GradientHeaderActivity;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda51;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda8;
-import org.telegram.ui.LinkManager$3$$ExternalSyntheticLambda0;
-import org.telegram.ui.LocationActivity;
-import org.telegram.ui.MessageSeenView;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda15;
+import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda16;
+import org.telegram.ui.bots.BotStorage$$ExternalSyntheticLambda5;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 import org.telegram.ui.recyclerview.LinearSmoothScrollerCustom;
 
 public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
@@ -76,7 +76,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     public final HashSet openedIds;
     public final ArrayList peers;
     public String query;
-    public final BubbleActivity.AnonymousClass1 remoteSearchRunnable;
+    public final PeerStoriesView.AnonymousClass34 remoteSearchRunnable;
     public final AnonymousClass2 searchField;
     public final GraySectionCell sectionCell;
     public final HashSet selectedIds;
@@ -88,7 +88,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     public final ArrayList users;
 
     public SelectorBottomSheet(BaseFragment baseFragment, long j) {
-        super(baseFragment, false);
+        super(baseFragment, false, false);
         this.backgroundPaint = new Paint(1);
         this.oldItems = new ArrayList();
         ArrayList arrayList = new ArrayList();
@@ -102,7 +102,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.countriesList = new ArrayList();
         this.allSelectedObjects = new LinkedHashMap();
         this.listPaddingTop = AndroidUtilities.dp(134.0f);
-        this.remoteSearchRunnable = new BubbleActivity.AnonymousClass1(this, 26);
+        this.remoteSearchRunnable = new PeerStoriesView.AnonymousClass34(this, 2);
         this.backgroundPaddingLeft = 0;
         this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
         ((ViewGroup) this.actionBar.getParent()).removeView(this.actionBar);
@@ -127,7 +127,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 if (arrayList2 == null || arrayList2.isEmpty()) {
                     return;
                 }
-                selectorAdapter.notifyItemChanged(selectorAdapter.items.size() - 1);
+                selectorAdapter.lambda$onBindViewHolder$31(selectorAdapter.items.size() - 1);
             }
         };
         this.searchField = r5;
@@ -138,40 +138,37 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         updateSection();
         ViewGroup viewGroup2 = this.containerView;
         int i2 = this.backgroundPaddingLeft;
-        viewGroup2.addView(selectorHeaderCell, LayoutHelper.createFrameMarginPx(-2.0f, 55, i2, 0, i2, 0));
+        viewGroup2.addView(selectorHeaderCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 55, i2, 0, i2, 0));
         ViewGroup viewGroup3 = this.containerView;
         int i3 = this.backgroundPaddingLeft;
-        viewGroup3.addView((View) r5, LayoutHelper.createFrameMarginPx(-2.0f, 55, i3, 0, i3, 0));
-        GradientHeaderActivity.AnonymousClass5 anonymousClass5 = new GradientHeaderActivity.AnonymousClass5(getContext(), this.resourcesProvider, (RecyclerListView) null);
-        anonymousClass5.setClickable(true);
-        anonymousClass5.setOrientation(1);
-        anonymousClass5.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
-        anonymousClass5.setBackgroundColor(Theme.getColor(i, this.resourcesProvider));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), this.resourcesProvider, true);
+        viewGroup3.addView((View) r5, LayoutHelper.createFrameMarginPx(-1, -2.0f, 55, i3, 0, i3, 0));
+        SelectorBtnCell selectorBtnCell = new SelectorBtnCell(getContext(), this.resourcesProvider, null);
+        selectorBtnCell.setClickable(true);
+        selectorBtnCell.setOrientation(1);
+        selectorBtnCell.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+        selectorBtnCell.setBackgroundColor(Theme.getColor(i, this.resourcesProvider));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), true, this.resourcesProvider);
         this.actionButton = buttonWithCounterView;
         buttonWithCounterView.setOnClickListener(new SelectorBottomSheet$$ExternalSyntheticLambda4(this, 0));
-        anonymousClass5.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
+        selectorBtnCell.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
         ViewGroup viewGroup4 = this.containerView;
         int i4 = this.backgroundPaddingLeft;
-        viewGroup4.addView(anonymousClass5, LayoutHelper.createFrameMarginPx(-2.0f, 87, i4, 0, i4, 0));
+        viewGroup4.addView(selectorBtnCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i4, 0, i4, 0));
         SelectorAdapter selectorAdapter = this.selectorAdapter;
         RecyclerListView recyclerListView = this.recyclerListView;
         selectorAdapter.items = arrayList;
         selectorAdapter.listView = recyclerListView;
         int i5 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i5, 0, i5, AndroidUtilities.dp(60.0f));
-        this.recyclerListView.addOnScrollListener(new LocationActivity.AnonymousClass10(this, 2));
-        this.recyclerListView.setOnItemClickListener(new ProfileGooeyView$$ExternalSyntheticLambda0(this, 19));
+        this.recyclerListView.addOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 6));
+        this.recyclerListView.setOnItemClickListener(new GiftSheet$$ExternalSyntheticLambda6(this, 7));
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.delayAnimations = false;
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        this.recyclerListView.setItemAnimator(defaultItemAnimator);
-        this.recyclerListView.addItemDecoration(new MessageSeenView.AnonymousClass2(this, 4));
+        defaultItemAnimator.setInterpolator(cubicBezierInterpolator);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        this.recyclerListView.lambda$onCellEnter$52(defaultItemAnimator);
+        this.recyclerListView.addItemDecoration(new AppIconsSelectorCell.AnonymousClass2(this, 1));
         updateList$1(false, true);
         loadData(1, null, true);
         loadData(3, null, true);
@@ -208,7 +205,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), this.resourcesProvider, true);
+        SelectorAdapter selectorAdapter = new SelectorAdapter(getContext(), true, this.resourcesProvider);
         this.selectorAdapter = selectorAdapter;
         return selectorAdapter;
     }
@@ -253,9 +250,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         SelectorBottomSheet$$ExternalSyntheticLambda0 selectorBottomSheet$$ExternalSyntheticLambda0 = new SelectorBottomSheet$$ExternalSyntheticLambda0(this, 0);
         SelectorBottomSheet$$ExternalSyntheticLambda0 selectorBottomSheet$$ExternalSyntheticLambda1 = new SelectorBottomSheet$$ExternalSyntheticLambda0(this, 6);
         AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, resourcesProvider);
-        String string2 = LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string2;
+        builder.setTitle(LocaleController.getString("UnsavedChanges", R.string.UnsavedChanges));
         if (i == 1) {
             string = LocaleController.getString("BoostingApplyChangesUsers", R.string.BoostingApplyChangesUsers);
         } else if (i != 2) {
@@ -263,20 +258,20 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else {
             string = LocaleController.getString("BoostingApplyChangesChannels", R.string.BoostingApplyChangesChannels);
         }
-        alertDialog.message = string;
-        builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new ProfileGooeyView$$ExternalSyntheticLambda0(selectorBottomSheet$$ExternalSyntheticLambda0, 16));
-        builder.setNegativeButton(LocaleController.getString("Discard", R.string.Discard), new ProfileGooeyView$$ExternalSyntheticLambda0(selectorBottomSheet$$ExternalSyntheticLambda1, 17));
+        builder.setMessage(string);
+        builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new GiftSheet$$ExternalSyntheticLambda6(selectorBottomSheet$$ExternalSyntheticLambda0, 3));
+        builder.setNegativeButton(LocaleController.getString("Discard", R.string.Discard), new GiftSheet$$ExternalSyntheticLambda6(selectorBottomSheet$$ExternalSyntheticLambda1, 5));
         builder.show();
         return true;
     }
 
-    public final void lambda$new$5(View view) {
+    public final void lambda$new$5$1(View view) {
         TLRPC.Chat chat;
         long j;
         long jHashCode;
         boolean z = view instanceof TextCell;
         LinkedHashMap linkedHashMap = this.allSelectedObjects;
-        HashSet hashSet = this.selectedIds;
+        HashSet<Long> hashSet = this.selectedIds;
         AnonymousClass2 anonymousClass2 = this.searchField;
         if (!z) {
             if (view instanceof SelectorUserCell) {
@@ -302,20 +297,18 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                         anonymousClass2.updateSpans(true, hashSet, new SelectorBottomSheet$$ExternalSyntheticLambda0(this, 1), null);
                         updateList$1(true, false);
                         if (chat2 != null && !ChatObject.isPublic(chat2) && hashSet.contains(Long.valueOf(j2))) {
-                            Context context = this.baseFragment.getContext();
+                            Context context = getBaseFragment().getContext();
                             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-                            LinkManager$3$$ExternalSyntheticLambda0 linkManager$3$$ExternalSyntheticLambda0 = new LinkManager$3$$ExternalSyntheticLambda0(this, j2, 14);
+                            RichEditor$$ExternalSyntheticLambda48 richEditor$$ExternalSyntheticLambda48 = new RichEditor$$ExternalSyntheticLambda48(this, j2, 9);
                             SelectorBottomSheet$$ExternalSyntheticLambda0 selectorBottomSheet$$ExternalSyntheticLambda0 = new SelectorBottomSheet$$ExternalSyntheticLambda0(this, 2);
                             AtomicBoolean atomicBoolean = new AtomicBoolean(false);
                             AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, resourcesProvider);
                             boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat2);
-                            String string = LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.BoostingGiveawayPrivateChannel : R.string.BoostingGiveawayPrivateGroup);
-                            AlertDialog alertDialog = builder.alertDialog;
-                            alertDialog.title = string;
-                            alertDialog.message = LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.BoostingGiveawayPrivateChannelWarning : R.string.BoostingGiveawayPrivateGroupWarning);
-                            builder.setPositiveButton(LocaleController.getString("Add", R.string.Add), new RateCallLayout$$ExternalSyntheticLambda1(10, atomicBoolean, selectorBottomSheet$$ExternalSyntheticLambda0));
-                            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new ShareAlert$$ExternalSyntheticLambda15(24));
-                            alertDialog.setOnDismissListener(new VoIPFragment$$ExternalSyntheticLambda16(7, atomicBoolean, linkManager$3$$ExternalSyntheticLambda0));
+                            builder.setTitle(LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.BoostingGiveawayPrivateChannel : R.string.BoostingGiveawayPrivateGroup));
+                            builder.setMessage(LocaleController.getString(zIsChannelAndNotMegaGroup ? R.string.BoostingGiveawayPrivateChannelWarning : R.string.BoostingGiveawayPrivateGroupWarning));
+                            builder.setPositiveButton(LocaleController.getString("Add", R.string.Add), new RateCallLayout$$ExternalSyntheticLambda1(2, atomicBoolean, selectorBottomSheet$$ExternalSyntheticLambda0));
+                            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new LivePlayer$$ExternalSyntheticLambda1(3));
+                            builder.setOnDismissListener(new BotStorage$$ExternalSyntheticLambda5(4, atomicBoolean, richEditor$$ExternalSyntheticLambda48));
                             builder.show();
                         } else if (chat2 != null) {
                             clearSearchAfterSelectChannel();
@@ -390,7 +383,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             tL_channelParticipantsRecent.q = str;
             tL_channels_getParticipants.offset = 0;
             tL_channels_getParticipants.limit = 50;
-            connectionsManager.sendRequest(tL_channels_getParticipants, new LinkManager$$ExternalSyntheticLambda8(5, messagesController, selectorBottomSheet$$ExternalSyntheticLambda7));
+            connectionsManager.sendRequest(tL_channels_getParticipants, new StarGiftSheet$$ExternalSyntheticLambda0(14, messagesController, selectorBottomSheet$$ExternalSyntheticLambda7));
             return;
         }
         if (i != 2) {
@@ -401,7 +394,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(UserConfig.selectedAccount);
             TLRPC.TL_help_getCountriesList tL_help_getCountriesList = new TLRPC.TL_help_getCountriesList();
             tL_help_getCountriesList.lang_code = LocaleController.getInstance().getCurrentLocaleInfo() != null ? LocaleController.getInstance().getCurrentLocaleInfo().getLangCode() : Locale.getDefault().getCountry();
-            connectionsManager2.sendRequest(tL_help_getCountriesList, new CallLogActivity$$ExternalSyntheticLambda1(selectorBottomSheet$$ExternalSyntheticLambda8, 26));
+            connectionsManager2.sendRequest(tL_help_getCountriesList, new RichMediaUploader$$ExternalSyntheticLambda0(selectorBottomSheet$$ExternalSyntheticLambda8, 12));
             return;
         }
         long j2 = chat.id;
@@ -411,7 +404,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         TLRPC.TL_contacts_search tL_contacts_search = new TLRPC.TL_contacts_search();
         tL_contacts_search.q = str;
         tL_contacts_search.limit = 50;
-        connectionsManager3.sendRequest(tL_contacts_search, new LaunchActivity$$ExternalSyntheticLambda51(messagesController2, j2, selectorBottomSheet$$ExternalSyntheticLambda3, 2));
+        connectionsManager3.sendRequest(tL_contacts_search, new LivePlayer$$ExternalSyntheticLambda15(messagesController2, j2, selectorBottomSheet$$ExternalSyntheticLambda3, 2));
     }
 
     @Override
@@ -421,25 +414,24 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
-    public final void onPreDraw(Canvas canvas, int i) {
+    public final void onPreDraw(Canvas canvas, int i, float f) {
         this.top = i;
-        float f = AndroidUtilities.statusBarHeight;
+        float f2 = AndroidUtilities.statusBarHeight;
         SelectorHeaderCell selectorHeaderCell = this.headerView;
-        selectorHeaderCell.setTranslationY(Math.max(i, (((selectorHeaderCell.getMeasuredHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(40.0f)) / 2.0f) + f));
+        selectorHeaderCell.setTranslationY(Math.max(i, (((selectorHeaderCell.getMeasuredHeight() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(40.0f)) / 2.0f) + f2));
         float translationY = selectorHeaderCell.getTranslationY() + selectorHeaderCell.getMeasuredHeight();
         AnonymousClass2 anonymousClass2 = this.searchField;
         anonymousClass2.setTranslationY(translationY);
         this.recyclerListView.setTranslationY((anonymousClass2.getMeasuredHeight() + selectorHeaderCell.getMeasuredHeight()) - AndroidUtilities.dp(16.0f));
-        int color = Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider);
         Paint paint = this.backgroundPaint;
-        paint.setColor(color);
+        paint.setColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
         int iMax = Math.max(0, i);
         boolean z = iMax < AndroidUtilities.statusBarHeight;
         AnimatedFloat animatedFloat = this.statusBarT;
         int iLerp = AndroidUtilities.lerp(iMax, 0, animatedFloat.set(z));
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(this.backgroundPaddingLeft, iLerp, this.containerView.getWidth() - this.backgroundPaddingLeft, AndroidUtilities.dp(14.0f) + this.containerView.getHeight());
-        float fDp = (1.0f - animatedFloat.value) * AndroidUtilities.dp(14.0f);
+        float fDp = (1.0f - animatedFloat.get()) * AndroidUtilities.dp(14.0f);
         canvas.drawRoundRect(rectF, fDp, fDp, paint);
     }
 
@@ -448,7 +440,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         this.query = null;
         HashSet hashSet = this.openedIds;
         hashSet.clear();
-        HashSet hashSet2 = this.selectedIds;
+        HashSet<Long> hashSet2 = this.selectedIds;
         hashSet2.clear();
         ArrayList arrayList2 = this.peers;
         arrayList2.clear();
@@ -512,7 +504,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 }
                 BoostPagerBottomSheet.AnonymousClass4 anonymousClass4 = this.selectedObjectsListener;
                 if (anonymousClass4 != null) {
-                    BoostPagerBottomSheet.this.viewPager.scrollToPosition$1(0);
+                    BoostPagerBottomSheet.this.viewPager.scrollToPosition(0);
                     BoostViaGiftsBottomSheet boostViaGiftsBottomSheet = anonymousClass4.val$leftSheet;
                     ArrayList arrayList2 = boostViaGiftsBottomSheet.selectedUsers;
                     arrayList2.clear();
@@ -527,7 +519,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                     boostViaGiftsBottomSheet.selectedSliderIndex = 0;
                     boostViaGiftsBottomSheet.updateRows(false, true);
                     boostViaGiftsBottomSheet.updateActionButton(true);
-                    boostViaGiftsBottomSheet.updateTitle$1();
+                    boostViaGiftsBottomSheet.updateTitle();
                     return;
                 }
                 return;
@@ -545,7 +537,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 BoostPagerBottomSheet.AnonymousClass4 anonymousClass5 = this.selectedObjectsListener;
                 if (anonymousClass5 != null) {
                     BoostPagerBottomSheet boostPagerBottomSheet = BoostPagerBottomSheet.this;
-                    boostPagerBottomSheet.viewPager.scrollToPosition$1(0);
+                    boostPagerBottomSheet.viewPager.scrollToPosition(0);
                     boolean z2 = !boostPagerBottomSheet.isKeyboardVisible();
                     BoostViaGiftsBottomSheet boostViaGiftsBottomSheet2 = anonymousClass5.val$leftSheet;
                     ArrayList arrayList4 = boostViaGiftsBottomSheet2.selectedChats;
@@ -573,7 +565,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
             }
             BoostPagerBottomSheet.AnonymousClass4 anonymousClass6 = this.selectedObjectsListener;
             if (anonymousClass6 != null) {
-                BoostPagerBottomSheet.this.viewPager.scrollToPosition$1(0);
+                BoostPagerBottomSheet.this.viewPager.scrollToPosition(0);
                 BoostViaGiftsBottomSheet boostViaGiftsBottomSheet3 = anonymousClass6.val$leftSheet;
                 ArrayList arrayList7 = boostViaGiftsBottomSheet3.selectedCountries;
                 arrayList7.clear();
@@ -584,15 +576,14 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public final void scrollToTop(boolean z) {
-        RecyclerListView recyclerListView = this.recyclerListView;
         if (!z) {
-            recyclerListView.scrollToPosition(0);
+            this.recyclerListView.scrollToPosition(0);
             return;
         }
         LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.6f);
-        linearSmoothScrollerCustom.mTargetPosition = 1;
-        linearSmoothScrollerCustom.offset = AndroidUtilities.dp(38.0f);
-        recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
+        linearSmoothScrollerCustom.setTargetPosition(1);
+        linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(38.0f));
+        this.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
     }
 
     public final void showMaximumUsersToast$1() {
@@ -607,7 +598,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         }
         BoostPagerBottomSheet.AnonymousClass4 anonymousClass4 = this.selectedObjectsListener;
         if (anonymousClass4 != null) {
-            new BulletinFactory(BoostPagerBottomSheet.this.container, anonymousClass4.val$resourcesProvider).createSimpleBulletinWithIconSize(R.raw.chats_infotip, 36, string).show(true);
+            BulletinFactory.of(BoostPagerBottomSheet.this.container, anonymousClass4.val$resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, string).show(true);
         }
     }
 
@@ -621,7 +612,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else {
             string = LocaleController.getString(R.string.BoostingSaveRecipients);
         }
-        buttonWithCounterView.setText(string, z, true);
+        buttonWithCounterView.setText(string, z);
         HashSet hashSet = this.selectedIds;
         buttonWithCounterView.setCount(hashSet.size(), z);
         buttonWithCounterView.setEnabled(hashSet.size() > 0);
@@ -630,9 +621,9 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     public final void updateItems(boolean z, boolean z2) {
         int iDp;
         SelectorAdapter selectorAdapter;
-        ArrayList arrayList = this.oldItems;
+        ArrayList<? extends AdapterWithDiffUtils.Item> arrayList = this.oldItems;
         arrayList.clear();
-        ArrayList arrayList2 = this.items;
+        ArrayList<? extends AdapterWithDiffUtils.Item> arrayList2 = this.items;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         if (this.type == 1) {
@@ -714,7 +705,7 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         } else if (z) {
             graySectionCell.setRightText(null);
         } else {
-            graySectionCell.rightTextView.setText(null, false, true);
+            graySectionCell.rightTextView.setText(null, false);
             GraySectionCell.AnonymousClass1 anonymousClass1 = graySectionCell.rightTextView;
             anonymousClass1.setOnClickListener(null);
             anonymousClass1.setVisibility(0);
@@ -725,22 +716,16 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         if (z) {
             selectorAdapter.setItems(arrayList, arrayList2);
         } else {
-            selectorAdapter.mObservable.notifyChanged();
+            selectorAdapter.notifyDataSetChanged();
         }
     }
 
     public final void updateList$1(boolean z, boolean z2) {
         updateItems(z, z2);
-        int i = 0;
-        while (true) {
-            RecyclerListView recyclerListView = this.recyclerListView;
-            if (i >= recyclerListView.getChildCount()) {
-                updateActionButton$3(z);
-                return;
-            }
-            View childAt = recyclerListView.getChildAt(i);
+        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+            View childAt = this.recyclerListView.getChildAt(i);
             if (childAt instanceof SelectorUserCell) {
-                int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt) - 1;
+                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt) - 1;
                 if (childAdapterPosition >= 0) {
                     ArrayList arrayList = this.items;
                     if (childAdapterPosition < arrayList.size()) {
@@ -763,8 +748,8 @@ public final class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 SelectorCountryCell selectorCountryCell2 = (SelectorCountryCell) childAt;
                 selectorCountryCell2.setChecked(this.selectedIds.contains(Long.valueOf(selectorCountryCell2.getCountry().default_name.hashCode())), true);
             }
-            i++;
         }
+        updateActionButton$3(z);
     }
 
     public final void updateSection() {

@@ -19,14 +19,15 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda5;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.UserCell2;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CombinedDrawable;
-import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet$$ExternalSyntheticLambda16;
@@ -35,8 +36,7 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorLetterCe
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
-import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda8;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda26;
 
 public final class SelectorAdapter extends AdapterWithDiffUtils {
     public final Context context;
@@ -52,13 +52,13 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
 
     public final class Item extends AdapterWithDiffUtils.Item {
         public UserSelectorBottomSheet$$ExternalSyntheticLambda16 audioCall;
-        public ContactAddActivity$$ExternalSyntheticLambda8 callback;
+        public AlertDialog$$ExternalSyntheticLambda5 callback;
         public TLRPC.Chat chat;
         public boolean checked;
         public TLRPC.TL_help_country country;
         public CombinedDrawable icon;
         public int id;
-        public ContactAddActivity$$ExternalSyntheticLambda8 options;
+        public AlertDialog$$ExternalSyntheticLambda5 options;
         public int padHeight;
         public TLRPC.InputPeer peer;
         public int resId;
@@ -85,7 +85,7 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
         @Override
         public final boolean contentsEquals(AdapterWithDiffUtils.Item item) {
             if (this != item) {
-                if (Item.class == item.getClass()) {
+                if (item != null && Item.class == item.getClass()) {
                     Item item2 = (Item) item;
                     if (this.checked == item2.checked) {
                         if (this.viewType == 8) {
@@ -166,13 +166,13 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
         }
     }
 
-    public SelectorAdapter(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public SelectorAdapter(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
         this.needChecks = z;
         this.resourcesProvider = resourcesProvider;
-        PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14 = new PollItemMenu$$ExternalSyntheticLambda14(this, 3);
+        DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda6 = new DialogCell$$ExternalSyntheticLambda6(this, 17);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(UserConfig.selectedAccount);
-        messagesStorage.getStorageQueue().postRunnable(new ImageUpdater$$ExternalSyntheticLambda2(25, messagesStorage, pollItemMenu$$ExternalSyntheticLambda14));
+        messagesStorage.getStorageQueue().postRunnable(new GiftSheet$$ExternalSyntheticLambda26(5, messagesStorage, dialogCell$$ExternalSyntheticLambda6));
     }
 
     @Override
@@ -206,8 +206,7 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
 
     @Override
     public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        int i = viewHolder.mItemViewType;
-        return i == 3 || i == 6 || i == 9;
+        return viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 6 || viewHolder.getItemViewType() == 9;
     }
 
     @Override
@@ -219,12 +218,11 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
             return;
         }
         Item item = (Item) arrayList.get(i);
-        int i3 = viewHolder.mItemViewType;
-        int i4 = 8;
-        View view = viewHolder.itemView;
-        if (i3 != 3) {
-            if (i3 == 6) {
-                SelectorCountryCell selectorCountryCell = (SelectorCountryCell) view;
+        int itemViewType = viewHolder.getItemViewType();
+        int i3 = 8;
+        if (itemViewType != 3) {
+            if (itemViewType == 6) {
+                SelectorCountryCell selectorCountryCell = (SelectorCountryCell) viewHolder.itemView;
                 z = i < this.items.size() - 1 && (i2 = i + 1) < this.items.size() - 1 && ((Item) this.items.get(i2)).viewType != 7;
                 selectorCountryCell.country = item.country;
                 selectorCountryCell.setCountryInternal();
@@ -232,46 +230,46 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
                 selectorCountryCell.setChecked(item.checked, false);
                 return;
             }
-            if (i3 == -1) {
-                int i5 = item.padHeight;
-                if (i5 < 0) {
-                    i5 = (int) (AndroidUtilities.displaySize.y * 0.3f);
+            if (itemViewType == -1) {
+                int i4 = item.padHeight;
+                if (i4 < 0) {
+                    i4 = (int) (AndroidUtilities.displaySize.y * 0.3f);
                 }
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, i5));
+                viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-1, i4));
                 return;
             }
-            if (i3 == 7) {
-                ((SelectorLetterCell) view).setLetter(item.text);
+            if (itemViewType == 7) {
+                ((SelectorLetterCell) viewHolder.itemView).setLetter(item.text);
                 return;
             }
-            if (i3 == 5) {
+            if (itemViewType == 5) {
                 try {
-                    ((StickerEmptyView) view).stickerView.getImageReceiver().startAnimation();
+                    ((StickerEmptyView) viewHolder.itemView).stickerView.getImageReceiver().startAnimation();
                     return;
                 } catch (Exception unused) {
                     return;
                 }
             }
-            if (i3 != 8) {
-                if (i3 == 9) {
-                    TextCell textCell = (TextCell) view;
+            if (itemViewType != 8) {
+                if (itemViewType == 9) {
+                    TextCell textCell = (TextCell) viewHolder.itemView;
                     textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
-                    textCell.setTextAndIcon(item.resId, (CharSequence) item.text, false);
+                    textCell.setTextAndIcon((CharSequence) item.text, item.resId, false);
                     return;
                 } else {
-                    if (i3 == 10) {
-                        FrameLayout frameLayout = (FrameLayout) view;
+                    if (itemViewType == 10) {
+                        FrameLayout frameLayout = (FrameLayout) viewHolder.itemView;
                         if (frameLayout.getChildCount() == 1 && frameLayout.getChildAt(0) == item.view) {
                             return;
                         }
                         AndroidUtilities.removeFromParent(item.view);
-                        frameLayout.addView(item.view, LayoutHelper.createFrame(-2.0f, -1));
+                        frameLayout.addView(item.view, LayoutHelper.createFrame(-1, -2.0f));
                         return;
                     }
                     return;
                 }
             }
-            GraySectionCell graySectionCell = (GraySectionCell) view;
+            GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
             if (TextUtils.equals(graySectionCell.getText(), item.text)) {
                 String str = item.subtext;
                 if (str == null) {
@@ -282,17 +280,17 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
                 graySectionCell.setText(Emoji.replaceWithRestrictedEmoji(item.text, graySectionCell.getTextView(), (Runnable) null));
                 if (!TextUtils.isEmpty(item.subtext)) {
                     String str2 = item.subtext;
-                    ContactAddActivity$$ExternalSyntheticLambda8 contactAddActivity$$ExternalSyntheticLambda8 = item.callback;
+                    AlertDialog$$ExternalSyntheticLambda5 alertDialog$$ExternalSyntheticLambda5 = item.callback;
                     GraySectionCell.AnonymousClass1 anonymousClass1 = graySectionCell.rightTextView;
-                    anonymousClass1.setText(str2, false, true);
-                    anonymousClass1.setOnClickListener(contactAddActivity$$ExternalSyntheticLambda8);
+                    anonymousClass1.setText(str2, false);
+                    anonymousClass1.setOnClickListener(alertDialog$$ExternalSyntheticLambda5);
                     anonymousClass1.setVisibility(0);
                 }
             }
             this.topSectionCell = graySectionCell;
             return;
         }
-        SelectorUserCell selectorUserCell = (SelectorUserCell) view;
+        SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
         CombinedDrawable combinedDrawable = item.icon;
         if (combinedDrawable != null) {
             String str3 = item.text;
@@ -347,9 +345,9 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
         }
         selectorUserCell.setChecked(item.checked, false);
         selectorUserCell.setCheckboxAlpha(1.0f, false);
-        int i6 = i + 1;
-        selectorUserCell.setDivider(i6 >= this.items.size() || ((Item) this.items.get(i6)).viewType == i3);
-        if (i6 < this.items.size() && ((Item) this.items.get(i6)).viewType == 7) {
+        int i5 = i + 1;
+        selectorUserCell.setDivider(i5 >= this.items.size() || ((Item) this.items.get(i5)).viewType == itemViewType);
+        if (i5 < this.items.size() && ((Item) this.items.get(i5)).viewType == 7) {
             selectorUserCell.setDivider(false);
         }
         selectorUserCell.setOptions(item.options);
@@ -364,9 +362,9 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
         selectorUserCell.hasVideoView = z;
         ImageView imageView2 = selectorUserCell.videoView;
         if (z && selectorUserCell.showCallButtons) {
-            i4 = 0;
+            i3 = 0;
         }
-        imageView2.setVisibility(i4);
+        imageView2.setVisibility(i3);
         imageView2.setOnClickListener(userSelectorBottomSheet$$ExternalSyntheticLambda17);
         selectorUserCell.setCallButtonsVisible(this.callButtonsVisible, false);
     }
@@ -382,7 +380,7 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
         } else {
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             if (i == 5) {
-                StickerEmptyView stickerEmptyView = new StickerEmptyView(1, resourcesProvider, context, null);
+                StickerEmptyView stickerEmptyView = new StickerEmptyView(context, null, 1, resourcesProvider);
                 stickerEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
                 stickerEmptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
                 stickerEmptyView.linearLayout.setTranslationY(AndroidUtilities.dp(24.0f));
@@ -407,6 +405,7 @@ public final class SelectorAdapter extends AdapterWithDiffUtils {
 
     @Override
     public final void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+        super.onViewAttachedToWindow(viewHolder);
         View view = viewHolder.itemView;
         if (view instanceof SelectorUserCell) {
             ((SelectorUserCell) view).setCallButtonsVisible(this.callButtonsVisible, false);

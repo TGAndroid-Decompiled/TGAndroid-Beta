@@ -1,7 +1,7 @@
 package org.telegram.ui.Components.Paint.Views;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.Stories.recorder.HintView2$$ExternalSyntheticLambda0;
 
 public final class StoryLinkPreviewDialog$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
@@ -16,22 +16,22 @@ public final class StoryLinkPreviewDialog$$ExternalSyntheticLambda0 implements R
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.lambda$dismiss$6();
+                AndroidUtilities.runOnUIThread(new StoryLinkPreviewDialog$$ExternalSyntheticLambda0(this.f$0, 3));
                 break;
             case 1:
-                AndroidUtilities.runOnUIThread(new StoryLinkPreviewDialog$$ExternalSyntheticLambda0(this.f$0, 0));
-                break;
-            case 2:
                 this.f$0.dismiss();
                 break;
-            default:
+            case 2:
                 StoryLinkPreviewDialog storyLinkPreviewDialog = this.f$0;
-                VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7 = storyLinkPreviewDialog.whenDone;
-                if (voIPFragment$$ExternalSyntheticLambda7 != null) {
-                    voIPFragment$$ExternalSyntheticLambda7.run(null);
+                HintView2$$ExternalSyntheticLambda0 hintView2$$ExternalSyntheticLambda0 = storyLinkPreviewDialog.whenDone;
+                if (hintView2$$ExternalSyntheticLambda0 != null) {
+                    hintView2$$ExternalSyntheticLambda0.run(null);
                     storyLinkPreviewDialog.whenDone = null;
                 }
                 storyLinkPreviewDialog.dismiss();
+                break;
+            default:
+                this.f$0.lambda$dismiss$6();
                 break;
         }
     }

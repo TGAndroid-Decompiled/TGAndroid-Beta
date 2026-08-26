@@ -11,42 +11,35 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 
-public final class LoginOrView extends View {
-    public final Paint linePaint;
-    public View measureAfter;
-    public final String string;
-    public final Rect textBounds;
-    public final TextPaint textPaint;
+public class LoginOrView extends View {
+    private static final int LINE_SIZE_DP = 64;
+    private Paint linePaint;
+    private View measureAfter;
+    private String string;
+    private Rect textBounds;
+    private TextPaint textPaint;
 
     public LoginOrView(Context context) {
         super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.textPaint = textPaint;
+        this.textPaint = new TextPaint(1);
         this.linePaint = new Paint(1);
         this.textBounds = new Rect();
         this.string = LocaleController.getString(R.string.LoginOrSingInWithGoogle);
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        this.textPaint.setTextSize(AndroidUtilities.dp(14.0f));
         updateColors();
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        View view = this.measureAfter;
-        Rect rect = this.textBounds;
-        float width = view != null ? ((((getWidth() - rect.width()) - AndroidUtilities.dp(8.0f)) - this.measureAfter.getPaddingLeft()) - this.measureAfter.getPaddingRight()) / 2.0f : AndroidUtilities.dp(64.0f);
-        float width2 = (((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f)) - width;
-        float height = getHeight() / 2.0f;
-        float width3 = ((getWidth() - rect.width()) / 2.0f) - AndroidUtilities.dp(8.0f);
-        float height2 = getHeight() / 2.0f;
-        Paint paint = this.linePaint;
-        canvas.drawLine(width2, height, width3, height2, paint);
-        canvas.drawLine(((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, ((rect.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f) + width, getHeight() / 2.0f, paint);
-        canvas.drawText(this.string, (getWidth() - rect.width()) / 2.0f, (rect.height() + getHeight()) / 2.0f, this.textPaint);
+        float width = this.measureAfter != null ? ((((getWidth() - this.textBounds.width()) - AndroidUtilities.dp(8.0f)) - this.measureAfter.getPaddingLeft()) - this.measureAfter.getPaddingRight()) / 2.0f : AndroidUtilities.dp(64.0f);
+        canvas.drawLine((((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.dp(8.0f)) - width, getHeight() / 2.0f, ((getWidth() - this.textBounds.width()) / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, this.linePaint);
+        canvas.drawLine(((this.textBounds.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, ((this.textBounds.width() + getWidth()) / 2.0f) + AndroidUtilities.dp(8.0f) + width, getHeight() / 2.0f, this.linePaint);
+        canvas.drawText(this.string, (getWidth() - this.textBounds.width()) / 2.0f, (this.textBounds.height() + getHeight()) / 2.0f, this.textPaint);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         View view = this.measureAfter;
         if (view != null) {
             i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(view.getMeasuredWidth()), 1073741824);
@@ -61,7 +54,7 @@ public final class LoginOrView extends View {
         this.measureAfter = view;
     }
 
-    public final void updateColors() {
+    public void updateColors() {
         this.textPaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false));
         this.linePaint.setColor(Theme.getColor(null, Theme.key_sheet_scrollUp, false));
         invalidate();

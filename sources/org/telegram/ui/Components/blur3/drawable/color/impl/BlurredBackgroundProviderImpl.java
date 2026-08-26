@@ -7,14 +7,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.Paint.Views.LPhotoPaintView$$ExternalSyntheticLambda9;
+import org.telegram.ui.Components.Paint.Views.LPhotoPaintView$$ExternalSyntheticLambda21;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProviderBuilder;
-import org.telegram.ui.ContactsActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
 
 public abstract class BlurredBackgroundProviderImpl {
     public static BlurredBackgroundProviderBuilder attachMenuSearch(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(16);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(4);
         int i = 402653183;
         int i2 = 385875968;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, i2, 2);
@@ -33,7 +33,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder bottomPanelChatActivity(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new LPhotoPaintView$$ExternalSyntheticLambda9(1, resourcesProvider);
+        blurredBackgroundProviderBuilder.backgroundColor = new LPhotoPaintView$$ExternalSyntheticLambda21(resourcesProvider, 3);
         int i = -1;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(687865855, i, 2);
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(352321535, i, 2);
@@ -59,7 +59,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder emojiViewButton(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(21);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(14);
         int i = -1;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(687865855, i, 2);
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(352321535, i, 2);
@@ -77,7 +77,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder inputFieldShareAlert(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(19);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(6);
         int i = 687865855;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, i, 2);
         int i2 = 352321535;
@@ -96,7 +96,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder mainTabs(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(17);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(5);
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(117440511, 285212672, 2);
         int i = 536870912;
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(301989887, i, 2);
@@ -114,7 +114,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder messageMenuBackground(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(9);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(17);
         int i = 0;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, 1157627903, 2);
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, 587202559, 2);
@@ -134,7 +134,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder photoViewer(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(18);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(12);
         int i = 687865855;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, i, 2);
         int i2 = 352321535;
@@ -148,7 +148,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder scrimMenuBackground(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(10);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(15);
         int i = 0;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, 1157627903, 2);
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, 587202559, 2);
@@ -196,7 +196,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder topPanel(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(11);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(16);
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(117440511, 285212672, 2);
         int i = 536870912;
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(301989887, i, 2);
@@ -214,7 +214,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder topPanelChatActivity(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new LPhotoPaintView$$ExternalSyntheticLambda9(3, resourcesProvider);
+        blurredBackgroundProviderBuilder.backgroundColor = new LPhotoPaintView$$ExternalSyntheticLambda21(resourcesProvider, 2);
         int i = -1;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(553648127, i, 2);
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(352321535, i, 2);
@@ -228,7 +228,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder topPanelChatActivitySearchListBg(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(22);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(8);
         int i = 0;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, i, 2);
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, i, 2);
@@ -242,7 +242,7 @@ public abstract class BlurredBackgroundProviderImpl {
 
     public static BlurredBackgroundProviderBuilder topPanelChatActivityTags(Theme.ResourcesProvider resourcesProvider) {
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new LPhotoPaintView$$ExternalSyntheticLambda9(2, resourcesProvider);
+        blurredBackgroundProviderBuilder.backgroundColor = new LPhotoPaintView$$ExternalSyntheticLambda21(resourcesProvider, 1);
         int i = 0;
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, i, 2);
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(i, i, 2);

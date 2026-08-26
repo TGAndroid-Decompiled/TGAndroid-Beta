@@ -16,8 +16,8 @@ public abstract class TextViewWithLoading extends TextView {
     public TextViewWithLoading(Context context) {
         super(context);
         this.loading = false;
-        this.animatedLoading = new AnimatedFloat(320L, this, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.spinner = new CircularProgressDrawable(-1);
+        this.animatedLoading = new AnimatedFloat(this, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.spinner = new CircularProgressDrawable();
     }
 
     @Override
@@ -43,9 +43,8 @@ public abstract class TextViewWithLoading extends TextView {
             int height = getHeight() / 2;
             int iDp = width - ((int) ((1.0f - f) * AndroidUtilities.dp(6.0f)));
             CircularProgressDrawable circularProgressDrawable = this.spinner;
-            circularProgressDrawable.paint.setAlpha((int) (f * 255.0f));
-            int i = ((int) (circularProgressDrawable.size + circularProgressDrawable.thickness)) / 2;
-            circularProgressDrawable.setBounds(iDp - i, height - i, iDp + i, i + height);
+            circularProgressDrawable.setAlpha((int) (f * 255.0f));
+            circularProgressDrawable.setBounds(iDp - (circularProgressDrawable.getIntrinsicWidth() / 2), height - (circularProgressDrawable.getIntrinsicWidth() / 2), (circularProgressDrawable.getIntrinsicWidth() / 2) + iDp, (circularProgressDrawable.getIntrinsicHeight() / 2) + height);
             circularProgressDrawable.draw(canvas2);
             invalidate();
         }
@@ -54,6 +53,6 @@ public abstract class TextViewWithLoading extends TextView {
     @Override
     public void setTextColor(int i) {
         super.setTextColor(i);
-        this.spinner.paint.setColor(i);
+        this.spinner.setColor(i);
     }
 }

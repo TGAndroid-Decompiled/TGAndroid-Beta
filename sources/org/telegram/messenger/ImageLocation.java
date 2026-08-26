@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 import org.telegram.SQLite.SQLitePreparedStatement$$ExternalSyntheticOutline0;
 import org.telegram.tgnet.TLObject;
@@ -208,10 +208,10 @@ public class ImageLocation {
         TLRPC.Message message;
         String strippedKeyInternal = getStrippedKeyInternal(obj, obj2, obj3);
         if (BuildVars.LOGS_ENABLED && (obj instanceof MessageObject) && (message = ((MessageObject) obj).messageOwner) != null && message.rich_message != null) {
-            StringBuilder sbM4m = SurfaceContainer$$ExternalSyntheticOutline0.m4m("[richmedia] strippedKey=", strippedKeyInternal, " fullObject=");
-            sbM4m.append(obj2 == null ? "null" : obj2.getClass().getSimpleName());
-            sbM4m.append(" stripped=");
-            SQLitePreparedStatement$$ExternalSyntheticOutline0.m(obj3 != null ? obj3.getClass().getSimpleName() : "null", sbM4m);
+            StringBuilder sbM80m = Fragment$$ExternalSyntheticOutline0.m80m("[richmedia] strippedKey=", strippedKeyInternal, " fullObject=");
+            sbM80m.append(obj2 == null ? "null" : obj2.getClass().getSimpleName());
+            sbM80m.append(" stripped=");
+            SQLitePreparedStatement$$ExternalSyntheticOutline0.m(obj3 != null ? obj3.getClass().getSimpleName() : "null", sbM80m);
         }
         return strippedKeyInternal;
     }

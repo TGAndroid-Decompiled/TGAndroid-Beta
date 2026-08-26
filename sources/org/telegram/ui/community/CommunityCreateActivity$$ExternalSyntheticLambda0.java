@@ -26,15 +26,8 @@ public final class CommunityCreateActivity$$ExternalSyntheticLambda0 implements 
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
                 CommunityCreateActivity communityCreateActivity = this.f$0;
-                CommunityCreateActivity.CommunityHeaderView communityHeaderView = communityCreateActivity.communityHeaderView;
-                UItem uItem = new UItem(-4);
-                uItem.id = 0;
-                uItem.view = communityHeaderView;
-                uItem.intValue = -1;
-                arrayList.add(uItem);
-                UItem uItemAsButton = UItem.asButton(1, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityCreateCommunity));
-                uItemAsButton.accent = true;
-                arrayList.add(uItemAsButton);
+                arrayList.add(UItem.asCustomShadow(0, communityCreateActivity.communityHeaderView));
+                arrayList.add(UItem.asButton(1, R.drawable.msg_groups_create, LocaleController.getString(R.string.CommunityCreateCommunity)).accent());
                 arrayList.add(UItem.asSpace(2, AndroidUtilities.dp(14.0f)));
                 ArrayList arrayList2 = communityCreateActivity.joinedCommunities;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
@@ -47,18 +40,17 @@ public final class CommunityCreateActivity$$ExternalSyntheticLambda0 implements 
                         i++;
                         TLRPC.Chat chat = (TLRPC.Chat) obj3;
                         TLRPC.ChatFull chatFull = communityCreateActivity.getMessagesController().getChatFull(chat.id);
-                        UItem uItem2 = new UItem(32);
-                        uItem2.object = chat;
+                        UItem uItemAsProfileCell = UItem.asProfileCell(chat);
                         long j = chat.id;
-                        uItem2.id = (int) (j ^ (j >>> 32));
+                        uItemAsProfileCell.id = (int) (j ^ (j >>> 32));
                         if (chatFull != null) {
                             ArrayList<TL_communities.CommunityPeer> arrayList4 = chatFull.linked_peers;
                             string = LocaleController.formatPluralString("Chats", arrayList4 != null ? arrayList4.size() : 0, new Object[0]);
                         } else {
                             string = LocaleController.getString(R.string.Loading);
                         }
-                        uItem2.subtext = string;
-                        arrayList.add(uItem2);
+                        uItemAsProfileCell.subtext = string;
+                        arrayList.add(uItemAsProfileCell);
                     }
                     break;
                 }
@@ -70,7 +62,7 @@ public final class CommunityCreateActivity$$ExternalSyntheticLambda0 implements 
                     CommunityUtils.onCommunityLinkSuccess(communityCreateActivity2, communityCreateActivity2.dialogId, 0);
                 } else {
                     communityCreateActivity2.getClass();
-                    BulletinFactory.of(communityCreateActivity2).showForError(false, tL_error);
+                    BulletinFactory.of(communityCreateActivity2).showForError(tL_error);
                 }
                 break;
         }

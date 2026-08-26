@@ -15,7 +15,7 @@ public final class EditTextCell$$ExternalSyntheticLambda0 implements Runnable {
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                AndroidUtilities.hideKeyboard(this.f$0.editText);
+                this.f$0.lambda$hideKeyboardOnEnter$0();
                 break;
             default:
                 EditTextCell editTextCell = this.f$0;

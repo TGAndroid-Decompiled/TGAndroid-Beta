@@ -16,7 +16,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Business.BusinessChatbotController;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda488;
 
 public class UnconfirmedAuthController {
     private final int currentAccount;
@@ -105,7 +104,7 @@ public class UnconfirmedAuthController {
                     sQLiteCursorQueryFinalized.dispose();
                 }
             }
-            AndroidUtilities.runOnUIThread(new UserNameResolver$$ExternalSyntheticLambda2(this, arrayList, hashSet, arrayList3, 5));
+            AndroidUtilities.runOnUIThread(new UserNameResolver$$ExternalSyntheticLambda2(5, this, arrayList, hashSet, arrayList3));
         } catch (Throwable th) {
             if (sQLiteCursorQueryFinalized != null) {
                 sQLiteCursorQueryFinalized.dispose();
@@ -236,7 +235,7 @@ public class UnconfirmedAuthController {
                 }
             };
         }
-        Utilities.raceCallbacks(new ChatActivity$$ExternalSyntheticLambda488(this, zArr, arrayList2, z, callback, 8), callbackArr);
+        Utilities.raceCallbacks(new MessagesStorage$$ExternalSyntheticLambda112(this, zArr, arrayList2, z, callback, 7), callbackArr);
         if (z) {
             HashSet hashSet = new HashSet();
             for (int i2 = 0; i2 < arrayList2.size(); i2++) {

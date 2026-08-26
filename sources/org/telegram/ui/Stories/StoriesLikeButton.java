@@ -66,7 +66,7 @@ public final class StoriesLikeButton extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.isLike) {
-            float f = this.progressToLiked.set(this.liked ? 1.0f : 0.0f, false);
+            float f = this.progressToLiked.set(this.liked ? 1.0f : 0.0f);
             PeerStoriesView.SharedResources sharedResources = this.sharedResources;
             if (f < 1.0f) {
                 sharedResources.likeDrawable.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
@@ -86,7 +86,7 @@ public final class StoriesLikeButton extends View {
         if (this.allowDrawReaction) {
             AnimatedEmojiDrawable animatedEmojiDrawable = this.emojiDrawable;
             ImageReceiver imageReceiver = this.reactionImageReceiver;
-            ImageReceiver imageReceiver2 = animatedEmojiDrawable != null ? animatedEmojiDrawable.imageReceiver : imageReceiver;
+            ImageReceiver imageReceiver2 = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : imageReceiver;
             if (this.drawAnimateImageReciever) {
                 ImageReceiver imageReceiver3 = this.animateReactionImageReceiver;
                 if (imageReceiver3.getBitmap() != null) {

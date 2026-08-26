@@ -15,10 +15,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkl;
-import com.google.android.gms.internal.mlkit_vision_common.zzkq;
+import com.google.android.gms.internal.mlkit_vision_common.zzkd;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -31,30 +30,30 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda5;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda0;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda19;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ShadowSectionCell;
+import org.telegram.ui.Cells.UnconfirmedAuthHintCell$$ExternalSyntheticLambda5;
 import org.telegram.ui.Cells.UserCell2;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.CreateBotAlert$$ExternalSyntheticLambda9;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.PremiumGradient;
+import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda8;
-import org.telegram.ui.GradientHeaderActivity;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda17;
 import org.telegram.ui.Stories.PeerStoriesView$5$$ExternalSyntheticLambda3;
+import org.telegram.ui.Stories.SelfStoryViewsPage$$ExternalSyntheticLambda0;
 
 public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     public final GradientButtonWithCounterView actionButton;
@@ -67,39 +66,52 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
     public final class AnonymousClass1 implements Bulletin.Delegate {
         @Override
         public final boolean allowLayoutChanges() {
-            return true;
+            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
         }
 
         @Override
         public final boolean bottomOffsetAnimated() {
-            return true;
+            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
         }
 
         @Override
         public final boolean clipWithGradient(int i) {
-            return false;
+            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
         }
 
         @Override
         public final int getBottomOffset(int i) {
-            return 0;
+            return Bulletin.Delegate.CC.$default$getBottomOffset(this, i);
         }
 
         @Override
-        public final int getTopOffset() {
+        public final int getLeftPadding() {
+            return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+        }
+
+        @Override
+        public final int getRightPadding() {
+            return Bulletin.Delegate.CC.$default$getRightPadding(this);
+        }
+
+        @Override
+        public final int getTopOffset(int i) {
             return AndroidUtilities.statusBarHeight;
         }
 
         @Override
         public final void onBottomOffsetChange(float f) {
+            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
         }
 
         @Override
         public final void onHide(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
         }
 
         @Override
         public final void onShow(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
         }
     }
 
@@ -117,7 +129,7 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
             super(context);
             Paint paint = new Paint(1);
             this.bgPaint = paint;
-            this.fromAvatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            this.fromAvatarDrawable = new AvatarDrawable();
             BackupImageView backupImageView = new BackupImageView(getContext());
             this.imageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(30.0f));
@@ -153,8 +165,7 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
             float measuredWidth = getMeasuredWidth() / 2.0f;
             float measuredHeight = getMeasuredHeight() / 2.0f;
             canvas.drawCircle(measuredWidth, measuredHeight, getMeasuredWidth() / 2.0f, this.paint);
-            PremiumGradient premiumGradient = PremiumGradient.getInstance();
-            premiumGradient.mainGradient.gradientMatrix(0, -AndroidUtilities.dp(10.0f), 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
+            PremiumGradient.getInstance().mainGradient.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.dp(10.0f), 0.0f);
             canvas.drawCircle(measuredWidth, measuredHeight, (getMeasuredWidth() / 2.0f) - AndroidUtilities.dp(2.0f), PremiumGradient.getInstance().getMainGradientPaint());
             float fDp = AndroidUtilities.dp(18.0f) / 2.0f;
             int i = (int) (measuredWidth - fDp);
@@ -196,13 +207,14 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
             this.toAvatar = avatarHolderView;
             avatarHolderView.setLayerType(2, null);
             frameLayout.addView(avatarHolderView, LayoutHelper.createFrame(70, 70, 17));
-            addView(frameLayout, LayoutHelper.createLinear(0.0f, 15.0f, 0.0f, 0.0f, -1, 70));
+            addView(frameLayout, LayoutHelper.createLinear(-1, 70, 0.0f, 15.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
-            zzkq.m(20.0f, R.string.BoostingReassignBoost, textView);
+            textView.setText(LocaleController.getString(R.string.BoostingReassignBoost));
+            textView.setTextSize(1, 20.0f);
             textView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
             addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 15, 0, 7));
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext(), null);
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(getContext());
             this.description = linksTextView;
             linksTextView.setTextSize(1, 14.0f);
             linksTextView.setGravity(1);
@@ -274,10 +286,8 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
                 avatarHolderView3.setLayerType(2, null);
                 avatarHolderView3.chat = chat4;
                 AvatarDrawable avatarDrawable = avatarHolderView3.fromAvatarDrawable;
-                avatarDrawable.setInfo(UserConfig.selectedAccount, chat4);
-                BackupImageView backupImageView = avatarHolderView3.imageView;
-                backupImageView.imageReceiver.setForUserOrChat(chat4, avatarDrawable);
-                backupImageView.onNewImageSet();
+                avatarDrawable.setInfo(chat4);
+                avatarHolderView3.imageView.setForUserOrChat(chat4, avatarDrawable);
                 int size5 = arrayList6.size();
                 frameLayout.addView(avatarHolderView3, i, LayoutHelper.createFrame(70, 70, 17));
                 avatarHolderView3.setTranslationX(AndroidUtilities.dp(23.0f) * (-size5));
@@ -343,8 +353,8 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
                             i8 = 1;
                         }
                     }
-                    if (SurfaceContainer$$ExternalSyntheticOutline0.m(i8, arrayList6) == avatarHolderView && arrayList6.size() > i8) {
-                        ((AvatarHolderView) SurfaceContainer$$ExternalSyntheticOutline0.m(2, arrayList6)).boostIconView.setScaleY(0.1f);
+                    if (Fragment$$ExternalSyntheticOutline0.m(i8, arrayList6) == avatarHolderView && arrayList6.size() > i8) {
+                        ((AvatarHolderView) Fragment$$ExternalSyntheticOutline0.m(2, arrayList6)).boostIconView.setScaleY(0.1f);
                         ((AvatarHolderView) arrayList6.get(arrayList6.size() - 2)).boostIconView.setScaleX(0.1f);
                         ((AvatarHolderView) arrayList6.get(arrayList6.size() - 2)).boostIconView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j).setInterpolator(cubicBezierInterpolator).start();
                     }
@@ -354,10 +364,8 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
             if (avatarHolderView5.chat == null) {
                 avatarHolderView5.chat = chat;
                 AvatarDrawable avatarDrawable2 = avatarHolderView5.fromAvatarDrawable;
-                avatarDrawable2.setInfo(UserConfig.selectedAccount, chat);
-                BackupImageView backupImageView2 = avatarHolderView5.imageView;
-                backupImageView2.imageReceiver.setForUserOrChat(chat, avatarDrawable2);
-                backupImageView2.onNewImageSet();
+                avatarDrawable2.setInfo(chat);
+                avatarHolderView5.imageView.setForUserOrChat(chat, avatarDrawable2);
             }
             arrayList2.removeAll(arrayList4);
             arrayList2.addAll(arrayList8);
@@ -383,7 +391,7 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
     }
 
     public ReassignBoostBottomSheet(BaseFragment baseFragment, TL_stories.TL_premium_myBoosts tL_premium_myBoosts, TLRPC.Chat chat) {
-        super(baseFragment, false);
+        super(baseFragment, false, false);
         this.selectedBoosts = new ArrayList();
         this.allUsedBoosts = new ArrayList();
         this.topPadding = 0.3f;
@@ -400,26 +408,26 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
                 this.allUsedBoosts.add(tL_myBoost2);
             }
         }
-        GradientHeaderActivity.AnonymousClass5 anonymousClass5 = new GradientHeaderActivity.AnonymousClass5(getContext(), this.resourcesProvider, this.recyclerListView);
-        anonymousClass5.setClickable(true);
-        anonymousClass5.setOrientation(1);
-        anonymousClass5.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        anonymousClass5.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+        SelectorBtnCell selectorBtnCell = new SelectorBtnCell(getContext(), this.resourcesProvider, this.recyclerListView);
+        selectorBtnCell.setClickable(true);
+        selectorBtnCell.setOrientation(1);
+        selectorBtnCell.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        selectorBtnCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
         GradientButtonWithCounterView gradientButtonWithCounterView = new GradientButtonWithCounterView(getContext(), this.resourcesProvider);
         this.actionButton = gradientButtonWithCounterView;
         gradientButtonWithCounterView.withCounterIcon();
         gradientButtonWithCounterView.setCounterColor(-6785796);
-        gradientButtonWithCounterView.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(6, this, chat));
-        anonymousClass5.addView(gradientButtonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
+        gradientButtonWithCounterView.setOnClickListener(new AlertDialog$$ExternalSyntheticLambda5(17, this, chat));
+        selectorBtnCell.addView(gradientButtonWithCounterView, LayoutHelper.createLinear(-1, 48, 87));
         ViewGroup viewGroup = this.containerView;
         int i2 = this.backgroundPaddingLeft;
-        viewGroup.addView(anonymousClass5, LayoutHelper.createFrameMarginPx(-2.0f, 87, i2, 0, i2, 0));
+        viewGroup.addView(selectorBtnCell, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i2, 0, i2, 0));
         RecyclerListView recyclerListView = this.recyclerListView;
         int i3 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i3, 0, i3, AndroidUtilities.dp(64.0f));
-        this.recyclerListView.setOnItemClickListener(new BoostsActivity$$ExternalSyntheticLambda0(12, this, chat));
+        this.recyclerListView.setOnItemClickListener(new SelfStoryViewsPage$$ExternalSyntheticLambda0(2, this, chat));
         fixNavigationBar();
-        updateTitle$1();
+        updateTitle();
         updateActionButton$2(false);
         Bulletin.addDelegate(this.container, new AnonymousClass1());
     }
@@ -449,44 +457,42 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
 
             @Override
             public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                return viewHolder.mItemViewType == 3;
+                return viewHolder.getItemViewType() == 3;
             }
 
             @Override
             public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 int i2 = 1;
-                int i3 = 2;
-                int i4 = viewHolder.mItemViewType;
+                int itemViewType = viewHolder.getItemViewType();
                 ReassignBoostBottomSheet reassignBoostBottomSheet = ReassignBoostBottomSheet.this;
-                View view = viewHolder.itemView;
-                if (i4 == 3) {
+                if (itemViewType == 3) {
                     TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) reassignBoostBottomSheet.allUsedBoosts.get(i - 3);
-                    SelectorUserCell selectorUserCell = (SelectorUserCell) view;
+                    SelectorUserCell selectorUserCell = (SelectorUserCell) viewHolder.itemView;
                     selectorUserCell.setBoost(tL_myBoost);
                     selectorUserCell.setChecked(reassignBoostBottomSheet.selectedBoosts.contains(tL_myBoost), false);
                     return;
                 }
-                if (i4 == 2) {
-                    HeaderCell headerCell = (HeaderCell) view;
+                if (viewHolder.getItemViewType() == 2) {
+                    HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
                     headerCell.setTextSize(15.0f);
                     headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(2.0f));
                     headerCell.setText(LocaleController.getString(R.string.BoostingRemoveBoostFrom));
                     return;
                 }
-                if (i4 == 0) {
-                    TopCell topCell = (TopCell) view;
+                if (viewHolder.getItemViewType() == 0) {
+                    TopCell topCell = (TopCell) viewHolder.itemView;
                     reassignBoostBottomSheet.topCell = topCell;
                     topCell.getClass();
                     try {
-                        int i5 = (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
+                        int i3 = (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
                         TLRPC.Chat chat = reassignBoostBottomSheet.currentChat;
-                        SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", i5, chat == null ? "" : chat.title, "%3$s"));
-                        SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), Theme.key_chat_messageLinkIn, 2, new CreateBotAlert$$ExternalSyntheticLambda9(reassignBoostBottomSheet, i3));
+                        SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPluralWithLink", i3, chat == null ? "" : chat.title, "%3$s"));
+                        SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingReassignBoostTextLink", R.string.BoostingReassignBoostTextLink), Theme.key_chat_messageLinkIn, 2, new UnconfirmedAuthHintCell$$ExternalSyntheticLambda5(reassignBoostBottomSheet, i2));
                         int iIndexOf = TextUtils.indexOf(spannableStringBuilderReplaceTags, "%3$s");
                         spannableStringBuilderReplaceTags.replace(iIndexOf, iIndexOf + 4, (CharSequence) spannableStringBuilderReplaceSingleTag);
                         LinkSpanDrawable.LinksTextView linksTextView = topCell.description;
                         linksTextView.setText(spannableStringBuilderReplaceTags, TextView.BufferType.EDITABLE);
-                        linksTextView.post(new OAuthSheet$$ExternalSyntheticLambda17(topCell, iIndexOf, i2));
+                        linksTextView.post(new Theme$$ExternalSyntheticLambda19(topCell, iIndexOf, 12));
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
@@ -503,13 +509,13 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
                     topCell.showBoosts(reassignBoostBottomSheet.selectedBoosts, reassignBoostBottomSheet.currentChat);
                     shadowSectionCell = topCell;
                 } else if (i == 1) {
-                    shadowSectionCell = new ShadowSectionCell(context, Theme.getColor(null, Theme.key_windowBackgroundGray, false), 0);
+                    shadowSectionCell = new ShadowSectionCell(context, Theme.getColor(null, Theme.key_windowBackgroundGray, false));
                 } else if (i != 2) {
                     shadowSectionCell = i != 3 ? new View(context) : new SelectorUserCell(context, true, false, ((BottomSheet) reassignBoostBottomSheet).resourcesProvider, true);
                 } else {
                     shadowSectionCell = new HeaderCell(context, 22);
                 }
-                return zzkl.m(shadowSectionCell, shadowSectionCell);
+                return zzkd.m(shadowSectionCell, shadowSectionCell, -2);
             }
         };
     }
@@ -527,7 +533,7 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
         if (view instanceof SelectorUserCell) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) view;
             if (selectorUserCell.getBoost().cooldown_until_date > 0) {
-                new BulletinFactory(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, 5, AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingWaitWarningPlural", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, new Object[0]))).show(true);
+                BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingWaitWarningPlural", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, new Object[0])), 5).show(true);
                 return;
             }
             ArrayList arrayList = this.selectedBoosts;
@@ -553,29 +559,29 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
             @Override
             public final void onTick(long j) {
                 ReassignBoostBottomSheet reassignBoostBottomSheet = ReassignBoostBottomSheet.this;
-                ArrayList arrayList = new ArrayList(reassignBoostBottomSheet.allUsedBoosts.size());
-                ArrayList arrayList2 = reassignBoostBottomSheet.allUsedBoosts;
-                int size = arrayList2.size();
+                ArrayList arrayList = reassignBoostBottomSheet.allUsedBoosts;
+                ArrayList arrayList2 = new ArrayList(arrayList.size());
+                int size = arrayList.size();
                 int i = 0;
                 while (i < size) {
-                    Object obj = arrayList2.get(i);
+                    Object obj = arrayList.get(i);
                     i++;
                     TL_stories.TL_myBoost tL_myBoost = (TL_stories.TL_myBoost) obj;
                     if (tL_myBoost.cooldown_until_date > 0) {
-                        arrayList.add(tL_myBoost);
+                        arrayList2.add(tL_myBoost);
                     }
                     if (((long) tL_myBoost.cooldown_until_date) * 1000 < System.currentTimeMillis()) {
                         tL_myBoost.cooldown_until_date = 0;
                     }
                 }
-                if (arrayList.isEmpty()) {
+                if (arrayList2.isEmpty()) {
                     return;
                 }
-                for (int i2 = 0; i2 < reassignBoostBottomSheet.recyclerListView.getChildCount(); i2++) {
-                    View childAt = reassignBoostBottomSheet.recyclerListView.getChildAt(i2);
+                for (int i2 = 0; i2 < ((BottomSheetWithRecyclerListView) reassignBoostBottomSheet).recyclerListView.getChildCount(); i2++) {
+                    View childAt = ((BottomSheetWithRecyclerListView) reassignBoostBottomSheet).recyclerListView.getChildAt(i2);
                     if (childAt instanceof SelectorUserCell) {
                         SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
-                        if (arrayList.contains(selectorUserCell.getBoost())) {
+                        if (arrayList2.contains(selectorUserCell.getBoost())) {
                             int i3 = selectorUserCell.boost.cooldown_until_date;
                             SimpleTextView simpleTextView = selectorUserCell.subtitleTextView;
                             UserCell2.AnonymousClass1 anonymousClass1 = selectorUserCell.titleTextView;
@@ -619,9 +625,9 @@ public final class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListV
         gradientButtonWithCounterView.setShowZero(false);
         ArrayList arrayList = this.selectedBoosts;
         if (arrayList.size() > 1) {
-            gradientButtonWithCounterView.setText(LocaleController.getString(R.string.BoostingReassignBoosts), z, true);
+            gradientButtonWithCounterView.setText(LocaleController.getString(R.string.BoostingReassignBoosts), z);
         } else {
-            gradientButtonWithCounterView.setText(LocaleController.getString(R.string.BoostingReassignBoost), z, true);
+            gradientButtonWithCounterView.setText(LocaleController.getString(R.string.BoostingReassignBoost), z);
         }
         gradientButtonWithCounterView.setCount(arrayList.size(), z);
         gradientButtonWithCounterView.setEnabled(arrayList.size() > 0);

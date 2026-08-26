@@ -5,11 +5,9 @@ import android.graphics.Paint;
 import androidx.core.math.MathUtils;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
-import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.browser.Browser;
@@ -20,7 +18,6 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ReportBottomSheet;
-import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda5;
 
 public final class BotWebViewSheet$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
@@ -59,7 +56,7 @@ public final class BotWebViewSheet$$ExternalSyntheticLambda0 implements Runnable
                         tL_inputReplyToMonoForum.monoforum_peer_id = MessagesController.getInstance(botWebViewSheet.currentAccount).getInputPeer(botWebViewSheet.monoforumTopicId);
                         tL_messages_prolongWebView.flags |= 1;
                     }
-                    ConnectionsManager.getInstance(botWebViewSheet.currentAccount).sendRequest(tL_messages_prolongWebView, new BotWebViewSheet$$ExternalSyntheticLambda7(botWebViewSheet, 3));
+                    ConnectionsManager.getInstance(botWebViewSheet.currentAccount).sendRequest(tL_messages_prolongWebView, new BotWebViewSheet$$ExternalSyntheticLambda8(botWebViewSheet, 4));
                     break;
                 }
                 break;
@@ -94,7 +91,7 @@ public final class BotWebViewSheet$$ExternalSyntheticLambda0 implements Runnable
                     paint.setAlpha(64);
                 }
                 botWebViewSheet4.windowView.invalidate();
-                botWebViewSheet4.webViewContainer.invalidateViewPortHeight(false, false);
+                botWebViewSheet4.webViewContainer.invalidateViewPortHeight();
                 if (botWebViewSheet4.springAnimation != null) {
                     float f = (1.0f - (Math.min(anonymousClass1.getTopActionBarOffsetY(), anonymousClass1.getTranslationY() - anonymousClass1.getTopActionBarOffsetY()) / anonymousClass1.getTopActionBarOffsetY()) > 0.5f ? 1 : 0) * 100.0f;
                     SpringAnimation springAnimation = botWebViewSheet4.springAnimation;
@@ -112,36 +109,33 @@ public final class BotWebViewSheet$$ExternalSyntheticLambda0 implements Runnable
                 System.currentTimeMillis();
                 break;
             case 8:
-                invalidateViewPortHeight(true, false);
+                invalidateViewPortHeight(true);
                 break;
             case 9:
                 BotWebViewSheet botWebViewSheet5 = this.f$0;
                 Activity activity = botWebViewSheet5.parentActivity;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).presentFragment(ChatActivity.of(botWebViewSheet5.botId));
+                    ((LaunchActivity) activity).lambda$runLinkRequest$100(ChatActivity.of(botWebViewSheet5.botId));
                 }
                 botWebViewSheet5.dismiss$1(true);
                 break;
             case 10:
-                BotWebViewSheet.AnonymousClass2 anonymousClass2 = this.f$0.webViewContainer;
-                anonymousClass2.getClass();
-                anonymousClass2.lastClickMs = System.currentTimeMillis();
-                anonymousClass2.notifyEvent("settings_button_pressed", null);
+                onSettingsButtonPressed();
                 break;
             case 11:
                 BotWebViewSheet botWebViewSheet6 = this.f$0;
-                BotWebViewSheet.AnonymousClass2 anonymousClass3 = botWebViewSheet6.webViewContainer;
-                if (anonymousClass3.getWebView() != null) {
-                    anonymousClass3.getWebView().animate().cancel();
-                    anonymousClass3.getWebView().animate().alpha(0.0f).start();
+                BotWebViewSheet.AnonymousClass2 anonymousClass2 = botWebViewSheet6.webViewContainer;
+                if (anonymousClass2.getWebView() != null) {
+                    anonymousClass2.getWebView().animate().cancel();
+                    anonymousClass2.getWebView().animate().alpha(0.0f).start();
                 }
                 BotWebViewSheet.AnonymousClass7 anonymousClass7 = botWebViewSheet6.progressView;
                 anonymousClass7.setLoadProgress(0.0f);
                 anonymousClass7.setAlpha(1.0f);
                 anonymousClass7.setVisibility(0);
-                anonymousClass3.setBotUser(MessagesController.getInstance(botWebViewSheet6.currentAccount).getUser(Long.valueOf(botWebViewSheet6.botId)));
-                anonymousClass3.loadFlickerAndSettingsItem(botWebViewSheet6.currentAccount, botWebViewSheet6.botId);
-                NotificationCenter.getInstance(anonymousClass3.currentAccount).doOnIdle(new BotWebViewContainer$$ExternalSyntheticLambda5(anonymousClass3, 2));
+                anonymousClass2.setBotUser(MessagesController.getInstance(botWebViewSheet6.currentAccount).getUser(Long.valueOf(botWebViewSheet6.botId)));
+                anonymousClass2.loadFlickerAndSettingsItem(botWebViewSheet6.currentAccount, botWebViewSheet6.botId, null);
+                anonymousClass2.reload();
                 break;
             case 12:
                 BotWebViewSheet botWebViewSheet7 = this.f$0;
@@ -152,7 +146,7 @@ public final class BotWebViewSheet$$ExternalSyntheticLambda0 implements Runnable
                 break;
             case 14:
                 BotWebViewSheet botWebViewSheet8 = this.f$0;
-                ReportBottomSheet.open(botWebViewSheet8.currentAccount, botWebViewSheet8.getContext(), botWebViewSheet8.botId, false, false, new ArrayList(), new BulletinFactory(new Bulletin.BulletinWindow(botWebViewSheet8.getContext(), null).container, botWebViewSheet8.resourcesProvider), null, new byte[0], null, null);
+                ReportBottomSheet.openChat(botWebViewSheet8.currentAccount, botWebViewSheet8.getContext(), BulletinFactory.of(Bulletin.BulletinWindow.make(botWebViewSheet8.getContext()), botWebViewSheet8.resourcesProvider), botWebViewSheet8.botId);
                 break;
             case 15:
                 BotWebViewSheet botWebViewSheet9 = this.f$0;

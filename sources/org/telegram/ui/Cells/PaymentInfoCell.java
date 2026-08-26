@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.BlurSettingsBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 
@@ -54,7 +54,9 @@ public final class PaymentInfoCell extends FrameLayout {
         addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 10.0f : 123.0f, 33.0f, z2 ? 123.0f : 10.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.detailExTextView = textView3;
-        ArticleViewer.IBlock.CC.m(textView3, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), 14.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView3, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), 1, 14.0f, 1);
+        textView3.setMaxLines(1);
+        textView3.setSingleLine(true);
         textView3.setEllipsize(truncateAt);
         textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         boolean z3 = LocaleController.isRTL;

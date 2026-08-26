@@ -261,7 +261,7 @@ public final class ChartHorizontalLinesData {
         }
     }
 
-    public final void drawText(Canvas canvas, int i, int i2, float f, float f2, TextPaint textPaint) {
+    public final void drawText(Canvas canvas, float f, int i, int i2, float f2, TextPaint textPaint) {
         StaticLayout[] staticLayoutArr = this.layouts2;
         StaticLayout[] staticLayoutArr2 = this.layouts;
         StaticLayout staticLayout = (i == 0 ? staticLayoutArr2 : staticLayoutArr)[i2];

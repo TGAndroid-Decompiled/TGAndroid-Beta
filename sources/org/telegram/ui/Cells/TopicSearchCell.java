@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
@@ -27,7 +27,7 @@ public final class TopicSearchCell extends FrameLayout {
         this.backupImageView = backupImageView;
         TextView textView = new TextView(context);
         this.textView = textView;
-        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(16.0f, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 1, textView);
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 1, 16.0f);
         if (LocaleController.isRTL) {
             addView(backupImageView, LayoutHelper.createFrame(30, 30.0f, 21, 12.0f, 0.0f, 12.0f, 0.0f));
             addView(textView, LayoutHelper.createFrame(-1, -2.0f, 21, 12.0f, 0.0f, 56.0f, 0.0f));

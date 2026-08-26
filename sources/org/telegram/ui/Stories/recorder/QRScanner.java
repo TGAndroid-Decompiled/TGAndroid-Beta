@@ -21,7 +21,7 @@ public final class QRScanner {
     public Bitmap cacheBitmap;
     public StoryRecorder.AnonymousClass25 cameraView;
     public Detected lastDetected;
-    public final StoryRecorder$$ExternalSyntheticLambda19 listener;
+    public final StoryRecorder$$ExternalSyntheticLambda14 listener;
     public final AtomicReference detector = new AtomicReference();
     public final AtomicBoolean paused = new AtomicBoolean(false);
     public final QRScanner$$ExternalSyntheticLambda0 process = new QRScanner$$ExternalSyntheticLambda0(this, 0);
@@ -107,9 +107,9 @@ public final class QRScanner {
         }
     }
 
-    public QRScanner(Context context, StoryRecorder$$ExternalSyntheticLambda19 storyRecorder$$ExternalSyntheticLambda19) {
-        this.listener = storyRecorder$$ExternalSyntheticLambda19;
-        Utilities.globalQueue.postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(23, this, context));
+    public QRScanner(Context context, StoryRecorder$$ExternalSyntheticLambda14 storyRecorder$$ExternalSyntheticLambda14) {
+        this.listener = storyRecorder$$ExternalSyntheticLambda14;
+        Utilities.globalQueue.postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(26, this, context));
     }
 
     public final void setPaused(boolean z) {

@@ -1,10 +1,6 @@
 package org.telegram;
 
-import android.view.View;
 import androidx.palette.graphics.ColorCutQuantizer;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.GapWorker;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import j$.util.Objects;
 import java.util.Comparator;
@@ -64,47 +60,8 @@ public final class DispatchQueuePriority {
                 case 1:
                     return ((ColorCutQuantizer.Vbox) obj2).getVolume() - ((ColorCutQuantizer.Vbox) obj).getVolume();
                 case 2:
-                    DiffUtil.Snake snake = (DiffUtil.Snake) obj;
-                    DiffUtil.Snake snake2 = (DiffUtil.Snake) obj2;
-                    int i = snake.x - snake2.x;
-                    return i == 0 ? snake.y - snake2.y : i;
-                case 3:
-                    GapWorker.Task task = (GapWorker.Task) obj;
-                    GapWorker.Task task2 = (GapWorker.Task) obj2;
-                    RecyclerView recyclerView = task.view;
-                    if ((recyclerView == null) != (task2.view == null)) {
-                        if (recyclerView == null) {
-                            return 1;
-                        }
-                        return -1;
-                    }
-                    boolean z = task.immediate;
-                    if (z != task2.immediate) {
-                        if (z) {
-                            return -1;
-                        }
-                        return 1;
-                    }
-                    int i2 = task2.viewVelocity - task.viewVelocity;
-                    if (i2 != 0) {
-                        return i2;
-                    }
-                    int i3 = task.distanceToItem - task2.distanceToItem;
-                    if (i3 != 0) {
-                        return i3;
-                    }
-                    return 0;
-                case 4:
                     return ((ViewPager.ItemInfo) obj).position - ((ViewPager.ItemInfo) obj2).position;
-                case 5:
-                    ViewPager.LayoutParams layoutParams = (ViewPager.LayoutParams) ((View) obj).getLayoutParams();
-                    ViewPager.LayoutParams layoutParams2 = (ViewPager.LayoutParams) ((View) obj2).getLayoutParams();
-                    boolean z2 = layoutParams.isDecor;
-                    if (z2 != layoutParams2.isDecor) {
-                        return z2 ? 1 : -1;
-                    }
-                    return layoutParams.position - layoutParams2.position;
-                case 6:
+                case 3:
                     Map.Entry entry = (Map.Entry) obj;
                     Map.Entry entry2 = (Map.Entry) obj2;
                     Objects.requireNonNull(entry);

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
@@ -18,86 +19,115 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda9;
-import org.telegram.ui.Gifts.SendGiftSheet;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
 
-public final class OverlayActionBarLayoutDialog extends Dialog implements INavigationLayout.INavigationLayoutDelegate {
-    public final ActionBarLayout actionBarLayout;
-    public final FrameLayout frameLayout;
-    public final PasscodeView passcodeView;
+public class OverlayActionBarLayoutDialog extends Dialog implements INavigationLayout.INavigationLayoutDelegate {
+    private INavigationLayout actionBarLayout;
+    private FrameLayout frameLayout;
+    private PasscodeView passcodeView;
+    private Theme.ResourcesProvider resourcesProvider;
 
-    public OverlayActionBarLayoutDialog(Context context) {
+    public final class EmptyFragment extends BaseFragment {
+        private EmptyFragment() {
+            super(null);
+        }
+
+        @Override
+        public View createView(Context context) {
+            this.hasOwnBackground = true;
+            this.actionBar.setAddToContainer(false);
+            View view = new View(context);
+            view.setBackgroundColor(0);
+            return view;
+        }
+
+        @Override
+        public void onTransitionAnimationEnd(boolean z, boolean z2) {
+            if (z && z2) {
+                OverlayActionBarLayoutDialog.this.dismiss();
+            }
+        }
+    }
+
+    public OverlayActionBarLayoutDialog(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, R.style.TransparentDialog);
+        this.resourcesProvider = resourcesProvider;
         ActionBarLayout actionBarLayout = new ActionBarLayout(context, false);
         this.actionBarLayout = actionBarLayout;
         actionBarLayout.setFragmentStack(new ArrayList());
-        INavigationLayout.NavigationParams navigationParams = new INavigationLayout.NavigationParams(new SendGiftSheet.AnonymousClass8(this, 4));
+        INavigationLayout iNavigationLayout = this.actionBarLayout;
+        INavigationLayout.NavigationParams navigationParams = new INavigationLayout.NavigationParams(new EmptyFragment());
         navigationParams.noAnimation = true;
-        actionBarLayout.presentFragment(navigationParams);
-        actionBarLayout.setDelegate(this);
+        ((ActionBarLayout) iNavigationLayout).presentFragment(navigationParams);
+        ((ActionBarLayout) this.actionBarLayout).setDelegate(this);
         FrameLayout frameLayout = new FrameLayout(context);
         this.frameLayout = frameLayout;
         frameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
-        frameLayout.addView(actionBarLayout.getView(), new FrameLayout.LayoutParams(-1, -1, 17));
+        this.frameLayout.addView(((ActionBarLayout) this.actionBarLayout).getView(), new FrameLayout.LayoutParams(-1, -1, 17));
         if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
-            frameLayout.setBackgroundColor(-1728053248);
-            frameLayout.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 7));
-            actionBarLayout.setRemoveActionBarExtraHeight(true);
-            new PhotoViewer.AnonymousClass14(actionBarLayout.getView());
+            this.frameLayout.setBackgroundColor(-1728053248);
+            this.frameLayout.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 6));
+            ((ActionBarLayout) this.actionBarLayout).setRemoveActionBarExtraHeight(true);
+            VerticalPositionAutoAnimator.attach(((ActionBarLayout) this.actionBarLayout).getView());
         }
         PasscodeView passcodeView = new PasscodeView(context);
         this.passcodeView = passcodeView;
-        frameLayout.addView(passcodeView, LayoutHelper.createFrame(-1.0f, -1));
-        setContentView(frameLayout);
+        this.frameLayout.addView(passcodeView, LayoutHelper.createFrame(-1, -1.0f));
+        setContentView(this.frameLayout);
     }
 
-    public final void addFragment(BaseFragment baseFragment) {
-        ActionBarLayout actionBarLayout = this.actionBarLayout;
+    public void lambda$new$0(View view) {
+        onBackPressed();
+    }
+
+    public static WindowInsets lambda$onCreate$1(View view, WindowInsets windowInsets) {
+        view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
+        return windowInsets;
+    }
+
+    public void addFragment(BaseFragment baseFragment) {
+        INavigationLayout iNavigationLayout = this.actionBarLayout;
         boolean z = (!AndroidUtilities.isTablet() || AndroidUtilities.isInMultiwindow || AndroidUtilities.isSmallTablet()) ? false : true;
-        actionBarLayout.getClass();
+        iNavigationLayout.getClass();
         INavigationLayout.NavigationParams navigationParams = new INavigationLayout.NavigationParams(baseFragment);
         navigationParams.removeLast = z;
-        actionBarLayout.presentFragment(navigationParams);
+        ((ActionBarLayout) iNavigationLayout).presentFragment(navigationParams);
     }
 
     @Override
-    public final boolean needAddFragmentToStack(ActionBarLayout actionBarLayout, BaseFragment baseFragment) {
+    public boolean needAddFragmentToStack(BaseFragment baseFragment, INavigationLayout iNavigationLayout) {
         return true;
     }
 
     @Override
-    public final boolean needCloseLastFragment(ActionBarLayout actionBarLayout) {
-        if (actionBarLayout.getFragmentStack().size() <= 1) {
+    public boolean needCloseLastFragment(INavigationLayout iNavigationLayout) {
+        if (((ActionBarLayout) iNavigationLayout).getFragmentStack().size() <= 1) {
             dismiss();
         }
         return true;
     }
 
     @Override
-    public final boolean needPresentFragment(ActionBarLayout actionBarLayout, INavigationLayout.NavigationParams navigationParams) {
-        BaseFragment baseFragment = navigationParams.fragment;
+    public boolean needPresentFragment(BaseFragment baseFragment, boolean z, boolean z2, INavigationLayout iNavigationLayout) {
         return true;
     }
 
     @Override
-    public final void onBackPressed() {
+    public void onBackPressed() {
         if (this.passcodeView.getVisibility() == 0) {
             if (getOwnerActivity() != null) {
                 getOwnerActivity().finish();
             }
         } else {
-            ActionBarLayout actionBarLayout = this.actionBarLayout;
-            actionBarLayout.onBackPressed();
-            if (actionBarLayout.getFragmentStack().size() <= 1) {
+            ((ActionBarLayout) this.actionBarLayout).onBackPressed();
+            if (((ActionBarLayout) this.actionBarLayout).getFragmentStack().size() <= 1) {
                 dismiss();
             }
         }
     }
 
     @Override
-    public final void onCreate(Bundle bundle) {
+    public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         Window window = getWindow();
         int i = Build.VERSION.SDK_INT;
@@ -121,16 +151,15 @@ public final class OverlayActionBarLayoutDialog extends Dialog implements INavig
         if (i >= 23) {
             window.setStatusBarColor(0);
         }
-        FrameLayout frameLayout = this.frameLayout;
-        frameLayout.setSystemUiVisibility(1280);
-        frameLayout.setOnApplyWindowInsetsListener(new ArticleViewer$$ExternalSyntheticLambda9(2));
+        this.frameLayout.setSystemUiVisibility(1280);
+        this.frameLayout.setOnApplyWindowInsetsListener(new OverlayActionBarLayoutDialog$$ExternalSyntheticLambda1());
         if (i >= 26) {
             AndroidUtilities.setLightNavigationBar(this, ColorUtils.calculateLuminance(Theme.getColor(null, Theme.key_windowBackgroundWhite, true)) >= 0.9d);
         }
     }
 
     @Override
-    public final void onMeasureOverride(int[] iArr) {
+    public void onMeasureOverride(int[] iArr) {
         if (!AndroidUtilities.isTablet() || AndroidUtilities.isInMultiwindow || AndroidUtilities.isSmallTablet()) {
             return;
         }
@@ -139,39 +168,44 @@ public final class OverlayActionBarLayoutDialog extends Dialog implements INavig
     }
 
     @Override
-    public final boolean onPreIme() {
+    public boolean onPreIme() {
         return false;
     }
 
     @Override
-    public final void onRebuildAllFragments(ActionBarLayout actionBarLayout, boolean z) {
+    public void onRebuildAllFragments(INavigationLayout iNavigationLayout, boolean z) {
     }
 
     @Override
-    public final void onStart() {
+    public void onStart() {
         super.onStart();
         Context context = getContext();
         if ((context instanceof ContextWrapper) && !(context instanceof LaunchActivity)) {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).overlayPasscodeViews.add(this.passcodeView);
+            ((LaunchActivity) context).addOverlayPasscodeView(this.passcodeView);
         }
     }
 
     @Override
-    public final void onStop() {
+    public void onStop() {
         super.onStop();
         Context context = getContext();
         if ((context instanceof ContextWrapper) && !(context instanceof LaunchActivity)) {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).overlayPasscodeViews.remove(this.passcodeView);
+            ((LaunchActivity) context).removeOverlayPasscodeView(this.passcodeView);
         }
     }
 
     @Override
-    public final void onThemeProgress(float f) {
+    public void onThemeProgress(float f) {
+    }
+
+    @Override
+    public boolean needPresentFragment(INavigationLayout iNavigationLayout, INavigationLayout.NavigationParams navigationParams) {
+        return needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
     }
 }

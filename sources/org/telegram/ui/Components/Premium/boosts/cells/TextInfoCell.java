@@ -21,7 +21,7 @@ public final class TextInfoCell extends TextInfoPrivacyCell {
         int i2 = Theme.key_windowBackgroundGrayShadow;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider)), Theme.getThemedDrawable(context, i, Theme.getColor(i2, resourcesProvider)), 0, 0);
-        combinedDrawable.fullSize = true;
+        combinedDrawable.setFullsize(true);
         setBackground(combinedDrawable);
     }
 }

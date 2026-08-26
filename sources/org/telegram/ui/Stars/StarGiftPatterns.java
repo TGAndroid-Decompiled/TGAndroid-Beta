@@ -5,18 +5,16 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import androidx.core.app.NotificationCompatBuilder;
 import androidx.core.graphics.ColorUtils;
 import com.google.zxing.common.detector.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline0;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline0;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
+import org.telegram.ui.Components.BatchParticlesDrawHelper;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
 public abstract class StarGiftPatterns {
-    public static final NotificationCompatBuilder batchBuffer;
+    public static final BatchParticlesDrawHelper.BatchParticlesBuffer batchBuffer;
     public static final float[][] patternLocations;
 
     static {
@@ -26,7 +24,7 @@ public abstract class StarGiftPatterns {
         for (int i = 0; i < 4; i++) {
             sMax = (short) Math.max((int) sMax, fArr[i].length / 4);
         }
-        batchBuffer = new NotificationCompatBuilder(sMax);
+        batchBuffer = new BatchParticlesDrawHelper.BatchParticlesBuffer(sMax);
     }
 
     public static void drawPattern(Canvas canvas, int i, Drawable drawable, float f, float f2, float f3, float f4) {
@@ -58,39 +56,22 @@ public abstract class StarGiftPatterns {
     }
 
     public static void drawPatternBatch(Canvas canvas, int i, Paint paint, Bitmap bitmap, float f, float f2, float f3) {
-        NotificationCompatBuilder notificationCompatBuilder;
-        float[] fArr;
         if (f3 <= 0.0f) {
             return;
         }
-        float width = bitmap.getWidth();
-        float height = bitmap.getHeight();
+        BatchParticlesDrawHelper.BatchParticlesBuffer batchParticlesBuffer = batchBuffer;
+        batchParticlesBuffer.fillParticleTextureCords(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight());
         int i2 = 0;
-        int i3 = 0;
         while (true) {
-            notificationCompatBuilder = batchBuffer;
-            int i4 = notificationCompatBuilder.mGroupAlertBehavior;
-            fArr = (float[]) notificationCompatBuilder.mBuilder;
-            if (i3 >= i4) {
-                break;
-            }
-            NotificationCompatBuilder.bufferVertexSet(fArr, i3, 0.0f, 0.0f, width, height);
-            i3++;
-        }
-        while (true) {
-            float[] fArr2 = patternLocations[i];
-            int length = fArr2.length;
-            int[] iArr = (int[]) notificationCompatBuilder.mExtras;
-            float[] fArr3 = (float[]) notificationCompatBuilder.mContext;
-            if (i2 >= length) {
-                int length2 = fArr2.length / 4;
-                canvas.drawVertices(Canvas.VertexMode.TRIANGLES, length2 * 8, fArr3, 0, fArr, 0, iArr, 0, (short[]) notificationCompatBuilder.mBuilderCompat, 0, length2 * 6, paint);
+            float[] fArr = patternLocations[i];
+            if (i2 >= fArr.length) {
+                BatchParticlesDrawHelper.draw(canvas, batchParticlesBuffer, fArr.length / 4, paint);
                 return;
             }
-            float f4 = fArr2[i2];
-            float f5 = fArr2[i2 + 1];
-            float f6 = fArr2[i2 + 2];
-            float f7 = fArr2[i2 + 3];
+            float f4 = fArr[i2];
+            float f5 = fArr[i2 + 1];
+            float f6 = fArr[i2 + 2];
+            float f7 = fArr[i2 + 3];
             if (f >= f2 || i != 0) {
                 f5 = f4;
                 f4 = f5;
@@ -98,25 +79,20 @@ public abstract class StarGiftPatterns {
             float f8 = f5 * 1.0f;
             float f9 = f4 * 1.0f;
             float f10 = f6 * 1.0f;
-            int i5 = i2 / 4;
-            NotificationCompatBuilder.bufferVertexSet(fArr3, i5, AndroidUtilities.dp(f8) - (AndroidUtilities.dp(f10) / 2.0f), AndroidUtilities.dp(f9) - (AndroidUtilities.dp(f10) / 2.0f), (AndroidUtilities.dp(f10) / 2.0f) + AndroidUtilities.dp(f8), (AndroidUtilities.dp(f10) / 2.0f) + AndroidUtilities.dp(f9));
-            int alphaComponent = ColorUtils.setAlphaComponent(-1, (int) (255.0f * f3 * f7));
-            int i6 = i5 * 4;
-            iArr[i6] = alphaComponent;
-            iArr[i6 + 1] = alphaComponent;
-            iArr[i6 + 2] = alphaComponent;
-            iArr[i6 + 3] = alphaComponent;
+            int i3 = i2 / 4;
+            batchParticlesBuffer.setParticleVertexCords(i3, AndroidUtilities.dp(f8) - (AndroidUtilities.dp(f10) / 2.0f), AndroidUtilities.dp(f9) - (AndroidUtilities.dp(f10) / 2.0f), (AndroidUtilities.dp(f10) / 2.0f) + AndroidUtilities.dp(f8), (AndroidUtilities.dp(f10) / 2.0f) + AndroidUtilities.dp(f9));
+            batchParticlesBuffer.setParticleColor(i3, ColorUtils.setAlphaComponent(-1, (int) (255.0f * f3 * f7)));
             i2 += 4;
         }
     }
 
-    public static void drawProfileAnimatedPattern(Canvas canvas, AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable, int i, float f, float f2, RectF rectF, float f3) {
+    public static void drawProfileAnimatedPattern(Canvas canvas, Drawable drawable, int i, float f, float f2, RectF rectF, float f3) {
         float fClamp01;
         float f4 = f2;
-        int i2 = 0;
         if (f4 <= 0.0f) {
             return;
         }
+        int i2 = 0;
         float fClamp02 = Utilities.clamp01(((f4 >= 0.85f ? 1.0f : f4 / 0.85f) - 0.2f) / 0.8f);
         float f5 = rectF.left;
         float f6 = rectF.top;
@@ -126,13 +102,13 @@ public abstract class StarGiftPatterns {
         float f8 = (fHeight / 2.0f) + f6;
         float fDpf2 = AndroidUtilities.dpf2(96.0f);
         float fMin = Math.min(f5, (i - fDpf2) / 2.0f);
-        float fM = ChatActivity$$ExternalSyntheticOutline0.m(f, fDpf2, 2.0f, f6);
-        float fMax = Math.max(fWidth, fDpf2);
-        float fMax2 = Math.max(fHeight, fDpf2);
-        float f9 = fMax / 2.0f;
+        float fMax = Math.max(f6, (f - fDpf2) / 2.0f);
+        float fMax2 = Math.max(fWidth, fDpf2);
+        float fMax3 = Math.max(fHeight, fDpf2);
+        float f9 = fMax2 / 2.0f;
         float f10 = fMin + f9;
-        float f11 = fMax2 / 2.0f;
-        float f12 = fM + f11;
+        float f11 = fMax3 / 2.0f;
+        float f12 = fMax + f11;
         float fDpf3 = AndroidUtilities.dpf2(24.0f);
         float fDpf4 = AndroidUtilities.dpf2(16.0f);
         float fDpf5 = AndroidUtilities.dpf2(12.0f);
@@ -140,67 +116,71 @@ public abstract class StarGiftPatterns {
         float fDpf7 = AndroidUtilities.dpf2(4.0f);
         float f13 = fDpf3 * 2.0f;
         float f14 = f13 * 2.0f;
-        float f15 = 1.0f;
         float fCos = (f13 + f9) * ((float) Math.cos(Math.toRadians(120.0d)));
         float fCos2 = (fDpf4 + f11) * ((float) Math.cos(Math.toRadians(160.0d)));
-        float f16 = fM + fMax2;
-        float f17 = fMin - fDpf4;
-        float f18 = fMax2 / 4.0f;
-        float f19 = (f12 - f18) - fDpf6;
-        float f20 = fMin + fMax;
-        float f21 = f20 + fDpf4;
-        float f22 = f12 + f18 + fDpf6;
-        float f23 = fMin - f13;
-        float f24 = f20 + f13;
-        float f25 = f10 + fCos;
-        float f26 = (fM - f13) + fDpf5;
-        float f27 = f10 - fCos;
-        float f28 = (f16 + f13) - fDpf5;
-        float f29 = f23 - fDpf6;
-        float f30 = f12 + fCos2;
-        float f31 = f24 + fDpf6;
-        float f32 = f12 - fCos2;
-        float[] fArr = {f10, fM - fDpf3, 20.0f, f10, f16 + fDpf3, 20.0f, f17, f19, 23.0f, f21, f19, 18.0f, f17, f22, 24.0f, f21 - fDpf7, f22, 24.0f, f23, f12, 19.0f, f24, f12, 19.0f, f25, f26, 17.0f, f27, f26, 17.0f, f25, f28, 20.0f, f27, f28, 20.0f, f29, f30, 20.0f, f31, f30, 19.0f, f29, f32, 21.0f, f31, f32, 18.0f, fMin - f14, f12, 19.0f, f20 + f14, f12, 19.0f};
+        float f15 = fMax + fMax3;
+        float f16 = fMin - fDpf4;
+        float f17 = fMax3 / 4.0f;
+        float f18 = (f12 - f17) - fDpf6;
+        float f19 = fMin + fMax2;
+        float f20 = f19 + fDpf4;
+        float f21 = f12 + f17 + fDpf6;
+        float f22 = fMin - f13;
+        float f23 = f19 + f13;
+        float f24 = f10 + fCos;
+        float f25 = (fMax - f13) + fDpf5;
+        float f26 = f10 - fCos;
+        float f27 = (f15 + f13) - fDpf5;
+        float f28 = f22 - fDpf6;
+        float f29 = f12 + fCos2;
+        float f30 = f23 + fDpf6;
+        float f31 = f12 - fCos2;
+        float f32 = fMin - f14;
+        float f33 = f19 + f14;
+        float f34 = 1.0f;
+        float[] fArr = {f10, fMax - fDpf3, 20.0f, f10, f15 + fDpf3, 20.0f, f16, f18, 23.0f, f20, f18, 18.0f, f16, f21, 24.0f, f20 - fDpf7, f21, 24.0f, f22, f12, 19.0f, f23, f12, 19.0f, f24, f25, 17.0f, f26, f25, 17.0f, f24, f27, 20.0f, f26, f27, 20.0f, f28, f29, 20.0f, f30, f29, 19.0f, f28, f31, 21.0f, f30, f31, 18.0f, f32, f12, 19.0f, f33, f12, 19.0f};
         float[] fArr2 = {0.02f, 0.42f, 0.0f, 0.32f, 0.0f, 0.4f, 0.0f, 0.4f, 0.0f, 0.4f, 0.0f, 0.4f, 0.14f, 0.6f, 0.16f, 0.64f, 0.14f, 0.7f, 0.14f, 0.9f, 0.2f, 0.75f, 0.2f, 0.85f, 0.09f, 0.45f, 0.09f, 0.45f, 0.09f, 0.45f, 0.11f, 0.45f, 0.14f, 0.75f, 0.2f, 0.8f};
         int i3 = 0;
         for (int i4 = 54; i3 < i4; i4 = 54) {
             float fLerp = fArr[i3];
-            float f33 = fArr[i3 + 1];
+            float f35 = fArr[i3 + 1];
+            float f36 = fMax3;
             float fDpf8 = AndroidUtilities.dpf2(fArr[i3 + 2]) * 0.5f;
-            float f34 = fArr2[i2];
-            float f35 = f15 - fClamp02;
-            float fClamp03 = f35 < f34 ? 1.0f : f15 - Utilities.clamp01((f35 - f34) / (fArr2[i2 + 1] - f34));
-            float[] fArr3 = fArr;
+            float f37 = fArr2[i2];
+            float f38 = f34 - fClamp02;
+            float fClamp03 = f38 < f37 ? 1.0f : f34 - Utilities.clamp01((f38 - f37) / (fArr2[i2 + 1] - f37));
+            float f39 = f15;
             if (i3 == 18 || i3 == 19 || i3 == 6 || i3 == 7) {
                 fClamp03 = CubicBezierInterpolator.EASE_IN.getInterpolation(fClamp03);
             }
-            float[] fArr4 = fArr2;
-            float fM2 = BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, f4, AndroidUtilities.dp(12.0f), f33);
+            float[] fArr3 = fArr;
+            float fM = BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, f4, AndroidUtilities.dp(12.0f), f35);
             if (fClamp03 < 1.0f) {
                 fLerp = AndroidUtilities.lerp(f7, fLerp, CubicBezierInterpolator.EASE_IN.getInterpolation(fClamp03));
-                fM2 = AndroidUtilities.lerp(f8, fM2, fClamp03);
+                fM = AndroidUtilities.lerp(f8, fM, fClamp03);
                 fDpf8 = AndroidUtilities.lerp(AndroidUtilities.dpf2(8.0f), fDpf8, fClamp03);
             }
-            if (fM2 > AndroidUtilities.dp(8.0f) + f16) {
-                f15 = 1.0f;
-                fClamp01 = 1.0f - Utilities.clamp01((((fM2 - fM) - fMax2) - AndroidUtilities.dp(8.0f)) / AndroidUtilities.dp(56.0f));
+            if (fM > f39 + AndroidUtilities.dp(8.0f)) {
+                f34 = 1.0f;
+                fClamp01 = 1.0f - Utilities.clamp01((((fM - fMax) - f36) - AndroidUtilities.dp(8.0f)) / AndroidUtilities.dp(56.0f));
             } else {
-                f15 = 1.0f;
+                f34 = 1.0f;
                 fClamp01 = 1.0f;
             }
-            float fClamp04 = (f15 - Utilities.clamp01(MathUtils.distance(f10, f12, fLerp, fM2) / (fMax * 2.0f))) * f3 * 0.5f * fClamp01;
+            float fClamp04 = (f34 - Utilities.clamp01(MathUtils.distance(f10, f12, fLerp, fM) / (fMax2 * 2.0f))) * f3 * 0.5f * fClamp01;
             if (fClamp03 < 1.0f) {
                 fClamp04 = AndroidUtilities.lerp(0.0f, fClamp04, fClamp03);
             }
-            swapAnimatedEmojiDrawable.setBounds((int) (fLerp - fDpf8), (int) (fM2 - fDpf8), (int) (fLerp + fDpf8), (int) (fM2 + fDpf8));
-            swapAnimatedEmojiDrawable.alpha = (int) (fClamp04 * 255.0f);
-            swapAnimatedEmojiDrawable.draw(canvas);
+            drawable.setBounds((int) (fLerp - fDpf8), (int) (fM - fDpf8), (int) (fLerp + fDpf8), (int) (fM + fDpf8));
+            drawable.setAlpha((int) (fClamp04 * 255.0f));
+            drawable.draw(canvas);
             i3 += 3;
             i2 += 2;
-            fMax2 = fMax2;
+            fMax3 = f36;
+            f15 = f39;
             f4 = f2;
             fArr = fArr3;
-            fArr2 = fArr4;
+            fArr2 = fArr2;
         }
     }
 }

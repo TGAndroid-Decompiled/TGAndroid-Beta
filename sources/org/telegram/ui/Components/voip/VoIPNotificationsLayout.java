@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -21,9 +20,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.StaticLayoutEx;
-import org.telegram.ui.VoIPFragment;
 
 public final class VoIPNotificationsLayout extends LinearLayout {
     public final VoIPBackgroundProvider backgroundProvider;
@@ -80,18 +79,18 @@ public final class VoIPNotificationsLayout extends LinearLayout {
             }
             darkPaint.setAlpha(alpha);
             if (voIPBackgroundProvider.isReveal) {
-                int alpha2 = ((Paint) voIPBackgroundProvider.revealDarkShaderTools.app).getAlpha();
-                ((Paint) voIPBackgroundProvider.revealDarkShaderTools.app).setAlpha(255);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), (Paint) voIPBackgroundProvider.revealDarkShaderTools.app);
-                ((Paint) voIPBackgroundProvider.revealDarkShaderTools.app).setAlpha(alpha2);
+                int alpha2 = voIPBackgroundProvider.revealDarkShaderTools.paint.getAlpha();
+                voIPBackgroundProvider.revealDarkShaderTools.paint.setAlpha(255);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), voIPBackgroundProvider.revealDarkShaderTools.paint);
+                voIPBackgroundProvider.revealDarkShaderTools.paint.setAlpha(alpha2);
             }
             canvas.restore();
             super.dispatchDraw(canvas);
         }
     }
 
-    public VoIPNotificationsLayout(Activity activity, VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(activity);
+    public VoIPNotificationsLayout(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(context);
         this.viewsByTag = new HashMap();
         this.viewToAdd = new ArrayList();
         this.viewToRemove = new ArrayList();
@@ -101,7 +100,7 @@ public final class VoIPNotificationsLayout extends LinearLayout {
         this.backgroundProvider = voIPBackgroundProvider;
         TransitionSet transitionSet = new TransitionSet();
         this.transitionSet = transitionSet;
-        transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(200L)).addTransition(new VoIPFragment.AnonymousClass23(5).setDuration(200L));
+        transitionSet.addTransition(new Fade(2).setDuration(150L)).addTransition(new ChangeBounds().setDuration(200L)).addTransition(new ActionBarMenuItem.AnonymousClass4(2).setDuration(200L));
         transitionSet.setOrdering(0);
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
     }
@@ -115,7 +114,7 @@ public final class VoIPNotificationsLayout extends LinearLayout {
         notificationView.tag = str2;
         int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
         TextView textView = notificationView.textView;
-        StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(str, textView.getPaint(), iDp, Layout.Alignment.ALIGN_NORMAL, 0.0f, false, TextUtils.TruncateAt.END, iDp, 10, true);
+        StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(str, textView.getPaint(), iDp, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, iDp, 10);
         if (staticLayoutCreateStaticLayout != null) {
             iDp = 0;
             for (int i2 = 0; i2 < staticLayoutCreateStaticLayout.getLineCount(); i2++) {
@@ -136,7 +135,7 @@ public final class VoIPNotificationsLayout extends LinearLayout {
 
     public int getChildsHight() {
         int childCount = getChildCount();
-        return RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(childCount, 32.0f, childCount > 0 ? AndroidUtilities.dp(16.0f) : 0);
+        return RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(32.0f, childCount, childCount > 0 ? AndroidUtilities.dp(16.0f) : 0);
     }
 
     public final void removeNotification(String str) {

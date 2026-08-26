@@ -9,10 +9,12 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SlideChooseView;
 
 public final class SliderCell extends FrameLayout {
+    public final Theme.ResourcesProvider resourcesProvider;
     public final SlideChooseView slideChooseView;
 
     public SliderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         View view = new View(context);
         addView(view, LayoutHelper.createLinear(-1, -1));
         view.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));

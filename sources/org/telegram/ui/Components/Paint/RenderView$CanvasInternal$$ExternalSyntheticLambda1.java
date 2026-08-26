@@ -1,7 +1,7 @@
 package org.telegram.ui.Components.Paint;
 
 import android.os.Looper;
-import org.telegram.ui.BubbleActivity;
+import androidx.lifecycle.LiveData;
 
 public final class RenderView$CanvasInternal$$ExternalSyntheticLambda1 implements Runnable {
     public final int $r8$classId;
@@ -22,7 +22,7 @@ public final class RenderView$CanvasInternal$$ExternalSyntheticLambda1 implement
                     canvasInternal.cancelRunnable(renderView$CanvasInternal$$ExternalSyntheticLambda1);
                     canvasInternal.scheduledRunnable = null;
                 }
-                BubbleActivity.AnonymousClass1 anonymousClass1 = canvasInternal.drawRunnable;
+                LiveData.AnonymousClass1 anonymousClass1 = canvasInternal.drawRunnable;
                 canvasInternal.cancelRunnable(anonymousClass1);
                 canvasInternal.postRunnable(anonymousClass1);
                 break;

@@ -1,8 +1,9 @@
 package org.telegram.ui.Stars;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.text.TextUtils;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -20,9 +21,8 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChannelMonetizationLayout;
-import org.telegram.ui.ChatEditActivity$$ExternalSyntheticLambda52;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda3;
-import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda0;
+import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda4;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 
 public final class BotStarsController {
     public static volatile BotStarsController[] Instance = new BotStarsController[4];
@@ -81,12 +81,12 @@ public final class BotStarsController {
             getconnectedstarrefbots.limit = 20;
             ArrayList arrayList = this.bots;
             if (!arrayList.isEmpty()) {
-                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList);
+                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) Fragment$$ExternalSyntheticOutline0.m(1, arrayList);
                 getconnectedstarrefbots.flags |= 4;
                 getconnectedstarrefbots.offset_date = connectedbotstarref.date;
                 getconnectedstarrefbots.offset_link = connectedbotstarref.url;
             }
-            this.reqId = ConnectionsManager.getInstance(i).sendRequest(getconnectedstarrefbots, new LinkManager$$ExternalSyntheticLambda3(this, 24));
+            this.reqId = ConnectionsManager.getInstance(i).sendRequest(getconnectedstarrefbots, new RichMediaUploader$$ExternalSyntheticLambda0(this, 16));
         }
     }
 
@@ -137,7 +137,7 @@ public final class BotStarsController {
             } else {
                 getsuggestedstarrefbots.offset = this.lastOffset;
             }
-            ConnectionsManager.getInstance(i).sendRequest(getsuggestedstarrefbots, new LinkManager$$ExternalSyntheticLambda3(this, 25));
+            ConnectionsManager.getInstance(i).sendRequest(getsuggestedstarrefbots, new RichMediaUploader$$ExternalSyntheticLambda0(this, 17));
         }
     }
 
@@ -243,9 +243,14 @@ public final class BotStarsController {
         int i2 = this.currentAccount;
         getconnectedstarrefbot.peer = MessagesController.getInstance(i2).getInputPeer(j);
         getconnectedstarrefbot.bot = MessagesController.getInstance(i2).getInputUser(j2);
-        int iSendRequest = ConnectionsManager.getInstance(i2).sendRequest(getconnectedstarrefbot, new StarGiftSheet$$ExternalSyntheticLambda162(this, alertDialog, j2, callback, 7));
+        final int iSendRequest = ConnectionsManager.getInstance(i2).sendRequest(getconnectedstarrefbot, new StarGiftSheet$$ExternalSyntheticLambda150(this, alertDialog, j2, callback, 5));
         alertDialog.canCacnel = true;
-        alertDialog.setOnCancelListener(new ChatEditActivity$$ExternalSyntheticLambda52(this, iSendRequest, 8));
+        alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public final void onCancel(DialogInterface dialogInterface) {
+                ConnectionsManager.getInstance(this.f$0.currentAccount).cancelRequest(iSendRequest, true);
+            }
+        });
         AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
         AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
         AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 200L);
@@ -326,7 +331,7 @@ public final class BotStarsController {
             return;
         }
         this.loadingAdminedBots = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_bots.getAdminedBots(), new BotStarsController$$ExternalSyntheticLambda2(this, 1));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_bots.getAdminedBots(), new BotStarsController$$ExternalSyntheticLambda1(this, 1));
     }
 
     public final void loadAdminedChannels() {
@@ -334,7 +339,7 @@ public final class BotStarsController {
             return;
         }
         this.loadingAdminedChannels = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new BotStarsController$$ExternalSyntheticLambda2(this, 0));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new BotStarsController$$ExternalSyntheticLambda1(this, 0));
     }
 
     public final void loadTransactions(int i, long j) {
@@ -354,7 +359,7 @@ public final class BotStarsController {
         if (str == null) {
             tL_payments_getStarsTransactions.offset = "";
         }
-        ConnectionsManager.getInstance(i2).sendRequest(tL_payments_getStarsTransactions, new MessageSeenView$$ExternalSyntheticLambda0(this, transactionsState, i, j, 5));
+        ConnectionsManager.getInstance(i2).sendRequest(tL_payments_getStarsTransactions, new MessageSeenView$$ExternalSyntheticLambda4(this, transactionsState, i, j, 4));
     }
 
     public final void onUpdate(TL_update.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {

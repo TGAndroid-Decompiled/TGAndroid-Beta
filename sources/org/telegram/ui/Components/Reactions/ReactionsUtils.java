@@ -14,17 +14,18 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda141;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda131;
 
 public abstract class ReactionsUtils {
     public static void addReactionToEditText(TLRPC.TL_availableReaction tL_availableReaction, LinkedHashMap linkedHashMap, ArrayList arrayList, SpannableStringBuilder spannableStringBuilder, ChatCustomReactionsEditActivity.AnonymousClass5 anonymousClass5, Paint.FontMetricsInt fontMetricsInt) {
         TLRPC.Document document = tL_availableReaction.activate_animation;
         long j = document.id;
-        AnimatedEmojiSpan animatedEmojiSpanCreateAnimatedEmojiSpan = createAnimatedEmojiSpan(document, Long.valueOf(j), fontMetricsInt);
-        linkedHashMap.put(Long.valueOf(j), animatedEmojiSpanCreateAnimatedEmojiSpan);
+        AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(document, 1.0f, fontMetricsInt);
+        animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
+        linkedHashMap.put(Long.valueOf(j), animatedEmojiSpan);
         arrayList.add(Long.valueOf(j));
         SpannableString spannableString = new SpannableString(tL_availableReaction.reaction);
-        spannableString.setSpan(animatedEmojiSpanCreateAnimatedEmojiSpan, 0, spannableString.length(), 33);
+        spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
         spannableStringBuilder.append((CharSequence) spannableString);
         if (anonymousClass5 != null) {
             anonymousClass5.setMultiSelected(Long.valueOf(j), false);
@@ -73,31 +74,16 @@ public abstract class ReactionsUtils {
         return j != 0 && ((TLRPC.TL_reactionCustomEmoji) reaction).document_id == j;
     }
 
-    public static AnimatedEmojiSpan createAnimatedEmojiSpan(TLRPC.Document document, Long l, Paint.FontMetricsInt fontMetricsInt) {
-        AnimatedEmojiSpan animatedEmojiSpan;
-        if (document != null) {
-            animatedEmojiSpan = new AnimatedEmojiSpan(document.id, 1.0f, fontMetricsInt);
-            animatedEmojiSpan.document = document;
-        } else {
-            animatedEmojiSpan = new AnimatedEmojiSpan(l.longValue(), 1.0f, fontMetricsInt);
-        }
-        animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
-        return animatedEmojiSpan;
-    }
-
     public static void showLimitReachedDialogForReactions(long j, int i, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null || tL_premium_boostsStatus == null) {
             return;
         }
-        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(21, UserConfig.selectedAccount, lastFragment.getContext(), lastFragment, lastFragment.getResourceProvider());
-        limitReachedBottomSheet.requiredLvl = i;
-        limitReachedBottomSheet.boostsStatus = tL_premium_boostsStatus;
-        limitReachedBottomSheet.isCurrentChat = true;
-        limitReachedBottomSheet.updateRows$7();
-        limitReachedBottomSheet.dialogId = j;
-        limitReachedBottomSheet.updateRows$7();
-        limitReachedBottomSheet.statisticClickRunnable = new StarGiftSheet$$ExternalSyntheticLambda141(lastFragment, j);
+        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(21, lastFragment, lastFragment.getContext(), UserConfig.selectedAccount, lastFragment.getResourceProvider());
+        limitReachedBottomSheet.setRequiredLvl(i);
+        limitReachedBottomSheet.setBoostsStats(tL_premium_boostsStatus, true);
+        limitReachedBottomSheet.setDialogId(j);
+        limitReachedBottomSheet.showStatisticButtonInLink(new StarGiftSheet$$ExternalSyntheticLambda131(lastFragment, j));
         limitReachedBottomSheet.show();
     }
 

@@ -29,7 +29,7 @@ public final class Theme$$ExternalSyntheticLambda4 implements Runnable {
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                AndroidUtilities.runOnUIThread(new Theme$$ExternalSyntheticLambda8(Theme.loadWallpaperInternal((Theme.OverrideWallpaperInfo) this.f$0, (File) this.f$1, this.f$2, this.f$3, (TLRPC.Document) this.f$4, this.f$5), 16));
+                AndroidUtilities.runOnUIThread(new Theme$$ExternalSyntheticLambda8(Theme.loadWallpaperInternal((Theme.OverrideWallpaperInfo) this.f$0, (File) this.f$1, this.f$2, this.f$3, (TLRPC.Document) this.f$4, this.f$5), 17));
                 break;
             case 1:
                 ((MediaDataController) this.f$0).lambda$processLoadedDiceStickers$89(this.f$3, (TLRPC.TL_messages_stickerSet) this.f$1, this.f$2, (String) this.f$4, this.f$5);

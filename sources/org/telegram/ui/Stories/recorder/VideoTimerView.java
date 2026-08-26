@@ -2,11 +2,9 @@ package org.telegram.ui.Stories.recorder;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
@@ -32,26 +30,21 @@ public final class VideoTimerView extends View implements FlashViews.Invertable 
         this.recordingT = new AnimatedFloat(this, 0L, 250L, cubicBezierInterpolator);
         paint2.setColor(-907224);
         paint.setColor(1056964608);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
         this.textDrawable = animatedTextDrawable;
-        animatedTextDrawable.moveAmplitude = 0.3f;
-        animatedTextDrawable.animateDuration = 250L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(13.0f));
-        TextPaint textPaint = animatedTextDrawable.textPaint;
-        textPaint.setColor(-1);
-        animatedTextDrawable.alpha = Color.alpha(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable.setTextColor(-1);
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setCallback(this);
-        animatedTextDrawable.gravity = 1;
+        animatedTextDrawable.setGravity(1);
         setDuration(0L, false);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float f = this.recordingT.set(this.recording ? 1.0f : 0.0f, false);
+        float f = this.recordingT.set(this.recording ? 1.0f : 0.0f);
         float fDp = AndroidUtilities.dp(12.66f) * f;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
         float currentWidth = animatedTextDrawable.getCurrentWidth() + fDp;
@@ -87,16 +80,13 @@ public final class VideoTimerView extends View implements FlashViews.Invertable 
             sb.append('0');
         }
         sb.append(j2);
-        this.textDrawable.setText(sb, z, true);
+        this.textDrawable.setText(sb, z);
     }
 
     @Override
     public void setInvert(float f) {
         this.backgroundPaint.setColor(ColorUtils.blendARGB(f, 1056964608, 268435456));
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-        int iBlendARGB = ColorUtils.blendARGB(f, -1, -16777216);
-        animatedTextDrawable.textPaint.setColor(iBlendARGB);
-        animatedTextDrawable.alpha = Color.alpha(iBlendARGB);
+        this.textDrawable.setTextColor(ColorUtils.blendARGB(f, -1, -16777216));
     }
 
     public final void setRecording(boolean z, boolean z2) {

@@ -11,19 +11,19 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 
-public final class MuteDrawable extends Drawable {
-    public final AnimatedFloat animatedMuted;
-    public final Drawable baseDrawable;
-    public final Paint clipPaint;
-    public boolean muted;
-    public final Paint strokePaint;
+public class MuteDrawable extends Drawable {
+    private final AnimatedFloat animatedMuted;
+    private Drawable baseDrawable;
+    private final Paint clipPaint;
+    private boolean muted;
+    private final Paint strokePaint;
 
     public MuteDrawable(Context context) {
         Paint paint = new Paint(1);
         this.strokePaint = paint;
         Paint paint2 = new Paint(1);
         this.clipPaint = paint2;
-        this.animatedMuted = new AnimatedFloat(new HintView$1$$ExternalSyntheticLambda0(this, 24), 200L, CubicBezierInterpolator.EASE_OUT, 0);
+        this.animatedMuted = new AnimatedFloat(new GroupCallPip$$ExternalSyntheticLambda2(this, 23), 0L, 200L, CubicBezierInterpolator.EASE_OUT);
         this.baseDrawable = context.getResources().getDrawable(R.drawable.filled_sound_on).mutate();
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
@@ -42,12 +42,11 @@ public final class MuteDrawable extends Drawable {
     }
 
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         Rect bounds = getBounds();
         canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-        Drawable drawable = this.baseDrawable;
-        drawable.setBounds(bounds);
-        drawable.draw(canvas);
+        this.baseDrawable.setBounds(bounds);
+        this.baseDrawable.draw(canvas);
         float f = this.animatedMuted.set(this.muted);
         if (f > 0.0f) {
             float fDpf2 = AndroidUtilities.dpf2(0.783f);
@@ -67,34 +66,41 @@ public final class MuteDrawable extends Drawable {
             float f4 = fCenterY;
             float f5 = fDp;
             canvas.drawLine(f3, f4, f5, f2, this.clipPaint);
-            Paint paint = this.strokePaint;
-            paint.setAlpha((int) (Math.min(1.0f, f * 10.0f) * 255.0f));
-            canvas.drawLine(f3, f4, f5, f2, paint);
+            this.strokePaint.setAlpha((int) (Math.min(1.0f, f * 10.0f) * 255.0f));
+            canvas.drawLine(f3, f4, f5, f2, this.strokePaint);
         }
         canvas.restore();
     }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
         this.baseDrawable.setAlpha(i);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public void setMuted(boolean z, boolean z2) {
+        this.muted = z;
+        if (!z2) {
+            this.animatedMuted.set(z, true);
+        }
+        invalidateSelf();
     }
 }

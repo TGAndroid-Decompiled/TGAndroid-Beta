@@ -2,47 +2,57 @@ package org.telegram.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.TelegramMediaSession$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.VideoEditTextureView$$ExternalSyntheticLambda1;
+import org.telegram.ui.ActionBar.INavigationLayout;
 
 public class ContactsWidgetConfigActivity extends ExternalActionActivity {
-    public int creatingAppWidgetId = 0;
+    private int creatingAppWidgetId = 0;
+
+    public void lambda$handleIntent$0(ArrayList arrayList) {
+        Intent intent = new Intent();
+        intent.putExtra("appWidgetId", this.creatingAppWidgetId);
+        setResult(-1, intent);
+        finish();
+    }
 
     @Override
-    public final void handleIntent$1(int i, Intent intent, boolean z, boolean z2, boolean z3, int i2) {
-        if (checkPasscode(i, intent, z, z2, z3, i2)) {
-            Bundle extras = intent.getExtras();
-            if (extras != null) {
-                this.creatingAppWidgetId = extras.getInt("appWidgetId", 0);
-            }
-            if (this.creatingAppWidgetId == 0) {
-                finish();
-                return;
-            }
-            TelegramMediaSession$$ExternalSyntheticOutline0.m(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            EditWidgetActivity editWidgetActivity = new EditWidgetActivity(1, this.creatingAppWidgetId);
-            editWidgetActivity.delegate = new VideoEditTextureView$$ExternalSyntheticLambda1(this, 10);
-            if (AndroidUtilities.isTablet()) {
-                if (this.layersActionBarLayout.getFragmentStack().isEmpty()) {
-                    ActionBarLayout actionBarLayout = this.layersActionBarLayout;
-                    actionBarLayout.getClass();
-                    actionBarLayout.addFragmentToStack(-1, editWidgetActivity);
-                }
-            } else if (this.actionBarLayout.getFragmentStack().isEmpty()) {
-                ActionBarLayout actionBarLayout2 = this.actionBarLayout;
-                actionBarLayout2.getClass();
-                actionBarLayout2.addFragmentToStack(-1, editWidgetActivity);
-            }
-            if (!AndroidUtilities.isTablet()) {
-                this.backgroundTablet.setVisibility(8);
-            }
-            this.actionBarLayout.showLastFragment();
-            if (AndroidUtilities.isTablet()) {
-                this.layersActionBarLayout.showLastFragment();
-            }
-            intent.setAction(null);
+    public boolean handleIntent(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) {
+        if (!checkPasscode(intent, z, z2, z3, i, i2)) {
+            return false;
         }
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            this.creatingAppWidgetId = extras.getInt("appWidgetId", 0);
+        }
+        if (this.creatingAppWidgetId == 0) {
+            finish();
+            return true;
+        }
+        TelegramMediaSession$$ExternalSyntheticOutline0.m("onlySelect", "dialogsType", 10, true).putBoolean("allowSwitchAccount", true);
+        EditWidgetActivity editWidgetActivity = new EditWidgetActivity(1, this.creatingAppWidgetId);
+        editWidgetActivity.setDelegate(new BoostsActivity$$ExternalSyntheticLambda4(this, 14));
+        if (AndroidUtilities.isTablet()) {
+            if (((ActionBarLayout) this.layersActionBarLayout).getFragmentStack().isEmpty()) {
+                INavigationLayout iNavigationLayout = this.layersActionBarLayout;
+                iNavigationLayout.getClass();
+                ((ActionBarLayout) iNavigationLayout).addFragmentToStack(-1, editWidgetActivity);
+            }
+        } else if (((ActionBarLayout) this.actionBarLayout).getFragmentStack().isEmpty()) {
+            INavigationLayout iNavigationLayout2 = this.actionBarLayout;
+            iNavigationLayout2.getClass();
+            ((ActionBarLayout) iNavigationLayout2).addFragmentToStack(-1, editWidgetActivity);
+        }
+        if (!AndroidUtilities.isTablet()) {
+            this.backgroundTablet.setVisibility(8);
+        }
+        ((ActionBarLayout) this.actionBarLayout).showLastFragment();
+        if (AndroidUtilities.isTablet()) {
+            ((ActionBarLayout) this.layersActionBarLayout).showLastFragment();
+        }
+        intent.setAction(null);
+        return true;
     }
 }

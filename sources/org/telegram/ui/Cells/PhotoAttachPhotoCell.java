@@ -25,8 +25,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import com.google.android.gms.internal.mlkit_vision_common.zzkm;
-import com.google.android.gms.internal.mlkit_vision_common.zzlf;
+import com.google.android.gms.internal.mlkit_vision_common.zzko;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -37,15 +36,13 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ArticleViewer$10$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.ColorPicker$$ExternalSyntheticLambda6;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda21;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
@@ -141,9 +138,6 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
             @Override
             public final boolean drawChild(Canvas canvas, View view, long j) {
                 MediaController.PhotoEntry photoEntry;
-                float measuredWidth;
-                float measuredHeight;
-                int i;
                 PhotoAttachPhotoCell photoAttachPhotoCell = PhotoAttachPhotoCell.this;
                 if (photoAttachPhotoCell.spoilerEffect2 == null || view != photoAttachPhotoCell.imageView) {
                     return super.drawChild(canvas, view, j);
@@ -153,44 +147,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
                     photoAttachPhotoCell.spoilerEffect2.draw(canvas, photoAttachPhotoCell.container, photoAttachPhotoCell.imageView.getMeasuredWidth(), photoAttachPhotoCell.imageView.getMeasuredHeight(), 1.0f, false);
                     MediaController.PhotoEntry photoEntry2 = photoAttachPhotoCell.photoEntry;
                     if (photoEntry2 != null && photoEntry2.starsAmount > 0) {
-                        AnonymousClass2 anonymousClass2 = photoAttachPhotoCell.imageView;
-                        if (anonymousClass2.blurText != null) {
-                            Path path = anonymousClass2.blurTextClipPath;
-                            if (path == null) {
-                                anonymousClass2.blurTextClipPath = new Path();
-                            } else {
-                                path.rewind();
-                            }
-                            int i2 = anonymousClass2.width;
-                            if (i2 == -1 || (i = anonymousClass2.height) == -1) {
-                                measuredWidth = anonymousClass2.getMeasuredWidth();
-                                measuredHeight = anonymousClass2.getMeasuredHeight();
-                            } else {
-                                measuredWidth = i2;
-                                measuredHeight = i;
-                            }
-                            float fDp = anonymousClass2.blurText.width + AndroidUtilities.dp(18.0f);
-                            float fDp2 = AndroidUtilities.dp(28.0f);
-                            float f = (measuredWidth - fDp) / 2.0f;
-                            float f2 = measuredHeight / 2.0f;
-                            RectF rectF = AndroidUtilities.rectTmp;
-                            float f3 = fDp2 / 2.0f;
-                            rectF.set(f, f2 - f3, fDp + f, f2 + f3);
-                            anonymousClass2.blurTextClipPath.addRoundRect(rectF, f3, f3, Path.Direction.CW);
-                            canvas.save();
-                            canvas.clipPath(anonymousClass2.blurTextClipPath);
-                            ImageReceiver imageReceiver = anonymousClass2.blurImageReceiver;
-                            if (imageReceiver != null && anonymousClass2.blurAllowed) {
-                                imageReceiver.setColorFilter(anonymousClass2.blurTextBgColorFilter);
-                                float alpha = anonymousClass2.blurImageReceiver.getAlpha();
-                                anonymousClass2.blurImageReceiver.setAlpha(1.0f);
-                                anonymousClass2.blurImageReceiver.draw(canvas);
-                                anonymousClass2.blurImageReceiver.setAlpha(alpha);
-                                anonymousClass2.blurImageReceiver.setColorFilter(null);
-                            }
-                            anonymousClass2.blurText.draw(AndroidUtilities.dp(9.0f) + f, f2, 1.0f, -1, canvas);
-                            canvas.restore();
-                        }
+                        photoAttachPhotoCell.imageView.drawBlurredText(canvas, 1.0f);
                     }
                     photoAttachPhotoCell.getClass();
                 }
@@ -198,8 +155,8 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
             }
         };
         this.container = r5;
-        addView((View) r5, LayoutHelper.createFrame(80.0f, 80));
-        ?? r7 = new BackupImageView(context) {
+        addView((View) r5, LayoutHelper.createFrame(80, 80.0f));
+        ?? r6 = new BackupImageView(context) {
             public final Paint crossfadePaint = new Paint(1);
             public long lastUpdate;
             public Drawable livePhotoIcon;
@@ -212,7 +169,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
                 Drawable drawable;
                 MediaController.PhotoEntry photoEntry2;
                 AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
-                ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.imageReceiver : this.imageReceiver;
+                ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : this.imageReceiver;
                 if (imageReceiver == null) {
                     return;
                 }
@@ -266,7 +223,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
                 }
                 if (photoAttachPhotoCell.allowLivePhotos) {
                     ParentFastScrollDelegate parentFastScrollDelegate = photoAttachPhotoCell.fastScrollDelegate;
-                    if ((parentFastScrollDelegate == null || !((ChatAttachAlertPhotoLayout.PhotoAttachAdapter) ((ColorPicker$$ExternalSyntheticLambda6) parentFastScrollDelegate).f$0).isInFastScroll) && (photoEntry = photoAttachPhotoCell.photoEntry) != null && photoEntry.isLivePhoto()) {
+                    if ((parentFastScrollDelegate == null || !((EmojiView$$ExternalSyntheticLambda21) parentFastScrollDelegate).isInFastScroll()) && (photoEntry = photoAttachPhotoCell.photoEntry) != null && photoEntry.isLivePhoto()) {
                         if (photoAttachPhotoCell.photoEntry.isUnalivePhoto()) {
                             if (this.livePhotoIconOff == null) {
                                 this.livePhotoIconOff = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();
@@ -292,9 +249,9 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
                 photoAttachPhotoCell.updateSpoilers2(photoEntry != null && photoEntry.hasSpoiler);
             }
         };
-        this.imageView = r7;
-        r7.setBlurAllowed(true);
-        r5.addView(r7, LayoutHelper.createFrame(-1.0f, -1));
+        this.imageView = r6;
+        r6.setBlurAllowed(true);
+        r5.addView(r6, LayoutHelper.createFrame(-1, -1.0f));
         AnonymousClass3 anonymousClass3 = new AnonymousClass3(context, 0);
         this.videoInfoContainer = anonymousClass3;
         anonymousClass3.setWillNotDraw(false);
@@ -314,7 +271,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
         CheckBox2 checkBox2 = new CheckBox2(context, 24, resourcesProvider);
         this.checkBox = checkBox2;
         checkBox2.setDrawBackgroundAsArc(7);
-        checkBox2.checkBoxBase.setColor(Theme.key_chat_attachCheckBoxBackground, Theme.key_chat_attachPhotoBackground, Theme.key_chat_attachCheckBoxCheck);
+        checkBox2.setColor(Theme.key_chat_attachCheckBoxBackground, Theme.key_chat_attachPhotoBackground, Theme.key_chat_attachCheckBoxCheck);
         addView(checkBox2, LayoutHelper.createFrame(26, 26.0f, 51, 52.0f, 4.0f, 0.0f, 0.0f));
         checkBox2.setVisibility(0);
         setFocusable(true);
@@ -332,10 +289,10 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
             animatorSet.cancel();
             this.animator = null;
             CheckBox2 checkBox2 = this.checkBox;
-            float f = checkBox2.checkBoxBase.isChecked ? 0.787f : 1.0f;
+            float f = checkBox2.isChecked() ? 0.787f : 1.0f;
             AnonymousClass1 anonymousClass1 = this.container;
             anonymousClass1.setScaleX(f);
-            anonymousClass1.setScaleY(checkBox2.checkBoxBase.isChecked ? 0.787f : 1.0f);
+            anonymousClass1.setScaleY(checkBox2.isChecked() ? 0.787f : 1.0f);
         }
     }
 
@@ -361,10 +318,6 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
 
     public View getVideoInfoContainer() {
         return this.videoInfoContainer;
-    }
-
-    public final boolean isChecked() {
-        return this.checkBox.checkBoxBase.isChecked;
     }
 
     @Override
@@ -393,9 +346,9 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         MediaController.PhotoEntry photoEntry;
         MediaController.SearchImage searchImage;
-        boolean z = this.checkBox.checkBoxBase.isChecked;
+        boolean zIsChecked = this.checkBox.isChecked();
         AnonymousClass2 anonymousClass2 = this.imageView;
-        if (!z && getScaleX() == 1.0f && anonymousClass2.getImageReceiver().hasNotThumb() && anonymousClass2.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.photoEntry) == null || !PhotoViewer.isShowingImage(photoEntry.path)) && ((searchImage = this.searchEntry) == null || !PhotoViewer.isShowingImage(searchImage.getPathToAttach())))) {
+        if (!zIsChecked && getScaleX() == 1.0f && anonymousClass2.getImageReceiver().hasNotThumb() && anonymousClass2.getImageReceiver().getCurrentAlpha() == 1.0f && (((photoEntry = this.photoEntry) == null || !PhotoViewer.isShowingImage(photoEntry.path)) && ((searchImage = this.searchEntry) == null || !PhotoViewer.isShowingImage(searchImage.getPathToAttach())))) {
             return;
         }
         Paint paint = this.backgroundPaint;
@@ -415,7 +368,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
                 sb.append(LocaleController.getString(R.string.AttachPhoto));
             } else {
                 StringBuilder sb2 = new StringBuilder();
-                zzlf.m(R.string.AttachVideo, ", ", sb2);
+                zzko.m(R.string.AttachVideo, ", ", sb2);
                 sb2.append(LocaleController.formatDuration(this.photoEntry.duration));
                 sb.append(sb2.toString());
             }
@@ -427,7 +380,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
             sb.append(LocaleController.getInstance().getFormatterStats().format(this.photoEntry.dateTaken * 1000));
         }
         accessibilityNodeInfo.setText(sb);
-        if (this.checkBox.checkBoxBase.isChecked) {
+        if (this.checkBox.isChecked()) {
             accessibilityNodeInfo.setSelected(true);
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(R.id.acc_action_open_photo, LocaleController.getString(R.string.Open)));
@@ -436,7 +389,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
     @Override
     public final void onMeasure(int i, int i2) {
         if (this.itemSizeChanged) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), zzkm.m(2.0f, this.itemSize));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), ArticleViewer$10$$ExternalSyntheticOutline0.m(2.0f, this.itemSize, 1073741824));
             return;
         }
         if (this.isVertical) {
@@ -497,7 +450,8 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
 
     public final void setChecked(int i, boolean z, boolean z2) {
         boolean z3 = false;
-        this.checkBox.checkBoxBase.setChecked(i, z, z2);
+        CheckBox2 checkBox2 = this.checkBox;
+        checkBox2.setChecked(i, z, z2);
         if (this.itemSizeChanged) {
             AnimatorSet animatorSet = this.animator;
             if (animatorSet != null) {
@@ -510,7 +464,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
                 this.animator = animatorSet2;
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(anonymousClass1, (Property<AnonymousClass1, Float>) View.SCALE_X, z ? 0.787f : 1.0f), ObjectAnimator.ofFloat(anonymousClass1, (Property<AnonymousClass1, Float>) View.SCALE_Y, z ? 0.787f : 1.0f));
                 this.animator.setDuration(200L);
-                this.animator.addListener(new ChatActivity.AnonymousClass77(7, this, z));
+                this.animator.addListener(new ContextLinkCell.AnonymousClass3(this, z, 3));
                 this.animator.start();
             } else {
                 anonymousClass1.setScaleX(z ? 0.787f : 1.0f);
@@ -518,7 +472,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
             }
         }
         MediaController.PhotoEntry photoEntry = this.photoEntry;
-        if (photoEntry != null && photoEntry.isHighQuality() && isChecked()) {
+        if (photoEntry != null && photoEntry.isHighQuality() && checkBox2.isChecked()) {
             z3 = true;
         }
         setHighQuality(z3);
@@ -537,7 +491,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
     }
 
     public void setHighQuality(boolean z) {
-        boolean z2 = z && isChecked();
+        boolean z2 = z && this.checkBox.isChecked();
         if (this.highQuality != z2) {
             this.highQuality = z2;
             MediaController.PhotoEntry photoEntry = this.photoEntry;
@@ -547,7 +501,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
                 AnonymousClass3 anonymousClass3 = this.videoInfoContainer;
                 TextView textView = this.videoTextView;
                 if (z3 && !photoEntry.isLivePhoto()) {
-                    this.imageView.imageReceiver.setOrientation(0, true);
+                    setOrientation(0, true);
                     anonymousClass3.setVisibility(0);
                     imageView.setVisibility(0);
                     ((FrameLayout.LayoutParams) textView.getLayoutParams()).leftMargin = AndroidUtilities.dp(13.0f);
@@ -606,17 +560,18 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
         this.isLast = z3;
         this.allowLivePhotos = z4;
         boolean z6 = photoEntry.isVideo;
+        CheckBox2 checkBox2 = this.checkBox;
         ImageView imageView = this.videoPlayImageView;
         TextView textView = this.videoTextView;
         AnonymousClass3 anonymousClass3 = this.videoInfoContainer;
         AnonymousClass2 anonymousClass2 = this.imageView;
         if (z6 && !photoEntry.isLivePhoto()) {
-            anonymousClass2.imageReceiver.setOrientation(0, true);
+            anonymousClass2.setOrientation(0, true);
             anonymousClass3.setVisibility(0);
             imageView.setVisibility(0);
             ((FrameLayout.LayoutParams) textView.getLayoutParams()).leftMargin = AndroidUtilities.dp(13.0f);
             textView.setText(AndroidUtilities.formatShortDuration(this.photoEntry.duration));
-        } else if (this.photoEntry.isHighQuality() && isChecked()) {
+        } else if (this.photoEntry.isHighQuality() && checkBox2.isChecked()) {
             anonymousClass3.setVisibility(0);
             imageView.setVisibility(8);
             ((FrameLayout.LayoutParams) textView.getLayoutParams()).leftMargin = AndroidUtilities.dp(0.0f);
@@ -637,7 +592,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
                 anonymousClass2.setImageDrawable(Theme.chat_attachEmptyDrawable);
             } else if (!photoEntry2.isVideo || photoEntry2.isLivePhoto()) {
                 MediaController.PhotoEntry photoEntry3 = this.photoEntry;
-                anonymousClass2.imageReceiver.setOrientation(photoEntry3.orientation, photoEntry3.invert, true);
+                anonymousClass2.setOrientation(photoEntry3.orientation, photoEntry3.invert, true);
                 anonymousClass2.setImage("thumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             } else {
                 anonymousClass2.setImage("vthumb://" + this.photoEntry.imageId + ":" + this.photoEntry.path, null, Theme.chat_attachEmptyDrawable);
@@ -645,11 +600,11 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
         }
         boolean z7 = z2 && PhotoViewer.isShowingImage(this.photoEntry.path);
         anonymousClass2.getImageReceiver().setVisible(!z7, true);
-        this.checkBox.setAlpha(z7 ? 0.0f : 1.0f);
+        checkBox2.setAlpha(z7 ? 0.0f : 1.0f);
         anonymousClass3.setAlpha(z7 ? 0.0f : 1.0f);
         requestLayout();
         setHasSpoiler(photoEntry.hasSpoiler);
-        if (photoEntry.isHighQuality() && isChecked()) {
+        if (photoEntry.isHighQuality() && checkBox2.isChecked()) {
             z5 = true;
         }
         setHighQuality(z5);
@@ -714,7 +669,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
             AnonymousClass3 anonymousClass3 = this.videoInfoContainer;
             Property property = View.ALPHA;
             animatorSet3.playTogether(ObjectAnimator.ofFloat(anonymousClass3, (Property<AnonymousClass3, Float>) property, fArr), ObjectAnimator.ofFloat(checkBox2, (Property<CheckBox2, Float>) property, z ? 1.0f : 0.0f));
-            this.animatorSet.addListener(new ArticleViewer.AnonymousClass25(this, 14));
+            this.animatorSet.addListener(new BotButton.AnonymousClass1(this, 5));
             this.animatorSet.start();
         }
     }
@@ -775,7 +730,7 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
         TLRPC.PhotoSize photoSize = searchImage.thumbPhotoSize;
         AnonymousClass2 anonymousClass2 = this.imageView;
         if (photoSize != null) {
-            anonymousClass2.setImage(ImageLocation.getForPhoto(photoSize, searchImage.photo), null, drawable, searchImage);
+            anonymousClass2.setImage(ImageLocation.getForPhoto(photoSize, searchImage.photo), (String) null, drawable, searchImage);
         } else {
             TLRPC.PhotoSize photoSize2 = searchImage.photoSize;
             if (photoSize2 != null) {
@@ -789,17 +744,16 @@ public final class PhotoAttachPhotoCell extends FrameLayout {
                     if (searchImage.type == 1 && searchImage.thumbUrl.endsWith("mp4")) {
                         forPath.imageType = 2;
                     }
-                    anonymousClass2.setImage(forPath, null, drawable, searchImage);
+                    anonymousClass2.setImage(forPath, (String) null, drawable, searchImage);
                 } else {
                     TLRPC.Document document = searchImage.document;
                     if (document != null) {
                         MessageObject.getDocumentVideoThumb(document);
                         TLRPC.VideoSize documentVideoThumb = MessageObject.getDocumentVideoThumb(searchImage.document);
                         if (documentVideoThumb != null) {
-                            anonymousClass2.imageReceiver.setImage(ImageLocation.getForDocument(documentVideoThumb, searchImage.document), null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 90), searchImage.document), "52_52", null, -1L, null, searchImage, 1);
-                            anonymousClass2.onNewImageSet();
+                            setImage(ImageLocation.getForDocument(documentVideoThumb, searchImage.document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 90), searchImage.document), "52_52", (String) null, -1L, 1, searchImage);
                         } else {
-                            anonymousClass2.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 320), searchImage.document), null, drawable, searchImage);
+                            anonymousClass2.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(searchImage.document.thumbs, 320), searchImage.document), (String) null, drawable, searchImage);
                         }
                     } else {
                         anonymousClass2.setImageDrawable(drawable);

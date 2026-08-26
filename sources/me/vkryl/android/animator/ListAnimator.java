@@ -19,17 +19,17 @@ public final class ListAnimator implements Iterable {
     public final ArrayList actualList = new ArrayList();
 
     public interface Callback {
-        boolean hasChanges();
+        boolean hasChanges(ListAnimator listAnimator);
 
-        boolean onApplyMetadataAnimation(float f);
+        boolean onApplyMetadataAnimation(ListAnimator listAnimator, float f);
 
-        void onFinishMetadataAnimation(boolean z);
+        void onFinishMetadataAnimation(ListAnimator listAnimator, boolean z);
 
-        void onForceApplyChanges();
+        void onForceApplyChanges(ListAnimator listAnimator);
 
-        void onItemsChanged();
+        void onItemsChanged(ListAnimator listAnimator);
 
-        void onPrepareMetadataAnimation();
+        void onPrepareMetadataAnimation(ListAnimator listAnimator);
     }
 
     public final class Entry implements Comparable {
@@ -41,7 +41,7 @@ public final class ListAnimator implements Iterable {
         public final VariableFloat position;
         public final VariableFloat visibility;
 
-        public Entry(int i, Object obj, boolean z) {
+        public Entry(Object obj, boolean z, int i) {
             this.item = obj;
             this.index = i;
             VariableFloat variableFloat = new VariableFloat(z ? 1.0f : 0.0f);
@@ -87,12 +87,15 @@ public final class ListAnimator implements Iterable {
     public interface Measurable {
         int getHeight();
 
+        int getSpacingEnd(boolean z);
+
         int getSpacingStart(boolean z);
 
         int getWidth();
     }
 
     public final class Metadata {
+        public final ListAnimator context;
         public final Callback metadataCallback;
         public final VariableFloat size = new VariableFloat(0.0f);
         public final VariableFloat totalVisibility = new VariableFloat(0.0f);
@@ -102,6 +105,7 @@ public final class ListAnimator implements Iterable {
         public final VariableFloat totalHeight = new VariableFloat(0.0f);
 
         public Metadata(ListAnimator listAnimator, Callback callback) {
+            this.context = listAnimator;
             this.metadataCallback = callback;
         }
 
@@ -130,13 +134,13 @@ public final class ListAnimator implements Iterable {
         if (interpolator == null || j <= 0) {
             this.animator = null;
         } else {
-            this.animator = new FactorAnimator(0, new Stripe(this, 11), interpolator, j);
+            this.animator = new FactorAnimator(0, new Stripe.AnonymousClass1(this, 11), interpolator, j);
         }
     }
 
     public final void applyAnimation(float f) {
         Metadata metadata = this.metadata;
-        boolean z = metadata.metadataCallback.onApplyMetadataAnimation(f) || (metadata.totalVisibility.applyAnimation(f) || (metadata.totalHeight.applyAnimation(f) || (metadata.totalWidth.applyAnimation(f) || (metadata.maxItemHeight.applyAnimation(f) || (metadata.maxItemWidth.applyAnimation(f) || metadata.size.applyAnimation(f))))));
+        boolean z = metadata.metadataCallback.onApplyMetadataAnimation(metadata.context, f) || (metadata.totalVisibility.applyAnimation(f) || (metadata.totalHeight.applyAnimation(f) || (metadata.totalWidth.applyAnimation(f) || (metadata.maxItemHeight.applyAnimation(f) || (metadata.maxItemWidth.applyAnimation(f) || metadata.size.applyAnimation(f))))));
         ArrayList arrayList = this.entries;
         int size = arrayList.size();
         int i = 0;
@@ -152,7 +156,7 @@ public final class ListAnimator implements Iterable {
             z = z2 || z;
         }
         if (z) {
-            this.callback.onItemsChanged();
+            this.callback.onItemsChanged(this);
             if (f == 1.0f) {
                 removeJunk(true);
             }
@@ -180,29 +184,31 @@ public final class ListAnimator implements Iterable {
             Object obj2 = entry.item;
             if (obj2 instanceof Measurable) {
                 Measurable measurable = (Measurable) obj2;
-                boolean z2 = entry.index == 0;
-                arrayList2.size();
+                int i4 = entry.index;
+                boolean z2 = i4 == 0;
+                boolean z3 = i4 + 1 == arrayList2.size();
                 int spacingStart = measurable.getSpacingStart(z2);
+                int spacingEnd = measurable.getSpacingEnd(z3);
                 int width = measurable.getWidth();
                 int height = measurable.getHeight();
-                int i4 = spacingStart + width + i3;
-                int i5 = spacingStart + height + i2;
+                int i5 = spacingStart + width + spacingEnd + i2;
+                int i6 = spacingStart + height + spacingEnd + i3;
                 VariableFloat variableFloat = entry.measuredSpacingStart;
                 VariableRect variableRect = entry.measuredPositionRect;
                 if (!z || entry.getVisibility() <= 0.0f) {
                     arrayList = arrayList2;
                     size = size;
-                    variableRect.set(i3, i2, i4, i5);
+                    variableRect.set(i2, i3, i5, i6);
                     float f = spacingStart;
                     variableFloat.from = f;
                     variableFloat.to = f;
                     variableFloat.now = f;
                 } else {
-                    float f2 = i3;
-                    float f3 = i2;
-                    float f4 = i4;
+                    float f2 = i2;
+                    float f3 = i3;
+                    float f4 = i5;
                     arrayList = arrayList2;
-                    float f5 = i5;
+                    float f5 = i6;
                     if (variableRect.differs(f2, f3, f4, f5)) {
                         onBeforeListChanged();
                         variableRect.left.to = f2;
@@ -218,8 +224,8 @@ public final class ListAnimator implements Iterable {
                 }
                 iMax = Math.max(iMax, width);
                 iMax2 = Math.max(iMax2, height);
-                i3 = i4;
                 i2 = i5;
+                i3 = i6;
                 arrayList2 = arrayList;
                 size = size;
             }
@@ -227,10 +233,10 @@ public final class ListAnimator implements Iterable {
         ArrayList arrayList3 = this.entries;
         if (z) {
             int size2 = arrayList3.size();
-            int i6 = 0;
-            while (i6 < size2) {
-                Object obj3 = arrayList3.get(i6);
-                i6++;
+            int i7 = 0;
+            while (i7 < size2) {
+                Object obj3 = arrayList3.get(i7);
+                i7++;
                 Object obj4 = ((Entry) obj3).item;
                 if (obj4 instanceof VariableRect) {
                     ((VariableRect) obj4).getClass();
@@ -238,10 +244,10 @@ public final class ListAnimator implements Iterable {
             }
         }
         int size3 = arrayList3.size();
-        int i7 = 0;
-        while (i7 < size3) {
-            Object obj5 = arrayList3.get(i7);
-            i7++;
+        int i8 = 0;
+        while (i8 < size3) {
+            Object obj5 = arrayList3.get(i8);
+            i8++;
             Object obj6 = ((Entry) obj5).item;
             if (obj6 instanceof VariableRect) {
                 VariableRect variableRect2 = (VariableRect) obj6;
@@ -255,11 +261,11 @@ public final class ListAnimator implements Iterable {
         Metadata metadata = this.metadata;
         if (!z) {
             VariableFloat variableFloat2 = metadata.totalWidth;
-            float f7 = i3;
+            float f7 = i2;
             variableFloat2.from = f7;
             variableFloat2.to = f7;
             variableFloat2.now = f7;
-            float f8 = i2;
+            float f8 = i3;
             VariableFloat variableFloat3 = metadata.totalHeight;
             variableFloat3.from = f8;
             variableFloat3.to = f8;
@@ -274,16 +280,16 @@ public final class ListAnimator implements Iterable {
             variableFloat5.from = f10;
             variableFloat5.to = f10;
             variableFloat5.now = f10;
-            metadata.metadataCallback.onForceApplyChanges();
+            metadata.metadataCallback.onForceApplyChanges(this);
             return;
         }
-        float f11 = i3;
+        float f11 = i2;
         if (metadata.totalWidth.differs(f11)) {
             onBeforeListChanged();
             metadata.totalWidth.to = f11;
         }
         VariableFloat variableFloat6 = metadata.totalHeight;
-        float f12 = i2;
+        float f12 = i3;
         if (variableFloat6.differs(f12)) {
             onBeforeListChanged();
             variableFloat6.to = f12;
@@ -301,9 +307,9 @@ public final class ListAnimator implements Iterable {
             variableFloat8.to = f14;
         }
         Callback callback = metadata.metadataCallback;
-        if (callback.hasChanges()) {
+        if (callback.hasChanges(this)) {
             onBeforeListChanged();
-            callback.onPrepareMetadataAnimation();
+            callback.onPrepareMetadataAnimation(this);
         }
     }
 
@@ -361,7 +367,7 @@ public final class ListAnimator implements Iterable {
         metadata.totalWidth.finishAnimation(z);
         metadata.totalHeight.finishAnimation(z);
         metadata.totalVisibility.finishAnimation(z);
-        metadata.metadataCallback.onFinishMetadataAnimation(z);
+        metadata.metadataCallback.onFinishMetadataAnimation(metadata.context, z);
     }
 
     public final void reset(List list, boolean z) {
@@ -396,7 +402,7 @@ public final class ListAnimator implements Iterable {
                 arrayList2.ensureCapacity(size2);
                 Iterator it = list.iterator();
                 while (it.hasNext()) {
-                    Entry entry = new Entry(arrayList2.size(), it.next(), true);
+                    Entry entry = new Entry(it.next(), true, arrayList2.size());
                     arrayList.add(entry);
                     arrayList2.add(entry);
                 }
@@ -405,7 +411,7 @@ public final class ListAnimator implements Iterable {
             }
             Metadata.access$1400(metadata, size2, false);
             measureImpl(false);
-            this.callback.onItemsChanged();
+            this.callback.onItemsChanged(this);
             return;
         }
         if (list != null && !list.isEmpty()) {
@@ -566,7 +572,7 @@ public final class ListAnimator implements Iterable {
                             z3 = true;
                         }
                         onBeforeListChanged();
-                        Entry entry4 = new Entry(i7, obj4, false);
+                        Entry entry4 = new Entry(obj4, false, i7);
                         entry4.visibility.to = 1.0f;
                         entry4.isBeingRemoved = false;
                         arrayList.add(entry4);

@@ -24,7 +24,7 @@ public abstract class GlassTabsView extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(0);
-        addView(linearLayout, LayoutHelper.createFrame(-1.0f, -1));
+        addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f));
     }
 
     public void setLensVisibility(float f) {

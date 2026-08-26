@@ -10,12 +10,12 @@ import me.vkryl.android.animator.ListAnimator;
 import me.vkryl.android.animator.ReplaceAnimator;
 import me.vkryl.core.lambda.Destroyable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.AvatarPreviewer;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EllipsizeSpanAnimator;
 import org.telegram.ui.Components.LayoutHelper;
 
 public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLayout implements ReplaceAnimator.Callback {
-    public final AvatarPreviewer ellipsizeSpanAnimator;
+    public final EllipsizeSpanAnimator ellipsizeSpanAnimator;
     public final Theme.ResourcesProvider resourcesProvider;
     public final ReplaceAnimator titleOverlayAnimator;
 
@@ -31,11 +31,11 @@ public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLay
         }
     }
 
-    public ActionBarAnimatedSubtitleOverlayContainer(Context context, Theme.ResourcesProvider resourcesProvider, AvatarPreviewer avatarPreviewer) {
+    public ActionBarAnimatedSubtitleOverlayContainer(Context context, Theme.ResourcesProvider resourcesProvider, EllipsizeSpanAnimator ellipsizeSpanAnimator) {
         super(context);
         this.titleOverlayAnimator = new ReplaceAnimator(this, CubicBezierInterpolator.EASE_OUT_QUINT, 350L);
         this.resourcesProvider = resourcesProvider;
-        this.ellipsizeSpanAnimator = avatarPreviewer;
+        this.ellipsizeSpanAnimator = ellipsizeSpanAnimator;
     }
 
     public float getTotalVisibility() {
@@ -43,10 +43,24 @@ public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLay
     }
 
     @Override
-    public final void onForceApplyChanges() {
+    public final boolean hasChanges(ReplaceAnimator replaceAnimator) {
+        return false;
     }
 
-    public void onItemChanged$1(ReplaceAnimator replaceAnimator) {
+    @Override
+    public final boolean onApplyMetadataAnimation(ReplaceAnimator replaceAnimator, float f) {
+        return false;
+    }
+
+    @Override
+    public final void onFinishMetadataAnimation(ReplaceAnimator replaceAnimator, boolean z) {
+    }
+
+    @Override
+    public final void onForceApplyChanges(ReplaceAnimator replaceAnimator) {
+    }
+
+    public void onItemChanged(ReplaceAnimator replaceAnimator) {
         ArrayList arrayList = this.titleOverlayAnimator.list.entries;
         int size = arrayList.size();
         int i = 0;
@@ -64,8 +78,12 @@ public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLay
         }
     }
 
-    public final void setText$1(CharSequence charSequence) {
-        boolean z;
+    @Override
+    public final void onPrepareMetadataAnimation(ReplaceAnimator replaceAnimator) {
+    }
+
+    public final void setText(CharSequence charSequence, boolean z) {
+        boolean z2;
         CharSequence charSequence2;
         boolean zIsEmpty = TextUtils.isEmpty(charSequence);
         ReplaceAnimator replaceAnimator = this.titleOverlayAnimator;
@@ -74,14 +92,14 @@ public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLay
             return;
         }
         int iIndexOf = TextUtils.indexOf(charSequence, "...");
-        AvatarPreviewer avatarPreviewer = this.ellipsizeSpanAnimator;
+        EllipsizeSpanAnimator ellipsizeSpanAnimator = this.ellipsizeSpanAnimator;
         if (iIndexOf >= 0) {
             SpannableString spannableStringValueOf = SpannableString.valueOf(charSequence);
-            avatarPreviewer.wrap(spannableStringValueOf, iIndexOf);
-            z = true;
+            ellipsizeSpanAnimator.wrap(spannableStringValueOf, iIndexOf);
+            z2 = true;
             charSequence2 = spannableStringValueOf;
         } else {
-            z = false;
+            z2 = false;
             charSequence2 = charSequence;
         }
         SimpleTextViewReplaceable simpleTextViewReplaceable = new SimpleTextViewReplaceable(getContext());
@@ -92,10 +110,10 @@ public abstract class ActionBarAnimatedSubtitleOverlayContainer extends FrameLay
         simpleTextViewReplaceable.setTextSize(1, 14.0f);
         simpleTextViewReplaceable.setAlpha(0.0f);
         simpleTextViewReplaceable.setText(charSequence2);
-        if (z) {
-            avatarPreviewer.addView(simpleTextViewReplaceable);
+        if (z2) {
+            ellipsizeSpanAnimator.addView(simpleTextViewReplaceable);
         }
-        addView(simpleTextViewReplaceable, LayoutHelper.createFrame(-2.0f, -2));
+        addView(simpleTextViewReplaceable, LayoutHelper.createFrame(-2, -2.0f));
         replaceAnimator.replace(simpleTextViewReplaceable, true);
     }
 }

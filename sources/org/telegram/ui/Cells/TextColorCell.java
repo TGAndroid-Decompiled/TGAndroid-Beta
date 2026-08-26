@@ -21,10 +21,12 @@ public final class TextColorCell extends FrameLayout {
     public static final int[] colorsToSave = {-65536, -29183, -256, -16711936, -16711681, -16776961, -2984711, -65281, -1};
     public int currentColor;
     public boolean needDivider;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final TextView textView;
 
     public TextColorCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         if (colorPaint == null) {
             colorPaint = new Paint(1);
         }
@@ -59,7 +61,7 @@ public final class TextColorCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.needDivider ? 1 : 0), 1073741824));
     }
 
-    public final void setEnabled(ArrayList arrayList, boolean z) {
+    public final void setEnabled(boolean z, ArrayList arrayList) {
         setEnabled(z);
         TextView textView = this.textView;
         if (arrayList == null) {

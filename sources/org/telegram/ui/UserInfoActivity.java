@@ -1,21 +1,19 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.text.Editable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.exoplayer2.util.Consumer;
+import com.google.android.gms.internal.mlkit_vision_common.zzke;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,6 +23,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.FactCheckController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationBadge$ZukHomeBadger$$ExternalSyntheticOutline0;
@@ -35,7 +34,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserNameResolver$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.UserObject$$ExternalSyntheticOutline0;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -43,7 +44,6 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Business.BusinessChatbotController;
@@ -55,6 +55,7 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
+import org.telegram.ui.Components.IconBackgroundColors;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
@@ -62,255 +63,172 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.bots.BotBiometrySettings;
-import org.telegram.ui.bots.BotWebViewSheet;
-import org.telegram.ui.bots.SuggestedAffiliateProgramsFragment;
-import org.telegram.ui.community.CommunityCreateActivity;
-import org.telegram.ui.community.CommunityEditActivity;
-import org.telegram.ui.community.CommunityPendingRequestsActivity;
-import org.telegram.ui.community.CommunitySheet;
-import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
-import org.telegram.ui.web.HistoryFragment;
 
-public final class UserInfoActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
-    public AnonymousClass1 bioEdit;
-    public CharSequence bioInfo;
-    public TL_account.TL_birthday birthday;
-    public CharSequence birthdayInfo;
-    public TLRPC.Chat channel;
-    public String currentBio;
-    public TL_account.TL_birthday currentBirthday;
-    public long currentChannel;
-    public String currentFirstName;
-    public String currentLastName;
-    public ActionBarMenuItem doneButton;
-    public CrossfadeDrawable doneButtonDrawable;
-    public AnonymousClass1 firstNameEdit;
-    public boolean hadHours;
-    public boolean hadLocation;
-    public AnonymousClass1 lastNameEdit;
-    public UniversalFragment.AnonymousClass3 listView;
-    public boolean valueSet;
-    public int bioInfoHash = Integer.MIN_VALUE;
-    public ArrayList bots = new ArrayList();
-    public final ArrayList accountNumbers = new ArrayList();
-    public final AdminedChannelsFetcher channels = new AdminedChannelsFetcher(this.currentAccount);
-    public boolean wasSaved = false;
-    public int shiftDp = -4;
+public class UserInfoActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
+    private static final int BUTTON_ADD_ACCOUNT = 10;
+    private static final int BUTTON_AI = 6;
+    private static final int BUTTON_BIRTHDAY = 1;
+    private static final int BUTTON_CHANNEL = 3;
+    private static final int BUTTON_HOURS = 4;
+    private static final int BUTTON_LOCATION = 5;
+    private static final int BUTTON_LOGOUT = 11;
+    private static final int BUTTON_REMOVE_BIRTHDAY = 2;
+    private static final int INFO_BIRTHDAY = 9;
+    private static final int INFO_PHONE = 7;
+    private static final int INFO_USERNAME = 8;
+    private static final int done_button = 1;
+    public int addAccountRow;
+    private EditTextCell bioEdit;
+    private CharSequence bioInfo;
+    public int bioRow;
+    private TL_account.TL_birthday birthday;
+    private CharSequence birthdayInfo;
+    public int birthdayRow;
+    private TLRPC.Chat channel;
+    public int channelRow;
+    private String currentBio;
+    private TL_account.TL_birthday currentBirthday;
+    private long currentChannel;
+    private String currentFirstName;
+    private String currentLastName;
+    private ActionBarMenuItem doneButton;
+    private CrossfadeDrawable doneButtonDrawable;
+    private EditTextCell firstNameEdit;
+    public int firstNameRow;
+    private boolean hadHours;
+    private boolean hadLocation;
+    private EditTextCell lastNameEdit;
+    public int lastNameRow;
+    public UniversalRecyclerView listView;
+    public int logoutRow;
+    public int numberRow;
+    public int usernameRow;
+    private boolean valueSet;
+    private int bioInfoHash = Integer.MIN_VALUE;
+    private ArrayList<TL_account.TL_connectedBot> bots = new ArrayList<>();
+    private final ArrayList<Integer> accountNumbers = new ArrayList<>();
+    private AdminedChannelsFetcher channels = new AdminedChannelsFetcher(this.currentAccount, true);
+    private boolean wasSaved = false;
+    private int shiftDp = -4;
 
-    public final class AnonymousClass1 extends EditTextCell {
-        public final int $r8$classId;
-        public final UserInfoActivity this$0;
-
-        public AnonymousClass1(UserInfoActivity userInfoActivity, Context context, String str, Theme.ResourcesProvider resourcesProvider, int i) {
-            super(context, str, false, false, -1, resourcesProvider);
-            this.$r8$classId = i;
-            this.this$0 = userInfoActivity;
-        }
-
-        @Override
-        public final void onTextChanged(Editable editable) {
-            switch (this.$r8$classId) {
-                case 0:
-                    this.this$0.checkDone$4(true);
-                    break;
-                case 1:
-                    this.this$0.checkDone$4(true);
-                    break;
-                default:
-                    UserInfoActivity userInfoActivity = this.this$0;
-                    userInfoActivity.checkDone$4(true);
-                    userInfoActivity.updateBioInfo();
-                    break;
-            }
-        }
-
-        public AnonymousClass1(UserInfoActivity userInfoActivity, Context context, String str, int i, Theme.ResourcesProvider resourcesProvider) {
-            super(context, str, true, false, i, resourcesProvider);
-            this.$r8$classId = 2;
-            this.this$0 = userInfoActivity;
-        }
-    }
-
-    public final class AnonymousClass4 extends ActionBar.ActionBarMenuOnItemClick {
-        public final int $r8$classId;
-        public final Object this$0;
-
-        public AnonymousClass4(Object obj, int i) {
-            this.$r8$classId = i;
-            this.this$0 = obj;
-        }
-
-        @Override
-        public final void onItemClick(int i) {
-            switch (this.$r8$classId) {
-                case 0:
-                    UserInfoActivity userInfoActivity = (UserInfoActivity) this.this$0;
-                    if (i != -1) {
-                        if (i == 1) {
-                            userInfoActivity.processDone$1(true);
-                        }
-                    } else if (userInfoActivity.onBackPressed(true)) {
-                        userInfoActivity.finishFragment();
-                    }
-                    break;
-                case 1:
-                    if (i == -1) {
-                        ((TopicsNotifySettingsFragments) this.this$0).finishFragment();
-                    }
-                    break;
-                case 2:
-                    if (i == -1) {
-                        TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.this$0;
-                        if (twoStepVerificationActivity.otherwiseReloginDays < 0) {
-                            twoStepVerificationActivity.finishFragment();
-                        } else {
-                            twoStepVerificationActivity.showSetForcePasswordAlert();
-                        }
-                    }
-                    break;
-                case 3:
-                    UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.this$0;
-                    if (i == -1) {
-                        usersSelectActivity.finishFragment();
-                    } else if (i == 1) {
-                        usersSelectActivity.onDonePressed$1$1();
-                    }
-                    break;
-                case 4:
-                    if (i == -1) {
-                        ((BotBiometrySettings) this.this$0).finishFragment();
-                    }
-                    break;
-                case 5:
-                    if (i == -1) {
-                        ((BotWebViewSheet) this.this$0).onCheckDismissByUser();
-                    }
-                    break;
-                case 6:
-                    if (i == -1) {
-                        ((SuggestedAffiliateProgramsFragment) this.this$0).finishFragment();
-                    }
-                    break;
-                case 7:
-                    if (i == -1) {
-                        ((CommunityCreateActivity) this.this$0).finishFragment();
-                    }
-                    break;
-                case 8:
-                    if (i == -1) {
-                        ((CommunityEditActivity) this.this$0).finishFragment();
-                    }
-                    break;
-                case 9:
-                    if (i == -1) {
-                        ((CommunityPendingRequestsActivity) this.this$0).finishFragment();
-                    }
-                    break;
-                case 10:
-                    CommunitySheet.ChatsToAddListPage chatsToAddListPage = (CommunitySheet.ChatsToAddListPage) this.this$0;
-                    if (i == -1) {
-                        CommunitySheet communitySheet = CommunitySheet.this;
-                        if (!communitySheet.onlyChatsMode) {
-                            communitySheet.communityPage.listView.adapter.update(false);
-                            CommunitySheet.this.viewPager.scrollToPosition$1(0);
-                        } else {
-                            communitySheet.lambda$showGiftOfferSheet$15();
-                        }
-                    } else if (i == 3) {
-                        CommunitySheet.this.animatorSearchChatsVisible.setValue(true, true);
-                        CommunitySheet communitySheet2 = CommunitySheet.this;
-                        communitySheet2.setAllowNestedScroll(false);
-                        communitySheet2.lastSearchChatsString = null;
-                        communitySheet2.foundChatsView.adapter.update(true);
-                        communitySheet2.chatsSearchView.editText.getText().clear();
-                        communitySheet2.chatsSearchView.editText.requestFocus();
-                        AndroidUtilities.showKeyboard(communitySheet2.chatsSearchView.editText);
-                    }
-                    break;
-                case 11:
-                    CommunitySheet.CommunityPage communityPage = (CommunitySheet.CommunityPage) this.this$0;
-                    if (i == 2) {
-                        Bundle bundle = new Bundle();
-                        bundle.putLong("community_id", CommunitySheet.this.communityId);
-                        CommunitySheet.this.parentFragment.presentFragment(new CommunityEditActivity(bundle));
-                        CommunitySheet.this.lambda$showGiftOfferSheet$15();
-                    } else if (i == 3) {
-                        CommunitySheet.this.animatorSearchMessagesVisible.setValue(true, true);
-                        CommunitySheet.this.setAllowNestedScroll(false);
-                        CommunitySheet communitySheet3 = CommunitySheet.this;
-                        TextUtils.isEmpty(communitySheet3.lastSearchString);
-                        communitySheet3.lastSearchString = null;
-                        communitySheet3.filteredSearchView.search(0L, communitySheet3.communityId, 0L, 0L, null, false, null, true);
-                        CommunitySheet.this.messagesSearchView.editText.getText().clear();
-                        CommunitySheet.this.messagesSearchView.editText.requestFocus();
-                        AndroidUtilities.showKeyboard(CommunitySheet.this.messagesSearchView.editText);
-                    }
-                    break;
-                case 12:
-                    if (i == -1) {
-                        CommunitySheet.PendingRequestsPage pendingRequestsPage = (CommunitySheet.PendingRequestsPage) this.this$0;
-                        CommunitySheet.this.communityPage.listView.adapter.update(false);
-                        CommunitySheet.this.viewPager.scrollToPosition$1(0);
-                    }
-                    break;
-                default:
-                    if (i == -1) {
-                        HistoryFragment historyFragment = (HistoryFragment) this.this$0;
-                        if (!((BaseFragment) historyFragment).actionBar.isActionModeShowed()) {
-                            historyFragment.finishFragment();
-                        } else {
-                            ((BaseFragment) historyFragment).actionBar.hideActionMode$1();
-                            historyFragment.selected.clear();
-                            AndroidUtilities.forEachViews((RecyclerView) historyFragment.listView, (Consumer) new ChatActivity$$ExternalSyntheticLambda151(17));
-                        }
-                    }
-                    break;
-            }
-        }
-    }
-
-    public final class AdminedChannelsFetcher {
+    public static class AdminedChannelsFetcher {
         public final int currentAccount;
+        public final boolean for_personal;
         public boolean loaded;
         public boolean loading;
-        public final ArrayList chats = new ArrayList();
-        public final ArrayList callbacks = new ArrayList();
-        public final boolean for_personal = true;
+        public final ArrayList<TLRPC.Chat> chats = new ArrayList<>();
+        private ArrayList<Runnable> callbacks = new ArrayList<>();
 
-        public AdminedChannelsFetcher(int i) {
+        public AdminedChannelsFetcher(int i, boolean z) {
             this.currentAccount = i;
+            this.for_personal = z;
+        }
+
+        public void lambda$fetch$0(TLObject tLObject) {
+            if (tLObject instanceof TLRPC.messages_Chats) {
+                this.chats.clear();
+                this.chats.addAll(((TLRPC.messages_Chats) tLObject).chats);
+            }
+            int i = 0;
+            MessagesController.getInstance(this.currentAccount).putChats(this.chats, false);
+            this.loading = false;
+            this.loaded = true;
+            ArrayList<Runnable> arrayList = this.callbacks;
+            int size = arrayList.size();
+            while (i < size) {
+                Runnable runnable = arrayList.get(i);
+                i++;
+                runnable.run();
+            }
+            this.callbacks.clear();
+        }
+
+        public void lambda$fetch$1(TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new ThemeActivity$$ExternalSyntheticLambda9(11, this, tLObject));
+        }
+
+        public void fetch() {
+            if (this.loaded || this.loading) {
+                return;
+            }
+            this.loading = true;
+            TLRPC.TL_channels_getAdminedPublicChannels tL_channels_getAdminedPublicChannels = new TLRPC.TL_channels_getAdminedPublicChannels();
+            tL_channels_getAdminedPublicChannels.for_personal = this.for_personal;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_channels_getAdminedPublicChannels, new LinkManager$$ExternalSyntheticLambda10(this, 24));
+        }
+
+        public void invalidate() {
+            this.loaded = false;
+        }
+
+        public void subscribe(Runnable runnable) {
+            if (this.loaded) {
+                runnable.run();
+            } else {
+                this.callbacks.add(runnable);
+            }
         }
     }
 
-    public final class ChooseChannelFragment extends UniversalFragment {
-        public final AdminedChannelsFetcher channels;
-        public boolean invalidateAfterPause = false;
-        public String query;
-        public ActionBarMenuItem searchItem;
-        public final long selectedChannel;
-        public final UserInfoActivity$$ExternalSyntheticLambda5 whenSelected;
+    public static class ChooseChannelFragment extends UniversalFragment {
+        private static final int BUTTON_CREATE = 2;
+        private static final int BUTTON_REMOVE = 1;
+        private AdminedChannelsFetcher channels;
+        private boolean invalidateAfterPause = false;
+        private String query;
+        private ActionBarMenuItem searchItem;
+        private long selectedChannel;
+        private Utilities.Callback<TLRPC.Chat> whenSelected;
 
-        public ChooseChannelFragment(AdminedChannelsFetcher adminedChannelsFetcher, long j, UserInfoActivity$$ExternalSyntheticLambda5 userInfoActivity$$ExternalSyntheticLambda5) {
+        public ChooseChannelFragment(AdminedChannelsFetcher adminedChannelsFetcher, long j, Utilities.Callback<TLRPC.Chat> callback) {
             this.channels = adminedChannelsFetcher;
             this.selectedChannel = j;
-            this.whenSelected = userInfoActivity$$ExternalSyntheticLambda5;
-            UserInfoActivity$ChooseChannelFragment$$ExternalSyntheticLambda0 userInfoActivity$ChooseChannelFragment$$ExternalSyntheticLambda0 = new UserInfoActivity$ChooseChannelFragment$$ExternalSyntheticLambda0(this, 1);
-            if (adminedChannelsFetcher.loaded) {
-                userInfoActivity$ChooseChannelFragment$$ExternalSyntheticLambda0.run();
-            } else {
-                adminedChannelsFetcher.callbacks.add(userInfoActivity$ChooseChannelFragment$$ExternalSyntheticLambda0);
+            this.whenSelected = callback;
+            adminedChannelsFetcher.subscribe(new UserInfoActivity$ChooseChannelFragment$$ExternalSyntheticLambda0(this, 1));
+        }
+
+        public void lambda$new$0() {
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView != null) {
+                universalRecyclerView.adapter.update(true);
+            }
+        }
+
+        public void lambda$onResume$1() {
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView != null) {
+                universalRecyclerView.adapter.update(true);
             }
         }
 
         @Override
-        public final View createView(Context context) {
-            ActionBarMenuItem actionBarMenuItemAddItem = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search, getResourceProvider());
-            actionBarMenuItemAddItem.setIsSearchField$1();
-            actionBarMenuItemAddItem.listener = new TopicsFragment.AnonymousClass3(this, 19);
-            this.searchItem = actionBarMenuItemAddItem;
+        public View createView(Context context) {
+            ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search, getResourceProvider()).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+                @Override
+                public void onSearchCollapse() {
+                    ChooseChannelFragment.this.query = null;
+                    UniversalRecyclerView universalRecyclerView = ChooseChannelFragment.this.listView;
+                    if (universalRecyclerView != null) {
+                        universalRecyclerView.adapter.update(true);
+                    }
+                }
+
+                @Override
+                public void onSearchExpand() {
+                }
+
+                @Override
+                public void onTextChanged(EditText editText) {
+                    ChooseChannelFragment.this.query = editText.getText().toString();
+                    UniversalRecyclerView universalRecyclerView = ChooseChannelFragment.this.listView;
+                    if (universalRecyclerView != null) {
+                        universalRecyclerView.adapter.update(true);
+                    }
+                }
+            });
+            this.searchItem = actionBarMenuItemSearchListener;
             int i = R.string.Search;
-            actionBarMenuItemAddItem.setSearchFieldHint(LocaleController.getString(i));
+            actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(i));
             this.searchItem.setContentDescription(LocaleController.getString(i));
             this.searchItem.setVisibility(8);
             super.createView(context);
@@ -320,99 +238,62 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
         }
 
         @Override
-        public final void fillItems$1(ArrayList arrayList, UniversalAdapter universalAdapter) {
-            long j;
-            boolean z;
-            boolean zIsEmpty = TextUtils.isEmpty(this.query);
-            long j2 = this.selectedChannel;
-            if (zIsEmpty && j2 != 0) {
-                UItem uItemAsButton = UItem.asButton(1, R.drawable.msg_archive_hide, LocaleController.getString(R.string.EditProfileChannelHide));
-                uItemAsButton.red = true;
-                UItem uItemM = ArticleViewer.IBlock.CC.m(arrayList, uItemAsButton, 7);
-                uItemM.text = null;
-                arrayList.add(uItemM);
+        public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
+            if (TextUtils.isEmpty(this.query) && this.selectedChannel != 0) {
+                arrayList.add(UItem.asButton(1, R.drawable.msg_archive_hide, LocaleController.getString(R.string.EditProfileChannelHide)).red());
+                arrayList.add(UItem.asShadow(null));
             }
             if (TextUtils.isEmpty(this.query)) {
-                String string = LocaleController.getString(R.string.EditProfileChannelSelect);
-                UItem uItem = new UItem(0);
-                uItem.text = string;
-                arrayList.add(uItem);
+                zzke.m(R.string.EditProfileChannelSelect, arrayList);
             }
-            ArrayList arrayList2 = this.channels.chats;
+            ArrayList<TLRPC.Chat> arrayList2 = this.channels.chats;
             int size = arrayList2.size();
             int i = 0;
             int i2 = 0;
             while (i < size) {
-                Object obj = arrayList2.get(i);
+                TLRPC.Chat chat = arrayList2.get(i);
                 i++;
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                if (chat != null && !ChatObject.isMegagroup(chat)) {
+                TLRPC.Chat chat2 = chat;
+                if (chat2 != null && !ChatObject.isMegagroup(chat2)) {
                     i2++;
-                    if (TextUtils.isEmpty(this.query)) {
-                        j = chat.id;
-                        UItem uItem2 = new UItem(11);
-                        uItem2.include = true;
-                        uItem2.dialogId = -j;
-                        if (j2 == j) {
-                            z = true;
-                        } else {
-                            z = false;
-                        }
-                        uItem2.setChecked(z);
-                        arrayList.add(uItem2);
-                    } else {
+                    if (!TextUtils.isEmpty(this.query)) {
                         String lowerCase = this.query.toLowerCase();
                         String strTranslitSafe = AndroidUtilities.translitSafe(lowerCase);
-                        String lowerCase2 = chat.title.toLowerCase();
+                        String lowerCase2 = chat2.title.toLowerCase();
                         String strTranslitSafe2 = AndroidUtilities.translitSafe(lowerCase2);
                         if (lowerCase2.startsWith(lowerCase) || SavedMessagesController$$ExternalSyntheticOutline0.m(" ", lowerCase, lowerCase2) || strTranslitSafe2.startsWith(strTranslitSafe) || SavedMessagesController$$ExternalSyntheticOutline0.m(" ", strTranslitSafe, strTranslitSafe2)) {
-                            j = chat.id;
-                            UItem uItem3 = new UItem(11);
-                            uItem3.include = true;
-                            uItem3.dialogId = -j;
-                            if (j2 == j) {
-                                z = true;
-                            } else {
-                                z = false;
-                            }
-                            uItem3.setChecked(z);
-                            arrayList.add(uItem3);
                         }
                     }
+                    arrayList.add(UItem.asFilterChat(true, -chat2.id).setChecked(this.selectedChannel == chat2.id));
                 }
             }
             if (TextUtils.isEmpty(this.query) && i2 == 0) {
-                UItem uItemAsButton2 = UItem.asButton(2, R.drawable.msg_channel_create, LocaleController.getString(R.string.EditProfileChannelStartNew));
-                uItemAsButton2.accent = true;
-                arrayList.add(uItemAsButton2);
+                arrayList.add(UItem.asButton(2, R.drawable.msg_channel_create, LocaleController.getString(R.string.EditProfileChannelStartNew)).accent());
             }
-            UItem uItem4 = new UItem(7);
-            uItem4.text = null;
-            arrayList.add(uItem4);
+            arrayList.add(UItem.asShadow(null));
             ActionBarMenuItem actionBarMenuItem = this.searchItem;
             if (actionBarMenuItem != null) {
-                actionBarMenuItem.setVisibility(i2 > 5 ? 0 : 8);
+                actionBarMenuItem.setVisibility(i2 <= 5 ? 8 : 0);
             }
         }
 
         @Override
-        public final CharSequence getTitle() {
+        public CharSequence getTitle() {
             return LocaleController.getString(R.string.EditProfileChannelTitle);
         }
 
         @Override
-        public final void onClick$1(UItem uItem, View view) {
-            int i = uItem.id;
-            UserInfoActivity$$ExternalSyntheticLambda5 userInfoActivity$$ExternalSyntheticLambda5 = this.whenSelected;
-            if (i == 1) {
-                userInfoActivity$$ExternalSyntheticLambda5.run(null);
+        public void onClick(UItem uItem, View view, int i, float f, float f2) {
+            int i2 = uItem.id;
+            if (i2 == 1) {
+                this.whenSelected.run(null);
                 finishFragment();
                 return;
             }
-            if (i != 2) {
+            if (i2 != 2) {
                 if (uItem.viewType == 12) {
                     finishFragment();
-                    userInfoActivity$$ExternalSyntheticLambda5.run(getMessagesController().getChat(Long.valueOf(-uItem.dialogId)));
+                    this.whenSelected.run(getMessagesController().getChat(Long.valueOf(-uItem.dialogId)));
                     return;
                 }
                 return;
@@ -428,101 +309,53 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
         }
 
         @Override
-        public final boolean onLongClick(UItem uItem, View view) {
+        public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
             return false;
         }
 
         @Override
-        public final void onResume() {
+        public void onResume() {
             super.onResume();
             if (this.invalidateAfterPause) {
-                AdminedChannelsFetcher adminedChannelsFetcher = this.channels;
-                adminedChannelsFetcher.loaded = false;
-                adminedChannelsFetcher.callbacks.add(new UserInfoActivity$ChooseChannelFragment$$ExternalSyntheticLambda0(this, 0));
+                this.channels.invalidate();
+                this.channels.subscribe(new UserInfoActivity$ChooseChannelFragment$$ExternalSyntheticLambda0(this, 0));
                 this.invalidateAfterPause = false;
             }
         }
     }
 
-    public final class InfoCell extends LinearLayout {
-        public boolean accent;
-        public final ImageView icon2View;
-        public final ImageView iconView;
-        public boolean red;
-        public final Theme.ResourcesProvider resourcesProvider;
-        public final TextView subtitleView;
-        public final LinearLayout textLayout;
-        public final TextView titleView;
+    public static class InfoCell extends LinearLayout {
+        private boolean accent;
+        private final ImageView icon2View;
+        private final ImageView iconView;
+        private boolean red;
+        private final Theme.ResourcesProvider resourcesProvider;
+        private final TextView subtitleView;
+        private final LinearLayout textLayout;
+        private final TextView titleView;
 
-        public final class Factory extends UItem.UItemFactory {
-            public static final int $r8$clinit = 0;
-
+        public static class Factory extends UItem.UItemFactory<InfoCell> {
             static {
                 UItem.UItemFactory.setup(new Factory());
             }
 
-            @Override
-            public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                int i;
-                int i2;
-                int i3;
-                int i4;
-                InfoCell infoCell = (InfoCell) view;
-                int i5 = uItem.iconResId;
-                CharSequence charSequence = uItem.text;
-                CharSequence charSequence2 = uItem.subtext;
-                boolean z2 = uItem.accent;
-                boolean z3 = uItem.red;
-                int i6 = uItem.intValue;
-                infoCell.accent = z2;
-                infoCell.red = z3;
-                ImageView imageView = infoCell.iconView;
-                imageView.setImageResource(i5);
-                ImageView imageView2 = infoCell.icon2View;
-                if (i6 != 0) {
-                    imageView2.setVisibility(0);
-                    imageView2.setImageResource(i6);
-                } else {
-                    imageView2.setVisibility(8);
-                }
-                TextView textView = infoCell.titleView;
-                textView.setText(charSequence);
-                TextView textView2 = infoCell.subtitleView;
-                textView2.setText(charSequence2);
-                textView2.setVisibility(TextUtils.isEmpty(charSequence2) ? 8 : 0);
-                int iDp = AndroidUtilities.dp(TextUtils.isEmpty(charSequence2) ? 15.0f : 10.0f);
-                infoCell.textLayout.setPadding(0, iDp, 0, iDp);
-                if (infoCell.red) {
-                    i = Theme.key_text_RedBold;
-                } else {
-                    i = infoCell.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText;
-                }
-                Theme.ResourcesProvider resourcesProvider = infoCell.resourcesProvider;
-                int color = Theme.getColor(i, resourcesProvider);
-                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
-                if (infoCell.red) {
-                    i2 = Theme.key_text_RedBold;
-                } else {
-                    i2 = infoCell.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText;
-                }
-                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), mode));
-                if (infoCell.red) {
-                    i3 = Theme.key_text_RedRegular;
-                } else {
-                    i3 = infoCell.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText;
-                }
-                textView.setTextColor(Theme.getColor(i3, resourcesProvider));
-                if (infoCell.red) {
-                    i4 = Theme.key_text_RedRegular;
-                } else {
-                    i4 = infoCell.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteGrayText;
-                }
-                textView2.setTextColor(Theme.getColor(i4, resourcesProvider));
+            public static UItem of(int i, int i2, CharSequence charSequence, CharSequence charSequence2, int i3) {
+                UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+                uItemOfFactory.id = i;
+                uItemOfFactory.iconResId = i2;
+                uItemOfFactory.text = charSequence;
+                uItemOfFactory.subtext = charSequence2;
+                uItemOfFactory.intValue = i3;
+                return uItemOfFactory;
             }
 
             @Override
-            public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            public void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                ((InfoCell) view).set(uItem.iconResId, uItem.text, uItem.subtext, uItem.accent, uItem.red, uItem.intValue);
+            }
+
+            @Override
+            public InfoCell createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 return new InfoCell(context, resourcesProvider);
             }
         }
@@ -544,7 +377,7 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 16.0f);
-            TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 7, 0, 0, 0, 0), context);
+            TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 7, 0, 0, 0, 0), context);
             this.subtitleView = textViewM;
             textViewM.setTextSize(1, 13.0f);
             linearLayout.addView(textViewM, LayoutHelper.createLinear(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
@@ -554,9 +387,64 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
             addView(imageView2, LayoutHelper.createLinear(40, 40, 21, 12, 0, 12, 0));
         }
 
+        private void updateColors() {
+            int i;
+            int i2;
+            int i3;
+            int i4;
+            ImageView imageView = this.iconView;
+            if (this.red) {
+                i = Theme.key_text_RedBold;
+            } else {
+                i = this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText;
+            }
+            int color = Theme.getColor(i, this.resourcesProvider);
+            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+            imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
+            ImageView imageView2 = this.icon2View;
+            if (this.red) {
+                i2 = Theme.key_text_RedBold;
+            } else {
+                i2 = this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText;
+            }
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, this.resourcesProvider), mode));
+            TextView textView = this.titleView;
+            if (this.red) {
+                i3 = Theme.key_text_RedRegular;
+            } else {
+                i3 = this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteBlackText;
+            }
+            textView.setTextColor(Theme.getColor(i3, this.resourcesProvider));
+            TextView textView2 = this.subtitleView;
+            if (this.red) {
+                i4 = Theme.key_text_RedRegular;
+            } else {
+                i4 = this.accent ? Theme.key_windowBackgroundWhiteBlueText : Theme.key_windowBackgroundWhiteGrayText;
+            }
+            textView2.setTextColor(Theme.getColor(i4, this.resourcesProvider));
+        }
+
         @Override
-        public final void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+        }
+
+        public void set(int i, CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2, int i2) {
+            this.accent = z;
+            this.red = z2;
+            this.iconView.setImageResource(i);
+            if (i2 != 0) {
+                this.icon2View.setVisibility(0);
+                this.icon2View.setImageResource(i2);
+            } else {
+                this.icon2View.setVisibility(8);
+            }
+            this.titleView.setText(charSequence);
+            this.subtitleView.setText(charSequence2);
+            this.subtitleView.setVisibility(TextUtils.isEmpty(charSequence2) ? 8 : 0);
+            int iDp = AndroidUtilities.dp(TextUtils.isEmpty(charSequence2) ? 15.0f : 10.0f);
+            this.textLayout.setPadding(0, iDp, 0, iDp);
+            updateColors();
         }
     }
 
@@ -581,296 +469,66 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
         return (tL_birthday == null) != (tL_birthday2 != null) && (tL_birthday == null || (tL_birthday.day == tL_birthday2.day && tL_birthday.month == tL_birthday2.month && tL_birthday.year == tL_birthday2.year));
     }
 
-    public final void checkDone$4(boolean z) {
-        boolean z2;
+    public void checkDone(boolean z) {
         if (this.doneButton == null) {
             return;
         }
-        String str = this.currentFirstName;
-        if (str == null) {
-            str = "";
-        }
-        if (TextUtils.equals(str, this.firstNameEdit.getText().toString())) {
-            String str2 = this.currentLastName;
-            if (str2 == null) {
-                str2 = "";
-            }
-            if (TextUtils.equals(str2, this.lastNameEdit.getText().toString())) {
-                String str3 = this.currentBio;
-                if (TextUtils.equals(str3 != null ? str3 : "", this.bioEdit.getText().toString()) && birthdaysEqual(this.currentBirthday, this.birthday)) {
-                    long j = this.currentChannel;
-                    TLRPC.Chat chat = this.channel;
-                    if (j != (chat != null ? chat.id : 0L)) {
-                        z2 = true;
-                    } else {
-                        z2 = false;
-                    }
-                } else {
-                    z2 = true;
-                }
-            } else {
-                z2 = true;
-            }
-        } else {
-            z2 = true;
-        }
-        this.doneButton.setEnabled(z2);
+        boolean zHasChanges = hasChanges();
+        this.doneButton.setEnabled(zHasChanges);
         if (z) {
-            this.doneButton.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.0f).scaleY(z2 ? 1.0f : 0.0f).setDuration(180L).start();
+            this.doneButton.animate().alpha(zHasChanges ? 1.0f : 0.0f).scaleX(zHasChanges ? 1.0f : 0.0f).scaleY(zHasChanges ? 1.0f : 0.0f).setDuration(180L).start();
             return;
         }
-        this.doneButton.setAlpha(z2 ? 1.0f : 0.0f);
-        this.doneButton.setScaleX(z2 ? 1.0f : 0.0f);
-        this.doneButton.setScaleY(z2 ? 1.0f : 0.0f);
+        this.doneButton.setAlpha(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
+        this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
     }
 
-    @Override
-    public final View createView(Context context) {
-        AnonymousClass1 anonymousClass1 = new AnonymousClass1(this, context, LocaleController.getString(R.string.EditProfileFirstName), this.resourceProvider, 0);
-        this.firstNameEdit = anonymousClass1;
-        anonymousClass1.setDivider(true);
-        this.firstNameEdit.hideKeyboardOnEnter();
-        AnonymousClass1 anonymousClass2 = new AnonymousClass1(this, context, LocaleController.getString(R.string.EditProfileLastName), this.resourceProvider, 1);
-        this.lastNameEdit = anonymousClass2;
-        anonymousClass2.hideKeyboardOnEnter();
-        AnonymousClass1 anonymousClass3 = new AnonymousClass1(this, context, LocaleController.getString(R.string.EditProfileBioHint2), getMessagesController().getAboutLimit(), this.resourceProvider);
-        this.bioEdit = anonymousClass3;
-        anonymousClass3.setShowLimitWhenEmpty(true);
-        updateBioInfo();
-        this.bioInfo = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.EditProfileBioInfo2), new UserInfoActivity$$ExternalSyntheticLambda0(this, 0));
-        super.createView(context);
-        UniversalFragment.AnonymousClass3 anonymousClass4 = super.listView;
-        this.listView = anonymousClass4;
-        anonymousClass4.setSections();
-        this.listView.setClipToPadding(false);
-        this.actionBar.setAdaptiveBackground(this.listView);
-        INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout != null && ((ActionBarLayout) iNavigationLayout).isRightLayout) {
-            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
+    public void lambda$fillItems$1() {
+        presentFragment(new PrivacyControlActivity(11));
+    }
+
+    public void lambda$fillItems$2() {
+        presentFragment(new PremiumPreviewFragment("add_account"));
+    }
+
+    public void lambda$onClick$3(TL_account.TL_birthday tL_birthday) {
+        this.birthday = tL_birthday;
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null) {
+            universalRecyclerView.adapter.update(true);
         }
-        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass4(this, 0));
-        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i = Theme.key_actionBarDefaultIcon;
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(null, i, false)));
-        this.doneButton = this.actionBar.createMenu().addItemWithWidth(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.doneButtonDrawable);
-        checkDone$4(false);
-        setValue$5();
-        return this.fragmentView;
+        checkDone(true);
     }
 
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        ArrayList<TL_account.TL_connectedBot> arrayList;
-        if (i == NotificationCenter.userInfoDidLoad) {
-            setValue$5();
+    public void lambda$onClick$4(TLRPC.Chat chat) {
+        if (this.channel == chat) {
             return;
         }
-        if (i == NotificationCenter.updateInterfaces) {
-            UniversalFragment.AnonymousClass3 anonymousClass3 = this.listView;
-            if (anonymousClass3 != null) {
-                anonymousClass3.adapter.update(true);
-                return;
-            }
-            return;
+        this.channel = chat;
+        if (chat != null) {
+            FactCheckController$$ExternalSyntheticOutline0.m(R.string.EditProfileChannelSet, BulletinFactory.of(this), R.raw.contact_check);
         }
-        if (i == NotificationCenter.privacyRulesUpdated) {
-            updateBioInfo();
-            UniversalFragment.AnonymousClass3 anonymousClass4 = this.listView;
-            if (anonymousClass4 != null) {
-                anonymousClass4.adapter.update(true);
-                return;
-            }
-            return;
-        }
-        if (i == NotificationCenter.updatedChatbot) {
-            TL_account.connectedBots connectedbots = BusinessChatbotController.getInstance(this.currentAccount).value;
-            if (connectedbots == null || (arrayList = connectedbots.connected_bots) == null) {
-                arrayList = new ArrayList<>();
-            }
-            this.bots = arrayList;
-            UniversalFragment.AnonymousClass3 anonymousClass5 = this.listView;
-            if (anonymousClass5 != null) {
-                anonymousClass5.adapter.update(true);
-            }
+        checkDone(true);
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null) {
+            universalRecyclerView.adapter.update(true);
         }
     }
 
-    @Override
-    public final void fillItems$1(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        ArrayList<TLRPC.PrivacyRule> privacyRules;
-        int i = 2;
-        ArrayList arrayList2 = this.accountNumbers;
-        arrayList2.clear();
-        for (int i2 = 0; i2 < 4; i2++) {
-            if (UserConfig.getInstance(i2).isClientActivated() && this.currentAccount != i2) {
-                arrayList2.add(Integer.valueOf(i2));
-            }
+    public void lambda$onResume$5() {
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null) {
+            universalRecyclerView.adapter.update(true);
         }
-        Collections.sort(arrayList2, new OAuthSheet$$ExternalSyntheticLambda3(20));
-        String string = LocaleController.getString(R.string.EditProfileName);
-        UItem uItem = new UItem(0);
-        uItem.text = string;
-        arrayList.add(uItem);
-        arrayList.size();
-        arrayList.add(UItem.asCustom(this.firstNameEdit));
-        arrayList.size();
-        arrayList.add(UItem.asCustom(this.lastNameEdit));
-        arrayList.add(UItem.asShadow(-1, null));
-        arrayList.size();
-        arrayList.add(UItem.asCustom(this.bioEdit));
-        CharSequence charSequence = this.bioInfo;
-        UItem uItem2 = new UItem(7);
-        uItem2.text = charSequence;
-        arrayList.add(uItem2);
-        TLRPC.User currentUser = getUserConfig().getCurrentUser();
-        String string2 = LocaleController.getString(R.string.EditAccountInfoHeader);
-        UItem uItem3 = new UItem(0);
-        uItem3.text = string2;
-        arrayList.add(uItem3);
-        if (currentUser != null) {
-            arrayList.size();
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(7, -11154873, -14175180, R.drawable.settings_calls, UserObject$$ExternalSyntheticOutline0.m(new StringBuilder("+"), currentUser.phone, PhoneFormat.getInstance()), LocaleController.getString(R.string.TapToChangePhone), null));
-        }
-        arrayList.size();
-        if (UserObject.getPublicUsername(currentUser) != null) {
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(8, -1007845, -1996271, R.drawable.filled_chatlist_mention, "@" + UserObject.getPublicUsername(currentUser), LocaleController.getString(R.string.Username), null));
-        } else {
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(8, -1007845, -1996271, R.drawable.filled_chatlist_mention, LocaleController.getString(R.string.AddUsername), null, null));
-        }
-        arrayList.size();
-        TL_account.TL_birthday tL_birthday = this.birthday;
-        if (tL_birthday != null) {
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(9, -14899731, -15431455, R.drawable.filled_birthday, birthdayString(tL_birthday), LocaleController.getString(R.string.ContactBirthday), null));
-        } else {
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(9, -14899731, -15431455, R.drawable.filled_birthday, LocaleController.getString(R.string.AddBirthday), null, null));
-        }
-        if (!getContactsController().getLoadingPrivacyInfo(11) && (privacyRules = getContactsController().getPrivacyRules(11)) != null && this.birthdayInfo == null) {
-            String string3 = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
-            if (!privacyRules.isEmpty()) {
-                for (int i3 = 0; i3 < privacyRules.size(); i3++) {
-                    if (privacyRules.get(i3) instanceof TLRPC.TL_privacyValueAllowContacts) {
-                        string3 = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
-                        break;
-                    }
-                    if ((privacyRules.get(i3) instanceof TLRPC.TL_privacyValueAllowAll) || (privacyRules.get(i3) instanceof TLRPC.TL_privacyValueDisallowAll)) {
-                        string3 = LocaleController.getString(R.string.EditProfileBirthdayInfo);
-                    }
-                }
-            }
-            this.birthdayInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string3, new UserInfoActivity$$ExternalSyntheticLambda0(this, i)), true);
-        }
-        CharSequence charSequence2 = this.birthdayInfo;
-        UItem uItem4 = new UItem(7);
-        uItem4.text = charSequence2;
-        arrayList.add(uItem4);
-        arrayList.size();
-        if (this.channel == null) {
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(3, -1007845, -1996271, R.drawable.msg_filled_menu_channels, LocaleController.getString(R.string.EditProfileChannelTitle), null, LocaleController.getString(R.string.EditProfileChannelAdd)));
-        } else {
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(3, -1007845, -1996271, R.drawable.msg_filled_menu_channels, LocaleController.getString(R.string.EditProfileChannelTitle), this.channel.title, null));
-        }
-        if (this.hadHours) {
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(4, -881871, -1940716, R.drawable.filled_premium_hours, LocaleController.getString(R.string.EditProfileHours), null, null));
-        }
-        if (this.hadLocation) {
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(5, -765355, -2148011, R.drawable.filled_location, LocaleController.getString(R.string.EditProfileLocation), null, null));
-        }
-        ArrayList arrayList3 = this.bots;
-        if (arrayList3 == null || arrayList3.isEmpty()) {
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(6, -3903756, -6335009, R.drawable.premium_ai_editor, TextCell.applyNewSpan(LocaleController.getString(R.string.EditProfileChatAutomation)), null, null));
-        } else {
-            StringBuilder sb = new StringBuilder();
-            ArrayList arrayList4 = this.bots;
-            int size = arrayList4.size();
-            int i4 = 0;
-            while (i4 < size) {
-                Object obj = arrayList4.get(i4);
-                i4++;
-                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TL_account.TL_connectedBot) obj).bot_id));
-                if (user != null) {
-                    if (sb.length() > 0) {
-                        sb.append(", ");
-                    }
-                    sb.append(UserObject.getUserName(user));
-                }
-            }
-            arrayList.add(SettingsActivity.SettingCell.Factory.of(6, -3903756, -6335009, R.drawable.premium_ai_editor, LocaleController.getString(R.string.EditProfileChatAutomation), sb, null));
-        }
-        arrayList.add(UItem.asShadow(-3, LocaleController.getString(R.string.EditProfileChatAutomationInfo)));
-        boolean z = UserConfig.getActivatedAccountsCount() < 4;
-        if (z) {
-            arrayList.size();
-            int i5 = R.drawable.outline_add_account;
-            String string4 = LocaleController.getString(R.string.AddAccount);
-            int i6 = InfoCell.Factory.$r8$clinit;
-            UItem uItemOfFactory = UItem.ofFactory(InfoCell.Factory.class);
-            uItemOfFactory.id = 10;
-            uItemOfFactory.iconResId = i5;
-            uItemOfFactory.text = string4;
-            uItemOfFactory.subtext = null;
-            uItemOfFactory.intValue = 0;
-            uItemOfFactory.accent = true;
-            arrayList.add(uItemOfFactory);
-        }
-        if (!arrayList2.isEmpty()) {
-            if (!z) {
-                String string5 = LocaleController.getString(R.string.SettingsAccounts);
-                UItem uItem5 = new UItem(0);
-                uItem5.text = string5;
-                arrayList.add(uItem5);
-            }
-            for (int i7 = 0; i7 < arrayList2.size(); i7++) {
-                int iIntValue = ((Integer) arrayList2.get(i7)).intValue();
-                int i8 = SettingsActivity.AccountCell.Factory.$r8$clinit;
-                UItem uItemOfFactory2 = UItem.ofFactory(SettingsActivity.AccountCell.Factory.class);
-                uItemOfFactory2.id = i7;
-                uItemOfFactory2.intValue = iIntValue;
-                arrayList.add(uItemOfFactory2);
-            }
-            if (UserConfig.hasPremiumOnAccounts()) {
-                UItem uItem6 = new UItem(7);
-                uItem6.text = null;
-                arrayList.add(uItem6);
-            } else {
-                int iMax = Math.max(0, UserConfig.getMaxAccountCount() - UserConfig.getActivatedAccountsCount());
-                CharSequence charSequenceConcat = TextUtils.concat(iMax > 0 ? LocaleController.formatPluralStringComma("AddAccountInfo1", iMax) + " " : "", AndroidUtilities.replaceSingleTag(LocaleController.formatPluralStringComma("AddAccountInfo2", UserConfig.getMaxAccountCount()), new UserInfoActivity$$ExternalSyntheticLambda0(this, 3)));
-                UItem uItem7 = new UItem(7);
-                uItem7.text = charSequenceConcat;
-                arrayList.add(uItem7);
-            }
-        }
-        arrayList.size();
-        int i9 = R.drawable.msg_leave;
-        String string6 = LocaleController.getString(R.string.LogOut);
-        int i10 = InfoCell.Factory.$r8$clinit;
-        UItem uItemOfFactory3 = UItem.ofFactory(InfoCell.Factory.class);
-        uItemOfFactory3.id = 11;
-        uItemOfFactory3.iconResId = i9;
-        uItemOfFactory3.text = string6;
-        uItemOfFactory3.subtext = null;
-        uItemOfFactory3.intValue = 0;
-        uItemOfFactory3.red = true;
-        arrayList.add(uItemOfFactory3);
-        arrayList.add(UItem.asShadow(-4, null));
     }
 
-    @Override
-    public final CharSequence getTitle() {
-        return LocaleController.getString(R.string.EditAccountInfo2);
-    }
-
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    public final void lambda$processDone$6(TLRPC.TL_error tL_error, TLObject tLObject, TL_account.TL_birthday tL_birthday, TLRPC.UserFull userFull, TLObject tLObject2, int[] iArr, ArrayList arrayList) {
+    public void lambda$processDone$6(TLRPC.TL_error tL_error, TLObject tLObject, TL_account.TL_birthday tL_birthday, TLRPC.UserFull userFull, TLObject tLObject2, int[] iArr, ArrayList arrayList) {
         String str;
         if (tL_error == null) {
             if (tLObject2 instanceof TLRPC.TL_boolFalse) {
                 this.doneButtonDrawable.animateToProgress(0.0f);
-                UserNameResolver$$ExternalSyntheticOutline0.m(R.string.UnknownError, BulletinFactory.of(this), null);
+                UserNameResolver$$ExternalSyntheticOutline0.m(BulletinFactory.of(this), R.string.UnknownError);
                 return;
             }
             this.wasSaved = true;
@@ -886,14 +544,8 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
         boolean z = tLObject instanceof TL_account.updateBirthday;
         if (!z || (str = tL_error.text) == null || !str.startsWith("FLOOD_WAIT_")) {
             BulletinFactory.showError(tL_error);
-        } else if (getParentActivity() != null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, this.resourceProvider);
-            String string = LocaleController.getString(R.string.PrivacyBirthdayTooOftenTitle);
-            AlertDialog alertDialog = builder.alertDialog;
-            alertDialog.title = string;
-            alertDialog.message = LocaleController.getString(R.string.PrivacyBirthdayTooOftenMessage);
-            builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
-            showDialog(alertDialog);
+        } else if (getContext() != null) {
+            showDialog(new AlertDialog.Builder(getContext(), 0, this.resourceProvider).setTitle(LocaleController.getString(R.string.PrivacyBirthdayTooOftenTitle)).setMessage(LocaleController.getString(R.string.PrivacyBirthdayTooOftenMessage)).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
         }
         if (z) {
             if (tL_birthday != null) {
@@ -906,155 +558,38 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
         }
     }
 
-    @Override
-    public final void onClick$1(UItem uItem, View view) {
-        int i = 0;
-        Integer numValueOf = null;
-        if (uItem.id == 10) {
-            for (int i2 = 3; i2 >= 0; i2--) {
-                if (!UserConfig.getInstance(i2).isClientActivated()) {
-                    i++;
-                    if (numValueOf == null) {
-                        numValueOf = Integer.valueOf(i2);
-                    }
-                }
-            }
-            if (!UserConfig.hasPremiumOnAccounts()) {
-                i--;
-            }
-            if (i > 0 && numValueOf != null) {
-                presentFragment(new LoginActivity(numValueOf.intValue()));
-                return;
-            } else {
-                if (UserConfig.hasPremiumOnAccounts()) {
-                    return;
-                }
-                showDialog(new LimitReachedBottomSheet(7, this.currentAccount, getParentActivity(), this, null));
-                return;
-            }
-        }
-        if (uItem.instanceOf(SettingsActivity.AccountCell.Factory.class)) {
-            int i3 = uItem.intValue;
-            LaunchActivity launchActivity = LaunchActivity.instance;
-            if (launchActivity != null) {
-                launchActivity.switchToAccount(i3);
-                return;
-            }
-            return;
-        }
-        int i4 = uItem.id;
-        if (i4 == 1 || i4 == 9) {
-            Activity parentActivity = getParentActivity();
-            String string = LocaleController.getString(R.string.EditProfileBirthdayTitle);
-            String string2 = LocaleController.getString(R.string.EditProfileBirthdayButton);
-            TL_account.TL_birthday tL_birthday = this.birthday;
-            showDialog(AlertsCreator.createBirthdayPickerDialog(parentActivity, string, string2, tL_birthday, new UserInfoActivity$$ExternalSyntheticLambda5(this, 1), null, false, tL_birthday != null, getResourceProvider()).bottomSheet);
-            return;
-        }
-        if (i4 == 2) {
-            this.birthday = null;
-            UniversalFragment.AnonymousClass3 anonymousClass3 = this.listView;
-            if (anonymousClass3 != null) {
-                anonymousClass3.adapter.update(true);
-            }
-            checkDone$4(true);
-            return;
-        }
-        if (i4 == 3) {
-            TLRPC.Chat chat = this.channel;
-            presentFragment(new ChooseChannelFragment(this.channels, chat == null ? 0L : chat.id, new UserInfoActivity$$ExternalSyntheticLambda5(this, 0)));
-            return;
-        }
-        if (i4 == 5) {
-            presentFragment(new org.telegram.ui.Business.LocationActivity());
-            return;
-        }
-        if (i4 == 4) {
-            presentFragment(new OpeningHoursActivity());
-            return;
-        }
-        if (i4 == 6) {
-            presentFragment(new ChatbotsActivity());
-            return;
-        }
-        if (i4 == 7) {
-            presentFragment(new ActionIntroActivity(3));
-        } else if (i4 == 8) {
-            presentFragment(new ChangeUsernameActivity(null));
-        } else if (i4 == 11) {
-            presentFragment(new LogoutActivity(null));
-        }
+    public void lambda$processDone$7(TLObject tLObject, TL_account.TL_birthday tL_birthday, TLRPC.UserFull userFull, int[] iArr, ArrayList arrayList, TLObject tLObject2, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new UserInfoActivity$$ExternalSyntheticLambda7(arrayList, tLObject, tLObject2, tL_error, userFull, tL_birthday, this, iArr));
     }
 
-    @Override
-    public final boolean onFragmentCreate() {
-        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
-        getNotificationCenter().addObserver(this, NotificationCenter.privacyRulesUpdated);
-        getNotificationCenter().addObserver(this, NotificationCenter.updateInterfaces);
-        getNotificationCenter().addObserver(this, NotificationCenter.updatedChatbot);
-        getContactsController().loadPrivacySettings();
-        BusinessChatbotController.getInstance(this.currentAccount).load(null);
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
-        getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
-        getNotificationCenter().removeObserver(this, NotificationCenter.updateInterfaces);
-        getNotificationCenter().removeObserver(this, NotificationCenter.updatedChatbot);
-        super.onFragmentDestroy();
-        if (this.wasSaved) {
-            return;
+    public static int lambda$updateAccounts$0(Integer num, Integer num2) {
+        long j = UserConfig.getInstance(num.intValue()).loginTime;
+        long j2 = UserConfig.getInstance(num2.intValue()).loginTime;
+        if (j > j2) {
+            return 1;
         }
-        processDone$1(false);
+        return j < j2 ? -1 : 0;
     }
 
-    @Override
-    public final void onInsets(int i, int i2, int i3, int i4) {
-        this.listView.setPadding(0, 0, 0, i4);
-        this.listView.setClipToPadding(false);
+    public void openBioSettings() {
+        presentFragment(new PrivacyControlActivity(9, true));
     }
 
-    @Override
-    public final boolean onLongClick(UItem uItem, View view) {
-        return false;
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        AdminedChannelsFetcher adminedChannelsFetcher = this.channels;
-        adminedChannelsFetcher.loaded = false;
-        adminedChannelsFetcher.callbacks.add(new UserInfoActivity$$ExternalSyntheticLambda0(this, 1));
-        if (!adminedChannelsFetcher.loaded && !adminedChannelsFetcher.loading) {
-            adminedChannelsFetcher.loading = true;
-            TLRPC.TL_channels_getAdminedPublicChannels tL_channels_getAdminedPublicChannels = new TLRPC.TL_channels_getAdminedPublicChannels();
-            tL_channels_getAdminedPublicChannels.for_personal = adminedChannelsFetcher.for_personal;
-            ConnectionsManager.getInstance(adminedChannelsFetcher.currentAccount).sendRequest(tL_channels_getAdminedPublicChannels, new RichMediaUploader$$ExternalSyntheticLambda0(adminedChannelsFetcher, 10));
-        }
-        this.birthdayInfo = null;
-        UniversalFragment.AnonymousClass3 anonymousClass3 = this.listView;
-        if (anonymousClass3 != null) {
-            anonymousClass3.adapter.update(true);
-        }
-    }
-
-    public final void processDone$1(boolean z) {
-        if (this.doneButtonDrawable.progress <= 0.0f) {
+    public void processDone(boolean z) {
+        if (this.doneButtonDrawable.getProgress() <= 0.0f) {
             if (z && TextUtils.isEmpty(this.firstNameEdit.getText())) {
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AnonymousClass1 anonymousClass1 = this.firstNameEdit;
+                EditTextCell editTextCell = this.firstNameEdit;
                 int i = -this.shiftDp;
                 this.shiftDp = i;
-                AndroidUtilities.shakeViewSpring(anonymousClass1, i);
+                AndroidUtilities.shakeViewSpring(editTextCell, i);
                 return;
             }
             this.doneButtonDrawable.animateToProgress(1.0f);
             TLRPC.User currentUser = getUserConfig().getCurrentUser();
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+            final TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
             if (currentUser != null && userFull != null) {
-                ArrayList arrayList = new ArrayList();
+                final ArrayList arrayList = new ArrayList();
                 if (!TextUtils.isEmpty(this.firstNameEdit.getText()) && (!TextUtils.equals(this.currentFirstName, this.firstNameEdit.getText().toString()) || !TextUtils.equals(this.currentLastName, this.lastNameEdit.getText().toString()) || !TextUtils.equals(this.currentBio, this.bioEdit.getText().toString()))) {
                     TL_account.updateProfile updateprofile = new TL_account.updateProfile();
                     updateprofile.flags |= 1;
@@ -1072,7 +607,7 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
                     userFull.flags = TextUtils.isEmpty(string3) ? userFull.flags & (-3) : userFull.flags | 2;
                     arrayList.add(updateprofile);
                 }
-                TL_account.TL_birthday tL_birthday = userFull.birthday;
+                final TL_account.TL_birthday tL_birthday = userFull.birthday;
                 if (!birthdaysEqual(this.currentBirthday, this.birthday)) {
                     TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                     TL_account.TL_birthday tL_birthday2 = this.birthday;
@@ -1114,10 +649,17 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
                     finishFragment();
                     return;
                 }
-                int[] iArr = {0};
+                final int[] iArr = {0};
                 for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                    TLObject tLObject = (TLObject) arrayList.get(i2);
-                    getConnectionsManager().sendRequest(tLObject, new UserInfoActivity$$ExternalSyntheticLambda1(this, tLObject, tL_birthday, userFull, iArr, arrayList, 0), 1024);
+                    final TLObject tLObject = (TLObject) arrayList.get(i2);
+                    getConnectionsManager().sendRequest(tLObject, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                            int[] iArr2 = iArr;
+                            ArrayList arrayList2 = arrayList;
+                            this.f$0.lambda$processDone$7(tLObject, tL_birthday, userFull, iArr2, arrayList2, tLObject2, tL_error);
+                        }
+                    }, 1024);
                 }
                 getMessagesStorage().updateUserInfo(userFull, false);
                 getUserConfig().saveConfig(true);
@@ -1127,7 +669,7 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
         }
     }
 
-    public final void setValue$5() {
+    private void setValue() {
         UniversalAdapter universalAdapter;
         if (this.valueSet) {
             return;
@@ -1144,18 +686,18 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
         if (currentUser == null) {
             return;
         }
-        AnonymousClass1 anonymousClass1 = this.firstNameEdit;
+        EditTextCell editTextCell = this.firstNameEdit;
         String str = currentUser.first_name;
         this.currentFirstName = str;
-        anonymousClass1.setText(str);
-        AnonymousClass1 anonymousClass2 = this.lastNameEdit;
+        editTextCell.setText(str);
+        EditTextCell editTextCell2 = this.lastNameEdit;
         String str2 = currentUser.last_name;
         this.currentLastName = str2;
-        anonymousClass2.setText(str2);
-        AnonymousClass1 anonymousClass3 = this.bioEdit;
+        editTextCell2.setText(str2);
+        EditTextCell editTextCell3 = this.bioEdit;
         String str3 = userFull.about;
         this.currentBio = str3;
-        anonymousClass3.setText(str3);
+        editTextCell3.setText(str3);
         TL_account.TL_birthday tL_birthday = userFull.birthday;
         this.currentBirthday = tL_birthday;
         this.birthday = tL_birthday;
@@ -1168,21 +710,31 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
         }
         this.hadHours = userFull.business_work_hours != null;
         this.hadLocation = userFull.business_location != null;
-        checkDone$4(true);
-        UniversalFragment.AnonymousClass3 anonymousClass4 = this.listView;
-        if (anonymousClass4 != null && (universalAdapter = anonymousClass4.adapter) != null) {
+        checkDone(true);
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
             universalAdapter.update(true);
         }
         this.valueSet = true;
     }
 
-    public final void updateBioInfo() {
+    private void updateAccounts() {
+        this.accountNumbers.clear();
+        for (int i = 0; i < 4; i++) {
+            if (UserConfig.getInstance(i).isClientActivated() && this.currentAccount != i) {
+                this.accountNumbers.add(Integer.valueOf(i));
+            }
+        }
+        Collections.sort(this.accountNumbers, new OAuthSheet$$ExternalSyntheticLambda10(19));
+    }
+
+    public void updateBioInfo() {
         boolean z;
-        UniversalFragment.AnonymousClass3 anonymousClass3;
+        UniversalRecyclerView universalRecyclerView;
         int i = this.bioInfoHash;
-        AnonymousClass1 anonymousClass1 = this.bioEdit;
+        EditTextCell editTextCell = this.bioEdit;
         int i2 = 0;
-        if (anonymousClass1 == null || TextUtils.isEmpty(anonymousClass1.getText())) {
+        if (editTextCell == null || TextUtils.isEmpty(editTextCell.getText())) {
             z = true;
             this.bioInfo = LocaleController.getString(R.string.EditProfileBioInfo2);
             this.bioInfoHash = Objects.hash(0);
@@ -1282,9 +834,444 @@ public final class UserInfoActivity extends UniversalFragment implements Notific
                 this.bioInfoHash = Objects.hash(Integer.valueOf(i3 + 10), Integer.valueOf(size2), Integer.valueOf(size));
             }
         }
-        if (i == this.bioInfoHash || (anonymousClass3 = this.listView) == null) {
+        if (i == this.bioInfoHash || (universalRecyclerView = this.listView) == null) {
             return;
         }
-        anonymousClass3.adapter.update(z);
+        universalRecyclerView.adapter.update(z);
+    }
+
+    @Override
+    public View createView(Context context) {
+        int i = -1;
+        boolean z = false;
+        boolean z2 = false;
+        EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.EditProfileFirstName), z, z2, i, this.resourceProvider) {
+            @Override
+            public void onTextChanged(CharSequence charSequence) {
+                UserInfoActivity.this.checkDone(true);
+            }
+        };
+        this.firstNameEdit = editTextCell;
+        editTextCell.setDivider(true);
+        this.firstNameEdit.hideKeyboardOnEnter();
+        EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.EditProfileLastName), z, z2, i, this.resourceProvider) {
+            @Override
+            public void onTextChanged(CharSequence charSequence) {
+                UserInfoActivity.this.checkDone(true);
+            }
+        };
+        this.lastNameEdit = editTextCell2;
+        editTextCell2.hideKeyboardOnEnter();
+        EditTextCell editTextCell3 = new EditTextCell(context, LocaleController.getString(R.string.EditProfileBioHint2), true, z2, getMessagesController().getAboutLimit(), this.resourceProvider) {
+            @Override
+            public void onTextChanged(CharSequence charSequence) {
+                UserInfoActivity.this.checkDone(true);
+                UserInfoActivity.this.updateBioInfo();
+            }
+        };
+        this.bioEdit = editTextCell3;
+        editTextCell3.setShowLimitWhenEmpty(true);
+        updateBioInfo();
+        this.bioInfo = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.EditProfileBioInfo2), new UserInfoActivity$$ExternalSyntheticLambda0(this, 0));
+        super.createView(context);
+        UniversalRecyclerView universalRecyclerView = super.listView;
+        this.listView = universalRecyclerView;
+        universalRecyclerView.setSections();
+        this.listView.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.listView);
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && ((ActionBarLayout) iNavigationLayout).isRightLayout) {
+            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
+        }
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i2) {
+                if (i2 == -1) {
+                    if (UserInfoActivity.this.onBackPressed(true)) {
+                        UserInfoActivity.this.finishFragment();
+                    }
+                } else if (i2 == 1) {
+                    UserInfoActivity.this.processDone(true);
+                }
+            }
+        });
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
+        int i2 = Theme.key_actionBarDefaultIcon;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i2, false), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(null, i2, false)));
+        this.doneButton = this.actionBar.createMenu().addItemWithWidth(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.doneButtonDrawable);
+        checkDone(false);
+        setValue();
+        return this.fragmentView;
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        ArrayList<TL_account.TL_connectedBot> arrayList;
+        if (i == NotificationCenter.userInfoDidLoad) {
+            setValue();
+            return;
+        }
+        if (i == NotificationCenter.updateInterfaces) {
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView != null) {
+                universalRecyclerView.adapter.update(true);
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.privacyRulesUpdated) {
+            updateBioInfo();
+            UniversalRecyclerView universalRecyclerView2 = this.listView;
+            if (universalRecyclerView2 != null) {
+                universalRecyclerView2.adapter.update(true);
+                return;
+            }
+            return;
+        }
+        if (i == NotificationCenter.updatedChatbot) {
+            TL_account.connectedBots connectedbots = BusinessChatbotController.getInstance(this.currentAccount).value;
+            if (connectedbots == null || (arrayList = connectedbots.connected_bots) == null) {
+                arrayList = new ArrayList<>();
+            }
+            this.bots = arrayList;
+            UniversalRecyclerView universalRecyclerView3 = this.listView;
+            if (universalRecyclerView3 != null) {
+                universalRecyclerView3.adapter.update(true);
+            }
+        }
+    }
+
+    @Override
+    public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
+        char c;
+        ArrayList<TLRPC.PrivacyRule> privacyRules;
+        int i = 2;
+        int i2 = 1;
+        this.addAccountRow = -1;
+        this.numberRow = -1;
+        updateAccounts();
+        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.EditProfileName)));
+        this.firstNameRow = arrayList.size();
+        arrayList.add(UItem.asCustom(this.firstNameEdit));
+        this.lastNameRow = arrayList.size();
+        arrayList.add(UItem.asCustom(this.lastNameEdit));
+        arrayList.add(UItem.asShadow(-1, null));
+        this.bioRow = arrayList.size();
+        arrayList.add(UItem.asCustom(this.bioEdit));
+        arrayList.add(UItem.asShadow(this.bioInfo));
+        TLRPC.User currentUser = getUserConfig().getCurrentUser();
+        zzke.m(R.string.EditAccountInfoHeader, arrayList);
+        if (currentUser != null) {
+            this.numberRow = arrayList.size();
+            IconBackgroundColors iconBackgroundColors = IconBackgroundColors.GREEN;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(7, iconBackgroundColors.top, iconBackgroundColors.bottom, R.drawable.settings_calls, UserObject$$ExternalSyntheticOutline0.m(new StringBuilder("+"), currentUser.phone, PhoneFormat.getInstance()), LocaleController.getString(R.string.TapToChangePhone)));
+        }
+        this.usernameRow = arrayList.size();
+        if (UserObject.getPublicUsername(currentUser) != null) {
+            IconBackgroundColors iconBackgroundColors2 = IconBackgroundColors.ORANGE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(8, iconBackgroundColors2.top, iconBackgroundColors2.bottom, R.drawable.filled_chatlist_mention, "@" + UserObject.getPublicUsername(currentUser), LocaleController.getString(R.string.Username)));
+        } else {
+            IconBackgroundColors iconBackgroundColors3 = IconBackgroundColors.ORANGE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(8, iconBackgroundColors3.top, iconBackgroundColors3.bottom, R.drawable.filled_chatlist_mention, LocaleController.getString(R.string.AddUsername), null));
+        }
+        this.birthdayRow = arrayList.size();
+        TL_account.TL_birthday tL_birthday = this.birthday;
+        if (tL_birthday != null) {
+            IconBackgroundColors iconBackgroundColors4 = IconBackgroundColors.BLUE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(9, iconBackgroundColors4.top, iconBackgroundColors4.bottom, R.drawable.filled_birthday, birthdayString(tL_birthday), LocaleController.getString(R.string.ContactBirthday)));
+        } else {
+            IconBackgroundColors iconBackgroundColors5 = IconBackgroundColors.BLUE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(9, iconBackgroundColors5.top, iconBackgroundColors5.bottom, R.drawable.filled_birthday, LocaleController.getString(R.string.AddBirthday), null));
+        }
+        if (!getContactsController().getLoadingPrivacyInfo(11) && (privacyRules = getContactsController().getPrivacyRules(11)) != null && this.birthdayInfo == null) {
+            String string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
+            if (!privacyRules.isEmpty()) {
+                for (int i3 = 0; i3 < privacyRules.size(); i3++) {
+                    if (privacyRules.get(i3) instanceof TLRPC.TL_privacyValueAllowContacts) {
+                        string = LocaleController.getString(R.string.EditProfileBirthdayInfoContacts);
+                        break;
+                    }
+                    if ((privacyRules.get(i3) instanceof TLRPC.TL_privacyValueAllowAll) || (privacyRules.get(i3) instanceof TLRPC.TL_privacyValueDisallowAll)) {
+                        string = LocaleController.getString(R.string.EditProfileBirthdayInfo);
+                    }
+                }
+            }
+            this.birthdayInfo = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(string, new UserInfoActivity$$ExternalSyntheticLambda0(this, i2)), true);
+        }
+        arrayList.add(UItem.asShadow(this.birthdayInfo));
+        this.channelRow = arrayList.size();
+        if (this.channel == null) {
+            IconBackgroundColors iconBackgroundColors6 = IconBackgroundColors.ORANGE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(3, iconBackgroundColors6.top, iconBackgroundColors6.bottom, R.drawable.msg_filled_menu_channels, LocaleController.getString(R.string.EditProfileChannelTitle), null, LocaleController.getString(R.string.EditProfileChannelAdd)));
+        } else {
+            IconBackgroundColors iconBackgroundColors7 = IconBackgroundColors.ORANGE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(3, iconBackgroundColors7.top, iconBackgroundColors7.bottom, R.drawable.msg_filled_menu_channels, LocaleController.getString(R.string.EditProfileChannelTitle), this.channel.title));
+        }
+        if (this.hadHours) {
+            IconBackgroundColors iconBackgroundColors8 = IconBackgroundColors.ORANGE_DEEP;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(4, iconBackgroundColors8.top, iconBackgroundColors8.bottom, R.drawable.filled_premium_hours, LocaleController.getString(R.string.EditProfileHours)));
+        }
+        if (this.hadLocation) {
+            IconBackgroundColors iconBackgroundColors9 = IconBackgroundColors.RED;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(5, iconBackgroundColors9.top, iconBackgroundColors9.bottom, R.drawable.filled_location, LocaleController.getString(R.string.EditProfileLocation)));
+        }
+        ArrayList<TL_account.TL_connectedBot> arrayList2 = this.bots;
+        if (arrayList2 == null || arrayList2.isEmpty()) {
+            c = 1;
+            IconBackgroundColors iconBackgroundColors10 = IconBackgroundColors.PURPLE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(6, iconBackgroundColors10.top, iconBackgroundColors10.bottom, R.drawable.premium_ai_editor, TextCell.applyNewSpan(LocaleController.getString(R.string.EditProfileChatAutomation))));
+        } else {
+            StringBuilder sb = new StringBuilder();
+            ArrayList<TL_account.TL_connectedBot> arrayList3 = this.bots;
+            int size = arrayList3.size();
+            int i4 = 0;
+            while (i4 < size) {
+                TL_account.TL_connectedBot tL_connectedBot = arrayList3.get(i4);
+                i4 += i2;
+                ArrayList<TL_account.TL_connectedBot> arrayList4 = arrayList3;
+                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_connectedBot.bot_id));
+                if (user != null) {
+                    if (sb.length() > 0) {
+                        sb.append(", ");
+                    }
+                    sb.append(UserObject.getUserName(user));
+                }
+                arrayList3 = arrayList4;
+                i2 = 1;
+            }
+            c = 1;
+            IconBackgroundColors iconBackgroundColors11 = IconBackgroundColors.PURPLE;
+            arrayList.add(SettingsActivity.SettingCell.Factory.of(6, iconBackgroundColors11.top, iconBackgroundColors11.bottom, R.drawable.premium_ai_editor, LocaleController.getString(R.string.EditProfileChatAutomation), sb));
+        }
+        arrayList.add(UItem.asShadow(-3, LocaleController.getString(R.string.EditProfileChatAutomationInfo)));
+        boolean z = UserConfig.getActivatedAccountsCount() < 4;
+        if (z) {
+            this.addAccountRow = arrayList.size();
+            arrayList.add(InfoCell.Factory.of(10, R.drawable.outline_add_account, LocaleController.getString(R.string.AddAccount), null, 0).accent());
+        }
+        if (!this.accountNumbers.isEmpty()) {
+            if (!z) {
+                zzke.m(R.string.SettingsAccounts, arrayList);
+            }
+            for (int i5 = 0; i5 < this.accountNumbers.size(); i5++) {
+                arrayList.add(SettingsActivity.AccountCell.Factory.of(i5, this.accountNumbers.get(i5).intValue()));
+            }
+            if (UserConfig.hasPremiumOnAccounts()) {
+                arrayList.add(UItem.asShadow(null));
+            } else {
+                int iMax = Math.max(0, UserConfig.getMaxAccountCount() - UserConfig.getActivatedAccountsCount());
+                String str = iMax > 0 ? LocaleController.formatPluralStringComma("AddAccountInfo1", iMax) + " " : "";
+                SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.formatPluralStringComma("AddAccountInfo2", UserConfig.getMaxAccountCount()), new UserInfoActivity$$ExternalSyntheticLambda0(this, i));
+                CharSequence[] charSequenceArr = new CharSequence[2];
+                charSequenceArr[0] = str;
+                charSequenceArr[c] = spannableStringBuilderReplaceSingleTag;
+                arrayList.add(UItem.asShadow(TextUtils.concat(charSequenceArr)));
+            }
+        }
+        this.logoutRow = arrayList.size();
+        arrayList.add(InfoCell.Factory.of(11, R.drawable.msg_leave, LocaleController.getString(R.string.LogOut), null, 0).red());
+        arrayList.add(UItem.asShadow(-4, null));
+    }
+
+    @Override
+    public CharSequence getTitle() {
+        return LocaleController.getString(R.string.EditAccountInfo2);
+    }
+
+    public boolean hasChanges() {
+        String str = this.currentFirstName;
+        if (str == null) {
+            str = "";
+        }
+        if (!TextUtils.equals(str, this.firstNameEdit.getText().toString())) {
+            return true;
+        }
+        String str2 = this.currentLastName;
+        if (str2 == null) {
+            str2 = "";
+        }
+        if (!TextUtils.equals(str2, this.lastNameEdit.getText().toString())) {
+            return true;
+        }
+        String str3 = this.currentBio;
+        if (!TextUtils.equals(str3 != null ? str3 : "", this.bioEdit.getText().toString()) || !birthdaysEqual(this.currentBirthday, this.birthday)) {
+            return true;
+        }
+        long j = this.currentChannel;
+        TLRPC.Chat chat = this.channel;
+        return j != (chat != null ? chat.id : 0L);
+    }
+
+    @Override
+    public boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public void onClick(UItem uItem, View view, int i, float f, float f2) {
+        Integer numValueOf = null;
+        int i2 = 0;
+        if (uItem.id == 10) {
+            for (int i3 = 3; i3 >= 0; i3--) {
+                if (!UserConfig.getInstance(i3).isClientActivated()) {
+                    i2++;
+                    if (numValueOf == null) {
+                        numValueOf = Integer.valueOf(i3);
+                    }
+                }
+            }
+            if (!UserConfig.hasPremiumOnAccounts()) {
+                i2--;
+            }
+            if (i2 > 0 && numValueOf != null) {
+                presentFragment(new LoginActivity(numValueOf.intValue()));
+                return;
+            } else {
+                if (UserConfig.hasPremiumOnAccounts()) {
+                    return;
+                }
+                showDialog(new LimitReachedBottomSheet(7, this, getContext(), this.currentAccount, null));
+                return;
+            }
+        }
+        if (uItem.instanceOf(SettingsActivity.AccountCell.Factory.class)) {
+            int i4 = uItem.intValue;
+            LaunchActivity launchActivity = LaunchActivity.instance;
+            if (launchActivity != null) {
+                launchActivity.switchToAccount(i4, true);
+                return;
+            }
+            return;
+        }
+        int i5 = uItem.id;
+        if (i5 == 1 || i5 == 9) {
+            Context context = getContext();
+            String string = LocaleController.getString(R.string.EditProfileBirthdayTitle);
+            String string2 = LocaleController.getString(R.string.EditProfileBirthdayButton);
+            TL_account.TL_birthday tL_birthday = this.birthday;
+            final int i6 = 1;
+            showDialog(AlertsCreator.createBirthdayPickerDialog(context, string, string2, tL_birthday, new Utilities.Callback(this) {
+                public final UserInfoActivity f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void run(Object obj) {
+                    switch (i6) {
+                        case 0:
+                            this.f$0.lambda$onClick$4((TLRPC.Chat) obj);
+                            break;
+                        default:
+                            this.f$0.lambda$onClick$3((TL_account.TL_birthday) obj);
+                            break;
+                    }
+                }
+            }, null, false, tL_birthday != null, getResourceProvider()).bottomSheet);
+            return;
+        }
+        if (i5 == 2) {
+            this.birthday = null;
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView != null) {
+                universalRecyclerView.adapter.update(true);
+            }
+            checkDone(true);
+            return;
+        }
+        if (i5 == 3) {
+            AdminedChannelsFetcher adminedChannelsFetcher = this.channels;
+            TLRPC.Chat chat = this.channel;
+            final int i7 = 0;
+            presentFragment(new ChooseChannelFragment(adminedChannelsFetcher, chat == null ? 0L : chat.id, new Utilities.Callback(this) {
+                public final UserInfoActivity f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void run(Object obj) {
+                    switch (i7) {
+                        case 0:
+                            this.f$0.lambda$onClick$4((TLRPC.Chat) obj);
+                            break;
+                        default:
+                            this.f$0.lambda$onClick$3((TL_account.TL_birthday) obj);
+                            break;
+                    }
+                }
+            }));
+            return;
+        }
+        if (i5 == 5) {
+            presentFragment(new org.telegram.ui.Business.LocationActivity());
+            return;
+        }
+        if (i5 == 4) {
+            presentFragment(new OpeningHoursActivity());
+            return;
+        }
+        if (i5 == 6) {
+            presentFragment(new ChatbotsActivity());
+            return;
+        }
+        if (i5 == 7) {
+            presentFragment(new ActionIntroActivity(3));
+        } else if (i5 == 8) {
+            presentFragment(new ChangeUsernameActivity());
+        } else if (i5 == 11) {
+            presentFragment(new LogoutActivity());
+        }
+    }
+
+    @Override
+    public boolean onFragmentCreate() {
+        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
+        getNotificationCenter().addObserver(this, NotificationCenter.privacyRulesUpdated);
+        getNotificationCenter().addObserver(this, NotificationCenter.updateInterfaces);
+        getNotificationCenter().addObserver(this, NotificationCenter.updatedChatbot);
+        getContactsController().loadPrivacySettings();
+        BusinessChatbotController.getInstance(this.currentAccount).load(null);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
+        getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
+        getNotificationCenter().removeObserver(this, NotificationCenter.updateInterfaces);
+        getNotificationCenter().removeObserver(this, NotificationCenter.updatedChatbot);
+        super.onFragmentDestroy();
+        if (this.wasSaved) {
+            return;
+        }
+        processDone(false);
+    }
+
+    @Override
+    public void onInsets(int i, int i2, int i3, int i4) {
+        this.listView.setPadding(0, 0, 0, i4);
+        this.listView.setClipToPadding(false);
+    }
+
+    @Override
+    public boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+        return false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.channels.invalidate();
+        this.channels.subscribe(new UserInfoActivity$$ExternalSyntheticLambda0(this, 3));
+        this.channels.fetch();
+        this.birthdayInfo = null;
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null) {
+            universalRecyclerView.adapter.update(true);
+        }
     }
 }

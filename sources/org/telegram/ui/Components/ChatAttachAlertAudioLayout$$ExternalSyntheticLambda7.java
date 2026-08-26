@@ -11,19 +11,18 @@ public final class ChatAttachAlertAudioLayout$$ExternalSyntheticLambda7 implemen
     }
 
     @Override
-    public void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f$0.onItemClick((UItem) obj, (View) obj2);
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        int iIntValue = ((Integer) obj3).intValue();
+        float fFloatValue = ((Float) obj4).floatValue();
+        float fFloatValue2 = ((Float) obj5).floatValue();
+        return Boolean.valueOf(this.f$0.onItemLongClick((UItem) obj, (View) obj2, iIntValue, fFloatValue, fFloatValue2));
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f$0.onItemClick((UItem) obj, (View) obj2);
-        return Boolean.TRUE;
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        int iIntValue = ((Integer) obj3).intValue();
+        float fFloatValue = ((Float) obj4).floatValue();
+        float fFloatValue2 = ((Float) obj5).floatValue();
+        this.f$0.onItemClick((UItem) obj, (View) obj2, iIntValue, fFloatValue, fFloatValue2);
     }
 }

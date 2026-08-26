@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -8,7 +7,6 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,7 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
+import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -26,131 +24,81 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CallLogActivity;
-import org.telegram.ui.Cells.EditEmojiTextCell;
-import org.telegram.ui.Cells.WallpaperCell;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.Premium.boosts.BoostViaGiftsBottomSheet;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.WallpapersListActivity;
 
 public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
-    public final AnonymousClass4 actionBar;
-    public boolean actionBarIgnoreTouchEvents;
-    public AnimatedFloat actionBarSlideProgress;
-    public int actionBarType;
-    public final BaseFragment baseFragment;
-    public boolean centerTitle;
-    public int contentHeight;
-    public EditEmojiTextCell.AnonymousClass2 editTextEmoji;
-    public boolean handleOffset;
-    public final RectF handleRect;
+    protected ActionBar actionBar;
+    protected boolean actionBarIgnoreTouchEvents;
+    protected AnimatedFloat actionBarSlideProgress;
+    private ActionBarType actionBarType;
+    protected int additionalTitleX;
+    private BaseFragment baseFragment;
+    protected boolean centerTitle;
+    protected boolean clipToActionBar;
+    protected int contentHeight;
+    EditTextEmoji editTextEmoji;
+    protected boolean handleOffset;
+    private RectF handleRect;
     public final boolean hasFixedSize;
-    public int headerHeight;
-    public int headerMoveTop;
-    public int headerPaddingBottom;
-    public int headerPaddingTop;
-    public final Drawable headerShadowDrawable;
-    public int headerTotalHeight;
-    public boolean ignoreTouchActionBar;
-    public float lastTop;
-    public final PhotoViewer.AnonymousClass36 layoutManager;
-    public final AnonymousClass1 nestedSizeNotifierLayout;
-    public final RecyclerListView recyclerListView;
-    public boolean restore;
+    protected int headerHeight;
+    protected int headerMoveTop;
+    protected int headerPaddingBottom;
+    protected int headerPaddingTop;
+    private final Drawable headerShadowDrawable;
+    protected int headerTotalHeight;
+    protected boolean ignoreTouchActionBar;
+    private float lastTop;
+    protected LinearLayoutManager layoutManager;
+    public NestedSizeNotifierLayout nestedSizeNotifierLayout;
+    protected RecyclerListView recyclerListView;
+    private boolean restore;
     public boolean reverseLayout;
-    public int savedScrollOffset;
-    public int savedScrollPosition;
-    public float shadowAlpha;
-    public boolean showHandle;
-    public boolean showShadow;
-    public boolean takeTranslationIntoAccount;
+    private int savedScrollOffset;
+    private int savedScrollPosition;
+    private float shadowAlpha;
+    private boolean showHandle;
+    protected boolean showShadow;
+    public final boolean stackFromEnd;
+    protected boolean takeTranslationIntoAccount;
     public float topPadding;
-    public boolean wasDrawn;
+    boolean wasDrawn;
 
-    public final class AnonymousClass4 extends ActionBar {
-        public final SizeNotifierFrameLayout val$containerView;
-
-        public AnonymousClass4(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
-            super(context, null);
-            this.val$containerView = sizeNotifierFrameLayout;
-        }
-
-        @Override
-        public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-            BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
-            if (bottomSheetWithRecyclerListView.ignoreTouchActionBar && bottomSheetWithRecyclerListView.actionBarIgnoreTouchEvents) {
-                return false;
-            }
-            return super.dispatchTouchEvent(motionEvent);
-        }
-
-        @Override
-        public final void setAlpha(float f) {
-            if (getAlpha() != f) {
-                super.setAlpha(f);
-                this.val$containerView.invalidate();
-            }
-        }
-
-        @Override
-        public final void setTag(Object obj) {
-            super.setTag(obj);
-            BottomSheetWithRecyclerListView.this.updateStatusBar$1();
-        }
+    public enum ActionBarType {
+        FADING,
+        SLIDING
     }
 
-    public final class PaddingView extends View {
+    public class PaddingView extends View {
         public PaddingView(Context context) {
             super(context);
             setTag(-33024);
         }
 
         @Override
-        public final void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
             int i3 = bottomSheetWithRecyclerListView.contentHeight;
-            int iDp = (i3 == 0 ? AndroidUtilities.dp(300.0f) : (int) (i3 * bottomSheetWithRecyclerListView.topPadding)) - (((bottomSheetWithRecyclerListView.headerTotalHeight - bottomSheetWithRecyclerListView.headerHeight) - bottomSheetWithRecyclerListView.headerPaddingTop) - bottomSheetWithRecyclerListView.headerPaddingBottom);
-            if (iDp < 1) {
-                iDp = 1;
+            int iDp = i3 == 0 ? AndroidUtilities.dp(300.0f) : (int) (i3 * bottomSheetWithRecyclerListView.topPadding);
+            BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView2 = BottomSheetWithRecyclerListView.this;
+            int i4 = iDp - (((bottomSheetWithRecyclerListView2.headerTotalHeight - bottomSheetWithRecyclerListView2.headerHeight) - bottomSheetWithRecyclerListView2.headerPaddingTop) - bottomSheetWithRecyclerListView2.headerPaddingBottom);
+            if (i4 < 1) {
+                i4 = 1;
             }
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(iDp, 1073741824));
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(i4, 1073741824));
         }
 
         @Override
-        public final void setTranslationY(float f) {
+        public void setTranslationY(float f) {
             super.setTranslationY(f);
             ((BottomSheet) BottomSheetWithRecyclerListView.this).containerView.invalidate();
         }
     }
 
-    public BottomSheetWithRecyclerListView(BaseFragment baseFragment, boolean z) {
-        this(baseFragment.getParentActivity(), baseFragment, false, z, false, baseFragment == null ? null : baseFragment.getResourceProvider());
+    public BottomSheetWithRecyclerListView(BaseFragment baseFragment, boolean z, boolean z2) {
+        this(baseFragment, z, z2, false, baseFragment == null ? null : baseFragment.getResourceProvider());
     }
 
-    public final void applyScrolledPosition$1() {
-        RecyclerListView recyclerListView = this.recyclerListView;
-        if (recyclerListView == null || recyclerListView.getLayoutManager() == null || this.savedScrollPosition < 0) {
-            return;
-        }
-        int top = (this.savedScrollOffset - this.containerView.getTop()) - recyclerListView.getPaddingTop();
-        if (recyclerListView.getLayoutManager() instanceof LinearLayoutManager) {
-            ((LinearLayoutManager) recyclerListView.getLayoutManager()).scrollToPositionWithOffset(this.savedScrollPosition, top);
-        }
-        this.savedScrollPosition = -1;
-    }
-
-    @Override
-    public boolean canDismissWithSwipe() {
-        return false;
-    }
-
-    public boolean canHighlightChildAt(View view, float f, float f2) {
-        return true;
-    }
-
-    public final void checkBackDrawableInsets() {
+    private void checkBackDrawableInsets() {
         if (this.backDrawable == null || this.containerView == null || this.shadowDrawable == null || !shouldDrawBackground() || this.hasFixedSize) {
             return;
         }
@@ -177,29 +125,82 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         sheetBackDrawable2.invalidateSelf();
     }
 
+    private boolean isLightStatusBar() {
+        return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider)) > 0.699999988079071d;
+    }
+
+    public void updateStatusBar() {
+        if (this.attachedFragment != null) {
+            LaunchActivity.instance.checkSystemBarColors(true, true, true);
+            return;
+        }
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null && actionBar.getTag() != null) {
+            AndroidUtilities.setLightStatusBar(this, isLightStatusBar());
+            return;
+        }
+        BaseFragment baseFragment = this.baseFragment;
+        if (baseFragment != null) {
+            AndroidUtilities.setLightStatusBar(this, baseFragment.isLightStatusBar());
+        }
+    }
+
+    public void applyScrolledPosition() {
+        applyScrolledPosition(false);
+    }
+
+    @Override
+    public boolean canDismissWithSwipe() {
+        return false;
+    }
+
+    public boolean canHighlightChildAt(View view, float f, float f2) {
+        return true;
+    }
+
     public abstract RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView);
 
     public RecyclerListView createRecyclerView(Context context) {
-        return new ChatActivity.AnonymousClass34(this, context, this.resourcesProvider, 7);
+        return new RecyclerListView(context, this.resourcesProvider) {
+            @Override
+            public boolean canHighlightChildAt(View view, float f, float f2) {
+                return BottomSheetWithRecyclerListView.this.canHighlightChildAt(view, f, f2);
+            }
+
+            @Override
+            public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                BottomSheetWithRecyclerListView.this.applyScrolledPosition();
+                super.onLayout(z, i, i2, i3, i4);
+            }
+        };
     }
 
     public int getActionBarProgressHeight() {
         return AndroidUtilities.dp(56.0f);
     }
 
+    public BaseFragment getBaseFragment() {
+        return this.baseFragment;
+    }
+
     public abstract CharSequence getTitle();
 
     @Override
-    public final boolean isAttachedLightStatusBar() {
-        AnonymousClass4 anonymousClass4 = this.actionBar;
-        if (anonymousClass4 != null && anonymousClass4.getTag() != null) {
-            return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider)) > 0.699999988079071d;
+    public boolean isAttachedLightStatusBar() {
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null && actionBar.getTag() != null) {
+            return isLightStatusBar();
         }
         BaseFragment baseFragment = this.baseFragment;
-        if (baseFragment != null) {
-            return baseFragment.isLightStatusBar();
-        }
-        return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider)) > 0.699999988079071d;
+        return baseFragment != null ? baseFragment.isLightStatusBar() : isLightStatusBar();
+    }
+
+    public boolean needPaddingShadow() {
+        return true;
+    }
+
+    public void notifyDataSetChanged() {
+        this.recyclerListView.getAdapter().notifyDataSetChanged();
     }
 
     public void onActionBarAlpha(float f) {
@@ -211,7 +212,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         checkBackDrawableInsets();
     }
 
-    public void onPreDraw(Canvas canvas, int i) {
+    public void onPreDraw(Canvas canvas, int i, float f) {
     }
 
     public void onPreMeasure(int i, int i2) {
@@ -220,49 +221,48 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     public void onSheetTop(float f) {
     }
 
-    public void onViewCreated(SizeNotifierFrameLayout sizeNotifierFrameLayout) {
+    public void onViewCreated(FrameLayout frameLayout) {
     }
 
-    public final void postDrawInternal(Canvas canvas, FrameLayout frameLayout) {
+    public void postDrawInternal(Canvas canvas, View view) {
         float f;
-        int i = this.actionBarType;
-        Drawable drawable = this.headerShadowDrawable;
-        AnonymousClass4 anonymousClass4 = this.actionBar;
-        if (i == 1) {
+        ActionBarType actionBarType = this.actionBarType;
+        if (actionBarType == ActionBarType.FADING) {
             boolean z = this.showShadow;
             if (z) {
                 float f2 = this.shadowAlpha;
                 if (f2 != 1.0f) {
                     this.shadowAlpha = f2 + 0.10666667f;
-                    frameLayout.invalidate();
+                    view.invalidate();
                 } else if (!z) {
                     f = this.shadowAlpha;
                     if (f != 0.0f) {
                         this.shadowAlpha = f - 0.10666667f;
-                        frameLayout.invalidate();
+                        view.invalidate();
                     }
                 }
             } else if (!z) {
                 f = this.shadowAlpha;
                 if (f != 0.0f) {
                     this.shadowAlpha = f - 0.10666667f;
-                    frameLayout.invalidate();
+                    view.invalidate();
                 }
             }
             this.shadowAlpha = Utilities.clamp(this.shadowAlpha, 1.0f, 0.0f);
-            if (anonymousClass4 != null && anonymousClass4.getVisibility() == 0 && anonymousClass4.getAlpha() != 0.0f && this.shadowAlpha != 0.0f) {
-                drawable.setBounds(this.backgroundPaddingLeft, anonymousClass4.getBottom(), frameLayout.getMeasuredWidth() - this.backgroundPaddingLeft, drawable.getIntrinsicHeight() + anonymousClass4.getBottom());
-                drawable.setAlpha((int) (anonymousClass4.getAlpha() * 255.0f * this.shadowAlpha));
-                drawable.draw(canvas);
-                if (drawable.getAlpha() < 255) {
-                    frameLayout.invalidate();
+            ActionBar actionBar = this.actionBar;
+            if (actionBar != null && actionBar.getVisibility() == 0 && this.actionBar.getAlpha() != 0.0f && this.shadowAlpha != 0.0f) {
+                this.headerShadowDrawable.setBounds(this.backgroundPaddingLeft, this.actionBar.getBottom(), view.getMeasuredWidth() - this.backgroundPaddingLeft, this.headerShadowDrawable.getIntrinsicHeight() + this.actionBar.getBottom());
+                this.headerShadowDrawable.setAlpha((int) (this.actionBar.getAlpha() * 255.0f * this.shadowAlpha));
+                this.headerShadowDrawable.draw(canvas);
+                if (this.headerShadowDrawable.getAlpha() < 255) {
+                    view.invalidate();
                 }
             }
             this.wasDrawn = true;
-        } else if (i == 2 && ((int) (this.shadowAlpha * 255.0f)) != 0 && this.showShadow) {
-            drawable.setBounds(this.backgroundPaddingLeft, anonymousClass4.getBottom() + ((int) anonymousClass4.getTranslationY()), frameLayout.getMeasuredWidth() - this.backgroundPaddingLeft, drawable.getIntrinsicHeight() + anonymousClass4.getBottom() + ((int) anonymousClass4.getTranslationY()));
-            drawable.setAlpha((int) (this.shadowAlpha * 255.0f));
-            drawable.draw(canvas);
+        } else if (actionBarType == ActionBarType.SLIDING && ((int) (this.shadowAlpha * 255.0f)) != 0 && this.showShadow) {
+            this.headerShadowDrawable.setBounds(this.backgroundPaddingLeft, this.actionBar.getBottom() + ((int) this.actionBar.getTranslationY()), view.getMeasuredWidth() - this.backgroundPaddingLeft, this.headerShadowDrawable.getIntrinsicHeight() + this.actionBar.getBottom() + ((int) this.actionBar.getTranslationY()));
+            this.headerShadowDrawable.setAlpha((int) (this.shadowAlpha * 255.0f));
+            this.headerShadowDrawable.draw(canvas);
         }
         if (this.restore) {
             canvas.restore();
@@ -272,30 +272,28 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
 
     public void preDrawInternal(Canvas canvas, View view) {
         int translationY;
+        float fDp;
         this.restore = false;
         if (this.hasFixedSize) {
             return;
         }
-        boolean z = this.reverseLayout;
-        RecyclerListView recyclerListView = this.recyclerListView;
-        if (z) {
-            int height = recyclerListView.getHeight();
-            for (int i = 0; i < recyclerListView.getChildCount(); i++) {
-                View childAt = recyclerListView.getChildAt(i);
-                int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt);
-                if (childAdapterPosition != -1 && childAdapterPosition != recyclerListView.getAdapter().getItemCount() - 1) {
+        if (this.reverseLayout) {
+            int height = this.recyclerListView.getHeight();
+            for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+                View childAt = this.recyclerListView.getChildAt(i);
+                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
+                if (childAdapterPosition != -1 && childAdapterPosition != this.recyclerListView.getAdapter().getItemCount() - 1) {
                     height = Math.min(height, childAt.getTop() + (this.takeTranslationIntoAccount ? (int) childAt.getTranslationY() : 0));
                 }
             }
             translationY = height - AndroidUtilities.dp(16.0f);
         } else {
-            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = recyclerListView.findViewHolderForAdapterPosition(0);
+            RecyclerView.ViewHolder viewHolderFindViewHolderForAdapterPosition = this.recyclerListView.findViewHolderForAdapterPosition(0);
             int bottom = -AndroidUtilities.dp(16.0f);
             if (viewHolderFindViewHolderForAdapterPosition != null) {
-                View view2 = viewHolderFindViewHolderForAdapterPosition.itemView;
-                bottom = view2.getBottom() - AndroidUtilities.dp(16.0f);
+                bottom = viewHolderFindViewHolderForAdapterPosition.itemView.getBottom() - AndroidUtilities.dp(16.0f);
                 if (this.takeTranslationIntoAccount) {
-                    translationY = ((int) view2.getTranslationY()) + bottom;
+                    translationY = ((int) viewHolderFindViewHolderForAdapterPosition.itemView.getTranslationY()) + bottom;
                 } else {
                     translationY = bottom;
                 }
@@ -305,23 +303,22 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         }
         int iLerp = (translationY - ((this.headerHeight + this.headerPaddingTop) + this.headerPaddingBottom)) + this.headerMoveTop;
         if (this.showHandle && this.handleOffset) {
-            iLerp -= AndroidUtilities.dp(this.actionBarType == 2 ? 8.0f : 16.0f);
+            iLerp -= AndroidUtilities.dp(this.actionBarType == ActionBarType.SLIDING ? 8.0f : 16.0f);
         }
         float f = iLerp;
         this.lastTop = f;
         onSheetTop(f);
-        int i2 = this.actionBarType;
+        ActionBarType actionBarType = this.actionBarType;
         float fLerp = 1.0f;
-        AnonymousClass4 anonymousClass4 = this.actionBar;
-        if (i2 == 1) {
-            float fDp = 1.0f - ((AndroidUtilities.dp(16.0f) + iLerp) / getActionBarProgressHeight());
+        if (actionBarType == ActionBarType.FADING) {
+            fDp = 1.0f - ((AndroidUtilities.dp(16.0f) + iLerp) / getActionBarProgressHeight());
             if (fDp < 0.0f) {
                 fDp = 0.0f;
             }
-            AndroidUtilities.updateViewVisibilityAnimated(anonymousClass4, fDp != 0.0f, 1.0f, this.wasDrawn);
-        } else if (i2 == 2) {
+            AndroidUtilities.updateViewVisibilityAnimated(this.actionBar, fDp != 0.0f, 1.0f, this.wasDrawn);
+        } else if (actionBarType == ActionBarType.SLIDING) {
             float fMax = Math.max(((AndroidUtilities.dp(8.0f) + (iLerp - this.headerMoveTop)) + this.headerPaddingTop) - AndroidUtilities.statusBarHeight, 0.0f);
-            float f2 = this.actionBarSlideProgress.set(fMax == 0.0f ? 1.0f : 0.0f, false);
+            float f2 = this.actionBarSlideProgress.set(fMax == 0.0f ? 1.0f : 0.0f);
             if (f2 != 0.0f && f2 != 1.0f) {
                 canvas.save();
                 canvas.clipRect(0.0f, fMax, this.containerView.getMeasuredWidth(), this.containerView.getMeasuredHeight());
@@ -329,53 +326,127 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
             }
             this.shadowAlpha = f2;
             fLerp = AndroidUtilities.lerp(1.0f, 0.5f, f2);
-            anonymousClass4.backButtonImageView.setAlpha(f2);
+            this.actionBar.backButtonImageView.setAlpha(f2);
             onActionBarAlpha(f2);
-            anonymousClass4.backButtonImageView.setScaleX(f2);
-            ImageView imageView = anonymousClass4.backButtonImageView;
+            this.actionBar.backButtonImageView.setScaleX(f2);
+            ImageView imageView = this.actionBar.backButtonImageView;
             imageView.setPivotY(imageView.getMeasuredHeight() / 2.0f);
-            anonymousClass4.backButtonImageView.setScaleY(f2);
-            SimpleTextView titleTextView = anonymousClass4.getTitleTextView();
-            titleTextView.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - titleTextView.getLeft(), 0.0f, f2) + 0);
+            this.actionBar.backButtonImageView.setScaleY(f2);
+            SimpleTextView titleTextView = this.actionBar.getTitleTextView();
+            titleTextView.setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(21.0f) - titleTextView.getLeft(), 0.0f, f2) + this.additionalTitleX);
             if (this.centerTitle) {
-                titleTextView.setTranslationX(((anonymousClass4.getMeasuredWidth() - titleTextView.getTextWidth()) / 2.0f) - titleTextView.getLeft());
+                titleTextView.setTranslationX(((this.actionBar.getMeasuredWidth() - titleTextView.getTextWidth()) / 2.0f) - titleTextView.getLeft());
             }
-            anonymousClass4.setTranslationY(fMax);
+            this.actionBar.setTranslationY(fMax);
             iLerp -= AndroidUtilities.lerp(0, AndroidUtilities.dp(13.0f) + (((this.headerTotalHeight - this.headerHeight) - this.headerPaddingTop) - this.headerPaddingBottom), f2);
-            anonymousClass4.getBackground().setBounds(0, AndroidUtilities.lerp(anonymousClass4.getHeight(), 0, f2), anonymousClass4.getWidth(), anonymousClass4.getHeight());
+            this.actionBar.getBackground().setBounds(0, AndroidUtilities.lerp(this.actionBar.getHeight(), 0, f2), this.actionBar.getWidth(), this.actionBar.getHeight());
             if (f2 > 0.5f) {
                 if (this.actionBarIgnoreTouchEvents) {
                     this.actionBarIgnoreTouchEvents = false;
-                    anonymousClass4.setTag(1);
+                    this.actionBar.setTag(1);
                 }
             } else if (!this.actionBarIgnoreTouchEvents) {
                 this.actionBarIgnoreTouchEvents = true;
-                anonymousClass4.setTag(null);
+                this.actionBar.setTag(null);
             }
+            fDp = f2;
+        } else {
+            fDp = 0.0f;
         }
         if (shouldDrawBackground()) {
-            if (this instanceof BoostViaGiftsBottomSheet) {
-                this.shadowDrawable.setBounds(-AndroidUtilities.dp(6.0f), iLerp, AndroidUtilities.dp(6.0f) + view.getMeasuredWidth(), view.getMeasuredHeight());
-            } else {
+            if (needPaddingShadow()) {
                 this.shadowDrawable.setBounds(0, iLerp, view.getMeasuredWidth(), view.getMeasuredHeight());
+            } else {
+                this.shadowDrawable.setBounds(-AndroidUtilities.dp(6.0f), iLerp, AndroidUtilities.dp(6.0f) + view.getMeasuredWidth(), view.getMeasuredHeight());
             }
             checkBackDrawableInsets();
             this.shadowDrawable.draw(canvas);
             if (this.showHandle && fLerp > 0.0f) {
                 int iDp = AndroidUtilities.dp(36.0f);
                 int iDp2 = AndroidUtilities.dp(20.0f) + iLerp;
-                RectF rectF = this.handleRect;
-                rectF.set((view.getMeasuredWidth() - iDp) / 2.0f, iDp2, (view.getMeasuredWidth() + iDp) / 2.0f, AndroidUtilities.dp(4.0f) + iDp2);
+                this.handleRect.set((view.getMeasuredWidth() - iDp) / 2.0f, iDp2, (view.getMeasuredWidth() + iDp) / 2.0f, AndroidUtilities.dp(4.0f) + iDp2);
                 Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_sheet_scrollUp));
                 Paint paint = Theme.dialogs_onlineCirclePaint;
                 paint.setAlpha((int) (paint.getAlpha() * fLerp));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
+                canvas.drawRoundRect(this.handleRect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
             }
         }
-        onPreDraw(canvas, iLerp);
+        onPreDraw(canvas, iLerp, fDp);
     }
 
-    public final void saveScrollPosition$2() {
+    public void resetAdapter(final Context context) {
+        final RecyclerListView.SelectionAdapter selectionAdapterCreateAdapter = createAdapter(this.recyclerListView);
+        this.recyclerListView.setAdapter(new RecyclerListView.SelectionAdapter() {
+            @Override
+            public int getItemCount() {
+                return selectionAdapterCreateAdapter.getItemCount() + 1;
+            }
+
+            @Override
+            public int getItemViewType(int i) {
+                if (i == (BottomSheetWithRecyclerListView.this.reverseLayout ? getItemCount() - 1 : 0)) {
+                    return -1000;
+                }
+                return selectionAdapterCreateAdapter.getItemViewType(i - (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0));
+            }
+
+            @Override
+            public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+                return selectionAdapterCreateAdapter.isEnabled(viewHolder);
+            }
+
+            @Override
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                if (i != (BottomSheetWithRecyclerListView.this.reverseLayout ? getItemCount() - 1 : 0)) {
+                    selectionAdapterCreateAdapter.onBindViewHolder(viewHolder, i - (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0));
+                }
+            }
+
+            @Override
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                return i == -1000 ? new RecyclerListView.Holder(BottomSheetWithRecyclerListView.this.new PaddingView(context)) : selectionAdapterCreateAdapter.onCreateViewHolder(viewGroup, i);
+            }
+
+            @Override
+            public void registerAdapterDataObserver(final RecyclerView.AdapterDataObserver adapterDataObserver) {
+                selectionAdapterCreateAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+                    @Override
+                    public void onChanged() {
+                        adapterDataObserver.onChanged();
+                    }
+
+                    @Override
+                    public void onItemRangeChanged(int i, int i2) {
+                        adapterDataObserver.onItemRangeChanged(i + (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0), i2);
+                    }
+
+                    @Override
+                    public void onItemRangeInserted(int i, int i2) {
+                        adapterDataObserver.onItemRangeInserted(i + (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0), i2);
+                    }
+
+                    @Override
+                    public void onItemRangeMoved(int i, int i2, int i3) {
+                        RecyclerView.AdapterDataObserver adapterDataObserver2 = adapterDataObserver;
+                        int i4 = !BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0;
+                        adapterDataObserver2.onItemRangeMoved(i + i4, i2 + i4, i3);
+                    }
+
+                    @Override
+                    public void onItemRangeRemoved(int i, int i2) {
+                        adapterDataObserver.onItemRangeRemoved(i + (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0), i2);
+                    }
+
+                    @Override
+                    public void onItemRangeChanged(int i, int i2, Object obj) {
+                        adapterDataObserver.onItemRangeChanged(i + (!BottomSheetWithRecyclerListView.this.reverseLayout ? 1 : 0), i2, obj);
+                    }
+                });
+            }
+        });
+    }
+
+    public void saveScrollPosition() {
         RecyclerListView recyclerListView = this.recyclerListView;
         if (recyclerListView == null || this.layoutManager == null || recyclerListView.getChildCount() <= 0) {
             return;
@@ -383,9 +454,9 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         View view = null;
         int i = -1;
         int top = Integer.MAX_VALUE;
-        for (int i2 = 0; i2 < recyclerListView.getChildCount(); i2++) {
-            View childAt = recyclerListView.getChildAt(i2);
-            int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt);
+        for (int i2 = 0; i2 < this.recyclerListView.getChildCount(); i2++) {
+            View childAt = this.recyclerListView.getChildAt(i2);
+            int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
             if (childAdapterPosition >= 0 && childAt.getTop() < top) {
                 top = childAt.getTop();
                 view = childAt;
@@ -399,11 +470,28 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         }
     }
 
-    public final void setSlidingActionBar() {
+    public void setEditTextEmoji(EditTextEmoji editTextEmoji) {
+        this.editTextEmoji = editTextEmoji;
+    }
+
+    @Override
+    public void setLastVisible(boolean z) {
+    }
+
+    public void setShowHandle(boolean z) {
+        this.showHandle = z;
+    }
+
+    public void setShowShadow(boolean z) {
+        this.showShadow = z;
+        this.nestedSizeNotifierLayout.invalidate();
+    }
+
+    public void setSlidingActionBar() {
         if (this.hasFixedSize) {
             return;
         }
-        this.actionBarType = 2;
+        this.actionBarType = ActionBarType.SLIDING;
         int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
         this.headerHeight = currentActionBarHeight;
         this.headerTotalHeight = currentActionBarHeight + AndroidUtilities.statusBarHeight;
@@ -418,188 +506,68 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         return true;
     }
 
-    public final void updateStatusBar$1() {
-        if (this.attachedFragment != null) {
-            LaunchActivity.instance.checkSystemBarColors(true, true, true);
+    public void updateTitle() {
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null) {
+            actionBar.setTitle(getTitle());
+        }
+    }
+
+    public void updateTitleAnimated() {
+        updateTitleAnimated(true);
+    }
+
+    public BottomSheetWithRecyclerListView(BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Theme.ResourcesProvider resourcesProvider) {
+        this(baseFragment.getParentActivity(), baseFragment, z, z2, z3, resourcesProvider);
+    }
+
+    public void applyScrolledPosition(boolean z) {
+        RecyclerListView recyclerListView = this.recyclerListView;
+        if (recyclerListView == null || recyclerListView.getLayoutManager() == null || this.savedScrollPosition < 0) {
             return;
         }
-        AnonymousClass4 anonymousClass4 = this.actionBar;
-        if (anonymousClass4 != null && anonymousClass4.getTag() != null) {
-            AndroidUtilities.setLightStatusBar(this, ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider)) > 0.699999988079071d);
-            return;
+        int top = (this.savedScrollOffset - this.containerView.getTop()) - this.recyclerListView.getPaddingTop();
+        if (this.recyclerListView.getLayoutManager() instanceof LinearLayoutManager) {
+            ((LinearLayoutManager) this.recyclerListView.getLayoutManager()).scrollToPositionWithOffset(this.savedScrollPosition, top);
         }
-        BaseFragment baseFragment = this.baseFragment;
-        if (baseFragment != null) {
-            AndroidUtilities.setLightStatusBar(this, baseFragment.isLightStatusBar());
+        this.savedScrollPosition = -1;
+    }
+
+    public void updateTitleAnimated(boolean z) {
+        if (this.actionBar != null) {
+            CharSequence title = getTitle();
+            if (z && TextUtils.equals(title, this.actionBar.getTitle())) {
+                return;
+            }
+            this.actionBar.setTitleAnimated(getTitle(), false, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         }
     }
 
-    public final void updateTitle$1() {
-        AnonymousClass4 anonymousClass4 = this.actionBar;
-        if (anonymousClass4 != null) {
-            anonymousClass4.setTitle(getTitle());
-        }
-    }
-
-    public final void updateTitleAnimated() {
-        AnonymousClass4 anonymousClass4 = this.actionBar;
-        if (anonymousClass4 == null || TextUtils.equals(getTitle(), anonymousClass4.getTitle())) {
-            return;
-        }
-        this.actionBar.setTitleAnimated(getTitle(), false, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
-    }
-
-    public final class AnonymousClass8 extends RecyclerListView.SelectionAdapter {
-        public final int $r8$classId;
-        public final KeyEvent.Callback this$0;
-        public final Object val$adapter;
-        public final Context val$context;
-
-        public AnonymousClass8(BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView, RecyclerListView.SelectionAdapter selectionAdapter, Context context) {
-            this.$r8$classId = 0;
-            this.this$0 = bottomSheetWithRecyclerListView;
-            this.val$adapter = selectionAdapter;
-            this.val$context = context;
-        }
-
-        @Override
-        public final int getItemCount() {
-            switch (this.$r8$classId) {
-                case 0:
-                    return ((RecyclerListView.SelectionAdapter) this.val$adapter).getItemCount() + 1;
-                default:
-                    return ((ArrayList) this.val$adapter).size();
-            }
-        }
-
-        @Override
-        public final int getItemViewType(int i) {
-            switch (this.$r8$classId) {
-                case 0:
-                    BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = (BottomSheetWithRecyclerListView) this.this$0;
-                    boolean z = bottomSheetWithRecyclerListView.reverseLayout;
-                    RecyclerListView.SelectionAdapter selectionAdapter = (RecyclerListView.SelectionAdapter) this.val$adapter;
-                    if (i == (z ? selectionAdapter.getItemCount() : 0)) {
-                        return -1000;
-                    }
-                    return selectionAdapter.getItemViewType(i - (!bottomSheetWithRecyclerListView.reverseLayout ? 1 : 0));
-                default:
-                    return 0;
-            }
-        }
-
-        @Override
-        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            switch (this.$r8$classId) {
-                case 0:
-                    return ((RecyclerListView.SelectionAdapter) this.val$adapter).isEnabled(viewHolder);
-                default:
-                    return viewHolder.mItemViewType == 0;
-            }
-        }
-
-        @Override
-        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            switch (this.$r8$classId) {
-                case 0:
-                    BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = (BottomSheetWithRecyclerListView) this.this$0;
-                    boolean z = bottomSheetWithRecyclerListView.reverseLayout;
-                    RecyclerListView.SelectionAdapter selectionAdapter = (RecyclerListView.SelectionAdapter) this.val$adapter;
-                    if (i != (z ? selectionAdapter.getItemCount() : 0)) {
-                        selectionAdapter.onBindViewHolder(viewHolder, i - (!bottomSheetWithRecyclerListView.reverseLayout ? 1 : 0));
-                    }
-                    break;
-                default:
-                    WallpaperCell wallpaperCell = (WallpaperCell) viewHolder.itemView;
-                    wallpaperCell.setParams(1, false, false);
-                    wallpaperCell.setSize(((ChatAttachAlertColorsLayout) this.this$0).itemSize);
-                    wallpaperCell.setWallpaper(1, ((ArrayList) this.val$adapter).get(i), null, 0);
-                    break;
-            }
-        }
-
-        @Override
-        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            switch (this.$r8$classId) {
-                case 0:
-                    return i == -1000 ? new RecyclerListView.Holder(((BottomSheetWithRecyclerListView) this.this$0).new PaddingView(this.val$context)) : ((RecyclerListView.SelectionAdapter) this.val$adapter).onCreateViewHolder(viewGroup, i);
-                default:
-                    WallpapersListActivity.ListAdapter.AnonymousClass1 anonymousClass1 = new WallpapersListActivity.ListAdapter.AnonymousClass1(this, this.val$context);
-                    anonymousClass1.drawStubBackground = false;
-                    return new RecyclerListView.Holder(anonymousClass1);
-            }
-        }
-
-        @Override
-        public void registerAdapterDataObserver(final RecyclerView.AdapterDataObserver adapterDataObserver) {
-            switch (this.$r8$classId) {
-                case 0:
-                    ((RecyclerListView.SelectionAdapter) this.val$adapter).registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-                        @Override
-                        public final void onChanged() {
-                            adapterDataObserver.onChanged();
-                        }
-
-                        @Override
-                        public final void onItemRangeChanged(int i, int i2) {
-                            adapterDataObserver.onItemRangeChanged(i + (!((BottomSheetWithRecyclerListView) AnonymousClass8.this.this$0).reverseLayout ? 1 : 0), i2);
-                        }
-
-                        @Override
-                        public final void onItemRangeInserted(int i, int i2) {
-                            adapterDataObserver.onItemRangeInserted(i + (!((BottomSheetWithRecyclerListView) AnonymousClass8.this.this$0).reverseLayout ? 1 : 0), i2);
-                        }
-
-                        @Override
-                        public final void onItemRangeMoved(int i, int i2) {
-                            int i3 = !((BottomSheetWithRecyclerListView) AnonymousClass8.this.this$0).reverseLayout ? 1 : 0;
-                            adapterDataObserver.onItemRangeMoved(i + i3, i2 + i3);
-                        }
-
-                        @Override
-                        public final void onItemRangeRemoved(int i, int i2) {
-                            adapterDataObserver.onItemRangeRemoved(i + (!((BottomSheetWithRecyclerListView) AnonymousClass8.this.this$0).reverseLayout ? 1 : 0), i2);
-                        }
-
-                        @Override
-                        public final void onItemRangeChanged(int i, int i2, Object obj) {
-                            adapterDataObserver.onItemRangeChanged(i + (!((BottomSheetWithRecyclerListView) AnonymousClass8.this.this$0).reverseLayout ? 1 : 0), i2, obj);
-                        }
-                    });
-                    break;
-                default:
-                    super.registerAdapterDataObserver(adapterDataObserver);
-                    break;
-            }
-        }
-
-        public AnonymousClass8(ChatAttachAlertColorsLayout chatAttachAlertColorsLayout, Context context) {
-            this.$r8$classId = 1;
-            this.this$0 = chatAttachAlertColorsLayout;
-            this.val$adapter = new ArrayList();
-            this.val$context = context;
-        }
-    }
-
-    public BottomSheetWithRecyclerListView(BaseFragment baseFragment) {
-        this(baseFragment.getParentActivity(), baseFragment, false, false, false, false, false, 2, baseFragment.getResourceProvider());
+    public BottomSheetWithRecyclerListView(BaseFragment baseFragment, boolean z, boolean z2, ActionBarType actionBarType) {
+        this(baseFragment.getParentActivity(), baseFragment, z, z2, false, actionBarType, baseFragment.getResourceProvider());
     }
 
     public BottomSheetWithRecyclerListView(Context context, BaseFragment baseFragment, boolean z, boolean z2, boolean z3, Theme.ResourcesProvider resourcesProvider) {
-        this(context, baseFragment, z, false, z2, z3, false, 1, resourcesProvider);
+        this(context, baseFragment, z, z2, z3, ActionBarType.FADING, resourcesProvider);
     }
 
-    public BottomSheetWithRecyclerListView(Context context, BaseFragment baseFragment, boolean z, boolean z2, final boolean z3, boolean z4, final boolean z5, int i, Theme.ResourcesProvider resourcesProvider) {
-        ?? r8;
-        super(context, resourcesProvider, z, z2);
+    public BottomSheetWithRecyclerListView(Context context, BaseFragment baseFragment, boolean z, boolean z2, boolean z3, ActionBarType actionBarType, Theme.ResourcesProvider resourcesProvider) {
+        this(context, baseFragment, z, z2, z3, false, actionBarType, resourcesProvider);
+    }
+
+    public BottomSheetWithRecyclerListView(Context context, BaseFragment baseFragment, boolean z, boolean z2, boolean z3, boolean z4, ActionBarType actionBarType, Theme.ResourcesProvider resourcesProvider) {
+        this(context, baseFragment, z, false, z2, z3, z4, actionBarType, resourcesProvider);
+    }
+
+    public BottomSheetWithRecyclerListView(Context context, BaseFragment baseFragment, boolean z, boolean z2, final boolean z3, boolean z4, final boolean z5, ActionBarType actionBarType, Theme.ResourcesProvider resourcesProvider) {
+        final SizeNotifierFrameLayout sizeNotifierFrameLayout;
+        super(context, z, z2, resourcesProvider);
         this.topPadding = 0.4f;
-        boolean z6 = true;
         this.showShadow = true;
         this.shadowAlpha = 1.0f;
-        boolean z7 = false;
         this.showHandle = false;
         this.handleRect = new RectF();
-        this.actionBarType = 1;
+        this.actionBarType = ActionBarType.FADING;
         this.headerTotalHeight = 0;
         this.headerHeight = 0;
         this.headerPaddingTop = 0;
@@ -611,130 +579,181 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         this.savedScrollPosition = -1;
         this.baseFragment = baseFragment;
         this.hasFixedSize = z3;
+        this.stackFromEnd = z5;
         this.headerShadowDrawable = context.getDrawable(R.drawable.header_shadow).mutate();
         if (z4) {
-            ?? r9 = new NestedSizeNotifierLayout(context) {
+            NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(context) {
                 @Override
-                public final void dispatchDraw(Canvas canvas) {
-                    BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
-                    bottomSheetWithRecyclerListView.preDrawInternal(canvas, this);
+                public void dispatchDraw(Canvas canvas) {
+                    BottomSheetWithRecyclerListView.this.preDrawInternal(canvas, this);
                     super.dispatchDraw(canvas);
-                    bottomSheetWithRecyclerListView.postDrawInternal(canvas, this);
+                    BottomSheetWithRecyclerListView.this.postDrawInternal(canvas, this);
                 }
 
                 @Override
-                public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                    if (motionEvent.getAction() == 0) {
-                        float y = motionEvent.getY();
-                        BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
-                        if (y < ((BottomSheet) bottomSheetWithRecyclerListView).shadowDrawable.getBounds().top) {
-                            bottomSheetWithRecyclerListView.lambda$showGiftOfferSheet$15();
-                        }
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                    if (motionEvent.getAction() == 0 && motionEvent.getY() < ((BottomSheet) BottomSheetWithRecyclerListView.this).shadowDrawable.getBounds().top) {
+                        BottomSheetWithRecyclerListView.this.lambda$showGiftOfferSheet$15();
                     }
                     return super.dispatchTouchEvent(motionEvent);
                 }
 
                 @Override
-                public final boolean drawChild(Canvas canvas, View view, long j) {
+                public boolean drawChild(Canvas canvas, View view, long j) {
                     if (!z3) {
-                        BottomSheetWithRecyclerListView.this.getClass();
+                        BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
+                        if (bottomSheetWithRecyclerListView.clipToActionBar && view == bottomSheetWithRecyclerListView.recyclerListView) {
+                            canvas.save();
+                            canvas.clipRect(0, BottomSheetWithRecyclerListView.this.actionBar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+                            super.drawChild(canvas, view, j);
+                            canvas.restore();
+                            return true;
+                        }
                     }
                     return super.drawChild(canvas, view, j);
                 }
 
                 @Override
-                public final void onMeasure(int i2, int i3) {
-                    int size = View.MeasureSpec.getSize(i3);
-                    BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
-                    bottomSheetWithRecyclerListView.contentHeight = size;
-                    bottomSheetWithRecyclerListView.onPreMeasure(i2, i3);
+                public void onMeasure(int i, int i2) {
+                    BottomSheetWithRecyclerListView.this.contentHeight = View.MeasureSpec.getSize(i2);
+                    BottomSheetWithRecyclerListView.this.onPreMeasure(i, i2);
                     if (z5) {
-                        i3 = View.MeasureSpec.makeMeasureSpec(bottomSheetWithRecyclerListView.contentHeight, 1073741824);
+                        i2 = View.MeasureSpec.makeMeasureSpec(BottomSheetWithRecyclerListView.this.contentHeight, 1073741824);
                     }
-                    super.onMeasure(i2, i3);
+                    super.onMeasure(i, i2);
                 }
             };
-            this.nestedSizeNotifierLayout = r9;
-            r8 = r9;
+            this.nestedSizeNotifierLayout = nestedSizeNotifierLayout;
+            sizeNotifierFrameLayout = nestedSizeNotifierLayout;
         } else {
-            r8 = new SizeNotifierFrameLayout(context) {
-                @Override
-                public final void dispatchDraw(Canvas canvas) {
-                    BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
-                    bottomSheetWithRecyclerListView.preDrawInternal(canvas, this);
-                    super.dispatchDraw(canvas);
-                    bottomSheetWithRecyclerListView.postDrawInternal(canvas, this);
+            sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
+                private boolean ignoreLayout = false;
+
+                private void onMeasureInternal(int i, int i2) {
+                    int i3;
+                    EditTextEmoji editTextEmoji;
+                    int size = View.MeasureSpec.getSize(i);
+                    int size2 = View.MeasureSpec.getSize(i2);
+                    setMeasuredDimension(size, size2);
+                    EditTextEmoji editTextEmoji2 = BottomSheetWithRecyclerListView.this.editTextEmoji;
+                    int i4 = 0;
+                    if (editTextEmoji2 != null && !editTextEmoji2.isWaitingForKeyboardOpen() && AndroidUtilities.dp(20.0f) >= 0 && !BottomSheetWithRecyclerListView.this.editTextEmoji.isPopupShowing() && !BottomSheetWithRecyclerListView.this.editTextEmoji.isAnimatePopupClosing()) {
+                        this.ignoreLayout = true;
+                        BottomSheetWithRecyclerListView.this.editTextEmoji.hideEmojiView();
+                        this.ignoreLayout = false;
+                    }
+                    if (AndroidUtilities.dp(20.0f) >= 0) {
+                        int emojiPadding = (((BottomSheet) BottomSheetWithRecyclerListView.this).keyboardVisible || (editTextEmoji = BottomSheetWithRecyclerListView.this.editTextEmoji) == null) ? 0 : editTextEmoji.getEmojiPadding();
+                        if (!AndroidUtilities.isInMultiwindow) {
+                            size2 -= emojiPadding;
+                            i2 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
+                        }
+                    }
+                    int i5 = i2;
+                    int childCount = getChildCount();
+                    while (i4 < childCount) {
+                        View childAt = getChildAt(i4);
+                        if (childAt == null || childAt.getVisibility() == 8) {
+                            i3 = i;
+                        } else {
+                            EditTextEmoji editTextEmoji3 = BottomSheetWithRecyclerListView.this.editTextEmoji;
+                            if (editTextEmoji3 == null || !editTextEmoji3.isPopupView(childAt)) {
+                                i3 = i;
+                                measureChildWithMargins(childAt, i3, 0, i5, 0);
+                            } else {
+                                if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
+                                } else if (AndroidUtilities.isTablet()) {
+                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight)), 1073741824));
+                                } else {
+                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - AndroidUtilities.statusBarHeight), 1073741824));
+                                }
+                                i3 = i;
+                            }
+                        }
+                        i4++;
+                        i = i3;
+                    }
                 }
 
                 @Override
-                public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-                    if (motionEvent.getAction() == 0) {
-                        float y = motionEvent.getY();
-                        BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
-                        if (y < ((BottomSheet) bottomSheetWithRecyclerListView).shadowDrawable.getBounds().top) {
-                            bottomSheetWithRecyclerListView.lambda$showGiftOfferSheet$15();
-                        }
+                public void dispatchDraw(Canvas canvas) {
+                    BottomSheetWithRecyclerListView.this.preDrawInternal(canvas, this);
+                    super.dispatchDraw(canvas);
+                    BottomSheetWithRecyclerListView.this.postDrawInternal(canvas, this);
+                }
+
+                @Override
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                    if (motionEvent.getAction() == 0 && motionEvent.getY() < ((BottomSheet) BottomSheetWithRecyclerListView.this).shadowDrawable.getBounds().top) {
+                        BottomSheetWithRecyclerListView.this.lambda$showGiftOfferSheet$15();
                     }
                     return super.dispatchTouchEvent(motionEvent);
                 }
 
                 @Override
-                public final boolean drawChild(Canvas canvas, View view, long j) {
+                public boolean drawChild(Canvas canvas, View view, long j) {
                     if (!z3) {
-                        BottomSheetWithRecyclerListView.this.getClass();
+                        BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
+                        if (bottomSheetWithRecyclerListView.clipToActionBar && view == bottomSheetWithRecyclerListView.recyclerListView) {
+                            canvas.save();
+                            canvas.clipRect(0, BottomSheetWithRecyclerListView.this.actionBar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+                            super.drawChild(canvas, view, j);
+                            canvas.restore();
+                            return true;
+                        }
                     }
                     return super.drawChild(canvas, view, j);
                 }
 
                 @Override
-                public final void onLayout(boolean z8, int i2, int i3, int i4, int i5) {
+                public void onLayout(boolean z6, int i, int i2, int i3, int i4) {
                     int paddingRight;
-                    int i6;
+                    int i5;
                     int paddingLeft;
+                    int i6;
                     int i7;
-                    int i8;
                     int paddingTop;
                     int measuredHeight;
                     int measuredHeight2;
-                    BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
-                    if (bottomSheetWithRecyclerListView.editTextEmoji == null) {
-                        super.onLayout(z8, i2, i3, i4, i5);
+                    if (BottomSheetWithRecyclerListView.this.editTextEmoji == null) {
+                        super.onLayout(z6, i, i2, i3, i4);
                         return;
                     }
                     int childCount = getChildCount();
                     int iMeasureKeyboardHeight = measureKeyboardHeight();
                     int paddingBottom = getPaddingBottom();
-                    if (!((BottomSheet) bottomSheetWithRecyclerListView).keyboardVisible && bottomSheetWithRecyclerListView.editTextEmoji != null && iMeasureKeyboardHeight <= AndroidUtilities.dp(20.0f) && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
-                        paddingBottom += bottomSheetWithRecyclerListView.editTextEmoji.getEmojiPadding();
+                    if (!((BottomSheet) BottomSheetWithRecyclerListView.this).keyboardVisible && BottomSheetWithRecyclerListView.this.editTextEmoji != null && iMeasureKeyboardHeight <= AndroidUtilities.dp(20.0f) && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
+                        paddingBottom += BottomSheetWithRecyclerListView.this.editTextEmoji.getEmojiPadding();
                     }
                     setBottomClip(paddingBottom);
-                    for (int i9 = 0; i9 < childCount; i9++) {
-                        View childAt = getChildAt(i9);
+                    for (int i8 = 0; i8 < childCount; i8++) {
+                        View childAt = getChildAt(i8);
                         if (childAt.getVisibility() != 8) {
                             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
                             int measuredWidth = childAt.getMeasuredWidth();
                             int measuredHeight3 = childAt.getMeasuredHeight();
-                            int i10 = layoutParams.gravity;
-                            if (i10 == -1) {
-                                i10 = 51;
+                            int i9 = layoutParams.gravity;
+                            if (i9 == -1) {
+                                i9 = 51;
                             }
-                            int i11 = i10 & 112;
-                            int i12 = i10 & 7;
-                            if (i12 != 1) {
-                                if (i12 != 5) {
+                            int i10 = i9 & 112;
+                            int i11 = i9 & 7;
+                            if (i11 != 1) {
+                                if (i11 != 5) {
                                     paddingLeft = getPaddingLeft() + layoutParams.leftMargin;
                                 } else {
-                                    paddingRight = (((i4 - i2) - measuredWidth) - layoutParams.rightMargin) - getPaddingRight();
-                                    i6 = ((BottomSheet) bottomSheetWithRecyclerListView).backgroundPaddingLeft;
+                                    paddingRight = (((i3 - i) - measuredWidth) - layoutParams.rightMargin) - getPaddingRight();
+                                    i5 = ((BottomSheet) BottomSheetWithRecyclerListView.this).backgroundPaddingLeft;
                                 }
-                                if (i11 != 16) {
-                                    if (i11 != 48) {
+                                if (i10 != 16) {
+                                    if (i10 != 48) {
                                         paddingTop = layoutParams.topMargin + getPaddingTop();
-                                    } else if (i11 != 80) {
+                                    } else if (i10 != 80) {
                                         paddingTop = layoutParams.topMargin;
                                     } else {
-                                        i7 = ((i5 - paddingBottom) - i3) - measuredHeight3;
-                                        i8 = layoutParams.bottomMargin;
+                                        i6 = ((i4 - paddingBottom) - i2) - measuredHeight3;
+                                        i7 = layoutParams.bottomMargin;
                                     }
                                     if (childAt instanceof EmojiView) {
                                         if (AndroidUtilities.isTablet()) {
@@ -748,10 +767,10 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                                     }
                                     childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
                                 } else {
-                                    i7 = ((((i5 - paddingBottom) - i3) - measuredHeight3) / 2) + layoutParams.topMargin;
-                                    i8 = layoutParams.bottomMargin;
+                                    i6 = ((((i4 - paddingBottom) - i2) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                    i7 = layoutParams.bottomMargin;
                                 }
-                                paddingTop = i7 - i8;
+                                paddingTop = i6 - i7;
                                 if (childAt instanceof EmojiView) {
                                     if (AndroidUtilities.isTablet()) {
                                         measuredHeight = getMeasuredHeight();
@@ -764,18 +783,18 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                                 }
                                 childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
                             } else {
-                                paddingRight = (((i4 - i2) - measuredWidth) / 2) + layoutParams.leftMargin;
-                                i6 = layoutParams.rightMargin;
+                                paddingRight = (((i3 - i) - measuredWidth) / 2) + layoutParams.leftMargin;
+                                i5 = layoutParams.rightMargin;
                             }
-                            paddingLeft = paddingRight - i6;
-                            if (i11 != 16) {
-                                if (i11 != 48) {
+                            paddingLeft = paddingRight - i5;
+                            if (i10 != 16) {
+                                if (i10 != 48) {
                                     paddingTop = layoutParams.topMargin + getPaddingTop();
-                                } else if (i11 != 80) {
+                                } else if (i10 != 80) {
                                     paddingTop = layoutParams.topMargin;
                                 } else {
-                                    i7 = ((i5 - paddingBottom) - i3) - measuredHeight3;
-                                    i8 = layoutParams.bottomMargin;
+                                    i6 = ((i4 - paddingBottom) - i2) - measuredHeight3;
+                                    i7 = layoutParams.bottomMargin;
                                 }
                                 if (childAt instanceof EmojiView) {
                                     if (AndroidUtilities.isTablet()) {
@@ -789,10 +808,10 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                                 }
                                 childAt.layout(paddingLeft, paddingTop, measuredWidth + paddingLeft, measuredHeight3 + paddingTop);
                             } else {
-                                i7 = ((((i5 - paddingBottom) - i3) - measuredHeight3) / 2) + layoutParams.topMargin;
-                                i8 = layoutParams.bottomMargin;
+                                i6 = ((((i4 - paddingBottom) - i2) - measuredHeight3) / 2) + layoutParams.topMargin;
+                                i7 = layoutParams.bottomMargin;
                             }
-                            paddingTop = i7 - i8;
+                            paddingTop = i6 - i7;
                             if (childAt instanceof EmojiView) {
                                 if (AndroidUtilities.isTablet()) {
                                     measuredHeight = getMeasuredHeight();
@@ -810,121 +829,123 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 }
 
                 @Override
-                public final void onMeasure(int i2, int i3) {
-                    int i4;
-                    EditEmojiTextCell.AnonymousClass2 anonymousClass2;
-                    int size = View.MeasureSpec.getSize(i3);
-                    BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
-                    bottomSheetWithRecyclerListView.contentHeight = size;
-                    bottomSheetWithRecyclerListView.onPreMeasure(i2, i3);
+                public void onMeasure(int i, int i2) {
+                    BottomSheetWithRecyclerListView.this.contentHeight = View.MeasureSpec.getSize(i2);
+                    BottomSheetWithRecyclerListView.this.onPreMeasure(i, i2);
                     if (z5) {
-                        i3 = View.MeasureSpec.makeMeasureSpec(bottomSheetWithRecyclerListView.contentHeight, 1073741824);
+                        i2 = View.MeasureSpec.makeMeasureSpec(BottomSheetWithRecyclerListView.this.contentHeight, 1073741824);
                     }
-                    if (bottomSheetWithRecyclerListView.editTextEmoji == null) {
-                        super.onMeasure(i2, i3);
-                        return;
-                    }
-                    int size2 = View.MeasureSpec.getSize(i2);
-                    int size3 = View.MeasureSpec.getSize(i3);
-                    setMeasuredDimension(size2, size3);
-                    EditEmojiTextCell.AnonymousClass2 anonymousClass3 = bottomSheetWithRecyclerListView.editTextEmoji;
-                    if (anonymousClass3 != null && !anonymousClass3.waitingForKeyboardOpen && AndroidUtilities.dp(20.0f) >= 0) {
-                        EditEmojiTextCell.AnonymousClass2 anonymousClass4 = bottomSheetWithRecyclerListView.editTextEmoji;
-                        if (!anonymousClass4.emojiViewVisible && !anonymousClass4.isAnimatePopupClosing) {
-                            anonymousClass4.hideEmojiView();
-                        }
-                    }
-                    int i5 = 0;
-                    if (AndroidUtilities.dp(20.0f) >= 0) {
-                        int emojiPadding = (((BottomSheet) bottomSheetWithRecyclerListView).keyboardVisible || (anonymousClass2 = bottomSheetWithRecyclerListView.editTextEmoji) == null) ? 0 : anonymousClass2.getEmojiPadding();
-                        if (!AndroidUtilities.isInMultiwindow) {
-                            size3 -= emojiPadding;
-                            i3 = View.MeasureSpec.makeMeasureSpec(size3, 1073741824);
-                        }
-                    }
-                    int i6 = i3;
-                    int childCount = getChildCount();
-                    while (i5 < childCount) {
-                        View childAt = getChildAt(i5);
-                        if (childAt == null || childAt.getVisibility() == 8) {
-                            i4 = i2;
-                        } else {
-                            EditEmojiTextCell.AnonymousClass2 anonymousClass5 = bottomSheetWithRecyclerListView.editTextEmoji;
-                            if (anonymousClass5 == null || !anonymousClass5.isPopupView(childAt)) {
-                                i4 = i2;
-                                measureChildWithMargins(childAt, i4, 0, i6, 0);
-                            } else {
-                                if (!AndroidUtilities.isInMultiwindow && !AndroidUtilities.isTablet()) {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
-                                } else if (AndroidUtilities.isTablet()) {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(AndroidUtilities.isTablet() ? 200.0f : 320.0f), getPaddingTop() + (size3 - AndroidUtilities.statusBarHeight)), 1073741824));
-                                } else {
-                                    childAt.measure(View.MeasureSpec.makeMeasureSpec(size2, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size3 - AndroidUtilities.statusBarHeight), 1073741824));
-                                }
-                                i4 = i2;
-                            }
-                        }
-                        i5++;
-                        i2 = i4;
+                    if (BottomSheetWithRecyclerListView.this.editTextEmoji != null) {
+                        onMeasureInternal(i, i2);
+                    } else {
+                        super.onMeasure(i, i2);
                     }
                 }
             };
         }
-        RecyclerListView recyclerListViewCreateRecyclerView = createRecyclerView(context);
-        this.recyclerListView = recyclerListViewCreateRecyclerView;
-        PhotoViewer.AnonymousClass36 anonymousClass36 = new PhotoViewer.AnonymousClass36(z6 ? 1 : 0, 5, z7);
-        this.layoutManager = anonymousClass36;
-        if (z5) {
-            anonymousClass36.assertNotInLayoutOrScroll(null);
-            if (!anonymousClass36.mStackFromEnd) {
-                anonymousClass36.mStackFromEnd = true;
-                RecyclerView recyclerView = anonymousClass36.mRecyclerView;
-                if (recyclerView != null) {
-                    recyclerView.requestLayout();
-                }
+        this.recyclerListView = createRecyclerView(context);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context) {
+            {
+                super(1, false);
             }
+
+            @Override
+            public void scrollToPosition(int i) {
+                super.scrollToPosition(i);
+            }
+
+            @Override
+            public void scrollToPositionWithOffset(int i, int i2) {
+                super.scrollToPositionWithOffset(i, i2);
+            }
+
+            @Override
+            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
+                super.smoothScrollToPosition(recyclerView, state, i);
+            }
+
+            @Override
+            public void scrollToPositionWithOffset(int i, int i2, boolean z6) {
+                super.scrollToPositionWithOffset(i, i2, z6);
+            }
+        };
+        this.layoutManager = linearLayoutManager;
+        if (z5) {
+            linearLayoutManager.setStackFromEnd(true);
         }
-        recyclerListViewCreateRecyclerView.setLayoutManager(anonymousClass36);
-        AnonymousClass1 anonymousClass1 = this.nestedSizeNotifierLayout;
-        if (anonymousClass1 != null) {
-            anonymousClass1.setBottomSheetContainerView(getContainer());
-            setTargetListView(recyclerListViewCreateRecyclerView);
+        this.recyclerListView.setLayoutManager(this.layoutManager);
+        NestedSizeNotifierLayout nestedSizeNotifierLayout2 = this.nestedSizeNotifierLayout;
+        if (nestedSizeNotifierLayout2 != null) {
+            nestedSizeNotifierLayout2.setBottomSheetContainerView(getContainer());
+            this.nestedSizeNotifierLayout.setTargetListView(this.recyclerListView);
         }
         if (z3) {
-            recyclerListViewCreateRecyclerView.setHasFixedSize(true);
-            recyclerListViewCreateRecyclerView.setAdapter(createAdapter(recyclerListViewCreateRecyclerView));
-            setCustomView(r8);
-            r8.addView(recyclerListViewCreateRecyclerView, LayoutHelper.createFrame(-2.0f, -1));
+            this.recyclerListView.setHasFixedSize(true);
+            RecyclerListView recyclerListView = this.recyclerListView;
+            recyclerListView.setAdapter(createAdapter(recyclerListView));
+            setCustomView(sizeNotifierFrameLayout);
+            sizeNotifierFrameLayout.addView(this.recyclerListView, LayoutHelper.createFrame(-1, -2.0f));
         } else {
-            recyclerListViewCreateRecyclerView.setAdapter(new AnonymousClass8(this, createAdapter(recyclerListViewCreateRecyclerView), context));
-            this.containerView = r8;
-            AnonymousClass4 anonymousClass4 = new AnonymousClass4(context, r8);
-            this.actionBar = anonymousClass4;
-            anonymousClass4.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
-            anonymousClass4.setTitleColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-            anonymousClass4.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), false);
-            anonymousClass4.setBackButtonImage(R.drawable.ic_ab_back);
-            anonymousClass4.setItemsColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), false);
-            anonymousClass4.setCastShadows(true);
-            anonymousClass4.setTitle(getTitle());
-            anonymousClass4.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 28));
-            r8.addView(recyclerListViewCreateRecyclerView);
-            r8.addView(anonymousClass4, LayoutHelper.createFrame(-1, -2.0f, 0, 6.0f, 0.0f, 6.0f, 0.0f));
-            recyclerListViewCreateRecyclerView.addOnScrollListener(new ChatActivity.AnonymousClass53(r8, 14));
+            resetAdapter(context);
+            this.containerView = sizeNotifierFrameLayout;
+            ActionBar actionBar = new ActionBar(context) {
+                @Override
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                    BottomSheetWithRecyclerListView bottomSheetWithRecyclerListView = BottomSheetWithRecyclerListView.this;
+                    if (bottomSheetWithRecyclerListView.ignoreTouchActionBar && bottomSheetWithRecyclerListView.actionBarIgnoreTouchEvents) {
+                        return false;
+                    }
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+
+                @Override
+                public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
+                }
+
+                @Override
+                public void setAlpha(float f) {
+                    if (getAlpha() != f) {
+                        super.setAlpha(f);
+                        sizeNotifierFrameLayout.invalidate();
+                    }
+                }
+
+                @Override
+                public void setTag(Object obj) {
+                    super.setTag(obj);
+                    BottomSheetWithRecyclerListView.this.updateStatusBar();
+                }
+            };
+            this.actionBar = actionBar;
+            actionBar.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
+            this.actionBar.setTitleColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+            this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), false);
+            this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+            this.actionBar.setItemsColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), false);
+            this.actionBar.setCastShadows(true);
+            this.actionBar.setTitle(getTitle());
+            this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+                @Override
+                public void onItemClick(int i) {
+                    if (i == -1) {
+                        BottomSheetWithRecyclerListView.this.lambda$showGiftOfferSheet$15();
+                    }
+                }
+            });
+            sizeNotifierFrameLayout.addView(this.recyclerListView);
+            sizeNotifierFrameLayout.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f, 0, 6.0f, 0.0f, 6.0f, 0.0f));
+            this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                    super.onScrolled(recyclerView, i, i2);
+                    sizeNotifierFrameLayout.invalidate();
+                }
+            });
         }
-        if (i == 2) {
+        if (actionBarType == ActionBarType.SLIDING) {
             setSlidingActionBar();
         }
-        onViewCreated(r8);
-        if (this.attachedFragment != null) {
-            LaunchActivity.instance.checkSystemBarColors(true, true, true);
-            return;
-        }
-        AnonymousClass4 anonymousClass5 = this.actionBar;
-        if (anonymousClass5 != null && anonymousClass5.getTag() != null) {
-            AndroidUtilities.setLightStatusBar((Dialog) this, ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider)) > 0.699999988079071d);
-        } else if (baseFragment != null) {
-            AndroidUtilities.setLightStatusBar((Dialog) this, baseFragment.isLightStatusBar());
-        }
+        onViewCreated(sizeNotifierFrameLayout);
+        updateStatusBar();
     }
 }

@@ -72,7 +72,7 @@ public final class BlurredBackgroundDrawableViewFactory {
         }
         ViewPositionWatcher viewPositionWatcher = this.viewPositionWatcher;
         if (viewPositionWatcher != null && (viewGroup = this.parent) != null && view != null) {
-            viewPositionWatcher.subscribe(view, viewGroup, new RateCallLayout$$ExternalSyntheticLambda1(22, blurredBackgroundDrawableCreateDrawable, view), z);
+            viewPositionWatcher.subscribe(view, viewGroup, new RateCallLayout$$ExternalSyntheticLambda1(9, blurredBackgroundDrawableCreateDrawable, view), z);
         }
         ReferenceList referenceList2 = this.linkedDrawables;
         if (referenceList2 != null) {

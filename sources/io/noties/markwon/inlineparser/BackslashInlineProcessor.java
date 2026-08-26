@@ -1,7 +1,7 @@
 package io.noties.markwon.inlineparser;
 
 import java.util.regex.Pattern;
-import org.commonmark.node.Emphasis;
+import org.commonmark.node.HardLineBreak;
 import org.commonmark.node.Node;
 import org.commonmark.node.Text;
 
@@ -12,9 +12,9 @@ public final class BackslashInlineProcessor extends InlineProcessor {
     public final Node parse() {
         this.index++;
         if (peek() == '\n') {
-            Emphasis emphasis = new Emphasis(1);
+            HardLineBreak hardLineBreak = new HardLineBreak();
             this.index++;
-            return emphasis;
+            return hardLineBreak;
         }
         if (this.index < this.input.length()) {
             String str = this.input;
@@ -22,8 +22,7 @@ public final class BackslashInlineProcessor extends InlineProcessor {
             if (ESCAPABLE.matcher(str.substring(i, i + 1)).matches()) {
                 String str2 = this.input;
                 int i2 = this.index;
-                this.context.getClass();
-                Text text = new Text(str2.substring(i2, i2 + 1));
+                Text text = text(str2, i2, i2 + 1);
                 this.index++;
                 return text;
             }

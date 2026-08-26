@@ -24,17 +24,9 @@ public final class RadioButtonCell extends FrameLayout {
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
         if (z) {
-            int color = Theme.getColor(null, Theme.key_dialogRadioBackground, false);
-            int color2 = Theme.getColor(null, Theme.key_dialogRadioBackgroundChecked, false);
-            radioButton.color = color;
-            radioButton.checkedColor = color2;
-            radioButton.invalidate();
+            radioButton.setColor(Theme.getColor(null, Theme.key_dialogRadioBackground, false), Theme.getColor(null, Theme.key_dialogRadioBackgroundChecked, false));
         } else {
-            int color3 = Theme.getColor(null, Theme.key_radioBackground, false);
-            int color4 = Theme.getColor(null, Theme.key_radioBackgroundChecked, false);
-            radioButton.color = color3;
-            radioButton.checkedColor = color4;
-            radioButton.invalidate();
+            radioButton.setColor(Theme.getColor(null, Theme.key_radioBackground, false), Theme.getColor(null, Theme.key_radioBackgroundChecked, false));
         }
         boolean z2 = LocaleController.isRTL;
         addView(radioButton, LayoutHelper.createFrame(22, 22.0f, (z2 ? 5 : 3) | 48, z2 ? 0 : 20, 10.0f, z2 ? 20 : 0, 0.0f));
@@ -81,7 +73,7 @@ public final class RadioButtonCell extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.radioButton.isChecked);
+        accessibilityNodeInfo.setChecked(this.radioButton.isChecked());
     }
 
     @Override

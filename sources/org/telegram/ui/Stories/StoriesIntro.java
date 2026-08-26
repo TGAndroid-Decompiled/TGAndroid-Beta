@@ -19,21 +19,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_vision_common.zzkq;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
+import org.telegram.ui.bots.BotSensors$1$$ExternalSyntheticLambda0;
+import org.telegram.ui.iv.RichMediaCell$$ExternalSyntheticLambda1;
 
 public final class StoriesIntro extends FrameLayout {
     public int current;
     public final ArrayList items;
     public int prev;
-    public final LivePlayer$1$$ExternalSyntheticLambda0 startItemAnimationRunnable;
+    public final BotSensors$1$$ExternalSyntheticLambda0 startItemAnimationRunnable;
     public ValueAnimator valueAnimator;
 
     public final class StoriesIntroItemView extends View {
@@ -55,7 +55,7 @@ public final class StoriesIntro extends FrameLayout {
             RLottieDrawable rLottieDrawable = new RLottieDrawable(i, DiffUtil.m(i, ""), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
             this.lottieDrawable = rLottieDrawable;
             rLottieDrawable.setAutoRepeat(1);
-            rLottieDrawable.masterParent = this;
+            rLottieDrawable.setMasterParent(this);
             Paint paint = new Paint(1);
             this.backgroundPaint = paint;
             paint.setColor(383310040);
@@ -120,7 +120,7 @@ public final class StoriesIntro extends FrameLayout {
         this.prev = -1;
         int i = 0;
         this.current = 0;
-        this.startItemAnimationRunnable = new LivePlayer$1$$ExternalSyntheticLambda0(this, 16);
+        this.startItemAnimationRunnable = new BotSensors$1$$ExternalSyntheticLambda0(this, 3);
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         addView(imageView, -1, -1);
@@ -134,14 +134,15 @@ public final class StoriesIntro extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.bold());
-        zzkq.m(20.0f, R.string.StoriesIntroHeader, textView);
+        textView.setText(LocaleController.getString(R.string.StoriesIntroHeader));
+        textView.setTextSize(1, 20.0f);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2));
         final TextView textView2 = new TextView(context);
         textView2.setTextColor(-1761607681);
         textView2.setText(LocaleController.getString(R.string.StoriesIntroSubHeader));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(68.0f, 8.0f, 68.0f, 36.0f, -2, -2));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 68.0f, 8.0f, 68.0f, 36.0f));
         ArrayList arrayList = new ArrayList(4);
         this.items = arrayList;
         arrayList.add(new StoriesIntroItemView(context, R.raw.stories_intro_go_forward, LocaleController.getString(R.string.StoriesIntroGoForwardHeader), LocaleController.getString(R.string.StoriesIntroGoForwardSubHeader)));
@@ -181,8 +182,9 @@ public final class StoriesIntro extends FrameLayout {
         final TextView textView3 = new TextView(context);
         textView3.setTextColor(-1);
         textView3.setTypeface(AndroidUtilities.bold());
-        zzkq.m(14.0f, R.string.StoriesIntroDismiss, textView3);
-        linearLayout.addView(textView3, LayoutHelper.createLinear(0.0f, 73.0f, 0.0f, 0.0f, -2, -2));
+        textView3.setText(LocaleController.getString(R.string.StoriesIntroDismiss));
+        textView3.setTextSize(1, 14.0f);
+        linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 0.0f, 73.0f, 0.0f, 0.0f));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2, 17));
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), AndroidUtilities.makeBlurBitmap(anonymousClass2, 12.0f, 10));
         bitmapDrawable.setColorFilter(new PorterDuffColorFilter(-587202560, PorterDuff.Mode.DST_OVER));
@@ -197,8 +199,8 @@ public final class StoriesIntro extends FrameLayout {
                 int measuredHeight = anonymousClass2.getMeasuredHeight();
                 StoriesIntro storiesIntro = StoriesIntro.this;
                 if (iDp > measuredHeight) {
-                    textView4.setLayoutParams(LayoutHelper.createLinear(0.0f, 13.0f, 0.0f, 0.0f, -2, -2));
-                    textView2.setLayoutParams(LayoutHelper.createLinear(68.0f, 8.0f, 68.0f, 13.0f, -2, -2));
+                    textView4.setLayoutParams(LayoutHelper.createLinear(-2, -2, 0.0f, 13.0f, 0.0f, 0.0f));
+                    textView2.setLayoutParams(LayoutHelper.createLinear(-2, -2, 68.0f, 8.0f, 68.0f, 13.0f));
                     storiesIntro.requestLayout();
                 }
                 storiesIntro.getViewTreeObserver().removeOnGlobalLayoutListener(this);
@@ -207,7 +209,6 @@ public final class StoriesIntro extends FrameLayout {
     }
 
     public final void startAnimation(boolean z) {
-        int i = 2;
         ValueAnimator valueAnimator = this.valueAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -220,8 +221,8 @@ public final class StoriesIntro extends FrameLayout {
         this.valueAnimator.setDuration(350L);
         this.valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         this.valueAnimator.getCurrentPlayTime();
-        this.valueAnimator.addListener(new PhotoViewer.AnonymousClass78.AnonymousClass1(this, 25));
-        this.valueAnimator.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, i));
+        this.valueAnimator.addListener(new BaseChartView.AnonymousClass4(this, 25));
+        this.valueAnimator.addUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(this, 14));
         this.valueAnimator.start();
         AndroidUtilities.runOnUIThread(this.startItemAnimationRunnable, (((StoriesIntroItemView) this.items.get(this.current)).lottieDrawable.getDuration() * 2) + 100);
     }
@@ -234,30 +235,27 @@ public final class StoriesIntro extends FrameLayout {
             this.valueAnimator = null;
         }
         int i = this.prev;
+        ArrayList arrayList = this.items;
         if (i != -1) {
-            StoriesIntroItemView storiesIntroItemView = (StoriesIntroItemView) this.items.get(i);
-            storiesIntroItemView.lottieDrawable.setCurrentFrame(0, true, false);
-            RLottieDrawable rLottieDrawable = storiesIntroItemView.lottieDrawable;
-            rLottieDrawable.isRunning = false;
-            rLottieDrawable.checkChoreographer$1();
+            StoriesIntroItemView storiesIntroItemView = (StoriesIntroItemView) arrayList.get(i);
+            storiesIntroItemView.lottieDrawable.setCurrentFrame(0);
+            storiesIntroItemView.lottieDrawable.stop();
             storiesIntroItemView.progress = 0.0f;
             storiesIntroItemView.invalidate();
         }
-        StoriesIntroItemView storiesIntroItemView2 = (StoriesIntroItemView) this.items.get(this.current);
-        storiesIntroItemView2.lottieDrawable.setCurrentFrame(0, true, false);
-        RLottieDrawable rLottieDrawable2 = storiesIntroItemView2.lottieDrawable;
-        rLottieDrawable2.isRunning = false;
-        rLottieDrawable2.checkChoreographer$1();
+        StoriesIntroItemView storiesIntroItemView2 = (StoriesIntroItemView) arrayList.get(this.current);
+        storiesIntroItemView2.lottieDrawable.setCurrentFrame(0);
+        storiesIntroItemView2.lottieDrawable.stop();
         storiesIntroItemView2.progress = 0.0f;
         storiesIntroItemView2.invalidate();
         int i2 = this.current + 1;
         this.current = i2;
-        if (i2 >= this.items.size()) {
+        if (i2 >= arrayList.size()) {
             this.current = 0;
         }
         int i3 = this.prev + 1;
         this.prev = i3;
-        if (i3 >= this.items.size()) {
+        if (i3 >= arrayList.size()) {
             this.prev = 0;
         }
     }

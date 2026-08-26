@@ -14,7 +14,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
-import org.telegram.ui.PhotoViewer;
 
 public final class ReactionImageHolder {
     public AnimatedEmojiDrawable animatedEmojiDrawable;
@@ -46,9 +45,8 @@ public final class ReactionImageHolder {
             imageReceiver.draw(canvas);
             return;
         }
-        PhotoViewer.AnonymousClass11 anonymousClass11 = animatedEmojiDrawable.imageReceiver;
-        if (anonymousClass11 != null) {
-            anonymousClass11.setRoundRadius((int) (rect.width() * 0.1f));
+        if (animatedEmojiDrawable.getImageReceiver() != null) {
+            this.animatedEmojiDrawable.getImageReceiver().setRoundRadius((int) (rect.width() * 0.1f));
         }
         this.animatedEmojiDrawable.setColorFilter(this.colorFilter);
         this.animatedEmojiDrawable.setBounds(rect);

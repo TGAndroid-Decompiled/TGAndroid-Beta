@@ -1,29 +1,15 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.Business.BusinessLinksActivity;
-import org.telegram.ui.Business.QuickRepliesActivity;
-import org.telegram.ui.Cells.AboutLinkCell;
-import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.Cells.TextCell;
-import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.EditTextCaption;
-import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
-import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
-import org.telegram.ui.Components.ProfileActionsView;
-import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.Components.SearchTagsList;
-import org.telegram.ui.Components.ThemeEditorView;
-import org.telegram.ui.Delegates.MemberRequestsDelegate;
-import org.telegram.ui.Stars.StarsReactionsSheet;
+import org.telegram.ui.ActionBar.OKLCH;
+import org.telegram.ui.Cells.TextCheckCell;
+import org.telegram.ui.Components.CheckBox2;
 
-public final class OAuthSheet$$ExternalSyntheticLambda11 implements DialogInterface.OnDismissListener {
+public final class OAuthSheet$$ExternalSyntheticLambda11 implements View.OnClickListener {
     public final int $r8$classId;
     public final Object f$0;
 
@@ -33,201 +19,97 @@ public final class OAuthSheet$$ExternalSyntheticLambda11 implements DialogInterf
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        RLottieDrawable rLottieDrawable;
+    public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                OAuthSheet.showing = null;
-                BottomSheet[] bottomSheetArr = (BottomSheet[]) this.f$0;
-                BottomSheet bottomSheet = bottomSheetArr[0];
-                if (bottomSheet != null) {
-                    bottomSheet.lambda$showGiftOfferSheet$15();
-                    bottomSheetArr[0] = null;
-                }
+                OAuthSheet.lambda$handle$2((TextCheckCell) this.f$0, view);
                 break;
             case 1:
-                BoostsActivity boostsActivity = BoostsActivity.this;
-                if (boostsActivity.isDialogVisible) {
-                    boostsActivity.isDialogVisible = false;
-                    boostsActivity.particlesView.setPaused(false);
-                    boostsActivity.contentView.invalidate();
-                }
+                ((AutoDeleteMessagesActivity) this.f$0).lambda$updateItems$2(view);
                 break;
             case 2:
-                AndroidUtilities.hideKeyboard((BusinessLinksActivity.AnonymousClass1) this.f$0);
+                ((CacheControlActivity) this.f$0).lambda$createView$17(view);
                 break;
             case 3:
-                AndroidUtilities.hideKeyboard((QuickRepliesActivity.AnonymousClass3) this.f$0);
+                ((TodoItemMenu$$ExternalSyntheticLambda2) this.f$0).run();
                 break;
             case 4:
-                ((CameraScanActivity.AnonymousClass1) this.f$0).fragment.onFragmentDestroy();
+                ((ChannelColorActivity) this.f$0).lambda$createView$5(view);
                 break;
             case 5:
-                ProfileActivity.ListAdapter.AnonymousClass2 anonymousClass2 = ((AboutLinkCell.AnonymousClass2) this.f$0).this$0;
-                anonymousClass2.links.clear(true);
-                anonymousClass2.pressedLink = null;
-                AndroidUtilities.cancelRunOnUIThread(anonymousClass2.longPressedRunnable);
-                anonymousClass2.invalidate();
+                DataAutoDownloadActivity.lambda$createView$1((TextCheckCell[]) this.f$0, view);
                 break;
             case 6:
-                ChannelCreateActivity channelCreateActivity = (ChannelCreateActivity) this.f$0;
-                if (!channelCreateActivity.imageUpdater.isUploadingImage()) {
-                    channelCreateActivity.cameraDrawable.setCustomEndFrame(86);
-                    channelCreateActivity.avatarEditor.playAnimation();
-                } else {
-                    channelCreateActivity.cameraDrawable.setCurrentFrame(0, false, false);
-                }
+                DataAutoDownloadActivity.lambda$createView$2((BottomSheet.Builder) this.f$0, view);
                 break;
             case 7:
-                ChatMessageCell chatMessageCell = (ChatMessageCell) this.f$0;
-                if (chatMessageCell != null) {
-                    chatMessageCell.resetPressedLink(-1);
-                }
+                ((DebugRecordingCanvasReplayFragment) this.f$0).lambda$createView$0(view);
                 break;
             case 8:
-                Bulletin bulletin = ((Bulletin[]) this.f$0)[0];
-                if (bulletin != null) {
-                    bulletin.hide();
-                }
+                OKLCH.m(3, (BaseFragment) this.f$0);
                 break;
             case 9:
-                ChatEditActivity chatEditActivity = (ChatEditActivity) this.f$0;
-                if (!chatEditActivity.imageUpdater.isUploadingImage()) {
-                    chatEditActivity.cameraDrawable.setCustomEndFrame(86);
-                    chatEditActivity.setAvatarCell.imageView.playAnimation();
-                } else {
-                    chatEditActivity.cameraDrawable.setCurrentFrame(0, false, false);
-                }
+                ((DialogCacheBottomSheet) this.f$0).lambda$createButton$3(view);
                 break;
             case 10:
-                ((ChatActivity$$ExternalSyntheticLambda22) this.f$0).run();
+                DialogsActivity.lambda$showChatPreview$95((ActionBarPopupWindow.ActionBarPopupWindowLayout[]) this.f$0, view);
                 break;
             case 11:
-                AndroidUtilities.hideKeyboard((AlertsCreator.AnonymousClass3) this.f$0);
+                DialogsActivity.lambda$updateDialogsHint$63((String) this.f$0, view);
                 break;
             case 12:
-                ((ChatActivityEnterView) this.f$0).messageSendPreview = null;
+                ((FilterCreateActivity.FilterInvitesBottomSheet) this.f$0).lambda$new$2(view);
                 break;
             case 13:
-                ((ChatAttachAlert) this.f$0).confirmationAlertShown = false;
+                ((FilterCreateActivity.HintInnerCell) this.f$0).lambda$new$0(view);
                 break;
             case 14:
-                ((EditTextCaption) this.f$0).lambda$showInputDialog$7(dialogInterface);
+                ((FiltersSetupActivity.FilterCell) this.f$0).lambda$new$1(view);
                 break;
             case 15:
-                ((FragmentContextView) this.f$0).checkImport(false);
+                ((FiltersSetupActivity.HintInnerCell) this.f$0).lambda$new$0(view);
                 break;
             case 16:
-                LimitReachedBottomSheet limitReachedBottomSheet = (LimitReachedBottomSheet) this.f$0;
-                limitReachedBottomSheet.lockInvalidation = false;
-                limitReachedBottomSheet.limitPreviewView.invalidationEnabled = true;
-                limitReachedBottomSheet.premiumButtonView.invalidate();
-                limitReachedBottomSheet.limitPreviewView.invalidate();
+                GroupCallSheet.lambda$show$5((CheckBox2) this.f$0, view);
                 break;
             case 17:
-                PremiumPreviewBottomSheet premiumPreviewBottomSheet = (PremiumPreviewBottomSheet) this.f$0;
-                StarsReactionsSheet.AnonymousClass6 anonymousClass6 = premiumPreviewBottomSheet.iconTextureView;
-                if (anonymousClass6 != null) {
-                    anonymousClass6.setDialogVisible(false);
-                }
-                premiumPreviewBottomSheet.starParticlesView.setPaused(false);
+                ((GroupCreateActivity.GroupCreateAdapter) this.f$0).lambda$onBindViewHolder$1(view);
                 break;
             case 18:
-                AndroidUtilities.hideKeyboard((SearchTagsList.AnonymousClass4) this.f$0);
+                ((InviteContactsActivity) this.f$0).lambda$createView$1(view);
                 break;
             case 19:
-                ThemeEditorView themeEditorView = ThemeEditorView.this;
-                themeEditorView.editorAlert = null;
-                if (themeEditorView.parentActivity != null) {
-                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.windowManager, themeEditorView.windowView, themeEditorView.windowLayoutParams);
-                    try {
-                        themeEditorView.windowManager.addView(themeEditorView.windowView, themeEditorView.windowLayoutParams);
-                        themeEditorView.showWithAnimation();
-                    } catch (Exception unused) {
-                        return;
-                    }
-                    break;
-                }
+                ((LaunchActivity) this.f$0).lambda$showLanguageAlertInternal$171(view);
                 break;
             case 20:
-                VoIPFragment$12$$ExternalSyntheticLambda0 voIPFragment$12$$ExternalSyntheticLambda0 = (VoIPFragment$12$$ExternalSyntheticLambda0) this.f$0;
-                if (voIPFragment$12$$ExternalSyntheticLambda0 != null) {
-                    voIPFragment$12$$ExternalSyntheticLambda0.run();
-                }
+                ((LoginActivity.LoginActivityRecoverView) this.f$0).lambda$new$4(view);
                 break;
             case 21:
-                ((MemberRequestsDelegate) this.f$0).previewDialog = null;
+                ((LoginActivity.LoginActivityResetWaitView) this.f$0).lambda$new$3(view);
                 break;
             case 22:
-                ExternalActionActivity externalActionActivity = (ExternalActionActivity) this.f$0;
-                externalActionActivity.setResult(0);
-                externalActionActivity.finish();
+                ((LoginActivity.LoginActivitySetupEmail) this.f$0).lambda$new$3(view);
                 break;
             case 23:
-                GroupCreateFinalActivity groupCreateFinalActivity = (GroupCreateFinalActivity) this.f$0;
-                if (!groupCreateFinalActivity.imageUpdater.isUploadingImage()) {
-                    groupCreateFinalActivity.cameraDrawable.setCustomEndFrame(86);
-                    groupCreateFinalActivity.avatarEditor.playAnimation();
-                } else {
-                    groupCreateFinalActivity.cameraDrawable.setCurrentFrame(0, false, false);
-                }
+                ((MessageStatisticActivity) this.f$0).lambda$createView$3(view);
                 break;
             case 24:
-                LoginActivity.LoginActivityRegisterView loginActivityRegisterView = (LoginActivity.LoginActivityRegisterView) this.f$0;
-                boolean zIsUploadingImage = loginActivityRegisterView.imageUpdater.isUploadingImage();
-                RLottieDrawable rLottieDrawable2 = loginActivityRegisterView.cameraDrawable;
-                ChannelCreateActivity.AnonymousClass5 anonymousClass5 = loginActivityRegisterView.avatarEditor;
-                if (!zIsUploadingImage) {
-                    anonymousClass5.setAnimation(rLottieDrawable2);
-                    rLottieDrawable2.setCustomEndFrame(86);
-                    anonymousClass5.setOnAnimationEndListener(new LoginActivity$$ExternalSyntheticLambda16(loginActivityRegisterView, 2));
-                    anonymousClass5.playAnimation();
-                } else {
-                    anonymousClass5.setAnimation(rLottieDrawable2);
-                    rLottieDrawable2.setCurrentFrame(0, false, false);
-                    loginActivityRegisterView.isCameraWaitAnimationAllowed = true;
-                }
+                PasscodeActivity.lambda$createView$7((Context) this.f$0, view);
                 break;
             case 25:
-                ((BottomSheet) this.f$0).lambda$showGiftOfferSheet$15();
+                ((PasscodeActivity) this.f$0).lambda$createView$12(view);
                 break;
             case 26:
-                ((PhotoViewer) this.f$0).visibleDialog = null;
+                ((PasskeysActivity) this.f$0).openMenu(view);
                 break;
             case 27:
-                PrivacyControlActivity privacyControlActivity = (PrivacyControlActivity) this.f$0;
-                if (!privacyControlActivity.imageUpdater.isUploadingImage()) {
-                    privacyControlActivity.cameraDrawable.setCustomEndFrame(86);
-                    privacyControlActivity.setAvatarCell.imageView.playAnimation();
-                } else {
-                    privacyControlActivity.cameraDrawable.setCurrentFrame(0, false, false);
-                }
+                ((PassportActivity.PhoneConfirmationView) this.f$0).lambda$new$0(view);
                 break;
             case 28:
-                ProfileActivity profileActivity = (ProfileActivity) this.f$0;
-                if (!profileActivity.imageUpdater.isUploadingImage()) {
-                    profileActivity.cameraDrawable.setCustomEndFrame(86);
-                    profileActivity.cellCameraDrawable.setCustomEndFrame(86);
-                    ProfileActionsView profileActionsView = profileActivity.actionsView;
-                    if (profileActionsView != null) {
-                        ProfileActionsView.Action actionFind = ProfileActionsView.find(14, profileActionsView.actions);
-                        if (actionFind != null && (rLottieDrawable = actionFind.drawableAnimated) != null) {
-                            rLottieDrawable.start();
-                        }
-                    } else {
-                        profileActivity.writeButton.playAnimation();
-                    }
-                    TextCell textCell = profileActivity.setAvatarCell;
-                    if (textCell != null) {
-                        textCell.getImageView().playAnimation();
-                    }
-                } else {
-                    profileActivity.cameraDrawable.setCurrentFrame(0, false, false);
-                    profileActivity.cellCameraDrawable.setCurrentFrame(0, false, false);
-                }
+                ((PhotoAlbumPickerActivity) this.f$0).lambda$createView$3(view);
                 break;
             default:
-                ((SelectAnimatedEmojiDialog) this.f$0).setDim(0.0f);
+                ((PhotoPickerActivity) this.f$0).lambda$createView$5(view);
                 break;
         }
     }

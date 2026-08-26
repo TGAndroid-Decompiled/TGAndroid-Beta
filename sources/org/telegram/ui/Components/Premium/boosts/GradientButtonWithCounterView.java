@@ -16,7 +16,7 @@ public final class GradientButtonWithCounterView extends ButtonWithCounterView {
     public final RectF rect;
 
     public GradientButtonWithCounterView(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider, true);
+        super(context, true, resourcesProvider);
         this.rect = new RectF();
         CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(64, 204, 160);
         this.flickerDrawable = cellFlickerDrawable;
@@ -42,13 +42,12 @@ public final class GradientButtonWithCounterView extends ButtonWithCounterView {
         }
         RectF rectF = this.rect;
         rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        PremiumGradient premiumGradient = PremiumGradient.getInstance();
-        premiumGradient.mainGradient.gradientMatrix(0, (-getMeasuredWidth()) * 0.1f * this.progress, 0, getMeasuredWidth(), 0.0f, getMeasuredHeight());
+        PremiumGradient.getInstance().mainGradient.gradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * this.progress, 0.0f);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), PremiumGradient.getInstance().getMainGradientPaint());
         int measuredWidth = getMeasuredWidth();
         CellFlickerDrawable cellFlickerDrawable = this.flickerDrawable;
         cellFlickerDrawable.parentWidth = measuredWidth;
-        cellFlickerDrawable.draw(AndroidUtilities.dp(8.0f), canvas, rectF, null);
+        cellFlickerDrawable.draw(null, canvas, rectF, AndroidUtilities.dp(8.0f));
         super.onDraw(canvas);
         invalidate();
     }

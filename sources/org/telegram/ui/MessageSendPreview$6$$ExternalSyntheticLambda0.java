@@ -1,8 +1,5 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-
 public final class MessageSendPreview$6$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
     public final MessageSendPreview.AnonymousClass6 f$0;
@@ -16,16 +13,10 @@ public final class MessageSendPreview$6$$ExternalSyntheticLambda0 implements Run
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.finishRunnable = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                }
+                this.f$0.lambda$onAllAnimationsDone$0();
                 break;
             default:
-                this.f$0.finishRunnable = null;
-                if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("chatItemAnimator enable notifications");
-                }
+                this.f$0.lambda$endAnimations$1();
                 break;
         }
     }

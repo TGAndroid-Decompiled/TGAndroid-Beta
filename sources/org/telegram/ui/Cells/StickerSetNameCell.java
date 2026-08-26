@@ -15,12 +15,11 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.ColorSpanUnderline;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
@@ -29,6 +28,7 @@ public final class StickerSetNameCell extends FrameLayout {
     public final ImageView buttonView;
     public final TextView editView;
     public boolean empty;
+    public int position;
     public final Theme.ResourcesProvider resourcesProvider;
     public CharSequence stickerSetName;
     public int stickerSetNameSearchIndex;
@@ -48,7 +48,7 @@ public final class StickerSetNameCell extends FrameLayout {
         linearLayout.setGravity(17);
         TextView textView = new TextView(context);
         this.textView = textView;
-        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(15.0f, z3 ? getGlassIconColor(0.6f) : Theme.getColor(Theme.key_chat_emojiPanelStickerSetName, resourcesProvider), 1, textView);
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView, z3 ? getGlassIconColor(0.6f) : Theme.getColor(Theme.key_chat_emojiPanelStickerSetName, resourcesProvider), 1, 15.0f);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         textView.setSingleLine(true);
@@ -62,7 +62,7 @@ public final class StickerSetNameCell extends FrameLayout {
             layoutParamsCreateFrame = LayoutHelper.createFrame(-2, -2.0f, 51, z ? 5.0f : 15.0f, 5.0f, z ? 15.0f : 25.0f, 0.0f);
         }
         addView(linearLayout, layoutParamsCreateFrame);
-        TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16), context);
+        TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(-2, -2, 1.0f, 16), context);
         this.editView = textViewM;
         textViewM.setTextColor(z3 ? getGlassIconColor(0.6f) : Theme.getColor(Theme.key_chat_emojiPanelStickerSetName, resourcesProvider));
         textViewM.setTextSize(1, 11.0f);
@@ -75,7 +75,7 @@ public final class StickerSetNameCell extends FrameLayout {
         textViewM.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, glassIconColor, glassIconColor2, glassIconColor2));
         textViewM.setGravity(17);
         textViewM.setSingleLine(true);
-        ScaleStateListAnimator.apply(textViewM, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(textViewM);
         linearLayout.addView(textViewM, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 5, 1, 0, 0));
         textViewM.setVisibility(8);
         TextView textView2 = new TextView(context);
@@ -117,7 +117,7 @@ public final class StickerSetNameCell extends FrameLayout {
     @Override
     public final void measureChildWithMargins(View view, int i, int i2, int i3, int i4) {
         if (view == this.urlTextView) {
-            i2 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(this.textView.getMeasuredWidth(), 16.0f, i2);
+            i2 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(16.0f, this.textView.getMeasuredWidth(), i2);
         }
         super.measureChildWithMargins(view, i, i2, i3, i4);
     }

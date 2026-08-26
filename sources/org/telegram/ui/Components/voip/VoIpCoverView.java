@@ -1,7 +1,7 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -37,8 +37,8 @@ public final class VoIpCoverView extends View {
     public final VoipCoverEmoji[] voipCoverEmojiLeft;
     public final VoipCoverEmoji[] voipCoverEmojiRight;
 
-    public VoIpCoverView(Activity activity, TLRPC.User user, VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(activity);
+    public VoIpCoverView(Context context, TLRPC.User user, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(context);
         Paint paint = new Paint(1);
         this.saveLayerPaint = paint;
         this.bgRect = new Rect();
@@ -164,10 +164,10 @@ public final class VoIpCoverView extends View {
             canvas.drawRect(rect, voIPBackgroundProvider.getDarkPaint());
             voIPBackgroundProvider.getDarkPaint().setAlpha(alpha);
             if (voIPBackgroundProvider.isReveal) {
-                int alpha2 = ((Paint) voIPBackgroundProvider.revealDarkShaderTools.app).getAlpha();
-                ((Paint) voIPBackgroundProvider.revealDarkShaderTools.app).setAlpha(255);
-                canvas.drawRect(rect, (Paint) voIPBackgroundProvider.revealDarkShaderTools.app);
-                ((Paint) voIPBackgroundProvider.revealDarkShaderTools.app).setAlpha(alpha2);
+                int alpha2 = voIPBackgroundProvider.revealDarkShaderTools.paint.getAlpha();
+                voIPBackgroundProvider.revealDarkShaderTools.paint.setAlpha(255);
+                canvas.drawRect(rect, voIPBackgroundProvider.revealDarkShaderTools.paint);
+                voIPBackgroundProvider.revealDarkShaderTools.paint.setAlpha(alpha2);
             }
             canvas.restore();
         }

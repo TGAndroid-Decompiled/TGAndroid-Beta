@@ -1,6 +1,7 @@
 package org.telegram.ui.Components.Paint.Views;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
 import android.graphics.Canvas;
@@ -16,22 +17,23 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
 import android.text.TextUtils;
-import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.internal.zzah;
-import com.google.android.gms.internal.mlkit_vision_common.zzig;
+import com.google.android.gms.internal.cast.zzba;
+import com.google.android.gms.internal.mlkit_vision_common.zzid;
 import com.google.android.gms.internal.mlkit_vision_label.zzkd;
 import com.google.android.gms.internal.mlkit_vision_label.zzkf;
 import com.google.android.gms.internal.mlkit_vision_label.zznp;
 import com.google.common.base.Splitter;
 import com.google.firebase.crashlytics.internal.settings.Settings;
 import com.google.firebase.inject.Provider;
+import com.google.firebase.messaging.FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0;
 import com.google.firebase.messaging.GmsRpc;
 import com.google.mlkit.common.sdkinternal.MLTask;
 import com.google.mlkit.common.sdkinternal.MlKitContext;
@@ -65,31 +67,27 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.messenger.pip.utils.Trigger;
+import org.telegram.messenger.utils.WindowVisibilityManager$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda74;
-import org.telegram.ui.CacheControlActivity$$ExternalSyntheticLambda23;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda470;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda19;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.AlertsCreator$$ExternalSyntheticLambda37;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
-import org.telegram.ui.Components.ProfileGooeyView$$ExternalSyntheticLambda0;
-import org.telegram.ui.Components.ShareAlert$$ExternalSyntheticLambda15;
 import org.telegram.ui.Components.ThanosEffect;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda8;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda13;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda66;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda26;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda65;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.recorder.DownloadButton;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+import org.telegram.ui.community.CommunityUtils$$ExternalSyntheticLambda2;
+import org.telegram.ui.iv.RichEditor;
 
 public final class StickerMakerView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static final int $r8$clinit = 0;
@@ -203,7 +201,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
 
     public final class StickerUploader {
         public boolean addToFavorite;
-        public CallLogActivity$$ExternalSyntheticLambda3 customHandler;
+        public Utilities.Callback2 customHandler;
         public String emoji;
         public TLRPC.InputFile file;
         public String finalPath;
@@ -218,7 +216,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         public TLRPC.TL_inputStickerSetItem tlInputStickerSetItem;
         public boolean uploaded;
         public VideoEditedInfo videoEditedInfo;
-        public OAuthSheet$$ExternalSyntheticLambda13 whenDone;
+        public Utilities.Callback whenDone;
         public final ArrayList finalFiles = new ArrayList();
         public final ArrayList files = new ArrayList();
         public float convertingProgress = 0.0f;
@@ -262,8 +260,8 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         public int width;
     }
 
-    public StickerMakerView(ContextThemeWrapper contextThemeWrapper, Theme.ResourcesProvider resourcesProvider) {
-        super(contextThemeWrapper);
+    public StickerMakerView(Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
         this.currentAccount = -1;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.segmentBorderAlpha = new AnimatedFloat(0.0f, (View) null, 0L, 420L, cubicBezierInterpolator);
@@ -297,7 +295,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         paint.setPathEffect(new DashPathEffect(new float[]{AndroidUtilities.dp(5.0f), AndroidUtilities.dp(10.0f)}, 0.5f));
         paint.setShadowLayer(AndroidUtilities.dpf2(0.75f), 0.0f, 0.0f, 1342177280);
         paint.setAlpha(140);
-        TextView textView = new TextView(contextThemeWrapper);
+        TextView textView = new TextView(context);
         this.actionTextView = textView;
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(-1);
@@ -321,7 +319,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         paint4.setMaskFilter(new BlurMaskFilter(AndroidUtilities.dp(4.0f), blur));
         paint2.setColor(1711276032);
         setLayerType(2, null);
-        PaintWeightChooserView paintWeightChooserView = new PaintWeightChooserView(contextThemeWrapper);
+        PaintWeightChooserView paintWeightChooserView = new PaintWeightChooserView(context);
         this.weightChooserView = paintWeightChooserView;
         paintWeightChooserView.setAlpha(0.0f);
         paintWeightChooserView.setTranslationX(-AndroidUtilities.dp(18.0f));
@@ -329,10 +327,10 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         paintWeightChooserView.max = 10.0f;
         paintWeightChooserView.invalidate();
         paintWeightChooserView.setBrushWeight(this.outlineWidth);
-        paintWeightChooserView.setValueOverride(new ChatActivity.AnonymousClass1(this, 24));
+        paintWeightChooserView.setValueOverride(new RichEditor.AnonymousClass3(this));
         paintWeightChooserView.setTranslationX(-AndroidUtilities.dp(18.0f));
         paintWeightChooserView.setAlpha(0.0f);
-        addView(paintWeightChooserView, LayoutHelper.createFrame(-1.0f, -1));
+        addView(paintWeightChooserView, LayoutHelper.createFrame(-1, -1.0f));
     }
 
     public static void createSegmentImagePath(SegmentedObject segmentedObject, int i, int i2) {
@@ -603,13 +601,13 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                 arrayList2.add(point2);
             }
         }
-        arrayList2.add((Point) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList));
+        arrayList2.add((Point) Fragment$$ExternalSyntheticOutline0.m(1, arrayList));
         return arrayList2;
     }
 
     public final void afterUploadingMedia() {
-        final int i = 2;
-        final int i2 = 0;
+        final int i = 0;
+        int i2 = 11;
         final int i3 = 1;
         final StickerUploader stickerUploader = this.stickerUploader;
         if (stickerUploader == null) {
@@ -620,7 +618,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         if (stickerUploader.customHandler != null) {
             hideLoadingDialog();
             stickerUploader.customHandler.run(stickerUploader.finalPath, stickerUploader.tlInputStickerSetItem.document);
-            AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda470(29), 250L);
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda2(i2), 250L);
             return;
         }
         if (stickerUploader.replacedSticker != null) {
@@ -636,7 +634,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
 
                 @Override
                 public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-                    switch (i2) {
+                    switch (i) {
                         case 0:
                             final StickerMakerView stickerMakerView = this.f$0;
                             stickerMakerView.getClass();
@@ -708,9 +706,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView2.hideLoadingDialog();
                                                 z = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13 = stickerUploader3.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda13 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda13.run(Boolean.valueOf(z));
+                                            Utilities.Callback callback = stickerUploader3.whenDone;
+                                            if (callback != null) {
+                                                callback.run(Boolean.valueOf(z));
                                                 stickerUploader3.whenDone = null;
                                             }
                                             break;
@@ -769,9 +767,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView3.hideLoadingDialog();
                                                 z2 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader4.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.valueOf(z2));
+                                            Utilities.Callback callback2 = stickerUploader4.whenDone;
+                                            if (callback2 != null) {
+                                                callback2.run(Boolean.valueOf(z2));
                                                 stickerUploader4.whenDone = null;
                                             }
                                             break;
@@ -833,9 +831,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView4.hideLoadingDialog();
                                                 z3 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda15 = stickerUploader5.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda15 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda15.run(Boolean.valueOf(z3));
+                                            Utilities.Callback callback3 = stickerUploader5.whenDone;
+                                            if (callback3 != null) {
+                                                callback3.run(Boolean.valueOf(z3));
                                                 stickerUploader5.whenDone = null;
                                             }
                                             break;
@@ -914,9 +912,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView3.hideLoadingDialog();
                                                 z = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13 = stickerUploader4.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda13 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda13.run(Boolean.valueOf(z));
+                                            Utilities.Callback callback = stickerUploader4.whenDone;
+                                            if (callback != null) {
+                                                callback.run(Boolean.valueOf(z));
                                                 stickerUploader4.whenDone = null;
                                             }
                                             break;
@@ -975,9 +973,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView4.hideLoadingDialog();
                                                 z2 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader5.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.valueOf(z2));
+                                            Utilities.Callback callback2 = stickerUploader5.whenDone;
+                                            if (callback2 != null) {
+                                                callback2.run(Boolean.valueOf(z2));
                                                 stickerUploader5.whenDone = null;
                                             }
                                             break;
@@ -1039,9 +1037,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView5.hideLoadingDialog();
                                                 z3 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda15 = stickerUploader6.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda15 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda15.run(Boolean.valueOf(z3));
+                                            Utilities.Callback callback3 = stickerUploader6.whenDone;
+                                            if (callback3 != null) {
+                                                callback3.run(Boolean.valueOf(z3));
                                                 stickerUploader6.whenDone = null;
                                             }
                                             break;
@@ -1120,9 +1118,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView4.hideLoadingDialog();
                                                 z = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13 = stickerUploader5.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda13 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda13.run(Boolean.valueOf(z));
+                                            Utilities.Callback callback = stickerUploader5.whenDone;
+                                            if (callback != null) {
+                                                callback.run(Boolean.valueOf(z));
                                                 stickerUploader5.whenDone = null;
                                             }
                                             break;
@@ -1181,9 +1179,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView5.hideLoadingDialog();
                                                 z2 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader6.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.valueOf(z2));
+                                            Utilities.Callback callback2 = stickerUploader6.whenDone;
+                                            if (callback2 != null) {
+                                                callback2.run(Boolean.valueOf(z2));
                                                 stickerUploader6.whenDone = null;
                                             }
                                             break;
@@ -1245,9 +1243,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView6.hideLoadingDialog();
                                                 z3 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda15 = stickerUploader7.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda15 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda15.run(Boolean.valueOf(z3));
+                                            Utilities.Callback callback3 = stickerUploader7.whenDone;
+                                            if (callback3 != null) {
+                                                callback3.run(Boolean.valueOf(z3));
                                                 stickerUploader7.whenDone = null;
                                             }
                                             break;
@@ -1347,9 +1345,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView4.hideLoadingDialog();
                                                 z = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13 = stickerUploader5.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda13 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda13.run(Boolean.valueOf(z));
+                                            Utilities.Callback callback = stickerUploader5.whenDone;
+                                            if (callback != null) {
+                                                callback.run(Boolean.valueOf(z));
                                                 stickerUploader5.whenDone = null;
                                             }
                                             break;
@@ -1408,9 +1406,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView5.hideLoadingDialog();
                                                 z2 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader6.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.valueOf(z2));
+                                            Utilities.Callback callback2 = stickerUploader6.whenDone;
+                                            if (callback2 != null) {
+                                                callback2.run(Boolean.valueOf(z2));
                                                 stickerUploader6.whenDone = null;
                                             }
                                             break;
@@ -1472,9 +1470,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView6.hideLoadingDialog();
                                                 z3 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda15 = stickerUploader7.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda15 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda15.run(Boolean.valueOf(z3));
+                                            Utilities.Callback callback3 = stickerUploader7.whenDone;
+                                            if (callback3 != null) {
+                                                callback3.run(Boolean.valueOf(z3));
                                                 stickerUploader7.whenDone = null;
                                             }
                                             break;
@@ -1553,9 +1551,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView4.hideLoadingDialog();
                                                 z = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13 = stickerUploader5.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda13 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda13.run(Boolean.valueOf(z));
+                                            Utilities.Callback callback = stickerUploader5.whenDone;
+                                            if (callback != null) {
+                                                callback.run(Boolean.valueOf(z));
                                                 stickerUploader5.whenDone = null;
                                             }
                                             break;
@@ -1614,9 +1612,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView5.hideLoadingDialog();
                                                 z2 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader6.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.valueOf(z2));
+                                            Utilities.Callback callback2 = stickerUploader6.whenDone;
+                                            if (callback2 != null) {
+                                                callback2.run(Boolean.valueOf(z2));
                                                 stickerUploader6.whenDone = null;
                                             }
                                             break;
@@ -1678,9 +1676,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView6.hideLoadingDialog();
                                                 z3 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda15 = stickerUploader7.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda15 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda15.run(Boolean.valueOf(z3));
+                                            Utilities.Callback callback3 = stickerUploader7.whenDone;
+                                            if (callback3 != null) {
+                                                callback3.run(Boolean.valueOf(z3));
                                                 stickerUploader7.whenDone = null;
                                             }
                                             break;
@@ -1759,9 +1757,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView4.hideLoadingDialog();
                                                 z = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13 = stickerUploader5.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda13 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda13.run(Boolean.valueOf(z));
+                                            Utilities.Callback callback = stickerUploader5.whenDone;
+                                            if (callback != null) {
+                                                callback.run(Boolean.valueOf(z));
                                                 stickerUploader5.whenDone = null;
                                             }
                                             break;
@@ -1820,9 +1818,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView5.hideLoadingDialog();
                                                 z2 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader6.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.valueOf(z2));
+                                            Utilities.Callback callback2 = stickerUploader6.whenDone;
+                                            if (callback2 != null) {
+                                                callback2.run(Boolean.valueOf(z2));
                                                 stickerUploader6.whenDone = null;
                                             }
                                             break;
@@ -1884,9 +1882,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 stickerMakerView6.hideLoadingDialog();
                                                 z3 = false;
                                             }
-                                            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda15 = stickerUploader7.whenDone;
-                                            if (oAuthSheet$$ExternalSyntheticLambda15 != null) {
-                                                oAuthSheet$$ExternalSyntheticLambda15.run(Boolean.valueOf(z3));
+                                            Utilities.Callback callback3 = stickerUploader7.whenDone;
+                                            if (callback3 != null) {
+                                                callback3.run(Boolean.valueOf(z3));
                                                 stickerUploader7.whenDone = null;
                                             }
                                             break;
@@ -1902,10 +1900,10 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         if (stickerUploader.addToFavorite) {
             hideLoadingDialog();
             NotificationCenter.getInstance(i4).postNotificationNameOnUIThread(NotificationCenter.customStickerCreated, Boolean.FALSE);
-            AndroidUtilities.runOnUIThread(new PasscodeView$9$$ExternalSyntheticLambda0(stickerUploader, i), 350L);
-            OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13 = stickerUploader.whenDone;
-            if (oAuthSheet$$ExternalSyntheticLambda13 != null) {
-                oAuthSheet$$ExternalSyntheticLambda13.run(Boolean.TRUE);
+            AndroidUtilities.runOnUIThread(new ChatbotSheet$$ExternalSyntheticLambda0(stickerUploader, 24), 350L);
+            Utilities.Callback callback = stickerUploader.whenDone;
+            if (callback != null) {
+                callback.run(Boolean.TRUE);
                 return;
             }
             return;
@@ -1915,6 +1913,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                 TLRPC.TL_stickers_addStickerToSet tL_stickers_addStickerToSet = new TLRPC.TL_stickers_addStickerToSet();
                 tL_stickers_addStickerToSet.stickerset = MediaDataController.getInputStickerSet(stickerUploader.stickerSet);
                 tL_stickers_addStickerToSet.sticker = stickerUploader.tlInputStickerSetItem;
+                final int i5 = 2;
                 ConnectionsManager.getInstance(i4).sendRequest(tL_stickers_addStickerToSet, new RequestDelegate(this) {
                     public final StickerMakerView f$0;
 
@@ -1924,20 +1923,20 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
 
                     @Override
                     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-                        switch (i) {
+                        switch (i5) {
                             case 0:
                                 final StickerMakerView stickerMakerView = this.f$0;
                                 stickerMakerView.getClass();
-                                final int i5 = i4;
+                                final int i6 = i4;
                                 final StickerMakerView.StickerUploader stickerUploader2 = stickerUploader;
-                                final int i6 = 0;
+                                final int i7 = 0;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         boolean z;
                                         boolean z2;
                                         boolean z3;
-                                        switch (i6) {
+                                        switch (i7) {
                                             case 0:
                                                 final StickerMakerView stickerMakerView4 = stickerMakerView;
                                                 stickerMakerView4.getClass();
@@ -1946,7 +1945,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 final StickerMakerView.StickerUploader stickerUploader5 = stickerUploader2;
                                                 if (z4) {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                                    int i11 = i5;
+                                                    int i11 = i6;
                                                     MediaDataController.getInstance(i11).putStickerSet(tL_messages_stickerSet);
                                                     if (!MediaDataController.getInstance(i11).isStickerPackInstalled(tL_messages_stickerSet.set.id)) {
                                                         MediaDataController.getInstance(i11).toggleStickerSet(null, tLObject2, 2, null, false, false);
@@ -1996,9 +1995,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                     stickerMakerView4.hideLoadingDialog();
                                                     z = false;
                                                 }
-                                                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader5.whenDone;
-                                                if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-                                                    oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.valueOf(z));
+                                                Utilities.Callback callback2 = stickerUploader5.whenDone;
+                                                if (callback2 != null) {
+                                                    callback2.run(Boolean.valueOf(z));
                                                     stickerUploader5.whenDone = null;
                                                 }
                                                 break;
@@ -2009,7 +2008,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 boolean z5 = tLObject3 instanceof TLRPC.TL_messages_stickerSet;
                                                 final StickerMakerView.StickerUploader stickerUploader6 = stickerUploader2;
                                                 if (z5) {
-                                                    int i13 = i5;
+                                                    int i13 = i6;
                                                     MediaDataController.getInstance(i13).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i13).toggleStickerSet(null, tLObject3, 2, null, false, false);
                                                     DownloadButton.PreparingVideoToast preparingVideoToast2 = stickerMakerView5.loadingToast;
@@ -2057,9 +2056,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                     stickerMakerView5.hideLoadingDialog();
                                                     z2 = false;
                                                 }
-                                                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda15 = stickerUploader6.whenDone;
-                                                if (oAuthSheet$$ExternalSyntheticLambda15 != null) {
-                                                    oAuthSheet$$ExternalSyntheticLambda15.run(Boolean.valueOf(z2));
+                                                Utilities.Callback callback3 = stickerUploader6.whenDone;
+                                                if (callback3 != null) {
+                                                    callback3.run(Boolean.valueOf(z2));
                                                     stickerUploader6.whenDone = null;
                                                 }
                                                 break;
@@ -2071,7 +2070,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 final StickerMakerView.StickerUploader stickerUploader7 = stickerUploader2;
                                                 if (z6) {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
-                                                    int i15 = i5;
+                                                    int i15 = i6;
                                                     MediaDataController.getInstance(i15).putStickerSet(tL_messages_stickerSet2);
                                                     if (!MediaDataController.getInstance(i15).isStickerPackInstalled(tL_messages_stickerSet2.set.id)) {
                                                         MediaDataController.getInstance(i15).toggleStickerSet(null, tLObject4, 2, null, false, false);
@@ -2121,9 +2120,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                     stickerMakerView6.hideLoadingDialog();
                                                     z3 = false;
                                                 }
-                                                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda16 = stickerUploader7.whenDone;
-                                                if (oAuthSheet$$ExternalSyntheticLambda16 != null) {
-                                                    oAuthSheet$$ExternalSyntheticLambda16.run(Boolean.valueOf(z3));
+                                                Utilities.Callback callback4 = stickerUploader7.whenDone;
+                                                if (callback4 != null) {
+                                                    callback4.run(Boolean.valueOf(z3));
                                                     stickerUploader7.whenDone = null;
                                                 }
                                                 break;
@@ -2134,16 +2133,16 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                             case 1:
                                 final StickerMakerView stickerMakerView2 = this.f$0;
                                 stickerMakerView2.getClass();
-                                final int i7 = i4;
+                                final int i8 = i4;
                                 final StickerMakerView.StickerUploader stickerUploader3 = stickerUploader;
-                                final int i8 = 1;
+                                final int i9 = 1;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         boolean z;
                                         boolean z2;
                                         boolean z3;
-                                        switch (i8) {
+                                        switch (i9) {
                                             case 0:
                                                 final StickerMakerView stickerMakerView4 = stickerMakerView2;
                                                 stickerMakerView4.getClass();
@@ -2152,7 +2151,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 final StickerMakerView.StickerUploader stickerUploader5 = stickerUploader3;
                                                 if (z4) {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                                    int i11 = i7;
+                                                    int i11 = i8;
                                                     MediaDataController.getInstance(i11).putStickerSet(tL_messages_stickerSet);
                                                     if (!MediaDataController.getInstance(i11).isStickerPackInstalled(tL_messages_stickerSet.set.id)) {
                                                         MediaDataController.getInstance(i11).toggleStickerSet(null, tLObject2, 2, null, false, false);
@@ -2202,9 +2201,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                     stickerMakerView4.hideLoadingDialog();
                                                     z = false;
                                                 }
-                                                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader5.whenDone;
-                                                if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-                                                    oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.valueOf(z));
+                                                Utilities.Callback callback2 = stickerUploader5.whenDone;
+                                                if (callback2 != null) {
+                                                    callback2.run(Boolean.valueOf(z));
                                                     stickerUploader5.whenDone = null;
                                                 }
                                                 break;
@@ -2215,7 +2214,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 boolean z5 = tLObject3 instanceof TLRPC.TL_messages_stickerSet;
                                                 final StickerMakerView.StickerUploader stickerUploader6 = stickerUploader3;
                                                 if (z5) {
-                                                    int i13 = i7;
+                                                    int i13 = i8;
                                                     MediaDataController.getInstance(i13).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
                                                     MediaDataController.getInstance(i13).toggleStickerSet(null, tLObject3, 2, null, false, false);
                                                     DownloadButton.PreparingVideoToast preparingVideoToast2 = stickerMakerView5.loadingToast;
@@ -2263,9 +2262,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                     stickerMakerView5.hideLoadingDialog();
                                                     z2 = false;
                                                 }
-                                                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda15 = stickerUploader6.whenDone;
-                                                if (oAuthSheet$$ExternalSyntheticLambda15 != null) {
-                                                    oAuthSheet$$ExternalSyntheticLambda15.run(Boolean.valueOf(z2));
+                                                Utilities.Callback callback3 = stickerUploader6.whenDone;
+                                                if (callback3 != null) {
+                                                    callback3.run(Boolean.valueOf(z2));
                                                     stickerUploader6.whenDone = null;
                                                 }
                                                 break;
@@ -2277,7 +2276,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 final StickerMakerView.StickerUploader stickerUploader7 = stickerUploader3;
                                                 if (z6) {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
-                                                    int i15 = i7;
+                                                    int i15 = i8;
                                                     MediaDataController.getInstance(i15).putStickerSet(tL_messages_stickerSet2);
                                                     if (!MediaDataController.getInstance(i15).isStickerPackInstalled(tL_messages_stickerSet2.set.id)) {
                                                         MediaDataController.getInstance(i15).toggleStickerSet(null, tLObject4, 2, null, false, false);
@@ -2327,9 +2326,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                     stickerMakerView6.hideLoadingDialog();
                                                     z3 = false;
                                                 }
-                                                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda16 = stickerUploader7.whenDone;
-                                                if (oAuthSheet$$ExternalSyntheticLambda16 != null) {
-                                                    oAuthSheet$$ExternalSyntheticLambda16.run(Boolean.valueOf(z3));
+                                                Utilities.Callback callback4 = stickerUploader7.whenDone;
+                                                if (callback4 != null) {
+                                                    callback4.run(Boolean.valueOf(z3));
                                                     stickerUploader7.whenDone = null;
                                                 }
                                                 break;
@@ -2340,16 +2339,16 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                             default:
                                 final StickerMakerView stickerMakerView3 = this.f$0;
                                 stickerMakerView3.getClass();
-                                final int i9 = i4;
+                                final int i10 = i4;
                                 final StickerMakerView.StickerUploader stickerUploader4 = stickerUploader;
-                                final int i10 = 2;
+                                final int i11 = 2;
                                 AndroidUtilities.runOnUIThread(new Runnable() {
                                     @Override
                                     public final void run() {
                                         boolean z;
                                         boolean z2;
                                         boolean z3;
-                                        switch (i10) {
+                                        switch (i11) {
                                             case 0:
                                                 final StickerMakerView stickerMakerView4 = stickerMakerView3;
                                                 stickerMakerView4.getClass();
@@ -2358,23 +2357,23 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 final StickerMakerView.StickerUploader stickerUploader5 = stickerUploader4;
                                                 if (z4) {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
-                                                    int i11 = i9;
-                                                    MediaDataController.getInstance(i11).putStickerSet(tL_messages_stickerSet);
-                                                    if (!MediaDataController.getInstance(i11).isStickerPackInstalled(tL_messages_stickerSet.set.id)) {
-                                                        MediaDataController.getInstance(i11).toggleStickerSet(null, tLObject2, 2, null, false, false);
+                                                    int i12 = i10;
+                                                    MediaDataController.getInstance(i12).putStickerSet(tL_messages_stickerSet);
+                                                    if (!MediaDataController.getInstance(i12).isStickerPackInstalled(tL_messages_stickerSet.set.id)) {
+                                                        MediaDataController.getInstance(i12).toggleStickerSet(null, tLObject2, 2, null, false, false);
                                                     }
                                                     DownloadButton.PreparingVideoToast preparingVideoToast = stickerMakerView4.loadingToast;
                                                     if (preparingVideoToast != null) {
                                                         preparingVideoToast.setProgress(1.0f);
                                                     }
-                                                    final int i12 = 1;
+                                                    final int i13 = 1;
                                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                                         @Override
                                                         public final void run() {
                                                             TLObject tLObject5 = tLObject2;
                                                             StickerMakerView.StickerUploader stickerUploader8 = stickerUploader5;
                                                             StickerMakerView stickerMakerView7 = stickerMakerView4;
-                                                            int i17 = i12;
+                                                            int i17 = i13;
                                                             stickerMakerView7.getClass();
                                                             switch (i17) {
                                                                 case 0:
@@ -2408,9 +2407,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                     stickerMakerView4.hideLoadingDialog();
                                                     z = false;
                                                 }
-                                                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader5.whenDone;
-                                                if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-                                                    oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.valueOf(z));
+                                                Utilities.Callback callback2 = stickerUploader5.whenDone;
+                                                if (callback2 != null) {
+                                                    callback2.run(Boolean.valueOf(z));
                                                     stickerUploader5.whenDone = null;
                                                 }
                                                 break;
@@ -2421,21 +2420,21 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 boolean z5 = tLObject3 instanceof TLRPC.TL_messages_stickerSet;
                                                 final StickerMakerView.StickerUploader stickerUploader6 = stickerUploader4;
                                                 if (z5) {
-                                                    int i13 = i9;
-                                                    MediaDataController.getInstance(i13).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
-                                                    MediaDataController.getInstance(i13).toggleStickerSet(null, tLObject3, 2, null, false, false);
+                                                    int i14 = i10;
+                                                    MediaDataController.getInstance(i14).putStickerSet((TLRPC.TL_messages_stickerSet) tLObject3);
+                                                    MediaDataController.getInstance(i14).toggleStickerSet(null, tLObject3, 2, null, false, false);
                                                     DownloadButton.PreparingVideoToast preparingVideoToast2 = stickerMakerView5.loadingToast;
                                                     if (preparingVideoToast2 != null) {
                                                         preparingVideoToast2.setProgress(1.0f);
                                                     }
-                                                    final int i14 = 0;
+                                                    final int i15 = 0;
                                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                                         @Override
                                                         public final void run() {
                                                             TLObject tLObject5 = tLObject3;
                                                             StickerMakerView.StickerUploader stickerUploader8 = stickerUploader6;
                                                             StickerMakerView stickerMakerView7 = stickerMakerView5;
-                                                            int i17 = i14;
+                                                            int i17 = i15;
                                                             stickerMakerView7.getClass();
                                                             switch (i17) {
                                                                 case 0:
@@ -2469,9 +2468,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                     stickerMakerView5.hideLoadingDialog();
                                                     z2 = false;
                                                 }
-                                                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda15 = stickerUploader6.whenDone;
-                                                if (oAuthSheet$$ExternalSyntheticLambda15 != null) {
-                                                    oAuthSheet$$ExternalSyntheticLambda15.run(Boolean.valueOf(z2));
+                                                Utilities.Callback callback3 = stickerUploader6.whenDone;
+                                                if (callback3 != null) {
+                                                    callback3.run(Boolean.valueOf(z2));
                                                     stickerUploader6.whenDone = null;
                                                 }
                                                 break;
@@ -2483,32 +2482,32 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                 final StickerMakerView.StickerUploader stickerUploader7 = stickerUploader4;
                                                 if (z6) {
                                                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) tLObject4;
-                                                    int i15 = i9;
-                                                    MediaDataController.getInstance(i15).putStickerSet(tL_messages_stickerSet2);
-                                                    if (!MediaDataController.getInstance(i15).isStickerPackInstalled(tL_messages_stickerSet2.set.id)) {
-                                                        MediaDataController.getInstance(i15).toggleStickerSet(null, tLObject4, 2, null, false, false);
+                                                    int i16 = i10;
+                                                    MediaDataController.getInstance(i16).putStickerSet(tL_messages_stickerSet2);
+                                                    if (!MediaDataController.getInstance(i16).isStickerPackInstalled(tL_messages_stickerSet2.set.id)) {
+                                                        MediaDataController.getInstance(i16).toggleStickerSet(null, tLObject4, 2, null, false, false);
                                                     }
                                                     DownloadButton.PreparingVideoToast preparingVideoToast3 = stickerMakerView6.loadingToast;
                                                     if (preparingVideoToast3 != null) {
                                                         preparingVideoToast3.setProgress(1.0f);
                                                     }
-                                                    final int i16 = 2;
+                                                    final int i17 = 2;
                                                     AndroidUtilities.runOnUIThread(new Runnable() {
                                                         @Override
                                                         public final void run() {
                                                             TLObject tLObject5 = tLObject4;
                                                             StickerMakerView.StickerUploader stickerUploader8 = stickerUploader7;
                                                             StickerMakerView stickerMakerView7 = stickerMakerView6;
-                                                            int i17 = i16;
+                                                            int i18 = i17;
                                                             stickerMakerView7.getClass();
-                                                            switch (i17) {
+                                                            switch (i18) {
                                                                 case 0:
                                                                     NotificationCenter notificationCenter = NotificationCenter.getInstance(UserConfig.selectedAccount);
-                                                                    int i18 = NotificationCenter.customStickerCreated;
+                                                                    int i19 = NotificationCenter.customStickerCreated;
                                                                     TLRPC.Document document = stickerUploader8.mediaDocument.document;
                                                                     String str = stickerUploader8.thumbPath;
                                                                     Boolean bool = Boolean.FALSE;
-                                                                    notificationCenter.postNotificationNameOnUIThread(i18, bool, tLObject5, document, str, bool);
+                                                                    notificationCenter.postNotificationNameOnUIThread(i19, bool, tLObject5, document, str, bool);
                                                                     stickerMakerView7.hideLoadingDialog();
                                                                     break;
                                                                 case 1:
@@ -2517,11 +2516,11 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                                     break;
                                                                 default:
                                                                     NotificationCenter notificationCenter2 = NotificationCenter.getInstance(UserConfig.selectedAccount);
-                                                                    int i19 = NotificationCenter.customStickerCreated;
+                                                                    int i110 = NotificationCenter.customStickerCreated;
                                                                     TLRPC.Document document2 = stickerUploader8.mediaDocument.document;
                                                                     String str2 = stickerUploader8.thumbPath;
                                                                     Boolean bool2 = Boolean.FALSE;
-                                                                    notificationCenter2.postNotificationNameOnUIThread(i19, bool2, tLObject5, document2, str2, bool2);
+                                                                    notificationCenter2.postNotificationNameOnUIThread(i110, bool2, tLObject5, document2, str2, bool2);
                                                                     stickerMakerView7.hideLoadingDialog();
                                                                     break;
                                                             }
@@ -2533,9 +2532,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                                                     stickerMakerView6.hideLoadingDialog();
                                                     z3 = false;
                                                 }
-                                                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda16 = stickerUploader7.whenDone;
-                                                if (oAuthSheet$$ExternalSyntheticLambda16 != null) {
-                                                    oAuthSheet$$ExternalSyntheticLambda16.run(Boolean.valueOf(z3));
+                                                Utilities.Callback callback4 = stickerUploader7.whenDone;
+                                                if (callback4 != null) {
+                                                    callback4.run(Boolean.valueOf(z3));
                                                     stickerUploader7.whenDone = null;
                                                 }
                                                 break;
@@ -2555,10 +2554,10 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         if (preparingVideoToast != null) {
             preparingVideoToast.setProgress(1.0f);
         }
-        AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda74(this, i4, 28), 450L);
-        OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = stickerUploader.whenDone;
-        if (oAuthSheet$$ExternalSyntheticLambda14 != null) {
-            oAuthSheet$$ExternalSyntheticLambda14.run(Boolean.TRUE);
+        AndroidUtilities.runOnUIThread(new Theme$$ExternalSyntheticLambda19(this, i4, i2), 450L);
+        Utilities.Callback callback2 = stickerUploader.whenDone;
+        if (callback2 != null) {
+            callback2.run(Boolean.TRUE);
             stickerUploader.whenDone = null;
         }
     }
@@ -2757,7 +2756,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
             tL_documentAttributeSticker.alt = stickerUploader3.emoji;
             tL_documentAttributeSticker.stickerset = new TLRPC.TL_inputStickerSetEmpty();
             tL_messages_uploadMedia.media.attributes.add(tL_documentAttributeSticker);
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_uploadMedia, new LinkManager$$ExternalSyntheticLambda8(3, this, stickerUploader3), 2);
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_messages_uploadMedia, new StarGiftSheet$$ExternalSyntheticLambda0(13, this, stickerUploader3), 2);
             return;
         }
         if (i == NotificationCenter.fileUploadProgressChanged) {
@@ -2827,7 +2826,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
     }
 
     public final void disableClippingMode() {
-        this.segmentBorderAlpha.set(0.0f, false);
+        this.segmentBorderAlpha.set(0.0f);
         ValueAnimator valueAnimator = this.bordersAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -2878,11 +2877,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
     }
 
     public final void drawOutline(Canvas canvas, boolean z, ViewGroup viewGroup, boolean z2) {
-        AnimatedFloat animatedFloat = this.outlineAlpha;
-        animatedFloat.parent = viewGroup;
-        boolean z3 = this.outlineVisible;
-        if (z3 || animatedFloat.value > 0.0f) {
-            float f = viewGroup == null ? 1.0f : animatedFloat.set(z3 && !z2);
+        this.outlineAlpha.setParent(viewGroup);
+        if (this.outlineVisible || this.outlineAlpha.get() > 0.0f) {
+            float f = viewGroup == null ? 1.0f : this.outlineAlpha.set(this.outlineVisible && !z2);
             SegmentedObject[] segmentedObjectArr = this.objects;
             if (segmentedObjectArr != null) {
                 for (SegmentedObject segmentedObject : segmentedObjectArr) {
@@ -2940,9 +2937,9 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
             return null;
         }
         if (this.thanosEffect == null) {
-            ThanosEffect thanosEffect = new ThanosEffect(getContext(), new StickerMakerView$$ExternalSyntheticLambda2(this, 0));
+            ThanosEffect thanosEffect = new ThanosEffect(getContext(), new StickerMakerView$$ExternalSyntheticLambda6(this, 0));
             this.thanosEffect = thanosEffect;
-            addView(thanosEffect, LayoutHelper.createFrame(-1.0f, -1));
+            addView(thanosEffect, LayoutHelper.createFrame(-1, -1.0f));
         }
         return this.thanosEffect;
     }
@@ -3087,7 +3084,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         }
     }
 
-    public final void segmentImage(Bitmap bitmap, int i, int i2, int i3, PhotoViewer$$ExternalSyntheticLambda26 photoViewer$$ExternalSyntheticLambda26) {
+    public final void segmentImage(Bitmap bitmap, int i, int i2, int i3, PhotoViewer$$ExternalSyntheticLambda65 photoViewer$$ExternalSyntheticLambda65) {
         MultiFlavorDetectorCreator multiFlavorDetectorCreator;
         int i4 = i2 <= 0 ? AndroidUtilities.displaySize.x : i2;
         int i5 = i3 <= 0 ? AndroidUtilities.displaySize.y : i3;
@@ -3099,12 +3096,12 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         this.sourceBitmap = bitmap;
         this.orientation = i;
         this.detectedEmoji = null;
-        CacheControlActivity$$ExternalSyntheticLambda23 cacheControlActivity$$ExternalSyntheticLambda23 = new CacheControlActivity$$ExternalSyntheticLambda23(this, i, photoViewer$$ExternalSyntheticLambda26, 2);
+        CommunityUtils$$ExternalSyntheticLambda2 communityUtils$$ExternalSyntheticLambda2 = new CommunityUtils$$ExternalSyntheticLambda2(this, i, photoViewer$$ExternalSyntheticLambda65, 1);
         this.segmentingLoading = true;
         Settings.FeatureFlagData featureFlagData = new Settings.FeatureFlagData();
         featureFlagData.collectAnrs = true;
         featureFlagData.collectBuildIds = true;
-        zzd client = zzig.getClient(new SubjectSegmenterOptions(featureFlagData));
+        zzd client = zzid.getClient(new SubjectSegmenterOptions(featureFlagData));
         if (EmuDetector.with(getContext()).detect()) {
             ArrayList arrayList = new ArrayList();
             Bitmap bitmap2 = this.sourceBitmap;
@@ -3117,11 +3114,11 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
             subjectMock.startX = (bitmap2.getWidth() - subjectMock.width) / 2;
             subjectMock.startY = (bitmap2.getHeight() - subjectMock.height) / 2;
             arrayList.add(subjectMock);
-            cacheControlActivity$$ExternalSyntheticLambda23.run(arrayList);
+            communityUtils$$ExternalSyntheticLambda2.run(arrayList);
             return;
         }
-        InputImage inputImageFromBitmap = InputImage.fromBitmap(bitmap, i);
-        client.processBase(inputImageFromBitmap).addOnSuccessListener(new ProfileGooeyView$$ExternalSyntheticLambda0(cacheControlActivity$$ExternalSyntheticLambda23, 9)).addOnFailureListener(new PassportActivity$$ExternalSyntheticLambda66(this, bitmap, i, photoViewer$$ExternalSyntheticLambda26, cacheControlActivity$$ExternalSyntheticLambda23, 2));
+        InputImage inputImageFromBitmap = InputImage.fromBitmap(i, bitmap);
+        client.processBase(inputImageFromBitmap).addOnSuccessListener(new WindowVisibilityManager$$ExternalSyntheticLambda0(communityUtils$$ExternalSyntheticLambda2, 28)).addOnFailureListener(new AlertsCreator$$ExternalSyntheticLambda37(this, bitmap, i, photoViewer$$ExternalSyntheticLambda65, communityUtils$$ExternalSyntheticLambda2));
         if (this.detectedEmoji == null) {
             ImageLabelerOptions imageLabelerOptions = ImageLabelerOptions.DEFAULT_OPTIONS;
             zzah.checkNotNull(imageLabelerOptions, "options cannot be null");
@@ -3137,8 +3134,8 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
             Splitter splitter = new Splitter(gmsRpc, 1);
             zzkf zzkfVar = zzkf.ON_DEVICE_IMAGE_LABEL_CREATE;
             zznp zznpVar = zzdVar.zzc;
-            zzh.zza.execute(new Trigger(zznpVar, splitter, zzkfVar, zznpVar.zzj(), 5));
-            new ImageLabelerImpl((MLTask) zzdVar.zza.get(imageLabelerOptions), (Executor) zzdVar.zzb.zza.get(), new Feature("vision.ica", 1L)).processBase(inputImageFromBitmap).addOnSuccessListener(new ProfileGooeyView$$ExternalSyntheticLambda0(this, 8)).addOnFailureListener(new ShareAlert$$ExternalSyntheticLambda15(12));
+            zzh.zza.execute(new zzba(4, zznpVar, splitter, zzkfVar, zznpVar.zzj()));
+            new ImageLabelerImpl((MLTask) zzdVar.zza.get(imageLabelerOptions), (Executor) zzdVar.zzb.zza.get(), new Feature("vision.ica", 1L)).processBase(inputImageFromBitmap).addOnSuccessListener(new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 29)).addOnFailureListener(new FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0(25));
         }
         List<TLRPC.TL_availableReaction> enabledReactionsList = MediaDataController.getInstance(this.currentAccount).getEnabledReactionsList();
         for (int i6 = 0; i6 < Math.min(enabledReactionsList.size(), 9); i6++) {
@@ -3207,7 +3204,7 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         if (tL_error == null || "PACK_TITLE_INVALID".equals(tL_error.text)) {
             return;
         }
-        new BulletinFactory((FrameLayout) getParent(), this.resourcesProvider).createErrorBulletin(tL_error.text, null).show();
+        BulletinFactory.of((FrameLayout) getParent(), this.resourcesProvider).createErrorBulletin(tL_error.text).show();
     }
 
     public final void updateOutlineBounds() {
@@ -3227,14 +3224,14 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
         this.outlineBoundsPath.computeBounds(this.outlineBounds, true);
     }
 
-    public final void uploadStickerFile(final OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13, final String str, final String str2, final CharSequence charSequence, final boolean z, final long j, final TLRPC.StickerSet stickerSet, final TLRPC.Document document, final TLRPC.Document document2, final VideoEditedInfo videoEditedInfo, final String str3, final CallLogActivity$$ExternalSyntheticLambda3 callLogActivity$$ExternalSyntheticLambda3) {
+    public final void uploadStickerFile(final Utilities.Callback callback, final String str, final String str2, final CharSequence charSequence, final boolean z, final long j, final TLRPC.StickerSet stickerSet, final TLRPC.Document document, final TLRPC.Document document2, final VideoEditedInfo videoEditedInfo, final String str3, final Utilities.Callback2 callback2) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
                 StickerMakerView.StickerUploader stickerUploader;
                 StickerMakerView stickerMakerView = this.f$0;
-                OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda14 = oAuthSheet$$ExternalSyntheticLambda13;
-                boolean z2 = oAuthSheet$$ExternalSyntheticLambda14 == null || (stickerUploader = stickerMakerView.stickerUploader) == null || !stickerUploader.uploaded;
+                Utilities.Callback callback3 = callback;
+                boolean z2 = callback3 == null || (stickerUploader = stickerMakerView.stickerUploader) == null || !stickerUploader.uploaded;
                 if (z2) {
                     StickerMakerView.StickerUploader stickerUploader2 = stickerMakerView.stickerUploader;
                     if (stickerUploader2 != null) {
@@ -3255,8 +3252,8 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                 VideoEditedInfo videoEditedInfo2 = videoEditedInfo;
                 stickerUploader3.videoEditedInfo = videoEditedInfo2;
                 stickerUploader3.thumbPath = str3;
-                stickerUploader3.whenDone = oAuthSheet$$ExternalSyntheticLambda14;
-                stickerUploader3.customHandler = callLogActivity$$ExternalSyntheticLambda3;
+                stickerUploader3.whenDone = callback3;
+                stickerUploader3.customHandler = callback2;
                 if (!TextUtils.isEmpty(str4)) {
                     stickerUploader3.finalFiles.add(new File(stickerUploader3.finalPath));
                 }
@@ -3294,11 +3291,11 @@ public final class StickerMakerView extends FrameLayout implements NotificationC
                 } else {
                     stickerMakerView.afterUploadingMedia();
                 }
-                if (oAuthSheet$$ExternalSyntheticLambda14 == null) {
+                if (callback3 == null) {
                     if (stickerMakerView.loadingToast == null) {
                         stickerMakerView.loadingToast = new DownloadButton.PreparingVideoToast(stickerMakerView.getContext(), LocaleController.getString(R.string.PreparingSticker));
                     }
-                    stickerMakerView.loadingToast.setOnCancelListener(new StickerMakerView$$ExternalSyntheticLambda2(stickerMakerView, 1));
+                    stickerMakerView.loadingToast.setOnCancelListener(new StickerMakerView$$ExternalSyntheticLambda6(stickerMakerView, 1));
                     if (stickerMakerView.loadingToast.getParent() == null) {
                         stickerMakerView.addView(stickerMakerView.loadingToast, LayoutHelper.createFrame(-1, -1, 17));
                     }

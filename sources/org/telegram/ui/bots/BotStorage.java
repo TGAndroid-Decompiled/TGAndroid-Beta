@@ -62,16 +62,12 @@ public final class BotStorage {
             RadioButton radioButton = new RadioButton(context);
             this.radioButton = radioButton;
             radioButton.setSize(AndroidUtilities.dp(20.0f));
-            int color = Theme.getColor(null, Theme.key_dialogRadioBackground, false);
-            int color2 = Theme.getColor(null, Theme.key_dialogRadioBackgroundChecked, false);
-            radioButton.color = color;
-            radioButton.checkedColor = color2;
-            radioButton.invalidate();
+            radioButton.setColor(Theme.getColor(null, Theme.key_dialogRadioBackground, false), Theme.getColor(null, Theme.key_dialogRadioBackgroundChecked, false));
             addView(radioButton, LayoutHelper.createFrame(22, 22.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
-            TextView textViewMakeTextView = TextHelper.makeTextView(context, 16.0f, Theme.key_windowBackgroundWhiteBlackText, true, null);
+            TextView textViewMakeTextView = TextHelper.makeTextView(context, 16.0f, Theme.key_windowBackgroundWhiteBlackText, true);
             textViewMakeTextView.setText(storageConfig.user_name);
             addView(textViewMakeTextView, LayoutHelper.createLinear(-1, -2, 7, 62, 9, 8, 0));
-            TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false, null);
+            TextView textViewMakeTextView2 = TextHelper.makeTextView(context, 14.0f, Theme.key_windowBackgroundWhiteGrayText, false);
             textViewMakeTextView2.setText(LocaleController.formatString(R.string.BotRestoreStorageCreatedAt, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.formatSmallDateChat(storageConfig.created_at / 1000), LocaleController.getInstance().getFormatterDay().format(new Date(storageConfig.created_at / 1000)))));
             addView(textViewMakeTextView2, LayoutHelper.createLinear(-1, -2, 7, 62, 32, 8, 0));
             this.needDivider = z;
@@ -124,7 +120,7 @@ public final class BotStorage {
         keyStore.load(null);
         if (!keyStore.containsAlias("MiniAppsKey")) {
             KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
-            keyGenerator.init(BotStorage$$ExternalSyntheticApiModelOutline0.m1100m().setBlockModes("GCM").setEncryptionPaddings("NoPadding").setUserAuthenticationRequired(false).build());
+            keyGenerator.init(BotStorage$$ExternalSyntheticApiModelOutline0.m3591m().setBlockModes("GCM").setEncryptionPaddings("NoPadding").setUserAuthenticationRequired(false).build());
             keyGenerator.generateKey();
         }
         return (SecretKey) keyStore.getKey("MiniAppsKey", null);
@@ -279,7 +275,7 @@ public final class BotStorage {
                     hashSet.add(Long.valueOf(userConfig.getClientUserId()));
                 }
             }
-            Iterator it = ((Set) Collection.EL.stream(readConfig().values()).filter(new BotStorage$$ExternalSyntheticLambda3(hashSet, 0)).collect(Collectors.toSet())).iterator();
+            Iterator it = ((Set) Collection.EL.stream(readConfig().values()).filter(new BotStorage$$ExternalSyntheticLambda6(hashSet, 1)).collect(Collectors.toSet())).iterator();
             while (it.hasNext()) {
                 try {
                     File file = getFile(((StorageConfig) it.next()).storage_id);
@@ -310,7 +306,7 @@ public final class BotStorage {
                 hashSet.add(Long.valueOf(userConfig.getClientUserId()));
             }
         }
-        for (StorageConfig storageConfig : (Set) Collection.EL.stream(readConfig().values()).filter(new BotStorage$$ExternalSyntheticLambda3(hashSet, 1)).collect(Collectors.toSet())) {
+        for (StorageConfig storageConfig : (Set) Collection.EL.stream(readConfig().values()).filter(new BotStorage$$ExternalSyntheticLambda6(hashSet, 0)).collect(Collectors.toSet())) {
             try {
                 File file = getFile(storageConfig.storage_id);
                 if (file.exists() && getJSON(file).has(str)) {

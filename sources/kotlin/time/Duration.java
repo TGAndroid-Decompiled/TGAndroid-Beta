@@ -1,6 +1,6 @@
 package kotlin.time;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import kotlin.jvm.internal.Intrinsics;
 
 public final class Duration implements Comparable {
@@ -15,7 +15,7 @@ public final class Duration implements Comparable {
         NEG_INFINITE = -9223372036854775805L;
     }
 
-    public static final void m140appendFractionalimpl(StringBuilder sb, int i, int i2, int i3, String str) {
+    public static final void m145appendFractionalimpl(StringBuilder sb, int i, int i2, int i3, String str) {
         CharSequence charSequenceSubSequence;
         sb.append(i);
         if (i2 != 0) {
@@ -23,7 +23,7 @@ public final class Duration implements Comparable {
             String strValueOf = String.valueOf(i2);
             Intrinsics.checkNotNullParameter(strValueOf, "<this>");
             if (i3 < 0) {
-                throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i3, "Desired length ", " is less than zero."));
+                throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(i3, "Desired length ", " is less than zero."));
             }
             if (i3 <= strValueOf.length()) {
                 charSequenceSubSequence = strValueOf.subSequence(0, strValueOf.length());
@@ -70,11 +70,11 @@ public final class Duration implements Comparable {
         sb.append(str);
     }
 
-    public static final boolean m141isInfiniteimpl(long j) {
+    public static final boolean m146isInfiniteimpl(long j) {
         return j == INFINITE || j == NEG_INFINITE;
     }
 
-    public static final long m142toLongimpl(long j, DurationUnit unit) {
+    public static final long m147toLongimpl(long j, DurationUnit unit) {
         Intrinsics.checkNotNullParameter(unit, "unit");
         if (j == INFINITE) {
             return Long.MAX_VALUE;
@@ -138,11 +138,11 @@ public final class Duration implements Comparable {
             j = ((long) (((int) j) & 1)) + ((-(j >> 1)) << 1);
             int i4 = DurationJvmKt.$r8$clinit;
         }
-        long jM142toLongimpl = m142toLongimpl(j, DurationUnit.DAYS);
-        int iM142toLongimpl = m141isInfiniteimpl(j) ? 0 : (int) (m142toLongimpl(j, DurationUnit.HOURS) % ((long) 24));
-        int iM142toLongimpl2 = m141isInfiniteimpl(j) ? 0 : (int) (m142toLongimpl(j, DurationUnit.MINUTES) % ((long) 60));
-        int iM142toLongimpl3 = m141isInfiniteimpl(j) ? 0 : (int) (m142toLongimpl(j, DurationUnit.SECONDS) % ((long) 60));
-        if (m141isInfiniteimpl(j)) {
+        long jM147toLongimpl = m147toLongimpl(j, DurationUnit.DAYS);
+        int iM147toLongimpl = m146isInfiniteimpl(j) ? 0 : (int) (m147toLongimpl(j, DurationUnit.HOURS) % ((long) 24));
+        int iM147toLongimpl2 = m146isInfiniteimpl(j) ? 0 : (int) (m147toLongimpl(j, DurationUnit.MINUTES) % ((long) 60));
+        int iM147toLongimpl3 = m146isInfiniteimpl(j) ? 0 : (int) (m147toLongimpl(j, DurationUnit.SECONDS) % ((long) 60));
+        if (m146isInfiniteimpl(j)) {
             i2 = 0;
             i = 1;
         } else if ((((int) j) & 1) == 1) {
@@ -152,12 +152,12 @@ public final class Duration implements Comparable {
             i = 1;
             i2 = (int) ((j >> 1) % ((long) 1000000000));
         }
-        boolean z2 = jM142toLongimpl != 0;
-        boolean z3 = iM142toLongimpl != 0;
-        boolean z4 = iM142toLongimpl2 != 0;
-        boolean z5 = (iM142toLongimpl3 == 0 && i2 == 0) ? false : true;
+        boolean z2 = jM147toLongimpl != 0;
+        boolean z3 = iM147toLongimpl != 0;
+        boolean z4 = iM147toLongimpl2 != 0;
+        boolean z5 = (iM147toLongimpl3 == 0 && i2 == 0) ? false : true;
         if (z2) {
-            sb.append(jM142toLongimpl);
+            sb.append(jM147toLongimpl);
             sb.append('d');
             i3 = 1;
         } else {
@@ -168,7 +168,7 @@ public final class Duration implements Comparable {
             if (i3 > 0) {
                 sb.append(' ');
             }
-            sb.append(iM142toLongimpl);
+            sb.append(iM147toLongimpl);
             sb.append('h');
             i3 = i5;
         }
@@ -177,7 +177,7 @@ public final class Duration implements Comparable {
             if (i3 > 0) {
                 sb.append(' ');
             }
-            sb.append(iM142toLongimpl2);
+            sb.append(iM147toLongimpl2);
             sb.append('m');
             i3 = i6;
         }
@@ -186,12 +186,12 @@ public final class Duration implements Comparable {
             if (i3 > 0) {
                 sb.append(' ');
             }
-            if (iM142toLongimpl3 != 0 || z2 || z3 || z4) {
-                m140appendFractionalimpl(sb, iM142toLongimpl3, i2, 9, "s");
+            if (iM147toLongimpl3 != 0 || z2 || z3 || z4) {
+                m145appendFractionalimpl(sb, iM147toLongimpl3, i2, 9, "s");
             } else if (i2 >= 1000000) {
-                m140appendFractionalimpl(sb, i2 / 1000000, i2 % 1000000, 6, "ms");
+                m145appendFractionalimpl(sb, i2 / 1000000, i2 % 1000000, 6, "ms");
             } else if (i2 >= 1000) {
-                m140appendFractionalimpl(sb, i2 / 1000, i2 % 1000, 3, "us");
+                m145appendFractionalimpl(sb, i2 / 1000, i2 % 1000, 3, "us");
             } else {
                 sb.append(i2);
                 sb.append("ns");

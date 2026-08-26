@@ -26,20 +26,20 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda226;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda262;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda228;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda264;
 import org.telegram.messenger.R;
 import org.telegram.messenger.pip.PipSource$$ExternalSyntheticApiModelOutline0;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda9;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda26;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda11;
 import org.telegram.ui.CastSync$$ExternalSyntheticApiModelOutline0;
 import org.telegram.ui.Components.voip.VoIPHelper;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.VoIPFragment;
+import org.webrtc.SurfaceViewRenderer$$ExternalSyntheticLambda0;
 
 public class VoIPGroupNotification {
     public static long currentCallId;
@@ -86,9 +86,8 @@ public class VoIPGroupNotification {
                 return;
             }
             this.destroyed = true;
-            VoIPFragment voIPFragment = VoIPFragment.instance;
-            if (voIPFragment != null) {
-                voIPFragment.onStateChanged(getCallState());
+            if (VoIPFragment.getInstance() != null) {
+                VoIPFragment.getInstance().onStateChanged(getCallState());
             }
         }
 
@@ -174,10 +173,9 @@ public class VoIPGroupNotification {
         VoIPPreNotificationService.stopRinging();
         TL_phone.declineConferenceCallInvite declineconferencecallinvite = new TL_phone.declineConferenceCallInvite();
         declineconferencecallinvite.msg_id = i2;
-        ConnectionsManager.getInstance(i).sendRequest(declineconferencecallinvite, new Theme$$ExternalSyntheticLambda9(i, 1));
-        VoIPFragment voIPFragment = VoIPFragment.instance;
-        if (voIPFragment != null) {
-            voIPFragment.windowView.finish(330L);
+        ConnectionsManager.getInstance(i).sendRequest(declineconferencecallinvite, new Theme$$ExternalSyntheticLambda11(i, 1));
+        if (VoIPFragment.getInstance() != null) {
+            VoIPFragment.getInstance().finish();
         }
     }
 
@@ -200,9 +198,8 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            VoIPFragment voIPFragment = VoIPFragment.instance;
-            if (voIPFragment != null) {
-                voIPFragment.windowView.finish(330L);
+            if (VoIPFragment.getInstance() != null) {
+                VoIPFragment.getInstance().finish();
             }
         }
     }
@@ -229,7 +226,7 @@ public class VoIPGroupNotification {
     }
 
     public static void lambda$request$1(int i, long j, long j2, int i2, boolean z, Context context, String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda226(tLObject, i, j, j2, i2, z, context, str));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda228(tLObject, i, j, j2, i2, z, context, str));
     }
 
     public static void open(Context context, int i, int i2) {
@@ -275,7 +272,7 @@ public class VoIPGroupNotification {
                     getgroupcall.call = tL_inputGroupCallInviteMessage;
                     tL_inputGroupCallInviteMessage.msg_id = i2;
                     getgroupcall.limit = 3;
-                    ConnectionsManager.getInstance(i).sendRequest(getgroupcall, new MessagesController$$ExternalSyntheticLambda262(context, i, j, str, j2, i2, z));
+                    ConnectionsManager.getInstance(i).sendRequest(getgroupcall, new MessagesController$$ExternalSyntheticLambda264(context, i, j, str, j2, i2, z));
                 }
             }
         }
@@ -317,7 +314,7 @@ public class VoIPGroupNotification {
         }
         if (z) {
             AudioAttributes audioAttributesBuild = new AudioAttributes.Builder().setContentType(4).setLegacyStreamType(2).setUsage(2).build();
-            AndroidUtilities$$ExternalSyntheticApiModelOutline1.m166m();
+            AndroidUtilities$$ExternalSyntheticApiModelOutline1.m169m();
             NotificationChannel notificationChannelM = PipSource$$ExternalSyntheticApiModelOutline0.m(DiffUtil.m(i5, "incoming_calls4"), LocaleController.getString(R.string.IncomingCallsSystemSetting));
             try {
                 notificationChannelM.setSound(null, audioAttributesBuild);
@@ -390,9 +387,9 @@ public class VoIPGroupNotification {
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
         }
-        ArticleViewer$$ExternalSyntheticLambda26 articleViewer$$ExternalSyntheticLambda26 = new ArticleViewer$$ExternalSyntheticLambda26(context, i, i2, 3);
-        missRunnable = articleViewer$$ExternalSyntheticLambda26;
-        AndroidUtilities.runOnUIThread(articleViewer$$ExternalSyntheticLambda26, MessagesController.getInstance(i).callRingTimeout);
+        SurfaceViewRenderer$$ExternalSyntheticLambda0 surfaceViewRenderer$$ExternalSyntheticLambda0 = new SurfaceViewRenderer$$ExternalSyntheticLambda0(context, i, i2, 3);
+        missRunnable = surfaceViewRenderer$$ExternalSyntheticLambda0;
+        AndroidUtilities.runOnUIThread(surfaceViewRenderer$$ExternalSyntheticLambda0, MessagesController.getInstance(i).callRingTimeout);
     }
 
     public static void hide(Context context, int i, int i2) {
@@ -406,9 +403,8 @@ public class VoIPGroupNotification {
             currentCallId = 0L;
             ((NotificationManager) context.getSystemService("notification")).cancel(203);
             VoIPPreNotificationService.stopRinging();
-            VoIPFragment voIPFragment = VoIPFragment.instance;
-            if (voIPFragment != null) {
-                voIPFragment.windowView.finish(330L);
+            if (VoIPFragment.getInstance() != null) {
+                VoIPFragment.getInstance().finish();
             }
         }
     }

@@ -176,21 +176,11 @@ public final class Theme$$ExternalSyntheticLambda5 implements Comparator {
                 }
                 return 1;
             case 26:
-                int i10 = ((DialogsSearchAdapter.RecentSearchObject) obj).date;
-                int i11 = ((DialogsSearchAdapter.RecentSearchObject) obj2).date;
-                if (i10 < i11) {
-                    return 1;
-                }
-                return i10 > i11 ? -1 : 0;
+                return DialogsSearchAdapter.lambda$loadRecentSearch$6((DialogsSearchAdapter.RecentSearchObject) obj, (DialogsSearchAdapter.RecentSearchObject) obj2);
             case 27:
                 return Double.compare(((TLRPC.TL_topPeer) obj2).rating, ((TLRPC.TL_topPeer) obj).rating);
             case 28:
-                int i12 = ((SearchAdapterHelper.HashtagObject) obj).date;
-                int i13 = ((SearchAdapterHelper.HashtagObject) obj2).date;
-                if (i12 < i13) {
-                    return 1;
-                }
-                return i12 > i13 ? -1 : 0;
+                return SearchAdapterHelper.lambda$loadRecentHashtags$4((SearchAdapterHelper.HashtagObject) obj, (SearchAdapterHelper.HashtagObject) obj2);
             default:
                 return ((TL_account.TL_businessWeeklyOpen) obj).start_minute - ((TL_account.TL_businessWeeklyOpen) obj2).start_minute;
         }

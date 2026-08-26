@@ -5,8 +5,8 @@ import j$.util.stream.Collectors;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda335;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda44;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda337;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda46;
 import org.telegram.tgnet.TLRPC;
 
 public abstract class HighlightMessageSheet {
@@ -101,7 +101,7 @@ public abstract class HighlightMessageSheet {
             return getDefaultTiers();
         }
         try {
-            return DesugarArrays.stream(str.split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda335(0)).toArray();
+            return DesugarArrays.stream(str.split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda337(0)).toArray();
         } catch (Exception e) {
             FileLog.e(e);
             return getDefaultTiers();
@@ -120,6 +120,6 @@ public abstract class HighlightMessageSheet {
     }
 
     public static String tiersToString(int[] iArr) {
-        return (String) DesugarArrays.stream(iArr).mapToObj(new MessagesController$$ExternalSyntheticLambda44(0)).collect(Collectors.joining(","));
+        return (String) DesugarArrays.stream(iArr).mapToObj(new MessagesController$$ExternalSyntheticLambda46(0)).collect(Collectors.joining(","));
     }
 }

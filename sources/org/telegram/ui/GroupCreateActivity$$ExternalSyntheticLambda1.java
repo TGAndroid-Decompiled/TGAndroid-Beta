@@ -1,8 +1,6 @@
 package org.telegram.ui;
 
 import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
 
 public final class GroupCreateActivity$$ExternalSyntheticLambda1 implements View.OnClickListener {
     public final int $r8$classId;
@@ -17,45 +15,19 @@ public final class GroupCreateActivity$$ExternalSyntheticLambda1 implements View
     public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                GroupCreateActivity groupCreateActivity = this.f$0;
-                groupCreateActivity.searchField.editText.clearFocus();
-                groupCreateActivity.searchField.editText.requestFocus();
-                AndroidUtilities.showKeyboard(groupCreateActivity.searchField.editText);
+                this.f$0.lambda$createView$1(view);
                 break;
             case 1:
-                GroupCreateActivity groupCreateActivity2 = this.f$0;
-                groupCreateActivity2.selectedPremium = null;
-                groupCreateActivity2.selectedContacts.clear();
-                GroupCreateActivity.AnonymousClass3 anonymousClass3 = groupCreateActivity2.spansContainer;
-                anonymousClass3.spansContainer.removeAllSpans();
-                GroupCreateActivity groupCreateActivity3 = GroupCreateActivity.this;
-                if (groupCreateActivity3.buttonsContainer != null) {
-                    groupCreateActivity3.animatorCallButtonsVisible.setValue(!groupCreateActivity3.selectedContacts.isEmpty(), true);
-                }
-                groupCreateActivity2.checkVisibleRows();
-                groupCreateActivity2.updateEditTextHint();
-                groupCreateActivity2.updateHint();
+                this.f$0.lambda$checkVisibleRows$12(view);
                 break;
             case 2:
-                this.f$0.onDonePressed();
+                this.f$0.lambda$createView$5(view);
                 break;
             case 3:
-                GroupCreateActivity groupCreateActivity4 = this.f$0;
-                groupCreateActivity4.getClass();
-                HashSet hashSet = new HashSet();
-                for (int i = 0; i < groupCreateActivity4.selectedContacts.size(); i++) {
-                    hashSet.add(Long.valueOf(groupCreateActivity4.selectedContacts.keyAt(i)));
-                }
-                groupCreateActivity4.onCallUsersSelected(hashSet);
+                this.f$0.lambda$createView$6(view);
                 break;
             default:
-                GroupCreateActivity groupCreateActivity5 = this.f$0;
-                groupCreateActivity5.getClass();
-                HashSet hashSet2 = new HashSet();
-                for (int i2 = 0; i2 < groupCreateActivity5.selectedContacts.size(); i2++) {
-                    hashSet2.add(Long.valueOf(groupCreateActivity5.selectedContacts.keyAt(i2)));
-                }
-                groupCreateActivity5.onCallUsersSelected(hashSet2);
+                this.f$0.lambda$createView$7(view);
                 break;
         }
     }

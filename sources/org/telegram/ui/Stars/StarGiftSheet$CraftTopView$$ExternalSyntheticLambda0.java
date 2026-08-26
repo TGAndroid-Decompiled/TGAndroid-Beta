@@ -8,11 +8,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda13;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda18;
-import org.telegram.ui.ProfileActivity$9$$ExternalSyntheticLambda1;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.bots.AffiliateProgramFragment;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda10;
 
 public final class StarGiftSheet$CraftTopView$$ExternalSyntheticLambda0 implements View.OnClickListener {
     public final int $r8$classId;
@@ -72,7 +71,7 @@ public final class StarGiftSheet$CraftTopView$$ExternalSyntheticLambda0 implemen
                                     craftTopView2.failed = false;
                                     HintView2 hintView2 = craftTopView2.currentHint;
                                     if (hintView2 != null) {
-                                        hintView2.hide(true);
+                                        hintView2.hide();
                                         craftTopView2.currentHint = null;
                                     }
                                     TextView textView = craftTopView2.craftingSubtitleView;
@@ -120,7 +119,7 @@ public final class StarGiftSheet$CraftTopView$$ExternalSyntheticLambda0 implemen
                                                         arrayList.add(starGift);
                                                     }
                                                 }
-                                                craftTopView2.onCraft.run(arrayList, new OAuthSheet$$ExternalSyntheticLambda18(20, craftTopView2, arrayList), new ProfileActivity$9$$ExternalSyntheticLambda1(craftTopView2, 23));
+                                                craftTopView2.onCraft.run(arrayList, new BotBiometry$$ExternalSyntheticLambda10(5, craftTopView2, arrayList), new BalanceCloud$$ExternalSyntheticLambda1(craftTopView2, 6));
                                                 break;
                                             }
                                         }
@@ -145,7 +144,7 @@ public final class StarGiftSheet$CraftTopView$$ExternalSyntheticLambda0 implemen
                                             arrayList.add(starGift);
                                         }
                                     }
-                                    craftTopView2.onCraft.run(arrayList, new OAuthSheet$$ExternalSyntheticLambda18(20, craftTopView2, arrayList), new ProfileActivity$9$$ExternalSyntheticLambda1(craftTopView2, 23));
+                                    craftTopView2.onCraft.run(arrayList, new BotBiometry$$ExternalSyntheticLambda10(5, craftTopView2, arrayList), new BalanceCloud$$ExternalSyntheticLambda1(craftTopView2, 6));
                                 }
                             } else {
                                 StarGiftSheet.CraftTopView.SelectGiftView selectGiftView6 = selectGiftViewArr[i];
@@ -186,11 +185,11 @@ public final class StarGiftSheet$CraftTopView$$ExternalSyntheticLambda0 implemen
                             }
                             i3++;
                         }
-                        craftTopView.onAddGift.run(new OAuthSheet$$ExternalSyntheticLambda13(27, craftTopView, selectGiftView7), Boolean.valueOf(z));
+                        craftTopView.onAddGift.run(new GiftSheet$$ExternalSyntheticLambda4(13, craftTopView, selectGiftView7), Boolean.valueOf(z));
                         break;
                     }
                     z = true;
-                    craftTopView.onAddGift.run(new OAuthSheet$$ExternalSyntheticLambda13(27, craftTopView, selectGiftView7), Boolean.valueOf(z));
+                    craftTopView.onAddGift.run(new GiftSheet$$ExternalSyntheticLambda4(13, craftTopView, selectGiftView7), Boolean.valueOf(z));
                 } else {
                     selectGiftView7.setGift(null, true);
                     craftTopView.updateCounts(true);

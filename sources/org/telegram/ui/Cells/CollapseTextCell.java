@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.LayoutHelper;
 
@@ -22,14 +22,14 @@ public final class CollapseTextCell extends FrameLayout {
     public CollapseTextCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
         this.textView = animatedTextView;
         int i = Theme.key_windowBackgroundWhiteBlackText;
         animatedTextView.setTextColor(Theme.getColor(i, resourcesProvider));
         animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
         animatedTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         animatedTextView.setImportantForAccessibility(2);
-        animatedTextView.setOnWidthUpdatedListener(new ArticleViewer$$ExternalSyntheticLambda3(this, 26));
+        animatedTextView.setOnWidthUpdatedListener(new ChatbotSheet$$ExternalSyntheticLambda0(this, 8));
         addView(animatedTextView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 21.0f, 0.0f, 38.0f, 3.0f));
         View view = new View(context);
         this.collapsedArrow = view;

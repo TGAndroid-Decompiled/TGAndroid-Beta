@@ -6,7 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkt;
+import com.google.android.gms.internal.mlkit_vision_common.zzki;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
@@ -22,7 +22,6 @@ import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ProfileSearchCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda454;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
@@ -32,11 +31,12 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda149;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
-import org.telegram.ui.UserInfoActivity;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.Gifts.AuctionBidSheet$$ExternalSyntheticLambda18;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
 import org.telegram.ui.community.sheet.CommunityAddOptionsSheet;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda53;
+import org.telegram.ui.iv.RichInlineButtonEditor$$ExternalSyntheticLambda12;
+import org.telegram.ui.web.HistoryFragment;
 
 public final class CommunityCreateActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public CommunityHeaderView communityHeaderView;
@@ -73,7 +73,7 @@ public final class CommunityCreateActivity extends BaseFragment implements Notif
             textView2.setGravity(17);
             textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
             addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 49, 32.0f, 157.0f, 32.0f, 0.0f));
-            updateColors$1();
+            updateColors();
         }
 
         @Override
@@ -102,7 +102,7 @@ public final class CommunityCreateActivity extends BaseFragment implements Notif
         }
 
         @Override
-        public final void updateColors$1() {
+        public final void updateColors() {
             int i = Theme.key_windowBackgroundWhiteBlackText;
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             this.titleView.setTextColor(Theme.getColor(i, resourcesProvider));
@@ -115,11 +115,11 @@ public final class CommunityCreateActivity extends BaseFragment implements Notif
             getMessagesController().createCommunity(str, this.dialogId, z, new CommunityCreateActivity$$ExternalSyntheticLambda0(this, 1));
             return;
         }
-        AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3, null);
+        AlertDialog alertDialog = new AlertDialog(getContext(), 3, null);
         AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
         AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
         AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 250L);
-        getMessagesController().convertToMegaGroup(getParentActivity(), -this.dialogId, this, new ChatActivity$$ExternalSyntheticLambda454(this, alertDialog, str, z, 5));
+        getMessagesController().convertToMegaGroup(getParentActivity(), -this.dialogId, this, new RichInlineButtonEditor$$ExternalSyntheticLambda12(this, alertDialog, str, z));
     }
 
     @Override
@@ -128,15 +128,15 @@ public final class CommunityCreateActivity extends BaseFragment implements Notif
         setHasOwnBackground(true);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setAllowOverlayTitle(false);
-        zzkt.m(this.actionBar);
+        zzki.m(this.actionBar);
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new UserInfoActivity.AnonymousClass4(this, 7));
+        this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 18));
         BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
         blurredBackgroundSourceColor.paint.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
         BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory = new BlurredBackgroundDrawableViewFactory(blurredBackgroundSourceColor);
         this.actionBar.setBackground(null);
-        this.actionBar.setupGlass(blurredBackgroundDrawableViewFactory, BlurredBackgroundProviderImpl.topPanelChatActivity(this.resourceProvider), false);
-        this.actionBar.glassOnlyBack = true;
+        this.actionBar.setupGlass(blurredBackgroundDrawableViewFactory, BlurredBackgroundProviderImpl.topPanelChatActivity(this.resourceProvider));
+        this.actionBar.setGlassOnlyBack();
         FrameLayout frameLayout = new FrameLayout(context);
         this.containerView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
@@ -153,24 +153,19 @@ public final class CommunityCreateActivity extends BaseFragment implements Notif
         this.communityHeaderView.setTag(-33024);
         TLRPC.User user = this.currentUser;
         if (user != null) {
-            BackupImageView backupImageView = this.communityHeaderView.avatarView;
-            backupImageView.imageReceiver.setForUserOrChat(user, new AvatarDrawable(this.currentUser));
-            backupImageView.onNewImageSet();
+            this.communityHeaderView.avatarView.setForUserOrChat(user, new AvatarDrawable(this.currentUser));
         } else {
             TLRPC.Chat chat = this.currentChat;
             if (chat != null) {
-                BackupImageView backupImageView2 = this.communityHeaderView.avatarView;
-                backupImageView2.imageReceiver.setForUserOrChat(chat, new AvatarDrawable(this.currentChat));
-                backupImageView2.onNewImageSet();
+                this.communityHeaderView.avatarView.setForUserOrChat(chat, new AvatarDrawable(this.currentChat));
             }
         }
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new CommunityCreateActivity$$ExternalSyntheticLambda0(this, 0), new CommunityCreateActivity$$ExternalSyntheticLambda1(this), new CommunityCreateActivity$$ExternalSyntheticLambda1(this), getResourceProvider());
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new CommunityCreateActivity$$ExternalSyntheticLambda0(this, 0), new CommunityCreateActivity$$ExternalSyntheticLambda1(this), new CommunityCreateActivity$$ExternalSyntheticLambda1(this));
         this.listView = universalRecyclerView;
         universalRecyclerView.setClipToPadding(false);
-        UniversalRecyclerView universalRecyclerView2 = this.listView;
-        universalRecyclerView2.adapter.applyBackground = false;
-        universalRecyclerView2.setSections();
-        this.containerView.addView(this.listView, LayoutHelper.createFrame(-1.0f, -1));
+        this.listView.adapter.setApplyBackground(false);
+        this.listView.setSections();
+        this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2, 48));
         FrameLayout frameLayout2 = this.containerView;
         this.fragmentView = frameLayout2;
@@ -202,9 +197,9 @@ public final class CommunityCreateActivity extends BaseFragment implements Notif
         if (ChatObject.isChannel(this.currentChat) || this.currentUser != null) {
             int i = this.currentAccount;
             long j2 = -this.dialogId;
-            MessagesController.getInstance(i).linkCommunity(-j2, j, z, new LaunchActivity$$ExternalSyntheticLambda149(this, j2, 3));
+            MessagesController.getInstance(i).linkCommunity(-j2, j, z, new AuctionBidSheet$$ExternalSyntheticLambda18(this, j2, 2));
         } else {
-            AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3, null);
+            AlertDialog alertDialog = new AlertDialog(getContext(), 3, null);
             AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
             AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
             AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 250L);
@@ -212,11 +207,11 @@ public final class CommunityCreateActivity extends BaseFragment implements Notif
         }
     }
 
-    public final void onClick$11(UItem uItem) {
+    public final void onClick$8(UItem uItem) {
         CommunityCreateActivity communityCreateActivity;
         if (uItem.id == 1) {
             communityCreateActivity = this;
-            AlertsCreator.createSimpleTextInputAlert(getParentActivity(), communityCreateActivity, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), this.resourceProvider, new CommunityCreateActivity$$ExternalSyntheticLambda1(this));
+            AlertsCreator.createSimpleTextInputAlert(getContext(), communityCreateActivity, LocaleController.getString(R.string.CommunityNewCommunityTitle), null, LocaleController.getString(R.string.CommunityNewCommunityNameHint), null, Integer.MAX_VALUE, LocaleController.getString(R.string.Create), this.resourceProvider, new CommunityCreateActivity$$ExternalSyntheticLambda1(this));
         } else {
             communityCreateActivity = this;
         }
@@ -224,7 +219,7 @@ public final class CommunityCreateActivity extends BaseFragment implements Notif
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             getMessagesController().getChat(Long.valueOf(-communityCreateActivity.dialogId));
-            showDialog(new CommunityAddOptionsSheet(getParentActivity(), chat, communityCreateActivity.dialogId, new ThemeActivity$$ExternalSyntheticLambda19(14, this, chat)));
+            showDialog(new CommunityAddOptionsSheet(getContext(), chat, communityCreateActivity.dialogId, new GiftSheet$$ExternalSyntheticLambda4(28, this, chat)));
         }
     }
 
@@ -234,7 +229,7 @@ public final class CommunityCreateActivity extends BaseFragment implements Notif
         this.currentChat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
         this.currentUser = getMessagesController().getUser(Long.valueOf(this.dialogId));
         this.joinedCommunities = getMessagesController().getJoinedCommunities();
-        getMessagesController().fetchJoinedCommunities(new VoIPFragment$$ExternalSyntheticLambda7(this, 25), this.classGuid);
+        getMessagesController().fetchJoinedCommunities(new RichEditor$$ExternalSyntheticLambda53(this, 9), this.classGuid);
         this.observersGroup = getNotificationCenter().createObserversGroup(this).add(NotificationCenter.chatInfoDidLoad);
         return super.onFragmentCreate();
     }

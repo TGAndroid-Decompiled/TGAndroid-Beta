@@ -16,6 +16,7 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.ChatObject$Call$$ExternalSyntheticLambda12;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
@@ -23,15 +24,16 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda53;
+import org.telegram.ui.Cells.ChatMessageCell$$ExternalSyntheticLambda13;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmojiPacksAlert;
 import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.TypefaceSpan;
-import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda0;
-import org.telegram.ui.SecretVoicePlayer$$ExternalSyntheticLambda1;
+import org.telegram.ui.bots.BotSensors$1$$ExternalSyntheticLambda0;
+import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda45;
 
 public final class StoryContainsEmojiButton extends View {
     public static Object lastRequestParentObject;
@@ -70,15 +72,14 @@ public final class StoryContainsEmojiButton extends View {
         int i2 = Theme.key_actionBarDefaultSubmenuItem;
         textPaint.setColor(Theme.getColor(i2, darkThemeResourceProvider));
         this.colorFilter = new PorterDuffColorFilter(Theme.getColor(i2, darkThemeResourceProvider), PorterDuff.Mode.SRC_IN);
-        LoadingDrawable loadingDrawable = new LoadingDrawable();
-        loadingDrawable.resourcesProvider = darkThemeResourceProvider;
+        LoadingDrawable loadingDrawable = new LoadingDrawable(darkThemeResourceProvider);
         this.loadingDrawable = loadingDrawable;
         loadingDrawable.setCallback(this);
         loadingDrawable.setColors(Theme.multAlpha(0.2f, -1), Theme.multAlpha(0.05f, -1));
         Path path = new Path();
         this.loadingPath = path;
-        loadingDrawable.usePath = path;
-        loadingDrawable.setRadii(AndroidUtilities.dp(4.0f));
+        loadingDrawable.usePath(path);
+        loadingDrawable.setRadiiDp(4.0f);
         boolean[] zArr = {true};
         this.parentObject = obj;
         if (!z) {
@@ -128,18 +129,18 @@ public final class StoryContainsEmojiButton extends View {
             }
             tL_messages_getAttachedStickers.media = tL_inputStickeredMediaDocument;
         }
-        GroupCallSheet$$ExternalSyntheticLambda0 groupCallSheet$$ExternalSyntheticLambda0 = new GroupCallSheet$$ExternalSyntheticLambda0(this, obj, arrayList, zArr, i, 13);
+        ChatObject$Call$$ExternalSyntheticLambda12 chatObject$Call$$ExternalSyntheticLambda12 = new ChatObject$Call$$ExternalSyntheticLambda12(this, obj, arrayList, zArr, i);
         if (lastRequestParentObject != obj || (vector = lastResponse) == null) {
-            ConnectionsManager.getInstance(i).sendRequest(tL_messages_getAttachedStickers, new ArticleViewer$$ExternalSyntheticLambda53(obj, i, tL_messages_getAttachedStickers, groupCallSheet$$ExternalSyntheticLambda0));
+            ConnectionsManager.getInstance(i).sendRequest(tL_messages_getAttachedStickers, new BotWebViewContainer$$ExternalSyntheticLambda45(obj, i, tL_messages_getAttachedStickers, chatObject$Call$$ExternalSyntheticLambda12));
         } else {
             zArr[0] = false;
-            groupCallSheet$$ExternalSyntheticLambda0.run(vector, null);
+            chatObject$Call$$ExternalSyntheticLambda12.run(vector, null);
         }
     }
 
     private void set(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         TLRPC.Document document;
-        CharSequence charSequenceSubSequence;
+        SpannableString spannableStringSubSequence;
         String string;
         if (tL_messages_stickerSet == null) {
             return;
@@ -165,12 +166,10 @@ public final class StoryContainsEmojiButton extends View {
             document = arrayList.get(0);
         }
         if (document != null) {
-            AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(document.id, 1.2f, this.textPaint.getFontMetricsInt());
-            animatedEmojiSpan.document = document;
-            spannableString.setSpan(animatedEmojiSpan, 0, 1, 33);
-            charSequenceSubSequence = spannableString;
+            spannableString.setSpan(new AnimatedEmojiSpan(document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
+            spannableStringSubSequence = spannableString;
         } else {
-            charSequenceSubSequence = spannableString.subSequence(2, spannableString.length());
+            spannableStringSubSequence = spannableString.subSequence(2, spannableString.length());
         }
         boolean z = this.emoji;
         if (z && this.stickers) {
@@ -178,7 +177,7 @@ public final class StoryContainsEmojiButton extends View {
         } else {
             string = z ? LocaleController.getString(R.string.StoryContainsEmojiFrom) : LocaleController.getString(R.string.StoryContainsStickersFrom);
         }
-        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequenceSubSequence));
+        setText(AndroidUtilities.replaceCharSequence("%s", string, spannableStringSubSequence));
     }
 
     public final void animateLoad(boolean z) {
@@ -190,14 +189,14 @@ public final class StoryContainsEmojiButton extends View {
         if (!z) {
             this.loadT = 1.0f;
             invalidate();
-            post(new LivePlayer$1$$ExternalSyntheticLambda0(this, 21));
+            post(new BotSensors$1$$ExternalSyntheticLambda0(this, 8));
             return;
         }
         this.loadAnimator = ValueAnimator.ofFloat(this.loadT, 1.0f);
         if (this.layout != null && Math.abs(getMeasuredHeight() - (getPaddingBottom() + (this.layout.getHeight() + getPaddingTop()))) <= AndroidUtilities.dp(3.0f)) {
             z2 = false;
         }
-        this.loadAnimator.addUpdateListener(new SecretVoicePlayer$$ExternalSyntheticLambda1(11, this, z2));
+        this.loadAnimator.addUpdateListener(new ChatMessageCell$$ExternalSyntheticLambda13(this, z2, 5));
         this.loadAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.loadAnimator.setStartDelay(150L);
         this.loadAnimator.setDuration(400L);
@@ -237,7 +236,7 @@ public final class StoryContainsEmojiButton extends View {
 
     public EmojiPacksAlert getAlert() {
         if (this.inputSets != null) {
-            return new EmojiPacksAlert(null, getContext(), this.resourcesProvider, this.inputSets);
+            return new EmojiPacksAlert((BaseFragment) null, getContext(), this.resourcesProvider, (ArrayList<TLRPC.InputStickerSet>) this.inputSets);
         }
         int i = -this.shiftDp;
         this.shiftDp = i;
@@ -359,7 +358,7 @@ public final class StoryContainsEmojiButton extends View {
     }
 
     private void set(TLRPC.StickerSetCovered stickerSetCovered) {
-        CharSequence charSequenceSubSequence;
+        SpannableString spannableStringSubSequence;
         String string;
         SpannableString spannableString = new SpannableString("x " + stickerSetCovered.set.title);
         spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.loadingDrawable.resourcesProvider)), 0, spannableString.length(), 33);
@@ -377,12 +376,10 @@ public final class StoryContainsEmojiButton extends View {
             }
         }
         if (document != null) {
-            AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(document.id, 1.2f, this.textPaint.getFontMetricsInt());
-            animatedEmojiSpan.document = document;
-            spannableString.setSpan(animatedEmojiSpan, 0, 1, 33);
-            charSequenceSubSequence = spannableString;
+            spannableString.setSpan(new AnimatedEmojiSpan(document, this.textPaint.getFontMetricsInt()), 0, 1, 33);
+            spannableStringSubSequence = spannableString;
         } else {
-            charSequenceSubSequence = spannableString.subSequence(2, spannableString.length());
+            spannableStringSubSequence = spannableString.subSequence(2, spannableString.length());
         }
         boolean z = this.emoji;
         if (z && this.stickers) {
@@ -392,7 +389,7 @@ public final class StoryContainsEmojiButton extends View {
         } else {
             string = LocaleController.getString(R.string.StoryContainsStickersFrom);
         }
-        setText(AndroidUtilities.replaceCharSequence("%s", string, charSequenceSubSequence));
+        setText(AndroidUtilities.replaceCharSequence("%s", string, spannableStringSubSequence));
     }
 
     private void set(int i) {

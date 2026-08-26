@@ -1,8 +1,8 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
+import org.telegram.ui.ActionBar.AlertDialog;
 
-public final class LoginActivity$LoginActivitySmsView$$ExternalSyntheticLambda45 implements DialogInterface.OnDismissListener {
+public final class LoginActivity$LoginActivitySmsView$$ExternalSyntheticLambda45 implements AlertDialog.OnButtonClickListener {
     public final int $r8$classId;
     public final LoginActivity.LoginActivitySmsView f$0;
 
@@ -12,13 +12,13 @@ public final class LoginActivity$LoginActivitySmsView$$ExternalSyntheticLambda45
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
+    public final void onClick(AlertDialog alertDialog, int i) {
         switch (this.$r8$classId) {
             case 0:
-                LoginActivity.this.finishFragment();
+                this.f$0.lambda$new$8(alertDialog, i);
                 break;
             default:
-                LoginActivity.this.finishFragment();
+                this.f$0.lambda$onBackPressed$42(alertDialog, i);
                 break;
         }
     }

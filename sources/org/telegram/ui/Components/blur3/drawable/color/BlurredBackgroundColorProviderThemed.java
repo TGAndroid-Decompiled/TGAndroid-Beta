@@ -5,15 +5,15 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.ui.ActionBar.Theme;
 
 public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundColorProvider {
-    public final float alpha;
-    public int backgroundColor;
-    public final int backgroundColorId;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public int shadowColor;
-    public int strokeColorBottom;
-    public int strokeColorTop;
+    private float alpha;
+    private int backgroundColor;
+    private final int backgroundColorId;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private int shadowColor;
+    private int strokeColorBottom;
+    private int strokeColorTop;
 
-    public BlurredBackgroundColorProviderThemed(int i, Theme.ResourcesProvider resourcesProvider) {
+    public BlurredBackgroundColorProviderThemed(Theme.ResourcesProvider resourcesProvider, int i) {
         this(resourcesProvider, i, LiteMode.isEnabled(262144) ? 0.85f : 0.76f);
     }
 
@@ -41,7 +41,12 @@ public class BlurredBackgroundColorProviderThemed implements BlurredBackgroundCo
         return AndroidUtilities.computePerceivedBrightness(Theme.getColor(this.backgroundColorId, this.resourcesProvider)) < 0.721f;
     }
 
-    public final void updateColors() {
+    public void setAlpha(float f) {
+        this.alpha = f;
+        updateColors();
+    }
+
+    public void updateColors() {
         this.backgroundColor = Theme.multAlpha(this.alpha, Theme.getColor(this.backgroundColorId, this.resourcesProvider));
         if (isDark()) {
             this.strokeColorTop = 687865855;

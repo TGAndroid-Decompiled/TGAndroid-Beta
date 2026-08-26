@@ -27,7 +27,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.voip.VoIPHelper;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda97;
+import org.telegram.ui.Stars.BalanceCloud$$ExternalSyntheticLambda1;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
 import org.webrtc.voiceengine.WebRtcAudioTrack;
@@ -75,7 +75,7 @@ public final class LivePlayer implements NotificationCenter.NotificationCenterDe
         public final synchronized void onFrame(VideoFrame videoFrame) {
             super.onFrame(videoFrame);
             if (LivePlayer.this.emptyStream) {
-                AndroidUtilities.runOnUIThread(new LivePlayer$1$$ExternalSyntheticLambda0(this, 0));
+                AndroidUtilities.runOnUIThread(new BalanceCloud$$ExternalSyntheticLambda1(this, 20));
             }
         }
     }
@@ -91,7 +91,7 @@ public final class LivePlayer implements NotificationCenter.NotificationCenterDe
             livePlayer.connectionState = i;
             FileLog.d("[LivePlayer] connectionState = " + i);
             if (zIsConnected != livePlayer.isConnected()) {
-                AndroidUtilities.runOnUIThread(new LivePlayer$1$$ExternalSyntheticLambda0(this, 6));
+                AndroidUtilities.runOnUIThread(new BalanceCloud$$ExternalSyntheticLambda1(this, 21));
             }
         }
     }
@@ -253,7 +253,7 @@ public final class LivePlayer implements NotificationCenter.NotificationCenterDe
         if (this.destroyed) {
             return;
         }
-        NativeInstance nativeInstanceMakeGroup = NativeInstance.makeGroup(VoIPHelper.getLogFilePath("live_" + this.inputCall.id), 0L, false, SharedConfig.noiseSupression, new LivePlayer$$ExternalSyntheticLambda0(this, 0), new PhotoViewer$$ExternalSyntheticLambda97(22), new LivePlayer$$ExternalSyntheticLambda0(this, 2), new LivePlayer$$ExternalSyntheticLambda0(this, 3), new LivePlayer$$ExternalSyntheticLambda0(this, 4), new LivePlayer$$ExternalSyntheticLambda0(this, 5), false);
+        NativeInstance nativeInstanceMakeGroup = NativeInstance.makeGroup(VoIPHelper.getLogFilePath("live_" + this.inputCall.id), 0L, false, SharedConfig.noiseSupression, new LivePlayer$$ExternalSyntheticLambda0(this, 0), new LivePlayer$$ExternalSyntheticLambda1(0), new LivePlayer$$ExternalSyntheticLambda0(this, 2), new LivePlayer$$ExternalSyntheticLambda0(this, 3), new LivePlayer$$ExternalSyntheticLambda0(this, 4), new LivePlayer$$ExternalSyntheticLambda0(this, 5), false);
         this.instance = nativeInstanceMakeGroup;
         nativeInstanceMakeGroup.setOnStateUpdatedListener(new AnonymousClass2());
         this.instance.resetGroupInstance(false, false);

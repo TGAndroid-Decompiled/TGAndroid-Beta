@@ -10,15 +10,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import com.google.android.gms.internal.mlkit_vision_common.zzkv;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLObject;
+import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda5;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda77;
+import org.telegram.ui.CalendarActivity$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarsImageView;
 import org.telegram.ui.Components.BackupImageView;
@@ -60,7 +60,7 @@ public final class DialogsHintCell extends FrameLayout {
         textViewEmojis.setTypeface(AndroidUtilities.bold());
         textViewEmojis.setMaxLines(5);
         linearLayout.addView(textViewEmojis, LayoutHelper.createLinear(-2, -2, 0.0f, (LocaleController.isRTL ? 5 : 3) | 48));
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, null);
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
         this.messageView = linksTextView;
         linksTextView.setTextSize(1, 13.0f);
         linksTextView.setEllipsize(truncateAt);
@@ -80,7 +80,7 @@ public final class DialogsHintCell extends FrameLayout {
             linearLayout2.addView(avatarsImageView, LayoutHelper.createFrame(0, -1.0f, 16, -2.0f, 0.0f, 0.0f, 0.0f));
             linearLayout2.addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 16, 7.0f, 0.0f, 7.0f, 0.0f));
         }
-        addView(linearLayout2, LayoutHelper.createFrame(-1.0f, -1));
+        addView(linearLayout2, LayoutHelper.createFrame(-1, -1.0f));
         linearLayout2.setClipChildren(false);
         linearLayout2.setClipToPadding(false);
         ImageView imageView = new ImageView(context);
@@ -131,18 +131,18 @@ public final class DialogsHintCell extends FrameLayout {
         }
         avatarsImageView.setCount(iMin);
         avatarsImageView.setVisibility(iMin <= 0 ? 8 : 0);
-        avatarsImageView.getLayoutParams().width = iMin <= 1 ? AndroidUtilities.dp(36.0f) : AndroidUtilities.dp(zzkv.m(iMin, 1, 18, 30));
+        avatarsImageView.getLayoutParams().width = iMin <= 1 ? AndroidUtilities.dp(36.0f) : AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(iMin, 1, 18, 30));
         if (z) {
             this.parentView.requestLayout();
         }
         if (arrayList != null) {
             int i2 = 0;
             while (i2 < 3) {
-                avatarsImageView.avatarsDrawable.setObject(i2, i2 >= arrayList.size() ? null : (TLObject) arrayList.get(i2), i);
+                avatarsImageView.setObject(i2, i, i2 >= arrayList.size() ? null : (TLObject) arrayList.get(i2));
                 i2++;
             }
         }
-        avatarsImageView.avatarsDrawable.commitTransition(false, true);
+        avatarsImageView.commitTransition(false);
     }
 
     public void setCompact(boolean z) {
@@ -150,7 +150,7 @@ public final class DialogsHintCell extends FrameLayout {
 
     @Override
     public void setOnClickListener(View.OnClickListener onClickListener) {
-        super.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda77(17, this, onClickListener));
+        super.setOnClickListener(new AlertDialog$$ExternalSyntheticLambda5(10, this, onClickListener));
     }
 
     public void setOnCloseListener(View.OnClickListener onClickListener) {
@@ -162,21 +162,21 @@ public final class DialogsHintCell extends FrameLayout {
 
     public final void setText(CharSequence charSequence, CharSequence charSequence2, boolean z, boolean z2) {
         this.titleIsError = z2;
-        int i = TextUtils.isEmpty(charSequence) ? 8 : 0;
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.titleView;
-        textViewEmojis.setVisibility(i);
+        textViewEmojis.setVisibility(TextUtils.isEmpty(charSequence) ? 8 : 0);
         textViewEmojis.setText(charSequence);
         textViewEmojis.setCompoundDrawables(null, null, null, null);
         this.messageView.setText(charSequence2);
         this.chevronView.setVisibility(z ? 0 : 8);
         this.closeView.setVisibility(8);
         int iDp = z ? AndroidUtilities.dp(24.0f) : 0;
+        LinearLayout linearLayout = this.contentView;
         boolean z3 = LocaleController.isRTL;
-        int i2 = z3 ? iDp : 0;
+        int i = z3 ? iDp : 0;
         if (z3) {
             iDp = 0;
         }
-        this.contentView.setPadding(i2, 0, iDp, 0);
+        linearLayout.setPadding(i, 0, iDp, 0);
         updateColors();
     }
 

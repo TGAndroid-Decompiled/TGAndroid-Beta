@@ -2,33 +2,142 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.view.animation.Interpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.DialogsActivity;
 
-public final class ReorderingHintDrawable extends Drawable {
-    public final DialogsActivity.AnonymousClass11.AnonymousClass1 primaryRectDrawable;
-    public float scaleX;
-    public float scaleY;
-    public final DialogsActivity.AnonymousClass11.AnonymousClass1 secondaryRectDrawable;
-    public final Rect tempRect = new Rect();
-    public final CubicBezierInterpolator interpolator = Easings.easeInOutSine;
-    public final int intrinsicWidth = AndroidUtilities.dp(24.0f);
-    public final int intrinsicHeight = AndroidUtilities.dp(24.0f);
-    public long startedTime = -1;
+public class ReorderingHintDrawable extends Drawable {
+    public static final int DURATION = 1500;
+    private static final int DURATION_DELAY1 = 300;
+    private static final int DURATION_DELAY2 = 300;
+    private static final int DURATION_DELAY3 = 300;
+    private static final int DURATION_DELAY4 = 100;
+    private static final int DURATION_STAGE1 = 150;
+    private static final int DURATION_STAGE2 = 200;
+    private static final int DURATION_STAGE3 = 150;
+    private final RectDrawable primaryRectDrawable;
+    private float scaleX;
+    private float scaleY;
+    private final RectDrawable secondaryRectDrawable;
+    private final Rect tempRect = new Rect();
+    private final Interpolator interpolator = Easings.easeInOutSine;
+    private final int intrinsicWidth = AndroidUtilities.dp(24.0f);
+    private final int intrinsicHeight = AndroidUtilities.dp(24.0f);
+    private long startedTime = -1;
+
+    public static class RectDrawable extends Drawable {
+        private final RectF tempRect = new RectF();
+        private final Paint paint = new Paint(1);
+
+        @Override
+        public void draw(Canvas canvas) {
+            this.tempRect.set(getBounds());
+            float fHeight = this.tempRect.height() * 0.2f;
+            canvas.drawRoundRect(this.tempRect, fHeight, fHeight, this.paint);
+        }
+
+        @Override
+        public int getOpacity() {
+            return -3;
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.paint.setAlpha(i);
+        }
+
+        public void setColor(int i) {
+            this.paint.setColor(i);
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+            this.paint.setColorFilter(colorFilter);
+        }
+    }
 
     public ReorderingHintDrawable() {
-        DialogsActivity.AnonymousClass11.AnonymousClass1 anonymousClass1 = new DialogsActivity.AnonymousClass11.AnonymousClass1();
-        this.primaryRectDrawable = anonymousClass1;
-        anonymousClass1.paint.setColor(-2130706433);
-        DialogsActivity.AnonymousClass11.AnonymousClass1 anonymousClass2 = new DialogsActivity.AnonymousClass11.AnonymousClass1();
-        this.secondaryRectDrawable = anonymousClass2;
-        anonymousClass2.paint.setColor(-2130706433);
+        RectDrawable rectDrawable = new RectDrawable();
+        this.primaryRectDrawable = rectDrawable;
+        rectDrawable.setColor(-2130706433);
+        RectDrawable rectDrawable2 = new RectDrawable();
+        this.secondaryRectDrawable = rectDrawable2;
+        rectDrawable2.setColor(-2130706433);
+    }
+
+    private void drawStage1(Canvas canvas, float f) {
+        Rect bounds = getBounds();
+        float interpolation = this.interpolator.getInterpolation(f);
+        this.tempRect.left = (int) (AndroidUtilities.dp(2.0f) * this.scaleX);
+        this.tempRect.bottom = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.scaleY));
+        Rect rect = this.tempRect;
+        rect.right = bounds.right - rect.left;
+        rect.top = rect.bottom - ((int) (AndroidUtilities.dp(4.0f) * this.scaleY));
+        this.secondaryRectDrawable.setBounds(this.tempRect);
+        this.secondaryRectDrawable.draw(canvas);
+        Rect rect2 = this.tempRect;
+        int iDp = AndroidUtilities.dp(12.0f);
+        rect2.right = iDp;
+        rect2.left = iDp;
+        Rect rect3 = this.tempRect;
+        int iDp2 = AndroidUtilities.dp(8.0f);
+        rect3.bottom = iDp2;
+        rect3.top = iDp2;
+        this.tempRect.inset(-AndroidUtilities.dp(AndroidUtilities.lerp(10, 11, interpolation)), -AndroidUtilities.dp(AndroidUtilities.lerp(2, 3, interpolation)));
+        this.primaryRectDrawable.setBounds(this.tempRect);
+        this.primaryRectDrawable.setAlpha(AndroidUtilities.lerp(128, 255, interpolation));
+        this.primaryRectDrawable.draw(canvas);
+    }
+
+    private void drawStage2(Canvas canvas, float f) {
+        Rect bounds = getBounds();
+        float interpolation = this.interpolator.getInterpolation(f);
+        this.tempRect.left = (int) (AndroidUtilities.dp(2.0f) * this.scaleX);
+        this.tempRect.bottom = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.scaleY));
+        Rect rect = this.tempRect;
+        rect.right = bounds.right - rect.left;
+        rect.top = rect.bottom - ((int) (AndroidUtilities.dp(4.0f) * this.scaleY));
+        this.tempRect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, -8, interpolation)));
+        this.secondaryRectDrawable.setBounds(this.tempRect);
+        this.secondaryRectDrawable.draw(canvas);
+        this.tempRect.left = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(1, 2, interpolation)) * this.scaleX);
+        this.tempRect.top = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(5, 6, interpolation)) * this.scaleY);
+        Rect rect2 = this.tempRect;
+        rect2.right = bounds.right - rect2.left;
+        rect2.bottom = rect2.top + ((int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(6, 4, interpolation)) * this.scaleY));
+        this.tempRect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, 8, interpolation)));
+        this.primaryRectDrawable.setBounds(this.tempRect);
+        this.primaryRectDrawable.setAlpha(255);
+        this.primaryRectDrawable.draw(canvas);
+    }
+
+    private void drawStage3(Canvas canvas, float f) {
+        Rect bounds = getBounds();
+        float interpolation = this.interpolator.getInterpolation(f);
+        this.tempRect.left = (int) (AndroidUtilities.dp(2.0f) * this.scaleX);
+        this.tempRect.bottom = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.scaleY));
+        Rect rect = this.tempRect;
+        rect.right = bounds.right - rect.left;
+        rect.top = rect.bottom - ((int) (AndroidUtilities.dp(4.0f) * this.scaleY));
+        this.tempRect.offset(0, AndroidUtilities.dp(-8.0f));
+        this.secondaryRectDrawable.setBounds(this.tempRect);
+        this.secondaryRectDrawable.draw(canvas);
+        this.tempRect.left = (int) (AndroidUtilities.dpf2(2.0f) * this.scaleX);
+        this.tempRect.top = (int) (AndroidUtilities.dpf2(6.0f) * this.scaleY);
+        Rect rect2 = this.tempRect;
+        rect2.right = bounds.right - rect2.left;
+        rect2.bottom = rect2.top + ((int) (AndroidUtilities.dpf2(4.0f) * this.scaleY));
+        this.tempRect.offset(0, AndroidUtilities.dp(8.0f));
+        this.primaryRectDrawable.setBounds(this.tempRect);
+        this.primaryRectDrawable.setAlpha(AndroidUtilities.lerp(255, 128, interpolation));
+        this.primaryRectDrawable.draw(canvas);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         if (this.startedTime <= 0) {
             drawStage1(canvas, 0.0f);
             return;
@@ -62,108 +171,45 @@ public final class ReorderingHintDrawable extends Drawable {
         invalidateSelf();
     }
 
-    public final void drawStage1(Canvas canvas, float f) {
-        Rect bounds = getBounds();
-        float interpolation = this.interpolator.getInterpolation(f);
-        int iDp = (int) (AndroidUtilities.dp(2.0f) * this.scaleX);
-        Rect rect = this.tempRect;
-        rect.left = iDp;
-        rect.bottom = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.scaleY));
-        rect.right = bounds.right - rect.left;
-        rect.top = rect.bottom - ((int) (AndroidUtilities.dp(4.0f) * this.scaleY));
-        DialogsActivity.AnonymousClass11.AnonymousClass1 anonymousClass1 = this.secondaryRectDrawable;
-        anonymousClass1.setBounds(rect);
-        anonymousClass1.draw(canvas);
-        int iDp2 = AndroidUtilities.dp(12.0f);
-        rect.right = iDp2;
-        rect.left = iDp2;
-        int iDp3 = AndroidUtilities.dp(8.0f);
-        rect.bottom = iDp3;
-        rect.top = iDp3;
-        rect.inset(-AndroidUtilities.dp(AndroidUtilities.lerp(10, 11, interpolation)), -AndroidUtilities.dp(AndroidUtilities.lerp(2, 3, interpolation)));
-        DialogsActivity.AnonymousClass11.AnonymousClass1 anonymousClass2 = this.primaryRectDrawable;
-        anonymousClass2.setBounds(rect);
-        anonymousClass2.paint.setAlpha(AndroidUtilities.lerp(128, 255, interpolation));
-        anonymousClass2.draw(canvas);
-    }
-
-    public final void drawStage2(Canvas canvas, float f) {
-        Rect bounds = getBounds();
-        float interpolation = this.interpolator.getInterpolation(f);
-        int iDp = (int) (AndroidUtilities.dp(2.0f) * this.scaleX);
-        Rect rect = this.tempRect;
-        rect.left = iDp;
-        rect.bottom = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.scaleY));
-        rect.right = bounds.right - rect.left;
-        rect.top = rect.bottom - ((int) (AndroidUtilities.dp(4.0f) * this.scaleY));
-        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, -8, interpolation)));
-        DialogsActivity.AnonymousClass11.AnonymousClass1 anonymousClass1 = this.secondaryRectDrawable;
-        anonymousClass1.setBounds(rect);
-        anonymousClass1.draw(canvas);
-        rect.left = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(1, 2, interpolation)) * this.scaleX);
-        rect.top = (int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(5, 6, interpolation)) * this.scaleY);
-        rect.right = bounds.right - rect.left;
-        rect.bottom = rect.top + ((int) (AndroidUtilities.dpf2(AndroidUtilities.lerp(6, 4, interpolation)) * this.scaleY));
-        rect.offset(0, AndroidUtilities.dp(AndroidUtilities.lerp(0, 8, interpolation)));
-        DialogsActivity.AnonymousClass11.AnonymousClass1 anonymousClass2 = this.primaryRectDrawable;
-        anonymousClass2.setBounds(rect);
-        anonymousClass2.paint.setAlpha(255);
-        anonymousClass2.draw(canvas);
-    }
-
-    public final void drawStage3(Canvas canvas, float f) {
-        Rect bounds = getBounds();
-        float interpolation = this.interpolator.getInterpolation(f);
-        int iDp = (int) (AndroidUtilities.dp(2.0f) * this.scaleX);
-        Rect rect = this.tempRect;
-        rect.left = iDp;
-        rect.bottom = bounds.bottom - ((int) (AndroidUtilities.dp(6.0f) * this.scaleY));
-        rect.right = bounds.right - rect.left;
-        rect.top = rect.bottom - ((int) (AndroidUtilities.dp(4.0f) * this.scaleY));
-        rect.offset(0, AndroidUtilities.dp(-8.0f));
-        DialogsActivity.AnonymousClass11.AnonymousClass1 anonymousClass1 = this.secondaryRectDrawable;
-        anonymousClass1.setBounds(rect);
-        anonymousClass1.draw(canvas);
-        rect.left = (int) (AndroidUtilities.dpf2(2.0f) * this.scaleX);
-        rect.top = (int) (AndroidUtilities.dpf2(6.0f) * this.scaleY);
-        rect.right = bounds.right - rect.left;
-        rect.bottom = rect.top + ((int) (AndroidUtilities.dpf2(4.0f) * this.scaleY));
-        rect.offset(0, AndroidUtilities.dp(8.0f));
-        DialogsActivity.AnonymousClass11.AnonymousClass1 anonymousClass2 = this.primaryRectDrawable;
-        anonymousClass2.setBounds(rect);
-        anonymousClass2.paint.setAlpha(AndroidUtilities.lerp(255, 128, interpolation));
-        anonymousClass2.draw(canvas);
-    }
-
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return this.intrinsicHeight;
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return this.intrinsicWidth;
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -3;
     }
 
     @Override
-    public final void onBoundsChange(Rect rect) {
+    public void onBoundsChange(Rect rect) {
         this.scaleX = rect.width() / this.intrinsicWidth;
         this.scaleY = rect.height() / this.intrinsicHeight;
     }
 
-    @Override
-    public final void setAlpha(int i) {
+    public void resetAnimation() {
+        this.startedTime = -1L;
+        invalidateSelf();
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.primaryRectDrawable.paint.setColorFilter(colorFilter);
-        this.secondaryRectDrawable.paint.setColorFilter(colorFilter);
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+        this.primaryRectDrawable.setColorFilter(colorFilter);
+        this.secondaryRectDrawable.setColorFilter(colorFilter);
+        invalidateSelf();
+    }
+
+    public void startAnimation() {
+        this.startedTime = System.currentTimeMillis();
         invalidateSelf();
     }
 }

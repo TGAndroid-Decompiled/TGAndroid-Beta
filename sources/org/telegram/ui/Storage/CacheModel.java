@@ -1,7 +1,6 @@
 package org.telegram.ui.Storage;
 
 import android.util.LongSparseArray;
-import android.util.SparseArray;
 import com.google.android.exoplayer2.util.ConditionVariable;
 import java.io.File;
 import java.util.ArrayList;
@@ -10,7 +9,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.MessageObject;
 import org.telegram.ui.CacheControlActivity;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda3;
 
 public final class CacheModel {
     public boolean allDocumentsSelected;
@@ -56,7 +54,7 @@ public final class CacheModel {
     }
 
     public static void sort(ArrayList arrayList) {
-        Collections.sort(arrayList, new OAuthSheet$$ExternalSyntheticLambda3(9));
+        Collections.sort(arrayList, new CacheModel$$ExternalSyntheticLambda0(0));
     }
 
     public final void checkAllFilesSelected(int i, boolean z) {
@@ -138,18 +136,17 @@ public final class CacheModel {
             if (dialogFileEntities != null) {
                 int i = 0;
                 while (true) {
-                    SparseArray sparseArray = dialogFileEntities.entitiesByType;
-                    if (i >= sparseArray.size()) {
+                    if (i >= dialogFileEntities.entitiesByType.size()) {
                         hashSet3.add(Long.valueOf(dialogFileEntities.dialogId));
                         break;
                     }
-                    ArrayList arrayList = ((CacheControlActivity.FileEntities) sparseArray.valueAt(i)).files;
+                    ArrayList<FileInfo> arrayList = dialogFileEntities.entitiesByType.valueAt(i).files;
                     int size = arrayList.size();
                     int i2 = 0;
                     while (i2 < size) {
-                        Object obj = arrayList.get(i2);
+                        FileInfo fileInfo = arrayList.get(i2);
                         i2++;
-                        if (!hashSet2.contains((FileInfo) obj)) {
+                        if (!hashSet2.contains(fileInfo)) {
                             break;
                         }
                     }

@@ -15,13 +15,7 @@ public final class ContactsActivity$$ExternalSyntheticLambda3 implements Message
     public final void run(int i) {
         switch (this.$r8$classId) {
             case 0:
-                ContactsActivity contactsActivity = this.f$0;
-                contactsActivity.getClass();
-                contactsActivity.askAboutContacts = i != 0;
-                if (i != 0) {
-                    contactsActivity.askForPermissons(false);
-                    break;
-                }
+                this.f$0.lambda$onBecomeFullyVisible$12(i);
                 break;
             default:
                 this.f$0.lambda$askForPermissons$13(i);

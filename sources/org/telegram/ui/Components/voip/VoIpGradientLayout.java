@@ -2,23 +2,21 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
-import com.google.firebase.messaging.GmsRpc;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
+import org.telegram.ui.Components.BitmapShaderTools;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
-import org.telegram.ui.PhotoViewer$41$1;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda14;
+import org.telegram.ui.Stars.SuperRipple$$ExternalSyntheticLambda7;
 
 public final class VoIpGradientLayout extends FrameLayout {
     public final boolean allowAnimations;
@@ -76,8 +74,8 @@ public final class VoIpGradientLayout extends FrameLayout {
         }
     }
 
-    public VoIpGradientLayout(Activity activity, boolean z, VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(activity);
+    public VoIpGradientLayout(Context context, boolean z, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(context);
         this.alphaBlueViolet = 0;
         this.alphaBlueGreen = 0;
         this.alphaGreen = 0;
@@ -92,28 +90,28 @@ public final class VoIpGradientLayout extends FrameLayout {
         this.backgroundProvider = voIPBackgroundProvider;
         boolean zIsEnabled = LiteMode.isEnabled(512);
         this.allowAnimations = zIsEnabled;
-        this.bgBlueViolet = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-4958504, -8304404, -14637865, -12612630, false, 0, true);
-        this.bgBlueGreen = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-12224791, -12879119, -16207709, -15226140, false, 0, true);
-        this.bgGreen = new MotionBackgroundDrawable(-16275028, -16270749, -5649306, -10833593, false, 0, true);
-        this.bgOrangeRed = new MotionBackgroundDrawable(-1545896, -1613425, -2387892, -2198984, false, 0, true);
-        Drawable pureColorDrawable = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-5818672, -9819171, -15755831, -14124319, false, 0, true);
+        this.bgBlueViolet = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-4958504, -8304404, -14637865, -12612630, 0, false, true);
+        this.bgBlueGreen = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-12224791, -12879119, -16207709, -15226140, 0, false, true);
+        this.bgGreen = new MotionBackgroundDrawable(-16275028, -16270749, -5649306, -10833593, 0, false, true);
+        this.bgOrangeRed = new MotionBackgroundDrawable(-1545896, -1613425, -2387892, -2198984, 0, false, true);
+        Drawable pureColorDrawable = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-5818672, -9819171, -15755831, -14124319, 0, false, true);
         this.bgBlueVioletDark = pureColorDrawable;
-        Drawable pureColorDrawable2 = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-13803306, -13866273, -16738923, -16608823, false, 0, true);
+        Drawable pureColorDrawable2 = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-13803306, -13866273, -16738923, -16608823, 0, false, true);
         this.bgBlueGreenDark = pureColorDrawable2;
-        MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable(-16741490, -16673972, -7357129, -13525721, false, 0, true);
+        MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable(-16741490, -16673972, -7357129, -13525721, 0, false, true);
         this.bgGreenDark = motionBackgroundDrawable;
-        MotionBackgroundDrawable motionBackgroundDrawable2 = new MotionBackgroundDrawable(-1949911, -1691537, -3705322, -2663914, false, 0, true);
+        MotionBackgroundDrawable motionBackgroundDrawable2 = new MotionBackgroundDrawable(-1949911, -1691537, -3705322, -2663914, 0, false, true);
         this.bgOrangeRedDark = motionBackgroundDrawable2;
-        Drawable pureColorDrawable3 = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-2726657, -7186179, -13778695, -11034113, false, 0, true);
+        Drawable pureColorDrawable3 = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-2726657, -7186179, -13778695, -11034113, 0, false, true);
         this.bgBlueVioletLight = pureColorDrawable3;
-        Drawable pureColorDrawable4 = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-11170817, -10507265, -16458548, -14105857, false, 0, true);
+        Drawable pureColorDrawable4 = z ? new PureColorDrawable() : new MotionBackgroundDrawable(-11170817, -10507265, -16458548, -14105857, 0, false, true);
         this.bgBlueGreenLight = pureColorDrawable4;
-        MotionBackgroundDrawable motionBackgroundDrawable3 = new MotionBackgroundDrawable(-16723243, -16129415, -3674272, -9578153, false, 0, true);
+        MotionBackgroundDrawable motionBackgroundDrawable3 = new MotionBackgroundDrawable(-16723243, -16129415, -3674272, -9578153, 0, false, true);
         this.bgGreenLight = motionBackgroundDrawable3;
-        MotionBackgroundDrawable motionBackgroundDrawable4 = new MotionBackgroundDrawable(-34714, -32091, -85931, -29103, false, 0, true);
+        MotionBackgroundDrawable motionBackgroundDrawable4 = new MotionBackgroundDrawable(-34714, -32091, -85931, -29103, 0, false, true);
         this.bgOrangeRedLight = motionBackgroundDrawable4;
-        this.bgGreenLightReveal = new MotionBackgroundDrawable(-16723243, -16129415, -3674272, -9578153, false, 0, true);
-        this.bgGreenDarkReveal = new MotionBackgroundDrawable(-16741490, -16673972, -7357129, -13525721, false, 0, true);
+        this.bgGreenLightReveal = new MotionBackgroundDrawable(-16723243, -16129415, -3674272, -9578153, 0, false, true);
+        this.bgGreenDarkReveal = new MotionBackgroundDrawable(-16741490, -16673972, -7357129, -13525721, 0, false, true);
         pureColorDrawable.setBounds(0, 0, 80, 80);
         pureColorDrawable2.setBounds(0, 0, 80, 80);
         motionBackgroundDrawable.setBounds(0, 0, 80, 80);
@@ -127,7 +125,7 @@ public final class VoIpGradientLayout extends FrameLayout {
         AnimatorSet animatorSet = new AnimatorSet();
         this.defaultAnimatorSet = animatorSet;
         ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 360);
-        valueAnimatorOfInt.addUpdateListener(new QrActivity$$ExternalSyntheticLambda14(20, this, voIPBackgroundProvider));
+        valueAnimatorOfInt.addUpdateListener(new SuperRipple$$ExternalSyntheticLambda7(11, this, voIPBackgroundProvider));
         valueAnimatorOfInt.setRepeatCount(-1);
         valueAnimatorOfInt.setRepeatMode(1);
         animatorSet.setInterpolator(new LinearInterpolator());
@@ -181,18 +179,18 @@ public final class VoIpGradientLayout extends FrameLayout {
         float fSqrt = ((float) Math.sqrt((height * width) + (width * width))) / Math.min(height, width);
         canvas.scale(fSqrt, fSqrt, width, height);
         canvas.rotate(this.backgroundProvider.degree, width, height);
-        Canvas canvas2 = (Canvas) this.backgroundProvider.lightShaderTools.metadata;
+        Canvas canvas2 = this.backgroundProvider.lightShaderTools.getCanvas();
         PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
         canvas2.drawColor(0, mode);
-        ((Canvas) this.backgroundProvider.darkShaderTools.metadata).drawColor(0, mode);
+        this.backgroundProvider.darkShaderTools.getCanvas().drawColor(0, mode);
         int i = this.alphaGreen;
         if (i != 0 && this.alphaOrangeRed != 255) {
             this.bgGreen.setAlpha(i);
             this.bgGreenLight.setAlpha(this.alphaGreen);
             this.bgGreenDark.setAlpha(this.alphaGreen);
             this.bgGreen.draw(canvas);
-            this.bgGreenLight.draw((Canvas) this.backgroundProvider.lightShaderTools.metadata);
-            this.bgGreenDark.draw((Canvas) this.backgroundProvider.darkShaderTools.metadata);
+            this.bgGreenLight.draw(this.backgroundProvider.lightShaderTools.getCanvas());
+            this.bgGreenDark.draw(this.backgroundProvider.darkShaderTools.getCanvas());
         }
         int i2 = this.alphaBlueGreen;
         if (i2 != 0 && this.alphaOrangeRed != 255) {
@@ -200,8 +198,8 @@ public final class VoIpGradientLayout extends FrameLayout {
             this.bgBlueGreenDark.setAlpha(this.alphaBlueGreen);
             this.bgBlueGreenLight.setAlpha(this.alphaBlueGreen);
             this.bgBlueGreen.draw(canvas);
-            this.bgBlueGreenDark.draw((Canvas) this.backgroundProvider.darkShaderTools.metadata);
-            this.bgBlueGreenLight.draw((Canvas) this.backgroundProvider.lightShaderTools.metadata);
+            this.bgBlueGreenDark.draw(this.backgroundProvider.darkShaderTools.getCanvas());
+            this.bgBlueGreenLight.draw(this.backgroundProvider.lightShaderTools.getCanvas());
         }
         int i3 = this.alphaBlueViolet;
         if (i3 != 0 && this.alphaOrangeRed != 255) {
@@ -209,8 +207,8 @@ public final class VoIpGradientLayout extends FrameLayout {
             this.bgBlueVioletDark.setAlpha(this.alphaBlueViolet);
             this.bgBlueVioletLight.setAlpha(this.alphaBlueViolet);
             this.bgBlueViolet.draw(canvas);
-            this.bgBlueVioletDark.draw((Canvas) this.backgroundProvider.darkShaderTools.metadata);
-            this.bgBlueVioletLight.draw((Canvas) this.backgroundProvider.lightShaderTools.metadata);
+            this.bgBlueVioletDark.draw(this.backgroundProvider.darkShaderTools.getCanvas());
+            this.bgBlueVioletLight.draw(this.backgroundProvider.lightShaderTools.getCanvas());
         }
         int i4 = this.alphaOrangeRed;
         if (i4 != 0) {
@@ -218,8 +216,8 @@ public final class VoIpGradientLayout extends FrameLayout {
             this.bgOrangeRedDark.setAlpha(this.alphaOrangeRed);
             this.bgOrangeRedLight.setAlpha(this.alphaOrangeRed);
             this.bgOrangeRed.draw(canvas);
-            this.bgOrangeRedDark.draw((Canvas) this.backgroundProvider.darkShaderTools.metadata);
-            this.bgOrangeRedLight.draw((Canvas) this.backgroundProvider.lightShaderTools.metadata);
+            this.bgOrangeRedDark.draw(this.backgroundProvider.darkShaderTools.getCanvas());
+            this.bgOrangeRedLight.draw(this.backgroundProvider.lightShaderTools.getCanvas());
         }
         canvas.restore();
         if (this.showClip) {
@@ -238,18 +236,18 @@ public final class VoIpGradientLayout extends FrameLayout {
             this.bgGreen.draw(canvas);
             this.clipPath.rewind();
             this.clipPath.addCircle(this.clipCx / 4.0f, this.clipCy / 4.0f, this.clipRadius / 4.0f, direction);
-            ((Canvas) this.backgroundProvider.revealShaderTools.metadata).drawColor(0, mode);
-            ((Canvas) this.backgroundProvider.revealShaderTools.metadata).save();
-            ((Canvas) this.backgroundProvider.revealShaderTools.metadata).clipPath(this.clipPath);
+            this.backgroundProvider.revealShaderTools.getCanvas().drawColor(0, mode);
+            this.backgroundProvider.revealShaderTools.getCanvas().save();
+            this.backgroundProvider.revealShaderTools.getCanvas().clipPath(this.clipPath);
             this.bgGreenLightReveal.setAlpha(255);
-            this.bgGreenLightReveal.draw((Canvas) this.backgroundProvider.revealShaderTools.metadata);
-            ((Canvas) this.backgroundProvider.revealShaderTools.metadata).restore();
-            ((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata).drawColor(0, mode);
-            ((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata).save();
-            ((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata).clipPath(this.clipPath);
+            this.bgGreenLightReveal.draw(this.backgroundProvider.revealShaderTools.getCanvas());
+            this.backgroundProvider.revealShaderTools.getCanvas().restore();
+            this.backgroundProvider.revealDarkShaderTools.getCanvas().drawColor(0, mode);
+            this.backgroundProvider.revealDarkShaderTools.getCanvas().save();
+            this.backgroundProvider.revealDarkShaderTools.getCanvas().clipPath(this.clipPath);
             this.bgGreenDarkReveal.setAlpha(255);
-            this.bgGreenDarkReveal.draw((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata);
-            ((Canvas) this.backgroundProvider.revealDarkShaderTools.metadata).restore();
+            this.bgGreenDarkReveal.draw(this.backgroundProvider.revealDarkShaderTools.getCanvas());
+            this.backgroundProvider.revealDarkShaderTools.getCanvas().restore();
         }
         super.onDraw(canvas);
     }
@@ -270,10 +268,10 @@ public final class VoIpGradientLayout extends FrameLayout {
         voIPBackgroundProvider.totalHeight = height;
         int i5 = width / 4;
         int i6 = height / 4;
-        voIPBackgroundProvider.revealShaderTools = new GmsRpc(i5, i6);
-        GmsRpc gmsRpc = new GmsRpc(i5, i6);
-        voIPBackgroundProvider.revealDarkShaderTools = gmsRpc;
-        ((Paint) gmsRpc.app).setAlpha(180);
+        voIPBackgroundProvider.revealShaderTools = new BitmapShaderTools(i5, i6);
+        BitmapShaderTools bitmapShaderTools = new BitmapShaderTools(i5, i6);
+        voIPBackgroundProvider.revealDarkShaderTools = bitmapShaderTools;
+        bitmapShaderTools.paint.setAlpha(180);
     }
 
     public final void resume() {
@@ -292,9 +290,8 @@ public final class VoIpGradientLayout extends FrameLayout {
     }
 
     public final void switchToCallConnected(int i, int i2, boolean z) {
-        int i3 = 3;
-        int i4 = this.state;
-        if (i4 == 2 || i4 == 3) {
+        int i3 = this.state;
+        if (i3 == 2 || i3 == 3) {
             return;
         }
         this.state = 2;
@@ -307,18 +304,18 @@ public final class VoIpGradientLayout extends FrameLayout {
         this.clipCx = i;
         this.clipCy = i2;
         Point point = AndroidUtilities.displaySize;
-        int i5 = point.x - i;
-        int i6 = i5 * i5;
-        int i7 = ((point.y + AndroidUtilities.statusBarHeight) + AndroidUtilities.navigationBarHeight) - i2;
-        int i8 = i7 * i7;
-        int i9 = i * i;
-        int i10 = i2 * i2;
-        double dMax = Math.max(Math.max(Math.max(Math.sqrt(i6 + i8), Math.sqrt(i8 + i9)), Math.sqrt(i9 + i10)), Math.sqrt(i6 + i10));
+        int i4 = point.x - i;
+        int i5 = i4 * i4;
+        int i6 = ((point.y + AndroidUtilities.statusBarHeight) + AndroidUtilities.navigationBarHeight) - i2;
+        int i7 = i6 * i6;
+        int i8 = i * i;
+        int i9 = i2 * i2;
+        double dMax = Math.max(Math.max(Math.max(Math.sqrt(i5 + i7), Math.sqrt(i7 + i8)), Math.sqrt(i8 + i9)), Math.sqrt(i5 + i9));
         this.showClip = true;
         this.backgroundProvider.isReveal = true;
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, (float) dMax);
         valueAnimatorOfFloat.addUpdateListener(new VoIpGradientLayout$$ExternalSyntheticLambda0(this, 1));
-        valueAnimatorOfFloat.addListener(new PhotoViewer$41$1(this, i3));
+        valueAnimatorOfFloat.addListener(new VoIPWindowView.AnonymousClass1(this, 8));
         valueAnimatorOfFloat.setDuration(z ? 400L : 0L);
         valueAnimatorOfFloat.start();
     }

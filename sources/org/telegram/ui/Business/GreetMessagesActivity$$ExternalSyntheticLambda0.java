@@ -28,7 +28,7 @@ public final class GreetMessagesActivity$$ExternalSyntheticLambda0 implements Al
     }
 
     @Override
-    public void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         UItem uItem = (UItem) obj;
         ((Integer) obj3).intValue();
         ((Float) obj4).floatValue();

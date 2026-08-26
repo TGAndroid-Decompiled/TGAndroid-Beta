@@ -2,7 +2,6 @@ package org.telegram.ui.Components;
 
 import androidx.core.util.Consumer;
 import androidx.dynamicanimation.animation.DynamicAnimation;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda211;
 
 public final class Bulletin$Layout$SpringTransition$$ExternalSyntheticLambda1 implements DynamicAnimation.OnAnimationUpdateListener {
     public final int $r8$classId;
@@ -19,10 +18,10 @@ public final class Bulletin$Layout$SpringTransition$$ExternalSyntheticLambda1 im
     public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
         switch (this.$r8$classId) {
             case 0:
-                ((ChatActivity$$ExternalSyntheticLambda211) this.f$0).accept(Float.valueOf(this.f$1.getTranslationY()));
+                Bulletin.Layout.SpringTransition.lambda$animateExit$3(this.f$0, this.f$1, dynamicAnimation, f, f2);
                 break;
             default:
-                ((Bulletin$2$$ExternalSyntheticLambda2) this.f$0).accept(Float.valueOf(this.f$1.getTranslationY()));
+                Bulletin.Layout.SpringTransition.lambda$animateEnter$1(this.f$0, this.f$1, dynamicAnimation, f, f2);
                 break;
         }
     }

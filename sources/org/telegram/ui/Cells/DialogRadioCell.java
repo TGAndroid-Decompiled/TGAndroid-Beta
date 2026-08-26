@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.BlurSettingsBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
 
@@ -25,7 +25,9 @@ public final class DialogRadioCell extends FrameLayout {
         super(context);
         TextView textView = new TextView(context);
         this.textView = textView;
-        ArticleViewer.IBlock.CC.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 16.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
@@ -33,7 +35,9 @@ public final class DialogRadioCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(-1, -1.0f, (z ? 5 : 3) | 48, z ? 61.0f : 23.0f, 0.0f, z ? 23.0f : 61.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        ArticleViewer.IBlock.CC.m(textView2, Theme.getColor(null, Theme.key_windowBackgroundWhiteValueText, false), 16.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView2, Theme.getColor(null, Theme.key_windowBackgroundWhiteValueText, false), 1, 16.0f, 1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
         textView2.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
         textView2.setVisibility(8);
@@ -41,11 +45,7 @@ public final class DialogRadioCell extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        int color = Theme.getColor(null, Theme.key_radioBackground, false);
-        int color2 = Theme.getColor(null, Theme.key_radioBackgroundChecked, false);
-        radioButton.color = color;
-        radioButton.checkedColor = color2;
-        radioButton.invalidate();
+        radioButton.setColor(Theme.getColor(null, Theme.key_radioBackground, false), Theme.getColor(null, Theme.key_radioBackgroundChecked, false));
         addView(radioButton, LayoutHelper.createFrame(22, 22.0f, (LocaleController.isRTL ? 3 : 5) | 48, 20.0f, 15.0f, 20.0f, 0.0f));
         updateLayout();
     }

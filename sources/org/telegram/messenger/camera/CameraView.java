@@ -39,10 +39,10 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.graphics.ColorUtils;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ref.WeakReference;
@@ -77,13 +77,13 @@ import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.messenger.video.Mp4Movie;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline3;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda71;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda17;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.InstantCameraView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Stories.LivePlayer;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda8;
+import org.telegram.ui.iv.RichTextCell$2$$ExternalSyntheticLambda1;
 
 public class CameraView extends FrameLayout implements TextureView.SurfaceTextureListener, CameraController.ICameraView, CameraController.ErrorCallback {
     private static final int MSG_AUDIOFRAME_AVAILABLE = 3;
@@ -674,9 +674,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                                             GLES20.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
                                             GLES20.glClear(16384);
                                         }
-                                        CameraView.this.shapeValue = this.shape.set(this.shapeTo, false);
-                                        float f2 = CameraView.this.lastCrossfadeValue = this.crossfade.set(0.0f, false);
-                                        float f3 = this.dualAppear.set(this.dualAppeared ? 1.0f : 0.0f, false);
+                                        CameraView.this.shapeValue = this.shape.set(this.shapeTo);
+                                        float f2 = CameraView.this.lastCrossfadeValue = this.crossfade.set(0.0f);
+                                        float f3 = this.dualAppear.set(this.dualAppeared ? 1.0f : 0.0f);
                                         float f4 = 1.0f - this.camera1Appear.set(this.camera1Appeared);
                                         if (f2 <= 0.0f) {
                                             this.crossfading = false;
@@ -1457,7 +1457,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                             if (!BuildVars.LOGS_ENABLED) {
                                 break loop0;
                             }
-                            zzjj.m(new StringBuilder("CameraView detected desync between audio and video "), this.desyncTime);
+                            zzjg.m(new StringBuilder("CameraView detected desync between audio and video "), this.desyncTime);
                             break loop0;
                         }
                         long j4 = audioBufferInfo2.offset[i];
@@ -1467,11 +1467,11 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                             if (!BuildVars.LOGS_ENABLED) {
                                 break loop0;
                             }
-                            zzjj.m(DiffUtil.m(i, "CameraView found first audio frame at ", " timestamp = "), audioBufferInfo2.offset[i]);
+                            zzjg.m(DiffUtil.m(i, "CameraView found first audio frame at ", " timestamp = "), audioBufferInfo2.offset[i]);
                             break loop0;
                         }
                         if (BuildVars.LOGS_ENABLED) {
-                            zzjj.m(DiffUtil.m(i, "CameraView ignore first audio frame at ", " timestamp = "), audioBufferInfo2.offset[i]);
+                            zzjg.m(DiffUtil.m(i, "CameraView ignore first audio frame at ", " timestamp = "), audioBufferInfo2.offset[i]);
                         }
                     }
                     if (BuildVars.LOGS_ENABLED) {
@@ -1669,7 +1669,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             if (this.videoFirst == -1) {
                 this.videoFirst = j / 1000;
                 if (BuildVars.LOGS_ENABLED) {
-                    zzjj.m(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
+                    zzjg.m(new StringBuilder("CameraView first video frame was at "), this.videoFirst);
                 }
             }
             this.videoLast = j;
@@ -1947,9 +1947,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 float f5 = f + 0.5f;
                 float f6 = f2 + 0.5f;
                 float[] fArr = {f3, f4, f5, f4, f3, f6, f5, f6};
-                FloatBuffer floatBufferM = CameraView$VideoRecorder$$ExternalSyntheticOutline0.m(ByteBuffer.allocateDirect(32));
-                this.textureBuffer = floatBufferM;
-                floatBufferM.put(fArr).position(0);
+                FloatBuffer floatBufferAsFloatBuffer = ByteBuffer.allocateDirect(32).order(ByteOrder.nativeOrder()).asFloatBuffer();
+                this.textureBuffer = floatBufferAsFloatBuffer;
+                floatBufferAsFloatBuffer.put(fArr).position(0);
                 int iLoadShader = CameraView.this.loadShader(35633, AndroidUtilities.readRes(R.raw.camera_vert));
                 int iLoadShader2 = CameraView.this.loadShader(35632, AndroidUtilities.readRes(R.raw.camera_frag));
                 if (iLoadShader == 0 || iLoadShader2 == 0) {
@@ -2018,7 +2018,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 } else {
                     ByteBuffer outputBuffer = this.videoEncoder.getOutputBuffer(iDequeueOutputBuffer);
                     if (outputBuffer == null) {
-                        throw new RuntimeException(SurfaceContainer$$ExternalSyntheticOutline0.m(iDequeueOutputBuffer, "encoderOutputBuffer ", " was null"));
+                        throw new RuntimeException(Fragment$$ExternalSyntheticOutline0.m(iDequeueOutputBuffer, "encoderOutputBuffer ", " was null"));
                     }
                     MediaCodec.BufferInfo bufferInfo = this.videoBufferInfo;
                     int i = bufferInfo.size;
@@ -2126,7 +2126,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 } else {
                     ByteBuffer outputBuffer2 = this.audioEncoder.getOutputBuffer(iDequeueOutputBuffer2);
                     if (outputBuffer2 == null) {
-                        throw new RuntimeException(SurfaceContainer$$ExternalSyntheticOutline0.m(iDequeueOutputBuffer2, "encoderOutputBuffer ", " was null"));
+                        throw new RuntimeException(Fragment$$ExternalSyntheticOutline0.m(iDequeueOutputBuffer2, "encoderOutputBuffer ", " was null"));
                     }
                     MediaCodec.BufferInfo bufferInfo5 = this.audioBufferInfo;
                     if ((bufferInfo5.flags & 2) != 0) {
@@ -2340,7 +2340,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
     }
 
     public void createCamera(SurfaceTexture surfaceTexture, int i) {
-        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda17(this, i, surfaceTexture, 3));
+        AndroidUtilities.runOnUIThread(new RichTextCell$2$$ExternalSyntheticLambda1(this, i, surfaceTexture, 3));
     }
 
     private void enableDualInternal() {
@@ -2449,7 +2449,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         this.cameraSession[i] = CameraSessionWrapper.of(cameraSession);
         cameraGLThread.setCurrentSession(this.cameraSession[i], i);
         requestLayout();
-        CameraController.getInstance().open(cameraSession, surfaceTexture, new ArticleViewer$$ExternalSyntheticLambda71(this, i, cameraSession, cameraGLThread, 2), new CameraView$$ExternalSyntheticLambda15(this, cameraGLThread, i));
+        CameraController.getInstance().open(cameraSession, surfaceTexture, new BotBiometry$$ExternalSyntheticLambda8(this, i, cameraSession, cameraGLThread, 2), new CameraView$$ExternalSyntheticLambda15(this, cameraGLThread, i));
     }
 
     public void lambda$createCamera$8(CameraGLThread cameraGLThread) {
@@ -2798,7 +2798,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
             this.renderNode = Theme$$ExternalSyntheticApiModelOutline3.m$1();
             RenderNode renderNodeM$2 = Theme$$ExternalSyntheticApiModelOutline3.m$2();
             this.blurRenderNode = renderNodeM$2;
-            Theme$$ExternalSyntheticApiModelOutline3.m1062m((Object) renderNodeM$2);
+            Theme$$ExternalSyntheticApiModelOutline3.m1069m((Object) renderNodeM$2);
             float fDp = AndroidUtilities.dp(32.0f);
             float fDp2 = AndroidUtilities.dp(32.0f);
             Shader.TileMode unused = Shader.TileMode.DECAL;

@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import androidx.recyclerview.widget.DiffUtil;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import java.util.Arrays;
 import java.util.List;
 
@@ -279,7 +279,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(zzil.m("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(zzii.m("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {

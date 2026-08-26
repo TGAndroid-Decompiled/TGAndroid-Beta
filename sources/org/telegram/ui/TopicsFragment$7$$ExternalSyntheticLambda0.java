@@ -13,20 +13,10 @@ public final class TopicsFragment$7$$ExternalSyntheticLambda0 implements Runnabl
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                TopicsFragment.AnonymousClass7 anonymousClass7 = this.f$0;
-                anonymousClass7.finishRunnable = null;
-                if (anonymousClass7.scrollAnimationIndex != -1) {
-                    TopicsFragment.this.getNotificationCenter().onAnimationFinish(anonymousClass7.scrollAnimationIndex);
-                    anonymousClass7.scrollAnimationIndex = -1;
-                }
+                this.f$0.lambda$onAllAnimationsDone$0();
                 break;
             default:
-                TopicsFragment.AnonymousClass7 anonymousClass8 = this.f$0;
-                anonymousClass8.finishRunnable = null;
-                if (anonymousClass8.scrollAnimationIndex != -1) {
-                    TopicsFragment.this.getNotificationCenter().onAnimationFinish(anonymousClass8.scrollAnimationIndex);
-                    anonymousClass8.scrollAnimationIndex = -1;
-                }
+                this.f$0.lambda$endAnimations$1();
                 break;
         }
     }

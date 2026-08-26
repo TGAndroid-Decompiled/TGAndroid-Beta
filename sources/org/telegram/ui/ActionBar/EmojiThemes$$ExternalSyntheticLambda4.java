@@ -1,91 +1,111 @@
 package org.telegram.ui.ActionBar;
 
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.play.core.integrity.IntegrityTokenResponse;
-import java.util.List;
-import org.telegram.messenger.ChatThemeController;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
-import org.telegram.messenger.wallpaper.WallpaperGiftBitmapDrawable;
-import org.telegram.tgnet.ConnectionsManager;
+import java.io.File;
+import java.io.FileOutputStream;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
 
-public final class EmojiThemes$$ExternalSyntheticLambda4 implements OnSuccessListener, OnFailureListener, ImageReceiver.ImageReceiverDelegate {
-    public final int f$0;
-    public final Object f$1;
-    public final int f$2;
-    public final long f$3;
+public final class EmojiThemes$$ExternalSyntheticLambda4 implements Runnable {
+    public final int $r8$classId;
+    public final File f$0;
+    public final Bitmap f$1;
 
-    public EmojiThemes$$ExternalSyntheticLambda4(int i, long j, String str, int i2) {
-        this.f$0 = i;
-        this.f$3 = j;
-        this.f$2 = i2;
-        this.f$1 = str;
+    public EmojiThemes$$ExternalSyntheticLambda4(Bitmap bitmap, File file, int i) {
+        this.$r8$classId = i;
+        this.f$1 = bitmap;
+        this.f$0 = file;
     }
 
     @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        List list;
-        ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
-        ImageReceiver.BitmapHolder drawableSafe = imageReceiver.getDrawableSafe();
-        if (!z || bitmapSafe == null) {
-            return;
+    public final void run() {
+        switch (this.$r8$classId) {
+            case 0:
+                File file = this.f$0;
+                Bitmap bitmap = this.f$1;
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+                    try {
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
+                        fileOutputStream.close();
+                        return;
+                    } catch (Throwable th) {
+                        try {
+                            fileOutputStream.close();
+                            break;
+                        } catch (Throwable th2) {
+                            th.addSuppressed(th2);
+                        }
+                        throw th;
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 1:
+                try {
+                    this.f$1.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f$0));
+                    return;
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                    return;
+                }
+            case 2:
+                Bitmap bitmap2 = this.f$1;
+                try {
+                    try {
+                        bitmap2.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f$0));
+                        if (bitmap2.isRecycled()) {
+                            return;
+                        }
+                        bitmap2.recycle();
+                        return;
+                    } catch (Exception e3) {
+                        FileLog.e(e3);
+                        if (bitmap2 == null || bitmap2.isRecycled()) {
+                            return;
+                        }
+                        bitmap2.recycle();
+                        return;
+                    }
+                } catch (Throwable th3) {
+                    if (bitmap2 != null && !bitmap2.isRecycled()) {
+                        bitmap2.recycle();
+                    }
+                    throw th3;
+                }
+            case 3:
+                Bitmap bitmap3 = this.f$1;
+                try {
+                    bitmap3.compress(Bitmap.CompressFormat.WEBP, 100, new FileOutputStream(this.f$0));
+                } catch (Exception e4) {
+                    FileLog.e(e4);
+                } finally {
+                    AndroidUtilities.recycleBitmap(bitmap3);
+                }
+                return;
+            case 4:
+                try {
+                    this.f$1.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f$0));
+                    return;
+                } catch (Exception e5) {
+                    FileLog.e(e5);
+                    return;
+                }
+            default:
+                try {
+                    this.f$1.compress(Bitmap.CompressFormat.PNG, 87, new FileOutputStream(this.f$0));
+                    return;
+                } catch (Exception e6) {
+                    FileLog.e(e6);
+                    return;
+                }
         }
-        if (drawableSafe != null) {
-            Drawable drawable = drawableSafe.drawable;
-            if (drawable instanceof WallpaperGiftBitmapDrawable) {
-                list = ((WallpaperGiftBitmapDrawable) drawable).patternPositions;
-            } else {
-                list = null;
-            }
-        } else {
-            list = null;
-        }
-        Bitmap bitmap = bitmapSafe.bitmap;
-        if (bitmap == null) {
-            Drawable drawable2 = bitmapSafe.drawable;
-            if (drawable2 instanceof BitmapDrawable) {
-                bitmap = ((BitmapDrawable) drawable2).getBitmap();
-            }
-        }
-        WallpaperBitmapHolder wallpaperBitmapHolder = new WallpaperBitmapHolder(bitmap, this.f$0, list);
-        Utilities.Callback callback = (Utilities.Callback) this.f$1;
-        if (callback != null) {
-            callback.run(wallpaperBitmapHolder);
-        }
-        ChatThemeController.getInstance(this.f$2).saveWallpaperBitmap(wallpaperBitmapHolder, this.f$3);
     }
 
-    @Override
-    public void didSetImageBitmap(int i, String str, Drawable drawable) {
-        ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
-    }
-
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        ConnectionsManager.lambda$onIntegrityCheckClassic$26(this.f$0, this.f$3, this.f$2, (String) this.f$1, exc);
-    }
-
-    @Override
-    public void onSuccess(Object obj) {
-        long j = this.f$3;
-        int i = this.f$2;
-        ConnectionsManager.lambda$onIntegrityCheckClassic$25(this.f$0, j, i, (String) this.f$1, (IntegrityTokenResponse) obj);
-    }
-
-    public EmojiThemes$$ExternalSyntheticLambda4(int i, Utilities.Callback callback, int i2, long j) {
-        this.f$0 = i;
-        this.f$1 = callback;
-        this.f$2 = i2;
-        this.f$3 = j;
+    public EmojiThemes$$ExternalSyntheticLambda4(File file, Bitmap bitmap) {
+        this.$r8$classId = 0;
+        this.f$0 = file;
+        this.f$1 = bitmap;
     }
 }

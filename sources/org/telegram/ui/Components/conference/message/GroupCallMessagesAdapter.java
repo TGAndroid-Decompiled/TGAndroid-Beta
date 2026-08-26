@@ -38,7 +38,7 @@ public abstract class GroupCallMessagesAdapter extends RecyclerView.Adapter impl
             this.messages = new ArrayList();
         }
         this.messages.add(0, groupCallMessage);
-        this.mObservable.notifyItemRangeInserted(0, 1);
+        notifyItemInserted(0);
     }
 
     @Override
@@ -49,6 +49,6 @@ public abstract class GroupCallMessagesAdapter extends RecyclerView.Adapter impl
         }
         int size = this.messages.size() - 1;
         this.messages.remove(size);
-        this.mObservable.notifyItemRangeRemoved(size, 1);
+        notifyItemRemoved(size);
     }
 }

@@ -1,6 +1,7 @@
 package kotlinx.coroutines.sync;
 
 import androidx.datastore.core.SingleProcessDataStore$actor$1;
+import com.google.common.base.Joiner;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicLongFieldUpdater;
@@ -11,7 +12,6 @@ import kotlinx.coroutines.CancellableContinuation;
 import kotlinx.coroutines.CancellableContinuationImpl;
 import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.Segment;
-import kotlinx.coroutines.internal.Symbol;
 
 public class SemaphoreImpl {
     private volatile int _availablePermits$volatile;
@@ -58,22 +58,22 @@ public class SemaphoreImpl {
                 long j = andIncrement / ((long) SemaphoreKt.SEGMENT_SIZE);
                 while (true) {
                     objFindSegmentInternal = AtomicKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$addAcquireToQueue$createNewSegment$1);
-                    if (AtomicKt.m144isClosedimpl(objFindSegmentInternal)) {
+                    if (AtomicKt.m149isClosedimpl(objFindSegmentInternal)) {
                         cancellableContinuationImpl = cancellableContinuationImpl2;
                         break;
                     }
-                    Segment segmentM143getSegmentimpl = AtomicKt.m143getSegmentimpl(objFindSegmentInternal);
+                    Segment segmentM148getSegmentimpl = AtomicKt.m148getSegmentimpl(objFindSegmentInternal);
                     while (true) {
                         Segment segment = (Segment) atomicReferenceFieldUpdater.get(this);
                         cancellableContinuationImpl = cancellableContinuationImpl2;
-                        if (segment.id >= segmentM143getSegmentimpl.id) {
+                        if (segment.id >= segmentM148getSegmentimpl.id) {
                             break;
                         }
-                        if (!segmentM143getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
+                        if (!segmentM148getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
                             break;
                         }
                         do {
-                            if (atomicReferenceFieldUpdater.compareAndSet(this, segment, segmentM143getSegmentimpl)) {
+                            if (atomicReferenceFieldUpdater.compareAndSet(this, segment, segmentM148getSegmentimpl)) {
                                 if (!segment.decPointers$kotlinx_coroutines_core()) {
                                     break;
                                 }
@@ -81,14 +81,14 @@ public class SemaphoreImpl {
                                 break;
                             }
                         } while (atomicReferenceFieldUpdater.get(this) == segment);
-                        if (segmentM143getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
-                            segmentM143getSegmentimpl.remove();
+                        if (segmentM148getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
+                            segmentM148getSegmentimpl.remove();
                         }
                         cancellableContinuationImpl2 = cancellableContinuationImpl;
                     }
                     cancellableContinuationImpl2 = cancellableContinuationImpl;
                 }
-                SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) AtomicKt.m143getSegmentimpl(objFindSegmentInternal);
+                SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) AtomicKt.m148getSegmentimpl(objFindSegmentInternal);
                 int i = (int) (andIncrement % ((long) SemaphoreKt.SEGMENT_SIZE));
                 AtomicReferenceArray atomicReferenceArray = semaphoreSegment2.acquirers;
                 do {
@@ -97,16 +97,16 @@ public class SemaphoreImpl {
                         return;
                     }
                 } while (atomicReferenceArray.get(i) == null);
-                Symbol symbol = SemaphoreKt.PERMIT;
-                Symbol symbol2 = SemaphoreKt.TAKEN;
+                Joiner joiner = SemaphoreKt.PERMIT;
+                Joiner joiner2 = SemaphoreKt.TAKEN;
                 while (true) {
-                    if (atomicReferenceArray.compareAndSet(i, symbol, symbol2)) {
+                    if (atomicReferenceArray.compareAndSet(i, joiner, joiner2)) {
                         MutexImpl.owner$volatile$FU.set(mutexImpl, null);
                         cancellableContinuationImpl.resume(new MutexImpl$CancellableContinuationWithOwner$resume$2(mutexImpl, cancellableContinuationWithOwner, 0), unit);
                         return;
                     } else {
                         CancellableContinuationImpl cancellableContinuationImpl3 = cancellableContinuationImpl;
-                        if (atomicReferenceArray.get(i) != symbol) {
+                        if (atomicReferenceArray.get(i) != joiner) {
                             break;
                         } else {
                             cancellableContinuationImpl = cancellableContinuationImpl3;
@@ -144,18 +144,18 @@ public class SemaphoreImpl {
             SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 semaphoreImpl$tryResumeNextFromQueue$createNewSegment$1 = SemaphoreImpl$tryResumeNextFromQueue$createNewSegment$1.INSTANCE;
             while (true) {
                 objFindSegmentInternal = AtomicKt.findSegmentInternal(semaphoreSegment, j, semaphoreImpl$tryResumeNextFromQueue$createNewSegment$1);
-                if (!AtomicKt.m144isClosedimpl(objFindSegmentInternal)) {
-                    Segment segmentM143getSegmentimpl = AtomicKt.m143getSegmentimpl(objFindSegmentInternal);
+                if (!AtomicKt.m149isClosedimpl(objFindSegmentInternal)) {
+                    Segment segmentM148getSegmentimpl = AtomicKt.m148getSegmentimpl(objFindSegmentInternal);
                     while (true) {
                         Segment segment = (Segment) atomicReferenceFieldUpdater.get(this);
-                        if (segment.id >= segmentM143getSegmentimpl.id) {
+                        if (segment.id >= segmentM148getSegmentimpl.id) {
                             break;
                         }
-                        if (!segmentM143getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
+                        if (!segmentM148getSegmentimpl.tryIncPointers$kotlinx_coroutines_core()) {
                             break;
                         }
                         do {
-                            if (atomicReferenceFieldUpdater.compareAndSet(this, segment, segmentM143getSegmentimpl)) {
+                            if (atomicReferenceFieldUpdater.compareAndSet(this, segment, segmentM148getSegmentimpl)) {
                                 if (!segment.decPointers$kotlinx_coroutines_core()) {
                                     break;
                                 }
@@ -163,37 +163,37 @@ public class SemaphoreImpl {
                                 break;
                             }
                         } while (atomicReferenceFieldUpdater.get(this) == segment);
-                        if (segmentM143getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
-                            segmentM143getSegmentimpl.remove();
+                        if (segmentM148getSegmentimpl.decPointers$kotlinx_coroutines_core()) {
+                            segmentM148getSegmentimpl.remove();
                         }
                     }
                 } else {
                     break;
                 }
             }
-            SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) AtomicKt.m143getSegmentimpl(objFindSegmentInternal);
+            SemaphoreSegment semaphoreSegment2 = (SemaphoreSegment) AtomicKt.m148getSegmentimpl(objFindSegmentInternal);
             semaphoreSegment2.cleanPrev();
             boolean z2 = false;
             if (semaphoreSegment2.id > j) {
                 z = false;
             } else {
                 int i2 = (int) (andIncrement2 % ((long) SemaphoreKt.SEGMENT_SIZE));
-                Symbol symbol = SemaphoreKt.PERMIT;
+                Joiner joiner = SemaphoreKt.PERMIT;
                 AtomicReferenceArray atomicReferenceArray = semaphoreSegment2.acquirers;
-                Object andSet = atomicReferenceArray.getAndSet(i2, symbol);
+                Object andSet = atomicReferenceArray.getAndSet(i2, joiner);
                 if (andSet == null) {
                     int i3 = SemaphoreKt.MAX_SPIN_CYCLES;
                     int i4 = 0;
                     while (true) {
                         if (i4 >= i3) {
-                            Symbol symbol2 = SemaphoreKt.PERMIT;
-                            Symbol symbol3 = SemaphoreKt.BROKEN;
+                            Joiner joiner2 = SemaphoreKt.PERMIT;
+                            Joiner joiner3 = SemaphoreKt.BROKEN;
                             do {
-                                if (atomicReferenceArray.compareAndSet(i2, symbol2, symbol3)) {
+                                if (atomicReferenceArray.compareAndSet(i2, joiner2, joiner3)) {
                                     z2 = true;
                                     break;
                                 }
-                            } while (atomicReferenceArray.get(i2) == symbol2);
+                            } while (atomicReferenceArray.get(i2) == joiner2);
                             z = true ^ z2;
                             break;
                         }
@@ -210,9 +210,9 @@ public class SemaphoreImpl {
                         throw new IllegalStateException(("unexpected: " + andSet).toString());
                     }
                     CancellableContinuation cancellableContinuation = (CancellableContinuation) andSet;
-                    Symbol symbolTryResume = cancellableContinuation.tryResume(this.onCancellationRelease, Unit.INSTANCE);
-                    if (symbolTryResume != null) {
-                        cancellableContinuation.completeResume(symbolTryResume);
+                    Joiner joinerTryResume = cancellableContinuation.tryResume(this.onCancellationRelease, Unit.INSTANCE);
+                    if (joinerTryResume != null) {
+                        cancellableContinuation.completeResume(joinerTryResume);
                     } else {
                         z = false;
                     }

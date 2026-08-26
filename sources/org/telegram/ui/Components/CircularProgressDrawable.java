@@ -12,51 +12,44 @@ import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline0;
 
 public class CircularProgressDrawable extends Drawable {
     public static final FastOutSlowInInterpolator interpolator = new FastOutSlowInInterpolator();
-    public float angleOffset;
-    public final RectF bounds;
-    public final Paint paint;
-    public final float[] segment;
+    private float angleOffset;
+    private final RectF bounds;
+    private final Paint paint;
+    private float[] segment;
     public float size;
-    public long start;
-    public final float thickness;
+    private long start;
+    public float thickness;
 
-    public CircularProgressDrawable(int i) {
-        this.size = AndroidUtilities.dp(18.0f);
-        this.thickness = AndroidUtilities.dp(2.25f);
-        this.start = -1L;
-        this.segment = new float[2];
-        Paint paint = new Paint();
-        this.paint = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.bounds = new RectF();
-        paint.setColor(i);
+    public CircularProgressDrawable() {
+        this(-1);
     }
 
-    public static void getSegments(float[] fArr, float f) {
+    public static void getSegments(float f, float[] fArr) {
         float f2 = (1520.0f * f) / 5400.0f;
         fArr[0] = Math.max(0.0f, f2 - 20.0f);
         fArr[1] = f2;
         for (int i = 0; i < 4; i++) {
             float f3 = fArr[1];
-            int i2 = i * 1350;
             FastOutSlowInInterpolator fastOutSlowInInterpolator = interpolator;
+            int i2 = i * 1350;
             fArr[1] = (fastOutSlowInInterpolator.getInterpolation((f - i2) / 667.0f) * 250.0f) + f3;
             fArr[0] = (fastOutSlowInInterpolator.getInterpolation((f - (i2 + 667)) / 667.0f) * 250.0f) + fArr[0];
         }
     }
 
+    private void updateSegment() {
+        getSegments((SystemClock.elapsedRealtime() - this.start) % 5400, this.segment);
+    }
+
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         if (this.start < 0) {
             this.start = SystemClock.elapsedRealtime();
         }
-        float fElapsedRealtime = (SystemClock.elapsedRealtime() - this.start) % 5400;
-        float[] fArr = this.segment;
-        getSegments(fArr, fElapsedRealtime);
+        updateSegment();
         RectF rectF = this.bounds;
         float f = this.angleOffset;
+        float[] fArr = this.segment;
         float f2 = fArr[0];
         canvas.drawArc(rectF, f + f2, fArr[1] - f2, false, this.paint);
         invalidateSelf();
@@ -73,31 +66,57 @@ public class CircularProgressDrawable extends Drawable {
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
+    public void reset() {
+        this.start = -1L;
+    }
+
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
         this.paint.setAlpha(i);
     }
 
-    @Override
-    public final void setBounds(int i, int i2, int i3, int i4) {
-        float f = i;
-        float f2 = i3 - i;
-        float f3 = this.thickness;
-        float f4 = f3 / 2.0f;
-        float f5 = this.size;
-        float f6 = i2;
-        float f7 = i4 - i2;
-        this.bounds.set(ImageReceiver$$ExternalSyntheticOutline0.m(f2 - f4, f5, 2.0f, f), (((f7 - f4) - f5) / 2.0f) + f6, (((f2 + f4) + f5) / 2.0f) + f, (((f4 + f7) + f5) / 2.0f) + f6);
-        super.setBounds(i, i2, i3, i4);
-        this.paint.setStrokeWidth(f3);
+    public void setAngleOffset(float f) {
+        this.angleOffset = f;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setBounds(int i, int i2, int i3, int i4) {
+        RectF rectF = this.bounds;
+        float f = i;
+        float f2 = i3 - i;
+        float f3 = this.thickness / 2.0f;
+        float f4 = this.size;
+        float f5 = i2;
+        float f6 = i4 - i2;
+        rectF.set(ImageReceiver$$ExternalSyntheticOutline0.m(f2 - f3, f4, 2.0f, f), (((f6 - f3) - f4) / 2.0f) + f5, (((f2 + f3) + f4) / 2.0f) + f, (((f3 + f6) + f4) / 2.0f) + f5);
+        super.setBounds(i, i2, i3, i4);
+        this.paint.setStrokeWidth(this.thickness);
+    }
+
+    public void setColor(int i) {
+        this.paint.setColor(i);
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public CircularProgressDrawable(int i) {
+        this.size = AndroidUtilities.dp(18.0f);
+        this.thickness = AndroidUtilities.dp(2.25f);
+        this.start = -1L;
+        this.segment = new float[2];
+        Paint paint = new Paint();
+        this.paint = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.bounds = new RectF();
+        setColor(i);
     }
 
     public CircularProgressDrawable(float f, float f2, int i) {
@@ -113,6 +132,6 @@ public class CircularProgressDrawable extends Drawable {
         this.bounds = new RectF();
         this.size = f;
         this.thickness = f2;
-        paint.setColor(i);
+        setColor(i);
     }
 }

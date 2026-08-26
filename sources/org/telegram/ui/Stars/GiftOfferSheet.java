@@ -9,15 +9,12 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzko;
-import com.google.android.gms.internal.mlkit_vision_common.zzlj;
-import com.google.zxing.BinaryBitmap;
+import com.google.android.gms.internal.mlkit_vision_common.zzkr;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AppGlobalConfig;
@@ -32,14 +29,16 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.AccountFrozenAlert;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda464;
+import org.telegram.ui.ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.ColoredImageSpan;
@@ -52,15 +51,12 @@ import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.TableView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda1;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda20;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda12;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda156;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda52;
-import org.telegram.ui.ProfileActivity$9$$ExternalSyntheticLambda1;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
+import org.telegram.ui.Gifts.SendGiftSheet$$ExternalSyntheticLambda16;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TON.TONIntroActivity;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
+import org.telegram.ui.iv.RichMapCell;
 import org.telegram.ui.iv.RichTextCell$$ExternalSyntheticLambda3;
 
 public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
@@ -69,7 +65,7 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     public final BalanceCloud balanceCloud;
     public boolean balanceCloudVisible;
     public final ButtonWithCounterView buttonView;
-    public final StarGiftSheet$$ExternalSyntheticLambda3 closeParentSheet;
+    public final StarGiftSheet$$ExternalSyntheticLambda4 closeParentSheet;
     public final HorizontalRoundTabsLayout currencyTabsView;
     public final long dialogId;
     public final AnimatedTextView dollarsEqView;
@@ -79,7 +75,7 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     public final ImageView iconTon;
     public AmountUtils$Amount inputAmount;
     public int inputAmountError;
-    public final PhotoViewer.AnonymousClass18 inputAmountLimits;
+    public final RichMapCell.AnonymousClass1 inputAmountLimits;
     public boolean isFullyVisible;
     public final UItem mainItem;
     public final AnonymousClass1 publishingTimeField;
@@ -98,11 +94,11 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public GiftOfferSheet(final int i, final long j, final Context context, StarGiftSheet$$ExternalSyntheticLambda3 starGiftSheet$$ExternalSyntheticLambda3, TL_stars.TL_starGiftUnique tL_starGiftUnique, final Theme.ResourcesProvider resourcesProvider) {
+    public GiftOfferSheet(Context context, int i, long j, TL_stars.TL_starGiftUnique tL_starGiftUnique, Theme.ResourcesProvider resourcesProvider, StarGiftSheet$$ExternalSyntheticLambda4 starGiftSheet$$ExternalSyntheticLambda4) {
         TLRPC.User user;
-        super(context, null, true, false, false, false, false, 2, resourcesProvider);
-        PhotoViewer.AnonymousClass18 anonymousClass18 = new PhotoViewer.AnonymousClass18(9);
-        this.inputAmountLimits = anonymousClass18;
+        super(context, null, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
+        RichMapCell.AnonymousClass1 anonymousClass1 = new RichMapCell.AnonymousClass1();
+        this.inputAmountLimits = anonymousClass1;
         this.spanRefStars = new ColoredImageSpan[1];
         this.spanRefTon = new ColoredImageSpan[1];
         this.ignoreTouchActionBar = false;
@@ -114,7 +110,7 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         sb.append(tL_starGiftUnique.title);
         sb.append(" #");
         this.giftName = BillingController$$ExternalSyntheticOutline0.m(tL_starGiftUnique.num, ',', sb);
-        this.closeParentSheet = starGiftSheet$$ExternalSyntheticLambda3;
+        this.closeParentSheet = starGiftSheet$$ExternalSyntheticLambda4;
         this.waitingKeyboard = true;
         this.smoothKeyboardAnimationEnabled = true;
         boolean zCanUseTon = StarsController.getInstance(i, true).canUseTon();
@@ -130,15 +126,15 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         AmountUtils$Amount amountUtils$AmountFromNano = AmountUtils$Amount.fromNano(Math.max(amountUtils$AmountFromDecimal.convertTo(amountUtils$Currency2).round(2).nanos, appGlobalConfig.tonStarGiftResaleAmountMin.get()), amountUtils$Currency2);
         AmountUtils$Amount amountUtils$AmountFromNano2 = AmountUtils$Amount.fromNano(Math.max(amountUtils$AmountFromNano.nanos * 2, appGlobalConfig.tonStarGiftResaleAmountMax.get()), amountUtils$Currency2);
         AmountUtils$Currency amountUtils$Currency3 = amountUtils$AmountFromDecimal2.currency;
-        BinaryBitmap[] binaryBitmapArr = (BinaryBitmap[]) anonymousClass18.this$0;
+        Stripe[] stripeArr = (Stripe[]) anonymousClass1.this$0;
         AmountUtils$Currency amountUtils$Currency4 = amountUtils$AmountFromDecimal.currency;
         if (amountUtils$Currency4 == amountUtils$Currency3) {
-            binaryBitmapArr[amountUtils$Currency4.ordinal()] = new BinaryBitmap(amountUtils$AmountFromDecimal, amountUtils$AmountFromDecimal2, false, 20);
+            stripeArr[amountUtils$Currency4.ordinal()] = new Stripe(15, amountUtils$AmountFromDecimal, amountUtils$AmountFromDecimal2);
         }
         AmountUtils$Currency amountUtils$Currency5 = amountUtils$AmountFromNano2.currency;
         AmountUtils$Currency amountUtils$Currency6 = amountUtils$AmountFromNano.currency;
         if (amountUtils$Currency6 == amountUtils$Currency5) {
-            binaryBitmapArr[amountUtils$Currency6.ordinal()] = new BinaryBitmap(amountUtils$AmountFromNano, amountUtils$AmountFromNano2, false, 20);
+            stripeArr[amountUtils$Currency6.ordinal()] = new Stripe(15, amountUtils$AmountFromNano, amountUtils$AmountFromNano2);
         }
         BalanceCloud balanceCloud = new BalanceCloud(context, i, amountUtils$Currency, resourcesProvider);
         this.balanceCloud = balanceCloud;
@@ -148,8 +144,8 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         balanceCloud.setEnabled(false);
         balanceCloud.setClickable(false);
         this.container.addView(balanceCloud, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
-        ScaleStateListAnimator.apply(balanceCloud, 0.1f, 1.5f);
-        balanceCloud.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(this, context, resourcesProvider, 12));
+        ScaleStateListAnimator.apply(balanceCloud);
+        balanceCloud.setOnClickListener(new GiftOfferSheet$$ExternalSyntheticLambda2(this, context, resourcesProvider, 0));
         fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setClickable(true);
@@ -160,17 +156,17 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         if (zCanUseTon) {
             HorizontalRoundTabsLayout horizontalRoundTabsLayout = new HorizontalRoundTabsLayout(context, resourcesProvider);
             this.currencyTabsView = horizontalRoundTabsLayout;
-            ArrayList arrayList = new ArrayList();
+            ArrayList<CharSequence> arrayList = new ArrayList<>();
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferStars));
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferTON));
-            horizontalRoundTabsLayout.setTabs(arrayList, new PhotoViewer$$ExternalSyntheticLambda156(this, 6));
-            linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(18.0f, 0.0f, 18.0f, 18.0f, -1, -2));
+            horizontalRoundTabsLayout.setTabs(arrayList, new GiftOfferSheet$$ExternalSyntheticLambda3(this, 0));
+            linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(-1, -2, 18.0f, 0.0f, 18.0f, 18.0f));
         } else {
             this.currencyTabsView = null;
         }
-        LinearLayout linearLayoutM = zzkf.m(context, 1);
-        linearLayout.addView(linearLayoutM, LayoutHelper.createLinear(1.0f, -1, -2));
-        OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context, null);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
+        linearLayout.addView(linearLayoutM, LayoutHelper.createLinear(-1, -2, 1.0f));
+        OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
         this.starsCountEditOutline = outlineTextContainerView;
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
@@ -183,13 +179,12 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         editTextBoldCursor.setTextColor(Theme.getColor(null, i2, false));
         editTextBoldCursor.requestFocus();
         outlineTextContainerView.setLeftPadding(AndroidUtilities.dp(28.0f));
-        outlineTextContainerView.attachedEditText = editTextBoldCursor;
-        outlineTextContainerView.invalidate();
-        outlineTextContainerView.animateSelection(1.0f, 0.0f, false);
+        outlineTextContainerView.attachEditText(editTextBoldCursor);
+        outlineTextContainerView.animateSelection(true, false, false);
         outlineTextContainerView.setForceUseCenter2(true);
-        editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 16));
+        editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 5));
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
-        linearLayoutM.addView(outlineTextContainerView, LayoutHelper.createLinear(18.0f, 0.0f, 18.0f, 0.0f, -1, 58));
+        linearLayoutM.addView(outlineTextContainerView, LayoutHelper.createLinear(-1, 58, 18.0f, 0.0f, 18.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.iconStars = imageView;
         imageView.setImageResource(R.drawable.star_small_inner);
@@ -199,7 +194,7 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         imageView2.setImageResource(R.drawable.mini_gram_72);
         imageView2.setColorFilter(-13397548);
         outlineTextContainerView.addView(imageView2, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
         this.dollarsEqView = animatedTextView;
         int i3 = Theme.key_windowBackgroundWhiteGrayText;
         animatedTextView.setTextColor(Theme.getColor(null, i3, false));
@@ -210,26 +205,25 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         this.starsCountEditHint = textView;
         textView.setTextSize(1, 13.0f);
         linearLayoutM.addView(textView, LayoutHelper.createLinear(-1, -2, 55, 33, 4, 33, 0));
-        AnonymousClass1 anonymousClass1 = new AnonymousClass1(context);
-        this.publishingTimeField = anonymousClass1;
-        anonymousClass1.setCursorSize(AndroidUtilities.dp(20.0f));
-        anonymousClass1.setCursorWidth(1.5f);
-        anonymousClass1.setTextSize(1, 17.0f);
-        anonymousClass1.setMaxLines(1);
-        anonymousClass1.setBackground(null);
-        anonymousClass1.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        anonymousClass1.setTextColor(Theme.getColor(null, i2, false));
-        anonymousClass1.setFocusable(false);
-        anonymousClass1.setClickable(false);
-        anonymousClass1.setEnabled(false);
-        OutlineTextContainerView outlineTextContainerView2 = new OutlineTextContainerView(context, null);
+        AnonymousClass1 anonymousClass2 = new AnonymousClass1(context);
+        this.publishingTimeField = anonymousClass2;
+        anonymousClass2.setCursorSize(AndroidUtilities.dp(20.0f));
+        anonymousClass2.setCursorWidth(1.5f);
+        anonymousClass2.setTextSize(1, 17.0f);
+        anonymousClass2.setMaxLines(1);
+        anonymousClass2.setBackground(null);
+        anonymousClass2.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        anonymousClass2.setTextColor(Theme.getColor(null, i2, false));
+        anonymousClass2.setFocusable(false);
+        anonymousClass2.setClickable(false);
+        anonymousClass2.setEnabled(false);
+        OutlineTextContainerView outlineTextContainerView2 = new OutlineTextContainerView(context);
         outlineTextContainerView2.setText(LocaleController.getString(R.string.GiftOfferDuration));
-        outlineTextContainerView2.attachedEditText = anonymousClass1;
-        outlineTextContainerView2.invalidate();
-        outlineTextContainerView2.addView(anonymousClass1, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, 0.0f, 48.0f, 0.0f));
+        outlineTextContainerView2.attachEditText(anonymousClass2);
+        outlineTextContainerView2.addView(anonymousClass2, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, 0.0f, 48.0f, 0.0f));
         ScaleStateListAnimator.apply(outlineTextContainerView2, 0.02f, 1.2f);
-        outlineTextContainerView2.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda52(13, this, context));
-        linearLayoutM.addView(outlineTextContainerView2, LayoutHelper.createLinear(18.0f, 18.0f, 18.0f, 0.0f, -1, 58));
+        outlineTextContainerView2.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(5, this, context));
+        linearLayoutM.addView(outlineTextContainerView2, LayoutHelper.createLinear(-1, 58, 18.0f, 18.0f, 18.0f, 0.0f));
         ImageView imageView3 = new ImageView(context);
         imageView3.setImageResource(R.drawable.arrow_more);
         imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogEmptyImage, resourcesProvider), PorterDuff.Mode.SRC_IN));
@@ -239,20 +233,13 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         textView2.setTextColor(Theme.getColor(null, i3, false));
         textView2.setTextSize(1, 13.0f);
         linearLayoutM.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 33, 4, 33, 0));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
         this.buttonView = buttonWithCounterView;
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                int i4 = i;
-                Context context2 = context;
-                this.f$0.lambda$new$5(i4, j, context2, resourcesProvider);
-            }
-        });
+        buttonWithCounterView.setOnClickListener(new GiftOfferSheet$$ExternalSyntheticLambda6(this, i, context, resourcesProvider, j));
         setAmount(AmountUtils$Amount.fromNano(0L, amountUtils$Currency), false, true, false);
         if (this.selectedDuration != 86400) {
             this.selectedDuration = 86400;
-            anonymousClass1.setText(LocaleController.formatPluralString("GiftOfferHours", 24, new Object[0]));
+            anonymousClass2.setText(LocaleController.formatPluralString("GiftOfferHours", 24, new Object[0]));
         }
         checkButtonEnabled(false);
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
@@ -291,7 +278,7 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         this.adapter.update(false);
     }
 
-    public final void checkBalanceCloudVisibility$2() {
+    public final void checkBalanceCloudVisibility$1() {
         boolean z = this.isFullyVisible;
         BalanceCloud balanceCloud = this.balanceCloud;
         boolean z2 = (z && !isDismissed() && balanceCloud != null && this.containerView.getY() > ((float) AndroidUtilities.dp(32.0f))) || this.currencyTabsView == null;
@@ -308,7 +295,7 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     public final void checkButtonEnabled(boolean z) {
         boolean z2 = this.inputAmountError == 0 && this.inputAmount.nanos > 0;
         ButtonWithCounterView buttonWithCounterView = this.buttonView;
-        if (buttonWithCounterView.enabled != z2) {
+        if (buttonWithCounterView.isEnabled() != z2) {
             buttonWithCounterView.setEnabled(z2);
             buttonWithCounterView.setClickable(z2);
             if (z) {
@@ -321,10 +308,10 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new LinkManager$$ExternalSyntheticLambda1(this, 17), this.resourcesProvider);
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 26), this.resourcesProvider);
         this.adapter = universalAdapter;
-        universalAdapter.applyBackground = false;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override
@@ -342,7 +329,7 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     }
 
     public final void lambda$new$5(int i, long j, Context context, Theme.ResourcesProvider resourcesProvider) {
-        if (this.buttonView.enabled) {
+        if (this.buttonView.isEnabled()) {
             if (MessagesController.getInstance(i).isFrozen()) {
                 AccountFrozenAlert.show(i);
                 return;
@@ -361,7 +348,7 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
                     TextView textView = new TextView(getContext());
                     textView.setText(LocaleController.getString(R.string.GiftOfferConfirmSend));
                     int i2 = Theme.key_dialogTextBlack;
-                    zzlj.m(i2, this.resourcesProvider, textView, 20.0f);
+                    zzkr.m(i2, this.resourcesProvider, textView, 20.0f);
                     linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 48, 24, 4, 24, 14));
                     TextView textView2 = new TextView(getContext());
                     OKLCH.m(i2, this.resourcesProvider, textView2, 16.0f);
@@ -375,11 +362,11 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
                     final AmountUtils$Amount amountUtils$AmountFromDecimal = AmountUtils$Amount.fromDecimal(sendPaidMessagesStars, amountUtils$Currency);
                     String string = LocaleController.getString(R.string.GiftOfferRowOffer);
                     int i3 = R.string.GiftOfferAmount;
-                    tableView.addRow(string, StarsIntroActivity.replaceStarsWithPlain(z, LocaleController.formatString(i3, strAsFormatString), 0.8f, null), null, null);
+                    tableView.addRow(string, StarsIntroActivity.replaceStarsWithPlain(z, LocaleController.formatString(i3, strAsFormatString), 0.8f, null));
                     if (sendPaidMessagesStars > 0) {
-                        tableView.addRow(LocaleController.getString(R.string.GiftOfferRowFee), StarsIntroActivity.replaceStarsWithPlain(false, LocaleController.formatString(i3, amountUtils$AmountFromDecimal.asFormatString()), 0.8f, null), null, null);
+                        tableView.addRow(LocaleController.getString(R.string.GiftOfferRowFee), StarsIntroActivity.replaceStarsWithPlain(false, LocaleController.formatString(i3, amountUtils$AmountFromDecimal.asFormatString()), 0.8f, null));
                     }
-                    tableView.addRow(LocaleController.getString(R.string.GiftOfferRowDuration), LocaleController.formatPluralString("GiftOfferHours", this.selectedDuration / 3600, new Object[0]), null, null);
+                    tableView.addRow(LocaleController.getString(R.string.GiftOfferRowDuration), LocaleController.formatPluralString("GiftOfferHours", this.selectedDuration / 3600, new Object[0]));
                     linearLayout.addView(tableView, LayoutHelper.createLinear(-1, -2, 48, 23, 16, 23, 4));
                     final long nextRandomId = SendMessagesHelper.getInstance(this.currentAccount).getNextRandomId();
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -390,33 +377,25 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
                         } else {
                             spannableStringBuilder.append((CharSequence) StarsIntroActivity.replaceStars(LocaleController.formatString(R.string.GiftOfferPay, AmountUtils$Amount.fromNano(this.inputAmount.nanos + amountUtils$AmountFromDecimal.nanos, amountUtils$Currency).asFormatString()), 1.13f, (ColoredImageSpan[]) null));
                         }
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider);
-                        builder.setView(linearLayout);
-                        builder.setPositiveButton(spannableStringBuilder, new AlertDialog.OnButtonClickListener() {
+                        AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider).setView(linearLayout).setPositiveButton(spannableStringBuilder, new AlertDialog.OnButtonClickListener() {
                             @Override
                             public final void onClick(AlertDialog alertDialog, int i5) {
                                 this.f$0.lambda$openConfirmAlert$9(sendPaidMessagesStars, z, amountUtils$AmountFromDecimal, nextRandomId, alertDialog);
                             }
-                        });
-                        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                        AlertDialog alertDialog = builder.alertDialog;
-                        alertDialog.needStarsBalance = true;
-                        alertDialog.show();
+                        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
+                        alertDialogCreate.needStarsBalance = true;
+                        alertDialogCreate.show();
                         return;
                     }
                     spannableStringBuilder.append((CharSequence) StarsIntroActivity.replaceStars(z, LocaleController.formatString(R.string.GiftOfferPay, strAsFormatString), 1.13f));
-                    AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider);
-                    builder2.setView(linearLayout);
-                    builder2.setPositiveButton(spannableStringBuilder, new AlertDialog.OnButtonClickListener() {
+                    AlertDialog alertDialogCreate2 = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider).setView(linearLayout).setPositiveButton(spannableStringBuilder, new AlertDialog.OnButtonClickListener() {
                         @Override
-                        public final void onClick(AlertDialog alertDialog2, int i5) {
-                            this.f$0.lambda$openConfirmAlert$9(sendPaidMessagesStars, z, amountUtils$AmountFromDecimal, nextRandomId, alertDialog2);
+                        public final void onClick(AlertDialog alertDialog, int i5) {
+                            this.f$0.lambda$openConfirmAlert$9(sendPaidMessagesStars, z, amountUtils$AmountFromDecimal, nextRandomId, alertDialog);
                         }
-                    });
-                    builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                    AlertDialog alertDialog2 = builder2.alertDialog;
-                    alertDialog2.needStarsBalance = true;
-                    alertDialog2.show();
+                    }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
+                    alertDialogCreate2.needStarsBalance = true;
+                    alertDialogCreate2.show();
                     return;
                 }
             }
@@ -434,7 +413,7 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
         if (updates != null && tL_error == null) {
             MessagesController.getInstance(this.currentAccount).processUpdates(updates, false);
         }
-        AndroidUtilities.runOnUIThread(new LinkManager$$ExternalSyntheticLambda20((Object) this, (Object) progress, (Object) alertDialog, (Object) updates, tL_error, 23));
+        AndroidUtilities.runOnUIThread(new SendGiftSheet$$ExternalSyntheticLambda16((Object) this, (Object) progress, (Object) alertDialog, (TLObject) updates, tL_error, 10));
     }
 
     public final void lambda$openConfirmAlert$9(long j, boolean z, AmountUtils$Amount amountUtils$Amount, long j2, AlertDialog alertDialog) {
@@ -461,20 +440,20 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             tL_sendStarGiftOffer.flags = 1 | tL_sendStarGiftOffer.flags;
             tL_sendStarGiftOffer.allow_paid_stars = j;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_sendStarGiftOffer, new ChatActivity$$ExternalSyntheticLambda464(this, progressMakeButtonLoading, alertDialog, 10));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_sendStarGiftOffer, new GiftOfferSheet$$ExternalSyntheticLambda12(this, progressMakeButtonLoading, alertDialog, 0));
     }
 
     @Override
     public final void onContainerTranslationYChanged(float f) {
         super.onContainerTranslationYChanged(f);
-        checkBalanceCloudVisibility$2();
+        checkBalanceCloudVisibility$1();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
         this.isFullyVisible = true;
-        checkBalanceCloudVisibility$2();
+        checkBalanceCloudVisibility$1();
     }
 
     public final void setAmount(AmountUtils$Amount amountUtils$Amount, boolean z, boolean z2, boolean z3) {
@@ -491,16 +470,16 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             this.inputAmountError |= 1;
         }
         AmountUtils$Currency amountUtils$Currency2 = this.inputAmount.currency;
-        PhotoViewer.AnonymousClass18 anonymousClass18 = this.inputAmountLimits;
-        AmountUtils$Amount amountUtils$Amount3 = (AmountUtils$Amount) ((BinaryBitmap[]) anonymousClass18.this$0)[amountUtils$Currency2.ordinal()].matrix;
+        RichMapCell.AnonymousClass1 anonymousClass1 = this.inputAmountLimits;
+        AmountUtils$Amount amountUtils$Amount3 = (AmountUtils$Amount) ((Stripe[]) anonymousClass1.this$0)[amountUtils$Currency2.ordinal()].defaultPublishableKey;
         AmountUtils$Amount amountUtils$Amount4 = this.inputAmount;
         if (amountUtils$Amount3.nanos < amountUtils$Amount4.nanos) {
             this.inputAmountError |= 4;
         }
         boolean zIsZero = amountUtils$Amount4.isZero();
-        BinaryBitmap[] binaryBitmapArr = (BinaryBitmap[]) anonymousClass18.this$0;
+        Stripe[] stripeArr = (Stripe[]) anonymousClass1.this$0;
         if (!zIsZero) {
-            if (((AmountUtils$Amount) binaryBitmapArr[this.inputAmount.currency.ordinal()].binarizer).nanos > this.inputAmount.nanos) {
+            if (((AmountUtils$Amount) stripeArr[this.inputAmount.currency.ordinal()].tokenCreator).nanos > this.inputAmount.nanos) {
                 this.inputAmountError |= 2;
             }
         }
@@ -521,15 +500,15 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             TextView textView = this.publishingTimeHint;
             if (amountUtils$Currency5 == amountUtils$Currency3) {
                 j = 1000000000;
-                zzko.m(R.string.GiftOfferDurationInfoStars, new Object[]{shortName}, textView);
+                ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0.m(R.string.GiftOfferDurationInfoStars, new Object[]{shortName}, textView);
                 editTextBoldCursor.setInputType(2);
-                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((AmountUtils$Amount) binaryBitmapArr[this.inputAmount.currency.ordinal()].matrix).nanos / 1000000000).length())});
+                editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((AmountUtils$Amount) stripeArr[this.inputAmount.currency.ordinal()].defaultPublishableKey).nanos / 1000000000).length())});
             } else {
                 j = 1000000000;
                 if (amountUtils$Currency5 == amountUtils$Currency4) {
-                    zzko.m(R.string.GiftOfferDurationInfoTON, new Object[]{shortName}, textView);
+                    ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0.m(R.string.GiftOfferDurationInfoTON, new Object[]{shortName}, textView);
                     editTextBoldCursor.setInputType(8194);
-                    editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((AmountUtils$Amount) binaryBitmapArr[this.inputAmount.currency.ordinal()].matrix).nanos / 1000000000).length() + 3)});
+                    editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(Long.toString(((AmountUtils$Amount) stripeArr[this.inputAmount.currency.ordinal()].defaultPublishableKey).nanos / 1000000000).length() + 3)});
                 }
             }
             ImageView imageView = this.iconTon;
@@ -559,23 +538,23 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             String str = this.giftName;
             if (i3 != 0) {
                 int i4 = amountUtils$Currency6 == amountUtils$Currency3 ? R.string.GiftOfferStarsToOfferInfoIsHigh : R.string.GiftOfferTONToOfferInfoIsHigh;
-                String strAsFormatString = ((AmountUtils$Amount) binaryBitmapArr[amountUtils$Currency6.ordinal()].matrix).asFormatString();
+                String strAsFormatString = ((AmountUtils$Amount) stripeArr[amountUtils$Currency6.ordinal()].defaultPublishableKey).asFormatString();
                 Object[] objArr = new Object[2];
                 objArr[c] = strAsFormatString;
                 objArr[1] = str;
-                zzko.m(i4, objArr, textView2);
+                ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0.m(i4, objArr, textView2);
             } else if ((i2 & 2) != 0) {
                 int i5 = amountUtils$Currency6 == amountUtils$Currency3 ? R.string.GiftOfferStarsToOfferInfoIsLow : R.string.GiftOfferTONToOfferInfoIsLow;
-                String strAsFormatString2 = ((AmountUtils$Amount) binaryBitmapArr[amountUtils$Currency6.ordinal()].binarizer).asFormatString();
+                String strAsFormatString2 = ((AmountUtils$Amount) stripeArr[amountUtils$Currency6.ordinal()].tokenCreator).asFormatString();
                 Object[] objArr2 = new Object[2];
                 objArr2[c] = strAsFormatString2;
                 objArr2[1] = str;
-                zzko.m(i5, objArr2, textView2);
+                ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0.m(i5, objArr2, textView2);
             } else {
                 int i6 = amountUtils$Currency6 == amountUtils$Currency3 ? R.string.GiftOfferStarsToOfferInfo : R.string.GiftOfferTONToOfferInfo;
                 Object[] objArr3 = new Object[1];
                 objArr3[c] = str;
-                zzko.m(i6, objArr3, textView2);
+                ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0.m(i6, objArr3, textView2);
             }
             textView2.setTextColor(getThemedColor((this.inputAmountError & (-9)) == 0 ? Theme.key_windowBackgroundWhiteGrayText : Theme.key_text_RedBold));
         }
@@ -585,14 +564,14 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
             int i7 = R.string.GiftOfferButtonStars;
             Object[] objArr4 = new Object[1];
             objArr4[c] = z7 ? amountUtils$Amount5.asDecimalString() : LocaleController.formatNumber(amountUtils$Amount5.nanos / j, ',');
-            this.buttonView.setText(StarsIntroActivity.replaceStars(z7, LocaleController.formatString(i7, objArr4), z7 ? this.spanRefTon : this.spanRefStars), z3, true);
+            this.buttonView.setText(StarsIntroActivity.replaceStars(z7, LocaleController.formatString(i7, objArr4), z7 ? this.spanRefTon : this.spanRefStars), z3);
             checkButtonEnabled(z3);
         }
         if (z4 || z5) {
             StringBuilder sb = new StringBuilder(10);
             sb.append('~');
             sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * (this.inputAmount.currency == amountUtils$Currency4 ? MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get() : ((double) MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000) * 1.0E-5d) * 100.0d), "USD", 2));
-            this.dollarsEqView.setText(sb, z3, true);
+            this.dollarsEqView.setText(sb, z3);
         }
         if (z && z5) {
             String strAsDecimalString = this.inputAmount.asDecimalString();
@@ -604,6 +583,6 @@ public final class GiftOfferSheet extends BottomSheetWithRecyclerListView {
     @Override
     public final void show() {
         super.show();
-        AndroidUtilities.runOnUIThread(new ProfileActivity$9$$ExternalSyntheticLambda1(this, 20), 50L);
+        AndroidUtilities.runOnUIThread(new BalanceCloud$$ExternalSyntheticLambda1(this, 3), 50L);
     }
 }

@@ -1,10 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
 
 public final class TagEditCell$$ExternalSyntheticLambda2 implements View.OnClickListener {
     public final int $r8$classId;
@@ -25,17 +22,7 @@ public final class TagEditCell$$ExternalSyntheticLambda2 implements View.OnClick
                 this.f$0.lambda$showGiftOfferSheet$15();
                 break;
             case 2:
-                this.f$0.lambda$showGiftOfferSheet$15();
-                break;
-            case 3:
-                this.f$0.lambda$showGiftOfferSheet$15();
-                break;
-            case 4:
-                BaseFragment lastFragment = LaunchActivity.getLastFragment();
-                if (lastFragment != null) {
-                    lastFragment.presentFragment(new PremiumPreviewFragment(0, "contact"));
-                    this.f$0.lambda$showGiftOfferSheet$15();
-                }
+                ChatGreetingsView.lambda$showPremiumSheet$3(this.f$0, view);
                 break;
             default:
                 this.f$0.lambda$showGiftOfferSheet$15();

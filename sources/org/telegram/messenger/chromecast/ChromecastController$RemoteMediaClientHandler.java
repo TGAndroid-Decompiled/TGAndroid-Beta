@@ -9,7 +9,7 @@ import com.google.android.gms.cast.framework.SessionManager;
 import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import com.google.android.gms.cast.framework.media.zzat;
 import com.google.android.gms.common.internal.zzah;
-import com.google.android.gms.internal.mlkit_language_id_common.zzij;
+import com.google.android.gms.internal.mlkit_language_id_common.zzig;
 
 public final class ChromecastController$RemoteMediaClientHandler extends RemoteMediaClient.Callback {
     public int attempt;
@@ -42,7 +42,7 @@ public final class ChromecastController$RemoteMediaClientHandler extends RemoteM
         }
         String str = "?index=" + this.index + "&attempt=" + this.attempt;
         chromecastMedia.getClass();
-        MediaInfo mediaInfo = new MediaInfo(zzij.m("http://", host, chromecastMedia.externalPath) + str, 1, chromecastMedia.mimeType, chromecastMedia.mediaMetadata, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
+        MediaInfo mediaInfo = new MediaInfo(zzig.m("http://", host, chromecastMedia.externalPath) + str, 1, chromecastMedia.mimeType, chromecastMedia.mediaMetadata, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
         RemoteMediaClient remoteMediaClient = this.client;
         Boolean bool = Boolean.TRUE;
         if (Double.compare(1.0d, 2.0d) > 0 || Double.compare(1.0d, 0.5d) < 0) {

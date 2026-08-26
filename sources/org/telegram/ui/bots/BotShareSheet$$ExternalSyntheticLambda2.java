@@ -5,7 +5,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda18;
 import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda5;
 
 public final class BotShareSheet$$ExternalSyntheticLambda2 implements Utilities.Callback {
@@ -16,9 +15,9 @@ public final class BotShareSheet$$ExternalSyntheticLambda2 implements Utilities.
     public final TLRPC.TL_messages_preparedInlineMessage f$4;
     public final Theme.ResourcesProvider f$5;
     public final BotWebViewContainer$$ExternalSyntheticLambda5 f$6;
-    public final OAuthSheet$$ExternalSyntheticLambda18 f$7;
+    public final BotBiometry$$ExternalSyntheticLambda10 f$7;
 
-    public BotShareSheet$$ExternalSyntheticLambda2(AlertDialog alertDialog, Context context, int i, long j, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, Theme.ResourcesProvider resourcesProvider, BotWebViewContainer$$ExternalSyntheticLambda5 botWebViewContainer$$ExternalSyntheticLambda5, OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18) {
+    public BotShareSheet$$ExternalSyntheticLambda2(AlertDialog alertDialog, Context context, int i, long j, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, Theme.ResourcesProvider resourcesProvider, BotWebViewContainer$$ExternalSyntheticLambda5 botWebViewContainer$$ExternalSyntheticLambda5, BotBiometry$$ExternalSyntheticLambda10 botBiometry$$ExternalSyntheticLambda10) {
         this.f$0 = alertDialog;
         this.f$1 = context;
         this.f$2 = i;
@@ -26,7 +25,7 @@ public final class BotShareSheet$$ExternalSyntheticLambda2 implements Utilities.
         this.f$4 = tL_messages_preparedInlineMessage;
         this.f$5 = resourcesProvider;
         this.f$6 = botWebViewContainer$$ExternalSyntheticLambda5;
-        this.f$7 = oAuthSheet$$ExternalSyntheticLambda18;
+        this.f$7 = botBiometry$$ExternalSyntheticLambda10;
     }
 
     @Override

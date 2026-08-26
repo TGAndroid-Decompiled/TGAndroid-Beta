@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Paint;
 
 import android.animation.ValueAnimator;
-import com.stripe.android.Stripe;
 
 public final class Painting$$ExternalSyntheticLambda5 implements ValueAnimator.AnimatorUpdateListener {
     public final int $r8$classId;
@@ -26,18 +25,18 @@ public final class Painting$$ExternalSyntheticLambda5 implements ValueAnimator.A
                                 Painting painting2 = painting;
                                 painting2.getClass();
                                 painting2.helperApplyAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                Stripe.AnonymousClass1 anonymousClass1 = painting2.delegate;
-                                if (anonymousClass1 != null) {
-                                    anonymousClass1.contentChanged();
+                                RenderView.AnonymousClass2 anonymousClass2 = painting2.delegate;
+                                if (anonymousClass2 != null) {
+                                    anonymousClass2.contentChanged();
                                 }
                                 break;
                             default:
                                 Painting painting3 = painting;
                                 painting3.getClass();
                                 painting3.helperAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                Stripe.AnonymousClass1 anonymousClass2 = painting3.delegate;
-                                if (anonymousClass2 != null) {
-                                    anonymousClass2.contentChanged();
+                                RenderView.AnonymousClass2 anonymousClass3 = painting3.delegate;
+                                if (anonymousClass3 != null) {
+                                    anonymousClass3.contentChanged();
                                 }
                                 break;
                         }
@@ -55,18 +54,18 @@ public final class Painting$$ExternalSyntheticLambda5 implements ValueAnimator.A
                                 Painting painting3 = painting2;
                                 painting3.getClass();
                                 painting3.helperApplyAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                Stripe.AnonymousClass1 anonymousClass1 = painting3.delegate;
-                                if (anonymousClass1 != null) {
-                                    anonymousClass1.contentChanged();
+                                RenderView.AnonymousClass2 anonymousClass2 = painting3.delegate;
+                                if (anonymousClass2 != null) {
+                                    anonymousClass2.contentChanged();
                                 }
                                 break;
                             default:
                                 Painting painting4 = painting2;
                                 painting4.getClass();
                                 painting4.helperAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                Stripe.AnonymousClass1 anonymousClass2 = painting4.delegate;
-                                if (anonymousClass2 != null) {
-                                    anonymousClass2.contentChanged();
+                                RenderView.AnonymousClass2 anonymousClass3 = painting4.delegate;
+                                if (anonymousClass3 != null) {
+                                    anonymousClass3.contentChanged();
                                 }
                                 break;
                         }

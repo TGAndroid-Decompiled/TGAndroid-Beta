@@ -11,23 +11,24 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.customview.widget.ExploreByTouchHelper;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
-import com.google.common.base.Splitter;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
@@ -42,20 +43,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda21;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.EmptyBaseFragment;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LinkEditActivity$$ExternalSyntheticLambda9;
-import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda104;
-import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda94;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda103;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda118;
+import org.telegram.ui.bots.BotButtons;
 import org.telegram.ui.bots.BotSensors;
+import org.telegram.ui.bots.BotWebViewAttachedSheet;
 import org.telegram.ui.bots.WebViewRequestProps;
 import org.telegram.ui.web.BotWebViewContainer;
 
@@ -113,7 +115,6 @@ public final class BottomSheetTabs extends FrameLayout {
         public final Paint progressPaint = new Paint(1);
 
         public TabDrawable(View view, WebTabData webTabData) {
-            TL_iv.Page page;
             Paint paint = new Paint(1);
             this.iconPaint = paint;
             this.faviconPaint = new Paint(3);
@@ -132,22 +133,15 @@ public final class BottomSheetTabs extends FrameLayout {
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setStrokeCap(Paint.Cap.ROUND);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            this.animatedPosition = new AnimatedFloat(320L, view, cubicBezierInterpolator);
-            this.animatedAlpha = new AnimatedFloat(320L, view, cubicBezierInterpolator);
+            this.animatedPosition = new AnimatedFloat(view, 320L, cubicBezierInterpolator);
+            this.animatedAlpha = new AnimatedFloat(view, 320L, cubicBezierInterpolator);
             this.favicon = webTabData.favicon;
             this.title = new Text(Emoji.replaceEmoji(webTabData.getTitle(), BottomSheetTabs.getTextPaint().getFontMetricsInt(), false), 17.0f, AndroidUtilities.bold());
             int i = webTabData.actionBarColor;
             this.tabColor = i;
             this.tabIsDark = AndroidUtilities.computePerceivedBrightness(i) < 0.721f;
-            ArticleViewer articleViewer = webTabData.articleViewer;
-            if (articleViewer != null) {
-                ArrayList arrayList = articleViewer.pagesStack;
-                if (!arrayList.isEmpty()) {
-                    Object objM = SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList);
-                    if ((objM instanceof TLRPC.WebPage) && ((page = ((TLRPC.WebPage) objM).cached_page) == null || page.local == null)) {
-                        this.iconDrawable = view.getContext().getResources().getDrawable(R.drawable.msg_instant).mutate();
-                    }
-                }
+            if (webTabData.isArticle()) {
+                this.iconDrawable = view.getContext().getResources().getDrawable(R.drawable.msg_instant).mutate();
             }
             this.progress = webTabData.articleProgress;
             path.rewind();
@@ -261,14 +255,10 @@ public final class BottomSheetTabs extends FrameLayout {
             Text text = this.overrideTitle;
             if (text != null) {
                 float f11 = iDp;
-                text.ellipsizeWidth = (int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f11);
-                text.draw(rectF.left + AndroidUtilities.dp(60.0f) + f11, rectF.centerY(), ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, this.expandProgress, f2, f3), iBlendARGB2, canvas2);
+                text.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f11)).draw(canvas2, rectF.left + AndroidUtilities.dp(60.0f) + f11, rectF.centerY(), iBlendARGB2, ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, this.expandProgress, f2, f3));
             }
-            float fWidth = rectF.width() - AndroidUtilities.dp(100.0f);
             float f12 = iDp;
-            Text text2 = this.title;
-            text2.ellipsizeWidth = (int) (fWidth - f12);
-            text2.draw(f12 + rectF.left + AndroidUtilities.dp(60.0f), rectF.centerY(), (this.overrideTitle == null ? 1.0f : this.expandProgress) * f2 * f3, iBlendARGB2, canvas);
+            this.title.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(100.0f)) - f12)).draw(canvas, rectF.left + AndroidUtilities.dp(60.0f) + f12, rectF.centerY(), iBlendARGB2, (this.overrideTitle == null ? 1.0f : this.expandProgress) * f2 * f3);
         }
 
         public final float getAlpha() {
@@ -286,7 +276,7 @@ public final class BottomSheetTabs extends FrameLayout {
             if (this.index < 0) {
                 return this.position;
             }
-            return this.animatedPosition.set(this.position, false);
+            return this.animatedPosition.set(this.position);
         }
     }
 
@@ -322,36 +312,39 @@ public final class BottomSheetTabs extends FrameLayout {
         }
 
         @Override
-        public final void getVisibleVirtualViews(ArrayList arrayList) {
+        public final void getVisibleVirtualViews(List list) {
             BottomSheetTabs bottomSheetTabs = BottomSheetTabs.this;
             if (bottomSheetTabs.drawTabs) {
                 ArrayList<WebTabData> tabs = bottomSheetTabs.getTabs();
                 if (tabs.isEmpty() || bottomSheetTabs.findTabDrawable(tabs.get(0)) == null) {
                     return;
                 }
+                ArrayList arrayList = (ArrayList) list;
                 arrayList.add(1);
                 arrayList.add(2);
             }
         }
 
         @Override
-        public final boolean onPerformActionForVirtualView(int i, int i2) {
-            if (i2 == 16) {
-                BottomSheetTabs bottomSheetTabs = BottomSheetTabs.this;
-                ArrayList<WebTabData> tabs = bottomSheetTabs.getTabs();
-                if (!tabs.isEmpty()) {
-                    WebTabData webTabData = tabs.get(0);
-                    if (i == 1) {
-                        bottomSheetTabs.click();
-                        return true;
-                    }
-                    if (i == 2) {
-                        bottomSheetTabs.removeTab(webTabData, new LinkEditActivity$$ExternalSyntheticLambda9(2));
-                        return true;
-                    }
-                }
+        public final boolean onPerformActionForVirtualView(int i, int i2, Bundle bundle) {
+            if (i2 != 16) {
+                return false;
             }
-            return false;
+            BottomSheetTabs bottomSheetTabs = BottomSheetTabs.this;
+            ArrayList<WebTabData> tabs = bottomSheetTabs.getTabs();
+            if (tabs.isEmpty()) {
+                return false;
+            }
+            WebTabData webTabData = tabs.get(0);
+            if (i == 1) {
+                bottomSheetTabs.click();
+                return true;
+            }
+            if (i != 2) {
+                return false;
+            }
+            bottomSheetTabs.removeTab(webTabData, new BottomSheetTabs$$ExternalSyntheticLambda4(1));
+            return true;
         }
 
         @Override
@@ -405,38 +398,45 @@ public final class BottomSheetTabs extends FrameLayout {
         public ArticleViewer articleViewer;
         public boolean backButton;
         public int backgroundColor;
-        public Splitter buttons;
+        public BotButtons.ButtonsState buttons;
         public boolean confirmDismiss;
+        public String currentUrl;
         public boolean error;
+        public int errorCode;
         public String errorDescription;
         public boolean expanded;
         public Bitmap favicon;
         public boolean fullscreen;
         public boolean fullscreenBlur;
         public boolean fullsize;
+        public boolean isWeb;
         public String lastUrl;
+        public BotWebViewAttachedSheet.MainButtonSettings main;
         public int navigationBarColor;
         public boolean needsContext;
         public boolean orientationLocked;
         public boolean overrideActionBarColor;
         public boolean overrideBackgroundColor;
         public Bitmap previewBitmap;
+        public Object previewNode;
         public WebViewRequestProps props;
         public Object proxy;
         public boolean ready;
         public BotSensors sensors;
         public boolean settings;
+        public String startUrl;
         public boolean themeIsDark;
         public String title;
-        public ArticleViewer.PageLayout view2;
+        public View view2;
         public int viewHeight;
         public int viewScroll;
         public int viewWidth;
         public BotWebViewContainer.MyWebView webView;
+        public Bundle webViewState;
         public float expandedOffset = Float.MAX_VALUE;
         public boolean allowSwipes = true;
 
-        public final void destroy() {
+        public void destroy() {
             try {
                 BotWebViewContainer.MyWebView myWebView = this.webView;
                 if (myWebView != null) {
@@ -452,12 +452,25 @@ public final class BottomSheetTabs extends FrameLayout {
             }
         }
 
+        public long getBotId() {
+            WebViewRequestProps webViewRequestProps = this.props;
+            if (webViewRequestProps == null) {
+                return 0L;
+            }
+            return webViewRequestProps.botId;
+        }
+
         public String getTitle() {
-            if (this.articleViewer != null) {
+            if (this.isWeb || this.articleViewer != null) {
                 return TextUtils.isEmpty(this.title) ? LocaleController.getString(R.string.WebEmpty) : this.title;
             }
             WebViewRequestProps webViewRequestProps = this.props;
             return webViewRequestProps == null ? "" : UserObject.getUserName(MessagesController.getInstance(webViewRequestProps.currentAccount).getUser(Long.valueOf(this.props.botId)));
+        }
+
+        public boolean isArticle() {
+            ArticleViewer articleViewer = this.articleViewer;
+            return articleViewer != null && articleViewer.isLastArticle();
         }
     }
 
@@ -467,8 +480,8 @@ public final class BottomSheetTabs extends FrameLayout {
         this.drawTabs = true;
         this.doNotDismiss = false;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.backgroundColorAnimated = new AnimatedColor(this, 200L, cubicBezierInterpolator, 0);
-        this.tabColorAnimated = new AnimatedColor(this, 200L, cubicBezierInterpolator, 0);
+        this.backgroundColorAnimated = new AnimatedColor(this, 0L, 200L, cubicBezierInterpolator);
+        this.tabColorAnimated = new AnimatedColor(this, 0L, 200L, cubicBezierInterpolator);
         this.tabDarkAnimated = new AnimatedFloat(this, 0L, 200L, cubicBezierInterpolator);
         this.currentAccount = UserConfig.selectedAccount;
         this.rect = new RectF();
@@ -500,9 +513,9 @@ public final class BottomSheetTabs extends FrameLayout {
         if (size == 0) {
             return;
         }
-        WebTabData webTabData = (WebTabData) SurfaceContainer$$ExternalSyntheticOutline0.m(1, (ArrayList) tabs2);
+        WebTabData webTabData = (WebTabData) Fragment$$ExternalSyntheticOutline0.m(1, (ArrayList) tabs2);
         LaunchActivity launchActivity = LaunchActivity.instance;
-        BottomSheetTabsOverlay bottomSheetTabsOverlay = launchActivity == null ? null : launchActivity.bottomSheetTabsOverlay;
+        BottomSheetTabsOverlay bottomSheetTabsOverlay = launchActivity == null ? null : launchActivity.getBottomSheetTabsOverlay();
         if (bottomSheetTabsOverlay != null && (valueAnimator = bottomSheetTabsOverlay.animator) != null) {
             valueAnimator.cancel();
             bottomSheetTabsOverlay.animator = null;
@@ -522,9 +535,9 @@ public final class BottomSheetTabs extends FrameLayout {
         if (this.bottomTabsProgress <= 0.0f) {
             return;
         }
-        this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor, false));
+        this.backgroundPaint.setColor(this.backgroundColorAnimated.set(this.backgroundColor));
         super.dispatchDraw(canvas);
-        int i = this.tabColorAnimated.set(this.tabColor, false);
+        int i = this.tabColorAnimated.set(this.tabColor);
         float f = this.tabDarkAnimated.set(this.tabIsDark);
         if (this.drawTabs) {
             int i2 = 0;
@@ -629,19 +642,20 @@ public final class BottomSheetTabs extends FrameLayout {
     }
 
     public final void openTab(WebTabData webTabData) {
-        ChatActivity chatActivity;
-        ChatActivity.AnonymousClass39 anonymousClass39;
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null || lastFragment.getParentActivity() == null) {
             return;
         }
         boolean z = lastFragment instanceof ChatActivity;
-        if (z && (anonymousClass39 = (chatActivity = (ChatActivity) lastFragment).chatActivityEnterView) != null) {
-            AndroidUtilities.hideKeyboard(anonymousClass39.messageEditText);
-            chatActivity.chatActivityEnterView.hidePopup(true, false, true);
+        if (z) {
+            ChatActivity chatActivity = (ChatActivity) lastFragment;
+            if (chatActivity.getChatActivityEnterView() != null) {
+                chatActivity.getChatActivityEnterView().closeKeyboard();
+                chatActivity.getChatActivityEnterView().hidePopup(true, false);
+            }
         }
         if (webTabData.articleViewer == null) {
-            new ArticleViewer$$ExternalSyntheticLambda21(2, this, webTabData).run(lastFragment);
+            new GiftSheet$$ExternalSyntheticLambda4(2, this, webTabData).run(lastFragment);
             if (webTabData.needsContext) {
                 if (z && ((ChatActivity) lastFragment).getDialogId() == webTabData.props.botId) {
                     return;
@@ -652,31 +666,14 @@ public final class BottomSheetTabs extends FrameLayout {
             }
             return;
         }
-        BaseFragment sheetFragment = this.actionBarLayout.getSheetFragment();
+        EmptyBaseFragment sheetFragment = this.actionBarLayout.getSheetFragment();
         ArticleViewer articleViewer = webTabData.articleViewer;
         BottomSheetTabDialog.checkSheet(articleViewer.sheet);
-        ArticleViewer.Sheet sheet = articleViewer.sheet;
-        sheetFragment.addSheet(sheet);
-        sheet.dismissing = false;
-        sheet.dismissingIntoTabs = false;
-        ValueAnimator valueAnimator = sheet.openAnimator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator valueAnimator2 = sheet.dismissAnimator;
-        if (valueAnimator2 != null) {
-            valueAnimator2.cancel();
-        }
-        sheet.dismissProgress = 0.0f;
-        sheet.openProgress = 0.0f;
-        sheet.checkFullyVisible();
-        sheet.updateTranslation();
-        ArticleViewer.Sheet.WindowView windowView = sheet.windowView;
-        windowView.invalidate();
-        windowView.requestLayout();
+        sheetFragment.addSheet(articleViewer.sheet);
+        articleViewer.sheet.reset();
         articleViewer.setParentActivity(sheetFragment.getParentActivity(), sheetFragment);
-        sheet.attachInternal(sheetFragment);
-        sheet.animateOpen();
+        articleViewer.sheet.attachInternal(sheetFragment);
+        articleViewer.sheet.animateOpen(true, true, null);
         removeTab(this.currentAccount, webTabData, false);
     }
 
@@ -748,7 +745,7 @@ public final class BottomSheetTabs extends FrameLayout {
     }
 
     public void setupTab(TabDrawable tabDrawable) {
-        int i = this.tabColorAnimated.set(this.tabColor, false);
+        int i = this.tabColorAnimated.set(this.tabColor);
         float f = this.tabDarkAnimated.set(this.tabIsDark);
         tabDrawable.expandProgress = 0.0f;
         boolean z = f > 0.5f;
@@ -775,7 +772,7 @@ public final class BottomSheetTabs extends FrameLayout {
                     if (this.hit && i == 1) {
                         click();
                     } else if (this.closeRippleHit && i == 1) {
-                        removeTab(webTabData, new LinkEditActivity$$ExternalSyntheticLambda9(1));
+                        removeTab(webTabData, new BottomSheetTabs$$ExternalSyntheticLambda4(0));
                     }
                     this.closeRippleHit = false;
                     this.hit = false;
@@ -850,7 +847,6 @@ public final class BottomSheetTabs extends FrameLayout {
     }
 
     public final void updateVisibility(boolean z) {
-        int i = 0;
         if (this.bottomTabsHeight == getExpandedHeight()) {
             return;
         }
@@ -867,7 +863,7 @@ public final class BottomSheetTabs extends FrameLayout {
         if (z) {
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.bottomTabsProgress, this.bottomTabsHeight);
             this.bottomTabsAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new BottomSheetTabs$$ExternalSyntheticLambda2(this, i));
+            valueAnimatorOfFloat.addUpdateListener(new BottomSheetTabs$$ExternalSyntheticLambda2(this, 0));
             this.bottomTabsAnimator.addListener(new ActionBar.AnonymousClass7.AnonymousClass1(this, 3));
             this.bottomTabsAnimator.setDuration(250L);
             this.bottomTabsAnimator.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
@@ -918,7 +914,7 @@ public final class BottomSheetTabs extends FrameLayout {
             WebTabData webTabData = tabs2.get(i);
             ArticleViewer articleViewer = webTabData.articleViewer;
             if (articleViewer != null && !articleViewer.pagesStack.isEmpty()) {
-                Object objM = zziq.m(1, webTabData.articleViewer.pagesStack);
+                Object objM = zzin.m(1, webTabData.articleViewer.pagesStack);
                 if ((objM instanceof TLRPC.WebPage) && (webPage2 = (TLRPC.WebPage) objM) != null && webPage2.id == webPage.id) {
                     openTab(webTabData);
                     return webTabData;
@@ -929,10 +925,10 @@ public final class BottomSheetTabs extends FrameLayout {
     }
 
     public final WebTabData tryReopenTab(MessageObject messageObject) {
-        TLRPC.Message message;
         TLRPC.MessageMedia messageMedia;
         TLRPC.WebPage webPage;
-        if (messageObject == null || (message = messageObject.messageOwner) == null || (messageMedia = message.media) == null || (webPage = messageMedia.webpage) == null) {
+        TLRPC.Message message = messageObject.messageOwner;
+        if (message == null || (messageMedia = message.media) == null || (webPage = messageMedia.webpage) == null) {
             return null;
         }
         return tryReopenTab(webPage);
@@ -949,23 +945,17 @@ public final class BottomSheetTabs extends FrameLayout {
             return;
         }
         TLRPC.User user = MessagesController.getInstance(webTabData.props.currentAccount).getUser(Long.valueOf(webTabData.props.botId));
-        String name = user != null ? ContactsController.formatName(user.first_name, user.last_name) : null;
         final boolean[] zArr = {false};
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, null);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = name;
-        alertDialog.message = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
-        builder.setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new StarsController$$ExternalSyntheticLambda104(this, zArr, webTabData, callback, alertDialogArr));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
+        AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext(), 0, null).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new StarsController$$ExternalSyntheticLambda103(this, zArr, webTabData, callback, alertDialogArr)).setNegativeButton(LocaleController.getString(R.string.Cancel), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog2, int i) {
+            public final void onClick(AlertDialog alertDialog, int i) {
                 zArr[0] = true;
                 callback.run(Boolean.FALSE);
                 alertDialogArr[0].dismiss();
             }
-        });
-        final AlertDialog[] alertDialogArr = {alertDialog};
-        alertDialog.setOnDismissListener(new StarsController$$ExternalSyntheticLambda94(zArr, callback));
+        }).create();
+        final AlertDialog[] alertDialogArr = {alertDialogCreate};
+        alertDialogCreate.setOnDismissListener(new StarsController$$ExternalSyntheticLambda118(zArr, callback));
         alertDialogArr[0].show();
         ((TextView) alertDialogArr[0].getButton(-1)).setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
     }

@@ -5,8 +5,6 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.ActionBarLayout$$ExternalSyntheticLambda16;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda116;
 import org.telegram.ui.TwoStepVerificationActivity;
 
 public final class StoriesController$$ExternalSyntheticLambda5 implements RequestDelegate {
@@ -29,12 +27,10 @@ public final class StoriesController$$ExternalSyntheticLambda5 implements Reques
             case 0:
                 StoriesController storiesController = (StoriesController) this.f$0;
                 storiesController.getClass();
-                AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda116(storiesController, this.f$1, (TL_stories.TL_stories_getAllStories) this.f$2, tLObject, this.f$3));
+                AndroidUtilities.runOnUIThread(new StoriesStorage$$ExternalSyntheticLambda10(storiesController, this.f$1, (TL_stories.TL_stories_getAllStories) this.f$2, tLObject, this.f$3));
                 break;
             default:
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f$0;
-                twoStepVerificationActivity.getClass();
-                AndroidUtilities.runOnUIThread(new ActionBarLayout$$ExternalSyntheticLambda16(twoStepVerificationActivity, tL_error, tLObject, this.f$1, this.f$3, (Runnable) this.f$2, 3));
+                ((TwoStepVerificationActivity) this.f$0).lambda$loadPasswordInfo$19(this.f$1, this.f$3, (Runnable) this.f$2, tLObject, tL_error);
                 break;
         }
     }

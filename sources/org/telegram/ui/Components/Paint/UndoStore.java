@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.HintView$1$$ExternalSyntheticLambda0;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 
 public final class UndoStore {
     public UndoStoreDelegate delegate;
@@ -20,7 +20,7 @@ public final class UndoStore {
     }
 
     public final void notifyOfHistoryChanges() {
-        AndroidUtilities.runOnUIThread(new HintView$1$$ExternalSyntheticLambda0(this, 29));
+        AndroidUtilities.runOnUIThread(new ChatbotSheet$$ExternalSyntheticLambda0(this, 20));
     }
 
     public final void undo() {

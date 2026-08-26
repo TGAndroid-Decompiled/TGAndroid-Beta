@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.animation.LinearInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
@@ -13,8 +12,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda14;
+import org.telegram.ui.Stars.SuperRipple$$ExternalSyntheticLambda7;
 
 public final class VoipCoverEmoji {
     public int diffX;
@@ -48,10 +46,10 @@ public final class VoipCoverEmoji {
         this.emoji = swapAnimatedEmojiDrawable;
         swapAnimatedEmojiDrawable.set(profileEmojiId, false);
         swapAnimatedEmojiDrawable.setColor(-16777216);
-        swapAnimatedEmojiDrawable.alpha = this.alpha;
+        swapAnimatedEmojiDrawable.setAlpha(this.alpha);
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.positionAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda14(21, this, voIpCoverView));
+        valueAnimatorOfFloat.addUpdateListener(new SuperRipple$$ExternalSyntheticLambda7(12, this, voIpCoverView));
         this.fromRandomX = AndroidUtilities.dp(12.0f) + this.toRandomX;
         this.fromRandomY = AndroidUtilities.dp(12.0f) + this.toRandomY;
         this.toRandomX = AndroidUtilities.dp(12.0f) + Utilities.random.nextInt(AndroidUtilities.dp(16.0f));
@@ -87,15 +85,14 @@ public final class VoipCoverEmoji {
         int i2 = this.randomY;
         int i3 = this.size;
         swapAnimatedEmojiDrawable.setBounds(i, i2, i + i3, i3 + i2);
-        swapAnimatedEmojiDrawable.alpha = this.alpha;
+        swapAnimatedEmojiDrawable.setAlpha(this.alpha);
         swapAnimatedEmojiDrawable.draw(canvas);
         canvas.restore();
     }
 
     public final void setPosition(int i, int i2) {
-        PhotoViewer.AnonymousClass11 anonymousClass11;
-        int i3 = 1;
-        int i4 = 0;
+        int i3 = 0;
+        int i4 = 1;
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
         if (swapAnimatedEmojiDrawable == null) {
             return;
@@ -106,24 +103,27 @@ public final class VoipCoverEmoji {
         if (this.isShown) {
             return;
         }
-        Drawable drawable = swapAnimatedEmojiDrawable.drawables[0];
-        if (!(drawable instanceof AnimatedEmojiDrawable) || ((anonymousClass11 = ((AnimatedEmojiDrawable) drawable).imageReceiver) != null && anonymousClass11.hasImageLoaded())) {
-            this.isShown = true;
-            this.diffX = this.posX > this.width / 2 ? AndroidUtilities.dp(12) : -AndroidUtilities.dp(12);
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            valueAnimatorOfFloat.setInterpolator(new CubicBezierInterpolator(0.34d, 1.36d, 0.64d, 1.0d));
-            valueAnimatorOfFloat.addUpdateListener(new VoipCoverEmoji$$ExternalSyntheticLambda1(this, i4));
-            long j = 350;
-            valueAnimatorOfFloat.setDuration(j);
-            long j2 = 180;
-            valueAnimatorOfFloat.setStartDelay(j2);
-            valueAnimatorOfFloat.start();
-            ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 255, 255);
-            valueAnimatorOfInt.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            valueAnimatorOfInt.addUpdateListener(new VoipCoverEmoji$$ExternalSyntheticLambda1(this, i3));
-            valueAnimatorOfInt.setStartDelay(j2);
-            valueAnimatorOfInt.setDuration(j);
-            valueAnimatorOfInt.start();
+        if (swapAnimatedEmojiDrawable.getDrawable() instanceof AnimatedEmojiDrawable) {
+            AnimatedEmojiDrawable animatedEmojiDrawable = (AnimatedEmojiDrawable) swapAnimatedEmojiDrawable.getDrawable();
+            if (animatedEmojiDrawable.getImageReceiver() == null || !animatedEmojiDrawable.getImageReceiver().hasImageLoaded()) {
+                return;
+            }
         }
+        this.isShown = true;
+        this.diffX = this.posX > this.width / 2 ? AndroidUtilities.dp(12) : -AndroidUtilities.dp(12);
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        valueAnimatorOfFloat.setInterpolator(new CubicBezierInterpolator(0.34d, 1.36d, 0.64d, 1.0d));
+        valueAnimatorOfFloat.addUpdateListener(new VoipCoverEmoji$$ExternalSyntheticLambda1(this, i3));
+        long j = 350;
+        valueAnimatorOfFloat.setDuration(j);
+        long j2 = 180;
+        valueAnimatorOfFloat.setStartDelay(j2);
+        valueAnimatorOfFloat.start();
+        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 255, 255);
+        valueAnimatorOfInt.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        valueAnimatorOfInt.addUpdateListener(new VoipCoverEmoji$$ExternalSyntheticLambda1(this, i4));
+        valueAnimatorOfInt.setStartDelay(j2);
+        valueAnimatorOfInt.setDuration(j);
+        valueAnimatorOfInt.start();
     }
 }

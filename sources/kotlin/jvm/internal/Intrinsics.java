@@ -1,7 +1,7 @@
 package kotlin.jvm.internal;
 
 import androidx.car.app.HostException;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.google.android.exoplayer2.RendererCapabilities;
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -73,7 +73,7 @@ public abstract class Intrinsics {
     }
 
     public static void throwUninitializedPropertyAccessException(String str) {
-        HostException hostException = new HostException(SurfaceContainer$$ExternalSyntheticOutline0.m("lateinit property ", str, " has not been initialized"));
+        HostException hostException = new HostException(Fragment$$ExternalSyntheticOutline0.m("lateinit property ", str, " has not been initialized"));
         sanitizeStackTrace(hostException, Intrinsics.class.getName());
         throw hostException;
     }

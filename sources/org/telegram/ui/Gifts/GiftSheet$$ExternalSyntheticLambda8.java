@@ -1,16 +1,12 @@
 package org.telegram.ui.Gifts;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.os.Build;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.util.LongSparseArray;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
+import com.google.android.gms.internal.mlkit_vision_common.zzke;
+import com.google.android.gms.internal.mlkit_vision_common.zzkf;
+import com.google.android.gms.internal.mlkit_vision_common.zzlb;
 import j$.util.Collection;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
@@ -18,67 +14,53 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.TreeSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.HashtagSearchController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.ui.ActionBar.ActionBar;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.ActionBarMenuSlider;
-import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda5;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Adapters.MessagesSearchAdapter;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda21;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda263;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda264;
+import org.telegram.ui.Adapters.DialogsSearchAdapter;
+import org.telegram.ui.Business.AwayMessagesActivity;
+import org.telegram.ui.Business.BusinessIntroActivity;
+import org.telegram.ui.Business.BusinessRecipientsHelper;
+import org.telegram.ui.Business.ChatbotSheet;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.Business.ChatbotsActivity;
+import org.telegram.ui.Business.GreetMessagesActivity;
+import org.telegram.ui.Business.LocationActivity;
+import org.telegram.ui.Business.OpeningHoursActivity;
+import org.telegram.ui.Business.OpeningHoursDayActivity;
+import org.telegram.ui.Business.TimezoneSelector;
+import org.telegram.ui.Cells.ProfileSearchCell;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda426;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.GuardBotReplaceSheet;
-import org.telegram.ui.Components.HashtagHistoryView;
-import org.telegram.ui.Components.HashtagsSearchAdapter;
-import org.telegram.ui.Components.HintView$1$$ExternalSyntheticLambda0;
-import org.telegram.ui.Components.ItemOptions;
-import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
-import org.telegram.ui.Components.PostsSearchContainer;
 import org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier;
 import org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet;
-import org.telegram.ui.Components.ScrimOptions;
-import org.telegram.ui.Components.SharedMediaLayout;
-import org.telegram.ui.Components.StickersAlert;
-import org.telegram.ui.Components.TranslateAlert2;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
-import org.telegram.ui.Components.UniversalFragment;
-import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
-import org.telegram.ui.Components.blur3.utils.Blur3Utils;
+import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.poll.sheets.CountrySelectBottomSheet;
 import org.telegram.ui.Components.poll.sheets.PollStatisticsBottomSheet;
-import org.telegram.ui.ContactAddActivity;
-import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda13;
-import org.telegram.ui.ContentPreviewViewer;
-import org.telegram.ui.CreateGroupCallSheet;
-import org.telegram.ui.DialogsActivity;
-import org.telegram.ui.EnableTopicsActivity;
-import org.telegram.ui.IntroActivity;
-import org.telegram.ui.IntroActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.IntroActivity$$ExternalSyntheticLambda6;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda13;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stars.BagRandomizer;
+import org.telegram.ui.Stars.BalanceCloud$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stars.BotStarsActivity;
+import org.telegram.ui.Stars.ExplainStarsSheet;
+import org.telegram.ui.Stars.GiftOfferSheet;
+import org.telegram.ui.Stars.StarGiftPreviewSheet;
 import org.telegram.ui.Stars.StarsController;
-import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda54;
+import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.StatisticActivity;
-import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.recorder.PaintView;
+import org.telegram.ui.bots.BotStorage$$ExternalSyntheticLambda6;
 
 public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Callback2 {
     public final int $r8$classId;
@@ -107,7 +89,7 @@ public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Call
         StarsController.GiftsList giftsList3 = page.list;
         int iMax = Math.max(1, (giftsList3 == null || (i2 = giftsList3.totalCount) == 0) ? 3 : Math.min(3, i2));
         StarsController.GiftsList giftsList4 = page.list;
-        SharedMediaLayout.AnonymousClass13 anonymousClass13 = page.parent;
+        ProfileGiftsContainer profileGiftsContainer = page.parent;
         if (giftsList4 != null) {
             ArrayList arrayList2 = giftsList4.gifts;
             int size = arrayList2.size();
@@ -123,15 +105,13 @@ public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Call
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
                     boolean z = page.isCollection;
                     int i4 = GiftSheet.GiftCell.Factory.$r8$clinit;
-                    UItem uItemOfFactory = UItem.ofFactory(GiftSheet.GiftCell.Factory.class);
-                    uItemOfFactory.spanCount = 1;
-                    uItemOfFactory.intValue = 0;
-                    uItemOfFactory.object = savedStarGift;
-                    uItemOfFactory.accent = true;
-                    uItemOfFactory.collapsed = false;
-                    uItemOfFactory.red = z;
-                    uItemOfFactory.reordering = page.reordering && (page.list != anonymousClass13.list || savedStarGift.pinned_to_top);
-                    arrayList.add(uItemOfFactory);
+                    UItem spanCount = UItem.ofFactory(GiftSheet.GiftCell.Factory.class).setSpanCount(1);
+                    spanCount.intValue = 0;
+                    spanCount.object = savedStarGift;
+                    spanCount.accent = true;
+                    spanCount.collapsed = false;
+                    spanCount.red = z;
+                    arrayList.add(spanCount.setReordering(page.reordering && (page.list != profileGiftsContainer.list || savedStarGift.pinned_to_top)));
                     i--;
                     if (i == 0) {
                     }
@@ -145,151 +125,225 @@ public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Call
                         break;
                     }
                     i5++;
-                    UItem uItemAsFlicker = UItem.asFlicker(i5, 34);
-                    uItemAsFlicker.spanCount = 1;
-                    arrayList.add(uItemAsFlicker);
+                    zzlb.m(i5, 34, arrayList);
                 }
             }
         }
-        if (anonymousClass13.list == page.list) {
-            int iDp = AndroidUtilities.dp(20.0f);
-            UItem uItem = new UItem(28);
-            uItem.intValue = iDp;
-            arrayList.add(uItem);
-            if (anonymousClass13.dialogId == UserConfig.getInstance(page.currentAccount).getClientUserId()) {
+        if (profileGiftsContainer.list == page.list) {
+            arrayList.add(UItem.asSpace(AndroidUtilities.dp(20.0f)));
+            if (profileGiftsContainer.dialogId == UserConfig.getInstance(page.currentAccount).getClientUserId()) {
                 int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, page.resourcesProvider);
                 String string = LocaleController.getString(R.string.ProfileGiftsInfo);
-                int iDp2 = AndroidUtilities.dp(24.0f);
+                int iDp = AndroidUtilities.dp(24.0f);
                 int i6 = ProfileGiftsContainer.TextFactory.$r8$clinit;
-                UItem uItemOfFactory2 = UItem.ofFactory(ProfileGiftsContainer.TextFactory.class);
-                uItemOfFactory2.text = string;
-                uItemOfFactory2.intValue = 17;
-                uItemOfFactory2.longValue = color;
-                uItemOfFactory2.floatValue = 14.0f;
-                uItemOfFactory2.pad = iDp2;
-                uItemOfFactory2.iconResId = 0;
-                uItemOfFactory2.accent = false;
-                arrayList.add(uItemOfFactory2);
+                UItem uItemOfFactory = UItem.ofFactory(ProfileGiftsContainer.TextFactory.class);
+                uItemOfFactory.text = string;
+                uItemOfFactory.intValue = 17;
+                uItemOfFactory.longValue = color;
+                uItemOfFactory.floatValue = 14.0f;
+                uItemOfFactory.pad = iDp;
+                uItemOfFactory.iconResId = 0;
+                uItemOfFactory.accent = false;
+                arrayList.add(uItemOfFactory);
             }
-            int iDp3 = AndroidUtilities.dp(82.0f);
-            UItem uItem2 = new UItem(28);
-            uItem2.intValue = iDp3;
-            arrayList.add(uItem2);
+            arrayList.add(UItem.asSpace(AndroidUtilities.dp(82.0f)));
         } else if (!arrayList.isEmpty()) {
-            int iDp4 = AndroidUtilities.dp(82.0f);
-            UItem uItem3 = new UItem(28);
-            uItem3.intValue = iDp4;
-            arrayList.add(uItem3);
+            arrayList.add(UItem.asSpace(AndroidUtilities.dp(82.0f)));
         }
         if (!arrayList.isEmpty()) {
-            int iDp5 = AndroidUtilities.dp(page.hasTabs ? 42.0f : 12.0f);
-            UItem uItem4 = new UItem(28);
-            uItem4.intValue = iDp5;
-            arrayList.add(0, uItem4);
+            arrayList.add(0, UItem.asSpace(AndroidUtilities.dp(page.hasTabs ? 42.0f : 12.0f)));
         }
         if (page.listView.getSpanCount() != iMax) {
-            AndroidUtilities.runOnUIThread(new ProfileGiftsContainer$$ExternalSyntheticLambda7(page, iMax, 1));
+            AndroidUtilities.runOnUIThread(new ProfileGiftsContainer$$ExternalSyntheticLambda16(page, iMax, 1));
         }
-        anonymousClass13.updateTabsY();
-        anonymousClass13.post(new IntroActivity$$ExternalSyntheticLambda6(anonymousClass13, 2));
+        if (profileGiftsContainer != null) {
+            profileGiftsContainer.updateTabsY();
+            profileGiftsContainer.post(new ProfileGiftsContainer$$ExternalSyntheticLambda8(profileGiftsContainer, 3));
+        }
     }
 
-    private final void run$org$telegram$ui$Gifts$ProfileGiftsContainer$SelectGiftsBottomSheet$$ExternalSyntheticLambda0(Object obj, Object obj2) {
-        int i;
+    private final void run$org$telegram$ui$Gifts$ResaleGiftsFragment$$ExternalSyntheticLambda3(Object obj, Object obj2) {
         ArrayList arrayList = (ArrayList) obj;
-        ProfileGiftsContainer.SelectGiftsBottomSheet selectGiftsBottomSheet = (ProfileGiftsContainer.SelectGiftsBottomSheet) this.f$0;
-        StarsController.GiftsList giftsList = selectGiftsBottomSheet.list;
-        if (giftsList == null) {
+        ResaleGiftsFragment resaleGiftsFragment = (ResaleGiftsFragment) this.f$0;
+        ResaleGiftsFragment.ResaleGiftsList resaleGiftsList = resaleGiftsFragment.list;
+        ArrayList arrayList2 = resaleGiftsList.gifts;
+        int size = arrayList2.size();
+        int i = 0;
+        while (i < size) {
+            Object obj3 = arrayList2.get(i);
+            i++;
+            arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) obj3, false, false, false, true, false));
+        }
+        if (resaleGiftsList.loading || !resaleGiftsList.endReached) {
+            zzlb.m(-1, 34, arrayList);
+            zzlb.m(-2, 34, arrayList);
+            zzlb.m(-3, 34, arrayList);
+            if (resaleGiftsList.gifts.isEmpty()) {
+                zzlb.m(-4, 34, arrayList);
+                zzlb.m(-5, 34, arrayList);
+                zzlb.m(-6, 34, arrayList);
+                zzlb.m(-7, 34, arrayList);
+                zzlb.m(-8, 34, arrayList);
+                zzlb.m(-9, 34, arrayList);
+                zzlb.m(-10, 34, arrayList);
+                zzlb.m(-11, 34, arrayList);
+                zzlb.m(-12, 34, arrayList);
+                zzlb.m(-13, 34, arrayList);
+                zzlb.m(-14, 34, arrayList);
+                zzlb.m(-15, 34, arrayList);
+            }
+        }
+        boolean z = arrayList.isEmpty() && !resaleGiftsList.loading;
+        if (resaleGiftsFragment.emptyViewVisible == z) {
             return;
         }
-        int iDp = AndroidUtilities.dp(16.0f);
-        UItem uItem = new UItem(28);
-        uItem.intValue = iDp;
-        arrayList.add(uItem);
-        boolean z = giftsList.loading;
-        ArrayList arrayList2 = giftsList.gifts;
-        if (!z || !arrayList2.isEmpty()) {
-            int size = arrayList2.size();
-            boolean z2 = false;
-            int i2 = 0;
-            loop0: while (true) {
-                i = 3;
-                while (true) {
-                    if (i2 >= size) {
-                        break loop0;
-                    }
-                    Object obj3 = arrayList2.get(i2);
-                    i2++;
-                    TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj3;
-                    if (!savedStarGift.collection_id.contains(Integer.valueOf(selectGiftsBottomSheet.collectionId))) {
-                        int i3 = GiftSheet.GiftCell.Factory.$r8$clinit;
-                        UItem uItemOfFactory = UItem.ofFactory(GiftSheet.GiftCell.Factory.class);
-                        uItemOfFactory.spanCount = 1;
-                        uItemOfFactory.intValue = z2 ? 1 : 0;
-                        uItemOfFactory.object = savedStarGift;
-                        uItemOfFactory.accent = true;
-                        uItemOfFactory.collapsed = true;
-                        uItemOfFactory.red = z2;
-                        HashSet hashSet = selectGiftsBottomSheet.selectedGiftIds;
-                        int i4 = savedStarGift.msg_id;
-                        uItemOfFactory.setChecked(hashSet.contains(Long.valueOf(i4 == 0 ? savedStarGift.saved_id : i4)));
-                        uItemOfFactory.spanCount = 1;
-                        arrayList.add(uItemOfFactory);
-                        i--;
-                        i2 = i2;
-                        z2 = false;
-                        z2 = false;
-                        if (i == 0) {
-                            break;
-                        }
-                    }
-                }
-            }
-            if (giftsList.loading || !giftsList.endReached) {
-                int i5 = 0;
-                while (true) {
-                    if (i5 >= (i <= 0 ? 3 : i)) {
-                        break;
-                    }
-                    i5++;
-                    UItem uItemAsFlicker = UItem.asFlicker(i5, 34);
-                    uItemAsFlicker.spanCount = 1;
-                    arrayList.add(uItemAsFlicker);
-                }
-            }
-        } else {
-            UItem uItemAsFlicker2 = UItem.asFlicker(1, 34);
-            uItemAsFlicker2.spanCount = 1;
-            arrayList.add(uItemAsFlicker2);
-            UItem uItemAsFlicker3 = UItem.asFlicker(2, 34);
-            uItemAsFlicker3.spanCount = 1;
-            arrayList.add(uItemAsFlicker3);
-            UItem uItemAsFlicker4 = UItem.asFlicker(3, 34);
-            uItemAsFlicker4.spanCount = 1;
-            arrayList.add(uItemAsFlicker4);
-            UItem uItemAsFlicker5 = UItem.asFlicker(4, 34);
-            uItemAsFlicker5.spanCount = 1;
-            arrayList.add(uItemAsFlicker5);
-            UItem uItemAsFlicker6 = UItem.asFlicker(5, 34);
-            uItemAsFlicker6.spanCount = 1;
-            arrayList.add(uItemAsFlicker6);
-            UItem uItemAsFlicker7 = UItem.asFlicker(6, 34);
-            uItemAsFlicker7.spanCount = 1;
-            arrayList.add(uItemAsFlicker7);
-            UItem uItemAsFlicker8 = UItem.asFlicker(7, 34);
-            uItemAsFlicker8.spanCount = 1;
-            arrayList.add(uItemAsFlicker8);
-            UItem uItemAsFlicker9 = UItem.asFlicker(8, 34);
-            uItemAsFlicker9.spanCount = 1;
-            arrayList.add(uItemAsFlicker9);
-            UItem uItemAsFlicker10 = UItem.asFlicker(9, 34);
-            uItemAsFlicker10.spanCount = 1;
-            arrayList.add(uItemAsFlicker10);
+        resaleGiftsFragment.emptyViewVisible = z;
+        resaleGiftsFragment.emptyView.setVisibility(0);
+        resaleGiftsFragment.emptyView.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.95f).scaleY(z ? 1.0f : 0.95f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).setListener(new ResaleGiftsFragment.AnonymousClass11(resaleGiftsFragment, z, 1)).start();
+    }
+
+    private final void run$org$telegram$ui$Stars$ExplainStarsSheet$$ExternalSyntheticLambda1(Object obj, Object obj2) {
+        ArrayList arrayList = (ArrayList) obj;
+        ExplainStarsSheet explainStarsSheet = (ExplainStarsSheet) this.f$0;
+        arrayList.add(UItem.asCustom(explainStarsSheet.headerView));
+        int i = R.drawable.msg_gift_premium;
+        String string = LocaleController.getString(R.string.ExplainStarsFeature1Title);
+        String string2 = LocaleController.getString(R.string.ExplainStarsFeature1Text);
+        int i2 = ExplainStarsSheet.FeatureCell.Factory.$r8$clinit;
+        UItem uItemOfFactory = UItem.ofFactory(ExplainStarsSheet.FeatureCell.Factory.class);
+        uItemOfFactory.selectable = false;
+        uItemOfFactory.intValue = i;
+        uItemOfFactory.text = string;
+        uItemOfFactory.subtext = string2;
+        arrayList.add(uItemOfFactory);
+        int i3 = R.drawable.msg_bot;
+        String string3 = LocaleController.getString(R.string.ExplainStarsFeature2Title);
+        CharSequence charSequenceReplaceArrows = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ExplainStarsFeature2Text), new BalanceCloud$$ExternalSyntheticLambda1(explainStarsSheet, 2)), true);
+        UItem uItemOfFactory2 = UItem.ofFactory(ExplainStarsSheet.FeatureCell.Factory.class);
+        uItemOfFactory2.selectable = false;
+        uItemOfFactory2.intValue = i3;
+        uItemOfFactory2.text = string3;
+        uItemOfFactory2.subtext = charSequenceReplaceArrows;
+        arrayList.add(uItemOfFactory2);
+        int i4 = R.drawable.menu_unlock;
+        String string4 = LocaleController.getString(R.string.ExplainStarsFeature3Title);
+        String string5 = LocaleController.getString(R.string.ExplainStarsFeature3Text);
+        UItem uItemOfFactory3 = UItem.ofFactory(ExplainStarsSheet.FeatureCell.Factory.class);
+        uItemOfFactory3.selectable = false;
+        uItemOfFactory3.intValue = i4;
+        uItemOfFactory3.text = string4;
+        uItemOfFactory3.subtext = string5;
+        arrayList.add(uItemOfFactory3);
+        int i5 = R.drawable.menu_feature_paid;
+        String string6 = LocaleController.getString(R.string.ExplainStarsFeature4Title);
+        String string7 = LocaleController.getString(R.string.ExplainStarsFeature4Text);
+        UItem uItemOfFactory4 = UItem.ofFactory(ExplainStarsSheet.FeatureCell.Factory.class);
+        uItemOfFactory4.selectable = false;
+        uItemOfFactory4.intValue = i5;
+        uItemOfFactory4.text = string6;
+        uItemOfFactory4.subtext = string7;
+        arrayList.add(uItemOfFactory4);
+        arrayList.add(UItem.asSpace(AndroidUtilities.dp(68.0f)));
+    }
+
+    private final void run$org$telegram$ui$Stars$StarGiftPreviewSheet$$ExternalSyntheticLambda10(Object obj, Object obj2) {
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        int i = 1;
+        ArrayList arrayList3 = (ArrayList) obj;
+        StarGiftPreviewSheet starGiftPreviewSheet = (StarGiftPreviewSheet) this.f$0;
+        ArrayList arrayList4 = starGiftPreviewSheet.models;
+        if (arrayList4 == null || (arrayList = starGiftPreviewSheet.backdrops) == null || (arrayList2 = starGiftPreviewSheet.patterns) == null) {
+            return;
         }
-        int iDp2 = AndroidUtilities.dp(68.0f);
-        UItem uItem2 = new UItem(28);
-        uItem2.intValue = iDp2;
-        arrayList.add(uItem2);
+        arrayList3.add(UItem.asSpace(AndroidUtilities.dp(315.0f)));
+        BagRandomizer bagRandomizer = starGiftPreviewSheet.rBackdrops;
+        bagRandomizer.currentIndex = 0;
+        bagRandomizer.next();
+        BagRandomizer bagRandomizer2 = starGiftPreviewSheet.rPatterns;
+        bagRandomizer2.currentIndex = 0;
+        bagRandomizer2.next();
+        BagRandomizer bagRandomizer3 = starGiftPreviewSheet.rModels;
+        bagRandomizer3.currentIndex = 0;
+        bagRandomizer3.next();
+        int i2 = starGiftPreviewSheet.tabsSelectorView.selectedTab;
+        if (i2 == 0) {
+            boolean z = starGiftPreviewSheet.crafting;
+            arrayList3.add(UItem.asCenterShadow(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma(z ? "GiftPreviewCountModelsCrafting" : "GiftPreviewCountModels", arrayList4.size()))));
+            int size = arrayList4.size();
+            int i3 = 0;
+            while (i3 < size) {
+                Object obj3 = arrayList4.get(i3);
+                i3 += i;
+                StarGiftPreviewSheet.Attributes attributes = new StarGiftPreviewSheet.Attributes((TL_stars.starGiftAttributeBackdrop) bagRandomizer.next(), (TL_stars.starGiftAttributePattern) bagRandomizer2.next(), (TL_stars.starGiftAttributeModel) obj3);
+                int i4 = StarGiftPreviewSheet.GiftAttributeCell.Factory.$r8$clinit;
+                UItem spanCount = UItem.ofFactory(StarGiftPreviewSheet.GiftAttributeCell.Factory.class).setSpanCount(1);
+                spanCount.intValue = i2;
+                spanCount.object = attributes;
+                arrayList3.add(spanCount);
+                i = 1;
+            }
+            ArrayList arrayList5 = starGiftPreviewSheet.simpleModels;
+            if (arrayList5.isEmpty()) {
+                return;
+            }
+            arrayList3.add(UItem.asCenterShadow(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma(z ? "GiftPreviewCountModelsCrafting2" : "GiftPreviewCountModels", arrayList4.size()))));
+            int size2 = arrayList5.size();
+            int i5 = 0;
+            while (i5 < size2) {
+                Object obj4 = arrayList5.get(i5);
+                i5++;
+                StarGiftPreviewSheet.Attributes attributes2 = new StarGiftPreviewSheet.Attributes((TL_stars.starGiftAttributeBackdrop) bagRandomizer.next(), (TL_stars.starGiftAttributePattern) bagRandomizer2.next(), (TL_stars.starGiftAttributeModel) obj4);
+                int i6 = StarGiftPreviewSheet.GiftAttributeCell.Factory.$r8$clinit;
+                UItem spanCount2 = UItem.ofFactory(StarGiftPreviewSheet.GiftAttributeCell.Factory.class).setSpanCount(1);
+                spanCount2.intValue = i2;
+                spanCount2.object = attributes2;
+                arrayList3.add(spanCount2);
+            }
+            return;
+        }
+        int i7 = 1;
+        if (i2 == 1) {
+            arrayList3.add(UItem.asCenterShadow(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("GiftPreviewCountBackdrops", arrayList.size()))));
+            int size3 = arrayList.size();
+            int i8 = 0;
+            while (i8 < size3) {
+                Object obj5 = arrayList.get(i8);
+                i8 += i7;
+                StarGiftPreviewSheet.Attributes attributes3 = new StarGiftPreviewSheet.Attributes((TL_stars.starGiftAttributeBackdrop) obj5, (TL_stars.starGiftAttributePattern) bagRandomizer2.next(), (TL_stars.starGiftAttributeModel) bagRandomizer3.next());
+                int i9 = StarGiftPreviewSheet.GiftAttributeCell.Factory.$r8$clinit;
+                UItem spanCount3 = UItem.ofFactory(StarGiftPreviewSheet.GiftAttributeCell.Factory.class).setSpanCount(i7);
+                spanCount3.intValue = i2;
+                spanCount3.object = attributes3;
+                arrayList3.add(spanCount3);
+                i7 = 1;
+            }
+            return;
+        }
+        if (i2 == 2) {
+            arrayList3.add(UItem.asCenterShadow(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("GiftPreviewCountSymbols", arrayList2.size()))));
+            int size4 = arrayList2.size();
+            int i10 = 0;
+            while (i10 < size4) {
+                Object obj6 = arrayList2.get(i10);
+                i10++;
+                StarGiftPreviewSheet.Attributes attributes4 = new StarGiftPreviewSheet.Attributes((TL_stars.starGiftAttributeBackdrop) bagRandomizer.next(), (TL_stars.starGiftAttributePattern) obj6, (TL_stars.starGiftAttributeModel) bagRandomizer3.next());
+                int i11 = StarGiftPreviewSheet.GiftAttributeCell.Factory.$r8$clinit;
+                UItem spanCount4 = UItem.ofFactory(StarGiftPreviewSheet.GiftAttributeCell.Factory.class).setSpanCount(1);
+                spanCount4.intValue = i2;
+                spanCount4.object = attributes4;
+                arrayList3.add(spanCount4);
+            }
+        }
+    }
+
+    private final void run$org$telegram$ui$Stars$StarsController$$ExternalSyntheticLambda138(Object obj, Object obj2) {
+        Long l = (Long) obj;
+        Boolean bool = (Boolean) obj2;
+        Utilities.Callback2 callback2 = (Utilities.Callback2) this.f$0;
+        if (callback2 != null) {
+            callback2.run(l, bool);
+        }
     }
 
     @Override
@@ -301,12 +355,12 @@ public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Call
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings2;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings3;
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings4;
-        StoriesController.SearchStoriesList searchStoriesList;
-        TLRPC.UserProfilePhoto userProfilePhoto;
-        int i = 6;
-        final int i2 = 0;
+        UniversalAdapter universalAdapter;
+        final int i = 4;
+        final int i2 = 3;
+        final int i3 = 2;
+        final int i4 = 1;
         Object obj3 = this.f$0;
-        final int i3 = 1;
         switch (this.$r8$classId) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
@@ -321,41 +375,35 @@ public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Call
                     arrayList.add(UItem.asCustom(giftSheet.premiumHeaderView));
                     ArrayList arrayList2 = giftSheet.premiumTiers;
                     if (arrayList2 == null || arrayList2.isEmpty()) {
-                        UItem uItemAsFlicker = UItem.asFlicker(1, 34);
-                        uItemAsFlicker.spanCount = 1;
-                        arrayList.add(uItemAsFlicker);
-                        UItem uItemAsFlicker2 = UItem.asFlicker(2, 34);
-                        uItemAsFlicker2.spanCount = 1;
-                        arrayList.add(uItemAsFlicker2);
-                        UItem uItemAsFlicker3 = UItem.asFlicker(3, 34);
-                        uItemAsFlicker3.spanCount = 1;
-                        arrayList.add(uItemAsFlicker3);
+                        zzlb.m(1, 34, arrayList);
+                        zzlb.m(2, 34, arrayList);
+                        zzlb.m(3, 34, arrayList);
                     } else {
                         int size = arrayList2.size();
-                        int i4 = 0;
-                        while (i4 < size) {
-                            Object obj4 = arrayList2.get(i4);
-                            i4++;
+                        int i5 = 0;
+                        while (i5 < size) {
+                            Object obj4 = arrayList2.get(i5);
+                            i5++;
                             GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier = (GiftPremiumBottomSheet$GiftTier) obj4;
-                            int i5 = GiftSheet.GiftCell.Factory.$r8$clinit;
-                            UItem uItemOfFactory = UItem.ofFactory(GiftSheet.GiftCell.Factory.class);
-                            uItemOfFactory.spanCount = 1;
-                            uItemOfFactory.object = giftPremiumBottomSheet$GiftTier;
-                            arrayList.add(uItemOfFactory);
+                            int i6 = GiftSheet.GiftCell.Factory.$r8$clinit;
+                            UItem spanCount = UItem.ofFactory(GiftSheet.GiftCell.Factory.class).setSpanCount(1);
+                            spanCount.object = giftPremiumBottomSheet$GiftTier;
+                            arrayList.add(spanCount);
                         }
                     }
                     z = true;
                 }
-                int i6 = giftSheet.currentAccount;
-                StarsController starsController = StarsController.getInstance(i6, false);
+                int i7 = giftSheet.currentAccount;
+                int i8 = 0;
+                StarsController starsController = StarsController.getInstance(i7, false);
                 ArrayList arrayList3 = giftSheet.birthday ? starsController.birthdaySortedGifts : starsController.sortedGifts;
                 if (giftSheet.userSettings != null) {
-                    arrayList3 = (ArrayList) Collection.EL.stream(arrayList3).filter(new ChatActivity$$ExternalSyntheticLambda263(giftSheet, 3)).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda264()));
+                    arrayList3 = (ArrayList) Collection.EL.stream(arrayList3).filter(new BotStorage$$ExternalSyntheticLambda6(giftSheet, i3)).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda426()));
                 }
                 if (j < 0) {
-                    arrayList3 = (ArrayList) Collection.EL.stream(arrayList3).filter(new GiftSheet$$ExternalSyntheticLambda20(i2)).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda264()));
+                    arrayList3 = (ArrayList) Collection.EL.stream(arrayList3).filter(new GiftSheet$$ExternalSyntheticLambda20()).collect(Collectors.toCollection(new ChatActivity$$ExternalSyntheticLambda426()));
                 }
-                long clientUserId = UserConfig.getInstance(i6).getClientUserId();
+                long clientUserId = UserConfig.getInstance(i7).getClientUserId();
                 StarsController.GiftsList giftsList = giftSheet.myGifts;
                 if (j == clientUserId || giftsList == null) {
                     z2 = false;
@@ -363,25 +411,20 @@ public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Call
                     ArrayList arrayList4 = giftsList.gifts;
                     int size2 = arrayList4.size();
                     while (true) {
-                        if (i2 < size2) {
-                            Object obj5 = arrayList4.get(i2);
-                            i2 += i3;
+                        if (i8 < size2) {
+                            Object obj5 = arrayList4.get(i8);
+                            i8++;
                             if (((TL_stars.SavedStarGift) obj5).gift instanceof TL_stars.TL_starGiftUnique) {
                                 z2 = true;
-                            } else {
-                                i3 = 1;
                             }
                         } else {
                             z2 = false;
                         }
                     }
                 }
-                if (!MessagesController.getInstance(i6).stargiftsBlocked && (!arrayList3.isEmpty() || ((disallowedGiftsSettings3 = giftSheet.userSettings) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && giftsList != null && !giftsList.gifts.isEmpty()))) {
+                if (!MessagesController.getInstance(i7).stargiftsBlocked && (!arrayList3.isEmpty() || ((disallowedGiftsSettings3 = giftSheet.userSettings) != null && !disallowedGiftsSettings3.disallow_unique_stargifts && giftsList != null && !giftsList.gifts.isEmpty()))) {
                     if (z) {
-                        int iDp = AndroidUtilities.dp(16.0f);
-                        UItem uItem = new UItem(28);
-                        uItem.intValue = iDp;
-                        arrayList.add(uItem);
+                        arrayList.add(UItem.asSpace(AndroidUtilities.dp(16.0f)));
                     } else {
                         arrayList.add(UItem.asCustom(anonymousClass1));
                     }
@@ -389,8 +432,8 @@ public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Call
                     TreeSet treeSet = new TreeSet();
                     TLRPC.DisallowedGiftsSettings disallowedGiftsSettings5 = giftSheet.userSettings;
                     if (disallowedGiftsSettings5 == null || !disallowedGiftsSettings5.disallow_unique_stargifts) {
-                        for (int i7 = 0; i7 < arrayList3.size(); i7++) {
-                            treeSet.add(Long.valueOf(((TL_stars.StarGift) arrayList3.get(i7)).stars));
+                        for (int i9 = 0; i9 < arrayList3.size(); i9++) {
+                            treeSet.add(Long.valueOf(((TL_stars.StarGift) arrayList3.get(i9)).stars));
                         }
                     }
                     ArrayList arrayList5 = new ArrayList();
@@ -407,15 +450,15 @@ public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Call
                     }
                     giftSheet.TAB_COLLECTIBLES = arrayList5.size();
                     arrayList5.add(LocaleController.getString(R.string.Gift2TabCollectibles));
-                    int i8 = giftSheet.selectedTab;
-                    GiftSheet$$ExternalSyntheticLambda7 giftSheet$$ExternalSyntheticLambda7 = new GiftSheet$$ExternalSyntheticLambda7(giftSheet, 1);
-                    int i9 = GiftSheet.Tabs.Factory.$r8$clinit;
-                    UItem uItemOfFactory2 = UItem.ofFactory(GiftSheet.Tabs.Factory.class);
-                    uItemOfFactory2.id = 1;
-                    uItemOfFactory2.object = arrayList5;
-                    uItemOfFactory2.intValue = i8;
-                    uItemOfFactory2.object2 = giftSheet$$ExternalSyntheticLambda7;
-                    arrayList.add(uItemOfFactory2);
+                    int i10 = giftSheet.selectedTab;
+                    GiftSheet$$ExternalSyntheticLambda7 giftSheet$$ExternalSyntheticLambda7 = new GiftSheet$$ExternalSyntheticLambda7(giftSheet, i4);
+                    int i11 = GiftSheet.Tabs.Factory.$r8$clinit;
+                    UItem uItemOfFactory = UItem.ofFactory(GiftSheet.Tabs.Factory.class);
+                    uItemOfFactory.id = 1;
+                    uItemOfFactory.object = arrayList5;
+                    uItemOfFactory.intValue = i10;
+                    uItemOfFactory.object2 = giftSheet$$ExternalSyntheticLambda7;
+                    arrayList.add(uItemOfFactory);
                     boolean z4 = giftSheet.selectedTab == giftSheet.TAB_COLLECTIBLES && !z3 && j >= 0;
                     if (z4 != giftSheet.shownCollectiblesInfo) {
                         giftSheet.shownCollectiblesInfo = z4;
@@ -428,653 +471,777 @@ public final class GiftSheet$$ExternalSyntheticLambda8 implements Utilities.Call
                         arrayList3 = new ArrayList();
                         ArrayList arrayList6 = giftsList.gifts;
                         int size3 = arrayList6.size();
-                        int i10 = 0;
-                        while (i10 < size3) {
-                            Object obj6 = arrayList6.get(i10);
-                            i10++;
+                        int i12 = 0;
+                        while (i12 < size3) {
+                            Object obj6 = arrayList6.get(i12);
+                            i12++;
                             TL_stars.StarGift starGift2 = ((TL_stars.SavedStarGift) obj6).gift;
                             if (starGift2 instanceof TL_stars.TL_starGiftUnique) {
                                 arrayList3.add(starGift2);
                             }
                         }
                     }
-                    int i11 = 0;
-                    for (int i12 = 0; i12 < arrayList3.size(); i12++) {
-                        TL_stars.StarGift starGift3 = (TL_stars.StarGift) arrayList3.get(i12);
-                        int i13 = giftSheet.selectedTab;
-                        if (i13 == giftSheet.TAB_ALL || i13 == giftSheet.TAB_MY_GIFTS || (i13 == giftSheet.TAB_COLLECTIBLES && (starGift3.availability_resale > 0 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
-                            if (starGift3.sold_out || starGift3.availability_resale <= 0 || i13 == giftSheet.TAB_COLLECTIBLES) {
+                    int i13 = 0;
+                    for (int i14 = 0; i14 < arrayList3.size(); i14++) {
+                        TL_stars.StarGift starGift3 = (TL_stars.StarGift) arrayList3.get(i14);
+                        int i15 = giftSheet.selectedTab;
+                        if (i15 == giftSheet.TAB_ALL || i15 == giftSheet.TAB_MY_GIFTS || (i15 == giftSheet.TAB_COLLECTIBLES && (starGift3.availability_resale > 0 || starGift3.require_premium || starGift3.locked_until_date != 0))) {
+                            if (starGift3.sold_out || starGift3.availability_resale <= 0 || i15 == giftSheet.TAB_COLLECTIBLES) {
                                 starGift = starGift3;
                             } else {
-                                UItem uItemAsStarGift = GiftSheet.GiftCell.Factory.asStarGift(i13, starGift3, i13 == giftSheet.TAB_MY_GIFTS, starGift3.limited && (disallowedGiftsSettings2 = giftSheet.userSettings) != null && disallowedGiftsSettings2.disallow_limited_stargifts, false, false, false);
+                                UItem uItemAsStarGift = GiftSheet.GiftCell.Factory.asStarGift(i15, starGift3, i15 == giftSheet.TAB_MY_GIFTS, starGift3.limited && (disallowedGiftsSettings2 = giftSheet.userSettings) != null && disallowedGiftsSettings2.disallow_limited_stargifts, false, false, false);
                                 starGift = starGift3;
                                 arrayList.add(uItemAsStarGift);
-                                i11++;
+                                i13++;
                             }
-                            int i14 = giftSheet.selectedTab;
-                            arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(i14, starGift, i14 == giftSheet.TAB_MY_GIFTS, starGift.limited && (disallowedGiftsSettings = giftSheet.userSettings) != null && disallowedGiftsSettings.disallow_limited_stargifts, true, false, false));
-                            i11++;
+                            int i16 = giftSheet.selectedTab;
+                            arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(i16, starGift, i16 == giftSheet.TAB_MY_GIFTS, starGift.limited && (disallowedGiftsSettings = giftSheet.userSettings) != null && disallowedGiftsSettings.disallow_limited_stargifts, true, false, false));
+                            i13++;
                         }
                     }
-                    int i15 = giftSheet.selectedTab;
-                    int i16 = giftSheet.TAB_MY_GIFTS;
-                    if (i15 == i16 && giftsList != null && !giftsList.endReached) {
+                    int i17 = giftSheet.selectedTab;
+                    int i18 = giftSheet.TAB_MY_GIFTS;
+                    if (i17 == i18 && giftsList != null && !giftsList.endReached) {
                         giftsList.load();
-                        UItem uItemAsFlicker4 = UItem.asFlicker(4, 34);
-                        uItemAsFlicker4.spanCount = 1;
-                        arrayList.add(uItemAsFlicker4);
-                        UItem uItemAsFlicker5 = UItem.asFlicker(5, 34);
-                        uItemAsFlicker5.spanCount = 1;
-                        arrayList.add(uItemAsFlicker5);
-                        UItem uItemAsFlicker6 = UItem.asFlicker(6, 34);
-                        uItemAsFlicker6.spanCount = 1;
-                        arrayList.add(uItemAsFlicker6);
-                    } else if (i15 != i16 && starsController.giftsLoading) {
-                        UItem uItemAsFlicker7 = UItem.asFlicker(4, 34);
-                        uItemAsFlicker7.spanCount = 1;
-                        arrayList.add(uItemAsFlicker7);
-                        UItem uItemAsFlicker8 = UItem.asFlicker(5, 34);
-                        uItemAsFlicker8.spanCount = 1;
-                        arrayList.add(uItemAsFlicker8);
-                        UItem uItemAsFlicker9 = UItem.asFlicker(6, 34);
-                        uItemAsFlicker9.spanCount = 1;
-                        arrayList.add(uItemAsFlicker9);
+                        arrayList.add(UItem.asFlicker(4, 34).setSpanCount(1));
+                        zzlb.m(5, 34, arrayList);
+                        zzlb.m(6, 34, arrayList);
+                    } else if (i17 != i18 && starsController.giftsLoading) {
+                        zzlb.m(4, 34, arrayList);
+                        zzlb.m(5, 34, arrayList);
+                        zzlb.m(6, 34, arrayList);
                     }
-                    int iDp2 = AndroidUtilities.dp(i11 >= 9 ? 40.0f : 300.0f);
-                    UItem uItem2 = new UItem(28);
-                    uItem2.intValue = iDp2;
-                    arrayList.add(uItem2);
+                    arrayList.add(UItem.asSpace(AndroidUtilities.dp(i13 < 9 ? 300.0f : 40.0f)));
                     break;
                 } else {
                     TLRPC.DisallowedGiftsSettings disallowedGiftsSettings7 = giftSheet.userSettings;
                     if (disallowedGiftsSettings7 != null && !disallowedGiftsSettings7.disallow_unique_stargifts && arrayList3.isEmpty()) {
-                        int iDp3 = AndroidUtilities.dp(300.0f);
-                        UItem uItem3 = new UItem(28);
-                        uItem3.intValue = iDp3;
-                        arrayList.add(uItem3);
+                        arrayList.add(UItem.asSpace(AndroidUtilities.dp(300.0f)));
                         break;
                     }
                 }
                 break;
             case 1:
-                FragmentContextView fragmentContextView = (FragmentContextView) obj3;
-                fragmentContextView.getClass();
-                fragmentContextView.slidingSpeed = !((Boolean) obj2).booleanValue();
-                MediaController mediaController = MediaController.getInstance();
-                boolean z5 = fragmentContextView.isMusic;
-                ActionBarMenuSlider.SpeedSlider speedSlider = fragmentContextView.speedSlider;
-                float fFloatValue = ((Float) obj).floatValue();
-                speedSlider.getClass();
-                mediaController.setPlaybackSpeed(z5, (fFloatValue * 2.8f) + 0.2f);
+                ((DialogsSearchAdapter) obj3).openSponsoredOptions((ProfileSearchCell) obj, (TLRPC.TL_sponsoredPeer) obj2);
                 break;
             case 2:
-                ((ArrayList) obj).add(UItem.asCustom(-1, ((GuardBotReplaceSheet) obj3).contentLayout));
+                ((AwayMessagesActivity) obj3).fillItems$1((ArrayList) obj, (UniversalAdapter) obj2);
                 break;
             case 3:
-                ArrayList arrayList7 = (ArrayList) obj;
-                HashtagHistoryView hashtagHistoryView = (HashtagHistoryView) obj3;
-                hashtagHistoryView.getClass();
-                ArrayList arrayList8 = new ArrayList(0);
-                hashtagHistoryView.history = arrayList8;
-                arrayList8.addAll(HashtagSearchController.getInstance(hashtagHistoryView.currentAccount).history);
-                if (!hashtagHistoryView.history.isEmpty()) {
-                    for (int i17 = 0; i17 < hashtagHistoryView.history.size(); i17++) {
-                        String str = (String) hashtagHistoryView.history.get(i17);
-                        if (str.startsWith("#") || str.startsWith("$")) {
-                            arrayList7.add(UItem.asButton(i17 + 1, str.startsWith("$") ? R.drawable.menu_cashtag : R.drawable.menu_hashtag, str.substring(1)));
-                        }
-                    }
-                    arrayList7.add(UItem.asButton(0, R.drawable.msg_clear_recent, LocaleController.getString(R.string.ClearHistory)));
+                BusinessIntroActivity businessIntroActivity = (BusinessIntroActivity) obj3;
+                businessIntroActivity.chatAttachAlert.lambda$showGiftOfferSheet$15();
+                businessIntroActivity.inputStickerPath = (String) obj;
+                businessIntroActivity.inputSticker = (TLRPC.InputDocument) obj2;
+                businessIntroActivity.stickerRandom = false;
+                AndroidUtilities.cancelRunOnUIThread(businessIntroActivity.updateRandomStickerRunnable);
+                businessIntroActivity.greetingsView.setSticker(businessIntroActivity.inputStickerPath);
+                businessIntroActivity.checkDone$1(true);
+                UniversalRecyclerView universalRecyclerView = businessIntroActivity.listView;
+                if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
+                    universalAdapter.update(true);
                     break;
                 }
                 break;
             case 4:
-                ArrayList arrayList9 = (ArrayList) obj;
-                HashtagsSearchAdapter hashtagsSearchAdapter = (HashtagsSearchAdapter) obj3;
-                boolean z6 = hashtagsSearchAdapter.hasList && (searchStoriesList = hashtagsSearchAdapter.list) != null && searchStoriesList.messageObjects.size() > 0;
-                if (z6) {
-                    StoriesController.SearchStoriesList searchStoriesList2 = hashtagsSearchAdapter.list;
-                    int i18 = MessagesSearchAdapter.StoriesView.Factory.$r8$clinit;
-                    UItem uItemOfFactory3 = UItem.ofFactory(MessagesSearchAdapter.StoriesView.Factory.class);
-                    uItemOfFactory3.object = searchStoriesList2;
-                    arrayList9.add(uItemOfFactory3);
-                }
-                hashtagsSearchAdapter.hadStories = z6;
-                while (true) {
-                    ArrayList arrayList10 = hashtagsSearchAdapter.messages;
-                    if (i2 >= arrayList10.size()) {
-                        if (hashtagsSearchAdapter.loading || !hashtagsSearchAdapter.endReached) {
-                            arrayList9.add(UItem.asFlicker(-2, 1));
-                            arrayList9.add(UItem.asFlicker(-3, 1));
-                            arrayList9.add(UItem.asFlicker(-4, 1));
+                ArrayList arrayList7 = (ArrayList) obj;
+                UniversalAdapter universalAdapter2 = (UniversalAdapter) obj2;
+                ChatbotSheet chatbotSheet = (ChatbotSheet) obj3;
+                chatbotSheet.getClass();
+                universalAdapter2.itemsOffset = 1;
+                arrayList7.add(UItem.asCustomShadow(-5, chatbotSheet.topView));
+                TL_account.TL_connectedBot tL_connectedBot = chatbotSheet.bot;
+                if (tL_connectedBot != null) {
+                    if (TLObject.hasFlag(tL_connectedBot.flags, 1) || TLObject.hasFlag(tL_connectedBot.flags, 2) || TLObject.hasFlag(tL_connectedBot.flags, 4)) {
+                        zzke.m(R.string.SessionBotConnectedFrom, arrayList7);
+                        if (TLObject.hasFlag(tL_connectedBot.flags, 1)) {
+                            arrayList7.add(UItem.asButton(1, LocaleController.getString(R.string.SessionBotDevice), tL_connectedBot.device));
                         }
-                        if (!hashtagsSearchAdapter.hadStories && z6) {
-                            AndroidUtilities.runOnUIThread(new HintView$1$$ExternalSyntheticLambda0(hashtagsSearchAdapter, 13));
-                            break;
+                        if (TLObject.hasFlag(tL_connectedBot.flags, 4)) {
+                            arrayList7.add(UItem.asButton(2, LocaleController.getString(R.string.SessionBotLocation), tL_connectedBot.location));
                         }
-                    } else {
-                        int i19 = i2 + 1;
-                        MessageObject messageObject = (MessageObject) arrayList10.get(i2);
-                        UItem uItem4 = new UItem(33);
-                        uItem4.id = i19;
-                        uItem4.object = messageObject;
-                        arrayList9.add(uItem4);
-                        i2 = i19;
+                        if (TLObject.hasFlag(tL_connectedBot.flags, 2)) {
+                            arrayList7.add(UItem.asButton(3, LocaleController.getString(R.string.SessionBotDate), LocaleController.formatDateTime(tL_connectedBot.date, false)));
+                        }
+                        arrayList7.add(UItem.asShadow(null));
                     }
+                    universalAdapter2.whiteSectionStart();
+                    zzke.m(R.string.BusinessBotChats2, arrayList7);
+                    arrayList7.add(UItem.asRadio(-1, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2)).setChecked(chatbotSheet.exclude));
+                    arrayList7.add(UItem.asRadio(-2, LocaleController.getString(R.string.BusinessChatsOnlySelected2)).setChecked(!chatbotSheet.exclude));
+                    universalAdapter2.whiteSectionEnd();
+                    arrayList7.add(UItem.asShadow(null));
+                    BusinessRecipientsHelper businessRecipientsHelper = chatbotSheet.recipientsHelper;
+                    if (businessRecipientsHelper != null) {
+                        businessRecipientsHelper.fillItems(arrayList7, universalAdapter2, true);
+                    }
+                    zzkf.m(R.string.BusinessBotChatsInfo2, arrayList7);
                 }
                 break;
             case 5:
-                Bitmap bitmap = (Bitmap) obj;
-                Bitmap bitmap2 = (Bitmap) obj2;
-                ItemOptions.DimView dimView = (ItemOptions.DimView) obj3;
-                ItemOptions itemOptions = ItemOptions.this;
-                itemOptions.scrimView.setAlpha(1.0f);
-                if (itemOptions.blur) {
-                    dimView.blurBitmap = bitmap;
-                }
-                BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = itemOptions.scrimBlur3SourceBitmap;
-                if (blurredBackgroundSourceBitmap != null) {
-                    blurredBackgroundSourceBitmap.setBitmap(bitmap2);
-                    Blur3Utils.checkBitmapSourceMatrixScale(itemOptions.scrimBlur3SourceBitmap, dimView);
-                    ViewGroup viewGroup = itemOptions.layout;
-                    if (viewGroup != null) {
-                        viewGroup.invalidate();
-                    }
-                }
-                break;
-            case 6:
-                PaintView.AnonymousClass26 anonymousClass26 = (PaintView.AnonymousClass26) obj3;
-                anonymousClass26.videoWidth = ((Integer) obj).intValue();
-                anonymousClass26.videoHeight = ((Integer) obj2).intValue();
-                AndroidUtilities.runOnUIThread(new PasscodeView$9$$ExternalSyntheticLambda0(anonymousClass26, i3), 60L);
-                break;
-            case 7:
-                ArrayList arrayList11 = (ArrayList) obj;
-                PostsSearchContainer postsSearchContainer = (PostsSearchContainer) obj3;
-                if (postsSearchContainer.flood == null) {
-                    arrayList11.add(UItem.asFlicker(-1, 7));
-                    arrayList11.add(UItem.asFlicker(-2, 7));
-                    arrayList11.add(UItem.asFlicker(-3, 7));
-                    postsSearchContainer.isEmpty = false;
-                } else {
-                    boolean zIsEmpty = TextUtils.isEmpty(postsSearchContainer.lastQuery);
-                    ArrayList arrayList12 = postsSearchContainer.messages;
-                    if (zIsEmpty) {
-                        ArrayList arrayList13 = postsSearchContainer.newsMessages;
-                        if (!arrayList13.isEmpty()) {
-                            String string = LocaleController.getString(R.string.SearchPostsHeaderNews);
-                            UItem uItem5 = new UItem(31);
-                            uItem5.text = string;
-                            arrayList11.add(uItem5);
-                        }
-                        int size4 = arrayList13.size();
-                        while (i2 < size4) {
-                            Object obj7 = arrayList13.get(i2);
-                            i2++;
-                            UItem uItem6 = new UItem(33);
-                            uItem6.object = (MessageObject) obj7;
-                            arrayList11.add(uItem6);
-                        }
-                    } else {
-                        if (!arrayList12.isEmpty()) {
-                            String string2 = LocaleController.getString(R.string.SearchPostsHeaderFound);
-                            UItem uItem7 = new UItem(31);
-                            uItem7.text = string2;
-                            arrayList11.add(uItem7);
-                        }
-                        int size5 = arrayList12.size();
-                        while (i2 < size5) {
-                            Object obj8 = arrayList12.get(i2);
-                            i2++;
-                            UItem uItem8 = new UItem(33);
-                            uItem8.object = (MessageObject) obj8;
-                            arrayList11.add(uItem8);
-                        }
-                    }
-                    if (postsSearchContainer.loading || ((postsSearchContainer.floodLoading && !postsSearchContainer.wasEmptyOnFloodLoad) || (!zIsEmpty && !arrayList12.isEmpty() && !postsSearchContainer.endReached))) {
-                        arrayList11.add(UItem.asFlicker(postsSearchContainer.queryid * 3, 7));
-                        arrayList11.add(UItem.asFlicker((postsSearchContainer.queryid * 3) + 1, 7));
-                        arrayList11.add(UItem.asFlicker((postsSearchContainer.queryid * 3) + 2, 7));
-                    }
-                    postsSearchContainer.isEmpty = arrayList11.isEmpty();
-                }
-                break;
-            case 8:
-                ScrimOptions scrimOptions = (ScrimOptions) obj3;
-                scrimOptions.blurBitmap = (Bitmap) obj;
-                Paint paint = new Paint(1);
-                scrimOptions.blurBitmapPaint = paint;
-                Bitmap bitmap3 = scrimOptions.blurBitmap;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
-                scrimOptions.blurBitmapShader = bitmapShader;
-                paint.setShader(bitmapShader);
-                scrimOptions.blurMatrix = new Matrix();
-                BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap2 = scrimOptions.iBlur3SourceBitmap;
-                blurredBackgroundSourceBitmap2.setBitmap((Bitmap) obj2);
-                Blur3Utils.checkBitmapSourceMatrixScale(blurredBackgroundSourceBitmap2, scrimOptions.windowView);
-                ViewGroup viewGroup2 = scrimOptions.optionsView;
-                if (viewGroup2 != null) {
-                    viewGroup2.invalidate();
-                }
-                break;
-            case 9:
-                CharSequence charSequence = (CharSequence) obj;
-                StickersAlert stickersAlert = (StickersAlert) obj3;
-                stickersAlert.titleTextView.setText(charSequence);
-                TLRPC.TL_stickers_renameStickerSet tL_stickers_renameStickerSet = new TLRPC.TL_stickers_renameStickerSet();
-                tL_stickers_renameStickerSet.stickerset = MediaDataController.getInputStickerSet(stickersAlert.stickerSet.set);
-                tL_stickers_renameStickerSet.title = charSequence.toString();
-                ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stickers_renameStickerSet, new StarsController$$ExternalSyntheticLambda54(i3, (Utilities.Callback) obj2));
-                break;
-            case 10:
-                ((TranslateAlert2) obj3).lambda$translateAlt$6((String) obj, (Boolean) obj2);
-                break;
-            case 11:
-                ((UniversalFragment) obj3).fillItems$1((ArrayList) obj, (UniversalAdapter) obj2);
-                break;
-            case 12:
-                ArrayList arrayList14 = (ArrayList) obj;
-                CountrySelectBottomSheet countrySelectBottomSheet = (CountrySelectBottomSheet) obj3;
-                ArrayList arrayList15 = countrySelectBottomSheet.countriesLetters;
-                if (arrayList15 != null && !arrayList15.isEmpty()) {
-                    int iDp4 = AndroidUtilities.dp(13.0f) + ((AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.dp(68.0f));
-                    int iDp5 = AndroidUtilities.dp(88.0f) + countrySelectBottomSheet.selectedCountriesHeight;
-                    arrayList14.add(UItem.asSpace(0, iDp5));
-                    int iDp6 = iDp4 - iDp5;
-                    int size6 = arrayList15.size();
-                    int i20 = 0;
-                    while (i20 < size6) {
-                        Object obj9 = arrayList15.get(i20);
-                        i20++;
-                        for (TLRPC.TL_help_country tL_help_country : (List) countrySelectBottomSheet.countriesMap.get((String) obj9)) {
-                            if (TextUtils.isEmpty(countrySelectBottomSheet.query) || SelectorBottomSheet.matchLocal(tL_help_country, AndroidUtilities.translitSafe(countrySelectBottomSheet.query).toLowerCase())) {
-                                iDp6 -= AndroidUtilities.dp(44.0f);
-                                boolean zContainsKey = countrySelectBottomSheet.selectedCountries.containsKey(tL_help_country.iso2);
-                                int i21 = CountrySelectBottomSheet.Factory.$r8$clinit;
-                                UItem uItemOfFactory4 = UItem.ofFactory(CountrySelectBottomSheet.Factory.class);
-                                uItemOfFactory4.text = tL_help_country.iso2;
-                                uItemOfFactory4.object = tL_help_country;
-                                uItemOfFactory4.checked = zContainsKey;
-                                arrayList14.add(uItemOfFactory4);
-                            }
-                        }
-                    }
-                    arrayList14.add(UItem.asSpace(1, Math.max(0, iDp6)));
-                    break;
-                }
-                break;
-            case 13:
-                ArrayList arrayList16 = (ArrayList) obj;
-                StatisticActivity.ChartViewData chartViewData = ((PollStatisticsBottomSheet) obj3).chartViewData;
-                if (chartViewData != null) {
-                    int iDp7 = AndroidUtilities.dp(12.0f);
-                    UItem uItem9 = new UItem(28);
-                    uItem9.intValue = iDp7;
-                    arrayList16.add(uItem9);
-                    arrayList16.add(UItem.asChart(0, 0, chartViewData));
-                }
-                break;
-            case 14:
-                ((ArticleViewer$$ExternalSyntheticLambda21) obj3).run((TL_stats.TL_statsPollStats) obj);
-                break;
-            case 15:
-                ArrayList arrayList17 = (ArrayList) obj;
-                ContactAddActivity contactAddActivity = (ContactAddActivity) obj3;
-                TLRPC.User user = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id));
-                arrayList17.add(UItem.asCustom(contactAddActivity.infoLayout));
-                arrayList17.add(UItem.asCustom(contactAddActivity.firstNameField));
-                arrayList17.add(UItem.asCustom(contactAddActivity.lastNameField));
-                TLRPC.User user2 = contactAddActivity.getMessagesController().getUser(Long.valueOf(contactAddActivity.user_id));
-                if (TextUtils.isEmpty((user2 == null || TextUtils.isEmpty(user2.phone)) ? contactAddActivity.phone : user2.phone)) {
-                    SpannableStringBuilder spannableStringBuilderReplaceCharSequence = AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString(R.string.MobileHiddenExceptionInfo)), UserObject.getFirstName(user));
-                    UItem uItem10 = new UItem(7);
-                    uItem10.text = spannableStringBuilderReplaceCharSequence;
-                    arrayList17.add(uItem10);
-                } else if (contactAddActivity.needAddException) {
-                    SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("MobileVisibleInfo", R.string.MobileVisibleInfo, UserObject.getFirstName(user)));
-                    UItem uItem11 = new UItem(7);
-                    uItem11.text = spannableStringBuilderReplaceTags;
-                    arrayList17.add(uItem11);
-                } else {
-                    UItem uItem12 = new UItem(7);
-                    uItem12.text = null;
-                    arrayList17.add(uItem12);
-                }
-                if (contactAddActivity.addContact && contactAddActivity.needAddException) {
-                    UItem uItemAsCheck = UItem.asCheck(2, LocaleController.getString(R.string.AddContactShareNumber));
-                    uItemAsCheck.setChecked(contactAddActivity.checkShare);
-                    arrayList17.add(uItemAsCheck);
-                    String string3 = LocaleController.formatString(R.string.AddContactShareNumberInfo, UserObject.getFirstName(user));
-                    UItem uItem13 = new UItem(7);
-                    uItem13.text = string3;
-                    arrayList17.add(uItem13);
-                }
-                arrayList17.add(UItem.asCustom(contactAddActivity.noteField));
-                String string4 = LocaleController.getString(R.string.AddNotesInfo);
-                UItem uItem14 = new UItem(7);
-                uItem14.text = string4;
-                arrayList17.add(uItem14);
-                if (!contactAddActivity.addContact) {
-                    TLRPC.UserFull userFull = contactAddActivity.getMessagesController().getUserFull(contactAddActivity.user_id);
-                    if (userFull != null && userFull.birthday == null) {
-                        arrayList17.add(UItem.asCustom(contactAddActivity.suggestBirthday));
-                    }
-                    arrayList17.add(UItem.asCustom(contactAddActivity.suggestPhoto));
-                    arrayList17.add(UItem.asCustom(contactAddActivity.setAvatarCell));
-                    if (user != null && (userProfilePhoto = user.photo) != null && userProfilePhoto.personal) {
-                        arrayList17.add(UItem.asCustom(contactAddActivity.oldPhotoCell));
-                    }
-                    UItem uItem15 = new UItem(7);
-                    uItem15.text = null;
-                    arrayList17.add(uItem15);
-                    UItem uItemAsButton = UItem.asButton(1, LocaleController.getString(R.string.DeleteContact));
-                    uItemAsButton.red = true;
-                    arrayList17.add(uItemAsButton);
-                }
-                UItem uItem16 = new UItem(7);
-                uItem16.text = null;
-                arrayList17.add(uItem16);
-                if (contactAddActivity.firstSet) {
-                    AndroidUtilities.runOnUIThread(new ContactAddActivity$$ExternalSyntheticLambda13(contactAddActivity, user, i3));
-                    contactAddActivity.firstSet = false;
-                    AndroidUtilities.runOnUIThread(new ContactAddActivity$$ExternalSyntheticLambda1(contactAddActivity, i3), 200L);
-                }
-                break;
-            case 16:
-                Bitmap bitmap4 = (Bitmap) obj;
-                Bitmap bitmap5 = (Bitmap) obj2;
-                ContentPreviewViewer contentPreviewViewer = (ContentPreviewViewer) obj3;
-                contentPreviewViewer.centerImage.setVisible(true, false);
-                contentPreviewViewer.blurrBitmap = bitmap4;
-                Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader2 = new BitmapShader(bitmap4, tileMode2, tileMode2);
-                Matrix matrix = new Matrix();
-                matrix.setScale(15.0f, 15.0f);
-                bitmapShader2.setLocalMatrix(matrix);
-                if (Build.VERSION.SDK_INT >= 33) {
-                    bitmapShader2.setFilterMode(2);
-                }
-                Paint paint2 = contentPreviewViewer.paint;
-                paint2.setFilterBitmap(true);
-                paint2.setShader(bitmapShader2);
-                BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap3 = contentPreviewViewer.scrimBlur3SourceBitmap;
-                blurredBackgroundSourceBitmap3.setBitmap(bitmap5);
-                Blur3Utils.checkBitmapSourceMatrixScale(blurredBackgroundSourceBitmap3, contentPreviewViewer.windowView);
-                contentPreviewViewer.scrimBlur3Factory.invalidateAllLinkedViews();
-                contentPreviewViewer.preparingBitmap = false;
-                IntroActivity.AnonymousClass1 anonymousClass2 = contentPreviewViewer.containerView;
-                if (anonymousClass2 != null) {
-                    anonymousClass2.invalidate();
-                }
-                break;
-            case 17:
-                CharSequence charSequence2 = (CharSequence) obj;
-                Utilities.Callback callback = (Utilities.Callback) obj2;
-                ContentPreviewViewer.AnonymousClass1 anonymousClass3 = (ContentPreviewViewer.AnonymousClass1) obj3;
-                ContentPreviewViewer contentPreviewViewer2 = ContentPreviewViewer.this;
-                ContentPreviewViewer.ContentPreviewViewerDelegate contentPreviewViewerDelegate = contentPreviewViewer2.delegate;
-                if (contentPreviewViewerDelegate != null) {
-                    contentPreviewViewerDelegate.newStickerPackSelected(charSequence2, TextUtils.join("", contentPreviewViewer2.selectedEmojis), callback != null ? new OAuthSheet$$ExternalSyntheticLambda13(i, anonymousClass3, callback) : null);
-                    if (callback == null) {
-                        contentPreviewViewer2.dismissPopupWindow();
-                    }
-                }
-                break;
-            case 18:
-                ((CreateGroupCallSheet) obj3).fillItems$32((ArrayList) obj);
-                break;
-            case 19:
-                DialogsActivity dialogsActivity = (DialogsActivity) obj3;
-                dialogsActivity.deviceSize = (Long) obj;
-                dialogsActivity.updateDialogsHint();
-                break;
-            case 20:
-                ((Runnable) obj3).run();
-                break;
-            case 21:
-                ArrayList arrayList18 = (ArrayList) obj;
-                final EnableTopicsActivity enableTopicsActivity = (EnableTopicsActivity) obj3;
-                String string5 = LocaleController.getString(R.string.TopicsInfo);
-                int i22 = R.raw.topics_top;
-                UItem uItem17 = new UItem(2);
-                uItem17.text = string5;
-                uItem17.iconResId = i22;
-                arrayList18.add(uItem17);
-                UItem uItemAsCheck2 = UItem.asCheck(1, LocaleController.getString(R.string.TopicsEnable));
-                uItemAsCheck2.setChecked(enableTopicsActivity.forum);
-                arrayList18.add(uItemAsCheck2);
-                if (enableTopicsActivity.forum) {
-                    UItem uItem18 = new UItem(7);
-                    uItem18.text = null;
-                    arrayList18.add(uItem18);
-                    String string6 = LocaleController.getString(R.string.TopicsLayout);
-                    UItem uItem19 = new UItem(0);
-                    uItem19.text = string6;
-                    arrayList18.add(uItem19);
-                    View.OnClickListener onClickListener = new View.OnClickListener() {
+                ArrayList arrayList8 = (ArrayList) obj;
+                UniversalAdapter universalAdapter3 = (UniversalAdapter) obj2;
+                final ChatbotsActivity chatbotsActivity = (ChatbotsActivity) obj3;
+                arrayList8.add(UItem.asTopView(LocaleController.getString(R.string.BusinessBots2), LocaleController.getString(R.string.BusinessBots2Info), 120, "tg_superplaceholders_android_2", "🤖🏝️"));
+                if (chatbotsActivity.selectedBot != null) {
+                    universalAdapter3.whiteSectionStart();
+                    final int i19 = 0;
+                    arrayList8.add(UItem.asAddChat(Long.valueOf(chatbotsActivity.selectedBot.id)).setChecked(true).setCloseIcon(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            switch (i2) {
+                            switch (i19) {
                                 case 0:
-                                    EnableTopicsActivity enableTopicsActivity2 = enableTopicsActivity;
-                                    EnableTopicsActivity.TopicsLayoutSwitcher topicsLayoutSwitcher = (EnableTopicsActivity.TopicsLayoutSwitcher) view.getParent();
-                                    enableTopicsActivity2.isTabs = true;
-                                    topicsLayoutSwitcher.setChecked(true, true);
-                                    OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18 = enableTopicsActivity2.onForumChanged;
-                                    if (oAuthSheet$$ExternalSyntheticLambda18 != null) {
-                                        oAuthSheet$$ExternalSyntheticLambda18.run(Boolean.valueOf(enableTopicsActivity2.forum), Boolean.valueOf(enableTopicsActivity2.isTabs));
+                                    ChatbotsActivity chatbotsActivity2 = chatbotsActivity;
+                                    chatbotsActivity2.selectedBot = null;
+                                    chatbotsActivity2.listView.adapter.update(true);
+                                    chatbotsActivity2.checkDone$5(true);
+                                    break;
+                                case 1:
+                                    ChatbotsActivity chatbotsActivity3 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity3.rights;
+                                    if (tL_businessBotRights.reply && tL_businessBotRights.read_messages && tL_businessBotRights.delete_received_messages && tL_businessBotRights.delete_sent_messages) {
+                                        tL_businessBotRights.delete_sent_messages = false;
+                                        tL_businessBotRights.delete_received_messages = false;
+                                        tL_businessBotRights.read_messages = false;
+                                        tL_businessBotRights.reply = false;
+                                    } else {
+                                        tL_businessBotRights.delete_sent_messages = true;
+                                        tL_businessBotRights.delete_received_messages = true;
+                                        tL_businessBotRights.read_messages = true;
+                                        tL_businessBotRights.reply = true;
                                     }
-                                    if (enableTopicsActivity2.isTabs && enableTopicsActivity2.getParentLayout() != null) {
-                                        for (BaseFragment baseFragment : ((ActionBarLayout) enableTopicsActivity2.getParentLayout()).getFragmentStack()) {
-                                            if (baseFragment instanceof DialogsActivity) {
-                                                DialogsActivity.AnonymousClass27 anonymousClass27 = ((DialogsActivity) baseFragment).rightSlidingDialogContainer;
-                                                if (anonymousClass27.hasFragment()) {
-                                                    anonymousClass27.finishPreview();
-                                                }
-                                            }
-                                        }
-                                        break;
+                                    chatbotsActivity3.listView.adapter.update(true);
+                                    chatbotsActivity3.checkDone$5(true);
+                                    break;
+                                case 2:
+                                    ChatbotsActivity chatbotsActivity4 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights2 = chatbotsActivity4.rights;
+                                    if (tL_businessBotRights2.edit_name && tL_businessBotRights2.edit_bio && tL_businessBotRights2.edit_profile_photo && tL_businessBotRights2.edit_username) {
+                                        tL_businessBotRights2.edit_username = false;
+                                        tL_businessBotRights2.edit_profile_photo = false;
+                                        tL_businessBotRights2.edit_bio = false;
+                                        tL_businessBotRights2.edit_name = false;
+                                        chatbotsActivity4.listView.adapter.update(true);
+                                        chatbotsActivity4.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity4.checkAlert(-14, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity4, 3));
+                                    }
+                                    break;
+                                case 3:
+                                    ChatbotsActivity chatbotsActivity5 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights3 = chatbotsActivity5.rights;
+                                    if (tL_businessBotRights3.view_gifts && tL_businessBotRights3.sell_gifts && tL_businessBotRights3.change_gift_settings && tL_businessBotRights3.transfer_and_upgrade_gifts && tL_businessBotRights3.transfer_stars) {
+                                        tL_businessBotRights3.transfer_stars = false;
+                                        tL_businessBotRights3.transfer_and_upgrade_gifts = false;
+                                        tL_businessBotRights3.change_gift_settings = false;
+                                        tL_businessBotRights3.sell_gifts = false;
+                                        tL_businessBotRights3.view_gifts = false;
+                                        chatbotsActivity5.listView.adapter.update(true);
+                                        chatbotsActivity5.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity5.checkAlert(-17, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity5, 2));
                                     }
                                     break;
                                 default:
-                                    EnableTopicsActivity enableTopicsActivity3 = enableTopicsActivity;
-                                    EnableTopicsActivity.TopicsLayoutSwitcher topicsLayoutSwitcher2 = (EnableTopicsActivity.TopicsLayoutSwitcher) view.getParent();
-                                    enableTopicsActivity3.isTabs = false;
-                                    topicsLayoutSwitcher2.setChecked(false, true);
-                                    OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda19 = enableTopicsActivity3.onForumChanged;
-                                    if (oAuthSheet$$ExternalSyntheticLambda19 != null) {
-                                        oAuthSheet$$ExternalSyntheticLambda19.run(Boolean.valueOf(enableTopicsActivity3.forum), Boolean.valueOf(enableTopicsActivity3.isTabs));
-                                    }
-                                    if (enableTopicsActivity3.isTabs && enableTopicsActivity3.getParentLayout() != null) {
-                                        for (BaseFragment baseFragment2 : ((ActionBarLayout) enableTopicsActivity3.getParentLayout()).getFragmentStack()) {
-                                            if (baseFragment2 instanceof DialogsActivity) {
-                                                DialogsActivity.AnonymousClass27 anonymousClass28 = ((DialogsActivity) baseFragment2).rightSlidingDialogContainer;
-                                                if (anonymousClass28.hasFragment()) {
-                                                    anonymousClass28.finishPreview();
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    }
+                                    ChatbotsActivity chatbotsActivity6 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights4 = chatbotsActivity6.rights;
+                                    tL_businessBotRights4.manage_stories = !tL_businessBotRights4.manage_stories;
+                                    chatbotsActivity6.listView.adapter.update(true);
+                                    chatbotsActivity6.checkDone$5(true);
                                     break;
                             }
                         }
-                    };
-                    View.OnClickListener onClickListener2 = new View.OnClickListener() {
+                    }));
+                    universalAdapter3.whiteSectionEnd();
+                } else {
+                    universalAdapter3.whiteSectionStart();
+                    arrayList8.add(UItem.asCustom(chatbotsActivity.editTextContainer));
+                    LongSparseArray longSparseArray = chatbotsActivity.foundBots;
+                    longSparseArray.clear();
+                    boolean z5 = false;
+                    for (int i20 = 0; i20 < chatbotsActivity.searchHelper.getLocalServerSearch().size(); i20++) {
+                        TLObject tLObject = chatbotsActivity.searchHelper.getLocalServerSearch().get(i20);
+                        if (tLObject instanceof TLRPC.User) {
+                            TLRPC.User user = (TLRPC.User) tLObject;
+                            if (user.bot) {
+                                arrayList8.add(UItem.asAddChat(Long.valueOf(user.id), chatbotsActivity.lastQuery));
+                                longSparseArray.put(user.id, user);
+                                z5 = true;
+                            }
+                        }
+                    }
+                    for (int i21 = 0; i21 < chatbotsActivity.searchHelper.getGlobalSearch().size(); i21++) {
+                        TLObject tLObject2 = chatbotsActivity.searchHelper.getGlobalSearch().get(i21);
+                        if (tLObject2 instanceof TLRPC.User) {
+                            TLRPC.User user2 = (TLRPC.User) tLObject2;
+                            if (user2.bot) {
+                                arrayList8.add(UItem.asAddChat(Long.valueOf(user2.id), chatbotsActivity.lastQuery));
+                                longSparseArray.put(user2.id, user2);
+                                z5 = true;
+                            }
+                        }
+                    }
+                    if (longSparseArray.size() <= 0 && (!TextUtils.isEmpty(chatbotsActivity.editText.getText().toString()) || chatbotsActivity.searchHelper.isSearchInProgress() || chatbotsActivity.scheduledLoading)) {
+                        arrayList8.add(UItem.asCustom(chatbotsActivity.emptyView));
+                        z5 = true;
+                    }
+                    chatbotsActivity.editTextDivider.setVisibility(z5 ? 0 : 8);
+                    universalAdapter3.whiteSectionEnd();
+                }
+                arrayList8.add(UItem.asShadow(LocaleController.getString(R.string.BusinessBotLinkInfo2)));
+                universalAdapter3.whiteSectionStart();
+                arrayList8.add(UItem.asHeader(LocaleController.getString(R.string.BusinessBotChats2)).setEnabled(chatbotsActivity.selectedBot != null));
+                arrayList8.add(UItem.asRadio(-1, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2)).setChecked(chatbotsActivity.exclude).setEnabled(chatbotsActivity.selectedBot != null));
+                arrayList8.add(UItem.asRadio(-2, LocaleController.getString(R.string.BusinessChatsOnlySelected2)).setChecked(!chatbotsActivity.exclude).setEnabled(chatbotsActivity.selectedBot != null));
+                universalAdapter3.whiteSectionEnd();
+                arrayList8.add(UItem.asShadow(null));
+                chatbotsActivity.recipientsHelper.fillItems(arrayList8, universalAdapter3, chatbotsActivity.selectedBot != null);
+                zzkf.m(R.string.BusinessBotChatsInfo2, arrayList8);
+                if (chatbotsActivity.selectedBot != null) {
+                    universalAdapter3.whiteSectionStart();
+                    zzke.m(R.string.BusinessBotPermissions, arrayList8);
+                    String string = LocaleController.getString(R.string.BusinessBotPermissionsMessagesSection);
+                    StringBuilder sb = new StringBuilder();
+                    TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity.rights;
+                    sb.append((tL_businessBotRights.reply ? 1 : 0) + 1 + (tL_businessBotRights.read_messages ? 1 : 0) + (tL_businessBotRights.delete_sent_messages ? 1 : 0) + (tL_businessBotRights.delete_received_messages ? 1 : 0));
+                    sb.append("/5");
+                    UItem uItemAsExpandableSwitch = UItem.asExpandableSwitch(-4, string, sb.toString());
+                    TL_account.TL_businessBotRights tL_businessBotRights2 = chatbotsActivity.rights;
+                    arrayList8.add(uItemAsExpandableSwitch.setChecked(tL_businessBotRights2.reply && tL_businessBotRights2.read_messages && tL_businessBotRights2.delete_received_messages && tL_businessBotRights2.delete_sent_messages).setCollapsed(!chatbotsActivity.expandedMessagesSection).setClickCallback(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            switch (i4) {
+                                case 0:
+                                    ChatbotsActivity chatbotsActivity2 = chatbotsActivity;
+                                    chatbotsActivity2.selectedBot = null;
+                                    chatbotsActivity2.listView.adapter.update(true);
+                                    chatbotsActivity2.checkDone$5(true);
+                                    break;
+                                case 1:
+                                    ChatbotsActivity chatbotsActivity3 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights3 = chatbotsActivity3.rights;
+                                    if (tL_businessBotRights3.reply && tL_businessBotRights3.read_messages && tL_businessBotRights3.delete_received_messages && tL_businessBotRights3.delete_sent_messages) {
+                                        tL_businessBotRights3.delete_sent_messages = false;
+                                        tL_businessBotRights3.delete_received_messages = false;
+                                        tL_businessBotRights3.read_messages = false;
+                                        tL_businessBotRights3.reply = false;
+                                    } else {
+                                        tL_businessBotRights3.delete_sent_messages = true;
+                                        tL_businessBotRights3.delete_received_messages = true;
+                                        tL_businessBotRights3.read_messages = true;
+                                        tL_businessBotRights3.reply = true;
+                                    }
+                                    chatbotsActivity3.listView.adapter.update(true);
+                                    chatbotsActivity3.checkDone$5(true);
+                                    break;
+                                case 2:
+                                    ChatbotsActivity chatbotsActivity4 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights4 = chatbotsActivity4.rights;
+                                    if (tL_businessBotRights4.edit_name && tL_businessBotRights4.edit_bio && tL_businessBotRights4.edit_profile_photo && tL_businessBotRights4.edit_username) {
+                                        tL_businessBotRights4.edit_username = false;
+                                        tL_businessBotRights4.edit_profile_photo = false;
+                                        tL_businessBotRights4.edit_bio = false;
+                                        tL_businessBotRights4.edit_name = false;
+                                        chatbotsActivity4.listView.adapter.update(true);
+                                        chatbotsActivity4.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity4.checkAlert(-14, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity4, 3));
+                                    }
+                                    break;
+                                case 3:
+                                    ChatbotsActivity chatbotsActivity5 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights5 = chatbotsActivity5.rights;
+                                    if (tL_businessBotRights5.view_gifts && tL_businessBotRights5.sell_gifts && tL_businessBotRights5.change_gift_settings && tL_businessBotRights5.transfer_and_upgrade_gifts && tL_businessBotRights5.transfer_stars) {
+                                        tL_businessBotRights5.transfer_stars = false;
+                                        tL_businessBotRights5.transfer_and_upgrade_gifts = false;
+                                        tL_businessBotRights5.change_gift_settings = false;
+                                        tL_businessBotRights5.sell_gifts = false;
+                                        tL_businessBotRights5.view_gifts = false;
+                                        chatbotsActivity5.listView.adapter.update(true);
+                                        chatbotsActivity5.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity5.checkAlert(-17, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity5, 2));
+                                    }
+                                    break;
+                                default:
+                                    ChatbotsActivity chatbotsActivity6 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights6 = chatbotsActivity6.rights;
+                                    tL_businessBotRights6.manage_stories = !tL_businessBotRights6.manage_stories;
+                                    chatbotsActivity6.listView.adapter.update(true);
+                                    chatbotsActivity6.checkDone$5(true);
+                                    break;
+                            }
+                        }
+                    }));
+                    if (chatbotsActivity.expandedMessagesSection) {
+                        arrayList8.add(UItem.asRoundCheckbox(-5, LocaleController.getString(R.string.BusinessBotPermissionsMessagesRead)).setChecked(true).setEnabled(false).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-6, LocaleController.getString(R.string.BusinessBotPermissionsMessagesReply)).setChecked(chatbotsActivity.rights.reply).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-7, LocaleController.getString(R.string.BusinessBotPermissionsMessagesMarkAsRead)).setChecked(chatbotsActivity.rights.read_messages).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-8, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteSent)).setChecked(chatbotsActivity.rights.delete_sent_messages).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-9, LocaleController.getString(R.string.BusinessBotPermissionsMessagesDeleteReceived)).setChecked(chatbotsActivity.rights.delete_received_messages).setPad(1));
+                    }
+                    String string2 = LocaleController.getString(R.string.BusinessBotPermissionsProfileSection);
+                    StringBuilder sb2 = new StringBuilder();
+                    TL_account.TL_businessBotRights tL_businessBotRights3 = chatbotsActivity.rights;
+                    sb2.append((tL_businessBotRights3.edit_name ? 1 : 0) + (tL_businessBotRights3.edit_bio ? 1 : 0) + (tL_businessBotRights3.edit_profile_photo ? 1 : 0) + (tL_businessBotRights3.edit_username ? 1 : 0));
+                    sb2.append("/4");
+                    UItem uItemAsExpandableSwitch2 = UItem.asExpandableSwitch(-10, string2, sb2.toString());
+                    TL_account.TL_businessBotRights tL_businessBotRights4 = chatbotsActivity.rights;
+                    arrayList8.add(uItemAsExpandableSwitch2.setChecked(tL_businessBotRights4.edit_name && tL_businessBotRights4.edit_bio && tL_businessBotRights4.edit_profile_photo && tL_businessBotRights4.edit_username).setCollapsed(!chatbotsActivity.expandedProfileSection).setClickCallback(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
                             switch (i3) {
                                 case 0:
-                                    EnableTopicsActivity enableTopicsActivity2 = enableTopicsActivity;
-                                    EnableTopicsActivity.TopicsLayoutSwitcher topicsLayoutSwitcher = (EnableTopicsActivity.TopicsLayoutSwitcher) view.getParent();
-                                    enableTopicsActivity2.isTabs = true;
-                                    topicsLayoutSwitcher.setChecked(true, true);
-                                    OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18 = enableTopicsActivity2.onForumChanged;
-                                    if (oAuthSheet$$ExternalSyntheticLambda18 != null) {
-                                        oAuthSheet$$ExternalSyntheticLambda18.run(Boolean.valueOf(enableTopicsActivity2.forum), Boolean.valueOf(enableTopicsActivity2.isTabs));
+                                    ChatbotsActivity chatbotsActivity2 = chatbotsActivity;
+                                    chatbotsActivity2.selectedBot = null;
+                                    chatbotsActivity2.listView.adapter.update(true);
+                                    chatbotsActivity2.checkDone$5(true);
+                                    break;
+                                case 1:
+                                    ChatbotsActivity chatbotsActivity3 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights5 = chatbotsActivity3.rights;
+                                    if (tL_businessBotRights5.reply && tL_businessBotRights5.read_messages && tL_businessBotRights5.delete_received_messages && tL_businessBotRights5.delete_sent_messages) {
+                                        tL_businessBotRights5.delete_sent_messages = false;
+                                        tL_businessBotRights5.delete_received_messages = false;
+                                        tL_businessBotRights5.read_messages = false;
+                                        tL_businessBotRights5.reply = false;
+                                    } else {
+                                        tL_businessBotRights5.delete_sent_messages = true;
+                                        tL_businessBotRights5.delete_received_messages = true;
+                                        tL_businessBotRights5.read_messages = true;
+                                        tL_businessBotRights5.reply = true;
                                     }
-                                    if (enableTopicsActivity2.isTabs && enableTopicsActivity2.getParentLayout() != null) {
-                                        for (BaseFragment baseFragment : ((ActionBarLayout) enableTopicsActivity2.getParentLayout()).getFragmentStack()) {
-                                            if (baseFragment instanceof DialogsActivity) {
-                                                DialogsActivity.AnonymousClass27 anonymousClass27 = ((DialogsActivity) baseFragment).rightSlidingDialogContainer;
-                                                if (anonymousClass27.hasFragment()) {
-                                                    anonymousClass27.finishPreview();
-                                                }
-                                            }
-                                        }
-                                        break;
+                                    chatbotsActivity3.listView.adapter.update(true);
+                                    chatbotsActivity3.checkDone$5(true);
+                                    break;
+                                case 2:
+                                    ChatbotsActivity chatbotsActivity4 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights6 = chatbotsActivity4.rights;
+                                    if (tL_businessBotRights6.edit_name && tL_businessBotRights6.edit_bio && tL_businessBotRights6.edit_profile_photo && tL_businessBotRights6.edit_username) {
+                                        tL_businessBotRights6.edit_username = false;
+                                        tL_businessBotRights6.edit_profile_photo = false;
+                                        tL_businessBotRights6.edit_bio = false;
+                                        tL_businessBotRights6.edit_name = false;
+                                        chatbotsActivity4.listView.adapter.update(true);
+                                        chatbotsActivity4.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity4.checkAlert(-14, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity4, 3));
+                                    }
+                                    break;
+                                case 3:
+                                    ChatbotsActivity chatbotsActivity5 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights7 = chatbotsActivity5.rights;
+                                    if (tL_businessBotRights7.view_gifts && tL_businessBotRights7.sell_gifts && tL_businessBotRights7.change_gift_settings && tL_businessBotRights7.transfer_and_upgrade_gifts && tL_businessBotRights7.transfer_stars) {
+                                        tL_businessBotRights7.transfer_stars = false;
+                                        tL_businessBotRights7.transfer_and_upgrade_gifts = false;
+                                        tL_businessBotRights7.change_gift_settings = false;
+                                        tL_businessBotRights7.sell_gifts = false;
+                                        tL_businessBotRights7.view_gifts = false;
+                                        chatbotsActivity5.listView.adapter.update(true);
+                                        chatbotsActivity5.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity5.checkAlert(-17, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity5, 2));
                                     }
                                     break;
                                 default:
-                                    EnableTopicsActivity enableTopicsActivity3 = enableTopicsActivity;
-                                    EnableTopicsActivity.TopicsLayoutSwitcher topicsLayoutSwitcher2 = (EnableTopicsActivity.TopicsLayoutSwitcher) view.getParent();
-                                    enableTopicsActivity3.isTabs = false;
-                                    topicsLayoutSwitcher2.setChecked(false, true);
-                                    OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda19 = enableTopicsActivity3.onForumChanged;
-                                    if (oAuthSheet$$ExternalSyntheticLambda19 != null) {
-                                        oAuthSheet$$ExternalSyntheticLambda19.run(Boolean.valueOf(enableTopicsActivity3.forum), Boolean.valueOf(enableTopicsActivity3.isTabs));
-                                    }
-                                    if (enableTopicsActivity3.isTabs && enableTopicsActivity3.getParentLayout() != null) {
-                                        for (BaseFragment baseFragment2 : ((ActionBarLayout) enableTopicsActivity3.getParentLayout()).getFragmentStack()) {
-                                            if (baseFragment2 instanceof DialogsActivity) {
-                                                DialogsActivity.AnonymousClass27 anonymousClass28 = ((DialogsActivity) baseFragment2).rightSlidingDialogContainer;
-                                                if (anonymousClass28.hasFragment()) {
-                                                    anonymousClass28.finishPreview();
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    }
+                                    ChatbotsActivity chatbotsActivity6 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights8 = chatbotsActivity6.rights;
+                                    tL_businessBotRights8.manage_stories = !tL_businessBotRights8.manage_stories;
+                                    chatbotsActivity6.listView.adapter.update(true);
+                                    chatbotsActivity6.checkDone$5(true);
                                     break;
                             }
                         }
-                    };
-                    int i23 = EnableTopicsActivity.TopicsLayoutSwitcher.Factory.$r8$clinit;
-                    UItem uItemOfFactory5 = UItem.ofFactory(EnableTopicsActivity.TopicsLayoutSwitcher.Factory.class);
-                    uItemOfFactory5.id = 2;
-                    uItemOfFactory5.object = onClickListener;
-                    uItemOfFactory5.object2 = onClickListener2;
-                    uItemOfFactory5.setChecked(enableTopicsActivity.isTabs);
-                    arrayList18.add(uItemOfFactory5);
-                    String string7 = LocaleController.getString(R.string.TopicsLayoutInfo);
-                    UItem uItem20 = new UItem(7);
-                    uItem20.text = string7;
-                    arrayList18.add(uItem20);
+                    }));
+                    if (chatbotsActivity.expandedProfileSection) {
+                        arrayList8.add(UItem.asRoundCheckbox(-11, LocaleController.getString(R.string.BusinessBotPermissionsProfileName)).setChecked(chatbotsActivity.rights.edit_name).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-12, LocaleController.getString(R.string.BusinessBotPermissionsProfileBio)).setChecked(chatbotsActivity.rights.edit_bio).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-13, LocaleController.getString(R.string.BusinessBotPermissionsProfilePicture)).setChecked(chatbotsActivity.rights.edit_profile_photo).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-14, LocaleController.getString(R.string.BusinessBotPermissionsProfileUsername)).setChecked(chatbotsActivity.rights.edit_username).setPad(1));
+                    }
+                    String string3 = LocaleController.getString(R.string.BusinessBotPermissionsGiftsSection);
+                    StringBuilder sb3 = new StringBuilder();
+                    TL_account.TL_businessBotRights tL_businessBotRights5 = chatbotsActivity.rights;
+                    sb3.append((tL_businessBotRights5.view_gifts ? 1 : 0) + (tL_businessBotRights5.sell_gifts ? 1 : 0) + (tL_businessBotRights5.change_gift_settings ? 1 : 0) + (tL_businessBotRights5.transfer_and_upgrade_gifts ? 1 : 0) + (tL_businessBotRights5.transfer_stars ? 1 : 0));
+                    sb3.append("/5");
+                    UItem uItemAsExpandableSwitch3 = UItem.asExpandableSwitch(-15, string3, sb3.toString());
+                    TL_account.TL_businessBotRights tL_businessBotRights6 = chatbotsActivity.rights;
+                    arrayList8.add(uItemAsExpandableSwitch3.setChecked(tL_businessBotRights6.view_gifts && tL_businessBotRights6.sell_gifts && tL_businessBotRights6.change_gift_settings && tL_businessBotRights6.transfer_and_upgrade_gifts && tL_businessBotRights6.transfer_stars).setCollapsed(!chatbotsActivity.expandedGiftsSection).setClickCallback(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            switch (i2) {
+                                case 0:
+                                    ChatbotsActivity chatbotsActivity2 = chatbotsActivity;
+                                    chatbotsActivity2.selectedBot = null;
+                                    chatbotsActivity2.listView.adapter.update(true);
+                                    chatbotsActivity2.checkDone$5(true);
+                                    break;
+                                case 1:
+                                    ChatbotsActivity chatbotsActivity3 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights7 = chatbotsActivity3.rights;
+                                    if (tL_businessBotRights7.reply && tL_businessBotRights7.read_messages && tL_businessBotRights7.delete_received_messages && tL_businessBotRights7.delete_sent_messages) {
+                                        tL_businessBotRights7.delete_sent_messages = false;
+                                        tL_businessBotRights7.delete_received_messages = false;
+                                        tL_businessBotRights7.read_messages = false;
+                                        tL_businessBotRights7.reply = false;
+                                    } else {
+                                        tL_businessBotRights7.delete_sent_messages = true;
+                                        tL_businessBotRights7.delete_received_messages = true;
+                                        tL_businessBotRights7.read_messages = true;
+                                        tL_businessBotRights7.reply = true;
+                                    }
+                                    chatbotsActivity3.listView.adapter.update(true);
+                                    chatbotsActivity3.checkDone$5(true);
+                                    break;
+                                case 2:
+                                    ChatbotsActivity chatbotsActivity4 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights8 = chatbotsActivity4.rights;
+                                    if (tL_businessBotRights8.edit_name && tL_businessBotRights8.edit_bio && tL_businessBotRights8.edit_profile_photo && tL_businessBotRights8.edit_username) {
+                                        tL_businessBotRights8.edit_username = false;
+                                        tL_businessBotRights8.edit_profile_photo = false;
+                                        tL_businessBotRights8.edit_bio = false;
+                                        tL_businessBotRights8.edit_name = false;
+                                        chatbotsActivity4.listView.adapter.update(true);
+                                        chatbotsActivity4.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity4.checkAlert(-14, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity4, 3));
+                                    }
+                                    break;
+                                case 3:
+                                    ChatbotsActivity chatbotsActivity5 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights9 = chatbotsActivity5.rights;
+                                    if (tL_businessBotRights9.view_gifts && tL_businessBotRights9.sell_gifts && tL_businessBotRights9.change_gift_settings && tL_businessBotRights9.transfer_and_upgrade_gifts && tL_businessBotRights9.transfer_stars) {
+                                        tL_businessBotRights9.transfer_stars = false;
+                                        tL_businessBotRights9.transfer_and_upgrade_gifts = false;
+                                        tL_businessBotRights9.change_gift_settings = false;
+                                        tL_businessBotRights9.sell_gifts = false;
+                                        tL_businessBotRights9.view_gifts = false;
+                                        chatbotsActivity5.listView.adapter.update(true);
+                                        chatbotsActivity5.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity5.checkAlert(-17, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity5, 2));
+                                    }
+                                    break;
+                                default:
+                                    ChatbotsActivity chatbotsActivity6 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights10 = chatbotsActivity6.rights;
+                                    tL_businessBotRights10.manage_stories = !tL_businessBotRights10.manage_stories;
+                                    chatbotsActivity6.listView.adapter.update(true);
+                                    chatbotsActivity6.checkDone$5(true);
+                                    break;
+                            }
+                        }
+                    }));
+                    if (chatbotsActivity.expandedGiftsSection) {
+                        arrayList8.add(UItem.asRoundCheckbox(-16, LocaleController.getString(R.string.BusinessBotPermissionsGiftsView)).setChecked(chatbotsActivity.rights.view_gifts).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-17, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSell)).setChecked(chatbotsActivity.rights.sell_gifts).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-18, LocaleController.getString(R.string.BusinessBotPermissionsGiftsSettings)).setChecked(chatbotsActivity.rights.change_gift_settings).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-19, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransfer)).setChecked(chatbotsActivity.rights.transfer_and_upgrade_gifts).setPad(1));
+                        arrayList8.add(UItem.asRoundCheckbox(-20, LocaleController.getString(R.string.BusinessBotPermissionsGiftsTransferStars)).setChecked(chatbotsActivity.rights.transfer_stars).setPad(1));
+                    }
+                    arrayList8.add(UItem.asExpandableSwitch(-21, LocaleController.getString(R.string.BusinessBotPermissionsStories), "").setChecked(chatbotsActivity.rights.manage_stories).setClickCallback(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            switch (i) {
+                                case 0:
+                                    ChatbotsActivity chatbotsActivity2 = chatbotsActivity;
+                                    chatbotsActivity2.selectedBot = null;
+                                    chatbotsActivity2.listView.adapter.update(true);
+                                    chatbotsActivity2.checkDone$5(true);
+                                    break;
+                                case 1:
+                                    ChatbotsActivity chatbotsActivity3 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights7 = chatbotsActivity3.rights;
+                                    if (tL_businessBotRights7.reply && tL_businessBotRights7.read_messages && tL_businessBotRights7.delete_received_messages && tL_businessBotRights7.delete_sent_messages) {
+                                        tL_businessBotRights7.delete_sent_messages = false;
+                                        tL_businessBotRights7.delete_received_messages = false;
+                                        tL_businessBotRights7.read_messages = false;
+                                        tL_businessBotRights7.reply = false;
+                                    } else {
+                                        tL_businessBotRights7.delete_sent_messages = true;
+                                        tL_businessBotRights7.delete_received_messages = true;
+                                        tL_businessBotRights7.read_messages = true;
+                                        tL_businessBotRights7.reply = true;
+                                    }
+                                    chatbotsActivity3.listView.adapter.update(true);
+                                    chatbotsActivity3.checkDone$5(true);
+                                    break;
+                                case 2:
+                                    ChatbotsActivity chatbotsActivity4 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights8 = chatbotsActivity4.rights;
+                                    if (tL_businessBotRights8.edit_name && tL_businessBotRights8.edit_bio && tL_businessBotRights8.edit_profile_photo && tL_businessBotRights8.edit_username) {
+                                        tL_businessBotRights8.edit_username = false;
+                                        tL_businessBotRights8.edit_profile_photo = false;
+                                        tL_businessBotRights8.edit_bio = false;
+                                        tL_businessBotRights8.edit_name = false;
+                                        chatbotsActivity4.listView.adapter.update(true);
+                                        chatbotsActivity4.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity4.checkAlert(-14, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity4, 3));
+                                    }
+                                    break;
+                                case 3:
+                                    ChatbotsActivity chatbotsActivity5 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights9 = chatbotsActivity5.rights;
+                                    if (tL_businessBotRights9.view_gifts && tL_businessBotRights9.sell_gifts && tL_businessBotRights9.change_gift_settings && tL_businessBotRights9.transfer_and_upgrade_gifts && tL_businessBotRights9.transfer_stars) {
+                                        tL_businessBotRights9.transfer_stars = false;
+                                        tL_businessBotRights9.transfer_and_upgrade_gifts = false;
+                                        tL_businessBotRights9.change_gift_settings = false;
+                                        tL_businessBotRights9.sell_gifts = false;
+                                        tL_businessBotRights9.view_gifts = false;
+                                        chatbotsActivity5.listView.adapter.update(true);
+                                        chatbotsActivity5.checkDone$5(true);
+                                    } else {
+                                        chatbotsActivity5.checkAlert(-17, true, new ChatbotsActivity$$ExternalSyntheticLambda5(chatbotsActivity5, 2));
+                                    }
+                                    break;
+                                default:
+                                    ChatbotsActivity chatbotsActivity6 = chatbotsActivity;
+                                    TL_account.TL_businessBotRights tL_businessBotRights10 = chatbotsActivity6.rights;
+                                    tL_businessBotRights10.manage_stories = !tL_businessBotRights10.manage_stories;
+                                    chatbotsActivity6.listView.adapter.update(true);
+                                    chatbotsActivity6.checkDone$5(true);
+                                    break;
+                            }
+                        }
+                    }));
+                    universalAdapter3.whiteSectionEnd();
+                    arrayList8.add(UItem.asShadow(-4, null));
+                    arrayList8.add(UItem.asShadow(-5, null));
+                    arrayList8.add(UItem.asShadow(-6, null));
+                    arrayList8.add(UItem.asShadow(-7, null));
                 }
                 break;
-            case 22:
-                ArrayList arrayList19 = (ArrayList) obj;
+            case 6:
+                ((GreetMessagesActivity) obj3).fillItems$2((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 7:
+                ArrayList arrayList9 = (ArrayList) obj;
+                LocationActivity locationActivity = (LocationActivity) obj3;
+                locationActivity.getClass();
+                arrayList9.add(UItem.asTopView(LocaleController.getString(R.string.BusinessLocation), LocaleController.getString(R.string.BusinessLocationInfo), R.raw.biz_map));
+                arrayList9.add(UItem.asCustom(locationActivity.editTextContainer));
+                arrayList9.add(UItem.asShadow(null));
+                arrayList9.add(UItem.asCheck(1, LocaleController.getString(R.string.BusinessLocationMap)).setChecked(locationActivity.geo != null));
+                if (locationActivity.geo != null) {
+                    arrayList9.add(UItem.asCustom(locationActivity.mapPreviewContainer));
+                }
+                arrayList9.add(UItem.asShadow(null));
+                boolean z6 = (locationActivity.currentLocation == null || (locationActivity.geo == null && TextUtils.isEmpty(locationActivity.address))) ? false : true;
+                locationActivity.clearVisible = z6;
+                if (z6) {
+                    arrayList9.add(UItem.asButton(2, LocaleController.getString(R.string.BusinessLocationClear)).red());
+                    arrayList9.add(UItem.asShadow(null));
+                }
+                locationActivity.checkDone$2(true);
+                break;
+            case 8:
+                ((OpeningHoursActivity) obj3).fillItems$4((ArrayList) obj);
+                break;
+            case 9:
+                ArrayList arrayList10 = (ArrayList) obj;
+                OpeningHoursDayActivity openingHoursDayActivity = (OpeningHoursDayActivity) obj3;
+                openingHoursDayActivity.getClass();
+                arrayList10.add(UItem.asRippleCheck(-1, LocaleController.getString(R.string.BusinessHoursDayOpen)).setChecked(openingHoursDayActivity.enabled));
+                arrayList10.add(UItem.asShadow(null));
+                if (openingHoursDayActivity.enabled) {
+                    int i22 = 0;
+                    while (true) {
+                        ArrayList arrayList11 = openingHoursDayActivity.periods;
+                        if (i22 >= arrayList11.size()) {
+                            if (openingHoursDayActivity.showAddButton()) {
+                                arrayList10.add(UItem.asShadow(null));
+                                arrayList10.add(UItem.asButton(-2, R.drawable.menu_premium_clock_add, LocaleController.getString(R.string.BusinessHoursDayAdd)).accent());
+                            }
+                            zzkf.m(R.string.BusinessHoursDayInfo, arrayList10);
+                        } else {
+                            if (i22 > 0) {
+                                arrayList10.add(UItem.asShadow(null));
+                            }
+                            OpeningHoursActivity.Period period = (OpeningHoursActivity.Period) arrayList11.get(i22);
+                            if (!openingHoursDayActivity.is24()) {
+                                int i23 = i22 * 3;
+                                arrayList10.add(UItem.asButton(i23, LocaleController.getString(R.string.BusinessHoursDayOpenHour), OpeningHoursActivity.Period.timeToString(period.start)));
+                                arrayList10.add(UItem.asButton(i23 + 1, LocaleController.getString(R.string.BusinessHoursDayCloseHour), OpeningHoursActivity.Period.timeToString(period.end)));
+                                arrayList10.add(UItem.asButton(i23 + 2, LocaleController.getString(R.string.Remove)).red());
+                            }
+                            i22++;
+                        }
+                    }
+                }
+                break;
+            case 10:
+                ((TimezoneSelector) obj3).fillItems$6((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 11:
+                PaintView.AnonymousClass26 anonymousClass26 = (PaintView.AnonymousClass26) obj3;
+                anonymousClass26.videoWidth = ((Integer) obj).intValue();
+                anonymousClass26.videoHeight = ((Integer) obj2).intValue();
+                AndroidUtilities.runOnUIThread(new ChatbotSheet$$ExternalSyntheticLambda0(anonymousClass26, 22), 60L);
+                break;
+            case 12:
+                ArrayList arrayList12 = (ArrayList) obj;
+                CountrySelectBottomSheet countrySelectBottomSheet = (CountrySelectBottomSheet) obj3;
+                ArrayList arrayList13 = countrySelectBottomSheet.countriesLetters;
+                if (arrayList13 != null && !arrayList13.isEmpty()) {
+                    int iDp = AndroidUtilities.dp(13.0f) + ((AndroidUtilities.displaySize.y - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.dp(68.0f));
+                    int iDp2 = AndroidUtilities.dp(88.0f) + countrySelectBottomSheet.selectedCountriesHeight;
+                    arrayList12.add(UItem.asSpace(0, iDp2));
+                    int iDp3 = iDp - iDp2;
+                    int size4 = arrayList13.size();
+                    int i24 = 0;
+                    while (i24 < size4) {
+                        Object obj7 = arrayList13.get(i24);
+                        i24++;
+                        for (TLRPC.TL_help_country tL_help_country : (List) countrySelectBottomSheet.countriesMap.get((String) obj7)) {
+                            if (TextUtils.isEmpty(countrySelectBottomSheet.query) || SelectorBottomSheet.matchLocal(tL_help_country, AndroidUtilities.translitSafe(countrySelectBottomSheet.query).toLowerCase())) {
+                                iDp3 -= AndroidUtilities.dp(44.0f);
+                                boolean zContainsKey = countrySelectBottomSheet.selectedCountries.containsKey(tL_help_country.iso2);
+                                int i25 = CountrySelectBottomSheet.Factory.$r8$clinit;
+                                UItem uItemOfFactory2 = UItem.ofFactory(CountrySelectBottomSheet.Factory.class);
+                                uItemOfFactory2.text = tL_help_country.iso2;
+                                uItemOfFactory2.object = tL_help_country;
+                                uItemOfFactory2.checked = zContainsKey;
+                                arrayList12.add(uItemOfFactory2);
+                            }
+                        }
+                    }
+                    arrayList12.add(UItem.asSpace(1, Math.max(0, iDp3)));
+                    break;
+                }
+                break;
+            case 13:
+                ArrayList arrayList14 = (ArrayList) obj;
+                StatisticActivity.ChartViewData chartViewData = ((PollStatisticsBottomSheet) obj3).chartViewData;
+                if (chartViewData != null) {
+                    arrayList14.add(UItem.asSpace(AndroidUtilities.dp(12.0f)));
+                    arrayList14.add(UItem.asChart(0, 0, chartViewData));
+                }
+                break;
+            case 14:
+                ((OAuthSheet$$ExternalSyntheticLambda1) obj3).run((TL_stats.TL_statsPollStats) obj);
+                break;
+            case 15:
+                ArrayList arrayList15 = (ArrayList) obj;
                 AcquiredGiftsSheet acquiredGiftsSheet = (AcquiredGiftsSheet) obj3;
                 List<TL_stars.TL_StarGiftAuctionAcquiredGift> list = acquiredGiftsSheet.gifts;
                 if (list != null) {
                     for (TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift : list) {
-                        IntroActivity$$ExternalSyntheticLambda1 introActivity$$ExternalSyntheticLambda1 = new IntroActivity$$ExternalSyntheticLambda1(11, acquiredGiftsSheet, tL_StarGiftAuctionAcquiredGift);
-                        int i24 = AcquiredGiftsSheet.AcquiredGiftsCell.Factory.$r8$clinit;
-                        UItem uItemOfFactory6 = UItem.ofFactory(AcquiredGiftsSheet.AcquiredGiftsCell.Factory.class);
-                        uItemOfFactory6.object = tL_StarGiftAuctionAcquiredGift;
-                        uItemOfFactory6.object2 = acquiredGiftsSheet.auction;
-                        uItemOfFactory6.clickCallback = introActivity$$ExternalSyntheticLambda1;
-                        arrayList19.add(uItemOfFactory6);
+                        AlertDialog$$ExternalSyntheticLambda5 alertDialog$$ExternalSyntheticLambda5 = new AlertDialog$$ExternalSyntheticLambda5(28, acquiredGiftsSheet, tL_StarGiftAuctionAcquiredGift);
+                        int i26 = AcquiredGiftsSheet.AcquiredGiftsCell.Factory.$r8$clinit;
+                        UItem uItemOfFactory3 = UItem.ofFactory(AcquiredGiftsSheet.AcquiredGiftsCell.Factory.class);
+                        uItemOfFactory3.object = tL_StarGiftAuctionAcquiredGift;
+                        uItemOfFactory3.object2 = acquiredGiftsSheet.auction;
+                        uItemOfFactory3.clickCallback = alertDialog$$ExternalSyntheticLambda5;
+                        arrayList15.add(uItemOfFactory3);
                     }
-                    int iDp8 = AndroidUtilities.dp(16.0f);
-                    UItem uItem21 = new UItem(28);
-                    uItem21.intValue = iDp8;
-                    arrayList19.add(uItem21);
+                    arrayList15.add(UItem.asSpace(AndroidUtilities.dp(16.0f)));
                     break;
                 }
                 break;
-            case 23:
+            case 16:
                 ((ArrayList) obj).add(((ActiveAuctionsSheet) obj3).headerItem);
                 break;
-            case 24:
-                ArrayList arrayList20 = (ArrayList) obj;
-                arrayList20.add(((AuctionBidSheet) obj3).headerItem);
-                int iDp9 = AndroidUtilities.dp(16.0f);
-                UItem uItem22 = new UItem(28);
-                uItem22.intValue = iDp9;
-                arrayList20.add(uItem22);
+            case 17:
+                ArrayList arrayList16 = (ArrayList) obj;
+                arrayList16.add(((AuctionBidSheet) obj3).headerItem);
+                arrayList16.add(UItem.asSpace(AndroidUtilities.dp(16.0f)));
                 break;
-            case 25:
+            case 18:
                 ((ArrayList) obj).add(UItem.asCustom(-1, ((AuctionJoinSheet) obj3).linearLayout));
                 break;
-            case 26:
+            case 19:
                 ((ArrayList) obj).add(UItem.asCustom(-1, ((AuctionWearingSheet) obj3).linearLayout));
                 break;
-            case 27:
+            case 20:
                 run$org$telegram$ui$Gifts$ProfileGiftsContainer$Page$$ExternalSyntheticLambda1(obj, obj2);
                 break;
-            case 28:
-                run$org$telegram$ui$Gifts$ProfileGiftsContainer$SelectGiftsBottomSheet$$ExternalSyntheticLambda0(obj, obj2);
-                break;
-            default:
-                ArrayList arrayList21 = (ArrayList) obj;
-                ResaleGiftsFragment resaleGiftsFragment = (ResaleGiftsFragment) obj3;
-                ResaleGiftsFragment.ResaleGiftsList resaleGiftsList = resaleGiftsFragment.list;
-                ArrayList arrayList22 = resaleGiftsList.gifts;
-                int size7 = arrayList22.size();
-                int i25 = 0;
-                while (i25 < size7) {
-                    Object obj10 = arrayList22.get(i25);
-                    i25++;
-                    arrayList21.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) obj10, false, false, false, true, false));
-                }
-                if (resaleGiftsList.loading || !resaleGiftsList.endReached) {
-                    UItem uItemAsFlicker10 = UItem.asFlicker(-1, 34);
-                    uItemAsFlicker10.spanCount = 1;
-                    arrayList21.add(uItemAsFlicker10);
-                    UItem uItemAsFlicker11 = UItem.asFlicker(-2, 34);
-                    uItemAsFlicker11.spanCount = 1;
-                    arrayList21.add(uItemAsFlicker11);
-                    UItem uItemAsFlicker12 = UItem.asFlicker(-3, 34);
-                    uItemAsFlicker12.spanCount = 1;
-                    arrayList21.add(uItemAsFlicker12);
-                    if (resaleGiftsList.gifts.isEmpty()) {
-                        UItem uItemAsFlicker13 = UItem.asFlicker(-4, 34);
-                        uItemAsFlicker13.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker13);
-                        UItem uItemAsFlicker14 = UItem.asFlicker(-5, 34);
-                        uItemAsFlicker14.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker14);
-                        UItem uItemAsFlicker15 = UItem.asFlicker(-6, 34);
-                        uItemAsFlicker15.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker15);
-                        UItem uItemAsFlicker16 = UItem.asFlicker(-7, 34);
-                        uItemAsFlicker16.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker16);
-                        UItem uItemAsFlicker17 = UItem.asFlicker(-8, 34);
-                        uItemAsFlicker17.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker17);
-                        UItem uItemAsFlicker18 = UItem.asFlicker(-9, 34);
-                        uItemAsFlicker18.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker18);
-                        UItem uItemAsFlicker19 = UItem.asFlicker(-10, 34);
-                        uItemAsFlicker19.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker19);
-                        UItem uItemAsFlicker20 = UItem.asFlicker(-11, 34);
-                        uItemAsFlicker20.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker20);
-                        UItem uItemAsFlicker21 = UItem.asFlicker(-12, 34);
-                        uItemAsFlicker21.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker21);
-                        UItem uItemAsFlicker22 = UItem.asFlicker(-13, 34);
-                        uItemAsFlicker22.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker22);
-                        UItem uItemAsFlicker23 = UItem.asFlicker(-14, 34);
-                        uItemAsFlicker23.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker23);
-                        UItem uItemAsFlicker24 = UItem.asFlicker(-15, 34);
-                        uItemAsFlicker24.spanCount = 1;
-                        arrayList21.add(uItemAsFlicker24);
+            case 21:
+                ArrayList arrayList17 = (ArrayList) obj;
+                ProfileGiftsContainer.SelectGiftsBottomSheet selectGiftsBottomSheet = (ProfileGiftsContainer.SelectGiftsBottomSheet) obj3;
+                StarsController.GiftsList giftsList2 = selectGiftsBottomSheet.list;
+                if (giftsList2 != null) {
+                    arrayList17.add(UItem.asSpace(AndroidUtilities.dp(16.0f)));
+                    boolean z7 = giftsList2.loading;
+                    ArrayList arrayList18 = giftsList2.gifts;
+                    if (z7 && arrayList18.isEmpty()) {
+                        zzlb.m(1, 34, arrayList17);
+                        zzlb.m(2, 34, arrayList17);
+                        zzlb.m(3, 34, arrayList17);
+                        zzlb.m(4, 34, arrayList17);
+                        zzlb.m(5, 34, arrayList17);
+                        zzlb.m(6, 34, arrayList17);
+                        zzlb.m(7, 34, arrayList17);
+                        zzlb.m(8, 34, arrayList17);
+                        zzlb.m(9, 34, arrayList17);
+                    } else {
+                        int size5 = arrayList18.size();
+                        int i27 = 0;
+                        int i28 = 3;
+                        while (i27 < size5) {
+                            Object obj8 = arrayList18.get(i27);
+                            i27++;
+                            TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj8;
+                            if (!savedStarGift.collection_id.contains(Integer.valueOf(selectGiftsBottomSheet.collectionId))) {
+                                int i29 = GiftSheet.GiftCell.Factory.$r8$clinit;
+                                UItem spanCount2 = UItem.ofFactory(GiftSheet.GiftCell.Factory.class).setSpanCount(1);
+                                spanCount2.intValue = 0;
+                                spanCount2.object = savedStarGift;
+                                spanCount2.accent = true;
+                                spanCount2.collapsed = true;
+                                spanCount2.red = false;
+                                HashSet hashSet = selectGiftsBottomSheet.selectedGiftIds;
+                                int i30 = savedStarGift.msg_id;
+                                StarsController.GiftsList giftsList3 = giftsList2;
+                                arrayList17.add(spanCount2.setChecked(hashSet.contains(Long.valueOf(i30 == 0 ? savedStarGift.saved_id : i30))).setSpanCount(1));
+                                i28--;
+                                giftsList2 = giftsList3;
+                                if (i28 == 0) {
+                                    i28 = 3;
+                                }
+                            }
+                        }
+                        StarsController.GiftsList giftsList4 = giftsList2;
+                        if (giftsList4.loading || !giftsList4.endReached) {
+                            int i31 = 0;
+                            while (true) {
+                                if (i31 < (i28 <= 0 ? 3 : i28)) {
+                                    i31++;
+                                    zzlb.m(i31, 34, arrayList17);
+                                }
+                            }
+                        }
                     }
-                }
-                boolean z7 = arrayList21.isEmpty() && !resaleGiftsList.loading;
-                if (resaleGiftsFragment.emptyViewVisible != z7) {
-                    resaleGiftsFragment.emptyViewVisible = z7;
-                    resaleGiftsFragment.emptyView.setVisibility(0);
-                    resaleGiftsFragment.emptyView.animate().alpha(z7 ? 1.0f : 0.0f).scaleX(z7 ? 1.0f : 0.95f).scaleY(z7 ? 1.0f : 0.95f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).setListener(new ResaleGiftsFragment.AnonymousClass11(resaleGiftsFragment, z7, i3)).start();
+                    arrayList17.add(UItem.asSpace(AndroidUtilities.dp(68.0f)));
                     break;
                 }
+                break;
+            case 22:
+                run$org$telegram$ui$Gifts$ResaleGiftsFragment$$ExternalSyntheticLambda3(obj, obj2);
+                break;
+            case 23:
+                ((ResaleGiftsFragment.SelectGiftSheet) obj3).fillItems$21((ArrayList) obj);
+                break;
+            case 24:
+                ((BotStarsActivity) obj3).fillItems$8((ArrayList) obj);
+                break;
+            case 25:
+                run$org$telegram$ui$Stars$ExplainStarsSheet$$ExternalSyntheticLambda1(obj, obj2);
+                break;
+            case 26:
+                ArrayList arrayList19 = (ArrayList) obj;
+                UItem uItem = ((GiftOfferSheet) obj3).mainItem;
+                if (uItem != null) {
+                    arrayList19.add(uItem);
+                }
+                break;
+            case 27:
+                run$org$telegram$ui$Stars$StarGiftPreviewSheet$$ExternalSyntheticLambda10(obj, obj2);
+                break;
+            case 28:
+                run$org$telegram$ui$Stars$StarsController$$ExternalSyntheticLambda138(obj, obj2);
+                break;
+            default:
+                ((StarsIntroActivity) obj3).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 break;
         }
     }

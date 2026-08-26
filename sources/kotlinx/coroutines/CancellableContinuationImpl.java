@@ -1,6 +1,7 @@
 package kotlinx.coroutines;
 
 import androidx.car.app.HostException;
+import com.google.common.base.Joiner;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
@@ -17,7 +18,6 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.DispatchedContinuation;
 import kotlinx.coroutines.internal.Segment;
-import kotlinx.coroutines.internal.Symbol;
 
 public class CancellableContinuationImpl extends DispatchedTask implements CancellableContinuation, CoroutineStackFrame, Waiter {
     private volatile int _decisionAndIndex$volatile;
@@ -83,7 +83,7 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
         }
     }
 
-    public final boolean cancel(Throwable th) {
+    public final boolean cancel(Throwable th) throws IllegalAccessException, InvocationTargetException {
         while (true) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$volatile$FU;
             Object obj = atomicReferenceFieldUpdater.get(this);
@@ -427,7 +427,7 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
         return "CancellableContinuation";
     }
 
-    public final void releaseClaimedReusableContinuation$kotlinx_coroutines_core() {
+    public final void releaseClaimedReusableContinuation$kotlinx_coroutines_core() throws IllegalAccessException, InvocationTargetException {
         Continuation continuation = this.delegate;
         Throwable th = null;
         DispatchedContinuation dispatchedContinuation = continuation instanceof DispatchedContinuation ? (DispatchedContinuation) continuation : null;
@@ -435,8 +435,8 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
             loop0: while (true) {
                 AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = DispatchedContinuation._reusableCancellableContinuation$volatile$FU;
                 Object obj = atomicReferenceFieldUpdater.get(dispatchedContinuation);
-                Symbol symbol = AtomicKt.REUSABLE_CLAIMED;
-                if (obj != symbol) {
+                Joiner joiner = AtomicKt.REUSABLE_CLAIMED;
+                if (obj != joiner) {
                     if (!(obj instanceof Throwable)) {
                         throw new IllegalStateException(("Inconsistent state " + obj).toString());
                     }
@@ -449,10 +449,10 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
                     break;
                 }
                 do {
-                    if (atomicReferenceFieldUpdater.compareAndSet(dispatchedContinuation, symbol, this)) {
+                    if (atomicReferenceFieldUpdater.compareAndSet(dispatchedContinuation, joiner, this)) {
                         break loop0;
                     }
-                } while (atomicReferenceFieldUpdater.get(dispatchedContinuation) == symbol);
+                } while (atomicReferenceFieldUpdater.get(dispatchedContinuation) == joiner);
             }
             if (th == null) {
                 return;
@@ -506,9 +506,9 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
 
     @Override
     public final void resumeWith(Object obj) {
-        Throwable thM139exceptionOrNullimpl = Result.m139exceptionOrNullimpl(obj);
-        if (thM139exceptionOrNullimpl != null) {
-            obj = new CompletedExceptionally(thM139exceptionOrNullimpl, false);
+        Throwable thM144exceptionOrNullimpl = Result.m144exceptionOrNullimpl(obj);
+        if (thM144exceptionOrNullimpl != null) {
+            obj = new CompletedExceptionally(thM144exceptionOrNullimpl, false);
         }
         resumeImpl(obj, this.resumeMode, null);
     }
@@ -538,16 +538,16 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
     }
 
     @Override
-    public final Symbol tryResume(Function1 function1, Object obj) {
+    public final Joiner tryResume(Function1 function1, Object obj) {
         return tryResumeImpl(function1, obj);
     }
 
-    public final Symbol tryResumeImpl(Function1 function1, Object obj) {
+    public final Joiner tryResumeImpl(Function1 function1, Object obj) {
         while (true) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _state$volatile$FU;
             Object obj2 = atomicReferenceFieldUpdater.get(this);
             boolean z = obj2 instanceof NotCompleted;
-            Symbol symbol = JobKt.RESUME_TOKEN;
+            Joiner joiner = JobKt.RESUME_TOKEN;
             if (!z) {
                 boolean z2 = obj2 instanceof CompletedContinuation;
                 return null;
@@ -558,7 +558,7 @@ public class CancellableContinuationImpl extends DispatchedTask implements Cance
                     if (!isReusable()) {
                         detachChild$kotlinx_coroutines_core();
                     }
-                    return symbol;
+                    return joiner;
                 }
             } while (atomicReferenceFieldUpdater.get(this) == obj2);
         }

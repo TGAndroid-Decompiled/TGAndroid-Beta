@@ -2,7 +2,6 @@ package org.telegram.ui.Business;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -22,19 +21,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.CallLogActivity;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
-import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -46,6 +39,10 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
+import org.telegram.ui.web.BotWebViewContainer;
+import org.telegram.ui.web.HistoryFragment;
+import org.telegram.ui.web.WebActionBar;
 
 public final class LocationActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public String address;
@@ -61,7 +58,7 @@ public final class LocationActivity extends BaseFragment implements Notification
     public boolean mapAddress;
     public ClipRoundedDrawable mapLoadingDrawable;
     public AnonymousClass6 mapMarker;
-    public UserCell.AnonymousClass2 mapPreview;
+    public BotWebViewContainer.AnonymousClass1 mapPreview;
     public FrameLayout mapPreviewContainer;
     public int shiftDp;
     public boolean valueSet;
@@ -114,7 +111,7 @@ public final class LocationActivity extends BaseFragment implements Notification
         int i2 = 1;
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessLocation));
-        this.actionBar.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 9));
+        this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 5));
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i3 = Theme.key_actionBarDefaultIcon;
         int i4 = 0;
@@ -123,40 +120,33 @@ public final class LocationActivity extends BaseFragment implements Notification
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.doneButtonDrawable);
         checkDone$2(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        int i5 = Theme.key_windowBackgroundGray;
-        frameLayout.setBackgroundColor(Theme.getColor(null, i5, false));
-        ?? r6 = new EditTextBoldCursor(getParentActivity()) {
+        frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
+        ?? r5 = new EditTextBoldCursor(getContext()) {
             public final AnimatedTextView.AnimatedTextDrawable limit;
             public final AnimatedColor limitColor = new AnimatedColor(this);
             public int limitCount;
 
             {
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
                 this.limit = animatedTextDrawable;
-                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                animatedTextDrawable.moveAmplitude = 0.2f;
-                animatedTextDrawable.animateDuration = 160L;
-                animatedTextDrawable.animateWave = 1.0f;
-                animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+                animatedTextDrawable.setAnimationProperties(0.2f, 0L, 160L, CubicBezierInterpolator.EASE_OUT_QUINT);
                 animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.33f));
                 animatedTextDrawable.setCallback(this);
-                animatedTextDrawable.gravity = 5;
+                animatedTextDrawable.setGravity(5);
             }
 
             @Override
             public final void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-                int i6 = this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, LocationActivity.this.getResourceProvider()), false);
-                animatedTextDrawable.textPaint.setColor(i6);
-                animatedTextDrawable.alpha = Color.alpha(i6);
+                animatedTextDrawable.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, LocationActivity.this.getResourceProvider())));
                 animatedTextDrawable.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
                 animatedTextDrawable.draw(canvas);
             }
 
             @Override
-            public final void onTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
-                super.onTextChanged(charSequence, i6, i7, i8);
+            public final void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
+                super.onTextChanged(charSequence, i5, i6, i7);
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
                 if (animatedTextDrawable != null) {
                     this.limitCount = 96 - charSequence.length();
@@ -165,7 +155,7 @@ public final class LocationActivity extends BaseFragment implements Notification
                     if (this.limitCount <= 12) {
                         str = "" + this.limitCount;
                     }
-                    animatedTextDrawable.setText(str, true, true);
+                    animatedTextDrawable.setText(str);
                 }
             }
 
@@ -174,12 +164,12 @@ public final class LocationActivity extends BaseFragment implements Notification
                 return drawable == this.limit || super.verifyDrawable(drawable);
             }
         };
-        this.editText = r6;
-        r6.setTextSize(1, 17.0f);
+        this.editText = r5;
+        r5.setTextSize(1, 17.0f);
         setHintTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteHintText, false));
         AnonymousClass2 anonymousClass2 = this.editText;
-        int i6 = Theme.key_windowBackgroundWhiteBlackText;
-        anonymousClass2.setTextColor(Theme.getColor(null, i6, false));
+        int i5 = Theme.key_windowBackgroundWhiteBlackText;
+        anonymousClass2.setTextColor(Theme.getColor(null, i5, false));
         setBackgroundDrawable(null);
         setMaxLines(5);
         setSingleLine(false);
@@ -187,17 +177,17 @@ public final class LocationActivity extends BaseFragment implements Notification
         setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         setInputType(180225);
         setHint(LocaleController.getString(R.string.BusinessLocationAddress));
-        setCursorColor(Theme.getColor(null, i6, false));
+        setCursorColor(Theme.getColor(null, i5, false));
         setCursorSize(AndroidUtilities.dp(19.0f));
         setCursorWidth(1.5f);
-        addTextChangedListener(new ArticleViewer.AnonymousClass16(this, i));
+        addTextChangedListener(new WebActionBar.AnonymousClass5(this, i));
         setFilters(new InputFilter[]{new AnonymousClass4()});
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.editTextContainer = frameLayout2;
         frameLayout2.addView(this.editText, LayoutHelper.createFrame(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.editTextContainer;
-        int i7 = Theme.key_windowBackgroundWhite;
-        frameLayout3.setBackgroundColor(getThemedColor(i7));
+        int i6 = Theme.key_windowBackgroundWhite;
+        frameLayout3.setBackgroundColor(getThemedColor(i6));
         AnonymousClass2 anonymousClass3 = this.editText;
         if (anonymousClass3 != null) {
             this.ignoreEditText = true;
@@ -206,24 +196,24 @@ public final class LocationActivity extends BaseFragment implements Notification
             anonymousClass4.setSelection(anonymousClass4.getText().length());
             this.ignoreEditText = false;
         }
-        this.mapPreview = new UserCell.AnonymousClass2(this, context, i2);
+        this.mapPreview = new BotWebViewContainer.AnonymousClass1(this, context, i2);
         SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(R.raw.map_placeholder, Theme.key_chat_outLocationIcon, 0.2f);
-        svgThumb.setColorKey(i6, getResourceProvider());
+        svgThumb.setColorKey(i5, getResourceProvider());
         svgThumb.setAspectCenter(true);
         svgThumb.setParent(this.mapPreview.getImageReceiver());
         ClipRoundedDrawable clipRoundedDrawable = new ClipRoundedDrawable(svgThumb);
         this.mapLoadingDrawable = clipRoundedDrawable;
         clipRoundedDrawable.setCallback(this.mapPreview);
-        this.mapPreview.setBackgroundColor(getThemedColor(i7));
+        this.mapPreview.setBackgroundColor(getThemedColor(i6));
         this.mapMarker = new View(this, context) {
             public final ImageReceiver avatarImage;
             public final Drawable pin = getContext().getResources().getDrawable(R.drawable.map_pin_photo).mutate();
 
             {
-                AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+                AvatarDrawable avatarDrawable = new AvatarDrawable();
                 ImageReceiver imageReceiver = new ImageReceiver(this);
                 this.avatarImage = imageReceiver;
-                avatarDrawable.setInfo(UserConfig.selectedAccount, this.getUserConfig().getCurrentUser());
+                avatarDrawable.setInfo(this.getUserConfig().getCurrentUser());
                 imageReceiver.setForUserOrChat(this.getUserConfig().getCurrentUser(), avatarDrawable);
             }
 
@@ -241,25 +231,21 @@ public final class LocationActivity extends BaseFragment implements Notification
             }
 
             @Override
-            public final void onMeasure(int i8, int i9) {
+            public final void onMeasure(int i7, int i8) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(85.0f), 1073741824));
             }
         };
         FrameLayout frameLayout4 = new FrameLayout(context);
         this.mapPreviewContainer = frameLayout4;
-        frameLayout4.addView(this.mapPreview, LayoutHelper.createFrame(-1.0f, -1));
+        frameLayout4.addView(this.mapPreview, LayoutHelper.createFrame(-1, -1.0f));
         this.mapPreviewContainer.addView(this.mapMarker, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, -31.0f, 0.0f, 0.0f));
         updateMapPreview();
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new CallLogActivity$$ExternalSyntheticLambda3(this, 8), new LocationActivity$$ExternalSyntheticLambda1(this, i4), null, getResourceProvider());
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new GiftSheet$$ExternalSyntheticLambda8(this, 7), new LocationActivity$$ExternalSyntheticLambda1(this, i4), null);
         this.listView = universalRecyclerView;
         universalRecyclerView.setSections();
-        UniversalRecyclerView universalRecyclerView2 = this.listView;
-        universalRecyclerView2.adapter.applyBackground = false;
-        frameLayout.addView(universalRecyclerView2, LayoutHelper.createFrame(-1.0f, -1));
-        ActionBar actionBar = this.actionBar;
-        UniversalRecyclerView universalRecyclerView3 = this.listView;
-        actionBar.getClass();
-        actionBar.setAdaptiveBackground(universalRecyclerView3, true, i5, Theme.key_actionBarDefault);
+        this.listView.adapter.setApplyBackground(false);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.actionBar.setAdaptiveBackground(this.listView, true);
         setValue$3();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -312,13 +298,11 @@ public final class LocationActivity extends BaseFragment implements Notification
         }
         if (z) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, null);
-            String string = LocaleController.getString(R.string.UnsavedChanges);
-            AlertDialog alertDialog = builder.alertDialog;
-            alertDialog.title = string;
-            alertDialog.message = LocaleController.getString(R.string.BusinessLocationUnsavedChanges);
+            builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
+            builder.setMessage(LocaleController.getString(R.string.BusinessLocationUnsavedChanges));
             builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new LocationActivity$$ExternalSyntheticLambda1(this, 1));
             builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new LocationActivity$$ExternalSyntheticLambda1(this, 2));
-            showDialog(alertDialog);
+            showDialog(builder.create());
         }
         return false;
     }
@@ -342,7 +326,7 @@ public final class LocationActivity extends BaseFragment implements Notification
     }
 
     public final void processDone$3() {
-        if (this.doneButtonDrawable.progress > 0.0f) {
+        if (this.doneButtonDrawable.getProgress() > 0.0f) {
             return;
         }
         boolean z = this.geo == null && TextUtils.isEmpty(this.address);
@@ -434,13 +418,13 @@ public final class LocationActivity extends BaseFragment implements Notification
     }
 
     public final void updateMapPreview() {
-        UserCell.AnonymousClass2 anonymousClass2;
+        BotWebViewContainer.AnonymousClass1 anonymousClass1;
         AnonymousClass6 anonymousClass6 = this.mapMarker;
-        if (anonymousClass6 == null || (anonymousClass2 = this.mapPreview) == null) {
+        if (anonymousClass6 == null || (anonymousClass1 = this.mapPreview) == null) {
             return;
         }
         if (this.geo == null) {
-            anonymousClass2.setImageBitmap(null);
+            anonymousClass1.setImageBitmap(null);
             return;
         }
         anonymousClass6.setAlpha(0.0f);
@@ -449,8 +433,8 @@ public final class LocationActivity extends BaseFragment implements Notification
         float f = AndroidUtilities.density;
         int i = (int) (measuredWidth / f);
         int iMin = Math.min(2, (int) Math.ceil(f));
-        UserCell.AnonymousClass2 anonymousClass3 = this.mapPreview;
+        BotWebViewContainer.AnonymousClass1 anonymousClass2 = this.mapPreview;
         TLRPC.GeoPoint geoPoint = this.geo;
-        anonymousClass3.setImage$1(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint.lat, geoPoint._long, 0L, iMin * i, iMin * 240, 15, iMin)), RendererCapabilities.CC.m(i, "_240"), this.mapLoadingDrawable, null);
+        anonymousClass2.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(geoPoint.lat, geoPoint._long, 0L, iMin * i, iMin * 240, 15, iMin)), RendererCapabilities.CC.m(i, "_240"), this.mapLoadingDrawable, 0, (Object) null);
     }
 }

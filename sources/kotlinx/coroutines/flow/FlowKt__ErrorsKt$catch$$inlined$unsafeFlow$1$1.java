@@ -1,18 +1,18 @@
 package kotlinx.coroutines.flow;
 
-import com.google.zxing.BinaryBitmap;
+import com.stripe.android.Stripe;
 import kotlin.coroutines.jvm.internal.ContinuationImpl;
 
 public final class FlowKt__ErrorsKt$catch$$inlined$unsafeFlow$1$1 extends ContinuationImpl {
-    public BinaryBitmap L$0;
+    public Stripe L$0;
     public FlowCollector L$1;
     public int label;
     public Object result;
-    public final BinaryBitmap this$0;
+    public final Stripe this$0;
 
-    public FlowKt__ErrorsKt$catch$$inlined$unsafeFlow$1$1(BinaryBitmap binaryBitmap, ContinuationImpl continuationImpl) {
+    public FlowKt__ErrorsKt$catch$$inlined$unsafeFlow$1$1(Stripe stripe, ContinuationImpl continuationImpl) {
         super(continuationImpl);
-        this.this$0 = binaryBitmap;
+        this.this$0 = stripe;
     }
 
     @Override

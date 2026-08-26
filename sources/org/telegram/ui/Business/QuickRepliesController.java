@@ -12,12 +12,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda71;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda74;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda8;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda121;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda19;
+import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda8;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda139;
+import org.telegram.ui.Stories.StealthModeAlert$$ExternalSyntheticLambda3;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda8;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 
 public final class QuickRepliesController {
     public static volatile QuickRepliesController[] Instance = new QuickRepliesController[4];
@@ -116,7 +116,7 @@ public final class QuickRepliesController {
         return null;
     }
 
-    public final void load(Runnable runnable, boolean z) {
+    public final void load(boolean z, Runnable runnable) {
         long j;
         long j2;
         long j3;
@@ -131,7 +131,7 @@ public final class QuickRepliesController {
         int i2 = this.currentAccount;
         if (z) {
             MessagesStorage messagesStorage = MessagesStorage.getInstance(i2);
-            messagesStorage.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(this, messagesStorage, UserConfig.getInstance(i2).getClientUserId(), runnable, 22));
+            messagesStorage.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(this, messagesStorage, UserConfig.getInstance(i2).getClientUserId(), runnable, 23));
             return;
         }
         TLRPC.TL_messages_getQuickReplies tL_messages_getQuickReplies = new TLRPC.TL_messages_getQuickReplies();
@@ -142,7 +142,7 @@ public final class QuickRepliesController {
         while (true) {
             ArrayList arrayList = this.replies;
             if (i4 >= arrayList.size()) {
-                ConnectionsManager.getInstance(i2).sendRequest(tL_messages_getQuickReplies, new CallLogActivity$$ExternalSyntheticLambda1(this, 11));
+                ConnectionsManager.getInstance(i2).sendRequest(tL_messages_getQuickReplies, new RichMediaUploader$$ExternalSyntheticLambda0(this, 10));
                 return;
             }
             QuickReply quickReply = (QuickReply) arrayList.get(i4);
@@ -227,12 +227,12 @@ public final class QuickRepliesController {
 
     public final boolean processUpdate(final TLRPC.Update update, String str, int i) {
         if (update instanceof TL_update.TL_updateQuickReplyMessage) {
-            ArticleViewer$$ExternalSyntheticLambda71 articleViewer$$ExternalSyntheticLambda71 = new ArticleViewer$$ExternalSyntheticLambda71(this, ((TL_update.TL_updateQuickReplyMessage) update).message, str, i, 7);
+            BotBiometry$$ExternalSyntheticLambda8 botBiometry$$ExternalSyntheticLambda8 = new BotBiometry$$ExternalSyntheticLambda8(this, ((TL_update.TL_updateQuickReplyMessage) update).message, str, i);
             if (this.loaded) {
-                articleViewer$$ExternalSyntheticLambda71.run();
+                botBiometry$$ExternalSyntheticLambda8.run();
                 return true;
             }
-            load(articleViewer$$ExternalSyntheticLambda71, true);
+            load(true, botBiometry$$ExternalSyntheticLambda8);
             return true;
         }
         if (update instanceof TL_update.TL_updateQuickReplies) {
@@ -300,7 +300,7 @@ public final class QuickRepliesController {
                                     quickReplyFindReply.topMessage = null;
                                     long clientUserId = UserConfig.getInstance(i5).getClientUserId();
                                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i5);
-                                    messagesStorage.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(quickRepliesController2, messagesStorage, quickReplyFindReply, clientUserId, 23));
+                                    messagesStorage.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(quickRepliesController2, messagesStorage, quickReplyFindReply, clientUserId, 22));
                                 }
                                 break;
                             } else {
@@ -334,7 +334,7 @@ public final class QuickRepliesController {
                                 int i7 = quickReplyFindReply2.id;
                                 int i8 = quickRepliesController3.currentAccount;
                                 MessagesStorage messagesStorage2 = MessagesStorage.getInstance(i8);
-                                messagesStorage2.getStorageQueue().postRunnable(new ArticleViewer$$ExternalSyntheticLambda74(messagesStorage2, i7, 7));
+                                messagesStorage2.getStorageQueue().postRunnable(new Theme$$ExternalSyntheticLambda19(messagesStorage2, i7, 7));
                                 quickRepliesController3.saveToCache();
                                 NotificationCenter.getInstance(i8).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             }
@@ -358,7 +358,7 @@ public final class QuickRepliesController {
                                     quickReplyFindReply3.topMessage = null;
                                     long clientUserId2 = UserConfig.getInstance(i9).getClientUserId();
                                     MessagesStorage messagesStorage3 = MessagesStorage.getInstance(i9);
-                                    messagesStorage3.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(quickRepliesController4, messagesStorage3, quickReplyFindReply3, clientUserId2, 23));
+                                    messagesStorage3.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(quickRepliesController4, messagesStorage3, quickReplyFindReply3, clientUserId2, 22));
                                 } else {
                                     quickRepliesController4.saveToCache();
                                     NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
@@ -372,7 +372,7 @@ public final class QuickRepliesController {
                 runnable.run();
                 return true;
             }
-            load(runnable, true);
+            load(true, runnable);
             return true;
         }
         if (update instanceof TL_update.TL_updateNewQuickReply) {
@@ -440,7 +440,7 @@ public final class QuickRepliesController {
                                     quickReplyFindReply.topMessage = null;
                                     long clientUserId = UserConfig.getInstance(i6).getClientUserId();
                                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i6);
-                                    messagesStorage.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(quickRepliesController2, messagesStorage, quickReplyFindReply, clientUserId, 23));
+                                    messagesStorage.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(quickRepliesController2, messagesStorage, quickReplyFindReply, clientUserId, 22));
                                 }
                                 break;
                             } else {
@@ -474,7 +474,7 @@ public final class QuickRepliesController {
                                 int i8 = quickReplyFindReply2.id;
                                 int i9 = quickRepliesController3.currentAccount;
                                 MessagesStorage messagesStorage2 = MessagesStorage.getInstance(i9);
-                                messagesStorage2.getStorageQueue().postRunnable(new ArticleViewer$$ExternalSyntheticLambda74(messagesStorage2, i8, 7));
+                                messagesStorage2.getStorageQueue().postRunnable(new Theme$$ExternalSyntheticLambda19(messagesStorage2, i8, 7));
                                 quickRepliesController3.saveToCache();
                                 NotificationCenter.getInstance(i9).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             }
@@ -498,7 +498,7 @@ public final class QuickRepliesController {
                                     quickReplyFindReply3.topMessage = null;
                                     long clientUserId2 = UserConfig.getInstance(i10).getClientUserId();
                                     MessagesStorage messagesStorage3 = MessagesStorage.getInstance(i10);
-                                    messagesStorage3.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(quickRepliesController4, messagesStorage3, quickReplyFindReply3, clientUserId2, 23));
+                                    messagesStorage3.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(quickRepliesController4, messagesStorage3, quickReplyFindReply3, clientUserId2, 22));
                                 } else {
                                     quickRepliesController4.saveToCache();
                                     NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
@@ -512,7 +512,7 @@ public final class QuickRepliesController {
                 runnable2.run();
                 return true;
             }
-            load(runnable2, true);
+            load(true, runnable2);
             return true;
         }
         if (update instanceof TL_update.TL_updateDeleteQuickReply) {
@@ -580,7 +580,7 @@ public final class QuickRepliesController {
                                     quickReplyFindReply.topMessage = null;
                                     long clientUserId = UserConfig.getInstance(i7).getClientUserId();
                                     MessagesStorage messagesStorage = MessagesStorage.getInstance(i7);
-                                    messagesStorage.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(quickRepliesController2, messagesStorage, quickReplyFindReply, clientUserId, 23));
+                                    messagesStorage.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(quickRepliesController2, messagesStorage, quickReplyFindReply, clientUserId, 22));
                                 }
                                 break;
                             } else {
@@ -614,7 +614,7 @@ public final class QuickRepliesController {
                                 int i9 = quickReplyFindReply2.id;
                                 int i10 = quickRepliesController3.currentAccount;
                                 MessagesStorage messagesStorage2 = MessagesStorage.getInstance(i10);
-                                messagesStorage2.getStorageQueue().postRunnable(new ArticleViewer$$ExternalSyntheticLambda74(messagesStorage2, i9, 7));
+                                messagesStorage2.getStorageQueue().postRunnable(new Theme$$ExternalSyntheticLambda19(messagesStorage2, i9, 7));
                                 quickRepliesController3.saveToCache();
                                 NotificationCenter.getInstance(i10).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                             }
@@ -638,7 +638,7 @@ public final class QuickRepliesController {
                                     quickReplyFindReply3.topMessage = null;
                                     long clientUserId2 = UserConfig.getInstance(i11).getClientUserId();
                                     MessagesStorage messagesStorage3 = MessagesStorage.getInstance(i11);
-                                    messagesStorage3.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(quickRepliesController4, messagesStorage3, quickReplyFindReply3, clientUserId2, 23));
+                                    messagesStorage3.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(quickRepliesController4, messagesStorage3, quickReplyFindReply3, clientUserId2, 22));
                                 } else {
                                     quickRepliesController4.saveToCache();
                                     NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
@@ -652,7 +652,7 @@ public final class QuickRepliesController {
                 runnable3.run();
                 return true;
             }
-            load(runnable3, true);
+            load(true, runnable3);
             return true;
         }
         if (!(update instanceof TL_update.TL_updateDeleteQuickReplyMessages)) {
@@ -722,7 +722,7 @@ public final class QuickRepliesController {
                                 quickReplyFindReply.topMessage = null;
                                 long clientUserId = UserConfig.getInstance(i8).getClientUserId();
                                 MessagesStorage messagesStorage = MessagesStorage.getInstance(i8);
-                                messagesStorage.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(quickRepliesController2, messagesStorage, quickReplyFindReply, clientUserId, 23));
+                                messagesStorage.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(quickRepliesController2, messagesStorage, quickReplyFindReply, clientUserId, 22));
                             }
                             break;
                         } else {
@@ -756,7 +756,7 @@ public final class QuickRepliesController {
                             int i10 = quickReplyFindReply2.id;
                             int i11 = quickRepliesController3.currentAccount;
                             MessagesStorage messagesStorage2 = MessagesStorage.getInstance(i11);
-                            messagesStorage2.getStorageQueue().postRunnable(new ArticleViewer$$ExternalSyntheticLambda74(messagesStorage2, i10, 7));
+                            messagesStorage2.getStorageQueue().postRunnable(new Theme$$ExternalSyntheticLambda19(messagesStorage2, i10, 7));
                             quickRepliesController3.saveToCache();
                             NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
                         }
@@ -780,7 +780,7 @@ public final class QuickRepliesController {
                                 quickReplyFindReply3.topMessage = null;
                                 long clientUserId2 = UserConfig.getInstance(i12).getClientUserId();
                                 MessagesStorage messagesStorage3 = MessagesStorage.getInstance(i12);
-                                messagesStorage3.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(quickRepliesController4, messagesStorage3, quickReplyFindReply3, clientUserId2, 23));
+                                messagesStorage3.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(quickRepliesController4, messagesStorage3, quickReplyFindReply3, clientUserId2, 22));
                             } else {
                                 quickRepliesController4.saveToCache();
                                 NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
@@ -794,7 +794,7 @@ public final class QuickRepliesController {
             runnable4.run();
             return true;
         }
-        load(runnable4, true);
+        load(true, runnable4);
         return true;
     }
 
@@ -808,14 +808,14 @@ public final class QuickRepliesController {
         tL_messages_editQuickReplyShortcut.shortcut_id = i;
         tL_messages_editQuickReplyShortcut.shortcut = str;
         int i2 = this.currentAccount;
-        ConnectionsManager.getInstance(i2).sendRequest(tL_messages_editQuickReplyShortcut, new PassportActivity$$ExternalSyntheticLambda1(4));
+        ConnectionsManager.getInstance(i2).sendRequest(tL_messages_editQuickReplyShortcut, new StealthModeAlert$$ExternalSyntheticLambda3(1));
         saveToCache();
         NotificationCenter.getInstance(i2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.quickRepliesUpdated, new Object[0]);
     }
 
     public final void saveToCache() {
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new ArticleViewer$$ExternalSyntheticLambda8(16, this, messagesStorage));
+        messagesStorage.getStorageQueue().postRunnable(new ChatActionCell$$ExternalSyntheticLambda8(12, this, messagesStorage));
     }
 
     public final QuickReply findReply(String str) {

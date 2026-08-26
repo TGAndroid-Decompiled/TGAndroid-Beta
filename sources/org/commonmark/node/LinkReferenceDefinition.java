@@ -7,6 +7,6 @@ public final class LinkReferenceDefinition extends Node {
 
     @Override
     public final void accept(AbstractVisitor abstractVisitor) {
-        abstractVisitor.visitChildren(this);
+        abstractVisitor.visit(this);
     }
 }

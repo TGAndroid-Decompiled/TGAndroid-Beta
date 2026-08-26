@@ -4,26 +4,27 @@ import android.content.Context;
 import android.graphics.Point;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
 
-public final class ChatAttachAlertEmojiLayout extends ChatAttachAlert.AttachAlertLayout {
-    public final EmojiView emojiView;
-    public final RecyclerListView gridView;
-    public final LinearLayoutManager layoutManager;
-    public final boolean sticker;
-    public final HorizontalScrollView tabsView;
+public class ChatAttachAlertEmojiLayout extends ChatAttachAlert.AttachAlertLayout {
+    public int currentItemTop;
+    private final EmojiView emojiView;
+    private final RecyclerListView gridView;
+    private final LinearLayoutManager layoutManager;
+    private final boolean sticker;
+    private final View tabsView;
 
     public ChatAttachAlertEmojiLayout(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
-        super(context, resourcesProvider, chatAttachAlert);
+        super(chatAttachAlert, context, resourcesProvider);
+        this.currentItemTop = 0;
         this.sticker = z;
         this.occupyNavigationBar = true;
         BaseFragment baseFragment = chatAttachAlert.baseFragment;
@@ -32,42 +33,62 @@ public final class ChatAttachAlertEmojiLayout extends ChatAttachAlert.AttachAler
         this.emojiView = emojiView;
         emojiView.shouldLightenBackground = false;
         emojiView.setAllow(z2, z, false, false);
-        emojiView.mForceHideBackspaceButton = true;
-        EmojiView.AnonymousClass26 anonymousClass26 = emojiView.backspaceButton;
-        if (anonymousClass26 != null) {
-            anonymousClass26.setVisibility(8);
-        }
-        emojiView.mForceHideSettingsButton = true;
-        ImageView imageView = emojiView.stickerSettingsButton;
-        if (imageView != null) {
-            imageView.setVisibility(8);
-        }
-        emojiView.disableStickerEditor = true;
-        addView(emojiView, LayoutHelper.createFrame(-1.0f, -1));
-        HorizontalScrollView tabsForType = emojiView.getTabsForType(z2 ? 1 : 0);
-        this.tabsView = tabsForType;
+        emojiView.forceHideBackspaceButton();
+        emojiView.forceHideSettingsButton();
+        emojiView.setDisableStickerEditor();
+        addView(emojiView, LayoutHelper.createFrame(-1, -1.0f));
+        this.tabsView = emojiView.getTabsForType(z2 ? 1 : 0);
         RecyclerListView listViewForType = emojiView.getListViewForType(z2 ? 1 : 0);
         this.gridView = listViewForType;
-        listViewForType.addOnScrollListener(new ChatActivity.AnonymousClass53(this, 19));
+        listViewForType.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int i) {
+                RecyclerListView.Holder holder;
+                if (i == 0) {
+                    int iDp = AndroidUtilities.dp(13.0f);
+                    ActionBarMenuItem actionBarMenuItem = ChatAttachAlertEmojiLayout.this.parentAlert.selectedMenuItem;
+                    int iDp2 = iDp + (actionBarMenuItem != null ? AndroidUtilities.dp(actionBarMenuItem.getAlpha() * 26.0f) : 0);
+                    int backgroundPaddingTop = ChatAttachAlertEmojiLayout.this.parentAlert.getBackgroundPaddingTop();
+                    if (((ChatAttachAlertEmojiLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - iDp2) + backgroundPaddingTop >= ActionBar.getCurrentActionBarHeight() || (holder = (RecyclerListView.Holder) ChatAttachAlertEmojiLayout.this.gridView.findViewHolderForAdapterPosition(0)) == null || holder.itemView.getTop() <= AndroidUtilities.dp(7.0f)) {
+                        return;
+                    }
+                    ChatAttachAlertEmojiLayout.this.gridView.smoothScrollBy(0, holder.itemView.getTop() - AndroidUtilities.dp(7.0f));
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                ChatAttachAlertEmojiLayout chatAttachAlertEmojiLayout = ChatAttachAlertEmojiLayout.this;
+                chatAttachAlertEmojiLayout.parentAlert.updateLayout(chatAttachAlertEmojiLayout, true, i2);
+                ChatAttachAlertEmojiLayout.this.checkTopTabPosition();
+            }
+        });
         this.layoutManager = (LinearLayoutManager) listViewForType.getLayoutManager();
-        tabsForType.setTranslationY(Math.max(0, getCurrentItemTop()));
+        checkTopTabPosition();
+    }
+
+    public void checkTopTabPosition() {
+        this.tabsView.setTranslationY(Math.max(0, getCurrentItemTop()));
     }
 
     @Override
     public int getCurrentItemTop() {
-        RecyclerListView recyclerListView = this.gridView;
-        if (recyclerListView.getChildCount() <= 0) {
-            recyclerListView.setTopGlowOffset(recyclerListView.getPaddingTop());
+        if (this.gridView.getChildCount() <= 0) {
+            RecyclerListView recyclerListView = this.gridView;
+            int paddingTop = recyclerListView.getPaddingTop();
+            this.currentItemTop = paddingTop;
+            recyclerListView.setTopGlowOffset(paddingTop);
             return Integer.MAX_VALUE;
         }
-        View childAt = recyclerListView.getChildAt(0);
-        RecyclerListView.Holder holder = (RecyclerListView.Holder) recyclerListView.findContainingViewHolder(childAt);
+        View childAt = this.gridView.getChildAt(0);
+        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.gridView.findContainingViewHolder(childAt);
         int top = childAt.getTop() - AndroidUtilities.dp(36.0f);
         int iDp = AndroidUtilities.dp(7.0f);
         if (top < AndroidUtilities.dp(7.0f) || holder == null || holder.getAdapterPosition() != 0) {
             top = iDp;
         }
-        recyclerListView.setTopGlowOffset(top);
+        this.gridView.setTopGlowOffset(top);
+        this.currentItemTop = top;
         return top;
     }
 
@@ -82,18 +103,18 @@ public final class ChatAttachAlertEmojiLayout extends ChatAttachAlert.AttachAler
     }
 
     @Override
-    public final int needsActionBar() {
+    public int needsActionBar() {
         return 1;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        this.tabsView.setTranslationY(Math.max(0, getCurrentItemTop()));
+        checkTopTabPosition();
     }
 
     @Override
-    public final void onPreMeasure(int i, int i2) {
+    public void onPreMeasure(int i, int i2) {
         int i3;
         ((FrameLayout.LayoutParams) getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight();
         if (AndroidUtilities.isTablet()) {
@@ -111,25 +132,23 @@ public final class ChatAttachAlertEmojiLayout extends ChatAttachAlert.AttachAler
             iDp = 0;
         }
         int iDp2 = AndroidUtilities.dp(36.0f) + iDp;
-        RecyclerListView recyclerListView = this.gridView;
-        if (recyclerListView.getPaddingTop() != iDp2) {
-            recyclerListView.setPadding(AndroidUtilities.dp(6.0f), iDp2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(48.0f));
+        if (this.gridView.getPaddingTop() != iDp2) {
+            this.gridView.setPadding(AndroidUtilities.dp(6.0f), iDp2, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(48.0f));
         }
     }
 
     @Override
-    public final void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
-        ChatAttachAlert chatAttachAlert = this.parentAlert;
+    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
         try {
-            chatAttachAlert.actionBar.getTitleTextView().setBuildFullLayout(true);
+            this.parentAlert.actionBar.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
-        chatAttachAlert.actionBar.setTitle(LocaleController.getString(this.sticker ? R.string.SelectSticker : R.string.SelectEmoji));
+        this.parentAlert.actionBar.setTitle(LocaleController.getString(this.sticker ? R.string.SelectSticker : R.string.SelectEmoji));
         this.layoutManager.scrollToPositionWithOffset(0, 0);
     }
 
     @Override
-    public final void scrollToTop() {
+    public void scrollToTop() {
         this.gridView.smoothScrollToPosition(0);
     }
 

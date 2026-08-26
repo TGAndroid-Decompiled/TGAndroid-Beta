@@ -1,6 +1,6 @@
 package org.telegram.ui.bots;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.widget.FrameLayout;
@@ -20,10 +20,9 @@ import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.ThemeSetUrlActivity$$ExternalSyntheticLambda6;
 
 public abstract class BotVerifySheet {
-    public static void openRemoveVerify(Activity activity, final int i, final long j, final long j2, TL_bots.botVerifierSettings botverifiersettings, final BotVerifySheet$$ExternalSyntheticLambda1 botVerifySheet$$ExternalSyntheticLambda1) {
+    public static void openRemoveVerify(Context context, final int i, final long j, final long j2, TL_bots.botVerifierSettings botverifiersettings, final BotVerifySheet$$ExternalSyntheticLambda1 botVerifySheet$$ExternalSyntheticLambda1) {
         String forcedFirstName;
         TLObject tLObject;
         if (j2 >= 0) {
@@ -40,39 +39,31 @@ public abstract class BotVerifySheet {
                 tLObject = chat;
             }
         }
-        FrameLayout frameLayout = new FrameLayout(activity);
-        FrameLayout frameLayout2 = new FrameLayout(activity);
+        FrameLayout frameLayout = new FrameLayout(context);
+        FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), Theme.getColor(null, Theme.key_groupcreate_spanBackground, false)));
-        BackupImageView backupImageView = new BackupImageView(activity);
+        BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
-        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
         avatarDrawable.setInfo(tLObject);
-        backupImageView.imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
-        backupImageView.onNewImageSet();
+        backupImageView.setForUserOrChat(tLObject, avatarDrawable);
         frameLayout2.addView(backupImageView, LayoutHelper.createFrame(28, 28, 51));
-        BackupImageView backupImageView2 = new BackupImageView(activity);
+        BackupImageView backupImageView2 = new BackupImageView(context);
         backupImageView2.setEmojiColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_chats_verifiedBackground, false), PorterDuff.Mode.SRC_IN));
-        backupImageView2.setAnimatedEmojiDrawable(AnimatedEmojiDrawable.make(i, botverifiersettings.icon, null, 3));
+        backupImageView2.setAnimatedEmojiDrawable(AnimatedEmojiDrawable.make(i, 3, botverifiersettings.icon));
         frameLayout2.addView(backupImageView2, LayoutHelper.createFrame(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
-        SimpleTextView simpleTextView = new SimpleTextView(activity);
+        SimpleTextView simpleTextView = new SimpleTextView(context);
         simpleTextView.setTextColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
         simpleTextView.setTextSize(13);
         simpleTextView.setEllipsizeByGradient(true);
-        simpleTextView.setText(forcedFirstName, false);
+        simpleTextView.setText(forcedFirstName);
         simpleTextView.setWidthWrapContent(true);
         frameLayout2.addView(simpleTextView, LayoutHelper.createFrame(-2, -2.0f, 19, 57.0f, 0.0f, 10.0f, 0.0f));
         frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-2, -2.0f, 17, 16.0f, 0.0f, 16.0f, 0.0f));
         final boolean[] zArr = new boolean[1];
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, null);
-        String string = LocaleController.getString(R.string.BotRemoveVerificationTitle);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = LocaleController.getString(j2 >= 0 ? R.string.BotRemoveVerificationText : R.string.BotRemoveVerificationChatText);
-        builder.setView(frameLayout);
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        builder.setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
+        new AlertDialog.Builder(context, 0, null).setTitle(LocaleController.getString(R.string.BotRemoveVerificationTitle)).setMessage(LocaleController.getString(j2 >= 0 ? R.string.BotRemoveVerificationText : R.string.BotRemoveVerificationChatText)).setView(frameLayout).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog2, int i2) {
+            public final void onClick(AlertDialog alertDialog, int i2) {
                 boolean[] zArr2 = zArr;
                 if (zArr2[0]) {
                     return;
@@ -84,10 +75,8 @@ public abstract class BotVerifySheet {
                 int i3 = i;
                 setcustomverification.bot = MessagesController.getInstance(i3).getInputUser(j);
                 setcustomverification.peer = MessagesController.getInstance(i3).getInputPeer(j2);
-                ConnectionsManager.getInstance(i3).sendRequest(setcustomverification, new ThemeSetUrlActivity$$ExternalSyntheticLambda6(10, zArr2, botVerifySheet$$ExternalSyntheticLambda1));
+                ConnectionsManager.getInstance(i3).sendRequest(setcustomverification, new BotVerifySheet$$ExternalSyntheticLambda6(0, zArr2, botVerifySheet$$ExternalSyntheticLambda1));
             }
-        });
-        builder.makeRed(-1);
-        builder.show();
+        }).makeRed(-1).show();
     }
 }

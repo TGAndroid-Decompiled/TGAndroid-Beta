@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -18,7 +19,6 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda5;
 
 public final class SelectPeerView extends FrameLayout {
     public final AvatarDrawable avatarDrawable;
@@ -30,7 +30,7 @@ public final class SelectPeerView extends FrameLayout {
     public SelectPeerView(Activity activity, int i) {
         super(activity);
         this.currentAccount = i;
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(activity);
         this.imageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(15.0f));
@@ -60,16 +60,14 @@ public final class SelectPeerView extends FrameLayout {
         AvatarDrawable avatarDrawable = this.avatarDrawable;
         if (clientUserId >= 0) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(clientUserId));
-            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
-            backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-            backupImageView.onNewImageSet();
+            avatarDrawable.setInfo(user);
+            backupImageView.setForUserOrChat(user, avatarDrawable);
             textView.setText(UserObject.getUserName(user));
             return;
         }
         TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-clientUserId));
-        avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
-        backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-        backupImageView.onNewImageSet();
+        avatarDrawable.setInfo(chat);
+        backupImageView.setForUserOrChat(chat, avatarDrawable);
         textView.setText(chat == null ? "" : chat.title);
     }
 
@@ -84,7 +82,7 @@ public final class SelectPeerView extends FrameLayout {
             setAlpha(z ? 1.0f : 0.0f);
         } else {
             setVisibility(0);
-            ViewPropertyAnimator duration = animate().alpha(z ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new TodoItemMenu$$ExternalSyntheticLambda5(14, this, z)).setDuration(320L);
+            ViewPropertyAnimator duration = animate().alpha(z ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new FileLoader$$ExternalSyntheticLambda1(this, z, 20)).setDuration(320L);
             this.showAnimator = duration;
             duration.start();
         }

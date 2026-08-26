@@ -1,11 +1,8 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.view.View;
 
-public final class PaymentFormActivity$$ExternalSyntheticLambda29 implements RequestDelegate {
+public final class PaymentFormActivity$$ExternalSyntheticLambda29 implements View.OnClickListener {
     public final int $r8$classId;
     public final PaymentFormActivity f$0;
 
@@ -15,27 +12,52 @@ public final class PaymentFormActivity$$ExternalSyntheticLambda29 implements Req
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                PaymentFormActivity paymentFormActivity = this.f$0;
-                paymentFormActivity.getClass();
-                AndroidUtilities.runOnUIThread(new PaymentFormActivity$$ExternalSyntheticLambda36(paymentFormActivity, tL_error, tLObject, 0));
+                this.f$0.lambda$createView$12(view);
                 break;
             case 1:
-                PaymentFormActivity paymentFormActivity2 = this.f$0;
-                paymentFormActivity2.getClass();
-                AndroidUtilities.runOnUIThread(new PhotoViewer$$ExternalSyntheticLambda7(4, paymentFormActivity2, tL_error));
+                this.f$0.lambda$createView$27(view);
                 break;
             case 2:
-                PaymentFormActivity paymentFormActivity3 = this.f$0;
-                paymentFormActivity3.getClass();
-                AndroidUtilities.runOnUIThread(new PaymentFormActivity$$ExternalSyntheticLambda0(paymentFormActivity3, tLObject, 2));
+                this.f$0.lambda$createView$29(view);
+                break;
+            case 3:
+                this.f$0.lambda$createView$13(view);
+                break;
+            case 4:
+                this.f$0.lambda$createView$16(view);
+                break;
+            case 5:
+                this.f$0.lambda$createView$17(view);
+                break;
+            case 6:
+                this.f$0.lambda$createView$18(view);
+                break;
+            case 7:
+                this.f$0.lambda$createView$19(view);
+                break;
+            case 8:
+                this.f$0.lambda$createView$20(view);
+                break;
+            case 9:
+                this.f$0.lambda$createView$24(view);
+                break;
+            case 10:
+                this.f$0.lambda$createView$3(view);
+                break;
+            case 11:
+                this.f$0.lambda$createView$8(view);
+                break;
+            case 12:
+                this.f$0.lambda$createView$4(view);
+                break;
+            case 13:
+                this.f$0.lambda$createView$9(view);
                 break;
             default:
-                PaymentFormActivity paymentFormActivity4 = this.f$0;
-                paymentFormActivity4.getClass();
-                AndroidUtilities.runOnUIThread(new PaymentFormActivity$$ExternalSyntheticLambda0(paymentFormActivity4, tLObject, 0));
+                this.f$0.lambda$createGooglePayButton$32(view);
                 break;
         }
     }

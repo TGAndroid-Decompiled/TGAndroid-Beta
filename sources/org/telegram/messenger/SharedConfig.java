@@ -11,8 +11,8 @@ import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.webkit.WebView;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.ResourcesFlusher;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
 import java.io.File;
 import java.io.RandomAccessFile;
@@ -33,7 +33,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda42;
 
 public class SharedConfig {
     private static final int[] LOW_SOC;
@@ -398,7 +397,7 @@ public class SharedConfig {
                 return;
             }
             lastLogsCheckTime = iCurrentTimeMillis;
-            Utilities.cacheClearQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda42(iCurrentTimeMillis, 6));
+            Utilities.cacheClearQueue.postRunnable(new SharedConfig$$ExternalSyntheticLambda1(iCurrentTimeMillis, 0));
         }
     }
 
@@ -823,13 +822,12 @@ public class SharedConfig {
         ImageLoader.getInstance().checkMediaPaths(new Emoji$$ExternalSyntheticLambda1(19));
         readOnlyStorageDirAlertShowed = true;
         AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getParentActivity(), 0, null);
-        String string = LocaleController.getString(R.string.SdCardError);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.subtitle = LocaleController.getString(R.string.SdCardErrorDescription);
+        builder.setTitle(LocaleController.getString(R.string.SdCardError));
+        builder.setSubtitle(LocaleController.getString(R.string.SdCardErrorDescription));
         builder.setPositiveButton(LocaleController.getString(R.string.DoNotUseSDCard), new SharedConfig$$ExternalSyntheticLambda5(0));
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.show();
+        AlertDialog alertDialogCreate = builder.create();
+        alertDialogCreate.setCanceledOnTouchOutside(false);
+        alertDialogCreate.show();
     }
 
     public static int lambda$saveProxyList$4(ProxyInfo proxyInfo, ProxyInfo proxyInfo2) {
@@ -1144,7 +1142,7 @@ public class SharedConfig {
         }
         if (BuildVars.LOGS_ENABLED) {
             StringBuilder sbM = DiffUtil.m("device performance info selected_class = ", i3, " (cpu_count = ", i2, ", freq = ");
-            SurfaceContainer$$ExternalSyntheticOutline0.m(sbM, iCeil, ", memoryClass = ", memoryClass, ", android version ");
+            Fragment$$ExternalSyntheticOutline0.m(sbM, iCeil, ", memoryClass = ", memoryClass, ", android version ");
             sbM.append(i);
             sbM.append(", manufacture ");
             sbM.append(Build.MANUFACTURER);
@@ -1560,7 +1558,7 @@ public class SharedConfig {
         SharedPreferences.Editor editorEdit = MessagesController.getGlobalMainSettings().edit();
         editorEdit.putBoolean("direct_share", directShare);
         editorEdit.apply();
-        FragmentManager.FragmentIntentSenderContract.removeAllDynamicShortcuts(ApplicationLoader.applicationContext);
+        ResourcesFlusher.removeAllDynamicShortcuts(ApplicationLoader.applicationContext);
         MediaDataController.getInstance(UserConfig.selectedAccount).buildShortcuts();
     }
 

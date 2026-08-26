@@ -1,28 +1,36 @@
 package org.telegram.messenger;
 
-import android.view.PixelCopy;
-import java.util.concurrent.CountDownLatch;
+import android.content.Intent;
 
-public final class AndroidUtilities$$ExternalSyntheticLambda56 implements PixelCopy.OnPixelCopyFinishedListener {
+public final class AndroidUtilities$$ExternalSyntheticLambda56 implements Runnable {
     public final int $r8$classId;
-    public final Object f$0;
+    public final Intent f$0;
 
-    public AndroidUtilities$$ExternalSyntheticLambda56(Object obj, int i) {
+    public AndroidUtilities$$ExternalSyntheticLambda56(int i, Intent intent) {
         this.$r8$classId = i;
-        this.f$0 = obj;
+        this.f$0 = intent;
     }
 
     @Override
-    public final void onPixelCopyFinished(int i) {
+    public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                ((CountDownLatch) this.f$0).countDown();
+                AndroidUtilities.lambda$googleVoiceClientService_performAction$2(this.f$0);
                 break;
             case 1:
-                ((CountDownLatch) this.f$0).countDown();
+                NotificationBadge.AdwHomeBadger.lambda$executeBadge$0(this.f$0);
+                break;
+            case 2:
+                NotificationBadge.ApexHomeBadger.lambda$executeBadge$0(this.f$0);
+                break;
+            case 3:
+                NotificationBadge.AsusHomeBadger.lambda$executeBadge$0(this.f$0);
+                break;
+            case 4:
+                NotificationBadge.DefaultBadger.lambda$executeBadge$0(this.f$0);
                 break;
             default:
-                ((Runnable) this.f$0).run();
+                NotificationBadge.SonyHomeBadger.lambda$executeBadgeByBroadcast$0(this.f$0);
                 break;
         }
     }

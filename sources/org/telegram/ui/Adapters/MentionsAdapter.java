@@ -19,7 +19,6 @@ import androidx.car.app.utils.RemoteUtils$$ExternalSyntheticLambda2;
 import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Log;
-import com.stripe.android.Stripe;
 import j$.util.List;
 import j$.util.Map;
 import java.util.ArrayList;
@@ -31,6 +30,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.ChatObject$Call$$ExternalSyntheticLambda12;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DocumentObject;
@@ -57,32 +57,28 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda4;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda5;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda16;
 import org.telegram.ui.Business.QuickRepliesActivity;
 import org.telegram.ui.Business.QuickRepliesController;
 import org.telegram.ui.Cells.BotSwitchCell;
 import org.telegram.ui.Cells.ContextLinkCell;
 import org.telegram.ui.Cells.MentionCell;
+import org.telegram.ui.Cells.PhotoEditToolCell$$ExternalSyntheticLambda0;
 import org.telegram.ui.Cells.StickerCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda208;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda248;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CombinedDrawable;
-import org.telegram.ui.Components.EmojiView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.MentionsContainerView;
 import org.telegram.ui.Components.Premium.PremiumLockIconView;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.FilterCreateActivity;
-import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda0;
-import org.telegram.ui.LoginActivity$$ExternalSyntheticLambda42;
-import org.telegram.ui.PaymentFormActivity;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda16;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda16;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.bots.BotStorage$$ExternalSyntheticLambda5;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda60;
+import org.telegram.ui.web.AddressBarList;
 
 public final class MentionsAdapter extends RecyclerListView.SelectionAdapter implements NotificationCenter.NotificationCenterDelegate {
     public LongSparseArray botInfo;
@@ -97,7 +93,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
     public int contextQueryReqid;
     public AnonymousClass4 contextQueryRunnable;
     public int contextUsernameReqid;
-    public final MentionsContainerView.AnonymousClass4 delegate;
+    public final MentionsAdapterDelegate delegate;
     public long dialog_id;
     public TLRPC.User foundContextBot;
     public String hintHashtag;
@@ -113,7 +109,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
     public String lastText;
     public boolean lastUsernameOnly;
     public final Context mContext;
-    public EmojiView.AnonymousClass29 mentionsStickersActionTracker;
+    public AnonymousClass9 mentionsStickersActionTracker;
     public ArrayList messages;
     public String nextQueryOffset;
     public boolean noUserName;
@@ -186,6 +182,101 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
         }
     }
 
+    public final class AnonymousClass3 implements SearchAdapterHelper.SearchAdapterHelperDelegate {
+        public final int $r8$classId;
+        public final RecyclerListView.SelectionAdapter this$0;
+
+        public AnonymousClass3(RecyclerListView.SelectionAdapter selectionAdapter, int i) {
+            this.$r8$classId = i;
+            this.this$0 = selectionAdapter;
+        }
+
+        @Override
+        public final boolean canApplySearchResults(int i) {
+            switch (this.$r8$classId) {
+                case 0:
+                    return true;
+                default:
+                    return i == ((DialogsSearchAdapter) this.this$0).lastSearchId;
+            }
+        }
+
+        @Override
+        public final LongSparseArray getExcludeCallParticipants() {
+            switch (this.$r8$classId) {
+            }
+            return null;
+        }
+
+        @Override
+        public final LongSparseArray getExcludeUsers() {
+            switch (this.$r8$classId) {
+            }
+            return null;
+        }
+
+        @Override
+        public final void onDataSetChanged(int i) {
+            switch (this.$r8$classId) {
+                case 0:
+                    ((MentionsAdapter) this.this$0).notifyDataSetChanged();
+                    break;
+                default:
+                    DialogsSearchAdapter dialogsSearchAdapter = (DialogsSearchAdapter) this.this$0;
+                    dialogsSearchAdapter.waitingResponseCount--;
+                    dialogsSearchAdapter.lastGlobalSearchId = i;
+                    if (dialogsSearchAdapter.lastLocalSearchId != i) {
+                        dialogsSearchAdapter.searchResult.clear();
+                    }
+                    if (dialogsSearchAdapter.lastMessagesSearchId != i) {
+                        dialogsSearchAdapter.searchResultMessages.clear();
+                    }
+                    dialogsSearchAdapter.searchWas = true;
+                    DialogsSearchAdapter.DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate = dialogsSearchAdapter.delegate;
+                    if (dialogsSearchAdapterDelegate != null) {
+                        dialogsSearchAdapterDelegate.searchStateChanged(dialogsSearchAdapter.waitingResponseCount > 0, true);
+                    }
+                    dialogsSearchAdapter.notifyDataSetChanged();
+                    DialogsSearchAdapter.DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate2 = dialogsSearchAdapter.delegate;
+                    if (dialogsSearchAdapterDelegate2 != null) {
+                        dialogsSearchAdapterDelegate2.runResultsEnterAnimation();
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public final void onSetHashtags(ArrayList arrayList, HashMap map) {
+            switch (this.$r8$classId) {
+                case 0:
+                    MentionsAdapter mentionsAdapter = (MentionsAdapter) this.this$0;
+                    String str = mentionsAdapter.lastText;
+                    if (str != null) {
+                        mentionsAdapter.searchUsernameOrHashtag(str, mentionsAdapter.lastPosition, mentionsAdapter.messages, mentionsAdapter.lastUsernameOnly, mentionsAdapter.lastForSearch);
+                    }
+                    break;
+                default:
+                    int i = 0;
+                    while (true) {
+                        int size = arrayList.size();
+                        DialogsSearchAdapter dialogsSearchAdapter = (DialogsSearchAdapter) this.this$0;
+                        if (i >= size) {
+                            DialogsSearchAdapter.DialogsSearchAdapterDelegate dialogsSearchAdapterDelegate = dialogsSearchAdapter.delegate;
+                            if (dialogsSearchAdapterDelegate != null) {
+                                dialogsSearchAdapterDelegate.searchStateChanged(dialogsSearchAdapter.waitingResponseCount > 0, false);
+                            }
+                            dialogsSearchAdapter.notifyDataSetChanged();
+                        } else {
+                            dialogsSearchAdapter.searchResultHashtags.add(((SearchAdapterHelper.HashtagObject) arrayList.get(i)).hashtag);
+                            i++;
+                        }
+                        break;
+                    }
+                    break;
+            }
+        }
+    }
+
     public final class AnonymousClass4 implements Runnable {
         public final MessagesController val$messagesController;
         public final MessagesStorage val$messagesStorage;
@@ -224,7 +315,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             }
             TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
             tL_contacts_resolveUsername.username = mentionsAdapter.searchingContextUsername;
-            mentionsAdapter.contextUsernameReqid = ConnectionsManager.getInstance(mentionsAdapter.currentAccount).sendRequest(tL_contacts_resolveUsername, new LoginActivity$$ExternalSyntheticLambda42(this, str, messagesController, this.val$messagesStorage, 1));
+            mentionsAdapter.contextUsernameReqid = ConnectionsManager.getInstance(mentionsAdapter.currentAccount).sendRequest(tL_contacts_resolveUsername, new GiftSheet$$ExternalSyntheticLambda16(1, this, str, messagesController, this.val$messagesStorage));
         }
     }
 
@@ -267,7 +358,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             tL_channels_getParticipants.filter = tL_channelParticipantsMentions;
             int i2 = mentionsAdapter.channelLastReqId + 1;
             mentionsAdapter.channelLastReqId = i2;
-            mentionsAdapter.channelReqId = ConnectionsManager.getInstance(mentionsAdapter.currentAccount).sendRequest(tL_channels_getParticipants, new GroupCallSheet$$ExternalSyntheticLambda0(this, i2, this.val$newResult, this.val$newMap, this.val$messagesController, 3));
+            mentionsAdapter.channelReqId = ConnectionsManager.getInstance(mentionsAdapter.currentAccount).sendRequest(tL_channels_getParticipants, new ChatObject$Call$$ExternalSyntheticLambda12(this, i2, this.val$newResult, this.val$newMap, this.val$messagesController));
         }
     }
 
@@ -288,9 +379,9 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
         public final TextView textView;
         public final TextView titleView;
 
-        public HashtagHint(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+        public HashtagHint(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            this.avatarDrawable = new AvatarDrawable();
             this.resourcesProvider = resourcesProvider;
             setOrientation(0);
             BackupImageView backupImageView = new BackupImageView(context);
@@ -305,7 +396,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             textView.setTextSize(1, 15.0f);
             int i = Theme.key_windowBackgroundWhiteBlackText;
             textView.setTextColor(Theme.getColor(i, resourcesProvider));
-            TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2), context);
+            TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2), context);
             this.textView = textViewM;
             textViewM.setTextSize(1, 13.0f);
             textViewM.setTextColor(z ? Theme.multAlpha(0.5f, Theme.getColor(i, resourcesProvider)) : Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
@@ -326,32 +417,32 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             BackupImageView backupImageView = this.imageView;
             if (i == 0) {
                 CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider)), getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
-                combinedDrawable.offsetX = AndroidUtilities.dp(-0.66f);
-                combinedDrawable.offsetY = 0;
-                int iDp = AndroidUtilities.dp(20.0f);
-                int iDp2 = AndroidUtilities.dp(20.0f);
-                combinedDrawable.iconWidth = iDp;
-                combinedDrawable.iconHeight = iDp2;
+                combinedDrawable.setIconOffset(AndroidUtilities.dp(-0.66f), 0);
+                combinedDrawable.setIconSize(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
                 backupImageView.setImageDrawable(combinedDrawable);
                 textView2.setText(LocaleController.formatString(R.string.HashtagSuggestion1Title, str));
                 textView.setText(LocaleController.getString(R.string.HashtagSuggestion1Text));
                 return;
             }
             AvatarDrawable avatarDrawable = this.avatarDrawable;
-            avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
-            backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-            backupImageView.onNewImageSet();
+            avatarDrawable.setInfo(chat);
+            backupImageView.setForUserOrChat(chat, avatarDrawable);
             int i2 = R.string.HashtagSuggestion2Title;
             StringBuilder sbM = Log.m(str, "@");
             sbM.append(ChatObject.getPublicUsername(chat));
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i2, sbM.toString()));
-            spannableStringBuilder.append((CharSequence) "  d");
-            FilterCreateActivity.NewSpan newSpan = new FilterCreateActivity.NewSpan(8);
-            newSpan.color = Theme.getColor(null, Theme.key_premiumGradient1, false);
-            spannableStringBuilder.setSpan(newSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
-            textView2.setText(spannableStringBuilder);
+            textView2.setText(PremiumPreviewFragment.applyNewSpan(LocaleController.formatString(i2, sbM.toString()), 8));
             textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));
         }
+    }
+
+    public interface MentionsAdapterDelegate {
+        void needChangePanelVisibility(boolean z);
+
+        void onContextClick(TLRPC.BotInlineResult botInlineResult);
+
+        void onContextSearch(boolean z);
+
+        void onItemCountUpdate(int i, int i2);
     }
 
     public final class StickerResult {
@@ -364,16 +455,16 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
         }
     }
 
-    public MentionsAdapter(Context context, long j, long j2, MentionsContainerView.AnonymousClass4 anonymousClass4, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public MentionsAdapter(Context context, long j, long j2, MentionsAdapterDelegate mentionsAdapterDelegate, Theme.ResourcesProvider resourcesProvider, boolean z) {
         this.resourcesProvider = resourcesProvider;
         this.mContext = context;
-        this.delegate = anonymousClass4;
+        this.delegate = mentionsAdapterDelegate;
         this.dialog_id = j;
         this.stories = z;
         this.threadMessageId = j2;
         SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
         this.searchAdapterHelper = searchAdapterHelper;
-        searchAdapterHelper.delegate = new Stripe(this, 13);
+        searchAdapterHelper.setDelegate(new AnonymousClass3(this, 0));
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoadFailed);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.recentDocumentsDidLoad);
@@ -391,9 +482,9 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 }
                 this.stickers.add(new StickerResult(document, str));
                 this.stickersMap.put(str2, document);
-                EmojiView.AnonymousClass29 anonymousClass29 = this.mentionsStickersActionTracker;
-                if (anonymousClass29 != null) {
-                    anonymousClass29.checkVisibility();
+                AnonymousClass9 anonymousClass9 = this.mentionsStickersActionTracker;
+                if (anonymousClass9 != null) {
+                    anonymousClass9.checkVisibility();
                 }
             }
         }
@@ -782,8 +873,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
         String str;
         String str2;
         int i = this.lastItemCount;
-        MentionsContainerView.AnonymousClass4 anonymousClass4 = this.delegate;
-        RecyclerView.AdapterDataObservable adapterDataObservable = this.mObservable;
+        MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
         int i2 = 0;
         if (i != -1 && this.lastData != null) {
             int itemCountInternal = getItemCountInternal();
@@ -798,49 +888,50 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 if (i2 >= 0) {
                     Object[] objArr2 = this.lastData;
                     if (i2 >= objArr2.length || i2 >= itemCountInternal) {
-                        notifyItemChanged(i2);
+                        lambda$onBindViewHolder$31(i2);
                         z = true;
                     } else {
                         Object obj = objArr2[i2];
                         Object obj2 = objArr[i2];
                         if (obj instanceof QuickRepliesController.QuickReply) {
-                            notifyItemChanged(i2);
+                            lambda$onBindViewHolder$31(i2);
                             z = true;
                         } else if (obj != obj2 && ((!(obj instanceof StickerResult) || !(obj2 instanceof StickerResult) || ((StickerResult) obj).sticker != ((StickerResult) obj2).sticker) && ((!(obj instanceof TLRPC.User) || !(obj2 instanceof TLRPC.User) || ((TLRPC.User) obj).id != ((TLRPC.User) obj2).id) && ((!(obj instanceof TLRPC.Chat) || !(obj2 instanceof TLRPC.Chat) || ((TLRPC.Chat) obj).id != ((TLRPC.Chat) obj2).id) && (!(obj instanceof String) || !(obj2 instanceof String) || !obj.equals(obj2)))))) {
                             if ((obj instanceof MediaDataController.KeywordResult) && (obj2 instanceof MediaDataController.KeywordResult) && (str = (keywordResult = (MediaDataController.KeywordResult) obj).keyword) != null) {
                                 MediaDataController.KeywordResult keywordResult2 = (MediaDataController.KeywordResult) obj2;
                                 if (!str.equals(keywordResult2.keyword) || (str2 = keywordResult.emoji) == null || !str2.equals(keywordResult2.emoji)) {
-                                    notifyItemChanged(i2);
+                                    lambda$onBindViewHolder$31(i2);
                                     z = true;
                                 }
                             } else {
-                                notifyItemChanged(i2);
+                                lambda$onBindViewHolder$31(i2);
                                 z = true;
                             }
                         }
                     }
                 } else {
-                    notifyItemChanged(i2);
+                    lambda$onBindViewHolder$31(i2);
                     z = true;
                 }
                 i2++;
             }
-            adapterDataObservable.notifyItemRangeRemoved(iMin, i - iMin);
-            adapterDataObservable.notifyItemRangeInserted(iMin, itemCountInternal - iMin);
-            if (z && anonymousClass4 != null) {
-                anonymousClass4.onItemCountUpdate();
+            notifyItemRangeRemoved(iMin, i - iMin);
+            notifyItemRangeInserted(iMin, itemCountInternal - iMin);
+            if (z && mentionsAdapterDelegate != null) {
+                mentionsAdapterDelegate.onItemCountUpdate(i, itemCountInternal);
             }
             this.lastData = objArr;
             return;
         }
-        if (anonymousClass4 != null) {
-            this.lastItemCount = getItemCountInternal();
-            anonymousClass4.onItemCountUpdate();
+        if (mentionsAdapterDelegate != null) {
+            int itemCountInternal2 = getItemCountInternal();
+            this.lastItemCount = itemCountInternal2;
+            mentionsAdapterDelegate.onItemCountUpdate(0, itemCountInternal2);
         }
-        adapterDataObservable.notifyChanged();
-        int itemCountInternal2 = getItemCountInternal();
-        this.lastItemCount = itemCountInternal2;
-        this.lastData = new Object[itemCountInternal2];
+        super.notifyDataSetChanged();
+        int itemCountInternal3 = getItemCountInternal();
+        this.lastItemCount = itemCountInternal3;
+        this.lastData = new Object[itemCountInternal3];
         while (true) {
             Object[] objArr3 = this.lastData;
             if (i2 >= objArr3.length) {
@@ -855,13 +946,11 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
     public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         ChatActivity chatActivity;
         TLRPC.TL_chatBannedRights tL_chatBannedRights;
-        String str = this.hintHashtag;
-        int i2 = str != null ? i - 2 : i;
-        int i3 = viewHolder.mItemViewType;
+        int i2 = this.hintHashtag != null ? i - 2 : i;
+        int itemViewType = viewHolder.getItemViewType();
         Boolean bool = null;
-        View view = viewHolder.itemView;
-        if (i3 == 4) {
-            StickerCell stickerCell = (StickerCell) view;
+        if (itemViewType == 4) {
+            StickerCell stickerCell = (StickerCell) viewHolder.itemView;
             if (i2 < 0 || i2 >= this.stickers.size()) {
                 return;
             }
@@ -873,9 +962,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             PremiumLockIconView premiumLockIconView = stickerCell.premiumIconView;
             if (zIsPremiumSticker) {
                 premiumLockIconView.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
-                premiumLockIconView.waitingImage = true;
-                premiumLockIconView.wasDrawn = false;
-                premiumLockIconView.invalidate();
+                premiumLockIconView.setWaitingImage();
             }
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90);
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, Theme.key_windowBackgroundGray, 1.0f, 1.0f, stickerCell.resourcesProvider);
@@ -883,18 +970,18 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             BackupImageView backupImageView = stickerCell.imageView;
             if (zCanAutoplayAnimatedSticker) {
                 if (svgThumb != null) {
-                    backupImageView.setImage(ImageLocation.getForDocument(document), "80_80", null, null, svgThumb, null, 0, stickerCell.parentObject);
+                    backupImageView.setImage(ImageLocation.getForDocument(document), "80_80", (String) null, svgThumb, stickerCell.parentObject);
                 } else if (closestPhotoSizeWithSize != null) {
-                    backupImageView.setImage(ImageLocation.getForDocument(document), "80_80", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, null, null, 0, stickerCell.parentObject);
+                    backupImageView.setImage(ImageLocation.getForDocument(document), "80_80", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), (String) null, 0, stickerCell.parentObject);
                 } else {
-                    backupImageView.setImage(ImageLocation.getForDocument(document), "80_80", null, null, null, null, 0, stickerCell.parentObject);
+                    backupImageView.setImage(ImageLocation.getForDocument(document), "80_80", (String) null, (Drawable) null, stickerCell.parentObject);
                 }
             } else if (svgThumb == null) {
-                backupImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, null, null, null, "webp", 0, stickerCell.parentObject);
+                backupImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), (String) null, "webp", (Drawable) null, stickerCell.parentObject);
             } else if (closestPhotoSizeWithSize != null) {
-                backupImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), null, null, null, svgThumb, "webp", 0, stickerCell.parentObject);
+                backupImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), (String) null, "webp", svgThumb, stickerCell.parentObject);
             } else {
-                backupImageView.setImage(ImageLocation.getForDocument(document), null, null, null, svgThumb, "webp", 0, stickerCell.parentObject);
+                backupImageView.setImage(ImageLocation.getForDocument(document), (String) null, "webp", svgThumb, stickerCell.parentObject);
             }
             stickerCell.sticker = document;
             Drawable background = stickerCell.getBackground();
@@ -931,25 +1018,25 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             stickerCell.setClearsInputField(true);
             return;
         }
-        if (i3 == 3) {
-            TextView textView = (TextView) view;
-            TLRPC.Chat chat = this.parentFragment.currentChat;
-            if (chat != null) {
-                if (!ChatObject.hasAdminRights(chat) && (tL_chatBannedRights = chat.default_banned_rights) != null && tL_chatBannedRights.send_inline) {
+        if (itemViewType == 3) {
+            TextView textView = (TextView) viewHolder.itemView;
+            TLRPC.Chat currentChat = this.parentFragment.getCurrentChat();
+            if (currentChat != null) {
+                if (!ChatObject.hasAdminRights(currentChat) && (tL_chatBannedRights = currentChat.default_banned_rights) != null && tL_chatBannedRights.send_inline) {
                     textView.setText(LocaleController.getString(R.string.GlobalAttachInlineRestricted));
                     return;
-                } else if (AndroidUtilities.isBannedForever(chat.banned_rights)) {
+                } else if (AndroidUtilities.isBannedForever(currentChat.banned_rights)) {
                     textView.setText(LocaleController.getString(R.string.AttachInlineRestrictedForever));
                     return;
                 } else {
-                    textView.setText(LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(chat.banned_rights.until_date)));
+                    textView.setText(LocaleController.formatString("AttachInlineRestricted", R.string.AttachInlineRestricted, LocaleController.formatDateForBan(currentChat.banned_rights.until_date)));
                     return;
                 }
             }
             return;
         }
-        if (i3 == 5) {
-            QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) view;
+        if (itemViewType == 5) {
+            QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) viewHolder.itemView;
             ArrayList arrayList = this.quickReplies;
             if (arrayList == null || i2 < 0 || i2 >= arrayList.size()) {
                 return;
@@ -957,102 +1044,100 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             quickReplyView.set((QuickRepliesController.QuickReply) this.quickReplies.get(i2), this.quickRepliesQuery, false);
             return;
         }
-        ArrayList arrayList2 = this.searchResultBotContext;
-        if (arrayList2 != null) {
-            TLRPC.TL_inlineBotSwitchPM tL_inlineBotSwitchPM = this.searchResultBotContextSwitch;
-            boolean z = (tL_inlineBotSwitchPM == null && this.searchResultBotWebViewSwitch == null) ? false : true;
-            if (i3 == 2) {
+        if (this.searchResultBotContext != null) {
+            boolean z = (this.searchResultBotContextSwitch == null && this.searchResultBotWebViewSwitch == null) ? false : true;
+            if (viewHolder.getItemViewType() == 2) {
                 if (z) {
-                    ((BotSwitchCell) view).setText(tL_inlineBotSwitchPM != null ? tL_inlineBotSwitchPM.text : this.searchResultBotWebViewSwitch.text);
+                    BotSwitchCell botSwitchCell = (BotSwitchCell) viewHolder.itemView;
+                    TLRPC.TL_inlineBotSwitchPM tL_inlineBotSwitchPM = this.searchResultBotContextSwitch;
+                    botSwitchCell.setText(tL_inlineBotSwitchPM != null ? tL_inlineBotSwitchPM.text : this.searchResultBotWebViewSwitch.text);
                     return;
                 }
-                return;
-            } else {
-                if (z) {
-                    i2--;
-                }
-                if (i2 < 0 || i2 >= arrayList2.size()) {
-                    return;
-                }
-                ((ContextLinkCell) view).setLink((TLRPC.BotInlineResult) this.searchResultBotContext.get(i2), this.foundContextBot, this.contextMedia, i2 != this.searchResultBotContext.size() - 1, z && i2 == 0, "gif".equals(this.searchingContextUsername));
                 return;
             }
+            if (z) {
+                i2--;
+            }
+            if (i2 < 0 || i2 >= this.searchResultBotContext.size()) {
+                return;
+            }
+            ((ContextLinkCell) viewHolder.itemView).setLink((TLRPC.BotInlineResult) this.searchResultBotContext.get(i2), this.foundContextBot, this.contextMedia, i2 != this.searchResultBotContext.size() - 1, z && i2 == 0, "gif".equals(this.searchingContextUsername));
+            return;
         }
-        if (i3 == 6) {
-            HashtagHint hashtagHint = (HashtagHint) view;
-            int i4 = i2 + 2;
-            if (i4 == 0) {
+        if (itemViewType == 6) {
+            HashtagHint hashtagHint = (HashtagHint) viewHolder.itemView;
+            int i3 = i2 + 2;
+            if (i3 == 0) {
                 this.topHint = hashtagHint;
             } else {
                 this.bottomHint = hashtagHint;
             }
-            TLRPC.Chat chat2 = this.chat;
-            if (chat2 == null && (chatActivity = this.parentFragment) != null) {
-                chat2 = chatActivity.currentChat;
+            TLRPC.Chat currentChat2 = this.chat;
+            if (currentChat2 == null && (chatActivity = this.parentFragment) != null) {
+                currentChat2 = chatActivity.getCurrentChat();
             }
-            hashtagHint.set(i4, str, chat2);
+            hashtagHint.set(i3, this.hintHashtag, currentChat2);
             return;
         }
-        if (i3 == 7) {
+        if (itemViewType == 7) {
             return;
         }
-        MentionCell mentionCell = (MentionCell) view;
-        ArrayList arrayList3 = this.searchResultUsernames;
-        if (arrayList3 != null) {
-            TLObject tLObject = (TLObject) arrayList3.get(i2);
+        MentionCell mentionCell = (MentionCell) viewHolder.itemView;
+        ArrayList arrayList2 = this.searchResultUsernames;
+        if (arrayList2 != null) {
+            TLObject tLObject = (TLObject) arrayList2.get(i2);
             if (tLObject instanceof TLRPC.User) {
                 mentionCell.setUser((TLRPC.User) tLObject);
             } else if (tLObject instanceof TLRPC.Chat) {
                 mentionCell.setChat((TLRPC.Chat) tLObject);
             }
         } else {
-            ArrayList arrayList4 = this.searchResultHashtags;
-            if (arrayList4 == null || i2 < 0 || i2 >= arrayList4.size()) {
-                ArrayList arrayList5 = this.searchResultSuggestions;
-                if (arrayList5 == null || i2 < 0 || i2 >= arrayList5.size()) {
-                    ArrayList arrayList6 = this.searchResultCommands;
-                    if (arrayList6 != null && i2 >= 0 && i2 < arrayList6.size()) {
-                        ArrayList arrayList7 = this.searchResultCommandsHelp;
-                        String str2 = (arrayList7 == null || i2 < 0 || i2 >= arrayList7.size()) ? null : (String) this.searchResultCommandsHelp.get(i2);
-                        ArrayList arrayList8 = this.searchResultCommandsUsers;
-                        TLRPC.User user = (arrayList8 == null || i2 < 0 || i2 >= arrayList8.size()) ? null : (TLRPC.User) this.searchResultCommandsUsers.get(i2);
-                        ArrayList arrayList9 = this.searchResultCommandsEphemeral;
-                        if (arrayList9 != null && i2 >= 0 && i2 < arrayList9.size()) {
+            ArrayList arrayList3 = this.searchResultHashtags;
+            if (arrayList3 == null || i2 < 0 || i2 >= arrayList3.size()) {
+                ArrayList arrayList4 = this.searchResultSuggestions;
+                if (arrayList4 == null || i2 < 0 || i2 >= arrayList4.size()) {
+                    ArrayList arrayList5 = this.searchResultCommands;
+                    if (arrayList5 != null && i2 >= 0 && i2 < arrayList5.size()) {
+                        ArrayList arrayList6 = this.searchResultCommandsHelp;
+                        String str = (arrayList6 == null || i2 < 0 || i2 >= arrayList6.size()) ? null : (String) this.searchResultCommandsHelp.get(i2);
+                        ArrayList arrayList7 = this.searchResultCommandsUsers;
+                        TLRPC.User user = (arrayList7 == null || i2 < 0 || i2 >= arrayList7.size()) ? null : (TLRPC.User) this.searchResultCommandsUsers.get(i2);
+                        ArrayList arrayList8 = this.searchResultCommandsEphemeral;
+                        if (arrayList8 != null && i2 >= 0 && i2 < arrayList8.size()) {
                             bool = (Boolean) this.searchResultCommandsEphemeral.get(i2);
                         }
                         boolean zBooleanValue = bool.booleanValue();
-                        String str3 = (String) this.searchResultCommands.get(i2);
+                        String str2 = (String) this.searchResultCommands.get(i2);
                         mentionCell.resetEmojiSuggestion();
                         BackupImageView backupImageView2 = mentionCell.imageView;
                         if (user != null) {
                             backupImageView2.setVisibility(0);
                             AvatarDrawable avatarDrawable = mentionCell.avatarDrawable;
-                            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+                            avatarDrawable.setInfo(user);
                             TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
                             if (userProfilePhoto == null || userProfilePhoto.photo_small == null) {
                                 backupImageView2.setImageDrawable(avatarDrawable);
                             } else {
-                                backupImageView2.imageReceiver.setForUserOrChat(user, avatarDrawable);
-                                backupImageView2.onNewImageSet();
+                                backupImageView2.setForUserOrChat(user, avatarDrawable);
                             }
                         } else {
                             backupImageView2.setVisibility(4);
                         }
                         TextView textView2 = mentionCell.usernameTextView;
                         textView2.setVisibility(0);
-                        ArticleViewer.AnonymousClass9 anonymousClass9 = mentionCell.nameTextView;
+                        MentionCell.AnonymousClass1 anonymousClass1 = mentionCell.nameTextView;
                         if (zBooleanValue) {
                             ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_ephemeral_hidden_14);
                             coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteGrayText3);
                             coloredImageSpan.setTopOffset(1);
-                            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str3);
+                            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str2);
                             spannableStringBuilder.append((CharSequence) " *");
                             spannableStringBuilder.setSpan(coloredImageSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
-                            anonymousClass9.setText(spannableStringBuilder);
+                            anonymousClass1.setText(spannableStringBuilder);
                         } else {
-                            anonymousClass9.setText(str3);
+                            anonymousClass1.setText(str2);
                         }
-                        textView2.setText(Emoji.replaceEmoji(str2, textView2.getPaint().getFontMetricsInt(), false));
+                        textView2.setText(Emoji.replaceEmoji(str, textView2.getPaint().getFontMetricsInt(), false));
                     }
                 } else {
                     mentionCell.setEmojiSuggestion((MediaDataController.KeywordResult) this.searchResultSuggestions.get(i2));
@@ -1087,22 +1172,22 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 } else if (i != 5) {
                     boolean z = this.stories;
                     if (i == 6) {
-                        botSwitchCell = new HashtagHint(context, resourcesProvider, z);
+                        botSwitchCell = new HashtagHint(context, z, resourcesProvider);
                     } else if (i != 7) {
                         botSwitchCell = new StickerCell(context, resourcesProvider);
                     } else {
-                        View anonymousClass2 = new PaymentFormActivity.AnonymousClass2(context, 4);
+                        View anonymousClass2 = new AddressBarList.AnonymousClass2(context, 3);
                         CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(z ? Theme.multAlpha(0.15f, -1) : Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider)), Theme.getThemedDrawable(context, R.drawable.greydivider, Theme.getColor(Theme.key_windowBackgroundGrayShadow, resourcesProvider)), 0, 0);
-                        combinedDrawable.fullSize = true;
+                        combinedDrawable.setFullsize(true);
                         anonymousClass2.setBackground(combinedDrawable);
                         quickReplyView = anonymousClass2;
                     }
                 } else {
-                    quickReplyView = new QuickRepliesActivity.QuickReplyView(context, resourcesProvider, false);
+                    quickReplyView = new QuickRepliesActivity.QuickReplyView(context, false, resourcesProvider);
                 }
                 return new RecyclerListView.Holder(botSwitchCell);
             }
-            ContextLinkCell contextLinkCell = new ContextLinkCell(context, null, false);
+            ContextLinkCell contextLinkCell = new ContextLinkCell(context, false, null);
             contextLinkCell.setDelegate(new MentionsAdapter$$ExternalSyntheticLambda7(this));
             quickReplyView = contextLinkCell;
         }
@@ -1154,10 +1239,10 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
 
     public final void processFoundUser(TLRPC.User user) {
         ChatActivity chatActivity;
-        TLRPC.Chat chat;
+        TLRPC.Chat currentChat;
         this.contextUsernameReqid = 0;
         this.locationProvider.stop();
-        MentionsContainerView.AnonymousClass4 anonymousClass4 = this.delegate;
+        MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
         if (user == null || !user.bot || user.bot_inline_placeholder == null) {
             this.foundContextBot = null;
             this.searchResultBotContextSwitch = null;
@@ -1170,12 +1255,12 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 this.searchResultBotContextSwitchUserId = j;
             }
             ChatActivity chatActivity2 = this.parentFragment;
-            if (chatActivity2 != null && (chat = chatActivity2.currentChat) != null) {
-                boolean zCanSendStickers = ChatObject.canSendStickers(chat);
+            if (chatActivity2 != null && (currentChat = chatActivity2.getCurrentChat()) != null) {
+                boolean zCanSendStickers = ChatObject.canSendStickers(currentChat);
                 this.inlineMediaEnabled = zCanSendStickers;
                 if (!zCanSendStickers) {
                     notifyDataSetChanged();
-                    anonymousClass4.needChangePanelVisibility(true);
+                    mentionsAdapterDelegate.needChangePanelVisibility(true);
                     return;
                 }
             }
@@ -1185,14 +1270,12 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 } else {
                     TLRPC.User user2 = this.foundContextBot;
                     AlertDialog.Builder builder = new AlertDialog.Builder(this.parentFragment.getParentActivity(), 0, null);
-                    String string = LocaleController.getString(R.string.ShareYouLocationTitle);
-                    AlertDialog alertDialog = builder.alertDialog;
-                    alertDialog.title = string;
-                    alertDialog.message = LocaleController.getString(R.string.ShareYouLocationInline);
+                    builder.setTitle(LocaleController.getString(R.string.ShareYouLocationTitle));
+                    builder.setMessage(LocaleController.getString(R.string.ShareYouLocationInline));
                     boolean[] zArr = new boolean[1];
-                    builder.setPositiveButton(LocaleController.getString(R.string.OK), new ChatActivity$$ExternalSyntheticLambda248(this, zArr, user2, 8));
-                    builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new ArticleViewer$$ExternalSyntheticLambda16(17, this, zArr));
-                    this.parentFragment.showDialog(alertDialog, new VoIPFragment$$ExternalSyntheticLambda16(3, this, zArr));
+                    builder.setPositiveButton(LocaleController.getString(R.string.OK), new RichEditor$$ExternalSyntheticLambda60(this, zArr, user2, 8));
+                    builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new PhotoEditToolCell$$ExternalSyntheticLambda0(25, this, zArr));
+                    this.parentFragment.showDialog(builder.create(), new BotStorage$$ExternalSyntheticLambda5(3, (Object) this, zArr));
                 }
             }
         }
@@ -1200,33 +1283,31 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             this.noUserName = true;
             this.searchResultBotContextSwitch = null;
         } else {
-            if (anonymousClass4 != null) {
-                MentionsContainerView.this.onContextSearch(true);
+            if (mentionsAdapterDelegate != null) {
+                mentionsAdapterDelegate.onContextSearch(true);
             }
             searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
         }
     }
 
     public final void searchForContextBot(String str, String str2) {
-        TLRPC.User user;
-        MentionsContainerView mentionsContainerView;
         String str3;
         String str4;
         String str5;
-        TLRPC.User user2 = this.foundContextBot;
-        if (user2 == null || (str4 = user2.username) == null || !str4.equals(str) || (str5 = this.searchingContextQuery) == null || !str5.equals(str2)) {
-            TLRPC.User user3 = this.foundContextBot;
-            MentionsContainerView.AnonymousClass4 anonymousClass4 = this.delegate;
-            if (user3 != null) {
+        TLRPC.User user = this.foundContextBot;
+        if (user == null || (str4 = user.username) == null || !str4.equals(str) || (str5 = this.searchingContextQuery) == null || !str5.equals(str2)) {
+            TLRPC.User user2 = this.foundContextBot;
+            MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
+            if (user2 != null) {
                 if (!this.inlineMediaEnabled && str != null && str2 != null) {
                     return;
                 } else {
-                    anonymousClass4.needChangePanelVisibility(false);
+                    mentionsAdapterDelegate.needChangePanelVisibility(false);
                 }
             }
-            AnonymousClass4 anonymousClass5 = this.contextQueryRunnable;
-            if (anonymousClass5 != null) {
-                AndroidUtilities.cancelRunOnUIThread(anonymousClass5);
+            AnonymousClass4 anonymousClass4 = this.contextQueryRunnable;
+            if (anonymousClass4 != null) {
+                AndroidUtilities.cancelRunOnUIThread(anonymousClass4);
                 this.contextQueryRunnable = null;
             }
             if (TextUtils.isEmpty(str) || !((str3 = this.searchingContextUsername) == null || str3.equals(str))) {
@@ -1245,27 +1326,25 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 this.searchingContextQuery = null;
                 this.locationProvider.stop();
                 this.noUserName = false;
-                if (anonymousClass4 != null) {
-                    MentionsContainerView.this.onContextSearch(false);
+                if (mentionsAdapterDelegate != null) {
+                    mentionsAdapterDelegate.onContextSearch(false);
                 }
                 if (str != null && str.length() != 0) {
                     if (str2 == null) {
-                        if (anonymousClass4 != null) {
-                            user = this.foundContextBot;
-                            mentionsContainerView = MentionsContainerView.this;
-                            if (user != null) {
-                                mentionsContainerView.onContextSearch(true);
+                        if (mentionsAdapterDelegate != null) {
+                            if (this.foundContextBot != null) {
+                                mentionsAdapterDelegate.onContextSearch(true);
                             } else if (str.equals("gif")) {
                                 this.searchingContextUsername = "gif";
-                                mentionsContainerView.onContextSearch(false);
+                                mentionsAdapterDelegate.onContextSearch(false);
                             }
                         }
                         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
                         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
                         this.searchingContextQuery = str2;
-                        AnonymousClass4 anonymousClass6 = new AnonymousClass4(str2, str, messagesController, messagesStorage);
-                        this.contextQueryRunnable = anonymousClass6;
-                        AndroidUtilities.runOnUIThread(anonymousClass6, 400L);
+                        AnonymousClass4 anonymousClass5 = new AnonymousClass4(str2, str, messagesController, messagesStorage);
+                        this.contextQueryRunnable = anonymousClass5;
+                        AndroidUtilities.runOnUIThread(anonymousClass5, 400L);
                         return;
                     }
                     if (this.contextQueryReqid != 0) {
@@ -1273,28 +1352,26 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                         this.contextQueryReqid = 0;
                     }
                     this.searchingContextQuery = null;
-                    if (anonymousClass4 != null) {
-                        MentionsContainerView.this.onContextSearch(false);
+                    if (mentionsAdapterDelegate != null) {
+                        mentionsAdapterDelegate.onContextSearch(false);
                     }
                 }
             } else {
                 if (str2 == null) {
-                    if (anonymousClass4 != null) {
-                        user = this.foundContextBot;
-                        mentionsContainerView = MentionsContainerView.this;
-                        if (user != null) {
-                            mentionsContainerView.onContextSearch(true);
+                    if (mentionsAdapterDelegate != null) {
+                        if (this.foundContextBot != null) {
+                            mentionsAdapterDelegate.onContextSearch(true);
                         } else if (str.equals("gif")) {
                             this.searchingContextUsername = "gif";
-                            mentionsContainerView.onContextSearch(false);
+                            mentionsAdapterDelegate.onContextSearch(false);
                         }
                     }
                     MessagesController messagesController2 = MessagesController.getInstance(this.currentAccount);
                     MessagesStorage messagesStorage2 = MessagesStorage.getInstance(this.currentAccount);
                     this.searchingContextQuery = str2;
-                    AnonymousClass4 anonymousClass7 = new AnonymousClass4(str2, str, messagesController2, messagesStorage2);
-                    this.contextQueryRunnable = anonymousClass7;
-                    AndroidUtilities.runOnUIThread(anonymousClass7, 400L);
+                    AnonymousClass4 anonymousClass6 = new AnonymousClass4(str2, str, messagesController2, messagesStorage2);
+                    this.contextQueryRunnable = anonymousClass6;
+                    AndroidUtilities.runOnUIThread(anonymousClass6, 400L);
                     return;
                 }
                 if (this.contextQueryReqid != 0) {
@@ -1302,8 +1379,8 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                     this.contextQueryReqid = 0;
                 }
                 this.searchingContextQuery = null;
-                if (anonymousClass4 != null) {
-                    MentionsContainerView.this.onContextSearch(false);
+                if (mentionsAdapterDelegate != null) {
+                    mentionsAdapterDelegate.onContextSearch(false);
                 }
             }
         }
@@ -1316,9 +1393,9 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             this.contextQueryReqid = 0;
         }
         if (!this.inlineMediaEnabled || !this.allowBots) {
-            MentionsContainerView.AnonymousClass4 anonymousClass4 = this.delegate;
-            if (anonymousClass4 != null) {
-                MentionsContainerView.this.onContextSearch(false);
+            MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
+            if (mentionsAdapterDelegate != null) {
+                mentionsAdapterDelegate.onContextSearch(false);
                 return;
             }
             return;
@@ -1376,104 +1453,101 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
     public final void searchUsernameOrHashtag(CharSequence charSequence, int i, ArrayList arrayList, boolean z, boolean z2) {
         boolean z3;
         String str;
-        boolean z4;
-        ArrayList arrayList2;
-        StringBuilder sb;
-        int i2;
         String str2;
+        boolean z4;
+        StringBuilder sb;
+        MentionsAdapterDelegate mentionsAdapterDelegate;
+        int i2;
+        ArrayList arrayList2;
+        String str3;
         ChatActivity chatActivity;
         byte b;
         int i3;
         String strSubstring;
         String strSubstring2;
         MessagesController messagesController;
-        String str3;
+        String str4;
         SearchAdapterHelper searchAdapterHelper;
-        StringBuilder sb2;
-        int i4;
-        ?? r11;
+        ?? r12;
         char cCharAt;
         String strSubstring3;
-        int i5;
+        int i4;
         boolean z5;
-        int i6;
+        int i5;
         HashtagHint hashtagHint;
         HashtagHint hashtagHint2;
         String[] currentKeyboardLanguage;
         boolean z6;
         ArrayList arrayList3;
-        int i7;
+        int i6;
         ?? r6;
         boolean z7;
         ArrayList arrayList4;
         TL_bots.BotInfo botInfo;
-        int i8;
+        int i7;
         TLRPC.BotCommand botCommand;
-        String str4;
-        ArrayList arrayList5;
-        int i9;
+        String str5;
+        ArrayList<SearchAdapterHelper.HashtagObject> hashtags;
+        int i8;
         boolean z8;
         SearchAdapterHelper.HashtagObject hashtagObject;
-        String str5;
+        String str6;
         String lowerCase;
         boolean z9;
-        ArrayList arrayList6;
+        ArrayList arrayList5;
         final LongSparseArray longSparseArray;
-        ArrayList arrayList7;
+        ArrayList arrayList6;
         LinkedHashMap linkedHashMap;
         int size;
-        int i10;
-        ArrayList arrayList8;
+        int i9;
+        ArrayList arrayList7;
         ChatActivity chatActivity2;
         TLRPC.ChatFull chatFull;
-        long j;
+        long threadId;
         TLRPC.User currentUser;
         TLRPC.Chat chat;
         ArrayList<TLRPC.Dialog> allDialogs;
-        int i11;
+        int i10;
         TLRPC.Chat chat2;
-        String str6;
-        long j2;
-        TLRPC.User user;
-        String publicUsername;
-        long j3;
-        TLRPC.ChatFull chatFull2;
-        int i12;
         TLRPC.Chat chat3;
-        long j4;
-        TLRPC.ChatParticipant chatParticipant;
-        TLRPC.Chat chat4;
-        TLRPC.User user2;
         String str7;
-        String str8;
-        String publicUsername2;
-        TLRPC.Chat chat5;
-        long j5;
-        Object obj;
-        int i13;
-        int i14;
+        long j;
+        TLRPC.User user;
+        TLRPC.ChatFull chatFull2;
+        int i11;
+        long j2;
+        TLRPC.User user2;
+        String publicUsername;
         TLRPC.User user3;
-        String publicUsername3;
-        int i15;
+        String str8;
+        String str9;
+        long j3;
+        Object obj;
+        int i12;
+        int i13;
+        TLRPC.User user4;
+        String publicUsername2;
+        int i14;
         long fromChatId;
-        int i16;
-        int i17;
+        StringBuilder sb2;
+        MentionsAdapterDelegate mentionsAdapterDelegate2;
+        ArrayList arrayList8;
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
         int length;
         CharSequence charSequenceConcat;
-        int i18;
+        int i15;
         char cCharAt2;
-        int i19;
+        int i16;
         char cCharAt3;
-        String str9 = "";
+        String str10 = "";
         String string = charSequence == null ? "" : charSequence.toString();
-        TLRPC.Chat chat6 = this.chat;
+        TLRPC.Chat currentChat = this.chat;
         ChatActivity chatActivity3 = this.parentFragment;
         if (chatActivity3 != null) {
-            chat6 = chatActivity3.currentChat;
-            chatActivity3.getCurrentUser();
+            currentChat = chatActivity3.getCurrentChat();
+            this.parentFragment.getCurrentUser();
         }
-        TLRPC.Chat chat7 = chat6;
+        TLRPC.Chat chat4 = currentChat;
         RemoteUtils$$ExternalSyntheticLambda2 remoteUtils$$ExternalSyntheticLambda2 = this.cancelDelayRunnable;
         if (remoteUtils$$ExternalSyntheticLambda2 != null) {
             AndroidUtilities.cancelRunOnUIThread(remoteUtils$$ExternalSyntheticLambda2);
@@ -1494,10 +1568,10 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             this.checkAgainRunnable = null;
         }
         boolean zIsEmpty = TextUtils.isEmpty(string);
-        MentionsContainerView.AnonymousClass4 anonymousClass4 = this.delegate;
+        MentionsAdapterDelegate mentionsAdapterDelegate3 = this.delegate;
         if (zIsEmpty || string.length() > MessagesController.getInstance(this.currentAccount).getMaxMessageLength()) {
             searchForContextBot(null, null);
-            anonymousClass4.needChangePanelVisibility(false);
+            mentionsAdapterDelegate3.needChangePanelVisibility(false);
             this.lastText = null;
             this.lastSticker = null;
             this.stickers = null;
@@ -1508,14 +1582,14 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.lastReqId, true);
                 this.lastReqId = 0;
             }
-            EmojiView.AnonymousClass29 anonymousClass29 = this.mentionsStickersActionTracker;
-            if (anonymousClass29 != null) {
-                anonymousClass29.checkVisibility();
+            AnonymousClass9 anonymousClass9 = this.mentionsStickersActionTracker;
+            if (anonymousClass9 != null) {
+                anonymousClass9.checkVisibility();
                 return;
             }
             return;
         }
-        int i20 = string.length() > 0 ? i - 1 : i;
+        int i17 = string.length() > 0 ? i - 1 : i;
         this.lastText = null;
         this.lastUsernameOnly = z;
         this.lastForSearch = z2;
@@ -1525,34 +1599,38 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             if (z3) {
                 length = string.length();
                 charSequenceConcat = string;
-                i18 = 0;
-                while (i18 < length) {
-                    cCharAt2 = charSequenceConcat.charAt(i18);
-                    i19 = length - 1;
-                    if (i18 < i19) {
-                        cCharAt3 = charSequenceConcat.charAt(i18 + 1);
+                i15 = 0;
+                while (i15 < length) {
+                    cCharAt2 = charSequenceConcat.charAt(i15);
+                    i16 = length - 1;
+                    if (i15 < i16) {
+                        cCharAt3 = charSequenceConcat.charAt(i15 + 1);
                     } else {
                         cCharAt3 = 0;
                     }
-                    if (i18 < i19 || cCharAt2 != 55356 || cCharAt3 < 57339 || cCharAt3 > 57343) {
+                    if (i15 < i16 || cCharAt2 != 55356 || cCharAt3 < 57339 || cCharAt3 > 57343) {
                         if (cCharAt2 == 65039) {
-                            charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i18), charSequenceConcat.subSequence(i18 + 1, charSequenceConcat.length()));
+                            charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i15), charSequenceConcat.subSequence(i15 + 1, charSequenceConcat.length()));
                             length--;
                         }
-                        i18++;
+                        i15++;
+                        str10 = str10;
                     } else {
-                        charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i18), charSequenceConcat.subSequence(i18 + 2, charSequenceConcat.length()));
+                        charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i15), charSequenceConcat.subSequence(i15 + 2, charSequenceConcat.length()));
                         length -= 2;
                     }
-                    i18--;
-                    i18++;
+                    i15--;
+                    i15++;
+                    str10 = str10;
                 }
+                str = str10;
                 this.lastSticker = charSequenceConcat.toString().trim();
-                str = string;
+                str2 = string;
             } else {
                 str = "";
+                str2 = str;
             }
-            if (z3 || !(Emoji.isValidEmoji(str) || Emoji.isValidEmoji(this.lastSticker))) {
+            if (z3 || !(Emoji.isValidEmoji(str2) || Emoji.isValidEmoji(this.lastSticker))) {
                 z4 = false;
             } else {
                 z4 = true;
@@ -1565,14 +1643,14 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                     z4 = false;
                 }
             }
-            if (!this.allowStickers && z4 && (chat7 == null || ChatObject.canSendStickers(chat7))) {
+            if (!this.allowStickers && z4 && (chat4 == null || ChatObject.canSendStickers(chat4))) {
                 ArrayList arrayList9 = this.stickersToLoad;
                 arrayList9.clear();
-                int i21 = SharedConfig.suggestStickers;
-                if (i21 == 2 || !z4) {
-                    if (this.visibleByStickersSearch && i21 == 2) {
+                int i18 = SharedConfig.suggestStickers;
+                if (i18 == 2 || !z4) {
+                    if (this.visibleByStickersSearch && i18 == 2) {
                         this.visibleByStickersSearch = false;
-                        anonymousClass4.needChangePanelVisibility(false);
+                        mentionsAdapterDelegate3.needChangePanelVisibility(false);
                         notifyDataSetChanged();
                         return;
                     }
@@ -1586,71 +1664,79 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 }
                 boolean z10 = MessagesController.getInstance(this.currentAccount).suggestStickersApiOnly;
                 if (z10) {
-                    arrayList2 = arrayList;
-                    sb = sb3;
+                    sb2 = sb3;
+                    mentionsAdapterDelegate2 = mentionsAdapterDelegate3;
+                    arrayList8 = arrayList9;
                     i2 = i;
+                    arrayList2 = arrayList;
                 } else {
-                    arrayList2 = arrayList;
-                    sb = sb3;
+                    sb2 = sb3;
+                    MentionsAdapterDelegate mentionsAdapterDelegate4 = mentionsAdapterDelegate3;
                     i2 = i;
+                    arrayList2 = arrayList;
                     this.checkAgainRunnable = new Theme$$ExternalSyntheticLambda4(this, charSequence, i2, arrayList2, z, z2);
                     MediaDataController.getInstance(this.currentAccount).loadRecents(0, false, true, false);
                     MediaDataController.getInstance(this.currentAccount).loadRecents(2, false, true, false);
                     final ArrayList<TLRPC.Document> recentStickersNoCopy = MediaDataController.getInstance(this.currentAccount).getRecentStickersNoCopy(0);
                     final ArrayList<TLRPC.Document> recentStickersNoCopy2 = MediaDataController.getInstance(this.currentAccount).getRecentStickersNoCopy(2);
                     int iMin = Math.min(20, recentStickersNoCopy.size());
-                    int i22 = 0;
-                    int i23 = 0;
-                    while (i22 < iMin) {
-                        TLRPC.Document document = recentStickersNoCopy.get(i22);
-                        String str10 = this.lastSticker;
+                    int i19 = 0;
+                    int i20 = 0;
+                    while (true) {
+                        if (i19 >= iMin) {
+                            arrayList8 = arrayList9;
+                            break;
+                        }
+                        TLRPC.Document document = recentStickersNoCopy.get(i19);
+                        int i21 = iMin;
+                        String str11 = this.lastSticker;
+                        int i22 = i19;
                         int size2 = document.attributes.size();
-                        int i24 = iMin;
-                        int i25 = 0;
+                        arrayList8 = arrayList9;
+                        int i23 = 0;
                         while (true) {
-                            i17 = i22;
-                            if (i25 < size2) {
-                                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i25);
-                                int i26 = i25;
+                            if (i23 < size2) {
+                                int i24 = size2;
+                                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i23);
+                                int i25 = i23;
                                 if (documentAttribute instanceof TLRPC.TL_documentAttributeSticker) {
-                                    String str11 = documentAttribute.alt;
-                                    if (str11 != null && str11.contains(str10)) {
+                                    String str12 = documentAttribute.alt;
+                                    if (str12 != null && str12.contains(str11)) {
                                         addStickerToResult(document, "recent");
-                                        int i27 = i23 + 1;
-                                        if (i27 < 5) {
-                                            i23 = i27;
+                                        int i26 = i20 + 1;
+                                        if (i26 < 5) {
+                                            i20 = i26;
                                             break;
                                         }
                                         break;
                                     }
                                 } else {
-                                    i25 = i26 + 1;
-                                    i22 = i17;
+                                    i23 = i25 + 1;
+                                    size2 = i24;
                                 }
                             }
                             break;
                         }
-                        i22 = i17 + 1;
-                        iMin = i24;
+                        i19 = i22 + 1;
+                        iMin = i21;
+                        arrayList9 = arrayList8;
                     }
                     int size3 = recentStickersNoCopy2.size();
-                    int i28 = 0;
-                    while (i28 < size3) {
-                        TLRPC.Document document2 = recentStickersNoCopy2.get(i28);
-                        String str12 = this.lastSticker;
+                    int i27 = 0;
+                    while (i27 < size3) {
+                        TLRPC.Document document2 = recentStickersNoCopy2.get(i27);
+                        String str13 = this.lastSticker;
+                        int i28 = size3;
                         int size4 = document2.attributes.size();
-                        int i29 = size3;
+                        int i29 = i27;
                         int i30 = 0;
-                        while (true) {
-                            i16 = i28;
-                            if (i30 >= size4) {
-                                break;
-                            }
+                        while (i30 < size4) {
+                            int i31 = size4;
                             TLRPC.DocumentAttribute documentAttribute2 = document2.attributes.get(i30);
-                            int i31 = i30;
+                            int i32 = i30;
                             if (documentAttribute2 instanceof TLRPC.TL_documentAttributeSticker) {
-                                String str13 = documentAttribute2.alt;
-                                if (str13 != null && str13.contains(str12)) {
+                                String str14 = documentAttribute2.alt;
+                                if (str14 != null && str14.contains(str13)) {
                                     addStickerToResult(document2, "fav");
                                     break;
                                 } else {
@@ -1658,19 +1744,20 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                                     break;
                                 }
                             }
-                            i30 = i31 + 1;
-                            i28 = i16;
+                            i30 = i32 + 1;
+                            size4 = i31;
                         }
-                        i28 = i16 + 1;
-                        size3 = i29;
+                        i27 = i29 + 1;
+                        size3 = i28;
                     }
                     MediaDataController.getInstance(this.currentAccount).checkStickers(0);
                     HashMap<String, ArrayList<TLRPC.Document>> allStickers = MediaDataController.getInstance(this.currentAccount).getAllStickers();
-                    ArrayList arrayList10 = allStickers != null ? allStickers.get(this.lastSticker) : null;
+                    ArrayList<TLRPC.Document> arrayList10 = allStickers != null ? allStickers.get(this.lastSticker) : null;
                     if (arrayList10 != null && !arrayList10.isEmpty()) {
                         addStickersToResult(null, arrayList10);
                     }
                     ArrayList arrayList11 = this.stickers;
+                    mentionsAdapterDelegate2 = mentionsAdapterDelegate4;
                     if (arrayList11 != null) {
                         Collections.sort(arrayList11, new Comparator() {
                             @Override
@@ -1690,60 +1777,70 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                             }
 
                             public final int getIndex(StickerResult stickerResult) {
-                                int i32 = 0;
                                 int i33 = 0;
+                                int i34 = 0;
                                 while (true) {
                                     ArrayList arrayList12 = recentStickersNoCopy2;
-                                    if (i33 >= arrayList12.size()) {
+                                    if (i34 >= arrayList12.size()) {
                                         while (true) {
                                             ArrayList arrayList13 = recentStickersNoCopy;
-                                            if (i32 >= Math.min(20, arrayList13.size())) {
+                                            if (i33 >= Math.min(20, arrayList13.size())) {
                                                 return -1;
                                             }
-                                            if (((TLRPC.Document) arrayList13.get(i32)).id == stickerResult.sticker.id) {
-                                                return (arrayList13.size() - i32) + 1000000;
+                                            if (((TLRPC.Document) arrayList13.get(i33)).id == stickerResult.sticker.id) {
+                                                return (arrayList13.size() - i33) + 1000000;
                                             }
-                                            i32++;
+                                            i33++;
                                         }
                                     } else {
-                                        if (((TLRPC.Document) arrayList12.get(i33)).id == stickerResult.sticker.id) {
-                                            return i33 + 2000000;
+                                        if (((TLRPC.Document) arrayList12.get(i34)).id == stickerResult.sticker.id) {
+                                            return i34 + 2000000;
                                         }
-                                        i33++;
+                                        i34++;
                                     }
                                 }
                             }
                         });
+                        mentionsAdapterDelegate2 = mentionsAdapterDelegate4;
                     }
                 }
                 if (SharedConfig.suggestStickers == 0 || z10) {
-                    String str14 = this.lastSticker;
+                    String str15 = this.lastSticker;
                     TLRPC.TL_messages_getStickers tL_messages_getStickers = new TLRPC.TL_messages_getStickers();
-                    tL_messages_getStickers.emoticon = str;
+                    tL_messages_getStickers.emoticon = str2;
                     tL_messages_getStickers.hash = 0L;
-                    this.lastReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getStickers, new ChatActivity$$ExternalSyntheticLambda208(8, this, str14));
+                    this.lastReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getStickers, new StarGiftSheet$$ExternalSyntheticLambda0(8, this, str15));
                 }
                 ArrayList arrayList12 = this.stickers;
-                if (arrayList12 != null && !arrayList12.isEmpty()) {
+                if (arrayList12 == null || arrayList12.isEmpty()) {
+                    if (this.visibleByStickersSearch) {
+                        mentionsAdapterDelegate2.needChangePanelVisibility(false);
+                        this.visibleByStickersSearch = false;
+                    }
+                    sb = sb2;
+                    str3 = null;
+                    b = 4;
+                    mentionsAdapterDelegate = mentionsAdapterDelegate2;
+                } else {
                     if (SharedConfig.suggestStickers != 0 || this.stickers.size() >= 5) {
                         checkStickerFilesExistAndDownload();
-                        anonymousClass4.needChangePanelVisibility(arrayList9.isEmpty());
+                        mentionsAdapterDelegate2.needChangePanelVisibility(arrayList8.isEmpty());
                         this.visibleByStickersSearch = true;
                     } else {
-                        anonymousClass4.needChangePanelVisibility(false);
+                        mentionsAdapterDelegate2.needChangePanelVisibility(false);
                         this.visibleByStickersSearch = false;
                     }
                     notifyDataSetChanged();
-                } else if (this.visibleByStickersSearch) {
-                    anonymousClass4.needChangePanelVisibility(false);
-                    this.visibleByStickersSearch = false;
                 }
+                sb = sb2;
+                str3 = null;
                 b = 4;
-                str2 = null;
+                mentionsAdapterDelegate = mentionsAdapterDelegate2;
             } else {
-                arrayList2 = arrayList;
                 sb = sb3;
+                mentionsAdapterDelegate = mentionsAdapterDelegate3;
                 i2 = i;
+                arrayList2 = arrayList;
                 if (z && this.needBotContext && string.charAt(0) == '@') {
                     int iIndexOf = string.indexOf(32);
                     int length2 = string.length();
@@ -1754,35 +1851,31 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                     } else if (string.charAt(length2 - 1) == 't' && string.charAt(length2 - 2) == 'o' && string.charAt(length2 - 3) == 'b') {
                         i3 = 1;
                         strSubstring = string.substring(1);
-                        strSubstring2 = "";
+                        strSubstring2 = str;
                     } else {
                         i3 = 1;
                         searchForContextBot(null, null);
                         strSubstring = null;
                         strSubstring2 = null;
                     }
-                    if (strSubstring != null && strSubstring.length() >= i3) {
-                        int i32 = 1;
-                        while (true) {
-                            if (i32 >= strSubstring.length()) {
-                                str9 = strSubstring;
-                                break;
-                            }
-                            char cCharAt4 = strSubstring.charAt(i32);
-                            if ((cCharAt4 < '0' || cCharAt4 > '9') && ((cCharAt4 < 'a' || cCharAt4 > 'z') && ((cCharAt4 < 'A' || cCharAt4 > 'Z') && cCharAt4 != '_'))) {
-                                break;
-                            } else {
-                                i32++;
-                            }
+                    if (strSubstring == null || strSubstring.length() < i3) {
+                        strSubstring = str;
+                        break;
+                    }
+                    for (int i33 = 1; i33 < strSubstring.length(); i33++) {
+                        char cCharAt4 = strSubstring.charAt(i33);
+                        if ((cCharAt4 < '0' || cCharAt4 > '9') && ((cCharAt4 < 'a' || cCharAt4 > 'z') && ((cCharAt4 < 'A' || cCharAt4 > 'Z') && cCharAt4 != '_'))) {
+                            strSubstring = str;
+                            break;
                         }
                     }
-                    searchForContextBot(str9, strSubstring2);
-                    str2 = null;
-                } else if (this.allowStickers || (chatActivity = this.parentFragment) == null || chatActivity.currentEncryptedChat != null || (!(chat7 == null || ChatObject.canSendStickers(chat7)) || string.trim().length() < 2 || string.trim().indexOf(32) >= 0)) {
-                    str2 = null;
+                    searchForContextBot(strSubstring, strSubstring2);
+                    str3 = null;
+                } else if (this.allowStickers || (chatActivity = this.parentFragment) == null || chatActivity.getCurrentEncryptedChat() != null || (!(chat4 == null || ChatObject.canSendStickers(chat4)) || string.trim().length() < 2 || string.trim().indexOf(32) >= 0)) {
+                    str3 = null;
                     searchForContextBot(null, null);
                 } else {
-                    str2 = null;
+                    str3 = null;
                     searchForContextBot(null, null);
                 }
                 b = -1;
@@ -1791,71 +1884,69 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 return;
             }
             messagesController = MessagesController.getInstance(this.currentAccount);
-            str3 = this.hintHashtag;
-            this.hintHashtag = str2;
+            str4 = this.hintHashtag;
+            this.hintHashtag = str3;
             searchAdapterHelper = this.searchAdapterHelper;
             if (z) {
-                sb2 = sb;
-                i4 = i20;
                 while (true) {
-                    if (i4 >= 0) {
-                        if (i4 >= string.length()) {
-                            cCharAt = string.charAt(i4);
-                            if (i4 != 0) {
-                                i6 = i4 - 1;
-                                if (string.charAt(i6) != ' ' || string.charAt(i6) == '\n' || cCharAt == ':') {
+                    if (i17 >= 0) {
+                        if (i17 >= string.length()) {
+                            cCharAt = string.charAt(i17);
+                            if (i17 != 0) {
+                                i5 = i17 - 1;
+                                if (string.charAt(i5) != ' ' || string.charAt(i5) == '\n' || cCharAt == ':') {
                                     if (cCharAt == '@') {
                                         z5 = this.searchInDialogs;
-                                        if (!z5 || this.needUsernames || (this.needBotContext && i4 == 0)) {
-                                            if (z5 && this.info == null && i4 != 0) {
+                                        if (!z5 || this.needUsernames || (this.needBotContext && i17 == 0)) {
+                                            if (z5 && this.info == null && i17 != 0) {
                                                 this.lastText = string;
                                                 this.lastPosition = i2;
                                                 this.messages = arrayList2;
-                                                anonymousClass4.needChangePanelVisibility(false);
+                                                mentionsAdapterDelegate.needChangePanelVisibility(false);
                                                 return;
                                             }
-                                            this.resultStartPosition = i4;
-                                            this.resultLength = sb2.length() + 1;
+                                            this.resultStartPosition = i17;
+                                            this.resultLength = sb.length() + 1;
                                             b = 0;
-                                            r11 = 0;
+                                            r12 = 0;
                                         }
                                     } else if (cCharAt == '#') {
-                                        if (ChatObject.isChannelAndNotMegaGroup(chat7) && !TextUtils.isEmpty(ChatObject.getPublicUsername(chat7))) {
-                                            strSubstring3 = string.substring(i4);
+                                        if (ChatObject.isChannelAndNotMegaGroup(chat4) && !TextUtils.isEmpty(ChatObject.getPublicUsername(chat4))) {
+                                            strSubstring3 = string.substring(i17);
                                             this.hintHashtag = strSubstring3;
                                             if (strSubstring3.length() >= 4 || !this.hintHashtag.matches("^[#$][\\p{L}_-]+$")) {
                                                 this.hintHashtag = null;
                                             }
                                         }
-                                        if (!searchAdapterHelper.hashtagsLoadedFromDb) {
-                                            MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getStorageQueue().postRunnable(new SearchAdapterHelper$$ExternalSyntheticLambda4(searchAdapterHelper, 1));
+                                        if (!searchAdapterHelper.loadRecentHashtags()) {
                                             this.lastText = string;
                                             this.lastPosition = i2;
                                             this.messages = arrayList2;
                                             return;
+                                        } else {
+                                            this.resultStartPosition = i17;
+                                            this.resultLength = sb.length() + 1;
+                                            sb.insert(0, cCharAt);
+                                            b = 1;
                                         }
-                                        this.resultStartPosition = i4;
-                                        this.resultLength = sb2.length() + 1;
-                                        sb2.insert(0, cCharAt);
-                                        b = 1;
-                                    } else if (i4 != 0 && this.botInfo != null && cCharAt == '/') {
-                                        this.resultStartPosition = i4;
-                                        this.resultLength = sb2.length() + 1;
+                                    } else if (i17 != 0 && this.botInfo != null && cCharAt == '/') {
+                                        this.resultStartPosition = i17;
+                                        this.resultLength = sb.length() + 1;
                                         b = 2;
-                                    } else if (cCharAt == ':' && sb2.length() > 0) {
-                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb2.charAt(0)) >= 0) {
-                                            i5 = 1;
-                                            if (sb2.length() > 1) {
+                                    } else if (cCharAt == ':' && sb.length() > 0) {
+                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb.charAt(0)) >= 0) {
+                                            i4 = 1;
+                                            if (sb.length() > 1) {
                                             }
                                         } else {
-                                            i5 = 1;
+                                            i4 = 1;
                                         }
-                                        this.resultStartPosition = i4;
-                                        this.resultLength = sb2.length() + i5;
+                                        this.resultStartPosition = i17;
+                                        this.resultLength = sb.length() + i4;
                                         b = 3;
                                     }
                                 }
-                                sb2.insert(0, cCharAt);
+                                sb.insert(0, cCharAt);
                             } else {
                                 if (cCharAt == '@') {
                                     z5 = this.searchInDialogs;
@@ -1863,13 +1954,13 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                                     }
                                     if (z5) {
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + 1;
+                                    this.resultStartPosition = i17;
+                                    this.resultLength = sb.length() + 1;
                                     b = 0;
-                                    r11 = 0;
+                                    r12 = 0;
                                 } else if (cCharAt == '#') {
-                                    if (ChatObject.isChannelAndNotMegaGroup(chat7)) {
-                                        strSubstring3 = string.substring(i4);
+                                    if (ChatObject.isChannelAndNotMegaGroup(chat4)) {
+                                        strSubstring3 = string.substring(i17);
                                         this.hintHashtag = strSubstring3;
                                         if (strSubstring3.length() >= 4) {
                                             this.hintHashtag = null;
@@ -1877,79 +1968,78 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                                             this.hintHashtag = null;
                                         }
                                     }
-                                    if (!searchAdapterHelper.hashtagsLoadedFromDb) {
-                                        MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getStorageQueue().postRunnable(new SearchAdapterHelper$$ExternalSyntheticLambda4(searchAdapterHelper, 1));
+                                    if (!searchAdapterHelper.loadRecentHashtags()) {
                                         this.lastText = string;
                                         this.lastPosition = i2;
                                         this.messages = arrayList2;
                                         return;
+                                    } else {
+                                        this.resultStartPosition = i17;
+                                        this.resultLength = sb.length() + 1;
+                                        sb.insert(0, cCharAt);
+                                        b = 1;
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + 1;
-                                    sb2.insert(0, cCharAt);
-                                    b = 1;
-                                } else if (i4 != 0) {
+                                } else if (i17 != 0) {
                                     if (cCharAt == ':') {
-                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb2.charAt(0)) >= 0) {
-                                            i5 = 1;
-                                            if (sb2.length() > 1) {
+                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb.charAt(0)) >= 0) {
+                                            i4 = 1;
+                                            if (sb.length() > 1) {
                                             }
                                         } else {
-                                            i5 = 1;
+                                            i4 = 1;
                                         }
-                                        this.resultStartPosition = i4;
-                                        this.resultLength = sb2.length() + i5;
+                                        this.resultStartPosition = i17;
+                                        this.resultLength = sb.length() + i4;
                                         b = 3;
                                     }
                                 } else if (cCharAt == ':') {
-                                    if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb2.charAt(0)) >= 0) {
-                                        i5 = 1;
-                                        if (sb2.length() > 1) {
+                                    if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb.charAt(0)) >= 0) {
+                                        i4 = 1;
+                                        if (sb.length() > 1) {
                                         }
                                     } else {
-                                        i5 = 1;
+                                        i4 = 1;
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + i5;
+                                    this.resultStartPosition = i17;
+                                    this.resultLength = sb.length() + i4;
                                     b = 3;
                                 }
-                                sb2.insert(0, cCharAt);
+                                sb.insert(0, cCharAt);
                             }
                         }
-                        i4--;
+                        i17--;
                     } else {
-                        r11 = 0;
-                        i4 = -1;
+                        r12 = 0;
+                        i17 = -1;
                     }
-                    RecyclerView.AdapterDataObservable adapterDataObservable = this.mObservable;
-                    if (str3 != null && this.hintHashtag != null) {
-                        adapterDataObservable.notifyItemRangeInserted(r11, 2);
-                    } else if (str3 == null && this.hintHashtag == null) {
-                        adapterDataObservable.notifyItemRangeRemoved(r11, 2);
+                    if (str4 != null && this.hintHashtag != null) {
+                        notifyItemRangeInserted(r12, 2);
+                    } else if (str4 == null && this.hintHashtag == null) {
+                        notifyItemRangeRemoved(r12, 2);
                     } else {
                         hashtagHint = this.topHint;
                         if (hashtagHint != 0) {
-                            hashtagHint.set(r11, this.hintHashtag, chat7);
+                            hashtagHint.set(r12, this.hintHashtag, chat4);
                         }
                         hashtagHint2 = this.bottomHint;
                         if (hashtagHint2 != null) {
-                            hashtagHint2.set(1, this.hintHashtag, chat7);
+                            hashtagHint2.set(1, this.hintHashtag, chat4);
                         }
                     }
                     if (b == -1) {
-                        this.contextMedia = r11;
+                        this.contextMedia = r12;
                         this.searchResultBotContext = null;
-                        anonymousClass4.needChangePanelVisibility(r11);
+                        mentionsAdapterDelegate.needChangePanelVisibility(r12);
                         return;
                     }
                     if (b == 0) {
                         if (b == 1) {
                             ArrayList arrayList13 = new ArrayList();
-                            String lowerCase2 = sb2.toString().toLowerCase();
-                            arrayList5 = searchAdapterHelper.hashtags;
-                            for (i9 = 0; i9 < arrayList5.size(); i9++) {
-                                hashtagObject = (SearchAdapterHelper.HashtagObject) arrayList5.get(i9);
-                                if (hashtagObject == null && (str5 = hashtagObject.hashtag) != null && str5.startsWith(lowerCase2)) {
+                            String lowerCase2 = sb.toString().toLowerCase();
+                            hashtags = searchAdapterHelper.getHashtags();
+                            for (i8 = 0; i8 < hashtags.size(); i8++) {
+                                hashtagObject = hashtags.get(i8);
+                                if (hashtagObject == null && (str6 = hashtagObject.hashtag) != null && str6.startsWith(lowerCase2)) {
                                     arrayList13.add(hashtagObject.hashtag);
                                 }
                             }
@@ -1971,7 +2061,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                             } else {
                                 z8 = false;
                             }
-                            anonymousClass4.needChangePanelVisibility(z8);
+                            mentionsAdapterDelegate.needChangePanelVisibility(z8);
                             return;
                         }
                         if (b == 2) {
@@ -1997,7 +2087,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                             this.lastSearchKeyboardLanguage = currentKeyboardLanguage;
                             MediaDataController mediaDataController = MediaDataController.getInstance(this.currentAccount);
                             String[] strArr = this.lastSearchKeyboardLanguage;
-                            String string2 = sb2.toString();
+                            String string2 = sb.toString();
                             MentionsAdapter$$ExternalSyntheticLambda7 mentionsAdapter$$ExternalSyntheticLambda7 = new MentionsAdapter$$ExternalSyntheticLambda7(this);
                             if (SharedConfig.suggestAnimatedEmoji || !UserConfig.getInstance(this.currentAccount).isPremium()) {
                                 z6 = false;
@@ -2011,12 +2101,12 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                         ArrayList arrayList14 = new ArrayList();
                         ArrayList arrayList15 = new ArrayList();
                         ArrayList arrayList16 = new ArrayList();
-                        String lowerCase3 = sb2.toString().toLowerCase();
-                        for (i7 = 0; i7 < this.botInfo.size(); i7++) {
-                            botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i7);
-                            for (i8 = 0; i8 < botInfo.commands.size(); i8++) {
-                                botCommand = botInfo.commands.get(i8);
-                                if (botCommand == null && (str4 = botCommand.command) != null && str4.startsWith(lowerCase3)) {
+                        String lowerCase3 = sb.toString().toLowerCase();
+                        for (i6 = 0; i6 < this.botInfo.size(); i6++) {
+                            botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i6);
+                            for (i7 = 0; i7 < botInfo.commands.size(); i7++) {
+                                botCommand = botInfo.commands.get(i7);
+                                if (botCommand == null && (str5 = botCommand.command) != null && str5.startsWith(lowerCase3)) {
                                     arrayList3.add("/" + botCommand.command);
                                     arrayList14.add(botCommand.description);
                                     arrayList15.add(messagesController.getUser(Long.valueOf(botInfo.user_id)));
@@ -2024,38 +2114,31 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                                 }
                             }
                         }
-                        if (this.parentFragment != null || DialogObject.isEncryptedDialog(this.dialog_id)) {
+                        if (this.parentFragment != null || DialogObject.isEncryptedDialog(this.dialog_id) || this.parentFragment.getChatMode() != 0 || this.parentFragment.getCurrentUser() == null || this.parentFragment.getCurrentUser().bot || UserObject.isReplyUser(this.parentFragment.getCurrentUser()) || UserObject.isService(this.parentFragment.getCurrentUser().id)) {
                             r6 = 0;
                             this.quickRepliesQuery = null;
                             this.quickReplies = null;
                         } else {
-                            ChatActivity chatActivity4 = this.parentFragment;
-                            if (chatActivity4.chatMode != 0 || chatActivity4.getCurrentUser() == null || this.parentFragment.getCurrentUser().bot || UserObject.isReplyUser(this.parentFragment.getCurrentUser()) || UserObject.isService(this.parentFragment.getCurrentUser().id)) {
-                                r6 = 0;
-                                this.quickRepliesQuery = null;
-                                this.quickReplies = null;
-                            } else {
-                                QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(this.currentAccount);
-                                quickRepliesController.load(null, true);
-                                this.quickRepliesQuery = lowerCase3;
-                                this.quickReplies = new ArrayList();
-                                int i33 = 0;
-                                while (true) {
-                                    ArrayList arrayList17 = quickRepliesController.replies;
-                                    if (i33 >= arrayList17.size()) {
-                                        break;
-                                    }
-                                    QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) arrayList17.get(i33);
-                                    if (!QuickRepliesController.isSpecial(quickReply.name)) {
-                                        String lowerCase4 = quickReply.name.toLowerCase();
-                                        if (lowerCase4.startsWith(lowerCase3) || AndroidUtilities.translitSafe(lowerCase4).startsWith(lowerCase3)) {
-                                            this.quickReplies.add(quickReply);
-                                        }
-                                    }
-                                    i33++;
+                            QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(this.currentAccount);
+                            quickRepliesController.load(true, null);
+                            this.quickRepliesQuery = lowerCase3;
+                            this.quickReplies = new ArrayList();
+                            int i34 = 0;
+                            while (true) {
+                                ArrayList arrayList17 = quickRepliesController.replies;
+                                if (i34 >= arrayList17.size()) {
+                                    break;
                                 }
-                                r6 = 0;
+                                QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) arrayList17.get(i34);
+                                if (!QuickRepliesController.isSpecial(quickReply.name)) {
+                                    String lowerCase4 = quickReply.name.toLowerCase();
+                                    if (lowerCase4.startsWith(lowerCase3) || AndroidUtilities.translitSafe(lowerCase4).startsWith(lowerCase3)) {
+                                        this.quickReplies.add(quickReply);
+                                    }
+                                }
+                                i34++;
                             }
+                            r6 = 0;
                         }
                         this.searchResultHashtags = r6;
                         this.stickers = r6;
@@ -2074,59 +2157,58 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                         } else {
                             z7 = false;
                         }
-                        anonymousClass4.needChangePanelVisibility(z7);
+                        mentionsAdapterDelegate.needChangePanelVisibility(z7);
                         return;
                     }
-                    this.contextMedia = r11;
+                    this.contextMedia = r12;
                     this.searchResultBotContext = null;
                     final ArrayList arrayList18 = new ArrayList();
                     if (arrayList2 != null) {
-                        for (i15 = 0; i15 < Math.min(100, arrayList2.size()); i15++) {
-                            fromChatId = ((MessageObject) arrayList2.get(i15)).getFromChatId();
+                        for (i14 = 0; i14 < Math.min(100, arrayList2.size()); i14++) {
+                            fromChatId = ((MessageObject) arrayList2.get(i14)).getFromChatId();
                             if (fromChatId <= 0 && !arrayList18.contains(Long.valueOf(fromChatId))) {
                                 arrayList18.add(Long.valueOf(fromChatId));
                             }
                         }
                     }
-                    lowerCase = sb2.toString().toLowerCase();
+                    lowerCase = sb.toString().toLowerCase();
                     if (lowerCase.indexOf(32) >= 0) {
                         z9 = true;
                     } else {
                         z9 = false;
                     }
-                    arrayList6 = new ArrayList();
+                    arrayList5 = new ArrayList();
                     LongSparseArray longSparseArray2 = new LongSparseArray();
-                    int i34 = i4;
                     longSparseArray = new LongSparseArray();
-                    arrayList7 = new ArrayList();
-                    arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
-                    if (chat7 != null || (!ChatObject.isMonoForum(chat7) && !ChatObject.isChannelAndNotMegaGroup(chat7))) {
-                        arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+                    arrayList6 = new ArrayList();
+                    arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
+                    if (chat4 != null || (!ChatObject.isMonoForum(chat4) && !ChatObject.isChannelAndNotMegaGroup(chat4))) {
+                        arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
                     }
-                    List.EL.sort(arrayList7, new Theme$$ExternalSyntheticLambda5(27));
+                    List.EL.sort(arrayList6, new Theme$$ExternalSyntheticLambda5(27));
                     linkedHashMap = new LinkedHashMap();
-                    size = arrayList7.size();
-                    i10 = 0;
-                    while (i10 < size) {
-                        Object obj2 = arrayList7.get(i10);
-                        i10++;
+                    size = arrayList6.size();
+                    i9 = 0;
+                    while (i9 < size) {
+                        Object obj2 = arrayList6.get(i9);
+                        i9++;
                         TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) obj2;
                         Map.EL.putIfAbsent(linkedHashMap, Long.valueOf(DialogObject.getPeerDialogId(tL_topPeer.peer)), tL_topPeer);
                     }
-                    arrayList8 = new ArrayList(linkedHashMap.values());
-                    if (!z && this.needBotContext && i34 == 0 && !arrayList8.isEmpty()) {
-                        i14 = 0;
-                        for (i13 = 0; i13 < arrayList8.size(); i13++) {
-                            user3 = messagesController.getUser(Long.valueOf(((TLRPC.TL_topPeer) arrayList8.get(i13)).peer.user_id));
-                            if (user3 == null) {
-                                publicUsername3 = UserObject.getPublicUsername(user3);
-                                if (TextUtils.isEmpty(publicUsername3) && (lowerCase.length() == 0 || publicUsername3.toLowerCase().startsWith(lowerCase))) {
-                                    arrayList6.add(user3);
-                                    longSparseArray2.put(user3, user3.id);
-                                    longSparseArray.put(user3, user3.id);
-                                    i14++;
+                    arrayList7 = new ArrayList(linkedHashMap.values());
+                    if (!z && this.needBotContext && i17 == 0 && !arrayList7.isEmpty()) {
+                        i13 = 0;
+                        for (i12 = 0; i12 < arrayList7.size(); i12++) {
+                            user4 = messagesController.getUser(Long.valueOf(((TLRPC.TL_topPeer) arrayList7.get(i12)).peer.user_id));
+                            if (user4 == null) {
+                                publicUsername2 = UserObject.getPublicUsername(user4);
+                                if (TextUtils.isEmpty(publicUsername2) && (lowerCase.length() == 0 || publicUsername2.toLowerCase().startsWith(lowerCase))) {
+                                    arrayList5.add(user4);
+                                    longSparseArray2.put(user4, user4.id);
+                                    longSparseArray.put(user4, user4.id);
+                                    i13++;
                                 }
-                                if (i14 == 5) {
+                                if (i13 == 5) {
                                     break;
                                 }
                             }
@@ -2134,161 +2216,152 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                     }
                     chatActivity2 = this.parentFragment;
                     if (chatActivity2 != null) {
-                        chat7 = chatActivity2.currentChat;
-                        j = chatActivity2.threadMessageId;
+                        chat4 = chatActivity2.getCurrentChat();
+                        threadId = this.parentFragment.getThreadId();
                     } else {
                         chatFull = this.info;
                         if (chatFull != null) {
-                            chat7 = messagesController.getChat(Long.valueOf(chatFull.id));
+                            chat4 = messagesController.getChat(Long.valueOf(chatFull.id));
                         }
-                        j = 0;
+                        threadId = 0;
                     }
                     currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
-                    if (chat7 != null && (chatFull2 = this.info) != null && chatFull2.participants != null && (!ChatObject.isChannel(chat7) || chat7.megagroup)) {
-                        i12 = -2;
-                        while (i12 < this.info.participants.participants.size()) {
-                            if (i12 != -2) {
-                                chat3 = chat7;
-                                if (i12 == -1) {
-                                    j4 = j;
-                                    chatParticipant = this.info.participants.participants.get(i12);
-                                    if (currentUser != null) {
-                                        chat4 = chat3;
-                                        if (chatParticipant.user_id != currentUser.id) {
-                                        }
-                                        chat5 = chat4;
-                                        i12 = i12;
-                                    } else {
-                                        chat4 = chat3;
-                                    }
-                                    user2 = messagesController.getUser(Long.valueOf(chatParticipant.user_id));
-                                    if (user2 != null && !UserObject.isUserSelf(user2) && longSparseArray2.indexOfKey(user2.id) < 0) {
-                                        if (lowerCase.length() == 0 || user2.deleted) {
-                                            str7 = user2.first_name;
-                                            str8 = user2.last_name;
-                                            publicUsername2 = UserObject.getPublicUsername(user2);
-                                            chat5 = chat4;
-                                            j5 = user2.id;
-                                            obj = user2;
-                                            if (TextUtils.isEmpty(publicUsername2)) {
-                                                arrayList6.add(obj);
-                                                longSparseArray.put(obj, j5);
-                                            } else {
-                                                arrayList6.add(obj);
-                                                longSparseArray.put(obj, j5);
-                                            }
-                                        } else {
-                                            arrayList6.add(user2);
-                                        }
-                                    }
-                                    chat5 = chat4;
-                                    i12 = i12;
-                                } else if (!z2) {
-                                    chat5 = chat3;
-                                    j4 = j;
-                                    i12 = i12;
-                                } else if (lowerCase.length() == 0) {
-                                    chat7 = chat3;
-                                    arrayList6.add(chat7);
-                                    j4 = j;
-                                    chat5 = chat7;
-                                    i12 = i12;
-                                } else {
-                                    str7 = chat3.title;
-                                    publicUsername2 = ChatObject.getPublicUsername(chat3);
-                                    j4 = j;
-                                    chat5 = chat3;
-                                    str8 = null;
-                                    j5 = -chat3.id;
-                                    obj = chat5;
-                                    if (TextUtils.isEmpty(publicUsername2)) {
-                                        arrayList6.add(obj);
-                                        longSparseArray.put(obj, j5);
-                                    } else {
-                                        arrayList6.add(obj);
-                                        longSparseArray.put(obj, j5);
+                    if (chat4 != null && (chatFull2 = this.info) != null && chatFull2.participants != null && (!ChatObject.isChannel(chat4) || chat4.megagroup)) {
+                        i11 = -2;
+                        while (i11 < this.info.participants.participants.size()) {
+                            if (i11 == -2) {
+                                if (currentUser != null && z) {
+                                    String str16 = currentUser.first_name;
+                                    String str17 = currentUser.last_name;
+                                    publicUsername = UserObject.getPublicUsername(currentUser);
+                                    j3 = currentUser.id;
+                                    j2 = threadId;
+                                    user3 = currentUser;
+                                    obj = user3;
+                                    str9 = str17;
+                                    str8 = str16;
+                                    if ((TextUtils.isEmpty(publicUsername) && publicUsername.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str8) && str8.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str9) && str9.toLowerCase().startsWith(lowerCase)) || (z9 && ContactsController.formatName(str8, str9).toLowerCase().startsWith(lowerCase))))) {
+                                        arrayList5.add(obj);
+                                        longSparseArray.put(obj, j3);
                                     }
                                 }
-                            } else if (currentUser == null && z) {
-                                str7 = currentUser.first_name;
-                                String str15 = currentUser.last_name;
-                                publicUsername2 = UserObject.getPublicUsername(currentUser);
-                                chat5 = chat7;
-                                j4 = j;
-                                obj = currentUser;
-                                j5 = currentUser.id;
-                                str8 = str15;
-                                if ((TextUtils.isEmpty(publicUsername2) && publicUsername2.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str7) && str7.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str8) && str8.toLowerCase().startsWith(lowerCase)) || (z9 && ContactsController.formatName(str7, str8).toLowerCase().startsWith(lowerCase))))) {
-                                    arrayList6.add(obj);
-                                    longSparseArray.put(obj, j5);
-                                }
+                                j2 = threadId;
+                                user3 = currentUser;
                             } else {
-                                j4 = j;
-                                chat5 = chat7;
-                                i12 = i12;
+                                if (i11 == -1) {
+                                    if (z2) {
+                                        if (lowerCase.length() == 0) {
+                                            arrayList5.add(chat4);
+                                        } else {
+                                            String str18 = chat4.title;
+                                            publicUsername = ChatObject.getPublicUsername(chat4);
+                                            str8 = str18;
+                                            j3 = -chat4.id;
+                                            j2 = threadId;
+                                            user3 = currentUser;
+                                            obj = chat4;
+                                            str9 = null;
+                                        }
+                                    }
+                                    j2 = threadId;
+                                    user3 = currentUser;
+                                } else {
+                                    TLRPC.ChatParticipant chatParticipant = this.info.participants.participants.get(i11);
+                                    j2 = threadId;
+                                    if ((currentUser != null || chatParticipant.user_id != currentUser.id) && (user2 = messagesController.getUser(Long.valueOf(chatParticipant.user_id))) != null && !UserObject.isUserSelf(user2) && longSparseArray2.indexOfKey(user2.id) < 0) {
+                                        if (lowerCase.length() == 0 || user2.deleted) {
+                                            String str19 = user2.first_name;
+                                            String str20 = user2.last_name;
+                                            publicUsername = UserObject.getPublicUsername(user2);
+                                            user3 = currentUser;
+                                            str8 = str19;
+                                            str9 = str20;
+                                            j3 = user2.id;
+                                            obj = user2;
+                                        } else {
+                                            arrayList5.add(user2);
+                                        }
+                                    }
+                                    user3 = currentUser;
+                                }
+                                if (TextUtils.isEmpty(publicUsername)) {
+                                    arrayList5.add(obj);
+                                    longSparseArray.put(obj, j3);
+                                } else {
+                                    arrayList5.add(obj);
+                                    longSparseArray.put(obj, j3);
+                                }
                             }
-                            i12++;
-                            j = j4;
-                            chat7 = chat5;
+                            i11++;
+                            threadId = j2;
+                            currentUser = user3;
                         }
                     }
-                    long j6 = j;
-                    chat = chat7;
+                    long j4 = threadId;
                     if (this.searchInDialogs) {
                         allDialogs = MessagesController.getInstance(this.currentAccount).getAllDialogs();
-                        for (i11 = 0; i11 < allDialogs.size(); i11++) {
-                            if (allDialogs.get(i11).id > 0) {
-                                user = messagesController.getUser(Long.valueOf(allDialogs.get(i11).id));
-                                if (user != null && !UserObject.isUserSelf(user) && longSparseArray2.indexOfKey(user.id) < 0) {
-                                    if (lowerCase.length() == 0 || user.deleted) {
-                                        String str16 = user.first_name;
-                                        String str17 = user.last_name;
-                                        publicUsername = UserObject.getPublicUsername(user);
-                                        j3 = user.id;
-                                        if ((TextUtils.isEmpty(publicUsername) && publicUsername.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str16) && str16.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str17) && str17.toLowerCase().startsWith(lowerCase)) || (z9 && ContactsController.formatName(str16, str17).toLowerCase().startsWith(lowerCase))))) {
-                                            arrayList6.add(user);
-                                            longSparseArray.put(user, j3);
-                                        }
-                                    } else {
-                                        arrayList6.add(user);
+                        i10 = 0;
+                        while (i10 < allDialogs.size()) {
+                            if (allDialogs.get(i10).id > 0) {
+                                user = messagesController.getUser(Long.valueOf(allDialogs.get(i10).id));
+                                if (user != null || UserObject.isUserSelf(user) || longSparseArray2.indexOfKey(user.id) >= 0) {
+                                    chat2 = chat4;
+                                } else if (lowerCase.length() != 0 || user.deleted) {
+                                    String str21 = user.first_name;
+                                    String str22 = user.last_name;
+                                    String publicUsername3 = UserObject.getPublicUsername(user);
+                                    chat2 = chat4;
+                                    long j5 = user.id;
+                                    if ((!TextUtils.isEmpty(publicUsername3) && publicUsername3.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str21) && str21.toLowerCase().startsWith(lowerCase)) || ((!TextUtils.isEmpty(str22) && str22.toLowerCase().startsWith(lowerCase)) || (z9 && ContactsController.formatName(str21, str22).toLowerCase().startsWith(lowerCase))))) {
+                                        arrayList5.add(user);
+                                        longSparseArray.put(user, j5);
                                     }
-                                }
-                            } else if (!TextUtils.isEmpty(lowerCase) && (chat2 = messagesController.getChat(Long.valueOf(-allDialogs.get(i11).id))) != null && chat2.username != null && longSparseArray2.indexOfKey(chat2.id) < 0) {
-                                if (lowerCase.length() == 0) {
-                                    arrayList6.add(chat2);
                                 } else {
-                                    String str18 = chat2.title;
-                                    str6 = chat2.username;
-                                    j2 = chat2.id;
-                                    if ((TextUtils.isEmpty(str6) && str6.toLowerCase().startsWith(lowerCase)) || (!TextUtils.isEmpty(str18) && str18.toLowerCase().startsWith(lowerCase))) {
-                                        arrayList6.add(chat2);
-                                        longSparseArray.put(chat2, j2);
+                                    arrayList5.add(user);
+                                    chat2 = chat4;
+                                }
+                            } else {
+                                chat2 = chat4;
+                                if (!TextUtils.isEmpty(lowerCase) && (chat3 = messagesController.getChat(Long.valueOf(-allDialogs.get(i10).id))) != null && chat3.username != null && longSparseArray2.indexOfKey(chat3.id) < 0) {
+                                    if (lowerCase.length() == 0) {
+                                        arrayList5.add(chat3);
+                                    } else {
+                                        String str23 = chat3.title;
+                                        str7 = chat3.username;
+                                        j = chat3.id;
+                                        if ((TextUtils.isEmpty(str7) && str7.toLowerCase().startsWith(lowerCase)) || (!TextUtils.isEmpty(str23) && str23.toLowerCase().startsWith(lowerCase))) {
+                                            arrayList5.add(chat3);
+                                            longSparseArray.put(chat3, j);
+                                        }
                                     }
                                 }
                             }
+                            i10++;
+                            chat4 = chat2;
                         }
                     }
-                    Collections.sort(arrayList6, new Comparator() {
+                    chat = chat4;
+                    Collections.sort(arrayList5, new Comparator() {
                         @Override
                         public final int compare(Object obj3, Object obj4) {
                             TLObject tLObject = (TLObject) obj3;
                             TLObject tLObject2 = (TLObject) obj4;
-                            long j7 = tLObject instanceof TLRPC.User ? ((TLRPC.User) tLObject).id : -((TLRPC.Chat) tLObject).id;
-                            long j8 = tLObject2 instanceof TLRPC.User ? ((TLRPC.User) tLObject2).id : -((TLRPC.Chat) tLObject2).id;
+                            long j6 = tLObject instanceof TLRPC.User ? ((TLRPC.User) tLObject).id : -((TLRPC.Chat) tLObject).id;
+                            long j7 = tLObject2 instanceof TLRPC.User ? ((TLRPC.User) tLObject2).id : -((TLRPC.Chat) tLObject2).id;
                             LongSparseArray longSparseArray3 = longSparseArray;
-                            if (longSparseArray3.indexOfKey(j7) >= 0 && longSparseArray3.indexOfKey(j8) >= 0) {
+                            if (longSparseArray3.indexOfKey(j6) >= 0 && longSparseArray3.indexOfKey(j7) >= 0) {
                                 return 0;
                             }
-                            if (longSparseArray3.indexOfKey(j7) >= 0) {
+                            if (longSparseArray3.indexOfKey(j6) >= 0) {
                                 return -1;
                             }
-                            if (longSparseArray3.indexOfKey(j8) >= 0) {
+                            if (longSparseArray3.indexOfKey(j7) >= 0) {
                                 return 1;
                             }
-                            Long lValueOf = Long.valueOf(j7);
+                            Long lValueOf = Long.valueOf(j6);
                             ArrayList arrayList19 = arrayList18;
                             int iIndexOf2 = arrayList19.indexOf(lValueOf);
-                            int iIndexOf3 = arrayList19.indexOf(Long.valueOf(j8));
+                            int iIndexOf3 = arrayList19.indexOf(Long.valueOf(j7));
                             if (iIndexOf2 != -1 && iIndexOf3 != -1) {
                                 if (iIndexOf2 < iIndexOf3) {
                                     return -1;
@@ -2310,81 +2383,79 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                     this.searchResultCommandsUsers = null;
                     this.searchResultSuggestions = null;
                     if (!((chat == null && chat.megagroup) || this.searchInDialogs) || lowerCase.length() <= 0) {
-                        showUsersResult(longSparseArray, arrayList6, true);
+                        showUsersResult(longSparseArray, arrayList5, true);
                     }
-                    if (arrayList6.size() < 5) {
-                        RemoteUtils$$ExternalSyntheticLambda2 remoteUtils$$ExternalSyntheticLambda3 = new RemoteUtils$$ExternalSyntheticLambda2(this, arrayList6, longSparseArray, 16);
+                    if (arrayList5.size() < 5) {
+                        RemoteUtils$$ExternalSyntheticLambda2 remoteUtils$$ExternalSyntheticLambda3 = new RemoteUtils$$ExternalSyntheticLambda2(this, arrayList5, longSparseArray, 20);
                         this.cancelDelayRunnable = remoteUtils$$ExternalSyntheticLambda3;
                         AndroidUtilities.runOnUIThread(remoteUtils$$ExternalSyntheticLambda3, 1000L);
                     } else {
-                        showUsersResult(longSparseArray, arrayList6, true);
+                        showUsersResult(longSparseArray, arrayList5, true);
                     }
-                    AnonymousClass7 anonymousClass8 = new AnonymousClass7(chat, lowerCase, j6, arrayList6, longSparseArray, messagesController);
+                    AnonymousClass7 anonymousClass8 = new AnonymousClass7(chat, lowerCase, j4, arrayList5, longSparseArray, messagesController);
                     this.searchGlobalRunnable = anonymousClass8;
                     AndroidUtilities.runOnUIThread(anonymousClass8, 200L);
                     return;
                 }
             }
-            sb2 = sb;
-            sb2.append(string.substring(1));
+            sb.append(string.substring(1));
             this.resultStartPosition = 0;
-            this.resultLength = sb2.length();
+            this.resultLength = sb.length();
             b = 0;
-            i4 = -1;
-            r11 = 0;
-            RecyclerView.AdapterDataObservable adapterDataObservable2 = this.mObservable;
-            if (str3 != null) {
-                if (str3 == null) {
+            i17 = -1;
+            r12 = 0;
+            if (str4 != null) {
+                if (str4 == null) {
                     hashtagHint = this.topHint;
                     if (hashtagHint != 0) {
-                        hashtagHint.set(r11, this.hintHashtag, chat7);
+                        hashtagHint.set(r12, this.hintHashtag, chat4);
                     }
                     hashtagHint2 = this.bottomHint;
                     if (hashtagHint2 != null) {
-                        hashtagHint2.set(1, this.hintHashtag, chat7);
+                        hashtagHint2.set(1, this.hintHashtag, chat4);
                     }
                 } else {
                     hashtagHint = this.topHint;
                     if (hashtagHint != 0) {
-                        hashtagHint.set(r11, this.hintHashtag, chat7);
+                        hashtagHint.set(r12, this.hintHashtag, chat4);
                     }
                     hashtagHint2 = this.bottomHint;
                     if (hashtagHint2 != null) {
-                        hashtagHint2.set(1, this.hintHashtag, chat7);
+                        hashtagHint2.set(1, this.hintHashtag, chat4);
                     }
                 }
-            } else if (str3 == null) {
+            } else if (str4 == null) {
                 hashtagHint = this.topHint;
                 if (hashtagHint != 0) {
-                    hashtagHint.set(r11, this.hintHashtag, chat7);
+                    hashtagHint.set(r12, this.hintHashtag, chat4);
                 }
                 hashtagHint2 = this.bottomHint;
                 if (hashtagHint2 != null) {
-                    hashtagHint2.set(1, this.hintHashtag, chat7);
+                    hashtagHint2.set(1, this.hintHashtag, chat4);
                 }
             } else {
                 hashtagHint = this.topHint;
                 if (hashtagHint != 0) {
-                    hashtagHint.set(r11, this.hintHashtag, chat7);
+                    hashtagHint.set(r12, this.hintHashtag, chat4);
                 }
                 hashtagHint2 = this.bottomHint;
                 if (hashtagHint2 != null) {
-                    hashtagHint2.set(1, this.hintHashtag, chat7);
+                    hashtagHint2.set(1, this.hintHashtag, chat4);
                 }
             }
             if (b == -1) {
-                this.contextMedia = r11;
+                this.contextMedia = r12;
                 this.searchResultBotContext = null;
-                anonymousClass4.needChangePanelVisibility(r11);
+                mentionsAdapterDelegate.needChangePanelVisibility(r12);
                 return;
             }
             if (b == 0) {
                 if (b == 1) {
                     ArrayList arrayList19 = new ArrayList();
-                    String lowerCase5 = sb2.toString().toLowerCase();
-                    arrayList5 = searchAdapterHelper.hashtags;
-                    while (i9 < arrayList5.size()) {
-                        hashtagObject = (SearchAdapterHelper.HashtagObject) arrayList5.get(i9);
+                    String lowerCase5 = sb.toString().toLowerCase();
+                    hashtags = searchAdapterHelper.getHashtags();
+                    while (i8 < hashtags.size()) {
+                        hashtagObject = hashtags.get(i8);
                         if (hashtagObject == null) {
                         }
                     }
@@ -2406,7 +2477,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                     } else {
                         z8 = true;
                     }
-                    anonymousClass4.needChangePanelVisibility(z8);
+                    mentionsAdapterDelegate.needChangePanelVisibility(z8);
                     return;
                 }
                 if (b == 2) {
@@ -2432,7 +2503,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                     this.lastSearchKeyboardLanguage = currentKeyboardLanguage;
                     MediaDataController mediaDataController2 = MediaDataController.getInstance(this.currentAccount);
                     String[] strArr2 = this.lastSearchKeyboardLanguage;
-                    String string3 = sb2.toString();
+                    String string3 = sb.toString();
                     MentionsAdapter$$ExternalSyntheticLambda7 mentionsAdapter$$ExternalSyntheticLambda8 = new MentionsAdapter$$ExternalSyntheticLambda7(this);
                     if (SharedConfig.suggestAnimatedEmoji) {
                         z6 = false;
@@ -2446,11 +2517,11 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 ArrayList arrayList110 = new ArrayList();
                 ArrayList arrayList111 = new ArrayList();
                 ArrayList arrayList112 = new ArrayList();
-                String lowerCase6 = sb2.toString().toLowerCase();
-                while (i7 < this.botInfo.size()) {
-                    botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i7);
-                    while (i8 < botInfo.commands.size()) {
-                        botCommand = botInfo.commands.get(i8);
+                String lowerCase6 = sb.toString().toLowerCase();
+                while (i6 < this.botInfo.size()) {
+                    botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i6);
+                    while (i7 < botInfo.commands.size()) {
+                        botCommand = botInfo.commands.get(i7);
                         if (botCommand == null) {
                         }
                     }
@@ -2481,56 +2552,55 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 } else {
                     z7 = true;
                 }
-                anonymousClass4.needChangePanelVisibility(z7);
+                mentionsAdapterDelegate.needChangePanelVisibility(z7);
                 return;
             }
-            this.contextMedia = r11;
+            this.contextMedia = r12;
             this.searchResultBotContext = null;
             final ArrayList arrayList113 = new ArrayList();
             if (arrayList2 != null) {
-                while (i15 < Math.min(100, arrayList2.size())) {
-                    fromChatId = ((MessageObject) arrayList2.get(i15)).getFromChatId();
+                while (i14 < Math.min(100, arrayList2.size())) {
+                    fromChatId = ((MessageObject) arrayList2.get(i14)).getFromChatId();
                     if (fromChatId <= 0) {
                     }
                 }
             }
-            lowerCase = sb2.toString().toLowerCase();
+            lowerCase = sb.toString().toLowerCase();
             if (lowerCase.indexOf(32) >= 0) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            arrayList6 = new ArrayList();
+            arrayList5 = new ArrayList();
             LongSparseArray longSparseArray3 = new LongSparseArray();
-            int i35 = i4;
             longSparseArray = new LongSparseArray();
-            arrayList7 = new ArrayList();
-            arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
-            if (chat7 != null) {
-                arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+            arrayList6 = new ArrayList();
+            arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
+            if (chat4 != null) {
+                arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
             } else {
-                arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+                arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
             }
-            List.EL.sort(arrayList7, new Theme$$ExternalSyntheticLambda5(27));
+            List.EL.sort(arrayList6, new Theme$$ExternalSyntheticLambda5(27));
             linkedHashMap = new LinkedHashMap();
-            size = arrayList7.size();
-            i10 = 0;
-            while (i10 < size) {
-                Object obj3 = arrayList7.get(i10);
-                i10++;
+            size = arrayList6.size();
+            i9 = 0;
+            while (i9 < size) {
+                Object obj3 = arrayList6.get(i9);
+                i9++;
                 TLRPC.TL_topPeer tL_topPeer2 = (TLRPC.TL_topPeer) obj3;
                 Map.EL.putIfAbsent(linkedHashMap, Long.valueOf(DialogObject.getPeerDialogId(tL_topPeer2.peer)), tL_topPeer2);
             }
-            arrayList8 = new ArrayList(linkedHashMap.values());
+            arrayList7 = new ArrayList(linkedHashMap.values());
             if (!z) {
-                i14 = 0;
-                while (i13 < arrayList8.size()) {
-                    user3 = messagesController.getUser(Long.valueOf(((TLRPC.TL_topPeer) arrayList8.get(i13)).peer.user_id));
-                    if (user3 == null) {
-                        publicUsername3 = UserObject.getPublicUsername(user3);
-                        if (TextUtils.isEmpty(publicUsername3)) {
+                i13 = 0;
+                while (i12 < arrayList7.size()) {
+                    user4 = messagesController.getUser(Long.valueOf(((TLRPC.TL_topPeer) arrayList7.get(i12)).peer.user_id));
+                    if (user4 == null) {
+                        publicUsername2 = UserObject.getPublicUsername(user4);
+                        if (TextUtils.isEmpty(publicUsername2)) {
                         }
-                        if (i14 == 5) {
+                        if (i13 == 5) {
                             break;
                             break;
                         }
@@ -2539,164 +2609,156 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             }
             chatActivity2 = this.parentFragment;
             if (chatActivity2 != null) {
-                chat7 = chatActivity2.currentChat;
-                j = chatActivity2.threadMessageId;
+                chat4 = chatActivity2.getCurrentChat();
+                threadId = this.parentFragment.getThreadId();
             } else {
                 chatFull = this.info;
                 if (chatFull != null) {
-                    chat7 = messagesController.getChat(Long.valueOf(chatFull.id));
+                    chat4 = messagesController.getChat(Long.valueOf(chatFull.id));
                 }
-                j = 0;
+                threadId = 0;
             }
             currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
-            if (chat7 != null) {
-                i12 = -2;
-                while (i12 < this.info.participants.participants.size()) {
-                    if (i12 != -2) {
-                        if (currentUser == null) {
-                        }
-                        j4 = j;
-                        chat5 = chat7;
-                        i12 = i12;
-                    } else {
-                        chat3 = chat7;
-                        if (i12 == -1) {
-                            j4 = j;
-                            chatParticipant = this.info.participants.participants.get(i12);
-                            if (currentUser != null) {
-                                chat4 = chat3;
-                                if (chatParticipant.user_id != currentUser.id) {
-                                }
-                                chat5 = chat4;
-                                i12 = i12;
+            if (chat4 != null) {
+                i11 = -2;
+                while (i11 < this.info.participants.participants.size()) {
+                    if (i11 == -2) {
+                        if (currentUser != null) {
+                            String str110 = currentUser.first_name;
+                            String str111 = currentUser.last_name;
+                            publicUsername = UserObject.getPublicUsername(currentUser);
+                            j3 = currentUser.id;
+                            j2 = threadId;
+                            user3 = currentUser;
+                            obj = user3;
+                            str9 = str111;
+                            str8 = str110;
+                            if (TextUtils.isEmpty(publicUsername)) {
+                                arrayList5.add(obj);
+                                longSparseArray.put(obj, j3);
                             } else {
-                                chat4 = chat3;
+                                arrayList5.add(obj);
+                                longSparseArray.put(obj, j3);
                             }
-                            user2 = messagesController.getUser(Long.valueOf(chatParticipant.user_id));
-                            if (user2 != null) {
+                        }
+                        j2 = threadId;
+                        user3 = currentUser;
+                    } else {
+                        if (i11 == -1) {
+                            if (z2) {
+                                if (lowerCase.length() == 0) {
+                                    arrayList5.add(chat4);
+                                } else {
+                                    String str112 = chat4.title;
+                                    publicUsername = ChatObject.getPublicUsername(chat4);
+                                    str8 = str112;
+                                    j3 = -chat4.id;
+                                    j2 = threadId;
+                                    user3 = currentUser;
+                                    obj = chat4;
+                                    str9 = null;
+                                }
+                            }
+                            j2 = threadId;
+                            user3 = currentUser;
+                        } else {
+                            TLRPC.ChatParticipant chatParticipant2 = this.info.participants.participants.get(i11);
+                            j2 = threadId;
+                            if (currentUser != null) {
                                 if (lowerCase.length() == 0) {
                                 }
-                                str7 = user2.first_name;
-                                str8 = user2.last_name;
-                                publicUsername2 = UserObject.getPublicUsername(user2);
-                                chat5 = chat4;
-                                j5 = user2.id;
+                                String str113 = user2.first_name;
+                                String str24 = user2.last_name;
+                                publicUsername = UserObject.getPublicUsername(user2);
+                                user3 = currentUser;
+                                str8 = str113;
+                                str9 = str24;
+                                j3 = user2.id;
                                 obj = user2;
-                                if (TextUtils.isEmpty(publicUsername2)) {
-                                    arrayList6.add(obj);
-                                    longSparseArray.put(obj, j5);
-                                } else {
-                                    arrayList6.add(obj);
-                                    longSparseArray.put(obj, j5);
-                                }
-                            }
-                            chat5 = chat4;
-                            i12 = i12;
-                        } else if (!z2) {
-                            chat5 = chat3;
-                            j4 = j;
-                            i12 = i12;
-                        } else if (lowerCase.length() == 0) {
-                            chat7 = chat3;
-                            arrayList6.add(chat7);
-                            j4 = j;
-                            chat5 = chat7;
-                            i12 = i12;
-                        } else {
-                            str7 = chat3.title;
-                            publicUsername2 = ChatObject.getPublicUsername(chat3);
-                            j4 = j;
-                            chat5 = chat3;
-                            str8 = null;
-                            j5 = -chat3.id;
-                            obj = chat5;
-                            if (TextUtils.isEmpty(publicUsername2)) {
-                                arrayList6.add(obj);
-                                longSparseArray.put(obj, j5);
                             } else {
-                                arrayList6.add(obj);
-                                longSparseArray.put(obj, j5);
+                                if (lowerCase.length() == 0) {
+                                }
+                                String str114 = user2.first_name;
+                                String str25 = user2.last_name;
+                                publicUsername = UserObject.getPublicUsername(user2);
+                                user3 = currentUser;
+                                str8 = str114;
+                                str9 = str25;
+                                j3 = user2.id;
+                                obj = user2;
                             }
+                            user3 = currentUser;
+                        }
+                        if (TextUtils.isEmpty(publicUsername)) {
+                            arrayList5.add(obj);
+                            longSparseArray.put(obj, j3);
+                        } else {
+                            arrayList5.add(obj);
+                            longSparseArray.put(obj, j3);
                         }
                     }
-                    i12++;
-                    j = j4;
-                    chat7 = chat5;
+                    i11++;
+                    threadId = j2;
+                    currentUser = user3;
                 }
             }
-            long j7 = j;
-            chat = chat7;
+            long j6 = threadId;
             if (this.searchInDialogs) {
                 allDialogs = MessagesController.getInstance(this.currentAccount).getAllDialogs();
-                while (i11 < allDialogs.size()) {
-                    if (allDialogs.get(i11).id > 0) {
-                        user = messagesController.getUser(Long.valueOf(allDialogs.get(i11).id));
+                i10 = 0;
+                while (i10 < allDialogs.size()) {
+                    if (allDialogs.get(i10).id > 0) {
+                        user = messagesController.getUser(Long.valueOf(allDialogs.get(i10).id));
                         if (user != null) {
-                            if (lowerCase.length() == 0) {
-                                String str19 = user.first_name;
-                                String str110 = user.last_name;
-                                publicUsername = UserObject.getPublicUsername(user);
-                                j3 = user.id;
-                                if (TextUtils.isEmpty(publicUsername)) {
-                                    arrayList6.add(user);
-                                    longSparseArray.put(user, j3);
-                                } else {
-                                    arrayList6.add(user);
-                                    longSparseArray.put(user, j3);
-                                }
-                            } else {
-                                String str111 = user.first_name;
-                                String str112 = user.last_name;
-                                publicUsername = UserObject.getPublicUsername(user);
-                                j3 = user.id;
-                                if (TextUtils.isEmpty(publicUsername)) {
-                                    arrayList6.add(user);
-                                    longSparseArray.put(user, j3);
-                                } else {
-                                    arrayList6.add(user);
-                                    longSparseArray.put(user, j3);
-                                }
-                            }
-                        }
-                    } else if (!TextUtils.isEmpty(lowerCase)) {
-                        if (lowerCase.length() == 0) {
-                            arrayList6.add(chat2);
+                            chat2 = chat4;
                         } else {
-                            String str113 = chat2.title;
-                            str6 = chat2.username;
-                            j2 = chat2.id;
-                            if (TextUtils.isEmpty(str6)) {
-                                arrayList6.add(chat2);
-                                longSparseArray.put(chat2, j2);
+                            chat2 = chat4;
+                        }
+                    } else {
+                        chat2 = chat4;
+                        if (!TextUtils.isEmpty(lowerCase)) {
+                            if (lowerCase.length() == 0) {
+                                arrayList5.add(chat3);
                             } else {
-                                arrayList6.add(chat2);
-                                longSparseArray.put(chat2, j2);
+                                String str26 = chat3.title;
+                                str7 = chat3.username;
+                                j = chat3.id;
+                                if (TextUtils.isEmpty(str7)) {
+                                    arrayList5.add(chat3);
+                                    longSparseArray.put(chat3, j);
+                                } else {
+                                    arrayList5.add(chat3);
+                                    longSparseArray.put(chat3, j);
+                                }
                             }
                         }
                     }
+                    i10++;
+                    chat4 = chat2;
                 }
             }
-            Collections.sort(arrayList6, new Comparator() {
+            chat = chat4;
+            Collections.sort(arrayList5, new Comparator() {
                 @Override
                 public final int compare(Object obj4, Object obj5) {
                     TLObject tLObject = (TLObject) obj4;
                     TLObject tLObject2 = (TLObject) obj5;
-                    long j8 = tLObject instanceof TLRPC.User ? ((TLRPC.User) tLObject).id : -((TLRPC.Chat) tLObject).id;
-                    long j9 = tLObject2 instanceof TLRPC.User ? ((TLRPC.User) tLObject2).id : -((TLRPC.Chat) tLObject2).id;
+                    long j7 = tLObject instanceof TLRPC.User ? ((TLRPC.User) tLObject).id : -((TLRPC.Chat) tLObject).id;
+                    long j8 = tLObject2 instanceof TLRPC.User ? ((TLRPC.User) tLObject2).id : -((TLRPC.Chat) tLObject2).id;
                     LongSparseArray longSparseArray4 = longSparseArray;
-                    if (longSparseArray4.indexOfKey(j8) >= 0 && longSparseArray4.indexOfKey(j9) >= 0) {
+                    if (longSparseArray4.indexOfKey(j7) >= 0 && longSparseArray4.indexOfKey(j8) >= 0) {
                         return 0;
                     }
-                    if (longSparseArray4.indexOfKey(j8) >= 0) {
+                    if (longSparseArray4.indexOfKey(j7) >= 0) {
                         return -1;
                     }
-                    if (longSparseArray4.indexOfKey(j9) >= 0) {
+                    if (longSparseArray4.indexOfKey(j8) >= 0) {
                         return 1;
                     }
-                    Long lValueOf = Long.valueOf(j8);
+                    Long lValueOf = Long.valueOf(j7);
                     ArrayList arrayList114 = arrayList113;
                     int iIndexOf2 = arrayList114.indexOf(lValueOf);
-                    int iIndexOf3 = arrayList114.indexOf(Long.valueOf(j9));
+                    int iIndexOf3 = arrayList114.indexOf(Long.valueOf(j8));
                     if (iIndexOf2 != -1 && iIndexOf3 != -1) {
                         if (iIndexOf2 < iIndexOf3) {
                             return -1;
@@ -2719,37 +2781,40 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             this.searchResultSuggestions = null;
             if (chat == null) {
             }
-            showUsersResult(longSparseArray, arrayList6, true);
+            showUsersResult(longSparseArray, arrayList5, true);
         }
         if (z3) {
             length = string.length();
             charSequenceConcat = string;
-            i18 = 0;
-            while (i18 < length) {
-                cCharAt2 = charSequenceConcat.charAt(i18);
-                i19 = length - 1;
-                if (i18 < i19) {
-                    cCharAt3 = charSequenceConcat.charAt(i18 + 1);
+            i15 = 0;
+            while (i15 < length) {
+                cCharAt2 = charSequenceConcat.charAt(i15);
+                i16 = length - 1;
+                if (i15 < i16) {
+                    cCharAt3 = charSequenceConcat.charAt(i15 + 1);
                 } else {
                     cCharAt3 = 0;
                 }
-                if (i18 < i19) {
+                if (i15 < i16) {
                     if (cCharAt2 == 65039) {
-                        charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i18), charSequenceConcat.subSequence(i18 + 1, charSequenceConcat.length()));
+                        charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i15), charSequenceConcat.subSequence(i15 + 1, charSequenceConcat.length()));
                         length--;
-                        i18--;
+                        i15--;
                     }
                 } else if (cCharAt2 == 65039) {
-                    charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i18), charSequenceConcat.subSequence(i18 + 1, charSequenceConcat.length()));
+                    charSequenceConcat = TextUtils.concat(charSequenceConcat.subSequence(0, i15), charSequenceConcat.subSequence(i15 + 1, charSequenceConcat.length()));
                     length--;
-                    i18--;
+                    i15--;
                 }
-                i18++;
+                i15++;
+                str10 = str10;
             }
+            str = str10;
             this.lastSticker = charSequenceConcat.toString().trim();
-            str = string;
+            str2 = string;
         } else {
             str = "";
+            str2 = str;
         }
         if (z3) {
             z4 = false;
@@ -2765,42 +2830,44 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             }
         }
         if (!this.allowStickers) {
-            arrayList2 = arrayList;
             sb = sb3;
+            mentionsAdapterDelegate = mentionsAdapterDelegate3;
             i2 = i;
+            arrayList2 = arrayList;
             if (z) {
                 if (this.allowStickers) {
-                    str2 = null;
+                    str3 = null;
                     searchForContextBot(null, null);
                 } else {
-                    str2 = null;
+                    str3 = null;
                     searchForContextBot(null, null);
                 }
             } else if (this.allowStickers) {
-                str2 = null;
+                str3 = null;
                 searchForContextBot(null, null);
             } else {
-                str2 = null;
+                str3 = null;
                 searchForContextBot(null, null);
             }
             b = -1;
         } else {
-            arrayList2 = arrayList;
             sb = sb3;
+            mentionsAdapterDelegate = mentionsAdapterDelegate3;
             i2 = i;
+            arrayList2 = arrayList;
             if (z) {
                 if (this.allowStickers) {
-                    str2 = null;
+                    str3 = null;
                     searchForContextBot(null, null);
                 } else {
-                    str2 = null;
+                    str3 = null;
                     searchForContextBot(null, null);
                 }
             } else if (this.allowStickers) {
-                str2 = null;
+                str3 = null;
                 searchForContextBot(null, null);
             } else {
-                str2 = null;
+                str3 = null;
                 searchForContextBot(null, null);
             }
             b = -1;
@@ -2809,32 +2876,30 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             return;
         }
         messagesController = MessagesController.getInstance(this.currentAccount);
-        str3 = this.hintHashtag;
-        this.hintHashtag = str2;
+        str4 = this.hintHashtag;
+        this.hintHashtag = str3;
         searchAdapterHelper = this.searchAdapterHelper;
         if (z) {
-            sb2 = sb;
-            i4 = i20;
             while (true) {
-                if (i4 >= 0) {
-                    if (i4 >= string.length()) {
-                        cCharAt = string.charAt(i4);
-                        if (i4 != 0) {
-                            i6 = i4 - 1;
-                            if (string.charAt(i6) != ' ') {
+                if (i17 >= 0) {
+                    if (i17 >= string.length()) {
+                        cCharAt = string.charAt(i17);
+                        if (i17 != 0) {
+                            i5 = i17 - 1;
+                            if (string.charAt(i5) != ' ') {
                                 if (cCharAt == '@') {
                                     z5 = this.searchInDialogs;
                                     if (!z5) {
                                     }
                                     if (z5) {
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + 1;
+                                    this.resultStartPosition = i17;
+                                    this.resultLength = sb.length() + 1;
                                     b = 0;
-                                    r11 = 0;
+                                    r12 = 0;
                                 } else if (cCharAt == '#') {
-                                    if (ChatObject.isChannelAndNotMegaGroup(chat7)) {
-                                        strSubstring3 = string.substring(i4);
+                                    if (ChatObject.isChannelAndNotMegaGroup(chat4)) {
+                                        strSubstring3 = string.substring(i17);
                                         this.hintHashtag = strSubstring3;
                                         if (strSubstring3.length() >= 4) {
                                             this.hintHashtag = null;
@@ -2842,43 +2907,43 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                                             this.hintHashtag = null;
                                         }
                                     }
-                                    if (!searchAdapterHelper.hashtagsLoadedFromDb) {
-                                        MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getStorageQueue().postRunnable(new SearchAdapterHelper$$ExternalSyntheticLambda4(searchAdapterHelper, 1));
+                                    if (!searchAdapterHelper.loadRecentHashtags()) {
                                         this.lastText = string;
                                         this.lastPosition = i2;
                                         this.messages = arrayList2;
                                         return;
+                                    } else {
+                                        this.resultStartPosition = i17;
+                                        this.resultLength = sb.length() + 1;
+                                        sb.insert(0, cCharAt);
+                                        b = 1;
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + 1;
-                                    sb2.insert(0, cCharAt);
-                                    b = 1;
-                                } else if (i4 != 0) {
+                                } else if (i17 != 0) {
                                     if (cCharAt == ':') {
-                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb2.charAt(0)) >= 0) {
-                                            i5 = 1;
-                                            if (sb2.length() > 1) {
+                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb.charAt(0)) >= 0) {
+                                            i4 = 1;
+                                            if (sb.length() > 1) {
                                             }
                                         } else {
-                                            i5 = 1;
+                                            i4 = 1;
                                         }
-                                        this.resultStartPosition = i4;
-                                        this.resultLength = sb2.length() + i5;
+                                        this.resultStartPosition = i17;
+                                        this.resultLength = sb.length() + i4;
                                         b = 3;
                                     }
                                 } else if (cCharAt == ':') {
-                                    if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb2.charAt(0)) >= 0) {
-                                        i5 = 1;
-                                        if (sb2.length() > 1) {
+                                    if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb.charAt(0)) >= 0) {
+                                        i4 = 1;
+                                        if (sb.length() > 1) {
                                         }
                                     } else {
-                                        i5 = 1;
+                                        i4 = 1;
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + i5;
+                                    this.resultStartPosition = i17;
+                                    this.resultLength = sb.length() + i4;
                                     b = 3;
                                 }
-                                sb2.insert(0, cCharAt);
+                                sb.insert(0, cCharAt);
                             } else {
                                 if (cCharAt == '@') {
                                     z5 = this.searchInDialogs;
@@ -2886,13 +2951,13 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                                     }
                                     if (z5) {
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + 1;
+                                    this.resultStartPosition = i17;
+                                    this.resultLength = sb.length() + 1;
                                     b = 0;
-                                    r11 = 0;
+                                    r12 = 0;
                                 } else if (cCharAt == '#') {
-                                    if (ChatObject.isChannelAndNotMegaGroup(chat7)) {
-                                        strSubstring3 = string.substring(i4);
+                                    if (ChatObject.isChannelAndNotMegaGroup(chat4)) {
+                                        strSubstring3 = string.substring(i17);
                                         this.hintHashtag = strSubstring3;
                                         if (strSubstring3.length() >= 4) {
                                             this.hintHashtag = null;
@@ -2900,43 +2965,43 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                                             this.hintHashtag = null;
                                         }
                                     }
-                                    if (!searchAdapterHelper.hashtagsLoadedFromDb) {
-                                        MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getStorageQueue().postRunnable(new SearchAdapterHelper$$ExternalSyntheticLambda4(searchAdapterHelper, 1));
+                                    if (!searchAdapterHelper.loadRecentHashtags()) {
                                         this.lastText = string;
                                         this.lastPosition = i2;
                                         this.messages = arrayList2;
                                         return;
+                                    } else {
+                                        this.resultStartPosition = i17;
+                                        this.resultLength = sb.length() + 1;
+                                        sb.insert(0, cCharAt);
+                                        b = 1;
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + 1;
-                                    sb2.insert(0, cCharAt);
-                                    b = 1;
-                                } else if (i4 != 0) {
+                                } else if (i17 != 0) {
                                     if (cCharAt == ':') {
-                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb2.charAt(0)) >= 0) {
-                                            i5 = 1;
-                                            if (sb2.length() > 1) {
+                                        if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb.charAt(0)) >= 0) {
+                                            i4 = 1;
+                                            if (sb.length() > 1) {
                                             }
                                         } else {
-                                            i5 = 1;
+                                            i4 = 1;
                                         }
-                                        this.resultStartPosition = i4;
-                                        this.resultLength = sb2.length() + i5;
+                                        this.resultStartPosition = i17;
+                                        this.resultLength = sb.length() + i4;
                                         b = 3;
                                     }
                                 } else if (cCharAt == ':') {
-                                    if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb2.charAt(0)) >= 0) {
-                                        i5 = 1;
-                                        if (sb2.length() > 1) {
+                                    if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb.charAt(0)) >= 0) {
+                                        i4 = 1;
+                                        if (sb.length() > 1) {
                                         }
                                     } else {
-                                        i5 = 1;
+                                        i4 = 1;
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + i5;
+                                    this.resultStartPosition = i17;
+                                    this.resultLength = sb.length() + i4;
                                     b = 3;
                                 }
-                                sb2.insert(0, cCharAt);
+                                sb.insert(0, cCharAt);
                             }
                         } else {
                             if (cCharAt == '@') {
@@ -2945,13 +3010,13 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                                 }
                                 if (z5) {
                                 }
-                                this.resultStartPosition = i4;
-                                this.resultLength = sb2.length() + 1;
+                                this.resultStartPosition = i17;
+                                this.resultLength = sb.length() + 1;
                                 b = 0;
-                                r11 = 0;
+                                r12 = 0;
                             } else if (cCharAt == '#') {
-                                if (ChatObject.isChannelAndNotMegaGroup(chat7)) {
-                                    strSubstring3 = string.substring(i4);
+                                if (ChatObject.isChannelAndNotMegaGroup(chat4)) {
+                                    strSubstring3 = string.substring(i17);
                                     this.hintHashtag = strSubstring3;
                                     if (strSubstring3.length() >= 4) {
                                         this.hintHashtag = null;
@@ -2959,103 +3024,102 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                                         this.hintHashtag = null;
                                     }
                                 }
-                                if (!searchAdapterHelper.hashtagsLoadedFromDb) {
-                                    MessagesStorage.getInstance(searchAdapterHelper.currentAccount).getStorageQueue().postRunnable(new SearchAdapterHelper$$ExternalSyntheticLambda4(searchAdapterHelper, 1));
+                                if (!searchAdapterHelper.loadRecentHashtags()) {
                                     this.lastText = string;
                                     this.lastPosition = i2;
                                     this.messages = arrayList2;
                                     return;
+                                } else {
+                                    this.resultStartPosition = i17;
+                                    this.resultLength = sb.length() + 1;
+                                    sb.insert(0, cCharAt);
+                                    b = 1;
                                 }
-                                this.resultStartPosition = i4;
-                                this.resultLength = sb2.length() + 1;
-                                sb2.insert(0, cCharAt);
-                                b = 1;
-                            } else if (i4 != 0) {
+                            } else if (i17 != 0) {
                                 if (cCharAt == ':') {
-                                    if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb2.charAt(0)) >= 0) {
-                                        i5 = 1;
-                                        if (sb2.length() > 1) {
+                                    if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb.charAt(0)) >= 0) {
+                                        i4 = 1;
+                                        if (sb.length() > 1) {
                                         }
                                     } else {
-                                        i5 = 1;
+                                        i4 = 1;
                                     }
-                                    this.resultStartPosition = i4;
-                                    this.resultLength = sb2.length() + i5;
+                                    this.resultStartPosition = i17;
+                                    this.resultLength = sb.length() + i4;
                                     b = 3;
                                 }
                             } else if (cCharAt == ':') {
-                                if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb2.charAt(0)) >= 0) {
-                                    i5 = 1;
-                                    if (sb2.length() > 1) {
+                                if (" !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\n".indexOf(sb.charAt(0)) >= 0) {
+                                    i4 = 1;
+                                    if (sb.length() > 1) {
                                     }
                                 } else {
-                                    i5 = 1;
+                                    i4 = 1;
                                 }
-                                this.resultStartPosition = i4;
-                                this.resultLength = sb2.length() + i5;
+                                this.resultStartPosition = i17;
+                                this.resultLength = sb.length() + i4;
                                 b = 3;
                             }
-                            sb2.insert(0, cCharAt);
+                            sb.insert(0, cCharAt);
                         }
                     }
-                    i4--;
+                    i17--;
                 } else {
-                    r11 = 0;
-                    i4 = -1;
+                    r12 = 0;
+                    i17 = -1;
                 }
-                RecyclerView.AdapterDataObservable adapterDataObservable3 = this.mObservable;
-                if (str3 != null) {
-                    if (str3 == null) {
+                if (str4 != null) {
+                    if (str4 == null) {
                         hashtagHint = this.topHint;
                         if (hashtagHint != 0) {
-                            hashtagHint.set(r11, this.hintHashtag, chat7);
+                            hashtagHint.set(r12, this.hintHashtag, chat4);
                         }
                         hashtagHint2 = this.bottomHint;
                         if (hashtagHint2 != null) {
-                            hashtagHint2.set(1, this.hintHashtag, chat7);
+                            hashtagHint2.set(1, this.hintHashtag, chat4);
                         }
                     } else {
                         hashtagHint = this.topHint;
                         if (hashtagHint != 0) {
-                            hashtagHint.set(r11, this.hintHashtag, chat7);
+                            hashtagHint.set(r12, this.hintHashtag, chat4);
                         }
                         hashtagHint2 = this.bottomHint;
                         if (hashtagHint2 != null) {
-                            hashtagHint2.set(1, this.hintHashtag, chat7);
+                            hashtagHint2.set(1, this.hintHashtag, chat4);
                         }
                     }
-                } else if (str3 == null) {
+                } else if (str4 == null) {
                     hashtagHint = this.topHint;
                     if (hashtagHint != 0) {
-                        hashtagHint.set(r11, this.hintHashtag, chat7);
+                        hashtagHint.set(r12, this.hintHashtag, chat4);
                     }
                     hashtagHint2 = this.bottomHint;
                     if (hashtagHint2 != null) {
-                        hashtagHint2.set(1, this.hintHashtag, chat7);
+                        hashtagHint2.set(1, this.hintHashtag, chat4);
                     }
                 } else {
                     hashtagHint = this.topHint;
                     if (hashtagHint != 0) {
-                        hashtagHint.set(r11, this.hintHashtag, chat7);
+                        hashtagHint.set(r12, this.hintHashtag, chat4);
                     }
                     hashtagHint2 = this.bottomHint;
                     if (hashtagHint2 != null) {
-                        hashtagHint2.set(1, this.hintHashtag, chat7);
+                        hashtagHint2.set(1, this.hintHashtag, chat4);
                     }
                 }
                 if (b == -1) {
-                    this.contextMedia = r11;
+                    this.contextMedia = r12;
                     this.searchResultBotContext = null;
-                    anonymousClass4.needChangePanelVisibility(r11);
+                    mentionsAdapterDelegate.needChangePanelVisibility(r12);
                     return;
                 }
                 if (b == 0) {
                     if (b == 1) {
                         ArrayList arrayList114 = new ArrayList();
-                        String lowerCase7 = sb2.toString().toLowerCase();
-                        arrayList5 = searchAdapterHelper.hashtags;
-                        while (i9 < arrayList5.size()) {
-                            hashtagObject = (SearchAdapterHelper.HashtagObject) arrayList5.get(i9);
+                        String lowerCase7 = sb.toString().toLowerCase();
+                        hashtags = searchAdapterHelper.getHashtags();
+                        while (i8 < hashtags.size()) {
+                            hashtagObject = hashtags.get(i8);
                             if (hashtagObject == null) {
                             }
                         }
@@ -3077,7 +3141,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                         } else {
                             z8 = true;
                         }
-                        anonymousClass4.needChangePanelVisibility(z8);
+                        mentionsAdapterDelegate.needChangePanelVisibility(z8);
                         return;
                     }
                     if (b == 2) {
@@ -3103,7 +3167,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                         this.lastSearchKeyboardLanguage = currentKeyboardLanguage;
                         MediaDataController mediaDataController3 = MediaDataController.getInstance(this.currentAccount);
                         String[] strArr3 = this.lastSearchKeyboardLanguage;
-                        String string4 = sb2.toString();
+                        String string4 = sb.toString();
                         MentionsAdapter$$ExternalSyntheticLambda7 mentionsAdapter$$ExternalSyntheticLambda9 = new MentionsAdapter$$ExternalSyntheticLambda7(this);
                         if (SharedConfig.suggestAnimatedEmoji) {
                             z6 = false;
@@ -3117,11 +3181,11 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                     ArrayList arrayList115 = new ArrayList();
                     ArrayList arrayList116 = new ArrayList();
                     ArrayList arrayList117 = new ArrayList();
-                    String lowerCase8 = sb2.toString().toLowerCase();
-                    while (i7 < this.botInfo.size()) {
-                        botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i7);
-                        while (i8 < botInfo.commands.size()) {
-                            botCommand = botInfo.commands.get(i8);
+                    String lowerCase8 = sb.toString().toLowerCase();
+                    while (i6 < this.botInfo.size()) {
+                        botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i6);
+                        while (i7 < botInfo.commands.size()) {
+                            botCommand = botInfo.commands.get(i7);
                             if (botCommand == null) {
                             }
                         }
@@ -3152,56 +3216,55 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                     } else {
                         z7 = true;
                     }
-                    anonymousClass4.needChangePanelVisibility(z7);
+                    mentionsAdapterDelegate.needChangePanelVisibility(z7);
                     return;
                 }
-                this.contextMedia = r11;
+                this.contextMedia = r12;
                 this.searchResultBotContext = null;
                 final ArrayList arrayList118 = new ArrayList();
                 if (arrayList2 != null) {
-                    while (i15 < Math.min(100, arrayList2.size())) {
-                        fromChatId = ((MessageObject) arrayList2.get(i15)).getFromChatId();
+                    while (i14 < Math.min(100, arrayList2.size())) {
+                        fromChatId = ((MessageObject) arrayList2.get(i14)).getFromChatId();
                         if (fromChatId <= 0) {
                         }
                     }
                 }
-                lowerCase = sb2.toString().toLowerCase();
+                lowerCase = sb.toString().toLowerCase();
                 if (lowerCase.indexOf(32) >= 0) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                arrayList6 = new ArrayList();
+                arrayList5 = new ArrayList();
                 LongSparseArray longSparseArray4 = new LongSparseArray();
-                int i36 = i4;
                 longSparseArray = new LongSparseArray();
-                arrayList7 = new ArrayList();
-                arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
-                if (chat7 != null) {
-                    arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+                arrayList6 = new ArrayList();
+                arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
+                if (chat4 != null) {
+                    arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
                 } else {
-                    arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+                    arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
                 }
-                List.EL.sort(arrayList7, new Theme$$ExternalSyntheticLambda5(27));
+                List.EL.sort(arrayList6, new Theme$$ExternalSyntheticLambda5(27));
                 linkedHashMap = new LinkedHashMap();
-                size = arrayList7.size();
-                i10 = 0;
-                while (i10 < size) {
-                    Object obj4 = arrayList7.get(i10);
-                    i10++;
+                size = arrayList6.size();
+                i9 = 0;
+                while (i9 < size) {
+                    Object obj4 = arrayList6.get(i9);
+                    i9++;
                     TLRPC.TL_topPeer tL_topPeer3 = (TLRPC.TL_topPeer) obj4;
                     Map.EL.putIfAbsent(linkedHashMap, Long.valueOf(DialogObject.getPeerDialogId(tL_topPeer3.peer)), tL_topPeer3);
                 }
-                arrayList8 = new ArrayList(linkedHashMap.values());
+                arrayList7 = new ArrayList(linkedHashMap.values());
                 if (!z) {
-                    i14 = 0;
-                    while (i13 < arrayList8.size()) {
-                        user3 = messagesController.getUser(Long.valueOf(((TLRPC.TL_topPeer) arrayList8.get(i13)).peer.user_id));
-                        if (user3 == null) {
-                            publicUsername3 = UserObject.getPublicUsername(user3);
-                            if (TextUtils.isEmpty(publicUsername3)) {
+                    i13 = 0;
+                    while (i12 < arrayList7.size()) {
+                        user4 = messagesController.getUser(Long.valueOf(((TLRPC.TL_topPeer) arrayList7.get(i12)).peer.user_id));
+                        if (user4 == null) {
+                            publicUsername2 = UserObject.getPublicUsername(user4);
+                            if (TextUtils.isEmpty(publicUsername2)) {
                             }
-                            if (i14 == 5) {
+                            if (i13 == 5) {
                                 break;
                                 break;
                             }
@@ -3210,164 +3273,156 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 }
                 chatActivity2 = this.parentFragment;
                 if (chatActivity2 != null) {
-                    chat7 = chatActivity2.currentChat;
-                    j = chatActivity2.threadMessageId;
+                    chat4 = chatActivity2.getCurrentChat();
+                    threadId = this.parentFragment.getThreadId();
                 } else {
                     chatFull = this.info;
                     if (chatFull != null) {
-                        chat7 = messagesController.getChat(Long.valueOf(chatFull.id));
+                        chat4 = messagesController.getChat(Long.valueOf(chatFull.id));
                     }
-                    j = 0;
+                    threadId = 0;
                 }
                 currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
-                if (chat7 != null) {
-                    i12 = -2;
-                    while (i12 < this.info.participants.participants.size()) {
-                        if (i12 != -2) {
-                            if (currentUser == null) {
-                            }
-                            j4 = j;
-                            chat5 = chat7;
-                            i12 = i12;
-                        } else {
-                            chat3 = chat7;
-                            if (i12 == -1) {
-                                j4 = j;
-                                chatParticipant = this.info.participants.participants.get(i12);
-                                if (currentUser != null) {
-                                    chat4 = chat3;
-                                    if (chatParticipant.user_id != currentUser.id) {
-                                    }
-                                    chat5 = chat4;
-                                    i12 = i12;
+                if (chat4 != null) {
+                    i11 = -2;
+                    while (i11 < this.info.participants.participants.size()) {
+                        if (i11 == -2) {
+                            if (currentUser != null) {
+                                String str115 = currentUser.first_name;
+                                String str116 = currentUser.last_name;
+                                publicUsername = UserObject.getPublicUsername(currentUser);
+                                j3 = currentUser.id;
+                                j2 = threadId;
+                                user3 = currentUser;
+                                obj = user3;
+                                str9 = str116;
+                                str8 = str115;
+                                if (TextUtils.isEmpty(publicUsername)) {
+                                    arrayList5.add(obj);
+                                    longSparseArray.put(obj, j3);
                                 } else {
-                                    chat4 = chat3;
+                                    arrayList5.add(obj);
+                                    longSparseArray.put(obj, j3);
                                 }
-                                user2 = messagesController.getUser(Long.valueOf(chatParticipant.user_id));
-                                if (user2 != null) {
+                            }
+                            j2 = threadId;
+                            user3 = currentUser;
+                        } else {
+                            if (i11 == -1) {
+                                if (z2) {
+                                    if (lowerCase.length() == 0) {
+                                        arrayList5.add(chat4);
+                                    } else {
+                                        String str117 = chat4.title;
+                                        publicUsername = ChatObject.getPublicUsername(chat4);
+                                        str8 = str117;
+                                        j3 = -chat4.id;
+                                        j2 = threadId;
+                                        user3 = currentUser;
+                                        obj = chat4;
+                                        str9 = null;
+                                    }
+                                }
+                                j2 = threadId;
+                                user3 = currentUser;
+                            } else {
+                                TLRPC.ChatParticipant chatParticipant3 = this.info.participants.participants.get(i11);
+                                j2 = threadId;
+                                if (currentUser != null) {
                                     if (lowerCase.length() == 0) {
                                     }
-                                    str7 = user2.first_name;
-                                    str8 = user2.last_name;
-                                    publicUsername2 = UserObject.getPublicUsername(user2);
-                                    chat5 = chat4;
-                                    j5 = user2.id;
+                                    String str118 = user2.first_name;
+                                    String str27 = user2.last_name;
+                                    publicUsername = UserObject.getPublicUsername(user2);
+                                    user3 = currentUser;
+                                    str8 = str118;
+                                    str9 = str27;
+                                    j3 = user2.id;
                                     obj = user2;
-                                    if (TextUtils.isEmpty(publicUsername2)) {
-                                        arrayList6.add(obj);
-                                        longSparseArray.put(obj, j5);
-                                    } else {
-                                        arrayList6.add(obj);
-                                        longSparseArray.put(obj, j5);
-                                    }
-                                }
-                                chat5 = chat4;
-                                i12 = i12;
-                            } else if (!z2) {
-                                chat5 = chat3;
-                                j4 = j;
-                                i12 = i12;
-                            } else if (lowerCase.length() == 0) {
-                                chat7 = chat3;
-                                arrayList6.add(chat7);
-                                j4 = j;
-                                chat5 = chat7;
-                                i12 = i12;
-                            } else {
-                                str7 = chat3.title;
-                                publicUsername2 = ChatObject.getPublicUsername(chat3);
-                                j4 = j;
-                                chat5 = chat3;
-                                str8 = null;
-                                j5 = -chat3.id;
-                                obj = chat5;
-                                if (TextUtils.isEmpty(publicUsername2)) {
-                                    arrayList6.add(obj);
-                                    longSparseArray.put(obj, j5);
                                 } else {
-                                    arrayList6.add(obj);
-                                    longSparseArray.put(obj, j5);
+                                    if (lowerCase.length() == 0) {
+                                    }
+                                    String str119 = user2.first_name;
+                                    String str28 = user2.last_name;
+                                    publicUsername = UserObject.getPublicUsername(user2);
+                                    user3 = currentUser;
+                                    str8 = str119;
+                                    str9 = str28;
+                                    j3 = user2.id;
+                                    obj = user2;
                                 }
+                                user3 = currentUser;
+                            }
+                            if (TextUtils.isEmpty(publicUsername)) {
+                                arrayList5.add(obj);
+                                longSparseArray.put(obj, j3);
+                            } else {
+                                arrayList5.add(obj);
+                                longSparseArray.put(obj, j3);
                             }
                         }
-                        i12++;
-                        j = j4;
-                        chat7 = chat5;
+                        i11++;
+                        threadId = j2;
+                        currentUser = user3;
                     }
                 }
-                long j8 = j;
-                chat = chat7;
+                long j7 = threadId;
                 if (this.searchInDialogs) {
                     allDialogs = MessagesController.getInstance(this.currentAccount).getAllDialogs();
-                    while (i11 < allDialogs.size()) {
-                        if (allDialogs.get(i11).id > 0) {
-                            user = messagesController.getUser(Long.valueOf(allDialogs.get(i11).id));
+                    i10 = 0;
+                    while (i10 < allDialogs.size()) {
+                        if (allDialogs.get(i10).id > 0) {
+                            user = messagesController.getUser(Long.valueOf(allDialogs.get(i10).id));
                             if (user != null) {
-                                if (lowerCase.length() == 0) {
-                                    String str114 = user.first_name;
-                                    String str115 = user.last_name;
-                                    publicUsername = UserObject.getPublicUsername(user);
-                                    j3 = user.id;
-                                    if (TextUtils.isEmpty(publicUsername)) {
-                                        arrayList6.add(user);
-                                        longSparseArray.put(user, j3);
-                                    } else {
-                                        arrayList6.add(user);
-                                        longSparseArray.put(user, j3);
-                                    }
-                                } else {
-                                    String str116 = user.first_name;
-                                    String str117 = user.last_name;
-                                    publicUsername = UserObject.getPublicUsername(user);
-                                    j3 = user.id;
-                                    if (TextUtils.isEmpty(publicUsername)) {
-                                        arrayList6.add(user);
-                                        longSparseArray.put(user, j3);
-                                    } else {
-                                        arrayList6.add(user);
-                                        longSparseArray.put(user, j3);
-                                    }
-                                }
-                            }
-                        } else if (!TextUtils.isEmpty(lowerCase)) {
-                            if (lowerCase.length() == 0) {
-                                arrayList6.add(chat2);
+                                chat2 = chat4;
                             } else {
-                                String str118 = chat2.title;
-                                str6 = chat2.username;
-                                j2 = chat2.id;
-                                if (TextUtils.isEmpty(str6)) {
-                                    arrayList6.add(chat2);
-                                    longSparseArray.put(chat2, j2);
+                                chat2 = chat4;
+                            }
+                        } else {
+                            chat2 = chat4;
+                            if (!TextUtils.isEmpty(lowerCase)) {
+                                if (lowerCase.length() == 0) {
+                                    arrayList5.add(chat3);
                                 } else {
-                                    arrayList6.add(chat2);
-                                    longSparseArray.put(chat2, j2);
+                                    String str29 = chat3.title;
+                                    str7 = chat3.username;
+                                    j = chat3.id;
+                                    if (TextUtils.isEmpty(str7)) {
+                                        arrayList5.add(chat3);
+                                        longSparseArray.put(chat3, j);
+                                    } else {
+                                        arrayList5.add(chat3);
+                                        longSparseArray.put(chat3, j);
+                                    }
                                 }
                             }
                         }
+                        i10++;
+                        chat4 = chat2;
                     }
                 }
-                Collections.sort(arrayList6, new Comparator() {
+                chat = chat4;
+                Collections.sort(arrayList5, new Comparator() {
                     @Override
                     public final int compare(Object obj5, Object obj6) {
                         TLObject tLObject = (TLObject) obj5;
                         TLObject tLObject2 = (TLObject) obj6;
-                        long j9 = tLObject instanceof TLRPC.User ? ((TLRPC.User) tLObject).id : -((TLRPC.Chat) tLObject).id;
-                        long j10 = tLObject2 instanceof TLRPC.User ? ((TLRPC.User) tLObject2).id : -((TLRPC.Chat) tLObject2).id;
+                        long j8 = tLObject instanceof TLRPC.User ? ((TLRPC.User) tLObject).id : -((TLRPC.Chat) tLObject).id;
+                        long j9 = tLObject2 instanceof TLRPC.User ? ((TLRPC.User) tLObject2).id : -((TLRPC.Chat) tLObject2).id;
                         LongSparseArray longSparseArray5 = longSparseArray;
-                        if (longSparseArray5.indexOfKey(j9) >= 0 && longSparseArray5.indexOfKey(j10) >= 0) {
+                        if (longSparseArray5.indexOfKey(j8) >= 0 && longSparseArray5.indexOfKey(j9) >= 0) {
                             return 0;
                         }
-                        if (longSparseArray5.indexOfKey(j9) >= 0) {
+                        if (longSparseArray5.indexOfKey(j8) >= 0) {
                             return -1;
                         }
-                        if (longSparseArray5.indexOfKey(j10) >= 0) {
+                        if (longSparseArray5.indexOfKey(j9) >= 0) {
                             return 1;
                         }
-                        Long lValueOf = Long.valueOf(j9);
+                        Long lValueOf = Long.valueOf(j8);
                         ArrayList arrayList119 = arrayList118;
                         int iIndexOf2 = arrayList119.indexOf(lValueOf);
-                        int iIndexOf3 = arrayList119.indexOf(Long.valueOf(j10));
+                        int iIndexOf3 = arrayList119.indexOf(Long.valueOf(j9));
                         if (iIndexOf2 != -1 && iIndexOf3 != -1) {
                             if (iIndexOf2 < iIndexOf3) {
                                 return -1;
@@ -3390,69 +3445,67 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 this.searchResultSuggestions = null;
                 if (chat == null) {
                 }
-                showUsersResult(longSparseArray, arrayList6, true);
+                showUsersResult(longSparseArray, arrayList5, true);
             }
         }
-        sb2 = sb;
-        sb2.append(string.substring(1));
+        sb.append(string.substring(1));
         this.resultStartPosition = 0;
-        this.resultLength = sb2.length();
+        this.resultLength = sb.length();
         b = 0;
-        i4 = -1;
-        r11 = 0;
-        RecyclerView.AdapterDataObservable adapterDataObservable4 = this.mObservable;
-        if (str3 != null) {
-            if (str3 == null) {
+        i17 = -1;
+        r12 = 0;
+        if (str4 != null) {
+            if (str4 == null) {
                 hashtagHint = this.topHint;
                 if (hashtagHint != 0) {
-                    hashtagHint.set(r11, this.hintHashtag, chat7);
+                    hashtagHint.set(r12, this.hintHashtag, chat4);
                 }
                 hashtagHint2 = this.bottomHint;
                 if (hashtagHint2 != null) {
-                    hashtagHint2.set(1, this.hintHashtag, chat7);
+                    hashtagHint2.set(1, this.hintHashtag, chat4);
                 }
             } else {
                 hashtagHint = this.topHint;
                 if (hashtagHint != 0) {
-                    hashtagHint.set(r11, this.hintHashtag, chat7);
+                    hashtagHint.set(r12, this.hintHashtag, chat4);
                 }
                 hashtagHint2 = this.bottomHint;
                 if (hashtagHint2 != null) {
-                    hashtagHint2.set(1, this.hintHashtag, chat7);
+                    hashtagHint2.set(1, this.hintHashtag, chat4);
                 }
             }
-        } else if (str3 == null) {
+        } else if (str4 == null) {
             hashtagHint = this.topHint;
             if (hashtagHint != 0) {
-                hashtagHint.set(r11, this.hintHashtag, chat7);
+                hashtagHint.set(r12, this.hintHashtag, chat4);
             }
             hashtagHint2 = this.bottomHint;
             if (hashtagHint2 != null) {
-                hashtagHint2.set(1, this.hintHashtag, chat7);
+                hashtagHint2.set(1, this.hintHashtag, chat4);
             }
         } else {
             hashtagHint = this.topHint;
             if (hashtagHint != 0) {
-                hashtagHint.set(r11, this.hintHashtag, chat7);
+                hashtagHint.set(r12, this.hintHashtag, chat4);
             }
             hashtagHint2 = this.bottomHint;
             if (hashtagHint2 != null) {
-                hashtagHint2.set(1, this.hintHashtag, chat7);
+                hashtagHint2.set(1, this.hintHashtag, chat4);
             }
         }
         if (b == -1) {
-            this.contextMedia = r11;
+            this.contextMedia = r12;
             this.searchResultBotContext = null;
-            anonymousClass4.needChangePanelVisibility(r11);
+            mentionsAdapterDelegate.needChangePanelVisibility(r12);
             return;
         }
         if (b == 0) {
             if (b == 1) {
                 ArrayList arrayList119 = new ArrayList();
-                String lowerCase9 = sb2.toString().toLowerCase();
-                arrayList5 = searchAdapterHelper.hashtags;
-                while (i9 < arrayList5.size()) {
-                    hashtagObject = (SearchAdapterHelper.HashtagObject) arrayList5.get(i9);
+                String lowerCase9 = sb.toString().toLowerCase();
+                hashtags = searchAdapterHelper.getHashtags();
+                while (i8 < hashtags.size()) {
+                    hashtagObject = hashtags.get(i8);
                     if (hashtagObject == null) {
                     }
                 }
@@ -3474,7 +3527,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 } else {
                     z8 = true;
                 }
-                anonymousClass4.needChangePanelVisibility(z8);
+                mentionsAdapterDelegate.needChangePanelVisibility(z8);
                 return;
             }
             if (b == 2) {
@@ -3500,7 +3553,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
                 this.lastSearchKeyboardLanguage = currentKeyboardLanguage;
                 MediaDataController mediaDataController4 = MediaDataController.getInstance(this.currentAccount);
                 String[] strArr4 = this.lastSearchKeyboardLanguage;
-                String string5 = sb2.toString();
+                String string5 = sb.toString();
                 MentionsAdapter$$ExternalSyntheticLambda7 mentionsAdapter$$ExternalSyntheticLambda10 = new MentionsAdapter$$ExternalSyntheticLambda7(this);
                 if (SharedConfig.suggestAnimatedEmoji) {
                     z6 = false;
@@ -3514,11 +3567,11 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             ArrayList arrayList1110 = new ArrayList();
             ArrayList arrayList1111 = new ArrayList();
             ArrayList arrayList1112 = new ArrayList();
-            String lowerCase10 = sb2.toString().toLowerCase();
-            while (i7 < this.botInfo.size()) {
-                botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i7);
-                while (i8 < botInfo.commands.size()) {
-                    botCommand = botInfo.commands.get(i8);
+            String lowerCase10 = sb.toString().toLowerCase();
+            while (i6 < this.botInfo.size()) {
+                botInfo = (TL_bots.BotInfo) this.botInfo.valueAt(i6);
+                while (i7 < botInfo.commands.size()) {
+                    botCommand = botInfo.commands.get(i7);
                     if (botCommand == null) {
                     }
                 }
@@ -3549,56 +3602,55 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
             } else {
                 z7 = true;
             }
-            anonymousClass4.needChangePanelVisibility(z7);
+            mentionsAdapterDelegate.needChangePanelVisibility(z7);
             return;
         }
-        this.contextMedia = r11;
+        this.contextMedia = r12;
         this.searchResultBotContext = null;
         final ArrayList arrayList1113 = new ArrayList();
         if (arrayList2 != null) {
-            while (i15 < Math.min(100, arrayList2.size())) {
-                fromChatId = ((MessageObject) arrayList2.get(i15)).getFromChatId();
+            while (i14 < Math.min(100, arrayList2.size())) {
+                fromChatId = ((MessageObject) arrayList2.get(i14)).getFromChatId();
                 if (fromChatId <= 0) {
                 }
             }
         }
-        lowerCase = sb2.toString().toLowerCase();
+        lowerCase = sb.toString().toLowerCase();
         if (lowerCase.indexOf(32) >= 0) {
             z9 = true;
         } else {
             z9 = false;
         }
-        arrayList6 = new ArrayList();
+        arrayList5 = new ArrayList();
         LongSparseArray longSparseArray5 = new LongSparseArray();
-        int i37 = i4;
         longSparseArray = new LongSparseArray();
-        arrayList7 = new ArrayList();
-        arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
-        if (chat7 != null) {
-            arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+        arrayList6 = new ArrayList();
+        arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).inlineBots);
+        if (chat4 != null) {
+            arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
         } else {
-            arrayList7.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
+            arrayList6.addAll(MediaDataController.getInstance(this.currentAccount).guestBots);
         }
-        List.EL.sort(arrayList7, new Theme$$ExternalSyntheticLambda5(27));
+        List.EL.sort(arrayList6, new Theme$$ExternalSyntheticLambda5(27));
         linkedHashMap = new LinkedHashMap();
-        size = arrayList7.size();
-        i10 = 0;
-        while (i10 < size) {
-            Object obj5 = arrayList7.get(i10);
-            i10++;
+        size = arrayList6.size();
+        i9 = 0;
+        while (i9 < size) {
+            Object obj5 = arrayList6.get(i9);
+            i9++;
             TLRPC.TL_topPeer tL_topPeer4 = (TLRPC.TL_topPeer) obj5;
             Map.EL.putIfAbsent(linkedHashMap, Long.valueOf(DialogObject.getPeerDialogId(tL_topPeer4.peer)), tL_topPeer4);
         }
-        arrayList8 = new ArrayList(linkedHashMap.values());
+        arrayList7 = new ArrayList(linkedHashMap.values());
         if (!z) {
-            i14 = 0;
-            while (i13 < arrayList8.size()) {
-                user3 = messagesController.getUser(Long.valueOf(((TLRPC.TL_topPeer) arrayList8.get(i13)).peer.user_id));
-                if (user3 == null) {
-                    publicUsername3 = UserObject.getPublicUsername(user3);
-                    if (TextUtils.isEmpty(publicUsername3)) {
+            i13 = 0;
+            while (i12 < arrayList7.size()) {
+                user4 = messagesController.getUser(Long.valueOf(((TLRPC.TL_topPeer) arrayList7.get(i12)).peer.user_id));
+                if (user4 == null) {
+                    publicUsername2 = UserObject.getPublicUsername(user4);
+                    if (TextUtils.isEmpty(publicUsername2)) {
                     }
-                    if (i14 == 5) {
+                    if (i13 == 5) {
                         break;
                         break;
                     }
@@ -3607,164 +3659,156 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
         }
         chatActivity2 = this.parentFragment;
         if (chatActivity2 != null) {
-            chat7 = chatActivity2.currentChat;
-            j = chatActivity2.threadMessageId;
+            chat4 = chatActivity2.getCurrentChat();
+            threadId = this.parentFragment.getThreadId();
         } else {
             chatFull = this.info;
             if (chatFull != null) {
-                chat7 = messagesController.getChat(Long.valueOf(chatFull.id));
+                chat4 = messagesController.getChat(Long.valueOf(chatFull.id));
             }
-            j = 0;
+            threadId = 0;
         }
         currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
-        if (chat7 != null) {
-            i12 = -2;
-            while (i12 < this.info.participants.participants.size()) {
-                if (i12 != -2) {
-                    if (currentUser == null) {
-                    }
-                    j4 = j;
-                    chat5 = chat7;
-                    i12 = i12;
-                } else {
-                    chat3 = chat7;
-                    if (i12 == -1) {
-                        j4 = j;
-                        chatParticipant = this.info.participants.participants.get(i12);
-                        if (currentUser != null) {
-                            chat4 = chat3;
-                            if (chatParticipant.user_id != currentUser.id) {
-                            }
-                            chat5 = chat4;
-                            i12 = i12;
+        if (chat4 != null) {
+            i11 = -2;
+            while (i11 < this.info.participants.participants.size()) {
+                if (i11 == -2) {
+                    if (currentUser != null) {
+                        String str1110 = currentUser.first_name;
+                        String str1111 = currentUser.last_name;
+                        publicUsername = UserObject.getPublicUsername(currentUser);
+                        j3 = currentUser.id;
+                        j2 = threadId;
+                        user3 = currentUser;
+                        obj = user3;
+                        str9 = str1111;
+                        str8 = str1110;
+                        if (TextUtils.isEmpty(publicUsername)) {
+                            arrayList5.add(obj);
+                            longSparseArray.put(obj, j3);
                         } else {
-                            chat4 = chat3;
+                            arrayList5.add(obj);
+                            longSparseArray.put(obj, j3);
                         }
-                        user2 = messagesController.getUser(Long.valueOf(chatParticipant.user_id));
-                        if (user2 != null) {
+                    }
+                    j2 = threadId;
+                    user3 = currentUser;
+                } else {
+                    if (i11 == -1) {
+                        if (z2) {
+                            if (lowerCase.length() == 0) {
+                                arrayList5.add(chat4);
+                            } else {
+                                String str1112 = chat4.title;
+                                publicUsername = ChatObject.getPublicUsername(chat4);
+                                str8 = str1112;
+                                j3 = -chat4.id;
+                                j2 = threadId;
+                                user3 = currentUser;
+                                obj = chat4;
+                                str9 = null;
+                            }
+                        }
+                        j2 = threadId;
+                        user3 = currentUser;
+                    } else {
+                        TLRPC.ChatParticipant chatParticipant4 = this.info.participants.participants.get(i11);
+                        j2 = threadId;
+                        if (currentUser != null) {
                             if (lowerCase.length() == 0) {
                             }
-                            str7 = user2.first_name;
-                            str8 = user2.last_name;
-                            publicUsername2 = UserObject.getPublicUsername(user2);
-                            chat5 = chat4;
-                            j5 = user2.id;
+                            String str1113 = user2.first_name;
+                            String str210 = user2.last_name;
+                            publicUsername = UserObject.getPublicUsername(user2);
+                            user3 = currentUser;
+                            str8 = str1113;
+                            str9 = str210;
+                            j3 = user2.id;
                             obj = user2;
-                            if (TextUtils.isEmpty(publicUsername2)) {
-                                arrayList6.add(obj);
-                                longSparseArray.put(obj, j5);
-                            } else {
-                                arrayList6.add(obj);
-                                longSparseArray.put(obj, j5);
-                            }
-                        }
-                        chat5 = chat4;
-                        i12 = i12;
-                    } else if (!z2) {
-                        chat5 = chat3;
-                        j4 = j;
-                        i12 = i12;
-                    } else if (lowerCase.length() == 0) {
-                        chat7 = chat3;
-                        arrayList6.add(chat7);
-                        j4 = j;
-                        chat5 = chat7;
-                        i12 = i12;
-                    } else {
-                        str7 = chat3.title;
-                        publicUsername2 = ChatObject.getPublicUsername(chat3);
-                        j4 = j;
-                        chat5 = chat3;
-                        str8 = null;
-                        j5 = -chat3.id;
-                        obj = chat5;
-                        if (TextUtils.isEmpty(publicUsername2)) {
-                            arrayList6.add(obj);
-                            longSparseArray.put(obj, j5);
                         } else {
-                            arrayList6.add(obj);
-                            longSparseArray.put(obj, j5);
+                            if (lowerCase.length() == 0) {
+                            }
+                            String str1114 = user2.first_name;
+                            String str211 = user2.last_name;
+                            publicUsername = UserObject.getPublicUsername(user2);
+                            user3 = currentUser;
+                            str8 = str1114;
+                            str9 = str211;
+                            j3 = user2.id;
+                            obj = user2;
                         }
+                        user3 = currentUser;
+                    }
+                    if (TextUtils.isEmpty(publicUsername)) {
+                        arrayList5.add(obj);
+                        longSparseArray.put(obj, j3);
+                    } else {
+                        arrayList5.add(obj);
+                        longSparseArray.put(obj, j3);
                     }
                 }
-                i12++;
-                j = j4;
-                chat7 = chat5;
+                i11++;
+                threadId = j2;
+                currentUser = user3;
             }
         }
-        long j9 = j;
-        chat = chat7;
+        long j8 = threadId;
         if (this.searchInDialogs) {
             allDialogs = MessagesController.getInstance(this.currentAccount).getAllDialogs();
-            while (i11 < allDialogs.size()) {
-                if (allDialogs.get(i11).id > 0) {
-                    user = messagesController.getUser(Long.valueOf(allDialogs.get(i11).id));
+            i10 = 0;
+            while (i10 < allDialogs.size()) {
+                if (allDialogs.get(i10).id > 0) {
+                    user = messagesController.getUser(Long.valueOf(allDialogs.get(i10).id));
                     if (user != null) {
-                        if (lowerCase.length() == 0) {
-                            String str119 = user.first_name;
-                            String str1110 = user.last_name;
-                            publicUsername = UserObject.getPublicUsername(user);
-                            j3 = user.id;
-                            if (TextUtils.isEmpty(publicUsername)) {
-                                arrayList6.add(user);
-                                longSparseArray.put(user, j3);
-                            } else {
-                                arrayList6.add(user);
-                                longSparseArray.put(user, j3);
-                            }
-                        } else {
-                            String str1111 = user.first_name;
-                            String str1112 = user.last_name;
-                            publicUsername = UserObject.getPublicUsername(user);
-                            j3 = user.id;
-                            if (TextUtils.isEmpty(publicUsername)) {
-                                arrayList6.add(user);
-                                longSparseArray.put(user, j3);
-                            } else {
-                                arrayList6.add(user);
-                                longSparseArray.put(user, j3);
-                            }
-                        }
-                    }
-                } else if (!TextUtils.isEmpty(lowerCase)) {
-                    if (lowerCase.length() == 0) {
-                        arrayList6.add(chat2);
+                        chat2 = chat4;
                     } else {
-                        String str1113 = chat2.title;
-                        str6 = chat2.username;
-                        j2 = chat2.id;
-                        if (TextUtils.isEmpty(str6)) {
-                            arrayList6.add(chat2);
-                            longSparseArray.put(chat2, j2);
+                        chat2 = chat4;
+                    }
+                } else {
+                    chat2 = chat4;
+                    if (!TextUtils.isEmpty(lowerCase)) {
+                        if (lowerCase.length() == 0) {
+                            arrayList5.add(chat3);
                         } else {
-                            arrayList6.add(chat2);
-                            longSparseArray.put(chat2, j2);
+                            String str212 = chat3.title;
+                            str7 = chat3.username;
+                            j = chat3.id;
+                            if (TextUtils.isEmpty(str7)) {
+                                arrayList5.add(chat3);
+                                longSparseArray.put(chat3, j);
+                            } else {
+                                arrayList5.add(chat3);
+                                longSparseArray.put(chat3, j);
+                            }
                         }
                     }
                 }
+                i10++;
+                chat4 = chat2;
             }
         }
-        Collections.sort(arrayList6, new Comparator() {
+        chat = chat4;
+        Collections.sort(arrayList5, new Comparator() {
             @Override
             public final int compare(Object obj6, Object obj7) {
                 TLObject tLObject = (TLObject) obj6;
                 TLObject tLObject2 = (TLObject) obj7;
-                long j10 = tLObject instanceof TLRPC.User ? ((TLRPC.User) tLObject).id : -((TLRPC.Chat) tLObject).id;
-                long j11 = tLObject2 instanceof TLRPC.User ? ((TLRPC.User) tLObject2).id : -((TLRPC.Chat) tLObject2).id;
+                long j9 = tLObject instanceof TLRPC.User ? ((TLRPC.User) tLObject).id : -((TLRPC.Chat) tLObject).id;
+                long j10 = tLObject2 instanceof TLRPC.User ? ((TLRPC.User) tLObject2).id : -((TLRPC.Chat) tLObject2).id;
                 LongSparseArray longSparseArray6 = longSparseArray;
-                if (longSparseArray6.indexOfKey(j10) >= 0 && longSparseArray6.indexOfKey(j11) >= 0) {
+                if (longSparseArray6.indexOfKey(j9) >= 0 && longSparseArray6.indexOfKey(j10) >= 0) {
                     return 0;
                 }
-                if (longSparseArray6.indexOfKey(j10) >= 0) {
+                if (longSparseArray6.indexOfKey(j9) >= 0) {
                     return -1;
                 }
-                if (longSparseArray6.indexOfKey(j11) >= 0) {
+                if (longSparseArray6.indexOfKey(j10) >= 0) {
                     return 1;
                 }
-                Long lValueOf = Long.valueOf(j10);
+                Long lValueOf = Long.valueOf(j9);
                 ArrayList arrayList1114 = arrayList1113;
                 int iIndexOf2 = arrayList1114.indexOf(lValueOf);
-                int iIndexOf3 = arrayList1114.indexOf(Long.valueOf(j11));
+                int iIndexOf3 = arrayList1114.indexOf(Long.valueOf(j10));
                 if (iIndexOf2 != -1 && iIndexOf3 != -1) {
                     if (iIndexOf2 < iIndexOf3) {
                         return -1;
@@ -3787,7 +3831,7 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
         this.searchResultSuggestions = null;
         if (chat == null) {
         }
-        showUsersResult(longSparseArray, arrayList6, true);
+        showUsersResult(longSparseArray, arrayList5, true);
     }
 
     public final void setAllowStickers(boolean z) {
@@ -3796,11 +3840,11 @@ public final class MentionsAdapter extends RecyclerListView.SelectionAdapter imp
 
     public final void setChatInfo(TLRPC.ChatFull chatFull) {
         ChatActivity chatActivity;
-        TLRPC.Chat chat;
+        TLRPC.Chat currentChat;
         this.currentAccount = UserConfig.selectedAccount;
         this.info = chatFull;
-        if (!this.inlineMediaEnabled && this.foundContextBot != null && (chatActivity = this.parentFragment) != null && (chat = chatActivity.currentChat) != null) {
-            boolean zCanSendStickers = ChatObject.canSendStickers(chat);
+        if (!this.inlineMediaEnabled && this.foundContextBot != null && (chatActivity = this.parentFragment) != null && (currentChat = chatActivity.getCurrentChat()) != null) {
+            boolean zCanSendStickers = ChatObject.canSendStickers(currentChat);
             this.inlineMediaEnabled = zCanSendStickers;
             if (zCanSendStickers) {
                 this.searchResultUsernames = null;

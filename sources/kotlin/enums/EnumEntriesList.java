@@ -1,6 +1,6 @@
 package kotlin.enums;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.Serializable;
 import kotlin.collections.AbstractList;
 import kotlin.jvm.internal.Intrinsics;
@@ -31,7 +31,7 @@ public final class EnumEntriesList extends AbstractList implements EnumEntries, 
         Enum[] enumArr = this.entries;
         int length = enumArr.length;
         if (i < 0 || i >= length) {
-            throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, length, "index: ", ", size: "));
+            throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, length, "index: ", ", size: "));
         }
         return enumArr[i];
     }

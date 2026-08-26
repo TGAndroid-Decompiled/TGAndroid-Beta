@@ -1,11 +1,6 @@
 package org.telegram.messenger;
 
-import java.io.FileNotFoundException;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-
-public final class MessagesController$$ExternalSyntheticLambda16 implements RequestDelegate {
+public final class MessagesController$$ExternalSyntheticLambda16 implements Runnable {
     public final int $r8$classId;
     public final MessagesController f$0;
 
@@ -15,88 +10,97 @@ public final class MessagesController$$ExternalSyntheticLambda16 implements Requ
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) throws FileNotFoundException {
+    public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.lambda$sendBotStart$293(tLObject, tL_error);
+                this.f$0.lambda$processUpdates$380();
                 break;
             case 1:
-                this.f$0.lambda$updateTimerProc$152(tLObject, tL_error);
+                this.f$0.lambda$new$17();
                 break;
             case 2:
-                this.f$0.lambda$updateTimerProc$153(tLObject, tL_error);
+                this.f$0.lambda$new$0();
                 break;
             case 3:
-                this.f$0.lambda$loadCurrentState$325(tLObject, tL_error);
+                this.f$0.lambda$new$18();
                 break;
             case 4:
-                this.f$0.lambda$getContentSettings$502(tLObject, tL_error);
+                this.f$0.lambda$new$39();
                 break;
             case 5:
-                this.f$0.lambda$loadSignUpNotificationsSettings$207(tLObject, tL_error);
+                this.f$0.requestIsUserContactBlocked();
                 break;
             case 6:
-                this.f$0.lambda$reloadDialogsReadValue$64(tLObject, tL_error);
+                this.f$0.lambda$new$505();
                 break;
             case 7:
-                this.f$0.lambda$completeReadTask$238(tLObject, tL_error);
+                this.f$0.lambda$updateTimerProc$158();
                 break;
             case 8:
-                this.f$0.lambda$markMentionMessageAsRead$234(tLObject, tL_error);
+                this.f$0.lambda$updateTimerProc$161();
                 break;
             case 9:
-                this.f$0.lambda$toggleChannelForum$286(tLObject, tL_error);
+                this.f$0.lambda$applyAppConfig$36();
                 break;
             case 10:
-                this.f$0.lambda$setDialogHistoryTTL$137(tLObject, tL_error);
+                this.f$0.lambda$applyAppConfig$37();
                 break;
             case 11:
-                this.f$0.lambda$loadUnreadDialogs$362(tLObject, tL_error);
+                this.f$0.lambda$migrateDialogs$213();
                 break;
             case 12:
-                this.f$0.lambda$checkTosUpdate$163(tLObject, tL_error);
+                this.f$0.lambda$loadRemoteFilters$26();
                 break;
             case 13:
-                this.f$0.lambda$reloadReactionsNotifySettings$205(tLObject, tL_error);
+                this.f$0.lambda$loadRemoteFilters$27();
                 break;
             case 14:
-                this.f$0.lambda$loadHintDialogs$196(tLObject, tL_error);
+                this.f$0.lambda$loadRemoteFilters$28();
                 break;
             case 15:
-                this.f$0.lambda$reloadUser$56(tLObject, tL_error);
+                this.f$0.lambda$loadRemoteFilters$29();
                 break;
             case 16:
-                this.f$0.lambda$processUpdateArray$414(tLObject, tL_error);
+                this.f$0.lambda$cleanup$52();
                 break;
             case 17:
-                this.f$0.lambda$markMessageContentAsRead$232(tLObject, tL_error);
+                this.f$0.lambda$cleanup$53();
                 break;
             case 18:
-                this.f$0.lambda$loadRemoteFilters$30(tLObject, tL_error);
+                this.f$0.lambda$toggleChannelInvitesHistory$287();
                 break;
             case 19:
-                this.f$0.lambda$didReceivedNotification$43(tLObject, tL_error);
+                this.f$0.lambda$cleanup$54();
                 break;
             case 20:
-                this.f$0.lambda$loadGlobalNotificationsSettings$203(tLObject, tL_error);
+                this.f$0.lambda$removeWebBrowserException$514();
                 break;
             case 21:
-                this.f$0.lambda$performLogout$322(tLObject, tL_error);
+                this.f$0.lambda$checkPromoInfoInternal$166();
                 break;
             case 22:
-                this.f$0.lambda$checkPeerColors$491(tLObject, tL_error);
+                this.f$0.lambda$toggleChatJoinToSend$279();
                 break;
             case 23:
-                this.f$0.lambda$checkPeerColors$493(tLObject, tL_error);
+                this.f$0.lambda$migrateDialogs$215();
                 break;
             case 24:
-                this.f$0.lambda$loadSuggestedFilters$25(tLObject, tL_error);
+                this.f$0.lambda$scheduleTranscriptionUpdate$38();
                 break;
             case 25:
-                this.f$0.lambda$toggleChannelInvitesHistory$288(tLObject, tL_error);
+                this.f$0.lambda$processUpdateArray$409();
+                break;
+            case 26:
+                this.f$0.lambda$processUpdateArray$410();
+                break;
+            case 27:
+                this.f$0.lambda$processUpdateArray$411();
+                break;
+            case 28:
+                this.f$0.lambda$registerForPush$323();
                 break;
             default:
-                this.f$0.lambda$toggleChannelSignatures$284(tLObject, tL_error);
+                this.f$0.lambda$updateEmojiStatusUntil$474();
                 break;
         }
     }

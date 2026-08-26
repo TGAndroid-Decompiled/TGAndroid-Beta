@@ -18,10 +18,10 @@ public final class JoinCallAlert$$ExternalSyntheticLambda1 implements DialogInte
     public final void onCancel(DialogInterface dialogInterface) {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.getConnectionsManager().cancelRequest(this.f$1, true);
+                JoinCallAlert.lambda$open$5(this.f$0, this.f$1, dialogInterface);
                 break;
             default:
-                this.f$0.getConnectionsManager().cancelRequest(this.f$1, true);
+                JoinCallAlert.lambda$checkFewUsers$2(this.f$0, this.f$1, dialogInterface);
                 break;
         }
     }

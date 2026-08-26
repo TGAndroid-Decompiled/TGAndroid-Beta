@@ -14,7 +14,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Delegates.MemberRequestsDelegate;
 
 public final class MemberRequestCell extends FrameLayout {
     public final AvatarDrawable avatarDrawable;
@@ -25,13 +24,16 @@ public final class MemberRequestCell extends FrameLayout {
     public final SimpleTextView statusTextView;
 
     public interface OnClickListener {
+        void onAddClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter);
+
+        void onDismissClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter);
     }
 
     public MemberRequestCell(Context context, final OnClickListener onClickListener, boolean z) {
         super(context);
         final int i = 0;
         final int i2 = 1;
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(getContext());
         this.avatarImageView = backupImageView;
         SimpleTextView simpleTextView = new SimpleTextView(getContext());
@@ -81,7 +83,7 @@ public final class MemberRequestCell extends FrameLayout {
                         } else {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = memberRequestCell.importer;
                             if (tL_chatInviteImporter != null) {
-                                ((MemberRequestsDelegate) onClickListener2).hideChatJoinRequest(tL_chatInviteImporter, true);
+                                onClickListener2.onAddClicked(tL_chatInviteImporter);
                             }
                         }
                         break;
@@ -93,7 +95,7 @@ public final class MemberRequestCell extends FrameLayout {
                         } else {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = memberRequestCell2.importer;
                             if (tL_chatInviteImporter2 != null) {
-                                ((MemberRequestsDelegate) onClickListener3).hideChatJoinRequest(tL_chatInviteImporter2, false);
+                                onClickListener3.onDismissClicked(tL_chatInviteImporter2);
                             }
                         }
                         break;
@@ -131,7 +133,7 @@ public final class MemberRequestCell extends FrameLayout {
                         } else {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = memberRequestCell.importer;
                             if (tL_chatInviteImporter != null) {
-                                ((MemberRequestsDelegate) onClickListener2).hideChatJoinRequest(tL_chatInviteImporter, true);
+                                onClickListener2.onAddClicked(tL_chatInviteImporter);
                             }
                         }
                         break;
@@ -143,7 +145,7 @@ public final class MemberRequestCell extends FrameLayout {
                         } else {
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = memberRequestCell2.importer;
                             if (tL_chatInviteImporter2 != null) {
-                                ((MemberRequestsDelegate) onClickListener3).hideChatJoinRequest(tL_chatInviteImporter2, false);
+                                onClickListener3.onDismissClicked(tL_chatInviteImporter2);
                             }
                         }
                         break;

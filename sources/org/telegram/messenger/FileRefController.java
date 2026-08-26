@@ -2,9 +2,9 @@ package org.telegram.messenger;
 
 import android.os.SystemClock;
 import android.util.Pair;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.google.android.exoplayer2.util.Log;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +23,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda8;
+import org.webrtc.EglRenderer$$ExternalSyntheticLambda6;
 
 public class FileRefController extends BaseController {
     private static volatile FileRefController[] Instance = new FileRefController[4];
@@ -1261,7 +1261,7 @@ public class FileRefController extends BaseController {
             return "chat" + ((TLRPC.Chat) obj).id;
         }
         if (obj instanceof String) {
-            return zzil.m("str", (String) obj);
+            return zzii.m("str", (String) obj);
         }
         if (obj instanceof TLRPC.TL_messages_stickerSet) {
             return "set" + ((TLRPC.TL_messages_stickerSet) obj).set.id;
@@ -1293,7 +1293,7 @@ public class FileRefController extends BaseController {
             StringBuilder sb = new StringBuilder("story(dialogId=");
             sb.append(storyItem.dialogId);
             sb.append(" id=");
-            return SurfaceContainer$$ExternalSyntheticOutline0.m(storyItem.id, ")", sb);
+            return Fragment$$ExternalSyntheticOutline0.m(storyItem.id, ")", sb);
         }
         if (!(obj instanceof MessageObject)) {
             if (obj == null) {
@@ -1365,7 +1365,7 @@ public class FileRefController extends BaseController {
         return Arrays.equals(bArr, bArr2);
     }
 
-    public static void lambda$onRequestComplete$46(TLRPC.TL_theme tL_theme) {
+    public static void lambda$onRequestComplete$46(TLRPC.TL_theme tL_theme) throws Throwable {
         TLRPC.Document document;
         int size = Theme.themes.size();
         for (int i = 0; i < size; i++) {
@@ -1443,7 +1443,7 @@ public class FileRefController extends BaseController {
     }
 
     public void lambda$requestReferenceFromServer$1(String str, String str2, StoriesController.BotPreview botPreview) {
-        Utilities.stageQueue.postRunnable(new ImageLoader$$ExternalSyntheticLambda10((Object) this, (Object) str, (Object) str2, (Object) botPreview, 8));
+        Utilities.stageQueue.postRunnable(new ImageLoader$$ExternalSyntheticLambda10(8, this, str, str2, botPreview));
     }
 
     public void lambda$requestReferenceFromServer$10(String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) throws FileNotFoundException {
@@ -3808,14 +3808,14 @@ public class FileRefController extends BaseController {
                 sendErrorToObject(objArr, 0);
                 return;
             }
-            TodoItemMenu$$ExternalSyntheticLambda8 todoItemMenu$$ExternalSyntheticLambda8 = new TodoItemMenu$$ExternalSyntheticLambda8(botPreviewsList, botPreview, new FileRefController$$ExternalSyntheticLambda21(this, str, str2, 0), 5);
+            EglRenderer$$ExternalSyntheticLambda6 eglRenderer$$ExternalSyntheticLambda6 = new EglRenderer$$ExternalSyntheticLambda6(botPreviewsList, botPreview, new FileRefController$$ExternalSyntheticLambda21(this, str, str2, 0), 1);
             if (botPreviewsList.reqId != 0) {
                 ConnectionsManager.getInstance(botPreviewsList.currentAccount).cancelRequest(botPreviewsList.reqId, true);
                 botPreviewsList.reqId = 0;
             }
             botPreviewsList.loading = false;
             botPreviewsList.loaded = false;
-            botPreviewsList.loadInternal(todoItemMenu$$ExternalSyntheticLambda8);
+            botPreviewsList.loadInternal(eglRenderer$$ExternalSyntheticLambda6);
             return;
         }
         if (obj instanceof TL_stories.StoryItem) {

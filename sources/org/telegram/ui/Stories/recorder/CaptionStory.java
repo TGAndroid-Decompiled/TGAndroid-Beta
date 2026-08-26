@@ -3,21 +3,17 @@ package org.telegram.ui.Stories.recorder;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.graphics.Typeface;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DiffUtil;
-import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline0;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline2;
@@ -34,18 +30,15 @@ import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BlobDrawable;
 import org.telegram.ui.Components.BlurringShader;
+import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.Text;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda12;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
-import org.telegram.ui.Stories.StoriesViewPager$$ExternalSyntheticLambda0;
-import org.telegram.ui.ThemePreviewActivity;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
-import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda8;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda6;
 
 public abstract class CaptionStory extends CaptionContainerView {
     public static final int[] periods = {21600, 43200, 86400, 172800};
@@ -140,14 +133,11 @@ public abstract class CaptionStory extends CaptionContainerView {
             int i = R.raw.chat_audio_record_delete_3;
             RLottieDrawable rLottieDrawable = new RLottieDrawable(i, DiffUtil.m(i, ""), AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
             this.drawable = rLottieDrawable;
-            rLottieDrawable.invalidateOnProgressSet = true;
+            rLottieDrawable.setInvalidateOnProgressSet(true);
             paint.setColor(-2406842);
-            rLottieDrawable.applyingLayerColors = true;
-            HashMap map = rLottieDrawable.newColorUpdates;
-            map.put("Cup Red", -2406842);
-            rLottieDrawable.requestRedrawColors();
-            map.put("Box", -2406842);
-            rLottieDrawable.requestRedrawColors();
+            rLottieDrawable.beginApplyLayerColors();
+            rLottieDrawable.setLayerColor("Cup Red", -2406842);
+            rLottieDrawable.setLayerColor("Box", -2406842);
             rLottieDrawable.commitApplyLayerColors();
         }
 
@@ -208,20 +198,14 @@ public abstract class CaptionStory extends CaptionContainerView {
         this.periodIndex = 0;
         StoryRecorder.AnonymousClass8 anonymousClass8 = (StoryRecorder.AnonymousClass8) this;
         this.recordPaint = new RecordDot((StoryRecorder.AnonymousClass8) this, anonymousClass8);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
         this.timerTextDrawable = animatedTextDrawable;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        animatedTextDrawable.moveAmplitude = 0.16f;
-        animatedTextDrawable.animateDuration = 50L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextDrawable.setAnimationProperties(0.16f, 0L, 50L, cubicBezierInterpolator);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.0f));
-        Typeface typefaceBold = AndroidUtilities.bold();
-        TextPaint textPaint = animatedTextDrawable.textPaint;
-        textPaint.setTypeface(typefaceBold);
-        animatedTextDrawable.setText("0:00.0", true, true);
-        textPaint.setColor(-1);
-        animatedTextDrawable.alpha = Color.alpha(-1);
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable.setText("0:00.0");
+        animatedTextDrawable.setTextColor(-1);
         Paint paint = new Paint(1);
         this.whitePaint = paint;
         Paint paint2 = new Paint(1);
@@ -239,7 +223,7 @@ public abstract class CaptionStory extends CaptionContainerView {
         blobDrawable2.maxRadius = AndroidUtilities.dp(55.0f);
         blobDrawable2.generateBlob();
         this.roundDrawable = getContext().getResources().getDrawable(R.drawable.input_video_pressed).mutate();
-        this.animatedAmplitude = new AnimatedFloat(new CaptionStory$$ExternalSyntheticLambda0(anonymousClass8, 0), 200L, cubicBezierInterpolator, 0);
+        this.animatedAmplitude = new AnimatedFloat(new CaptionStory$$ExternalSyntheticLambda0(anonymousClass8, 0), 0L, 200L, cubicBezierInterpolator);
         this.circlePath = new Path();
         this.boundsPath = new Path();
         this.lockBackgroundPaint = new Paint(1);
@@ -256,19 +240,20 @@ public abstract class CaptionStory extends CaptionContainerView {
         this.lockRect = new RectF();
         this.lockHandle = new Path();
         this.cancelT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator2);
-        this.cancel2T = new AnimatedFloat(new CaptionStory$$ExternalSyntheticLambda0(anonymousClass8, 0), 420L, cubicBezierInterpolator2, 0);
+        this.cancel2T = new AnimatedFloat(new CaptionStory$$ExternalSyntheticLambda0(anonymousClass8, 0), 0L, 420L, cubicBezierInterpolator2);
         this.lockT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator2);
-        this.lock2T = new AnimatedFloat(new CaptionStory$$ExternalSyntheticLambda0(anonymousClass8, 0), 350L, cubicBezierInterpolator2, 0);
+        this.lock2T = new AnimatedFloat(new CaptionStory$$ExternalSyntheticLambda0(anonymousClass8, 0), 0L, 350L, cubicBezierInterpolator2);
         this.doneCancel = new CaptionStory$$ExternalSyntheticLambda0(anonymousClass8, 1);
         ImageView imageView = new ImageView(activity);
         this.roundButton = imageView;
+        new ButtonBounce(imageView);
         imageView.setImageResource(R.drawable.input_video_story);
         imageView.setBackground(Theme.createSelectorDrawable(1090519039, 1, AndroidUtilities.dp(18.0f)));
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setContentDescription(LocaleController.getString(R.string.AccDescrVideoMessage));
         addView(imageView, LayoutHelper.createFrame(44, 44.0f, 85, 0.0f, 0.0f, 11.0f, 6.0f));
-        imageView.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(anonymousClass8, 24));
+        imageView.setOnClickListener(new PaintView$$ExternalSyntheticLambda63(anonymousClass8, 2));
         ImageView imageView2 = new ImageView(activity);
         this.periodButton = imageView2;
         CaptionContainerView.PeriodDrawable periodDrawable = new CaptionContainerView.PeriodDrawable(5);
@@ -279,7 +264,7 @@ public abstract class CaptionStory extends CaptionContainerView {
         imageView2.setContentDescription(LocaleController.getString(R.string.StoryPeriodHint));
         setPeriod(86400, false);
         addView(imageView2, LayoutHelper.createFrame(44, 44.0f, 85, 0.0f, 0.0f, 51.0f, 6.0f));
-        imageView2.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(anonymousClass8, frameLayout, darkThemeResourceProvider, 19));
+        imageView2.setOnClickListener(new PaintView$$ExternalSyntheticLambda9(anonymousClass8, frameLayout, darkThemeResourceProvider, 1));
     }
 
     @Override
@@ -308,6 +293,9 @@ public abstract class CaptionStory extends CaptionContainerView {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int action;
+        RecordDot recordDot;
+        CaptionStory$$ExternalSyntheticLambda0 captionStory$$ExternalSyntheticLambda0;
         boolean z;
         StoryRecorder.AnonymousClass8 anonymousClass8;
         boolean zAccess$9600;
@@ -319,7 +307,8 @@ public abstract class CaptionStory extends CaptionContainerView {
         Drawable drawable;
         if (!this.recording || (anonymousClass2 = this.currentRecorder) == null || anonymousClass2.cameraView == null || (drawable = this.flipButton) == null) {
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(this.roundButton.getX(), this.roundButton.getY(), this.roundButton.getX() + this.roundButton.getMeasuredWidth(), this.roundButton.getY() + this.roundButton.getMeasuredHeight());
+            ImageView imageView = this.roundButton;
+            rectF.set(imageView.getX(), imageView.getY(), imageView.getX() + imageView.getMeasuredWidth(), imageView.getY() + imageView.getMeasuredHeight());
             if (this.recordTouch && (this.hasRoundVideo || this.keyboardShown || !rectF.contains(motionEvent.getX(), motionEvent.getY()))) {
                 if (this.recording && this.locked && this.cancelBounds.contains(motionEvent.getX(), motionEvent.getY())) {
                     releaseRecord(false, true);
@@ -333,7 +322,10 @@ public abstract class CaptionStory extends CaptionContainerView {
                 this.recordTouch = false;
                 return true;
             }
-            if (motionEvent.getAction() == 0) {
+            action = motionEvent.getAction();
+            recordDot = this.recordPaint;
+            captionStory$$ExternalSyntheticLambda0 = this.doneCancel;
+            if (action == 0) {
                 if (motionEvent.getAction() == 2) {
                     if (!this.cancelling) {
                         this.slideProgress = Utilities.clamp((this.fromX - motionEvent.getX()) / (getWidth() * 0.35f), 1.0f, 0.0f);
@@ -343,13 +335,13 @@ public abstract class CaptionStory extends CaptionContainerView {
                         if (z && !this.cancelling && this.slideProgress >= 1.0f) {
                             this.cancelling = true;
                             this.recording = false;
-                            this.roundButton.setVisibility(4);
+                            imageView.setVisibility(4);
                             this.periodButton.setVisibility(4);
-                            RecordDot recordDot = this.recordPaint;
                             recordDot.playing = true;
-                            recordDot.drawable.setProgress(0.0f, true);
+                            RLottieDrawable rLottieDrawable = recordDot.drawable;
+                            rLottieDrawable.setProgress(0.0f);
                             if (recordDot.attachedToWindow) {
-                                recordDot.drawable.start();
+                                rLottieDrawable.start();
                             }
                             AnonymousClass1 anonymousClass3 = this.currentRecorder;
                             if (anonymousClass3 != null) {
@@ -358,7 +350,7 @@ public abstract class CaptionStory extends CaptionContainerView {
                                 CameraController.getInstance().stopVideoRecording(anonymousClass3.cameraView.getCameraSessionRecording(), false, false);
                                 anonymousClass3.destroy(false);
                             }
-                            AndroidUtilities.runOnUIThread(this.doneCancel, 800L);
+                            AndroidUtilities.runOnUIThread(captionStory$$ExternalSyntheticLambda0, 800L);
                         } else if (!z && !this.cancelling && fClamp >= 1.0f && this.slideProgress < 0.4f) {
                             this.locked = true;
                             try {
@@ -393,7 +385,7 @@ public abstract class CaptionStory extends CaptionContainerView {
                 zAccess$9600 = false;
             }
             if (zAccess$9600) {
-                AndroidUtilities.cancelRunOnUIThread(this.doneCancel);
+                AndroidUtilities.cancelRunOnUIThread(captionStory$$ExternalSyntheticLambda0);
                 this.fromX = motionEvent.getX();
                 this.fromY = motionEvent.getY();
                 this.amplitude = 0.0f;
@@ -403,17 +395,13 @@ public abstract class CaptionStory extends CaptionContainerView {
                 this.cancelling = false;
                 this.stopping = false;
                 this.locked = false;
-                RecordDot recordDot2 = this.recordPaint;
-                recordDot2.playing = false;
-                RLottieDrawable rLottieDrawable = recordDot2.drawable;
-                rLottieDrawable.isRunning = false;
-                rLottieDrawable.checkChoreographer$1();
-                recordDot2.drawable.setProgress(0.0f, true);
+                recordDot.playing = false;
+                RLottieDrawable rLottieDrawable2 = recordDot.drawable;
+                rLottieDrawable2.stop();
+                rLottieDrawable2.setProgress(0.0f);
                 this.recording = true;
                 this.startTime = System.currentTimeMillis();
-                this.collapsed = true;
-                this.collapsedFromX = Integer.MAX_VALUE;
-                invalidate();
+                setCollapsed(true, Integer.MAX_VALUE);
                 invalidateDrawOver2();
                 AnonymousClass1 anonymousClass4 = new AnonymousClass1(getContext());
                 this.currentRecorder = anonymousClass4;
@@ -435,11 +423,11 @@ public abstract class CaptionStory extends CaptionContainerView {
                     }
                 }
                 int i = 2;
-                anonymousClass4.onDoneCallback = new BotBiometry$$ExternalSyntheticLambda8(i, anonymousClass9, anonymousClass4);
+                anonymousClass4.onDoneCallback = new BotBiometry$$ExternalSyntheticLambda6(i, anonymousClass9, anonymousClass4);
                 anonymousClass4.onDestroyCallback = new CaptionStory$$ExternalSyntheticLambda0(anonymousClass9, i);
-                ThemePreviewActivity.AnonymousClass14 anonymousClass14 = storyRecorder.previewContainer;
+                StoryRecorder.AnonymousClass3 anonymousClass5 = storyRecorder.previewContainer;
                 storyRecorder.currentRoundRecorder = anonymousClass4;
-                anonymousClass14.addView(anonymousClass4, LayoutHelper.createFrame(-1.0f, -1));
+                anonymousClass5.addView(anonymousClass4, LayoutHelper.createFrame(-1, -1.0f));
                 return true;
             }
         } else {
@@ -461,10 +449,14 @@ public abstract class CaptionStory extends CaptionContainerView {
                 }
             }
             RectF rectF3 = AndroidUtilities.rectTmp;
-            rectF3.set(this.roundButton.getX(), this.roundButton.getY(), this.roundButton.getX() + this.roundButton.getMeasuredWidth(), this.roundButton.getY() + this.roundButton.getMeasuredHeight());
+            ImageView imageView2 = this.roundButton;
+            rectF3.set(imageView2.getX(), imageView2.getY(), imageView2.getX() + imageView2.getMeasuredWidth(), imageView2.getY() + imageView2.getMeasuredHeight());
             if (this.recordTouch) {
             }
-            if (motionEvent.getAction() == 0) {
+            action = motionEvent.getAction();
+            recordDot = this.recordPaint;
+            captionStory$$ExternalSyntheticLambda0 = this.doneCancel;
+            if (action == 0) {
                 if (motionEvent.getAction() == 2) {
                     if (!this.cancelling) {
                         this.slideProgress = Utilities.clamp((this.fromX - motionEvent.getX()) / (getWidth() * 0.35f), 1.0f, 0.0f);
@@ -512,7 +504,7 @@ public abstract class CaptionStory extends CaptionContainerView {
                 zAccess$9600 = StoryRecorder.access$9600(StoryRecorder.this);
             }
             if (zAccess$9600) {
-                AndroidUtilities.cancelRunOnUIThread(this.doneCancel);
+                AndroidUtilities.cancelRunOnUIThread(captionStory$$ExternalSyntheticLambda0);
                 this.fromX = motionEvent.getX();
                 this.fromY = motionEvent.getY();
                 this.amplitude = 0.0f;
@@ -522,20 +514,16 @@ public abstract class CaptionStory extends CaptionContainerView {
                 this.cancelling = false;
                 this.stopping = false;
                 this.locked = false;
-                RecordDot recordDot3 = this.recordPaint;
-                recordDot3.playing = false;
-                RLottieDrawable rLottieDrawable2 = recordDot3.drawable;
-                rLottieDrawable2.isRunning = false;
-                rLottieDrawable2.checkChoreographer$1();
-                recordDot3.drawable.setProgress(0.0f, true);
+                recordDot.playing = false;
+                RLottieDrawable rLottieDrawable3 = recordDot.drawable;
+                rLottieDrawable3.stop();
+                rLottieDrawable3.setProgress(0.0f);
                 this.recording = true;
                 this.startTime = System.currentTimeMillis();
-                this.collapsed = true;
-                this.collapsedFromX = Integer.MAX_VALUE;
-                invalidate();
+                setCollapsed(true, Integer.MAX_VALUE);
                 invalidateDrawOver2();
-                AnonymousClass1 anonymousClass5 = new AnonymousClass1(getContext());
-                this.currentRecorder = anonymousClass5;
+                AnonymousClass1 anonymousClass6 = new AnonymousClass1(getContext());
+                this.currentRecorder = anonymousClass6;
                 StoryRecorder.AnonymousClass8 anonymousClass11 = (StoryRecorder.AnonymousClass8) this;
                 storyRecorder = StoryRecorder.this;
                 anonymousClass1 = storyRecorder.currentRoundRecorder;
@@ -554,11 +542,11 @@ public abstract class CaptionStory extends CaptionContainerView {
                     }
                 }
                 int i3 = 2;
-                anonymousClass5.onDoneCallback = new BotBiometry$$ExternalSyntheticLambda8(i3, anonymousClass11, anonymousClass5);
-                anonymousClass5.onDestroyCallback = new CaptionStory$$ExternalSyntheticLambda0(anonymousClass11, i3);
-                ThemePreviewActivity.AnonymousClass14 anonymousClass15 = storyRecorder.previewContainer;
-                storyRecorder.currentRoundRecorder = anonymousClass5;
-                anonymousClass15.addView(anonymousClass5, LayoutHelper.createFrame(-1.0f, -1));
+                anonymousClass6.onDoneCallback = new BotBiometry$$ExternalSyntheticLambda6(i3, anonymousClass11, anonymousClass6);
+                anonymousClass6.onDestroyCallback = new CaptionStory$$ExternalSyntheticLambda0(anonymousClass11, i3);
+                StoryRecorder.AnonymousClass3 anonymousClass13 = storyRecorder.previewContainer;
+                storyRecorder.currentRoundRecorder = anonymousClass6;
+                anonymousClass13.addView(anonymousClass6, LayoutHelper.createFrame(-1, -1.0f));
                 return true;
             }
         }
@@ -567,18 +555,15 @@ public abstract class CaptionStory extends CaptionContainerView {
 
     @Override
     public final void drawOver(Canvas canvas, RectF rectF) {
-        float f;
         long jMin;
-        Paint paint;
+        float f;
         float f2;
         float f3;
-        float f4;
-        float f5;
         Canvas canvas2;
         Canvas canvas3 = canvas;
         if (this.currentRecorder != null) {
-            float f6 = this.cancelT.set(this.cancelling);
-            float f7 = this.lockT.set(this.locked);
+            float f4 = this.cancelT.set(this.cancelling);
+            float f5 = this.lockT.set(this.locked);
             if (this.startTime <= 0) {
                 this.startTime = System.currentTimeMillis();
             }
@@ -593,17 +578,15 @@ public abstract class CaptionStory extends CaptionContainerView {
             recordDot.setBounds(iDp, iDp2, iDp3, iDp4);
             recordDot.draw(canvas3);
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.timerTextDrawable;
-            animatedTextDrawable.setBounds((int) ((rectF.left + AndroidUtilities.dp(33.3f)) - (AndroidUtilities.dp(10.0f) * f6)), (int) ((rectF.bottom - AndroidUtilities.dp(20.0f)) - AndroidUtilities.dp(9.0f)), (int) (rectF.left + AndroidUtilities.dp(133.3f)), (int) ((rectF.bottom - AndroidUtilities.dp(20.0f)) + AndroidUtilities.dp(9.0f)));
+            animatedTextDrawable.setBounds((int) ((rectF.left + AndroidUtilities.dp(33.3f)) - (AndroidUtilities.dp(10.0f) * f4)), (int) ((rectF.bottom - AndroidUtilities.dp(20.0f)) - AndroidUtilities.dp(9.0f)), (int) (rectF.left + AndroidUtilities.dp(133.3f)), (int) ((rectF.bottom - AndroidUtilities.dp(20.0f)) + AndroidUtilities.dp(9.0f)));
             AnonymousClass1 anonymousClass1 = this.currentRecorder;
             if (anonymousClass1.recordingStarted < 0) {
                 jMin = 0;
-                f = 2.0f;
             } else {
                 long jCurrentTimeMillis = anonymousClass1.recordingStopped;
                 if (jCurrentTimeMillis < 0) {
                     jCurrentTimeMillis = System.currentTimeMillis();
                 }
-                f = 2.0f;
                 jMin = Math.min(59500L, jCurrentTimeMillis - anonymousClass1.recordingStarted);
             }
             int i = (int) (jMin / 1000);
@@ -617,33 +600,29 @@ public abstract class CaptionStory extends CaptionContainerView {
             sb.append(i4);
             sb.append(".");
             sb.append(i2);
-            animatedTextDrawable.setText(sb.toString(), true, true);
-            animatedTextDrawable.alpha = (int) ((1.0f - f6) * 255.0f);
+            animatedTextDrawable.setText(sb.toString());
+            animatedTextDrawable.setAlpha((int) ((1.0f - f4) * 255.0f));
             animatedTextDrawable.draw(canvas3);
-            float f8 = 1.0f - f7;
-            float f9 = (1.0f - this.slideProgress) * f8;
-            Paint paint$1 = this.captionBlur.getPaint$1(1.0f);
-            if (paint$1 != null) {
-                paint = paint$1;
-                f2 = 10.0f;
-                f3 = 12.0f;
+            float f6 = 1.0f - f5;
+            float f7 = (1.0f - this.slideProgress) * f6;
+            Paint paint = this.captionBlur.getPaint(1.0f);
+            if (paint != null) {
+                f = 12.0f;
                 canvas.saveLayerAlpha(rectF.left, rectF.top, rectF.right, rectF.bottom, 255, 31);
                 canvas3 = canvas;
             } else {
-                paint = paint$1;
-                f2 = 10.0f;
-                f3 = 12.0f;
+                f = 12.0f;
             }
-            if (f9 > 0.0f) {
+            if (f7 > 0.0f) {
                 if (this.slideToCancelText == null) {
-                    this.slideToCancelText = new Text(LocaleController.getString(R.string.SlideToCancel2), 15.0f, null);
+                    this.slideToCancelText = new Text(LocaleController.getString(R.string.SlideToCancel2), 15.0f);
                 }
                 if (this.slideToCancelArrowPath == null) {
                     Path path = new Path();
                     this.slideToCancelArrowPath = path;
                     path.moveTo(AndroidUtilities.dp(3.83f), 0.0f);
                     this.slideToCancelArrowPath.lineTo(0.0f, AndroidUtilities.dp(5.0f));
-                    this.slideToCancelArrowPath.lineTo(AndroidUtilities.dp(3.83f), AndroidUtilities.dp(f2));
+                    this.slideToCancelArrowPath.lineTo(AndroidUtilities.dp(3.83f), AndroidUtilities.dp(10.0f));
                     Paint paint2 = new Paint(1);
                     this.slideToCancelArrowPaint = paint2;
                     paint2.setStyle(Paint.Style.STROKE);
@@ -651,34 +630,34 @@ public abstract class CaptionStory extends CaptionContainerView {
                     this.slideToCancelArrowPaint.setStrokeJoin(Paint.Join.ROUND);
                 }
                 this.slideToCancelArrowPaint.setStrokeWidth(AndroidUtilities.dp(1.33f));
-                this.slideToCancelText.ellipsizeWidth = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - animatedTextDrawable.getCurrentWidth());
-                float fM = BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, this.slideProgress, AndroidUtilities.dp(6.0f) * fSin, (rectF.centerX() - ((this.slideToCancelText.getWidth() + AndroidUtilities.dp(11.33f)) / f)) - (AndroidUtilities.lerp(this.slideProgress, 1.0f, f7) * (rectF.width() / 6.0f)));
-                int iMultAlpha = Theme.multAlpha(f9, paint != null ? -1 : -2130706433);
+                this.slideToCancelText.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - animatedTextDrawable.getCurrentWidth()));
+                float fM = BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, this.slideProgress, AndroidUtilities.dp(6.0f) * fSin, (rectF.centerX() - ((this.slideToCancelText.getWidth() + AndroidUtilities.dp(11.33f)) / 2.0f)) - (AndroidUtilities.lerp(this.slideProgress, 1.0f, f5) * (rectF.width() / 6.0f)));
+                int iMultAlpha = Theme.multAlpha(f7, paint != null ? -1 : -2130706433);
                 canvas3.save();
                 canvas3.translate(fM, rectF.centerY() - AndroidUtilities.dp(5.0f));
                 this.slideToCancelArrowPaint.setColor(iMultAlpha);
                 canvas3.drawPath(this.slideToCancelArrowPath, this.slideToCancelArrowPaint);
                 canvas3.restore();
-                f4 = 15.0f;
-                f5 = 0.0f;
-                this.slideToCancelText.draw(fM + AndroidUtilities.dp(11.33f), rectF.centerY(), 1.0f, iMultAlpha, canvas3);
+                f2 = 15.0f;
+                f3 = 0.0f;
+                this.slideToCancelText.draw(canvas3, fM + AndroidUtilities.dp(11.33f), rectF.centerY(), iMultAlpha, 1.0f);
             } else {
-                f4 = 15.0f;
-                f5 = 0.0f;
+                f2 = 15.0f;
+                f3 = 0.0f;
             }
-            if (f7 > f5) {
+            if (f5 > f3) {
                 if (this.cancelText == null) {
-                    this.cancelText = new Text(LocaleController.getString(R.string.CancelRound), f4, AndroidUtilities.bold());
+                    this.cancelText = new Text(LocaleController.getString(R.string.CancelRound), f2, AndroidUtilities.bold());
                 }
-                this.cancelText.ellipsizeWidth = (int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - animatedTextDrawable.getCurrentWidth());
-                float fWidth = ((rectF.width() / 4.0f) * f8) + (rectF.centerX() - (this.cancelText.getWidth() / f));
+                this.cancelText.ellipsize((int) ((rectF.width() - AndroidUtilities.dp(116.0f)) - animatedTextDrawable.getCurrentWidth()));
+                float fWidth = ((rectF.width() / 4.0f) * f6) + (rectF.centerX() - (this.cancelText.getWidth() / 2.0f));
                 canvas2 = canvas;
-                this.cancelText.draw(fWidth, rectF.centerY(), 1.0f, Theme.multAlpha(f7, paint != null ? -1 : -2130706433), canvas2);
-                this.cancelBounds.set(fWidth - AndroidUtilities.dp(f3), rectF.top, this.cancelText.getWidth() + fWidth + AndroidUtilities.dp(f3), rectF.bottom);
+                this.cancelText.draw(canvas2, fWidth, rectF.centerY(), Theme.multAlpha(f5, paint != 0 ? -1 : -2130706433), 1.0f);
+                this.cancelBounds.set(fWidth - AndroidUtilities.dp(f), rectF.top, this.cancelText.getWidth() + fWidth + AndroidUtilities.dp(f), rectF.bottom);
             } else {
                 canvas2 = canvas;
             }
-            if (paint != null) {
+            if (paint != 0) {
                 canvas2.drawRect(rectF, paint);
                 canvas2.restore();
             }
@@ -698,7 +677,7 @@ public abstract class CaptionStory extends CaptionContainerView {
         boolean z2 = this.locked;
         AnimatedFloat animatedFloat2 = this.lock2T;
         float f4 = animatedFloat2.set(z2);
-        float f5 = this.animatedAmplitude.set(this.amplitude, false);
+        float f5 = this.animatedAmplitude.set(this.amplitude);
         float f6 = 1.0f - f3;
         float fM = DiffUtil.m(1.0f, this.slideProgress, AndroidUtilities.dp(30.0f) * f5, AndroidUtilities.dp(41.0f)) * f6 * f;
         float fLerp = AndroidUtilities.lerp(BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, f4, getWidth() * 0.35f * this.slideProgress, rectF.right - AndroidUtilities.dp(20.0f)), rectF.left + AndroidUtilities.dp(20.0f), f3);
@@ -709,25 +688,23 @@ public abstract class CaptionStory extends CaptionContainerView {
             BlobDrawable blobDrawable = this.tinyWaveDrawable;
             blobDrawable.minRadius = AndroidUtilities.dp(47.0f);
             f2 = 0.0f;
-            blobDrawable.maxRadius = (AndroidUtilities.dp(15.0f) * 0.6f) + AndroidUtilities.dp(47.0f);
+            blobDrawable.maxRadius = (AndroidUtilities.dp(15.0f) * BlobDrawable.FORM_SMALL_MAX) + AndroidUtilities.dp(47.0f);
             BlobDrawable blobDrawable2 = this.bigWaveDrawable;
             blobDrawable2.minRadius = AndroidUtilities.dp(50.0f);
-            blobDrawable2.maxRadius = (AndroidUtilities.dp(12.0f) * 0.6f) + AndroidUtilities.dp(50.0f);
+            blobDrawable2.maxRadius = (AndroidUtilities.dp(12.0f) * BlobDrawable.FORM_BIG_MAX) + AndroidUtilities.dp(50.0f);
             blobDrawable2.update(f5, 1.01f);
             blobDrawable.update(f5, 1.02f);
-            Paint paint2 = blobDrawable2.paint;
-            paint2.setColor(Theme.multAlpha(0.15f * f, paint.getColor()));
+            blobDrawable2.paint.setColor(Theme.multAlpha(0.15f * f, paint.getColor()));
             canvas.save();
             float f7 = fM / blobDrawable2.minRadius;
             canvas.scale(f7, f7, fLerp, fDp);
-            blobDrawable2.draw(fLerp, fDp, canvas, paint2);
+            blobDrawable2.draw(fLerp, fDp, canvas, blobDrawable2.paint);
             canvas.restore();
-            Paint paint3 = blobDrawable.paint;
-            paint3.setColor(Theme.multAlpha(0.3f * f, paint.getColor()));
+            blobDrawable.paint.setColor(Theme.multAlpha(0.3f * f, paint.getColor()));
             canvas.save();
             float f8 = fM / blobDrawable.minRadius;
             canvas.scale(f8, f8, fLerp, fDp);
-            blobDrawable.draw(fLerp, fDp, canvas, paint3);
+            blobDrawable.draw(fLerp, fDp, canvas, blobDrawable.paint);
             canvas.restore();
         } else {
             f2 = 0.0f;
@@ -753,8 +730,8 @@ public abstract class CaptionStory extends CaptionContainerView {
             canvas.drawRoundRect(rectF2, AndroidUtilities.dp(5.33f), AndroidUtilities.dp(5.33f), this.whitePaint);
         }
         canvas.restore();
-        float f10 = animatedFloat.value;
-        float f11 = animatedFloat2.value;
+        float f10 = animatedFloat.get();
+        float f11 = animatedFloat2.get();
         float fM2 = ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, f10, AndroidUtilities.lerp(this.lockCancelledT.set(this.slideProgress < 0.4f), 0.0f, f11), f);
         float fDp2 = AndroidUtilities.dp(36.0f) * fM2;
         float fLerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(36.0f), f11) * fM2;
@@ -766,28 +743,27 @@ public abstract class CaptionStory extends CaptionContainerView {
         float f14 = fDp2 / 2.0f;
         rectF3.set(fDp3 - f14, fLerp3 - f12, f14 + fDp3, f12 + fLerp3);
         float fLerp4 = AndroidUtilities.lerp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), f11);
-        Paint paint4 = this.lockShadowPaint;
-        paint4.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(fM2, 536870912));
-        paint4.setColor(0);
-        canvas.drawRoundRect(rectF3, fLerp4, fLerp4, paint4);
-        Paint paint$1 = this.backgroundBlur.getPaint$1(fM2);
-        if (paint$1 == null) {
-            Paint paint5 = this.lockBackgroundPaint;
-            paint5.setColor(1073741824);
-            paint5.setAlpha((int) (64.0f * fM2));
-            canvas.drawRoundRect(rectF3, fLerp4, fLerp4, paint5);
+        Paint paint2 = this.lockShadowPaint;
+        paint2.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(fM2, 536870912));
+        paint2.setColor(0);
+        canvas.drawRoundRect(rectF3, fLerp4, fLerp4, paint2);
+        Paint paint3 = this.backgroundBlur.getPaint(fM2);
+        if (paint3 == null) {
+            Paint paint4 = this.lockBackgroundPaint;
+            paint4.setColor(1073741824);
+            paint4.setAlpha((int) (64.0f * fM2));
+            canvas.drawRoundRect(rectF3, fLerp4, fLerp4, paint4);
         } else {
-            canvas.drawRoundRect(rectF3, fLerp4, fLerp4, paint$1);
-            Paint paint6 = this.backgroundPaint;
-            paint6.setAlpha((int) (51.0f * fM2));
-            canvas.drawRoundRect(rectF3, fLerp4, fLerp4, paint6);
+            canvas.drawRoundRect(rectF3, fLerp4, fLerp4, paint3);
+            this.backgroundPaint.setAlpha((int) (51.0f * fM2));
+            canvas.drawRoundRect(rectF3, fLerp4, fLerp4, this.backgroundPaint);
         }
         canvas.save();
         canvas.scale(fM2, fM2, fDp3, fLerp3);
-        Paint paint7 = this.lockPaint;
-        paint7.setColor(Theme.multAlpha(fM2, -1));
-        Paint paint8 = this.lockHandlePaint;
-        paint8.setColor(Theme.multAlpha(fM2 * f13, -1));
+        Paint paint5 = this.lockPaint;
+        paint5.setColor(Theme.multAlpha(fM2, -1));
+        Paint paint6 = this.lockHandlePaint;
+        paint6.setColor(Theme.multAlpha(fM2 * f13, -1));
         float fLerp5 = AndroidUtilities.lerp(AndroidUtilities.dp(15.33f), AndroidUtilities.dp(13.0f), f11);
         float fLerp6 = AndroidUtilities.lerp(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(13.0f), f11);
         float fDp4 = (AndroidUtilities.dp(4.0f) * f13) + fLerp3;
@@ -797,7 +773,7 @@ public abstract class CaptionStory extends CaptionContainerView {
         float f16 = fLerp6 / 2.0f;
         float f17 = fDp4 - f16;
         rectF4.set(fDp3 - f15, f17, f15 + fDp3, fDp4 + f16);
-        canvas.drawRoundRect(rectF4, AndroidUtilities.dp(3.66f), AndroidUtilities.dp(3.66f), paint7);
+        canvas.drawRoundRect(rectF4, AndroidUtilities.dp(3.66f), AndroidUtilities.dp(3.66f), paint5);
         if (f11 < 1.0f) {
             canvas.save();
             canvas.rotate(this.lockProgress * 12.0f * f13, fDp3, f17);
@@ -815,8 +791,8 @@ public abstract class CaptionStory extends CaptionContainerView {
             rectF5.set(f19, fDp6 - fDp5, f18, fDp5 + fDp6);
             path2.arcTo(rectF5, 0.0f, -180.0f, false);
             path2.lineTo(f19, (AndroidUtilities.lerp(AndroidUtilities.lerp(0.4f, 0.0f, this.lockProgress), 1.0f, f11) * AndroidUtilities.dp(3.66f)) + fDp6);
-            paint8.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            canvas.drawPath(path2, paint8);
+            paint6.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            canvas.drawPath(path2, paint6);
             canvas.restore();
         }
         canvas.restore();
@@ -824,20 +800,19 @@ public abstract class CaptionStory extends CaptionContainerView {
             ImageView imageView = this.roundButton;
             int visibility = imageView.getVisibility();
             ImageView imageView2 = this.periodButton;
-            AnimatedFloat animatedFloat3 = this.collapsedT;
-            if (visibility == 4 || imageView2.getVisibility() == 4 || animatedFloat3.value > 0.0f) {
+            if (visibility == 4 || imageView2.getVisibility() == 4 || this.collapsedT.get() > 0.0f) {
                 canvas.saveLayerAlpha(rectF, (int) ((1.0f - this.keyboardT) * 255.0f), 31);
                 Path path3 = this.boundsPath;
                 path3.rewind();
                 path3.addRoundRect(rectF, AndroidUtilities.dp(21.0f), AndroidUtilities.dp(21.0f), direction);
                 canvas.clipPath(path3);
-                if (imageView.getVisibility() == 4 || animatedFloat3.value > 0.0f) {
+                if (imageView.getVisibility() == 4 || this.collapsedT.get() > 0.0f) {
                     canvas.save();
                     canvas.translate((AndroidUtilities.dp(180.0f) * f6) + imageView.getX(), imageView.getY());
                     imageView.draw(canvas);
                     canvas.restore();
                 }
-                if (imageView2.getVisibility() == 4 || animatedFloat3.value > 0.0f) {
+                if (imageView2.getVisibility() == 4 || this.collapsedT.get() > 0.0f) {
                     canvas.save();
                     canvas.translate((AndroidUtilities.dp(180.0f) * f6) + imageView2.getX(), imageView2.getY());
                     imageView2.draw(canvas);
@@ -879,7 +854,7 @@ public abstract class CaptionStory extends CaptionContainerView {
         if (z) {
             rLottieDrawable.start();
         }
-        rLottieDrawable.masterParent = recordDot.parent;
+        rLottieDrawable.setMasterParent(recordDot.parent);
     }
 
     @Override
@@ -888,9 +863,8 @@ public abstract class CaptionStory extends CaptionContainerView {
         RecordDot recordDot = this.recordPaint;
         recordDot.attachedToWindow = false;
         RLottieDrawable rLottieDrawable = recordDot.drawable;
-        rLottieDrawable.isRunning = false;
-        rLottieDrawable.checkChoreographer$1();
-        recordDot.drawable.masterParent = null;
+        rLottieDrawable.stop();
+        rLottieDrawable.setMasterParent(null);
     }
 
     @Override
@@ -904,10 +878,7 @@ public abstract class CaptionStory extends CaptionContainerView {
         AndroidUtilities.cancelRunOnUIThread(this.doneCancel);
         this.stopping = true;
         this.recording = false;
-        int iDp = (int) ((getBounds().right - AndroidUtilities.dp(20.0f)) - ((getWidth() * 0.35f) * this.slideProgress));
-        this.collapsed = false;
-        this.collapsedFromX = iDp;
-        invalidate();
+        setCollapsed(false, (int) ((getBounds().right - AndroidUtilities.dp(20.0f)) - ((getWidth() * 0.35f) * this.slideProgress)));
         AnonymousClass1 anonymousClass1 = this.currentRecorder;
         if (anonymousClass1 != null) {
             if (!z) {
@@ -955,18 +926,9 @@ public abstract class CaptionStory extends CaptionContainerView {
     }
 
     public final void showRemoveRoundAlert() {
-        if (this.hasRoundVideo) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider);
-            String string = LocaleController.getString(R.string.StoryRemoveRoundTitle);
-            AlertDialog alertDialog = builder.alertDialog;
-            alertDialog.title = string;
-            alertDialog.message = LocaleController.getString(R.string.StoryRemoveRoundMessage);
-            builder.setPositiveButton(LocaleController.getString(R.string.Remove), new StoriesViewPager$$ExternalSyntheticLambda0(this, 23));
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            TextView textView = (TextView) builder.show().getButton(-1);
-            if (textView != null) {
-                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold, this.resourcesProvider));
-            }
+        TextView textView;
+        if (this.hasRoundVideo && (textView = (TextView) new AlertDialog.Builder(getContext(), 0, this.resourcesProvider).setTitle(LocaleController.getString(R.string.StoryRemoveRoundTitle)).setMessage(LocaleController.getString(R.string.StoryRemoveRoundMessage)).setPositiveButton(LocaleController.getString(R.string.Remove), new Weather$$ExternalSyntheticLambda7(this, 1)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show().getButton(-1)) != null) {
+            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold, this.resourcesProvider));
         }
     }
 

@@ -2,17 +2,14 @@ package org.telegram.ui.Stories;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -35,15 +32,16 @@ public final class StoryReactionWidgetView extends StoryMediaAreasView.AreaView 
 
     public StoryReactionWidgetView(Context context, StoryMediaAreasView storyMediaAreasView, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, EmojiAnimationsOverlay emojiAnimationsOverlay) {
         TLRPC.TL_availableReaction tL_availableReaction;
-        ArrayList arrayList;
         super(context, storyMediaAreasView, tL_mediaAreaSuggestedReaction);
         StoryReactionWidgetBackground storyReactionWidgetBackground = new StoryReactionWidgetBackground(this);
         this.storyReactionWidgetBackground = storyReactionWidgetBackground;
         ReactionImageHolder reactionImageHolder = new ReactionImageHolder(this);
         this.holder = reactionImageHolder;
-        this.preloadSmallReaction = new ImageReceiver(this);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.preloadSmallReaction = imageReceiver;
         this.progressToCount = new AnimatedFloat(this);
-        this.animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, false, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
+        this.animatedTextDrawable = animatedTextDrawable;
         ReactionsLayoutInBubble.VisibleReaction visibleReactionFromTL = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_mediaAreaSuggestedReaction.reaction);
         this.visibleReaction = visibleReactionFromTL;
         if (tL_mediaAreaSuggestedReaction.flipped) {
@@ -51,33 +49,21 @@ public final class StoryReactionWidgetView extends StoryMediaAreasView.AreaView 
         }
         storyReactionWidgetBackground.updateShadowLayer(getScaleX());
         reactionImageHolder.setVisibleReaction(visibleReactionFromTL);
-        emojiAnimationsOverlay.getClass();
-        String strFindAnimatedEmojiEmoticon = visibleReactionFromTL.emojicon;
-        strFindAnimatedEmojiEmoticon = strFindAnimatedEmojiEmoticon == null ? MessageObject.findAnimatedEmojiEmoticon(AnimatedEmojiDrawable.findDocument(emojiAnimationsOverlay.currentAccount, visibleReactionFromTL.documentId)) : strFindAnimatedEmojiEmoticon;
-        if (strFindAnimatedEmojiEmoticon != null && (arrayList = (ArrayList) emojiAnimationsOverlay.emojiInteractionsStickersMap.get(strFindAnimatedEmojiEmoticon)) != null && !arrayList.isEmpty()) {
-            int iMin = Math.min(1, arrayList.size());
-            for (int i = 0; i < iMin; i++) {
-                emojiAnimationsOverlay.preloadAnimation((TLRPC.Document) arrayList.get(i));
-            }
+        emojiAnimationsOverlay.preload(visibleReactionFromTL);
+        if (visibleReactionFromTL.emojicon != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReactionFromTL.emojicon)) != null) {
+            imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
-        if (this.visibleReaction.emojicon != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.visibleReaction.emojicon)) != null) {
-            this.preloadSmallReaction.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
-        }
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.animatedTextDrawable;
-        animatedTextDrawable.gravity = 17;
-        animatedTextDrawable.textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
-        this.animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.animatedTextDrawable;
-        animatedTextDrawable2.overrideFullWidth = AndroidUtilities.displaySize.x;
+        animatedTextDrawable.setGravity(17);
+        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
+        animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
+        animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
         if (tL_mediaAreaSuggestedReaction.dark) {
-            StoryReactionWidgetBackground storyReactionWidgetBackground2 = this.storyReactionWidgetBackground;
-            int i2 = storyReactionWidgetBackground2.style + 1;
-            storyReactionWidgetBackground2.style = i2;
-            if (i2 >= 2) {
-                storyReactionWidgetBackground2.style = 0;
+            int i = storyReactionWidgetBackground.style + 1;
+            storyReactionWidgetBackground.style = i;
+            if (i >= 2) {
+                storyReactionWidgetBackground.style = 0;
             }
-            animatedTextDrawable2.textPaint.setColor(-1);
-            animatedTextDrawable2.alpha = Color.alpha(-1);
+            animatedTextDrawable.setTextColor(-1);
         }
     }
 
@@ -96,7 +82,7 @@ public final class StoryReactionWidgetView extends StoryMediaAreasView.AreaView 
         float fHeight = (storyReactionWidgetBackground.getBounds().height() * 0.427f) + storyReactionWidgetBackground.getBounds().top;
         float f = fHeight - measuredWidth2;
         float f2 = fHeight + measuredWidth2;
-        float f3 = this.progressToCount.set(this.hasCounter ? 1.0f : 0.0f, false);
+        float f3 = this.progressToCount.set(this.hasCounter ? 1.0f : 0.0f);
         Rect rect = AndroidUtilities.rectTmp2;
         rect.set((int) fCenterX, (int) AndroidUtilities.lerp(fCenterY, f, f3), (int) fCenterX2, (int) AndroidUtilities.lerp(fCenterY2, f2, f3));
         int i = storyReactionWidgetBackground.style == 1 ? -1 : -16777216;
@@ -167,7 +153,7 @@ public final class StoryReactionWidgetView extends StoryMediaAreasView.AreaView 
                 if (ReactionsUtils.compare(storyViews.reactions.get(i).reaction, this.visibleReaction)) {
                     boolean z2 = z && this.hasCounter;
                     this.hasCounter = storyViews.reactions.get(i).count > 0;
-                    this.animatedTextDrawable.setText(AndroidUtilities.formatWholeNumber(storyViews.reactions.get(i).count, 0), z2, true);
+                    this.animatedTextDrawable.setText(AndroidUtilities.formatWholeNumber(storyViews.reactions.get(i).count, 0), z2);
                     if (z) {
                         return;
                     }

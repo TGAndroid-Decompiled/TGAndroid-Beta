@@ -1,7 +1,6 @@
 package org.telegram.ui.ActionBar;
 
 import java.util.List;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChatActivity$ThemeDelegate$$ExternalSyntheticLambda2;
 
 public interface INavigationLayout {
@@ -29,17 +28,19 @@ public interface INavigationLayout {
     }
 
     public interface INavigationLayoutDelegate {
-        boolean needAddFragmentToStack(ActionBarLayout actionBarLayout, BaseFragment baseFragment);
+        boolean needAddFragmentToStack(BaseFragment baseFragment, INavigationLayout iNavigationLayout);
 
-        boolean needCloseLastFragment(ActionBarLayout actionBarLayout);
+        boolean needCloseLastFragment(INavigationLayout iNavigationLayout);
 
-        boolean needPresentFragment(ActionBarLayout actionBarLayout, NavigationParams navigationParams);
+        boolean needPresentFragment(BaseFragment baseFragment, boolean z, boolean z2, INavigationLayout iNavigationLayout);
+
+        boolean needPresentFragment(INavigationLayout iNavigationLayout, NavigationParams navigationParams);
 
         void onMeasureOverride(int[] iArr);
 
         boolean onPreIme();
 
-        void onRebuildAllFragments(ActionBarLayout actionBarLayout, boolean z);
+        void onRebuildAllFragments(INavigationLayout iNavigationLayout, boolean z);
 
         void onThemeProgress(float f);
     }
@@ -70,7 +71,7 @@ public interface INavigationLayout {
         public final int accentId;
         public ChatActivity$ThemeDelegate$$ExternalSyntheticLambda2 afterAnimationRunnable;
         public Runnable afterStartDescriptionsAddedRunnable;
-        public ChatActivity.ThemeDelegate.AnonymousClass1 animationProgress;
+        public onAnimationProgress animationProgress;
         public ChatActivity$ThemeDelegate$$ExternalSyntheticLambda2 beforeAnimationRunnable;
         public final boolean instant;
         public final boolean nightTheme;
@@ -81,6 +82,10 @@ public interface INavigationLayout {
         public boolean applyTrulyTheme = true;
         public long duration = 200;
 
+        public interface onAnimationProgress {
+            void setProgress(float f);
+        }
+
         public ThemeAnimationSettings(Theme.ThemeInfo themeInfo, int i, boolean z, boolean z2) {
             this.theme = themeInfo;
             this.accentId = i;
@@ -90,8 +95,6 @@ public interface INavigationLayout {
     }
 
     BottomSheet getBottomSheet();
-
-    void setDelegate(INavigationLayoutDelegate iNavigationLayoutDelegate);
 
     void setFragmentStack(List list);
 

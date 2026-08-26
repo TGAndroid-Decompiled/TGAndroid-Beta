@@ -14,11 +14,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
 
 public final class DraftSavedHint extends View {
     public final Paint backgroundPaint;
-    public VoIPFragment$12$$ExternalSyntheticLambda0 hideRunnable;
+    public PreviewView$$ExternalSyntheticLambda12 hideRunnable;
     public final StaticLayout layout;
     public final float layoutLeft;
     public final float layoutWidth;
@@ -93,9 +92,9 @@ public final class DraftSavedHint extends View {
     }
 
     public final void show(boolean z) {
-        VoIPFragment$12$$ExternalSyntheticLambda0 voIPFragment$12$$ExternalSyntheticLambda0;
-        if (!z && (voIPFragment$12$$ExternalSyntheticLambda0 = this.hideRunnable) != null) {
-            AndroidUtilities.cancelRunOnUIThread(voIPFragment$12$$ExternalSyntheticLambda0);
+        PreviewView$$ExternalSyntheticLambda12 previewView$$ExternalSyntheticLambda12;
+        if (!z && (previewView$$ExternalSyntheticLambda12 = this.hideRunnable) != null) {
+            AndroidUtilities.cancelRunOnUIThread(previewView$$ExternalSyntheticLambda12);
             this.hideRunnable = null;
         }
         this.shown = z;

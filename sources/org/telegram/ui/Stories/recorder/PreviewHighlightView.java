@@ -18,13 +18,13 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Cells.UserCell2;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.GroupCreateActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.PeerStoriesView;
+import org.telegram.ui.Stories.StealthModeAlert;
 import org.telegram.ui.Stories.StoryCaptionView;
+import org.telegram.ui.web.BotWebViewContainer;
 
 public final class PreviewHighlightView extends FrameLayout {
     public final FrameLayout bottom;
@@ -33,7 +33,7 @@ public final class PreviewHighlightView extends FrameLayout {
     public boolean shownTop;
     public int storiesCount;
     public final StoryCaptionView storyCaptionView;
-    public final GroupCreateActivity.AnonymousClass7 top;
+    public final StealthModeAlert.ItemCell top;
 
     public PreviewHighlightView(Activity activity, int i, DarkThemeResourceProvider darkThemeResourceProvider) {
         super(activity);
@@ -42,23 +42,22 @@ public final class PreviewHighlightView extends FrameLayout {
         this.shownBottom = false;
         this.currentAccount = i;
         TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
-        GroupCreateActivity.AnonymousClass7 anonymousClass7 = new GroupCreateActivity.AnonymousClass7(this, getContext());
-        this.top = anonymousClass7;
+        StealthModeAlert.ItemCell itemCell = new StealthModeAlert.ItemCell(this, getContext());
+        this.top = itemCell;
         PeerStoriesView.PeerHeaderView peerHeaderView = new PeerStoriesView.PeerHeaderView(getContext(), null);
-        UserCell.AnonymousClass2 anonymousClass2 = peerHeaderView.backupImageView;
-        anonymousClass2.getAvatarDrawable().setInfo(i, currentUser);
-        anonymousClass2.imageReceiver.setForUserOrChat(currentUser, anonymousClass2.getAvatarDrawable());
-        anonymousClass2.onNewImageSet();
+        BotWebViewContainer.AnonymousClass1 anonymousClass1 = peerHeaderView.backupImageView;
+        anonymousClass1.getAvatarDrawable().setInfo(i, currentUser);
+        anonymousClass1.setForUserOrChat(currentUser, anonymousClass1.getAvatarDrawable());
         String userName = UserObject.getUserName(currentUser);
-        UserCell2.AnonymousClass1 anonymousClass1 = peerHeaderView.titleView;
-        anonymousClass1.setText(Emoji.replaceEmoji(userName, anonymousClass1.getPaint().getFontMetricsInt(), false), false);
+        UserCell2.AnonymousClass1 anonymousClass2 = peerHeaderView.titleView;
+        anonymousClass2.setText(Emoji.replaceEmoji(userName, anonymousClass2.getPaint().getFontMetricsInt(), false));
         peerHeaderView.setSubtitle(LocaleController.getString(R.string.RightNow), false);
-        anonymousClass7.addView(peerHeaderView, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
+        itemCell.addView(peerHeaderView, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(activity);
         imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close_white).mutate());
         imageView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        anonymousClass7.addView(imageView, LayoutHelper.createFrame(40, 40.0f, 53, 12.0f, 15.0f, 12.0f, 0.0f));
-        addView(anonymousClass7, LayoutHelper.createFrame(-2.0f, -1));
+        itemCell.addView(imageView, LayoutHelper.createFrame(40, 40.0f, 53, 12.0f, 15.0f, 12.0f, 0.0f));
+        addView(itemCell, LayoutHelper.createFrame(-1, -2.0f));
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.bottom = frameLayout;
         StoryCaptionView storyCaptionView = new StoryCaptionView(getContext(), darkThemeResourceProvider);
@@ -83,8 +82,8 @@ public final class PreviewHighlightView extends FrameLayout {
         imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
         frameLayout2.addView(imageView3, LayoutHelper.createFrame(28, 28.0f, 21, 0.0f, 0.0f, 9.0f, 0.0f));
         frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 44.0f, 87, 9.0f, 8.0f, 55.0f, 8.0f));
-        addView(frameLayout, LayoutHelper.createFrame(-1.0f, -1));
-        anonymousClass7.setAlpha(0.0f);
+        addView(frameLayout, LayoutHelper.createFrame(-1, -1.0f));
+        itemCell.setAlpha(0.0f);
         frameLayout.setAlpha(0.0f);
         setImportantForAccessibility(4);
     }

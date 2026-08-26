@@ -1,6 +1,6 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
@@ -13,7 +13,7 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.ComposeDrawable$$ExternalSyntheticLambda0;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
 
 public final class VoIPTimerView extends View {
     public final Paint activePaint;
@@ -25,10 +25,10 @@ public final class VoIPTimerView extends View {
     public int signalBarCount;
     public final TextPaint textPaint;
     public StaticLayout timerLayout;
-    public final ComposeDrawable$$ExternalSyntheticLambda0 updater;
+    public final GiftSheet$$ExternalSyntheticLambda9 updater;
 
-    public VoIPTimerView(Activity activity) {
-        super(activity);
+    public VoIPTimerView(Context context) {
+        super(context);
         this.rectF = new RectF();
         Paint paint = new Paint(1);
         this.activePaint = paint;
@@ -38,12 +38,12 @@ public final class VoIPTimerView extends View {
         this.textPaint = textPaint;
         this.signalBarCount = 4;
         this.isDrawCallIcon = false;
-        this.updater = new ComposeDrawable$$ExternalSyntheticLambda0(this, 3);
+        this.updater = new GiftSheet$$ExternalSyntheticLambda9(this, 23);
         textPaint.setTextSize(AndroidUtilities.dp(15.0f));
         textPaint.setColor(-1);
         paint.setColor(ColorUtils.setAlphaComponent(-1, 229));
         paint2.setColor(ColorUtils.setAlphaComponent(-1, 102));
-        Drawable drawable = activity.getDrawable(R.drawable.calls_decline);
+        Drawable drawable = context.getDrawable(R.drawable.calls_decline);
         this.callsDeclineDrawable = drawable;
         drawable.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
     }
@@ -117,8 +117,8 @@ public final class VoIPTimerView extends View {
     }
 
     public final void updateTimer() {
-        ComposeDrawable$$ExternalSyntheticLambda0 composeDrawable$$ExternalSyntheticLambda0 = this.updater;
-        removeCallbacks(composeDrawable$$ExternalSyntheticLambda0);
+        GiftSheet$$ExternalSyntheticLambda9 giftSheet$$ExternalSyntheticLambda9 = this.updater;
+        removeCallbacks(giftSheet$$ExternalSyntheticLambda9);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance == null) {
             return;
@@ -134,7 +134,7 @@ public final class VoIPTimerView extends View {
             TextPaint textPaint = this.textPaint;
             this.timerLayout = new StaticLayout(str2, textPaint, (int) textPaint.measureText(str2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
-        postDelayed(composeDrawable$$ExternalSyntheticLambda0, 300L);
+        postDelayed(giftSheet$$ExternalSyntheticLambda9, 300L);
         invalidate();
     }
 }

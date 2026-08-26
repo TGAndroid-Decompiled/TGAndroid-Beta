@@ -61,7 +61,7 @@ public final class RichTableCellHost extends FrameLayout {
         CharSequence spannable = (pagetablecell == null || (richText = pagetablecell.text) == null) ? "" : RichTextStyle.toSpannable(richText, null);
         if (pagetablecell.header) {
             z = true;
-            if (spannable.length() != 0 && (RichTextStyle.stylesFullyCovering(0, spannable.length(), spannable) & 1) == 0) {
+            if (spannable.length() != 0 && (RichTextStyle.stylesFullyCovering(spannable, 0, spannable.length()) & 1) == 0) {
                 z = false;
             }
         } else {

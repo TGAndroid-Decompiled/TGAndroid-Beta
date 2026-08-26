@@ -17,10 +17,12 @@ import org.telegram.ui.Components.RadialProgressView;
 public final class LocationLoadingCell extends FrameLayout {
     public final ImageView imageView;
     public final RadialProgressView progressBar;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final TextView textView;
 
     public LocationLoadingCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         RadialProgressView radialProgressView = new RadialProgressView(context, resourcesProvider);
         this.progressBar = radialProgressView;
         addView(radialProgressView, LayoutHelper.createFrame(-2, -2, 17));

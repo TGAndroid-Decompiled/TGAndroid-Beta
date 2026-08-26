@@ -3,30 +3,28 @@ package org.telegram.ui.Stories;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkk;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.blur3.StrokeDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.iv.RichMediaCell$$ExternalSyntheticLambda1;
 
 public final class CommentButton extends FrameLayout {
     public final ImageView arrowImage;
@@ -45,16 +43,14 @@ public final class CommentButton extends FrameLayout {
         Paint paint2 = new Paint(1);
         this.clearPaint = paint2;
         this.countScale = 1.0f;
-        ScaleStateListAnimator.apply(this, 0.1f, 1.5f);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+        ScaleStateListAnimator.apply(this);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
         this.countText = animatedTextDrawable;
-        TextPaint textPaint = animatedTextDrawable.textPaint;
-        textPaint.setColor(-9866632);
-        animatedTextDrawable.alpha = Color.alpha(-9866632);
+        animatedTextDrawable.setTextColor(-9866632);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(9.0f));
         animatedTextDrawable.setCallback(this);
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        animatedTextDrawable.allowCancel = true;
+        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
+        animatedTextDrawable.setAllowCancel(true);
         paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -129,7 +125,7 @@ public final class CommentButton extends FrameLayout {
     }
 
     public void setCount(int i) {
-        this.countText.setText(i <= 0 ? "" : LocaleController.formatNumber(i, ','), true, true);
+        this.countText.setText(i <= 0 ? "" : LocaleController.formatNumber(i, ','));
         if (this.lastCount != i) {
             ValueAnimator valueAnimator = this.countAnimator;
             if (valueAnimator != null) {
@@ -138,9 +134,9 @@ public final class CommentButton extends FrameLayout {
             }
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.countAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda18(this, 19));
-            this.countAnimator.addListener(new PhotoViewer.AnonymousClass78.AnonymousClass1(this, 17));
-            this.countAnimator.setInterpolator(new OvershootInterpolator(2.5f));
+            valueAnimatorOfFloat.addUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(this, 2));
+            this.countAnimator.addListener(new BaseChartView.AnonymousClass4(this, 18));
+            zzkk.m(2.5f, this.countAnimator);
             this.countAnimator.setDuration(200L);
             this.countAnimator.start();
             this.lastCount = i;

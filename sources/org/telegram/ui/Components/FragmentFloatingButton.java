@@ -18,76 +18,23 @@ import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableSource
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 
-public final class FragmentFloatingButton extends FrameLayout implements FactorAnimator.Target {
-    public ArrayList additionalContentViews;
-    public float additionalTranslationY;
-    public final BoolAnimator animatorButtonVisible;
-    public final BoolAnimator animatorProgressVisible;
-    public final BlurredBackgroundDrawableSource iBlur3Background;
-    public final AnonymousClass1 iBlur3ColorProviderTabs;
-    public final BlurredBackgroundSourceColor iBlur3SourceColor;
+public class FragmentFloatingButton extends FrameLayout implements FactorAnimator.Target {
+    public static final int SIZE = 48;
+    private final int ANIMATOR_ID_BUTTON_VISIBLE;
+    private final int ANIMATOR_ID_PROGRESS_VISIBLE;
+    private ArrayList<View> additionalContentViews;
+    private float additionalTranslationY;
+    private final BoolAnimator animatorButtonVisible;
+    private final BoolAnimator animatorProgressVisible;
+    private BlurredBackgroundDrawable iBlur3Background;
+    private BlurredBackgroundColorProviderThemed iBlur3ColorProviderTabs;
+    private BlurredBackgroundSourceColor iBlur3SourceColor;
     public final RLottieImageView imageView;
-    public float internalTranslationY;
-    public final boolean isSubButton;
+    private float internalTranslationY;
+    private final boolean isSubButton;
     public final RadialProgressView progressView;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public boolean setTranslationInternal;
-
-    public final class AnonymousClass1 extends BlurredBackgroundColorProviderThemed {
-        public final int $r8$classId;
-
-        public AnonymousClass1(int i, Theme.ResourcesProvider resourcesProvider) {
-            super(i, resourcesProvider);
-            this.$r8$classId = 0;
-        }
-
-        @Override
-        public int getShadowColor() {
-            switch (this.$r8$classId) {
-                case 0:
-                    return isDark() ? 83886079 : 536870912;
-                default:
-                    return super.getShadowColor();
-            }
-        }
-
-        @Override
-        public int getStrokeColorBottom() {
-            switch (this.$r8$classId) {
-                case 0:
-                    return isDark() ? 301989887 : 536870912;
-                default:
-                    return super.getStrokeColorBottom();
-            }
-        }
-
-        @Override
-        public int getStrokeColorTop() {
-            switch (this.$r8$classId) {
-                case 0:
-                    return isDark() ? 117440511 : 285212672;
-                default:
-                    return super.getStrokeColorTop();
-            }
-        }
-
-        @Override
-        public boolean isDark() {
-            switch (this.$r8$classId) {
-                case 1:
-                    return true;
-                case 2:
-                    return true;
-                default:
-                    return super.isDark();
-            }
-        }
-
-        public AnonymousClass1(Theme.ResourcesProvider resourcesProvider, int i, float f, int i2) {
-            super(resourcesProvider, i, f);
-            this.$r8$classId = i2;
-        }
-    }
+    private final Theme.ResourcesProvider resourcesProvider;
+    private boolean setTranslationInternal;
 
     public FragmentFloatingButton(Context context, Theme.ResourcesProvider resourcesProvider) {
         this(context, resourcesProvider, false);
@@ -95,6 +42,10 @@ public final class FragmentFloatingButton extends FrameLayout implements FactorA
 
     public static FrameLayout.LayoutParams createDefaultLayoutParams() {
         return LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 3 : 5) | 80, 20.0f, 0.0f, 20.0f, 14.0f);
+    }
+
+    public static FrameLayout.LayoutParams createDefaultLayoutParamsBig() {
+        return LayoutHelper.createFrame(56, 56.0f, (LocaleController.isRTL ? 3 : 5) | 80, 20.0f, 0.0f, 20.0f, 14.0f);
     }
 
     public static FrameLayout.LayoutParams createSubButtonLayoutParams() {
@@ -120,19 +71,19 @@ public final class FragmentFloatingButton extends FrameLayout implements FactorA
         view.setVisibility(f > 0.0f ? 0 : 8);
     }
 
-    public final void addAdditionalView(View view) {
+    public void addAdditionalView(View view) {
         if (this.additionalContentViews == null) {
-            this.additionalContentViews = new ArrayList();
+            this.additionalContentViews = new ArrayList<>();
         }
         this.additionalContentViews.add(view);
         setAnimatedVisibility(view, 1.0f - this.animatorProgressVisible.floatValue);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        BlurredBackgroundDrawableSource blurredBackgroundDrawableSource = this.iBlur3Background;
-        if (blurredBackgroundDrawableSource != null) {
-            blurredBackgroundDrawableSource.drawSource(canvas, blurredBackgroundDrawableSource.source);
+    public void draw(Canvas canvas) {
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.iBlur3Background;
+        if (blurredBackgroundDrawable != null) {
+            blurredBackgroundDrawable.draw(canvas);
         }
         super.draw(canvas);
     }
@@ -151,11 +102,11 @@ public final class FragmentFloatingButton extends FrameLayout implements FactorA
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
-    public final void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
+    public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
         int i2 = 0;
         if (i == 0) {
             setAnimatedVisibility(this, f);
@@ -165,29 +116,41 @@ public final class FragmentFloatingButton extends FrameLayout implements FactorA
             setAnimatedVisibility(this.progressView, f);
             float f3 = 1.0f - f;
             setAnimatedVisibility(this.imageView, f3);
-            ArrayList arrayList = this.additionalContentViews;
+            ArrayList<View> arrayList = this.additionalContentViews;
             if (arrayList != null) {
                 int size = arrayList.size();
                 while (i2 < size) {
-                    Object obj = arrayList.get(i2);
+                    View view = arrayList.get(i2);
                     i2++;
-                    setAnimatedVisibility((View) obj, f3);
+                    setAnimatedVisibility(view, f3);
                 }
             }
         }
     }
 
     @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+    public void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
-        BlurredBackgroundDrawableSource blurredBackgroundDrawableSource = this.iBlur3Background;
-        if (blurredBackgroundDrawableSource != null) {
-            blurredBackgroundDrawableSource.setBounds(0, 0, i, i2);
+        BlurredBackgroundDrawable blurredBackgroundDrawable = this.iBlur3Background;
+        if (blurredBackgroundDrawable != null) {
+            blurredBackgroundDrawable.setBounds(0, 0, i, i2);
         }
+    }
+
+    public void setAnimation(int i, int i2) {
+        this.imageView.setAnimation(i, i2, i2);
+    }
+
+    public void setButtonVisible(boolean z, boolean z2) {
+        this.animatorButtonVisible.setValue(z, z2);
     }
 
     public void setImageResource(int i) {
         this.imageView.setImageResource(i);
+    }
+
+    public void setProgressVisible(boolean z, boolean z2) {
+        this.animatorProgressVisible.setValue(z, z2);
     }
 
     @Override
@@ -200,33 +163,32 @@ public final class FragmentFloatingButton extends FrameLayout implements FactorA
         }
     }
 
-    public final void updateColors$1() {
-        RadialProgressView radialProgressView = this.progressView;
-        RLottieImageView rLottieImageView = this.imageView;
-        boolean z = this.isSubButton;
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        if (!z) {
+    public void updateColors() {
+        if (!this.isSubButton) {
+            RLottieImageView rLottieImageView = this.imageView;
             int i = Theme.key_chats_actionIcon;
-            rLottieImageView.setColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.SRC_IN);
-            radialProgressView.setProgressColor(Theme.getColor(i, resourcesProvider));
-            setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(48.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButtonPressed, resourcesProvider)));
+            rLottieImageView.setColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.SRC_IN);
+            this.progressView.setProgressColor(Theme.getColor(i, this.resourcesProvider));
+            setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(48.0f), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButtonPressed, this.resourcesProvider)));
             return;
         }
+        RLottieImageView rLottieImageView2 = this.imageView;
         int i2 = Theme.key_actionBarDefaultIcon;
-        rLottieImageView.setColorFilter(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.SRC_IN);
-        radialProgressView.setProgressColor(Theme.getColor(i2, resourcesProvider));
+        rLottieImageView2.setColorFilter(Theme.getColor(i2, this.resourcesProvider), PorterDuff.Mode.SRC_IN);
+        this.progressView.setProgressColor(Theme.getColor(i2, this.resourcesProvider));
         this.iBlur3SourceColor.paint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
         this.iBlur3ColorProviderTabs.updateColors();
         this.iBlur3Background.updateColors();
         invalidate();
         int iDp = AndroidUtilities.dp(18.0f);
-        int color = Theme.getColor(Theme.key_listSelector, resourcesProvider);
         int iDp2 = AndroidUtilities.dp(6.0f);
-        setBackground(Theme.createInsetRoundRectDrawable(iDp, color, iDp2, iDp2, iDp2, iDp2));
+        setBackground(Theme.createInsetRoundRectDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), iDp, iDp2, iDp2, iDp2, iDp2));
     }
 
     public FragmentFloatingButton(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context);
+        this.ANIMATOR_ID_BUTTON_VISIBLE = 0;
+        this.ANIMATOR_ID_PROGRESS_VISIBLE = 1;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorButtonVisible = new BoolAnimator(0, this, cubicBezierInterpolator, 380L, true);
         this.animatorProgressVisible = new BoolAnimator(1, this, cubicBezierInterpolator, 380L, false);
@@ -235,35 +197,49 @@ public final class FragmentFloatingButton extends FrameLayout implements FactorA
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(rLottieImageView, LayoutHelper.createFrame(-1.0f, -1));
-        Theme.ResourcesProvider resourcesProvider2 = null;
-        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        addView(rLottieImageView, LayoutHelper.createFrame(-1, -1.0f));
+        RadialProgressView radialProgressView = new RadialProgressView(context);
         this.progressView = radialProgressView;
         radialProgressView.setSize(AndroidUtilities.dp(18.0f));
         radialProgressView.setStrokeWidth(2.0f);
-        addView(radialProgressView, LayoutHelper.createFrame(-1.0f, -1));
+        addView(radialProgressView, LayoutHelper.createFrame(-1, -1.0f));
         setAnimatedVisibility(radialProgressView, 0.0f);
-        ScaleStateListAnimator.apply(this, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this);
         if (!z) {
             setOutlineProvider(ViewOutlineProviderImpl.BOUNDS_OVAL);
             setTranslationZ(AndroidUtilities.dpf2(0.5f));
         }
         if (z) {
-            AnonymousClass1 anonymousClass1 = new AnonymousClass1(Theme.key_dialogBackground, resourcesProvider2);
-            this.iBlur3ColorProviderTabs = anonymousClass1;
+            this.iBlur3ColorProviderTabs = new BlurredBackgroundColorProviderThemed(null, Theme.key_dialogBackground) {
+                @Override
+                public int getShadowColor() {
+                    return isDark() ? 83886079 : 536870912;
+                }
+
+                @Override
+                public int getStrokeColorBottom() {
+                    return isDark() ? 301989887 : 536870912;
+                }
+
+                @Override
+                public int getStrokeColorTop() {
+                    return isDark() ? 117440511 : 285212672;
+                }
+            };
             BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
             this.iBlur3SourceColor = blurredBackgroundSourceColor;
             BlurredBackgroundDrawableSource blurredBackgroundDrawableSource = new BlurredBackgroundDrawableSource(blurredBackgroundSourceColor);
             this.iBlur3Background = blurredBackgroundDrawableSource;
-            blurredBackgroundDrawableSource.setColorProvider(anonymousClass1);
+            blurredBackgroundDrawableSource.setColorProvider(this.iBlur3ColorProviderTabs);
+            BlurredBackgroundDrawable blurredBackgroundDrawable = this.iBlur3Background;
             float fDpf2 = AndroidUtilities.dpf2(0.4f);
             float fDpf3 = AndroidUtilities.dpf2(0.4f);
-            BlurredBackgroundDrawable.Props props = blurredBackgroundDrawableSource.boundProps;
+            BlurredBackgroundDrawable.Props props = blurredBackgroundDrawable.boundProps;
             props.strokeWidthTop = fDpf2;
             props.strokeWidthBottom = fDpf3;
-            blurredBackgroundDrawableSource.setRadius(AndroidUtilities.dp(18.0f));
-            blurredBackgroundDrawableSource.setPadding(AndroidUtilities.dp(5.66f));
+            this.iBlur3Background.setRadius(AndroidUtilities.dp(18.0f));
+            this.iBlur3Background.setPadding(AndroidUtilities.dp(5.66f));
         }
-        updateColors$1();
+        updateColors();
     }
 }

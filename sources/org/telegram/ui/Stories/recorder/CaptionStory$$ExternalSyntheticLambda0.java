@@ -17,9 +17,7 @@ public final class CaptionStory$$ExternalSyntheticLambda0 implements Runnable {
                 break;
             case 1:
                 StoryRecorder.AnonymousClass8 anonymousClass8 = this.f$0;
-                anonymousClass8.collapsed = false;
-                anonymousClass8.collapsedFromX = Integer.MIN_VALUE;
-                anonymousClass8.invalidate();
+                anonymousClass8.setCollapsed(false, Integer.MIN_VALUE);
                 anonymousClass8.roundButton.setVisibility(0);
                 anonymousClass8.periodButton.setVisibility(0);
                 break;

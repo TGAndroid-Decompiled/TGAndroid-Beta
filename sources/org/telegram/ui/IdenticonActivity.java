@@ -1,20 +1,28 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
-import android.text.Selection;
+import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.EmojiData;
 import org.telegram.messenger.FileLog;
@@ -24,6 +32,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -31,86 +40,139 @@ import org.telegram.ui.Components.IdenticonDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.URLSpanReplacement;
 
-public final class IdenticonActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    public int chat_id;
-    public TextView codeTextView;
-    public LoginActivity.AnonymousClass4 container;
-    public String emojiText;
-    public TextView emojiTextView;
-    public LinearLayout linearLayout;
-    public LinearLayout linearLayout1;
-    public TextView textView;
+public class IdenticonActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    private AnimatorSet animatorSet;
+    private int chat_id;
+    private TextView codeTextView;
+    private FrameLayout container;
+    private boolean emojiSelected;
+    private String emojiText;
+    private TextView emojiTextView;
+    private AnimatorSet hintAnimatorSet;
+    private LinearLayout linearLayout;
+    private LinearLayout linearLayout1;
+    private TextView textView;
+    private int textWidth;
 
-    public final class LinkMovementMethodMy extends LinkMovementMethod {
-        public final int $r8$classId;
-
-        public LinkMovementMethodMy(int i) {
-            this.$r8$classId = i;
+    public static class LinkMovementMethodMy extends LinkMovementMethod {
+        private LinkMovementMethodMy() {
         }
 
         @Override
-        public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
-            switch (this.$r8$classId) {
-                case 0:
-                    try {
-                        return super.onTouchEvent(textView, spannable, motionEvent);
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return false;
-                    }
-                case 1:
-                    try {
-                        boolean zOnTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
-                        if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                            return zOnTouchEvent;
-                        }
-                        Selection.removeSelection(spannable);
-                        return zOnTouchEvent;
-                    } catch (Exception e2) {
-                        FileLog.e(e2);
-                        return false;
-                    }
-                default:
-                    try {
-                        boolean zOnTouchEvent2 = super.onTouchEvent(textView, spannable, motionEvent);
-                        if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
-                            return zOnTouchEvent2;
-                        }
-                        Selection.removeSelection(spannable);
-                        return zOnTouchEvent2;
-                    } catch (Exception e3) {
-                        FileLog.e(e3);
-                        return false;
-                    }
+        public boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+            try {
+                return super.onTouchEvent(textView, spannable, motionEvent);
+            } catch (Exception e) {
+                FileLog.e(e);
+                return false;
             }
         }
     }
 
+    public IdenticonActivity(Bundle bundle) {
+        super(bundle);
+    }
+
+    private void fixLayout() {
+        this.fragmentView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                View view = IdenticonActivity.this.fragmentView;
+                if (view == null) {
+                    return true;
+                }
+                view.getViewTreeObserver().removeOnPreDrawListener(this);
+                int rotation = ((WindowManager) ApplicationLoader.applicationContext.getSystemService("window")).getDefaultDisplay().getRotation();
+                if (rotation == 3 || rotation == 1) {
+                    IdenticonActivity.this.linearLayout.setOrientation(0);
+                } else {
+                    IdenticonActivity.this.linearLayout.setOrientation(1);
+                }
+                View view2 = IdenticonActivity.this.fragmentView;
+                view2.setPadding(view2.getPaddingLeft(), 0, IdenticonActivity.this.fragmentView.getPaddingRight(), IdenticonActivity.this.fragmentView.getPaddingBottom());
+                return true;
+            }
+        });
+    }
+
+    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
+        return true;
+    }
+
+    private void updateEmojiButton(boolean z) {
+        AnimatorSet animatorSet = this.animatorSet;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            this.animatorSet = null;
+        }
+        if (z) {
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.animatorSet = animatorSet2;
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(this.emojiTextView, "alpha", this.emojiSelected ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.codeTextView, "alpha", this.emojiSelected ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.emojiTextView, "scaleX", this.emojiSelected ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.emojiTextView, "scaleY", this.emojiSelected ? 1.0f : 0.0f), ObjectAnimator.ofFloat(this.codeTextView, "scaleX", this.emojiSelected ? 0.0f : 1.0f), ObjectAnimator.ofFloat(this.codeTextView, "scaleY", this.emojiSelected ? 0.0f : 1.0f));
+            this.animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (animator.equals(IdenticonActivity.this.animatorSet)) {
+                        IdenticonActivity.this.animatorSet = null;
+                    }
+                }
+            });
+            this.animatorSet.setInterpolator(new DecelerateInterpolator());
+            this.animatorSet.setDuration(150L);
+            this.animatorSet.start();
+        } else {
+            this.emojiTextView.setAlpha(this.emojiSelected ? 1.0f : 0.0f);
+            this.codeTextView.setAlpha(this.emojiSelected ? 0.0f : 1.0f);
+            this.emojiTextView.setScaleX(this.emojiSelected ? 1.0f : 0.0f);
+            this.emojiTextView.setScaleY(this.emojiSelected ? 1.0f : 0.0f);
+            this.codeTextView.setScaleX(this.emojiSelected ? 0.0f : 1.0f);
+            this.codeTextView.setScaleY(this.emojiSelected ? 0.0f : 1.0f);
+        }
+        this.emojiTextView.setTag(Integer.valueOf(!this.emojiSelected ? Theme.key_chat_emojiPanelIcon : Theme.key_chat_emojiPanelIconSelected));
+    }
+
     @Override
-    public final View createView(Context context) {
+    public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.EncryptionKey));
-        this.actionBar.setActionBarMenuOnItemClick(new LoginActivity.AnonymousClass1(this, 25));
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i) {
+                if (i == -1) {
+                    IdenticonActivity.this.finishFragment();
+                }
+            }
+        });
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
-        this.fragmentView.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(2));
+        this.fragmentView.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda59(17));
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);
         this.linearLayout.setWeightSum(100.0f);
-        frameLayout.addView(this.linearLayout, LayoutHelper.createFrame(-1.0f, -1));
+        frameLayout.addView(this.linearLayout, LayoutHelper.createFrame(-1, -1.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         frameLayout2.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
-        this.linearLayout.addView(frameLayout2, LayoutHelper.createLinear(50.0f, -1, -1));
+        this.linearLayout.addView(frameLayout2, LayoutHelper.createLinear(-1, -1, 50.0f));
         ImageView imageView = new ImageView(context);
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        frameLayout2.addView(imageView, LayoutHelper.createFrame(-1.0f, -1));
-        LoginActivity.AnonymousClass4 anonymousClass4 = new LoginActivity.AnonymousClass4(this, context, 6);
-        this.container = anonymousClass4;
-        anonymousClass4.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
-        this.linearLayout.addView(this.container, LayoutHelper.createLinear(50.0f, -1, -1));
+        frameLayout2.addView(imageView, LayoutHelper.createFrame(-1, -1.0f));
+        FrameLayout frameLayout3 = new FrameLayout(context) {
+            @Override
+            public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                super.onLayout(z, i, i2, i3, i4);
+                if (IdenticonActivity.this.codeTextView != null) {
+                    int measuredWidth = ((IdenticonActivity.this.codeTextView.getMeasuredWidth() / 2) + IdenticonActivity.this.codeTextView.getLeft()) - (IdenticonActivity.this.emojiTextView.getMeasuredWidth() / 2);
+                    int top = (IdenticonActivity.this.linearLayout1.getTop() + ((IdenticonActivity.this.codeTextView.getMeasuredHeight() - IdenticonActivity.this.emojiTextView.getMeasuredHeight()) / 2)) - AndroidUtilities.dp(16.0f);
+                    IdenticonActivity.this.emojiTextView.layout(measuredWidth, top, IdenticonActivity.this.emojiTextView.getMeasuredWidth() + measuredWidth, IdenticonActivity.this.emojiTextView.getMeasuredHeight() + top);
+                }
+            }
+        };
+        this.container = frameLayout3;
+        frameLayout3.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+        this.linearLayout.addView(this.container, LayoutHelper.createLinear(-1, -1, 50.0f));
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.linearLayout1 = linearLayout2;
         linearLayout2.setOrientation(1);
@@ -132,32 +194,25 @@ public final class IdenticonActivity extends BaseFragment implements Notificatio
         this.textView.setLinksClickable(true);
         this.textView.setClickable(true);
         this.textView.setGravity(17);
-        this.textView.setMovementMethod(new LinkMovementMethodMy(0));
+        this.textView.setMovementMethod(new LinkMovementMethodMy());
         this.linearLayout1.addView(this.textView, LayoutHelper.createFrame(-2, -2, 1));
         TextView textView3 = new TextView(context);
         this.emojiTextView = textView3;
         textView3.setTextColor(Theme.getColor(null, i, false));
         this.emojiTextView.setGravity(17);
         this.emojiTextView.setTextSize(1, 32.0f);
-        this.container.addView(this.emojiTextView, LayoutHelper.createFrame(-2.0f, -2));
+        this.container.addView(this.emojiTextView, LayoutHelper.createFrame(-2, -2.0f));
         TLRPC.EncryptedChat encryptedChat = MessagesController.getInstance(this.currentAccount).getEncryptedChat(Integer.valueOf(this.chat_id));
         if (encryptedChat != null) {
             IdenticonDrawable identiconDrawable = new IdenticonDrawable();
             imageView.setImageDrawable(identiconDrawable);
-            byte[] bArr = encryptedChat.key_hash;
-            identiconDrawable.data = bArr;
-            if (bArr == null) {
-                byte[] bArrCalcAuthKeyHash = AndroidUtilities.calcAuthKeyHash(encryptedChat.auth_key);
-                identiconDrawable.data = bArrCalcAuthKeyHash;
-                encryptedChat.key_hash = bArrCalcAuthKeyHash;
-            }
-            identiconDrawable.invalidateSelf();
+            identiconDrawable.setEncryptedChat(encryptedChat);
             TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(encryptedChat.user_id));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             StringBuilder sb = new StringBuilder();
-            byte[] bArr2 = encryptedChat.key_hash;
-            if (bArr2.length > 16) {
-                String strBytesToHex = Utilities.bytesToHex(bArr2);
+            byte[] bArr = encryptedChat.key_hash;
+            if (bArr.length > 16) {
+                String strBytesToHex = Utilities.bytesToHex(bArr);
                 for (int i2 = 0; i2 < 32; i2++) {
                     if (i2 != 0) {
                         if (i2 % 8 == 0) {
@@ -172,9 +227,9 @@ public final class IdenticonActivity extends BaseFragment implements Notificatio
                 }
                 spannableStringBuilder.append((CharSequence) "\n");
                 for (int i4 = 0; i4 < 5; i4++) {
-                    byte[] bArr3 = encryptedChat.key_hash;
+                    byte[] bArr2 = encryptedChat.key_hash;
                     int i5 = i4 * 4;
-                    int i6 = (bArr3[i5 + 19] & 255) | ((bArr3[i5 + 16] & 127) << 24) | ((bArr3[i5 + 17] & 255) << 16) | ((bArr3[i5 + 18] & 255) << 8);
+                    int i6 = (bArr2[i5 + 19] & 255) | ((bArr2[i5 + 16] & 127) << 24) | ((bArr2[i5 + 17] & 255) << 16) | ((bArr2[i5 + 18] & 255) << 8);
                     if (i4 != 0) {
                         sb.append(" ");
                     }
@@ -190,22 +245,16 @@ public final class IdenticonActivity extends BaseFragment implements Notificatio
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("EncryptionKeyDescription", i7, str, str)));
             int iIndexOf = spannableStringBuilder.toString().indexOf("telegram.org");
             if (iIndexOf != -1) {
-                spannableStringBuilder.setSpan(new URLSpanReplacement(LocaleController.getString(R.string.EncryptionKeyLink), null), iIndexOf, iIndexOf + 12, 33);
+                spannableStringBuilder.setSpan(new URLSpanReplacement(LocaleController.getString(R.string.EncryptionKeyLink)), iIndexOf, iIndexOf + 12, 33);
             }
             this.textView.setText(spannableStringBuilder);
         }
-        this.emojiTextView.setAlpha(0.0f);
-        this.codeTextView.setAlpha(1.0f);
-        this.emojiTextView.setScaleX(0.0f);
-        this.emojiTextView.setScaleY(0.0f);
-        this.codeTextView.setScaleX(1.0f);
-        this.codeTextView.setScaleY(1.0f);
-        this.emojiTextView.setTag(Integer.valueOf(Theme.key_chat_emojiPanelIcon));
+        updateEmojiButton(false);
         return this.fragmentView;
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         TextView textView;
         if (i != NotificationCenter.emojiLoaded || (textView = this.emojiTextView) == null) {
             return;
@@ -214,8 +263,8 @@ public final class IdenticonActivity extends BaseFragment implements Notificatio
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
+    public ArrayList<ThemeDescription> getThemeDescriptions() {
+        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
         arrayList.add(new ThemeDescription(this.container, 1, null, null, null, null, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.fragmentView, 1, null, null, null, null, Theme.key_windowBackgroundGray));
         arrayList.add(new ThemeDescription(this.actionBar, 1, null, null, null, null, Theme.key_actionBarDefault));
@@ -231,32 +280,32 @@ public final class IdenticonActivity extends BaseFragment implements Notificatio
     }
 
     @Override
-    public final void onConfigurationChanged(Configuration configuration) {
+    public void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        this.fragmentView.getViewTreeObserver().addOnPreDrawListener(new PhotoViewer.AnonymousClass9(this, 8));
+        fixLayout();
     }
 
     @Override
-    public final boolean onFragmentCreate() {
+    public boolean onFragmentCreate() {
         this.chat_id = getArguments().getInt("chat_id");
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
         return super.onFragmentCreate();
     }
 
     @Override
-    public final void onFragmentDestroy() {
+    public void onFragmentDestroy() {
         super.onFragmentDestroy();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
     }
 
     @Override
-    public final void onResume() {
+    public void onResume() {
         super.onResume();
-        this.fragmentView.getViewTreeObserver().addOnPreDrawListener(new PhotoViewer.AnonymousClass9(this, 8));
+        fixLayout();
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
+    public void onTransitionAnimationEnd(boolean z, boolean z2) {
         String str;
         if (!z || z2 || (str = this.emojiText) == null) {
             return;

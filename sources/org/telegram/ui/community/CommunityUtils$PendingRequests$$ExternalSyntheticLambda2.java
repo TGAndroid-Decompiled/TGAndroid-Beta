@@ -29,7 +29,7 @@ public final class CommunityUtils$PendingRequests$$ExternalSyntheticLambda2 impl
                         delegate.close();
                     }
                 } else {
-                    pendingRequests.bulletinFactory.showForError(false, tL_error);
+                    pendingRequests.bulletinFactory.showForError(tL_error);
                 }
                 break;
             case 1:
@@ -60,7 +60,7 @@ public final class CommunityUtils$PendingRequests$$ExternalSyntheticLambda2 impl
                 if (tL_error2 == null) {
                     pendingRequests3.getClass();
                 } else {
-                    pendingRequests3.bulletinFactory.showForError(false, tL_error2);
+                    pendingRequests3.bulletinFactory.showForError(tL_error2);
                 }
                 break;
         }

@@ -1,7 +1,5 @@
 package org.telegram.ui.bots;
 
-import android.text.SpannableStringBuilder;
-import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -34,8 +32,8 @@ public final class BotVerifySheet$$ExternalSyntheticLambda1 implements Utilities
         String forcedFirstName;
         TLObject tLObject;
         Boolean bool = (Boolean) obj;
-        DialogsActivity dialogsActivity = this.f$1;
         TopicsFragment topicsFragment = this.f$0;
+        DialogsActivity dialogsActivity = this.f$1;
         if (topicsFragment != null) {
             topicsFragment.finishFragment();
             dialogsActivity.removeSelfFromStack();
@@ -62,9 +60,6 @@ public final class BotVerifySheet$$ExternalSyntheticLambda1 implements Utilities
                 tLObject = chat;
             }
         }
-        BulletinFactory bulletinFactoryOf = BulletinFactory.of(safeLastFragment);
-        SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(bool.booleanValue() ? R.string.BotSentRevokeVerifyRequest : R.string.BotSentVerifyRequest, forcedFirstName));
-        bulletinFactoryOf.getClass();
-        bulletinFactoryOf.createUsersBulletin(Arrays.asList(tLObject), spannableStringBuilderReplaceTags, null, null).show(false);
+        BulletinFactory.of(safeLastFragment).createUsersBulletin(tLObject, AndroidUtilities.replaceTags(LocaleController.formatString(bool.booleanValue() ? R.string.BotSentRevokeVerifyRequest : R.string.BotSentVerifyRequest, forcedFirstName))).show(false);
     }
 }

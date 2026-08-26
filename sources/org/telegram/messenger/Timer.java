@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 
 public class Timer {
@@ -45,7 +45,7 @@ public class Timer {
             StringBuilder sb = new StringBuilder();
             sb.append(this.task);
             sb.append(": ");
-            sb.append(this.endTime < 0 ? "not done" : SurfaceContainer$$ExternalSyntheticOutline0.m(new StringBuilder(), this.endTime - this.startTime, "ms"));
+            sb.append(this.endTime < 0 ? "not done" : Fragment$$ExternalSyntheticOutline0.m(new StringBuilder(), this.endTime - this.startTime, "ms"));
             return sb.toString();
         }
     }

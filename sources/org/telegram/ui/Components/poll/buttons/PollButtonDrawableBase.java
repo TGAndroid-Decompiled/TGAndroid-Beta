@@ -9,12 +9,14 @@ import org.telegram.ui.Cells.ChatMessageCell;
 
 public abstract class PollButtonDrawableBase extends Drawable {
     public int alpha = 255;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final BaseCell.RippleDrawableSafe selectorDrawable;
     public int selectorDrawableColor;
 
     public PollButtonDrawableBase(Theme.ResourcesProvider resourcesProvider) {
         int color = Theme.getColor(Theme.key_listSelector, resourcesProvider);
         this.selectorDrawableColor = color;
+        this.resourcesProvider = resourcesProvider;
         this.selectorDrawable = Theme.createRadSelectorDrawable(color, 0, 0);
     }
 

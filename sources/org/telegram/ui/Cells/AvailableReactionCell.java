@@ -55,25 +55,18 @@ public final class AvailableReactionCell extends FrameLayout {
             CheckBox2 checkBox2 = new CheckBox2(context, 26, null);
             this.checkBox = checkBox2;
             checkBox2.setDrawUnchecked(false);
-            checkBox2.checkBoxBase.setColor(-1, -1, Theme.key_radioBackgroundChecked);
+            checkBox2.setColor(-1, -1, Theme.key_radioBackgroundChecked);
             checkBox2.setDrawBackgroundAsArc(-1);
             addView(checkBox2, LayoutHelper.createFrameRelatively(26.0f, 26.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
         } else {
-            Switch r14 = new Switch(context, null);
+            Switch r14 = new Switch(context);
             this.switchView = r14;
-            int i = Theme.key_switchTrack;
-            int i2 = Theme.key_switchTrackChecked;
-            int i3 = Theme.key_switchTrackBlueThumb;
-            int i4 = Theme.key_switchTrackBlueThumbChecked;
-            r14.trackColorKey = i;
-            r14.trackCheckedColorKey = i2;
-            r14.thumbColorKey = i3;
-            r14.thumbCheckedColorKey = i4;
+            r14.setColors(Theme.key_switchTrack, Theme.key_switchTrackChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
             addView(r14, LayoutHelper.createFrameRelatively(37.0f, 20.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
         }
         View view = new View(context);
         view.setBackground(Theme.getSelectorDrawable(false));
-        addView(view, LayoutHelper.createFrame(-1.0f, -1));
+        addView(view, LayoutHelper.createFrame(-1, -1.0f));
         setWillNotDraw(false);
     }
 
@@ -82,8 +75,8 @@ public final class AvailableReactionCell extends FrameLayout {
         boolean z2 = tL_availableReaction2 != null && tL_availableReaction.reaction.equals(tL_availableReaction2.reaction);
         this.react = tL_availableReaction;
         SimpleTextView simpleTextView = this.textView;
-        simpleTextView.setText(Emoji.replaceEmoji(tL_availableReaction.title, simpleTextView.getPaint().getFontMetricsInt(), false), false);
-        this.imageView.setImage(ImageLocation.getForDocument(tL_availableReaction.activate_animation), "30_30_pcache", null, null, DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), "tgs", 0, tL_availableReaction);
+        simpleTextView.setText(Emoji.replaceEmoji(tL_availableReaction.title, simpleTextView.getPaint().getFontMetricsInt(), false));
+        this.imageView.setImage(ImageLocation.getForDocument(tL_availableReaction.activate_animation), "30_30_pcache", "tgs", DocumentObject.getSvgThumb(tL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tL_availableReaction);
         boolean z3 = this.canLock && tL_availableReaction.premium && !UserConfig.getInstance(i).isPremium();
         this.locked = z3;
         if (z3) {
@@ -95,11 +88,11 @@ public final class AvailableReactionCell extends FrameLayout {
         }
         Switch r0 = this.switchView;
         if (r0 != null) {
-            r0.setChecked(r0.drawIconType, z, z2);
+            r0.setChecked(z, z2);
         }
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null) {
-            checkBox2.checkBoxBase.setChecked(-1, z, z2);
+            checkBox2.setChecked(z, z2);
         }
     }
 
@@ -122,24 +115,24 @@ public final class AvailableReactionCell extends FrameLayout {
         accessibilityNodeInfo.setEnabled(true);
         accessibilityNodeInfo.setClickable(true);
         Switch r1 = this.switchView;
-        boolean z = false;
+        boolean zIsChecked = false;
         CheckBox2 checkBox2 = this.checkBox;
         if (r1 != null) {
             accessibilityNodeInfo.setCheckable(true);
             if (r1 != null) {
-                z = r1.isChecked;
+                zIsChecked = r1.isChecked();
             } else if (checkBox2 != null) {
-                z = checkBox2.checkBoxBase.isChecked;
+                zIsChecked = checkBox2.isChecked();
             }
-            accessibilityNodeInfo.setChecked(z);
+            accessibilityNodeInfo.setChecked(zIsChecked);
             accessibilityNodeInfo.setClassName("android.widget.Switch");
         } else {
             if (r1 != null) {
-                z = r1.isChecked;
+                zIsChecked = r1.isChecked();
             } else if (checkBox2 != null) {
-                z = checkBox2.checkBoxBase.isChecked;
+                zIsChecked = checkBox2.isChecked();
             }
-            if (z) {
+            if (zIsChecked) {
                 accessibilityNodeInfo.setSelected(true);
             }
         }
@@ -154,11 +147,11 @@ public final class AvailableReactionCell extends FrameLayout {
     public void setChecked(boolean z) {
         Switch r0 = this.switchView;
         if (r0 != null) {
-            r0.setChecked(r0.drawIconType, z, false);
+            r0.setChecked(z, false);
         }
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null) {
-            checkBox2.checkBoxBase.setChecked(-1, z, false);
+            checkBox2.setChecked(z, false);
         }
     }
 }

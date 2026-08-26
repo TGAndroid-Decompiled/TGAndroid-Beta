@@ -8,7 +8,7 @@ public final class SecretChatHelper$$ExternalSyntheticLambda26 implements Runnab
     public final Context f$0;
     public final AlertDialog f$1;
 
-    public SecretChatHelper$$ExternalSyntheticLambda26(int i, Context context, AlertDialog alertDialog) {
+    public SecretChatHelper$$ExternalSyntheticLambda26(Context context, AlertDialog alertDialog, int i) {
         this.$r8$classId = i;
         this.f$0 = context;
         this.f$1 = alertDialog;

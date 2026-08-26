@@ -3,19 +3,17 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 import org.telegram.ui.ActionBar.Theme;
 
-public final class URLSpanBotCommand extends URLSpanNoUnderline {
+public class URLSpanBotCommand extends URLSpanNoUnderline {
     public static boolean enabled = true;
-    public final int currentType;
-    public final TextStyleSpan.TextStyleRun style;
+    public int currentType;
+    private TextStyleSpan.TextStyleRun style;
 
-    public URLSpanBotCommand(String str, int i, TextStyleSpan.TextStyleRun textStyleRun) {
-        super(str, null);
-        this.currentType = i;
-        this.style = textStyleRun;
+    public URLSpanBotCommand(String str, int i) {
+        this(str, i, null);
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public void updateDrawState(TextPaint textPaint) {
         super.updateDrawState(textPaint);
         int i = this.currentType;
         if (i == 2) {
@@ -31,5 +29,11 @@ public final class URLSpanBotCommand extends URLSpanNoUnderline {
         } else {
             textPaint.setUnderlineText(false);
         }
+    }
+
+    public URLSpanBotCommand(String str, int i, TextStyleSpan.TextStyleRun textStyleRun) {
+        super(str);
+        this.currentType = i;
+        this.style = textStyleRun;
     }
 }

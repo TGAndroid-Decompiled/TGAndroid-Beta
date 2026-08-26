@@ -1,10 +1,8 @@
 package org.telegram.ui.Adapters;
 
 import android.content.Context;
-import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
@@ -15,129 +13,133 @@ import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.RecyclerListView;
 
 public abstract class LocationActivitySearchAdapter extends BaseLocationAdapter {
-    public final Context mContext;
-    public boolean myLocationDenied;
-    public final Theme.ResourcesProvider resourcesProvider;
+    private static final int VIEW_TYPE_LOCATION = 0;
+    private static final int VIEW_TYPE_SECTION = 1;
+    private FlickerLoadingView globalGradientView;
+    private Context mContext;
+    private boolean myLocationDenied;
+    private Theme.ResourcesProvider resourcesProvider;
 
-    public LocationActivitySearchAdapter(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
+    public LocationActivitySearchAdapter(Context context, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
         super(z, z2);
         this.myLocationDenied = false;
         this.mContext = context;
         this.resourcesProvider = resourcesProvider;
-        new FlickerLoadingView(context, null).setIsSingleCell(true);
+        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
+        this.globalGradientView = flickerLoadingView;
+        flickerLoadingView.setIsSingleCell(true);
     }
 
-    public final TLRPC.TL_messageMediaVenue getItem(int i) {
-        ArrayList arrayList = this.locations;
-        if (!arrayList.isEmpty()) {
+    public TLRPC.TL_messageMediaVenue getItem(int i) {
+        if (!this.locations.isEmpty()) {
             i--;
         }
-        if (i >= 0 && i < arrayList.size()) {
-            return (TLRPC.TL_messageMediaVenue) arrayList.get(i);
+        if (i >= 0 && i < this.locations.size()) {
+            return this.locations.get(i);
         }
-        if (this.searchInProgress) {
+        if (isSearching()) {
             return null;
         }
-        int size = i - arrayList.size();
-        if (!arrayList.isEmpty()) {
+        int size = i - this.locations.size();
+        if (!this.locations.isEmpty()) {
             size--;
         }
-        if (size < 0) {
+        if (size < 0 || size >= this.places.size()) {
             return null;
         }
-        ArrayList arrayList2 = this.places;
-        if (size < arrayList2.size()) {
-            return (TLRPC.TL_messageMediaVenue) arrayList2.get(size);
-        }
-        return null;
+        return this.places.get(size);
     }
 
     @Override
-    public final int getItemCount() {
-        ArrayList arrayList = this.locations;
-        int size = !arrayList.isEmpty() ? arrayList.size() + 1 : 0;
+    public int getItemCount() {
+        int size = !this.locations.isEmpty() ? this.locations.size() + 1 : 0;
         if (this.myLocationDenied) {
             return size;
         }
-        if (this.searchInProgress) {
+        if (isSearching()) {
             return size + 3;
         }
-        boolean zIsEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.places;
-        if (!zIsEmpty && !arrayList2.isEmpty()) {
+        if (!this.locations.isEmpty() && !this.places.isEmpty()) {
             size++;
         }
-        return arrayList2.size() + size;
+        return this.places.size() + size;
     }
 
     @Override
-    public final int getItemViewType(int i) {
-        ArrayList arrayList = this.locations;
-        return ((i == 0 || i == arrayList.size() + 1) && !arrayList.isEmpty()) ? 1 : 0;
+    public int getItemViewType(int i) {
+        return ((i == 0 || i == this.locations.size() + 1) && !this.locations.isEmpty()) ? 1 : 0;
+    }
+
+    public boolean isEmpty() {
+        return this.places.size() == 0 && this.locations.size() == 0;
     }
 
     @Override
-    public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         return true;
     }
 
     @Override
-    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+    public void notifyStartSearch(boolean z, int i, boolean z2) {
+        if (z) {
+            return;
+        }
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         TLRPC.TL_messageMediaVenue tL_messageMediaVenue;
         int i2;
-        int i3 = viewHolder.mItemViewType;
-        ArrayList arrayList = this.locations;
         boolean z = true;
-        View view = viewHolder.itemView;
-        if (i3 != 0) {
-            if (i3 == 1) {
-                if (i != 0 || arrayList.isEmpty()) {
-                    ((GraySectionCell) view).setText(LocaleController.getString(R.string.NearbyVenue));
+        if (viewHolder.getItemViewType() != 0) {
+            if (viewHolder.getItemViewType() == 1) {
+                if (i != 0 || this.locations.isEmpty()) {
+                    ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.NearbyVenue));
                     return;
                 } else {
-                    ((GraySectionCell) view).setText(LocaleController.getString(R.string.LocationOnMap));
+                    ((GraySectionCell) viewHolder.itemView).setText(LocaleController.getString(R.string.LocationOnMap));
                     return;
                 }
             }
             return;
         }
-        int i4 = !arrayList.isEmpty() ? i - 1 : i;
-        if (i4 >= 0 && i4 < arrayList.size()) {
-            tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList.get(i4);
+        int i3 = !this.locations.isEmpty() ? i - 1 : i;
+        if (i3 >= 0 && i3 < this.locations.size()) {
+            tL_messageMediaVenue = this.locations.get(i3);
             i2 = 2;
-        } else if (this.searchInProgress) {
+        } else if (isSearching()) {
             tL_messageMediaVenue = null;
             i2 = i;
         } else {
-            int size = i4 - arrayList.size();
-            if (!this.searchingLocations && !arrayList.isEmpty()) {
+            int size = i3 - this.locations.size();
+            if (!this.searchingLocations && !this.locations.isEmpty()) {
                 size--;
             }
             i2 = size;
-            if (i2 >= 0) {
-                ArrayList arrayList2 = this.places;
-                if (i2 < arrayList2.size()) {
-                    tL_messageMediaVenue = (TLRPC.TL_messageMediaVenue) arrayList2.get(i2);
-                } else {
-                    tL_messageMediaVenue = null;
-                    i2 = i;
-                }
-            } else {
+            if (i2 < 0 || i2 >= this.places.size()) {
                 tL_messageMediaVenue = null;
                 i2 = i;
+            } else {
+                tL_messageMediaVenue = this.places.get(i2);
             }
         }
-        LocationCell locationCell = (LocationCell) view;
-        if (i == getItemCount() - 1 || (!this.searchingLocations && !arrayList.isEmpty() && i == arrayList.size())) {
+        LocationCell locationCell = (LocationCell) viewHolder.itemView;
+        if (i == getItemCount() - 1 || (!this.searchingLocations && !this.locations.isEmpty() && i == this.locations.size())) {
             z = false;
         }
         locationCell.setLocation(tL_messageMediaVenue, i2, z, false);
     }
 
     @Override
-    public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Context context = this.mContext;
-        return new RecyclerListView.Holder(i == 0 ? new LocationCell(context, resourcesProvider) : new GraySectionCell(context, 16, resourcesProvider));
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        return new RecyclerListView.Holder(i == 0 ? new LocationCell(this.mContext, this.resourcesProvider) : new GraySectionCell(this.mContext, 16, this.resourcesProvider));
+    }
+
+    public void setMyLocationDenied(boolean z) {
+        if (this.myLocationDenied == z) {
+            return;
+        }
+        this.myLocationDenied = z;
     }
 }

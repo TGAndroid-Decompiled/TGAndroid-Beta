@@ -28,7 +28,7 @@ public final class FoundStickerPackCell extends FrameLayout implements FactorAni
         super(context);
         this.isSelected = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 380L, false);
         this.resourcesProvider = resourcesProvider;
-        StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(context, resourcesProvider, false);
+        StickerEmojiCell stickerEmojiCell = new StickerEmojiCell(context, false, resourcesProvider);
         this.stickerView = stickerEmojiCell;
         addView(stickerEmojiCell, LayoutHelper.createFrame(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
@@ -38,7 +38,7 @@ public final class FoundStickerPackCell extends FrameLayout implements FactorAni
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setSingleLine();
         addView(textView, LayoutHelper.createFrame(-1, -2.0f, 80, 6.0f, 0.0f, 6.0f, 5.0f));
-        updateColors$1();
+        updateColors();
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class FoundStickerPackCell extends FrameLayout implements FactorAni
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class FoundStickerPackCell extends FrameLayout implements FactorAni
 
     public void setPack(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
         this.textView.setText(tL_messages_stickerSet.set.short_name);
-        this.stickerView.setSticker(!tL_messages_stickerSet.documents.isEmpty() ? tL_messages_stickerSet.documents.get(0) : null, null, null, null, false, false);
+        this.stickerView.setSticker(!tL_messages_stickerSet.documents.isEmpty() ? tL_messages_stickerSet.documents.get(0) : null, null, null, null, false);
     }
 
     public final void setSelected(boolean z, boolean z2) {
@@ -92,7 +92,7 @@ public final class FoundStickerPackCell extends FrameLayout implements FactorAni
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         ShapeDrawable shapeDrawable = this.bgSelected;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         if (shapeDrawable != null) {

@@ -62,13 +62,6 @@ public final class AlertDialogDecor extends AlertDialog {
         }
     }
 
-    public final class Builder extends AlertDialog.Builder {
-        @Override
-        public final AlertDialog createAlertDialog(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-            return new AlertDialogDecor(context, i, resourcesProvider);
-        }
-    }
-
     public AlertDialogDecor(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context, i, resourcesProvider);
         this.isDismissed = false;
@@ -120,7 +113,7 @@ public final class AlertDialogDecor extends AlertDialog {
     }
 
     @Override
-    public final void show() {
+    public final void show() throws Throwable {
         TypedValue typedValue = new TypedValue();
         getContext().getTheme().resolveAttribute(16842926, typedValue, true);
         TypedArray typedArrayObtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, ATTRS);
@@ -146,7 +139,7 @@ public final class AlertDialogDecor extends AlertDialog {
         FrameLayout frameLayout3 = this.rootView;
         WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
         ViewCompat.Api20Impl.requestApplyInsets(frameLayout3);
-        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(this.rootView, new AlertDialog$$ExternalSyntheticLambda11(frameLayout2, 4));
+        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(this.rootView, new AlertDialog$$ExternalSyntheticLambda13(frameLayout2, 4));
         this.rootView.setVisibility(4);
         long j = this.openDelay;
         Theme$$ExternalSyntheticLambda8 theme$$ExternalSyntheticLambda8 = this.showRunnable;
@@ -158,7 +151,7 @@ public final class AlertDialogDecor extends AlertDialog {
     }
 
     @Override
-    public final void showDelayed(long j) {
+    public final void showDelayed(long j) throws Throwable {
         if (isShowing()) {
             return;
         }

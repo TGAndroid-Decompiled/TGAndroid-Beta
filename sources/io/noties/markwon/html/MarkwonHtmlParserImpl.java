@@ -1,6 +1,7 @@
 package io.noties.markwon.html;
 
 import androidx.datastore.preferences.PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility;
+import com.google.android.gms.dynamite.zzk;
 import io.noties.markwon.html.jsoup.nodes.Attribute;
 import io.noties.markwon.html.jsoup.nodes.Attributes;
 import io.noties.markwon.html.jsoup.parser.CharacterReader;
@@ -17,23 +18,22 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.iv.RichEditor;
+import org.telegram.ui.iv.RichMediaCell;
 
 public final class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
-    public final RichEditor.AnonymousClass12 emptyTagReplacement;
+    public final zzk emptyTagReplacement;
     public boolean isInsidePreTag;
     public boolean previousIsBlock;
-    public final ChatActivity.AnonymousClass40 trimmingAppender;
+    public final RichMediaCell.AnonymousClass2 trimmingAppender;
     public static final Set INLINE_TAGS = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("a", "abbr", "acronym", "b", "bdo", "big", "br", "button", "cite", "code", "dfn", "em", "i", "img", "input", "kbd", "label", "map", "object", "q", "samp", "script", "select", "small", "span", "strong", "sub", "sup", "textarea", "time", "tt", "var")));
     public static final Set VOID_TAGS = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "meta", "param", "source", "track", "wbr")));
     public static final Set BLOCK_TAGS = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList("address", "article", "aside", "blockquote", "canvas", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr", "li", "main", "nav", "noscript", "ol", "output", "p", "pre", "section", "table", "tfoot", "ul", "video")));
     public final ArrayList inlineTags = new ArrayList(0);
     public HtmlTagImpl.BlockImpl currentBlock = new HtmlTagImpl.BlockImpl("", 0, Collections.EMPTY_MAP, null);
 
-    public MarkwonHtmlParserImpl(RichEditor.AnonymousClass12 anonymousClass12, ChatActivity.AnonymousClass40 anonymousClass40) {
-        this.emptyTagReplacement = anonymousClass12;
-        this.trimmingAppender = anonymousClass40;
+    public MarkwonHtmlParserImpl(zzk zzkVar, RichMediaCell.AnonymousClass2 anonymousClass2) {
+        this.emptyTagReplacement = zzkVar;
+        this.trimmingAppender = anonymousClass2;
     }
 
     public static Map extractAttributes(Token.StartTag startTag) {
@@ -68,6 +68,7 @@ public final class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
         }
     }
 
+    @Override
     public final void processFragment(Appendable appendable, String str) {
         Token token;
         HtmlTagImpl.InlineImpl inlineImpl;
@@ -101,7 +102,7 @@ public final class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
                 }
                 int iOrdinal = PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility.ordinal(i);
                 ArrayList arrayList = this.inlineTags;
-                RichEditor.AnonymousClass12 anonymousClass12 = this.emptyTagReplacement;
+                zzk zzkVar = this.emptyTagReplacement;
                 Set set = BLOCK_TAGS;
                 Set set2 = INLINE_TAGS;
                 if (iOrdinal == 1) {
@@ -120,8 +121,8 @@ public final class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
                             this.previousIsBlock = false;
                         }
                         if (set3.contains(str3) || startTag.selfClosing) {
-                            anonymousClass12.getClass();
-                            String strReplace = RichEditor.AnonymousClass12.replace(inlineImpl2);
+                            zzkVar.getClass();
+                            String strReplace = zzk.replace(inlineImpl2);
                             if (strReplace != null && strReplace.length() > 0) {
                                 try {
                                     appendable.append(strReplace);
@@ -167,8 +168,8 @@ public final class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
                         HtmlTagImpl.BlockImpl blockImpl2 = new HtmlTagImpl.BlockImpl(str4, length7, mapExtractAttributes, blockImpl);
                         boolean z = set3.contains(str4) || startTag.selfClosing;
                         if (z) {
-                            anonymousClass12.getClass();
-                            String strReplace2 = RichEditor.AnonymousClass12.replace(blockImpl2);
+                            zzkVar.getClass();
+                            String strReplace2 = zzk.replace(blockImpl2);
                             if (strReplace2 != null && strReplace2.length() > 0) {
                                 try {
                                     appendable.append(strReplace2);
@@ -208,8 +209,8 @@ public final class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
                         if (inlineImpl != null) {
                             CharSequence charSequence5 = (CharSequence) appendable;
                             if (inlineImpl.start == charSequence5.length()) {
-                                anonymousClass12.getClass();
-                                CharSequence charSequenceReplace = RichEditor.AnonymousClass12.replace(inlineImpl);
+                                zzkVar.getClass();
+                                CharSequence charSequenceReplace = zzk.replace(inlineImpl);
                                 if (charSequenceReplace != null) {
                                     try {
                                         appendable.append(charSequenceReplace);
@@ -237,8 +238,8 @@ public final class MarkwonHtmlParserImpl extends MarkwonHtmlParser {
                             int length9 = charSequence6.length();
                             int i2 = blockImpl3.start;
                             if (i2 == length9) {
-                                anonymousClass12.getClass();
-                                CharSequence charSequenceReplace2 = RichEditor.AnonymousClass12.replace(blockImpl3);
+                                zzkVar.getClass();
+                                CharSequence charSequenceReplace2 = zzk.replace(blockImpl3);
                                 if (charSequenceReplace2 != null) {
                                     try {
                                         appendable.append(charSequenceReplace2);

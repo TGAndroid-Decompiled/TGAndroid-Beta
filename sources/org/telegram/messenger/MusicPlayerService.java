@@ -426,7 +426,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
         }
         Theme.createDialogsResources(this);
         AvatarDrawable avatarDrawable = tLObject instanceof TLRPC.User ? new AvatarDrawable((TLRPC.User) tLObject) : new AvatarDrawable((TLRPC.Chat) tLObject);
-        avatarDrawable.roundRadius = 1;
+        avatarDrawable.setRoundRadius(1);
         float f3 = i;
         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(AndroidUtilities.dp(f3), AndroidUtilities.dp(f3), Bitmap.Config.ARGB_8888);
         avatarDrawable.setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());

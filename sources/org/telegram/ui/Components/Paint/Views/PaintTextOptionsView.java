@@ -59,7 +59,7 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
 
         void onTextAlignmentSelected(int i);
 
-        void onTextOutlineSelected();
+        void onTextOutlineSelected(View view);
 
         void onTypefaceButtonClicked();
     }
@@ -137,7 +137,7 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
                         paintTextOptionsView.setAlignment((paintTextOptionsView.currentAlign + 1) % 3, true);
                         break;
                     case 2:
-                        this.f$0.delegate.onTextOutlineSelected();
+                        this.f$0.delegate.onTextOutlineSelected(view2);
                         break;
                     case 3:
                         this.f$0.delegate.onNewTextSelected();
@@ -151,11 +151,11 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
         addView(view, LayoutHelper.createFrame(24, 24.0f, 48, 0.0f, 0.0f, 16.0f, 0.0f));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.alignView = rLottieImageView;
-        rLottieImageView.setAnimation(R.raw.photo_text_allign, 24, 24, null);
+        rLottieImageView.setAnimation(R.raw.photo_text_allign, 24, 24);
         RLottieDrawable animatedDrawable = rLottieImageView.getAnimatedDrawable();
-        animatedDrawable.playInDirectionOfCustomEndFrame = true;
+        animatedDrawable.setPlayInDirectionOfCustomEndFrame(true);
         animatedDrawable.setCustomEndFrame(20);
-        animatedDrawable.setCurrentFrame(20, true, false);
+        animatedDrawable.setCurrentFrame(20);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         rLottieImageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         final int i2 = 1;
@@ -177,7 +177,7 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
                         paintTextOptionsView.setAlignment((paintTextOptionsView.currentAlign + 1) % 3, true);
                         break;
                     case 2:
-                        this.f$0.delegate.onTextOutlineSelected();
+                        this.f$0.delegate.onTextOutlineSelected(view2);
                         break;
                     case 3:
                         this.f$0.delegate.onNewTextSelected();
@@ -213,7 +213,7 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
                         paintTextOptionsView.setAlignment((paintTextOptionsView.currentAlign + 1) % 3, true);
                         break;
                     case 2:
-                        this.f$0.delegate.onTextOutlineSelected();
+                        this.f$0.delegate.onTextOutlineSelected(view2);
                         break;
                     case 3:
                         this.f$0.delegate.onNewTextSelected();
@@ -249,7 +249,7 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
                         paintTextOptionsView.setAlignment((paintTextOptionsView.currentAlign + 1) % 3, true);
                         break;
                     case 2:
-                        this.f$0.delegate.onTextOutlineSelected();
+                        this.f$0.delegate.onTextOutlineSelected(view2);
                         break;
                     case 3:
                         this.f$0.delegate.onNewTextSelected();
@@ -284,7 +284,7 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
                         paintTextOptionsView.setAlignment((paintTextOptionsView.currentAlign + 1) % 3, true);
                         break;
                     case 2:
-                        this.f$0.delegate.onTextOutlineSelected();
+                        this.f$0.delegate.onTextOutlineSelected(view2);
                         break;
                     case 3:
                         this.f$0.delegate.onNewTextSelected();
@@ -303,8 +303,9 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
             i = R.drawable.msg_add;
         }
         if (this.plusIcon != i) {
+            ImageView imageView = this.plusView;
             this.plusIcon = i;
-            AndroidUtilities.updateImageViewImageAnimated(this.plusView, i);
+            AndroidUtilities.updateImageViewImageAnimated(imageView, i);
         }
     }
 
@@ -432,7 +433,7 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
                     break;
                 }
             }
-            animatedDrawable.setCurrentFrame(alignFramePair.toFrame, true, false);
+            animatedDrawable.setCurrentFrame(alignFramePair.toFrame);
             animatedDrawable.setCustomEndFrame(alignFramePair.toFrame);
             if (z) {
                 this.delegate.onTextAlignmentSelected(i);
@@ -448,7 +449,7 @@ public final class PaintTextOptionsView extends FrameLayout implements Notificat
             }
         }
         RLottieDrawable animatedDrawable2 = rLottieImageView.getAnimatedDrawable();
-        animatedDrawable2.setCurrentFrame(alignFramePair3.fromFrame, true, false);
+        animatedDrawable2.setCurrentFrame(alignFramePair3.fromFrame);
         animatedDrawable2.setCustomEndFrame(alignFramePair3.toFrame);
         animatedDrawable2.start();
         if (z) {

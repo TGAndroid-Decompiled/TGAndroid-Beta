@@ -45,7 +45,7 @@ public final class RecordControl$$ExternalSyntheticLambda2 implements Runnable {
                     } else {
                         recordControl3.longpressRecording = true;
                         recordControl3.showLock = true;
-                        ((StoryRecorder.AnonymousClass13) recordControl3.delegate).onVideoRecordStart(new RecordControl$$ExternalSyntheticLambda2(recordControl3, 4), true);
+                        ((StoryRecorder.AnonymousClass13) recordControl3.delegate).onVideoRecordStart(true, new RecordControl$$ExternalSyntheticLambda2(recordControl3, 4));
                     }
                     break;
                 }

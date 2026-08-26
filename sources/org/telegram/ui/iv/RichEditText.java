@@ -23,14 +23,10 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda380;
-import org.telegram.ui.CodeNumberField;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.URLSpanReplacement;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda44;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
 
 public final class RichEditText extends EditTextCaption {
     public boolean accentHint;
@@ -94,10 +90,22 @@ public final class RichEditText extends EditTextCaption {
         this.currentAccount = UserConfig.selectedAccount;
         this.lastMarkTextLength = -1;
         this.markPathDirty = true;
-        int i = 0;
-        this.lockingFilter = new RichEditText$$ExternalSyntheticLambda1(i, this);
+        this.lockingFilter = new InputFilter() {
+            @Override
+            public final CharSequence filter(CharSequence charSequence, int i, int i2, Spanned spanned, int i3, int i4) {
+                RichEditText richEditText = this.f$0;
+                if (!richEditText.locked || richEditText.ignoreTextChange) {
+                    return null;
+                }
+                RichEditText.Listener listener = richEditText.listener;
+                if (listener != null && charSequence != null && i2 > i && i3 == i4) {
+                    listener.onLockedInsert(charSequence.subSequence(i, i2));
+                }
+                return spanned.subSequence(i3, i4);
+            }
+        };
         this.textColorKey = Theme.key_windowBackgroundWhiteBlackText;
-        this.inlineButtonLongPressRunnable = new RichEditText$$ExternalSyntheticLambda2(this, i);
+        this.inlineButtonLongPressRunnable = new RichEditText$$ExternalSyntheticLambda2(this, 0);
         this.resourcesProvider = resourcesProvider;
         this.adaptiveCreateLinkDialog = true;
         setBackground(null);
@@ -106,14 +114,42 @@ public final class RichEditText extends EditTextCaption {
         setInputType(getInputType() | 147456);
         setImeOptions(5);
         AnonymousClass1 anonymousClass1 = new AnonymousClass1(0);
-        CodeNumberField.AnonymousClass2 anonymousClass2 = new CodeNumberField.AnonymousClass2(1, this);
+        ?? r0 = new ActionMode.Callback() {
+            @Override
+            public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+                return false;
+            }
+
+            @Override
+            public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                return true;
+            }
+
+            @Override
+            public final void onDestroyActionMode(ActionMode actionMode) {
+            }
+
+            @Override
+            public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                if (RichEditText.this.length() != 0) {
+                    return false;
+                }
+                for (int size = menu.size() - 1; size >= 0; size--) {
+                    int itemId = menu.getItem(size).getItemId();
+                    if (itemId != 16908322 && itemId != 16908337) {
+                        menu.removeItem(itemId);
+                    }
+                }
+                return true;
+            }
+        };
         setCustomSelectionActionModeCallback(anonymousClass1);
         if (Build.VERSION.SDK_INT >= 23) {
-            setCustomInsertionActionModeCallback(anonymousClass2);
+            setCustomInsertionActionModeCallback(r0);
         }
-        setOnLongClickListener(new PhotoViewer$$ExternalSyntheticLambda44(this, 16));
+        setOnLongClickListener(new RichEditor$$ExternalSyntheticLambda12(this, 4));
         setLongClickable(length() == 0);
-        setOnEditorActionListener(new ChatActivity$$ExternalSyntheticLambda380(this, 25));
+        setOnEditorActionListener(new RichEditText$$ExternalSyntheticLambda4(this, 0));
         addTextChangedListener(new TextWatcher() {
             @Override
             public final void afterTextChanged(Editable editable) {
@@ -149,17 +185,17 @@ public final class RichEditText extends EditTextCaption {
             }
 
             @Override
-            public final void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 Listener listener;
                 RichEditText richEditText = RichEditText.this;
                 if (richEditText.ignoreTextChange || (listener = richEditText.listener) == null) {
                     return;
                 }
-                listener.onTextWillChange(i3, i4);
+                listener.onTextWillChange(i2, i3);
             }
 
             @Override
-            public final void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
                 RichEditText richEditText = RichEditText.this;
                 richEditText.markPathDirty = true;
                 richEditText.refreshEmptyHintGravity();
@@ -268,7 +304,7 @@ public final class RichEditText extends EditTextCaption {
         int iMin;
         Editable text = getText();
         if (text != null && (iMax = Math.max(0, i)) < (iMin = Math.min(i2, text.length()))) {
-            return RichTextStyle.stylesFullyCovering(iMax, iMin, text);
+            return RichTextStyle.stylesFullyCovering(text, iMax, iMin);
         }
         return 0;
     }
@@ -363,30 +399,30 @@ public final class RichEditText extends EditTextCaption {
                     int i = 0;
                     while (i < length) {
                         TextStyleSpan textStyleSpan = textStyleSpanArr[i];
-                        int i2 = textStyleSpan.style.flags;
-                        if ((65536 & i2) != 0) {
+                        int styleFlags = textStyleSpan.getStyleFlags();
+                        if ((65536 & styleFlags) != 0) {
                             int spanStart = spanned.getSpanStart(textStyleSpan);
                             int spanEnd = spanned.getSpanEnd(textStyleSpan);
                             if (spanStart < 0) {
                                 linkPath = linkPath;
                             } else if (spanEnd > spanStart) {
                                 if (linkPath == null) {
-                                    LinkPath linkPath2 = new LinkPath(0);
-                                    linkPath2.allowReset = false;
+                                    LinkPath linkPath2 = new LinkPath(true);
+                                    linkPath2.setAllowReset(false);
                                     linkPath = linkPath2;
                                 }
-                                linkPath.setCurrentLayout(layout, spanStart, 0.0f, 0.0f);
-                                if ((32768 & i2) != 0) {
+                                linkPath.setCurrentLayout(layout, spanStart, 0.0f);
+                                if ((32768 & styleFlags) != 0) {
                                     iDp = -AndroidUtilities.dp(6.0f);
                                 } else {
-                                    iDp = (i2 & 16384) != 0 ? AndroidUtilities.dp(2.0f) : 0;
+                                    iDp = (styleFlags & 16384) != 0 ? AndroidUtilities.dp(2.0f) : 0;
                                 }
                                 if (iDp != 0) {
                                     iDp2 = AndroidUtilities.dp(iDp > 0 ? 5.0f : -2.0f) + iDp;
                                 } else {
                                     iDp2 = 0;
                                 }
-                                linkPath.baselineShift = iDp2;
+                                linkPath.setBaselineShift(iDp2);
                                 layout.getSelectionPath(spanStart, spanEnd, linkPath);
                             }
                         }
@@ -394,7 +430,7 @@ public final class RichEditText extends EditTextCaption {
                         linkPath = linkPath;
                     }
                     if (linkPath != null) {
-                        linkPath.allowReset = true;
+                        linkPath.setAllowReset(true);
                     }
                     this.markPath = linkPath;
                 }
@@ -531,7 +567,7 @@ public final class RichEditText extends EditTextCaption {
                             }
                         }
                         if (mathSpan != null) {
-                            ChatAttachAlertRichLayout.showEditLatexSheet(getContext(), mathSpan.source, new ThemeActivity$$ExternalSyntheticLambda19(18, this, mathSpan), this.resourcesProvider);
+                            ChatAttachAlertRichLayout.showEditLatexSheet(getContext(), mathSpan.source, new RichEditor$$ExternalSyntheticLambda51(3, this, mathSpan), this.resourcesProvider);
                             return true;
                         }
                     }
@@ -756,18 +792,6 @@ public final class RichEditText extends EditTextCaption {
         }
 
         private final void onDestroyActionMode$org$telegram$ui$ActionBar$ActionBarMenuItem$10(ActionMode actionMode) {
-        }
-
-        private final void onDestroyActionMode$org$telegram$ui$Components$PasscodeView$3(ActionMode actionMode) {
-        }
-
-        private final void onDestroyActionMode$org$telegram$ui$PasscodeActivity$7(ActionMode actionMode) {
-        }
-
-        private final void onDestroyActionMode$org$telegram$ui$PassportActivity$7(ActionMode actionMode) {
-        }
-
-        private final void onDestroyActionMode$org$telegram$ui$UsersSelectActivity$5(ActionMode actionMode) {
         }
 
         private final void onDestroyActionMode$org$telegram$ui$iv$RichEditText$1(ActionMode actionMode) {

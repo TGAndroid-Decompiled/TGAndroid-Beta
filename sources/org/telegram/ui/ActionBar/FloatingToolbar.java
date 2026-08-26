@@ -9,17 +9,20 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.Shader;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Property;
 import android.util.Size;
@@ -65,15 +68,18 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.utils.GradientProtectionDrawable;
-import org.telegram.ui.BlurSettingsBottomSheet;
+import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda3;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Paint.Views.LPhotoPaintView;
+import org.telegram.ui.Components.PopupSwipeBackLayout;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProviderBuilder;
-import org.telegram.ui.ContactsActivity$$ExternalSyntheticLambda18;
-import org.telegram.ui.GroupCallActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda105;
+import org.telegram.ui.Components.voip.VoIPBackgroundProvider;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stories.recorder.PaintView;
+import org.telegram.ui.iv.RichEditor;
 
 public final class FloatingToolbar {
     public static final FloatingToolbar$$ExternalSyntheticLambda1 NO_OP_MENUITEM_CLICK_LISTENER = new FloatingToolbar$$ExternalSyntheticLambda1();
@@ -84,14 +90,33 @@ public final class FloatingToolbar {
     public final FloatingToolbarPopup mPopup;
     public final View mWindowView;
     public Runnable premiumLockClickListener;
-    public StarGiftSheet$$ExternalSyntheticLambda105 quoteShowCallback;
+    public ImageUpdater$$ExternalSyntheticLambda3 quoteShowCallback;
     public final Theme.ResourcesProvider resourcesProvider;
     public final Rect mContentRect = new Rect();
     public final Rect mPreviousContentRect = new Rect();
     public ArrayList mShowingMenuItems = new ArrayList();
     public MenuItem.OnMenuItemClickListener mMenuItemClickListener = NO_OP_MENUITEM_CLICK_LISTENER;
     public boolean mWidthChanged = true;
-    public final BlurSettingsBottomSheet.AnonymousClass4 mOrientationChangeHandler = new BlurSettingsBottomSheet.AnonymousClass4(this);
+    public final AnonymousClass1 mOrientationChangeHandler = new View.OnLayoutChangeListener() {
+        public final Rect mNewRect = new Rect();
+        public final Rect mOldRect = new Rect();
+
+        @Override
+        public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+            Rect rect = this.mNewRect;
+            rect.set(i, i2, i3, i4);
+            Rect rect2 = this.mOldRect;
+            rect2.set(i5, i6, i7, i8);
+            FloatingToolbar floatingToolbar = FloatingToolbar.this;
+            if (!floatingToolbar.mPopup.isShowing() || rect.equals(rect2)) {
+                return;
+            }
+            floatingToolbar.mWidthChanged = true;
+            if (floatingToolbar.mPopup.isShowing()) {
+                floatingToolbar.doShow();
+            }
+        }
+    };
     public final Theme$$ExternalSyntheticLambda5 mMenuItemComparator = new Theme$$ExternalSyntheticLambda5(23);
 
     public final class FloatingToolbarPopup {
@@ -108,7 +133,7 @@ public final class FloatingToolbar {
         public final int mLineHeight;
         public final Interpolator mLinearOutSlowInInterpolator;
         public final LogAccelerateInterpolator mLogAccelerateInterpolator;
-        public final PhotoViewer.AnonymousClass35 mMainPanel;
+        public final RichEditor.AnonymousClass6 mMainPanel;
         public Size mMainPanelSize;
         public final int mMarginHorizontal;
         public final int mMarginVertical;
@@ -286,7 +311,7 @@ public final class FloatingToolbar {
             if (blurredBackgroundDrawableViewFactory != null) {
                 BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(relativeLayout, null, true);
                 BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-                blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(15);
+                blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(10);
                 int i4 = 687865855;
                 blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(i4, i4, i2);
                 int i5 = 352321535;
@@ -315,14 +340,14 @@ public final class FloatingToolbar {
             relativeLayout.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
             relativeLayout.setClipToOutline(true);
             this.mContentContainer = relativeLayout;
-            GroupCallActivity.AnonymousClass61 anonymousClass61 = new GroupCallActivity.AnonymousClass61(relativeLayout.getContext(), 2);
-            PopupWindow popupWindow = new PopupWindow(anonymousClass61);
+            AnonymousClass2 anonymousClass2 = new AnonymousClass2(relativeLayout.getContext(), 0);
+            PopupWindow popupWindow = new PopupWindow(anonymousClass2);
             popupWindow.setClippingEnabled(false);
             popupWindow.setAnimationStyle(0);
             popupWindow.setBackgroundDrawable(new ColorDrawable(0));
             popupWindow.setSplitTouchEnabled(true);
             relativeLayout.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
-            anonymousClass61.addView(relativeLayout);
+            anonymousClass2.addView(relativeLayout);
             this.mPopupWindow = popupWindow;
             this.mMarginHorizontal = AndroidUtilities.dp(16.0f);
             this.mMarginVertical = AndroidUtilities.dp(8.0f);
@@ -403,10 +428,10 @@ public final class FloatingToolbar {
             r10.setOnClickListener(new FloatingToolbar$FloatingToolbarPopup$$ExternalSyntheticLambda0(this, 2));
             frameLayout.addView((View) r10, LayoutHelper.createFrame(-2, -2, 19));
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 19, 56.0f, 0.0f, 0.0f, 0.0f));
-            frameLayout.addView(view2, new FrameLayout.LayoutParams(LayoutHelper.getSize(-1.0f), LayoutHelper.getSize(1.0f / AndroidUtilities.density), 55));
+            frameLayout.addView(view2, LayoutHelper.createFrame(-1.0f, 1.0f / AndroidUtilities.density, 55));
             r10.measure(0, 0);
             this.mOverflowButtonSize = new Size(r10.getMeasuredWidth(), r10.getMeasuredHeight());
-            this.mMainPanel = new PhotoViewer.AnonymousClass35(this, context, 2);
+            this.mMainPanel = new RichEditor.AnonymousClass6(this, context, 1);
             this.mOverflowPanelViewHelper = new Metadata(this, context, i);
             final OverflowPanel overflowPanel = new OverflowPanel(this);
             overflowPanel.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
@@ -457,13 +482,13 @@ public final class FloatingToolbar {
                 }
             });
             this.mOverflowPanel = overflowPanel;
-            AlertDialogDecor.AnonymousClass2 anonymousClass2 = new AlertDialogDecor.AnonymousClass2(this, 1);
+            AlertDialogDecor.AnonymousClass2 anonymousClass3 = new AlertDialogDecor.AnonymousClass2(this, 1);
             AnimationSet animationSet = new AnimationSet(true);
             this.mOpenOverflowAnimation = animationSet;
-            animationSet.setAnimationListener(anonymousClass2);
+            animationSet.setAnimationListener(anonymousClass3);
             AnimationSet animationSet2 = new AnimationSet(true);
             this.mCloseOverflowAnimation = animationSet2;
-            animationSet2.setAnimationListener(anonymousClass2);
+            animationSet2.setAnimationListener(anonymousClass3);
             AnimatorSet animatorSet = new AnimatorSet();
             Property property = View.ALPHA;
             Object obj3 = obj;
@@ -499,7 +524,7 @@ public final class FloatingToolbar {
             return z || (animationSet.hasStarted() && !animationSet.hasEnded());
         }
 
-        public static void setSize(View view, int i, int i2) {
+        public static void setSize(int i, int i2, View view) {
             view.setMinimumWidth(i);
             view.setMinimumHeight(i2);
             ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
@@ -545,7 +570,7 @@ public final class FloatingToolbar {
             FrameLayout frameLayout = this.mOverflowButton;
             RelativeLayout relativeLayout = this.mContentContainer;
             Interpolator interpolator = this.mLinearOutSlowInInterpolator;
-            PhotoViewer.AnonymousClass35 anonymousClass35 = this.mMainPanel;
+            RichEditor.AnonymousClass6 anonymousClass6 = this.mMainPanel;
             LogAccelerateInterpolator logAccelerateInterpolator = this.mLogAccelerateInterpolator;
             OverflowPanel overflowPanel = this.mOverflowPanel;
             Interpolator interpolator2 = this.mFastOutSlowInInterpolator;
@@ -573,7 +598,7 @@ public final class FloatingToolbar {
                                 int i3 = width2;
                                 FloatingToolbarPopup floatingToolbarPopup = this.this$1;
                                 RelativeLayout relativeLayout2 = floatingToolbarPopup.mContentContainer;
-                                FloatingToolbarPopup.setSize(relativeLayout2, ((int) (f * (i2 - i3))) + i3, relativeLayout2.getLayoutParams().height);
+                                FloatingToolbarPopup.setSize(((int) (f * (i2 - i3))) + i3, relativeLayout2.getLayoutParams().height, relativeLayout2);
                                 floatingToolbarPopup.getClass();
                                 RelativeLayout relativeLayout3 = floatingToolbarPopup.mContentContainer;
                                 relativeLayout3.setX(width3 - relativeLayout3.getWidth());
@@ -586,7 +611,7 @@ public final class FloatingToolbar {
                                 int i6 = (int) (f * (i4 - i5));
                                 FloatingToolbarPopup floatingToolbarPopup2 = this.this$1;
                                 RelativeLayout relativeLayout4 = floatingToolbarPopup2.mContentContainer;
-                                FloatingToolbarPopup.setSize(relativeLayout4, relativeLayout4.getLayoutParams().width, i5 + i6);
+                                FloatingToolbarPopup.setSize(relativeLayout4.getLayoutParams().width, i5 + i6, relativeLayout4);
                                 if (floatingToolbarPopup2.mOpenOverflowUpwards) {
                                     RelativeLayout relativeLayout5 = floatingToolbarPopup2.mContentContainer;
                                     relativeLayout5.setY(width3 - relativeLayout5.getHeight());
@@ -599,7 +624,7 @@ public final class FloatingToolbar {
                                 int i9 = (int) (f * (i7 - i8));
                                 FloatingToolbarPopup floatingToolbarPopup3 = this.this$1;
                                 RelativeLayout relativeLayout6 = floatingToolbarPopup3.mContentContainer;
-                                FloatingToolbarPopup.setSize(relativeLayout6, relativeLayout6.getLayoutParams().width, i9 + i8);
+                                FloatingToolbarPopup.setSize(relativeLayout6.getLayoutParams().width, i9 + i8, relativeLayout6);
                                 if (floatingToolbarPopup3.mOpenOverflowUpwards) {
                                     RelativeLayout relativeLayout7 = floatingToolbarPopup3.mContentContainer;
                                     relativeLayout7.setY(width3 - (relativeLayout7.getHeight() - i8));
@@ -611,7 +636,7 @@ public final class FloatingToolbar {
                                 int i11 = width2;
                                 FloatingToolbarPopup floatingToolbarPopup4 = this.this$1;
                                 RelativeLayout relativeLayout8 = floatingToolbarPopup4.mContentContainer;
-                                FloatingToolbarPopup.setSize(relativeLayout8, ((int) (f * (i10 - i11))) + i11, relativeLayout8.getLayoutParams().height);
+                                FloatingToolbarPopup.setSize(((int) (f * (i10 - i11))) + i11, relativeLayout8.getLayoutParams().height, relativeLayout8);
                                 floatingToolbarPopup4.getClass();
                                 RelativeLayout relativeLayout9 = floatingToolbarPopup4.mContentContainer;
                                 relativeLayout9.setX(width3 - relativeLayout9.getWidth());
@@ -640,7 +665,7 @@ public final class FloatingToolbar {
                                 int i4 = height2;
                                 FloatingToolbarPopup floatingToolbarPopup = this.this$1;
                                 RelativeLayout relativeLayout2 = floatingToolbarPopup.mContentContainer;
-                                FloatingToolbarPopup.setSize(relativeLayout2, ((int) (f * (i3 - i4))) + i4, relativeLayout2.getLayoutParams().height);
+                                FloatingToolbarPopup.setSize(((int) (f * (i3 - i4))) + i4, relativeLayout2.getLayoutParams().height, relativeLayout2);
                                 floatingToolbarPopup.getClass();
                                 RelativeLayout relativeLayout3 = floatingToolbarPopup.mContentContainer;
                                 relativeLayout3.setX(y - relativeLayout3.getWidth());
@@ -653,7 +678,7 @@ public final class FloatingToolbar {
                                 int i7 = (int) (f * (i5 - i6));
                                 FloatingToolbarPopup floatingToolbarPopup2 = this.this$1;
                                 RelativeLayout relativeLayout4 = floatingToolbarPopup2.mContentContainer;
-                                FloatingToolbarPopup.setSize(relativeLayout4, relativeLayout4.getLayoutParams().width, i6 + i7);
+                                FloatingToolbarPopup.setSize(relativeLayout4.getLayoutParams().width, i6 + i7, relativeLayout4);
                                 if (floatingToolbarPopup2.mOpenOverflowUpwards) {
                                     RelativeLayout relativeLayout5 = floatingToolbarPopup2.mContentContainer;
                                     relativeLayout5.setY(y - relativeLayout5.getHeight());
@@ -666,7 +691,7 @@ public final class FloatingToolbar {
                                 int i10 = (int) (f * (i8 - i9));
                                 FloatingToolbarPopup floatingToolbarPopup3 = this.this$1;
                                 RelativeLayout relativeLayout6 = floatingToolbarPopup3.mContentContainer;
-                                FloatingToolbarPopup.setSize(relativeLayout6, relativeLayout6.getLayoutParams().width, i10 + i9);
+                                FloatingToolbarPopup.setSize(relativeLayout6.getLayoutParams().width, i10 + i9, relativeLayout6);
                                 if (floatingToolbarPopup3.mOpenOverflowUpwards) {
                                     RelativeLayout relativeLayout7 = floatingToolbarPopup3.mContentContainer;
                                     relativeLayout7.setY(y - (relativeLayout7.getHeight() - i9));
@@ -678,7 +703,7 @@ public final class FloatingToolbar {
                                 int i12 = height2;
                                 FloatingToolbarPopup floatingToolbarPopup4 = this.this$1;
                                 RelativeLayout relativeLayout8 = floatingToolbarPopup4.mContentContainer;
-                                FloatingToolbarPopup.setSize(relativeLayout8, ((int) (f * (i11 - i12))) + i12, relativeLayout8.getLayoutParams().height);
+                                FloatingToolbarPopup.setSize(((int) (f * (i11 - i12))) + i12, relativeLayout8.getLayoutParams().height, relativeLayout8);
                                 floatingToolbarPopup4.getClass();
                                 RelativeLayout relativeLayout9 = floatingToolbarPopup4.mContentContainer;
                                 relativeLayout9.setX(y - relativeLayout9.getWidth());
@@ -736,7 +761,7 @@ public final class FloatingToolbar {
                 relativeLayout.startAnimation(animationSet);
                 this.mIsOverflowOpen = false;
                 updateOverflowButtonClickListener();
-                anonymousClass35.animate().alpha(1.0f).withLayer().setInterpolator(this.mFastOutLinearInInterpolator).setDuration(100L).start();
+                anonymousClass6.animate().alpha(1.0f).withLayer().setInterpolator(this.mFastOutLinearInInterpolator).setDuration(100L).start();
                 overflowPanel.animate().alpha(0.0f).withLayer().setInterpolator(interpolator).setDuration(150L).start();
                 return;
             }
@@ -765,7 +790,7 @@ public final class FloatingToolbar {
                             int i5 = width6;
                             FloatingToolbarPopup floatingToolbarPopup = this.this$1;
                             RelativeLayout relativeLayout2 = floatingToolbarPopup.mContentContainer;
-                            FloatingToolbarPopup.setSize(relativeLayout2, ((int) (f * (i4 - i5))) + i5, relativeLayout2.getLayoutParams().height);
+                            FloatingToolbarPopup.setSize(((int) (f * (i4 - i5))) + i5, relativeLayout2.getLayoutParams().height, relativeLayout2);
                             floatingToolbarPopup.getClass();
                             RelativeLayout relativeLayout3 = floatingToolbarPopup.mContentContainer;
                             relativeLayout3.setX(width7 - relativeLayout3.getWidth());
@@ -778,7 +803,7 @@ public final class FloatingToolbar {
                             int i8 = (int) (f * (i6 - i7));
                             FloatingToolbarPopup floatingToolbarPopup2 = this.this$1;
                             RelativeLayout relativeLayout4 = floatingToolbarPopup2.mContentContainer;
-                            FloatingToolbarPopup.setSize(relativeLayout4, relativeLayout4.getLayoutParams().width, i7 + i8);
+                            FloatingToolbarPopup.setSize(relativeLayout4.getLayoutParams().width, i7 + i8, relativeLayout4);
                             if (floatingToolbarPopup2.mOpenOverflowUpwards) {
                                 RelativeLayout relativeLayout5 = floatingToolbarPopup2.mContentContainer;
                                 relativeLayout5.setY(width7 - relativeLayout5.getHeight());
@@ -791,7 +816,7 @@ public final class FloatingToolbar {
                             int i11 = (int) (f * (i9 - i10));
                             FloatingToolbarPopup floatingToolbarPopup3 = this.this$1;
                             RelativeLayout relativeLayout6 = floatingToolbarPopup3.mContentContainer;
-                            FloatingToolbarPopup.setSize(relativeLayout6, relativeLayout6.getLayoutParams().width, i11 + i10);
+                            FloatingToolbarPopup.setSize(relativeLayout6.getLayoutParams().width, i11 + i10, relativeLayout6);
                             if (floatingToolbarPopup3.mOpenOverflowUpwards) {
                                 RelativeLayout relativeLayout7 = floatingToolbarPopup3.mContentContainer;
                                 relativeLayout7.setY(width7 - (relativeLayout7.getHeight() - i10));
@@ -803,7 +828,7 @@ public final class FloatingToolbar {
                             int i13 = width6;
                             FloatingToolbarPopup floatingToolbarPopup4 = this.this$1;
                             RelativeLayout relativeLayout8 = floatingToolbarPopup4.mContentContainer;
-                            FloatingToolbarPopup.setSize(relativeLayout8, ((int) (f * (i12 - i13))) + i13, relativeLayout8.getLayoutParams().height);
+                            FloatingToolbarPopup.setSize(((int) (f * (i12 - i13))) + i13, relativeLayout8.getLayoutParams().height, relativeLayout8);
                             floatingToolbarPopup4.getClass();
                             RelativeLayout relativeLayout9 = floatingToolbarPopup4.mContentContainer;
                             relativeLayout9.setX(width7 - relativeLayout9.getWidth());
@@ -829,7 +854,7 @@ public final class FloatingToolbar {
                             int i6 = height4;
                             FloatingToolbarPopup floatingToolbarPopup = this.this$1;
                             RelativeLayout relativeLayout2 = floatingToolbarPopup.mContentContainer;
-                            FloatingToolbarPopup.setSize(relativeLayout2, ((int) (f * (i5 - i6))) + i6, relativeLayout2.getLayoutParams().height);
+                            FloatingToolbarPopup.setSize(((int) (f * (i5 - i6))) + i6, relativeLayout2.getLayoutParams().height, relativeLayout2);
                             floatingToolbarPopup.getClass();
                             RelativeLayout relativeLayout3 = floatingToolbarPopup.mContentContainer;
                             relativeLayout3.setX(y2 - relativeLayout3.getWidth());
@@ -842,7 +867,7 @@ public final class FloatingToolbar {
                             int i9 = (int) (f * (i7 - i8));
                             FloatingToolbarPopup floatingToolbarPopup2 = this.this$1;
                             RelativeLayout relativeLayout4 = floatingToolbarPopup2.mContentContainer;
-                            FloatingToolbarPopup.setSize(relativeLayout4, relativeLayout4.getLayoutParams().width, i8 + i9);
+                            FloatingToolbarPopup.setSize(relativeLayout4.getLayoutParams().width, i8 + i9, relativeLayout4);
                             if (floatingToolbarPopup2.mOpenOverflowUpwards) {
                                 RelativeLayout relativeLayout5 = floatingToolbarPopup2.mContentContainer;
                                 relativeLayout5.setY(y2 - relativeLayout5.getHeight());
@@ -855,7 +880,7 @@ public final class FloatingToolbar {
                             int i12 = (int) (f * (i10 - i11));
                             FloatingToolbarPopup floatingToolbarPopup3 = this.this$1;
                             RelativeLayout relativeLayout6 = floatingToolbarPopup3.mContentContainer;
-                            FloatingToolbarPopup.setSize(relativeLayout6, relativeLayout6.getLayoutParams().width, i12 + i11);
+                            FloatingToolbarPopup.setSize(relativeLayout6.getLayoutParams().width, i12 + i11, relativeLayout6);
                             if (floatingToolbarPopup3.mOpenOverflowUpwards) {
                                 RelativeLayout relativeLayout7 = floatingToolbarPopup3.mContentContainer;
                                 relativeLayout7.setY(y2 - (relativeLayout7.getHeight() - i11));
@@ -867,7 +892,7 @@ public final class FloatingToolbar {
                             int i14 = height4;
                             FloatingToolbarPopup floatingToolbarPopup4 = this.this$1;
                             RelativeLayout relativeLayout8 = floatingToolbarPopup4.mContentContainer;
-                            FloatingToolbarPopup.setSize(relativeLayout8, ((int) (f * (i13 - i14))) + i14, relativeLayout8.getLayoutParams().height);
+                            FloatingToolbarPopup.setSize(((int) (f * (i13 - i14))) + i14, relativeLayout8.getLayoutParams().height, relativeLayout8);
                             floatingToolbarPopup4.getClass();
                             RelativeLayout relativeLayout9 = floatingToolbarPopup4.mContentContainer;
                             relativeLayout9.setX(y2 - relativeLayout9.getWidth());
@@ -926,7 +951,7 @@ public final class FloatingToolbar {
             relativeLayout.startAnimation(animationSet2);
             this.mIsOverflowOpen = true;
             updateOverflowButtonClickListener();
-            anonymousClass35.animate().alpha(0.0f).withLayer().setInterpolator(interpolator).setDuration(250L).start();
+            anonymousClass6.animate().alpha(0.0f).withLayer().setInterpolator(interpolator).setDuration(250L).start();
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) frameLayout.getLayoutParams();
             layoutParams.width = overflowPanel.getWidth();
             frameLayout.setLayoutParams(layoutParams);
@@ -1015,37 +1040,37 @@ public final class FloatingToolbar {
             int i = this.mMarginHorizontal;
             Size size = this.mOverflowButtonSize;
             int i2 = this.mMarginVertical;
-            PhotoViewer.AnonymousClass35 anonymousClass35 = this.mMainPanel;
+            RichEditor.AnonymousClass6 anonymousClass6 = this.mMainPanel;
             if (z) {
                 Size size2 = this.mOverflowPanelSize;
-                setSize(relativeLayout, size2.getWidth(), size2.getHeight());
-                anonymousClass35.setAlpha(0.0f);
-                anonymousClass35.setVisibility(4);
+                setSize(size2.getWidth(), size2.getHeight(), relativeLayout);
+                anonymousClass6.setAlpha(0.0f);
+                anonymousClass6.setVisibility(4);
                 overflowPanel.setAlpha(1.0f);
                 overflowPanel.setVisibility(0);
                 anonymousClass3.setImageDrawable(this.mArrow);
                 frameLayout.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
                 relativeLayout.setX((popupWindow.getWidth() - size2.getWidth()) - i);
-                anonymousClass35.setX(-relativeLayout.getX());
+                anonymousClass6.setX(-relativeLayout.getX());
                 frameLayout.setX(0.0f);
                 overflowPanel.setX(0.0f);
                 if (this.mOpenOverflowUpwards) {
                     relativeLayout.setY(i2);
-                    anonymousClass35.setY(size2.getHeight() - relativeLayout.getHeight());
+                    anonymousClass6.setY(size2.getHeight() - relativeLayout.getHeight());
                     frameLayout.setY(size2.getHeight() - size.getHeight());
                     overflowPanel.setY(0.0f);
                     return;
                 }
                 relativeLayout.setY(i2);
-                anonymousClass35.setY(0.0f);
+                anonymousClass6.setY(0.0f);
                 frameLayout.setY(0.0f);
                 overflowPanel.setY(size.getHeight());
                 return;
             }
             Size size3 = this.mMainPanelSize;
-            setSize(relativeLayout, size3.getWidth(), size3.getHeight());
-            anonymousClass35.setAlpha(1.0f);
-            anonymousClass35.setVisibility(0);
+            setSize(size3.getWidth(), size3.getHeight(), relativeLayout);
+            anonymousClass6.setAlpha(1.0f);
+            anonymousClass6.setVisibility(0);
             overflowPanel.setAlpha(0.0f);
             overflowPanel.setVisibility(4);
             anonymousClass3.setImageDrawable(this.mOverflow);
@@ -1053,23 +1078,23 @@ public final class FloatingToolbar {
             if (this.mOverflowPanelSize == null) {
                 relativeLayout.setX(i);
                 relativeLayout.setY(i2);
-                anonymousClass35.setX(0.0f);
-                anonymousClass35.setY(0.0f);
+                anonymousClass6.setX(0.0f);
+                anonymousClass6.setY(0.0f);
                 return;
             }
             relativeLayout.setX((popupWindow.getWidth() - size3.getWidth()) - i);
-            anonymousClass35.setX(0.0f);
+            anonymousClass6.setX(0.0f);
             frameLayout.setX(size3.getWidth() - size.getWidth());
             overflowPanel.setX(size3.getWidth() - this.mOverflowPanelSize.getWidth());
             if (this.mOpenOverflowUpwards) {
                 relativeLayout.setY((this.mOverflowPanelSize.getHeight() + i2) - size3.getHeight());
-                anonymousClass35.setY(0.0f);
+                anonymousClass6.setY(0.0f);
                 frameLayout.setY(0.0f);
                 overflowPanel.setY(size3.getHeight() - this.mOverflowPanelSize.getHeight());
                 return;
             }
             relativeLayout.setY(i2);
-            anonymousClass35.setY(0.0f);
+            anonymousClass6.setY(0.0f);
             frameLayout.setY(0.0f);
             overflowPanel.setY(size.getHeight());
         }
@@ -1098,12 +1123,12 @@ public final class FloatingToolbar {
                     this.mOverflowPanelSize = new Size(this.mOverflowPanelSize.getWidth(), iCalculateOverflowHeight);
                 }
                 Size size = this.mOverflowPanelSize;
-                setSize(this.mOverflowPanel, size.getWidth(), size.getHeight());
+                setSize(size.getWidth(), size.getHeight(), this.mOverflowPanel);
                 boolean z = this.mIsOverflowOpen;
                 RelativeLayout relativeLayout = this.mContentContainer;
                 if (z) {
                     Size size2 = this.mOverflowPanelSize;
-                    setSize(relativeLayout, size2.getWidth(), size2.getHeight());
+                    setSize(size2.getWidth(), size2.getHeight(), relativeLayout);
                     if (this.mOpenOverflowUpwards) {
                         float height = this.mOverflowPanelSize.getHeight() - iCalculateOverflowHeight;
                         relativeLayout.setY(relativeLayout.getY() + height);
@@ -1112,7 +1137,7 @@ public final class FloatingToolbar {
                     }
                 } else {
                     Size size3 = this.mMainPanelSize;
-                    setSize(relativeLayout, size3.getWidth(), size3.getHeight());
+                    setSize(size3.getWidth(), size3.getHeight(), relativeLayout);
                 }
                 updatePopupSize();
             }
@@ -1277,7 +1302,7 @@ public final class FloatingToolbar {
     }
 
     public final void doShow() {
-        PhotoViewer.AnonymousClass35 anonymousClass35;
+        RichEditor.AnonymousClass6 anonymousClass6;
         FloatingToolbarPopup.OverflowPanel overflowPanel;
         int iMin;
         LinkedList linkedList;
@@ -1330,9 +1355,9 @@ public final class FloatingToolbar {
             floatingToolbarPopup.mMainPanelSize = null;
             floatingToolbarPopup.mIsOverflowOpen = false;
             floatingToolbarPopup.updateOverflowButtonClickListener();
-            anonymousClass35 = floatingToolbarPopup.mMainPanel;
-            anonymousClass35.removeAllViews();
-            anonymousClass35.setPaddingRelative(0, 0, 0, 0);
+            anonymousClass6 = floatingToolbarPopup.mMainPanel;
+            anonymousClass6.removeAllViews();
+            anonymousClass6.setPaddingRelative(0, 0, 0, 0);
             overflowPanel = floatingToolbarPopup.mOverflowPanel;
             ArrayAdapter arrayAdapter2 = (ArrayAdapter) overflowPanel.getAdapter();
             arrayAdapter2.clear();
@@ -1390,7 +1415,7 @@ public final class FloatingToolbar {
                     }
                     linearLayoutAccess$2600.setTag(menuItem2);
                     linearLayoutAccess$2600.setOnClickListener(floatingToolbarPopup.mMenuItemButtonOnClickListener);
-                    anonymousClass35.addView(linearLayoutAccess$2600);
+                    anonymousClass6.addView(linearLayoutAccess$2600);
                     ViewGroup.LayoutParams layoutParams = linearLayoutAccess$2600.getLayoutParams();
                     layoutParams.width = iMin2;
                     linearLayoutAccess$2600.setLayoutParams(layoutParams);
@@ -1403,10 +1428,10 @@ public final class FloatingToolbar {
                 i2 = 0;
             } else {
                 i2 = 0;
-                anonymousClass35.setPaddingRelative(0, 0, size2.getWidth(), 0);
+                anonymousClass6.setPaddingRelative(0, 0, size2.getWidth(), 0);
             }
-            anonymousClass35.measure(i2, i2);
-            floatingToolbarPopup.mMainPanelSize = new Size(anonymousClass35.getMeasuredWidth(), anonymousClass35.getMeasuredHeight());
+            anonymousClass6.measure(i2, i2);
+            floatingToolbarPopup.mMainPanelSize = new Size(anonymousClass6.getMeasuredWidth(), anonymousClass6.getMeasuredHeight());
             if (!linkedList.isEmpty()) {
                 arrayAdapter = (ArrayAdapter) overflowPanel.getAdapter();
                 arrayAdapter.clear();
@@ -1460,7 +1485,7 @@ public final class FloatingToolbar {
                 }
                 Size size4 = new Size(Math.max(iMax, size2.getWidth()), floatingToolbarPopup.calculateOverflowHeight(4));
                 floatingToolbarPopup.mOverflowPanelSize = size4;
-                FloatingToolbarPopup.setSize(overflowPanel, size4.getWidth(), size4.getHeight());
+                FloatingToolbarPopup.setSize(size4.getWidth(), size4.getHeight(), overflowPanel);
             }
             floatingToolbarPopup.updatePopupSize();
             this.mShowingMenuItems = visibleAndEnabledMenuItems;
@@ -1489,9 +1514,9 @@ public final class FloatingToolbar {
                 floatingToolbarPopup.mMainPanelSize = null;
                 floatingToolbarPopup.mIsOverflowOpen = false;
                 floatingToolbarPopup.updateOverflowButtonClickListener();
-                anonymousClass35 = floatingToolbarPopup.mMainPanel;
-                anonymousClass35.removeAllViews();
-                anonymousClass35.setPaddingRelative(0, 0, 0, 0);
+                anonymousClass6 = floatingToolbarPopup.mMainPanel;
+                anonymousClass6.removeAllViews();
+                anonymousClass6.setPaddingRelative(0, 0, 0, 0);
                 overflowPanel = floatingToolbarPopup.mOverflowPanel;
                 ArrayAdapter arrayAdapter3 = (ArrayAdapter) overflowPanel.getAdapter();
                 arrayAdapter3.clear();
@@ -1549,7 +1574,7 @@ public final class FloatingToolbar {
                     }
                     linearLayoutAccess$2601.setTag(menuItem2);
                     linearLayoutAccess$2601.setOnClickListener(floatingToolbarPopup.mMenuItemButtonOnClickListener);
-                    anonymousClass35.addView(linearLayoutAccess$2601);
+                    anonymousClass6.addView(linearLayoutAccess$2601);
                     ViewGroup.LayoutParams layoutParams2 = linearLayoutAccess$2601.getLayoutParams();
                     layoutParams2.width = iMin2;
                     linearLayoutAccess$2601.setLayoutParams(layoutParams2);
@@ -1559,12 +1584,12 @@ public final class FloatingToolbar {
                 }
                 if (linkedList.isEmpty()) {
                     i2 = 0;
-                    anonymousClass35.setPaddingRelative(0, 0, size2.getWidth(), 0);
+                    anonymousClass6.setPaddingRelative(0, 0, size2.getWidth(), 0);
                 } else {
                     i2 = 0;
                 }
-                anonymousClass35.measure(i2, i2);
-                floatingToolbarPopup.mMainPanelSize = new Size(anonymousClass35.getMeasuredWidth(), anonymousClass35.getMeasuredHeight());
+                anonymousClass6.measure(i2, i2);
+                floatingToolbarPopup.mMainPanelSize = new Size(anonymousClass6.getMeasuredWidth(), anonymousClass6.getMeasuredHeight());
                 if (!linkedList.isEmpty()) {
                     arrayAdapter = (ArrayAdapter) overflowPanel.getAdapter();
                     arrayAdapter.clear();
@@ -1619,7 +1644,7 @@ public final class FloatingToolbar {
                     }
                     Size size6 = new Size(Math.max(iMax, size2.getWidth()), floatingToolbarPopup.calculateOverflowHeight(4));
                     floatingToolbarPopup.mOverflowPanelSize = size6;
-                    FloatingToolbarPopup.setSize(overflowPanel, size6.getWidth(), size6.getHeight());
+                    FloatingToolbarPopup.setSize(size6.getWidth(), size6.getHeight(), overflowPanel);
                 }
                 floatingToolbarPopup.updatePopupSize();
                 this.mShowingMenuItems = visibleAndEnabledMenuItems;
@@ -1629,7 +1654,7 @@ public final class FloatingToolbar {
         Point point = floatingToolbarPopup.mCoordsOnWindow;
         PopupWindow popupWindow = floatingToolbarPopup.mPopupWindow;
         FrameLayout frameLayout = floatingToolbarPopup.mOverflowButton;
-        PhotoViewer.AnonymousClass35 anonymousClass36 = floatingToolbarPopup.mMainPanel;
+        RichEditor.AnonymousClass6 anonymousClass7 = floatingToolbarPopup.mMainPanel;
         FloatingToolbarPopup.OverflowPanel overflowPanel2 = floatingToolbarPopup.mOverflowPanel;
         RelativeLayout relativeLayout = floatingToolbarPopup.mContentContainer;
         Rect rect3 = this.mPreviousContentRect;
@@ -1642,7 +1667,7 @@ public final class FloatingToolbar {
                 if (floatingToolbarPopup.mOverflowPanelSize != null) {
                     relativeLayout.addView(overflowPanel2);
                 }
-                relativeLayout.addView(anonymousClass36);
+                relativeLayout.addView(anonymousClass7);
                 if (floatingToolbarPopup.mOverflowPanelSize != null) {
                     relativeLayout.addView(frameLayout);
                 }
@@ -1661,7 +1686,7 @@ public final class FloatingToolbar {
             if (floatingToolbarPopup.mOverflowPanelSize != null) {
                 relativeLayout.addView(overflowPanel2);
             }
-            relativeLayout.addView(anonymousClass36);
+            relativeLayout.addView(anonymousClass7);
             if (floatingToolbarPopup.mOverflowPanelSize != null) {
                 relativeLayout.addView(frameLayout);
             }
@@ -1675,7 +1700,7 @@ public final class FloatingToolbar {
     }
 
     public final ArrayList getVisibleAndEnabledMenuItems(Menu menu) {
-        StarGiftSheet$$ExternalSyntheticLambda105 starGiftSheet$$ExternalSyntheticLambda105;
+        ImageUpdater$$ExternalSyntheticLambda3 imageUpdater$$ExternalSyntheticLambda3;
         ArrayList arrayList = new ArrayList();
         for (int i = 0; menu != null && i < menu.size(); i++) {
             MenuItem item = menu.getItem(i);
@@ -1683,11 +1708,226 @@ public final class FloatingToolbar {
                 SubMenu subMenu = item.getSubMenu();
                 if (subMenu != null) {
                     arrayList.addAll(getVisibleAndEnabledMenuItems(subMenu));
-                } else if ((item.getItemId() != R.id.menu_quote || (starGiftSheet$$ExternalSyntheticLambda105 = this.quoteShowCallback) == null || ((Boolean) starGiftSheet$$ExternalSyntheticLambda105.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != R.id.menu_regular || this.premiumLockClickListener == null)) {
+                } else if ((item.getItemId() != R.id.menu_quote || (imageUpdater$$ExternalSyntheticLambda3 = this.quoteShowCallback) == null || ((Boolean) imageUpdater$$ExternalSyntheticLambda3.run()).booleanValue()) && item.getItemId() != 16908353 && item.getItemId() != 16909808 && (item.getItemId() != R.id.menu_regular || this.premiumLockClickListener == null)) {
                     arrayList.add(item);
                 }
             }
         }
         return arrayList;
+    }
+
+    public final class AnonymousClass2 extends LinearLayout {
+        public final int $r8$classId;
+        public Object downRootView;
+        public final Object p;
+
+        public AnonymousClass2(Context context, int i) {
+            super(context);
+            this.$r8$classId = i;
+            switch (i) {
+                case 2:
+                    super(context);
+                    this.p = new Path();
+                    Paint paint = new Paint(1);
+                    this.downRootView = paint;
+                    paint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+                    paint.setShadowLayer(AndroidUtilities.dp(1.33f), 0.0f, AndroidUtilities.dp(0.33f), 503316480);
+                    break;
+                default:
+                    this.p = new int[2];
+                    this.downRootView = null;
+                    break;
+            }
+        }
+
+        public static boolean isParent(View view, View view2) {
+            if (view == view2) {
+                return true;
+            }
+            if (view.getParent() == null) {
+                return false;
+            }
+            if (view.getParent() instanceof View) {
+                return isParent((View) view.getParent(), view2);
+            }
+            return view.getParent() == view2 || view.getRootView() == view2;
+        }
+
+        @Override
+        public void dispatchDraw(Canvas canvas) {
+            switch (this.$r8$classId) {
+                case 4:
+                    RectF rectF = (RectF) this.p;
+                    rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                    float x = getX();
+                    float y = getY();
+                    VoIPBackgroundProvider voIPBackgroundProvider = (VoIPBackgroundProvider) this.downRootView;
+                    voIPBackgroundProvider.setDarkTranslation(x, y);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), voIPBackgroundProvider.getDarkPaint());
+                    super.dispatchDraw(canvas);
+                    break;
+                default:
+                    super.dispatchDraw(canvas);
+                    break;
+            }
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            switch (this.$r8$classId) {
+                case 0:
+                    boolean zDispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
+                    if (!zDispatchTouchEvent) {
+                        int[] iArr = (int[]) this.p;
+                        getLocationOnScreen(iArr);
+                        motionEvent.offsetLocation(iArr[0], iArr[1]);
+                        if (motionEvent.getAction() == 0) {
+                            List<View> listAllGlobalViews = AndroidUtilities.allGlobalViews();
+                            if (listAllGlobalViews != null && listAllGlobalViews.size() > 1) {
+                                for (int size = listAllGlobalViews.size() - 2; size >= 0; size--) {
+                                    View view = listAllGlobalViews.get(size);
+                                    if (!isParent(this, view)) {
+                                        view.getLocationOnScreen(iArr);
+                                        motionEvent.offsetLocation(-iArr[0], -iArr[1]);
+                                        zDispatchTouchEvent = view.dispatchTouchEvent(motionEvent);
+                                        if (zDispatchTouchEvent) {
+                                            this.downRootView = view;
+                                            return true;
+                                        }
+                                        motionEvent.offsetLocation(iArr[0], iArr[1]);
+                                    }
+                                }
+                            }
+                        } else {
+                            View view2 = (View) this.downRootView;
+                            if (view2 != null) {
+                                view2.getLocationOnScreen(iArr);
+                                motionEvent.offsetLocation(-iArr[0], -iArr[1]);
+                                zDispatchTouchEvent = view2.dispatchTouchEvent(motionEvent);
+                            }
+                        }
+                    }
+                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                        this.downRootView = null;
+                    }
+                    return zDispatchTouchEvent;
+                default:
+                    return super.dispatchTouchEvent(motionEvent);
+            }
+        }
+
+        @Override
+        public void onDraw(Canvas canvas) {
+            switch (this.$r8$classId) {
+                case 2:
+                    canvas.drawPath((Path) this.p, (Paint) this.downRootView);
+                    super.onDraw(canvas);
+                    break;
+                case 3:
+                    super.onDraw(canvas);
+                    LPhotoPaintView lPhotoPaintView = (LPhotoPaintView) this.downRootView;
+                    TextView textView = (TextView) getChildAt(lPhotoPaintView.tabsSelectedIndex);
+                    TextView textView2 = lPhotoPaintView.tabsNewSelectedIndex != -1 ? (TextView) getChildAt(lPhotoPaintView.tabsNewSelectedIndex) : null;
+                    Paint paint = (Paint) this.p;
+                    paint.setColor(textView.getCurrentTextColor());
+                    float y = ((textView.getY() + textView.getHeight()) - textView.getPaddingBottom()) + AndroidUtilities.dp(3.0f);
+                    Layout layout = textView.getLayout();
+                    Layout layout2 = textView2 != null ? textView2.getLayout() : null;
+                    float interpolation = layout2 == null ? 0.0f : CubicBezierInterpolator.DEFAULT.getInterpolation(lPhotoPaintView.tabsSelectionProgress);
+                    float fLerp = AndroidUtilities.lerp(layout.getPrimaryHorizontal(layout.getLineStart(0)) + textView.getX(), textView2 != null ? layout2.getPrimaryHorizontal(layout.getLineStart(0)) + textView2.getX() : 0.0f, interpolation);
+                    canvas.drawLine(fLerp, y, AndroidUtilities.lerp(layout.getPrimaryHorizontal(layout.getLineEnd(0)) - layout.getPrimaryHorizontal(layout.getLineStart(0)), layout2 != null ? layout2.getPrimaryHorizontal(layout2.getLineEnd(0)) - layout2.getPrimaryHorizontal(layout2.getLineStart(0)) : 0.0f, interpolation) + fLerp, y, paint);
+                    break;
+                case 4:
+                default:
+                    super.onDraw(canvas);
+                    break;
+                case 5:
+                    super.onDraw(canvas);
+                    PaintView paintView = (PaintView) this.downRootView;
+                    TextView textView3 = (TextView) getChildAt(paintView.tabsSelectedIndex);
+                    int i = paintView.tabsNewSelectedIndex;
+                    TextView textView4 = i != -1 ? (TextView) getChildAt(i) : null;
+                    Paint paint2 = (Paint) this.p;
+                    paint2.setColor(textView3.getCurrentTextColor());
+                    float y2 = ((textView3.getY() + textView3.getHeight()) - textView3.getPaddingBottom()) + AndroidUtilities.dp(3.0f);
+                    Layout layout3 = textView3.getLayout();
+                    if (layout3 != null) {
+                        Layout layout4 = textView4 != null ? textView4.getLayout() : null;
+                        float interpolation2 = layout4 == null ? 0.0f : CubicBezierInterpolator.DEFAULT.getInterpolation(paintView.tabsSelectionProgress);
+                        float fLerp2 = AndroidUtilities.lerp(layout3.getPrimaryHorizontal(layout3.getLineStart(0)) + textView3.getX(), layout4 != null ? layout4.getPrimaryHorizontal(layout3.getLineStart(0)) + textView4.getX() : 0.0f, interpolation2);
+                        canvas.drawLine(fLerp2, y2, AndroidUtilities.lerp(layout3.getPrimaryHorizontal(layout3.getLineEnd(0)) - layout3.getPrimaryHorizontal(layout3.getLineStart(0)), layout4 != null ? layout4.getPrimaryHorizontal(layout4.getLineEnd(0)) - layout4.getPrimaryHorizontal(layout4.getLineStart(0)) : 0.0f, interpolation2) + fLerp2, y2, paint2);
+                        break;
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            switch (this.$r8$classId) {
+                case 1:
+                    ActionBarMenuItem actionBarMenuItem = (ActionBarMenuItem) this.p;
+                    actionBarMenuItem.popupLayout.measure(i, i2);
+                    PopupSwipeBackLayout swipeBack = actionBarMenuItem.popupLayout.getSwipeBack();
+                    View view = (View) this.downRootView;
+                    if (swipeBack != null) {
+                        view.getLayoutParams().width = actionBarMenuItem.popupLayout.getSwipeBack().getChildAt(0).getMeasuredWidth();
+                    } else {
+                        view.getLayoutParams().width = actionBarMenuItem.popupLayout.getMeasuredWidth() - AndroidUtilities.dp(16.0f);
+                    }
+                    super.onMeasure(i, i2);
+                    break;
+                case 2:
+                    super.onMeasure(i, i2);
+                    Path path = (Path) this.p;
+                    path.rewind();
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), getMeasuredWidth() - AndroidUtilities.dp(12.0f), getMeasuredHeight() - AndroidUtilities.dp(12.0f));
+                    path.addRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Path.Direction.CW);
+                    break;
+                default:
+                    super.onMeasure(i, i2);
+                    break;
+            }
+        }
+
+        public AnonymousClass2(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
+            super(context);
+            this.$r8$classId = 4;
+            this.p = new RectF();
+            this.downRootView = voIPBackgroundProvider;
+            voIPBackgroundProvider.views.add(this);
+        }
+
+        public AnonymousClass2(ActionBarMenuItem actionBarMenuItem, Context context, View view) {
+            super(context);
+            this.$r8$classId = 1;
+            this.p = actionBarMenuItem;
+            this.downRootView = view;
+        }
+
+        public AnonymousClass2(LPhotoPaintView lPhotoPaintView, Context context) {
+            super(context);
+            this.$r8$classId = 3;
+            this.downRootView = lPhotoPaintView;
+            Paint paint = new Paint(1);
+            this.p = paint;
+            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            setWillNotDraw(false);
+        }
+
+        public AnonymousClass2(PaintView paintView, Context context) {
+            super(context);
+            this.$r8$classId = 5;
+            this.downRootView = paintView;
+            Paint paint = new Paint(1);
+            this.p = paint;
+            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            paint.setStyle(Paint.Style.STROKE);
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            setWillNotDraw(false);
+        }
     }
 }

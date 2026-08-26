@@ -12,6 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
+import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 
 public final class ChatActivityBotWebViewButton extends FrameLayout {
     public int backgroundColor;
@@ -20,6 +21,10 @@ public final class ChatActivityBotWebViewButton extends FrameLayout {
     public int menuButtonWidth;
     public final Path path;
     public float progress;
+
+    static {
+        new SimpleFloatPropertyCompat("progress", new BotWebViewSheet$$ExternalSyntheticLambda2(11), new BotWebViewSheet$$ExternalSyntheticLambda2(12)).setMultiplier(100.0f);
+    }
 
     public ChatActivityBotWebViewButton(Context context) {
         super(context);
@@ -32,7 +37,7 @@ public final class ChatActivityBotWebViewButton extends FrameLayout {
         textView.setGravity(17);
         textView.setTypeface(AndroidUtilities.bold());
         addView(textView, LayoutHelper.createFrame(-1, -1.0f, 3, 0.0f, 0.0f, 0.0f, 0.0f));
-        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        RadialProgressView radialProgressView = new RadialProgressView(context);
         radialProgressView.setSize(AndroidUtilities.dp(18.0f));
         radialProgressView.setAlpha(0.0f);
         radialProgressView.setScaleX(0.0f);

@@ -1,9 +1,5 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.RLottieImageView;
-
 public final class LoginActivity$LoginActivitySetupEmail$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
     public final LoginActivity.LoginActivitySetupEmail f$0;
@@ -17,16 +13,10 @@ public final class LoginActivity$LoginActivitySetupEmail$$ExternalSyntheticLambd
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                LoginActivity.LoginActivitySetupEmail loginActivitySetupEmail = this.f$0;
-                RLottieImageView rLottieImageView = loginActivitySetupEmail.inboxImageView;
-                rLottieImageView.getAnimatedDrawable().setCurrentFrame(0, false, false);
-                rLottieImageView.playAnimation();
-                EditTextBoldCursor editTextBoldCursor = loginActivitySetupEmail.emailField;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                this.f$0.lambda$onShow$9();
                 break;
             default:
-                this.f$0.emailField.requestFocus();
+                this.f$0.lambda$onPasscodeError$4();
                 break;
         }
     }

@@ -80,10 +80,10 @@ public final class SharingLiveLocationCell$$ExternalSyntheticLambda0 implements 
                 SimpleTextView simpleTextView = sharingLiveLocationCell2.nameTextView;
                 CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(charSequence, simpleTextView.getPaint().getFontMetricsInt(), false);
                 sharingLiveLocationCell2.lastName = charSequenceReplaceEmoji;
-                simpleTextView.setText(charSequenceReplaceEmoji, false);
+                simpleTextView.setText(charSequenceReplaceEmoji);
                 break;
             default:
-                ((ChatAttachAlertLocationLayout) this.f$0).resetMapPosition(this.f$1, this.f$2);
+                ((ChatAttachAlertLocationLayout) this.f$0).lambda$positionMarker$30(this.f$1, this.f$2);
                 break;
         }
     }

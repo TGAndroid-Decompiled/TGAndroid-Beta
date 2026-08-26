@@ -1,10 +1,5 @@
 package org.telegram.ui.Components;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-
 public final class ProximitySheet$$ExternalSyntheticLambda1 implements NumberPicker.Formatter, NumberPicker.OnValueChangeListener {
     public final int $r8$classId;
     public final ProximitySheet f$0;
@@ -16,39 +11,16 @@ public final class ProximitySheet$$ExternalSyntheticLambda1 implements NumberPic
 
     @Override
     public String format(int i) {
-        ProximitySheet proximitySheet = this.f$0;
         switch (this.$r8$classId) {
             case 0:
-                return proximitySheet.useImperialSystem ? LocaleController.formatString("MilesShort", R.string.MilesShort, Integer.valueOf(i)) : LocaleController.formatString("KMetersShort", R.string.KMetersShort, Integer.valueOf(i));
+                return this.f$0.lambda$new$1(i);
             default:
-                if (!proximitySheet.useImperialSystem) {
-                    if (i == 1) {
-                        return LocaleController.formatString("MetersShort", R.string.MetersShort, 50);
-                    }
-                    if (i > 1) {
-                        i--;
-                    }
-                    return LocaleController.formatString("MetersShort", R.string.MetersShort, Integer.valueOf(i * 100));
-                }
-                if (i == 1) {
-                    return LocaleController.formatString("FootsShort", R.string.FootsShort, 250);
-                }
-                if (i > 1) {
-                    i--;
-                }
-                Locale locale = Locale.US;
-                return SurfaceContainer$$ExternalSyntheticOutline0.m(i, ".");
+                return this.f$0.lambda$new$3(i);
         }
     }
 
     @Override
-    public void onValueChange(NumberPicker numberPicker, int i) {
-        ProximitySheet proximitySheet = this.f$0;
-        proximitySheet.getClass();
-        try {
-            proximitySheet.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        proximitySheet.updateText(true);
+    public void onValueChange(NumberPicker numberPicker, int i, int i2) {
+        this.f$0.lambda$new$2(numberPicker, i, i2);
     }
 }

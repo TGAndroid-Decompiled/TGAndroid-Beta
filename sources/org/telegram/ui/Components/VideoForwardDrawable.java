@@ -10,52 +10,45 @@ import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline1;
 import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0;
-import org.telegram.ui.PhotoViewer;
 
-public final class VideoForwardDrawable extends Drawable {
-    public static final int[] playPath = {10, 7, 26, 16, 10, 25};
-    public boolean animating;
-    public float animationProgress;
-    public Path clippingPath;
-    public VideoForwardDrawableDelegate delegate;
-    public float enterAnimationProgress;
-    public boolean isOneShootAnimation;
-    public final boolean isRound;
-    public long lastAnimationTime;
-    public int lastClippingPath;
-    public boolean leftSide;
-    public final Paint paint;
-    public final Path path1;
-    public float playScaleFactor;
-    public boolean showing;
-    public final TextPaint textPaint;
-    public long time;
-    public String timeStr;
+public class VideoForwardDrawable extends Drawable {
+    private static final int[] playPath = {10, 7, 26, 16, 10, 25};
+    private boolean animating;
+    private float animationProgress;
+    private Path clippingPath;
+    private VideoForwardDrawableDelegate delegate;
+    private float enterAnimationProgress;
+    private boolean isOneShootAnimation;
+    private boolean isRound;
+    private long lastAnimationTime;
+    private int lastClippingPath;
+    private boolean leftSide;
+    private boolean showing;
+    private long time;
+    private String timeStr;
+    private Paint paint = new Paint(1);
+    private TextPaint textPaint = new TextPaint(1);
+    private Path path1 = new Path();
+    private float playScaleFactor = 1.0f;
 
     public interface VideoForwardDrawableDelegate {
         void invalidate();
+
+        void onAnimationEnd();
     }
 
     public VideoForwardDrawable(boolean z) {
-        Paint paint = new Paint(1);
-        this.paint = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.textPaint = textPaint;
-        Path path = new Path();
-        this.path1 = path;
-        this.playScaleFactor = 1.0f;
         this.isRound = z;
-        paint.setColor(-1);
-        textPaint.setColor(-1);
-        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        path.reset();
+        this.paint.setColor(-1);
+        this.textPaint.setColor(-1);
+        this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        this.textPaint.setTextAlign(Paint.Align.CENTER);
+        this.path1.reset();
         int i = 0;
         while (true) {
             int[] iArr = playPath;
-            if (i >= 3) {
+            if (i >= iArr.length / 2) {
                 this.path1.close();
                 return;
             }
@@ -70,13 +63,28 @@ public final class VideoForwardDrawable extends Drawable {
         }
     }
 
+    private void invalidate() {
+        VideoForwardDrawableDelegate videoForwardDrawableDelegate = this.delegate;
+        if (videoForwardDrawableDelegate != null) {
+            videoForwardDrawableDelegate.invalidate();
+        } else {
+            invalidateSelf();
+        }
+    }
+
+    public void addTime(long j) {
+        long j2 = this.time + j;
+        this.time = j2;
+        this.timeStr = LocaleController.formatPluralString("Seconds", (int) (j2 / 1000), new Object[0]);
+    }
+
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         float f;
         Rect bounds = getBounds();
-        int iWidth = ((bounds.width() - AndroidUtilities.dp(32.0f)) / 2) + bounds.left;
-        int iHeight = ((bounds.height() - AndroidUtilities.dp(32.0f)) / 2) + bounds.top;
-        int iM = this.leftSide ? RichMessageLayout$$ExternalSyntheticOutline1.m(bounds.width() / 4, 16.0f, iWidth) : RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(bounds.width() / 4, 16.0f, iWidth);
+        int iWidth = ((bounds.width() - getIntrinsicWidth()) / 2) + bounds.left;
+        int iHeight = ((bounds.height() - getIntrinsicHeight()) / 2) + bounds.top;
+        int iWidth2 = this.leftSide ? iWidth - ((bounds.width() / 4) - AndroidUtilities.dp(16.0f)) : RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(16.0f, bounds.width() / 4, iWidth);
         canvas.save();
         if (this.isRound) {
             if (this.clippingPath == null) {
@@ -94,46 +102,42 @@ public final class VideoForwardDrawable extends Drawable {
         } else {
             canvas.clipRect(bounds.left, bounds.top, bounds.right, bounds.bottom);
         }
-        boolean z = this.isOneShootAnimation;
-        TextPaint textPaint = this.textPaint;
-        Paint paint = this.paint;
-        if (z) {
+        if (this.isOneShootAnimation) {
             float f2 = this.animationProgress;
             if (f2 <= 0.7f) {
-                paint.setAlpha((int) (Math.min(1.0f, f2 / 0.3f) * 80.0f));
-                textPaint.setAlpha((int) (Math.min(1.0f, this.animationProgress / 0.3f) * 255.0f));
+                this.paint.setAlpha((int) (Math.min(1.0f, f2 / 0.3f) * 80.0f));
+                this.textPaint.setAlpha((int) (Math.min(1.0f, this.animationProgress / 0.3f) * 255.0f));
             } else {
-                paint.setAlpha((int) ((1.0f - ((f2 - 0.7f) / 0.3f)) * 80.0f));
-                textPaint.setAlpha((int) ((1.0f - ((this.animationProgress - 0.7f) / 0.3f)) * 255.0f));
+                this.paint.setAlpha((int) ((1.0f - ((f2 - 0.7f) / 0.3f)) * 80.0f));
+                this.textPaint.setAlpha((int) ((1.0f - ((this.animationProgress - 0.7f) / 0.3f)) * 255.0f));
             }
         } else {
-            paint.setAlpha((int) (this.enterAnimationProgress * 80.0f));
-            textPaint.setAlpha((int) (this.enterAnimationProgress * 255.0f));
+            this.paint.setAlpha((int) (this.enterAnimationProgress * 80.0f));
+            this.textPaint.setAlpha((int) (this.enterAnimationProgress * 255.0f));
         }
-        canvas.drawCircle(((Math.max(bounds.width(), bounds.height()) / 4) * (this.leftSide ? -1 : 1)) + iM, AndroidUtilities.dp(16.0f) + iHeight, Math.max(bounds.width(), bounds.height()) / 2, paint);
+        canvas.drawCircle(((Math.max(bounds.width(), bounds.height()) / 4) * (this.leftSide ? -1 : 1)) + iWidth2, AndroidUtilities.dp(16.0f) + iHeight, Math.max(bounds.width(), bounds.height()) / 2, this.paint);
         canvas.restore();
         String str = this.timeStr;
         if (str != null) {
-            canvas.drawText(str, (AndroidUtilities.dp(32.0f) * (this.leftSide ? -1 : 1)) + iM, AndroidUtilities.dp(15.0f) + AndroidUtilities.dp(32.0f) + iHeight, textPaint);
+            canvas.drawText(str, (getIntrinsicWidth() * (this.leftSide ? -1 : 1)) + iWidth2, AndroidUtilities.dp(15.0f) + getIntrinsicHeight() + iHeight, this.textPaint);
         }
         canvas.save();
         float f3 = this.playScaleFactor;
-        float f4 = iM;
+        float f4 = iWidth2;
         float f5 = iHeight;
-        canvas.scale(f3, f3, f4, (AndroidUtilities.dp(32.0f) / 2.0f) + f5);
+        canvas.scale(f3, f3, f4, (getIntrinsicHeight() / 2.0f) + f5);
         if (this.leftSide) {
-            canvas.rotate(180.0f, f4, (AndroidUtilities.dp(32.0f) / 2) + iHeight);
+            canvas.rotate(180.0f, f4, (getIntrinsicHeight() / 2) + iHeight);
         }
         canvas.translate(f4, f5);
         float f6 = this.animationProgress;
-        Path path = this.path1;
         if (f6 <= 0.6f) {
             int iMin = f6 < 0.4f ? Math.min(255, (int) ((f6 * 255.0f) / 0.2f)) : (int) ((1.0f - ((f6 - 0.4f) / 0.2f)) * 255.0f);
             if (!this.isOneShootAnimation) {
                 iMin = (int) (iMin * this.enterAnimationProgress);
             }
-            paint.setAlpha(iMin);
-            canvas.drawPath(path, paint);
+            this.paint.setAlpha(iMin);
+            canvas.drawPath(this.path1, this.paint);
         }
         canvas.translate(AndroidUtilities.dp(18.0f), 0.0f);
         float f7 = this.animationProgress;
@@ -143,8 +147,8 @@ public final class VideoForwardDrawable extends Drawable {
             if (!this.isOneShootAnimation) {
                 iMin2 = (int) (iMin2 * this.enterAnimationProgress);
             }
-            paint.setAlpha(iMin2);
-            canvas.drawPath(path, paint);
+            this.paint.setAlpha(iMin2);
+            canvas.drawPath(this.path1, this.paint);
         }
         canvas.translate(AndroidUtilities.dp(18.0f), 0.0f);
         float f9 = this.animationProgress;
@@ -154,8 +158,8 @@ public final class VideoForwardDrawable extends Drawable {
             if (!this.isOneShootAnimation) {
                 iMin3 = (int) (iMin3 * this.enterAnimationProgress);
             }
-            paint.setAlpha(iMin3);
-            canvas.drawPath(path, paint);
+            this.paint.setAlpha(iMin3);
+            canvas.drawPath(this.path1, this.paint);
         }
         canvas.restore();
         if (this.animating) {
@@ -175,6 +179,10 @@ public final class VideoForwardDrawable extends Drawable {
                         this.animating = false;
                         this.time = 0L;
                         this.timeStr = null;
+                        VideoForwardDrawableDelegate videoForwardDrawableDelegate = this.delegate;
+                        if (videoForwardDrawableDelegate != null) {
+                            videoForwardDrawableDelegate.onAnimationEnd();
+                        }
                     }
                 } else if (f12 >= 1.0f) {
                     if (this.showing) {
@@ -188,20 +196,20 @@ public final class VideoForwardDrawable extends Drawable {
             if (this.isOneShootAnimation) {
                 return;
             }
-            boolean z2 = this.showing;
-            if (z2) {
+            boolean z = this.showing;
+            if (z) {
                 float f13 = this.enterAnimationProgress;
                 if (f13 != 1.0f) {
                     this.enterAnimationProgress = f13 + 0.10666667f;
                     invalidate();
-                } else if (!z2) {
+                } else if (!z) {
                     f = this.enterAnimationProgress;
                     if (f != 0.0f) {
                         this.enterAnimationProgress = f - 0.10666667f;
                         invalidate();
                     }
                 }
-            } else if (!z2) {
+            } else if (!z) {
                 f = this.enterAnimationProgress;
                 if (f != 0.0f) {
                     this.enterAnimationProgress = f - 0.10666667f;
@@ -218,59 +226,54 @@ public final class VideoForwardDrawable extends Drawable {
     }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return AndroidUtilities.dp(32.0f);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return AndroidUtilities.dp(32.0f);
     }
 
     @Override
-    public final int getMinimumHeight() {
+    public int getMinimumHeight() {
         return AndroidUtilities.dp(32.0f);
     }
 
     @Override
-    public final int getMinimumWidth() {
+    public int getMinimumWidth() {
         return AndroidUtilities.dp(32.0f);
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
-    public final void invalidate() {
-        VideoForwardDrawableDelegate videoForwardDrawableDelegate = this.delegate;
-        if (videoForwardDrawableDelegate != null) {
-            videoForwardDrawableDelegate.invalidate();
-        } else {
-            invalidateSelf();
-        }
-    }
-
-    public final boolean isAnimating() {
+    public boolean isAnimating() {
         return this.animating;
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
         this.paint.setAlpha(i);
         this.textPaint.setAlpha(i);
     }
 
+    public void setColor(int i) {
+        this.paint.setColor(i);
+    }
+
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
         this.paint.setColorFilter(colorFilter);
     }
 
-    public final void setDelegate(PhotoViewer.AnonymousClass24 anonymousClass24) {
-        this.delegate = anonymousClass24;
+    public void setDelegate(VideoForwardDrawableDelegate videoForwardDrawableDelegate) {
+        this.delegate = videoForwardDrawableDelegate;
     }
 
-    public final void setLeftSide(boolean z) {
+    public void setLeftSide(boolean z) {
         boolean z2 = this.leftSide;
         if (z2 == z && this.animationProgress >= 1.0f && this.isOneShootAnimation) {
             return;
@@ -280,12 +283,10 @@ public final class VideoForwardDrawable extends Drawable {
             this.timeStr = null;
         }
         this.leftSide = z;
-        this.animating = true;
-        this.animationProgress = 0.0f;
-        invalidateSelf();
+        startAnimation();
     }
 
-    public final void setOneShootAnimation(boolean z) {
+    public void setOneShootAnimation(boolean z) {
         if (this.isOneShootAnimation != z) {
             this.isOneShootAnimation = z;
             this.timeStr = null;
@@ -294,12 +295,28 @@ public final class VideoForwardDrawable extends Drawable {
         }
     }
 
-    public final void setTime(long j) {
+    public void setPlayScaleFactor(float f) {
+        this.playScaleFactor = f;
+        invalidate();
+    }
+
+    public void setShowing(boolean z) {
+        this.showing = z;
+        invalidate();
+    }
+
+    public void setTime(long j) {
         this.time = j;
         if (j >= 1000) {
             this.timeStr = LocaleController.formatPluralString("Seconds", (int) (j / 1000), new Object[0]);
         } else {
             this.timeStr = null;
         }
+    }
+
+    public void startAnimation() {
+        this.animating = true;
+        this.animationProgress = 0.0f;
+        invalidateSelf();
     }
 }

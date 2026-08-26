@@ -23,18 +23,19 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.AboutLinkCell$$ExternalSyntheticLambda1;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
 import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
-import org.telegram.ui.Components.ItemOptions$$ExternalSyntheticLambda4;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessagePreviewView;
-import org.telegram.ui.Components.SearchField$$ExternalSyntheticLambda0;
-import org.telegram.ui.GLIconSettingsView;
-import org.telegram.ui.GroupCreateActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.Stories.StealthModeAlert;
+import org.telegram.ui.Stories.recorder.HintView2$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stories.recorder.StoryRecorder;
+import org.telegram.ui.TON.TONIntroActivity;
+import org.telegram.ui.web.WebActionBar;
 
 public final class StoryLinkPreviewDialog extends Dialog {
     public final ImageView backgroundView;
@@ -43,7 +44,7 @@ public final class StoryLinkPreviewDialog extends Dialog {
     public BitmapShader blurBitmapShader;
     public Matrix blurMatrix;
     public final MessagePreviewView.ToggleButton captionButton;
-    public final GLIconSettingsView containerView;
+    public final WebActionBar.AnonymousClass1 containerView;
     public final int currentAccount;
     public boolean dismissing;
     public final Rect insets;
@@ -52,9 +53,9 @@ public final class StoryLinkPreviewDialog extends Dialog {
     public ValueAnimator openAnimator;
     public float openProgress;
     public final MessagePreviewView.ToggleButton photoButton;
-    public final GroupCreateActivity.AnonymousClass7 previewInnerContainer;
-    public VoIPFragment$$ExternalSyntheticLambda7 whenDone;
-    public final ChatActivity.AnonymousClass60 windowView;
+    public final StealthModeAlert.ItemCell previewInnerContainer;
+    public HintView2$$ExternalSyntheticLambda0 whenDone;
+    public final TONIntroActivity.AnonymousClass2 windowView;
 
     public StoryLinkPreviewDialog(Context context, final int i) {
         super(context, R.style.TransparentDialog);
@@ -62,19 +63,19 @@ public final class StoryLinkPreviewDialog extends Dialog {
         this.insets = new Rect();
         this.dismissing = false;
         this.currentAccount = i;
-        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(this, context, 17);
-        this.windowView = anonymousClass60;
-        anonymousClass60.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 10));
-        GLIconSettingsView gLIconSettingsView = new GLIconSettingsView(context, 4);
-        this.containerView = gLIconSettingsView;
-        gLIconSettingsView.setOrientation(1);
-        anonymousClass60.addView(gLIconSettingsView, LayoutHelper.createFrame(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
-        GroupCreateActivity.AnonymousClass7 anonymousClass7 = new GroupCreateActivity.AnonymousClass7(this, context, 4);
-        anonymousClass7.setWillNotDraw(false);
-        gLIconSettingsView.addView(anonymousClass7, LayoutHelper.createLinear(-1, -2, 1.0f, 49, 0, 0, 0, 0));
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = new TONIntroActivity.AnonymousClass2(this, context, 4);
+        this.windowView = anonymousClass2;
+        anonymousClass2.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 19));
+        WebActionBar.AnonymousClass1 anonymousClass1 = new WebActionBar.AnonymousClass1(context, 1);
+        this.containerView = anonymousClass1;
+        anonymousClass1.setOrientation(1);
+        anonymousClass2.addView(anonymousClass1, LayoutHelper.createFrame(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
+        StealthModeAlert.ItemCell itemCell = new StealthModeAlert.ItemCell(this, context, 2);
+        itemCell.setWillNotDraw(false);
+        anonymousClass1.addView(itemCell, LayoutHelper.createLinear(-1, -2, 1.0f, 49, 0, 0, 0, 0));
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(-14737633);
-        anonymousClass7.addView(frameLayout, LayoutHelper.createFrame(-1, 56, 55));
+        itemCell.addView(frameLayout, LayoutHelper.createFrame(-1, 56, 55));
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString(R.string.StoryLinkPreviewTitle));
         textView.setTextColor(-1);
@@ -86,13 +87,13 @@ public final class StoryLinkPreviewDialog extends Dialog {
         textView2.setTextColor(-8421505);
         textView2.setTextSize(1, 14.0f);
         frameLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 55, 18.0f, 31.0f, 18.0f, 0.0f));
-        GroupCreateActivity.AnonymousClass7 anonymousClass8 = new GroupCreateActivity.AnonymousClass7(this, context, 5);
-        this.previewInnerContainer = anonymousClass8;
-        anonymousClass7.addView(anonymousClass8, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 56.0f, 0.0f, 0.0f));
+        StealthModeAlert.ItemCell itemCell2 = new StealthModeAlert.ItemCell(this, context, 3);
+        this.previewInnerContainer = itemCell2;
+        itemCell.addView(itemCell2, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 56.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.backgroundView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        anonymousClass8.addView(imageView, LayoutHelper.createFrame(-1, -1, 119));
+        itemCell2.addView(imageView, LayoutHelper.createFrame(-1, -1, 119));
         ?? r6 = new LinkPreview(context, AndroidUtilities.density) {
             @Override
             public final void invalidate() {
@@ -101,8 +102,8 @@ public final class StoryLinkPreviewDialog extends Dialog {
             }
         };
         this.linkView = r6;
-        anonymousClass8.addView((View) r6, LayoutHelper.createFrame(-2, -2, 17));
-        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(anonymousClass60, darkThemeResourceProvider, anonymousClass60);
+        itemCell2.addView((View) r6, LayoutHelper.createFrame(-2, -2, 17));
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(anonymousClass2, darkThemeResourceProvider, anonymousClass2);
         MessagePreviewView.ToggleButton toggleButton = new MessagePreviewView.ToggleButton(getContext(), R.raw.position_below, LocaleController.getString(R.string.StoryLinkCaptionAbove), R.raw.position_above, LocaleController.getString(R.string.StoryLinkCaptionBelow), darkThemeResourceProvider);
         this.captionButton = toggleButton;
         final int i2 = 0;
@@ -170,11 +171,11 @@ public final class StoryLinkPreviewDialog extends Dialog {
         });
         itemOptionsMakeOptions.addView(toggleButton2);
         itemOptionsMakeOptions.addGap();
-        itemOptionsMakeOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.ApplyChanges), new StoryLinkPreviewDialog$$ExternalSyntheticLambda0(this, 2), false);
-        itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.DoNotLinkPreview), new StoryLinkPreviewDialog$$ExternalSyntheticLambda0(this, 3), true);
-        gLIconSettingsView.addView(itemOptionsMakeOptions.layout, LayoutHelper.createLinear(-2, -2, 0.0f, 85));
-        anonymousClass60.setFitsSystemWindows(true);
-        anonymousClass60.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+        itemOptionsMakeOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.ApplyChanges), new StoryLinkPreviewDialog$$ExternalSyntheticLambda0(this, 1));
+        itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.DoNotLinkPreview), true, (Runnable) new StoryLinkPreviewDialog$$ExternalSyntheticLambda0(this, 2));
+        anonymousClass1.addView(itemOptionsMakeOptions.getLayout(), LayoutHelper.createLinear(-2, -2, 0.0f, 85));
+        anonymousClass2.setFitsSystemWindows(true);
+        anonymousClass2.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
             @Override
             public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
                 int i4 = Build.VERSION.SDK_INT;
@@ -185,24 +186,24 @@ public final class StoryLinkPreviewDialog extends Dialog {
                 } else {
                     storyLinkPreviewDialog.insets.set(windowInsets.getStableInsetLeft(), windowInsets.getStableInsetTop(), windowInsets.getStableInsetRight(), windowInsets.getStableInsetBottom());
                 }
-                ChatActivity.AnonymousClass60 anonymousClass61 = storyLinkPreviewDialog.windowView;
+                TONIntroActivity.AnonymousClass2 anonymousClass3 = storyLinkPreviewDialog.windowView;
                 Rect rect = storyLinkPreviewDialog.insets;
-                anonymousClass61.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+                anonymousClass3.setPadding(rect.left, rect.top, rect.right, rect.bottom);
                 storyLinkPreviewDialog.windowView.requestLayout();
                 return i4 >= 30 ? WindowInsets.CONSUMED : windowInsets.consumeSystemWindowInsets();
             }
         });
     }
 
-    public final void animateOpenTo(StoryLinkPreviewDialog$$ExternalSyntheticLambda0 storyLinkPreviewDialog$$ExternalSyntheticLambda0, boolean z) {
+    public final void animateOpenTo(boolean z, StoryLinkPreviewDialog$$ExternalSyntheticLambda0 storyLinkPreviewDialog$$ExternalSyntheticLambda0) {
         ValueAnimator valueAnimator = this.openAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
         this.openAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ItemOptions$$ExternalSyntheticLambda4(this, 24));
-        this.openAnimator.addListener(new ChatActivity.AnonymousClass63(this, z, storyLinkPreviewDialog$$ExternalSyntheticLambda0, 4));
+        valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 16));
+        this.openAnimator.addListener(new StoryRecorder.AnonymousClass34(this, z, storyLinkPreviewDialog$$ExternalSyntheticLambda0, 1));
         this.openAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.openAnimator.setDuration(z ? 420L : 320L);
         this.openAnimator.start();
@@ -213,13 +214,13 @@ public final class StoryLinkPreviewDialog extends Dialog {
         if (this.dismissing) {
             return;
         }
-        VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7 = this.whenDone;
-        if (voIPFragment$$ExternalSyntheticLambda7 != null) {
-            voIPFragment$$ExternalSyntheticLambda7.run(this.link);
+        HintView2$$ExternalSyntheticLambda0 hintView2$$ExternalSyntheticLambda0 = this.whenDone;
+        if (hintView2$$ExternalSyntheticLambda0 != null) {
+            hintView2$$ExternalSyntheticLambda0.run(this.link);
             this.whenDone = null;
         }
         this.dismissing = true;
-        animateOpenTo(new StoryLinkPreviewDialog$$ExternalSyntheticLambda0(this, 1), false);
+        animateOpenTo(false, new StoryLinkPreviewDialog$$ExternalSyntheticLambda0(this, 0));
         this.windowView.invalidate();
     }
 
@@ -238,8 +239,8 @@ public final class StoryLinkPreviewDialog extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        ChatActivity.AnonymousClass60 anonymousClass60 = this.windowView;
-        setContentView(anonymousClass60, layoutParams);
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = this.windowView;
+        setContentView(anonymousClass2, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
         attributes.height = -1;
@@ -254,16 +255,16 @@ public final class StoryLinkPreviewDialog extends Dialog {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
-        anonymousClass60.setSystemUiVisibility(256);
-        AndroidUtilities.setLightNavigationBar(anonymousClass60, !Theme.currentTheme.isDark());
+        anonymousClass2.setSystemUiVisibility(256);
+        AndroidUtilities.setLightNavigationBar(anonymousClass2, !Theme.currentTheme.isDark());
     }
 
     @Override
     public final void show() {
         if (AndroidUtilities.isSafeToShow(getContext())) {
             super.show();
-            AndroidUtilities.makeGlobalBlurBitmap(new DialogCell$$ExternalSyntheticLambda6(this, 23), 14.0f);
-            animateOpenTo(null, true);
+            AndroidUtilities.makeGlobalBlurBitmap(new DialogCell$$ExternalSyntheticLambda6(this, 12), 14.0f);
+            animateOpenTo(true, null);
         }
     }
 }

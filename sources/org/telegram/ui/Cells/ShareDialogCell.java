@@ -17,6 +17,8 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
@@ -24,6 +26,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MessagesController;
@@ -31,15 +34,14 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.utils.WindowVisibilityManager$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.CameraScanActivity$$ExternalSyntheticLambda14;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda356;
 import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.ColoredImageSpan;
@@ -49,33 +51,34 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.Text;
-import org.telegram.ui.LoginActivity$$ExternalSyntheticLambda12;
 import org.telegram.ui.Stars.StarsIntroActivity;
 
 public class ShareDialogCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final ShareTopicCell.AnonymousClass1 avatarDrawable;
-    public final CheckBox2 checkBox;
-    public final int currentAccount;
-    public long currentDialog;
-    public final int currentType;
-    public final BackupImageView imageView;
-    public long lastUpdateTime;
-    public Drawable lockDrawable;
-    public final ArticleViewer.AnonymousClass9 nameTextView;
-    public float onlineProgress;
-    public boolean premiumBlocked;
-    public final AnimatedFloat premiumBlockedT;
-    public PremiumGradient.PremiumGradientTools premiumGradient;
-    public final Paint priceBackgroundPaint;
-    public Text priceText;
-    public long priceTextValue;
-    public RepostStoryDrawable repostStoryDrawable;
+    public static final int TYPE_CREATE = 2;
+    public static final int TYPE_SHARE = 0;
+    private final AvatarDrawable avatarDrawable;
+    private final CheckBox2 checkBox;
+    private final int currentAccount;
+    private long currentDialog;
+    private final int currentType;
+    private final BackupImageView imageView;
+    private long lastUpdateTime;
+    private Drawable lockDrawable;
+    private final TextView nameTextView;
+    private float onlineProgress;
+    private boolean premiumBlocked;
+    private final AnimatedFloat premiumBlockedT;
+    private PremiumGradient.PremiumGradientTools premiumGradient;
+    private final Paint priceBackgroundPaint;
+    private Text priceText;
+    private long priceTextValue;
+    private RepostStoryDrawable repostStoryDrawable;
     public final Theme.ResourcesProvider resourcesProvider;
-    public final AnimatedFloat starsBlockedT;
-    public long starsPriceBlocked;
-    public final SimpleTextView topicTextView;
-    public boolean topicWasVisible;
-    public TLRPC.User user;
+    private final AnimatedFloat starsBlockedT;
+    private long starsPriceBlocked;
+    private final SimpleTextView topicTextView;
+    private boolean topicWasVisible;
+    private TLRPC.User user;
 
     public final class RepostStoryDrawable extends Drawable {
         public int alpha;
@@ -98,8 +101,8 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             }
             RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.story_repost, "story_repost", AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f), true, null);
             this.lottieDrawable = rLottieDrawable;
-            rLottieDrawable.masterParent = view;
-            AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda14(rLottieDrawable, i2), 450L);
+            rLottieDrawable.setMasterParent(view);
+            AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda16(rLottieDrawable, i2), 450L);
             this.drawable = null;
         }
 
@@ -172,16 +175,16 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         } else {
             addView(backupImageView, LayoutHelper.createFrame(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         }
-        ArticleViewer.AnonymousClass9 anonymousClass9 = new ArticleViewer.AnonymousClass9(context, 4);
-        this.nameTextView = anonymousClass9;
-        NotificationCenter.listenEmojiLoading(anonymousClass9);
-        anonymousClass9.setTextColor(Theme.getColor(this.premiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack, resourcesProvider));
-        anonymousClass9.setTextSize(1, 12.0f);
-        anonymousClass9.setMaxLines(2);
-        anonymousClass9.setGravity(49);
-        anonymousClass9.setLines(2);
-        anonymousClass9.setEllipsize(TextUtils.TruncateAt.END);
-        addView(anonymousClass9, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, i == 2 ? 58.0f : 66.0f, 6.0f, 0.0f));
+        MentionCell.AnonymousClass1 anonymousClass1 = new MentionCell.AnonymousClass1(context, 3);
+        this.nameTextView = anonymousClass1;
+        NotificationCenter.listenEmojiLoading(anonymousClass1);
+        anonymousClass1.setTextColor(Theme.getColor(this.premiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack, resourcesProvider));
+        anonymousClass1.setTextSize(1, 12.0f);
+        anonymousClass1.setMaxLines(2);
+        anonymousClass1.setGravity(49);
+        anonymousClass1.setLines(2);
+        anonymousClass1.setEllipsize(TextUtils.TruncateAt.END);
+        addView(anonymousClass1, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, i == 2 ? 58.0f : 66.0f, 6.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.topicTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
@@ -192,21 +195,19 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, i == 2 ? 58.0f : 66.0f, 6.0f, 0.0f));
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
         this.checkBox = checkBox2;
-        checkBox2.checkBoxBase.setColor(Theme.key_dialogRoundCheckBox, Theme.key_dialogBackground, Theme.key_dialogRoundCheckBoxCheck);
+        checkBox2.setColor(Theme.key_dialogRoundCheckBox, Theme.key_dialogBackground, Theme.key_dialogRoundCheckBoxCheck);
         checkBox2.setDrawUnchecked(false);
         checkBox2.setDrawBackgroundAsArc(4);
-        checkBox2.setProgressDelegate(new ChatActivity$$ExternalSyntheticLambda356(this, 5));
+        checkBox2.setProgressDelegate(new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 20));
         addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, 49, 19.0f, i == 2 ? -40.0f : 42.0f, 0.0f, 0.0f));
         setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.userIsPremiumBlockedUpadted) {
-            TLRPC.User user = this.user;
-            int i3 = this.currentAccount;
-            TL_account.RequirementToContact requirementToContactIsUserContactBlocked = user != null ? MessagesController.getInstance(i3).isUserContactBlocked(this.user.id) : null;
-            long sendPaidMessagesStars = this.currentDialog < 0 ? MessagesController.getInstance(i3).getSendPaidMessagesStars(this.currentDialog) : DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked);
+            TL_account.RequirementToContact requirementToContactIsUserContactBlocked = this.user != null ? MessagesController.getInstance(this.currentAccount).isUserContactBlocked(this.user.id) : null;
+            long sendPaidMessagesStars = this.currentDialog < 0 ? MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(this.currentDialog) : DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked);
             if (this.premiumBlocked == DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked) && this.starsPriceBlocked == sendPaidMessagesStars) {
                 return;
             }
@@ -219,28 +220,26 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
+    public boolean drawChild(Canvas canvas, View view, long j) {
         TLRPC.User user;
-        Theme.ResourcesProvider resourcesProvider;
         float f;
         float f2;
         boolean z;
+        TLRPC.UserStatus userStatus;
         Text text;
+        float currentWidth;
         float f3;
-        float f4;
         Text text2;
         boolean zDrawChild = super.drawChild(canvas, view, j);
-        BackupImageView backupImageView = this.imageView;
-        if (view == backupImageView && this.currentType != 2 && (user = this.user) != null && !MessagesController.isSupportUser(user)) {
+        if (view == this.imageView && this.currentType != 2 && (user = this.user) != null && !MessagesController.isSupportUser(user)) {
             long jElapsedRealtime = SystemClock.elapsedRealtime();
             long j2 = jElapsedRealtime - this.lastUpdateTime;
             long j3 = j2 <= 17 ? j2 : 17L;
             this.lastUpdateTime = jElapsedRealtime;
-            float f5 = this.starsBlockedT.set(this.starsPriceBlocked > 0);
-            Theme.ResourcesProvider resourcesProvider2 = this.resourcesProvider;
-            if (f5 > 0.0f) {
-                float measuredWidth = (backupImageView.getMeasuredWidth() / 2.0f) + backupImageView.getLeft() + AndroidUtilities.dp(18.0f);
-                float measuredHeight = ((backupImageView.getMeasuredHeight() / 2.0f) + backupImageView.getTop()) - AndroidUtilities.dp(20.83f);
+            float f4 = this.starsBlockedT.set(this.starsPriceBlocked > 0);
+            if (f4 > 0.0f) {
+                float measuredWidth = (this.imageView.getMeasuredWidth() / 2.0f) + this.imageView.getLeft() + AndroidUtilities.dp(18.0f);
+                float measuredHeight = ((this.imageView.getMeasuredHeight() / 2.0f) + this.imageView.getTop()) - AndroidUtilities.dp(20.83f);
                 if (this.priceText != null) {
                     long j4 = this.priceTextValue;
                     f2 = 5.0f;
@@ -249,31 +248,29 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                     }
                     text = this.priceText;
                     if (text == null) {
-                        f3 = 0.0f;
+                        currentWidth = 0.0f;
                     } else {
-                        f3 = text.width;
+                        currentWidth = text.getCurrentWidth();
                     }
-                    float fDp = f3 + AndroidUtilities.dp(10.0f);
+                    float fDp = currentWidth + AndroidUtilities.dp(10.0f);
                     float fDp2 = AndroidUtilities.dp(14.33f);
                     RectF rectF = AndroidUtilities.rectTmp;
-                    float f6 = fDp / 2.0f;
-                    f4 = measuredWidth - f6;
-                    float f7 = fDp2 / 2.0f;
-                    rectF.set(f4, measuredHeight - f7, measuredWidth + f6, f7 + measuredHeight);
+                    float f5 = fDp / 2.0f;
+                    f3 = measuredWidth - f5;
+                    float f6 = fDp2 / 2.0f;
+                    rectF.set(f3, measuredHeight - f6, measuredWidth + f5, f6 + measuredHeight);
                     rectF.inset(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(-1.33f));
-                    Paint paint = this.priceBackgroundPaint;
-                    paint.setColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider2));
-                    canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint);
+                    this.priceBackgroundPaint.setColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+                    canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.priceBackgroundPaint);
                     rectF.inset(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
-                    paint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox, resourcesProvider2));
-                    canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint);
+                    this.priceBackgroundPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox, this.resourcesProvider));
+                    canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.priceBackgroundPaint);
                     text2 = this.priceText;
                     if (text2 != null) {
-                        resourcesProvider = resourcesProvider2;
+                        float fDp3 = AndroidUtilities.dp(f2) + f3;
                         f = 0.0f;
-                        text2.draw(f4 + AndroidUtilities.dp(f2), measuredHeight, 1.0f, -1, canvas);
+                        text2.draw(canvas, fDp3, measuredHeight, -1, 1.0f);
                     } else {
-                        resourcesProvider = resourcesProvider2;
                         f = 0.0f;
                     }
                 } else {
@@ -286,60 +283,57 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                 this.priceText = new Text(StarsIntroActivity.replaceStars(sb.toString(), 0.65f, (ColoredImageSpan[]) null), 9.33f, AndroidUtilities.bold());
                 text = this.priceText;
                 if (text == null) {
-                    f3 = 0.0f;
+                    currentWidth = 0.0f;
                 } else {
-                    f3 = text.width;
+                    currentWidth = text.getCurrentWidth();
                 }
-                float fDp3 = f3 + AndroidUtilities.dp(10.0f);
-                float fDp4 = AndroidUtilities.dp(14.33f);
+                float fDp4 = currentWidth + AndroidUtilities.dp(10.0f);
+                float fDp5 = AndroidUtilities.dp(14.33f);
                 RectF rectF2 = AndroidUtilities.rectTmp;
-                float f8 = fDp3 / 2.0f;
-                f4 = measuredWidth - f8;
-                float f9 = fDp4 / 2.0f;
-                rectF2.set(f4, measuredHeight - f9, measuredWidth + f8, f9 + measuredHeight);
+                float f7 = fDp4 / 2.0f;
+                f3 = measuredWidth - f7;
+                float f8 = fDp5 / 2.0f;
+                rectF2.set(f3, measuredHeight - f8, measuredWidth + f7, f8 + measuredHeight);
                 rectF2.inset(-AndroidUtilities.dp(1.33f), AndroidUtilities.dp(-1.33f));
-                Paint paint2 = this.priceBackgroundPaint;
-                paint2.setColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider2));
-                canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, paint2);
+                this.priceBackgroundPaint.setColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
+                canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.priceBackgroundPaint);
                 rectF2.inset(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
-                paint2.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox, resourcesProvider2));
-                canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, paint2);
+                this.priceBackgroundPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox, this.resourcesProvider));
+                canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.priceBackgroundPaint);
                 text2 = this.priceText;
                 if (text2 != null) {
-                    resourcesProvider = resourcesProvider2;
+                    float fDp6 = AndroidUtilities.dp(f2) + f3;
                     f = 0.0f;
-                    text2.draw(f4 + AndroidUtilities.dp(f2), measuredHeight, 1.0f, -1, canvas);
+                    text2.draw(canvas, fDp6, measuredHeight, -1, 1.0f);
                 } else {
-                    resourcesProvider = resourcesProvider2;
                     f = 0.0f;
                 }
             } else {
-                resourcesProvider = resourcesProvider2;
                 f = 0.0f;
                 f2 = 5.0f;
             }
-            float f10 = this.premiumBlockedT.set(this.premiumBlocked);
-            if (f10 > f) {
-                int bottom = backupImageView.getBottom() - AndroidUtilities.dp(9.0f);
-                int right = backupImageView.getRight() - AndroidUtilities.dp(9.33f);
+            float f9 = this.premiumBlockedT.set(this.premiumBlocked);
+            if (f9 > f) {
+                int bottom = this.imageView.getBottom() - AndroidUtilities.dp(9.0f);
+                int right = this.imageView.getRight() - AndroidUtilities.dp(9.33f);
                 canvas.save();
-                Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-                float f11 = right;
-                float f12 = bottom;
-                canvas.drawCircle(f11, f12, AndroidUtilities.dp(12.0f) * f10, Theme.dialogs_onlineCirclePaint);
+                Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+                float f10 = right;
+                float f11 = bottom;
+                canvas.drawCircle(f10, f11, AndroidUtilities.dp(12.0f) * f9, Theme.dialogs_onlineCirclePaint);
                 if (this.premiumGradient == null) {
                     this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, this.resourcesProvider);
                 }
-                this.premiumGradient.gradientMatrix(right - AndroidUtilities.dp(10.0f), 0.0f, bottom - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f) + right, 0.0f, AndroidUtilities.dp(10.0f) + bottom);
-                canvas.drawCircle(f11, f12, AndroidUtilities.dp(10.0f) * f10, this.premiumGradient.paint);
+                this.premiumGradient.gradientMatrix(right - AndroidUtilities.dp(10.0f), bottom - AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f) + right, AndroidUtilities.dp(10.0f) + bottom, 0.0f, 0.0f);
+                canvas.drawCircle(f10, f11, AndroidUtilities.dp(10.0f) * f9, this.premiumGradient.paint);
                 if (this.lockDrawable == null) {
                     Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
                     this.lockDrawable = drawableMutate;
                     drawableMutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
                 }
                 Drawable drawable = this.lockDrawable;
-                drawable.setBounds((int) (f11 - (((drawable.getIntrinsicWidth() / 2.0f) * 0.875f) * f10)), (int) (f12 - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f10)), (int) (((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f10) + f11), (int) (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f10) + f12));
-                this.lockDrawable.setAlpha((int) (255.0f * f10));
+                drawable.setBounds((int) (f10 - (((drawable.getIntrinsicWidth() / 2.0f) * 0.875f) * f9)), (int) (f11 - (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f) * f9)), (int) (((this.lockDrawable.getIntrinsicWidth() / 2.0f) * 0.875f * f9) + f10), (int) (((this.lockDrawable.getIntrinsicHeight() / 2.0f) * 0.875f * f9) + f11));
+                this.lockDrawable.setAlpha((int) (255.0f * f9));
                 this.lockDrawable.draw(canvas);
                 canvas.restore();
             }
@@ -347,50 +341,44 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
                 z = false;
             } else {
                 TLRPC.User user2 = this.user;
-                if (user2.self || user2.bot) {
+                if (user2.self || user2.bot || (((userStatus = user2.status) == null || userStatus.expires <= ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) && !MessagesController.getInstance(this.currentAccount).onlinePrivacy.containsKey(Long.valueOf(this.user.id)))) {
                     z = false;
                 } else {
-                    TLRPC.UserStatus userStatus = user2.status;
-                    int i = this.currentAccount;
-                    if ((userStatus == null || userStatus.expires <= ConnectionsManager.getInstance(i).getCurrentTime()) && !MessagesController.getInstance(i).onlinePrivacy.containsKey(Long.valueOf(this.user.id))) {
-                        z = false;
-                    } else {
-                        z = true;
-                    }
+                    z = true;
                 }
             }
             if (z || this.onlineProgress != f) {
-                int bottom2 = backupImageView.getBottom() - AndroidUtilities.dp(6.0f);
-                int right2 = backupImageView.getRight() - AndroidUtilities.dp(10.0f);
-                Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-                float f13 = right2;
-                float f14 = bottom2;
-                float f15 = 1.0f - f10;
-                float f16 = 1.0f - f5;
-                canvas.drawCircle(f13, f14, AndroidUtilities.dp(7.0f) * this.onlineProgress * f15 * f16, Theme.dialogs_onlineCirclePaint);
-                Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_chats_onlineCircle, resourcesProvider));
-                canvas.drawCircle(f13, f14, MediaController$$ExternalSyntheticOutline0.m(AndroidUtilities.dp(f2), this.onlineProgress, f15, f16), Theme.dialogs_onlineCirclePaint);
+                int bottom2 = this.imageView.getBottom() - AndroidUtilities.dp(6.0f);
+                int right2 = this.imageView.getRight() - AndroidUtilities.dp(10.0f);
+                Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
+                float f12 = right2;
+                float f13 = bottom2;
+                float f14 = 1.0f - f9;
+                float f15 = 1.0f - f4;
+                canvas.drawCircle(f12, f13, AndroidUtilities.dp(7.0f) * this.onlineProgress * f14 * f15, Theme.dialogs_onlineCirclePaint);
+                Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_chats_onlineCircle, this.resourcesProvider));
+                canvas.drawCircle(f12, f13, MediaController$$ExternalSyntheticOutline0.m(AndroidUtilities.dp(f2), this.onlineProgress, f14, f15), Theme.dialogs_onlineCirclePaint);
                 if (z) {
-                    float f17 = this.onlineProgress;
-                    if (f17 < 1.0f) {
-                        float f18 = (j3 / 150.0f) + f17;
-                        this.onlineProgress = f18;
-                        if (f18 > 1.0f) {
+                    float f16 = this.onlineProgress;
+                    if (f16 < 1.0f) {
+                        float f17 = (j3 / 150.0f) + f16;
+                        this.onlineProgress = f17;
+                        if (f17 > 1.0f) {
                             this.onlineProgress = 1.0f;
                         }
-                        backupImageView.invalidate();
+                        this.imageView.invalidate();
                         invalidate();
                         return zDrawChild;
                     }
                 } else {
-                    float f19 = this.onlineProgress;
-                    if (f19 > f) {
-                        float f20 = f19 - (j3 / 150.0f);
-                        this.onlineProgress = f20;
-                        if (f20 < f) {
+                    float f18 = this.onlineProgress;
+                    if (f18 > f) {
+                        float f19 = f18 - (j3 / 150.0f);
+                        this.onlineProgress = f19;
+                        if (f19 < f) {
                             this.onlineProgress = f;
                         }
-                        backupImageView.invalidate();
+                        this.imageView.invalidate();
                         invalidate();
                     }
                 }
@@ -411,42 +399,65 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         return this.starsPriceBlocked;
     }
 
+    public boolean isBlocked() {
+        return this.premiumBlocked;
+    }
+
+    public final void lambda$new$0(float f) {
+        float progress = 1.0f - (this.checkBox.getProgress() * 0.143f);
+        this.imageView.setScaleX(progress);
+        this.imageView.setScaleY(progress);
+        invalidate();
+    }
+
+    public final void lambda$setTopic$1(DynamicAnimation dynamicAnimation, float f, float f2) {
+        float f3 = f / 1000.0f;
+        this.topicTextView.setAlpha(f3);
+        float f4 = 1.0f - f3;
+        this.nameTextView.setAlpha(f4);
+        this.topicTextView.setTranslationX(f4 * (-AndroidUtilities.dp(10.0f)));
+        this.nameTextView.setTranslationX(f3 * AndroidUtilities.dp(10.0f));
+    }
+
+    public final void lambda$setTopic$2(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        this.topicTextView.setTag(R.id.spring_tag, null);
+    }
+
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        BackupImageView backupImageView = this.imageView;
-        int measuredWidth = (backupImageView.getMeasuredWidth() / 2) + backupImageView.getLeft();
-        int measuredHeight = (backupImageView.getMeasuredHeight() / 2) + backupImageView.getTop();
+    public void onDraw(Canvas canvas) {
+        int measuredWidth = (this.imageView.getMeasuredWidth() / 2) + this.imageView.getLeft();
+        int measuredHeight = (this.imageView.getMeasuredHeight() / 2) + this.imageView.getTop();
         Theme.checkboxSquare_checkPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox, this.resourcesProvider));
         Theme.checkboxSquare_checkPaint.setAlpha((int) (this.checkBox.getProgress() * 255.0f));
         int iDp = AndroidUtilities.dp(this.currentType == 2 ? 24.0f : 28.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(measuredWidth - iDp, measuredHeight - iDp, measuredWidth + iDp, measuredHeight + iDp);
-        canvas.drawRoundRect(rectF, backupImageView.getRoundRadius()[0], backupImageView.getRoundRadius()[0], Theme.checkboxSquare_checkPaint);
+        canvas.drawRoundRect(rectF, this.imageView.getRoundRadius()[0], this.imageView.getRoundRadius()[0], Theme.checkboxSquare_checkPaint);
         super.onDraw(canvas);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.checkBox.checkBoxBase.isChecked) {
+        if (this.checkBox.isChecked()) {
             accessibilityNodeInfo.setSelected(true);
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.currentType == 2 ? 95.0f : 103.0f), 1073741824));
     }
 
@@ -454,100 +465,93 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         return LocaleController.getString(R.string.FwdMyStory);
     }
 
-    public final void setChecked(boolean z, boolean z2) {
-        this.checkBox.checkBoxBase.setChecked(-1, z, z2);
+    public void setChecked(boolean z, boolean z2) {
+        this.checkBox.setChecked(z, z2);
         if (z) {
             return;
         }
-        setTopic(null, false, true);
+        setTopic(null, true);
     }
 
-    public final void setDialog(long j, boolean z, CharSequence charSequence) {
-        ShareTopicCell.AnonymousClass1 anonymousClass1 = this.avatarDrawable;
-        anonymousClass1.scaleSize = 1.0f;
-        BackupImageView backupImageView = this.imageView;
-        ArticleViewer.AnonymousClass9 anonymousClass9 = this.nameTextView;
+    public void setDialog(long j, boolean z, CharSequence charSequence) {
+        this.avatarDrawable.setScaleSize(1.0f);
         if (j == Long.MAX_VALUE) {
-            anonymousClass9.setText(repostToCustomName());
+            this.nameTextView.setText(repostToCustomName());
             if (this.repostStoryDrawable == null) {
-                this.repostStoryDrawable = new RepostStoryDrawable(getContext(), backupImageView, true, R.drawable.large_repost_story, this.resourcesProvider);
+                this.repostStoryDrawable = new RepostStoryDrawable(getContext(), this.imageView, true, R.drawable.large_repost_story, this.resourcesProvider);
             }
-            backupImageView.setImage(null, null, this.repostStoryDrawable, null);
-        } else {
-            boolean zIsUserDialog = DialogObject.isUserDialog(j);
-            AnimatedFloat animatedFloat = this.starsBlockedT;
-            AnimatedFloat animatedFloat2 = this.premiumBlockedT;
-            int i = this.currentAccount;
-            if (zIsUserDialog) {
-                this.user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
-                TL_account.RequirementToContact requirementToContactIsUserContactBlocked = MessagesController.getInstance(i).isUserContactBlocked(j);
-                this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked);
-                this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked);
-                anonymousClass9.setTextColor(Theme.getColor(this.premiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack, this.resourcesProvider));
-                animatedFloat2.force(this.premiumBlocked);
-                animatedFloat.force(this.starsPriceBlocked > 0);
-                invalidate();
-                anonymousClass1.setInfo(i, this.user);
-                int i2 = this.currentType;
-                if (i2 != 2 && UserObject.isReplyUser(this.user)) {
-                    anonymousClass9.setText(LocaleController.getString(R.string.RepliesTitle));
-                    anonymousClass1.setAvatarType(12);
-                    backupImageView.setImage(null, null, anonymousClass1, this.user);
-                } else if (i2 == 2 || !UserObject.isUserSelf(this.user)) {
-                    if (charSequence != null) {
-                        anonymousClass9.setText(charSequence);
-                    } else {
-                        TLRPC.User user = this.user;
-                        if (user != null) {
-                            anonymousClass9.setText(ContactsController.formatName(user.first_name, user.last_name));
-                        } else {
-                            anonymousClass9.setText("");
-                        }
-                    }
-                    backupImageView.imageReceiver.setForUserOrChat(this.user, anonymousClass1);
-                    backupImageView.onNewImageSet();
-                } else {
-                    anonymousClass9.setText(LocaleController.getString(R.string.SavedMessages));
-                    anonymousClass1.setAvatarType(1);
-                    backupImageView.setImage(null, null, anonymousClass1, this.user);
-                }
-                backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
-            } else {
-                this.user = null;
-                this.premiumBlocked = false;
-                animatedFloat2.set(0.0f, true);
-                this.starsPriceBlocked = MessagesController.getInstance(i).getSendPaidMessagesStars(j);
-                animatedFloat.getClass();
-                animatedFloat.set(0.0f, true);
-                TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
+            this.imageView.setImage((ImageLocation) null, (String) null, this.repostStoryDrawable, (Object) null);
+        } else if (DialogObject.isUserDialog(j)) {
+            this.user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+            TL_account.RequirementToContact requirementToContactIsUserContactBlocked = MessagesController.getInstance(this.currentAccount).isUserContactBlocked(j);
+            this.premiumBlocked = DialogObject.isPremiumBlocked(requirementToContactIsUserContactBlocked);
+            this.starsPriceBlocked = DialogObject.getMessagesStarsPrice(requirementToContactIsUserContactBlocked);
+            this.nameTextView.setTextColor(Theme.getColor(this.premiumBlocked ? Theme.key_windowBackgroundWhiteGrayText5 : Theme.key_dialogTextBlack, this.resourcesProvider));
+            this.premiumBlockedT.force(this.premiumBlocked);
+            this.starsBlockedT.force(this.starsPriceBlocked > 0);
+            invalidate();
+            this.avatarDrawable.setInfo(this.currentAccount, this.user);
+            if (this.currentType != 2 && UserObject.isReplyUser(this.user)) {
+                this.nameTextView.setText(LocaleController.getString(R.string.RepliesTitle));
+                this.avatarDrawable.setAvatarType(12);
+                this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
+            } else if (this.currentType == 2 || !UserObject.isUserSelf(this.user)) {
                 if (charSequence != null) {
-                    anonymousClass9.setText(charSequence);
-                } else if (chat == null) {
-                    anonymousClass9.setText("");
-                } else if (chat.monoforum) {
-                    anonymousClass9.setText(ForumUtilities.getMonoForumTitle(chat, i, false));
+                    this.nameTextView.setText(charSequence);
                 } else {
-                    anonymousClass9.setText(chat.title);
+                    TLRPC.User user = this.user;
+                    if (user != null) {
+                        this.nameTextView.setText(ContactsController.formatName(user.first_name, user.last_name));
+                    } else {
+                        this.nameTextView.setText("");
+                    }
                 }
-                if (ChatObject.isMonoForum(chat)) {
-                    int i3 = ForumUtilities.$r8$clinit;
-                    TLRPC.Chat chat2 = ChatObject.isMonoForum(chat) ? MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id)) : null;
-                    anonymousClass1.setInfo(i, chat2 != null ? chat2 : chat);
-                    backupImageView.imageReceiver.setForUserOrChat(chat2, anonymousClass1);
-                    backupImageView.onNewImageSet();
-                } else {
-                    anonymousClass1.setInfo(i, chat);
-                    backupImageView.imageReceiver.setForUserOrChat(chat, anonymousClass1);
-                    backupImageView.onNewImageSet();
-                }
-                backupImageView.setRoundRadius((chat == null || !(chat.forum || chat.monoforum)) ? AndroidUtilities.dp(28.0f) : AndroidUtilities.dp(16.0f));
+                this.imageView.setForUserOrChat(this.user, this.avatarDrawable);
+            } else {
+                this.nameTextView.setText(LocaleController.getString(R.string.SavedMessages));
+                this.avatarDrawable.setAvatarType(1);
+                this.imageView.setImage((ImageLocation) null, (String) null, this.avatarDrawable, this.user);
             }
+            this.imageView.setRoundRadius(AndroidUtilities.dp(28.0f));
+        } else {
+            this.user = null;
+            this.premiumBlocked = false;
+            this.premiumBlockedT.force(0.0f);
+            this.starsPriceBlocked = MessagesController.getInstance(this.currentAccount).getSendPaidMessagesStars(j);
+            this.starsBlockedT.force(false);
+            TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+            if (charSequence != null) {
+                this.nameTextView.setText(charSequence);
+            } else if (chat == null) {
+                this.nameTextView.setText("");
+            } else if (chat.monoforum) {
+                this.nameTextView.setText(ForumUtilities.getMonoForumTitle(chat, this.currentAccount, false));
+            } else {
+                this.nameTextView.setText(chat.title);
+            }
+            if (ChatObject.isMonoForum(chat)) {
+                int i = this.currentAccount;
+                AvatarDrawable avatarDrawable = this.avatarDrawable;
+                BackupImageView backupImageView = this.imageView;
+                int i2 = ForumUtilities.$r8$clinit;
+                TLRPC.Chat chat2 = ChatObject.isMonoForum(chat) ? MessagesController.getInstance(i).getChat(Long.valueOf(chat.linked_monoforum_id)) : null;
+                avatarDrawable.setInfo(i, chat2 != null ? chat2 : chat);
+                backupImageView.setForUserOrChat(chat2, avatarDrawable);
+            } else {
+                this.avatarDrawable.setInfo(this.currentAccount, chat);
+                this.imageView.setForUserOrChat(chat, this.avatarDrawable);
+            }
+            this.imageView.setRoundRadius((chat == null || !(chat.forum || chat.monoforum)) ? AndroidUtilities.dp(28.0f) : AndroidUtilities.dp(16.0f));
         }
         this.currentDialog = j;
-        this.checkBox.checkBoxBase.setChecked(-1, z, false);
+        this.checkBox.setChecked(z, false);
     }
 
-    public final void setTopic(TLRPC.TL_forumTopic tL_forumTopic, boolean z, boolean z2) {
+    public void setTopic(TLRPC.TL_forumTopic tL_forumTopic, boolean z) {
+        setTopic(tL_forumTopic, false, z);
+    }
+
+    public void setTopic(TLRPC.TL_forumTopic tL_forumTopic, boolean z, boolean z2) {
         boolean z3 = this.topicWasVisible;
         boolean z4 = tL_forumTopic != null;
         if (z3 == z4 && z2) {
@@ -561,11 +565,12 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
         }
         if (z4) {
             if (z) {
-                simpleTextView.setText(MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(tL_forumTopic.from_id)), false);
+                this.topicTextView.setText(MessagesController.getInstance(this.currentAccount).getPeerName(DialogObject.getPeerDialogId(tL_forumTopic.from_id)));
             } else {
-                simpleTextView.setText(ForumUtilities.getTopicSpannedName(tL_forumTopic, simpleTextView.getTextPaint(), null), false);
+                SimpleTextView simpleTextView2 = this.topicTextView;
+                simpleTextView2.setText(ForumUtilities.getTopicSpannedName(tL_forumTopic, simpleTextView2.getTextPaint(), null));
             }
-            simpleTextView.requestLayout();
+            this.topicTextView.requestLayout();
         }
         if (z2) {
             SpringAnimation springAnimation2 = new SpringAnimation(new FloatValueHolder(z4 ? 0.0f : 1000.0f));
@@ -573,24 +578,21 @@ public class ShareDialogCell extends FrameLayout implements NotificationCenter.N
             springForce.setStiffness(1500.0f);
             springForce.setDampingRatio(1.0f);
             springAnimation2.mSpring = springForce;
-            int i2 = 1;
-            springAnimation2.addUpdateListener(new LoginActivity$$ExternalSyntheticLambda12(this, i2));
-            springAnimation2.addEndListener(new CameraScanActivity$$ExternalSyntheticLambda14(this, i2));
-            simpleTextView.setTag(i, springAnimation2);
+            int i2 = 0;
+            springAnimation2.addUpdateListener(new ShareDialogCell$$ExternalSyntheticLambda1(this, i2));
+            springAnimation2.addEndListener(new ShareDialogCell$$ExternalSyntheticLambda2(this, i2));
+            this.topicTextView.setTag(i, springAnimation2);
             springAnimation2.start();
+        } else if (z4) {
+            this.topicTextView.setAlpha(1.0f);
+            this.nameTextView.setAlpha(0.0f);
+            this.topicTextView.setTranslationX(0.0f);
+            this.nameTextView.setTranslationX(AndroidUtilities.dp(10.0f));
         } else {
-            ArticleViewer.AnonymousClass9 anonymousClass9 = this.nameTextView;
-            if (z4) {
-                simpleTextView.setAlpha(1.0f);
-                anonymousClass9.setAlpha(0.0f);
-                simpleTextView.setTranslationX(0.0f);
-                anonymousClass9.setTranslationX(AndroidUtilities.dp(10.0f));
-            } else {
-                simpleTextView.setAlpha(0.0f);
-                anonymousClass9.setAlpha(1.0f);
-                simpleTextView.setTranslationX(-AndroidUtilities.dp(10.0f));
-                anonymousClass9.setTranslationX(0.0f);
-            }
+            this.topicTextView.setAlpha(0.0f);
+            this.nameTextView.setAlpha(1.0f);
+            this.topicTextView.setTranslationX(-AndroidUtilities.dp(10.0f));
+            this.nameTextView.setTranslationX(0.0f);
         }
         this.topicWasVisible = z4;
     }

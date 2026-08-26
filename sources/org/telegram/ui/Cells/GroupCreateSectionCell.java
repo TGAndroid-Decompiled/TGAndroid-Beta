@@ -8,7 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -27,7 +27,7 @@ public final class GroupCreateSectionCell extends FrameLayout {
         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_groupcreate_sectionShadow, false), PorterDuff.Mode.MULTIPLY));
         TextView textView = new TextView(getContext());
         this.textView = textView;
-        zzkk.m(14.0f, 1, textView);
+        zzkb.m(14.0f, 1, textView);
         textView.setTextColor(Theme.getColor(null, Theme.key_groupcreate_sectionText, false));
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));

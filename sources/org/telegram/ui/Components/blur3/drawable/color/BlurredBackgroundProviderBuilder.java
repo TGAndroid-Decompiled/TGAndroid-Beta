@@ -4,7 +4,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 
-public final class BlurredBackgroundProviderBuilder implements BlurredBackgroundColorProvider {
+public final class BlurredBackgroundProviderBuilder implements BlurredBackgroundProvider {
     public ColorProvider backgroundColor;
     public final Theme.ResourcesProvider resourcesProvider;
     public ColorProvider shadowColor;

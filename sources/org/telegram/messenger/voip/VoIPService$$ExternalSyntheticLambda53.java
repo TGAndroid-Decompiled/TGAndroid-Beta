@@ -14,12 +14,12 @@ public final class VoIPService$$ExternalSyntheticLambda53 implements Runnable {
     public final Object f$2;
     public final Object f$3;
 
-    public VoIPService$$ExternalSyntheticLambda53(Context context, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.$r8$classId = 3;
-        this.f$1 = tLObject;
-        this.f$3 = tL_error;
-        this.f$0 = context;
-        this.f$2 = runnable;
+    public VoIPService$$ExternalSyntheticLambda53(int i, Object obj, Object obj2, Object obj3, Object obj4) {
+        this.$r8$classId = i;
+        this.f$0 = obj;
+        this.f$1 = obj2;
+        this.f$2 = obj3;
+        this.f$3 = obj4;
     }
 
     @Override
@@ -49,12 +49,12 @@ public final class VoIPService$$ExternalSyntheticLambda53 implements Runnable {
         }
     }
 
-    public VoIPService$$ExternalSyntheticLambda53(Object obj, Object obj2, Object obj3, Object obj4, int i) {
-        this.$r8$classId = i;
-        this.f$0 = obj;
-        this.f$1 = obj2;
-        this.f$2 = obj3;
-        this.f$3 = obj4;
+    public VoIPService$$ExternalSyntheticLambda53(Context context, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.$r8$classId = 3;
+        this.f$1 = tLObject;
+        this.f$3 = tL_error;
+        this.f$0 = context;
+        this.f$2 = runnable;
     }
 
     public VoIPService$$ExternalSyntheticLambda53(VoIPService voIPService, TLRPC.TL_error tL_error, TLObject tLObject, Object obj, int i) {

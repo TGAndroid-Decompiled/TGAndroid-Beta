@@ -1,6 +1,7 @@
 package kotlinx.coroutines;
 
-import com.google.android.gms.internal.mlkit_vision_common.zzjj;
+import com.google.android.gms.internal.mlkit_vision_common.zzjf;
+import com.google.common.base.Joiner;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.Iterator;
@@ -29,20 +30,19 @@ import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.ContextScope;
 import kotlinx.coroutines.internal.DispatchedContinuation;
 import kotlinx.coroutines.internal.ScopeCoroutine;
-import kotlinx.coroutines.internal.Symbol;
 import kotlinx.coroutines.intrinsics.CancellableKt;
 import kotlinx.coroutines.intrinsics.UndispatchedKt;
 import kotlinx.coroutines.scheduling.DefaultScheduler;
 
 public abstract class JobKt {
-    public static final Symbol RESUME_TOKEN = new Symbol("RESUME_TOKEN", 0);
-    public static final Symbol DISPOSED_TASK = new Symbol("REMOVED_TASK", 0);
-    public static final Symbol CLOSED_EMPTY = new Symbol("CLOSED_EMPTY", 0);
-    public static final Symbol COMPLETING_ALREADY = new Symbol("COMPLETING_ALREADY", 0);
-    public static final Symbol COMPLETING_WAITING_CHILDREN = new Symbol("COMPLETING_WAITING_CHILDREN", 0);
-    public static final Symbol COMPLETING_RETRY = new Symbol("COMPLETING_RETRY", 0);
-    public static final Symbol TOO_LATE_TO_CANCEL = new Symbol("TOO_LATE_TO_CANCEL", 0);
-    public static final Symbol SEALED = new Symbol("SEALED", 0);
+    public static final Joiner RESUME_TOKEN = new Joiner("RESUME_TOKEN", 2);
+    public static final Joiner DISPOSED_TASK = new Joiner("REMOVED_TASK", 2);
+    public static final Joiner CLOSED_EMPTY = new Joiner("CLOSED_EMPTY", 2);
+    public static final Joiner COMPLETING_ALREADY = new Joiner("COMPLETING_ALREADY", 2);
+    public static final Joiner COMPLETING_WAITING_CHILDREN = new Joiner("COMPLETING_WAITING_CHILDREN", 2);
+    public static final Joiner COMPLETING_RETRY = new Joiner("COMPLETING_RETRY", 2);
+    public static final Joiner TOO_LATE_TO_CANCEL = new Joiner("TOO_LATE_TO_CANCEL", 2);
+    public static final Joiner SEALED = new Joiner("SEALED", 2);
     public static final Empty EMPTY_NEW = new Empty(false);
     public static final Empty EMPTY_ACTIVE = new Empty(true);
 
@@ -78,7 +78,7 @@ public abstract class JobKt {
             return EmptyList.INSTANCE;
         }
         AwaitAll awaitAll = new AwaitAll(deferredArr);
-        CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(1, zzjj.intercepted(suspendLambda));
+        CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(1, zzjf.intercepted(suspendLambda));
         cancellableContinuationImpl.initCancellability();
         int length = deferredArr.length;
         AwaitAll.AwaitAllNode[] awaitAllNodeArr = new AwaitAll.AwaitAllNode[length];
@@ -122,7 +122,7 @@ public abstract class JobKt {
     public static final Object delay(long j, ContinuationImpl continuationImpl) {
         Unit unit = Unit.INSTANCE;
         if (j > 0) {
-            CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(1, zzjj.intercepted(continuationImpl));
+            CancellableContinuationImpl cancellableContinuationImpl = new CancellableContinuationImpl(1, zzjf.intercepted(continuationImpl));
             cancellableContinuationImpl.initCancellability();
             if (j < Long.MAX_VALUE) {
                 getDelay(cancellableContinuationImpl.context).scheduleResumeAfterDelay(j, cancellableContinuationImpl);
@@ -179,21 +179,21 @@ public abstract class JobKt {
         loop0: while (true) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = DispatchedContinuation._reusableCancellableContinuation$volatile$FU;
             Object obj = atomicReferenceFieldUpdater.get(dispatchedContinuation);
-            Symbol symbol = AtomicKt.REUSABLE_CLAIMED;
+            Joiner joiner = AtomicKt.REUSABLE_CLAIMED;
             cancellableContinuationImpl = null;
             if (obj == null) {
-                atomicReferenceFieldUpdater.set(dispatchedContinuation, symbol);
+                atomicReferenceFieldUpdater.set(dispatchedContinuation, joiner);
                 cancellableContinuationImpl2 = null;
                 break;
             }
             if (obj instanceof CancellableContinuationImpl) {
                 do {
-                    if (atomicReferenceFieldUpdater.compareAndSet(dispatchedContinuation, obj, symbol)) {
+                    if (atomicReferenceFieldUpdater.compareAndSet(dispatchedContinuation, obj, joiner)) {
                         cancellableContinuationImpl2 = (CancellableContinuationImpl) obj;
                         break loop0;
                     }
                 } while (atomicReferenceFieldUpdater.get(dispatchedContinuation) == obj);
-            } else if (obj != symbol && !(obj instanceof Throwable)) {
+            } else if (obj != joiner && !(obj instanceof Throwable)) {
                 throw new IllegalStateException(("Inconsistent state " + obj).toString());
             }
         }
@@ -329,7 +329,7 @@ public abstract class JobKt {
         } catch (Throwable th) {
             objCreateFailure = ResultKt.createFailure(th);
         }
-        if (Result.m139exceptionOrNullimpl(objCreateFailure) != null) {
+        if (Result.m144exceptionOrNullimpl(objCreateFailure) != null) {
             objCreateFailure = continuation.getClass().getName() + '@' + getHexAddress(continuation);
         }
         return (String) objCreateFailure;

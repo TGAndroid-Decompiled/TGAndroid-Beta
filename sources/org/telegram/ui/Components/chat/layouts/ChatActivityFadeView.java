@@ -95,7 +95,7 @@ public final class ChatActivityFadeView extends View implements Theme.Colorable 
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         int i;
         BlurredBackgroundSourceColor blurredBackgroundSourceColor = this.sourceColor;
         if (blurredBackgroundSourceColor == null || (i = this.colorKey) == -1) {

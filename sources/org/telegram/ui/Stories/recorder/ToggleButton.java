@@ -63,7 +63,7 @@ public final class ToggleButton extends View implements FlashViews.Invertable {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float f = this.valueAnimated.set(this.value, false);
+        float f = this.valueAnimated.set(this.value);
         Drawable drawable = this.drawable;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();

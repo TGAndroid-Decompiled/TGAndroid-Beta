@@ -7,24 +7,42 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import androidx.core.graphics.ColorUtils;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 
 public class GradientTools {
-    public int color1;
-    public int color2;
-    public int color3;
-    public int color4;
+    private static final int INTERNAL_HEIGHT = 80;
+    private static final int INTERNAL_WIDTH = 60;
+    int color1;
+    int color2;
+    int color3;
+    int color4;
     public boolean isDiagonal;
     public boolean isLinear;
     public boolean isRotate;
-    public Shader shader;
-    public final Paint paint = new Paint(1);
-    public final RectF bounds = new RectF();
-    public final Matrix matrix = new Matrix();
-    public Bitmap gradientBitmap = null;
-    public final int[] colors = new int[4];
+    Shader shader;
+    public Paint paint = new Paint(1);
+    RectF bounds = new RectF();
+    Matrix matrix = new Matrix();
+    Bitmap gradientBitmap = null;
+    int[] colors = new int[4];
 
-    public final void setBounds(RectF rectF) {
+    public int getAverageColor() {
+        int iBlendARGB = this.color1;
+        int i = this.color2;
+        if (i != 0) {
+            iBlendARGB = ColorUtils.blendARGB(0.5f, iBlendARGB, i);
+        }
+        int i2 = this.color3;
+        if (i2 != 0) {
+            iBlendARGB = ColorUtils.blendARGB(0.5f, iBlendARGB, i2);
+        }
+        int i3 = this.color4;
+        return i3 != 0 ? ColorUtils.blendARGB(0.5f, iBlendARGB, i3) : iBlendARGB;
+    }
+
+    public void setBounds(RectF rectF) {
         RectF rectF2 = this.bounds;
         if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
             return;
@@ -33,12 +51,34 @@ public class GradientTools {
         updateBounds();
     }
 
-    public final void setColors(int i, int i2, int i3, int i4) {
+    public void setColors(int i, int i2) {
+        setColors(i, i2, 0, 0);
+    }
+
+    public void updateBounds() {
+        if (this.shader == null) {
+            return;
+        }
+        float fWidth = this.bounds.width() / 60.0f;
+        float fHeight = this.bounds.height() / 80.0f;
+        this.matrix.reset();
+        Matrix matrix = this.matrix;
+        RectF rectF = this.bounds;
+        matrix.postTranslate(rectF.left, rectF.top);
+        this.matrix.preScale(fWidth, fHeight);
+        this.shader.setLocalMatrix(this.matrix);
+    }
+
+    public void setColors(int i, int i2, int i3) {
+        setColors(i, i2, i3, 0);
+    }
+
+    public void setColors(int i, int i2, int i3, int i4) {
         if (this.shader != null && this.color1 == i && this.color2 == i2 && this.color3 == i3 && this.color4 == i4) {
             return;
         }
-        this.color1 = i;
         int[] iArr = this.colors;
+        this.color1 = i;
         iArr[0] = i;
         this.color2 = i2;
         iArr[1] = i2;
@@ -46,54 +86,53 @@ public class GradientTools {
         iArr[2] = i3;
         this.color4 = i4;
         iArr[3] = i4;
-        Paint paint = this.paint;
         if (i2 == 0) {
+            Paint paint = this.paint;
             this.shader = null;
             paint.setShader(null);
-            paint.setColor(i);
+            this.paint.setColor(i);
         } else if (i3 == 0) {
             if (this.isDiagonal && this.isRotate) {
+                Paint paint2 = this.paint;
                 LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i, i2}, (float[]) null, Shader.TileMode.CLAMP);
                 this.shader = linearGradient;
-                paint.setShader(linearGradient);
+                paint2.setShader(linearGradient);
             } else {
+                Paint paint3 = this.paint;
                 LinearGradient linearGradient2 = new LinearGradient(this.isDiagonal ? 80.0f : 0.0f, 0.0f, 0.0f, 80.0f, new int[]{i, i2}, (float[]) null, Shader.TileMode.CLAMP);
                 this.shader = linearGradient2;
-                paint.setShader(linearGradient2);
+                paint3.setShader(linearGradient2);
             }
-        } else if (!this.isLinear) {
+        } else if (this.isLinear) {
+            if (this.isDiagonal && this.isRotate) {
+                Paint paint4 = this.paint;
+                LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
+                this.shader = linearGradient3;
+                paint4.setShader(linearGradient3);
+            } else {
+                Paint paint5 = this.paint;
+                LinearGradient linearGradient4 = new LinearGradient(this.isDiagonal ? 80.0f : 0.0f, 0.0f, 0.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
+                this.shader = linearGradient4;
+                paint5.setShader(linearGradient4);
+            }
+        } else {
             if (this.gradientBitmap == null) {
                 this.gradientBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
             }
-            Utilities.generateGradient(this.gradientBitmap, 0, 0.0f, iArr);
+            Utilities.generateGradient(this.gradientBitmap, 0, 0.0f, this.colors);
+            Paint paint6 = this.paint;
             Bitmap bitmap = this.gradientBitmap;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
             this.shader = bitmapShader;
-            paint.setShader(bitmapShader);
-        } else if (this.isDiagonal && this.isRotate) {
-            LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
-            this.shader = linearGradient3;
-            paint.setShader(linearGradient3);
-        } else {
-            LinearGradient linearGradient4 = new LinearGradient(this.isDiagonal ? 80.0f : 0.0f, 0.0f, 0.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
-            this.shader = linearGradient4;
-            paint.setShader(linearGradient4);
+            paint6.setShader(bitmapShader);
         }
         updateBounds();
     }
 
-    public void updateBounds() {
-        if (this.shader == null) {
-            return;
-        }
-        RectF rectF = this.bounds;
-        float fWidth = rectF.width() / 60.0f;
-        float fHeight = rectF.height() / 80.0f;
-        Matrix matrix = this.matrix;
-        matrix.reset();
-        matrix.postTranslate(rectF.left, rectF.top);
-        matrix.preScale(fWidth, fHeight);
-        this.shader.setLocalMatrix(matrix);
+    public void setBounds(float f, float f2, float f3, float f4) {
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(f, f2, f3, f4);
+        setBounds(rectF);
     }
 }

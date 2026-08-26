@@ -12,7 +12,7 @@ import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.Premium.PremiumButtonView$$ExternalSyntheticLambda1;
 import org.telegram.ui.Components.Premium.VideoScreenPreview;
 
 public final class CellFlickerDrawable {
@@ -23,7 +23,7 @@ public final class CellFlickerDrawable {
     public LinearGradient gradientShader2;
     public long lastUpdateTime;
     public final Matrix matrix;
-    public PasscodeView$9$$ExternalSyntheticLambda0 onRestartCallback;
+    public PremiumButtonView$$ExternalSyntheticLambda1 onRestartCallback;
     public final Paint paint;
     public final Paint paintOutline;
     public VideoScreenPreview parentView;
@@ -48,7 +48,7 @@ public final class CellFlickerDrawable {
             cellFlickerDrawable.parentWidth = iWidth;
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getBounds());
-            cellFlickerDrawable.draw(this.radius, canvas, rectF, null);
+            cellFlickerDrawable.draw(null, canvas, rectF, this.radius);
             SvgHelper.SvgDrawable svgDrawable = this.svgDrawable;
             if (svgDrawable != null) {
                 svgDrawable.setPaint(cellFlickerDrawable.paint);
@@ -88,7 +88,7 @@ public final class CellFlickerDrawable {
         this(64, 204, 160);
     }
 
-    public final void draw(float f, Canvas canvas, RectF rectF, View view) {
+    public final void draw(View view, Canvas canvas, RectF rectF, float f) {
         update(view);
         canvas.drawRoundRect(rectF, f, f, this.paint);
         if (this.drawFrame) {
@@ -125,9 +125,9 @@ public final class CellFlickerDrawable {
                     this.progress = f;
                     if (f > this.repeatProgress) {
                         this.progress = 0.0f;
-                        PasscodeView$9$$ExternalSyntheticLambda0 passcodeView$9$$ExternalSyntheticLambda0 = this.onRestartCallback;
-                        if (passcodeView$9$$ExternalSyntheticLambda0 != null) {
-                            passcodeView$9$$ExternalSyntheticLambda0.run();
+                        PremiumButtonView$$ExternalSyntheticLambda1 premiumButtonView$$ExternalSyntheticLambda1 = this.onRestartCallback;
+                        if (premiumButtonView$$ExternalSyntheticLambda1 != null) {
+                            premiumButtonView$$ExternalSyntheticLambda1.run();
                         }
                     }
                     this.lastUpdateTime = jCurrentTimeMillis;

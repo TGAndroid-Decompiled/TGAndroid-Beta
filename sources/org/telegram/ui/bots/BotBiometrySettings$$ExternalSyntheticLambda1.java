@@ -16,10 +16,10 @@ public final class BotBiometrySettings$$ExternalSyntheticLambda1 implements Util
     }
 
     @Override
-    public void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        this.f$0.onClick$18((UItem) obj);
+        this.f$0.onClick$13((UItem) obj);
     }
 }

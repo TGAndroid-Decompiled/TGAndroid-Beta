@@ -6,14 +6,14 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Looper;
 import android.os.Parcel;
-import com.google.android.gms.dynamite.zzf;
+import com.android.billingclient.api.zzcs;
 
 public final class CustomTabsClient$2 extends Binder implements IInterface {
     public final Handler mHandler;
-    public final zzf val$callback;
+    public final zzcs val$callback;
 
-    public CustomTabsClient$2(zzf zzfVar) {
-        this.val$callback = zzfVar;
+    public CustomTabsClient$2(zzcs zzcsVar) {
+        this.val$callback = zzcsVar;
         attachInterface(this, "android.support.customtabs.ICustomTabsCallback");
         this.mHandler = new Handler(Looper.getMainLooper());
     }

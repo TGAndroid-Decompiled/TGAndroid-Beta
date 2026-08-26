@@ -1,90 +1,37 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.Components.PasscodeView;
+import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 
-public final class LaunchActivity$$ExternalSyntheticLambda14 implements AlertDialog.OnButtonClickListener, PasscodeView.PasscodeViewDelegate {
-    public final int $r8$classId;
-    public final LaunchActivity f$0;
+public final class LaunchActivity$$ExternalSyntheticLambda14 implements RequestDelegate {
+    public final int $r8$classId = 0;
+    public final Object f$0;
+    public final int f$1;
+    public final Object f$2;
 
-    public LaunchActivity$$ExternalSyntheticLambda14(LaunchActivity launchActivity, int i) {
-        this.$r8$classId = i;
+    public LaunchActivity$$ExternalSyntheticLambda14(LaunchActivity launchActivity, int i, Browser.Progress progress) {
         this.f$0 = launchActivity;
+        this.f$1 = i;
+        this.f$2 = progress;
     }
 
     @Override
-    public void didAcceptedPassword(PasscodeView passcodeView) throws Throwable {
-        LaunchActivity launchActivity = this.f$0;
-        launchActivity.getClass();
-        SharedConfig.isWaitingForPasscodeEnter = false;
-        Intent intent = launchActivity.passcodeSaveIntent;
-        if (intent != null) {
-            launchActivity.handleIntent(intent, launchActivity.passcodeSaveIntentIsNew, launchActivity.passcodeSaveIntentIsRestore, true, null, false, true);
-            launchActivity.passcodeSaveIntent = null;
-        }
-        launchActivity.actionBarLayout.getView().setVisibility(0);
-        ActionBarLayout actionBarLayout = launchActivity.actionBarLayout;
-        actionBarLayout.getClass();
-        actionBarLayout.rebuildAllFragmentViews(true, true);
-        ActionBarLayout actionBarLayout2 = launchActivity.actionBarLayout;
-        BaseFragment lastFragment = actionBarLayout2.getLastFragment();
-        if (lastFragment != null) {
-            lastFragment.setTitleOverlayText(actionBarLayout2.titleOverlayText, actionBarLayout2.titleOverlayTextId, actionBarLayout2.overlayAction);
-        }
-        if (AndroidUtilities.isTablet()) {
-            ActionBarLayout actionBarLayout3 = launchActivity.layersActionBarLayout;
-            actionBarLayout3.getClass();
-            actionBarLayout3.rebuildAllFragmentViews(true, true);
-            ActionBarLayout actionBarLayout4 = launchActivity.rightActionBarLayout;
-            actionBarLayout4.getClass();
-            actionBarLayout4.rebuildAllFragmentViews(true, true);
-            if (launchActivity.layersActionBarLayout.getView().getVisibility() == 4) {
-                launchActivity.layersActionBarLayout.getView().setVisibility(0);
-            }
-            launchActivity.rightActionBarLayout.getView().setVisibility(0);
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, passcodeView);
-        try {
-            NotificationsController.getInstance(UserConfig.selectedAccount).showNotifications();
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public void onClick(AlertDialog alertDialog, int i) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.$r8$classId) {
             case 0:
-                MessagesController.getInstance(this.f$0.currentAccount).performLogout(2);
-                break;
-            case 1:
-                this.f$0.presentFragment(new LanguageSelectActivity());
-                break;
-            case 2:
-                this.f$0.presentFragment(new CacheControlActivity());
+                ((LaunchActivity) this.f$0).lambda$checkAppUpdate$139(this.f$1, (Browser.Progress) this.f$2, tLObject, tL_error);
                 break;
             default:
-                LaunchActivity launchActivity = this.f$0;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    launchActivity.startActivity(intent);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
+                ((ProfileActivity) this.f$0).lambda$getChannelParticipants$88((TLRPC.TL_channels_getParticipants) this.f$2, this.f$1, tLObject, tL_error);
                 break;
         }
+    }
+
+    public LaunchActivity$$ExternalSyntheticLambda14(ProfileActivity profileActivity, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i) {
+        this.f$0 = profileActivity;
+        this.f$2 = tL_channels_getParticipants;
+        this.f$1 = i;
     }
 }

@@ -23,6 +23,7 @@ import android.text.style.ReplacementSpan;
 import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewParent;
 import android.view.ViewPropertyAnimator;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
@@ -33,6 +34,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
 import j$.util.Map;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,7 +60,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -66,15 +68,15 @@ import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.ColorPicker;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
+import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
@@ -83,14 +85,14 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.MessageSeenView;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda3;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.Stars.BalanceCloud$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stars.StarsIntroActivity;
-import org.telegram.ui.Stars.StarsIntroActivity$$ExternalSyntheticLambda10;
+import org.telegram.ui.Stars.StarsIntroActivity$$ExternalSyntheticLambda15;
 import org.telegram.ui.Stars.StarsReactionsSheet;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
+import org.telegram.ui.Storage.CacheModel$$ExternalSyntheticLambda0;
+import org.telegram.ui.TON.TONIntroActivity;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda2;
+import org.telegram.ui.iv.RichMediaCell$$ExternalSyntheticLambda1;
 import org.telegram.ui.iv.TableModel$$ExternalSyntheticLambda0;
 
 public abstract class LiveCommentsView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -113,14 +115,14 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     public float keyboardOffset;
     public long lastMinStars;
     public final LinearLayoutManager layoutManager;
-    public final ChatActivity.AnonymousClass34 listView;
+    public final AnonymousClass1 listView;
     public LivePlayer livePlayer;
     public long localStars;
     public int maxReadId;
     public final ArrayList messages;
     public final LiveCommentsView$$ExternalSyntheticLambda2 pollStarsRunnable;
     public boolean polling;
-    public LivePlayer$1$$ExternalSyntheticLambda0 removeTopSendersRunnable;
+    public BalanceCloud$$ExternalSyntheticLambda1 removeTopSendersRunnable;
     public boolean sentStars;
     public final View shadowView;
     public Bulletin starsBulletin;
@@ -129,16 +131,276 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     public final FrameLayout topBulletinContainer;
     public ArrayList topDonors;
     public final LinearLayoutManager topLayoutManager;
-    public final MessageSeenView.AnonymousClass1 topListView;
+    public final AnonymousClass4 topListView;
     public final ArrayList topMessages;
     public final HashMap topPlaces;
     public long totalStars;
     public final LiveCommentsView$$ExternalSyntheticLambda2 updateAdapters;
 
+    public final class AnonymousClass1 extends RecyclerListView {
+        public final int $r8$classId;
+        public final FrameLayout this$0;
+
+        public AnonymousClass1(FrameLayout frameLayout, Context context, int i) {
+            super(context);
+            this.$r8$classId = i;
+            this.this$0 = frameLayout;
+        }
+
+        @Override
+        public void dispatchDraw(Canvas canvas) {
+            int i;
+            Message message;
+            Canvas canvas2;
+            switch (this.$r8$classId) {
+                case 0:
+                    PeerStoriesView.AnonymousClass10 anonymousClass10 = (PeerStoriesView.AnonymousClass10) this.this$0;
+                    if (anonymousClass10.collapsed) {
+                        i = -1;
+                    } else {
+                        int i2 = 0;
+                        while (true) {
+                            if (i2 < getChildCount()) {
+                                View childAt = getChildAt(i2);
+                                if (!(childAt instanceof LiveCommentView) || (message = ((LiveCommentView) childAt).message) == null) {
+                                    i2++;
+                                } else {
+                                    i = message.id;
+                                }
+                            } else {
+                                i = -1;
+                            }
+                        }
+                    }
+                    if (i > anonymousClass10.maxReadId) {
+                        anonymousClass10.maxReadId = i;
+                        CommentButton commentButton = anonymousClass10.this$0.commentButton;
+                        if (commentButton != null) {
+                            commentButton.setCount(anonymousClass10.getUnreadMessagesCount());
+                        }
+                    }
+                    super.dispatchDraw(canvas);
+                    break;
+                case 1:
+                default:
+                    super.dispatchDraw(canvas);
+                    break;
+                case 2:
+                    DialogStoriesCell dialogStoriesCell = (DialogStoriesCell) this.this$0;
+                    dialogStoriesCell.viewsDrawInParent.clear();
+                    int i3 = 0;
+                    for (int i4 = 0; i4 < getChildCount(); i4++) {
+                        DialogStoriesCell.StoryCell storyCell = (DialogStoriesCell.StoryCell) getChildAt(i4);
+                        int childAdapterPosition = getChildAdapterPosition(storyCell);
+                        storyCell.position = childAdapterPosition;
+                        boolean z = true;
+                        storyCell.drawInParent = true;
+                        storyCell.isFirst = childAdapterPosition == 0;
+                        if (childAdapterPosition != dialogStoriesCell.miniItems.size() - 1) {
+                            z = false;
+                        }
+                        storyCell.isLast = z;
+                        dialogStoriesCell.viewsDrawInParent.add(storyCell);
+                    }
+                    Collections.sort(dialogStoriesCell.viewsDrawInParent, dialogStoriesCell.comparator);
+                    while (i3 < dialogStoriesCell.viewsDrawInParent.size()) {
+                        DialogStoriesCell.StoryCell storyCell2 = dialogStoriesCell.viewsDrawInParent.get(i3);
+                        int iSave = canvas.save();
+                        canvas.translate(storyCell2.getX(), storyCell2.getY());
+                        if (storyCell2.getAlpha() != 1.0f) {
+                            canvas2 = canvas;
+                            canvas2.saveLayerAlpha(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), (int) (storyCell2.getAlpha() * 255.0f), 31);
+                        } else {
+                            canvas2 = canvas;
+                        }
+                        canvas2.scale(storyCell2.getScaleX(), storyCell2.getScaleY(), AndroidUtilities.dp(14.0f), storyCell2.getCy());
+                        storyCell2.draw(canvas2);
+                        canvas2.restoreToCount(iSave);
+                        i3++;
+                        canvas = canvas2;
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            switch (this.$r8$classId) {
+                case 0:
+                    if (((PeerStoriesView.AnonymousClass10) this.this$0).collapsed) {
+                        return false;
+                    }
+                    return super.dispatchTouchEvent(motionEvent);
+                case 1:
+                    if (motionEvent.getAction() == 0) {
+                        DialogStoriesCell dialogStoriesCell = (DialogStoriesCell) this.this$0;
+                        if (dialogStoriesCell.collapsedProgress1 > 0.2f || dialogStoriesCell.getAlpha() == 0.0f) {
+                            return false;
+                        }
+                    }
+                    return super.dispatchTouchEvent(motionEvent);
+                default:
+                    return false;
+            }
+        }
+
+        @Override
+        public boolean drawChild(Canvas canvas, View view, long j) {
+            switch (this.$r8$classId) {
+                case 1:
+                    if (((DialogStoriesCell) this.this$0).viewsDrawInParent.contains(view)) {
+                        return true;
+                    }
+                    return super.drawChild(canvas, view, j);
+                default:
+                    return super.drawChild(canvas, view, j);
+            }
+        }
+
+        @Override
+        public Integer getSelectorColor(int i) {
+            switch (this.$r8$classId) {
+                case 0:
+                    return 0;
+                default:
+                    return super.getSelectorColor(i);
+            }
+        }
+
+        @Override
+        public void invalidate() {
+            switch (this.$r8$classId) {
+                case 0:
+                    super.invalidate();
+                    ((PeerStoriesView.AnonymousClass10) this.this$0).invalidate();
+                    break;
+                default:
+                    super.invalidate();
+                    break;
+            }
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            switch (this.$r8$classId) {
+                case 2:
+                    return false;
+                default:
+                    return super.onInterceptTouchEvent(motionEvent);
+            }
+        }
+
+        @Override
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            switch (this.$r8$classId) {
+                case 1:
+                    super.onLayout(z, i, i2, i3, i4);
+                    int i5 = 0;
+                    while (true) {
+                        DialogStoriesCell dialogStoriesCell = (DialogStoriesCell) this.this$0;
+                        if (i5 >= dialogStoriesCell.afterNextLayout.size()) {
+                            dialogStoriesCell.afterNextLayout.clear();
+                        } else {
+                            dialogStoriesCell.afterNextLayout.get(i5).run();
+                            i5++;
+                        }
+                        break;
+                    }
+                    break;
+                default:
+                    super.onLayout(z, i, i2, i3, i4);
+                    break;
+            }
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            switch (this.$r8$classId) {
+                case 0:
+                    int size = View.MeasureSpec.getSize(i);
+                    View.MeasureSpec.getSize(i2);
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(size, View.MeasureSpec.getMode(i2)));
+                    break;
+                default:
+                    super.onMeasure(i, i2);
+                    break;
+            }
+        }
+
+        @Override
+        public void onScrolled(int i, int i2) {
+            switch (this.$r8$classId) {
+                case 2:
+                    super.onScrolled(i, i2);
+                    DialogStoriesCell dialogStoriesCell = (DialogStoriesCell) this.this$0;
+                    if (dialogStoriesCell.premiumHint != null) {
+                        dialogStoriesCell.premiumHint.hide();
+                    }
+                    break;
+                default:
+                    super.onScrolled(i, i2);
+                    break;
+            }
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            switch (this.$r8$classId) {
+                case 2:
+                    return false;
+                default:
+                    return super.onTouchEvent(motionEvent);
+            }
+        }
+    }
+
+    public final class AnonymousClass4 extends RecyclerListView {
+        public final int $r8$classId;
+
+        public AnonymousClass4(Context context, int i) {
+            super(context);
+            this.$r8$classId = i;
+        }
+
+        @Override
+        public Integer getSelectorColor(int i) {
+            switch (this.$r8$classId) {
+                case 0:
+                    return 0;
+                default:
+                    return super.getSelectorColor(i);
+            }
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            switch (this.$r8$classId) {
+                case 1:
+                    if (getParent() != null && getParent().getParent() != null) {
+                        ViewParent parent = getParent().getParent();
+                        boolean z = true;
+                        if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                            z = false;
+                        }
+                        parent.requestDisallowInterceptTouchEvent(z);
+                    }
+                    break;
+            }
+            return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
     public final class AnonymousClass5 extends DefaultItemAnimator {
         @Override
         public final float animateByScale(View view) {
             return 0.5f;
+        }
+    }
+
+    public final class AnonymousClass6 extends DarkThemeResourceProvider {
+        @Override
+        public final void appendColors() {
+            this.sparseIntArray.put(Theme.key_divider, 352321535);
         }
     }
 
@@ -168,7 +430,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             Drawable drawable = this.crown;
             drawable.setBounds(bounds);
             drawable.draw(canvas);
-            this.text.draw(bounds.centerX() - (this.text.width / 2.0f), AndroidUtilities.dp(0.15f) + bounds.centerY(), drawable.getAlpha() / 255.0f, -1, canvas);
+            this.text.draw(canvas, bounds.centerX() - (this.text.getCurrentWidth() / 2.0f), AndroidUtilities.dp(0.15f) + bounds.centerY(), -1, drawable.getAlpha() / 255.0f);
             canvas.restore();
         }
 
@@ -200,572 +462,6 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         @Override
         public final void setColorFilter(ColorFilter colorFilter) {
             this.crown.setColorFilter(colorFilter);
-        }
-    }
-
-    public final class LiveCommentView extends FrameLayout implements ItemOptions.ScrimView {
-        public final LinearLayout adminLayout;
-        public final SpoilersTextView adminNameView;
-        public final SpoilersTextView adminRoleView;
-        public final AvatarDrawable avatarDrawable;
-        public final BackupImageView avatarView;
-        public Drawable background;
-        public final Paint backgroundPaint;
-        public float backgroundViewAlpha;
-        public final int currentAccount;
-        public boolean drawParticles;
-        public boolean drawStar;
-        public final boolean filled;
-        public ValueAnimator highlightAnimator;
-        public int highlightingMessageId;
-        public final ColorPicker.AnonymousClass1 layout;
-        public Message message;
-        public final TextView smallStarsView;
-        public final ColoredImageSpan[] smallStarsViewCache;
-        public final TextView starsView;
-        public final ColoredImageSpan[] starsViewCache;
-        public CharSequence text;
-        public final SpoilersTextView textView;
-
-        public final class AlphaSpan extends CharacterStyle {
-            public final float alpha = 0.75f;
-
-            @Override
-            public final void updateDrawState(TextPaint textPaint) {
-                textPaint.setAlpha((int) (this.alpha * textPaint.getAlpha()));
-            }
-        }
-
-        public final class Factory extends UItem.UItemFactory {
-            public static final int $r8$clinit = 0;
-
-            static {
-                UItem.UItemFactory.setup(new Factory());
-            }
-
-            @Override
-            public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                ((LiveCommentView) view).set((Message) uItem.object);
-            }
-
-            @Override
-            public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                LiveCommentView liveCommentView = new LiveCommentView(i, context, false);
-                liveCommentView.setLayoutParams(new RecyclerView.LayoutParams(-2, -2));
-                return liveCommentView;
-            }
-
-            @Override
-            public final boolean equals(UItem uItem, UItem uItem2) {
-                return uItem.object == uItem2.object;
-            }
-        }
-
-        public LiveCommentView(int i, Context context, boolean z) {
-            super(context);
-            this.drawParticles = false;
-            this.drawStar = true;
-            this.backgroundViewAlpha = 0.5f;
-            this.starsViewCache = new ColoredImageSpan[1];
-            this.smallStarsViewCache = new ColoredImageSpan[1];
-            this.backgroundPaint = new Paint(1);
-            this.currentAccount = i;
-            this.filled = z;
-            ColorPicker.AnonymousClass1 anonymousClass1 = new ColorPicker.AnonymousClass1(this, context);
-            this.layout = anonymousClass1;
-            anonymousClass1.setOrientation(0);
-            addView(anonymousClass1, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 0.5f, 0.0f, 0.5f));
-            this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-            BackupImageView backupImageView = new BackupImageView(context);
-            this.avatarView = backupImageView;
-            backupImageView.setRoundRadius(AndroidUtilities.dp(11.0f));
-            anonymousClass1.addView(backupImageView, LayoutHelper.createLinear(22, 22, 0.0f, 51, 3, 2, 3, 2));
-            LinearLayout linearLayout = new LinearLayout(context);
-            linearLayout.setOrientation(1);
-            anonymousClass1.addView(linearLayout, LayoutHelper.createLinear(-2, -2, 1.0f, 51, 4, 3, 7, 3));
-            LinearLayout linearLayout2 = new LinearLayout(context);
-            this.adminLayout = linearLayout2;
-            linearLayout2.setOrientation(0);
-            linearLayout2.setVisibility(8);
-            linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, -2));
-            SpoilersTextView spoilersTextView = new SpoilersTextView(context, null, true);
-            this.adminNameView = spoilersTextView;
-            spoilersTextView.setTextColor(-1);
-            spoilersTextView.setTextSize(1, 14.0f);
-            spoilersTextView.setGravity(3);
-            spoilersTextView.setTypeface(AndroidUtilities.bold());
-            linearLayout2.addView(spoilersTextView, LayoutHelper.createLinear(-2, -2, 1.0f, 51, 0, 0, 16, 0));
-            SpoilersTextView spoilersTextView2 = new SpoilersTextView(context, null, true);
-            this.adminRoleView = spoilersTextView2;
-            spoilersTextView2.setTextColor(Theme.multAlpha(0.55f, -1));
-            spoilersTextView2.setTextSize(1, 12.0f);
-            spoilersTextView2.setGravity(5);
-            linearLayout2.addView(spoilersTextView2, LayoutHelper.createLinear(-2, -2, 0.0f, 53, 0, 0, 0, 0));
-            SpoilersTextView spoilersTextView3 = new SpoilersTextView(context, null, true);
-            this.textView = spoilersTextView3;
-            spoilersTextView3.setTextColor(-1);
-            spoilersTextView3.setTextSize(1, 14.0f);
-            spoilersTextView3.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), Theme.multAlpha(0.6f, -16777216));
-            NotificationCenter.listenEmojiLoading(spoilersTextView3);
-            linearLayout.addView(spoilersTextView3, LayoutHelper.createLinear(-2, -2));
-            TextView textView = new TextView(context);
-            this.starsView = textView;
-            textView.setTextColor(-1);
-            textView.setTextSize(1, 11.0f);
-            textView.setPadding(AndroidUtilities.dp(4.66f), 0, AndroidUtilities.dp(4.66f), 0);
-            textView.setVisibility(8);
-            anonymousClass1.addView(textView, LayoutHelper.createLinear(-2, 16, 0.0f, 21, -3, 0, 6, 0));
-            TextView textView2 = new TextView(context);
-            this.smallStarsView = textView2;
-            textView2.setTextColor(-1);
-            textView2.setAlpha(0.65f);
-            textView2.setTextSize(1, 11.0f);
-            textView2.setVisibility(8);
-            anonymousClass1.addView(textView2, LayoutHelper.createLinear(-2, -2, 0.0f, 85, 0, 3, 10, 0));
-        }
-
-        @Override
-        public final void drawScrim(Canvas canvas, float f) {
-            ColorPicker.AnonymousClass1 anonymousClass1 = this.layout;
-            if (anonymousClass1.getBackground() == null) {
-                Paint paint = this.backgroundPaint;
-                paint.setColor(Theme.multAlpha(f * 0.5f, -16777216));
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(anonymousClass1.getX(), anonymousClass1.getY(), anonymousClass1.getX() + anonymousClass1.getWidth(), anonymousClass1.getY() + anonymousClass1.getHeight());
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), paint);
-            }
-            draw(canvas);
-        }
-
-        @Override
-        public final void getBounds(RectF rectF) {
-            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        }
-
-        public final void highlight() {
-            ValueAnimator valueAnimator = this.highlightAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.highlightAnimator = null;
-                Drawable drawable = this.background;
-                if (drawable != null) {
-                    drawable.setAlpha((int) (this.backgroundViewAlpha * 255.0f));
-                    this.layout.invalidate();
-                }
-            }
-            Message message = this.message;
-            if (message == null || this.background == null) {
-                return;
-            }
-            this.highlightingMessageId = message.id;
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.highlightAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda18(this, 23));
-            this.highlightAnimator.addListener(new PhotoViewer.AnonymousClass78.AnonymousClass1(this, 19));
-            this.highlightAnimator.setDuration(350L);
-            this.highlightAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.highlightAnimator.start();
-        }
-
-        @Override
-        public final void onMeasure(int i, int i2) {
-            super.onMeasure(i, i2);
-            setPivotX(0.0f);
-            setPivotY(getMeasuredHeight());
-        }
-
-        public void set(Message message) {
-            ValueAnimator valueAnimator;
-            String forcedFirstName;
-            ColorPicker.AnonymousClass1 anonymousClass1;
-            int i;
-            int i2;
-            int tierOption;
-            int tierOption2;
-            TLRPC.TL_textWithEntities tL_textWithEntities;
-            ColorPicker.AnonymousClass1 anonymousClass2;
-            int i3;
-            long j;
-            TextView textView;
-            TextView textView2;
-            View view;
-            boolean z;
-            float f;
-            ColoredImageSpan coloredImageSpan;
-            CharSequence charSequenceSuperTrim;
-            CharSequence charSequence;
-            AnimatedEmojiSpan[] animatedEmojiSpanArr;
-            Emoji.EmojiSpan[] emojiSpanArr;
-            this.message = message;
-            ColorPicker.AnonymousClass1 anonymousClass3 = this.layout;
-            if ((message == null || this.highlightingMessageId != message.id) && (valueAnimator = this.highlightAnimator) != null) {
-                valueAnimator.cancel();
-                this.highlightAnimator = null;
-                Drawable drawable = this.background;
-                if (drawable != null) {
-                    drawable.setAlpha((int) (this.backgroundViewAlpha * 255.0f));
-                    anonymousClass3.invalidate();
-                }
-            }
-            long j2 = message.dialogId;
-            BackupImageView backupImageView = this.avatarView;
-            AvatarDrawable avatarDrawable = this.avatarDrawable;
-            int i4 = this.currentAccount;
-            if (j2 >= 0) {
-                TLRPC.User user = MessagesController.getInstance(i4).getUser(Long.valueOf(message.dialogId));
-                avatarDrawable.setInfo(UserConfig.selectedAccount, user);
-                backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-                backupImageView.onNewImageSet();
-                forcedFirstName = UserObject.getForcedFirstName(user);
-            } else {
-                TLRPC.Chat chat = MessagesController.getInstance(i4).getChat(Long.valueOf(-message.dialogId));
-                avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
-                backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-                backupImageView.onNewImageSet();
-                forcedFirstName = chat == null ? "" : chat.title;
-            }
-            int tierOption3 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 3);
-            int tierOption4 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 4);
-            int tierOption5 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 5);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            boolean z2 = message.fromAdmin;
-            SpoilersTextView spoilersTextView = this.textView;
-            String str = " ";
-            boolean z3 = this.filled;
-            if (z2) {
-                anonymousClass1 = anonymousClass3;
-                if (message.stars <= 0) {
-                    z3 = z3;
-                }
-                tierOption = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 1);
-                tierOption2 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 2);
-                tL_textWithEntities = message.text;
-                if (tL_textWithEntities != null) {
-                    CharSequence textWithEntities = MessageObject.formatTextWithEntities(tL_textWithEntities, false, spoilersTextView.getPaint());
-                    this.text = textWithEntities;
-                    charSequenceSuperTrim = AndroidUtilities.superTrim(textWithEntities);
-                    this.text = charSequenceSuperTrim;
-                    if (charSequenceSuperTrim.length() > tierOption && !message.fromAdmin) {
-                        this.text = this.text.subSequence(0, tierOption);
-                    }
-                    charSequence = this.text;
-                    if (charSequence instanceof Spannable) {
-                        Spannable spannable = (Spannable) charSequence;
-                        animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannable.getSpans(0, charSequence.length(), AnimatedEmojiSpan.class);
-                        anonymousClass2 = anonymousClass1;
-                        emojiSpanArr = (Emoji.EmojiSpan[]) spannable.getSpans(0, this.text.length(), Emoji.EmojiSpan.class);
-                        if (animatedEmojiSpanArr.length + emojiSpanArr.length <= tierOption2 && !message.fromAdmin) {
-                            ArrayList arrayList = new ArrayList();
-                            int i5 = 0;
-                            while (i5 < animatedEmojiSpanArr.length) {
-                                AnimatedEmojiSpan[] animatedEmojiSpanArr2 = animatedEmojiSpanArr;
-                                int i6 = i5;
-                                arrayList.add(new Pair(Integer.valueOf(spannable.getSpanStart(animatedEmojiSpanArr2[i5])), Integer.valueOf(spannable.getSpanEnd(animatedEmojiSpanArr2[i6]))));
-                                i5 = i6 + 1;
-                                animatedEmojiSpanArr = animatedEmojiSpanArr2;
-                            }
-                            int i7 = 0;
-                            while (i7 < emojiSpanArr.length) {
-                                int i8 = i7;
-                                arrayList.add(new Pair(Integer.valueOf(spannable.getSpanStart(emojiSpanArr[i7])), Integer.valueOf(spannable.getSpanEnd(emojiSpanArr[i8]))));
-                                i7 = i8 + 1;
-                            }
-                            Collections.sort(arrayList, new OAuthSheet$$ExternalSyntheticLambda3(14));
-                            if (!(this.text instanceof SpannableStringBuilder)) {
-                                this.text = new SpannableStringBuilder(this.text);
-                            }
-                            for (int size = arrayList.size() - 1; size >= tierOption2; size--) {
-                                Pair pair = (Pair) arrayList.get(size);
-                                ((SpannableStringBuilder) this.text).replace(((Integer) pair.first).intValue(), ((Integer) pair.second).intValue(), (CharSequence) "");
-                            }
-                        }
-                    } else {
-                        anonymousClass2 = anonymousClass1;
-                    }
-                    if (!message.fromAdmin) {
-                        this.text = AndroidUtilities.replaceNewLines(this.text);
-                    }
-                    spannableStringBuilder.append(this.text);
-                } else {
-                    str = " ";
-                    anonymousClass2 = anonymousClass1;
-                    this.text = "";
-                }
-                spoilersTextView.setText(Emoji.replaceEmoji(spannableStringBuilder, spoilersTextView.getPaint().getFontMetricsInt(), false));
-                this.background = null;
-                LinearLayout linearLayout = this.adminLayout;
-                if (message.fromAdmin || message.stars > 0) {
-                    i3 = 8;
-                } else {
-                    i3 = 0;
-                }
-                linearLayout.setVisibility(i3);
-                j = message.stars;
-                textView = this.smallStarsView;
-                textView2 = this.starsView;
-                if (j > 0) {
-                    if (j >= 250) {
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                    this.drawParticles = z;
-                    view = anonymousClass2;
-                    view.setWillNotDraw(!z);
-                    view.invalidate();
-                    spoilersTextView.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-                    int iDp = AndroidUtilities.dp(13.0f);
-                    int i9 = Theme.default_shadow_color;
-                    GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{tierOption3, tierOption4});
-                    gradientDrawable.setShape(0);
-                    gradientDrawable.setCornerRadius(iDp);
-                    this.background = gradientDrawable;
-                    view.setBackground(gradientDrawable);
-                    Drawable drawable2 = this.background;
-                    if (z3) {
-                        f = 1.0f;
-                    } else {
-                        f = 0.65f;
-                    }
-                    this.backgroundViewAlpha = f;
-                    drawable2.setAlpha((int) (f * 255.0f));
-                    if (message.isReaction) {
-                        textView.setVisibility(8);
-                        textView.setText("");
-                        textView2.setVisibility(0);
-                        textView2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), Theme.multAlpha(0.25f, tierOption5)));
-                        textView2.setText(StarsIntroActivity.replaceStars(false, BillingController$$ExternalSyntheticOutline0.m(message.stars, ',', new StringBuilder("⭐️ ")), 0.75f, this.starsViewCache, AndroidUtilities.dp(0.66f), 1.0f));
-                        coloredImageSpan = this.starsViewCache[0];
-                        if (coloredImageSpan != null) {
-                            coloredImageSpan.draw = this.drawStar;
-                        }
-                    } else {
-                        textView.setVisibility(0);
-                        textView.setText(StarsIntroActivity.replaceStars(false, BillingController$$ExternalSyntheticOutline0.m(message.stars, ',', new StringBuilder("⭐️ ")), 0.75f, this.smallStarsViewCache, 0.0f, 1.0f));
-                        textView2.setVisibility(8);
-                        textView2.setText("");
-                    }
-                } else {
-                    view = anonymousClass2;
-                    if (message.fromAdmin) {
-                        this.drawParticles = false;
-                        view.setWillNotDraw(true);
-                        ShapeDrawable shapeDrawableCreateRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), -16777216);
-                        this.background = shapeDrawableCreateRoundRectDrawable;
-                        view.setBackground(shapeDrawableCreateRoundRectDrawable);
-                        Drawable drawable3 = this.background;
-                        this.backgroundViewAlpha = 0.5f;
-                        drawable3.setAlpha((int) 127.5f);
-                        spoilersTextView.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-                        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                        spannableStringBuilder2.append((CharSequence) DialogObject.getName(i4, message.dialogId));
-                        spannableStringBuilder2.append((CharSequence) str);
-                        int length = spannableStringBuilder2.length();
-                        spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.LiveStoryBadge));
-                        spannableStringBuilder2.setSpan(new ReplacementSpan() {
-                            public final RectF rect = new RectF();
-                            public final Paint bg = new Paint(1);
-                            public final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 8.0f, AndroidUtilities.bold());
-
-                            @Override
-                            public final void draw(Canvas canvas, CharSequence charSequence2, int i10, int i11, float f2, int i12, int i13, int i14, Paint paint) {
-                                float fDp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(0.0f);
-                                RectF rectF = this.rect;
-                                rectF.set(f2, fDp - AndroidUtilities.dp(6.0f), this.text.getWidth() + f2 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f) + fDp);
-                                Paint paint2 = this.bg;
-                                paint2.setColor(-572850);
-                                canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
-                                this.text.draw(AndroidUtilities.dp(4.0f) + f2, fDp, 1.0f, -1, canvas);
-                            }
-
-                            @Override
-                            public final int getSize(Paint paint, CharSequence charSequence2, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-                                return (int) (this.text.getWidth() + AndroidUtilities.dp(8.0f));
-                            }
-                        }, length, spannableStringBuilder2.length(), 33);
-                        this.adminNameView.setText(spannableStringBuilder2);
-                        this.adminRoleView.setText(LocaleController.getString(R.string.LiveStoryAdminRole));
-                        textView.setVisibility(8);
-                        textView2.setVisibility(8);
-                    } else {
-                        this.drawParticles = false;
-                        view.setWillNotDraw(true);
-                        spoilersTextView.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), Theme.multAlpha(0.6f, -16777216));
-                        this.background = null;
-                        view.setBackground(null);
-                        textView.setVisibility(8);
-                        textView2.setVisibility(8);
-                    }
-                }
-                view.invalidate();
-            }
-            anonymousClass1 = anonymousClass3;
-            if (message.place > 0) {
-                spannableStringBuilder.append((CharSequence) ("#" + message.place));
-                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(0, new CrownDrawable(getContext(), message.place));
-                coloredImageSpan2.setTranslateY((float) AndroidUtilities.dp(1.0f));
-                spannableStringBuilder.setSpan(coloredImageSpan2, 0, spannableStringBuilder.length(), 33);
-                spannableStringBuilder.append((CharSequence) "\u2009");
-            }
-            spannableStringBuilder.append(TextUtils.ellipsize(forcedFirstName, spoilersTextView.getPaint(), AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
-            if (z3 != 0) {
-                i = 0;
-                i2 = 33;
-                spannableStringBuilder.setSpan(new AlphaSpan(), 0, spannableStringBuilder.length(), 33);
-            } else {
-                i = 0;
-                i2 = 33;
-            }
-            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), i, spannableStringBuilder.length(), i2);
-            spannableStringBuilder.append((CharSequence) " ");
-            tierOption = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 1);
-            tierOption2 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 2);
-            tL_textWithEntities = message.text;
-            if (tL_textWithEntities != null) {
-                CharSequence textWithEntities2 = MessageObject.formatTextWithEntities(tL_textWithEntities, false, spoilersTextView.getPaint());
-                this.text = textWithEntities2;
-                charSequenceSuperTrim = AndroidUtilities.superTrim(textWithEntities2);
-                this.text = charSequenceSuperTrim;
-                if (charSequenceSuperTrim.length() > tierOption) {
-                    this.text = this.text.subSequence(0, tierOption);
-                }
-                charSequence = this.text;
-                if (charSequence instanceof Spannable) {
-                    Spannable spannable2 = (Spannable) charSequence;
-                    animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannable2.getSpans(0, charSequence.length(), AnimatedEmojiSpan.class);
-                    anonymousClass2 = anonymousClass1;
-                    emojiSpanArr = (Emoji.EmojiSpan[]) spannable2.getSpans(0, this.text.length(), Emoji.EmojiSpan.class);
-                    if (animatedEmojiSpanArr.length + emojiSpanArr.length <= tierOption2) {
-                    }
-                } else {
-                    anonymousClass2 = anonymousClass1;
-                }
-                if (!message.fromAdmin) {
-                    this.text = AndroidUtilities.replaceNewLines(this.text);
-                }
-                spannableStringBuilder.append(this.text);
-            } else {
-                str = " ";
-                anonymousClass2 = anonymousClass1;
-                this.text = "";
-            }
-            spoilersTextView.setText(Emoji.replaceEmoji(spannableStringBuilder, spoilersTextView.getPaint().getFontMetricsInt(), false));
-            this.background = null;
-            LinearLayout linearLayout2 = this.adminLayout;
-            if (message.fromAdmin) {
-                i3 = 8;
-            } else {
-                i3 = 8;
-            }
-            linearLayout2.setVisibility(i3);
-            j = message.stars;
-            textView = this.smallStarsView;
-            textView2 = this.starsView;
-            if (j > 0) {
-                if (j >= 250) {
-                    z = true;
-                } else {
-                    z = false;
-                }
-                this.drawParticles = z;
-                view = anonymousClass2;
-                view.setWillNotDraw(!z);
-                view.invalidate();
-                spoilersTextView.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-                int iDp2 = AndroidUtilities.dp(13.0f);
-                int i10 = Theme.default_shadow_color;
-                GradientDrawable gradientDrawable2 = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{tierOption3, tierOption4});
-                gradientDrawable2.setShape(0);
-                gradientDrawable2.setCornerRadius(iDp2);
-                this.background = gradientDrawable2;
-                view.setBackground(gradientDrawable2);
-                Drawable drawable4 = this.background;
-                if (z3) {
-                    f = 0.65f;
-                } else {
-                    f = 1.0f;
-                }
-                this.backgroundViewAlpha = f;
-                drawable4.setAlpha((int) (f * 255.0f));
-                if (message.isReaction) {
-                    textView.setVisibility(0);
-                    textView.setText(StarsIntroActivity.replaceStars(false, BillingController$$ExternalSyntheticOutline0.m(message.stars, ',', new StringBuilder("⭐️ ")), 0.75f, this.smallStarsViewCache, 0.0f, 1.0f));
-                    textView2.setVisibility(8);
-                    textView2.setText("");
-                } else {
-                    textView.setVisibility(8);
-                    textView.setText("");
-                    textView2.setVisibility(0);
-                    textView2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), Theme.multAlpha(0.25f, tierOption5)));
-                    textView2.setText(StarsIntroActivity.replaceStars(false, BillingController$$ExternalSyntheticOutline0.m(message.stars, ',', new StringBuilder("⭐️ ")), 0.75f, this.starsViewCache, AndroidUtilities.dp(0.66f), 1.0f));
-                    coloredImageSpan = this.starsViewCache[0];
-                    if (coloredImageSpan != null) {
-                        coloredImageSpan.draw = this.drawStar;
-                    }
-                }
-            } else {
-                view = anonymousClass2;
-                if (message.fromAdmin) {
-                    this.drawParticles = false;
-                    view.setWillNotDraw(true);
-                    ShapeDrawable shapeDrawableCreateRoundRectDrawable2 = Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), -16777216);
-                    this.background = shapeDrawableCreateRoundRectDrawable2;
-                    view.setBackground(shapeDrawableCreateRoundRectDrawable2);
-                    Drawable drawable5 = this.background;
-                    this.backgroundViewAlpha = 0.5f;
-                    drawable5.setAlpha((int) 127.5f);
-                    spoilersTextView.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-                    SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
-                    spannableStringBuilder3.append((CharSequence) DialogObject.getName(i4, message.dialogId));
-                    spannableStringBuilder3.append((CharSequence) str);
-                    int length2 = spannableStringBuilder3.length();
-                    spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.LiveStoryBadge));
-                    spannableStringBuilder3.setSpan(new ReplacementSpan() {
-                        public final RectF rect = new RectF();
-                        public final Paint bg = new Paint(1);
-                        public final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 8.0f, AndroidUtilities.bold());
-
-                        @Override
-                        public final void draw(Canvas canvas, CharSequence charSequence2, int i11, int i12, float f2, int i13, int i14, int i15, Paint paint) {
-                            float fDp = ((i13 + i15) / 2.0f) + AndroidUtilities.dp(0.0f);
-                            RectF rectF = this.rect;
-                            rectF.set(f2, fDp - AndroidUtilities.dp(6.0f), this.text.getWidth() + f2 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f) + fDp);
-                            Paint paint2 = this.bg;
-                            paint2.setColor(-572850);
-                            canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
-                            this.text.draw(AndroidUtilities.dp(4.0f) + f2, fDp, 1.0f, -1, canvas);
-                        }
-
-                        @Override
-                        public final int getSize(Paint paint, CharSequence charSequence2, int i11, int i12, Paint.FontMetricsInt fontMetricsInt) {
-                            return (int) (this.text.getWidth() + AndroidUtilities.dp(8.0f));
-                        }
-                    }, length2, spannableStringBuilder3.length(), 33);
-                    this.adminNameView.setText(spannableStringBuilder3);
-                    this.adminRoleView.setText(LocaleController.getString(R.string.LiveStoryAdminRole));
-                    textView.setVisibility(8);
-                    textView2.setVisibility(8);
-                } else {
-                    this.drawParticles = false;
-                    view.setWillNotDraw(true);
-                    spoilersTextView.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), Theme.multAlpha(0.6f, -16777216));
-                    this.background = null;
-                    view.setBackground(null);
-                    textView.setVisibility(8);
-                    textView2.setVisibility(8);
-                }
-            }
-            view.invalidate();
-        }
-
-        public void setDrawStar(boolean z) {
-            this.drawStar = z;
-            ColoredImageSpan coloredImageSpan = this.starsViewCache[0];
-            if (coloredImageSpan == null || coloredImageSpan.draw == z) {
-                return;
-            }
-            coloredImageSpan.draw = z;
-            this.starsView.invalidate();
         }
     }
 
@@ -802,7 +498,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
 
         public LiveTopSenderView(Context context) {
             super(context);
-            ScaleStateListAnimator.apply(this, 0.1f, 1.5f);
+            ScaleStateListAnimator.apply(this);
             ?? r0 = new LinearLayout(context) {
                 public StarsReactionsSheet.Particles particles;
                 public final Path clipPath = new Path();
@@ -832,9 +528,9 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                         long j2 = topSender3.dialogId;
                         AnimatedFloat animatedFloat = this.animatedProgress;
                         if (j != j2) {
-                            animatedFloat.set(topSender3.getProgress(), true);
+                            animatedFloat.force(topSender3.getProgress());
                         }
-                        float f = animatedFloat.set(liveTopSenderView.sender.getProgress(), false);
+                        float f = animatedFloat.set(liveTopSenderView.sender.getProgress());
                         this.lastDialogId = liveTopSenderView.sender.dialogId;
                         Paint paint = this.fillPaint;
                         paint.setColor(tierOption2);
@@ -863,7 +559,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             this.layout = r0;
             r0.setOrientation(0);
             addView((View) r0, LayoutHelper.createFrame(-2, -2.0f, 119, 0.0f, 0.0f, 6.0f, 0.0f));
-            this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            this.avatarDrawable = new AvatarDrawable();
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(11.0f));
@@ -922,14 +618,12 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             AvatarDrawable avatarDrawable = this.avatarDrawable;
             if (j >= 0) {
                 TLRPC.User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(topSender.dialogId));
-                avatarDrawable.setInfo(UserConfig.selectedAccount, user);
-                backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-                backupImageView.onNewImageSet();
+                avatarDrawable.setInfo(user);
+                backupImageView.setForUserOrChat(user, avatarDrawable);
             } else {
                 TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-topSender.dialogId));
-                avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
-                backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-                backupImageView.onNewImageSet();
+                avatarDrawable.setInfo(chat);
+                backupImageView.setForUserOrChat(chat, avatarDrawable);
             }
             int i = topSender.place;
             ImageView imageView = this.crownView;
@@ -1022,14 +716,14 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         this.topBulletinContainer = frameLayout;
         view.setAlpha(0.5f);
         final PeerStoriesView.AnonymousClass10 anonymousClass11 = (PeerStoriesView.AnonymousClass10) this;
-        ChatActivity.AnonymousClass34 anonymousClass34 = new ChatActivity.AnonymousClass34(anonymousClass11, context, 28);
-        this.listView = anonymousClass34;
-        anonymousClass34.setWillNotDraw(false);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(anonymousClass11, context, 0);
+        this.listView = anonymousClass1;
+        anonymousClass1.setWillNotDraw(false);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(1, true);
         this.layoutManager = linearLayoutManager;
-        anonymousClass34.setLayoutManager(linearLayoutManager);
+        anonymousClass1.setLayoutManager(linearLayoutManager);
         final int i2 = 0;
-        ?? r1 = new UniversalAdapter(anonymousClass34, context, i, new Utilities.Callback2() {
+        ?? r1 = new UniversalAdapter(anonymousClass1, context, i, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 PeerStoriesView.AnonymousClass10 anonymousClass12 = anonymousClass10;
@@ -1089,8 +783,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             public final void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
                 LiveCommentView liveCommentView;
                 Message message;
-                updateReorder(viewHolder, this.allowReorder);
-                updateColors(viewHolder);
+                super.onViewAttachedToWindow(viewHolder);
                 PeerStoriesView.AnonymousClass10 anonymousClass12 = anonymousClass11;
                 if (anonymousClass12.callHighlight) {
                     View view2 = viewHolder.itemView;
@@ -1102,12 +795,12 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             }
         };
         this.adapter = r1;
-        anonymousClass34.setAdapter(r1);
-        r1.applyBackground = false;
-        anonymousClass34.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f));
-        anonymousClass34.setClipToPadding(false);
-        addView(anonymousClass34, LayoutHelper.createFrame(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
-        anonymousClass34.setOnItemClickListener(new LiveCommentsView$$ExternalSyntheticLambda6(anonymousClass10, anonymousClass3, storyViewer, 0));
+        anonymousClass1.setAdapter(r1);
+        r1.setApplyBackground(false);
+        anonymousClass1.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(7.5f));
+        anonymousClass1.setClipToPadding(false);
+        addView(anonymousClass1, LayoutHelper.createFrame(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
+        anonymousClass1.setOnItemClickListener(new LiveCommentsView$$ExternalSyntheticLambda6(anonymousClass10, anonymousClass3, storyViewer, 0));
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
             public final float animateByScale(View view2) {
@@ -1115,39 +808,38 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             }
 
             @Override
-            public final void onAddAnimationUpdate() {
+            public final void onAddAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                super.onAddAnimationUpdate(viewHolder);
                 anonymousClass11.listView.invalidate();
             }
 
             @Override
             public final void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                super.onMoveAnimationUpdate(viewHolder);
                 anonymousClass11.listView.invalidate();
             }
         };
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        defaultItemAnimator.delayAnimations = false;
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.setInterpolator(cubicBezierInterpolator);
         defaultItemAnimator.setDurations(280L);
-        defaultItemAnimator.delayIncrement = 14L;
-        anonymousClass34.setItemAnimator(defaultItemAnimator);
+        defaultItemAnimator.setDelayIncrement(14L);
+        anonymousClass1.lambda$onCellEnter$52(defaultItemAnimator);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.msg_arrowright);
         imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         imageView.setRotation(90.0f);
         imageView.setBackground(Theme.createSelectorDrawable(1090519039, 1, -1));
-        imageView.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(anonymousClass10, 16));
-        MessageSeenView.AnonymousClass1 anonymousClass1 = new MessageSeenView.AnonymousClass1(context, 11, null);
-        this.topListView = anonymousClass1;
-        anonymousClass1.setWillNotDraw(false);
+        imageView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(anonymousClass10, 14));
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(context, 0);
+        this.topListView = anonymousClass4;
+        anonymousClass4.setWillNotDraw(false);
         LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(0, false);
         this.topLayoutManager = linearLayoutManager2;
-        anonymousClass1.setLayoutManager(linearLayoutManager2);
+        anonymousClass4.setLayoutManager(linearLayoutManager2);
         final int i3 = 1;
-        UniversalAdapter universalAdapter = new UniversalAdapter(anonymousClass1, context, i, 0, false, new Utilities.Callback2() {
+        UniversalAdapter universalAdapter = new UniversalAdapter(anonymousClass4, context, i, 0, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 PeerStoriesView.AnonymousClass10 anonymousClass12 = anonymousClass10;
@@ -1189,21 +881,18 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             }
         }, null);
         this.topAdapter = universalAdapter;
-        anonymousClass1.setAdapter(universalAdapter);
-        universalAdapter.applyBackground = false;
-        anonymousClass1.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        anonymousClass1.setClipToPadding(false);
-        addView(anonymousClass1, LayoutHelper.createFrame(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
-        anonymousClass1.setOnItemClickListener(new LiveCommentsView$$ExternalSyntheticLambda9(anonymousClass10));
+        anonymousClass4.setAdapter(universalAdapter);
+        universalAdapter.setApplyBackground(false);
+        anonymousClass4.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        anonymousClass4.setClipToPadding(false);
+        addView(anonymousClass4, LayoutHelper.createFrame(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
+        anonymousClass4.setOnItemClickListener(new LiveCommentsView$$ExternalSyntheticLambda9(anonymousClass10));
         AnonymousClass5 anonymousClass5 = new AnonymousClass5();
-        anonymousClass5.mSupportsChangeAnimations = false;
-        anonymousClass5.delayAnimations = false;
-        anonymousClass5.mAddInterpolator = cubicBezierInterpolator;
-        anonymousClass5.mMoveInterpolator = cubicBezierInterpolator;
-        anonymousClass5.mRemoveInterpolator = cubicBezierInterpolator;
-        anonymousClass5.mChangeInterpolator = cubicBezierInterpolator;
+        anonymousClass5.setSupportsChangeAnimations(false);
+        anonymousClass5.setDelayAnimations(false);
+        anonymousClass5.setInterpolator(cubicBezierInterpolator);
         anonymousClass5.setDurations(350L);
-        anonymousClass1.setItemAnimator(anonymousClass5);
+        anonymousClass4.lambda$onCellEnter$52(anonymousClass5);
         updateTopMessages(false);
     }
 
@@ -1220,12 +909,12 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     }
 
     private int getListViewTop() {
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.listView;
-        int height = anonymousClass34.getHeight();
-        for (int i = 0; i < anonymousClass34.getChildCount(); i++) {
-            height = Math.min(anonymousClass34.getChildAt(i).getTop(), height);
+        AnonymousClass1 anonymousClass1 = this.listView;
+        int height = anonymousClass1.getHeight();
+        for (int i = 0; i < anonymousClass1.getChildCount(); i++) {
+            height = Math.min(anonymousClass1.getChildAt(i).getTop(), height);
         }
-        return anonymousClass34.getHeight() - height;
+        return anonymousClass1.getHeight() - height;
     }
 
     private CharSequence getStarsToastSubtitle() {
@@ -1321,7 +1010,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         update(true);
         if (z) {
             ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-            Collections.sort(arrayList2, new TableModel$$ExternalSyntheticLambda0(this, 12));
+            Collections.sort(arrayList2, new TableModel$$ExternalSyntheticLambda0(this, 6));
             this.topAdapter.update(true);
             updateMessagesPlaces();
             updateTopMessages(true);
@@ -1380,17 +1069,17 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j) {
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.listView;
-        if (view != anonymousClass34) {
+        AnonymousClass1 anonymousClass1 = this.listView;
+        if (view != anonymousClass1) {
             return super.drawChild(canvas, view, j);
         }
-        if (anonymousClass34.getAlpha() <= 0.0f) {
+        if (anonymousClass1.getAlpha() <= 0.0f) {
             return true;
         }
-        float fMax = Math.max(0.0f, this.keyboardOffset - anonymousClass34.getTop()) + anonymousClass34.getY();
-        canvas.saveLayerAlpha(anonymousClass34.getX(), anonymousClass34.getY(), anonymousClass34.getX() + anonymousClass34.getWidth(), anonymousClass34.getY() + anonymousClass34.getHeight(), 255, 31);
+        float fMax = Math.max(0.0f, this.keyboardOffset - anonymousClass1.getTop()) + anonymousClass1.getY();
+        canvas.saveLayerAlpha(anonymousClass1.getX(), anonymousClass1.getY(), anonymousClass1.getX() + anonymousClass1.getWidth(), anonymousClass1.getY() + anonymousClass1.getHeight(), 255, 31);
         canvas.save();
-        canvas.translate(0.0f, Math.min((anonymousClass34.getY() + anonymousClass34.getHeight()) - fMax, getListViewTop()) * (1.0f - anonymousClass34.getAlpha()));
+        canvas.translate(0.0f, Math.min((anonymousClass1.getY() + anonymousClass1.getHeight()) - fMax, getListViewTop()) * (1.0f - anonymousClass1.getAlpha()));
         canvas.clipRect(0.0f, fMax, getWidth(), getHeight());
         boolean zDrawChild = super.drawChild(canvas, view, j);
         canvas.restore();
@@ -1398,7 +1087,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         rectF.set(0.0f, fMax, getWidth(), AndroidUtilities.dp(12.0f) + fMax);
         GradientClip gradientClip = this.gradientClip;
         gradientClip.draw(canvas, rectF, 1, 1.0f);
-        rectF.set(0.0f, (anonymousClass34.getY() + anonymousClass34.getHeight()) - AndroidUtilities.dp(12.0f), getWidth(), anonymousClass34.getHeight() + anonymousClass34.getBottom());
+        rectF.set(0.0f, (anonymousClass1.getY() + anonymousClass1.getHeight()) - AndroidUtilities.dp(12.0f), getWidth(), anonymousClass1.getHeight() + anonymousClass1.getBottom());
         gradientClip.draw(canvas, rectF, 3, 1.0f);
         canvas.restore();
         return zDrawChild;
@@ -1409,10 +1098,10 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     }
 
     public int getListViewContentTop() {
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.listView;
-        int height = anonymousClass34.getHeight();
-        for (int i = 0; i < anonymousClass34.getChildCount(); i++) {
-            height = Math.min(anonymousClass34.getChildAt(i).getTop(), height);
+        AnonymousClass1 anonymousClass1 = this.listView;
+        int height = anonymousClass1.getHeight();
+        for (int i = 0; i < anonymousClass1.getChildCount(); i++) {
+            height = Math.min(anonymousClass1.getChildAt(i).getTop(), height);
         }
         return height;
     }
@@ -1469,7 +1158,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         return this.collapsed;
     }
 
-    public final void lambda$new$12$3$1() {
+    public final void lambda$new$12$2$1() {
         AndroidUtilities.cancelRunOnUIThread(this.closeBulletin);
         Bulletin bulletin = this.starsBulletin;
         if (bulletin != null) {
@@ -1489,7 +1178,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     public final Integer lambda$openStarsSheet$11(Long l) {
         this.closeBulletin.run();
         this.localStars = l.longValue();
-        Bulletin bulletinCreateSimpleBulletin = new BulletinFactory(this.topBulletinContainer, new DarkThemeResourceProvider()).createSimpleBulletin(getStarsToastTitle(), getStarsToastSubtitle(), R.raw.stars_topup);
+        Bulletin bulletinCreateSimpleBulletin = BulletinFactory.of(this.topBulletinContainer, new DarkThemeResourceProvider()).createSimpleBulletin(R.raw.stars_topup, getStarsToastTitle(), getStarsToastSubtitle());
         boolean z = false;
         bulletinCreateSimpleBulletin.hideAfterBottomSheet = false;
         bulletinCreateSimpleBulletin.show(true);
@@ -1565,8 +1254,8 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         if (defaultSendAs != null) {
             clientUserId = DialogObject.getPeerDialogId(defaultSendAs);
         }
-        ShareAlert.AnonymousClass3 anonymousClass3 = new ShareAlert.AnonymousClass3(2);
-        StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), this.currentAccount, this.dialogId, null, null, arrayList, !z, true, clientUserId, anonymousClass3);
+        AnonymousClass6 anonymousClass6 = new AnonymousClass6();
+        StarsReactionsSheet starsReactionsSheet = new StarsReactionsSheet(getContext(), this.currentAccount, this.dialogId, null, null, arrayList, !z, true, clientUserId, anonymousClass6);
         starsReactionsSheet.commentsView = (PeerStoriesView.AnonymousClass10) this;
         starsReactionsSheet.onSendListener = new LiveCommentsView$$ExternalSyntheticLambda9((PeerStoriesView.AnonymousClass10) this);
         starsReactionsSheet.show();
@@ -1647,7 +1336,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                     topSender.lastSentDate = currentTime2;
                     updateTopMessages(true);
                     scheduleRemovingTopSenders();
-                    Collections.sort(arrayList2, new TableModel$$ExternalSyntheticLambda0(this, 12));
+                    Collections.sort(arrayList2, new TableModel$$ExternalSyntheticLambda0(this, 6));
                     if (!z2) {
                         this.topAdapter.update(true);
                     }
@@ -1687,8 +1376,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                     update(true);
                 }
                 if (i4 <= 0 && !z2 && (!this.listView.canScrollVertically(1) || message.id < 0)) {
-                    LinearLayoutManager linearLayoutManager = this.layoutManager;
-                    linearLayoutManager.scrollToPositionWithOffset(0, AndroidUtilities.dp(100.0f), linearLayoutManager.mShouldReverseLayout);
+                    this.layoutManager.scrollToPositionWithOffset(0, AndroidUtilities.dp(100.0f));
                     int i10 = message.id;
                     if (i10 > 0) {
                         this.maxReadId = i10;
@@ -1763,9 +1451,9 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     }
 
     public final void scheduleRemovingTopSenders() {
-        LivePlayer$1$$ExternalSyntheticLambda0 livePlayer$1$$ExternalSyntheticLambda0 = this.removeTopSendersRunnable;
-        if (livePlayer$1$$ExternalSyntheticLambda0 != null) {
-            AndroidUtilities.cancelRunOnUIThread(livePlayer$1$$ExternalSyntheticLambda0);
+        BalanceCloud$$ExternalSyntheticLambda1 balanceCloud$$ExternalSyntheticLambda1 = this.removeTopSendersRunnable;
+        if (balanceCloud$$ExternalSyntheticLambda1 != null) {
+            AndroidUtilities.cancelRunOnUIThread(balanceCloud$$ExternalSyntheticLambda1);
             this.removeTopSendersRunnable = null;
         }
         int currentTime = ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
@@ -1799,9 +1487,9 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         if (jMin >= Long.MAX_VALUE) {
             return;
         }
-        LivePlayer$1$$ExternalSyntheticLambda0 livePlayer$1$$ExternalSyntheticLambda1 = new LivePlayer$1$$ExternalSyntheticLambda0(this, 5);
-        this.removeTopSendersRunnable = livePlayer$1$$ExternalSyntheticLambda1;
-        AndroidUtilities.runOnUIThread(livePlayer$1$$ExternalSyntheticLambda1, jMin);
+        BalanceCloud$$ExternalSyntheticLambda1 balanceCloud$$ExternalSyntheticLambda2 = new BalanceCloud$$ExternalSyntheticLambda1(this, 19);
+        this.removeTopSendersRunnable = balanceCloud$$ExternalSyntheticLambda2;
+        AndroidUtilities.runOnUIThread(balanceCloud$$ExternalSyntheticLambda2, jMin);
     }
 
     public final void send(TLRPC.TL_textWithEntities tL_textWithEntities, long j) {
@@ -1812,20 +1500,16 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         ArrayList arrayList;
         Bulletin bulletin = this.starsBulletin;
         LiveCommentsView$$ExternalSyntheticLambda2 liveCommentsView$$ExternalSyntheticLambda2 = this.closeBulletin;
-        if (bulletin == null || !bulletin.showing) {
+        if (bulletin == null || !bulletin.isShowing()) {
             DarkThemeResourceProvider darkThemeResourceProvider = new DarkThemeResourceProvider();
             Bulletin.TwoLineAnimatedLottieLayout twoLineAnimatedLottieLayout = new Bulletin.TwoLineAnimatedLottieLayout(getContext(), darkThemeResourceProvider);
             this.bulletinLayout = twoLineAnimatedLottieLayout;
             twoLineAnimatedLottieLayout.setAnimation(R.raw.stars_topup, new String[0]);
             this.bulletinLayout.titleTextView.setText(getStarsToastTitle());
-            Bulletin.UndoButton undoButton = new Bulletin.UndoButton(getContext(), darkThemeResourceProvider, true, false);
+            Bulletin.UndoButton undoButton = new Bulletin.UndoButton(getContext(), true, false, darkThemeResourceProvider);
             this.bulletinButton = undoButton;
-            String string = LocaleController.getString(R.string.StarsSentUndo);
-            TextView textView = undoButton.undoTextView;
-            if (textView != null) {
-                textView.setText(string);
-            }
-            this.bulletinButton.undoAction = new LiveCommentsView$$ExternalSyntheticLambda2((PeerStoriesView.AnonymousClass10) this, 1);
+            undoButton.setText(LocaleController.getString(R.string.StarsSentUndo));
+            this.bulletinButton.setUndoAction(new LiveCommentsView$$ExternalSyntheticLambda2((PeerStoriesView.AnonymousClass10) this, 1));
             Bulletin.TimerView timerView = new Bulletin.TimerView(getContext(), darkThemeResourceProvider);
             this.timerView = timerView;
             timerView.timeLeft = 5000L;
@@ -1833,11 +1517,11 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
             this.bulletinButton.addView(this.timerView, LayoutHelper.createFrame(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
             this.bulletinButton.undoTextView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
             this.bulletinLayout.setButton(this.bulletinButton);
-            Bulletin bulletinMake = Bulletin.make(this.topBulletinContainer, this.bulletinLayout, -1);
-            this.starsBulletin = bulletinMake;
-            bulletinMake.hideAfterBottomSheet = false;
-            bulletinMake.show(true);
-            this.starsBulletin.onHideListener = liveCommentsView$$ExternalSyntheticLambda2;
+            Bulletin bulletinCreate = BulletinFactory.of(this.topBulletinContainer, darkThemeResourceProvider).create(this.bulletinLayout, -1);
+            this.starsBulletin = bulletinCreate;
+            bulletinCreate.hideAfterBottomSheet = false;
+            bulletinCreate.show(true);
+            this.starsBulletin.setOnHideListener(liveCommentsView$$ExternalSyntheticLambda2);
         }
         this.localStars++;
         onCancelledStarReaction(getDefaultPeerId());
@@ -1875,17 +1559,16 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         Random random = Utilities.fastRandom;
         int[] iArr = paidReactionButtonEffectsView2.effectAssets;
         int i2 = iArr[random.nextInt(iArr.length)];
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, DiffUtil.m(i2, ""), AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f), true, null);
-        rLottieDrawable.masterParent = paidReactionButtonEffectsView2;
-        rLottieDrawable.decodeSingleFrame = true;
-        rLottieDrawable.scheduleNextGetFrame();
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, DiffUtil.m(i2, ""), AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+        rLottieDrawable.setMasterParent(paidReactionButtonEffectsView2);
+        rLottieDrawable.setAllowDecodeSingleFrame(true);
         rLottieDrawable.setAutoRepeat(0);
         rLottieDrawable.start();
         arrayList.add(rLottieDrawable);
         paidReactionButtonEffectsView2.invalidate();
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = paidReactionButtonEffectsView2.counter;
         animatedTextDrawable.cancelAnimation();
-        animatedTextDrawable.setText(BillingController$$ExternalSyntheticOutline0.m(j, ',', new StringBuilder("+")), true, true);
+        animatedTextDrawable.setText("+" + LocaleController.formatNumber(j, ','));
         PaidReactionButton$PaidReactionButtonEffectsView$$ExternalSyntheticLambda0 paidReactionButton$PaidReactionButtonEffectsView$$ExternalSyntheticLambda0 = paidReactionButtonEffectsView2.hideCounterRunnable;
         AndroidUtilities.cancelRunOnUIThread(paidReactionButton$PaidReactionButtonEffectsView$$ExternalSyntheticLambda0);
         AndroidUtilities.runOnUIThread(paidReactionButton$PaidReactionButtonEffectsView$$ExternalSyntheticLambda0, 1500L);
@@ -1924,7 +1607,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         arrayList4.addAll(livePlayer.topMessages);
         update(true);
         ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-        Collections.sort(arrayList4, new OAuthSheet$$ExternalSyntheticLambda3(this, 11));
+        Collections.sort(arrayList4, new CacheModel$$ExternalSyntheticLambda0(this, 10));
         this.topAdapter.update(true);
         updateTopMessages(false);
     }
@@ -1962,8 +1645,8 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
     }
 
     public final float top() {
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.listView;
-        return Math.max(Math.max(0.0f, this.keyboardOffset - anonymousClass34.getTop()), getListViewContentTop()) + anonymousClass34.getY();
+        AnonymousClass1 anonymousClass1 = this.listView;
+        return Math.max(Math.max(0.0f, this.keyboardOffset - anonymousClass1.getTop()), getListViewContentTop()) + anonymousClass1.getY();
     }
 
     public final void updateMessagesPlaces() {
@@ -1978,7 +1661,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         if (arrayList2 != null) {
             arrayList.addAll(arrayList2);
         }
-        Collections.sort(arrayList, new OAuthSheet$$ExternalSyntheticLambda3(12));
+        Collections.sort(arrayList, new CacheModel$$ExternalSyntheticLambda0(11));
         int size = arrayList.size();
         int i = Integer.MIN_VALUE;
         int i2 = 0;
@@ -2000,11 +1683,11 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
         int i5 = 0;
         while (true) {
-            ChatActivity.AnonymousClass34 anonymousClass34 = this.listView;
-            if (i5 >= anonymousClass34.getChildCount()) {
+            AnonymousClass1 anonymousClass1 = this.listView;
+            if (i5 >= anonymousClass1.getChildCount()) {
                 break;
             }
-            View childAt = anonymousClass34.getChildAt(i5);
+            View childAt = anonymousClass1.getChildAt(i5);
             if ((childAt instanceof LiveCommentView) && (message = (liveCommentView = (LiveCommentView) childAt).message) != null) {
                 int iIntValue = ((Integer) Map.EL.getOrDefault(map, Long.valueOf(message.dialogId), 0)).intValue();
                 Message message2 = liveCommentView.message;
@@ -2030,11 +1713,11 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
         int i7 = 0;
         while (true) {
-            MessageSeenView.AnonymousClass1 anonymousClass1 = this.topListView;
-            if (i7 >= anonymousClass1.getChildCount()) {
+            AnonymousClass4 anonymousClass4 = this.topListView;
+            if (i7 >= anonymousClass4.getChildCount()) {
                 break;
             }
-            View childAt2 = anonymousClass1.getChildAt(i7);
+            View childAt2 = anonymousClass4.getChildAt(i7);
             if ((childAt2 instanceof LiveTopSenderView) && (topSender = (liveTopSenderView = (LiveTopSenderView) childAt2).sender) != null) {
                 int iIntValue3 = ((Integer) Map.EL.getOrDefault(map, Long.valueOf(topSender.dialogId), 0)).intValue();
                 TopSender topSender2 = liveTopSenderView.sender;
@@ -2067,18 +1750,18 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         }
         boolean zIsEmpty = arrayList.isEmpty();
         this.hasTopMessages = !zIsEmpty;
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.listView;
-        MessageSeenView.AnonymousClass1 anonymousClass1 = this.topListView;
+        AnonymousClass1 anonymousClass1 = this.listView;
+        AnonymousClass4 anonymousClass4 = this.topListView;
         if (z) {
-            ViewPropertyAnimator viewPropertyAnimatorTranslationY = anonymousClass34.animate().translationY(this.hasTopMessages ? 0.0f : AndroidUtilities.dp(35.0f));
+            ViewPropertyAnimator viewPropertyAnimatorTranslationY = anonymousClass1.animate().translationY(this.hasTopMessages ? 0.0f : AndroidUtilities.dp(35.0f));
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            viewPropertyAnimatorTranslationY.setInterpolator(cubicBezierInterpolator).setUpdateListener(new QrActivity$$ExternalSyntheticLambda18(this, 22)).setDuration(420L).start();
-            anonymousClass1.animate().translationY(this.hasTopMessages ? 0.0f : AndroidUtilities.dp(35.0f)).alpha(this.hasTopMessages ? 1.0f : 0.0f).setInterpolator(cubicBezierInterpolator).setDuration(420L).start();
+            viewPropertyAnimatorTranslationY.setInterpolator(cubicBezierInterpolator).setUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(this, 5)).setDuration(420L).start();
+            anonymousClass4.animate().translationY(this.hasTopMessages ? 0.0f : AndroidUtilities.dp(35.0f)).alpha(this.hasTopMessages ? 1.0f : 0.0f).setInterpolator(cubicBezierInterpolator).setDuration(420L).start();
             return;
         }
-        anonymousClass34.setTranslationY(!zIsEmpty ? 0.0f : AndroidUtilities.dp(35.0f));
-        anonymousClass1.setTranslationY(this.hasTopMessages ? 0.0f : AndroidUtilities.dp(35.0f));
-        anonymousClass1.setAlpha(this.hasTopMessages ? 1.0f : 0.0f);
+        anonymousClass1.setTranslationY(!zIsEmpty ? 0.0f : AndroidUtilities.dp(35.0f));
+        anonymousClass4.setTranslationY(this.hasTopMessages ? 0.0f : AndroidUtilities.dp(35.0f));
+        anonymousClass4.setAlpha(this.hasTopMessages ? 1.0f : 0.0f);
         invalidate();
     }
 
@@ -2105,7 +1788,7 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
                 int i2 = newMessageId;
                 if (!z) {
                     if (tL_error != null) {
-                        AndroidUtilities.runOnUIThread(new StarsIntroActivity$$ExternalSyntheticLambda10(liveCommentsView, i2, tL_error, j2, j, tL_textWithEntities));
+                        AndroidUtilities.runOnUIThread(new StarsIntroActivity$$ExternalSyntheticLambda15(liveCommentsView, i2, tL_error, j2, j, tL_textWithEntities));
                         return;
                     }
                     return;
@@ -2164,5 +1847,672 @@ public abstract class LiveCommentsView extends FrameLayout implements Notificati
         push(ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime(), r3, j == this.dialogId || isAdmin(), j, tL_textWithEntities, j2, false);
         setCollapsed(false, true);
         return newMessageId;
+    }
+
+    public final class LiveCommentView extends FrameLayout implements ItemOptions.ScrimView {
+        public final LinearLayout adminLayout;
+        public final SpoilersTextView adminNameView;
+        public final SpoilersTextView adminRoleView;
+        public final AvatarDrawable avatarDrawable;
+        public final BackupImageView avatarView;
+        public Drawable background;
+        public final Paint backgroundPaint;
+        public float backgroundViewAlpha;
+        public final int currentAccount;
+        public boolean drawParticles;
+        public boolean drawStar;
+        public final boolean filled;
+        public ValueAnimator highlightAnimator;
+        public int highlightingMessageId;
+        public final AnonymousClass1 layout;
+        public Message message;
+        public final TextView smallStarsView;
+        public final ColoredImageSpan[] smallStarsViewCache;
+        public final TextView starsView;
+        public final ColoredImageSpan[] starsViewCache;
+        public CharSequence text;
+        public final SpoilersTextView textView;
+
+        public final class AlphaSpan extends CharacterStyle {
+            public final float alpha = 0.75f;
+
+            @Override
+            public final void updateDrawState(TextPaint textPaint) {
+                textPaint.setAlpha((int) (this.alpha * textPaint.getAlpha()));
+            }
+        }
+
+        public final class Factory extends UItem.UItemFactory {
+            public static final int $r8$clinit = 0;
+
+            static {
+                UItem.UItemFactory.setup(new Factory());
+            }
+
+            @Override
+            public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+                ((LiveCommentView) view).set((Message) uItem.object);
+            }
+
+            @Override
+            public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+                LiveCommentView liveCommentView = new LiveCommentView(context, i, false);
+                liveCommentView.setLayoutParams(new RecyclerView.LayoutParams(-2, -2));
+                return liveCommentView;
+            }
+
+            @Override
+            public final boolean equals(UItem uItem, UItem uItem2) {
+                return uItem.object == uItem2.object;
+            }
+        }
+
+        public LiveCommentView(Context context, int i, boolean z) {
+            super(context);
+            this.drawParticles = false;
+            this.drawStar = true;
+            this.backgroundViewAlpha = 0.5f;
+            this.starsViewCache = new ColoredImageSpan[1];
+            this.smallStarsViewCache = new ColoredImageSpan[1];
+            this.backgroundPaint = new Paint(1);
+            this.currentAccount = i;
+            this.filled = z;
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(this, context);
+            this.layout = anonymousClass1;
+            anonymousClass1.setOrientation(0);
+            addView(anonymousClass1, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 0.5f, 0.0f, 0.5f));
+            this.avatarDrawable = new AvatarDrawable();
+            BackupImageView backupImageView = new BackupImageView(context);
+            this.avatarView = backupImageView;
+            backupImageView.setRoundRadius(AndroidUtilities.dp(11.0f));
+            anonymousClass1.addView(backupImageView, LayoutHelper.createLinear(22, 22, 0.0f, 51, 3, 2, 3, 2));
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(1);
+            anonymousClass1.addView(linearLayout, LayoutHelper.createLinear(-2, -2, 1.0f, 51, 4, 3, 7, 3));
+            LinearLayout linearLayout2 = new LinearLayout(context);
+            this.adminLayout = linearLayout2;
+            linearLayout2.setOrientation(0);
+            linearLayout2.setVisibility(8);
+            linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, -2));
+            SpoilersTextView spoilersTextView = new SpoilersTextView(context, true, null);
+            this.adminNameView = spoilersTextView;
+            spoilersTextView.setTextColor(-1);
+            spoilersTextView.setTextSize(1, 14.0f);
+            spoilersTextView.setGravity(3);
+            spoilersTextView.setTypeface(AndroidUtilities.bold());
+            linearLayout2.addView(spoilersTextView, LayoutHelper.createLinear(-2, -2, 1.0f, 51, 0, 0, 16, 0));
+            SpoilersTextView spoilersTextView2 = new SpoilersTextView(context, true, null);
+            this.adminRoleView = spoilersTextView2;
+            spoilersTextView2.setTextColor(Theme.multAlpha(0.55f, -1));
+            spoilersTextView2.setTextSize(1, 12.0f);
+            spoilersTextView2.setGravity(5);
+            linearLayout2.addView(spoilersTextView2, LayoutHelper.createLinear(-2, -2, 0.0f, 53, 0, 0, 0, 0));
+            SpoilersTextView spoilersTextView3 = new SpoilersTextView(context, true, null);
+            this.textView = spoilersTextView3;
+            spoilersTextView3.setTextColor(-1);
+            spoilersTextView3.setTextSize(1, 14.0f);
+            spoilersTextView3.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), Theme.multAlpha(0.6f, -16777216));
+            NotificationCenter.listenEmojiLoading(spoilersTextView3);
+            linearLayout.addView(spoilersTextView3, LayoutHelper.createLinear(-2, -2));
+            TextView textView = new TextView(context);
+            this.starsView = textView;
+            textView.setTextColor(-1);
+            textView.setTextSize(1, 11.0f);
+            textView.setPadding(AndroidUtilities.dp(4.66f), 0, AndroidUtilities.dp(4.66f), 0);
+            textView.setVisibility(8);
+            anonymousClass1.addView(textView, LayoutHelper.createLinear(-2, 16, 0.0f, 21, -3, 0, 6, 0));
+            TextView textView2 = new TextView(context);
+            this.smallStarsView = textView2;
+            textView2.setTextColor(-1);
+            textView2.setAlpha(0.65f);
+            textView2.setTextSize(1, 11.0f);
+            textView2.setVisibility(8);
+            anonymousClass1.addView(textView2, LayoutHelper.createLinear(-2, -2, 0.0f, 85, 0, 3, 10, 0));
+        }
+
+        @Override
+        public final void drawScrim(Canvas canvas, float f) {
+            AnonymousClass1 anonymousClass1 = this.layout;
+            if (anonymousClass1.getBackground() == null) {
+                Paint paint = this.backgroundPaint;
+                paint.setColor(Theme.multAlpha(f * 0.5f, -16777216));
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(anonymousClass1.getX(), anonymousClass1.getY(), anonymousClass1.getX() + anonymousClass1.getWidth(), anonymousClass1.getY() + anonymousClass1.getHeight());
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), paint);
+            }
+            draw(canvas);
+        }
+
+        @Override
+        public final void getBounds(RectF rectF) {
+            ItemOptions.ScrimView.CC.$default$getBounds(this, rectF);
+        }
+
+        public final void highlight() {
+            ValueAnimator valueAnimator = this.highlightAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.highlightAnimator = null;
+                Drawable drawable = this.background;
+                if (drawable != null) {
+                    drawable.setAlpha((int) (this.backgroundViewAlpha * 255.0f));
+                    this.layout.invalidate();
+                }
+            }
+            Message message = this.message;
+            if (message == null || this.background == null) {
+                return;
+            }
+            this.highlightingMessageId = message.id;
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.highlightAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(this, 6));
+            this.highlightAnimator.addListener(new BaseChartView.AnonymousClass4(this, 20));
+            this.highlightAnimator.setDuration(350L);
+            this.highlightAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.highlightAnimator.start();
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            super.onMeasure(i, i2);
+            setPivotX(0.0f);
+            setPivotY(getMeasuredHeight());
+        }
+
+        public void set(Message message) {
+            ValueAnimator valueAnimator;
+            String forcedFirstName;
+            SpoilersTextView spoilersTextView;
+            int i;
+            int i2;
+            int tierOption;
+            int tierOption2;
+            TLRPC.TL_textWithEntities tL_textWithEntities;
+            CharSequence charSequence;
+            SpoilersTextView spoilersTextView2;
+            int i3;
+            long j;
+            TextView textView;
+            TextView textView2;
+            boolean z;
+            float f;
+            ColoredImageSpan coloredImageSpan;
+            CharSequence charSequenceSuperTrim;
+            CharSequence charSequence2;
+            AnimatedEmojiSpan[] animatedEmojiSpanArr;
+            Emoji.EmojiSpan[] emojiSpanArr;
+            this.message = message;
+            AnonymousClass1 anonymousClass1 = this.layout;
+            if ((message == null || this.highlightingMessageId != message.id) && (valueAnimator = this.highlightAnimator) != null) {
+                valueAnimator.cancel();
+                this.highlightAnimator = null;
+                Drawable drawable = this.background;
+                if (drawable != null) {
+                    drawable.setAlpha((int) (this.backgroundViewAlpha * 255.0f));
+                    anonymousClass1.invalidate();
+                }
+            }
+            long j2 = message.dialogId;
+            BackupImageView backupImageView = this.avatarView;
+            AvatarDrawable avatarDrawable = this.avatarDrawable;
+            int i4 = this.currentAccount;
+            if (j2 >= 0) {
+                TLRPC.User user = MessagesController.getInstance(i4).getUser(Long.valueOf(message.dialogId));
+                avatarDrawable.setInfo(user);
+                backupImageView.setForUserOrChat(user, avatarDrawable);
+                forcedFirstName = UserObject.getForcedFirstName(user);
+            } else {
+                TLRPC.Chat chat = MessagesController.getInstance(i4).getChat(Long.valueOf(-message.dialogId));
+                avatarDrawable.setInfo(chat);
+                backupImageView.setForUserOrChat(chat, avatarDrawable);
+                forcedFirstName = chat == null ? "" : chat.title;
+            }
+            int tierOption3 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 3);
+            int tierOption4 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 4);
+            int tierOption5 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 5);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            boolean z2 = message.fromAdmin;
+            SpoilersTextView spoilersTextView3 = this.textView;
+            boolean z3 = this.filled;
+            if (z2) {
+                spoilersTextView = spoilersTextView3;
+                if (message.stars <= 0) {
+                    z3 = z3;
+                }
+                tierOption = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 1);
+                tierOption2 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 2);
+                tL_textWithEntities = message.text;
+                if (tL_textWithEntities != null) {
+                    CharSequence textWithEntities = MessageObject.formatTextWithEntities(tL_textWithEntities, false, spoilersTextView.getPaint());
+                    this.text = textWithEntities;
+                    charSequenceSuperTrim = AndroidUtilities.superTrim(textWithEntities);
+                    this.text = charSequenceSuperTrim;
+                    if (charSequenceSuperTrim.length() > tierOption && !message.fromAdmin) {
+                        this.text = this.text.subSequence(0, tierOption);
+                    }
+                    charSequence2 = this.text;
+                    if (charSequence2 instanceof Spannable) {
+                        Spannable spannable = (Spannable) charSequence2;
+                        animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannable.getSpans(0, charSequence2.length(), AnimatedEmojiSpan.class);
+                        charSequence = " ";
+                        emojiSpanArr = (Emoji.EmojiSpan[]) spannable.getSpans(0, this.text.length(), Emoji.EmojiSpan.class);
+                        if (animatedEmojiSpanArr.length + emojiSpanArr.length <= tierOption2 && !message.fromAdmin) {
+                            ArrayList arrayList = new ArrayList();
+                            int i5 = 0;
+                            while (i5 < animatedEmojiSpanArr.length) {
+                                AnimatedEmojiSpan[] animatedEmojiSpanArr2 = animatedEmojiSpanArr;
+                                int i6 = i5;
+                                arrayList.add(new Pair(Integer.valueOf(spannable.getSpanStart(animatedEmojiSpanArr2[i5])), Integer.valueOf(spannable.getSpanEnd(animatedEmojiSpanArr2[i6]))));
+                                i5 = i6 + 1;
+                                animatedEmojiSpanArr = animatedEmojiSpanArr2;
+                            }
+                            int i7 = 0;
+                            while (i7 < emojiSpanArr.length) {
+                                Emoji.EmojiSpan[] emojiSpanArr2 = emojiSpanArr;
+                                arrayList.add(new Pair(Integer.valueOf(spannable.getSpanStart(emojiSpanArr[i7])), Integer.valueOf(spannable.getSpanEnd(emojiSpanArr2[i7]))));
+                                i7++;
+                                emojiSpanArr = emojiSpanArr2;
+                            }
+                            Collections.sort(arrayList, new CacheModel$$ExternalSyntheticLambda0(13));
+                            if (!(this.text instanceof SpannableStringBuilder)) {
+                                this.text = new SpannableStringBuilder(this.text);
+                            }
+                            for (int size = arrayList.size() - 1; size >= tierOption2; size--) {
+                                Pair pair = (Pair) arrayList.get(size);
+                                ((SpannableStringBuilder) this.text).replace(((Integer) pair.first).intValue(), ((Integer) pair.second).intValue(), (CharSequence) "");
+                            }
+                        }
+                        if (!message.fromAdmin) {
+                            this.text = AndroidUtilities.replaceNewLines(this.text);
+                        }
+                        spannableStringBuilder.append(this.text);
+                    } else {
+                        charSequence = " ";
+                    }
+                    if (!message.fromAdmin) {
+                        this.text = AndroidUtilities.replaceNewLines(this.text);
+                    }
+                    spannableStringBuilder.append(this.text);
+                } else {
+                    charSequence = " ";
+                    spoilersTextView = spoilersTextView;
+                    this.text = "";
+                }
+                spoilersTextView2 = spoilersTextView;
+                spoilersTextView2.setText(Emoji.replaceEmoji(spannableStringBuilder, spoilersTextView.getPaint().getFontMetricsInt(), false));
+                this.background = null;
+                LinearLayout linearLayout = this.adminLayout;
+                if (message.fromAdmin || message.stars > 0) {
+                    i3 = 8;
+                } else {
+                    i3 = 0;
+                }
+                linearLayout.setVisibility(i3);
+                j = message.stars;
+                textView = this.smallStarsView;
+                textView2 = this.starsView;
+                if (j > 0) {
+                    if (j >= 250) {
+                        z = true;
+                    } else {
+                        z = false;
+                    }
+                    this.drawParticles = z;
+                    anonymousClass1.setWillNotDraw(!z);
+                    anonymousClass1.invalidate();
+                    spoilersTextView2.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                    int iDp = AndroidUtilities.dp(13.0f);
+                    int i8 = Theme.default_shadow_color;
+                    GradientDrawable gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{tierOption3, tierOption4});
+                    gradientDrawable.setShape(0);
+                    gradientDrawable.setCornerRadius(iDp);
+                    this.background = gradientDrawable;
+                    anonymousClass1.setBackground(gradientDrawable);
+                    Drawable drawable2 = this.background;
+                    if (z3) {
+                        f = 1.0f;
+                    } else {
+                        f = 0.65f;
+                    }
+                    this.backgroundViewAlpha = f;
+                    drawable2.setAlpha((int) (f * 255.0f));
+                    if (message.isReaction) {
+                        textView.setVisibility(8);
+                        textView.setText("");
+                        textView2.setVisibility(0);
+                        textView2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), Theme.multAlpha(0.25f, tierOption5)));
+                        textView2.setText(StarsIntroActivity.replaceStars(false, BillingController$$ExternalSyntheticOutline0.m(message.stars, ',', new StringBuilder("⭐️ ")), 0.75f, this.starsViewCache, AndroidUtilities.dp(0.66f), 1.0f));
+                        coloredImageSpan = this.starsViewCache[0];
+                        if (coloredImageSpan != null) {
+                            coloredImageSpan.draw = this.drawStar;
+                        }
+                    } else {
+                        textView.setVisibility(0);
+                        textView.setText(StarsIntroActivity.replaceStars(false, BillingController$$ExternalSyntheticOutline0.m(message.stars, ',', new StringBuilder("⭐️ ")), 0.75f, this.smallStarsViewCache, 0.0f, 1.0f));
+                        textView2.setVisibility(8);
+                        textView2.setText("");
+                    }
+                } else if (message.fromAdmin) {
+                    this.drawParticles = false;
+                    anonymousClass1.setWillNotDraw(true);
+                    ShapeDrawable shapeDrawableCreateRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), -16777216);
+                    this.background = shapeDrawableCreateRoundRectDrawable;
+                    anonymousClass1.setBackground(shapeDrawableCreateRoundRectDrawable);
+                    Drawable drawable3 = this.background;
+                    this.backgroundViewAlpha = 0.5f;
+                    drawable3.setAlpha((int) 127.5f);
+                    spoilersTextView2.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+                    spannableStringBuilder2.append((CharSequence) DialogObject.getName(i4, message.dialogId));
+                    spannableStringBuilder2.append(charSequence);
+                    int length = spannableStringBuilder2.length();
+                    spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.LiveStoryBadge));
+                    spannableStringBuilder2.setSpan(new ReplacementSpan() {
+                        public final RectF rect = new RectF();
+                        public final Paint bg = new Paint(1);
+                        public final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 8.0f, AndroidUtilities.bold());
+
+                        @Override
+                        public final void draw(Canvas canvas, CharSequence charSequence3, int i9, int i10, float f2, int i11, int i12, int i13, Paint paint) {
+                            float fDp = ((i11 + i13) / 2.0f) + AndroidUtilities.dp(0.0f);
+                            RectF rectF = this.rect;
+                            rectF.set(f2, fDp - AndroidUtilities.dp(6.0f), this.text.getWidth() + f2 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f) + fDp);
+                            Paint paint2 = this.bg;
+                            paint2.setColor(-572850);
+                            canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
+                            this.text.draw(canvas, AndroidUtilities.dp(4.0f) + f2, fDp, -1, 1.0f);
+                        }
+
+                        @Override
+                        public final int getSize(Paint paint, CharSequence charSequence3, int i9, int i10, Paint.FontMetricsInt fontMetricsInt) {
+                            return (int) (this.text.getWidth() + AndroidUtilities.dp(8.0f));
+                        }
+                    }, length, spannableStringBuilder2.length(), 33);
+                    this.adminNameView.setText(spannableStringBuilder2);
+                    this.adminRoleView.setText(LocaleController.getString(R.string.LiveStoryAdminRole));
+                    textView.setVisibility(8);
+                    textView2.setVisibility(8);
+                } else {
+                    this.drawParticles = false;
+                    anonymousClass1.setWillNotDraw(true);
+                    spoilersTextView2.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), Theme.multAlpha(0.6f, -16777216));
+                    this.background = null;
+                    anonymousClass1.setBackground(null);
+                    textView.setVisibility(8);
+                    textView2.setVisibility(8);
+                }
+                anonymousClass1.invalidate();
+            }
+            spoilersTextView = spoilersTextView3;
+            if (message.place > 0) {
+                spannableStringBuilder.append((CharSequence) ("#" + message.place));
+                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(new CrownDrawable(getContext(), message.place));
+                coloredImageSpan2.setTranslateY((float) AndroidUtilities.dp(1.0f));
+                spannableStringBuilder.setSpan(coloredImageSpan2, 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.append((CharSequence) "\u2009");
+            }
+            spannableStringBuilder.append(TextUtils.ellipsize(forcedFirstName, spoilersTextView.getPaint(), AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END));
+            if (z3 != 0) {
+                i = 33;
+                i2 = 0;
+                spannableStringBuilder.setSpan(new AlphaSpan(), 0, spannableStringBuilder.length(), 33);
+            } else {
+                i = 33;
+                i2 = 0;
+            }
+            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), i2, spannableStringBuilder.length(), i);
+            spannableStringBuilder.append((CharSequence) " ");
+            tierOption = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 1);
+            tierOption2 = HighlightMessageSheet.getTierOption(i4, (int) message.stars, 2);
+            tL_textWithEntities = message.text;
+            if (tL_textWithEntities != null) {
+                CharSequence textWithEntities2 = MessageObject.formatTextWithEntities(tL_textWithEntities, false, spoilersTextView.getPaint());
+                this.text = textWithEntities2;
+                charSequenceSuperTrim = AndroidUtilities.superTrim(textWithEntities2);
+                this.text = charSequenceSuperTrim;
+                if (charSequenceSuperTrim.length() > tierOption) {
+                    this.text = this.text.subSequence(0, tierOption);
+                }
+                charSequence2 = this.text;
+                if (charSequence2 instanceof Spannable) {
+                    Spannable spannable2 = (Spannable) charSequence2;
+                    animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannable2.getSpans(0, charSequence2.length(), AnimatedEmojiSpan.class);
+                    charSequence = " ";
+                    emojiSpanArr = (Emoji.EmojiSpan[]) spannable2.getSpans(0, this.text.length(), Emoji.EmojiSpan.class);
+                    if (animatedEmojiSpanArr.length + emojiSpanArr.length <= tierOption2) {
+                    }
+                    if (!message.fromAdmin) {
+                        this.text = AndroidUtilities.replaceNewLines(this.text);
+                    }
+                    spannableStringBuilder.append(this.text);
+                } else {
+                    charSequence = " ";
+                }
+                if (!message.fromAdmin) {
+                    this.text = AndroidUtilities.replaceNewLines(this.text);
+                }
+                spannableStringBuilder.append(this.text);
+            } else {
+                charSequence = " ";
+                spoilersTextView = spoilersTextView;
+                this.text = "";
+            }
+            spoilersTextView2 = spoilersTextView;
+            spoilersTextView2.setText(Emoji.replaceEmoji(spannableStringBuilder, spoilersTextView.getPaint().getFontMetricsInt(), false));
+            this.background = null;
+            LinearLayout linearLayout2 = this.adminLayout;
+            if (message.fromAdmin) {
+                i3 = 8;
+            } else {
+                i3 = 8;
+            }
+            linearLayout2.setVisibility(i3);
+            j = message.stars;
+            textView = this.smallStarsView;
+            textView2 = this.starsView;
+            if (j > 0) {
+                if (j >= 250) {
+                    z = true;
+                } else {
+                    z = false;
+                }
+                this.drawParticles = z;
+                anonymousClass1.setWillNotDraw(!z);
+                anonymousClass1.invalidate();
+                spoilersTextView2.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                int iDp2 = AndroidUtilities.dp(13.0f);
+                int i9 = Theme.default_shadow_color;
+                GradientDrawable gradientDrawable2 = new GradientDrawable(GradientDrawable.Orientation.RIGHT_LEFT, new int[]{tierOption3, tierOption4});
+                gradientDrawable2.setShape(0);
+                gradientDrawable2.setCornerRadius(iDp2);
+                this.background = gradientDrawable2;
+                anonymousClass1.setBackground(gradientDrawable2);
+                Drawable drawable4 = this.background;
+                if (z3) {
+                    f = 0.65f;
+                } else {
+                    f = 1.0f;
+                }
+                this.backgroundViewAlpha = f;
+                drawable4.setAlpha((int) (f * 255.0f));
+                if (message.isReaction) {
+                    textView.setVisibility(0);
+                    textView.setText(StarsIntroActivity.replaceStars(false, BillingController$$ExternalSyntheticOutline0.m(message.stars, ',', new StringBuilder("⭐️ ")), 0.75f, this.smallStarsViewCache, 0.0f, 1.0f));
+                    textView2.setVisibility(8);
+                    textView2.setText("");
+                } else {
+                    textView.setVisibility(8);
+                    textView.setText("");
+                    textView2.setVisibility(0);
+                    textView2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), Theme.multAlpha(0.25f, tierOption5)));
+                    textView2.setText(StarsIntroActivity.replaceStars(false, BillingController$$ExternalSyntheticOutline0.m(message.stars, ',', new StringBuilder("⭐️ ")), 0.75f, this.starsViewCache, AndroidUtilities.dp(0.66f), 1.0f));
+                    coloredImageSpan = this.starsViewCache[0];
+                    if (coloredImageSpan != null) {
+                        coloredImageSpan.draw = this.drawStar;
+                    }
+                }
+            } else if (message.fromAdmin) {
+                this.drawParticles = false;
+                anonymousClass1.setWillNotDraw(true);
+                ShapeDrawable shapeDrawableCreateRoundRectDrawable2 = Theme.createRoundRectDrawable(AndroidUtilities.dp(13.0f), -16777216);
+                this.background = shapeDrawableCreateRoundRectDrawable2;
+                anonymousClass1.setBackground(shapeDrawableCreateRoundRectDrawable2);
+                Drawable drawable5 = this.background;
+                this.backgroundViewAlpha = 0.5f;
+                drawable5.setAlpha((int) 127.5f);
+                spoilersTextView2.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
+                spannableStringBuilder3.append((CharSequence) DialogObject.getName(i4, message.dialogId));
+                spannableStringBuilder3.append(charSequence);
+                int length2 = spannableStringBuilder3.length();
+                spannableStringBuilder3.append((CharSequence) LocaleController.getString(R.string.LiveStoryBadge));
+                spannableStringBuilder3.setSpan(new ReplacementSpan() {
+                    public final RectF rect = new RectF();
+                    public final Paint bg = new Paint(1);
+                    public final Text text = new Text(LocaleController.getString(R.string.LiveStoryBadge), 8.0f, AndroidUtilities.bold());
+
+                    @Override
+                    public final void draw(Canvas canvas, CharSequence charSequence3, int i10, int i11, float f2, int i12, int i13, int i14, Paint paint) {
+                        float fDp = ((i12 + i14) / 2.0f) + AndroidUtilities.dp(0.0f);
+                        RectF rectF = this.rect;
+                        rectF.set(f2, fDp - AndroidUtilities.dp(6.0f), this.text.getWidth() + f2 + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(6.0f) + fDp);
+                        Paint paint2 = this.bg;
+                        paint2.setColor(-572850);
+                        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
+                        this.text.draw(canvas, AndroidUtilities.dp(4.0f) + f2, fDp, -1, 1.0f);
+                    }
+
+                    @Override
+                    public final int getSize(Paint paint, CharSequence charSequence3, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+                        return (int) (this.text.getWidth() + AndroidUtilities.dp(8.0f));
+                    }
+                }, length2, spannableStringBuilder3.length(), 33);
+                this.adminNameView.setText(spannableStringBuilder3);
+                this.adminRoleView.setText(LocaleController.getString(R.string.LiveStoryAdminRole));
+                textView.setVisibility(8);
+                textView2.setVisibility(8);
+            } else {
+                this.drawParticles = false;
+                anonymousClass1.setWillNotDraw(true);
+                spoilersTextView2.setShadowLayer(AndroidUtilities.dp(2.5f), 0.0f, AndroidUtilities.dp(1.5f), Theme.multAlpha(0.6f, -16777216));
+                this.background = null;
+                anonymousClass1.setBackground(null);
+                textView.setVisibility(8);
+                textView2.setVisibility(8);
+            }
+            anonymousClass1.invalidate();
+        }
+
+        public void setDrawStar(boolean z) {
+            this.drawStar = z;
+            ColoredImageSpan coloredImageSpan = this.starsViewCache[0];
+            if (coloredImageSpan == null || coloredImageSpan.draw == z) {
+                return;
+            }
+            coloredImageSpan.draw = z;
+            this.starsView.invalidate();
+        }
+
+        public final class AnonymousClass1 extends LinearLayout {
+            public final int $r8$classId = 2;
+            public final Object clipPath;
+            public Object particles;
+            public final View this$0;
+
+            public AnonymousClass1(Context context) {
+                super(context);
+                setOrientation(1);
+                BackupImageView backupImageView = new BackupImageView(context);
+                this.particles = backupImageView;
+                backupImageView.setRoundRadius(AndroidUtilities.dp(35.0f));
+                addView(backupImageView, LayoutHelper.createLinear(70, 70, 1));
+                TextView textView = new TextView(context);
+                this.clipPath = textView;
+                textView.setTypeface(AndroidUtilities.bold());
+                textView.setTextSize(1, 20.0f);
+                textView.setGravity(17);
+                addView(textView, LayoutHelper.createLinear(-1, -2, 0, 0.0f, 11.33f, 0.0f, 7.0f));
+                TextView textView2 = new TextView(context);
+                this.this$0 = textView2;
+                textView2.setTextSize(1, 14.0f);
+                textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+                textView2.setGravity(17);
+                addView(textView2, LayoutHelper.createLinear(-1, -2));
+            }
+
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        if (((LiveCommentView) this.this$0).drawParticles) {
+                            Path path = (Path) this.clipPath;
+                            path.rewind();
+                            RectF rectF = AndroidUtilities.rectTmp;
+                            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+                            path.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CW);
+                            canvas.save();
+                            canvas.clipPath(path);
+                            if (((StarsReactionsSheet.Particles) this.particles) == null) {
+                                this.particles = new StarsReactionsSheet.Particles(1, 250);
+                            }
+                            StarsReactionsSheet.Particles particles = (StarsReactionsSheet.Particles) this.particles;
+                            float f = 0;
+                            particles.bounds.set(f, f, getWidth(), getHeight());
+                            particles.removeParticlesOutside();
+                            StarsReactionsSheet.Particles particles2 = (StarsReactionsSheet.Particles) this.particles;
+                            particles2.speed = 30.0f;
+                            particles2.process();
+                            ((StarsReactionsSheet.Particles) this.particles).draw(canvas, -1, 0.85f);
+                            invalidate();
+                            canvas.restore();
+                        }
+                        super.dispatchDraw(canvas);
+                        break;
+                    default:
+                        super.dispatchDraw(canvas);
+                        break;
+                }
+            }
+
+            public AnonymousClass1(Context context, Theme.ResourcesProvider resourcesProvider) {
+                super(context);
+                setOrientation(1);
+                FrameLayout frameLayout = new FrameLayout(context);
+                frameLayout.setClipChildren(false);
+                frameLayout.setClipToPadding(false);
+                TONIntroActivity.AnonymousClass4 anonymousClass4 = new TONIntroActivity.AnonymousClass4(context, 70, 0);
+                frameLayout.addView(anonymousClass4, LayoutHelper.createFrame(-1, -1.0f));
+                GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 4);
+                this.particles = gLIconTextureView;
+                GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
+                gLIconRenderer.colorKey1 = Theme.key_starsGradient1;
+                gLIconRenderer.colorKey2 = Theme.key_starsGradient2;
+                gLIconRenderer.updateColors();
+                gLIconTextureView.setStarParticlesView(anonymousClass4);
+                frameLayout.addView(gLIconTextureView, LayoutHelper.createFrame(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+                gLIconTextureView.setPaused(false);
+                addView(frameLayout, LayoutHelper.createFrame(-1, 180.0f));
+                TextView textView = new TextView(context);
+                this.clipPath = textView;
+                zzkb.m(20.0f, 1, textView);
+                int i = Theme.key_dialogTextBlack;
+                textView.setTextColor(Theme.getColor(i, resourcesProvider));
+                textView.setGravity(17);
+                addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 2, 0, 0));
+                TextView textView2 = new TextView(context);
+                this.this$0 = textView2;
+                textView2.setTextSize(1, 14.0f);
+                textView2.setTextColor(Theme.getColor(i, resourcesProvider));
+                textView2.setGravity(17);
+                addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 0, 9, 0, 18));
+            }
+
+            public AnonymousClass1(LiveCommentView liveCommentView, Context context) {
+                super(context);
+                this.this$0 = liveCommentView;
+                this.clipPath = new Path();
+            }
+        }
     }
 }

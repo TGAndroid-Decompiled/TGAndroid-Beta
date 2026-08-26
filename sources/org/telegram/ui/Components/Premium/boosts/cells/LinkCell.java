@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.TextCheckCell2$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda51;
 
 public final class LinkCell extends FrameLayout {
     public final ImageView imageView;
@@ -27,7 +27,7 @@ public final class LinkCell extends FrameLayout {
         super(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.linkContainer = frameLayout;
-        SpoilersTextView spoilersTextView = new SpoilersTextView(context, null, true);
+        SpoilersTextView spoilersTextView = new SpoilersTextView(context, true, null);
         this.linkView = spoilersTextView;
         spoilersTextView.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(13.0f));
         spoilersTextView.setTextSize(1, 16.0f);
@@ -103,14 +103,14 @@ public final class LinkCell extends FrameLayout {
         if (this.slug == null) {
             spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");
         }
-        spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun, 0), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun), 0, spannableStringBuilder.length(), 33);
         spoilersTextView.setText(spannableStringBuilder);
-        this.linkContainer.setOnClickListener(new ProfileActivity$$ExternalSyntheticLambda51(6, runnable));
+        this.linkContainer.setOnClickListener(new TextCheckCell2$$ExternalSyntheticLambda0(4, runnable));
     }
 
     public void setSlug(String str) {
         this.slug = str;
-        this.link = zzil.m("https://t.me/giftcode/", str);
+        this.link = zzii.m("https://t.me/giftcode/", str);
         this.linkView.setText("t.me/giftcode/" + str);
     }
 }

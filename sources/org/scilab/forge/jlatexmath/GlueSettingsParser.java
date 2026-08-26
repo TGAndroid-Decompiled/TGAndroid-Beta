@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ public class GlueSettingsParser {
 
     private static void checkMapping(Object obj, String str, String str2, String str3) {
         if (obj == null) {
-            throw new XMLResourceParseException("GlueSettings.xml", str, str2, SurfaceContainer$$ExternalSyntheticOutline0.m("has an unknown value '", str3, "'!"));
+            throw new XMLResourceParseException("GlueSettings.xml", str, str2, Fragment$$ExternalSyntheticOutline0.m("has an unknown value '", str3, "'!"));
         }
     }
 
@@ -46,7 +46,7 @@ public class GlueSettingsParser {
                 String attribute = element.getAttribute(strArr[i]);
                 fArr[i] = (float) (!attribute.equals("") ? Double.parseDouble(attribute) : 0.0d);
             } catch (NumberFormatException unused) {
-                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i], SurfaceContainer$$ExternalSyntheticOutline0.m("has an invalid real value '", (String) null, "'!"));
+                throw new XMLResourceParseException("GlueSettings.xml", "GlueType", strArr[i], Fragment$$ExternalSyntheticOutline0.m("has an invalid real value '", (String) null, "'!"));
             }
         }
         return new Glue(fArr[0], fArr[1], fArr[2], str);

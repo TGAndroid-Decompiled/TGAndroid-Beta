@@ -1,7 +1,7 @@
 package kotlinx.coroutines.flow.internal;
 
-import kotlinx.coroutines.internal.Symbol;
+import com.google.common.base.Joiner;
 
 public abstract class NullSurrogateKt {
-    public static final Symbol NULL = new Symbol("NULL", 0);
+    public static final Joiner NULL = new Joiner("NULL", 2);
 }

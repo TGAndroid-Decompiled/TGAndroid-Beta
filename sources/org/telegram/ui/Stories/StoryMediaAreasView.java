@@ -1,10 +1,8 @@
 package org.telegram.ui.Stories;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.CornerPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -19,16 +17,14 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.LineHeightSpan;
 import android.text.style.RelativeSizeSpan;
-import android.util.StateSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -41,26 +37,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
-import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.LocationMarker;
-import org.telegram.ui.Components.Reactions.AnimatedEmojiEffect;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.Shaker$$ExternalSyntheticLambda0;
 import org.telegram.ui.EmojiAnimationsOverlay;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.LocationActivity;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.Weather;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda2;
+import org.telegram.ui.bots.BotSensors$1$$ExternalSyntheticLambda0;
 
 public abstract class StoryMediaAreasView extends FrameLayout implements View.OnClickListener {
     public final Path clipPath;
@@ -81,6 +74,21 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
     public AreaView selectedArea;
     public boolean shined;
 
+    public final class AnonymousClass1 extends LocationActivity {
+        @Override
+        public final boolean disablePermissionCheck() {
+            return true;
+        }
+    }
+
+    public final class AnonymousClass2 implements LineHeightSpan {
+        @Override
+        public final void chooseHeight(CharSequence charSequence, int i, int i2, int i3, int i4, Paint.FontMetricsInt fontMetricsInt) {
+            fontMetricsInt.ascent -= AndroidUtilities.dp(2.0f);
+            fontMetricsInt.top -= AndroidUtilities.dp(2.0f);
+        }
+    }
+
     public class AreaView extends View {
         public final ButtonBounce bounce;
         public final boolean bounceOnTap;
@@ -93,7 +101,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
         public final boolean ripple;
         public final BaseCell.RippleDrawableSafe rippleDrawable;
         public final boolean scaleOnTap;
-        public final LivePlayer$1$$ExternalSyntheticLambda0 shineRunnable;
+        public final BotSensors$1$$ExternalSyntheticLambda0 shineRunnable;
         public boolean shining;
         public long startTime;
         public LinearGradient strokeGradient;
@@ -110,12 +118,12 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
             this.gradientMatrix = new Matrix();
             BaseCell.RippleDrawableSafe rippleDrawableSafeCreateSelectorDrawable = Theme.createSelectorDrawable(1174405119, 2, -1);
             this.rippleDrawable = rippleDrawableSafeCreateSelectorDrawable;
-            this.bounce = new ButtonBounce(this, 1.0f, 5.0f);
+            this.bounce = new ButtonBounce(this);
             this.supportsBounds = false;
             this.supportsShining = false;
             this.shining = false;
             this.clipPath = new Path();
-            this.shineRunnable = new LivePlayer$1$$ExternalSyntheticLambda0(this, 23);
+            this.shineRunnable = new BotSensors$1$$ExternalSyntheticLambda0(this, 10);
             this.mediaArea = mediaArea;
             boolean z2 = mediaArea instanceof TL_stories.TL_mediaAreaGeoPoint;
             this.supportsBounds = z2 || (mediaArea instanceof TL_stories.TL_mediaAreaVenue) || (mediaArea instanceof TL_stories.TL_mediaAreaUrl);
@@ -143,7 +151,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                 if (getParent() instanceof View) {
                     View view = (View) getParent();
                     Objects.requireNonNull(view);
-                    buttonBounce.additionalInvalidate = new Shaker$$ExternalSyntheticLambda0(0, view);
+                    buttonBounce.setAdditionalInvalidate(new Shaker$$ExternalSyntheticLambda0(view, 0));
                 }
                 buttonBounce.setPressed(true);
                 rippleDrawableSafe.setHotspot(motionEvent.getX(), motionEvent.getY());
@@ -399,27 +407,19 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
 
     @Override
     public final void onClick(View view) {
-        float f;
         boolean z;
         SpannableString spannableString;
+        float f;
         float f2;
-        float f3;
         SpannableString spannableString2;
+        float f3;
         float f4;
-        float f5;
         int i;
-        float f6;
+        float f5;
+        boolean z2;
         int i2;
         AreaView areaView;
-        float f7;
-        float width;
-        ArrayList arrayList;
-        float f8;
-        float f9;
-        int i3 = 0;
-        int i4 = 1;
         if (view instanceof AreaView) {
-            int i5 = 3;
             if (view instanceof StoryReactionWidgetView) {
                 StoryReactionWidgetView storyReactionWidgetView = (StoryReactionWidgetView) view;
                 StoriesViewPager.AnonymousClass2.AnonymousClass1 anonymousClass1 = ((PeerStoriesView.AnonymousClass3) this).this$0;
@@ -434,105 +434,11 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                 }
                 storyReactionWidgetView.performHapticFeedback(3);
                 storyReactionWidgetView.holder.imageReceiver.startAnimation();
-                EmojiAnimationsOverlay emojiAnimationsOverlay = anonymousClass1.emojiAnimationsOverlay;
-                if (emojiAnimationsOverlay.drawingObjects.size() > 12) {
-                    return;
-                }
-                ReactionsLayoutInBubble.VisibleReaction visibleReactionFromTL2 = ReactionsLayoutInBubble.VisibleReaction.fromTL(storyReactionWidgetView.mediaArea.reaction);
-                String strFindAnimatedEmojiEmoticon = visibleReactionFromTL2.emojicon;
-                if (strFindAnimatedEmojiEmoticon == null) {
-                    strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(AnimatedEmojiDrawable.findDocument(emojiAnimationsOverlay.currentAccount, visibleReactionFromTL2.documentId));
-                }
-                float measuredHeight = storyReactionWidgetView.getMeasuredHeight();
-                float measuredWidth = storyReactionWidgetView.getMeasuredWidth();
-                View view2 = (View) storyReactionWidgetView.getParent();
-                if (measuredWidth > view2.getWidth() * 0.5f) {
-                    width = view2.getWidth() * 0.4f;
-                    f7 = width;
-                } else {
-                    f7 = measuredHeight;
-                    width = measuredWidth;
-                }
-                String strUnwrapEmoji = EmojiAnimationsOverlay.unwrapEmoji(strFindAnimatedEmojiEmoticon);
-                int iHashCode = storyReactionWidgetView.hashCode();
-                float translationX = storyReactionWidgetView.getTranslationX();
-                FrameLayout frameLayout = emojiAnimationsOverlay.contentLayout;
-                boolean z2 = translationX > ((float) frameLayout.getMeasuredWidth()) / 2.0f;
-                String str = visibleReactionFromTL2.emojicon;
-                ArrayList arrayList2 = emojiAnimationsOverlay.drawingObjects;
-                if (str != null) {
-                    boolean zCreateDrawingObject = emojiAnimationsOverlay.createDrawingObject(strUnwrapEmoji, iHashCode, null, null, -1, false, false, width, f7, z2);
-                    f9 = width;
-                    f8 = f7;
-                    if (zCreateDrawingObject) {
-                        if (arrayList2.isEmpty()) {
-                            return;
-                        }
-                        EmojiAnimationsOverlay.DrawingObject drawingObject = (EmojiAnimationsOverlay.DrawingObject) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList2);
-                        drawingObject.getClass();
-                        drawingObject.lastH = f8;
-                        drawingObject.lastW = f9;
-                        drawingObject.lastX = storyReactionWidgetView.getTranslationX() - (drawingObject.lastW / 2.0f);
-                        float translationY = storyReactionWidgetView.getTranslationY();
-                        float f10 = drawingObject.lastW;
-                        drawingObject.lastY = translationY - (1.5f * f10);
-                        if (drawingObject.isOut) {
-                            drawingObject.lastX = ((-f10) * 1.8f) + drawingObject.lastX;
-                            return;
-                        } else {
-                            drawingObject.lastX = ((-f10) * 0.2f) + drawingObject.lastX;
-                            return;
-                        }
-                    }
-                    arrayList = arrayList2;
-                } else {
-                    arrayList = arrayList2;
-                    f8 = f7;
-                    f9 = width;
-                }
-                if (visibleReactionFromTL2.documentId == 0 || storyReactionWidgetView.getAnimatedEmojiDrawable() == null) {
-                    return;
-                }
-                int i6 = 0;
-                while (i3 < arrayList.size()) {
-                    StoryReactionWidgetView storyReactionWidgetView2 = storyReactionWidgetView;
-                    int i7 = i3;
-                    if (((EmojiAnimationsOverlay.DrawingObject) arrayList.get(i3)).documentId == visibleReactionFromTL2.documentId) {
-                        i6++;
-                    }
-                    i3 = i7 + 1;
-                    storyReactionWidgetView = storyReactionWidgetView2;
-                }
-                StoryReactionWidgetView storyReactionWidgetView3 = storyReactionWidgetView;
-                if (i6 >= 4) {
-                    return;
-                }
-                EmojiAnimationsOverlay.DrawingObject drawingObject2 = new EmojiAnimationsOverlay.DrawingObject();
-                drawingObject2.genericEffect = new AnimatedEmojiEffect(storyReactionWidgetView3.getAnimatedEmojiDrawable(), UserConfig.selectedAccount, true, true);
-                if (!drawingObject2.isMessageEffect) {
-                    Random random = emojiAnimationsOverlay.random;
-                    drawingObject2.randomOffsetX = ((random.nextInt() % 101) / 100.0f) * (f9 / 4.0f);
-                    drawingObject2.randomOffsetY = ((random.nextInt() % 101) / 100.0f) * (f8 / 4.0f);
-                }
-                drawingObject2.messageId = iHashCode;
-                drawingObject2.document = null;
-                drawingObject2.documentId = visibleReactionFromTL2.documentId;
-                drawingObject2.isOut = z2;
-                drawingObject2.lastH = f8;
-                drawingObject2.lastW = f9;
-                drawingObject2.lastX = storyReactionWidgetView3.getTranslationX() - (drawingObject2.lastW / 2.0f);
-                float translationY2 = storyReactionWidgetView3.getTranslationY();
-                float f11 = drawingObject2.lastW;
-                drawingObject2.lastY = translationY2 - (1.5f * f11);
-                drawingObject2.lastX = ((-f11) * 1.8f) + drawingObject2.lastX;
-                if (emojiAnimationsOverlay.attached) {
-                    drawingObject2.genericEffect.setView(frameLayout);
-                }
-                arrayList.add(drawingObject2);
+                anonymousClass1.emojiAnimationsOverlay.showAnimationForWidget(storyReactionWidgetView);
                 return;
             }
             if (this.selectedArea == view) {
-                AndroidUtilities.runOnUIThread(new LivePlayer$1$$ExternalSyntheticLambda0(this, 22), 200L);
+                AndroidUtilities.runOnUIThread(new BotSensors$1$$ExternalSyntheticLambda0(this, 9), 200L);
                 TL_stories.MediaArea mediaArea = this.selectedArea.mediaArea;
                 if (mediaArea instanceof TL_stories.TL_mediaAreaChannelPost) {
                     Bundle bundle = new Bundle();
@@ -554,16 +460,16 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                     return;
                 }
                 if (mediaArea instanceof TL_stories.TL_mediaAreaStarGift) {
-                    String str2 = ((TL_stories.TL_mediaAreaStarGift) mediaArea).slug;
-                    Browser.openUrl(getContext(), "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/nft/" + str2);
+                    String str = ((TL_stories.TL_mediaAreaStarGift) mediaArea).slug;
+                    Browser.openUrl(getContext(), "https://" + MessagesController.getInstance(UserConfig.selectedAccount).linkPrefix + "/nft/" + str);
                     this.selectedArea = null;
                     invalidate();
                     return;
                 }
-                ProfileActivity.AnonymousClass52 anonymousClass52 = new ProfileActivity.AnonymousClass52(i5, i4);
-                anonymousClass52.fromStories = true;
-                anonymousClass52.searchStoriesArea = this.selectedArea.mediaArea;
-                anonymousClass52.setResourceProvider(this.resourcesProvider);
+                AnonymousClass1 anonymousClass2 = new AnonymousClass1(3);
+                anonymousClass2.fromStories = true;
+                anonymousClass2.searchStories(this.selectedArea.mediaArea);
+                anonymousClass2.setResourceProvider(this.resourcesProvider);
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 TL_stories.MediaArea mediaArea2 = this.selectedArea.mediaArea;
                 if (mediaArea2 instanceof TL_stories.TL_mediaAreaVenue) {
@@ -581,18 +487,17 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                     invalidate();
                     return;
                 } else {
-                    anonymousClass52.initialMaxZoom = true;
+                    anonymousClass2.setInitialMaxZoom(true);
+                    TL_stories.TL_mediaAreaGeoPoint tL_mediaAreaGeoPoint = (TL_stories.TL_mediaAreaGeoPoint) this.selectedArea.mediaArea;
                     TLRPC.TL_messageMediaGeo tL_messageMediaGeo = new TLRPC.TL_messageMediaGeo();
-                    tL_messageMediaGeo.geo = ((TL_stories.TL_mediaAreaGeoPoint) mediaArea2).geo;
+                    tL_messageMediaGeo.geo = tL_mediaAreaGeoPoint.geo;
                     tL_message.media = tL_messageMediaGeo;
                 }
-                anonymousClass52.isSharingAllowed = false;
-                MessageObject messageObject = new MessageObject(UserConfig.selectedAccount, tL_message, false, false);
-                anonymousClass52.messageObject = messageObject;
-                anonymousClass52.dialogId = messageObject.getDialogId();
+                anonymousClass2.setSharingAllowed(false);
+                anonymousClass2.setMessageObject(new MessageObject(UserConfig.selectedAccount, tL_message, false, false));
                 StoryViewer storyViewer2 = ((PeerStoriesView.AnonymousClass3) this).val$storyViewer;
                 if (storyViewer2 != null) {
-                    storyViewer2.presentFragment(anonymousClass52);
+                    storyViewer2.presentFragment(anonymousClass2);
                 }
                 this.selectedArea = null;
                 invalidate();
@@ -604,176 +509,190 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
             invalidate();
             HintView2 hintView2 = this.hintView;
             if (hintView2 != null) {
-                hintView2.hide(true);
+                hintView2.hide();
                 this.hintView = null;
             }
-            HintView2 hintView3 = new HintView2(getContext(), 0);
-            Paint paint = new Paint(1);
-            hintView3.cutSelectorPaint = paint;
-            paint.setPathEffect(new CornerPathEffect(hintView3.rounding));
-            BaseCell.RippleDrawableSafe rippleDrawableSafe = new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{687865855}), null, new TextCell.AnonymousClass2(hintView3, 6));
-            hintView3.selectorDrawable = rippleDrawableSafe;
-            rippleDrawableSafe.setCallback(hintView3);
-            hintView3.setJointPx(0.0f, this.selectedArea.getTranslationX() - AndroidUtilities.dp(8.0f));
-            hintView3.duration = 5000L;
-            this.hintView = hintView3;
+            HintView2 duration = new HintView2(getContext(), 0).setSelectorColor(687865855).setJointPx(0.0f, this.selectedArea.getTranslationX() - AndroidUtilities.dp(8.0f)).setDuration(5000L);
+            this.hintView = duration;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             TL_stories.MediaArea mediaArea3 = this.selectedArea.mediaArea;
-            if (!(mediaArea3 instanceof TL_stories.TL_mediaAreaChannelPost)) {
-                if (mediaArea3 instanceof TL_stories.TL_mediaAreaStarGift) {
-                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewGift));
-                } else if (mediaArea3 instanceof TL_stories.TL_mediaAreaUrl) {
-                    hintView3.setMultilineText(true);
-                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryOpenLink));
-                    spannableStringBuilder.append((CharSequence) "\n");
-                    TL_stories.TL_mediaAreaUrl tL_mediaAreaUrl = (TL_stories.TL_mediaAreaUrl) this.selectedArea.mediaArea;
-                    int length = spannableStringBuilder.length();
-                    f = 8.0f;
-                    spannableStringBuilder.append(TextUtils.ellipsize(tL_mediaAreaUrl.url, this.hintView.getTextPaint(), AndroidUtilities.displaySize.x * 0.6f, TextUtils.TruncateAt.END));
-                    spannableStringBuilder.setSpan(new RelativeSizeSpan(0.85f), length, spannableStringBuilder.length(), 33);
-                    spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.multAlpha(0.6f, -1)), length, spannableStringBuilder.length(), 33);
-                    spannableStringBuilder.setSpan(new PhotoViewer.AnonymousClass87(i4), length, spannableStringBuilder.length(), 33);
-                    hintView3.setInnerPadding(11.0f, 7.0f, 11.0f, 7.0f);
-                    z = true;
-                } else {
-                    f = 8.0f;
-                    spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewLocation));
-                    z = false;
+            if (mediaArea3 instanceof TL_stories.TL_mediaAreaChannelPost) {
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewMessage));
+            } else {
+                if (!(mediaArea3 instanceof TL_stories.TL_mediaAreaStarGift)) {
+                    if (mediaArea3 instanceof TL_stories.TL_mediaAreaUrl) {
+                        duration.setMultilineText(true);
+                        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryOpenLink));
+                        spannableStringBuilder.append((CharSequence) "\n");
+                        TL_stories.TL_mediaAreaUrl tL_mediaAreaUrl = (TL_stories.TL_mediaAreaUrl) this.selectedArea.mediaArea;
+                        int length = spannableStringBuilder.length();
+                        spannableStringBuilder.append(TextUtils.ellipsize(tL_mediaAreaUrl.url, this.hintView.getTextPaint(), AndroidUtilities.displaySize.x * 0.6f, TextUtils.TruncateAt.END));
+                        spannableStringBuilder.setSpan(new RelativeSizeSpan(0.85f), length, spannableStringBuilder.length(), 33);
+                        spannableStringBuilder.setSpan(new ForegroundColorSpan(Theme.multAlpha(0.6f, -1)), length, spannableStringBuilder.length(), 33);
+                        spannableStringBuilder.setSpan(new AnonymousClass2(), length, spannableStringBuilder.length(), 33);
+                        duration.setInnerPadding(11.0f, 7.0f, 11.0f, 7.0f);
+                        z = true;
+                    } else {
+                        spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewLocation));
+                    }
+                    spannableString = new SpannableString(">");
+                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.photos_arrow);
+                    if (z) {
+                        f = 1.0f;
+                    } else {
+                        f = 2.0f;
+                    }
+                    float fDp = AndroidUtilities.dp(f);
+                    if (z) {
+                        f2 = 0.0f;
+                    } else {
+                        f2 = 1.0f;
+                    }
+                    coloredImageSpan.translate(fDp, AndroidUtilities.dp(f2));
+                    spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
+                    spannableString2 = new SpannableString("<");
+                    ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.attach_arrow_right);
+                    if (z) {
+                        f3 = -1.0f;
+                    } else {
+                        f3 = -2.0f;
+                    }
+                    float fDp2 = AndroidUtilities.dp(f3);
+                    if (z) {
+                        f4 = 0.0f;
+                    } else {
+                        f4 = 1.0f;
+                    }
+                    coloredImageSpan2.translate(fDp2, AndroidUtilities.dp(f4));
+                    coloredImageSpan2.setScale(-1.0f, 1.0f);
+                    spannableString2.setSpan(coloredImageSpan2, 0, spannableString2.length(), 33);
+                    if (AndroidUtilities.isRTL(spannableStringBuilder)) {
+                        spannableString = spannableString2;
+                    }
+                    AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString);
+                    duration.setText(spannableStringBuilder);
+                    duration.setOnHiddenListener(new StoryViewer$5$$ExternalSyntheticLambda0(16, this, duration));
+                    if (z) {
+                        i = 100;
+                    } else {
+                        i = 50;
+                    }
+                    f5 = i;
+                    z2 = this.selectedArea.getTranslationY() - ((float) AndroidUtilities.dp(f5)) < ((float) AndroidUtilities.dp(100.0f));
+                    if (z2) {
+                        i2 = 1;
+                    } else {
+                        i2 = 3;
+                    }
+                    duration.setDirection(i2);
+                    areaView = this.selectedArea;
+                    if (areaView.mediaArea instanceof TL_stories.TL_mediaAreaChannelPost) {
+                        if (z2) {
+                            if ((this.selectedArea.getMeasuredHeight() / 2.0f) + areaView.getTranslationY() > getMeasuredHeight() - AndroidUtilities.dp(120.0f)) {
+                                duration.setTranslationY(this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
+                            } else if (z2) {
+                                duration.setTranslationY((this.selectedArea.getMeasuredHeight() / 2.0f) + this.selectedArea.getTranslationY());
+                            } else {
+                                duration.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5));
+                            }
+                        } else if ((areaView.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5) < AndroidUtilities.dp(120.0f)) {
+                            duration.setTranslationY(this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
+                        } else if (z2) {
+                            duration.setTranslationY((this.selectedArea.getMeasuredHeight() / 2.0f) + this.selectedArea.getTranslationY());
+                        } else {
+                            duration.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5));
+                        }
+                    } else if (z2) {
+                        duration.setTranslationY((this.selectedArea.getMeasuredHeight() / 2.0f) + this.selectedArea.getTranslationY());
+                    } else {
+                        duration.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5));
+                    }
+                    duration.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 17));
+                    duration.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+                    this.hintsContainer.addView(duration, LayoutHelper.createFrame(-1, f5));
+                    duration.show();
+                    onHintVisible(true);
                 }
-                spannableString = new SpannableString(">");
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.photos_arrow);
-                if (z) {
-                    f2 = 1.0f;
-                } else {
-                    f2 = 2.0f;
-                }
-                float fDp = AndroidUtilities.dp(f2);
-                if (z) {
-                    f3 = 0.0f;
-                } else {
-                    f3 = 1.0f;
-                }
-                coloredImageSpan.translate(fDp, AndroidUtilities.dp(f3));
-                spannableString.setSpan(coloredImageSpan, 0, spannableString.length(), 33);
-                spannableString2 = new SpannableString("<");
-                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.attach_arrow_right);
-                if (z) {
-                    f4 = -1.0f;
-                } else {
-                    f4 = -2.0f;
-                }
-                float fDp2 = AndroidUtilities.dp(f4);
-                if (z) {
-                    f5 = 0.0f;
-                } else {
-                    f5 = 1.0f;
-                }
-                coloredImageSpan2.translate(fDp2, AndroidUtilities.dp(f5));
-                coloredImageSpan2.setScale(-1.0f, 1.0f);
-                spannableString2.setSpan(coloredImageSpan2, 0, spannableString2.length(), 33);
-                if (AndroidUtilities.isRTL(spannableStringBuilder)) {
-                    spannableString = spannableString2;
-                }
-                AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString);
-                hintView3.setText(spannableStringBuilder);
-                hintView3.onHidden = new StoryViewer$5$$ExternalSyntheticLambda0(13, this, hintView3);
-                if (z) {
-                    i = 100;
-                } else {
-                    i = 50;
-                }
-                f6 = i;
-                i3 = this.selectedArea.getTranslationY() - ((float) AndroidUtilities.dp(f6)) < ((float) AndroidUtilities.dp(100.0f)) ? 1 : 0;
-                if (i3 != 0) {
-                    i2 = 1;
-                } else {
-                    i2 = 3;
-                }
-                hintView3.direction = i2;
-                areaView = this.selectedArea;
-                if (!(areaView.mediaArea instanceof TL_stories.TL_mediaAreaChannelPost) && (i3 == 0 ? (areaView.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f6) < AndroidUtilities.dp(120.0f) : (this.selectedArea.getMeasuredHeight() / 2.0f) + areaView.getTranslationY() > getMeasuredHeight() - AndroidUtilities.dp(120.0f))) {
-                    hintView3.setTranslationY(this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
-                } else if (i3 != 0) {
-                    hintView3.setTranslationY((this.selectedArea.getMeasuredHeight() / 2.0f) + this.selectedArea.getTranslationY());
-                } else {
-                    hintView3.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f6));
-                }
-                hintView3.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(this, 19));
-                hintView3.setPadding(AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f));
-                this.hintsContainer.addView(hintView3, LayoutHelper.createFrame(f6, -1));
-                hintView3.show();
-                onHintVisible(true);
+                spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewGift));
             }
-            spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryViewMessage));
-            f = 8.0f;
             z = false;
             spannableString = new SpannableString(">");
             ColoredImageSpan coloredImageSpan3 = new ColoredImageSpan(R.drawable.photos_arrow);
             if (z) {
-                f2 = 1.0f;
+                f = 1.0f;
             } else {
-                f2 = 2.0f;
+                f = 2.0f;
             }
-            float fDp3 = AndroidUtilities.dp(f2);
+            float fDp3 = AndroidUtilities.dp(f);
             if (z) {
-                f3 = 0.0f;
+                f2 = 0.0f;
             } else {
-                f3 = 1.0f;
+                f2 = 1.0f;
             }
-            coloredImageSpan3.translate(fDp3, AndroidUtilities.dp(f3));
+            coloredImageSpan3.translate(fDp3, AndroidUtilities.dp(f2));
             spannableString.setSpan(coloredImageSpan3, 0, spannableString.length(), 33);
             spannableString2 = new SpannableString("<");
             ColoredImageSpan coloredImageSpan4 = new ColoredImageSpan(R.drawable.attach_arrow_right);
             if (z) {
-                f4 = -1.0f;
+                f3 = -1.0f;
             } else {
-                f4 = -2.0f;
+                f3 = -2.0f;
             }
-            float fDp4 = AndroidUtilities.dp(f4);
+            float fDp4 = AndroidUtilities.dp(f3);
             if (z) {
-                f5 = 0.0f;
+                f4 = 0.0f;
             } else {
-                f5 = 1.0f;
+                f4 = 1.0f;
             }
-            coloredImageSpan4.translate(fDp4, AndroidUtilities.dp(f5));
+            coloredImageSpan4.translate(fDp4, AndroidUtilities.dp(f4));
             coloredImageSpan4.setScale(-1.0f, 1.0f);
             spannableString2.setSpan(coloredImageSpan4, 0, spannableString2.length(), 33);
             if (AndroidUtilities.isRTL(spannableStringBuilder)) {
                 spannableString = spannableString2;
             }
             AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString);
-            hintView3.setText(spannableStringBuilder);
-            hintView3.onHidden = new StoryViewer$5$$ExternalSyntheticLambda0(13, this, hintView3);
+            duration.setText(spannableStringBuilder);
+            duration.setOnHiddenListener(new StoryViewer$5$$ExternalSyntheticLambda0(16, this, duration));
             if (z) {
                 i = 100;
             } else {
                 i = 50;
             }
-            f6 = i;
-            if (this.selectedArea.getTranslationY() - ((float) AndroidUtilities.dp(f6)) < ((float) AndroidUtilities.dp(100.0f))) {
+            f5 = i;
+            if (this.selectedArea.getTranslationY() - ((float) AndroidUtilities.dp(f5)) < ((float) AndroidUtilities.dp(100.0f))) {
             }
-            if (i3 != 0) {
+            if (z2) {
                 i2 = 1;
             } else {
                 i2 = 3;
             }
-            hintView3.direction = i2;
+            duration.setDirection(i2);
             areaView = this.selectedArea;
-            if (!(areaView.mediaArea instanceof TL_stories.TL_mediaAreaChannelPost)) {
-                if (i3 != 0) {
-                    hintView3.setTranslationY((this.selectedArea.getMeasuredHeight() / 2.0f) + this.selectedArea.getTranslationY());
+            if (areaView.mediaArea instanceof TL_stories.TL_mediaAreaChannelPost) {
+                if (z2) {
+                    duration.setTranslationY((this.selectedArea.getMeasuredHeight() / 2.0f) + this.selectedArea.getTranslationY());
                 } else {
-                    hintView3.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f6));
+                    duration.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5));
                 }
-            } else if (i3 != 0) {
-                hintView3.setTranslationY((this.selectedArea.getMeasuredHeight() / 2.0f) + this.selectedArea.getTranslationY());
+            } else if (z2) {
+                if ((this.selectedArea.getMeasuredHeight() / 2.0f) + areaView.getTranslationY() > getMeasuredHeight() - AndroidUtilities.dp(120.0f)) {
+                    duration.setTranslationY(this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
+                } else if (z2) {
+                    duration.setTranslationY((this.selectedArea.getMeasuredHeight() / 2.0f) + this.selectedArea.getTranslationY());
+                } else {
+                    duration.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5));
+                }
+            } else if ((areaView.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5) < AndroidUtilities.dp(120.0f)) {
+                duration.setTranslationY(this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 3.0f));
+            } else if (z2) {
+                duration.setTranslationY((this.selectedArea.getMeasuredHeight() / 2.0f) + this.selectedArea.getTranslationY());
             } else {
-                hintView3.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f6));
+                duration.setTranslationY((this.selectedArea.getTranslationY() - (this.selectedArea.getMeasuredHeight() / 2.0f)) - AndroidUtilities.dp(f5));
             }
-            hintView3.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(this, 19));
-            hintView3.setPadding(AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f), AndroidUtilities.dp(f));
-            this.hintsContainer.addView(hintView3, LayoutHelper.createFrame(f6, -1));
-            hintView3.show();
+            duration.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 17));
+            duration.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+            this.hintsContainer.addView(duration, LayoutHelper.createFrame(-1, f5));
+            duration.show();
             onHintVisible(true);
         }
     }
@@ -841,13 +760,13 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         HintView2 hintView2;
-        if (getChildCount() == 0 || (hintView2 = this.hintView) == null || !hintView2.shown) {
+        if (getChildCount() == 0 || (hintView2 = this.hintView) == null || !hintView2.shown()) {
             return false;
         }
         if (motionEvent.getAction() == 1) {
             HintView2 hintView3 = this.hintView;
             if (hintView3 != null) {
-                hintView3.hide(true);
+                hintView3.hide();
                 this.hintView = null;
             }
             this.selectedArea = null;
@@ -872,9 +791,9 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
             if (childAt instanceof AreaView) {
                 AreaView areaView = (AreaView) childAt;
                 if (areaView.supportsShining) {
-                    LivePlayer$1$$ExternalSyntheticLambda0 livePlayer$1$$ExternalSyntheticLambda0 = areaView.shineRunnable;
-                    AndroidUtilities.cancelRunOnUIThread(livePlayer$1$$ExternalSyntheticLambda0);
-                    AndroidUtilities.runOnUIThread(livePlayer$1$$ExternalSyntheticLambda0, 400L);
+                    BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = areaView.shineRunnable;
+                    AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda0);
+                    AndroidUtilities.runOnUIThread(botSensors$1$$ExternalSyntheticLambda0, 400L);
                 }
             }
         }
@@ -889,7 +808,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
         }
         HintView2 hintView2 = this.hintView;
         if (hintView2 != null) {
-            hintView2.hide(true);
+            hintView2.hide();
             this.hintView = null;
         }
         int i = 0;
@@ -923,7 +842,7 @@ public abstract class StoryMediaAreasView extends FrameLayout implements View.On
                     if (storyItem != null) {
                         storyReactionWidgetView.setViews(storyItem.views, false);
                     }
-                    ScaleStateListAnimator.apply(storyReactionWidgetView, 0.1f, 1.5f);
+                    ScaleStateListAnimator.apply(storyReactionWidgetView);
                     areaView = storyReactionWidgetView;
                 } else if (mediaArea instanceof TL_stories.TL_mediaAreaWeather) {
                     TL_stories.TL_mediaAreaWeather tL_mediaAreaWeather = (TL_stories.TL_mediaAreaWeather) mediaArea;

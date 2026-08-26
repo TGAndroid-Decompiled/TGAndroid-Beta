@@ -9,16 +9,15 @@ import android.util.TypedValue;
 import org.telegram.ui.ActionBar.Theme;
 
 public class HintEditText extends EditTextBoldCursor {
-    public final TextPaint hintPaint;
-    public String hintText;
-    public final Rect rect;
+    protected TextPaint hintPaint;
+    private String hintText;
+    private Rect rect;
 
     public HintEditText(Context context) {
         super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.hintPaint = textPaint;
+        this.hintPaint = new TextPaint(1);
         this.rect = new Rect();
-        textPaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteHintText, false));
+        this.hintPaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteHintText, false));
     }
 
     public String getHintText() {
@@ -26,32 +25,29 @@ public class HintEditText extends EditTextBoldCursor {
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         Canvas canvas2;
         if (this.hintText != null && length() < this.hintText.length()) {
             int i = 0;
             float f = 0.0f;
             while (i < this.hintText.length()) {
-                int length = length();
-                TextPaint textPaint = this.hintPaint;
-                float fMeasureText = i < length ? getPaint().measureText(getText(), i, i + 1) : textPaint.measureText(this.hintText, i, i + 1);
-                if (i < length()) {
-                    f += fMeasureText;
-                    canvas2 = canvas;
-                } else {
-                    int color = textPaint.getColor();
+                float fMeasureText = i < length() ? getPaint().measureText(getText(), i, i + 1) : this.hintPaint.measureText(this.hintText, i, i + 1);
+                if (shouldDrawBehindText(i) || i >= length()) {
+                    int color = this.hintPaint.getColor();
                     canvas.save();
+                    TextPaint textPaint = this.hintPaint;
                     String str = this.hintText;
-                    int length2 = str.length();
-                    Rect rect = this.rect;
-                    textPaint.getTextBounds(str, 0, length2, rect);
-                    float fHeight = (rect.height() + getHeight()) / 2.0f;
-                    onPreDrawHintCharacter(i);
+                    textPaint.getTextBounds(str, 0, str.length(), this.rect);
+                    float fHeight = (this.rect.height() + getHeight()) / 2.0f;
+                    onPreDrawHintCharacter(i, canvas, f, fHeight);
                     canvas2 = canvas;
-                    canvas2.drawText(this.hintText, i, i + 1, f, fHeight, (Paint) textPaint);
+                    canvas2.drawText(this.hintText, i, i + 1, f, fHeight, (Paint) this.hintPaint);
                     f += fMeasureText;
                     canvas2.restore();
-                    textPaint.setColor(color);
+                    this.hintPaint.setColor(color);
+                } else {
+                    f += fMeasureText;
+                    canvas2 = canvas;
                 }
                 i++;
                 canvas = canvas2;
@@ -61,17 +57,21 @@ public class HintEditText extends EditTextBoldCursor {
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        invalidate();
+        onTextChange();
     }
 
-    public void onPreDrawHintCharacter(int i) {
+    public void onPreDrawHintCharacter(int i, Canvas canvas, float f, float f2) {
+    }
+
+    public void onTextChange() {
+        invalidate();
     }
 
     public void setHintText(String str) {
         this.hintText = str;
-        invalidate();
+        onTextChange();
         setText(getText());
     }
 
@@ -79,5 +79,9 @@ public class HintEditText extends EditTextBoldCursor {
     public void setTextSize(int i, float f) {
         super.setTextSize(i, f);
         this.hintPaint.setTextSize(TypedValue.applyDimension(i, f, getResources().getDisplayMetrics()));
+    }
+
+    public boolean shouldDrawBehindText(int i) {
+        return false;
     }
 }

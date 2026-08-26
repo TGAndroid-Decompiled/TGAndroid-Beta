@@ -204,7 +204,7 @@ public abstract class CopyUtilities {
                     if (string.equals(url)) {
                         spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
-                        spannableStringBuilder.setSpan(new URLSpanReplacement(url, null), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new URLSpanReplacement(url), spanStart2, spanEnd2, 33);
                     }
                 }
             }

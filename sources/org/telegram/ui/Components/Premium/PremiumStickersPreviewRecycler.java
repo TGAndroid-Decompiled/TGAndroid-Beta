@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -17,25 +17,21 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda18;
-import org.telegram.ui.ChatLinkActivity$$ExternalSyntheticLambda4;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
-import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.LocationActivity;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Storage.CacheModel$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stories.PeerStoriesView;
 
 public abstract class PremiumStickersPreviewRecycler extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate, PagerHeaderView {
     public boolean autoPlayEnabled;
-    public final BubbleActivity.AnonymousClass1 autoScrollRunnable;
+    public final PeerStoriesView.AnonymousClass34 autoScrollRunnable;
     public boolean checkEffect;
-    public final ChatActivity$$ExternalSyntheticLambda18 comparator;
+    public final CacheModel$$ExternalSyntheticLambda0 comparator;
     public final int currentAccount;
     public boolean firstDraw;
     public boolean firstMeasure;
@@ -70,11 +66,11 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
         @Override
         public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             PremiumFeatureBottomSheet.AnonymousClass11 anonymousClass11 = this.this$0;
-            ArrayList arrayList = anonymousClass11.premiumStickers;
-            if (arrayList.isEmpty()) {
+            if (anonymousClass11.premiumStickers.isEmpty()) {
                 return;
             }
             StickerView stickerView = (StickerView) viewHolder.itemView;
+            ArrayList arrayList = anonymousClass11.premiumStickers;
             stickerView.document = (TLRPC.Document) arrayList.get(i % arrayList.size());
             stickerView.update = true;
             stickerView.setDrawImage(true ^ anonymousClass11.hasSelectedView, false, false);
@@ -108,113 +104,105 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
             ?? r3 = new View(context) {
                 @Override
                 public final void draw(Canvas canvas) {
+                    ImageReceiver imageReceiver;
                     float f;
                     float f2;
                     super.draw(canvas);
                     StickerView stickerView = StickerView.this;
-                    if (stickerView.update) {
-                        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerView.document, Theme.key_windowBackgroundGray, 0.5f);
-                        StickerView stickerView2 = StickerView.this;
-                        stickerView2.centerImage.setImage(ImageLocation.getForDocument(stickerView2.document), null, svgThumb, "webp", null, 1);
-                        if (MessageObject.isPremiumSticker(StickerView.this.document)) {
-                            StickerView stickerView3 = StickerView.this;
-                            stickerView3.effectImage.setImage(ImageLocation.getForDocument(MessageObject.getPremiumStickerAnimation(stickerView3.document), StickerView.this.document), "140_140", (ImageLocation) null, (String) null, "tgs", (Object) null, 1);
-                        }
-                    }
-                    StickerView stickerView4 = StickerView.this;
-                    if (stickerView4.drawEffect) {
-                        if (stickerView4.effectProgress == 0.0f) {
-                            stickerView4.effectProgress = 1.0f;
-                            if (stickerView4.effectImage.getLottieAnimation() != null) {
-                                StickerView.this.effectImage.getLottieAnimation().setCurrentFrame(0, false, false);
-                            }
-                        }
-                        if (StickerView.this.effectImage.getLottieAnimation() != null) {
-                            StickerView.this.effectImage.getLottieAnimation().start();
-                        }
-                        if (StickerView.this.effectImage.getLottieAnimation() != null && StickerView.this.effectImage.getLottieAnimation().isLastFrame()) {
-                            PremiumFeatureBottomSheet.AnonymousClass11 anonymousClass12 = StickerView.this.this$0;
-                            if (anonymousClass12.autoPlayEnabled) {
-                                AndroidUtilities.cancelRunOnUIThread(anonymousClass12.autoScrollRunnable);
-                                AndroidUtilities.runOnUIThread(StickerView.this.this$0.autoScrollRunnable, 0L);
-                            }
-                        }
-                    } else if (stickerView4.effectImage.getLottieAnimation() != null) {
-                        RLottieDrawable lottieAnimation = StickerView.this.effectImage.getLottieAnimation();
-                        lottieAnimation.isRunning = false;
-                        lottieAnimation.checkChoreographer$1();
-                    }
-                    StickerView stickerView5 = StickerView.this;
-                    if (stickerView5.animateImage) {
-                        if (stickerView5.centerImage.getLottieAnimation() != null) {
-                            StickerView.this.centerImage.getLottieAnimation().start();
-                        }
-                    } else if (stickerView5.centerImage.getLottieAnimation() != null) {
-                        RLottieDrawable lottieAnimation2 = StickerView.this.centerImage.getLottieAnimation();
-                        lottieAnimation2.isRunning = false;
-                        lottieAnimation2.checkChoreographer$1();
-                    }
-                    StickerView stickerView6 = StickerView.this;
-                    boolean z = stickerView6.animateImage;
+                    boolean z = stickerView.update;
+                    ImageReceiver imageReceiver2 = stickerView.centerImage;
+                    ImageReceiver imageReceiver3 = stickerView.effectImage;
                     if (z) {
-                        float f3 = stickerView6.animateImageProgress;
-                        if (f3 != 1.0f) {
-                            stickerView6.animateImageProgress = f3 + 0.10666667f;
-                            invalidate();
-                        } else if (!z) {
-                            f = stickerView6.animateImageProgress;
-                            if (f != 0.0f) {
-                                stickerView6.animateImageProgress = f - 0.10666667f;
-                                invalidate();
-                            }
+                        imageReceiver2.setImage(ImageLocation.getForDocument(stickerView.document), null, DocumentObject.getSvgThumb(stickerView.document, Theme.key_windowBackgroundGray, 0.5f), "webp", null, 1);
+                        if (MessageObject.isPremiumSticker(stickerView.document)) {
+                            imageReceiver = imageReceiver3;
+                            imageReceiver.setImage(ImageLocation.getForDocument(MessageObject.getPremiumStickerAnimation(stickerView.document), stickerView.document), "140_140", (ImageLocation) null, (String) null, "tgs", (Object) null, 1);
+                        } else {
+                            imageReceiver = imageReceiver3;
                         }
-                    } else if (!z) {
-                        f = stickerView6.animateImageProgress;
-                        if (f != 0.0f) {
-                            stickerView6.animateImageProgress = f - 0.10666667f;
-                            invalidate();
-                        }
+                    } else {
+                        imageReceiver = imageReceiver3;
                     }
-                    StickerView stickerView7 = StickerView.this;
-                    stickerView7.animateImageProgress = Utilities.clamp(stickerView7.animateImageProgress, 1.0f, 0.0f);
-                    StickerView stickerView8 = StickerView.this;
-                    boolean z2 = stickerView8.drawEffect;
+                    boolean z2 = stickerView.drawEffect;
+                    PremiumFeatureBottomSheet.AnonymousClass11 anonymousClass12 = stickerView.this$0;
                     if (z2) {
-                        float f4 = stickerView8.effectProgress;
-                        if (f4 != 1.0f) {
-                            stickerView8.effectProgress = f4 + 0.10666667f;
+                        if (stickerView.effectProgress == 0.0f) {
+                            stickerView.effectProgress = 1.0f;
+                            if (imageReceiver.getLottieAnimation() != null) {
+                                imageReceiver.getLottieAnimation().setCurrentFrame(0, false);
+                            }
+                        }
+                        if (imageReceiver.getLottieAnimation() != null) {
+                            imageReceiver.getLottieAnimation().start();
+                        }
+                        if (imageReceiver.getLottieAnimation() != null && imageReceiver.getLottieAnimation().isLastFrame() && anonymousClass12.autoPlayEnabled) {
+                            AndroidUtilities.cancelRunOnUIThread(anonymousClass12.autoScrollRunnable);
+                            AndroidUtilities.runOnUIThread(anonymousClass12.autoScrollRunnable, 0L);
+                        }
+                    } else if (imageReceiver.getLottieAnimation() != null) {
+                        imageReceiver.getLottieAnimation().stop();
+                    }
+                    if (stickerView.animateImage) {
+                        if (imageReceiver2.getLottieAnimation() != null) {
+                            imageReceiver2.getLottieAnimation().start();
+                        }
+                    } else if (imageReceiver2.getLottieAnimation() != null) {
+                        imageReceiver2.getLottieAnimation().stop();
+                    }
+                    boolean z3 = stickerView.animateImage;
+                    if (z3) {
+                        float f3 = stickerView.animateImageProgress;
+                        if (f3 != 1.0f) {
+                            stickerView.animateImageProgress = f3 + 0.10666667f;
                             invalidate();
-                        } else if (!z2) {
-                            f2 = stickerView8.effectProgress;
-                            if (f2 != 0.0f) {
-                                stickerView8.effectProgress = f2 - 0.10666667f;
+                        } else if (!z3) {
+                            f = stickerView.animateImageProgress;
+                            if (f != 0.0f) {
+                                stickerView.animateImageProgress = f - 0.10666667f;
                                 invalidate();
                             }
                         }
-                    } else if (!z2) {
-                        f2 = stickerView8.effectProgress;
-                        if (f2 != 0.0f) {
-                            stickerView8.effectProgress = f2 - 0.10666667f;
+                    } else if (!z3) {
+                        f = stickerView.animateImageProgress;
+                        if (f != 0.0f) {
+                            stickerView.animateImageProgress = f - 0.10666667f;
                             invalidate();
                         }
                     }
-                    StickerView stickerView9 = StickerView.this;
-                    stickerView9.effectProgress = Utilities.clamp(stickerView9.effectProgress, 1.0f, 0.0f);
-                    float f5 = StickerView.this.this$0.size * 0.45f;
+                    stickerView.animateImageProgress = Utilities.clamp(stickerView.animateImageProgress, 1.0f, 0.0f);
+                    boolean z4 = stickerView.drawEffect;
+                    if (z4) {
+                        float f4 = stickerView.effectProgress;
+                        if (f4 != 1.0f) {
+                            stickerView.effectProgress = f4 + 0.10666667f;
+                            invalidate();
+                        } else if (!z4) {
+                            f2 = stickerView.effectProgress;
+                            if (f2 != 0.0f) {
+                                stickerView.effectProgress = f2 - 0.10666667f;
+                                invalidate();
+                            }
+                        }
+                    } else if (!z4) {
+                        f2 = stickerView.effectProgress;
+                        if (f2 != 0.0f) {
+                            stickerView.effectProgress = f2 - 0.10666667f;
+                            invalidate();
+                        }
+                    }
+                    stickerView.effectProgress = Utilities.clamp(stickerView.effectProgress, 1.0f, 0.0f);
+                    float f5 = anonymousClass12.size * 0.45f;
                     float f6 = 1.499267f * f5;
                     float measuredWidth = getMeasuredWidth() - f6;
                     float measuredHeight = (getMeasuredHeight() - f6) / 2.0f;
                     float f7 = f6 - f5;
-                    StickerView.this.centerImage.setImageCoords((f7 - (0.02f * f6)) + measuredWidth, (f7 / 2.0f) + measuredHeight, f5, f5);
-                    StickerView stickerView10 = StickerView.this;
-                    stickerView10.centerImage.setAlpha((stickerView10.animateImageProgress * 0.7f) + 0.3f);
-                    StickerView.this.centerImage.draw(canvas);
-                    StickerView stickerView11 = StickerView.this;
-                    if (stickerView11.effectProgress != 0.0f) {
-                        stickerView11.effectImage.setImageCoords(measuredWidth, measuredHeight, f6, f6);
-                        StickerView stickerView12 = StickerView.this;
-                        stickerView12.effectImage.setAlpha(stickerView12.effectProgress);
-                        StickerView.this.effectImage.draw(canvas);
+                    imageReceiver2.setImageCoords((f7 - (0.02f * f6)) + measuredWidth, (f7 / 2.0f) + measuredHeight, f5, f5);
+                    imageReceiver2.setAlpha((stickerView.animateImageProgress * 0.7f) + 0.3f);
+                    imageReceiver2.draw(canvas);
+                    if (stickerView.effectProgress != 0.0f) {
+                        imageReceiver.setImageCoords(measuredWidth, measuredHeight, f6, f6);
+                        imageReceiver.setAlpha(stickerView.effectProgress);
+                        imageReceiver.draw(canvas);
                     }
                 }
             };
@@ -276,16 +264,16 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
     }
 
     public PremiumStickersPreviewRecycler(Context context, int i) {
-        super(context, null);
+        super(context);
         ArrayList arrayList = new ArrayList();
         this.premiumStickers = arrayList;
         this.firstMeasure = true;
         this.firstDraw = true;
         PremiumFeatureBottomSheet.AnonymousClass11 anonymousClass11 = (PremiumFeatureBottomSheet.AnonymousClass11) this;
-        this.autoScrollRunnable = new BubbleActivity.AnonymousClass1(anonymousClass11, 25);
+        this.autoScrollRunnable = new PeerStoriesView.AnonymousClass34(anonymousClass11, 1);
         this.interpolator = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);
         this.sortedView = new ArrayList();
-        this.comparator = new ChatActivity$$ExternalSyntheticLambda18(17);
+        this.comparator = new CacheModel$$ExternalSyntheticLambda0(3);
         this.selectStickerOnNextLayout = -1;
         this.currentAccount = i;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(1, false);
@@ -293,8 +281,8 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
         setLayoutManager(linearLayoutManager);
         setAdapter(new Adapter(anonymousClass11));
         setClipChildren(false);
-        setOnScrollListener(new LocationActivity.AnonymousClass10(anonymousClass11, 1));
-        setOnItemClickListener(new ChatLinkActivity$$ExternalSyntheticLambda4((PremiumFeatureBottomSheet.AnonymousClass11) this, 23));
+        setOnScrollListener(new StarGiftSheet.AnonymousClass8(anonymousClass11, 5));
+        setOnItemClickListener(new LimitReachedBottomSheet$$ExternalSyntheticLambda24((PremiumFeatureBottomSheet.AnonymousClass11) this, 1));
         MediaDataController.getInstance(i).preloadPremiumPreviewStickers();
         arrayList.clear();
         arrayList.addAll(MediaDataController.getInstance(i).premiumPreviewStickers);
@@ -331,13 +319,13 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
             }
             Collections.sort(arrayList, this.comparator);
             if ((this.firstDraw || this.checkEffect) && arrayList.size() > 0 && !this.premiumStickers.isEmpty()) {
-                View view = (View) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList);
+                View view = (View) Fragment$$ExternalSyntheticOutline0.m(1, arrayList);
                 this.oldSelectedView = view;
                 drawEffectForView(view, !this.firstDraw);
                 this.firstDraw = false;
                 this.checkEffect = false;
-            } else if (this.oldSelectedView != SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList)) {
-                this.oldSelectedView = (View) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList);
+            } else if (this.oldSelectedView != Fragment$$ExternalSyntheticOutline0.m(1, arrayList)) {
+                this.oldSelectedView = (View) Fragment$$ExternalSyntheticOutline0.m(1, arrayList);
                 if (this.haptic) {
                     try {
                         performHapticFeedback(3);
@@ -376,9 +364,9 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
         super.onAttachedToWindow();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.premiumStickersPreviewLoaded);
         if (this.autoPlayEnabled) {
-            BubbleActivity.AnonymousClass1 anonymousClass1 = this.autoScrollRunnable;
-            AndroidUtilities.cancelRunOnUIThread(anonymousClass1);
-            AndroidUtilities.runOnUIThread(anonymousClass1, 2700L);
+            PeerStoriesView.AnonymousClass34 anonymousClass34 = this.autoScrollRunnable;
+            AndroidUtilities.cancelRunOnUIThread(anonymousClass34);
+            AndroidUtilities.runOnUIThread(anonymousClass34, 2700L);
         }
     }
 
@@ -393,7 +381,7 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
         super.onLayout(z, i, i2, i3, i4);
         if (this.firstMeasure && !this.premiumStickers.isEmpty() && getChildCount() > 0) {
             this.firstMeasure = false;
-            AndroidUtilities.runOnUIThread(new PasscodeView$9$$ExternalSyntheticLambda0(this, 16));
+            AndroidUtilities.runOnUIThread(new PremiumButtonView$$ExternalSyntheticLambda1(this, 3));
         }
         int i5 = this.selectStickerOnNextLayout;
         if (i5 > 0) {
@@ -418,15 +406,15 @@ public abstract class PremiumStickersPreviewRecycler extends RecyclerListView im
     public void setAutoPlayEnabled(boolean z) {
         if (this.autoPlayEnabled != z) {
             this.autoPlayEnabled = z;
-            BubbleActivity.AnonymousClass1 anonymousClass1 = this.autoScrollRunnable;
+            PeerStoriesView.AnonymousClass34 anonymousClass34 = this.autoScrollRunnable;
             if (!z) {
-                AndroidUtilities.cancelRunOnUIThread(anonymousClass1);
+                AndroidUtilities.cancelRunOnUIThread(anonymousClass34);
                 drawEffectForView(null, true);
                 return;
             }
             if (z) {
-                AndroidUtilities.cancelRunOnUIThread(anonymousClass1);
-                AndroidUtilities.runOnUIThread(anonymousClass1, 2700L);
+                AndroidUtilities.cancelRunOnUIThread(anonymousClass34);
+                AndroidUtilities.runOnUIThread(anonymousClass34, 2700L);
             }
             this.checkEffect = true;
             invalidate();

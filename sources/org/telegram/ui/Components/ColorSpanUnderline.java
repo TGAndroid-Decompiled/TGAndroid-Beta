@@ -3,9 +3,13 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 import android.text.style.ForegroundColorSpan;
 
-public final class ColorSpanUnderline extends ForegroundColorSpan {
+public class ColorSpanUnderline extends ForegroundColorSpan {
+    public ColorSpanUnderline(int i) {
+        super(i);
+    }
+
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public void updateDrawState(TextPaint textPaint) {
         super.updateDrawState(textPaint);
         textPaint.setUnderlineText(true);
     }

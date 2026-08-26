@@ -1,7 +1,6 @@
 package org.telegram.ui.Stories.recorder;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.FilterGLThread;
 import org.telegram.ui.Components.VideoEditTextureView;
 import org.telegram.ui.Components.VideoPlayer;
 
@@ -42,7 +41,7 @@ public final class PreviewView$$ExternalSyntheticLambda1 implements Runnable {
                                 previewView.seekedLastTime = System.currentTimeMillis();
                                 VideoPlayer videoPlayer2 = previewView.videoPlayer;
                                 long duration2 = (long) (previewView.entry.left * previewView.getDuration());
-                                videoPlayer2.seekTo(duration2, false);
+                                videoPlayer2.seekTo(duration2);
                                 previewView.updateAudioPlayer(true);
                                 previewView.updateRoundPlayer(true);
                                 currentPosition = duration2;
@@ -83,7 +82,7 @@ public final class PreviewView$$ExternalSyntheticLambda1 implements Runnable {
                             VideoPlayer videoPlayer3 = previewView2.audioPlayer;
                             StoryEntry storyEntry3 = previewView2.entry;
                             long j = (long) (storyEntry3.audioLeft * storyEntry3.audioDuration);
-                            videoPlayer3.seekTo(j, false);
+                            videoPlayer3.seekTo(j);
                             currentPosition2 = j;
                         }
                     }
@@ -110,7 +109,7 @@ public final class PreviewView$$ExternalSyntheticLambda1 implements Runnable {
                             VideoPlayer videoPlayer4 = previewView3.roundPlayer;
                             StoryEntry storyEntry5 = previewView3.entry;
                             long j2 = (long) (storyEntry5.roundLeft * storyEntry5.roundDuration);
-                            videoPlayer4.seekTo(j2, false);
+                            videoPlayer4.seekTo(j2);
                             previewView3.updateAudioPlayer(true);
                             currentPosition3 = j2;
                         }
@@ -128,11 +127,7 @@ public final class PreviewView$$ExternalSyntheticLambda1 implements Runnable {
                 PreviewView previewView4 = this.f$0;
                 VideoEditTextureView videoEditTextureView = previewView4.textureView;
                 if (videoEditTextureView != null) {
-                    FilterGLThread filterGLThread = videoEditTextureView.eglThread;
-                    if (filterGLThread != null) {
-                        filterGLThread.shutdown();
-                    }
-                    videoEditTextureView.currentVideoPlayer = null;
+                    videoEditTextureView.release();
                     previewView4.removeView(previewView4.textureView);
                     previewView4.textureView = null;
                 }

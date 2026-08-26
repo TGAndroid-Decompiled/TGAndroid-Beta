@@ -12,9 +12,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.core.app.ActivityCompat$$ExternalSyntheticLambda0;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
-import com.google.android.gms.internal.mlkit_vision_common.zzkl;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
+import com.google.android.gms.internal.mlkit_vision_common.zzkd;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
@@ -30,7 +31,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AvatarsDrawable;
@@ -56,7 +56,7 @@ public final class MessagesSearchAdapter extends RecyclerListView.SelectionAdapt
     public final HashSet messageIds = new HashSet();
     public final ArrayList searchResultMessages = new ArrayList();
     public final int currentAccount = UserConfig.selectedAccount;
-    public final ArticleViewer$$ExternalSyntheticLambda3 loadStories = new ArticleViewer$$ExternalSyntheticLambda3(this, 2);
+    public final ActivityCompat$$ExternalSyntheticLambda0 loadStories = new ActivityCompat$$ExternalSyntheticLambda0(this, 27);
 
     public final class StoriesView extends FrameLayout {
         public final AvatarsDrawable avatarsDrawable;
@@ -92,11 +92,11 @@ public final class MessagesSearchAdapter extends RecyclerListView.SelectionAdapt
             setWillNotDraw(false);
             AvatarsDrawable avatarsDrawable = new AvatarsDrawable(this, false);
             this.avatarsDrawable = avatarsDrawable;
-            avatarsDrawable.centered = true;
+            avatarsDrawable.setCentered(true);
             avatarsDrawable.width = AndroidUtilities.dp(75.0f);
             avatarsDrawable.height = AndroidUtilities.dp(48.0f);
             avatarsDrawable.drawStoriesCircle = true;
-            avatarsDrawable.overrideSize = AndroidUtilities.dp(22.0f);
+            avatarsDrawable.setSize(AndroidUtilities.dp(22.0f));
             int i = 0;
             while (i < 2) {
                 this.titleTextView[i] = new TextView(context);
@@ -161,12 +161,12 @@ public final class MessagesSearchAdapter extends RecyclerListView.SelectionAdapt
                 MessageObject messageObject = (MessageObject) searchStoriesList.messageObjects.get(i);
                 long j = messageObject.storyItem.dialogId;
                 TextUtils.isEmpty(str);
-                avatarsDrawable.setObject(i2, messageObject.storyItem, searchStoriesList.currentAccount);
+                avatarsDrawable.setObject(i2, searchStoriesList.currentAccount, messageObject.storyItem);
                 i2++;
                 i++;
             }
             avatarsDrawable.setCount(i2);
-            avatarsDrawable.commitTransition(false, true);
+            avatarsDrawable.commitTransition(false);
             boolean zIsEmpty = TextUtils.isEmpty(str);
             TextView[] textViewArr = this.titleTextView;
             if (zIsEmpty) {
@@ -184,7 +184,7 @@ public final class MessagesSearchAdapter extends RecyclerListView.SelectionAdapt
             if (zIsEmpty) {
                 textViewArr[1].setText(LocaleController.formatPluralStringSpaced("HashtagMessagesFound", i));
             } else {
-                textViewArr[1].setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagMessagesFoundChannel", i, zzil.m("@", str2)), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), null));
+                textViewArr[1].setText(AndroidUtilities.replaceSingleLink(LocaleController.formatPluralStringSpaced("HashtagMessagesFoundChannel", i, zzii.m("@", str2)), Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), null));
             }
             this.subtitleTextView[1].setText(LocaleController.formatString(R.string.HashtagMessagesFoundSubtitle, str));
         }
@@ -228,8 +228,7 @@ public final class MessagesSearchAdapter extends RecyclerListView.SelectionAdapt
 
     @Override
     public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        int i = viewHolder.mItemViewType;
-        return i == 0 || i == 2;
+        return viewHolder.getItemViewType() == 0 || viewHolder.getItemViewType() == 2;
     }
 
     @Override
@@ -264,15 +263,14 @@ public final class MessagesSearchAdapter extends RecyclerListView.SelectionAdapt
             this.flickerCount = iClamp;
         }
         int itemCount2 = getItemCount();
-        RecyclerView.AdapterDataObservable adapterDataObservable = this.mObservable;
         if (itemCount >= itemCount2) {
-            adapterDataObservable.notifyChanged();
+            super.notifyDataSetChanged();
             return;
         }
         if (i4 > 0) {
-            adapterDataObservable.notifyItemRangeChanged(itemCount - i4, i4, null);
+            notifyItemRangeChanged(itemCount - i4, i4);
         }
-        adapterDataObservable.notifyItemRangeInserted(itemCount, itemCount2 - itemCount);
+        notifyItemRangeInserted(itemCount, itemCount2 - itemCount);
     }
 
     @Override
@@ -280,35 +278,36 @@ public final class MessagesSearchAdapter extends RecyclerListView.SelectionAdapt
         int i2;
         boolean z;
         int i3;
-        int i4 = viewHolder.mItemViewType;
-        View view = viewHolder.itemView;
-        if (i4 != 0) {
-            if (i4 == 2) {
-                ((StoriesView) view).set(this.storiesList);
+        int i4;
+        if (viewHolder.getItemViewType() != 0) {
+            if (viewHolder.getItemViewType() == 2) {
+                ((StoriesView) viewHolder.itemView).set(this.storiesList);
                 return;
             }
             return;
         }
-        DialogCell dialogCell = (DialogCell) view;
+        DialogCell dialogCell = (DialogCell) viewHolder.itemView;
         dialogCell.useSeparator = true;
         MessageObject messageObject = (MessageObject) getItem(i);
         long dialogId = messageObject.getDialogId();
         int i5 = messageObject.messageOwner.date;
         if (this.isSavedMessages) {
             dialogCell.isSavedDialog = true;
-            dialogId = messageObject.getSavedDialogId();
+            long savedDialogId = messageObject.getSavedDialogId();
             TLRPC.Message message = messageObject.messageOwner;
             TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
-            if (messageFwdHeader == null || ((i2 = messageFwdHeader.date) == 0 && messageFwdHeader.saved_date == 0)) {
+            if (messageFwdHeader == null || ((i4 = messageFwdHeader.date) == 0 && messageFwdHeader.saved_date == 0)) {
                 i3 = message.date;
+            } else if (i4 == 0) {
+                i3 = messageFwdHeader.saved_date;
             } else {
-                if (i2 == 0) {
-                    i3 = messageFwdHeader.saved_date;
-                }
+                dialogId = savedDialogId;
+                i2 = i4;
                 z = false;
             }
             i2 = i3;
             z = false;
+            dialogId = savedDialogId;
         } else {
             if (messageObject.isOutOwner() || ChatObject.isMonoForum(this.currentAccount, dialogId)) {
                 dialogId = messageObject.getFromChatId();
@@ -336,11 +335,12 @@ public final class MessagesSearchAdapter extends RecyclerListView.SelectionAdapt
             }
 
             @Override
-            public final void openStory(DialogCell dialogCell2) {
+            public final void openStory(DialogCell dialogCell2, Runnable runnable) {
                 MessagesSearchAdapter messagesSearchAdapter = MessagesSearchAdapter.this;
                 if (MessagesController.getInstance(messagesSearchAdapter.currentAccount).getStoriesController().hasStories(dialogCell2.getDialogId())) {
-                    messagesSearchAdapter.fragment.getOrCreateStoryViewer().getClass();
-                    messagesSearchAdapter.fragment.getOrCreateStoryViewer().open(messagesSearchAdapter.mContext, dialogCell2.getDialogId(), new StoriesListPlaceProvider((RecyclerListView) dialogCell2.getParent(), false));
+                    ChatActivity chatActivity = messagesSearchAdapter.fragment;
+                    chatActivity.getOrCreateStoryViewer().getClass();
+                    chatActivity.getOrCreateStoryViewer().open(messagesSearchAdapter.mContext, dialogCell2.getDialogId(), new StoriesListPlaceProvider((RecyclerListView) dialogCell2.getParent(), false));
                 }
             }
 
@@ -371,6 +371,6 @@ public final class MessagesSearchAdapter extends RecyclerListView.SelectionAdapt
         } else {
             dialogCell = new DialogCell(null, this.mContext, true, this.currentAccount, this.resourcesProvider);
         }
-        return zzkl.m(dialogCell, dialogCell);
+        return zzkd.m(dialogCell, dialogCell, -2);
     }
 }

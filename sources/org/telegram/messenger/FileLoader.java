@@ -2,9 +2,8 @@ package org.telegram.messenger;
 
 import android.text.TextUtils;
 import android.util.SparseArray;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.exoplayer2.util.Log;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -181,7 +180,6 @@ public class FileLoader extends BaseController {
 
         @Override
         public void didFailedLoadingFile(FileLoadOperation fileLoadOperation, int i) {
-            LaunchActivity launchActivity;
             FileLoader.this.loadOperationPathsUI.remove(this.val$fileName);
             FileLoader.this.checkDownloadQueue(fileLoadOperation, fileLoadOperation.getQueue());
             if (FileLoader.this.delegate != null) {
@@ -189,11 +187,8 @@ public class FileLoader extends BaseController {
             }
             if (this.val$document != null && (this.val$parentObject instanceof MessageObject) && i == 0) {
                 FileLoader.this.getDownloadController().onDownloadFail((MessageObject) this.val$parentObject, i);
-            } else {
-                if (i != -1 || (launchActivity = LaunchActivity.staticInstanceForAlerts) == null) {
-                    return;
-                }
-                launchActivity.checkFreeDiscSpace(2);
+            } else if (i == -1) {
+                LaunchActivity.checkFreeDiscSpaceStatic(2);
             }
         }
 
@@ -1275,18 +1270,18 @@ public class FileLoader extends BaseController {
                             }
                             fileLoaderPriorityQueue2.checkLoadingOperations(z7);
                             if (BuildVars.LOGS_ENABLED) {
-                                StringBuilder sbM4m = SurfaceContainer$$ExternalSyntheticOutline0.m4m("create load operation fileName=", str5, " documentName=");
-                                sbM4m.append(getDocumentFileName(document));
-                                sbM4m.append(" size=");
-                                sbM4m.append(AndroidUtilities.formatFileSize(fileLoadOperation5.totalBytesCount));
-                                sbM4m.append(" position in queue ");
-                                sbM4m.append(fileLoadOperation5.getPositionInQueue());
-                                sbM4m.append(" account=");
-                                SurfaceContainer$$ExternalSyntheticOutline0.m(sbM4m, this.currentAccount, " cacheType=", i2, " priority=");
-                                sbM4m.append(fileLoadOperation5.getPriority());
-                                sbM4m.append(" stream=");
-                                sbM4m.append(fileStreamLoadOperation);
-                                FileLog.d(sbM4m.toString());
+                                StringBuilder sbM80m = Fragment$$ExternalSyntheticOutline0.m80m("create load operation fileName=", str5, " documentName=");
+                                sbM80m.append(getDocumentFileName(document));
+                                sbM80m.append(" size=");
+                                sbM80m.append(AndroidUtilities.formatFileSize(fileLoadOperation5.totalBytesCount));
+                                sbM80m.append(" position in queue ");
+                                sbM80m.append(fileLoadOperation5.getPositionInQueue());
+                                sbM80m.append(" account=");
+                                Fragment$$ExternalSyntheticOutline0.m(sbM80m, this.currentAccount, " cacheType=", i2, " priority=");
+                                sbM80m.append(fileLoadOperation5.getPriority());
+                                sbM80m.append(" stream=");
+                                sbM80m.append(fileStreamLoadOperation);
+                                FileLog.d(sbM80m.toString());
                             }
                             return fileLoadOperation5;
                         }
@@ -1494,18 +1489,18 @@ public class FileLoader extends BaseController {
                         }
                         fileLoaderPriorityQueue3.checkLoadingOperations(z7);
                         if (BuildVars.LOGS_ENABLED) {
-                            StringBuilder sbM4m2 = SurfaceContainer$$ExternalSyntheticOutline0.m4m("create load operation fileName=", str5, " documentName=");
-                            sbM4m2.append(getDocumentFileName(document));
-                            sbM4m2.append(" size=");
-                            sbM4m2.append(AndroidUtilities.formatFileSize(fileLoadOperation5.totalBytesCount));
-                            sbM4m2.append(" position in queue ");
-                            sbM4m2.append(fileLoadOperation5.getPositionInQueue());
-                            sbM4m2.append(" account=");
-                            SurfaceContainer$$ExternalSyntheticOutline0.m(sbM4m2, this.currentAccount, " cacheType=", i2, " priority=");
-                            sbM4m2.append(fileLoadOperation5.getPriority());
-                            sbM4m2.append(" stream=");
-                            sbM4m2.append(fileStreamLoadOperation);
-                            FileLog.d(sbM4m2.toString());
+                            StringBuilder sbM80m2 = Fragment$$ExternalSyntheticOutline0.m80m("create load operation fileName=", str5, " documentName=");
+                            sbM80m2.append(getDocumentFileName(document));
+                            sbM80m2.append(" size=");
+                            sbM80m2.append(AndroidUtilities.formatFileSize(fileLoadOperation5.totalBytesCount));
+                            sbM80m2.append(" position in queue ");
+                            sbM80m2.append(fileLoadOperation5.getPositionInQueue());
+                            sbM80m2.append(" account=");
+                            Fragment$$ExternalSyntheticOutline0.m(sbM80m2, this.currentAccount, " cacheType=", i2, " priority=");
+                            sbM80m2.append(fileLoadOperation5.getPriority());
+                            sbM80m2.append(" stream=");
+                            sbM80m2.append(fileStreamLoadOperation);
+                            FileLog.d(sbM80m2.toString());
                         }
                         return fileLoadOperation5;
                     }
@@ -1711,18 +1706,18 @@ public class FileLoader extends BaseController {
                     }
                     fileLoaderPriorityQueue4.checkLoadingOperations(z7);
                     if (BuildVars.LOGS_ENABLED) {
-                        StringBuilder sbM4m3 = SurfaceContainer$$ExternalSyntheticOutline0.m4m("create load operation fileName=", str5, " documentName=");
-                        sbM4m3.append(getDocumentFileName(document));
-                        sbM4m3.append(" size=");
-                        sbM4m3.append(AndroidUtilities.formatFileSize(fileLoadOperation5.totalBytesCount));
-                        sbM4m3.append(" position in queue ");
-                        sbM4m3.append(fileLoadOperation5.getPositionInQueue());
-                        sbM4m3.append(" account=");
-                        SurfaceContainer$$ExternalSyntheticOutline0.m(sbM4m3, this.currentAccount, " cacheType=", i2, " priority=");
-                        sbM4m3.append(fileLoadOperation5.getPriority());
-                        sbM4m3.append(" stream=");
-                        sbM4m3.append(fileStreamLoadOperation);
-                        FileLog.d(sbM4m3.toString());
+                        StringBuilder sbM80m3 = Fragment$$ExternalSyntheticOutline0.m80m("create load operation fileName=", str5, " documentName=");
+                        sbM80m3.append(getDocumentFileName(document));
+                        sbM80m3.append(" size=");
+                        sbM80m3.append(AndroidUtilities.formatFileSize(fileLoadOperation5.totalBytesCount));
+                        sbM80m3.append(" position in queue ");
+                        sbM80m3.append(fileLoadOperation5.getPositionInQueue());
+                        sbM80m3.append(" account=");
+                        Fragment$$ExternalSyntheticOutline0.m(sbM80m3, this.currentAccount, " cacheType=", i2, " priority=");
+                        sbM80m3.append(fileLoadOperation5.getPriority());
+                        sbM80m3.append(" stream=");
+                        sbM80m3.append(fileStreamLoadOperation);
+                        FileLog.d(sbM80m3.toString());
                     }
                     return fileLoadOperation5;
                 }
@@ -1743,7 +1738,7 @@ public class FileLoader extends BaseController {
 
     public void lambda$removeLoadingVideo$1(TLRPC.Document document, boolean z) {
         String attachFileName = getAttachFileName(document);
-        StringBuilder sbM = Log.m(attachFileName);
+        StringBuilder sbM = DiffUtil.m(attachFileName);
         sbM.append(z ? "p" : "");
         if (this.loadingVideos.remove(sbM.toString()) != null) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
@@ -2018,7 +2013,7 @@ public class FileLoader extends BaseController {
     }
 
     public void onNetworkChanged(boolean z) {
-        fileLoaderQueue.postRunnable(new FileLoader$$ExternalSyntheticLambda1(0, this, z));
+        fileLoaderQueue.postRunnable(new FileLoader$$ExternalSyntheticLambda1(this, z, 0));
     }
 
     public void removeLoadingVideo(TLRPC.Document document, boolean z, boolean z2) {
@@ -2060,11 +2055,11 @@ public class FileLoader extends BaseController {
         }
         String attachFileName = getAttachFileName(document);
         HashMap<String, Boolean> map = this.loadingVideos;
-        StringBuilder sbM = Log.m(attachFileName);
+        StringBuilder sbM = DiffUtil.m(attachFileName);
         sbM.append(z ? "" : "p");
         if (map.containsKey(sbM.toString())) {
             HashMap<String, Boolean> map2 = this.loadingVideos;
-            StringBuilder sbM2 = Log.m(attachFileName);
+            StringBuilder sbM2 = DiffUtil.m(attachFileName);
             sbM2.append(z ? "p" : "");
             map2.put(sbM2.toString(), Boolean.TRUE);
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
@@ -2073,7 +2068,7 @@ public class FileLoader extends BaseController {
 
     public void lambda$setLoadingVideo$0(TLRPC.Document document, boolean z) {
         String attachFileName = getAttachFileName(document);
-        StringBuilder sbM = Log.m(attachFileName);
+        StringBuilder sbM = DiffUtil.m(attachFileName);
         sbM.append(z ? "p" : "");
         this.loadingVideos.put(sbM.toString(), Boolean.TRUE);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.videoLoadingStateChanged, attachFileName);
@@ -2199,7 +2194,7 @@ public class FileLoader extends BaseController {
                 StringBuilder sb = new StringBuilder();
                 sb.append(document.dc_id);
                 sb.append("_");
-                return SurfaceContainer$$ExternalSyntheticOutline0.m(sb, document.id, strSubstring);
+                return Fragment$$ExternalSyntheticOutline0.m(sb, document.id, strSubstring);
             }
             return document.dc_id + "_" + document.id;
         }
@@ -2208,14 +2203,14 @@ public class FileLoader extends BaseController {
             StringBuilder sb2 = new StringBuilder();
             sb2.append(secureDocument.secureFile.dc_id);
             sb2.append("_");
-            return SurfaceContainer$$ExternalSyntheticOutline0.m(sb2, secureDocument.secureFile.id, ".jpg");
+            return Fragment$$ExternalSyntheticOutline0.m(sb2, secureDocument.secureFile.id, ".jpg");
         }
         if (tLObject instanceof TLRPC.TL_secureFile) {
             TLRPC.TL_secureFile tL_secureFile = (TLRPC.TL_secureFile) tLObject;
             StringBuilder sb3 = new StringBuilder();
             sb3.append(tL_secureFile.dc_id);
             sb3.append("_");
-            return SurfaceContainer$$ExternalSyntheticOutline0.m(sb3, tL_secureFile.id, ".jpg");
+            return Fragment$$ExternalSyntheticOutline0.m(sb3, tL_secureFile.id, ".jpg");
         }
         if (tLObject instanceof WebFile) {
             WebFile webFile = (WebFile) tLObject;

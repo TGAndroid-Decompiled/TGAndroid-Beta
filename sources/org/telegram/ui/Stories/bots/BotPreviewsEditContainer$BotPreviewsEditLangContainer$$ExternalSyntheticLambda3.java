@@ -18,11 +18,11 @@ public final class BotPreviewsEditContainer$BotPreviewsEditLangContainer$$Extern
             case 0:
                 BotPreviewsEditContainer.BotPreviewsEditLangContainer botPreviewsEditLangContainer = this.f$0;
                 StoriesController.BotPreviewsList botPreviewsList = botPreviewsEditLangContainer.list;
-                botPreviewsEditLangContainer.this$0.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
+                BotPreviewsEditContainer.this.createStory(botPreviewsList == null ? "" : botPreviewsList.lang_code);
                 break;
             default:
                 BotPreviewsEditContainer.BotPreviewsEditLangContainer botPreviewsEditLangContainer2 = this.f$0;
-                botPreviewsEditLangContainer2.this$0.deleteLang(botPreviewsEditLangContainer2.list.lang_code);
+                BotPreviewsEditContainer.this.deleteLang(botPreviewsEditLangContainer2.list.lang_code);
                 break;
         }
     }

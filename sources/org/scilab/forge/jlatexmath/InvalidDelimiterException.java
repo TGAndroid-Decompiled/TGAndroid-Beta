@@ -1,12 +1,12 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 
 public class InvalidDelimiterException extends JMathTeXException {
     private static final long serialVersionUID = 212553180078002724L;
 
     public InvalidDelimiterException(String str) {
-        super(SurfaceContainer$$ExternalSyntheticOutline0.m("The symbol with the name '", str, "' is not defined as a delimiter (del='true') in 'TeXSymbols.xml'!"));
+        super(Fragment$$ExternalSyntheticOutline0.m("The symbol with the name '", str, "' is not defined as a delimiter (del='true') in 'TeXSymbols.xml'!"));
     }
 
     public InvalidDelimiterException(char c, String str) {

@@ -1,13 +1,14 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.text.style.RelativeSizeSpan;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -20,14 +21,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationsController$$ExternalSyntheticOutline1;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -64,42 +63,92 @@ import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Components.voip.VoIPEllipsizeSpan;
-import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda8;
-import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.StatisticActivity;
-import org.telegram.ui.StatisticActivity$$ExternalSyntheticLambda13;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
 
 public class UniversalAdapter extends AdapterWithDiffUtils {
-    public boolean allowReorder;
-    public BaseChartView.SharedUiComponents chartSharedUI;
-    public final int classGuid;
-    public final Context context;
+    public static final int VIEW_TYPE_ANIMATED_HEADER = 42;
+    public static final int VIEW_TYPE_BLACK_HEADER = 1;
+    public static final int VIEW_TYPE_BUSINESS_LINK = 29;
+    public static final int VIEW_TYPE_CHART_BAR = 21;
+    public static final int VIEW_TYPE_CHART_DOUBLE_LINEAR = 19;
+    public static final int VIEW_TYPE_CHART_LINEAR = 18;
+    public static final int VIEW_TYPE_CHART_LINEAR_BAR = 23;
+    public static final int VIEW_TYPE_CHART_STACK_BAR = 20;
+    public static final int VIEW_TYPE_CHART_STACK_LINEAR = 22;
+    public static final int VIEW_TYPE_CHECK = 4;
+    public static final int VIEW_TYPE_CHECKRIPPLE = 9;
+    public static final int VIEW_TYPE_CUSTOM = -1;
+    public static final int VIEW_TYPE_CUSTOM_SHADOW = -4;
+    public static final int VIEW_TYPE_EXPANDABLE_SWITCH = 40;
+    public static final int VIEW_TYPE_FILTER_CHAT = 11;
+    public static final int VIEW_TYPE_FILTER_CHAT_CHECK = 12;
+    public static final int VIEW_TYPE_FLICKER = 34;
+    public static final int VIEW_TYPE_FULLSCREEN_CUSTOM = -3;
+    public static final int VIEW_TYPE_FULLY_CUSTOM = -2;
+    public static final int VIEW_TYPE_GRAY_SECTION = 31;
+    public static final int VIEW_TYPE_HEADER = 0;
+    public static final int VIEW_TYPE_ICON_TEXT_CHECK = 6;
+    public static final int VIEW_TYPE_INTSLIDE = 15;
+    public static final int VIEW_TYPE_LARGE_HEADER = 26;
+    public static final int VIEW_TYPE_LARGE_QUICK_REPLY = 17;
+    public static final int VIEW_TYPE_LARGE_SHADOW = 8;
+    public static final int VIEW_TYPE_PROCEED_OVERVIEW = 24;
+    public static final int VIEW_TYPE_PROFILE_CELL = 32;
+    public static final int VIEW_TYPE_QUICK_REPLY = 16;
+    public static final int VIEW_TYPE_RADIO = 10;
+    public static final int VIEW_TYPE_RADIO_2 = 44;
+    public static final int VIEW_TYPE_RADIO_USER = 27;
+    public static final int VIEW_TYPE_RIGHT_ICON_TEXT = 30;
+    public static final int VIEW_TYPE_ROUND_CHECKBOX = 35;
+    public static final int VIEW_TYPE_ROUND_GROUP_CHECKBOX = 41;
+    public static final int VIEW_TYPE_SEARCH_MESSAGE = 33;
+    public static final int VIEW_TYPE_SHADOW = 7;
+    public static final int VIEW_TYPE_SHADOW_COLLAPSE_BUTTON = 38;
+    public static final int VIEW_TYPE_SLIDE = 14;
+    public static final int VIEW_TYPE_SPACE = 28;
+    public static final int VIEW_TYPE_SWITCH = 39;
+    public static final int VIEW_TYPE_TEXT = 3;
+    public static final int VIEW_TYPE_TEXT_CHECK = 5;
+    public static final int VIEW_TYPE_TEXT_SETTINGS = 43;
+    public static final int VIEW_TYPE_TOPVIEW = 2;
+    public static final int VIEW_TYPE_TRANSACTION = 25;
+    public static final int VIEW_TYPE_USER_ADD = 13;
+    public static final int VIEW_TYPE_USER_CHECKBOX = 37;
+    public static final int VIEW_TYPE_USER_GROUP_CHECKBOX = 36;
+    private boolean allowReorder;
+    private boolean applyBackground;
+    private BaseChartView.SharedUiComponents chartSharedUI;
+    private final int classGuid;
+    private final Context context;
     public final int currentAccount;
-    public Section currentReorderSection;
-    public Section currentWhiteSection;
-    public final boolean dialog;
-    public Utilities.Callback2 fillItems;
-    public final RecyclerListView listView;
-    public Utilities.Callback2 onReordered;
-    public boolean orderChanged;
-    public int orderChangedId;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public boolean applyBackground = true;
-    public final ArrayList oldItems = new ArrayList();
-    public final ArrayList items = new ArrayList();
-    public int itemsOffset = 0;
-    public final ArrayList whiteSections = new ArrayList();
-    public final ArrayList reorderSections = new ArrayList();
+    private Section currentReorderSection;
+    private Section currentWhiteSection;
+    private final boolean dialog;
+    protected Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> fillItems;
+    private final ArrayList<UItem> items;
+    public int itemsOffset;
+    protected final RecyclerListView listView;
+    private final ArrayList<UItem> oldItems;
+    private Utilities.Callback2<Integer, ArrayList<UItem>> onReordered;
+    private boolean orderChanged;
+    private int orderChangedId;
+    private final ArrayList<Section> reorderSections;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private final ArrayList<Section> whiteSections;
 
-    public final class FullscreenCustomFrameLayout extends FrameLayout {
-        public int minusHeight;
-        public boolean minusPadding;
+    public static class FullscreenCustomFrameLayout extends FrameLayout {
+        private int minusHeight;
+        private boolean minusPadding;
+
+        public FullscreenCustomFrameLayout(Context context) {
+            super(context);
+            this.minusHeight = 0;
+        }
 
         @Override
-        public final void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             int paddingBottom = this.minusHeight;
             View view = getParent() instanceof View ? (View) getParent() : null;
             if (this.minusPadding && view != null) {
@@ -125,18 +174,38 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
             }
             super.onMeasure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(iMin, 1073741824));
         }
+
+        public void setMinusHeight(int i) {
+            this.minusHeight = i;
+        }
+
+        public void setMinusPadding(boolean z) {
+            this.minusPadding = z;
+        }
     }
 
-    public final class Section {
+    public static class Section {
         public int end;
         public int start;
+
+        private Section() {
+        }
+
+        public boolean contains(int i) {
+            return i >= this.start && i <= this.end;
+        }
     }
 
-    public final class SpaceView extends View {
-        public int height;
+    public static class SpaceView extends View {
+        private int height;
+
+        public SpaceView(Context context) {
+            super(context);
+            setTag(-33024);
+        }
 
         @Override
-        public final void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.height, 1073741824));
         }
 
@@ -149,43 +218,166 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         }
     }
 
-    public UniversalAdapter(RecyclerListView recyclerListView, Context context, int i, int i2, boolean z, Utilities.Callback2 callback2, Theme.ResourcesProvider resourcesProvider) {
-        this.listView = recyclerListView;
-        this.context = context;
-        this.currentAccount = i;
-        this.classGuid = i2;
-        this.dialog = z;
-        this.fillItems = callback2;
-        this.resourcesProvider = resourcesProvider;
-        update(false);
+    public UniversalAdapter(RecyclerListView recyclerListView, Context context, int i, int i2, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Theme.ResourcesProvider resourcesProvider) {
+        this(recyclerListView, context, i, i2, false, callback2, resourcesProvider);
+    }
+
+    private void callReorder(int i) {
+        if (i < 0 || i >= this.reorderSections.size()) {
+            return;
+        }
+        Section section = this.reorderSections.get(i);
+        this.onReordered.run(Integer.valueOf(i), new ArrayList<>(this.items.subList(section.start, section.end + 1)));
+        this.orderChanged = false;
+    }
+
+    private View findViewByItemObject(Object obj) {
+        int i = 0;
+        while (true) {
+            if (i >= getItemCount()) {
+                i = -1;
+                break;
+            }
+            UItem item = getItem(i);
+            if (item != null && item.object == obj) {
+                break;
+            }
+            i++;
+        }
+        if (i == -1) {
+            return null;
+        }
+        for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
+            View childAt = this.listView.getChildAt(i2);
+            int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
+            if (childAdapterPosition != -1 && childAdapterPosition == i) {
+                return childAt;
+            }
+        }
+        return null;
+    }
+
+    private boolean hasDivider(int i) {
+        UItem item = getItem(i);
+        UItem item2 = getItem(i + 1);
+        return (item == null || item.hideDivider || item2 == null || isShadow(item2.viewType) != isShadow(item.viewType)) ? false : true;
     }
 
     public static boolean isShadow(int i) {
-        if (i < 10000) {
+        if (i < UItem.factoryViewTypeStartsWith) {
             return i == 7 || i == 8 || i == 38 || i == 31 || i == -4 || i == 28 || i == 2 || i == -2;
         }
-        UItem.UItemFactory uItemFactoryFindFactory = UItem.findFactory(i);
+        UItem.UItemFactory<?> uItemFactoryFindFactory = UItem.findFactory(i);
         return uItemFactoryFindFactory != null && uItemFactoryFindFactory.isShadow();
     }
 
-    public final UItem getItem(int i) {
-        if (i < 0) {
+    public static void lambda$onBindViewHolder$1(UItem uItem, int i) {
+        Utilities.Callback<Integer> callback = uItem.intCallback;
+        if (callback != null) {
+            callback.run(Integer.valueOf(i));
+        }
+    }
+
+    public StatisticActivity.BaseChartCell lambda$onBindViewHolder$2(UItem uItem) {
+        View viewFindViewByItemObject = findViewByItemObject(uItem.object);
+        if (viewFindViewByItemObject instanceof StatisticActivity.UniversalChartCell) {
+            return (StatisticActivity.UniversalChartCell) viewFindViewByItemObject;
+        }
+        return null;
+    }
+
+    public static void lambda$onBindViewHolder$3(UItem uItem, TextCheckCell2 textCheckCell2) {
+        uItem.clickCallback.onClick(textCheckCell2);
+    }
+
+    private void updateColors(RecyclerView.ViewHolder viewHolder) {
+        KeyEvent.Callback callback = viewHolder.itemView;
+        if (callback instanceof Theme.Colorable) {
+            ((Theme.Colorable) callback).updateColors();
+            if (shouldApplyBackground(viewHolder.getItemViewType())) {
+                viewHolder.itemView.setBackgroundColor(getThemedColor(this.dialog ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite));
+            }
+        }
+    }
+
+    public void lambda$update$0(boolean z) {
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView == null || !recyclerListView.isComputingLayout()) {
+            this.oldItems.clear();
+            this.oldItems.addAll(this.items);
+            this.items.clear();
+            this.currentWhiteSection = null;
+            this.whiteSections.clear();
+            this.reorderSections.clear();
+            Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2 = this.fillItems;
+            if (callback2 != null) {
+                callback2.run(this.items, this);
+                updateReorderSections();
+                if (z) {
+                    setItems(this.oldItems, this.items);
+                } else {
+                    notifyDataSetChanged();
+                }
+            }
+        }
+    }
+
+    private void updateReorderSections() {
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView == null) {
+            return;
+        }
+        ArrayList<Long> arrayList = recyclerListView.forcedSections;
+        if (arrayList == null) {
+            recyclerListView.forcedSections = new ArrayList<>();
+        } else {
+            arrayList.clear();
+        }
+        ArrayList<Section> arrayList2 = this.whiteSections;
+        int size = arrayList2.size();
+        int i = 0;
+        while (i < size) {
+            Section section = arrayList2.get(i);
+            i++;
+            Section section2 = section;
+            this.listView.forcedSections.add(Long.valueOf(AndroidUtilities.pack(section2.start, section2.end)));
+        }
+    }
+
+    public void drawWhiteSections(Canvas canvas, RecyclerListView recyclerListView) {
+        for (int i = 0; i < this.whiteSections.size(); i++) {
+            Section section = this.whiteSections.get(i);
+            int i2 = section.end;
+            if (i2 >= 0) {
+                recyclerListView.drawSectionBackground(canvas, section.start, i2, getThemedColor(this.dialog ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite));
+            }
+        }
+    }
+
+    public UItem findItem(int i) {
+        for (int i2 = 0; i2 < this.items.size(); i2++) {
+            UItem uItem = this.items.get(i2);
+            if (uItem != null && uItem.id == i) {
+                return uItem;
+            }
+        }
+        return null;
+    }
+
+    public UItem getItem(int i) {
+        if (i < 0 || i >= this.items.size()) {
             return null;
         }
-        ArrayList arrayList = this.items;
-        if (i >= arrayList.size()) {
-            return null;
-        }
-        return (UItem) arrayList.get(i);
+        return this.items.get(i);
     }
 
     @Override
-    public final int getItemCount() {
+    public int getItemCount() {
         return this.items.size();
     }
 
     @Override
-    public final int getItemViewType(int i) {
+    public int getItemViewType(int i) {
         UItem item = getItem(i);
         if (item == null) {
             return 0;
@@ -193,214 +385,139 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         return item.viewType;
     }
 
-    public final int getReorderSectionId(int i) {
-        int i2 = 0;
-        while (true) {
-            ArrayList arrayList = this.reorderSections;
-            if (i2 >= arrayList.size()) {
-                return -1;
-            }
-            Section section = (Section) arrayList.get(i2);
-            if (i >= section.start && i <= section.end) {
+    public int getReorderSectionId(int i) {
+        for (int i2 = 0; i2 < this.reorderSections.size(); i2++) {
+            if (this.reorderSections.get(i2).contains(i)) {
                 return i2;
             }
-            i2++;
         }
+        return -1;
     }
 
     public int getThemedColor(int i) {
         return Theme.getColor(i, this.resourcesProvider);
     }
 
-    public final boolean hasDivider(int i) {
-        UItem item = getItem(i);
-        UItem item2 = getItem(i + 1);
-        return (item == null || item.hideDivider || item2 == null || isShadow(item2.viewType) != isShadow(item.viewType)) ? false : true;
-    }
-
     @Override
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-        int i = viewHolder.mItemViewType;
+        int itemViewType = viewHolder.getItemViewType();
         UItem item = getItem(viewHolder.getAdapterPosition());
-        if (i >= 10000) {
-            UItem.UItemFactory uItemFactoryFindFactory = UItem.findFactory(i);
+        if (itemViewType >= UItem.factoryViewTypeStartsWith) {
+            UItem.UItemFactory<?> uItemFactoryFindFactory = UItem.findFactory(itemViewType);
             if (uItemFactoryFindFactory == null || !uItemFactoryFindFactory.isClickable()) {
                 return false;
             }
-        } else if (i != 3 && i != 5 && i != 6 && i != 30 && i != 4 && i != 10 && i != 44 && i != 11 && i != 12 && i != 17 && i != 16 && i != 29 && i != 25 && i != 27 && i != 32 && i != 33 && i != 35 && i != 36 && i != 37 && i != 41 && i != 39 && i != 40 && i != 38) {
+        } else if (itemViewType != 3 && itemViewType != 5 && itemViewType != 6 && itemViewType != 30 && itemViewType != 4 && itemViewType != 10 && itemViewType != 44 && itemViewType != 11 && itemViewType != 12 && itemViewType != 17 && itemViewType != 16 && itemViewType != 29 && itemViewType != 25 && itemViewType != 27 && itemViewType != 32 && itemViewType != 33 && itemViewType != 35 && itemViewType != 36 && itemViewType != 37 && itemViewType != 41 && itemViewType != 39 && itemViewType != 40 && itemViewType != 38) {
             return false;
         }
         return item == null || item.enabled;
     }
 
+    public boolean isReorderItem(int i) {
+        return getReorderSectionId(i) >= 0;
+    }
+
+    public void listenReorder(Utilities.Callback2<Integer, ArrayList<UItem>> callback2) {
+        this.onReordered = callback2;
+    }
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        TextInfoPrivacyCell textInfoPrivacyCell;
         View view;
-        View view2;
         boolean z;
-        boolean z2;
         int i2;
-        CollapseTextCell collapseTextCell;
         CharSequence charSequence;
         TLRPC.Document document;
         long j;
         ImageLocation imageLocation;
         String str;
         TLRPC.Photo photo;
-        long j2;
-        boolean z3;
-        long j3;
-        boolean z4;
         CharSequence charSequenceConcat;
         int i3;
-        VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7;
-        UItem item = getItem(i);
+        final UItem item = getItem(i);
         UItem item2 = getItem(i + 1);
         UItem item3 = getItem(i - 1);
         if (item == null) {
             return;
         }
-        int i4 = viewHolder.mItemViewType;
+        int itemViewType = viewHolder.getItemViewType();
         boolean zHasDivider = hasDivider(i);
         updateColors(viewHolder);
-        RecyclerListView recyclerListView = this.listView;
-        View view3 = viewHolder.itemView;
-        if (i4 < 10000) {
-            int i5 = this.currentAccount;
-            long j4 = 0;
+        if (itemViewType < UItem.factoryViewTypeStartsWith) {
             String userName = "";
-            byte b = -1;
-            switch (i4) {
+            switch (itemViewType) {
                 case -4:
                 case -2:
                 case -1:
-                    view = view3;
-                    FrameLayout frameLayout = (FrameLayout) view;
+                    FrameLayout frameLayout = (FrameLayout) viewHolder.itemView;
                     frameLayout.setClipChildren(!item.checked);
                     frameLayout.setClipToPadding(!item.checked);
                     if (frameLayout.getChildCount() != (item.view == null ? 0 : 1) || frameLayout.getChildAt(0) != item.view) {
                         frameLayout.removeAllViews();
-                        View view4 = item.view;
-                        if (view4 != null) {
-                            AndroidUtilities.removeFromParent(view4);
-                            frameLayout.addView(item.view, (i4 == -1 || i4 == -4) ? LayoutHelper.createFrame(item.intValue, -1) : LayoutHelper.createFrame(-2.0f, -2));
+                        View view2 = item.view;
+                        if (view2 != null) {
+                            AndroidUtilities.removeFromParent(view2);
+                            frameLayout.addView(item.view, (itemViewType == -1 || itemViewType == -4) ? LayoutHelper.createFrame(-1, item.intValue) : LayoutHelper.createFrame(-2, -2.0f));
                         }
                     }
                     break;
                 case -3:
-                    view = view3;
-                    FullscreenCustomFrameLayout fullscreenCustomFrameLayout = (FullscreenCustomFrameLayout) view;
-                    fullscreenCustomFrameLayout.minusHeight = item.intValue;
-                    fullscreenCustomFrameLayout.minusPadding = BitwiseUtils.hasFlag(item.flags, 1);
+                    FullscreenCustomFrameLayout fullscreenCustomFrameLayout = (FullscreenCustomFrameLayout) viewHolder.itemView;
+                    fullscreenCustomFrameLayout.setMinusHeight(item.intValue);
+                    fullscreenCustomFrameLayout.setMinusPadding(BitwiseUtils.hasFlag(item.flags, 1));
                     if (fullscreenCustomFrameLayout.getChildCount() != (item.view == null ? 0 : 1) || fullscreenCustomFrameLayout.getChildAt(0) != item.view) {
                         fullscreenCustomFrameLayout.removeAllViews();
-                        View view5 = item.view;
-                        if (view5 != null) {
-                            AndroidUtilities.removeFromParent(view5);
-                            fullscreenCustomFrameLayout.addView(item.view, LayoutHelper.createFrame(-1.0f, -1));
+                        View view3 = item.view;
+                        if (view3 != null) {
+                            AndroidUtilities.removeFromParent(view3);
+                            fullscreenCustomFrameLayout.addView(item.view, LayoutHelper.createFrame(-1, -1.0f));
                         }
                     }
                     break;
                 case 0:
                 case 1:
                 case 26:
-                    view = view3;
-                    HeaderCell headerCell = (HeaderCell) view;
-                    headerCell.setText(item.text);
-                    headerCell.setEnabled$1(item.enabled);
+                    ((HeaderCell) viewHolder.itemView).setText(item.text);
+                    ((HeaderCell) viewHolder.itemView).setEnabled(item.enabled, true);
                     break;
                 case 2:
-                    view = view3;
-                    TopViewCell topViewCell = (TopViewCell) view;
-                    int i6 = item.iconResId;
-                    if (i6 == 0) {
-                        int i7 = item.intValue;
-                        if (i7 != 0) {
-                            topViewCell.setEmojiSize(i7);
+                    TopViewCell topViewCell = (TopViewCell) viewHolder.itemView;
+                    int i4 = item.iconResId;
+                    if (i4 == 0) {
+                        int i5 = item.intValue;
+                        if (i5 != 0) {
+                            topViewCell.setEmojiSize(i5);
                         }
-                        String string = item.subtext.toString();
-                        String string2 = item.textValue.toString();
-                        topViewCell.getClass();
-                        MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(topViewCell.imageView, string, string2, "90_90");
+                        topViewCell.setEmoji(item.subtext.toString(), item.textValue.toString());
                     } else if (item.accent) {
-                        topViewCell.setEmojiStatic(i6);
+                        topViewCell.setEmojiStatic(i4);
                     } else {
-                        topViewCell.setEmoji(i6);
+                        topViewCell.setEmoji(i4);
                     }
                     if (!TextUtils.isEmpty(item.animatedText)) {
-                        CharSequence charSequence2 = item.text;
-                        CharSequence charSequence3 = item.animatedText;
-                        topViewCell.titleView.setText(charSequence2);
-                        topViewCell.titleView.setVisibility(0);
-                        LinkSpanDrawable.LinksTextView linksTextView = topViewCell.textView;
-                        linksTextView.setText(charSequence3);
-                        linksTextView.setMaxWidth(HintView2.cutInFancyHalf(charSequence3, linksTextView.getPaint()));
-                        linksTextView.requestLayout();
-                        topViewCell.updateColors$1();
+                        topViewCell.setText(item.text, item.animatedText);
                     } else {
                         topViewCell.setText(item.text);
                     }
                     break;
                 case 3:
-                    view = view3;
-                    TextCell textCell = (TextCell) view;
+                    TextCell textCell = (TextCell) viewHolder.itemView;
                     Object obj = item.object;
                     if (obj instanceof TLRPC.Document) {
-                        CharSequence charSequence4 = item.text;
-                        TLRPC.Document document2 = (TLRPC.Document) obj;
-                        textCell.imageLeft = 16;
-                        textCell.offsetFromImage = 58;
-                        textCell.textView.setText(charSequence4, false);
-                        textCell.textView.setRightDrawable((Drawable) null);
-                        AnimatedTextView animatedTextView = textCell.valueTextView;
-                        textCell.valueText = null;
-                        animatedTextView.setText(null, false, true);
-                        textCell.valueImageView.setVisibility(8);
-                        textCell.valueTextView.setVisibility(8);
-                        textCell.valueSpoilersTextView.setVisibility(8);
-                        textCell.imageView.setVisibility(8);
-                        textCell.imageView.setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
-                        textCell.needDivider = zHasDivider;
-                        textCell.setWillNotDraw(!zHasDivider);
-                        Switch r3 = textCell.checkBox;
-                        if (r3 != null) {
-                            r3.setVisibility(8);
-                        }
-                        textCell.setValueSticker(document2);
+                        textCell.setTextAndSticker(item.text, (TLRPC.Document) obj, zHasDivider);
                     } else if (obj instanceof String) {
-                        CharSequence charSequence5 = item.text;
-                        String str2 = (String) obj;
-                        textCell.imageLeft = 16;
-                        textCell.offsetFromImage = 58;
-                        SimpleTextView simpleTextView = textCell.textView;
-                        simpleTextView.setText(charSequence5, false);
-                        simpleTextView.setRightDrawable((Drawable) null);
-                        AnimatedTextView animatedTextView2 = textCell.valueTextView;
-                        textCell.valueText = null;
-                        animatedTextView2.setText(null, false, true);
-                        textCell.valueImageView.setVisibility(8);
-                        animatedTextView2.setVisibility(8);
-                        textCell.valueSpoilersTextView.setVisibility(8);
-                        RLottieImageView rLottieImageView = textCell.imageView;
-                        rLottieImageView.setVisibility(8);
-                        rLottieImageView.setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
-                        textCell.needDivider = zHasDivider;
-                        textCell.setWillNotDraw(!zHasDivider);
-                        Switch r4 = textCell.checkBox;
-                        if (r4 != null) {
-                            r4.setVisibility(8);
-                        }
-                        textCell.setValueSticker(str2);
+                        textCell.setTextAndSticker(item.text, (String) obj, zHasDivider);
                     } else if (TextUtils.isEmpty(item.textValue)) {
                         Object obj2 = item.object;
                         if (obj2 instanceof Drawable) {
                             textCell.setTextAndIcon(item.text, (Drawable) obj2, zHasDivider);
                         } else {
-                            int i8 = item.iconResId;
-                            if (i8 == 0) {
+                            int i6 = item.iconResId;
+                            if (i6 == 0) {
                                 textCell.setText(item.text, zHasDivider);
                             } else {
-                                textCell.setTextAndIcon(i8, item.text, zHasDivider);
+                                textCell.setTextAndIcon(item.text, i6, zHasDivider);
                             }
                         }
                     } else {
@@ -408,56 +525,52 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                         if (obj3 instanceof Drawable) {
                             textCell.setTextAndValueAndIcon(item.text, item.textValue, (Drawable) obj3, zHasDivider);
                         } else {
-                            int i9 = item.iconResId;
-                            if (i9 == 0) {
-                                textCell.setTextAndValue(item.text, item.textValue, false, zHasDivider);
+                            int i7 = item.iconResId;
+                            if (i7 == 0) {
+                                textCell.setTextAndValue(item.text, item.textValue, zHasDivider);
                             } else {
-                                textCell.setTextAndValueAndIcon(item.text, item.textValue, false, i9, zHasDivider);
+                                textCell.setTextAndValueAndIcon(item.text, item.textValue, i7, zHasDivider);
                             }
                         }
                     }
                     if (item.accent) {
-                        int i10 = Theme.key_windowBackgroundWhiteBlueText4;
-                        textCell.setColors(i10, i10);
+                        int i8 = Theme.key_windowBackgroundWhiteBlueText4;
+                        textCell.setColors(i8, i8);
                     } else if (item.red) {
                         textCell.setColors(Theme.key_text_RedBold, Theme.key_text_RedRegular);
                     } else {
                         textCell.setColors(Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_windowBackgroundWhiteBlackText);
                     }
-                    textCell.setEnabled$1(item.enabled);
+                    textCell.setEnabled(item.enabled, true);
                     break;
                 case 4:
                 case 9:
-                    view = view3;
-                    TextCheckCell textCheckCell = (TextCheckCell) view;
+                    TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
                     if (textCheckCell.itemId == item.id) {
                         textCheckCell.setChecked(item.checked);
                     }
-                    textCheckCell.setEnabled(null, item.enabled);
+                    textCheckCell.setEnabled(item.enabled, null);
                     textCheckCell.setTextAndCheck(item.text, item.checked, zHasDivider);
                     textCheckCell.itemId = item.id;
-                    if (i4 == 9) {
-                        view.setBackgroundColor(Theme.getColor(null, item.checked ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked, false));
+                    if (itemViewType == 9) {
+                        viewHolder.itemView.setBackgroundColor(Theme.getColor(null, item.checked ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked, false));
                     }
                     break;
                 case 5:
-                    view = view3;
-                    NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) view;
-                    CharSequence charSequence6 = item.subtext;
-                    notificationsCheckCell.setTextAndValueAndIconAndCheck(item.text, item.subtext, 0, item.checked, 0, charSequence6 != null && charSequence6.toString().contains("\n"), zHasDivider, false);
+                    NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) viewHolder.itemView;
+                    CharSequence charSequence2 = item.subtext;
+                    notificationsCheckCell.setTextAndValueAndCheck(item.text, item.subtext, item.checked, 0, charSequence2 != null && charSequence2.toString().contains("\n"), zHasDivider);
                     break;
                 case 6:
-                    view = view3;
-                    ((NotificationsCheckCell) view).setTextAndValueAndIconAndCheck(item.text, item.subtext, 0, item.checked, 0, false, zHasDivider, false);
+                    ((NotificationsCheckCell) viewHolder.itemView).setTextAndValueAndCheck(item.text, item.subtext, item.checked, zHasDivider);
                     break;
                 case 7:
                 case 8:
                 case 38:
-                    view = view3;
-                    if (i4 == 7 || i4 == 8) {
-                        TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) view;
+                    if (itemViewType == 7 || itemViewType == 8) {
+                        textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                         if (TextUtils.isEmpty(item.text)) {
-                            textInfoPrivacyCell.setFixedSize(i4 == 8 ? 220 : 12);
+                            textInfoPrivacyCell.setFixedSize(itemViewType == 8 ? 220 : 12);
                             textInfoPrivacyCell.setText("");
                         } else {
                             textInfoPrivacyCell.setFixedSize(0);
@@ -473,14 +586,14 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                             textInfoPrivacyCell.getTextView().setMaxWidth(AndroidUtilities.displaySize.x);
                             textInfoPrivacyCell.getTextView().setPadding(0, AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(17.0f));
                         }
-                        view2 = textInfoPrivacyCell;
-                    } else if (i4 == 38) {
-                        collapseTextCell = (CollapseTextCell) view;
-                        CharSequence charSequence7 = item.animatedText;
-                        boolean z5 = item.collapsed;
-                        collapseTextCell.textView.setText(charSequence7);
-                        collapseTextCell.collapsedArrow.animate().cancel();
-                        collapseTextCell.collapsedArrow.animate().rotation(z5 ? 0.0f : 180.0f).setDuration(340L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+                    } else if (itemViewType == 38) {
+                        CollapseTextCell collapseTextCell = (CollapseTextCell) viewHolder.itemView;
+                        CharSequence charSequence3 = item.animatedText;
+                        boolean z2 = item.collapsed;
+                        collapseTextCell.textView.setText(charSequence3);
+                        View view4 = collapseTextCell.collapsedArrow;
+                        view4.animate().cancel();
+                        view4.animate().rotation(z2 ? 0.0f : 180.0f).setDuration(340L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
                         if (item.accent) {
                             collapseTextCell.setColor(Theme.key_windowBackgroundWhiteBlueText4);
                         } else if (item.red) {
@@ -488,61 +601,50 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                         } else {
                             collapseTextCell.setColor(Theme.key_windowBackgroundWhiteBlackText);
                         }
+                        view = collapseTextCell;
                     } else {
-                        view2 = null;
+                        view = null;
                     }
                     if (item3 != null) {
-                        view2 = collapseTextCell;
-                        view2 = collapseTextCell;
+                        view = textInfoPrivacyCell;
+                        view = textInfoPrivacyCell;
                         if (isShadow(item3.viewType)) {
-                            view2 = collapseTextCell;
-                            view2 = collapseTextCell;
-                            view2 = collapseTextCell;
-                            view2 = collapseTextCell;
+                            view = textInfoPrivacyCell;
+                            view = textInfoPrivacyCell;
                             z = false;
                         } else {
                             z = true;
                         }
                     } else {
-                        view2 = collapseTextCell;
-                        view2 = collapseTextCell;
-                        view2 = collapseTextCell;
-                        view2 = collapseTextCell;
+                        view = textInfoPrivacyCell;
+                        view = textInfoPrivacyCell;
                         z = false;
                     }
-                    if (item2 == null || isShadow(item2.viewType)) {
-                        view2 = collapseTextCell;
-                        view2 = collapseTextCell;
-                        z2 = false;
-                    } else {
-                        view2 = collapseTextCell;
-                        z2 = true;
-                    }
-                    if (!recyclerListView.hasSections()) {
-                        if (z && z2) {
+                    boolean z3 = (item2 == null || isShadow(item2.viewType)) ? false : true;
+                    if (!this.listView.hasSections()) {
+                        if (z && z3) {
                             i2 = R.drawable.greydivider;
                         } else if (z) {
                             i2 = R.drawable.greydivider_bottom;
                         } else {
-                            i2 = z2 ? R.drawable.greydivider_top : R.drawable.field_carret_empty;
+                            i2 = z3 ? R.drawable.greydivider_top : R.drawable.field_carret_empty;
                         }
                         Drawable themedDrawable = Theme.getThemedDrawable(this.context, i2, Theme.getColor(Theme.key_windowBackgroundGrayShadow, this.resourcesProvider));
                         if (!this.dialog) {
-                            view2.setBackground(themedDrawable);
+                            view.setBackground(themedDrawable);
                         } else {
-                            view2.setBackground(new LayerDrawable(new Drawable[]{new ColorDrawable(getThemedColor(Theme.key_dialogBackgroundGray)), themedDrawable}));
+                            view.setBackground(new LayerDrawable(new Drawable[]{new ColorDrawable(getThemedColor(Theme.key_dialogBackgroundGray)), themedDrawable}));
                         }
                     } else {
-                        view2.setBackground(null);
+                        view.setBackground(null);
                     }
                     break;
                 case 10:
-                    view = view3;
-                    DialogRadioCell dialogRadioCell = (DialogRadioCell) view;
-                    int i11 = dialogRadioCell.itemId;
-                    int i12 = item.id;
+                    DialogRadioCell dialogRadioCell = (DialogRadioCell) viewHolder.itemView;
+                    int i9 = dialogRadioCell.itemId;
+                    int i10 = item.id;
                     RadioButton radioButton = dialogRadioCell.radioButton;
-                    if (i11 == i12) {
+                    if (i9 == i10) {
                         radioButton.setChecked(item.checked, true);
                         dialogRadioCell.setEnabled(item.enabled, true);
                     } else {
@@ -552,22 +654,22 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     TextView textView = dialogRadioCell.valueTextView;
                     TextView textView2 = dialogRadioCell.textView;
                     if (zIsEmpty) {
-                        CharSequence charSequence8 = item.text;
-                        boolean z6 = item.checked;
+                        CharSequence charSequence4 = item.text;
+                        boolean z4 = item.checked;
                         textView.setVisibility(8);
-                        textView2.setText(charSequence8);
-                        radioButton.setChecked(z6, false);
+                        textView2.setText(charSequence4);
+                        radioButton.setChecked(z4, false);
                         dialogRadioCell.needDivider = zHasDivider;
                         dialogRadioCell.updateLayout();
                         dialogRadioCell.setWillNotDraw(!zHasDivider);
                     } else {
-                        CharSequence charSequence9 = item.text;
-                        CharSequence charSequence10 = item.textValue;
-                        boolean z7 = item.checked;
+                        CharSequence charSequence5 = item.text;
+                        CharSequence charSequence6 = item.textValue;
+                        boolean z5 = item.checked;
                         textView.setVisibility(0);
-                        textView.setText(charSequence10);
-                        textView2.setText(charSequence9);
-                        radioButton.setChecked(z7, false);
+                        textView.setText(charSequence6);
+                        textView2.setText(charSequence5);
+                        radioButton.setChecked(z5, false);
                         dialogRadioCell.needDivider = zHasDivider;
                         dialogRadioCell.updateLayout();
                         dialogRadioCell.setWillNotDraw(!zHasDivider);
@@ -576,39 +678,34 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     break;
                 case 11:
                 case 12:
-                    view = view3;
-                    UserCell userCell = (UserCell) view;
-                    userCell.setFromUItem(i5, item, zHasDivider);
-                    if (i4 == 12) {
+                    UserCell userCell = (UserCell) viewHolder.itemView;
+                    userCell.setFromUItem(this.currentAccount, item, zHasDivider);
+                    if (itemViewType == 12) {
                         userCell.setChecked(item.checked, false);
                     }
                     break;
                 case 13:
-                    view = view3;
-                    UserCell userCell2 = (UserCell) view;
-                    userCell2.setFromUItem(i5, item, zHasDivider);
-                    CharSequence charSequence11 = item.textValue;
-                    userCell2.setQuery(charSequence11 == null ? null : charSequence11.toString().toLowerCase());
+                    UserCell userCell2 = (UserCell) viewHolder.itemView;
+                    userCell2.setFromUItem(this.currentAccount, item, zHasDivider);
+                    CharSequence charSequence7 = item.textValue;
+                    userCell2.setQuery(charSequence7 == null ? null : charSequence7.toString().toLowerCase());
                     userCell2.setAddButtonVisible(!item.checked);
                     userCell2.setCloseIcon(item.clickCallback);
                     break;
                 case 14:
-                    view = view3;
-                    SlideChooseView slideChooseView = (SlideChooseView) view;
-                    slideChooseView.setOptions(item.intValue, null, item.texts);
+                    SlideChooseView slideChooseView = (SlideChooseView) viewHolder.itemView;
+                    slideChooseView.setOptions(item.intValue, item.texts);
                     slideChooseView.setMinAllowedIndex((int) item.longValue);
-                    slideChooseView.setCallback(new VideoEditTextureView$$ExternalSyntheticLambda1(item, 1));
+                    slideChooseView.setCallback(new ColorPicker$$ExternalSyntheticLambda5(item, 22));
                     break;
                 case 15:
-                    view = view3;
-                    SlideIntChooseView slideIntChooseView = (SlideIntChooseView) view;
+                    SlideIntChooseView slideIntChooseView = (SlideIntChooseView) viewHolder.itemView;
                     slideIntChooseView.set(item.intValue, (SlideIntChooseView.Options) item.object, item.intCallback);
                     slideIntChooseView.setMinValueAllowed((int) item.longValue);
                     break;
                 case 16:
-                    view = view3;
-                    QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) view;
-                    quickReplyView.checkBox.checkBoxBase.setChecked(-1, item.checked, false);
+                    QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) viewHolder.itemView;
+                    quickReplyView.checkBox.setChecked(item.checked, false);
                     quickReplyView.setReorder(this.allowReorder);
                     Object obj4 = item.object;
                     if (obj4 instanceof QuickRepliesController.QuickReply) {
@@ -616,14 +713,13 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     }
                     break;
                 case 17:
-                    view = view3;
-                    QuickRepliesActivity.LargeQuickReplyView largeQuickReplyView = (QuickRepliesActivity.LargeQuickReplyView) view;
-                    largeQuickReplyView.checkBox.checkBoxBase.setChecked(-1, item.checked, false);
+                    QuickRepliesActivity.LargeQuickReplyView largeQuickReplyView = (QuickRepliesActivity.LargeQuickReplyView) viewHolder.itemView;
+                    largeQuickReplyView.checkBox.setChecked(item.checked, false);
                     Object obj5 = item.object;
                     if (obj5 instanceof QuickRepliesController.QuickReply) {
                         QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) obj5;
-                        int i13 = UserConfig.selectedAccount;
-                        largeQuickReplyView.titleView.setText(MessagesController.getInstance(i13).getPeerName(UserConfig.getInstance(i13).getClientUserId()));
+                        int i11 = UserConfig.selectedAccount;
+                        largeQuickReplyView.titleView.setText(MessagesController.getInstance(i11).getPeerName(UserConfig.getInstance(i11).getClientUserId()));
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                         MessageObject messageObject = quickReply.topMessage;
                         TextView textView3 = largeQuickReplyView.textView;
@@ -634,12 +730,12 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                             spannableStringBuilder.append((CharSequence) "  ");
                             int iDp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(80.0f);
                             int messagesCount = quickReply.getMessagesCount() - 1;
-                            int i14 = VoIPEllipsizeSpan.$r8$clinit;
+                            int i12 = VoIPEllipsizeSpan.$r8$clinit;
                             SpannableString spannableString = new SpannableString("+");
                             VoIPEllipsizeSpan voIPEllipsizeSpan = new VoIPEllipsizeSpan(messagesCount);
-                            int iDp2 = (int) (((Text) voIPEllipsizeSpan.parents).width + AndroidUtilities.dp(10.0f));
+                            int currentWidth = (int) (((Text) voIPEllipsizeSpan.parents).getCurrentWidth() + AndroidUtilities.dp(10.0f));
                             int[] iArr = largeQuickReplyView.spanWidth;
-                            iArr[0] = iDp2;
+                            iArr[0] = currentWidth;
                             spannableString.setSpan(voIPEllipsizeSpan, 0, spannableString.length(), 33);
                             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, textView3.getPaint(), (iDp * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
                             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
@@ -661,8 +757,8 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                             imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
                         } else if (media == null || (document = media.document) == null) {
                             AvatarDrawable avatarDrawable = largeQuickReplyView.avatarDrawable;
-                            avatarDrawable.setInfo(UserConfig.selectedAccount, UserConfig.getInstance(i13).getCurrentUser());
-                            imageReceiver.setForUserOrChat(UserConfig.getInstance(i13).getCurrentUser(), avatarDrawable);
+                            avatarDrawable.setInfo(UserConfig.getInstance(i11).getCurrentUser());
+                            imageReceiver.setForUserOrChat(UserConfig.getInstance(i11).getCurrentUser(), avatarDrawable);
                             imageReceiver.setRoundRadius(AndroidUtilities.dp(56.0f));
                         } else {
                             TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(36.0f), true, null, true);
@@ -677,9 +773,9 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                                 imageLocation = forObject2;
                                 str = "36_36";
                             }
-                            long j5 = j;
+                            long j2 = j;
                             MessageObject messageObject3 = quickReply.topMessage;
-                            imageReceiver.setImage(imageLocation, str, messageObject3.strippedThumb, j5, (String) null, messageObject3, 0);
+                            imageReceiver.setImage(imageLocation, str, messageObject3.strippedThumb, j2, (String) null, messageObject3, 0);
                             imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
                         }
                         largeQuickReplyView.needDivider = zHasDivider;
@@ -692,173 +788,91 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                 case 21:
                 case 22:
                 case 23:
-                    view = view3;
-                    StatisticActivity.UniversalChartCell universalChartCell = (StatisticActivity.UniversalChartCell) view;
-                    int i15 = item.intValue;
-                    StatisticActivity.ChartViewData chartViewData = (StatisticActivity.ChartViewData) item.object;
-                    StatisticActivity$$ExternalSyntheticLambda13 statisticActivity$$ExternalSyntheticLambda13 = new StatisticActivity$$ExternalSyntheticLambda13(1, this, item);
-                    universalChartCell.stats_dc = i15;
-                    universalChartCell.findCell = statisticActivity$$ExternalSyntheticLambda13;
-                    universalChartCell.updateData(chartViewData, false);
+                    ((StatisticActivity.UniversalChartCell) viewHolder.itemView).set(item.intValue, (StatisticActivity.ChartViewData) item.object, new Utilities.Callback0Return() {
+                        @Override
+                        public final Object run() {
+                            return this.f$0.lambda$onBindViewHolder$2(item);
+                        }
+                    });
                     break;
                 case 24:
-                    view = view3;
-                    ((ChannelMonetizationLayout.ProceedOverviewCell) view).set((ChannelMonetizationLayout.ProceedOverview) item.object);
+                    ((ChannelMonetizationLayout.ProceedOverviewCell) viewHolder.itemView).set((ChannelMonetizationLayout.ProceedOverview) item.object);
                     break;
                 case 25:
-                    view = view3;
-                    ChannelMonetizationLayout.TransactionCell transactionCell = (ChannelMonetizationLayout.TransactionCell) view;
-                    TL_stats.BroadcastRevenueTransaction broadcastRevenueTransaction = (TL_stats.BroadcastRevenueTransaction) item.object;
-                    transactionCell.getClass();
-                    boolean z8 = broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionWithdrawal;
-                    TextView textView4 = transactionCell.titleView;
-                    TextView textView5 = transactionCell.dateView;
-                    if (z8) {
-                        TL_stats.TL_broadcastRevenueTransactionWithdrawal tL_broadcastRevenueTransactionWithdrawal = (TL_stats.TL_broadcastRevenueTransactionWithdrawal) broadcastRevenueTransaction;
-                        textView4.setText(LocaleController.getString(R.string.MonetizationTransactionWithdraw));
-                        if (tL_broadcastRevenueTransactionWithdrawal.pending) {
-                            textView5.setText(LocaleController.getString(R.string.MonetizationTransactionPending));
-                            z3 = false;
-                        } else {
-                            z3 = tL_broadcastRevenueTransactionWithdrawal.failed;
-                            StringBuilder sb = new StringBuilder();
-                            sb.append(LocaleController.formatShortDateTime(tL_broadcastRevenueTransactionWithdrawal.date));
-                            sb.append(z3 ? NotificationsController$$ExternalSyntheticOutline1.m(new StringBuilder(" — "), R.string.MonetizationTransactionNotCompleted) : "");
-                            textView5.setText(sb.toString());
-                        }
-                        j2 = tL_broadcastRevenueTransactionWithdrawal.amount;
-                    } else {
-                        if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionProceeds) {
-                            TL_stats.TL_broadcastRevenueTransactionProceeds tL_broadcastRevenueTransactionProceeds = (TL_stats.TL_broadcastRevenueTransactionProceeds) broadcastRevenueTransaction;
-                            textView4.setText(LocaleController.getString(R.string.MonetizationTransactionProceed));
-                            textView5.setText(LocaleController.formatShortDateTime(tL_broadcastRevenueTransactionProceeds.from_date) + " - " + LocaleController.formatShortDateTime(tL_broadcastRevenueTransactionProceeds.to_date));
-                            j2 = tL_broadcastRevenueTransactionProceeds.amount;
-                        } else if (broadcastRevenueTransaction instanceof TL_stats.TL_broadcastRevenueTransactionRefund) {
-                            TL_stats.TL_broadcastRevenueTransactionRefund tL_broadcastRevenueTransactionRefund = (TL_stats.TL_broadcastRevenueTransactionRefund) broadcastRevenueTransaction;
-                            textView4.setText(LocaleController.getString(R.string.MonetizationTransactionRefund));
-                            textView5.setText(LocaleController.formatShortDateTime(tL_broadcastRevenueTransactionRefund.from_date));
-                            j2 = tL_broadcastRevenueTransactionRefund.amount;
-                        }
-                        b = 1;
-                        z3 = false;
-                    }
-                    int i16 = z3 ? Theme.key_text_RedRegular : Theme.key_windowBackgroundWhiteGrayText;
-                    Theme.ResourcesProvider resourcesProvider = transactionCell.resourcesProvider;
-                    textView5.setTextColor(Theme.getColor(i16, resourcesProvider));
-                    SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
-                    spannableStringBuilder3.append((CharSequence) (b < 0 ? "-" : "+"));
-                    spannableStringBuilder3.append((CharSequence) "TON ");
-                    spannableStringBuilder3.append((CharSequence) transactionCell.formatter.format(Math.abs(j2) / 1.0E9d));
-                    int iIndexOf = TextUtils.indexOf(spannableStringBuilder3, ".");
-                    if (iIndexOf >= 0) {
-                        spannableStringBuilder3.setSpan(new RelativeSizeSpan(1.15f), 0, iIndexOf + 1, 33);
-                    }
-                    AnimatedEmojiSpan.TextViewEmojis textViewEmojis = transactionCell.valueText;
-                    textViewEmojis.setText(ChannelMonetizationLayout.replaceTON(spannableStringBuilder3, textViewEmojis.getPaint(), 1.1f, AndroidUtilities.dp(0.33f), false));
-                    textViewEmojis.setTextColor(Theme.getColor(b < 0 ? Theme.key_text_RedBold : Theme.key_avatar_nameInMessageGreen, resourcesProvider));
-                    transactionCell.needDivider = zHasDivider;
-                    transactionCell.setWillNotDraw(!zHasDivider);
+                    ((ChannelMonetizationLayout.TransactionCell) viewHolder.itemView).set((TL_stats.BroadcastRevenueTransaction) item.object, zHasDivider);
                     break;
                 case 27:
-                    view = view3;
-                    StoryPrivacyBottomSheet.UserCell userCell3 = (StoryPrivacyBottomSheet.UserCell) view;
-                    long j6 = userCell3.dialogId;
+                    StoryPrivacyBottomSheet.UserCell userCell3 = (StoryPrivacyBottomSheet.UserCell) viewHolder.itemView;
+                    long j3 = userCell3.dialogId;
                     Object obj6 = item.object;
-                    if (!(obj6 instanceof TLRPC.User)) {
-                        if (obj6 instanceof TLRPC.Chat) {
-                            j3 = -((TLRPC.Chat) obj6).id;
-                        }
-                        if (j6 == j4) {
-                            z4 = true;
-                        } else {
-                            z4 = false;
-                        }
-                        userCell3.setIsSendAs(false, true);
-                        userCell3.set(item.object);
-                        userCell3.checkBox.setVisibility(8);
-                        userCell3.radioButton.setVisibility(0);
-                        userCell3.setChecked(item.checked, z4);
-                        userCell3.setDivider(zHasDivider);
-                    } else {
-                        j3 = ((TLRPC.User) obj6).id;
-                    }
-                    j4 = j3;
-                    if (j6 == j4) {
-                        z4 = true;
-                    } else {
-                        z4 = false;
-                    }
+                    boolean z6 = j3 == (obj6 instanceof TLRPC.User ? ((TLRPC.User) obj6).id : obj6 instanceof TLRPC.Chat ? -((TLRPC.Chat) obj6).id : 0L);
                     userCell3.setIsSendAs(false, true);
                     userCell3.set(item.object);
                     userCell3.checkBox.setVisibility(8);
                     userCell3.radioButton.setVisibility(0);
-                    userCell3.setChecked(item.checked, z4);
+                    userCell3.setChecked(item.checked, z6);
                     userCell3.setDivider(zHasDivider);
                     break;
                 case 28:
-                    view = view3;
                     if (item.transparent) {
-                        view.setBackgroundColor(0);
+                        viewHolder.itemView.setBackgroundColor(0);
                     } else {
-                        int i17 = item.iconResId;
-                        if (i17 != 0) {
-                            view.setBackgroundColor(i17);
+                        int i13 = item.iconResId;
+                        if (i13 != 0) {
+                            viewHolder.itemView.setBackgroundColor(i13);
                         }
                     }
-                    view.setId(item.id);
-                    ((SpaceView) view).setHeight(item.intValue);
+                    viewHolder.itemView.setId(item.id);
+                    ((SpaceView) viewHolder.itemView).setHeight(item.intValue);
                     break;
                 case 29:
-                    view = view3;
-                    BusinessLinksActivity.BusinessLinkView businessLinkView = (BusinessLinksActivity.BusinessLinkView) view;
+                    BusinessLinksActivity.BusinessLinkView businessLinkView = (BusinessLinksActivity.BusinessLinkView) viewHolder.itemView;
                     Object obj7 = item.object;
                     if (obj7 instanceof BusinessLinksActivity.BusinessLinkWrapper) {
                         businessLinkView.needDivider = zHasDivider;
                         TL_account.TL_businessChatLink tL_businessChatLink = ((BusinessLinksActivity.BusinessLinkWrapper) obj7).link;
                         businessLinkView.businessLink = tL_businessChatLink;
                         boolean zIsEmpty2 = TextUtils.isEmpty(tL_businessChatLink.title);
-                        SimpleTextView simpleTextView2 = businessLinkView.titleTextView;
+                        SimpleTextView simpleTextView = businessLinkView.titleTextView;
                         if (zIsEmpty2) {
                             String strSubstring = businessLinkView.businessLink.link;
                             BusinessLinksController[] businessLinksControllerArr = BusinessLinksController.Instance;
                             if (strSubstring.startsWith("https://")) {
                                 strSubstring = strSubstring.substring(8);
                             }
-                            simpleTextView2.setText(strSubstring, false);
+                            simpleTextView.setText(strSubstring);
                         } else {
-                            simpleTextView2.setText(businessLinkView.businessLink.title, false);
+                            simpleTextView.setText(businessLinkView.businessLink.title);
                         }
-                        SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(businessLinkView.businessLink.message);
+                        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(businessLinkView.businessLink.message);
                         TL_account.TL_businessChatLink tL_businessChatLink2 = businessLinkView.businessLink;
-                        MediaDataController.addTextStyleRuns(tL_businessChatLink2.entities, tL_businessChatLink2.message, spannableStringBuilder4);
+                        MediaDataController.addTextStyleRuns(tL_businessChatLink2.entities, tL_businessChatLink2.message, spannableStringBuilder3);
                         SpoilersTextView spoilersTextView = businessLinkView.messagePreviewTextView;
-                        CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableStringBuilder4, spoilersTextView.getPaint().getFontMetricsInt(), false);
+                        CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(spannableStringBuilder3, spoilersTextView.getPaint().getFontMetricsInt(), false);
                         MessageObject.replaceAnimatedEmoji(charSequenceReplaceEmoji, businessLinkView.businessLink.entities, spoilersTextView.getPaint().getFontMetricsInt());
                         spoilersTextView.setText(charSequenceReplaceEmoji);
-                        int i18 = businessLinkView.businessLink.views;
-                        SimpleTextView simpleTextView3 = businessLinkView.clicksCountTextView;
-                        if (i18 == 0) {
-                            simpleTextView3.setText(LocaleController.formatString(R.string.NoClicks, new Object[0]), false);
+                        int i14 = businessLinkView.businessLink.views;
+                        SimpleTextView simpleTextView2 = businessLinkView.clicksCountTextView;
+                        if (i14 == 0) {
+                            simpleTextView2.setText(LocaleController.formatString(R.string.NoClicks, new Object[0]));
                         } else {
-                            simpleTextView3.setText(LocaleController.formatPluralString("Clicks", i18, new Object[0]), false);
+                            simpleTextView2.setText(LocaleController.formatPluralString("Clicks", i14, new Object[0]));
                         }
-                        simpleTextView3.requestLayout();
+                        simpleTextView2.requestLayout();
                         businessLinkView.invalidate();
                     }
                     break;
                 case 30:
-                    view = view3;
-                    TextRightIconCell textRightIconCell = (TextRightIconCell) view;
-                    CharSequence charSequence12 = item.text;
-                    int i19 = item.iconResId;
-                    textRightIconCell.textView.setText(charSequence12, false);
-                    textRightIconCell.ivIcon.setImageResource(i19);
+                    TextRightIconCell textRightIconCell = (TextRightIconCell) viewHolder.itemView;
+                    CharSequence charSequence8 = item.text;
+                    int i15 = item.iconResId;
+                    textRightIconCell.textView.setText(charSequence8);
+                    textRightIconCell.ivIcon.setImageResource(i15);
                     textRightIconCell.setDivider(zHasDivider);
                     textRightIconCell.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
                     break;
                 case 31:
-                    view = view3;
-                    GraySectionCell graySectionCell = (GraySectionCell) view;
+                    GraySectionCell graySectionCell = (GraySectionCell) viewHolder.itemView;
                     if (!TextUtils.equals(graySectionCell.getText(), item.text)) {
                         graySectionCell.setText(item.text, item.subtext, item.clickCallback);
                     } else {
@@ -866,8 +880,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     }
                     break;
                 case 32:
-                    view = view3;
-                    ProfileSearchCell profileSearchCell = (ProfileSearchCell) view;
+                    ProfileSearchCell profileSearchCell = (ProfileSearchCell) viewHolder.itemView;
                     Object obj8 = item.object;
                     if (item.accent && (obj8 instanceof TLRPC.User) && (i3 = ((TLRPC.User) obj8).bot_active_users) != 0) {
                         if (i3 != 0) {
@@ -895,21 +908,24 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     } else if (obj8 instanceof TLRPC.User) {
                         userName = UserObject.getUserName((TLRPC.User) obj8);
                     }
-                    String str3 = userName;
-                    boolean z9 = item.locked;
+                    String str2 = userName;
+                    boolean z7 = item.locked;
                     Object obj9 = item.object2;
                     Utilities.Callback callback = obj9 instanceof Utilities.Callback ? (Utilities.Callback) obj9 : null;
-                    profileSearchCell.allowBotOpenButton = z9;
+                    profileSearchCell.allowBotOpenButton = z7;
                     profileSearchCell.onOpenButtonClick = callback;
                     profileSearchCell.setRectangularAvatar(item.red);
-                    CharSequence charSequence13 = item.subtext;
-                    profileSearchCell.setData(obj8, null, str3, charSequence13 != null ? charSequence13 : charSequenceConcat, false, false);
-                    profileSearchCell.setChecked(item.checked, false);
+                    CharSequence charSequence9 = item.subtext;
+                    profileSearchCell.setData(obj8, null, str2, charSequence9 != null ? charSequence9 : charSequenceConcat, false, false);
+                    boolean z8 = item.checked;
+                    CheckBox2 checkBox2 = profileSearchCell.checkBox;
+                    if (checkBox2 != null) {
+                        checkBox2.setChecked(z8, false);
+                    }
                     profileSearchCell.useSeparator = zHasDivider;
                     break;
                 case 33:
-                    view = view3;
-                    DialogCell dialogCell = (DialogCell) view;
+                    DialogCell dialogCell = (DialogCell) viewHolder.itemView;
                     Object obj10 = item.object;
                     MessageObject messageObject4 = obj10 instanceof MessageObject ? (MessageObject) obj10 : null;
                     dialogCell.useSeparator = zHasDivider;
@@ -920,30 +936,28 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     }
                     break;
                 case 34:
-                    view = view3;
-                    ((FlickerLoadingView) view).setViewType(item.intValue);
+                    ((FlickerLoadingView) viewHolder.itemView).setViewType(item.intValue);
                     break;
                 case 35:
                 case 36:
                 case 41:
-                    CheckBoxCell checkBoxCell = (CheckBoxCell) view3;
+                    CheckBoxCell checkBoxCell = (CheckBoxCell) viewHolder.itemView;
                     checkBoxCell.setPad(item.pad);
-                    view = view3;
                     checkBoxCell.setText(item.text, "", item.checked, zHasDivider, checkBoxCell.itemId == item.id);
                     checkBoxCell.itemId = item.id;
                     checkBoxCell.setIcon(item.locked ? R.drawable.permission_locked : 0);
-                    if (i4 == 36 || i4 == 41) {
-                        boolean z10 = item.collapsed;
-                        CharSequence charSequence14 = item.animatedText;
+                    if (itemViewType == 36 || itemViewType == 41) {
+                        boolean z9 = item.collapsed;
+                        CharSequence charSequence10 = item.animatedText;
                         View.OnClickListener onClickListener = item.clickCallback;
                         CheckBoxCell.CollapseButton collapseButton = checkBoxCell.collapseButton;
                         if (collapseButton != null) {
-                            AnimatedTextView animatedTextView3 = collapseButton.textView;
-                            animatedTextView3.drawable.cancelAnimation();
-                            animatedTextView3.setText(charSequence14);
-                            View view6 = collapseButton.collapsedArrow;
-                            view6.animate().cancel();
-                            view6.animate().rotation(z10 ? 0.0f : 180.0f).setDuration(340L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+                            AnimatedTextView animatedTextView = collapseButton.textView;
+                            animatedTextView.cancelAnimation();
+                            animatedTextView.setText(charSequence10);
+                            View view5 = collapseButton.collapsedArrow;
+                            view5.animate().cancel();
+                            view5.animate().rotation(z9 ? 0.0f : 180.0f).setDuration(340L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
                             if (onClickListener != null) {
                                 collapseButton.setOnClickListener(onClickListener);
                             }
@@ -951,7 +965,7 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     }
                     break;
                 case 37:
-                    CheckBoxCell checkBoxCell2 = (CheckBoxCell) view3;
+                    CheckBoxCell checkBoxCell2 = (CheckBoxCell) viewHolder.itemView;
                     checkBoxCell2.setPad(item.pad);
                     checkBoxCell2.setUserOrChat((TLObject) item.object);
                     checkBoxCell2.setChecked(item.checked, checkBoxCell2.itemId == item.id);
@@ -960,22 +974,19 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     break;
                 case 39:
                 case 40:
-                    TextCheckCell2 textCheckCell2 = (TextCheckCell2) view3;
+                    TextCheckCell2 textCheckCell2 = (TextCheckCell2) viewHolder.itemView;
                     textCheckCell2.setTextAndCheck(item.text.toString(), item.checked, zHasDivider, textCheckCell2.id == item.id);
                     textCheckCell2.getCheckBox().setDrawIconType(item.intValue);
                     Switch checkBox = textCheckCell2.getCheckBox();
-                    int i20 = item.intValue == 0 ? Theme.key_switchTrack : Theme.key_fill_RedNormal;
-                    int i21 = Theme.key_switchTrackChecked;
-                    int i22 = Theme.key_windowBackgroundWhite;
-                    checkBox.trackColorKey = i20;
-                    checkBox.trackCheckedColorKey = i21;
-                    checkBox.thumbColorKey = i22;
-                    checkBox.thumbCheckedColorKey = i22;
+                    int i16 = item.intValue == 0 ? Theme.key_switchTrack : Theme.key_fill_RedNormal;
+                    int i17 = Theme.key_switchTrackChecked;
+                    int i18 = Theme.key_windowBackgroundWhite;
+                    checkBox.setColors(i16, i17, i18, i18);
                     textCheckCell2.id = item.id;
                     textCheckCell2.setIcon(item.locked ? R.drawable.permission_locked : 0);
-                    if (i4 == 40) {
+                    if (itemViewType == 40) {
                         if (!TextUtils.isEmpty(item.animatedText)) {
-                            textCheckCell2.setCollapseArrow(new DialogsActivity$$ExternalSyntheticLambda8(4, item, textCheckCell2), item.animatedText.toString(), item.collapsed);
+                            textCheckCell2.setCollapseArrow(item.animatedText.toString(), item.collapsed, new UndoView$$ExternalSyntheticLambda3(25, item, textCheckCell2));
                         } else {
                             LinearLayout linearLayout = textCheckCell2.collapseViewContainer;
                             if (linearLayout != null) {
@@ -985,142 +996,152 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     }
                     break;
                 case 42:
-                    HeaderCell headerCell2 = (HeaderCell) view3;
-                    headerCell2.setText(item.animatedText, headerCell2.id == item.id);
-                    headerCell2.id = item.id;
+                    HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+                    headerCell.setText(item.animatedText, headerCell.id == item.id);
+                    headerCell.id = item.id;
                     break;
                 case 43:
-                    TextSettingsCell textSettingsCell = (TextSettingsCell) view3;
+                    TextSettingsCell textSettingsCell = (TextSettingsCell) viewHolder.itemView;
                     textSettingsCell.getValueBackupImageView().setImageDrawable(null);
-                    CharSequence charSequence15 = item.text;
-                    if (charSequence15 != null) {
-                        CharSequence charSequence16 = item.subtext;
-                        if (charSequence16 != null) {
-                            textSettingsCell.setTextAndValue(charSequence15, charSequence16, false, zHasDivider);
+                    CharSequence charSequence11 = item.text;
+                    if (charSequence11 != null) {
+                        CharSequence charSequence12 = item.subtext;
+                        if (charSequence12 != null) {
+                            textSettingsCell.setTextAndValue(charSequence11, charSequence12, false, zHasDivider);
                         } else {
-                            textSettingsCell.setText(charSequence15, zHasDivider);
+                            textSettingsCell.setText(charSequence11, zHasDivider);
                         }
                     }
                     textSettingsCell.setIcon(item.iconResId);
                     break;
                 case 44:
-                    ((RadioButtonCell) view3).setTextAndValue(item.text.toString(), item.textValue.toString(), zHasDivider, item.checked);
+                    ((RadioButtonCell) viewHolder.itemView).setTextAndValue(item.text.toString(), item.textValue.toString(), zHasDivider, item.checked);
                     break;
             }
-            voIPFragment$$ExternalSyntheticLambda7 = item.bind;
-            if (voIPFragment$$ExternalSyntheticLambda7 != null) {
-                voIPFragment$$ExternalSyntheticLambda7.run(view);
+        } else {
+            UItem.UItemFactory<?> uItemFactoryFindFactory = UItem.findFactory(itemViewType);
+            if (uItemFactoryFindFactory != null) {
+                View view6 = viewHolder.itemView;
+                RecyclerListView recyclerListView = this.listView;
+                uItemFactoryFindFactory.bindView(view6, item, zHasDivider, this, recyclerListView instanceof UniversalRecyclerView ? (UniversalRecyclerView) recyclerListView : null);
             }
         }
-        UItem.UItemFactory uItemFactoryFindFactory = UItem.findFactory(i4);
-        if (uItemFactoryFindFactory != null) {
-            uItemFactoryFindFactory.bindView(viewHolder.itemView, item, zHasDivider, this, recyclerListView instanceof UniversalRecyclerView ? (UniversalRecyclerView) recyclerListView : null);
-        }
-        view = view3;
-        voIPFragment$$ExternalSyntheticLambda7 = item.bind;
-        if (voIPFragment$$ExternalSyntheticLambda7 != null) {
-            voIPFragment$$ExternalSyntheticLambda7.run(view);
+        Utilities.Callback<View> callback2 = item.bind;
+        if (callback2 != null) {
+            callback2.run(viewHolder.itemView);
         }
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View textCell;
-        View notificationsCheckCell;
         View headerCell;
-        View view;
+        View fullscreenCustomFrameLayout;
+        View dialogCell;
+        View notificationsCheckCell;
+        int i2;
         View headerCell2;
         boolean z = this.dialog;
-        int i2 = z ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite;
-        Context context = this.context;
-        if (i < 10000) {
-            int i3 = 6;
-            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        int i3 = z ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite;
+        if (i < UItem.factoryViewTypeStartsWith) {
             switch (i) {
                 case -4:
                 case -1:
-                    PhotoViewer.AnonymousClass19 anonymousClass19 = new PhotoViewer.AnonymousClass19(context, 20);
-                    textCell = anonymousClass19;
+                    FrameLayout frameLayout = new FrameLayout(this.context) {
+                        @Override
+                        public void onMeasure(int i4, int i5) {
+                            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824), i5);
+                        }
+                    };
+                    fullscreenCustomFrameLayout = frameLayout;
                     if (i == -4) {
-                        anonymousClass19.setTag(-33024);
-                        textCell = anonymousClass19;
+                        frameLayout.setTag(-33024);
+                        fullscreenCustomFrameLayout = frameLayout;
                     }
                     break;
                 case -3:
-                    FullscreenCustomFrameLayout fullscreenCustomFrameLayout = new FullscreenCustomFrameLayout(context);
-                    fullscreenCustomFrameLayout.minusHeight = 0;
-                    notificationsCheckCell = fullscreenCustomFrameLayout;
-                    textCell = notificationsCheckCell;
+                    fullscreenCustomFrameLayout = new FullscreenCustomFrameLayout(this.context);
                     break;
                 case -2:
-                    textCell = new PhotoViewer.AnonymousClass19(context, 21);
+                    fullscreenCustomFrameLayout = new FrameLayout(this.context) {
+                        @Override
+                        public void onMeasure(int i4, int i5) {
+                            int iMakeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4), 1073741824);
+                            measureChildren(iMakeMeasureSpec, i5);
+                            int iMax = 0;
+                            for (int i6 = 0; i6 < getChildCount(); i6++) {
+                                iMax = Math.max(iMax, getChildAt(i6).getMeasuredHeight());
+                            }
+                            super.onMeasure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(iMax, 1073741824));
+                        }
+                    };
                     break;
                 case 0:
                     if (!z) {
-                        textCell = new HeaderCell(context, resourcesProvider);
+                        fullscreenCustomFrameLayout = new HeaderCell(this.context, this.resourcesProvider);
                     } else {
-                        headerCell = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, false, this.resourcesProvider);
-                        textCell = headerCell;
+                        headerCell2 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, false, this.resourcesProvider);
+                        fullscreenCustomFrameLayout = headerCell2;
                     }
                     break;
                 case 1:
-                    headerCell2 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 17, 15, 0, false, false, this.resourcesProvider);
-                    textCell = headerCell2;
+                    headerCell = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 17, 15, 0, false, false, this.resourcesProvider);
+                    fullscreenCustomFrameLayout = headerCell;
                     break;
                 case 2:
-                    textCell = new TopViewCell(context, resourcesProvider);
+                    fullscreenCustomFrameLayout = new TopViewCell(this.context, this.resourcesProvider);
                     break;
                 case 3:
-                    textCell = new TextCell(23, this.context, this.resourcesProvider, false, false);
+                    headerCell2 = new TextCell(23, this.context, this.resourcesProvider, false, false);
+                    fullscreenCustomFrameLayout = headerCell2;
                     break;
                 case 4:
                 case 9:
-                    TextCheckCell textCheckCell = new TextCheckCell(21, context, resourcesProvider, false);
-                    view = textCheckCell;
+                    TextCheckCell textCheckCell = new TextCheckCell(this.context, 21, false, this.resourcesProvider);
+                    headerCell = textCheckCell;
                     if (i == 9) {
                         textCheckCell.setDrawCheckRipple(true);
                         textCheckCell.setColors(Theme.key_windowBackgroundCheckText, Theme.key_switchTrackBlue, Theme.key_switchTrackBlueChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
                         textCheckCell.setTypeface(AndroidUtilities.bold());
                         textCheckCell.setHeight(56);
-                        view = textCheckCell;
+                        headerCell = textCheckCell;
                     }
-                    textCell = view;
+                    fullscreenCustomFrameLayout = headerCell;
                     break;
                 case 5:
                 case 6:
                     notificationsCheckCell = new NotificationsCheckCell(this.context, 21, 60, i == 6, this.resourcesProvider);
-                    textCell = notificationsCheckCell;
+                    fullscreenCustomFrameLayout = notificationsCheckCell;
                     break;
                 case 7:
                 case 8:
                 default:
-                    textCell = new TextInfoPrivacyCell(context, 24, resourcesProvider);
+                    fullscreenCustomFrameLayout = new TextInfoPrivacyCell(this.context, 24, this.resourcesProvider);
                     break;
                 case 10:
-                    textCell = new DialogRadioCell(context);
+                    fullscreenCustomFrameLayout = new DialogRadioCell(this.context);
                     break;
                 case 11:
                 case 12:
                     UserCell userCell = new UserCell(6, i == 12 ? 3 : 0, this.context, null, false, false);
                     userCell.setSelfAsSavedMessages(true);
-                    headerCell = userCell;
-                    textCell = headerCell;
+                    dialogCell = userCell;
+                    fullscreenCustomFrameLayout = dialogCell;
                     break;
                 case 13:
-                    headerCell2 = new UserCell(6, 0, this.context, null, false, true);
-                    textCell = headerCell2;
+                    headerCell = new UserCell(6, 0, this.context, null, false, true);
+                    fullscreenCustomFrameLayout = headerCell;
                     break;
                 case 14:
-                    textCell = new SlideChooseView(context, resourcesProvider);
+                    fullscreenCustomFrameLayout = new SlideChooseView(this.context, this.resourcesProvider);
                     break;
                 case 15:
-                    textCell = new SlideIntChooseView(context, resourcesProvider);
+                    fullscreenCustomFrameLayout = new SlideIntChooseView(this.context, this.resourcesProvider);
                     break;
                 case 16:
-                    textCell = new QuickRepliesActivity.QuickReplyView(context, resourcesProvider, this.onReordered != null);
+                    fullscreenCustomFrameLayout = new QuickRepliesActivity.QuickReplyView(this.context, this.onReordered != null, this.resourcesProvider);
                     break;
                 case 17:
-                    textCell = new QuickRepliesActivity.LargeQuickReplyView(context, resourcesProvider);
+                    fullscreenCustomFrameLayout = new QuickRepliesActivity.LargeQuickReplyView(this.context, this.resourcesProvider);
                     break;
                 case 18:
                 case 19:
@@ -1131,145 +1152,101 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
                     if (this.chartSharedUI == null) {
                         this.chartSharedUI = new BaseChartView.SharedUiComponents(null);
                     }
-                    textCell = new StatisticActivity.UniversalChartCell(this.context, this.currentAccount, i - 18, this.chartSharedUI, this.classGuid);
+                    headerCell = new StatisticActivity.UniversalChartCell(this.context, this.currentAccount, i - 18, this.chartSharedUI, this.classGuid);
+                    fullscreenCustomFrameLayout = headerCell;
                     break;
                 case 24:
-                    textCell = new ChannelMonetizationLayout.ProceedOverviewCell(context, resourcesProvider);
+                    fullscreenCustomFrameLayout = new ChannelMonetizationLayout.ProceedOverviewCell(this.context, this.resourcesProvider);
                     break;
                 case 25:
-                    textCell = new ChannelMonetizationLayout.TransactionCell(context, resourcesProvider);
+                    fullscreenCustomFrameLayout = new ChannelMonetizationLayout.TransactionCell(this.context, this.resourcesProvider);
                     break;
                 case 26:
                     HeaderCell headerCell3 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlackText, 23, 20, 0, false, false, this.resourcesProvider);
                     headerCell3.setTextSize(20.0f);
                     headerCell2 = headerCell3;
-                    textCell = headerCell2;
+                    fullscreenCustomFrameLayout = headerCell2;
                     break;
                 case 27:
-                    StoryPrivacyBottomSheet.UserCell userCell2 = new StoryPrivacyBottomSheet.UserCell(context, resourcesProvider);
+                    StoryPrivacyBottomSheet.UserCell userCell2 = new StoryPrivacyBottomSheet.UserCell(this.context, this.resourcesProvider);
                     userCell2.setIsSendAs(false, false);
-                    textCell = userCell2;
+                    fullscreenCustomFrameLayout = userCell2;
                     break;
                 case 28:
-                    SpaceView spaceView = new SpaceView(context);
-                    spaceView.setTag(-33024);
-                    textCell = spaceView;
+                    fullscreenCustomFrameLayout = new SpaceView(this.context);
                     break;
                 case 29:
-                    textCell = new BusinessLinksActivity.BusinessLinkView(context, resourcesProvider);
+                    fullscreenCustomFrameLayout = new BusinessLinksActivity.BusinessLinkView(this.context, this.resourcesProvider);
                     break;
                 case 30:
-                    textCell = new TextRightIconCell(context, resourcesProvider);
+                    fullscreenCustomFrameLayout = new TextRightIconCell(this.context, this.resourcesProvider);
                     break;
                 case 31:
                     RecyclerListView recyclerListView = this.listView;
                     if (recyclerListView != null && recyclerListView.hasSections()) {
-                        GraySectionCell graySectionCell = new GraySectionCell(context, 28, resourcesProvider);
+                        GraySectionCell graySectionCell = new GraySectionCell(this.context, 28, this.resourcesProvider);
                         graySectionCell.setNoBackground(true);
-                        textCell = graySectionCell;
+                        fullscreenCustomFrameLayout = graySectionCell;
                     } else {
-                        textCell = new GraySectionCell(context, 16, resourcesProvider);
+                        fullscreenCustomFrameLayout = new GraySectionCell(this.context, 16, this.resourcesProvider);
                     }
                     break;
                 case 32:
-                    textCell = new ProfileSearchCell(context, null);
+                    fullscreenCustomFrameLayout = new ProfileSearchCell(this.context, null);
                     break;
                 case 33:
-                    headerCell2 = new DialogCell(null, this.context, true, UserConfig.selectedAccount, null);
-                    textCell = headerCell2;
+                    dialogCell = new DialogCell(null, this.context, true, UserConfig.selectedAccount, null);
+                    fullscreenCustomFrameLayout = dialogCell;
                     break;
                 case 34:
-                    FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, resourcesProvider);
+                    FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.context, this.resourcesProvider);
                     flickerLoadingView.setIsSingleCell(true);
-                    textCell = flickerLoadingView;
+                    fullscreenCustomFrameLayout = flickerLoadingView;
                     break;
                 case 35:
                 case 36:
                 case 37:
                 case 41:
                     if (i == 35) {
-                        i3 = 4;
-                    } else if (i != 36) {
-                        i3 = i == 37 ? 7 : i == 41 ? 8 : 0;
+                        i2 = 4;
+                    } else if (i == 36) {
+                        i2 = 6;
+                    } else if (i == 37) {
+                        i2 = 7;
+                    } else {
+                        i2 = i == 41 ? 8 : 0;
                     }
-                    CheckBoxCell checkBoxCell = new CheckBoxCell(this.context, i3, 21, true, this.resourcesProvider);
-                    checkBoxCell.getCheckBoxRound().checkBoxBase.setColor(Theme.key_switch2TrackChecked, Theme.key_radioBackground, Theme.key_checkboxCheck);
-                    view = checkBoxCell;
-                    textCell = view;
+                    CheckBoxCell checkBoxCell = new CheckBoxCell(this.context, i2, 21, true, this.resourcesProvider);
+                    checkBoxCell.getCheckBoxRound().setColor(Theme.key_switch2TrackChecked, Theme.key_radioBackground, Theme.key_checkboxCheck);
+                    notificationsCheckCell = checkBoxCell;
+                    fullscreenCustomFrameLayout = notificationsCheckCell;
                     break;
                 case 38:
-                    textCell = new CollapseTextCell(context, resourcesProvider);
+                    fullscreenCustomFrameLayout = new CollapseTextCell(this.context, this.resourcesProvider);
                     break;
                 case 39:
                 case 40:
-                    textCell = new TextCheckCell2(context);
+                    fullscreenCustomFrameLayout = new TextCheckCell2(this.context);
                     break;
                 case 42:
                     headerCell2 = new HeaderCell(this.context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, 0, false, true, this.resourcesProvider);
-                    textCell = headerCell2;
+                    fullscreenCustomFrameLayout = headerCell2;
                     break;
                 case 43:
-                    textCell = new TextSettingsCell(context, 0, resourcesProvider);
+                    fullscreenCustomFrameLayout = new TextSettingsCell(this.context, this.resourcesProvider, 0);
                     break;
                 case 44:
-                    textCell = new RadioButtonCell(context, false);
+                    fullscreenCustomFrameLayout = new RadioButtonCell(this.context, false);
                     break;
             }
         } else {
-            UItem.UItemFactory uItemFactoryFindFactory = UItem.findFactory(i);
-            textCell = uItemFactoryFindFactory != null ? uItemFactoryFindFactory.createView(this.context, this.listView, this.currentAccount, this.classGuid, this.resourcesProvider) : new View(context);
+            UItem.UItemFactory<?> uItemFactoryFindFactory = UItem.findFactory(i);
+            fullscreenCustomFrameLayout = uItemFactoryFindFactory != null ? uItemFactoryFindFactory.createView(this.context, this.listView, this.currentAccount, this.classGuid, this.resourcesProvider) : new View(this.context);
         }
-        if (this.applyBackground) {
-            if (i < 10000) {
-                switch (i) {
-                    case -3:
-                    case 0:
-                    case 1:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
-                    case 15:
-                    case 16:
-                    case 17:
-                    case 18:
-                    case 19:
-                    case 20:
-                    case 21:
-                    case 22:
-                    case 23:
-                    case 24:
-                    case 25:
-                    case 27:
-                    case 28:
-                    case 29:
-                    case 30:
-                    case 32:
-                    case 33:
-                    case 34:
-                    case 35:
-                    case 36:
-                    case 37:
-                    case 39:
-                    case 40:
-                    case 41:
-                    case 42:
-                    case 43:
-                    case 44:
-                        textCell.setBackgroundColor(getThemedColor(i2));
-                        break;
-                }
-            } else {
-                textCell.setBackgroundColor(getThemedColor(i2));
-            }
+        if (shouldApplyBackground(i)) {
+            fullscreenCustomFrameLayout.setBackgroundColor(getThemedColor(i3));
         }
-        return new RecyclerListView.Holder(textCell);
+        return new RecyclerListView.Holder(fullscreenCustomFrameLayout);
     }
 
     @Override
@@ -1278,129 +1255,149 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         updateColors(viewHolder);
     }
 
-    public final void reorderSectionEnd() {
+    public void reorderDone() {
+        if (this.orderChanged) {
+            callReorder(this.orderChangedId);
+        }
+    }
+
+    public void reorderSectionEnd() {
         Section section = this.currentReorderSection;
         if (section != null) {
             section.end = Math.max(0, this.items.size() - 1);
         }
     }
 
-    public final int reorderSectionStart() {
+    public int reorderSectionStart() {
         Section section = new Section();
         this.currentReorderSection = section;
         section.start = this.items.size();
         Section section2 = this.currentReorderSection;
         section2.end = -1;
-        ArrayList arrayList = this.reorderSections;
-        arrayList.add(section2);
-        return arrayList.size() - 1;
+        this.reorderSections.add(section2);
+        return this.reorderSections.size() - 1;
+    }
+
+    public void setApplyBackground(boolean z) {
+        this.applyBackground = z;
+    }
+
+    public boolean shouldApplyBackground(int i) {
+        if (!this.applyBackground) {
+            return false;
+        }
+        if (i >= UItem.factoryViewTypeStartsWith) {
+            return true;
+        }
+        switch (i) {
+            case -3:
+            case 0:
+            case 1:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+            case 24:
+            case 25:
+            case 27:
+            case 28:
+            case 29:
+            case 30:
+            case 32:
+            case 33:
+            case 34:
+            case 35:
+            case 36:
+            case 37:
+            case 39:
+            case 40:
+            case 41:
+            case 42:
+            case 43:
+            case 44:
+                return true;
+            case -2:
+            case -1:
+            case 2:
+            case 7:
+            case 8:
+            case 26:
+            case 31:
+            case 38:
+            default:
+                return false;
+        }
+    }
+
+    public void swapElements(int i, int i2) {
+        int i3;
+        if (this.onReordered == null) {
+            return;
+        }
+        int reorderSectionId = getReorderSectionId(i);
+        int reorderSectionId2 = getReorderSectionId(i2);
+        if (reorderSectionId < 0 || reorderSectionId != reorderSectionId2) {
+            return;
+        }
+        boolean zHasDivider = hasDivider(i);
+        boolean zHasDivider2 = hasDivider(i2);
+        this.items.add(i2, this.items.remove(i));
+        notifyItemMoved(i, i2);
+        if (hasDivider(i2) != zHasDivider) {
+            notifyItemChanged(i2, 3);
+        }
+        if (hasDivider(i) != zHasDivider2) {
+            notifyItemChanged(i, 3);
+        }
+        if (this.orderChanged && (i3 = this.orderChangedId) != reorderSectionId) {
+            callReorder(i3);
+        }
+        this.orderChanged = true;
+        this.orderChangedId = reorderSectionId;
     }
 
     public void update(boolean z) {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView == null || !recyclerListView.isComputingLayout()) {
-            updateInternal(z);
+            lambda$update$0(z);
         } else {
-            recyclerListView.post(new FileLoader$$ExternalSyntheticLambda1(28, this, z));
+            this.listView.post(new MediaActivity$$ExternalSyntheticLambda5(this, z, 12));
         }
     }
 
-    public final void updateColors(RecyclerView.ViewHolder viewHolder) {
-        View view = viewHolder.itemView;
-        if (view instanceof Theme.Colorable) {
-            ((Theme.Colorable) view).updateColors$1();
-            int i = viewHolder.mItemViewType;
-            if (this.applyBackground) {
-                if (i < 10000) {
-                    switch (i) {
-                    }
-                }
-                view.setBackgroundColor(getThemedColor(this.dialog ? Theme.key_dialogBackground : Theme.key_windowBackgroundWhite));
-            }
-        }
+    public void updateReorder(boolean z) {
+        this.allowReorder = z;
     }
 
-    public final void updateInternal(boolean z) {
-        RecyclerListView recyclerListView = this.listView;
-        if (recyclerListView == null || !recyclerListView.isComputingLayout()) {
-            ArrayList arrayList = this.oldItems;
-            arrayList.clear();
-            ArrayList arrayList2 = this.items;
-            arrayList.addAll(arrayList2);
-            arrayList2.clear();
-            this.currentWhiteSection = null;
-            this.whiteSections.clear();
-            this.reorderSections.clear();
-            Utilities.Callback2 callback2 = this.fillItems;
-            if (callback2 != null) {
-                callback2.run(arrayList2, this);
-                updateReorderSections();
-                if (z) {
-                    setItems(arrayList, arrayList2);
-                } else {
-                    this.mObservable.notifyChanged();
-                }
-            }
-        }
-    }
-
-    public final void updateReorder(RecyclerView.ViewHolder viewHolder, boolean z) {
-        if (viewHolder == null) {
-            return;
-        }
-        int i = viewHolder.mItemViewType;
-        View view = viewHolder.itemView;
-        if (i < 10000) {
-            if (i != 16) {
-                return;
-            }
-            ((QuickRepliesActivity.QuickReplyView) view).setReorder(z);
-        } else {
-            UItem.UItemFactory uItemFactoryFindFactory = UItem.findFactory(i);
-            if (uItemFactoryFindFactory != null) {
-                uItemFactoryFindFactory.attachedView(this.listView, view, getItem(viewHolder.getAdapterPosition()));
-            }
-        }
-    }
-
-    public final void updateReorderSections() {
-        RecyclerListView recyclerListView = this.listView;
-        if (recyclerListView == null) {
-            return;
-        }
-        ArrayList arrayList = recyclerListView.forcedSections;
-        if (arrayList == null) {
-            recyclerListView.forcedSections = new ArrayList();
-        } else {
-            arrayList.clear();
-        }
-        ArrayList arrayList2 = this.whiteSections;
-        int size = arrayList2.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList2.get(i);
-            i++;
-            Section section = (Section) obj;
-            recyclerListView.forcedSections.add(Long.valueOf(AndroidUtilities.pack(section.start, section.end)));
-        }
-    }
-
-    public final void updateWithoutNotify() {
-        ArrayList arrayList = this.oldItems;
-        arrayList.clear();
-        ArrayList arrayList2 = this.items;
-        arrayList.addAll(arrayList2);
-        arrayList2.clear();
+    public void updateWithoutNotify() {
+        this.oldItems.clear();
+        this.oldItems.addAll(this.items);
+        this.items.clear();
         this.whiteSections.clear();
         this.reorderSections.clear();
-        Utilities.Callback2 callback2 = this.fillItems;
+        Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2 = this.fillItems;
         if (callback2 != null) {
-            callback2.run(arrayList2, this);
+            callback2.run(this.items, this);
         }
         updateReorderSections();
     }
 
-    public final void whiteSectionEnd() {
+    public void whiteSectionEnd() {
         Section section = this.currentWhiteSection;
         if (section != null) {
             section.end = Math.max(0, (this.items.size() + this.itemsOffset) - 1);
@@ -1412,12 +1409,47 @@ public class UniversalAdapter extends AdapterWithDiffUtils {
         }
     }
 
-    public final void whiteSectionStart() {
+    public void whiteSectionStart() {
         Section section = new Section();
         this.currentWhiteSection = section;
         section.start = this.items.size() + this.itemsOffset;
         Section section2 = this.currentWhiteSection;
         section2.end = -1;
         this.whiteSections.add(section2);
+    }
+
+    public UniversalAdapter(RecyclerListView recyclerListView, Context context, int i, int i2, boolean z, Utilities.Callback2<ArrayList<UItem>, UniversalAdapter> callback2, Theme.ResourcesProvider resourcesProvider) {
+        this.applyBackground = true;
+        this.oldItems = new ArrayList<>();
+        this.items = new ArrayList<>();
+        this.itemsOffset = 0;
+        this.whiteSections = new ArrayList<>();
+        this.reorderSections = new ArrayList<>();
+        this.listView = recyclerListView;
+        this.context = context;
+        this.currentAccount = i;
+        this.classGuid = i2;
+        this.dialog = z;
+        this.fillItems = callback2;
+        this.resourcesProvider = resourcesProvider;
+        update(false);
+    }
+
+    public void updateReorder(RecyclerView.ViewHolder viewHolder, boolean z) {
+        if (viewHolder == null) {
+            return;
+        }
+        int itemViewType = viewHolder.getItemViewType();
+        if (itemViewType < UItem.factoryViewTypeStartsWith) {
+            if (itemViewType != 16) {
+                return;
+            }
+            ((QuickRepliesActivity.QuickReplyView) viewHolder.itemView).setReorder(z);
+        } else {
+            UItem.UItemFactory<?> uItemFactoryFindFactory = UItem.findFactory(itemViewType);
+            if (uItemFactoryFindFactory != null) {
+                uItemFactoryFindFactory.attachedView(this.listView, viewHolder.itemView, getItem(viewHolder.getAdapterPosition()));
+            }
+        }
     }
 }

@@ -8,17 +8,17 @@ public final class UniversalFragment$$ExternalSyntheticLambda1 implements Utilit
 
     @Override
     public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(this.f$0.onLongClick((UItem) obj, (View) obj2));
+        int iIntValue = ((Integer) obj3).intValue();
+        float fFloatValue = ((Float) obj4).floatValue();
+        float fFloatValue2 = ((Float) obj5).floatValue();
+        return Boolean.valueOf(this.f$0.onLongClick((UItem) obj, (View) obj2, iIntValue, fFloatValue, fFloatValue2));
     }
 
     @Override
-    public void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        this.f$0.onClick$1((UItem) obj, (View) obj2);
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        int iIntValue = ((Integer) obj3).intValue();
+        float fFloatValue = ((Float) obj4).floatValue();
+        float fFloatValue2 = ((Float) obj5).floatValue();
+        this.f$0.onClick((UItem) obj, (View) obj2, iIntValue, fFloatValue, fFloatValue2);
     }
 }

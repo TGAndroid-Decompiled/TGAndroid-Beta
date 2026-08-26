@@ -1,38 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.ui.Stories.recorder.StoryRecorder;
+import android.view.KeyEvent;
+import android.view.View;
 
-public final class JoinGroupAlert$$ExternalSyntheticLambda12 implements DialogInterface.OnDismissListener {
-    public final int $r8$classId;
-    public final Object f$0;
-    public final boolean f$1;
+public final class JoinGroupAlert$$ExternalSyntheticLambda12 implements View.OnClickListener {
+    public final int $r8$classId = 0;
+    public final KeyEvent.Callback f$0;
+    public final long f$1;
+    public final int f$2;
 
-    public JoinGroupAlert$$ExternalSyntheticLambda12(int i, Object obj, boolean z) {
-        this.$r8$classId = i;
-        this.f$0 = obj;
-        this.f$1 = z;
+    public JoinGroupAlert$$ExternalSyntheticLambda12(JoinGroupAlert joinGroupAlert, long j, int i) {
+        this.f$0 = joinGroupAlert;
+        this.f$1 = j;
+        this.f$2 = i;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
+    public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                JoinGroupAlert joinGroupAlert = (JoinGroupAlert) this.f$0;
-                JoinGroupAlert.showBulletin(joinGroupAlert.getContext(), joinGroupAlert.fragment, joinGroupAlert.bulletinFactory, this.f$1);
-                break;
-            case 1:
-                JoinGroupAlert joinGroupAlert2 = (JoinGroupAlert) this.f$0;
-                JoinGroupAlert.showBulletin(joinGroupAlert2.getContext(), joinGroupAlert2.fragment, joinGroupAlert2.bulletinFactory, this.f$1);
+                ((JoinGroupAlert) this.f$0).lambda$new$12(this.f$1, this.f$2, view);
                 break;
             default:
-                StoryRecorder storyRecorder = (StoryRecorder) this.f$0;
-                storyRecorder.shownLimitReached = false;
-                storyRecorder.previewView.updatePauseReason(7, true);
-                if (this.f$1) {
-                    storyRecorder.close(true);
-                }
+                ((TranslateButton) this.f$0).lambda$new$1(this.f$2, this.f$1, view);
                 break;
         }
+    }
+
+    public JoinGroupAlert$$ExternalSyntheticLambda12(TranslateButton translateButton, int i, long j) {
+        this.f$0 = translateButton;
+        this.f$2 = i;
+        this.f$1 = j;
     }
 }

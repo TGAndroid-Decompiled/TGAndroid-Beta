@@ -1,5 +1,6 @@
 package kotlinx.coroutines.flow;
 
+import com.google.common.base.Joiner;
 import com.google.firebase.sessions.SessionDatastoreImpl;
 import java.io.Serializable;
 import java.util.NoSuchElementException;
@@ -12,11 +13,10 @@ import kotlin.jvm.internal.Ref$ObjectRef;
 import kotlinx.coroutines.Job;
 import kotlinx.coroutines.flow.internal.AbortFlowException;
 import kotlinx.coroutines.flow.internal.NullSurrogateKt;
-import kotlinx.coroutines.internal.Symbol;
 
 public abstract class FlowKt {
-    public static final Symbol NONE = new Symbol("NONE", 0);
-    public static final Symbol PENDING = new Symbol("PENDING", 0);
+    public static final Joiner NONE = new Joiner("NONE", 2);
+    public static final Joiner PENDING = new Joiner("PENDING", 2);
 
     public static final Serializable catchImpl(Flow flow, FlowCollector flowCollector, ContinuationImpl continuationImpl) {
         FlowKt__ErrorsKt$catchImpl$1 flowKt__ErrorsKt$catchImpl$1;
@@ -98,11 +98,11 @@ public abstract class FlowKt {
         Object obj = flowKt__ReduceKt$first$1.result;
         Object obj2 = CoroutineSingletons.COROUTINE_SUSPENDED;
         int i2 = flowKt__ReduceKt$first$1.label;
-        Symbol symbol = NullSurrogateKt.NULL;
+        Joiner joiner = NullSurrogateKt.NULL;
         if (i2 == 0) {
             ResultKt.throwOnFailure(obj);
             Ref$ObjectRef ref$ObjectRef2 = new Ref$ObjectRef();
-            ref$ObjectRef2.element = symbol;
+            ref$ObjectRef2.element = joiner;
             SessionDatastoreImpl.AnonymousClass1.C00001 c00002 = new SessionDatastoreImpl.AnonymousClass1.C00001(ref$ObjectRef2, 2);
             try {
                 flowKt__ReduceKt$first$1.L$0 = ref$ObjectRef2;
@@ -136,7 +136,7 @@ public abstract class FlowKt {
             }
         }
         Object obj3 = ref$ObjectRef.element;
-        if (obj3 != symbol) {
+        if (obj3 != joiner) {
             return obj3;
         }
         throw new NoSuchElementException("Expected at least one element");

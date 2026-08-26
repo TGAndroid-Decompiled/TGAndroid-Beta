@@ -34,8 +34,6 @@ import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
 
 public final class DownloadButton extends ImageView {
     public BuildingVideo buildingVideo;
@@ -44,7 +42,7 @@ public final class DownloadButton extends ImageView {
     public StoryEntry currentEntry;
     public boolean downloading;
     public boolean downloadingVideo;
-    public final StoryRecorder$$ExternalSyntheticLambda19 prepare;
+    public final StoryRecorder$$ExternalSyntheticLambda14 prepare;
     public boolean preparing;
     public final CircularProgressDrawable progressDrawable;
     public Uri savedToGalleryUri;
@@ -76,7 +74,7 @@ public final class DownloadButton extends ImageView {
             tL_message.id = 1;
             tL_message.attachPath = file.getAbsolutePath();
             this.messageObject = new MessageObject(i, (TLRPC.Message) tL_message, (MessageObject) null, false, false);
-            storyEntry.getVideoEditedInfo(new VoIPFragment$$ExternalSyntheticLambda7(this, 13));
+            storyEntry.getVideoEditedInfo(new HintView2$$ExternalSyntheticLambda0(this, 3));
         }
 
         @Override
@@ -171,7 +169,7 @@ public final class DownloadButton extends ImageView {
             this.whitePaint = paint3;
             Paint paint4 = new Paint(1);
             this.greyPaint = paint4;
-            this.cancelButton = new ButtonBounce(this, 1.0f, 5.0f);
+            this.cancelButton = new ButtonBounce(this);
             this.shown = false;
             this.showT = new AnimatedFloat(0.0f, this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.preparing = true;
@@ -219,56 +217,62 @@ public final class DownloadButton extends ImageView {
         @Override
         public final void onDraw(Canvas canvas) {
             float f;
+            RectF rectF;
+            float f2;
             int saveCount = canvas.getSaveCount();
-            float f2 = this.showT.set(this.shown ? 1.0f : 0.0f, false);
-            float f3 = this.t.set(this.preparing ? 0.0f : 1.0f, false);
+            float f3 = this.showT.set(this.shown ? 1.0f : 0.0f);
+            float f4 = this.t.set(this.preparing ? 0.0f : 1.0f);
             Paint paint = this.dimPaint;
-            float f4 = 1.0f - f3;
-            paint.setAlpha((int) (90.0f * f4 * f2));
+            float f5 = 1.0f - f4;
+            paint.setAlpha((int) (90.0f * f5 * f3));
             Canvas canvas2 = canvas;
             canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
             float fMax = Math.max(this.preparingLayoutWidth, AndroidUtilities.dp(54.0f)) + AndroidUtilities.dp(42.0f);
             int iDp = AndroidUtilities.dp(111.0f);
             StaticLayout staticLayout = this.preparingLayout;
             float height = staticLayout.getHeight() + iDp;
-            RectF rectF = this.prepareRect;
-            rectF.set((getWidth() - fMax) / 2.0f, (getHeight() - height) / 2.0f, (getWidth() + fMax) / 2.0f, (getHeight() + height) / 2.0f);
+            RectF rectF2 = this.prepareRect;
+            rectF2.set((getWidth() - fMax) / 2.0f, (getHeight() - height) / 2.0f, (getWidth() + fMax) / 2.0f, (getHeight() + height) / 2.0f);
             float fDp = AndroidUtilities.dp(74.0f) + this.doneLayoutWidth;
             float fDp2 = AndroidUtilities.dp(48.0f);
-            RectF rectF2 = this.toastRect;
-            rectF2.set((getWidth() - fDp) / 2.0f, (getHeight() - fDp2) / 2.0f, (getWidth() + fDp) / 2.0f, (getHeight() + fDp2) / 2.0f);
-            RectF rectF3 = this.currentRect;
-            AndroidUtilities.lerp(rectF, rectF2, f3, rectF3);
-            if (f2 < 1.0f && this.preparing) {
-                RectF rectF4 = this.hiddenRect;
-                rectF4.set(getWidth() / 2.0f, getHeight() / 2.0f, getWidth() / 2.0f, getHeight() / 2.0f);
-                AndroidUtilities.lerp(rectF4, rectF3, f2, rectF3);
+            RectF rectF3 = this.toastRect;
+            rectF3.set((getWidth() - fDp) / 2.0f, (getHeight() - fDp2) / 2.0f, (getWidth() + fDp) / 2.0f, (getHeight() + fDp2) / 2.0f);
+            RectF rectF4 = this.currentRect;
+            AndroidUtilities.lerp(rectF2, rectF3, f4, rectF4);
+            if (f3 >= 1.0f || !this.preparing) {
+                f = 42.0f;
+            } else {
+                RectF rectF5 = this.hiddenRect;
+                f = 42.0f;
+                rectF5.set(getWidth() / 2.0f, getHeight() / 2.0f, getWidth() / 2.0f, getHeight() / 2.0f);
+                AndroidUtilities.lerp(rectF5, rectF4, f3, rectF4);
             }
-            if (f2 < 1.0f && !this.preparing) {
-                canvas2.scale(AndroidUtilities.lerp(0.8f, 1.0f, f2), AndroidUtilities.lerp(0.8f, 1.0f, f2), rectF3.centerX(), rectF3.centerY());
+            if (f3 < 1.0f && !this.preparing) {
+                canvas2.scale(AndroidUtilities.lerp(0.8f, 1.0f, f3), AndroidUtilities.lerp(0.8f, 1.0f, f3), rectF4.centerX(), rectF4.centerY());
             }
             Paint paint2 = this.backgroundPaint;
-            paint2.setAlpha((int) (204.0f * f2));
-            canvas2.drawRoundRect(rectF3, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint2);
+            paint2.setAlpha((int) (204.0f * f3));
+            canvas2.drawRoundRect(rectF4, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), paint2);
             canvas2.save();
-            canvas2.clipRect(rectF3);
-            if (f3 < 1.0f) {
-                float f5 = f4 * f2;
-                float f6 = this.progressT.set(this.progress, false);
-                float fCenterX = rectF.centerX();
-                float fDp3 = rectF.top + AndroidUtilities.dp(48.0f);
+            canvas2.clipRect(rectF4);
+            if (f4 < 1.0f) {
+                float f6 = f5 * f3;
+                float f7 = this.progressT.set(this.progress);
+                float fCenterX = rectF2.centerX();
+                float fDp3 = rectF2.top + AndroidUtilities.dp(48.0f);
                 float fDp4 = AndroidUtilities.dp(25.0f);
                 Paint paint3 = this.greyPaint;
-                paint3.setAlpha((int) (51.0f * f5));
+                paint3.setAlpha((int) (51.0f * f6));
                 canvas2.drawCircle(fCenterX, fDp3, fDp4, paint3);
-                RectF rectF5 = AndroidUtilities.rectTmp;
-                f = 255.0f;
-                rectF5.set(fCenterX - fDp4, fDp3 - fDp4, fCenterX + fDp4, fDp4 + fDp3);
+                RectF rectF6 = AndroidUtilities.rectTmp;
+                f2 = 255.0f;
+                rectF6.set(fCenterX - fDp4, fDp3 - fDp4, fCenterX + fDp4, fDp4 + fDp3);
                 Paint paint4 = this.whitePaint;
-                int i = (int) (f5 * 255.0f);
+                int i = (int) (f6 * 255.0f);
                 paint4.setAlpha(i);
                 paint4.setStrokeWidth(AndroidUtilities.dp(4.0f));
-                canvas.drawArc(rectF5, -90.0f, 360.0f * f6, false, paint4);
+                rectF = rectF3;
+                canvas.drawArc(rectF6, -90.0f, f7 * 360.0f, false, paint4);
                 float scale = this.cancelButton.getScale(0.15f);
                 canvas.save();
                 canvas.scale(scale, scale, fCenterX, fDp3);
@@ -278,31 +282,32 @@ public final class DownloadButton extends ImageView {
                 canvas2.drawLine(fCenterX - AndroidUtilities.dp(7.0f), fDp3 + AndroidUtilities.dp(7.0f), fCenterX + AndroidUtilities.dp(7.0f), fDp3 - AndroidUtilities.dp(7.0f), paint4);
                 canvas2.restore();
                 canvas2.save();
-                canvas2.translate((rectF.left + AndroidUtilities.dp(21.0f)) - this.preparingLayoutLeft, (rectF.bottom - AndroidUtilities.dp(18.0f)) - staticLayout.getHeight());
+                canvas2.translate((rectF2.left + AndroidUtilities.dp(21.0f)) - this.preparingLayoutLeft, (rectF2.bottom - AndroidUtilities.dp(18.0f)) - staticLayout.getHeight());
                 this.textPaint.setAlpha(i);
                 staticLayout.draw(canvas2);
                 canvas2.restore();
             } else {
-                f = 255.0f;
+                rectF = rectF3;
+                f2 = 255.0f;
             }
-            if (f3 > 0.0f) {
-                float f7 = f3 * f2;
+            if (f4 > 0.0f) {
+                float f8 = f4 * f3;
                 RLottieDrawable rLottieDrawable = this.lottieDrawable;
                 if (rLottieDrawable != null) {
-                    rLottieDrawable.setAlpha((int) (f7 * f));
-                    this.lottieDrawable.setBounds((int) (rectF2.left + AndroidUtilities.dp(9.0f)), (int) (rectF2.top + AndroidUtilities.dp(6.0f)), (int) (rectF2.left + AndroidUtilities.dp(45.0f)), (int) (rectF2.top + AndroidUtilities.dp(42.0f)));
+                    rLottieDrawable.setAlpha((int) (f8 * f2));
+                    this.lottieDrawable.setBounds((int) (rectF.left + AndroidUtilities.dp(9.0f)), (int) (rectF.top + AndroidUtilities.dp(6.0f)), (int) (rectF.left + AndroidUtilities.dp(45.0f)), (int) (rectF.top + AndroidUtilities.dp(f)));
                     this.lottieDrawable.draw(canvas2);
                 }
                 if (this.doneLayout != null) {
                     canvas2.save();
-                    canvas2.translate((rectF2.left + AndroidUtilities.dp(52.0f)) - this.doneLayoutLeft, rectF2.centerY() - (this.doneLayout.getHeight() / 2.0f));
-                    this.textPaint2.setAlpha((int) (f7 * f));
+                    canvas2.translate((rectF.left + AndroidUtilities.dp(52.0f)) - this.doneLayoutLeft, rectF.centerY() - (this.doneLayout.getHeight() / 2.0f));
+                    this.textPaint2.setAlpha((int) (f8 * f2));
                     this.doneLayout.draw(canvas2);
                     canvas2.restore();
                 }
             }
             canvas2.restoreToCount(saveCount);
-            if (f2 > 0.0f || this.shown || this.deleted) {
+            if (f3 > 0.0f || this.shown || this.deleted) {
                 return;
             }
             this.deleted = true;
@@ -319,7 +324,7 @@ public final class DownloadButton extends ImageView {
                 return true;
             }
             if (motionEvent.getAction() == 1) {
-                if (buttonBounce.isPressed) {
+                if (buttonBounce.isPressed()) {
                     if (zContains) {
                         if (this.preparing) {
                             Runnable runnable = this.onCancel;
@@ -346,7 +351,7 @@ public final class DownloadButton extends ImageView {
                 rLottieDrawable.setCallback(null);
                 this.lottieDrawable.recycle(true);
             }
-            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i, DiffUtil.m(i, ""), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f), true, null);
+            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i, DiffUtil.m(i, ""), AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
             this.lottieDrawable = rLottieDrawable2;
             rLottieDrawable2.setCallback(this);
             this.lottieDrawable.start();
@@ -380,11 +385,11 @@ public final class DownloadButton extends ImageView {
         }
     }
 
-    public DownloadButton(Activity activity, StoryRecorder$$ExternalSyntheticLambda19 storyRecorder$$ExternalSyntheticLambda19, int i, FrameLayout frameLayout) {
+    public DownloadButton(Activity activity, StoryRecorder$$ExternalSyntheticLambda14 storyRecorder$$ExternalSyntheticLambda14, int i, FrameLayout frameLayout) {
         super(activity);
         this.wasImageDownloading = true;
         this.wasVideoDownloading = true;
-        this.prepare = storyRecorder$$ExternalSyntheticLambda19;
+        this.prepare = storyRecorder$$ExternalSyntheticLambda14;
         this.currentAccount = i;
         this.container = frameLayout;
         setScaleType(ImageView.ScaleType.CENTER);
@@ -392,7 +397,7 @@ public final class DownloadButton extends ImageView {
         setBackground(Theme.createSelectorDrawable(553648127, 1, -1));
         setVisibility(8);
         setAlpha(0.0f);
-        setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(this, 25));
+        setOnClickListener(new PaintView$$ExternalSyntheticLambda63(this, 3));
         this.progressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(2.0f), -1);
         updateImage();
     }
@@ -410,7 +415,8 @@ public final class DownloadButton extends ImageView {
             preparingVideoToast.setOnCancelListener(new DownloadButton$$ExternalSyntheticLambda4(this, 1));
             this.container.addView(this.toast);
             File fileGenerateVideoPath = AndroidUtilities.generateVideoPath();
-            this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, fileGenerateVideoPath, new DownloadButton$$ExternalSyntheticLambda6(this, fileGenerateVideoPath, 0), new DownloadButton$$ExternalSyntheticLambda7(this, 0), new DownloadButton$$ExternalSyntheticLambda4(this, 2));
+            int i = 0;
+            this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, fileGenerateVideoPath, new DownloadButton$$ExternalSyntheticLambda6(this, fileGenerateVideoPath, i), new DownloadButton$$ExternalSyntheticLambda7(this, i), new DownloadButton$$ExternalSyntheticLambda4(this, 2));
         } else {
             this.downloadingVideo = false;
             File fileGeneratePicturePath = AndroidUtilities.generatePicturePath(false, "png");

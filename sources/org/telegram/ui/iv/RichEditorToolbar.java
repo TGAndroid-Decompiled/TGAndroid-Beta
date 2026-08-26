@@ -16,19 +16,17 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
 import org.telegram.ui.Components.AIEditorAlert;
 import org.telegram.ui.Components.AiButtonDrawable;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
+import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda44;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda0;
 
 public final class RichEditorToolbar extends FrameLayout {
     public final ImageView addButton;
@@ -46,7 +44,7 @@ public final class RichEditorToolbar extends FrameLayout {
     public final LinearLayout formattingLayout1;
     public final LinearLayout formattingLayout2;
     public final LinearLayout formattingLayout3;
-    public final PhotoViewer.AnonymousClass35 formattingPanel;
+    public final RichEditor.AnonymousClass6 formattingPanel;
     public final LinearLayout formattingPanelLayout;
     public int formattingScrollMaxWidth;
     public final LinearLayout historyButtons;
@@ -59,7 +57,7 @@ public final class RichEditorToolbar extends FrameLayout {
     public final ImageView redoButton;
     public int reorderSavedPanelType;
     public final Theme.ResourcesProvider resourcesProvider;
-    public final RichEditor.AnonymousClass9 sendButton;
+    public final AnonymousClass6 sendButton;
     public boolean sendLoading;
     public final View topGradient;
     public final FrameLayout topPanel;
@@ -78,7 +76,7 @@ public final class RichEditorToolbar extends FrameLayout {
         this.panelType = -1;
         this.reorderSavedPanelType = 0;
         this.delegate = anonymousClass2;
-        Theme.ResourcesProvider resourcesProvider = ChatAttachAlertRichLayout.this.resourcesProvider;
+        Theme.ResourcesProvider resourcesProvider = ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertRichLayout.this).resourcesProvider;
         this.resourcesProvider = resourcesProvider;
         setClipChildren(false);
         setClipToPadding(false);
@@ -111,9 +109,9 @@ public final class RichEditorToolbar extends FrameLayout {
         int color3 = Theme.getColor(i4, resourcesProvider);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(color3, mode));
-        ScaleStateListAnimator.apply(imageView, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(imageView);
         imageView.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
-        imageView.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(anonymousClass2));
+        imageView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda0(anonymousClass2));
         frameLayout.addView(imageView, LayoutHelper.createFrame(44, 44.0f, 51, 8.0f, 8.0f, 8.0f, 8.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.historyButtons = linearLayout;
@@ -126,7 +124,7 @@ public final class RichEditorToolbar extends FrameLayout {
         imageView2.setScaleType(scaleType);
         imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i3, resourcesProvider), 1, -1));
         imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, resourcesProvider), mode));
-        ScaleStateListAnimator.apply(imageView2, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(imageView2);
         imageView2.setContentDescription("Undo");
         final int i5 = 7;
         imageView2.setOnClickListener(new View.OnClickListener() {
@@ -156,16 +154,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -182,7 +177,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass3 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass3, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass3, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -202,7 +197,7 @@ public final class RichEditorToolbar extends FrameLayout {
         imageView3.setScaleType(scaleType);
         imageView3.setBackground(Theme.createSelectorDrawable(Theme.getColor(i3, resourcesProvider), 1, -1));
         imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, resourcesProvider), mode));
-        ScaleStateListAnimator.apply(imageView3, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(imageView3);
         imageView3.setContentDescription("Redo");
         final int i6 = 8;
         imageView3.setOnClickListener(new View.OnClickListener() {
@@ -232,16 +227,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -258,7 +250,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass3 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass3, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass3, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -294,7 +286,7 @@ public final class RichEditorToolbar extends FrameLayout {
         imageView4.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, resourcesProvider), mode));
         imageView4.setBackground(new RichEditor.ShadowWrapperDrawable(Theme.createRadSelectorDrawable(Theme.getColor(i2, resourcesProvider), Theme.blendOver(Theme.getColor(i2, resourcesProvider), Theme.getColor(i3, resourcesProvider)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
         linearLayout2.addView(imageView4, LayoutHelper.createLinear(44, 44, 0.0f, 19, 0, 0, 8, 0));
-        ScaleStateListAnimator.apply(imageView4, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(imageView4);
         imageView4.setContentDescription("AI");
         final int i7 = 9;
         imageView4.setOnClickListener(new View.OnClickListener() {
@@ -324,16 +316,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -350,7 +339,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass3 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass3, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass3, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -371,13 +360,13 @@ public final class RichEditorToolbar extends FrameLayout {
         frameLayout4.addView(frameLayout5, LayoutHelper.createFrame(-2, 44, 81));
         RichEditor.AnonymousClass4 anonymousClass4 = new RichEditor.AnonymousClass4(context, 1);
         anonymousClass4.setClipToOutline(true);
-        anonymousClass4.setOutlineProvider(new RichEditor.AnonymousClass5(21));
+        anonymousClass4.setOutlineProvider(new RichEditor.AnonymousClass5(12));
         LinearLayout linearLayout3 = new LinearLayout(context);
         this.blocksLayout = linearLayout3;
         linearLayout3.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         linearLayout3.setOrientation(0);
         anonymousClass4.addView(linearLayout3);
-        frameLayout5.addView(anonymousClass4, LayoutHelper.createFrame(-1.0f, -1));
+        frameLayout5.addView(anonymousClass4, LayoutHelper.createFrame(-1, -1.0f));
         ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = new ChatActivityEnterViewAnimatedIconView(context, 24);
         this.emojiButton = chatActivityEnterViewAnimatedIconView;
         chatActivityEnterViewAnimatedIconView.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
@@ -385,7 +374,7 @@ public final class RichEditorToolbar extends FrameLayout {
         chatActivityEnterViewAnimatedIconView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(i, resourcesProvider), Theme.getColor(i3, resourcesProvider), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
         chatActivityEnterViewAnimatedIconView.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
         linearLayout3.addView(chatActivityEnterViewAnimatedIconView, LayoutHelper.createLinear(38, 38, 16));
-        ScaleStateListAnimator.apply(chatActivityEnterViewAnimatedIconView, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(chatActivityEnterViewAnimatedIconView);
         chatActivityEnterViewAnimatedIconView.setContentDescription("Emoji");
         final int i8 = 10;
         chatActivityEnterViewAnimatedIconView.setOnClickListener(new View.OnClickListener() {
@@ -415,16 +404,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -441,7 +427,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass3 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass3, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass3, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -466,7 +452,7 @@ public final class RichEditorToolbar extends FrameLayout {
         imageView5.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i4, resourcesProvider), mode));
         imageView5.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(i, resourcesProvider), Theme.getColor(i3, resourcesProvider), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
         linearLayout3.addView(imageView5, LayoutHelper.createLinear(38, 38, 16, 2, 0, 0, 0));
-        ScaleStateListAnimator.apply(imageView5, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(imageView5);
         imageView5.setContentDescription("Attach");
         final int i10 = 11;
         imageView5.setOnClickListener(new View.OnClickListener() {
@@ -496,16 +482,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -522,7 +505,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass3 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass3, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass3, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -535,14 +518,14 @@ public final class RichEditorToolbar extends FrameLayout {
                 }
             }
         });
-        linearLayout2.addView(frameLayout4, LayoutHelper.createLinear(1.0f, 0, 44));
-        PhotoViewer.AnonymousClass35 anonymousClass35 = new PhotoViewer.AnonymousClass35(this, context, 18);
-        this.formattingPanel = anonymousClass35;
-        anonymousClass35.setOrientation(0);
-        anonymousClass35.setClipToPadding(false);
-        anonymousClass35.setClipChildren(false);
-        anonymousClass35.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-        frameLayout2.addView(anonymousClass35, LayoutHelper.createFrame(-2, 60, 81));
+        linearLayout2.addView(frameLayout4, LayoutHelper.createLinear(0, 44, 1.0f));
+        RichEditor.AnonymousClass6 anonymousClass6 = new RichEditor.AnonymousClass6(this, context, 8);
+        this.formattingPanel = anonymousClass6;
+        anonymousClass6.setOrientation(0);
+        anonymousClass6.setClipToPadding(false);
+        anonymousClass6.setClipChildren(false);
+        anonymousClass6.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+        frameLayout2.addView(anonymousClass6, LayoutHelper.createFrame(-2, 60, 81));
         FrameLayout frameLayout6 = new FrameLayout(context);
         this.trashPanel = frameLayout6;
         frameLayout6.setClipChildren(false);
@@ -551,10 +534,10 @@ public final class RichEditorToolbar extends FrameLayout {
         frameLayout2.addView(frameLayout6, LayoutHelper.createFrame(80, 60, 81));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.trashPanelIcon = rLottieImageView;
-        rLottieImageView.setAnimation(R.raw.group_pip_delete_icon, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), null);
+        rLottieImageView.setAnimation(R.raw.group_pip_delete_icon, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
         RLottieDrawable animatedDrawable = rLottieImageView.getAnimatedDrawable();
         if (animatedDrawable != null) {
-            animatedDrawable.playInDirectionOfCustomEndFrame = true;
+            animatedDrawable.setPlayInDirectionOfCustomEndFrame(true);
             animatedDrawable.setAutoRepeat(0);
             animatedDrawable.setCustomEndFrame(0);
         }
@@ -564,12 +547,12 @@ public final class RichEditorToolbar extends FrameLayout {
         frameLayout6.addView(rLottieImageView, LayoutHelper.createFrame(-1, -1, 119));
         FrameLayout frameLayout7 = new FrameLayout(context);
         frameLayout7.setBackground(new RichEditor.ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), Theme.getColor(i2, resourcesProvider))));
-        anonymousClass35.addView(frameLayout7, LayoutHelper.createFrame(44.0f, -2));
-        RichTableCell.AnonymousClass2 anonymousClass3 = new RichTableCell.AnonymousClass2(this, context, 2);
+        anonymousClass6.addView(frameLayout7, LayoutHelper.createFrame(-2, 44.0f));
+        RichTableCell.AnonymousClass2 anonymousClass3 = new RichTableCell.AnonymousClass2(this, context, 1);
         anonymousClass3.setHorizontalScrollBarEnabled(false);
         anonymousClass3.setClipToOutline(true);
-        anonymousClass3.setOutlineProvider(new RichEditor.AnonymousClass5(22));
-        frameLayout7.addView(anonymousClass3, LayoutHelper.createFrame(-1.0f, -1));
+        anonymousClass3.setOutlineProvider(new RichEditor.AnonymousClass5(13));
+        frameLayout7.addView(anonymousClass3, LayoutHelper.createFrame(-1, -1.0f));
         LinearLayout linearLayout4 = new LinearLayout(context);
         this.formattingPanelLayout = linearLayout4;
         linearLayout4.setOrientation(0);
@@ -615,16 +598,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -641,7 +621,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass5 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass5, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass5, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -687,16 +667,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -713,7 +690,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass5 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass5, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass5, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -732,7 +709,7 @@ public final class RichEditorToolbar extends FrameLayout {
         linearLayout5.setOrientation(0);
         linearLayout5.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         linearLayout5.setBackground(new RichEditor.ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), Theme.getColor(i2, resourcesProvider))));
-        anonymousClass35.addView(linearLayout5, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
+        anonymousClass6.addView(linearLayout5, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
         RichEditor.Button button3 = new RichEditor.Button(context, R.drawable.media_link_24, resourcesProvider);
         this.linkButton = button3;
         button3.setBackgroundColorKey(i2);
@@ -765,16 +742,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -791,7 +765,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass5 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass5, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass5, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -837,16 +811,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -863,7 +834,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass5 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass5, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass5, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -882,7 +853,7 @@ public final class RichEditorToolbar extends FrameLayout {
         linearLayout6.setOrientation(0);
         linearLayout6.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         linearLayout6.setBackground(new RichEditor.ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), Theme.getColor(i2, resourcesProvider))));
-        anonymousClass35.addView(linearLayout6, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
+        anonymousClass6.addView(linearLayout6, LayoutHelper.createFrame(-2, 44.0f, 80, 8.0f, 0.0f, 0.0f, 0.0f));
         RichEditor.Button button5 = new RichEditor.Button(context, i9, resourcesProvider);
         this.mathButton = button5;
         button5.setBackgroundColorKey(i2);
@@ -917,16 +888,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -943,7 +911,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass5 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass5, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass5, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -962,7 +930,7 @@ public final class RichEditorToolbar extends FrameLayout {
         linearLayout7.setOrientation(0);
         linearLayout7.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         linearLayout7.setBackground(new RichEditor.ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), Theme.getColor(i2, resourcesProvider))));
-        anonymousClass35.addView(linearLayout7, 0, LayoutHelper.createFrame(-2, 44.0f, 80, 0.0f, 0.0f, 8.0f, 0.0f));
+        anonymousClass6.addView(linearLayout7, 0, LayoutHelper.createFrame(-2, 44.0f, 80, 0.0f, 0.0f, 8.0f, 0.0f));
         RichEditor.Button button6 = new RichEditor.Button(context, R.drawable.input_ai, resourcesProvider);
         button6.setImageDrawable(new AiButtonDrawable(context));
         button6.setBackgroundColorKey(i2);
@@ -995,16 +963,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -1021,7 +986,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass5 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass5, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass5, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -1035,14 +1000,19 @@ public final class RichEditorToolbar extends FrameLayout {
             }
         });
         linearLayout7.addView(button6, LayoutHelper.createLinear(38, 38, 16));
-        RichEditor.AnonymousClass9 anonymousClass9 = new RichEditor.AnonymousClass9(this, context, R.drawable.send_plane_24, resourcesProvider, 3);
-        this.sendButton = anonymousClass9;
-        anonymousClass9.setBackground(new RichEditor.ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), Theme.getColor(Theme.key_chat_messagePanelSend, resourcesProvider))));
-        ScaleStateListAnimator.apply(anonymousClass9, 0.1f, 1.5f);
-        linearLayout2.addView(anonymousClass9, LayoutHelper.createLinear(44, 44, 0.0f, 5, 8, 0, 0, 0));
-        anonymousClass9.setContentDescription("Send");
+        ?? r3 = new ChatActivityEnterView.SendButton(context, R.drawable.send_plane_24, resourcesProvider) {
+            @Override
+            public final boolean isOpen() {
+                return RichEditorToolbar.this.sendLoading || super.isOpen();
+            }
+        };
+        this.sendButton = r3;
+        r3.setBackground(new RichEditor.ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), Theme.getColor(Theme.key_chat_messagePanelSend, resourcesProvider))));
+        ScaleStateListAnimator.apply(r3);
+        linearLayout2.addView((View) r3, LayoutHelper.createLinear(44, 44, 0.0f, 5, 8, 0, 0, 0));
+        r3.setContentDescription("Send");
         final int i17 = 6;
-        anonymousClass9.setOnClickListener(new View.OnClickListener() {
+        r3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
                 switch (i17) {
@@ -1069,16 +1039,13 @@ public final class RichEditorToolbar extends FrameLayout {
                         if (anonymousClass4BeginSelectionEdit != null) {
                             TL_iv.RichMessage richMessageExtractRichMessage = anonymousClass4BeginSelectionEdit.extractRichMessage();
                             if (!richMessageExtractRichMessage.blocks.isEmpty()) {
-                                AIEditorAlert aIEditorAlert = new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), chatAttachAlertRichLayout2.resourcesProvider);
-                                aIEditorAlert.setText(richMessageExtractRichMessage);
-                                aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-                                aIEditorAlert.show();
+                                new AIEditorAlert(chatAttachAlertRichLayout2.getContext(), ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout2).resourcesProvider).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
                                 break;
                             }
                         }
                         break;
                     case 6:
-                        ChatAttachAlertRichLayout.this.sendSelectedItems(0, true, 0, false, 0L);
+                        ChatAttachAlertRichLayout.this.sendSelectedItems(true, 0, 0, 0L, false);
                         break;
                     case 7:
                         RichEditorHistory richEditorHistory = ChatAttachAlertRichLayout.this.listView.history;
@@ -1095,7 +1062,7 @@ public final class RichEditorToolbar extends FrameLayout {
                     case 9:
                         ChatAttachAlertRichLayout.AnonymousClass2 anonymousClass5 = anonymousClass2;
                         ChatAttachAlertRichLayout chatAttachAlertRichLayout3 = ChatAttachAlertRichLayout.this;
-                        new RichAIComposeSheet(chatAttachAlertRichLayout3.currentAccount, chatAttachAlertRichLayout3.getContext(), new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass5, 27), chatAttachAlertRichLayout3.resourcesProvider).show();
+                        new RichAIComposeSheet(chatAttachAlertRichLayout3.getContext(), chatAttachAlertRichLayout3.currentAccount, ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertRichLayout3).resourcesProvider, new RichEditor$$ExternalSyntheticLambda53(anonymousClass5, 11)).show();
                         break;
                     case 10:
                         ChatAttachAlertRichLayout.access$2100(ChatAttachAlertRichLayout.this);
@@ -1108,7 +1075,7 @@ public final class RichEditorToolbar extends FrameLayout {
                 }
             }
         });
-        anonymousClass9.setOnLongClickListener(new PhotoViewer$$ExternalSyntheticLambda44(anonymousClass2, 18));
+        r3.setOnLongClickListener(new RichEditor$$ExternalSyntheticLambda12(anonymousClass2, 5));
         updatePanel(0, false);
     }
 
@@ -1245,16 +1212,16 @@ public final class RichEditorToolbar extends FrameLayout {
     }
 
     public void setSendEditing(boolean z) {
-        this.sendButton.setResourceId(z ? R.drawable.input_done : R.drawable.send_plane_24);
+        setResourceId(z ? R.drawable.input_done : R.drawable.send_plane_24);
     }
 
     public void setSendEnabled(boolean z) {
-        RichEditor.AnonymousClass9 anonymousClass9 = this.sendButton;
-        if (anonymousClass9.isEnabled() == z) {
+        AnonymousClass6 anonymousClass6 = this.sendButton;
+        if (anonymousClass6.isEnabled() == z) {
             return;
         }
-        anonymousClass9.setEnabled(z);
-        OKLCH.m(anonymousClass9.animate(), z ? 1.0f : 0.5f, 150L);
+        anonymousClass6.setEnabled(z);
+        OKLCH.m(anonymousClass6.animate(), z ? 1.0f : 0.5f, 150L);
     }
 
     public void setSendLoading(boolean z) {
@@ -1262,7 +1229,7 @@ public final class RichEditorToolbar extends FrameLayout {
             return;
         }
         this.sendLoading = z;
-        this.sendButton.invalidate();
+        invalidate();
     }
 
     public void setTopButtonsOffset(int i) {
@@ -1307,8 +1274,8 @@ public final class RichEditorToolbar extends FrameLayout {
         RLottieDrawable animatedDrawable = rLottieImageView.getAnimatedDrawable();
         if (animatedDrawable != null) {
             if (z) {
-                if (animatedDrawable.currentFrame > 34) {
-                    animatedDrawable.setCurrentFrame(0, false, false);
+                if (animatedDrawable.getCurrentFrame() > 34) {
+                    animatedDrawable.setCurrentFrame(0, false);
                 }
                 animatedDrawable.setCustomEndFrame(33);
             } else {
@@ -1325,7 +1292,7 @@ public final class RichEditorToolbar extends FrameLayout {
         this.panelType = i;
         FrameLayout frameLayout = this.trashPanel;
         LinearLayout linearLayout = this.bottomPanel;
-        PhotoViewer.AnonymousClass35 anonymousClass35 = this.formattingPanel;
+        RichEditor.AnonymousClass6 anonymousClass6 = this.formattingPanel;
         if (z) {
             linearLayout.setVisibility(0);
             ViewPropertyAnimator duration = linearLayout.animate().alpha(i == 0 ? 1.0f : 0.0f).scaleX(i == 0 ? 1.0f : 0.8f).scaleY(i == 0 ? 1.0f : 0.8f).translationY(i == 0 ? 0.0f : AndroidUtilities.dp(30.0f)).setDuration(420L);
@@ -1362,8 +1329,8 @@ public final class RichEditorToolbar extends FrameLayout {
                     }
                 }
             }).start();
-            anonymousClass35.setVisibility(0);
-            ViewPropertyAnimator viewPropertyAnimatorScaleY = anonymousClass35.animate().alpha(i == 1 ? 1.0f : 0.0f).scaleX(i == 1 ? 1.0f : 0.8f).scaleY(i == 1 ? 1.0f : 0.8f);
+            anonymousClass6.setVisibility(0);
+            ViewPropertyAnimator viewPropertyAnimatorScaleY = anonymousClass6.animate().alpha(i == 1 ? 1.0f : 0.0f).scaleX(i == 1 ? 1.0f : 0.8f).scaleY(i == 1 ? 1.0f : 0.8f);
             final int i3 = 1;
             viewPropertyAnimatorScaleY.translationY(i == 1 ? 0.0f : AndroidUtilities.dp(30.0f)).setDuration(420L).setInterpolator(cubicBezierInterpolator).withEndAction(new Runnable(this) {
                 public final RichEditorToolbar f$0;
@@ -1436,11 +1403,11 @@ public final class RichEditorToolbar extends FrameLayout {
         linearLayout.setScaleX(i == 0 ? 1.0f : 0.8f);
         linearLayout.setScaleY(i == 0 ? 1.0f : 0.8f);
         linearLayout.setTranslationY(i == 0 ? 0.0f : AndroidUtilities.dp(30.0f));
-        anonymousClass35.setVisibility(i == 1 ? 0 : 8);
-        anonymousClass35.setAlpha(i == 1 ? 1.0f : 0.0f);
-        anonymousClass35.setScaleX(i == 1 ? 1.0f : 0.8f);
-        anonymousClass35.setScaleY(i == 1 ? 1.0f : 0.8f);
-        anonymousClass35.setTranslationY(i == 1 ? 0.0f : AndroidUtilities.dp(30.0f));
+        anonymousClass6.setVisibility(i == 1 ? 0 : 8);
+        anonymousClass6.setAlpha(i == 1 ? 1.0f : 0.0f);
+        anonymousClass6.setScaleX(i == 1 ? 1.0f : 0.8f);
+        anonymousClass6.setScaleY(i == 1 ? 1.0f : 0.8f);
+        anonymousClass6.setTranslationY(i == 1 ? 0.0f : AndroidUtilities.dp(30.0f));
         frameLayout.setVisibility(i != 2 ? 8 : 0);
         frameLayout.setAlpha(i == 2 ? 1.0f : 0.0f);
         frameLayout.setScaleX(i == 2 ? 1.0f : 0.8f);

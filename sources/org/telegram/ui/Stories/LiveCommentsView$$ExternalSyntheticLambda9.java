@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.RecyclerListView;
 
 public final class LiveCommentsView$$ExternalSyntheticLambda9 implements Utilities.Callback2Return, RecyclerListView.OnItemClickListenerExtended {
@@ -17,12 +16,13 @@ public final class LiveCommentsView$$ExternalSyntheticLambda9 implements Utiliti
     }
 
     @Override
-    public boolean hasDoubleTap(View view) {
-        return false;
+    public boolean hasDoubleTap(View view, int i) {
+        return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
     }
 
     @Override
-    public void onDoubleTap(View view, float f, float f2) {
+    public void onDoubleTap(View view, int i, float f, float f2) {
+        RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
     }
 
     @Override
@@ -91,12 +91,12 @@ public final class LiveCommentsView$$ExternalSyntheticLambda9 implements Utiliti
         anonymousClass10.highlightingDialog = topSender.dialogId;
         anonymousClass10.highlightingMessageId = i2;
         anonymousClass10.callHighlight = true;
-        ChatActivity.AnonymousClass34 anonymousClass34 = anonymousClass10.listView;
-        RecyclerView.ItemAnimator itemAnimator = anonymousClass34.getItemAnimator();
-        anonymousClass34.setItemAnimator(null);
-        anonymousClass10.layoutManager.scrollToPositionWithOffset(i8, anonymousClass34.getHeight() / 2, true);
-        anonymousClass10.adapter.notifyItemChanged(i8);
-        anonymousClass34.setItemAnimator(itemAnimator);
+        LiveCommentsView.AnonymousClass1 anonymousClass1 = anonymousClass10.listView;
+        RecyclerView.ItemAnimator itemAnimator = anonymousClass1.getItemAnimator();
+        anonymousClass1.lambda$onCellEnter$52(null);
+        anonymousClass10.layoutManager.scrollToPositionWithOffset(i8, anonymousClass1.getHeight() / 2, true);
+        anonymousClass10.adapter.lambda$onBindViewHolder$31(i8);
+        anonymousClass1.lambda$onCellEnter$52(itemAnimator);
     }
 
     @Override

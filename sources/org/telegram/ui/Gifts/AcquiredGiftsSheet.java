@@ -26,12 +26,11 @@ import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda5;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda13;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarsIntroActivity;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda2;
 
 public final class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
     public static final int $r8$clinit = 0;
@@ -60,7 +59,7 @@ public final class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
                 int i = AcquiredGiftsCell.$r8$clinit;
                 acquiredGiftsCell.removeAllViews();
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
-                spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auction.giftDocumentId, 1.2f, Theme.chat_actionTextPaint.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auction.giftDocumentId, Theme.chat_actionTextPaint.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
                 spannableStringBuilder.append(' ');
                 spannableStringBuilder.append((CharSequence) LocaleController.formatString(R.string.Gift2AuctionsAcquiredRound2, auction.gift.title, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.gift_num), Integer.valueOf(tL_StarGiftAuctionAcquiredGift.round)));
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
@@ -69,16 +68,16 @@ public final class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
                 String string = LocaleController.formatString(R.string.Gift2AuctionsAcquiredTop, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.pos));
                 TableView tableView = new TableView(acquiredGiftsCell.getContext(), acquiredGiftsCell.resourcesProvider);
                 tableView.addFullRow(spannableStringBuilder).setFilled(true);
-                tableView.addRowUser(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), acquiredGiftsCell.currentAccount, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new LaunchActivity$$ExternalSyntheticLambda13(6, acquiredGiftsCell, onClickListener), null, null);
-                tableView.addRowDateTime(tL_StarGiftAuctionAcquiredGift.date, LocaleController.getString(R.string.Gift2AuctionsAcquiredDate));
-                tableView.addRow(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, string, null, null);
-                acquiredGiftsCell.addView(tableView, LayoutHelper.createFrame(-2.0f, -1));
+                tableView.addRowUser(LocaleController.getString(R.string.Gift2AuctionsAcquiredRecipient), acquiredGiftsCell.currentAccount, DialogObject.getPeerDialogId(tL_StarGiftAuctionAcquiredGift.peer), new GiftSheet$$ExternalSyntheticLambda26(21, acquiredGiftsCell, onClickListener));
+                tableView.addRowDateTime(LocaleController.getString(R.string.Gift2AuctionsAcquiredDate), tL_StarGiftAuctionAcquiredGift.date);
+                tableView.addRow(LocaleController.getString(R.string.Gift2AuctionsAcquiredAcceptedBid), spannableStringBuilder2, string, (Runnable) null);
+                acquiredGiftsCell.addView(tableView, LayoutHelper.createFrame(-1, -2.0f));
             }
 
             @Override
             public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                AcquiredGiftsCell acquiredGiftsCell = new AcquiredGiftsCell(context, i, resourcesProvider);
-                acquiredGiftsCell.setLayoutParams(LayoutHelper.createFrame(-2.0f, -1));
+                AcquiredGiftsCell acquiredGiftsCell = new AcquiredGiftsCell(context, resourcesProvider, i);
+                acquiredGiftsCell.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f));
                 return acquiredGiftsCell;
             }
 
@@ -88,7 +87,7 @@ public final class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             }
         }
 
-        public AcquiredGiftsCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        public AcquiredGiftsCell(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
             super(context);
             this.currentAccount = i;
             this.resourcesProvider = resourcesProvider;
@@ -97,7 +96,7 @@ public final class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
     }
 
     public AcquiredGiftsSheet(Context context, Theme.ResourcesProvider resourcesProvider, GiftAuctionController.Auction auction, List list) {
-        super(context, null, false, false, false, false, false, 2, resourcesProvider);
+        super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
         this.auction = auction;
         this.gifts = list;
         this.topPadding = 0.2f;
@@ -106,11 +105,11 @@ public final class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
         this.actionBar.setTitle(getTitle());
         fixNavigationBar();
         this.recyclerListView.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
-        this.recyclerListView.setOnItemClickListener(new AuctionBidSheet$$ExternalSyntheticLambda6(3));
+        this.recyclerListView.setOnItemClickListener(new AuctionBidSheet$$ExternalSyntheticLambda6(1));
         this.recyclerListView.setOverScrollMode(2);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
-        buttonWithCounterView.setOnClickListener(new GroupCallSheet$$ExternalSyntheticLambda5(this, 26));
-        buttonWithCounterView.setText(LocaleController.getString(R.string.OK), false, true);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
+        buttonWithCounterView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 1));
+        buttonWithCounterView.setText(LocaleController.getString(R.string.OK), false);
         FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i = layoutParamsCreateFrame.leftMargin;
         int i2 = this.backgroundPaddingLeft;
@@ -122,10 +121,10 @@ public final class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 22), this.resourcesProvider);
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 15), this.resourcesProvider);
         this.adapter = universalAdapter;
-        universalAdapter.applyBackground = false;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override
@@ -154,6 +153,6 @@ public final class AcquiredGiftsSheet extends BottomSheetWithRecyclerListView {
             bundle.putLong("chat_id", -peerDialogId);
         }
         bundle.putBoolean("open_gifts", true);
-        safeLastFragment.presentFragment(new ProfileActivity(bundle, null));
+        safeLastFragment.presentFragment(new ProfileActivity(bundle));
     }
 }

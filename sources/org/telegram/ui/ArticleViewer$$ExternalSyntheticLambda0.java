@@ -1,101 +1,122 @@
 package org.telegram.ui;
 
-import android.view.WindowManager;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import java.util.ArrayList;
+import org.telegram.messenger.BaseController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.Components.LineProgressView;
-import org.telegram.ui.web.WebBrowserSettings;
+import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.Stars.StarsController;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public final class ArticleViewer$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
-    public final ArticleViewer f$0;
+    public final Object f$0;
+    public final Object f$1;
+    public final int f$2;
+    public final long f$3;
 
-    public ArticleViewer$$ExternalSyntheticLambda0(ArticleViewer articleViewer, int i) {
-        this.$r8$classId = i;
-        this.f$0 = articleViewer;
+    public ArticleViewer$$ExternalSyntheticLambda0(Object obj, long j, int i, Object obj2, int i2) {
+        this.$r8$classId = i2;
+        this.f$0 = obj;
+        this.f$3 = j;
+        this.f$2 = i;
+        this.f$1 = obj2;
     }
 
     @Override
-    public final void run() {
+    public final void run() throws Throwable {
         switch (this.$r8$classId) {
             case 0:
-                ArticleViewer articleViewer = this.f$0;
-                articleViewer.getClass();
-                AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda0(articleViewer, 6));
+                ((ArticleViewer) this.f$0).lambda$setParentActivity$16((TLObject) this.f$1, this.f$2, this.f$3);
                 break;
             case 1:
-                ArticleViewer articleViewer2 = this.f$0;
-                float currentProgress = 0.7f - articleViewer2.actionBar.lineProgressView.getCurrentProgress();
-                if (currentProgress > 0.0f) {
-                    float f = currentProgress < 0.25f ? 0.01f : 0.02f;
-                    LineProgressView lineProgressView = articleViewer2.actionBar.lineProgressView;
-                    lineProgressView.setProgress(lineProgressView.getCurrentProgress() + f, true);
-                    AndroidUtilities.runOnUIThread(articleViewer2.lineProgressTickRunnable, 100L);
-                }
+                ((MediaDataController) this.f$0).lambda$putMenuBotsToCache$6((TLRPC.TL_attachMenuBots) this.f$1, this.f$3, this.f$2);
                 break;
             case 2:
-                ArticleViewer articleViewer3 = this.f$0;
-                articleViewer3.getClass();
-                AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda0(articleViewer3, 6));
+                ((MediaDataController) this.f$0).lambda$processLoadedStickers$104((ArrayList) this.f$1, this.f$3, this.f$2);
                 break;
             case 3:
-                ArticleViewer articleViewer4 = this.f$0;
-                ChatActivity.AnonymousClass60 anonymousClass60 = articleViewer4.containerView;
-                if (anonymousClass60 != null) {
-                    anonymousClass60.setLayerType(0, null);
-                    articleViewer4.animationInProgress = 0;
-                    articleViewer4.onClosed();
-                    break;
-                }
+                ((MessagesController) this.f$0).lambda$checkPromoInfoInternal$168(this.f$3, (TLRPC.TL_help_promoData) this.f$1, this.f$2);
                 break;
             case 4:
-                this.f$0.sheet.dismiss(true);
+                ((MessagesController) this.f$0).lambda$processUpdateArray$388(this.f$3, this.f$2, (TLRPC.TL_sendMessageTextDraftAction) this.f$1);
                 break;
             case 5:
-                this.f$0.sheet.dismiss(true);
+                ((MessagesController) this.f$0).lambda$processUpdateArray$389(this.f$3, this.f$2, (TLRPC.TL_sendMessageRichMessageDraftAction) this.f$1);
                 break;
             case 6:
-                this.f$0.updatePages();
+                ((MessagesStorage) this.f$0).lambda$updateTopicData$48(this.f$3, (TLRPC.TL_forumTopic) this.f$1, this.f$2);
                 break;
             case 7:
-                this.f$0.showRestrictedWebsiteToast();
+                ((MessagesStorage) this.f$0).lambda$updateMessageVoiceTranscriptionOpen$107(this.f$2, this.f$3, (TLRPC.Message) this.f$1);
                 break;
             case 8:
-                this.f$0.updateSearchButtons();
+                ((MessagesStorage) this.f$0).lambda$updateMessageReactions$104(this.f$2, this.f$3, (TLRPC.TL_messageReactions) this.f$1);
                 break;
             case 9:
-                ArticleViewer articleViewer5 = this.f$0;
-                articleViewer5.getClass();
-                try {
-                    if (articleViewer5.windowView.getParent() != null) {
-                        ((WindowManager) articleViewer5.parentActivity.getSystemService("window")).removeView(articleViewer5.windowView);
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                ((MessagesStorage) this.f$0).lambda$updateChatDefaultBannedRights$180(this.f$3, this.f$2, (TLRPC.TL_chatBannedRights) this.f$1);
                 break;
             case 10:
-                ArticleViewer articleViewer6 = this.f$0;
-                articleViewer6.getClass();
-                BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
-                if (safeLastFragment != null) {
-                    BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-                    bottomSheetParams.transitionFromLeft = true;
-                    safeLastFragment.showAsSheet(new WebBrowserSettings(new ArticleViewer$$ExternalSyntheticLambda10(articleViewer6, 3)), bottomSheetParams);
-                }
+                ((SendMessagesHelper) this.f$0).lambda$sendNotificationCallback$30(this.f$3, this.f$2, (byte[]) this.f$1);
+                break;
+            case 11:
+                ((TranslateController) this.f$0).lambda$checkLanguage$14((MessageObject) this.f$1, this.f$3, this.f$2);
+                break;
+            case 12:
+                ((ProfileActivity) this.f$0).lambda$createView$7(this.f$3, this.f$2, (ArrayList) this.f$1);
                 break;
             default:
-                ArticleViewer articleViewer7 = this.f$0;
-                ChatActivity.AnonymousClass60 anonymousClass61 = articleViewer7.containerView;
-                if (anonymousClass61 != null && articleViewer7.windowView != null) {
-                    anonymousClass61.setLayerType(0, null);
-                    articleViewer7.animationInProgress = 0;
-                    AndroidUtilities.hideKeyboard(articleViewer7.parentActivity.getCurrentFocus());
+                ((ButtonWithCounterView) this.f$0).setLoading(false);
+                BottomSheet bottomSheet = ((BottomSheet[]) this.f$1)[0];
+                if (bottomSheet != null) {
+                    bottomSheet.lambda$showGiftOfferSheet$15();
+                }
+                StarsController.getInstance(this.f$2, false).invalidateSubscriptions();
+                BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                if (safeLastFragment != null) {
+                    safeLastFragment.presentFragment(ChatActivity.of(this.f$3));
                     break;
                 }
                 break;
         }
+    }
+
+    public ArticleViewer$$ExternalSyntheticLambda0(Object obj, Object obj2, int i, long j, int i2) {
+        this.$r8$classId = i2;
+        this.f$0 = obj;
+        this.f$1 = obj2;
+        this.f$2 = i;
+        this.f$3 = j;
+    }
+
+    public ArticleViewer$$ExternalSyntheticLambda0(BaseController baseController, long j, TLObject tLObject, int i, int i2) {
+        this.$r8$classId = i2;
+        this.f$0 = baseController;
+        this.f$3 = j;
+        this.f$1 = tLObject;
+        this.f$2 = i;
+    }
+
+    public ArticleViewer$$ExternalSyntheticLambda0(BaseController baseController, Object obj, long j, int i, int i2) {
+        this.$r8$classId = i2;
+        this.f$0 = baseController;
+        this.f$1 = obj;
+        this.f$3 = j;
+        this.f$2 = i;
+    }
+
+    public ArticleViewer$$ExternalSyntheticLambda0(MessagesStorage messagesStorage, int i, long j, TLObject tLObject, int i2) {
+        this.$r8$classId = i2;
+        this.f$0 = messagesStorage;
+        this.f$2 = i;
+        this.f$3 = j;
+        this.f$1 = tLObject;
     }
 }

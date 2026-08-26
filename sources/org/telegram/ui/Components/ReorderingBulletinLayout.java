@@ -1,13 +1,14 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.content.Context;
 import android.widget.ImageView;
+import org.telegram.ui.ActionBar.Theme;
 
-public final class ReorderingBulletinLayout extends Bulletin.SimpleLayout {
-    public final ReorderingHintDrawable hintDrawable;
+public class ReorderingBulletinLayout extends Bulletin.SimpleLayout {
+    private final ReorderingHintDrawable hintDrawable;
 
-    public ReorderingBulletinLayout(Activity activity, String str) {
-        super(activity, null);
+    public ReorderingBulletinLayout(Context context, String str, Theme.ResourcesProvider resourcesProvider) {
+        super(context, resourcesProvider);
         this.textView.setText(str);
         this.textView.setTranslationY(-1.0f);
         ImageView imageView = this.imageView;
@@ -17,19 +18,14 @@ public final class ReorderingBulletinLayout extends Bulletin.SimpleLayout {
     }
 
     @Override
-    public final void onEnterTransitionEnd() {
+    public void onEnterTransitionEnd() {
         super.onEnterTransitionEnd();
-        ReorderingHintDrawable reorderingHintDrawable = this.hintDrawable;
-        reorderingHintDrawable.getClass();
-        reorderingHintDrawable.startedTime = System.currentTimeMillis();
-        reorderingHintDrawable.invalidateSelf();
+        this.hintDrawable.startAnimation();
     }
 
     @Override
-    public final void onExitTransitionEnd() {
+    public void onExitTransitionEnd() {
         super.onExitTransitionEnd();
-        ReorderingHintDrawable reorderingHintDrawable = this.hintDrawable;
-        reorderingHintDrawable.startedTime = -1L;
-        reorderingHintDrawable.invalidateSelf();
+        this.hintDrawable.resetAnimation();
     }
 }

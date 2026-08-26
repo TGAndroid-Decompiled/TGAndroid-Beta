@@ -19,7 +19,7 @@ public final class StoryRecorder$13$$ExternalSyntheticLambda2 implements Runnabl
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.startRecording(this.f$2, this.f$1);
+                this.f$0.startRecording(this.f$1, this.f$2);
                 break;
             default:
                 StoryRecorder.AnonymousClass13 anonymousClass13 = this.f$0;
@@ -27,7 +27,7 @@ public final class StoryRecorder$13$$ExternalSyntheticLambda2 implements Runnabl
                 this.f$2.run();
                 StoryRecorder storyRecorder = StoryRecorder.this;
                 HintTextView hintTextView = storyRecorder.hintTextView;
-                hintTextView.textDrawable.setText(LocaleController.getString(this.f$1 ? R.string.StoryHintSwipeToZoom : R.string.StoryHintPinchToZoom), false, true);
+                hintTextView.textDrawable.setText(LocaleController.getString(this.f$1 ? R.string.StoryHintSwipeToZoom : R.string.StoryHintPinchToZoom), false);
                 hintTextView.invalidate();
                 storyRecorder.animateRecording(true, true);
                 storyRecorder.setAwakeLock(true);

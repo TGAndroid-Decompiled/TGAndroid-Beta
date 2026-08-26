@@ -2,6 +2,7 @@ package org.telegram.ui.Cells;
 
 import android.animation.TimeInterpolator;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -18,9 +19,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkc;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzlj;
+import com.google.android.gms.internal.mlkit_vision_common.zzjx;
+import com.google.android.gms.internal.mlkit_vision_common.zzkr;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +39,7 @@ import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyn
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -105,7 +106,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
         }
         TextView textView = new TextView(context);
         this.extTextView = textView;
-        zzlj.m(Theme.key_files_iconText, resourcesProvider, textView, 14.0f);
+        zzkr.m(Theme.key_files_iconText, resourcesProvider, textView, 14.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
         textView.setSingleLine(true);
@@ -120,7 +121,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
             boolean z4 = LocaleController.isRTL;
             addView(textView, LayoutHelper.createFrame(32, -2.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : 16.0f, 22.0f, z4 ? 16.0f : 0.0f, 0.0f));
         }
-        UserCell.AnonymousClass2 anonymousClass2 = new UserCell.AnonymousClass2(this, context, 2);
+        UserCell.AnonymousClass2 anonymousClass2 = new UserCell.AnonymousClass2(this, context, 1);
         this.thumbImageView = anonymousClass2;
         anonymousClass2.setRoundRadius(AndroidUtilities.dp(4.0f));
         if (i == 1) {
@@ -133,7 +134,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
         TextView textView2 = new TextView(context);
         this.nameTextView = textView2;
         int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        zzlj.m(i3, resourcesProvider, textView2, 16.0f);
+        zzkr.m(i3, resourcesProvider, textView2, 16.0f);
         textView2.setEllipsize(truncateAt);
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         if (i == 1) {
@@ -144,7 +145,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
             addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z7 ? 5 : 3) | 48, z7 ? 8.0f : 72.0f, 9.0f, z7 ? 72.0f : 8.0f, 0.0f));
             f = 14.0f;
         } else if (i == 2) {
-            LinearLayout linearLayoutM = zzkf.m(context, 0);
+            LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context);
             boolean z8 = LocaleController.isRTL;
             addView(linearLayoutM, LayoutHelper.createFrame(-1, -2.0f, (z8 ? 5 : 3) | 48, z8 ? 16.0f : 72.0f, 5.0f, z8 ? 72.0f : 16.0f, 0.0f));
             TextView textView3 = new TextView(context);
@@ -152,11 +153,11 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
             OKLCH.m(Theme.key_windowBackgroundWhiteGrayText3, resourcesProvider, textView3, 14.0f);
             f = 14.0f;
             if (LocaleController.isRTL) {
-                linearLayoutM.addView(textView3, LayoutHelper.createLinear(0.0f, -2, -2));
-                linearLayoutM.addView(textView2, LayoutHelper.createLinear(1.0f, -2, -2, 0, 4, 0));
+                linearLayoutM.addView(textView3, LayoutHelper.createLinear(-2, -2, 0.0f));
+                linearLayoutM.addView(textView2, LayoutHelper.createLinear(-2, -2, 1.0f, 0, 0, 4, 0));
             } else {
-                linearLayoutM.addView(textView2, LayoutHelper.createLinear(1.0f, -2, -2));
-                linearLayoutM.addView(textView3, LayoutHelper.createLinear(0.0f, -2, -2, 4, 0, 0));
+                linearLayoutM.addView(textView2, LayoutHelper.createLinear(-2, -2, 1.0f));
+                linearLayoutM.addView(textView3, LayoutHelper.createLinear(-2, -2, 0.0f, 4, 0, 0, 0));
             }
             textView2.setMaxLines(2);
             TextView textView4 = new TextView(context);
@@ -218,7 +219,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
         this.checkBox = checkBox2;
         checkBox2.setVisibility(4);
-        checkBox2.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+        checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
         checkBox2.setDrawUnchecked(false);
         checkBox2.setDrawBackgroundAsArc(2);
         if (i == 1) {
@@ -248,7 +249,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
         } else {
             canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) ((1.0f - this.enterAlpha) * 255.0f), 31);
             this.globalGradientView.setViewType(3);
-            this.globalGradientView.updateColors$1();
+            this.globalGradientView.updateColors();
             this.globalGradientView.updateGradient();
             this.globalGradientView.draw(canvas);
             canvas.restore();
@@ -331,9 +332,9 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         CheckBox2 checkBox2 = this.checkBox;
-        if (checkBox2.checkBoxBase.isChecked) {
+        if (checkBox2.isChecked()) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(checkBox2.checkBoxBase.isChecked);
+            accessibilityNodeInfo.setChecked(checkBox2.isChecked());
         }
     }
 
@@ -348,7 +349,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
                 int measuredHeight = textView.getMeasuredHeight() - AndroidUtilities.dp(22.0f);
                 if (textView2 != null && textView2.getVisibility() == 0) {
                     textView2.layout(textView2.getLeft(), textView2.getTop() + measuredHeight, textView2.getRight(), textView2.getBottom() + measuredHeight);
-                    measuredHeight = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(textView2.getMeasuredHeight(), 3.0f, measuredHeight);
+                    measuredHeight = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(3.0f, textView2.getMeasuredHeight(), measuredHeight);
                 }
                 AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.dateTextView;
                 textViewEmojis.layout(textViewEmojis.getLeft(), textViewEmojis.getTop() + measuredHeight, textViewEmojis.getRight(), textViewEmojis.getBottom() + measuredHeight);
@@ -378,7 +379,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
             this.ignoreRequestLayout = true;
             textView.setText(AndroidUtilities.ellipsizeCenterEnd(this.caption, this.message.highlightedWords.get(0), textView.getMeasuredWidth(), textView.getPaint(), 130));
             this.ignoreRequestLayout = false;
-            measuredHeight = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(textView.getMeasuredHeight(), 3.0f, measuredHeight);
+            measuredHeight = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(3.0f, textView.getMeasuredHeight(), measuredHeight);
         }
         setMeasuredDimension(getMeasuredWidth(), measuredHeight);
     }
@@ -419,7 +420,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
         if (checkBox2.getVisibility() != 0) {
             checkBox2.setVisibility(0);
         }
-        checkBox2.checkBoxBase.setChecked(-1, z, z2);
+        checkBox2.setChecked(z, z2);
     }
 
     public final void setDocument(MessageObject messageObject, boolean z) {
@@ -496,21 +497,20 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
                 anonymousClass2.setVisibility(0);
                 if (messageObject.strippedThumb != null) {
                     resourcesProvider = resourcesProvider2;
-                    this.thumbImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", null, null, messageObject.strippedThumb, null, 1, messageObject);
+                    this.thumbImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", (ImageLocation) null, (String) null, messageObject.strippedThumb, (Bitmap) null, (String) null, 1, messageObject);
                 } else {
                     resourcesProvider = resourcesProvider2;
-                    anonymousClass2.imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), "40_40_b", null, 0L, null, messageObject, 1);
-                    anonymousClass2.onNewImageSet();
+                    this.thumbImageView.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "40_40", ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), "40_40_b", (String) null, 0L, 1, messageObject);
                 }
             }
             updateDateView();
             if (messageObject.hasHighlightedWords() && !TextUtils.isEmpty(this.message.messageOwner.message)) {
                 CharSequence charSequenceHighlightText2 = AndroidUtilities.highlightText(this.message.messageOwner.message.replace("\n", " ").replaceAll(" +", " ").trim(), this.message.highlightedWords, resourcesProvider);
                 this.caption = charSequenceHighlightText2;
-                if (textView != 0) {
+                if (textView != null) {
                     textView.setVisibility(charSequenceHighlightText2 == null ? 8 : 0);
                 }
-            } else if (textView != 0) {
+            } else if (textView != null) {
                 textView.setVisibility(8);
             }
         } else {
@@ -571,10 +571,10 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
             str = photoEntry.thumbPath;
         } else if (photoEntry.path != null) {
             if (photoEntry.isVideo) {
-                anonymousClass2.imageReceiver.setOrientation(0, true);
+                anonymousClass2.setOrientation(0, true);
                 anonymousClass2.setImage("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             } else {
-                anonymousClass2.imageReceiver.setOrientation(photoEntry.orientation, photoEntry.invert, true);
+                anonymousClass2.setOrientation(photoEntry.orientation, photoEntry.invert, true);
                 anonymousClass2.setImage("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, Theme.chat_attachEmptyDrawable);
             }
             str = photoEntry.path;
@@ -687,7 +687,7 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
             strM = AndroidUtilities.formatFileSize(messageObject2.getDocument().size);
         } else {
             Locale locale = Locale.ENGLISH;
-            strM = zzkc.m(AndroidUtilities.formatFileSize(j2), " / ", AndroidUtilities.formatFileSize(this.message.getDocument().size));
+            strM = zzjx.m(AndroidUtilities.formatFileSize(j2), " / ", AndroidUtilities.formatFileSize(this.message.getDocument().size));
         }
         int i = this.viewType;
         AnimatedEmojiSpan.TextViewEmojis textViewEmojis = this.dateTextView;
@@ -748,14 +748,13 @@ public final class SharedDocumentCell extends FrameLayout implements DownloadCon
         DownloadController.getInstance(i).addLoadingFileObserver(attachFileName, this.message, this);
         this.loading = FileLoader.getInstance(i).isLoadingFile(attachFileName);
         rLottieImageView.setVisibility(0);
-        int i2 = this.loading ? 15 : 0;
         RLottieDrawable rLottieDrawable = this.statusDrawable;
-        rLottieDrawable.setCustomEndFrame(i2);
-        rLottieDrawable.playInDirectionOfCustomEndFrame = true;
+        rLottieDrawable.setCustomEndFrame(this.loading ? 15 : 0);
+        rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
         if (z) {
             rLottieImageView.playAnimation();
         } else {
-            rLottieDrawable.setCurrentFrame(this.loading ? 15 : 0, true, false);
+            rLottieDrawable.setCurrentFrame(this.loading ? 15 : 0);
             rLottieImageView.invalidate();
         }
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) textViewEmojis.getLayoutParams();

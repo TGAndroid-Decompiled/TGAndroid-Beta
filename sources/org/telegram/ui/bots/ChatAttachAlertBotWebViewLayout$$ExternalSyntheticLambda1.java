@@ -1,32 +1,31 @@
 package org.telegram.ui.bots;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.ActionBar.AlertDialog;
+import android.animation.ValueAnimator;
 
-public final class ChatAttachAlertBotWebViewLayout$$ExternalSyntheticLambda1 implements AlertDialog.OnButtonClickListener, ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.Delegate, GenericProvider {
+public final class ChatAttachAlertBotWebViewLayout$$ExternalSyntheticLambda1 implements ValueAnimator.AnimatorUpdateListener {
+    public final int $r8$classId;
     public final ChatAttachAlertBotWebViewLayout f$0;
 
-    public ChatAttachAlertBotWebViewLayout$$ExternalSyntheticLambda1(ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout) {
+    public ChatAttachAlertBotWebViewLayout$$ExternalSyntheticLambda1(ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout, int i) {
+        this.$r8$classId = i;
         this.f$0 = chatAttachAlertBotWebViewLayout;
     }
 
     @Override
-    public void onClick(AlertDialog alertDialog, int i) {
-        this.f$0.parentAlert.lambda$showGiftOfferSheet$15();
-    }
-
-    @Override
-    public void onDismiss(boolean z) {
-        ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout = this.f$0;
-        if (chatAttachAlertBotWebViewLayout.onCheckDismissByUser()) {
-            return;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.$r8$classId) {
+            case 0:
+                ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout = this.f$0;
+                chatAttachAlertBotWebViewLayout.getClass();
+                int iIntValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                ChatAttachAlertBotWebViewLayout.AnonymousClass1 anonymousClass1 = chatAttachAlertBotWebViewLayout.webViewContainer;
+                if (anonymousClass1.getWebView() != null) {
+                    anonymousClass1.getWebView().setScrollY(iIntValue);
+                }
+                break;
+            default:
+                this.f$0.progressView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                break;
         }
-        chatAttachAlertBotWebViewLayout.swipeContainer.stickTo(0.0f, false, null);
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        return Boolean.valueOf(this.f$0.parentAlert.sizeNotifierFrameLayout.getKeyboardHeight() >= AndroidUtilities.dp(20.0f));
     }
 }

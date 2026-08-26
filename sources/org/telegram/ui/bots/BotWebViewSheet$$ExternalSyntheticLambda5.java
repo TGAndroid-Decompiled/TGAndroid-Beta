@@ -1,9 +1,11 @@
 package org.telegram.ui.bots;
 
-import android.view.View;
-import org.telegram.ui.web.BotWebViewContainer;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.iv.RichTableCell$$ExternalSyntheticLambda3;
 
-public final class BotWebViewSheet$$ExternalSyntheticLambda5 implements View.OnClickListener {
+public final class BotWebViewSheet$$ExternalSyntheticLambda5 implements Utilities.Callback {
     public final int $r8$classId;
     public final BotWebViewSheet f$0;
 
@@ -13,15 +15,22 @@ public final class BotWebViewSheet$$ExternalSyntheticLambda5 implements View.OnC
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void run(Object obj) {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.openOptions();
+                BotWebViewSheet botWebViewSheet = this.f$0;
+                botWebViewSheet.getClass();
+                AndroidUtilities.runOnUIThread(new RichTableCell$$ExternalSyntheticLambda3(13, botWebViewSheet, (TLRPC.UserFull) obj));
                 break;
             default:
-                BotWebViewContainer.MyWebView webView = getWebView();
-                if (webView != null) {
-                    webView.reload();
+                Boolean bool = (Boolean) obj;
+                BotWebViewSheet.AnonymousClass2 anonymousClass2 = this.f$0.webViewContainer;
+                if (anonymousClass2 != null) {
+                    if (!bool.booleanValue()) {
+                        anonymousClass2.onSecondaryButtonPressed();
+                    } else {
+                        anonymousClass2.onMainButtonPressed();
+                    }
                 }
                 break;
         }

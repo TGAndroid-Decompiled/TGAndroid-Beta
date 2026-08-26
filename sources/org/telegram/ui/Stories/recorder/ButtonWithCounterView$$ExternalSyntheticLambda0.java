@@ -15,34 +15,19 @@ public final class ButtonWithCounterView$$ExternalSyntheticLambda0 implements Va
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                ButtonWithCounterView buttonWithCounterView = this.f$0;
-                buttonWithCounterView.getClass();
-                buttonWithCounterView.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                buttonWithCounterView.invalidate();
+                this.f$0.lambda$animateCount$4(valueAnimator);
                 break;
             case 1:
-                ButtonWithCounterView buttonWithCounterView2 = this.f$0;
-                buttonWithCounterView2.getClass();
-                buttonWithCounterView2.enabledT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                buttonWithCounterView2.invalidate();
+                this.f$0.lambda$setEnabled$5(valueAnimator);
                 break;
             case 2:
-                ButtonWithCounterView buttonWithCounterView3 = this.f$0;
-                buttonWithCounterView3.getClass();
-                buttonWithCounterView3.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                buttonWithCounterView3.invalidate();
+                this.f$0.lambda$setSubText$1(valueAnimator);
                 break;
             case 3:
-                ButtonWithCounterView buttonWithCounterView4 = this.f$0;
-                buttonWithCounterView4.getClass();
-                buttonWithCounterView4.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                buttonWithCounterView4.invalidate();
+                this.f$0.lambda$setSubText$2(valueAnimator);
                 break;
             default:
-                ButtonWithCounterView buttonWithCounterView5 = this.f$0;
-                buttonWithCounterView5.getClass();
-                buttonWithCounterView5.subTextT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                buttonWithCounterView5.invalidate();
+                this.f$0.lambda$setLoading$3(valueAnimator);
                 break;
         }
     }

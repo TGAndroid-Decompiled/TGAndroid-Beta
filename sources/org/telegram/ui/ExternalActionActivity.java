@@ -1,32 +1,33 @@
 package org.telegram.ui;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-import androidx.appcompat.view.menu.CascadingMenuPopup;
-import androidx.appcompat.view.menu.StandardMenuPopup;
-import androidx.appcompat.widget.AppCompatSpinner;
-import androidx.appcompat.widget.MenuPopupWindow;
-import androidx.core.view.ViewCompat;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -34,126 +35,248 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.SessionCell;
+import org.telegram.ui.Components.ActivityWindowEmptyBackgroundDrawable;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.PagerSlidingTabStrip;
 import org.telegram.ui.Components.PasscodeView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-import org.telegram.ui.Components.VideoEditTextureView$$ExternalSyntheticLambda1;
 
 public class ExternalActionActivity extends Activity implements INavigationLayout.INavigationLayoutDelegate {
-    public ActionBarLayout actionBarLayout;
-    public SizeNotifierFrameLayout backgroundTablet;
-    public DrawerLayoutContainer drawerLayoutContainer;
-    public boolean finished;
-    public ActionBarLayout layersActionBarLayout;
-    public LaunchActivity.AnonymousClass18 lockRunnable;
-    public Intent passcodeSaveIntent;
-    public int passcodeSaveIntentAccount;
-    public boolean passcodeSaveIntentIsNew;
-    public boolean passcodeSaveIntentIsRestore;
-    public int passcodeSaveIntentState;
-    public PasscodeView passcodeView;
-    public static final ArrayList mainFragmentsStack = new ArrayList();
-    public static final ArrayList layerFragmentsStack = new ArrayList();
+    protected INavigationLayout actionBarLayout;
+    protected SizeNotifierFrameLayout backgroundTablet;
+    protected DrawerLayoutContainer drawerLayoutContainer;
+    private boolean finished;
+    protected INavigationLayout layersActionBarLayout;
+    private Runnable lockRunnable;
+    private Intent passcodeSaveIntent;
+    private int passcodeSaveIntentAccount;
+    private boolean passcodeSaveIntentIsNew;
+    private boolean passcodeSaveIntentIsRestore;
+    private int passcodeSaveIntentState;
+    private PasscodeView passcodeView;
+    private static final ArrayList<BaseFragment> mainFragmentsStack = new ArrayList<>();
+    private static final ArrayList<BaseFragment> layerFragmentsStack = new ArrayList<>();
 
-    public final class AnonymousClass3 implements ViewTreeObserver.OnGlobalLayoutListener {
-        public final int $r8$classId;
-        public final Object this$0;
-
-        public AnonymousClass3(Object obj, int i) {
-            this.$r8$classId = i;
-            this.this$0 = obj;
+    public void lambda$handleIntent$10(int[] iArr, int i, AlertDialog alertDialog, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) {
+        TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
+        if (authorizationform == null) {
+            AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda30((Activity) this, (Object) alertDialog, tL_error, 18));
+        } else {
+            iArr[0] = ConnectionsManager.getInstance(i).sendRequest(new TL_account.getPassword(), new CallLogActivity$$ExternalSyntheticLambda18(this, alertDialog, i, authorizationform, getauthorizationform, str, str2, 2));
         }
+    }
 
-        @Override
-        public final void onGlobalLayout() {
-            int i = 0;
-            Object obj = this.this$0;
-            switch (this.$r8$classId) {
-                case 0:
-                    ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj;
-                    externalActionActivity.needLayout();
-                    ActionBarLayout actionBarLayout = externalActionActivity.actionBarLayout;
-                    if (actionBarLayout != null) {
-                        actionBarLayout.getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    }
-                    break;
-                case 1:
-                    CascadingMenuPopup cascadingMenuPopup = (CascadingMenuPopup) obj;
-                    if (cascadingMenuPopup.isShowing()) {
-                        ArrayList arrayList = cascadingMenuPopup.mShowingMenus;
-                        if (arrayList.size() > 0 && !((CascadingMenuPopup.CascadingMenuInfo) arrayList.get(0)).window.mModal) {
-                            View view = cascadingMenuPopup.mShownAnchorView;
-                            if (view != null && view.isShown()) {
-                                int size = arrayList.size();
-                                while (i < size) {
-                                    Object obj2 = arrayList.get(i);
-                                    i++;
-                                    ((CascadingMenuPopup.CascadingMenuInfo) obj2).window.show();
-                                }
-                            } else {
-                                cascadingMenuPopup.dismiss();
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                case 2:
-                    StandardMenuPopup standardMenuPopup = (StandardMenuPopup) obj;
-                    if (standardMenuPopup.isShowing()) {
-                        MenuPopupWindow menuPopupWindow = standardMenuPopup.mPopup;
-                        if (!menuPopupWindow.mModal) {
-                            View view2 = standardMenuPopup.mShownAnchorView;
-                            if (view2 != null && view2.isShown()) {
-                                menuPopupWindow.show();
-                            } else {
-                                standardMenuPopup.dismiss();
-                            }
-                        }
-                    }
-                    break;
-                case 3:
-                    AppCompatSpinner appCompatSpinner = (AppCompatSpinner) obj;
-                    if (!appCompatSpinner.getInternalPopup().isShowing()) {
-                        appCompatSpinner.mPopup.show(AppCompatSpinner.Api17Impl.getTextDirection(appCompatSpinner), AppCompatSpinner.Api17Impl.getTextAlignment(appCompatSpinner));
-                    }
-                    ViewTreeObserver viewTreeObserver = appCompatSpinner.getViewTreeObserver();
-                    if (viewTreeObserver != null) {
-                        AppCompatSpinner.Api16Impl.removeOnGlobalLayoutListener(viewTreeObserver, this);
-                    }
-                    break;
-                case 4:
-                    AppCompatSpinner.DropdownPopup dropdownPopup = (AppCompatSpinner.DropdownPopup) obj;
-                    AppCompatSpinner appCompatSpinner2 = AppCompatSpinner.this;
-                    dropdownPopup.getClass();
-                    WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
-                    if (appCompatSpinner2.isAttachedToWindow() && appCompatSpinner2.getGlobalVisibleRect(dropdownPopup.mVisibleRect)) {
-                        dropdownPopup.computeContentWidth();
-                        dropdownPopup.show();
-                    } else {
-                        dropdownPopup.dismiss();
-                    }
-                    break;
-                default:
-                    PagerSlidingTabStrip pagerSlidingTabStrip = (PagerSlidingTabStrip) obj;
-                    pagerSlidingTabStrip.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    pagerSlidingTabStrip.currentPosition = pagerSlidingTabStrip.pager.getCurrentItem();
-                    PagerSlidingTabStrip.access$300(pagerSlidingTabStrip, pagerSlidingTabStrip.currentPosition, 0);
-                    break;
+    public void lambda$handleIntent$3(int i, Intent intent, boolean z, boolean z2, boolean z3, int i2) {
+        if (i2 != i) {
+            switchToAccount(i2);
+        }
+        handleIntent(intent, z, z2, z3, i2, 1);
+    }
+
+    public void lambda$handleIntent$4(DialogInterface dialogInterface) {
+        setResult(0);
+        finish();
+    }
+
+    public static void lambda$handleIntent$5(int i, int[] iArr, DialogInterface dialogInterface) {
+        ConnectionsManager.getInstance(i).cancelRequest(iArr[0], true);
+    }
+
+    public void lambda$handleIntent$6(AlertDialog alertDialog, TLObject tLObject, int i, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2) {
+        try {
+            alertDialog.dismiss();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        if (tLObject != null) {
+            MessagesController.getInstance(i).putUsers(authorizationform.users, false);
+            PassportActivity passportActivity = new PassportActivity(5, getauthorizationform.bot_id, getauthorizationform.scope, getauthorizationform.public_key, str, str2, (String) null, authorizationform, (TL_account.Password) tLObject);
+            passportActivity.setNeedActivityResult(true);
+            if (AndroidUtilities.isTablet()) {
+                INavigationLayout iNavigationLayout = this.layersActionBarLayout;
+                iNavigationLayout.getClass();
+                ((ActionBarLayout) iNavigationLayout).addFragmentToStack(-1, passportActivity);
+            } else {
+                INavigationLayout iNavigationLayout2 = this.actionBarLayout;
+                iNavigationLayout2.getClass();
+                ((ActionBarLayout) iNavigationLayout2).addFragmentToStack(-1, passportActivity);
+            }
+            if (!AndroidUtilities.isTablet()) {
+                this.backgroundTablet.setVisibility(8);
+            }
+            ((ActionBarLayout) this.actionBarLayout).showLastFragment();
+            if (AndroidUtilities.isTablet()) {
+                ((ActionBarLayout) this.layersActionBarLayout).showLastFragment();
             }
         }
+    }
+
+    public void lambda$handleIntent$7(AlertDialog alertDialog, int i, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new ExternalActionActivity$$ExternalSyntheticLambda3(this, alertDialog, tLObject, i, authorizationform, getauthorizationform, str, str2));
+    }
+
+    public void lambda$handleIntent$8(TLRPC.TL_error tL_error, DialogInterface dialogInterface) {
+        setResult(1, new Intent().putExtra("error", tL_error.text));
+        finish();
+    }
+
+    public void lambda$handleIntent$9(AlertDialog alertDialog, TLRPC.TL_error tL_error) {
+        try {
+            alertDialog.dismiss();
+            if ("APP_VERSION_OUTDATED".equals(tL_error.text)) {
+                AlertDialog alertDialogShowUpdateAppAlert = AlertsCreator.showUpdateAppAlert(this, LocaleController.getString(R.string.UpdateAppAlert), true);
+                if (alertDialogShowUpdateAppAlert != null) {
+                    alertDialogShowUpdateAppAlert.setOnDismissListener(new VoIPFragment$$ExternalSyntheticLambda23(2, this, tL_error));
+                    return;
+                } else {
+                    setResult(1, new Intent().putExtra("error", tL_error.text));
+                    finish();
+                    return;
+                }
+            }
+            if (!"BOT_INVALID".equals(tL_error.text) && !"PUBLIC_KEY_REQUIRED".equals(tL_error.text) && !"PUBLIC_KEY_INVALID".equals(tL_error.text) && !"SCOPE_EMPTY".equals(tL_error.text) && !"PAYLOAD_EMPTY".equals(tL_error.text)) {
+                setResult(0);
+                finish();
+                return;
+            }
+            setResult(1, new Intent().putExtra("error", tL_error.text));
+            finish();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public boolean lambda$onCreate$0(View view, MotionEvent motionEvent) {
+        if (!((ActionBarLayout) this.actionBarLayout).getFragmentStack().isEmpty() && motionEvent.getAction() == 1) {
+            float x = motionEvent.getX();
+            float y = motionEvent.getY();
+            int[] iArr = new int[2];
+            ((ActionBarLayout) this.layersActionBarLayout).getView().getLocationOnScreen(iArr);
+            int i = iArr[0];
+            int i2 = iArr[1];
+            if (!((ActionBarLayout) this.layersActionBarLayout).checkTransitionAnimation() && (x <= i || x >= ((ActionBarLayout) this.layersActionBarLayout).getView().getWidth() + i || y <= i2 || y >= ((ActionBarLayout) this.layersActionBarLayout).getView().getHeight() + i2)) {
+                if (!((ActionBarLayout) this.layersActionBarLayout).getFragmentStack().isEmpty()) {
+                    while (Theme.ResourcesProvider.CC.m((ActionBarLayout) this.layersActionBarLayout, 1) > 0) {
+                        ActionBarLayout actionBarLayout = (ActionBarLayout) this.layersActionBarLayout;
+                        actionBarLayout.removeFragmentFromStack(actionBarLayout.getFragmentStack().get(0), false);
+                    }
+                    ((ActionBarLayout) this.layersActionBarLayout).closeLastFragment(true, false);
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void lambda$onCreate$1(View view) {
     }
 
-    public final boolean checkPasscode(int i, Intent intent, boolean z, boolean z2, boolean z3, int i2) {
+    public void lambda$showPasscodeActivity$2(PasscodeView passcodeView) {
+        ExternalActionActivity externalActionActivity;
+        SharedConfig.isWaitingForPasscodeEnter = false;
+        Intent intent = this.passcodeSaveIntent;
+        if (intent != null) {
+            externalActionActivity = this;
+            externalActionActivity.handleIntent(intent, this.passcodeSaveIntentIsNew, this.passcodeSaveIntentIsRestore, true, this.passcodeSaveIntentAccount, this.passcodeSaveIntentState);
+            externalActionActivity.passcodeSaveIntent = null;
+        } else {
+            externalActionActivity = this;
+        }
+        ((ActionBarLayout) externalActionActivity.actionBarLayout).showLastFragment();
+        if (AndroidUtilities.isTablet()) {
+            ((ActionBarLayout) externalActionActivity.layersActionBarLayout).showLastFragment();
+        }
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.passcodeDismissed, passcodeView);
+    }
+
+    private void onFinish() {
+        if (this.finished) {
+            return;
+        }
+        Runnable runnable = this.lockRunnable;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.lockRunnable = null;
+        }
+        this.finished = true;
+    }
+
+    private void onPasscodePause() {
+        Runnable runnable = this.lockRunnable;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.lockRunnable = null;
+        }
+        if (SharedConfig.passcodeHash.isEmpty()) {
+            SharedConfig.lastPauseTime = 0;
+        } else {
+            SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
+            Runnable runnable2 = new Runnable() {
+                @Override
+                public void run() throws FileNotFoundException {
+                    if (ExternalActionActivity.this.lockRunnable == this) {
+                        if (AndroidUtilities.needShowPasscode(true)) {
+                            if (BuildVars.LOGS_ENABLED) {
+                                FileLog.d("lock app");
+                            }
+                            ExternalActionActivity.this.showPasscodeActivity();
+                        } else if (BuildVars.LOGS_ENABLED) {
+                            FileLog.d("didn't pass lock check");
+                        }
+                        ExternalActionActivity.this.lockRunnable = null;
+                    }
+                }
+            };
+            this.lockRunnable = runnable2;
+            if (SharedConfig.appLocked) {
+                AndroidUtilities.runOnUIThread(runnable2, 1000L);
+            } else {
+                int i = SharedConfig.autoLockIn;
+                if (i != 0) {
+                    AndroidUtilities.runOnUIThread(runnable2, (((long) i) * 1000) + 1000);
+                }
+            }
+        }
+        SharedConfig.saveConfig();
+    }
+
+    private void onPasscodeResume() throws FileNotFoundException {
+        Runnable runnable = this.lockRunnable;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+            this.lockRunnable = null;
+        }
+        if (AndroidUtilities.needShowPasscode(true)) {
+            showPasscodeActivity();
+        }
+        if (SharedConfig.lastPauseTime != 0) {
+            SharedConfig.lastPauseTime = 0;
+            SharedConfig.saveConfig();
+        }
+    }
+
+    public void showPasscodeActivity() throws FileNotFoundException {
+        if (this.passcodeView == null) {
+            return;
+        }
+        SharedConfig.appLocked = true;
+        if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible()) {
+            SecretMediaViewer.getInstance().closePhoto(false, false);
+        } else if (PhotoViewer.hasInstance() && PhotoViewer.getInstance().isVisible()) {
+            PhotoViewer.getInstance().closePhoto(false, true);
+        } else if (ArticleViewer.hasInstance() && ArticleViewer.getInstance().isVisible()) {
+            ArticleViewer.getInstance().close(false, true);
+        }
+        this.passcodeView.onShow(true, false);
+        SharedConfig.isWaitingForPasscodeEnter = true;
+        this.passcodeView.setDelegate(new BoostsActivity$$ExternalSyntheticLambda4(this, 21));
+    }
+
+    public boolean checkPasscode(Intent intent, boolean z, boolean z2, boolean z3, int i, int i2) throws FileNotFoundException {
         if (z3 || !(AndroidUtilities.needShowPasscode(true) || SharedConfig.isWaitingForPasscodeEnter)) {
             return true;
         }
-        showPasscodeActivity$1();
+        showPasscodeActivity();
         this.passcodeSaveIntent = intent;
         this.passcodeSaveIntentIsNew = z;
         this.passcodeSaveIntentIsRestore = z2;
@@ -163,178 +286,177 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         return false;
     }
 
-    public void handleIntent$1(final int i, final Intent intent, final boolean z, final boolean z2, final boolean z3, int i2) {
-        if (checkPasscode(i, intent, z, z2, z3, i2)) {
-            if (!"org.telegram.passport.AUTHORIZE".equals(intent.getAction())) {
-                if (AndroidUtilities.isTablet()) {
-                    if (this.layersActionBarLayout.getFragmentStack().isEmpty()) {
-                        ActionBarLayout actionBarLayout = this.layersActionBarLayout;
-                        CacheControlActivity cacheControlActivity = new CacheControlActivity();
-                        actionBarLayout.getClass();
-                        actionBarLayout.addFragmentToStack(-1, cacheControlActivity);
+    public void fixLayout() {
+        INavigationLayout iNavigationLayout;
+        if (AndroidUtilities.isTablet() && (iNavigationLayout = this.actionBarLayout) != null) {
+            ((ActionBarLayout) iNavigationLayout).getView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    ExternalActionActivity.this.needLayout();
+                    INavigationLayout iNavigationLayout2 = ExternalActionActivity.this.actionBarLayout;
+                    if (iNavigationLayout2 != null) {
+                        ((ActionBarLayout) iNavigationLayout2).getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     }
-                } else if (this.actionBarLayout.getFragmentStack().isEmpty()) {
-                    ActionBarLayout actionBarLayout2 = this.actionBarLayout;
-                    CacheControlActivity cacheControlActivity2 = new CacheControlActivity();
-                    actionBarLayout2.getClass();
-                    actionBarLayout2.addFragmentToStack(-1, cacheControlActivity2);
+                }
+            });
+        }
+    }
+
+    public boolean handleIntent(final Intent intent, final boolean z, final boolean z2, final boolean z3, final int i, int i2) {
+        if (!checkPasscode(intent, z, z2, z3, i, i2)) {
+            return false;
+        }
+        if (!"org.telegram.passport.AUTHORIZE".equals(intent.getAction())) {
+            if (AndroidUtilities.isTablet()) {
+                if (((ActionBarLayout) this.layersActionBarLayout).getFragmentStack().isEmpty()) {
+                    INavigationLayout iNavigationLayout = this.layersActionBarLayout;
+                    CacheControlActivity cacheControlActivity = new CacheControlActivity();
+                    iNavigationLayout.getClass();
+                    ((ActionBarLayout) iNavigationLayout).addFragmentToStack(-1, cacheControlActivity);
+                }
+            } else if (((ActionBarLayout) this.actionBarLayout).getFragmentStack().isEmpty()) {
+                INavigationLayout iNavigationLayout2 = this.actionBarLayout;
+                CacheControlActivity cacheControlActivity2 = new CacheControlActivity();
+                iNavigationLayout2.getClass();
+                ((ActionBarLayout) iNavigationLayout2).addFragmentToStack(-1, cacheControlActivity2);
+            }
+            if (!AndroidUtilities.isTablet()) {
+                this.backgroundTablet.setVisibility(8);
+            }
+            ((ActionBarLayout) this.actionBarLayout).showLastFragment();
+            if (AndroidUtilities.isTablet()) {
+                ((ActionBarLayout) this.layersActionBarLayout).showLastFragment();
+            }
+            intent.setAction(null);
+            return false;
+        }
+        if (i2 == 0) {
+            int activatedAccountsCount = UserConfig.getActivatedAccountsCount();
+            if (activatedAccountsCount == 0) {
+                this.passcodeSaveIntent = intent;
+                this.passcodeSaveIntentIsNew = z;
+                this.passcodeSaveIntentIsRestore = z2;
+                this.passcodeSaveIntentAccount = i;
+                this.passcodeSaveIntentState = i2;
+                LoginActivity loginActivity = new LoginActivity();
+                if (AndroidUtilities.isTablet()) {
+                    INavigationLayout iNavigationLayout3 = this.layersActionBarLayout;
+                    iNavigationLayout3.getClass();
+                    ((ActionBarLayout) iNavigationLayout3).addFragmentToStack(-1, loginActivity);
+                } else {
+                    INavigationLayout iNavigationLayout4 = this.actionBarLayout;
+                    iNavigationLayout4.getClass();
+                    ((ActionBarLayout) iNavigationLayout4).addFragmentToStack(-1, loginActivity);
                 }
                 if (!AndroidUtilities.isTablet()) {
                     this.backgroundTablet.setVisibility(8);
                 }
-                this.actionBarLayout.showLastFragment();
+                ((ActionBarLayout) this.actionBarLayout).showLastFragment();
                 if (AndroidUtilities.isTablet()) {
-                    this.layersActionBarLayout.showLastFragment();
+                    ((ActionBarLayout) this.layersActionBarLayout).showLastFragment();
                 }
-                intent.setAction(null);
-                return;
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, 0, null);
+                builder.setTitle(LocaleController.getString(R.string.AppName));
+                builder.setMessage(LocaleController.getString(R.string.PleaseLoginPassport));
+                builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
+                builder.show();
+                return true;
             }
-            if (i2 == 0) {
-                int activatedAccountsCount = UserConfig.getActivatedAccountsCount();
-                if (activatedAccountsCount == 0) {
-                    this.passcodeSaveIntent = intent;
-                    this.passcodeSaveIntentIsNew = z;
-                    this.passcodeSaveIntentIsRestore = z2;
-                    this.passcodeSaveIntentAccount = i;
-                    this.passcodeSaveIntentState = i2;
-                    LoginActivity loginActivity = new LoginActivity();
-                    if (AndroidUtilities.isTablet()) {
-                        ActionBarLayout actionBarLayout3 = this.layersActionBarLayout;
-                        actionBarLayout3.getClass();
-                        actionBarLayout3.addFragmentToStack(-1, loginActivity);
-                    } else {
-                        ActionBarLayout actionBarLayout4 = this.actionBarLayout;
-                        actionBarLayout4.getClass();
-                        actionBarLayout4.addFragmentToStack(-1, loginActivity);
+            if (activatedAccountsCount >= 2) {
+                AlertDialog alertDialogCreateAccountSelectDialog = AlertsCreator.createAccountSelectDialog(this, new AlertsCreator.AccountSelectDelegate() {
+                    @Override
+                    public final void didSelectAccount(int i3) {
+                        this.f$0.lambda$handleIntent$3(i, intent, z, z2, z3, i3);
                     }
-                    if (!AndroidUtilities.isTablet()) {
-                        this.backgroundTablet.setVisibility(8);
-                    }
-                    this.actionBarLayout.showLastFragment();
-                    if (AndroidUtilities.isTablet()) {
-                        this.layersActionBarLayout.showLastFragment();
-                    }
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this, 0, null);
-                    String string = LocaleController.getString(R.string.AppName);
-                    AlertDialog alertDialog = builder.alertDialog;
-                    alertDialog.title = string;
-                    alertDialog.message = LocaleController.getString(R.string.PleaseLoginPassport);
-                    builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
-                    builder.show();
-                    return;
-                }
-                if (activatedAccountsCount >= 2) {
-                    AlertDialog alertDialogCreateAccountSelectDialog = AlertsCreator.createAccountSelectDialog(this, new AlertsCreator.AccountSelectDelegate() {
-                        @Override
-                        public final void didSelectAccount(int i3) {
-                            int i4;
-                            ExternalActionActivity externalActionActivity = this.f$0;
-                            int i5 = i;
-                            Intent intent2 = intent;
-                            boolean z4 = z;
-                            boolean z5 = z2;
-                            boolean z6 = z3;
-                            externalActionActivity.getClass();
-                            if (i3 != i5 && i3 != (i4 = UserConfig.selectedAccount)) {
-                                ConnectionsManager.getInstance(i4).setAppPaused(true, false);
-                                UserConfig.selectedAccount = i3;
-                                UserConfig.getInstance(0).saveConfig(false);
-                                if (!ApplicationLoader.mainInterfacePaused) {
-                                    ConnectionsManager.getInstance(UserConfig.selectedAccount).setAppPaused(false, false);
-                                }
-                            }
-                            externalActionActivity.handleIntent$1(i3, intent2, z4, z5, z6, 1);
-                        }
-                    });
-                    alertDialogCreateAccountSelectDialog.show();
-                    alertDialogCreateAccountSelectDialog.setCanceledOnTouchOutside(false);
-                    alertDialogCreateAccountSelectDialog.setOnDismissListener(new OAuthSheet$$ExternalSyntheticLambda11(this, 22));
-                    return;
-                }
+                });
+                alertDialogCreateAccountSelectDialog.show();
+                alertDialogCreateAccountSelectDialog.setCanceledOnTouchOutside(false);
+                alertDialogCreateAccountSelectDialog.setOnDismissListener(new OAuthSheet$$ExternalSyntheticLambda18(this, 7));
+                return true;
             }
-            long longExtra = intent.getLongExtra("bot_id", intent.getIntExtra("bot_id", 0));
-            String stringExtra = intent.getStringExtra("nonce");
-            String stringExtra2 = intent.getStringExtra("payload");
-            TL_account.getAuthorizationForm getauthorizationform = new TL_account.getAuthorizationForm();
-            getauthorizationform.bot_id = longExtra;
-            getauthorizationform.scope = intent.getStringExtra("scope");
-            getauthorizationform.public_key = intent.getStringExtra("public_key");
-            if (longExtra == 0 || ((TextUtils.isEmpty(stringExtra2) && TextUtils.isEmpty(stringExtra)) || TextUtils.isEmpty(getauthorizationform.scope) || TextUtils.isEmpty(getauthorizationform.public_key))) {
-                finish();
-                return;
-            }
-            int[] iArr = {0};
-            AlertDialog alertDialog2 = new AlertDialog(this, 3, null);
-            alertDialog2.setOnCancelListener(new LaunchActivity$$ExternalSyntheticLambda59(i, 1, iArr));
-            alertDialog2.show();
-            iArr[0] = ConnectionsManager.getInstance(i).sendRequest(getauthorizationform, new CallLogActivity$$ExternalSyntheticLambda46(this, iArr, i, alertDialog2, getauthorizationform, stringExtra2, stringExtra, 1), 10);
         }
+        long longExtra = intent.getLongExtra("bot_id", intent.getIntExtra("bot_id", 0));
+        String stringExtra = intent.getStringExtra("nonce");
+        String stringExtra2 = intent.getStringExtra("payload");
+        TL_account.getAuthorizationForm getauthorizationform = new TL_account.getAuthorizationForm();
+        getauthorizationform.bot_id = longExtra;
+        getauthorizationform.scope = intent.getStringExtra("scope");
+        getauthorizationform.public_key = intent.getStringExtra("public_key");
+        if (longExtra == 0 || ((TextUtils.isEmpty(stringExtra2) && TextUtils.isEmpty(stringExtra)) || TextUtils.isEmpty(getauthorizationform.scope) || TextUtils.isEmpty(getauthorizationform.public_key))) {
+            finish();
+            return false;
+        }
+        int[] iArr = {0};
+        AlertDialog alertDialog = new AlertDialog(this, 3, null);
+        alertDialog.setOnCancelListener(new LaunchActivity$$ExternalSyntheticLambda98(i, 1, iArr));
+        alertDialog.show();
+        iArr[0] = ConnectionsManager.getInstance(i).sendRequest(getauthorizationform, new CallLogActivity$$ExternalSyntheticLambda18(this, iArr, i, alertDialog, getauthorizationform, stringExtra2, stringExtra, 1), 10);
+        return false;
     }
 
     @Override
-    public final boolean needAddFragmentToStack(ActionBarLayout actionBarLayout, BaseFragment baseFragment) {
+    public boolean needAddFragmentToStack(BaseFragment baseFragment, INavigationLayout iNavigationLayout) {
         return true;
     }
 
     @Override
-    public final boolean needCloseLastFragment(ActionBarLayout actionBarLayout) {
+    public boolean needCloseLastFragment(INavigationLayout iNavigationLayout) {
         if (AndroidUtilities.isTablet()) {
-            if (actionBarLayout == this.actionBarLayout && actionBarLayout.getFragmentStack().size() <= 1) {
-                onFinish$3();
+            if (iNavigationLayout == this.actionBarLayout && ((ActionBarLayout) iNavigationLayout).getFragmentStack().size() <= 1) {
+                onFinish();
                 finish();
                 return false;
             }
-            if (actionBarLayout == this.layersActionBarLayout && this.actionBarLayout.getFragmentStack().isEmpty() && this.layersActionBarLayout.getFragmentStack().size() == 1) {
-                onFinish$3();
+            if (iNavigationLayout == this.layersActionBarLayout && ((ActionBarLayout) this.actionBarLayout).getFragmentStack().isEmpty() && ((ActionBarLayout) this.layersActionBarLayout).getFragmentStack().size() == 1) {
+                onFinish();
                 finish();
                 return false;
             }
-        } else if (actionBarLayout.getFragmentStack().size() <= 1) {
-            onFinish$3();
+        } else if (((ActionBarLayout) iNavigationLayout).getFragmentStack().size() <= 1) {
+            onFinish();
             finish();
             return false;
         }
         return true;
     }
 
-    public final void needLayout() {
+    public void needLayout() {
         if (AndroidUtilities.isTablet()) {
-            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) this.layersActionBarLayout.getView().getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) ((ActionBarLayout) this.layersActionBarLayout).getView().getLayoutParams();
             layoutParams.leftMargin = (AndroidUtilities.displaySize.x - layoutParams.width) / 2;
             int i = AndroidUtilities.statusBarHeight;
             layoutParams.topMargin = (((AndroidUtilities.displaySize.y - layoutParams.height) - i) / 2) + i;
-            this.layersActionBarLayout.getView().setLayoutParams(layoutParams);
+            ((ActionBarLayout) this.layersActionBarLayout).getView().setLayoutParams(layoutParams);
             if (AndroidUtilities.isSmallTablet() && getResources().getConfiguration().orientation != 2) {
-                RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) this.actionBarLayout.getView().getLayoutParams();
+                RelativeLayout.LayoutParams layoutParams2 = (RelativeLayout.LayoutParams) ((ActionBarLayout) this.actionBarLayout).getView().getLayoutParams();
                 layoutParams2.width = -1;
                 layoutParams2.height = -1;
-                this.actionBarLayout.getView().setLayoutParams(layoutParams2);
+                ((ActionBarLayout) this.actionBarLayout).getView().setLayoutParams(layoutParams2);
                 return;
             }
             int iDp = (AndroidUtilities.displaySize.x / 100) * 35;
             if (iDp < AndroidUtilities.dp(320.0f)) {
                 iDp = AndroidUtilities.dp(320.0f);
             }
-            RelativeLayout.LayoutParams layoutParams3 = (RelativeLayout.LayoutParams) this.actionBarLayout.getView().getLayoutParams();
+            RelativeLayout.LayoutParams layoutParams3 = (RelativeLayout.LayoutParams) ((ActionBarLayout) this.actionBarLayout).getView().getLayoutParams();
             layoutParams3.width = iDp;
             layoutParams3.height = -1;
-            this.actionBarLayout.getView().setLayoutParams(layoutParams3);
-            if (AndroidUtilities.isSmallTablet() && this.actionBarLayout.getFragmentStack().size() == 2) {
-                this.actionBarLayout.getFragmentStack().get(1).onPause();
-                this.actionBarLayout.getFragmentStack().remove(1);
-                this.actionBarLayout.showLastFragment();
+            ((ActionBarLayout) this.actionBarLayout).getView().setLayoutParams(layoutParams3);
+            if (AndroidUtilities.isSmallTablet() && ((ActionBarLayout) this.actionBarLayout).getFragmentStack().size() == 2) {
+                ((ActionBarLayout) this.actionBarLayout).getFragmentStack().get(1).onPause();
+                ((ActionBarLayout) this.actionBarLayout).getFragmentStack().remove(1);
+                ((ActionBarLayout) this.actionBarLayout).showLastFragment();
             }
         }
     }
 
     @Override
-    public final boolean needPresentFragment(ActionBarLayout actionBarLayout, INavigationLayout.NavigationParams navigationParams) {
-        BaseFragment baseFragment = navigationParams.fragment;
+    public boolean needPresentFragment(BaseFragment baseFragment, boolean z, boolean z2, INavigationLayout iNavigationLayout) {
         return true;
     }
 
     @Override
-    public final void onBackPressed() throws Throwable {
+    public void onBackPressed() throws FileNotFoundException {
         if (this.passcodeView.getVisibility() == 0) {
             finish();
             return;
@@ -344,31 +466,28 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             return;
         }
         if (!AndroidUtilities.isTablet()) {
-            this.actionBarLayout.onBackPressed();
-        } else if (this.layersActionBarLayout.getView().getVisibility() == 0) {
-            this.layersActionBarLayout.onBackPressed();
+            ((ActionBarLayout) this.actionBarLayout).onBackPressed();
+        } else if (((ActionBarLayout) this.layersActionBarLayout).getView().getVisibility() == 0) {
+            ((ActionBarLayout) this.layersActionBarLayout).onBackPressed();
         } else {
-            this.actionBarLayout.onBackPressed();
+            ((ActionBarLayout) this.actionBarLayout).onBackPressed();
         }
     }
 
     @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        ActionBarLayout actionBarLayout;
+    public void onConfigurationChanged(Configuration configuration) {
         AndroidUtilities.checkDisplaySize(this, configuration);
         AndroidUtilities.setPreferredMaxRefreshRate(getWindow());
         super.onConfigurationChanged(configuration);
-        if (AndroidUtilities.isTablet() && (actionBarLayout = this.actionBarLayout) != null) {
-            actionBarLayout.getView().getViewTreeObserver().addOnGlobalLayoutListener(new AnonymousClass3(this, 0));
-        }
+        fixLayout();
     }
 
     @Override
-    public final void onCreate(Bundle bundle) {
+    public void onCreate(Bundle bundle) {
         ApplicationLoader.postInitApplication();
         requestWindowFeature(1);
         setTheme(R.style.Theme_TMessages);
-        getWindow().setBackgroundDrawable(new SessionCell.CircleGradientDrawable());
+        getWindow().setBackgroundDrawable(new ActivityWindowEmptyBackgroundDrawable());
         if (!SharedConfig.passcodeHash.isEmpty() && !SharedConfig.allowScreenCapture) {
             try {
                 getWindow().setFlags(8192, 8192);
@@ -388,7 +507,6 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
         DrawerLayoutContainer drawerLayoutContainer = new DrawerLayoutContainer(this);
         this.drawerLayoutContainer = drawerLayoutContainer;
         setContentView(drawerLayoutContainer, new ViewGroup.LayoutParams(-1, -1));
-        INavigationLayout iNavigationLayout = null;
         if (AndroidUtilities.isTablet()) {
             getWindow().setSoftInputMode(16);
             RelativeLayout relativeLayout = new RelativeLayout(this);
@@ -397,191 +515,183 @@ public class ExternalActionActivity extends Activity implements INavigationLayou
             layoutParams.width = -1;
             layoutParams.height = -1;
             relativeLayout.setLayoutParams(layoutParams);
-            LaunchActivity.AnonymousClass11 anonymousClass11 = new LaunchActivity.AnonymousClass11(this, iNavigationLayout, 3);
-            this.backgroundTablet = anonymousClass11;
-            anonymousClass11.setOccupyStatusBar(false);
-            this.backgroundTablet.setBackgroundImage(Theme.getCachedWallpaper());
+            SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(this) {
+                @Override
+                public boolean isActionBarVisible() {
+                    return false;
+                }
+            };
+            this.backgroundTablet = sizeNotifierFrameLayout;
+            sizeNotifierFrameLayout.setOccupyStatusBar(false);
+            this.backgroundTablet.setBackgroundImage(Theme.getCachedWallpaper(), Theme.isWallpaperMotion);
             relativeLayout.addView(this.backgroundTablet, LayoutHelper.createRelative(-1, -1));
-            relativeLayout.addView(this.actionBarLayout.getView(), LayoutHelper.createRelative(-1, -1));
+            relativeLayout.addView(((ActionBarLayout) this.actionBarLayout).getView(), LayoutHelper.createRelative(-1, -1));
             FrameLayout frameLayout = new FrameLayout(this);
             frameLayout.setBackgroundColor(2130706432);
             relativeLayout.addView(frameLayout, LayoutHelper.createRelative(-1, -1));
-            frameLayout.setOnTouchListener(new TodoItemMenu$$ExternalSyntheticLambda4(this, 10));
-            frameLayout.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(14));
+            frameLayout.setOnTouchListener(new TodoItemMenu$$ExternalSyntheticLambda4(this, 4));
+            frameLayout.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda464(2));
             ActionBarLayout actionBarLayout = new ActionBarLayout(this, false);
             this.layersActionBarLayout = actionBarLayout;
             actionBarLayout.setRemoveActionBarExtraHeight(true);
-            this.layersActionBarLayout.setBackgroundView(frameLayout);
-            this.layersActionBarLayout.setUseAlphaAnimations(true);
-            this.layersActionBarLayout.getView().setBackgroundResource(R.drawable.boxshadow);
-            relativeLayout.addView(this.layersActionBarLayout.getView(), LayoutHelper.createRelative(530, AndroidUtilities.isSmallTablet() ? 528 : 700));
-            this.layersActionBarLayout.setFragmentStack(layerFragmentsStack);
-            this.layersActionBarLayout.setDelegate(this);
-            this.layersActionBarLayout.setDrawerLayoutContainer(this.drawerLayoutContainer);
+            ((ActionBarLayout) this.layersActionBarLayout).setBackgroundView(frameLayout);
+            ((ActionBarLayout) this.layersActionBarLayout).setUseAlphaAnimations(true);
+            ((ActionBarLayout) this.layersActionBarLayout).getView().setBackgroundResource(R.drawable.boxshadow);
+            relativeLayout.addView(((ActionBarLayout) this.layersActionBarLayout).getView(), LayoutHelper.createRelative(530, AndroidUtilities.isSmallTablet() ? 528 : 700));
+            ((ActionBarLayout) this.layersActionBarLayout).setFragmentStack(layerFragmentsStack);
+            ((ActionBarLayout) this.layersActionBarLayout).setDelegate(this);
+            ((ActionBarLayout) this.layersActionBarLayout).setDrawerLayoutContainer(this.drawerLayoutContainer);
         } else {
             RelativeLayout relativeLayout2 = new RelativeLayout(this);
-            this.drawerLayoutContainer.addView(relativeLayout2, LayoutHelper.createFrame(-1.0f, -1));
-            LaunchActivity.AnonymousClass11 anonymousClass12 = new LaunchActivity.AnonymousClass11(this, iNavigationLayout, 4);
-            this.backgroundTablet = anonymousClass12;
-            anonymousClass12.setOccupyStatusBar(false);
-            this.backgroundTablet.setBackgroundImage(Theme.getCachedWallpaper());
+            this.drawerLayoutContainer.addView(relativeLayout2, LayoutHelper.createFrame(-1, -1.0f));
+            SizeNotifierFrameLayout sizeNotifierFrameLayout2 = new SizeNotifierFrameLayout(this) {
+                @Override
+                public boolean isActionBarVisible() {
+                    return false;
+                }
+            };
+            this.backgroundTablet = sizeNotifierFrameLayout2;
+            sizeNotifierFrameLayout2.setOccupyStatusBar(false);
+            this.backgroundTablet.setBackgroundImage(Theme.getCachedWallpaper(), Theme.isWallpaperMotion);
             relativeLayout2.addView(this.backgroundTablet, LayoutHelper.createRelative(-1, -1));
-            relativeLayout2.addView(this.actionBarLayout.getView(), LayoutHelper.createRelative(-1, -1));
+            relativeLayout2.addView(((ActionBarLayout) this.actionBarLayout).getView(), LayoutHelper.createRelative(-1, -1));
         }
         this.drawerLayoutContainer.setParentActionBarLayout(this.actionBarLayout);
-        this.actionBarLayout.setDrawerLayoutContainer(this.drawerLayoutContainer);
-        this.actionBarLayout.setFragmentStack(mainFragmentsStack);
-        this.actionBarLayout.setDelegate(this);
+        ((ActionBarLayout) this.actionBarLayout).setDrawerLayoutContainer(this.drawerLayoutContainer);
+        ((ActionBarLayout) this.actionBarLayout).setFragmentStack(mainFragmentsStack);
+        ((ActionBarLayout) this.actionBarLayout).setDelegate(this);
         PasscodeView passcodeView = new PasscodeView(this);
         this.passcodeView = passcodeView;
-        this.drawerLayoutContainer.addView(passcodeView, LayoutHelper.createFrame(-1.0f, -1));
+        this.drawerLayoutContainer.addView(passcodeView, LayoutHelper.createFrame(-1, -1.0f));
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeOtherAppActivities, this);
-        this.actionBarLayout.removeAllFragments();
-        ActionBarLayout actionBarLayout2 = this.layersActionBarLayout;
-        if (actionBarLayout2 != null) {
-            actionBarLayout2.removeAllFragments();
+        ((ActionBarLayout) this.actionBarLayout).removeAllFragments();
+        INavigationLayout iNavigationLayout = this.layersActionBarLayout;
+        if (iNavigationLayout != null) {
+            ((ActionBarLayout) iNavigationLayout).removeAllFragments();
         }
-        handleIntent$1(UserConfig.selectedAccount, getIntent(), false, bundle != null, false, 0);
+        handleIntent(getIntent(), false, bundle != null, false, UserConfig.selectedAccount, 0);
         needLayout();
     }
 
     @Override
-    public final void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
-        onFinish$3();
+        onFinish();
     }
 
-    public final void onFinish$3() {
-        if (this.finished) {
-            return;
+    public void onFinishLogin() {
+        handleIntent(this.passcodeSaveIntent, this.passcodeSaveIntentIsNew, this.passcodeSaveIntentIsRestore, true, this.passcodeSaveIntentAccount, this.passcodeSaveIntentState);
+        ((ActionBarLayout) this.actionBarLayout).removeAllFragments();
+        INavigationLayout iNavigationLayout = this.layersActionBarLayout;
+        if (iNavigationLayout != null) {
+            ((ActionBarLayout) iNavigationLayout).removeAllFragments();
         }
-        LaunchActivity.AnonymousClass18 anonymousClass18 = this.lockRunnable;
-        if (anonymousClass18 != null) {
-            AndroidUtilities.cancelRunOnUIThread(anonymousClass18);
-            this.lockRunnable = null;
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = this.backgroundTablet;
+        if (sizeNotifierFrameLayout != null) {
+            sizeNotifierFrameLayout.setVisibility(0);
         }
-        this.finished = true;
     }
 
     @Override
-    public final void onLowMemory() {
+    public void onLowMemory() {
         super.onLowMemory();
-        this.actionBarLayout.onLowMemory();
+        ((ActionBarLayout) this.actionBarLayout).onLowMemory();
         if (AndroidUtilities.isTablet()) {
-            this.layersActionBarLayout.onLowMemory();
+            ((ActionBarLayout) this.layersActionBarLayout).onLowMemory();
         }
     }
 
     @Override
-    public final void onMeasureOverride(int[] iArr) {
+    public void onMeasureOverride(int[] iArr) {
     }
 
     @Override
-    public final void onNewIntent(Intent intent) {
+    public void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        handleIntent$1(UserConfig.selectedAccount, intent, true, false, false, 0);
+        handleIntent(intent, true, false, false, UserConfig.selectedAccount, 0);
     }
 
     @Override
-    public final void onPause() {
+    public void onPause() {
         super.onPause();
-        this.actionBarLayout.onPause();
+        ((ActionBarLayout) this.actionBarLayout).onPause();
         if (AndroidUtilities.isTablet()) {
-            this.layersActionBarLayout.onPause();
+            ((ActionBarLayout) this.layersActionBarLayout).onPause();
         }
         ApplicationLoader.externalInterfacePaused = true;
-        LaunchActivity.AnonymousClass18 anonymousClass18 = this.lockRunnable;
-        if (anonymousClass18 != null) {
-            AndroidUtilities.cancelRunOnUIThread(anonymousClass18);
-            this.lockRunnable = null;
-        }
-        if (SharedConfig.passcodeHash.isEmpty()) {
-            SharedConfig.lastPauseTime = 0;
-        } else {
-            SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
-            LaunchActivity.AnonymousClass18 anonymousClass19 = new LaunchActivity.AnonymousClass18(this, 9);
-            this.lockRunnable = anonymousClass19;
-            if (SharedConfig.appLocked) {
-                AndroidUtilities.runOnUIThread(anonymousClass19, 1000L);
-            } else {
-                int i = SharedConfig.autoLockIn;
-                if (i != 0) {
-                    AndroidUtilities.runOnUIThread(anonymousClass19, (((long) i) * 1000) + 1000);
-                }
-            }
-        }
-        SharedConfig.saveConfig();
+        onPasscodePause();
         PasscodeView passcodeView = this.passcodeView;
         if (passcodeView != null) {
-            AndroidUtilities.cancelRunOnUIThread(passcodeView.checkRunnable);
+            passcodeView.onPause();
         }
     }
 
     @Override
-    public final boolean onPreIme() {
+    public boolean onPreIme() {
         return false;
     }
 
     @Override
-    public final void onRebuildAllFragments(ActionBarLayout actionBarLayout, boolean z) {
-        if (AndroidUtilities.isTablet() && actionBarLayout == this.layersActionBarLayout) {
-            this.actionBarLayout.rebuildAllFragmentViews(z, z);
+    public void onRebuildAllFragments(INavigationLayout iNavigationLayout, boolean z) {
+        if (AndroidUtilities.isTablet() && iNavigationLayout == this.layersActionBarLayout) {
+            ((ActionBarLayout) this.actionBarLayout).rebuildAllFragmentViews(z, z);
         }
     }
 
     @Override
-    public final void onResume() {
+    public void onResume() throws FileNotFoundException {
         super.onResume();
-        this.actionBarLayout.onResume();
+        ((ActionBarLayout) this.actionBarLayout).onResume();
         if (AndroidUtilities.isTablet()) {
-            this.layersActionBarLayout.onResume();
+            ((ActionBarLayout) this.layersActionBarLayout).onResume();
         }
         ApplicationLoader.externalInterfacePaused = false;
-        LaunchActivity.AnonymousClass18 anonymousClass18 = this.lockRunnable;
-        if (anonymousClass18 != null) {
-            AndroidUtilities.cancelRunOnUIThread(anonymousClass18);
-            this.lockRunnable = null;
-        }
-        if (AndroidUtilities.needShowPasscode(true)) {
-            showPasscodeActivity$1();
-        }
-        if (SharedConfig.lastPauseTime != 0) {
-            SharedConfig.lastPauseTime = 0;
-            SharedConfig.saveConfig();
-        }
+        onPasscodeResume();
         if (this.passcodeView.getVisibility() != 0) {
-            this.actionBarLayout.onResume();
+            ((ActionBarLayout) this.actionBarLayout).onResume();
             if (AndroidUtilities.isTablet()) {
-                this.layersActionBarLayout.onResume();
+                ((ActionBarLayout) this.layersActionBarLayout).onResume();
                 return;
             }
             return;
         }
-        this.actionBarLayout.dismissDialogs();
+        ((ActionBarLayout) this.actionBarLayout).dismissDialogs();
         if (AndroidUtilities.isTablet()) {
-            this.layersActionBarLayout.dismissDialogs();
+            ((ActionBarLayout) this.layersActionBarLayout).dismissDialogs();
         }
         this.passcodeView.onResume();
     }
 
     @Override
-    public final void onThemeProgress(float f) {
+    public void onThemeProgress(float f) {
     }
 
-    public final void showPasscodeActivity$1() {
-        if (this.passcodeView == null) {
+    public void presentFragment(BaseFragment baseFragment) {
+        INavigationLayout iNavigationLayout = this.actionBarLayout;
+        iNavigationLayout.getClass();
+        ((ActionBarLayout) iNavigationLayout).presentFragment(new INavigationLayout.NavigationParams(baseFragment));
+    }
+
+    public void switchToAccount(int i) {
+        int i2 = UserConfig.selectedAccount;
+        if (i == i2) {
             return;
         }
-        SharedConfig.appLocked = true;
-        if (SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible) {
-            SecretMediaViewer.getInstance().closePhoto(false, false);
-        } else if (PhotoViewer.hasInstance() && PhotoViewer.getInstance().isVisible()) {
-            PhotoViewer.getInstance().closePhoto(false, true);
-        } else if (ArticleViewer.hasInstance() && ArticleViewer.getInstance().isVisible) {
-            ArticleViewer.getInstance().close(false, true);
+        ConnectionsManager.getInstance(i2).setAppPaused(true, false);
+        UserConfig.selectedAccount = i;
+        UserConfig.getInstance(0).saveConfig(false);
+        if (ApplicationLoader.mainInterfacePaused) {
+            return;
         }
-        this.passcodeView.onShow(false, -1, -1, null);
-        SharedConfig.isWaitingForPasscodeEnter = true;
-        this.passcodeView.setDelegate(new VideoEditTextureView$$ExternalSyntheticLambda1(this, 20));
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).setAppPaused(false, false);
+    }
+
+    @Override
+    public boolean needPresentFragment(INavigationLayout iNavigationLayout, INavigationLayout.NavigationParams navigationParams) {
+        return needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
+    }
+
+    public boolean presentFragment(BaseFragment baseFragment, boolean z, boolean z2) {
+        return ((ActionBarLayout) this.actionBarLayout).presentFragment$1(baseFragment, z, z2);
     }
 }

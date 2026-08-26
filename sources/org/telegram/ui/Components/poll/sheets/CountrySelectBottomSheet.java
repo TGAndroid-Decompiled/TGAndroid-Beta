@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
@@ -24,10 +25,9 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Cells.GraySectionCell;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Cells.PhotoPickerPhotoCell;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -43,12 +43,11 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
-import org.telegram.ui.IntroActivity;
-import org.telegram.ui.LocationActivity;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
+import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.ThemePreviewActivity;
-import org.telegram.ui.UsersSelectActivity;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
+import org.telegram.ui.iv.RichTextCell;
+import org.telegram.ui.web.WebActionBar;
 
 public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListView implements FactorAnimator.Target {
     public static final int $r8$clinit = 0;
@@ -62,13 +61,13 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
     public final HashMap countriesMap;
     public HashSet countriesToSelect;
     public GroupCreateSpan currentDeletingSpan;
-    public final IntroActivity.AnonymousClass4 doneItem;
+    public final RichTextCell.AnonymousClass1 doneItem;
     public final GraySectionCell graySectionCell;
     public final Rect listViewClipBounds;
-    public ChatActivity.AnonymousClass1 listener;
+    public Listener listener;
     public final int maxCountriesCount;
     public String query;
-    public final ThemePreviewActivity.AnonymousClass14 searchContainer;
+    public final PhotoPickerPhotoCell.AnonymousClass1 searchContainer;
     public final HashMap selectedCountries;
     public int selectedCountriesHeight;
     public final FragmentSpansContainer spansContainer;
@@ -90,25 +89,19 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
         }
 
         @Override
-        public final boolean contentsEquals(UItem uItem, UItem uItem2) {
-            return uItem.itemContentEquals(uItem2);
-        }
-
-        @Override
         public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
             SelectorCountryCell selectorCountryCell = new SelectorCountryCell(context, resourcesProvider);
             selectorCountryCell.setBackground(null);
             return selectorCountryCell;
         }
+    }
 
-        @Override
-        public final boolean equals(UItem uItem, UItem uItem2) {
-            return uItem.itemEquals(uItem2);
-        }
+    public interface Listener {
+        void onCountrySelected(List list);
     }
 
     public CountrySelectBottomSheet(final Context context, final Theme.ResourcesProvider resourcesProvider) {
-        super(context, null, true, true, false, false, false, 2, resourcesProvider);
+        super(context, null, true, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, resourcesProvider);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorSelectorContainerHeight = new FactorAnimator(3, this, cubicBezierInterpolator, 350L);
         this.animatorTopSaveButtonVisibility = new BoolAnimator(4, this, cubicBezierInterpolator, 320L, false);
@@ -127,10 +120,10 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
         int i = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(68.0f) + AndroidUtilities.navigationBarHeight);
         this.recyclerListView.setClipToPadding(false);
-        this.recyclerListView.addOnScrollListener(new LocationActivity.AnonymousClass10(this, 13));
+        this.recyclerListView.addOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 8));
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(int i2, View view) {
+            public final void onItemClick(View view, int i2) {
                 boolean z = false;
                 if (i2 == 0) {
                     return;
@@ -144,17 +137,17 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
                 boolean zContainsKey = map.containsKey(tL_help_country.iso2);
                 FragmentSpansContainer fragmentSpansContainer = countrySelectBottomSheet.spansContainer;
                 if (zContainsKey) {
-                    fragmentSpansContainer.spansContainer.removeSpan((GroupCreateSpan) map.remove(tL_help_country.iso2));
+                    fragmentSpansContainer.removeSpan((GroupCreateSpan) map.remove(tL_help_country.iso2));
                 } else {
                     int size = map.size();
                     int i3 = countrySelectBottomSheet.maxCountriesCount;
                     if (size >= i3) {
-                        new BulletinFactory(countrySelectBottomSheet.bulletinContainer, resourcesProvider).createSimpleBulletinWithIconSize(R.raw.info, 36, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2YouCanAddXCountriesOnly, Integer.valueOf(i3)))).show();
+                        BulletinFactory.of(countrySelectBottomSheet.bulletinContainer, resourcesProvider).createSimpleBulletin(R.raw.info, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.PollV2YouCanAddXCountriesOnly, Integer.valueOf(i3)))).show();
                         return;
                     }
                     GroupCreateSpan groupCreateSpan = new GroupCreateSpan(context, tL_help_country);
                     groupCreateSpan.setOnClickListener(new CountrySelectBottomSheet$$ExternalSyntheticLambda0(countrySelectBottomSheet, 4));
-                    fragmentSpansContainer.spansContainer.addSpan(groupCreateSpan);
+                    fragmentSpansContainer.addSpan(groupCreateSpan);
                     map.put(tL_help_country.iso2, groupCreateSpan);
                     z = true;
                 }
@@ -165,48 +158,46 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
                 countrySelectBottomSheet.button.setCount(map.size(), true);
             }
         });
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
         this.button = buttonWithCounterView;
-        buttonWithCounterView.setRoundRadius(24);
+        buttonWithCounterView.setRound();
         buttonWithCounterView.setCountFilled(true);
         int i2 = R.string.Save;
         buttonWithCounterView.setText(LocaleController.getString(i2));
         buttonWithCounterView.setOnClickListener(new CountrySelectBottomSheet$$ExternalSyntheticLambda0(this, 0));
-        IntroActivity.AnonymousClass4 anonymousClass4 = new IntroActivity.AnonymousClass4(this, context);
-        this.doneItem = anonymousClass4;
-        anonymousClass4.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
-        anonymousClass4.setText(LocaleController.getString(i2));
-        anonymousClass4.setTypeface(AndroidUtilities.bold());
-        anonymousClass4.setTextSize(1, 14.0f);
-        anonymousClass4.setGravity(17);
-        anonymousClass4.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
-        anonymousClass4.setVisibility(8);
-        ScaleStateListAnimator.apply(anonymousClass4, 0.1f, 1.5f);
-        this.actionBar.createMenu().addView(anonymousClass4, LayoutHelper.createLinear(-2, 48, 16, 12, 0, 12, 0));
-        anonymousClass4.setOnClickListener(new CountrySelectBottomSheet$$ExternalSyntheticLambda0(this, 1));
+        RichTextCell.AnonymousClass1 anonymousClass1 = new RichTextCell.AnonymousClass1(this, context);
+        this.doneItem = anonymousClass1;
+        anonymousClass1.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
+        anonymousClass1.setText(LocaleController.getString(i2));
+        anonymousClass1.setTypeface(AndroidUtilities.bold());
+        anonymousClass1.setTextSize(1, 14.0f);
+        anonymousClass1.setGravity(17);
+        anonymousClass1.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+        anonymousClass1.setVisibility(8);
+        ScaleStateListAnimator.apply(anonymousClass1);
+        this.actionBar.createMenu().addView(anonymousClass1, LayoutHelper.createLinear(-2, 48, 16, 12, 0, 12, 0));
+        anonymousClass1.setOnClickListener(new CountrySelectBottomSheet$$ExternalSyntheticLambda0(this, 1));
         FragmentSearchField fragmentSearchField = new FragmentSearchField(context, resourcesProvider);
-        String string = LocaleController.getString(R.string.PollV2SearchHint);
-        UsersSelectActivity.AnonymousClass4 anonymousClass5 = fragmentSearchField.editText;
-        anonymousClass5.setHint(string);
-        anonymousClass5.addTextChangedListener(new ArticleViewer.AnonymousClass16(this, 21));
+        fragmentSearchField.editText.setHint(LocaleController.getString(R.string.PollV2SearchHint));
+        fragmentSearchField.editText.addTextChangedListener(new WebActionBar.AnonymousClass5(this, 6));
         FragmentSpansContainer fragmentSpansContainer = new FragmentSpansContainer(context, this.currentAccount);
         this.spansContainer = fragmentSpansContainer;
         fragmentSpansContainer.setDelegate(new CountrySelectBottomSheet$$ExternalSyntheticLambda2(this));
-        ThemePreviewActivity.AnonymousClass14 anonymousClass14 = new ThemePreviewActivity.AnonymousClass14(context, resourcesProvider, this);
-        this.searchContainer = anonymousClass14;
+        PhotoPickerPhotoCell.AnonymousClass1 anonymousClass2 = new PhotoPickerPhotoCell.AnonymousClass1(context, resourcesProvider, this);
+        this.searchContainer = anonymousClass2;
         int i3 = this.backgroundPaddingLeft;
-        anonymousClass14.setPadding(i3, 0, i3, 0);
-        anonymousClass14.addView(fragmentSearchField, LayoutHelper.createFrame(-1, 40.0f, 48, 10.0f, 0.0f, 10.0f, 0.0f));
-        anonymousClass14.addView(fragmentSpansContainer, LayoutHelper.createFrame(-1, 144.0f, 48, -3.0f, 40.0f, -3.0f, 0.0f));
+        anonymousClass2.setPadding(i3, 0, i3, 0);
+        anonymousClass2.addView(fragmentSearchField, LayoutHelper.createFrame(-1, 40.0f, 48, 10.0f, 0.0f, 10.0f, 0.0f));
+        anonymousClass2.addView(fragmentSpansContainer, LayoutHelper.createFrame(-1, 144.0f, 48, -3.0f, 40.0f, -3.0f, 0.0f));
         GraySectionCell graySectionCell = new GraySectionCell(context, 18, resourcesProvider);
         this.graySectionCell = graySectionCell;
         graySectionCell.setTranslationY(AndroidUtilities.dp(48.0f));
         graySectionCell.setText(LocaleController.getString(R.string.SearchCountriesTitle), LocaleController.getString(R.string.DeselectAll), new CountrySelectBottomSheet$$ExternalSyntheticLambda0(this, 2));
-        anonymousClass14.addView(graySectionCell, LayoutHelper.createFrame(-1, 32, 48));
-        this.containerView.addView(anonymousClass14, LayoutHelper.createFrame(-1, 216, 48));
+        anonymousClass2.addView(graySectionCell, LayoutHelper.createFrame(-1, 32, 48));
+        this.containerView.addView(anonymousClass2, LayoutHelper.createFrame(-1, 216, 48));
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setPadding(AndroidUtilities.dp(10.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(10.0f) + AndroidUtilities.navigationBarHeight);
-        frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(48.0f, -1));
+        frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f));
         this.containerView.addView(frameLayout, LayoutHelper.createFrame(-1, -2, 80));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.bulletinContainer = frameLayout2;
@@ -214,18 +205,15 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
         this.containerView.addView(frameLayout2, LayoutHelper.createFrame(-1, 150, 80));
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.delayAnimations = false;
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        this.recyclerListView.setItemAnimator(defaultItemAnimator);
+        defaultItemAnimator.setInterpolator(cubicBezierInterpolator);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        this.recyclerListView.lambda$onCellEnter$52(defaultItemAnimator);
         this.recyclerListView.addItemDecoration(new RecyclerView.ItemDecoration() {
             public final GradientProtectionDrawable gradientProtectionDrawable = new GradientProtectionDrawable(2);
 
             @Override
-            public final void onDrawOver(Canvas canvas, RecyclerView recyclerView) {
+            public final void onDrawOver(Canvas canvas, RecyclerView recyclerView, RecyclerView.State state) {
                 CountrySelectBottomSheet countrySelectBottomSheet = CountrySelectBottomSheet.this;
                 int iMax = Math.max(0, AndroidUtilities.dp(80.0f) + ((int) countrySelectBottomSheet.searchContainer.getTranslationY()) + ((int) countrySelectBottomSheet.animatorSelectorContainerHeight.factor));
                 int color = Theme.getColor(Theme.key_dialogBackground, resourcesProvider);
@@ -234,14 +222,14 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
                 gradientProtectionDrawable.setBounds(0, iMax, recyclerView.getWidth(), AndroidUtilities.dp(8.0f) + iMax);
                 gradientProtectionDrawable.draw(canvas);
                 countrySelectBottomSheet.checkUi_listViewClip();
-                countrySelectBottomSheet.checkUi_searchFieldY$3();
+                countrySelectBottomSheet.checkUi_searchFieldY();
             }
         });
-        PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14 = new PollItemMenu$$ExternalSyntheticLambda14(this, 8);
+        DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda6 = new DialogCell$$ExternalSyntheticLambda6(this, 20);
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
         TLRPC.TL_help_getCountriesList tL_help_getCountriesList = new TLRPC.TL_help_getCountriesList();
         tL_help_getCountriesList.lang_code = LocaleController.getInstance().getCurrentLocaleInfo() != null ? LocaleController.getInstance().getCurrentLocaleInfo().getLangCode() : Locale.getDefault().getCountry();
-        connectionsManager.sendRequest(tL_help_getCountriesList, new CallLogActivity$$ExternalSyntheticLambda1(pollItemMenu$$ExternalSyntheticLambda14, 27));
+        connectionsManager.sendRequest(tL_help_getCountriesList, new RichMediaUploader$$ExternalSyntheticLambda0(dialogCell$$ExternalSyntheticLambda6, 13));
         ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(getContainer(), new CountrySelectBottomSheet$$ExternalSyntheticLambda2(this));
     }
 
@@ -251,34 +239,25 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
         Rect rect = this.listViewClipBounds;
         boolean z = (rect.top == iDp && rect.bottom == measuredHeight) ? false : true;
         rect.set(0, iDp, this.containerView.getMeasuredWidth(), measuredHeight);
-        RecyclerListView recyclerListView = this.recyclerListView;
-        recyclerListView.setClipBounds(rect);
+        this.recyclerListView.setClipBounds(rect);
         if (z) {
-            recyclerListView.invalidate();
+            this.recyclerListView.invalidate();
         }
     }
 
-    public final void checkUi_searchFieldY$3() {
-        RecyclerListView recyclerListView;
+    public final void checkUi_searchFieldY() {
         float y = AndroidUtilities.displaySize.y;
-        int i = 0;
-        while (true) {
-            recyclerListView = this.recyclerListView;
-            if (i >= recyclerListView.getChildCount()) {
-                break;
-            }
-            View childAt = recyclerListView.getChildAt(i);
-            recyclerListView.getClass();
-            if (RecyclerView.getChildAdapterPosition(childAt) >= 1 && childAt.getY() < y) {
+        for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+            View childAt = this.recyclerListView.getChildAt(i);
+            if (this.recyclerListView.getChildAdapterPosition(childAt) >= 1 && childAt.getY() < y) {
                 y = childAt.getY();
             }
-            i++;
         }
         float fMax = Math.max(ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight, y + AndroidUtilities.dp(8.0f));
-        ThemePreviewActivity.AnonymousClass14 anonymousClass14 = this.searchContainer;
-        if (anonymousClass14.getTranslationY() != fMax) {
-            anonymousClass14.setTranslationY(fMax);
-            recyclerListView.invalidate();
+        PhotoPickerPhotoCell.AnonymousClass1 anonymousClass1 = this.searchContainer;
+        if (anonymousClass1.getTranslationY() != fMax) {
+            anonymousClass1.setTranslationY(fMax);
+            this.recyclerListView.invalidate();
         }
     }
 
@@ -286,8 +265,8 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
         UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 12), this.resourcesProvider);
         this.adapter = universalAdapter;
-        universalAdapter.applyBackground = false;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override
@@ -299,11 +278,11 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
     public final void onContainerLayout(int i, int i2, int i3, int i4) {
         super.onContainerLayout(i, i2, i3, i4);
         checkUi_listViewClip();
-        checkUi_searchFieldY$3();
+        checkUi_searchFieldY();
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
@@ -321,7 +300,7 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
 
     public final void onSpanClick(View view) {
         GroupCreateSpan groupCreateSpan = (GroupCreateSpan) view;
-        if (!groupCreateSpan.deleting) {
+        if (!groupCreateSpan.isDeleting()) {
             GroupCreateSpan groupCreateSpan2 = this.currentDeletingSpan;
             if (groupCreateSpan2 != null) {
                 groupCreateSpan2.cancelDeleteAnimation();
@@ -331,7 +310,7 @@ public final class CountrySelectBottomSheet extends BottomSheetWithRecyclerListV
             return;
         }
         this.currentDeletingSpan = null;
-        this.spansContainer.spansContainer.removeSpan(groupCreateSpan);
+        this.spansContainer.removeSpan(groupCreateSpan);
         HashMap map = this.selectedCountries;
         map.remove(groupCreateSpan.getCountryIso2());
         this.button.setCount(map.size(), true);

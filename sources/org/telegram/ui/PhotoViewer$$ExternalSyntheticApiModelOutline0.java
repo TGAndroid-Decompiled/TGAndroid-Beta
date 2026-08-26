@@ -1,9 +1,9 @@
 package org.telegram.ui;
 
-import android.window.OnBackInvokedCallback;
+import android.security.keystore.KeyGenParameterSpec;
 
 public abstract class PhotoViewer$$ExternalSyntheticApiModelOutline0 {
-    public static boolean m(Object obj) {
-        return obj instanceof OnBackInvokedCallback;
+    public static KeyGenParameterSpec.Builder m(String str) {
+        return new KeyGenParameterSpec.Builder(str, 3);
     }
 }

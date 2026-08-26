@@ -22,11 +22,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Cells.ChatMessageCell$$ExternalSyntheticLambda5;
+import org.telegram.ui.Cells.ChatMessageCell$$ExternalSyntheticLambda7;
 import org.telegram.ui.Components.PermissionRequest;
-import org.telegram.ui.LinkManager$3$$ExternalSyntheticLambda0;
-import org.telegram.ui.LocationActivity$$ExternalSyntheticLambda44;
-import org.telegram.ui.WearAuthSheet$$ExternalSyntheticLambda3;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda15;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
 
 public class LocationController extends BaseController implements NotificationCenter.NotificationCenterDelegate, ILocationServiceProvider.IAPIConnectionCallbacks, ILocationServiceProvider.IAPIOnConnectionFailedListener {
     private static final int BACKGROUD_UPDATE_TIME = 30000;
@@ -203,7 +202,7 @@ public class LocationController extends BaseController implements NotificationCe
                     }
                     inputMedia.heading = getHeading(this.lastKnownLocation);
                     tL_messages_editMessage.media.flags |= 4;
-                    int iSendRequest = getConnectionsManager().sendRequest(tL_messages_editMessage, new SecretChatHelper$$ExternalSyntheticLambda9(this, sharingLocationInfo, iArr, tL_messages_editMessage, 2));
+                    int iSendRequest = getConnectionsManager().sendRequest(tL_messages_editMessage, new SecretChatHelper$$ExternalSyntheticLambda9(2, this, sharingLocationInfo, iArr, tL_messages_editMessage));
                     int[] iArr = {iSendRequest};
                     this.requests.put(iSendRequest, 0);
                 } else {
@@ -238,7 +237,7 @@ public class LocationController extends BaseController implements NotificationCe
                             }
                             inputMedia.heading = getHeading(this.lastKnownLocation);
                             tL_messages_editMessage2.media.flags |= 4;
-                            int iSendRequest2 = getConnectionsManager().sendRequest(tL_messages_editMessage2, new SecretChatHelper$$ExternalSyntheticLambda9(this, sharingLocationInfo, iArr, tL_messages_editMessage2, 2));
+                            int iSendRequest2 = getConnectionsManager().sendRequest(tL_messages_editMessage2, new SecretChatHelper$$ExternalSyntheticLambda9(2, this, sharingLocationInfo, iArr, tL_messages_editMessage2));
                             int[] iArr2 = {iSendRequest2};
                             this.requests.put(iSendRequest2, 0);
                         }
@@ -267,7 +266,7 @@ public class LocationController extends BaseController implements NotificationCe
                         }
                         inputMedia.heading = getHeading(this.lastKnownLocation);
                         tL_messages_editMessage3.media.flags |= 4;
-                        int iSendRequest3 = getConnectionsManager().sendRequest(tL_messages_editMessage3, new SecretChatHelper$$ExternalSyntheticLambda9(this, sharingLocationInfo, iArr2, tL_messages_editMessage3, 2));
+                        int iSendRequest3 = getConnectionsManager().sendRequest(tL_messages_editMessage3, new SecretChatHelper$$ExternalSyntheticLambda9(2, this, sharingLocationInfo, iArr2, tL_messages_editMessage3));
                         int[] iArr3 = {iSendRequest3};
                         this.requests.put(iSendRequest3, 0);
                     }
@@ -1467,7 +1466,7 @@ public class LocationController extends BaseController implements NotificationCe
         if (arrayList.isEmpty()) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(this, arrayList2, arrayList3, arrayList, 9));
+        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(9, this, arrayList2, arrayList3, arrayList));
     }
 
     public void lambda$markLiveLoactionsAsRead$27(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -1926,7 +1925,7 @@ public class LocationController extends BaseController implements NotificationCe
         TLRPC.TL_messages_getRecentLocations tL_messages_getRecentLocations = new TLRPC.TL_messages_getRecentLocations();
         tL_messages_getRecentLocations.peer = getMessagesController().getInputPeer(j);
         tL_messages_getRecentLocations.limit = 100;
-        getConnectionsManager().sendRequest(tL_messages_getRecentLocations, new LocationActivity$$ExternalSyntheticLambda44(this, j, 2));
+        getConnectionsManager().sendRequest(tL_messages_getRecentLocations, new SecretChatHelper$$ExternalSyntheticLambda29(this, j, 2));
     }
 
     public void markLiveLoactionsAsRead(long j) {
@@ -1999,7 +1998,7 @@ public class LocationController extends BaseController implements NotificationCe
     }
 
     public void removeSharingLocation(long j) {
-        Utilities.stageQueue.postRunnable(new LinkManager$3$$ExternalSyntheticLambda0(this, j, 2));
+        Utilities.stageQueue.postRunnable(new RichEditor$$ExternalSyntheticLambda48(this, j, 3));
     }
 
     public void setMapLocation(Location location, boolean z) {
@@ -2031,7 +2030,7 @@ public class LocationController extends BaseController implements NotificationCe
         if (sharingLocationInfo != null) {
             sharingLocationInfo.proximityMeters = i;
         }
-        getMessagesStorage().getStorageQueue().postRunnable(new ChatMessageCell$$ExternalSyntheticLambda5(this, i, j, 1));
+        getMessagesStorage().getStorageQueue().postRunnable(new ChatMessageCell$$ExternalSyntheticLambda7(this, i, j, 1));
         if (z) {
             Utilities.stageQueue.postRunnable(new LocationController$$ExternalSyntheticLambda1(this, 0));
         }
@@ -2039,7 +2038,7 @@ public class LocationController extends BaseController implements NotificationCe
     }
 
     public void startFusedLocationRequest(boolean z) {
-        Utilities.stageQueue.postRunnable(new FileLoader$$ExternalSyntheticLambda1(3, this, z));
+        Utilities.stageQueue.postRunnable(new FileLoader$$ExternalSyntheticLambda1(this, z, 3));
     }
 
     public void update() {
@@ -2099,8 +2098,8 @@ public class LocationController extends BaseController implements NotificationCe
         Locale locale = systemDefaultLocale;
         Locale locale2 = locale.getLanguage().contains("en") ? locale : Locale.US;
         DispatchQueue dispatchQueue = Utilities.globalQueue;
-        WearAuthSheet$$ExternalSyntheticLambda3 wearAuthSheet$$ExternalSyntheticLambda3 = new WearAuthSheet$$ExternalSyntheticLambda3(locale, location, i, locale2, locationFetchCallback, 1);
-        dispatchQueue.postRunnable(wearAuthSheet$$ExternalSyntheticLambda3, 300L);
-        callbacks.put(locationFetchCallback, wearAuthSheet$$ExternalSyntheticLambda3);
+        GiftSheet$$ExternalSyntheticLambda15 giftSheet$$ExternalSyntheticLambda15 = new GiftSheet$$ExternalSyntheticLambda15(locale, location, i, locale2, locationFetchCallback, 1);
+        dispatchQueue.postRunnable(giftSheet$$ExternalSyntheticLambda15, 300L);
+        callbacks.put(locationFetchCallback, giftSheet$$ExternalSyntheticLambda15);
     }
 }

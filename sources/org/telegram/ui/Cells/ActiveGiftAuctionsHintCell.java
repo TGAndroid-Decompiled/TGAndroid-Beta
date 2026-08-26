@@ -1,31 +1,27 @@
 package org.telegram.ui.Cells;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Shader;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.messenger.GiftAuctionController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.utils.CountdownTimer;
+import org.telegram.messenger.utils.WindowVisibilityManager$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda356;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.LayoutHelper;
@@ -46,24 +42,21 @@ public final class ActiveGiftAuctionsHintCell extends FrameLayout implements Gif
         public final AnimatedTextView.AnimatedTextDrawable textView;
         public final CountdownTimer timer;
 
-        public CountDown(Activity activity, int i) {
-            super(activity);
+        public CountDown(Context context, int i) {
+            super(context);
             Paint paint = new Paint(1);
             this.fillPaint = paint;
-            this.timer = new CountdownTimer(new ChatActivity$$ExternalSyntheticLambda356(this, 1));
+            this.timer = new CountdownTimer(new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 16));
             this.currentAccount = i;
-            this.drawable = activity.getResources().getDrawable(R.drawable.filled_gift_sell_24).mutate();
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, false, false);
+            this.drawable = context.getResources().getDrawable(R.drawable.filled_gift_sell_24).mutate();
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
             this.textView = animatedTextDrawable;
-            animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
+            animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
             animatedTextDrawable.setCallback(this);
-            Typeface typefaceBold = AndroidUtilities.bold();
-            TextPaint textPaint = animatedTextDrawable.textPaint;
-            textPaint.setTypeface(typefaceBold);
+            animatedTextDrawable.setTypeface(AndroidUtilities.bold());
             animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
-            textPaint.setColor(-1);
-            animatedTextDrawable.alpha = Color.alpha(-1);
-            animatedTextDrawable.gravity = 3;
+            animatedTextDrawable.setTextColor(-1);
+            animatedTextDrawable.setGravity(3);
             paint.setShader(new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(72.0f), 0.0f, new int[]{-13460514, -10042885}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         }
 
@@ -105,7 +98,7 @@ public final class ActiveGiftAuctionsHintCell extends FrameLayout implements Gif
 
         @Override
         public final void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(172), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28), 1073741824));
+            super.onMeasure(LayoutHelper.measureSpecExactlyDp(172), LayoutHelper.measureSpecExactlyDp(28));
         }
 
         public final void start(int i) {
@@ -120,10 +113,10 @@ public final class ActiveGiftAuctionsHintCell extends FrameLayout implements Gif
         public final void updateTimer(long j) {
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textView;
             if (j == 0) {
-                animatedTextDrawable.setText(LocaleController.getString(R.string.Gift2AuctionPriceView), true, true);
+                animatedTextDrawable.setText(LocaleController.getString(R.string.Gift2AuctionPriceView));
             } else {
                 int i = (int) j;
-                animatedTextDrawable.setText(j > 3600 ? AndroidUtilities.formatDuration(i, false) : AndroidUtilities.formatDurationNoHours(i, false), isAttachedToWindow(), true);
+                animatedTextDrawable.setText(j > 3600 ? AndroidUtilities.formatDuration(i, false) : AndroidUtilities.formatDurationNoHours(i, false), isAttachedToWindow());
             }
         }
 
@@ -133,28 +126,28 @@ public final class ActiveGiftAuctionsHintCell extends FrameLayout implements Gif
         }
     }
 
-    public ActiveGiftAuctionsHintCell(Activity activity, int i) {
-        super(activity);
+    public ActiveGiftAuctionsHintCell(Context context, int i) {
+        super(context);
         this.activeAuctions = new ArrayList();
         this.currentAccount = i;
-        LinearLayout linearLayoutM = FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(activity, 1);
-        AnimatedTextView animatedTextView = new AnimatedTextView(activity, false, false, false);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
         this.titleTextView = animatedTextView;
         animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
         animatedTextView.setTypeface(AndroidUtilities.bold());
         animatedTextView.setTranslationY(-AndroidUtilities.dp(1.0f));
         linearLayoutM.addView(animatedTextView, LayoutHelper.createLinear(-1, 18));
-        AnimatedTextView animatedTextView2 = new AnimatedTextView(activity, false, false, false);
+        AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
         this.messageTextView = animatedTextView2;
         animatedTextView2.setTextSize(AndroidUtilities.dp(13.0f));
-        linearLayoutM.addView(animatedTextView2, LayoutHelper.createLinear(2.0f, 0.0f, 2.0f, 0.0f, -1, 17));
-        CountDown countDown = new CountDown(activity, i);
+        linearLayoutM.addView(animatedTextView2, LayoutHelper.createLinear(-1, 17, 2.0f, 0.0f, 2.0f, 0.0f));
+        CountDown countDown = new CountDown(context, i);
         this.timerView = countDown;
         countDown.updateTimer(299L);
         addView(linearLayoutM, LayoutHelper.createFrame(-1, -2.0f, 16, 14.0f, 0.0f, 90.0f, 0.0f));
         addView(countDown, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        updateColors$1();
-        setOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 19));
+        updateColors();
+        setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 8));
     }
 
     @Override
@@ -178,7 +171,7 @@ public final class ActiveGiftAuctionsHintCell extends FrameLayout implements Gif
             CountdownTimer countdownTimer = countDown.timer;
             countdownTimer.isRunning = false;
             AndroidUtilities.cancelRunOnUIThread(countdownTimer.doUpdate);
-            countDown.textView.setText(LocaleController.getString(R.string.Gift2AuctionPriceView), true, true);
+            countDown.textView.setText(LocaleController.getString(R.string.Gift2AuctionPriceView), true);
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int size2 = this.activeAuctions.size();
@@ -198,7 +191,7 @@ public final class ActiveGiftAuctionsHintCell extends FrameLayout implements Gif
             zIsUpcoming |= auction2.isUpcoming(currentTime);
             if (auction2.giftDocumentId != 0) {
                 spannableStringBuilder.append((CharSequence) "*");
-                spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auction2.giftDocumentId, 1.2f, animatedTextView.getPaint().getFontMetricsInt()), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(new AnimatedEmojiSpan(auction2.giftDocumentId, animatedTextView.getPaint().getFontMetricsInt()), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             }
             GiftAuctionController.Auction.BidStatus bidStatus = auction2.getBidStatus();
             z |= bidStatus == GiftAuctionController.Auction.BidStatus.OUTBID || bidStatus == GiftAuctionController.Auction.BidStatus.RETURNED;
@@ -210,7 +203,7 @@ public final class ActiveGiftAuctionsHintCell extends FrameLayout implements Gif
         } else {
             spannableStringBuilder.append((CharSequence) (size2 == 1 ? LocaleController.getString(R.string.Gift2ActiveAuctionsActiveAuctionTitle) : LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveAuctionsTitle, Integer.valueOf(size2))));
         }
-        animatedTextView.setText(spannableStringBuilder, true, true);
+        animatedTextView.setText(spannableStringBuilder, true);
         this.isOutbid = false;
         AnimatedTextView animatedTextView2 = this.messageTextView;
         if (zIsUpcoming) {
@@ -245,7 +238,7 @@ public final class ActiveGiftAuctionsHintCell extends FrameLayout implements Gif
             }
             animatedTextView2.setText(LocaleController.formatString(R.string.Gift2ActiveAuctionsActiveStatusWinningOne, string));
         }
-        updateColors$1();
+        updateColors();
     }
 
     @Override
@@ -267,7 +260,7 @@ public final class ActiveGiftAuctionsHintCell extends FrameLayout implements Gif
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
-    public final void updateColors$1() {
+    public final void updateColors() {
         setBackground(Theme.getSelectorDrawable(false));
         this.titleTextView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
         this.messageTextView.setTextColor(Theme.getColor(null, this.isOutbid ? Theme.key_text_RedBold : Theme.key_windowBackgroundWhiteGrayText, false));

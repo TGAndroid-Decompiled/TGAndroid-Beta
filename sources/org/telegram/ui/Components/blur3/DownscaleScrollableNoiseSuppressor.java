@@ -19,22 +19,22 @@ import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
 
 public final class DownscaleScrollableNoiseSuppressor {
     public final boolean allowNoiseSuppress;
+    public final Blur3HashImpl builder;
     public final boolean isLiquidGlassEnabled;
     public final int k;
     public long lastHash;
     public int recordingIndex;
     public Rect recordingPos;
+    public final ArrayList rectRenderNodes;
     public int rectRenderNodesCount;
     public final RenderNode[] resultRenderNodes;
     public final boolean simpleMode;
-    public final RectF tmpRectF = new RectF();
-    public final Blur3HashImpl builder = new Blur3HashImpl();
-    public final ArrayList rectRenderNodes = new ArrayList();
+    public final RectF tmpRectF;
 
     public final class DownscaledRenderNode {
         public long lastHash;
         public final RenderNode[] renderNodeDownsampled;
-        public final RenderNode renderNodeOriginalWithOffset = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$1();
+        public final RenderNode renderNodeOriginalWithOffset = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$2();
         public final RenderNode[] renderNodeRestored;
         public int scaleX;
         public int scaleY;
@@ -47,13 +47,13 @@ public final class DownscaleScrollableNoiseSuppressor {
             this.renderNodeDownsampled = new RenderNode[i2];
             for (int i3 = 0; i3 < i2; i3++) {
                 RenderNode[] renderNodeArr = this.renderNodeDownsampled;
-                Theme$$ExternalSyntheticApiModelOutline3.m1061m();
+                Theme$$ExternalSyntheticApiModelOutline3.m1067m();
                 renderNodeArr[i3] = Theme$$ExternalSyntheticApiModelOutline3.m(str + "_down_" + i);
             }
             if (i > 0 || z) {
                 this.renderNodeRestored = new RenderNode[i2];
                 for (int i4 = 0; i4 < i2; i4++) {
-                    this.renderNodeRestored[i4] = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$1();
+                    this.renderNodeRestored[i4] = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$2();
                 }
             } else {
                 this.renderNodeRestored = this.renderNodeDownsampled;
@@ -160,7 +160,7 @@ public final class DownscaleScrollableNoiseSuppressor {
         public long lastHash;
         public final DownscaledRenderNode renderNodesForBlur;
         public final DownscaledRenderNode renderNodesForGlass;
-        public final RenderNode renderNode = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$1();
+        public final RenderNode renderNode = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$2();
         public final Rect position = new Rect();
 
         public SourcePart(DownscaleScrollableNoiseSuppressor downscaleScrollableNoiseSuppressor) {
@@ -214,22 +214,8 @@ public final class DownscaleScrollableNoiseSuppressor {
         }
     }
 
-    public DownscaleScrollableNoiseSuppressor(boolean z) {
-        boolean zIsEnabled = LiteMode.isEnabled(262144);
-        this.isLiquidGlassEnabled = zIsEnabled;
-        this.simpleMode = true;
-        this.k = (zIsEnabled || z) ? 1 : 8;
-        this.allowNoiseSuppress = z;
-        this.resultRenderNodes = new RenderNode[zIsEnabled ? 2 : 1];
-        int i = 0;
-        while (true) {
-            RenderNode[] renderNodeArr = this.resultRenderNodes;
-            if (i >= renderNodeArr.length) {
-                return;
-            }
-            renderNodeArr[i] = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$1();
-            i++;
-        }
+    public DownscaleScrollableNoiseSuppressor() {
+        this(false);
     }
 
     public static float downscaleRadius(float f, float f2) {
@@ -410,6 +396,27 @@ public final class DownscaleScrollableNoiseSuppressor {
             rect2.right = Math.round((f2 - (f4 % f2)) + f4);
             float f5 = rectF.bottom;
             rect2.bottom = Math.round((f2 - (f5 % f2)) + f5);
+        }
+    }
+
+    public DownscaleScrollableNoiseSuppressor(boolean z) {
+        this.tmpRectF = new RectF();
+        this.builder = new Blur3HashImpl();
+        this.rectRenderNodes = new ArrayList();
+        boolean zIsEnabled = LiteMode.isEnabled(262144);
+        this.isLiquidGlassEnabled = zIsEnabled;
+        this.simpleMode = true;
+        this.k = (zIsEnabled || z) ? 1 : 8;
+        this.allowNoiseSuppress = z;
+        this.resultRenderNodes = new RenderNode[zIsEnabled ? 2 : 1];
+        int i = 0;
+        while (true) {
+            RenderNode[] renderNodeArr = this.resultRenderNodes;
+            if (i >= renderNodeArr.length) {
+                return;
+            }
+            renderNodeArr[i] = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$2();
+            i++;
         }
     }
 }

@@ -9,11 +9,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
-import org.telegram.ui.LaunchActivity;
 
 public final class StoriesVolumeControl extends View {
     public float currentProgress;
-    public final LaunchActivity.AnonymousClass18 hideRunnable;
+    public final PeerStoriesView.AnonymousClass34 hideRunnable;
     public boolean isVisible;
     public final Paint paint;
     public final AnimatedFloat progressToVisible;
@@ -23,7 +22,7 @@ public final class StoriesVolumeControl extends View {
         super(context);
         Paint paint = new Paint(1);
         this.paint = paint;
-        this.hideRunnable = new LaunchActivity.AnonymousClass18(this, 21);
+        this.hideRunnable = new PeerStoriesView.AnonymousClass34(this, 5);
         this.progressToVisible = new AnimatedFloat(this);
         this.volumeProgress = new AnimatedFloat(this);
         paint.setColor(-1);
@@ -54,9 +53,9 @@ public final class StoriesVolumeControl extends View {
         }
         invalidate();
         this.isVisible = true;
-        LaunchActivity.AnonymousClass18 anonymousClass18 = this.hideRunnable;
-        AndroidUtilities.cancelRunOnUIThread(anonymousClass18);
-        AndroidUtilities.runOnUIThread(anonymousClass18, 2000L);
+        PeerStoriesView.AnonymousClass34 anonymousClass34 = this.hideRunnable;
+        AndroidUtilities.cancelRunOnUIThread(anonymousClass34);
+        AndroidUtilities.runOnUIThread(anonymousClass34, 2000L);
     }
 
     @Override
@@ -64,16 +63,16 @@ public final class StoriesVolumeControl extends View {
         super.onDraw(canvas);
         float f = this.currentProgress;
         AnimatedFloat animatedFloat = this.volumeProgress;
-        animatedFloat.set(f, false);
+        animatedFloat.set(f);
         float f2 = this.isVisible ? 1.0f : 0.0f;
         AnimatedFloat animatedFloat2 = this.progressToVisible;
-        animatedFloat2.set(f2, false);
-        if (animatedFloat2.value != 0.0f) {
+        animatedFloat2.set(f2);
+        if (animatedFloat2.get() != 0.0f) {
             float measuredHeight = getMeasuredHeight() / 2.0f;
             Paint paint = this.paint;
-            paint.setAlpha((int) (animatedFloat2.value * 255.0f));
+            paint.setAlpha((int) (animatedFloat2.get() * 255.0f));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * animatedFloat.value, getMeasuredHeight());
+            rectF.set(0.0f, 0.0f, animatedFloat.get() * getMeasuredWidth(), getMeasuredHeight());
             canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
         }
     }

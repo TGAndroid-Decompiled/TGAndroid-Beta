@@ -56,28 +56,28 @@ public final class MessagesStorage$$ExternalSyntheticLambda3 implements Runnable
                 ((MessagesController) this.f$0).lambda$createChat$257((TLRPC.TL_messages_invitedUsers) this.f$1);
                 break;
             case 11:
-                ((MessagesController) this.f$0).lambda$addToViewsQueue$230((MessageObject) this.f$1);
+                ((MessagesController) this.f$0).lambda$getSendAsPeers$441((TLRPC.TL_channels_sendAsPeers) this.f$1);
                 break;
             case 12:
-                ((MessagesController) this.f$0).lambda$getSendAsPeers$441((TLRPC.TL_channels_sendAsPeers) this.f$1);
+                ((MessagesController) this.f$0).lambda$addToViewsQueue$230((MessageObject) this.f$1);
                 break;
             case 13:
                 MessagesController.lambda$toggleChatNoForwards$277((Utilities.Callback2) this.f$0, (TLRPC.TL_error) this.f$1);
                 break;
             case 14:
-                ((MessagesController) this.f$0).lambda$updateConfig$41((TLRPC.TL_config) this.f$1);
-                break;
-            case 15:
                 MessagesController.lambda$addUsersToChat$294((Consumer) this.f$0, (TLRPC.User) this.f$1);
                 break;
-            case 16:
+            case 15:
                 ((MessagesController) this.f$0).lambda$loadAppConfig$32((TLRPC.TL_help_appConfig) this.f$1);
                 break;
-            case 17:
+            case 16:
                 ((MessagesController) this.f$0).lambda$checkChatInviter$371((TLRPC.TL_channels_channelParticipant) this.f$1);
                 break;
-            case 18:
+            case 17:
                 MessagesController.lambda$addUserToChat$299((Utilities.Callback) this.f$0, (Runnable) this.f$1);
+                break;
+            case 18:
+                ((MessagesController) this.f$0).lambda$updateConfig$41((TLRPC.TL_config) this.f$1);
                 break;
             case 19:
                 ((MessagesController.SavedMusicIds) this.f$0).lambda$load$0((TLObject) this.f$1);

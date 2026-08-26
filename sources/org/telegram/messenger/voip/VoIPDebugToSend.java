@@ -13,8 +13,8 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda21;
 import org.telegram.ui.Components.voip.VoIPHelper;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
 
 public class VoIPDebugToSend {
     private final int currentAccount;
@@ -45,7 +45,7 @@ public class VoIPDebugToSend {
     }
 
     public void lambda$done$1(File file, TL_phone.saveCallDebug savecalldebug) {
-        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new ArticleViewer$$ExternalSyntheticLambda21(1, this, savecalldebug));
+        FileLoader.getInstance(this.currentAccount).uploadFile(file.getAbsolutePath(), new GiftSheet$$ExternalSyntheticLambda4(1, this, savecalldebug));
     }
 
     public void lambda$done$2(Data data, File file, TL_phone.saveCallDebug savecalldebug) {
@@ -61,7 +61,7 @@ public class VoIPDebugToSend {
         if (!(tLObject instanceof TLRPC.TL_boolFalse) || TextUtils.isEmpty(data.logPath)) {
             return;
         }
-        Utilities.searchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda53(this, data, new File(MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0.m(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 1));
+        Utilities.searchQueue.postRunnable(new VoIPService$$ExternalSyntheticLambda53(1, this, data, new File(MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0.m(new StringBuilder(), data.logPath, ".gzip")), savecalldebug));
     }
 
     public void done(long j, boolean z) {

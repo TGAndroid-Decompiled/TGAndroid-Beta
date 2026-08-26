@@ -24,7 +24,6 @@ import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.theme.ITheme;
 import org.telegram.ui.ActionBar.theme.ThemeKey;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda22;
 
 public final class EmojiThemes {
     public static final int[] previewColorKeys = {Theme.key_chat_inBubble, Theme.key_chat_outBubble, Theme.key_featuredStickers_addButton, Theme.key_chat_wallpaper, Theme.key_chat_wallpaper_gradient_to1, Theme.key_chat_wallpaper_gradient_to2, Theme.key_chat_wallpaper_gradient_to3, Theme.key_chat_wallpaper_gradient_rotation};
@@ -170,9 +169,6 @@ public final class EmojiThemes {
     public static void saveCustomTheme(Theme.ThemeInfo themeInfo, int i) {
         SparseArray sparseArray;
         Theme.ThemeAccent themeAccent;
-        if (themeInfo == null) {
-            return;
-        }
         if (i < 0 || (sparseArray = themeInfo.themeAccentsMap) == null || !((themeAccent = (Theme.ThemeAccent) sparseArray.get(i)) == null || themeAccent.isDefault)) {
             if (themeInfo.getKey().equals("Blue") && i == 99) {
                 return;
@@ -454,7 +450,7 @@ public final class EmojiThemes {
             ImageReceiver imageReceiver = new ImageReceiver();
             imageReceiver.setAllowLoadingOnAttachedOnly(false);
             imageReceiver.setImage(forDocument, "120_140", null, null, null, 1);
-            imageReceiver.setDelegate(new ProfileActivity$$ExternalSyntheticLambda22(resultCallback, themeId, file, 5));
+            imageReceiver.setDelegate(new EmojiThemes$$ExternalSyntheticLambda3(resultCallback, themeId, file));
             ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
         }
     }

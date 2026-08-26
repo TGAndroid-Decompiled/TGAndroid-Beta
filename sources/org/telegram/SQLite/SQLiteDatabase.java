@@ -1,6 +1,6 @@
 package org.telegram.SQLite;
 
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
@@ -77,7 +77,7 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) throws SQLiteException {
         checkOpened();
-        SQLiteCursor sQLiteCursorQuery = new SQLitePreparedStatement(this, zzil.m("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor sQLiteCursorQuery = new SQLitePreparedStatement(this, zzii.m("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (sQLiteCursorQuery.next()) {
             int columnCount = sQLiteCursorQuery.getColumnCount();
             StringBuilder sb = new StringBuilder();

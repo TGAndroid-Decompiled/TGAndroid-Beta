@@ -16,10 +16,10 @@ public final class BottomSheet$$ExternalSyntheticLambda5 implements Runnable {
                 this.f$0.lambda$onCreateInternal$2();
                 break;
             case 1:
-                this.f$0.lambda$dismiss$10$1();
+                this.f$0.lambda$showGiftOfferSheet$15();
                 break;
             default:
-                this.f$0.lambda$showGiftOfferSheet$15();
+                this.f$0.lambda$dismiss$10();
                 break;
         }
     }

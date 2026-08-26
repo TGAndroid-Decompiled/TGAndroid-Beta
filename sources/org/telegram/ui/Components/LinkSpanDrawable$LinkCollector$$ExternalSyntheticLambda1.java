@@ -15,10 +15,10 @@ public final class LinkSpanDrawable$LinkCollector$$ExternalSyntheticLambda1 impl
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.removeLink(this.f$1, false);
+                this.f$0.lambda$removeLink$0(this.f$1);
                 break;
             default:
-                this.f$0.removeLink(this.f$1, false);
+                this.f$0.lambda$removeLink$1(this.f$1);
                 break;
         }
     }

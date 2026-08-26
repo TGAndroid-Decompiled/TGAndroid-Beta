@@ -2,7 +2,6 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -41,12 +40,17 @@ public final class DialogMeUrlCell extends BaseCell {
         super(context);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.avatarImage = imageReceiver;
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         this.messageTop = AndroidUtilities.dp(40.0f);
         this.avatarTop = AndroidUtilities.dp(10.0f);
         this.currentAccount = UserConfig.selectedAccount;
         Theme.createDialogsResources(context);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(26.0f));
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
     }
 
     @Override
@@ -87,10 +91,8 @@ public final class DialogMeUrlCell extends BaseCell {
             canvas2.restore();
         }
         if (this.drawVerified) {
-            Drawable drawable = Theme.dialogs_verifiedDrawable;
-            BaseCell.setDrawableBounds(drawable, this.nameMuteLeft, AndroidUtilities.dp(16.5f), drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-            Drawable drawable2 = Theme.dialogs_verifiedCheckDrawable;
-            BaseCell.setDrawableBounds(drawable2, this.nameMuteLeft, AndroidUtilities.dp(16.5f), drawable2.getIntrinsicWidth(), drawable2.getIntrinsicHeight());
+            BaseCell.setDrawableBounds(Theme.dialogs_verifiedDrawable, this.nameMuteLeft, AndroidUtilities.dp(16.5f));
+            BaseCell.setDrawableBounds(Theme.dialogs_verifiedCheckDrawable, this.nameMuteLeft, AndroidUtilities.dp(16.5f));
             Theme.dialogs_verifiedDrawable.draw(canvas2);
             Theme.dialogs_verifiedCheckDrawable.draw(canvas2);
         }
@@ -157,9 +159,8 @@ public final class DialogMeUrlCell extends BaseCell {
                 } else {
                     this.nameLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
                 }
-                String str = this.recentMeUrl.set.set.title;
-                avatarDrawable.setInfo(5L, str, null, null, null);
-                userName = str;
+                userName = this.recentMeUrl.set.set.title;
+                avatarDrawable.setInfo(5L, userName, null);
                 imageReceiver.setImage(ImageLocation.getForDocument(this.recentMeUrl.set.cover), null, avatarDrawable, null, this.recentMeUrl, 0);
             } else if (recentMeUrl instanceof TLRPC.TL_recentMeUrlChatInvite) {
                 if (LocaleController.isRTL) {
@@ -173,15 +174,15 @@ public final class DialogMeUrlCell extends BaseCell {
                     avatarDrawable.setInfo(i6, chat2);
                     TLRPC.RecentMeUrl recentMeUrl2 = this.recentMeUrl;
                     TLRPC.Chat chat3 = recentMeUrl2.chat_invite.chat;
-                    String str2 = chat3.title;
+                    String str = chat3.title;
                     this.drawVerified = chat3.verified;
                     imageReceiver.setForUserOrChat(chat3, avatarDrawable, recentMeUrl2);
-                    userName = str2;
+                    userName = str;
                 } else {
-                    String str3 = chatInvite.title;
-                    avatarDrawable.setInfo(5L, str3, null, null, null);
+                    String str2 = chatInvite.title;
+                    avatarDrawable.setInfo(5L, str2, null);
                     imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(this.recentMeUrl.chat_invite.photo.sizes, 50), this.recentMeUrl.chat_invite.photo), "50_50", avatarDrawable, null, this.recentMeUrl, 0);
-                    userName = str3;
+                    userName = str2;
                 }
                 if (LocaleController.isRTL) {
                     getMeasuredWidth();
@@ -203,7 +204,7 @@ public final class DialogMeUrlCell extends BaseCell {
                 imageReceiver.setImage(null, null, avatarDrawable, null, recentMeUrl, 0);
                 userName = "";
             }
-            String str4 = MessagesController.getInstance(i6).linkPrefix + "/" + this.recentMeUrl.url;
+            String str3 = MessagesController.getInstance(i6).linkPrefix + "/" + this.recentMeUrl.url;
             if (TextUtils.isEmpty(userName)) {
                 userName = LocaleController.getString(R.string.HiddenName);
             }
@@ -247,7 +248,7 @@ public final class DialogMeUrlCell extends BaseCell {
             imageReceiver.setImageCoords(measuredWidth2, this.avatarTop, AndroidUtilities.dp(52.0f), AndroidUtilities.dp(52.0f));
             int iMax2 = Math.max(AndroidUtilities.dp(12.0f), measuredWidth3);
             try {
-                this.messageLayout = new StaticLayout(TextUtils.ellipsize(str4, textPaint2, iMax2 - AndroidUtilities.dp(12.0f), TextUtils.TruncateAt.END), textPaint2, iMax2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.messageLayout = new StaticLayout(TextUtils.ellipsize(str3, textPaint2, iMax2 - AndroidUtilities.dp(12.0f), TextUtils.TruncateAt.END), textPaint2, iMax2, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             } catch (Exception e3) {
                 FileLog.e(e3);
             }

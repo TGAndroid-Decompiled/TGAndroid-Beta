@@ -48,7 +48,7 @@ public final class TextSettingsCell extends FrameLayout {
     public final AnimatedTextView valueTextView;
 
     public TextSettingsCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-        this(context, 0, resourcesProvider);
+        this(context, resourcesProvider, 0);
     }
 
     @Override
@@ -239,7 +239,7 @@ public final class TextSettingsCell extends FrameLayout {
         this.canDisable = z;
     }
 
-    public final void setEnabled(ArrayList arrayList, boolean z) {
+    public final void setEnabled(boolean z, ArrayList arrayList) {
         setEnabled(z);
         TextView textView = this.textView;
         ImageView imageView = this.valueImageView;
@@ -303,13 +303,13 @@ public final class TextSettingsCell extends FrameLayout {
         this.valueImageView.setVisibility(4);
         AnimatedTextView animatedTextView = this.valueTextView;
         if (charSequence2 != null) {
-            animatedTextView.setText(charSequence2, z, true);
+            animatedTextView.setText(charSequence2, z);
             animatedTextView.setVisibility(0);
         } else {
             animatedTextView.setVisibility(4);
         }
         this.needDivider = z2;
-        setWillNotDraw(true ^ z2);
+        setWillNotDraw(!z2);
         requestLayout();
     }
 
@@ -341,10 +341,10 @@ public final class TextSettingsCell extends FrameLayout {
     }
 
     public TextSettingsCell(Context context) {
-        this(context, 0, null);
+        this(context, null, 0);
     }
 
-    public TextSettingsCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+    public TextSettingsCell(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context);
         this.betterLayout = BuildVars.DEBUG_PRIVATE_VERSION;
         this.resourcesProvider = resourcesProvider;
@@ -362,12 +362,7 @@ public final class TextSettingsCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, 0.0f, f, 0.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, !LocaleController.isRTL);
         this.valueTextView = animatedTextView;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = animatedTextView.drawable;
-        animatedTextDrawable.moveAmplitude = 0.55f;
-        animatedTextDrawable.animateDuration = 320L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextView.setAnimationProperties(0.55f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
         animatedTextView.setTextSize(AndroidUtilities.dp(16.0f));
         animatedTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
         animatedTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText, resourcesProvider));

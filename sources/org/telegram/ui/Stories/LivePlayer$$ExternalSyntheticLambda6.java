@@ -1,6 +1,6 @@
 package org.telegram.ui.Stories;
 
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -19,8 +19,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda65;
-import org.telegram.ui.StickersActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
 
 public final class LivePlayer$$ExternalSyntheticLambda6 implements RequestDelegate {
     public final int $r8$classId;
@@ -65,7 +64,7 @@ public final class LivePlayer$$ExternalSyntheticLambda6 implements RequestDelega
                         i3++;
                         livePlayer2.call = ((TL_update.TL_updateGroupCall) obj).call;
                     }
-                    AndroidUtilities.runOnUIThread(new StickersActivity$$ExternalSyntheticLambda18(18, livePlayer2, MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCallMessage.class)));
+                    AndroidUtilities.runOnUIThread(new LivePlayer$$ExternalSyntheticLambda17(0, livePlayer2, MessagesController.findUpdatesAndRemove(updates, TL_update.TL_updateGroupCallMessage.class)));
                     MessagesController.getInstance(i2).processUpdates(updates, false);
                     TLRPC.GroupCall groupCall = livePlayer2.call;
                     boolean z = groupCall != null && groupCall.rtmp_stream;
@@ -105,12 +104,12 @@ public final class LivePlayer$$ExternalSyntheticLambda6 implements RequestDelega
                                 }
                                 StringBuilder sb = new StringBuilder("[LivePlayer] joined call ");
                                 inputGroupCall = livePlayer2.inputCall;
-                                zzjj.m(sb, inputGroupCall.id);
+                                zzjg.m(sb, inputGroupCall.id);
                                 livePlayer2.joined = true;
                                 if (!livePlayer2.destroyed || livePlayer2.instance == null) {
                                     TL_phone.leaveGroupCall leavegroupcall = new TL_phone.leaveGroupCall();
                                     leavegroupcall.call = inputGroupCall;
-                                    ConnectionsManager.getInstance(i2).sendRequest(leavegroupcall, new ProfileActivity$$ExternalSyntheticLambda65(26, livePlayer2, (TLRPC.Updates) tLObject));
+                                    ConnectionsManager.getInstance(i2).sendRequest(leavegroupcall, new StarGiftSheet$$ExternalSyntheticLambda0(23, livePlayer2, (TLRPC.Updates) tLObject));
                                 } else {
                                     if (tL_dataJSON == null || tL_dataJSON.data.startsWith("{\"stream\":true")) {
                                         livePlayer2.instance.prepareForStream(z);
@@ -166,13 +165,13 @@ public final class LivePlayer$$ExternalSyntheticLambda6 implements RequestDelega
                     }
                     StringBuilder sb2 = new StringBuilder("[LivePlayer] joined call ");
                     inputGroupCall = livePlayer2.inputCall;
-                    zzjj.m(sb2, inputGroupCall.id);
+                    zzjg.m(sb2, inputGroupCall.id);
                     livePlayer2.joined = true;
                     if (!livePlayer2.destroyed) {
                     }
                     TL_phone.leaveGroupCall leavegroupcall2 = new TL_phone.leaveGroupCall();
                     leavegroupcall2.call = inputGroupCall;
-                    ConnectionsManager.getInstance(i2).sendRequest(leavegroupcall2, new ProfileActivity$$ExternalSyntheticLambda65(26, livePlayer2, (TLRPC.Updates) tLObject));
+                    ConnectionsManager.getInstance(i2).sendRequest(leavegroupcall2, new StarGiftSheet$$ExternalSyntheticLambda0(23, livePlayer2, (TLRPC.Updates) tLObject));
                     break;
                 } else if (tL_error != null && "GROUPCALL_INVALID".equalsIgnoreCase(tL_error.text)) {
                     AndroidUtilities.runOnUIThread(new LivePlayer$$ExternalSyntheticLambda13(livePlayer2, 4));

@@ -9,139 +9,139 @@ import android.view.SubMenu;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.FloatingToolbar;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda74;
 
-public final class MenuToItemOptions implements Menu {
-    public final ItemOptions itemOptions;
-    public final EditTextEmoji$$ExternalSyntheticLambda2 onMenuClicked;
-    public final Runnable premiumLock;
+public class MenuToItemOptions implements Menu {
+    private final ItemOptions itemOptions;
+    private final Utilities.Callback<Integer> onMenuClicked;
+    private final Runnable premiumLock;
 
-    public MenuToItemOptions(ItemOptions itemOptions, EditTextEmoji$$ExternalSyntheticLambda2 editTextEmoji$$ExternalSyntheticLambda2, Runnable runnable) {
+    public MenuToItemOptions(ItemOptions itemOptions, Utilities.Callback<Integer> callback, Runnable runnable) {
         this.itemOptions = itemOptions;
-        this.onMenuClicked = editTextEmoji$$ExternalSyntheticLambda2;
+        this.onMenuClicked = callback;
         this.premiumLock = runnable;
     }
 
+    public void lambda$add$0(int i) {
+        this.onMenuClicked.run(Integer.valueOf(i));
+    }
+
     @Override
-    public final MenuItem add(int i) {
+    public MenuItem add(int i) {
         return null;
     }
 
     @Override
-    public final int addIntentOptions(int i, int i2, int i3, ComponentName componentName, Intent[] intentArr, Intent intent, int i4, MenuItem[] menuItemArr) {
+    public int addIntentOptions(int i, int i2, int i3, ComponentName componentName, Intent[] intentArr, Intent intent, int i4, MenuItem[] menuItemArr) {
         return 0;
     }
 
     @Override
-    public final SubMenu addSubMenu(int i) {
+    public SubMenu addSubMenu(int i) {
         return null;
     }
 
     @Override
-    public final void clear() {
+    public void clear() {
     }
 
     @Override
-    public final void close() {
+    public void close() {
     }
 
     @Override
-    public final MenuItem findItem(int i) {
+    public MenuItem findItem(int i) {
         return null;
     }
 
     @Override
-    public final MenuItem getItem(int i) {
+    public MenuItem getItem(int i) {
         return null;
     }
 
     @Override
-    public final boolean hasVisibleItems() {
+    public boolean hasVisibleItems() {
         return false;
     }
 
     @Override
-    public final boolean isShortcutKey(int i, KeyEvent keyEvent) {
+    public boolean isShortcutKey(int i, KeyEvent keyEvent) {
         return false;
     }
 
     @Override
-    public final boolean performIdentifierAction(int i, int i2) {
+    public boolean performIdentifierAction(int i, int i2) {
         return false;
     }
 
     @Override
-    public final boolean performShortcut(int i, KeyEvent keyEvent, int i2) {
+    public boolean performShortcut(int i, KeyEvent keyEvent, int i2) {
         return false;
     }
 
     @Override
-    public final void removeGroup(int i) {
+    public void removeGroup(int i) {
     }
 
     @Override
-    public final void removeItem(int i) {
+    public void removeItem(int i) {
     }
 
     @Override
-    public final void setGroupCheckable(int i, boolean z, boolean z2) {
+    public void setGroupCheckable(int i, boolean z, boolean z2) {
     }
 
     @Override
-    public final void setGroupEnabled(int i, boolean z) {
+    public void setGroupEnabled(int i, boolean z) {
     }
 
     @Override
-    public final void setGroupVisible(int i, boolean z) {
+    public void setGroupVisible(int i, boolean z) {
     }
 
     @Override
-    public final void setQwertyMode(boolean z) {
+    public void setQwertyMode(boolean z) {
     }
 
     @Override
-    public final int size() {
+    public int size() {
         return 0;
     }
 
     @Override
-    public final MenuItem add(CharSequence charSequence) {
+    public MenuItem add(CharSequence charSequence) {
         return null;
     }
 
     @Override
-    public final SubMenu addSubMenu(int i, int i2, int i3, int i4) {
+    public SubMenu addSubMenu(int i, int i2, int i3, int i4) {
         return null;
     }
 
     @Override
-    public final MenuItem add(int i, int i2, int i3, CharSequence charSequence) {
-        Runnable runnable = this.premiumLock;
-        if (runnable == null || !FloatingToolbar.premiumOptions.contains(Integer.valueOf(i2)) || !MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            ArticleViewer$$ExternalSyntheticLambda74 articleViewer$$ExternalSyntheticLambda74 = new ArticleViewer$$ExternalSyntheticLambda74(this, i2, 25);
-            ItemOptions itemOptions = this.itemOptions;
-            itemOptions.add(0, charSequence, articleViewer$$ExternalSyntheticLambda74, false);
-            if (runnable != null && FloatingToolbar.premiumOptions.contains(Integer.valueOf(i2))) {
-                itemOptions.putPremiumLock(runnable);
+    public MenuItem add(int i, int i2, int i3, CharSequence charSequence) {
+        if (this.premiumLock == null || !FloatingToolbar.premiumOptions.contains(Integer.valueOf(i2)) || !MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
+            this.itemOptions.add(charSequence, new EmojiView$$ExternalSyntheticLambda9(this, i2, 11));
+            if (this.premiumLock != null && FloatingToolbar.premiumOptions.contains(Integer.valueOf(i2))) {
+                this.itemOptions.putPremiumLock(this.premiumLock);
             }
         }
         return null;
     }
 
     @Override
-    public final SubMenu addSubMenu(int i, int i2, int i3, CharSequence charSequence) {
+    public SubMenu addSubMenu(int i, int i2, int i3, CharSequence charSequence) {
         return null;
     }
 
     @Override
-    public final SubMenu addSubMenu(CharSequence charSequence) {
+    public SubMenu addSubMenu(CharSequence charSequence) {
         return null;
     }
 
     @Override
-    public final MenuItem add(int i, int i2, int i3, int i4) {
-        add(i, i2, i3, LocaleController.getString(i4));
-        return null;
+    public MenuItem add(int i, int i2, int i3, int i4) {
+        return add(i, i2, i3, LocaleController.getString(i4));
     }
 }

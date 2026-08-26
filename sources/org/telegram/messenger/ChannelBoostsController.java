@@ -11,10 +11,10 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda7;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda1;
 
 public class ChannelBoostsController {
     public static final int BOOSTS_FOR_LEVEL_1 = 1;
@@ -144,22 +144,20 @@ public class ChannelBoostsController {
         }
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (tL_error == null || lastFragment == null || !"CHANNEL_PRIVATE".equals(tL_error.text)) {
-            BulletinFactory.global().showForError(false, tL_error);
+            BulletinFactory.global().showForError(tL_error);
         } else {
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity == null || !launchActivity.isFinishing()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), 0, lastFragment.getResourceProvider());
-                String string = LocaleController.getString(R.string.AppName);
-                AlertDialog alertDialog = builder.alertDialog;
-                alertDialog.title = string;
+                builder.setTitle(LocaleController.getString(R.string.AppName));
                 HashMap map = new HashMap();
                 int i = Theme.key_dialogTopBackground;
                 map.put("info1", Integer.valueOf(Theme.getColor(null, i, false)));
                 map.put("info2", Integer.valueOf(Theme.getColor(null, i, false)));
-                builder.setTopAnimation(R.raw.not_available, 52, Theme.getColor(null, i, false), map);
-                alertDialog.topAnimationIsNew = true;
-                alertDialog.title = LocaleController.getString(R.string.ChannelPrivate);
-                alertDialog.message = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
+                builder.setTopAnimation(R.raw.not_available, 52, false, Theme.getColor(null, i, false), map);
+                builder.setTopAnimationIsNew(true);
+                builder.setTitle(LocaleController.getString(R.string.ChannelPrivate));
+                builder.setMessage(LocaleController.getString(R.string.ChannelCantOpenPrivate2));
                 builder.setPositiveButton(LocaleController.getString(R.string.Close), null);
                 builder.show();
             }
@@ -204,6 +202,6 @@ public class ChannelBoostsController {
         canApplyBoost.currentChat = this.messagesController.getChat(Long.valueOf(-j));
         FileRefController$$ExternalSyntheticLambda21 fileRefController$$ExternalSyntheticLambda21 = new FileRefController$$ExternalSyntheticLambda21(canApplyBoost, tL_premium_boostsStatus, consumer, 2);
         SendMessagesHelper$$ExternalSyntheticLambda17 sendMessagesHelper$$ExternalSyntheticLambda17 = new SendMessagesHelper$$ExternalSyntheticLambda17(2, canApplyBoost, consumer);
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new BoostsActivity$$ExternalSyntheticLambda7(sendMessagesHelper$$ExternalSyntheticLambda17, MessagesController.getInstance(UserConfig.selectedAccount), fileRefController$$ExternalSyntheticLambda21, 19));
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new StarGiftSheet$$ExternalSyntheticLambda1(sendMessagesHelper$$ExternalSyntheticLambda17, MessagesController.getInstance(UserConfig.selectedAccount), fileRefController$$ExternalSyntheticLambda21, 7));
     }
 }

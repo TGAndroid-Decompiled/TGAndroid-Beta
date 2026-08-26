@@ -16,11 +16,13 @@ public final class PollAttachButton extends View {
     public final BoolAnimator animatorHasMedia;
     public final Drawable attachDrawable;
     public PollAttachedMedia attachedMedia;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final int size;
 
-    public PollAttachButton(Context context, int i) {
+    public PollAttachButton(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context);
-        this.animatorHasMedia = new BoolAnimator(380L, this, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.animatorHasMedia = new BoolAnimator(this, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
+        this.resourcesProvider = resourcesProvider;
         this.size = i;
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.outline_poll_attach_24).mutate();
         this.attachDrawable = drawableMutate;

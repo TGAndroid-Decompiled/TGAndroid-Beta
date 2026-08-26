@@ -20,8 +20,8 @@ public final class GiftInfoAdapter$$ExternalSyntheticLambda2 implements Runnable
             case 0:
                 GiftInfoAdapter giftInfoAdapter = this.f$0;
                 String str = "https://t.me/giftcode/" + giftInfoAdapter.slug;
-                DialogsActivity dialogsActivity = new DialogsActivity(TelegramMediaSession$$ExternalSyntheticOutline0.m(3, "onlySelect", "dialogsType", true));
-                dialogsActivity.delegate = new RateCallLayout$$ExternalSyntheticLambda1(15, giftInfoAdapter, str);
+                DialogsActivity dialogsActivity = new DialogsActivity(TelegramMediaSession$$ExternalSyntheticOutline0.m("onlySelect", "dialogsType", 3, true));
+                dialogsActivity.setDelegate(new RateCallLayout$$ExternalSyntheticLambda1(7, giftInfoAdapter, str));
                 giftInfoAdapter.baseFragment.presentFragment(dialogsActivity);
                 GiftInfoBottomSheet.this.lambda$showGiftOfferSheet$15();
                 break;

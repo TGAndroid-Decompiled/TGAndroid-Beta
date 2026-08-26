@@ -22,7 +22,7 @@ public final class LoadingCell extends FrameLayout {
     public LoadingCell(Context context, int i, int i2) {
         super(context);
         this.height = i2;
-        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        RadialProgressView radialProgressView = new RadialProgressView(context);
         radialProgressView.setSize(i);
         addView(radialProgressView, LayoutHelper.createFrame(-2, -2, 17));
     }

@@ -38,9 +38,9 @@ import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProviderBuilder;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
-import org.telegram.ui.ContactsActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda31;
 import org.telegram.ui.community.CommunityUtils;
 
 public final class CommunityPendingRequestCell extends FrameLayout implements Theme.Colorable {
@@ -106,7 +106,7 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
             } else {
                 i = ChatObject.isChannelAndNotMegaGroup(chat) ? R.string.CommunityPendingRequestSuggestedChannel : R.string.CommunityPendingRequestSuggestedGroup;
             }
-            textView.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i, DialogObject.getShortName(user)), Theme.getColor(null, Theme.key_telegram_color_text, false), new VoIPFragment$$ExternalSyntheticLambda31(12)));
+            textView.setText(AndroidUtilities.replaceSingleLink(LocaleController.formatString(i, DialogObject.getShortName(user)), Theme.getColor(null, Theme.key_telegram_color_text, false), new GiftSheet$$ExternalSyntheticLambda2(29)));
             TextView textView2 = communityPendingRequestCell.membersCountView;
             if (user2 == null && chat != null && chat.participants_count > 0) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("* ");
@@ -126,20 +126,16 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
             communityPendingRequestCell.needDivider = z2;
             BackupImageView backupImageView = communityPendingRequestCell.avatarView;
             if (user2 != null) {
-                backupImageView.imageReceiver.setForUserOrChat(user2, new AvatarDrawable(user2));
-                backupImageView.onNewImageSet();
+                backupImageView.setForUserOrChat(user2, new AvatarDrawable(user2));
             } else {
-                backupImageView.imageReceiver.setForUserOrChat(chat, new AvatarDrawable(chat));
-                backupImageView.onNewImageSet();
+                backupImageView.setForUserOrChat(chat, new AvatarDrawable(chat));
             }
-            BackupImageView backupImageView2 = communityPendingRequestCell.requesterAvatarView;
-            backupImageView2.imageReceiver.setForUserOrChat(user, new AvatarDrawable(user));
-            backupImageView2.onNewImageSet();
+            communityPendingRequestCell.requesterAvatarView.setForUserOrChat(user, new AvatarDrawable(user));
         }
 
         @Override
         public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-            CommunityPendingRequestCell communityPendingRequestCell = new CommunityPendingRequestCell(context, i, resourcesProvider);
+            CommunityPendingRequestCell communityPendingRequestCell = new CommunityPendingRequestCell(context, resourcesProvider, i);
             communityPendingRequestCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             communityPendingRequestCell.setClickable(false);
             return communityPendingRequestCell;
@@ -153,7 +149,7 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
         }
     }
 
-    public CommunityPendingRequestCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+    public CommunityPendingRequestCell(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory;
         super(context);
         this.resourcesProvider = resourcesProvider;
@@ -193,10 +189,10 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
         textView.setGravity(17);
         textView.setPadding(AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(5.0f), 0);
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -1, 81));
-        addView(frameLayout, LayoutHelper.createLinear(52, 48, 11, 48, 0, 14.33f, 0));
+        addView(frameLayout, LayoutHelper.createLinear(52, 14.33f, 48, 11, 48, 0, 0));
         BlurredBackgroundDrawable blurredBackgroundDrawableCreate = blurredBackgroundDrawableViewFactory.create(textView, null, false);
         BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = new BlurredBackgroundProviderBuilder(resourcesProvider);
-        blurredBackgroundProviderBuilder.backgroundColor = new ContactsActivity$$ExternalSyntheticLambda18(14);
+        blurredBackgroundProviderBuilder.backgroundColor = new LivePlayer$$ExternalSyntheticLambda1(9);
         blurredBackgroundProviderBuilder.strokeColorTop = new ExoPlayerImpl$$ExternalSyntheticLambda23(1358954495, 1627389951, 2);
         blurredBackgroundProviderBuilder.strokeColorBottom = new ExoPlayerImpl$$ExternalSyntheticLambda23(603979776, 603979776, 2);
         blurredBackgroundProviderBuilder.shadowColor = new ExoPlayerImpl$$ExternalSyntheticLambda23(0, 0, 2);
@@ -220,7 +216,7 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
         textView2.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(0.0f, 10.0f, 0.0f, 1.33f, -1, -2));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 10.0f, 0.0f, 1.33f));
         BackupImageView backupImageView2 = new BackupImageView(context);
         this.requesterAvatarView = backupImageView2;
         backupImageView2.setRoundRadius(AndroidUtilities.dp(8.0f));
@@ -330,7 +326,7 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
                 }
             }
         });
-        linearLayout.addView(textView3, LayoutHelper.createLinear(20.0f, 0.0f, 0.0f, 1.33f, -1, -2));
+        linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 0.0f, 1.33f));
         TextView textView4 = new TextView(context);
         this.hiddenLabelView = textView4;
         textView4.setTextSize(1, 13.0f);
@@ -343,18 +339,18 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.CommunityPendingRequestOnlyVisibleToMembers));
         textView4.setText(spannableStringBuilder);
         textView4.setVisibility(8);
-        linearLayout.addView(textView4, LayoutHelper.createLinear(0.0f, 7.0f, 0.0f, 1.33f, -2, -2));
+        linearLayout.addView(textView4, LayoutHelper.createLinear(-2, -2, 0.0f, 7.0f, 0.0f, 1.33f));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         linearLayout2.setClipChildren(false);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
         buttonWithCounterView.setUseWrapContent(true);
         buttonWithCounterView.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
-        buttonWithCounterView.setRoundRadius(24);
+        buttonWithCounterView.setRound();
         buttonWithCounterView.setNeutral();
         buttonWithCounterView.setColor(Theme.multAlpha(0.14f, Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider)));
         buttonWithCounterView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
-        buttonWithCounterView.setText(LocaleController.getString(R.string.Decline), false, true);
+        buttonWithCounterView.setText(LocaleController.getString(R.string.Decline), false);
         final int i4 = 2;
         buttonWithCounterView.setOnClickListener(new View.OnClickListener(this) {
             public final CommunityPendingRequestCell f$0;
@@ -406,11 +402,11 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
             }
         });
         linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(-2, 30, 0.0f, 16, 0, 0, 4, 0));
-        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, true, resourcesProvider);
         buttonWithCounterView2.setUseWrapContent(true);
         buttonWithCounterView2.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
-        buttonWithCounterView2.setRoundRadius(24);
-        buttonWithCounterView2.setText(LocaleController.getString(R.string.Add), false, true);
+        buttonWithCounterView2.setRound();
+        buttonWithCounterView2.setText(LocaleController.getString(R.string.Add), false);
         final int i5 = 3;
         buttonWithCounterView2.setOnClickListener(new View.OnClickListener(this) {
             public final CommunityPendingRequestCell f$0;
@@ -464,7 +460,7 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
         linearLayout2.addView(buttonWithCounterView2, LayoutHelper.createLinear(-2, 30, 0.0f, 16, 4, 0, 0, 0));
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 0, 0, 10, 0, 0));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 48, 75.0f, 0.0f, 0.0f, 13.0f));
-        updateColors$1();
+        updateColors();
     }
 
     @Override
@@ -521,7 +517,7 @@ public final class CommunityPendingRequestCell extends FrameLayout implements Th
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         int i = Theme.key_windowBackgroundWhiteBlackText;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         this.titleView.setTextColor(Theme.getColor(i, resourcesProvider));

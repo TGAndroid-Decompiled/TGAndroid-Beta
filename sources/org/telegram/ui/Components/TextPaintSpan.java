@@ -3,31 +3,31 @@ package org.telegram.ui.Components;
 import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 
-public final class TextPaintSpan extends MetricAffectingSpan {
-    public final TextPaint textPaint;
+public class TextPaintSpan extends MetricAffectingSpan {
+    private TextPaint textPaint;
 
     public TextPaintSpan(TextPaint textPaint) {
         this.textPaint = textPaint;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public void updateDrawState(TextPaint textPaint) {
+        textPaint.setColor(this.textPaint.getColor());
+        textPaint.setTypeface(this.textPaint.getTypeface());
+        textPaint.setFlags(this.textPaint.getFlags());
+        textPaint.setTextSize(this.textPaint.getTextSize());
         TextPaint textPaint2 = this.textPaint;
-        textPaint.setColor(textPaint2.getColor());
-        textPaint.setTypeface(textPaint2.getTypeface());
-        textPaint.setFlags(textPaint2.getFlags());
-        textPaint.setTextSize(textPaint2.getTextSize());
         textPaint.baselineShift = textPaint2.baselineShift;
         textPaint.bgColor = textPaint2.bgColor;
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
+    public void updateMeasureState(TextPaint textPaint) {
+        textPaint.setColor(this.textPaint.getColor());
+        textPaint.setTypeface(this.textPaint.getTypeface());
+        textPaint.setFlags(this.textPaint.getFlags());
+        textPaint.setTextSize(this.textPaint.getTextSize());
         TextPaint textPaint2 = this.textPaint;
-        textPaint.setColor(textPaint2.getColor());
-        textPaint.setTypeface(textPaint2.getTypeface());
-        textPaint.setFlags(textPaint2.getFlags());
-        textPaint.setTextSize(textPaint2.getTextSize());
         textPaint.baselineShift = textPaint2.baselineShift;
         textPaint.bgColor = textPaint2.bgColor;
     }

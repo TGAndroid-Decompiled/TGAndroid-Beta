@@ -5,7 +5,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 
 public final class BusinessChatbotController {
     public static volatile BusinessChatbotController[] Instance = new BusinessChatbotController[4];
@@ -62,7 +62,7 @@ public final class BusinessChatbotController {
         int i = this.currentAccount;
         if (jCurrentTimeMillis > 60000 || !(z = this.loaded)) {
             this.loading = true;
-            ConnectionsManager.getInstance(i).sendRequest(new TL_account.getConnectedBots(), new CallLogActivity$$ExternalSyntheticLambda1(this, 7));
+            ConnectionsManager.getInstance(i).sendRequest(new TL_account.getConnectedBots(), new RichMediaUploader$$ExternalSyntheticLambda0(this, 6));
         } else if (z) {
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 if (arrayList.get(i2) != null) {

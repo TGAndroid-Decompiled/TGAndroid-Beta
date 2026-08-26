@@ -14,14 +14,13 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda9;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.QrActivity;
+import org.telegram.ui.Stories.MuteButton;
 
 public final class BottomSheetTabDialog extends Dialog {
     public boolean attached;
-    public final QrActivity.AnonymousClass2 navigationBar;
+    public final MuteButton.AnonymousClass1 navigationBar;
     public final Paint navigationBarPaint;
     public final BottomSheetTabsOverlay.Sheet sheet;
     public final WindowView windowView;
@@ -35,8 +34,8 @@ public final class BottomSheetTabDialog extends Dialog {
         }
 
         @Override
-        public final float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2) {
-            return this.sheetView.drawInto(canvas, rectF, f, rectF2, f2);
+        public final float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2, boolean z) {
+            return this.sheetView.drawInto(canvas, rectF, f, rectF2, f2, false);
         }
 
         @Override
@@ -51,18 +50,18 @@ public final class BottomSheetTabDialog extends Dialog {
     }
 
     public BottomSheetTabDialog(BottomSheetTabsOverlay.Sheet sheet) {
-        super(sheet.mo1066getWindowView().getContext(), R.style.TransparentDialog);
+        super(sheet.mo1107getWindowView().getContext(), R.style.TransparentDialog);
         Paint paint = new Paint(1);
         this.navigationBarPaint = paint;
         this.sheet = sheet;
-        BottomSheetTabsOverlay.SheetView sheetViewMo1066getWindowView = sheet.mo1066getWindowView();
-        QrActivity.AnonymousClass2 anonymousClass2 = new QrActivity.AnonymousClass2(this, getContext(), 1);
-        this.navigationBar = anonymousClass2;
+        BottomSheetTabsOverlay.SheetView sheetViewMo1107getWindowView = sheet.mo1107getWindowView();
+        MuteButton.AnonymousClass1 anonymousClass1 = new MuteButton.AnonymousClass1(this, getContext(), 1);
+        this.navigationBar = anonymousClass1;
         paint.setColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
-        WindowView windowView = new WindowView(sheetViewMo1066getWindowView);
+        WindowView windowView = new WindowView(sheetViewMo1107getWindowView);
         this.windowView = windowView;
         setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
-        windowView.addView(anonymousClass2, LayoutHelper.createFrame(-1, -2, 80));
+        windowView.addView(anonymousClass1, LayoutHelper.createFrame(-1, -2, 80));
         windowView.setClipToPadding(false);
     }
 
@@ -128,6 +127,6 @@ public final class BottomSheetTabDialog extends Dialog {
         windowView.setFitsSystemWindows(true);
         windowView.setSystemUiVisibility(1792);
         windowView.setPadding(0, 0, 0, 0);
-        windowView.setOnApplyWindowInsetsListener(new ArticleViewer$$ExternalSyntheticLambda9(1));
+        windowView.setOnApplyWindowInsetsListener(new BottomSheetTabDialog$$ExternalSyntheticLambda0());
     }
 }

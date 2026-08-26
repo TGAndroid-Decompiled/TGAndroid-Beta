@@ -1,53 +1,108 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
+import android.os.Bundle;
+import android.text.style.CharacterStyle;
+import android.widget.FrameLayout;
+import com.android.billingclient.api.Purchase;
+import java.util.HashSet;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.utils.tlutils.TLKeyboardHelper;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.ChatAttachAlert;
+import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.Components.LinkSpanDrawable;
 
-public final class ChatActivity$$ExternalSyntheticLambda147 implements View.OnLongClickListener {
+public final class ChatActivity$$ExternalSyntheticLambda147 implements RequestDelegate {
     public final int $r8$classId;
     public final Object f$0;
     public final Object f$1;
     public final Object f$2;
     public final Object f$3;
+    public final Object f$4;
 
-    public ChatActivity$$ExternalSyntheticLambda147(Object obj, Object obj2, Object obj3, Object obj4, int i) {
+    public ChatActivity$$ExternalSyntheticLambda147(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i) {
         this.$r8$classId = i;
         this.f$0 = obj;
         this.f$1 = obj2;
         this.f$2 = obj3;
         this.f$3 = obj4;
+        this.f$4 = obj5;
     }
 
     @Override
-    public final boolean onLongClick(View view) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.$r8$classId) {
             case 0:
-                ArticleViewer.AnonymousClass9 anonymousClass9 = (ArticleViewer.AnonymousClass9) this.f$3;
-                ChatActivity chatActivity = (ChatActivity) this.f$0;
-                chatActivity.getClass();
-                TL_keyboard.KeyboardInlineButton keyboardInlineButton = (TL_keyboard.KeyboardInlineButton) this.f$1;
-                TL_keyboard.TL_inlineButtonTypeUrl tL_inlineButtonTypeUrl = (TL_keyboard.TL_inlineButtonTypeUrl) TLKeyboardHelper.getType(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrl.class);
-                if (chatActivity.getParentActivity() == null) {
-                    return false;
-                }
-                if ((chatActivity.bottomChannelButtonsLayout.getVisibility() == 0 && tL_inlineButtonTypeUrl == null && !TLKeyboardHelper.isType(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeSwitchInline.class) && !TLKeyboardHelper.isType(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeCallback.class) && !TLKeyboardHelper.isType(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeGame.class) && !TLKeyboardHelper.isType(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeBuy.class) && !TLKeyboardHelper.isType(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUrlAuth.class) && !TLKeyboardHelper.isType(keyboardInlineButton, TL_keyboard.TL_inlineButtonTypeUserProfile.class)) || tL_inlineButtonTypeUrl == null) {
-                    return false;
-                }
-                chatActivity.openClickableLink(null, tL_inlineButtonTypeUrl.url, true, null, (MessageObject) this.f$2);
-                try {
-                    anonymousClass9.performHapticFeedback(0, 1);
-                    break;
-                } catch (Exception unused) {
-                }
-                return true;
+                ((ChatActivity) this.f$0).lambda$didLongPressUsername$436((TLObject) this.f$1, (ChatActivity$$ExternalSyntheticLambda146) this.f$2, (String) this.f$3, (Browser.Progress) this.f$4, tLObject, tL_error);
+                break;
+            case 1:
+                ((ChatActivity.ChatMessageCellDelegate) this.f$0).lambda$didPressOther$4((AlertDialog) this.f$1, (HashSet) this.f$2, (TLRPC.TL_inputGroupCallInviteMessage) this.f$3, (MessageObject) this.f$4, tLObject, tL_error);
+                break;
+            case 2:
+                ((LoginActivity.PhoneView) this.f$0).lambda$onNextPressed$23((Bundle) this.f$2, (String) this.f$3, (LoginActivity.PhoneInputData) this.f$4, (TLObject) this.f$1, tLObject, tL_error);
+                break;
+            case 3:
+                ((PassportActivity.AnonymousClass20.AnonymousClass1) this.f$0).lambda$run$2((String) this.f$3, (TLRPC.TL_secureRequiredType) this.f$1, (PassportActivity.PassportActivityDelegate) this.f$2, (PassportActivity.ErrorRunnable) this.f$4, tLObject, tL_error);
+                break;
+            case 4:
+                CallLogActivity.lambda$showCallLinkSheet$29((String[]) this.f$0, (FrameLayout) this.f$1, (LinkSpanDrawable.LinksTextView) this.f$2, (BottomSheet) this.f$3, (Theme.ResourcesProvider) this.f$4, tLObject, tL_error);
+                break;
+            case 5:
+                ((ChangeBioActivity) this.f$0).lambda$saveName$4((AlertDialog) this.f$1, (TLRPC.UserFull) this.f$2, (String) this.f$3, (TL_account.updateProfile) this.f$4, tLObject, tL_error);
+                break;
+            case 6:
+                ((ChatActivity) this.f$0).lambda$didLongPressCard$425((Browser.Progress) this.f$4, (ChatMessageCell) this.f$1, (String) this.f$3, (CharacterStyle) this.f$2, tLObject, tL_error);
+                break;
+            case 7:
+                ((LaunchActivity) this.f$0).lambda$handleIntent$12((AlertDialog) this.f$1, (String) this.f$3, (Bundle) this.f$2, (TL_account.sendConfirmPhoneCode) this.f$4, tLObject, tL_error);
+                break;
+            case 8:
+                ((LoginActivity.LoginPayView) this.f$0).lambda$setParams$22((TLRPC.TL_inputStorePaymentAuthCode) this.f$1, (Purchase) this.f$2, (TLRPC.TL_payments_canPurchaseStore) this.f$3, (Runnable) this.f$4, tLObject, tL_error);
+                break;
             default:
-                return ((ChatAttachAlert) this.f$0).lambda$new$37((Context) this.f$1, (Theme.ResourcesProvider) this.f$2, (BaseFragment) this.f$3, view);
+                ((SelectChatUserSheet) this.f$0).lambda$initTransfer$13((TLRPC.InputCheckPasswordSRP) this.f$1, (TLRPC.User) this.f$2, (TwoStepVerificationActivity) this.f$3, (TLRPC.TL_channels_editCreator) this.f$4, tLObject, tL_error);
+                break;
         }
+    }
+
+    public ChatActivity$$ExternalSyntheticLambda147(ChatActivity chatActivity, Browser.Progress progress, ChatMessageCell chatMessageCell, String str, CharacterStyle characterStyle) {
+        this.$r8$classId = 6;
+        this.f$0 = chatActivity;
+        this.f$4 = progress;
+        this.f$1 = chatMessageCell;
+        this.f$3 = str;
+        this.f$2 = characterStyle;
+    }
+
+    public ChatActivity$$ExternalSyntheticLambda147(LaunchActivity launchActivity, AlertDialog alertDialog, String str, Bundle bundle, TL_account.sendConfirmPhoneCode sendconfirmphonecode) {
+        this.$r8$classId = 7;
+        this.f$0 = launchActivity;
+        this.f$1 = alertDialog;
+        this.f$3 = str;
+        this.f$2 = bundle;
+        this.f$4 = sendconfirmphonecode;
+    }
+
+    public ChatActivity$$ExternalSyntheticLambda147(LoginActivity.PhoneView phoneView, Bundle bundle, String str, LoginActivity.PhoneInputData phoneInputData, TLObject tLObject) {
+        this.$r8$classId = 2;
+        this.f$0 = phoneView;
+        this.f$2 = bundle;
+        this.f$3 = str;
+        this.f$4 = phoneInputData;
+        this.f$1 = tLObject;
+    }
+
+    public ChatActivity$$ExternalSyntheticLambda147(PassportActivity.AnonymousClass20.AnonymousClass1 anonymousClass1, String str, TLRPC.TL_secureRequiredType tL_secureRequiredType, PassportActivity.PassportActivityDelegate passportActivityDelegate, PassportActivity.ErrorRunnable errorRunnable) {
+        this.$r8$classId = 3;
+        this.f$0 = anonymousClass1;
+        this.f$3 = str;
+        this.f$1 = tL_secureRequiredType;
+        this.f$2 = passportActivityDelegate;
+        this.f$4 = errorRunnable;
     }
 }

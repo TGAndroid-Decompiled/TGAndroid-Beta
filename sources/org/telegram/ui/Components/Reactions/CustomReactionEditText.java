@@ -10,18 +10,18 @@ import android.view.ActionMode;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MotionEvent;
-import com.android.billingclient.api.zzcv;
+import androidx.core.view.GestureDetectorCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.EditTextCaption;
-import org.telegram.ui.Components.ItemOptions;
-import org.telegram.ui.Components.ShareAlert$$ExternalSyntheticLambda29;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda26;
 import org.telegram.ui.iv.RichTextCell$$ExternalSyntheticLambda3;
 
 public abstract class CustomReactionEditText extends EditTextCaption {
-    public final zzcv gestureDetector;
+    public final GestureDetectorCompat gestureDetector;
     public int maxLength;
     public Runnable onFocused;
     public final Theme.ResourcesProvider resourcesProvider;
@@ -33,10 +33,10 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         }
     }
 
-    public CustomReactionEditText(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+    public CustomReactionEditText(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context, resourcesProvider);
         this.resourcesProvider = resourcesProvider;
-        this.gestureDetector = new zzcv(getContext(), new AnonymousClass1());
+        this.gestureDetector = new GestureDetectorCompat(getContext(), new AnonymousClass1());
         setBackground(null);
         setIncludeFontPadding(true);
         int i2 = Build.VERSION.SDK_INT;
@@ -59,7 +59,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
         if (i2 >= 28) {
             setFallbackLineSpacing(false);
         }
-        setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3((ChatCustomReactionsEditActivity.AnonymousClass3) this, 4));
+        setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3((ChatCustomReactionsEditActivity.AnonymousClass3) this, 3));
         setTextIsSelectable(true);
         setLongClickable(false);
         setFocusableInTouchMode(false);
@@ -82,7 +82,7 @@ public abstract class CustomReactionEditText extends EditTextCaption {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (!((GestureDetector) this.gestureDetector.zza).onTouchEvent(motionEvent) || isLongClickable()) {
+        if (!this.gestureDetector.mDetector.onTouchEvent(motionEvent) || isLongClickable()) {
             return super.dispatchTouchEvent(motionEvent);
         }
         return false;
@@ -127,16 +127,16 @@ public abstract class CustomReactionEditText extends EditTextCaption {
     public final void removeReactionsSpan(boolean z) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(getText());
         for (AddReactionsSpan addReactionsSpan : (AddReactionsSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AddReactionsSpan.class)) {
-            ShareAlert$$ExternalSyntheticLambda29 shareAlert$$ExternalSyntheticLambda29 = new ShareAlert$$ExternalSyntheticLambda29(10, this, addReactionsSpan);
+            GiftSheet$$ExternalSyntheticLambda26 giftSheet$$ExternalSyntheticLambda26 = new GiftSheet$$ExternalSyntheticLambda26(14, this, addReactionsSpan);
             if (z) {
                 setCursorVisible(false);
                 ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(addReactionsSpan.alpha, 0);
                 valueAnimatorOfInt.addUpdateListener(new AddReactionsSpan$$ExternalSyntheticLambda0(addReactionsSpan, this, 1));
-                valueAnimatorOfInt.addListener(new ItemOptions.AnonymousClass3(shareAlert$$ExternalSyntheticLambda29, 23));
+                valueAnimatorOfInt.addListener(new BaseChartView.AnonymousClass4(giftSheet$$ExternalSyntheticLambda26, 11));
                 valueAnimatorOfInt.setDuration(200L);
                 valueAnimatorOfInt.start();
             } else {
-                shareAlert$$ExternalSyntheticLambda29.run();
+                giftSheet$$ExternalSyntheticLambda26.run();
             }
         }
     }

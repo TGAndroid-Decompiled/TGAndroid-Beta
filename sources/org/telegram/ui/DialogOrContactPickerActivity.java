@@ -1,5 +1,7 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -12,15 +14,21 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.animation.Interpolator;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper$$ExternalSyntheticOutline0;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarLayout;
@@ -34,179 +42,431 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
 
-public final class DialogOrContactPickerActivity extends BaseFragment {
-    public static final DialogsActivity$$ExternalSyntheticLambda79 interpolator = new DialogsActivity$$ExternalSyntheticLambda79(3);
-    public boolean animatingForward;
-    public boolean backAnimation;
-    public final Paint backgroundPaint;
-    public final ContactsActivity contactsActivity;
-    public final DialogsActivity dialogsActivity;
-    public int maximumVelocity;
-    public ScrollSlidingTextTabStrip scrollSlidingTextTabStrip;
-    public ActionBarMenuItem searchItem;
-    public boolean swipeBackEnabled;
-    public AnimatorSet tabsAnimation;
-    public boolean tabsAnimationInProgress;
-    public final AnonymousClass5[] viewPages;
+public class DialogOrContactPickerActivity extends BaseFragment {
+    private static final Interpolator interpolator = new DataUsageActivity$$ExternalSyntheticLambda1(1);
+    private static final int search_button = 0;
+    private boolean animatingForward;
+    private boolean backAnimation;
+    private Paint backgroundPaint;
+    private ContactsActivity contactsActivity;
+    private DialogsActivity dialogsActivity;
+    private int maximumVelocity;
+    private ScrollSlidingTextTabStrip scrollSlidingTextTabStrip;
+    private ActionBarMenuItem searchItem;
+    private boolean swipeBackEnabled;
+    private AnimatorSet tabsAnimation;
+    private boolean tabsAnimationInProgress;
+    private ViewPage[] viewPages;
 
-    public final class AnonymousClass4 extends FrameLayout {
-        public boolean globalIgnoreLayout;
-        public boolean maybeStartTracking;
-        public boolean startedTracking;
-        public int startedTrackingPointerId;
-        public int startedTrackingX;
-        public int startedTrackingY;
-        public VelocityTracker velocityTracker;
+    public static class ViewPage extends FrameLayout {
+        private ActionBar actionBar;
+        private FrameLayout fragmentView;
+        private RecyclerListView listView;
+        private RecyclerListView listView2;
+        private BaseFragment parentFragment;
+        private int selectedType;
 
-        public AnonymousClass4(Context context) {
+        public ViewPage(Context context) {
             super(context);
         }
+    }
 
-        public final boolean checkTabsAnimationInProgress() {
-            AnimatorSet animatorSet;
-            DialogOrContactPickerActivity dialogOrContactPickerActivity = DialogOrContactPickerActivity.this;
-            if (!dialogOrContactPickerActivity.tabsAnimationInProgress) {
-                return false;
+    public DialogOrContactPickerActivity() {
+        super(null);
+        this.backgroundPaint = new Paint();
+        this.viewPages = new ViewPage[2];
+        this.swipeBackEnabled = true;
+        Bundle bundle = new Bundle();
+        bundle.putBoolean("onlySelect", true);
+        bundle.putBoolean("checkCanWrite", false);
+        bundle.putBoolean("resetDelegate", false);
+        bundle.putInt("dialogsType", 9);
+        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
+        this.dialogsActivity = dialogsActivity;
+        dialogsActivity.setDelegate(new PhotoViewer$$ExternalSyntheticLambda96(this, 4));
+        this.dialogsActivity.onFragmentCreate();
+        Bundle bundle2 = new Bundle();
+        bundle2.putBoolean("onlyUsers", true);
+        bundle2.putBoolean("destroyAfterSelect", true);
+        bundle2.putBoolean("returnAsResult", true);
+        bundle2.putBoolean("disableSections", true);
+        bundle2.putBoolean("needFinishFragment", false);
+        bundle2.putBoolean("resetDelegate", false);
+        bundle2.putBoolean("allowSelf", false);
+        ContactsActivity contactsActivity = new ContactsActivity(bundle2);
+        this.contactsActivity = contactsActivity;
+        contactsActivity.setDelegate(new BoostsActivity$$ExternalSyntheticLambda4(this, 17));
+        this.contactsActivity.onFragmentCreate();
+    }
+
+    public boolean lambda$new$1(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
+        if (arrayList.isEmpty()) {
+            return true;
+        }
+        long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
+        if (!DialogObject.isUserDialog(j)) {
+            return true;
+        }
+        showBlockAlert(getMessagesController().getUser(Long.valueOf(j)));
+        return true;
+    }
+
+    public void lambda$new$2(TLRPC.User user, String str, ContactsActivity contactsActivity) {
+        showBlockAlert(user);
+    }
+
+    public void lambda$showBlockAlert$3(TLRPC.User user, AlertDialog alertDialog, int i) {
+        if (MessagesController.isSupportUser(user)) {
+            AlertsCreator.showSimpleToast(this, LocaleController.getString(R.string.ErrorOccurred));
+        } else {
+            MessagesController.getInstance(this.currentAccount).blockPeer(user.id);
+            AlertsCreator.showSimpleToast(this, LocaleController.getString(R.string.UserBlocked));
+        }
+        finishFragment();
+    }
+
+    public static float lambda$static$0(float f) {
+        float f2 = f - 1.0f;
+        return (f2 * f2 * f2 * f2 * f2) + 1.0f;
+    }
+
+    public void setScrollY(float f) {
+        this.actionBar.setTranslationY(f);
+        int i = 0;
+        while (true) {
+            ViewPage[] viewPageArr = this.viewPages;
+            if (i >= viewPageArr.length) {
+                this.fragmentView.invalidate();
+                return;
             }
-            boolean z = dialogOrContactPickerActivity.backAnimation;
-            AnonymousClass5[] anonymousClass5Arr = dialogOrContactPickerActivity.viewPages;
-            if (z) {
-                if (Math.abs(anonymousClass5Arr[0].getTranslationX()) < 1.0f) {
-                    anonymousClass5Arr[0].setTranslationX(0.0f);
-                    anonymousClass5Arr[1].setTranslationX(anonymousClass5Arr[0].getMeasuredWidth() * (dialogOrContactPickerActivity.animatingForward ? 1 : -1));
-                    animatorSet = dialogOrContactPickerActivity.tabsAnimation;
-                    if (animatorSet != null) {
-                        animatorSet.cancel();
-                        dialogOrContactPickerActivity.tabsAnimation = null;
+            int i2 = (int) f;
+            viewPageArr[i].listView.setPinnedSectionOffsetY(i2);
+            if (this.viewPages[i].listView2 != null) {
+                this.viewPages[i].listView2.setPinnedSectionOffsetY(i2);
+            }
+            i++;
+        }
+    }
+
+    private void showBlockAlert(TLRPC.User user) {
+        if (user == null) {
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, null);
+        builder.setTitle(LocaleController.getString(R.string.BlockUser));
+        SendMessagesHelper$$ExternalSyntheticOutline0.m("AreYouSureBlockContact2", R.string.AreYouSureBlockContact2, new Object[]{ContactsController.formatName(user.first_name, user.last_name)}, builder);
+        builder.setPositiveButton(LocaleController.getString(R.string.BlockContact), new DialogsActivity$$ExternalSyntheticLambda6(7, this, user));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        AlertDialog alertDialogCreate = builder.create();
+        showDialog(alertDialogCreate);
+        TextView textView = (TextView) alertDialogCreate.getButton(-1);
+        if (textView != null) {
+            textView.setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
+        }
+    }
+
+    public void switchToCurrentSelectedMode(boolean z) {
+        int i = 0;
+        while (true) {
+            ViewPage[] viewPageArr = this.viewPages;
+            if (i >= viewPageArr.length) {
+                break;
+            }
+            viewPageArr[i].listView.stopScroll();
+            if (this.viewPages[i].listView2 != null) {
+                this.viewPages[i].listView2.stopScroll();
+            }
+            i++;
+        }
+        int i2 = 0;
+        while (i2 < 2) {
+            RecyclerListView recyclerListView = i2 == 0 ? this.viewPages[z ? 1 : 0].listView : this.viewPages[z ? 1 : 0].listView2;
+            if (recyclerListView != null) {
+                recyclerListView.getAdapter();
+                recyclerListView.setPinnedHeaderShadowDrawable(null);
+                if (this.actionBar.getTranslationY() != 0.0f) {
+                    ((LinearLayoutManager) recyclerListView.getLayoutManager()).scrollToPositionWithOffset(0, (int) this.actionBar.getTranslationY());
+                }
+            }
+            i2++;
+        }
+    }
+
+    private void updateTabs() {
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = this.scrollSlidingTextTabStrip;
+        if (scrollSlidingTextTabStrip == null) {
+            return;
+        }
+        scrollSlidingTextTabStrip.addTextTab(0, LocaleController.getString(R.string.BlockUserChatsTitle));
+        this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString(R.string.BlockUserContactsTitle));
+        this.scrollSlidingTextTabStrip.setVisibility(0);
+        this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));
+        int currentTabId = this.scrollSlidingTextTabStrip.getCurrentTabId();
+        if (currentTabId >= 0) {
+            this.viewPages[0].selectedType = currentTabId;
+        }
+        this.scrollSlidingTextTabStrip.finishAddingTabs();
+    }
+
+    @Override
+    public View createView(Context context) {
+        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.actionBar.setTitle(LocaleController.getString(R.string.BlockUserMultiTitle));
+        INavigationLayout iNavigationLayout = this.parentLayout;
+        if (iNavigationLayout != null && ((ActionBarLayout) iNavigationLayout).isLayersLayout) {
+            this.actionBar.setOccupyStatusBar(false);
+        }
+        this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));
+        this.actionBar.setAllowOverlayTitle(false);
+        this.actionBar.setAddToContainer(false);
+        this.actionBar.setClipContent(true);
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i) {
+                if (i == -1) {
+                    DialogOrContactPickerActivity.this.finishFragment();
+                }
+            }
+        });
+        this.hasOwnBackground = true;
+        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+            @Override
+            public void onSearchCollapse() {
+                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().closeSearchField(false);
+                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().closeSearchField(false);
+            }
+
+            @Override
+            public void onSearchExpand() {
+                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().openSearchField("", false);
+                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().openSearchField("", false);
+                DialogOrContactPickerActivity.this.searchItem.getSearchField().requestFocus();
+            }
+
+            @Override
+            public void onTextChanged(EditText editText) {
+                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().setSearchFieldText(editText.getText().toString());
+                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().setSearchFieldText(editText.getText().toString());
+            }
+        });
+        this.searchItem = actionBarMenuItemSearchListener;
+        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(context);
+        this.scrollSlidingTextTabStrip = scrollSlidingTextTabStrip;
+        scrollSlidingTextTabStrip.setUseSameWidth(true);
+        this.actionBar.addView(this.scrollSlidingTextTabStrip, LayoutHelper.createFrame(-1, 44, 83));
+        this.scrollSlidingTextTabStrip.setDelegate(new ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate() {
+            @Override
+            public final boolean canReorder(int i) {
+                return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$canReorder(this, i);
+            }
+
+            @Override
+            public void onPageScrolled(float f) {
+                if (f != 1.0f || DialogOrContactPickerActivity.this.viewPages[1].getVisibility() == 0) {
+                    if (DialogOrContactPickerActivity.this.animatingForward) {
+                        DialogOrContactPickerActivity.this.viewPages[0].setTranslationX((-f) * DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
+                        DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() - (f * DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth()));
+                    } else {
+                        DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() * f);
+                        DialogOrContactPickerActivity.this.viewPages[1].setTranslationX((f * DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth()) - DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
                     }
-                    dialogOrContactPickerActivity.tabsAnimationInProgress = false;
-                }
-            } else if (Math.abs(anonymousClass5Arr[1].getTranslationX()) < 1.0f) {
-                AnonymousClass5 anonymousClass5 = anonymousClass5Arr[0];
-                anonymousClass5.setTranslationX(anonymousClass5.getMeasuredWidth() * (dialogOrContactPickerActivity.animatingForward ? -1 : 1));
-                anonymousClass5Arr[1].setTranslationX(0.0f);
-                animatorSet = dialogOrContactPickerActivity.tabsAnimation;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    dialogOrContactPickerActivity.tabsAnimation = null;
-                }
-                dialogOrContactPickerActivity.tabsAnimationInProgress = false;
-            }
-            return dialogOrContactPickerActivity.tabsAnimationInProgress;
-        }
-
-        @Override
-        public final void dispatchDraw(Canvas canvas) {
-            super.dispatchDraw(canvas);
-            DialogOrContactPickerActivity dialogOrContactPickerActivity = DialogOrContactPickerActivity.this;
-            if (((BaseFragment) dialogOrContactPickerActivity).parentLayout != null) {
-                INavigationLayout iNavigationLayout = ((BaseFragment) dialogOrContactPickerActivity).parentLayout;
-                int measuredHeight = ((BaseFragment) dialogOrContactPickerActivity).actionBar.getMeasuredHeight() + ((int) ((BaseFragment) dialogOrContactPickerActivity).actionBar.getTranslationY());
-                iNavigationLayout.getClass();
-                ((ActionBarLayout) iNavigationLayout).drawHeaderShadow(canvas, 255, measuredHeight);
-            }
-        }
-
-        @Override
-        public final void onDraw(Canvas canvas) {
-            DialogOrContactPickerActivity dialogOrContactPickerActivity = DialogOrContactPickerActivity.this;
-            Paint paint = dialogOrContactPickerActivity.backgroundPaint;
-            paint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
-            canvas.drawRect(0.0f, ((BaseFragment) dialogOrContactPickerActivity).actionBar.getTranslationY() + ((BaseFragment) dialogOrContactPickerActivity).actionBar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight(), paint);
-        }
-
-        @Override
-        public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-            return checkTabsAnimationInProgress() || DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.animatingIndicator || onTouchEvent(motionEvent);
-        }
-
-        @Override
-        public final void onMeasure(int i, int i2) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
-            DialogOrContactPickerActivity dialogOrContactPickerActivity = DialogOrContactPickerActivity.this;
-            AnonymousClass4 anonymousClass4 = this;
-            anonymousClass4.measureChildWithMargins(((BaseFragment) dialogOrContactPickerActivity).actionBar, i, 0, i2, 0);
-            int measuredHeight = ((BaseFragment) dialogOrContactPickerActivity).actionBar.getMeasuredHeight();
-            anonymousClass4.globalIgnoreLayout = true;
-            int i3 = 0;
-            int i4 = 0;
-            while (true) {
-                AnonymousClass5[] anonymousClass5Arr = dialogOrContactPickerActivity.viewPages;
-                if (i4 >= anonymousClass5Arr.length) {
-                    break;
-                }
-                AnonymousClass5 anonymousClass5 = anonymousClass5Arr[i4];
-                if (anonymousClass5 != null) {
-                    RecyclerListView recyclerListView = anonymousClass5.listView;
-                    if (recyclerListView != null) {
-                        recyclerListView.setPadding(0, measuredHeight, 0, 0);
-                    }
-                    ChatActivity.AnonymousClass34 anonymousClass34 = anonymousClass5Arr[i4].listView2;
-                    if (anonymousClass34 != null) {
-                        anonymousClass34.setPadding(0, measuredHeight, 0, 0);
+                    if (f == 1.0f) {
+                        ViewPage viewPage = DialogOrContactPickerActivity.this.viewPages[0];
+                        DialogOrContactPickerActivity.this.viewPages[0] = DialogOrContactPickerActivity.this.viewPages[1];
+                        DialogOrContactPickerActivity.this.viewPages[1] = viewPage;
+                        DialogOrContactPickerActivity.this.viewPages[1].setVisibility(8);
                     }
                 }
-                i4++;
             }
-            anonymousClass4.globalIgnoreLayout = false;
-            int childCount = getChildCount();
-            while (i3 < childCount) {
-                View childAt = getChildAt(i3);
-                if (childAt != null && childAt.getVisibility() != 8 && childAt != ((BaseFragment) dialogOrContactPickerActivity).actionBar) {
-                    anonymousClass4.measureChildWithMargins(childAt, i, 0, i2, 0);
-                }
-                i3++;
-                anonymousClass4 = this;
-            }
-        }
 
-        @Override
-        public final boolean onTouchEvent(MotionEvent motionEvent) {
-            float xVelocity;
-            float yVelocity;
-            float measuredWidth;
-            boolean z;
-            DialogOrContactPickerActivity dialogOrContactPickerActivity = DialogOrContactPickerActivity.this;
-            if (((ActionBarLayout) ((BaseFragment) dialogOrContactPickerActivity).parentLayout).checkTransitionAnimation() || checkTabsAnimationInProgress()) {
-                return false;
-            }
-            if (motionEvent != null) {
-                if (this.velocityTracker == null) {
-                    this.velocityTracker = VelocityTracker.obtain();
+            @Override
+            public void onPageSelected(int i, boolean z) {
+                if (DialogOrContactPickerActivity.this.viewPages[0].selectedType == i) {
+                    return;
                 }
-                this.velocityTracker.addMovement(motionEvent);
+                DialogOrContactPickerActivity dialogOrContactPickerActivity = DialogOrContactPickerActivity.this;
+                dialogOrContactPickerActivity.swipeBackEnabled = i == dialogOrContactPickerActivity.scrollSlidingTextTabStrip.getFirstTabId();
+                DialogOrContactPickerActivity.this.viewPages[1].selectedType = i;
+                DialogOrContactPickerActivity.this.viewPages[1].setVisibility(0);
+                DialogOrContactPickerActivity.this.switchToCurrentSelectedMode(true);
+                DialogOrContactPickerActivity.this.animatingForward = z;
             }
-            if (motionEvent == null || motionEvent.getAction() != 0 || this.startedTracking || this.maybeStartTracking) {
-                AnonymousClass5[] anonymousClass5Arr = dialogOrContactPickerActivity.viewPages;
-                if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.startedTrackingPointerId) {
+
+            @Override
+            public final void onSamePageSelected() {
+                ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$onSamePageSelected(this);
+            }
+
+            @Override
+            public final boolean showOptions(int i, View view) {
+                return ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate.CC.$default$showOptions(this, i, view);
+            }
+        });
+        this.maximumVelocity = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
+        FrameLayout frameLayout = new FrameLayout(context) {
+            private boolean globalIgnoreLayout;
+            private boolean maybeStartTracking;
+            private boolean startedTracking;
+            private int startedTrackingPointerId;
+            private int startedTrackingX;
+            private int startedTrackingY;
+            private VelocityTracker velocityTracker;
+
+            private boolean prepareForMoving(MotionEvent motionEvent, boolean z) {
+                int nextPageId = DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.getNextPageId(z);
+                if (nextPageId < 0) {
+                    return false;
+                }
+                getParent().requestDisallowInterceptTouchEvent(true);
+                this.maybeStartTracking = false;
+                this.startedTracking = true;
+                this.startedTrackingX = (int) motionEvent.getX();
+                ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.setEnabled(false);
+                DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.setEnabled(false);
+                DialogOrContactPickerActivity.this.viewPages[1].selectedType = nextPageId;
+                DialogOrContactPickerActivity.this.viewPages[1].setVisibility(0);
+                DialogOrContactPickerActivity.this.animatingForward = z;
+                DialogOrContactPickerActivity.this.switchToCurrentSelectedMode(true);
+                if (z) {
+                    DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
+                } else {
+                    DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(-DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
+                }
+                return true;
+            }
+
+            public boolean checkTabsAnimationInProgress() {
+                if (!DialogOrContactPickerActivity.this.tabsAnimationInProgress) {
+                    return false;
+                }
+                if (DialogOrContactPickerActivity.this.backAnimation) {
+                    if (Math.abs(DialogOrContactPickerActivity.this.viewPages[0].getTranslationX()) < 1.0f) {
+                        DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(0.0f);
+                        DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() * (DialogOrContactPickerActivity.this.animatingForward ? 1 : -1));
+                        if (DialogOrContactPickerActivity.this.tabsAnimation != null) {
+                            DialogOrContactPickerActivity.this.tabsAnimation.cancel();
+                            DialogOrContactPickerActivity.this.tabsAnimation = null;
+                        }
+                        DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
+                    }
+                } else if (Math.abs(DialogOrContactPickerActivity.this.viewPages[1].getTranslationX()) < 1.0f) {
+                    DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() * (DialogOrContactPickerActivity.this.animatingForward ? -1 : 1));
+                    DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(0.0f);
+                    if (DialogOrContactPickerActivity.this.tabsAnimation != null) {
+                        DialogOrContactPickerActivity.this.tabsAnimation.cancel();
+                        DialogOrContactPickerActivity.this.tabsAnimation = null;
+                    }
+                    DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
+                }
+                return DialogOrContactPickerActivity.this.tabsAnimationInProgress;
+            }
+
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                if (((BaseFragment) DialogOrContactPickerActivity.this).parentLayout != null) {
+                    INavigationLayout iNavigationLayout2 = ((BaseFragment) DialogOrContactPickerActivity.this).parentLayout;
+                    int measuredHeight = ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.getMeasuredHeight() + ((int) ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.getTranslationY());
+                    iNavigationLayout2.getClass();
+                    ((ActionBarLayout) iNavigationLayout2).drawHeaderShadow(canvas, 255, measuredHeight);
+                }
+            }
+
+            @Override
+            public void forceHasOverlappingRendering(boolean z) {
+                super.forceHasOverlappingRendering(z);
+            }
+
+            @Override
+            public void onDraw(Canvas canvas) {
+                DialogOrContactPickerActivity.this.backgroundPaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+                canvas.drawRect(0.0f, ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.getTranslationY() + ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight(), DialogOrContactPickerActivity.this.backgroundPaint);
+            }
+
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                return checkTabsAnimationInProgress() || DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.isAnimatingIndicator() || onTouchEvent(motionEvent);
+            }
+
+            @Override
+            public void onMeasure(int i, int i2) {
+                setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
+                AnonymousClass4 anonymousClass4 = this;
+                anonymousClass4.measureChildWithMargins(((BaseFragment) DialogOrContactPickerActivity.this).actionBar, i, 0, i2, 0);
+                int measuredHeight = ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.getMeasuredHeight();
+                anonymousClass4.globalIgnoreLayout = true;
+                int i3 = 0;
+                for (int i4 = 0; i4 < DialogOrContactPickerActivity.this.viewPages.length; i4++) {
+                    if (DialogOrContactPickerActivity.this.viewPages[i4] != null) {
+                        if (DialogOrContactPickerActivity.this.viewPages[i4].listView != null) {
+                            DialogOrContactPickerActivity.this.viewPages[i4].listView.setPadding(0, measuredHeight, 0, 0);
+                        }
+                        if (DialogOrContactPickerActivity.this.viewPages[i4].listView2 != null) {
+                            DialogOrContactPickerActivity.this.viewPages[i4].listView2.setPadding(0, measuredHeight, 0, 0);
+                        }
+                    }
+                }
+                anonymousClass4.globalIgnoreLayout = false;
+                int childCount = getChildCount();
+                while (i3 < childCount) {
+                    View childAt = getChildAt(i3);
+                    if (childAt != null && childAt.getVisibility() != 8 && childAt != ((BaseFragment) DialogOrContactPickerActivity.this).actionBar) {
+                        anonymousClass4.measureChildWithMargins(childAt, i, 0, i2, 0);
+                    }
+                    i3++;
+                    anonymousClass4 = this;
+                }
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                float xVelocity;
+                float yVelocity;
+                float measuredWidth;
+                if (((ActionBarLayout) ((BaseFragment) DialogOrContactPickerActivity.this).parentLayout).checkTransitionAnimation() || checkTabsAnimationInProgress()) {
+                    return false;
+                }
+                if (motionEvent != null) {
+                    if (this.velocityTracker == null) {
+                        this.velocityTracker = VelocityTracker.obtain();
+                    }
+                    this.velocityTracker.addMovement(motionEvent);
+                }
+                if (motionEvent != null && motionEvent.getAction() == 0 && !this.startedTracking && !this.maybeStartTracking) {
+                    this.startedTrackingPointerId = motionEvent.getPointerId(0);
+                    this.maybeStartTracking = true;
+                    this.startedTrackingX = (int) motionEvent.getX();
+                    this.startedTrackingY = (int) motionEvent.getY();
+                    this.velocityTracker.clear();
+                } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.startedTrackingPointerId) {
                     int x = (int) (motionEvent.getX() - this.startedTrackingX);
                     int iAbs = Math.abs(((int) motionEvent.getY()) - this.startedTrackingY);
-                    if (this.startedTracking && (((z = dialogOrContactPickerActivity.animatingForward) && x > 0) || (!z && x < 0))) {
+                    if (this.startedTracking && ((DialogOrContactPickerActivity.this.animatingForward && x > 0) || (!DialogOrContactPickerActivity.this.animatingForward && x < 0))) {
                         if (!prepareForMoving(motionEvent, x < 0)) {
                             this.maybeStartTracking = true;
                             this.startedTracking = false;
-                            anonymousClass5Arr[0].setTranslationX(0.0f);
-                            anonymousClass5Arr[1].setTranslationX(dialogOrContactPickerActivity.animatingForward ? anonymousClass5Arr[0].getMeasuredWidth() : -anonymousClass5Arr[0].getMeasuredWidth());
-                            dialogOrContactPickerActivity.scrollSlidingTextTabStrip.selectTabWithId$1(0.0f, anonymousClass5Arr[1].selectedType);
+                            DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(0.0f);
+                            DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.animatingForward ? DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() : -DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
+                            DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[1].selectedType, 0.0f);
                         }
                     }
                     if (!this.maybeStartTracking || this.startedTracking) {
                         if (this.startedTracking) {
-                            anonymousClass5Arr[0].setTranslationX(x);
-                            if (dialogOrContactPickerActivity.animatingForward) {
-                                anonymousClass5Arr[1].setTranslationX(anonymousClass5Arr[0].getMeasuredWidth() + x);
+                            DialogOrContactPickerActivity.this.viewPages[0].setTranslationX(x);
+                            if (DialogOrContactPickerActivity.this.animatingForward) {
+                                DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() + x);
                             } else {
-                                anonymousClass5Arr[1].setTranslationX(x - anonymousClass5Arr[0].getMeasuredWidth());
+                                DialogOrContactPickerActivity.this.viewPages[1].setTranslationX(x - DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
                             }
-                            dialogOrContactPickerActivity.scrollSlidingTextTabStrip.selectTabWithId$1(Math.abs(x) / anonymousClass5Arr[0].getMeasuredWidth(), anonymousClass5Arr[1].selectedType);
+                            DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[1].selectedType, Math.abs(x) / DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
                         }
                     } else if (Math.abs(x) >= AndroidUtilities.getPixelsInCM(0.3f, true) && Math.abs(x) > iAbs) {
                         prepareForMoving(motionEvent, x < 0);
                     }
                 } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.startedTrackingPointerId && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-                    this.velocityTracker.computeCurrentVelocity(1000, dialogOrContactPickerActivity.maximumVelocity);
+                    this.velocityTracker.computeCurrentVelocity(1000, DialogOrContactPickerActivity.this.maximumVelocity);
                     if (motionEvent == null || motionEvent.getAction() == 3) {
                         xVelocity = 0.0f;
                         yVelocity = 0.0f;
@@ -218,50 +478,61 @@ public final class DialogOrContactPickerActivity extends BaseFragment {
                         }
                     }
                     if (this.startedTracking) {
-                        float x2 = anonymousClass5Arr[0].getX();
-                        dialogOrContactPickerActivity.tabsAnimation = new AnimatorSet();
-                        boolean z2 = Math.abs(x2) < ((float) anonymousClass5Arr[0].getMeasuredWidth()) / 3.0f && (Math.abs(xVelocity) < 3500.0f || Math.abs(xVelocity) < Math.abs(yVelocity));
-                        dialogOrContactPickerActivity.backAnimation = z2;
+                        float x2 = DialogOrContactPickerActivity.this.viewPages[0].getX();
+                        DialogOrContactPickerActivity.this.tabsAnimation = new AnimatorSet();
+                        DialogOrContactPickerActivity.this.backAnimation = Math.abs(x2) < ((float) DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth()) / 3.0f && (Math.abs(xVelocity) < 3500.0f || Math.abs(xVelocity) < Math.abs(yVelocity));
+                        boolean z = DialogOrContactPickerActivity.this.backAnimation;
                         Property property = View.TRANSLATION_X;
-                        if (z2) {
+                        if (z) {
                             measuredWidth = Math.abs(x2);
-                            if (dialogOrContactPickerActivity.animatingForward) {
-                                AnimatorSet animatorSet = dialogOrContactPickerActivity.tabsAnimation;
-                                ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(anonymousClass5Arr[0], (Property<AnonymousClass5, Float>) property, 0.0f);
-                                AnonymousClass5 anonymousClass5 = anonymousClass5Arr[1];
-                                animatorSet.playTogether(objectAnimatorOfFloat, ObjectAnimator.ofFloat(anonymousClass5, (Property<AnonymousClass5, Float>) property, anonymousClass5.getMeasuredWidth()));
+                            if (DialogOrContactPickerActivity.this.animatingForward) {
+                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], (Property<ViewPage, Float>) property, 0.0f), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], (Property<ViewPage, Float>) property, DialogOrContactPickerActivity.this.viewPages[1].getMeasuredWidth()));
                             } else {
-                                AnimatorSet animatorSet2 = dialogOrContactPickerActivity.tabsAnimation;
-                                ObjectAnimator objectAnimatorOfFloat2 = ObjectAnimator.ofFloat(anonymousClass5Arr[0], (Property<AnonymousClass5, Float>) property, 0.0f);
-                                AnonymousClass5 anonymousClass6 = anonymousClass5Arr[1];
-                                animatorSet2.playTogether(objectAnimatorOfFloat2, ObjectAnimator.ofFloat(anonymousClass6, (Property<AnonymousClass5, Float>) property, -anonymousClass6.getMeasuredWidth()));
+                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], (Property<ViewPage, Float>) property, 0.0f), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], (Property<ViewPage, Float>) property, -DialogOrContactPickerActivity.this.viewPages[1].getMeasuredWidth()));
                             }
                         } else {
-                            measuredWidth = anonymousClass5Arr[0].getMeasuredWidth() - Math.abs(x2);
-                            if (dialogOrContactPickerActivity.animatingForward) {
-                                AnimatorSet animatorSet3 = dialogOrContactPickerActivity.tabsAnimation;
-                                AnonymousClass5 anonymousClass7 = anonymousClass5Arr[0];
-                                animatorSet3.playTogether(ObjectAnimator.ofFloat(anonymousClass7, (Property<AnonymousClass5, Float>) property, -anonymousClass7.getMeasuredWidth()), ObjectAnimator.ofFloat(anonymousClass5Arr[1], (Property<AnonymousClass5, Float>) property, 0.0f));
+                            measuredWidth = DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth() - Math.abs(x2);
+                            if (DialogOrContactPickerActivity.this.animatingForward) {
+                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], (Property<ViewPage, Float>) property, -DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], (Property<ViewPage, Float>) property, 0.0f));
                             } else {
-                                AnimatorSet animatorSet4 = dialogOrContactPickerActivity.tabsAnimation;
-                                AnonymousClass5 anonymousClass8 = anonymousClass5Arr[0];
-                                animatorSet4.playTogether(ObjectAnimator.ofFloat(anonymousClass8, (Property<AnonymousClass5, Float>) property, anonymousClass8.getMeasuredWidth()), ObjectAnimator.ofFloat(anonymousClass5Arr[1], (Property<AnonymousClass5, Float>) property, 0.0f));
+                                DialogOrContactPickerActivity.this.tabsAnimation.playTogether(ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[0], (Property<ViewPage, Float>) property, DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth()), ObjectAnimator.ofFloat(DialogOrContactPickerActivity.this.viewPages[1], (Property<ViewPage, Float>) property, 0.0f));
                             }
                         }
-                        dialogOrContactPickerActivity.tabsAnimation.setInterpolator(DialogOrContactPickerActivity.interpolator);
+                        DialogOrContactPickerActivity.this.tabsAnimation.setInterpolator(DialogOrContactPickerActivity.interpolator);
                         int measuredWidth2 = getMeasuredWidth();
                         float f = measuredWidth2 / 2;
                         float fDistanceInfluenceForSnapDuration = (AndroidUtilities.distanceInfluenceForSnapDuration(Math.min(1.0f, (measuredWidth * 1.0f) / measuredWidth2)) * f) + f;
                         float fAbs = Math.abs(xVelocity);
-                        dialogOrContactPickerActivity.tabsAnimation.setDuration(Math.max(150, Math.min(fAbs > 0.0f ? Math.round(Math.abs(fDistanceInfluenceForSnapDuration / fAbs) * 1000.0f) * 4 : (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f), 600)));
-                        dialogOrContactPickerActivity.tabsAnimation.addListener(new PhotoViewer$41$1(this, 7));
-                        dialogOrContactPickerActivity.tabsAnimation.start();
-                        dialogOrContactPickerActivity.tabsAnimationInProgress = true;
+                        DialogOrContactPickerActivity.this.tabsAnimation.setDuration(Math.max(150, Math.min(fAbs > 0.0f ? Math.round(Math.abs(fDistanceInfluenceForSnapDuration / fAbs) * 1000.0f) * 4 : (int) (((measuredWidth / getMeasuredWidth()) + 1.0f) * 100.0f), 600)));
+                        DialogOrContactPickerActivity.this.tabsAnimation.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                DialogOrContactPickerActivity.this.tabsAnimation = null;
+                                if (DialogOrContactPickerActivity.this.backAnimation) {
+                                    DialogOrContactPickerActivity.this.viewPages[1].setVisibility(8);
+                                } else {
+                                    ViewPage viewPage = DialogOrContactPickerActivity.this.viewPages[0];
+                                    DialogOrContactPickerActivity.this.viewPages[0] = DialogOrContactPickerActivity.this.viewPages[1];
+                                    DialogOrContactPickerActivity.this.viewPages[1] = viewPage;
+                                    DialogOrContactPickerActivity.this.viewPages[1].setVisibility(8);
+                                    DialogOrContactPickerActivity dialogOrContactPickerActivity = DialogOrContactPickerActivity.this;
+                                    dialogOrContactPickerActivity.swipeBackEnabled = dialogOrContactPickerActivity.viewPages[0].selectedType == DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.getFirstTabId();
+                                    DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[0].selectedType, 1.0f);
+                                }
+                                DialogOrContactPickerActivity.this.tabsAnimationInProgress = false;
+                                AnonymousClass4.this.maybeStartTracking = false;
+                                AnonymousClass4.this.startedTracking = false;
+                                ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.setEnabled(true);
+                                DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
+                            }
+                        });
+                        DialogOrContactPickerActivity.this.tabsAnimation.start();
+                        DialogOrContactPickerActivity.this.tabsAnimationInProgress = true;
                         this.startedTracking = false;
                     } else {
                         this.maybeStartTracking = false;
-                        ((BaseFragment) dialogOrContactPickerActivity).actionBar.setEnabled(true);
-                        dialogOrContactPickerActivity.scrollSlidingTextTabStrip.setEnabled(true);
+                        ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.setEnabled(true);
+                        DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.setEnabled(true);
                     }
                     VelocityTracker velocityTracker = this.velocityTracker;
                     if (velocityTracker != null) {
@@ -269,221 +540,122 @@ public final class DialogOrContactPickerActivity extends BaseFragment {
                         this.velocityTracker = null;
                     }
                 }
-            } else {
-                this.startedTrackingPointerId = motionEvent.getPointerId(0);
-                this.maybeStartTracking = true;
-                this.startedTrackingX = (int) motionEvent.getX();
-                this.startedTrackingY = (int) motionEvent.getY();
-                this.velocityTracker.clear();
+                return this.startedTracking;
             }
-            return this.startedTracking;
-        }
 
-        public final boolean prepareForMoving(MotionEvent motionEvent, boolean z) {
-            DialogOrContactPickerActivity dialogOrContactPickerActivity = DialogOrContactPickerActivity.this;
-            ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = dialogOrContactPickerActivity.scrollSlidingTextTabStrip;
-            int i = scrollSlidingTextTabStrip.positionToId.get(scrollSlidingTextTabStrip.currentPosition + (z ? 1 : -1), -1);
-            if (i < 0) {
-                return false;
+            @Override
+            public void requestLayout() {
+                if (this.globalIgnoreLayout) {
+                    return;
+                }
+                super.requestLayout();
             }
-            getParent().requestDisallowInterceptTouchEvent(true);
-            this.maybeStartTracking = false;
-            this.startedTracking = true;
-            this.startedTrackingX = (int) motionEvent.getX();
-            ((BaseFragment) dialogOrContactPickerActivity).actionBar.setEnabled(false);
-            dialogOrContactPickerActivity.scrollSlidingTextTabStrip.setEnabled(false);
-            AnonymousClass5[] anonymousClass5Arr = dialogOrContactPickerActivity.viewPages;
-            AnonymousClass5 anonymousClass5 = anonymousClass5Arr[1];
-            anonymousClass5.selectedType = i;
-            anonymousClass5.setVisibility(0);
-            dialogOrContactPickerActivity.animatingForward = z;
-            dialogOrContactPickerActivity.switchToCurrentSelectedMode$2(true);
-            if (z) {
-                anonymousClass5Arr[1].setTranslationX(anonymousClass5Arr[0].getMeasuredWidth());
-                return true;
-            }
-            anonymousClass5Arr[1].setTranslationX(-anonymousClass5Arr[0].getMeasuredWidth());
-            return true;
-        }
-
-        @Override
-        public final void requestLayout() {
-            if (this.globalIgnoreLayout) {
-                return;
-            }
-            super.requestLayout();
-        }
-    }
-
-    public final class AnonymousClass5 extends FrameLayout {
-        public ActionBar actionBar;
-        public FrameLayout fragmentView;
-        public RecyclerListView listView;
-        public ChatActivity.AnonymousClass34 listView2;
-        public BaseFragment parentFragment;
-        public int selectedType;
-
-        public AnonymousClass5(Context context) {
-            super(context);
-        }
-
-        @Override
-        public final void setTranslationX(float f) {
-            AnonymousClass5[] anonymousClass5Arr;
-            AnonymousClass5 anonymousClass5;
-            super.setTranslationX(f);
-            DialogOrContactPickerActivity dialogOrContactPickerActivity = DialogOrContactPickerActivity.this;
-            if (dialogOrContactPickerActivity.tabsAnimationInProgress && (anonymousClass5 = (anonymousClass5Arr = dialogOrContactPickerActivity.viewPages)[0]) == this) {
-                dialogOrContactPickerActivity.scrollSlidingTextTabStrip.selectTabWithId$1(Math.abs(anonymousClass5.getTranslationX()) / anonymousClass5Arr[0].getMeasuredWidth(), anonymousClass5Arr[1].selectedType);
-            }
-        }
-    }
-
-    public DialogOrContactPickerActivity() {
-        super(null);
-        this.backgroundPaint = new Paint();
-        this.viewPages = new AnonymousClass5[2];
-        this.swipeBackEnabled = true;
-        Bundle bundle = new Bundle();
-        bundle.putBoolean("onlySelect", true);
-        bundle.putBoolean("checkCanWrite", false);
-        bundle.putBoolean("resetDelegate", false);
-        bundle.putInt("dialogsType", 9);
-        DialogsActivity dialogsActivity = new DialogsActivity(bundle);
-        this.dialogsActivity = dialogsActivity;
-        dialogsActivity.delegate = new DialogOrContactPickerActivity$$ExternalSyntheticLambda0(this);
-        dialogsActivity.onFragmentCreate();
-        Bundle bundle2 = new Bundle();
-        bundle2.putBoolean("onlyUsers", true);
-        bundle2.putBoolean("destroyAfterSelect", true);
-        bundle2.putBoolean("returnAsResult", true);
-        bundle2.putBoolean("disableSections", true);
-        bundle2.putBoolean("needFinishFragment", false);
-        bundle2.putBoolean("resetDelegate", false);
-        bundle2.putBoolean("allowSelf", false);
-        ContactsActivity contactsActivity = new ContactsActivity(bundle2);
-        this.contactsActivity = contactsActivity;
-        contactsActivity.delegate = new DialogOrContactPickerActivity$$ExternalSyntheticLambda0(this);
-        contactsActivity.onFragmentCreate();
-    }
-
-    public static void access$3700(DialogOrContactPickerActivity dialogOrContactPickerActivity, float f) {
-        dialogOrContactPickerActivity.actionBar.setTranslationY(f);
+        };
+        this.fragmentView = frameLayout;
+        frameLayout.setWillNotDraw(false);
+        this.dialogsActivity.setParentFragment(this);
+        this.contactsActivity.setParentFragment(this);
         int i = 0;
         while (true) {
-            AnonymousClass5[] anonymousClass5Arr = dialogOrContactPickerActivity.viewPages;
-            if (i >= anonymousClass5Arr.length) {
-                dialogOrContactPickerActivity.fragmentView.invalidate();
-                return;
-            }
-            int i2 = (int) f;
-            anonymousClass5Arr[i].listView.setPinnedSectionOffsetY(i2);
-            ChatActivity.AnonymousClass34 anonymousClass34 = anonymousClass5Arr[i].listView2;
-            if (anonymousClass34 != null) {
-                anonymousClass34.setPinnedSectionOffsetY(i2);
-            }
-            i++;
-        }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        AnonymousClass5[] anonymousClass5Arr;
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setTitle(LocaleController.getString(R.string.BlockUserMultiTitle));
-        INavigationLayout iNavigationLayout = this.parentLayout;
-        if (iNavigationLayout != null && ((ActionBarLayout) iNavigationLayout).isLayersLayout) {
-            this.actionBar.setOccupyStatusBar(false);
-        }
-        this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));
-        this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setClipContent(true);
-        this.actionBar.setActionBarMenuOnItemClick(new LoginActivity.AnonymousClass1(this, 14));
-        this.hasOwnBackground = true;
-        ActionBarMenuItem actionBarMenuItemAddItem = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search);
-        actionBarMenuItemAddItem.setIsSearchField$1();
-        actionBarMenuItemAddItem.listener = new TopicsFragment.AnonymousClass3(this, 10);
-        this.searchItem = actionBarMenuItemAddItem;
-        actionBarMenuItemAddItem.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(context, null);
-        this.scrollSlidingTextTabStrip = scrollSlidingTextTabStrip;
-        scrollSlidingTextTabStrip.setUseSameWidth(true);
-        this.actionBar.addView(this.scrollSlidingTextTabStrip, LayoutHelper.createFrame(-1, 44, 83));
-        this.scrollSlidingTextTabStrip.setDelegate(new PhotoViewer.AnonymousClass18(this, 19));
-        this.maximumVelocity = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
-        AnonymousClass4 anonymousClass4 = new AnonymousClass4(context);
-        this.fragmentView = anonymousClass4;
-        anonymousClass4.setWillNotDraw(false);
-        DialogsActivity dialogsActivity = this.dialogsActivity;
-        dialogsActivity.setParentFragment(this);
-        ContactsActivity contactsActivity = this.contactsActivity;
-        contactsActivity.setParentFragment(this);
-        int i = 0;
-        while (true) {
-            anonymousClass5Arr = this.viewPages;
-            if (i >= anonymousClass5Arr.length) {
+            ViewPage[] viewPageArr = this.viewPages;
+            if (i >= viewPageArr.length) {
                 break;
             }
-            AnonymousClass5 anonymousClass5 = new AnonymousClass5(context);
-            anonymousClass5Arr[i] = anonymousClass5;
-            anonymousClass4.addView(anonymousClass5, LayoutHelper.createFrame(-1.0f, -1));
+            viewPageArr[i] = new ViewPage(context) {
+                @Override
+                public void setTranslationX(float f) {
+                    super.setTranslationX(f);
+                    if (DialogOrContactPickerActivity.this.tabsAnimationInProgress && DialogOrContactPickerActivity.this.viewPages[0] == this) {
+                        DialogOrContactPickerActivity.this.scrollSlidingTextTabStrip.selectTabWithId(DialogOrContactPickerActivity.this.viewPages[1].selectedType, Math.abs(DialogOrContactPickerActivity.this.viewPages[0].getTranslationX()) / DialogOrContactPickerActivity.this.viewPages[0].getMeasuredWidth());
+                    }
+                }
+            };
+            frameLayout.addView(this.viewPages[i], LayoutHelper.createFrame(-1, -1.0f));
             if (i == 0) {
-                AnonymousClass5 anonymousClass6 = anonymousClass5Arr[i];
-                anonymousClass6.parentFragment = dialogsActivity;
-                anonymousClass6.listView = dialogsActivity.viewPages[0].listView;
-                dialogsActivity.createSearchViewPager();
-                DialogsActivity.AnonymousClass47 anonymousClass47 = dialogsActivity.searchViewPager;
-                anonymousClass6.listView2 = anonymousClass47 != null ? anonymousClass47.searchListView : null;
+                this.viewPages[i].parentFragment = this.dialogsActivity;
+                this.viewPages[i].listView = this.dialogsActivity.getListView();
+                this.viewPages[i].listView2 = this.dialogsActivity.getSearchListView();
             } else if (i == 1) {
-                AnonymousClass5 anonymousClass7 = anonymousClass5Arr[i];
-                anonymousClass7.parentFragment = contactsActivity;
-                anonymousClass7.listView = contactsActivity.listView;
-                anonymousClass7.setVisibility(8);
+                this.viewPages[i].parentFragment = this.contactsActivity;
+                this.viewPages[i].listView = this.contactsActivity.getListView();
+                this.viewPages[i].setVisibility(8);
             }
-            anonymousClass5Arr[i].listView.setScrollingTouchSlop(1);
-            AnonymousClass5 anonymousClass8 = anonymousClass5Arr[i];
-            anonymousClass8.fragmentView = (FrameLayout) anonymousClass8.parentFragment.getFragmentView();
-            AnonymousClass5 anonymousClass9 = anonymousClass5Arr[i];
-            anonymousClass9.actionBar = anonymousClass9.parentFragment.getActionBar();
-            AnonymousClass5 anonymousClass10 = anonymousClass5Arr[i];
-            anonymousClass10.addView(anonymousClass10.fragmentView, LayoutHelper.createFrame(-1.0f, -1));
-            AndroidUtilities.removeFromParent(anonymousClass5Arr[i].actionBar);
-            AnonymousClass5 anonymousClass11 = anonymousClass5Arr[i];
-            anonymousClass11.addView(anonymousClass11.actionBar, LayoutHelper.createFrame(-2.0f, -1));
-            anonymousClass5Arr[i].actionBar.setVisibility(8);
+            this.viewPages[i].listView.setScrollingTouchSlop(1);
+            ViewPage viewPage = this.viewPages[i];
+            viewPage.fragmentView = (FrameLayout) viewPage.parentFragment.getFragmentView();
+            ViewPage viewPage2 = this.viewPages[i];
+            viewPage2.actionBar = viewPage2.parentFragment.getActionBar();
+            ViewPage viewPage3 = this.viewPages[i];
+            viewPage3.addView(viewPage3.fragmentView, LayoutHelper.createFrame(-1, -1.0f));
+            AndroidUtilities.removeFromParent(this.viewPages[i].actionBar);
+            ViewPage viewPage4 = this.viewPages[i];
+            viewPage4.addView(viewPage4.actionBar, LayoutHelper.createFrame(-1, -2.0f));
+            this.viewPages[i].actionBar.setVisibility(8);
             int i2 = 0;
             while (i2 < 2) {
-                RecyclerListView recyclerListView = i2 == 0 ? anonymousClass5Arr[i].listView : anonymousClass5Arr[i].listView2;
+                RecyclerListView recyclerListView = i2 == 0 ? this.viewPages[i].listView : this.viewPages[i].listView2;
                 if (recyclerListView != null) {
                     recyclerListView.setClipToPadding(false);
-                    recyclerListView.setOnScrollListener(new ChatActivity.AnonymousClass35(5, this, recyclerListView.getOnScrollListener()));
+                    final RecyclerView.OnScrollListener onScrollListener = recyclerListView.getOnScrollListener();
+                    recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
+                            onScrollListener.onScrollStateChanged(recyclerView, i3);
+                            if (i3 != 1) {
+                                int i4 = (int) (-((BaseFragment) DialogOrContactPickerActivity.this).actionBar.getTranslationY());
+                                int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
+                                if (i4 == 0 || i4 == currentActionBarHeight) {
+                                    return;
+                                }
+                                if (i4 < currentActionBarHeight / 2) {
+                                    int i5 = -i4;
+                                    DialogOrContactPickerActivity.this.viewPages[0].listView.smoothScrollBy(0, i5);
+                                    if (DialogOrContactPickerActivity.this.viewPages[0].listView2 != null) {
+                                        DialogOrContactPickerActivity.this.viewPages[0].listView2.smoothScrollBy(0, i5);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                int i6 = currentActionBarHeight - i4;
+                                DialogOrContactPickerActivity.this.viewPages[0].listView.smoothScrollBy(0, i6);
+                                if (DialogOrContactPickerActivity.this.viewPages[0].listView2 != null) {
+                                    DialogOrContactPickerActivity.this.viewPages[0].listView2.smoothScrollBy(0, i6);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                            onScrollListener.onScrolled(recyclerView, i3, i4);
+                            if (recyclerView == DialogOrContactPickerActivity.this.viewPages[0].listView || recyclerView == DialogOrContactPickerActivity.this.viewPages[0].listView2) {
+                                float translationY = ((BaseFragment) DialogOrContactPickerActivity.this).actionBar.getTranslationY();
+                                float f = translationY - i4;
+                                if (f < (-ActionBar.getCurrentActionBarHeight())) {
+                                    f = -ActionBar.getCurrentActionBarHeight();
+                                } else if (f > 0.0f) {
+                                    f = 0.0f;
+                                }
+                                if (f != translationY) {
+                                    DialogOrContactPickerActivity.this.setScrollY(f);
+                                }
+                            }
+                        }
+                    });
                 }
                 i2++;
             }
             i++;
         }
-        anonymousClass4.addView(this.actionBar, LayoutHelper.createFrame(-2.0f, -1));
-        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip2 = this.scrollSlidingTextTabStrip;
-        if (scrollSlidingTextTabStrip2 != null) {
-            scrollSlidingTextTabStrip2.addTextTab(0, LocaleController.getString(R.string.BlockUserChatsTitle), null);
-            this.scrollSlidingTextTabStrip.addTextTab(1, LocaleController.getString(R.string.BlockUserContactsTitle), null);
-            this.scrollSlidingTextTabStrip.setVisibility(0);
-            this.actionBar.setExtraHeight(AndroidUtilities.dp(44.0f));
-            int currentTabId = this.scrollSlidingTextTabStrip.getCurrentTabId();
-            if (currentTabId >= 0) {
-                anonymousClass5Arr[0].selectedType = currentTabId;
-            }
-            this.scrollSlidingTextTabStrip.finishAddingTabs();
-        }
-        switchToCurrentSelectedMode$2(false);
+        frameLayout.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
+        updateTabs();
+        switchToCurrentSelectedMode(false);
         this.swipeBackEnabled = this.scrollSlidingTextTabStrip.getCurrentTabId() == this.scrollSlidingTextTabStrip.getFirstTabId();
         return this.fragmentView;
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
+    public ArrayList<ThemeDescription> getThemeDescriptions() {
+        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
         arrayList.add(new ThemeDescription(this.fragmentView, 0, null, null, null, null, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.actionBar, 1, null, null, null, null, Theme.key_actionBarDefault));
         arrayList.add(new ThemeDescription(this.actionBar, 64, null, null, null, null, Theme.key_actionBarDefaultIcon));
@@ -499,22 +671,12 @@ public final class DialogOrContactPickerActivity extends BaseFragment {
     }
 
     @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         return this.swipeBackEnabled;
     }
 
-    public final void lambda$showBlockAlert$3(TLRPC.User user) {
-        if (MessagesController.isSupportUser(user)) {
-            AlertsCreator.showSimpleToast(this, LocaleController.getString(R.string.ErrorOccurred));
-        } else {
-            MessagesController.getInstance(this.currentAccount).blockPeer(user.id);
-            AlertsCreator.showSimpleToast(this, LocaleController.getString(R.string.UserBlocked));
-        }
-        finishFragment();
-    }
-
     @Override
-    public final void onFragmentDestroy() {
+    public void onFragmentDestroy() {
         DialogsActivity dialogsActivity = this.dialogsActivity;
         if (dialogsActivity != null) {
             dialogsActivity.onFragmentDestroy();
@@ -527,7 +689,7 @@ public final class DialogOrContactPickerActivity extends BaseFragment {
     }
 
     @Override
-    public final void onPause() {
+    public void onPause() {
         super.onPause();
         DialogsActivity dialogsActivity = this.dialogsActivity;
         if (dialogsActivity != null) {
@@ -540,7 +702,7 @@ public final class DialogOrContactPickerActivity extends BaseFragment {
     }
 
     @Override
-    public final void onResume() {
+    public void onResume() {
         super.onResume();
         DialogsActivity dialogsActivity = this.dialogsActivity;
         if (dialogsActivity != null) {
@@ -549,53 +711,6 @@ public final class DialogOrContactPickerActivity extends BaseFragment {
         ContactsActivity contactsActivity = this.contactsActivity;
         if (contactsActivity != null) {
             contactsActivity.onResume();
-        }
-    }
-
-    public final void showBlockAlert(TLRPC.User user) {
-        if (user == null) {
-            return;
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, null);
-        String string = LocaleController.getString(R.string.BlockUser);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = AndroidUtilities.replaceTags(LocaleController.formatString("AreYouSureBlockContact2", R.string.AreYouSureBlockContact2, ContactsController.formatName(user.first_name, user.last_name)));
-        builder.setPositiveButton(LocaleController.getString(R.string.BlockContact), new RateCallLayout$$ExternalSyntheticLambda1(28, this, user));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        showDialog(alertDialog);
-        TextView textView = (TextView) alertDialog.getButton(-1);
-        if (textView != null) {
-            textView.setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
-        }
-    }
-
-    public final void switchToCurrentSelectedMode$2(boolean z) {
-        AnonymousClass5[] anonymousClass5Arr;
-        int i = 0;
-        while (true) {
-            anonymousClass5Arr = this.viewPages;
-            if (i >= anonymousClass5Arr.length) {
-                break;
-            }
-            anonymousClass5Arr[i].listView.stopScroll();
-            ChatActivity.AnonymousClass34 anonymousClass34 = anonymousClass5Arr[i].listView2;
-            if (anonymousClass34 != null) {
-                anonymousClass34.stopScroll();
-            }
-            i++;
-        }
-        int i2 = 0;
-        while (i2 < 2) {
-            RecyclerListView recyclerListView = i2 == 0 ? anonymousClass5Arr[z ? 1 : 0].listView : anonymousClass5Arr[z ? 1 : 0].listView2;
-            if (recyclerListView != null) {
-                recyclerListView.getAdapter();
-                recyclerListView.setPinnedHeaderShadowDrawable(null);
-                if (this.actionBar.getTranslationY() != 0.0f) {
-                    ((LinearLayoutManager) recyclerListView.getLayoutManager()).scrollToPositionWithOffset(0, (int) this.actionBar.getTranslationY());
-                }
-            }
-            i2++;
         }
     }
 }

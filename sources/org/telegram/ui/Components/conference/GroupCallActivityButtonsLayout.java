@@ -1,5 +1,6 @@
 package org.telegram.ui.Components.conference;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.Iterator;
@@ -10,25 +11,26 @@ import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.voip.VoIPToggleButton;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
 
 public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
-    public final LinkedHashMap holders;
-    public int lastHeight;
-    public int lastWidth;
+    private static final int BUTTON_HEIGHT = 76;
+    private static final int BUTTON_WIDTH = 50;
+    private final LinkedHashMap<View, ButtonHolder> holders;
+    private int lastHeight;
+    private int lastWidth;
 
     public final class ButtonHolder implements FactorAnimator.Target {
         public final BoolAnimator enabled;
-        public final Tooltip$$ExternalSyntheticLambda0 invalidateRunnable;
+        public final GiftSheet$$ExternalSyntheticLambda9 invalidateRunnable;
         public boolean isVisible;
         public final VoIPToggleButton view;
         public final BoolAnimator visibility;
         public final FactorAnimator xAnimator;
         public final FactorAnimator yAnimator;
 
-        public ButtonHolder(VoIPToggleButton voIPToggleButton, Tooltip$$ExternalSyntheticLambda0 tooltip$$ExternalSyntheticLambda0) {
+        public ButtonHolder(VoIPToggleButton voIPToggleButton, GiftSheet$$ExternalSyntheticLambda9 giftSheet$$ExternalSyntheticLambda9) {
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             this.xAnimator = new FactorAnimator(1, this, cubicBezierInterpolator, 350L);
             this.yAnimator = new FactorAnimator(2, this, cubicBezierInterpolator, 350L);
@@ -36,11 +38,11 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
             this.enabled = new BoolAnimator(3, this, cubicBezierInterpolator, 350L, true);
             this.isVisible = true;
             this.view = voIPToggleButton;
-            this.invalidateRunnable = tooltip$$ExternalSyntheticLambda0;
+            this.invalidateRunnable = giftSheet$$ExternalSyntheticLambda9;
         }
 
         @Override
-        public final void onFactorChangeFinished(float f, int i) {
+        public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
         }
 
         @Override
@@ -63,21 +65,21 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
             if (i == 3) {
                 voIPToggleButton.setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, boolAnimator.floatValue) * boolAnimator2.floatValue);
             }
-            Tooltip$$ExternalSyntheticLambda0 tooltip$$ExternalSyntheticLambda0 = this.invalidateRunnable;
-            if (tooltip$$ExternalSyntheticLambda0 != null) {
-                tooltip$$ExternalSyntheticLambda0.run();
+            GiftSheet$$ExternalSyntheticLambda9 giftSheet$$ExternalSyntheticLambda9 = this.invalidateRunnable;
+            if (giftSheet$$ExternalSyntheticLambda9 != null) {
+                giftSheet$$ExternalSyntheticLambda9.run();
             }
         }
     }
 
-    public GroupCallActivityButtonsLayout(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.holders = new LinkedHashMap(16);
+    public GroupCallActivityButtonsLayout(Context context) {
+        super(context);
+        this.holders = new LinkedHashMap<>(16);
     }
 
-    public final void addButton(VoIPToggleButton voIPToggleButton) {
+    public void addButton(VoIPToggleButton voIPToggleButton) {
         addView(voIPToggleButton);
-        this.holders.put(voIPToggleButton, new ButtonHolder(voIPToggleButton, new Tooltip$$ExternalSyntheticLambda0(this, 17)));
+        this.holders.put(voIPToggleButton, new ButtonHolder(voIPToggleButton, new GiftSheet$$ExternalSyntheticLambda9(this, 8)));
     }
 
     public final void doLayout(boolean z, boolean z2) {
@@ -92,11 +94,10 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
         if (measuredWidth2 <= 0 || measuredHeight2 <= 0) {
             return;
         }
-        LinkedHashMap linkedHashMap = this.holders;
-        Iterator it = linkedHashMap.values().iterator();
+        Iterator<ButtonHolder> it = this.holders.values().iterator();
         int i2 = 0;
         while (it.hasNext()) {
-            if (((ButtonHolder) it.next()).isVisible) {
+            if (it.next().isVisible) {
                 i2++;
             }
         }
@@ -112,14 +113,14 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
             i = (measuredWidth2 - (i2 * iMin2)) / 2;
             measuredWidth2 = iMin2;
         }
-        Iterator it2 = linkedHashMap.entrySet().iterator();
+        Iterator<Map.Entry<View, ButtonHolder>> it2 = this.holders.entrySet().iterator();
         int i3 = 0;
         while (it2.hasNext()) {
-            ButtonHolder buttonHolder = (ButtonHolder) ((Map.Entry) it2.next()).getValue();
-            boolean z4 = buttonHolder.isVisible;
-            BoolAnimator boolAnimator = buttonHolder.visibility;
+            ButtonHolder value = it2.next().getValue();
+            boolean z4 = value.isVisible;
+            BoolAnimator boolAnimator = value.visibility;
             if (z4) {
-                VoIPToggleButton voIPToggleButton = buttonHolder.view;
+                VoIPToggleButton voIPToggleButton = value.view;
                 if (z3) {
                     measuredWidth = ((measuredWidth2 - voIPToggleButton.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
                     measuredHeight = (iMin * i3) + i;
@@ -127,13 +128,13 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
                     measuredWidth = ((measuredWidth2 - voIPToggleButton.getMeasuredWidth()) / 2) + (measuredWidth2 * i3) + i;
                     measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(76.0f);
                 }
-                FactorAnimator factorAnimator2 = buttonHolder.xAnimator;
+                FactorAnimator factorAnimator2 = value.xAnimator;
                 if (z2 || !((z || factorAnimator2.isAnimating) && boolAnimator.value)) {
                     factorAnimator2.forceFactor(measuredWidth);
                 } else {
                     factorAnimator2.animateTo(measuredWidth);
                 }
-                FactorAnimator factorAnimator3 = buttonHolder.yAnimator;
+                FactorAnimator factorAnimator3 = value.yAnimator;
                 if (z2 || !((z || factorAnimator3.isAnimating) && boolAnimator.value)) {
                     factorAnimator3.forceFactor(measuredHeight);
                 } else {
@@ -141,13 +142,13 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
                 }
                 i3++;
             }
-            boolAnimator.setValue(buttonHolder.isVisible, !z2 && (z || ((factorAnimator = boolAnimator.animator) != null && factorAnimator.isAnimating)));
+            boolAnimator.setValue(value.isVisible, !z2 && (z || ((factorAnimator = boolAnimator.animator) != null && factorAnimator.isAnimating)));
         }
         invalidate();
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int childCount = getChildCount();
         for (int i5 = 0; i5 < childCount; i5++) {
             View childAt = getChildAt(i5);
@@ -156,7 +157,7 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
         setMeasuredDimension(size, size2);
@@ -175,8 +176,21 @@ public abstract class GroupCallActivityButtonsLayout extends ViewGroup {
         this.lastHeight = size2;
     }
 
-    public final void setButtonVisibility(VoIPToggleButton voIPToggleButton, boolean z, boolean z2) {
-        ButtonHolder buttonHolder = (ButtonHolder) this.holders.get(voIPToggleButton);
+    public void removeButton(VoIPToggleButton voIPToggleButton) {
+        removeView(voIPToggleButton);
+        this.holders.remove(voIPToggleButton);
+    }
+
+    public void setButtonEnabled(VoIPToggleButton voIPToggleButton, boolean z, boolean z2) {
+        ButtonHolder buttonHolder = this.holders.get(voIPToggleButton);
+        if (buttonHolder != null) {
+            buttonHolder.enabled.setValue(z, z2);
+            voIPToggleButton.setEnabled(z);
+        }
+    }
+
+    public void setButtonVisibility(VoIPToggleButton voIPToggleButton, boolean z, boolean z2) {
+        ButtonHolder buttonHolder = this.holders.get(voIPToggleButton);
         if (buttonHolder == null || buttonHolder.isVisible == z) {
             return;
         }

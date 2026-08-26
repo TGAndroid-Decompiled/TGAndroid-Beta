@@ -18,13 +18,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzkh;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline1;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -32,7 +32,7 @@ import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Stars.StarsReactionsSheet;
-import org.telegram.ui.web.WebActionBar$$ExternalSyntheticLambda9;
+import org.telegram.ui.TON.TONIntroActivity$4$$ExternalSyntheticLambda0;
 
 public final class HeaderCell extends FrameLayout {
     public ValueAnimator goldenAnimator;
@@ -55,7 +55,7 @@ public final class HeaderCell extends FrameLayout {
     public HeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
-        LinearLayout linearLayoutM = zzkf.m(context, 1);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
         StarsReactionsSheet.AnonymousClass6 anonymousClass6 = new StarsReactionsSheet.AnonymousClass6(context, 1, 0, 3);
         this.iconTextureView = anonymousClass6;
         Bitmap bitmapCreateBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
@@ -95,12 +95,12 @@ public final class HeaderCell extends FrameLayout {
         drawable.useBlur = false;
         drawable.forceMaxAlpha = true;
         drawable.checkBounds = true;
-        drawable.getPaint = new WebActionBar$$ExternalSyntheticLambda9(this, 4);
+        drawable.getPaint = new TONIntroActivity$4$$ExternalSyntheticLambda0(this, 2);
         drawable.init();
         anonymousClass6.setStarParticlesView(r7);
         TextView textView = new TextView(context);
         this.titleView = textView;
-        zzkh.m(22.0f, textView);
+        AccountFrozenAlert$$ExternalSyntheticOutline1.m(22.0f, 1, textView);
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setGravity(1);
@@ -177,7 +177,7 @@ public final class HeaderCell extends FrameLayout {
         final float f2 = z ? 1.0f : 0.0f;
         this.goldenAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
         final float[] fArr = {0.0f};
-        AndroidUtilities.cancelRunOnUIThread(anonymousClass6.idleAnimation);
+        anonymousClass6.cancelIdleAnimation();
         anonymousClass6.cancelAnimatons();
         anonymousClass6.startBackAnimation();
         this.goldenAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

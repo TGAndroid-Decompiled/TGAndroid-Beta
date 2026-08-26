@@ -13,8 +13,8 @@ import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Choreographer;
-import androidx.activity.ComponentDialog$$ExternalSyntheticLambda1;
 import androidx.appcompat.view.menu.BaseMenuWrapper;
+import androidx.core.app.ActivityCompat$$ExternalSyntheticLambda0;
 import androidx.mediarouter.app.MediaRouteChooserDialog;
 import androidx.profileinstaller.DeviceProfileWriter;
 import com.android.billingclient.api.zzca;
@@ -27,14 +27,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import org.telegram.messenger.pip.activity.IPipActivityAnimationListener;
+import org.telegram.messenger.pip.activity.IPipActivityHandler;
 import org.telegram.messenger.pip.activity.IPipActivityListener;
 import org.telegram.messenger.pip.source.PipSourceHandlerState2;
 import org.telegram.messenger.pip.utils.PipDuration;
-import org.telegram.ui.Components.Bulletin$2$$ExternalSyntheticLambda1;
-import org.telegram.ui.Components.ChatAttachAlertDocumentLayout;
 import org.telegram.ui.LaunchActivity;
 
-public final class PipActivityHandler {
+public final class PipActivityHandler implements IPipActivityHandler {
     public final LaunchActivity activity;
     public final AnonymousClass1 broadcastReceiver;
     public final PipActivityHandler$$ExternalSyntheticLambda3 callback;
@@ -99,7 +98,7 @@ public final class PipActivityHandler {
                     return;
                 case 5:
                     StreamVolumeManager streamVolumeManager = (StreamVolumeManager) this.this$0;
-                    streamVolumeManager.eventHandler.post(new ComponentDialog$$ExternalSyntheticLambda1(streamVolumeManager, 15));
+                    streamVolumeManager.eventHandler.post(new ActivityCompat$$ExternalSyntheticLambda0(streamVolumeManager, 14));
                     return;
                 case 6:
                     ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService("connectivity");
@@ -217,7 +216,7 @@ public final class PipActivityHandler {
                         zzca.access$200(zzcaVar, 5);
                         return;
                     }
-                case 7:
+                default:
                     SyncTask syncTask = (SyncTask) this.this$0;
                     if (syncTask != null && syncTask.isDeviceConnected()) {
                         if (Log.isLoggable("FirebaseMessaging", 3) || (Build.VERSION.SDK_INT == 23 && Log.isLoggable("FirebaseMessaging", 3))) {
@@ -231,15 +230,6 @@ public final class PipActivityHandler {
                         return;
                     }
                     return;
-                default:
-                    Bulletin$2$$ExternalSyntheticLambda1 bulletin$2$$ExternalSyntheticLambda1 = new Bulletin$2$$ExternalSyntheticLambda1(this, 14);
-                    if ("android.intent.action.MEDIA_UNMOUNTED".equals(intent.getAction())) {
-                        ((ChatAttachAlertDocumentLayout) this.this$0).listView.postDelayed(bulletin$2$$ExternalSyntheticLambda1, 1000L);
-                        return;
-                    } else {
-                        bulletin$2$$ExternalSyntheticLambda1.run();
-                        return;
-                    }
             }
         }
 
@@ -263,7 +253,7 @@ public final class PipActivityHandler {
         this.activity = launchActivity;
     }
 
-    public final void dispatchCompleteExitPip() {
+    public final void dispatchCompleteExitPip(boolean z) {
         dispatchTransitionAnimationProgress(0.0f);
         this.durationLeave.end();
         ArrayList arrayList = this.animationListeners;
@@ -285,7 +275,7 @@ public final class PipActivityHandler {
         while (i < size2) {
             Object obj2 = arrayList2.get(i);
             i++;
-            ((IPipActivityListener) obj2).onCompleteExitFromPip();
+            ((IPipActivityListener) obj2).onCompleteExitFromPip(z);
         }
     }
 
@@ -319,7 +309,7 @@ public final class PipActivityHandler {
         this.choreographer.postFrameCallback(this.callback);
     }
 
-    public final void dispatchStartExitPip() {
+    public final void dispatchStartExitPip(boolean z) {
         ArrayList arrayList = this.listeners;
         int size = arrayList.size();
         int i = 0;
@@ -327,7 +317,7 @@ public final class PipActivityHandler {
         while (i2 < size) {
             Object obj = arrayList.get(i2);
             i2++;
-            ((IPipActivityListener) obj).onStartExitFromPip();
+            ((IPipActivityListener) obj).onStartExitFromPip(z);
         }
         PipDuration pipDuration = this.durationLeave;
         long j = pipDuration.estimated;
@@ -367,16 +357,13 @@ public final class PipActivityHandler {
         }
     }
 
-    public final boolean hasContentForPictureInPictureMode() {
-        LaunchActivity launchActivity = this.activity;
-        return (launchActivity != null) && ((PipSource) launchActivity.pipActivityController.mTmpDisplayFrame) != null;
-    }
-
     public final void manualEnterPictureInPictureModeInternal() {
         int i;
-        if (!this.isInPictureInPictureModeInternal && (i = Build.VERSION.SDK_INT) < 31 && i >= 26 && this.pictureInPictureParams != null && hasContentForPictureInPictureMode()) {
-            dispatchStartEnterPip();
-            this.activity.enterPictureInPictureMode(this.pictureInPictureParams);
+        LaunchActivity launchActivity;
+        if (this.isInPictureInPictureModeInternal || (i = Build.VERSION.SDK_INT) >= 31 || i < 26 || this.pictureInPictureParams == null || (launchActivity = this.activity) == null || launchActivity.getPipController().maxPrioritySource == null) {
+            return;
         }
+        dispatchStartEnterPip();
+        launchActivity.enterPictureInPictureMode(this.pictureInPictureParams);
     }
 }

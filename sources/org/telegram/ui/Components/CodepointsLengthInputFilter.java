@@ -3,8 +3,8 @@ package org.telegram.ui.Components;
 import android.text.InputFilter;
 import android.text.Spanned;
 
-public abstract class CodepointsLengthInputFilter implements InputFilter {
-    public final int mMax;
+public class CodepointsLengthInputFilter implements InputFilter {
+    private final int mMax;
 
     public CodepointsLengthInputFilter(int i) {
         this.mMax = i;
@@ -21,5 +21,9 @@ public abstract class CodepointsLengthInputFilter implements InputFilter {
         }
         int i5 = iCodePointCount + i;
         return (Character.isHighSurrogate(charSequence.charAt(i5 + (-1))) && (i5 = i5 + (-1)) == i) ? "" : charSequence.subSequence(i, i5);
+    }
+
+    public int getMax() {
+        return this.mMax;
     }
 }

@@ -5,35 +5,33 @@ import android.content.ComponentCallbacks2;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.View;
-import androidx.appcompat.widget.TooltipPopup;
+import android.view.ViewTreeObserver;
 import androidx.core.math.MathUtils;
-import com.google.android.exoplayer2.ExoPlayerImpl;
+import androidx.emoji2.text.MetadataRepo;
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
-import com.google.zxing.BinaryBitmap;
-import java.util.HashMap;
-import org.commonmark.parser.Parser;
+import com.stripe.android.Stripe;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.pip.activity.IPipActivity;
 import org.telegram.messenger.pip.source.IPipSourceDelegate;
 import org.telegram.messenger.pip.source.PipSourceHandlerState2;
 import org.telegram.messenger.pip.utils.PipUtils;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda28;
 import org.webrtc.TextureViewRenderer;
 
 public final class PipSource {
     public static int sourceIdCounter;
     public static final Rect tmpRect = new Rect();
     public View contentView;
-    public final TooltipPopup controller;
+    public final PipActivityController controller;
     public final int cornerRadius;
     public final IPipSourceDelegate delegate;
     public boolean isAvailable;
     public final boolean needMediaSession;
-    public final BinaryBitmap params;
-    public final Parser pipPositionObserver;
+    public final Stripe params;
+    public final MetadataRepo pipPositionObserver;
     public View placeholderView;
-    public ExoPlayerImpl player;
+    public ExoPlayer player;
     public final int priority;
     public final PipSourceHandlerState2 state2;
     public final String tag;
@@ -45,7 +43,7 @@ public final class PipSource {
         public final IPipSourceDelegate delegate;
         public int height;
         public View placeholderView;
-        public ExoPlayerImpl player;
+        public ExoPlayer player;
         public String tagPrefix;
         public int width;
         public int priority = 0;
@@ -59,19 +57,28 @@ public final class PipSource {
         public final PipSource build() {
             ComponentCallbacks2 componentCallbacks2 = this.activity;
             if (componentCallbacks2 instanceof IPipActivity) {
-                return new PipSource(((LaunchActivity) ((IPipActivity) componentCallbacks2)).pipActivityController, this);
+                return new PipSource(((IPipActivity) componentCallbacks2).getPipController(), this);
             }
             return null;
         }
     }
 
-    public PipSource(TooltipPopup tooltipPopup, Builder builder) {
+    public PipSource(PipActivityController pipActivityController, Builder builder) {
         int i = sourceIdCounter;
         sourceIdCounter = i + 1;
-        BinaryBitmap binaryBitmap = new BinaryBitmap(17);
-        this.params = binaryBitmap;
-        Parser parser = new Parser(new LaunchActivity$$ExternalSyntheticLambda28(this, 1));
-        this.pipPositionObserver = parser;
+        Stripe stripe = new Stripe(12, (byte) 0);
+        this.params = stripe;
+        MetadataRepo metadataRepo = new MetadataRepo((PipSource$$ExternalSyntheticLambda2) new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public final void onGlobalLayout() {
+                PipSource pipSource = this.f$0;
+                View view = pipSource.contentView;
+                if (view != null) {
+                    pipSource.updateContentPosition(view);
+                }
+            }
+        });
+        this.pipPositionObserver = metadataRepo;
         StringBuilder sb = new StringBuilder();
         String str = builder.tagPrefix;
         sb.append(str == null ? "pip-source" : str);
@@ -83,10 +90,10 @@ public final class PipSource {
         this.priority = builder.priority;
         this.cornerRadius = builder.cornerRadius;
         this.needMediaSession = builder.needMediaSession;
-        this.controller = tooltipPopup;
+        this.controller = pipActivityController;
         int i2 = builder.width;
         int i3 = builder.height;
-        Point point = (Point) binaryBitmap.matrix;
+        Point point = (Point) stripe.defaultPublishableKey;
         if (point.x != i2 || point.y != i3) {
             point.set(i2, i3);
         }
@@ -94,14 +101,14 @@ public final class PipSource {
         this.placeholderView = builder.placeholderView;
         this.state2 = new PipSourceHandlerState2(this);
         View view = builder.contentView;
-        parser.setViewInternal(view);
+        metadataRepo.setViewInternal(view);
         this.contentView = view;
         if (view != null) {
             updateContentPosition(view);
         }
         checkAvailable(false);
-        ((HashMap) tooltipPopup.mContext).put(string, this);
-        tooltipPopup.updateSources();
+        pipActivityController.sources.put(string, this);
+        pipActivityController.updateSources();
     }
 
     public final void checkAvailable(boolean z) {
@@ -109,33 +116,33 @@ public final class PipSource {
         if (this.isAvailable != z2) {
             this.isAvailable = z2;
             if (z) {
-                TooltipPopup tooltipPopup = this.controller;
-                tooltipPopup.updateSources();
-                ((PipActivityContentLayout) tooltipPopup.mMessageView).invalidate();
+                PipActivityController pipActivityController = this.controller;
+                pipActivityController.updateSources();
+                pipActivityController.pipContentView.invalidate();
             }
         }
     }
 
     public final void destroy() {
         this.pipPositionObserver.setViewInternal(null);
-        TooltipPopup tooltipPopup = this.controller;
-        if (((HashMap) tooltipPopup.mContext).remove(this.tag) != null) {
-            tooltipPopup.updateSources();
+        PipActivityController pipActivityController = this.controller;
+        if (pipActivityController.sources.remove(this.tag) != null) {
+            pipActivityController.updateSources();
         }
     }
 
     public final void updateContentPosition(View view) {
         boolean z;
-        TooltipPopup tooltipPopup = this.controller;
-        if (AndroidUtilities.isInPictureInPictureMode((LaunchActivity) tooltipPopup.mLayoutParams)) {
+        PipActivityController pipActivityController = this.controller;
+        if (AndroidUtilities.isInPictureInPictureMode(pipActivityController.activity)) {
             return;
         }
-        LaunchActivity launchActivity = (LaunchActivity) tooltipPopup.mLayoutParams;
         int[] iArr = PipUtils.tmpCords;
         view.getLocationOnScreen(iArr);
         boolean z2 = false;
         int i = iArr[0];
         int i2 = iArr[1];
+        LaunchActivity launchActivity = pipActivityController.activity;
         View decorView = launchActivity.getWindow().getDecorView();
         decorView.getLocationOnScreen(iArr);
         int i3 = i - iArr[0];
@@ -152,18 +159,19 @@ public final class PipSource {
         int iClamp4 = MathUtils.clamp(height, i8, decorView.getHeight() + i8);
         Rect rect = tmpRect;
         rect.set(iClamp, iClamp2, iClamp3, iClamp4);
-        BinaryBitmap binaryBitmap = this.params;
-        if (((Rect) binaryBitmap.binarizer).equals(rect)) {
+        Stripe stripe = this.params;
+        if (((Rect) stripe.tokenCreator).equals(rect)) {
             z = false;
         } else {
-            ((Rect) binaryBitmap.binarizer).set(rect);
+            ((Rect) stripe.tokenCreator).set(rect);
             z = true;
         }
-        if (view instanceof TextureViewRenderer) {
+        boolean z3 = view instanceof TextureViewRenderer;
+        Point point = (Point) stripe.defaultPublishableKey;
+        if (z3) {
             TextureViewRenderer textureViewRenderer = (TextureViewRenderer) view;
             int i9 = textureViewRenderer.rotatedFrameWidth;
             int i10 = textureViewRenderer.rotatedFrameHeight;
-            Point point = (Point) binaryBitmap.matrix;
             if (point.x != i9 || point.y != i10) {
                 point.set(i9, i10);
                 z2 = true;
@@ -172,23 +180,22 @@ public final class PipSource {
         } else if (view.getWidth() != 0 && view.getHeight() != 0) {
             int width2 = view.getWidth();
             int height2 = view.getHeight();
-            Point point2 = (Point) binaryBitmap.matrix;
-            if (point2.x != width2 || point2.y != height2) {
-                point2.set(width2, height2);
+            if (point.x != width2 || point.y != height2) {
+                point.set(width2, height2);
                 z2 = true;
             }
             z |= z2;
         }
         if (z) {
             checkAvailable(true);
-            if (((PipSource) tooltipPopup.mTmpDisplayFrame) == this) {
-                PipUtils.applyPictureInPictureParams((LaunchActivity) tooltipPopup.mLayoutParams, this);
-                MediaSessionConnector mediaSessionConnector = (MediaSessionConnector) tooltipPopup.mTmpAppPos;
+            if (pipActivityController.maxPrioritySource == this) {
+                PipUtils.applyPictureInPictureParams(launchActivity, this);
+                MediaSessionConnector mediaSessionConnector = pipActivityController.mediaSessionConnector;
                 if (mediaSessionConnector != null) {
                     mediaSessionConnector.setPlayer(this.player);
                 }
             }
-            ((PipActivityContentLayout) tooltipPopup.mMessageView).invalidate();
+            pipActivityController.pipContentView.invalidate();
         }
     }
 }

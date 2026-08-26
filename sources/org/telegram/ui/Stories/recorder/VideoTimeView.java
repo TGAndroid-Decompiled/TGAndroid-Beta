@@ -2,11 +2,9 @@ package org.telegram.ui.Stories.recorder;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
@@ -25,27 +23,21 @@ public final class VideoTimeView extends View {
         this.backgroundPaint = paint;
         this.shown = true;
         paint.setColor(Integer.MIN_VALUE);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
         this.textDrawable = animatedTextDrawable;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        animatedTextDrawable.moveAmplitude = 0.2f;
-        animatedTextDrawable.animateDuration = 200L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextDrawable.setAnimationProperties(0.2f, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(13.0f));
-        TextPaint textPaint = animatedTextDrawable.textPaint;
-        textPaint.setColor(-1);
-        animatedTextDrawable.alpha = Color.alpha(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable.setTextColor(-1);
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setCallback(this);
-        animatedTextDrawable.gravity = 1;
+        animatedTextDrawable.setGravity(1);
         StringBuilder sb = new StringBuilder(8);
         sb.append("00:00:00");
-        if (TextUtils.equals(sb, animatedTextDrawable.currentText)) {
+        if (TextUtils.equals(sb, animatedTextDrawable.getText())) {
             return;
         }
         animatedTextDrawable.cancelAnimation();
-        animatedTextDrawable.setText(sb, false, true);
+        animatedTextDrawable.setText(sb, false);
     }
 
     @Override

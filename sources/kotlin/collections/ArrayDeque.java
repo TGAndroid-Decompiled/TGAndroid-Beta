@@ -1,6 +1,6 @@
 package kotlin.collections;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
@@ -19,7 +19,7 @@ public final class ArrayDeque extends java.util.AbstractList implements List {
         int length;
         int i2 = this.size;
         if (i < 0 || i > i2) {
-            throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
+            throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
         }
         if (i == i2) {
             addLast(obj);
@@ -84,7 +84,7 @@ public final class ArrayDeque extends java.util.AbstractList implements List {
         Intrinsics.checkNotNullParameter(elements, "elements");
         int i2 = this.size;
         if (i < 0 || i > i2) {
-            throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
+            throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
         }
         if (elements.isEmpty()) {
             return false;
@@ -250,7 +250,7 @@ public final class ArrayDeque extends java.util.AbstractList implements List {
     public final Object get(int i) {
         int i2 = this.size;
         if (i < 0 || i >= i2) {
-            throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
+            throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
         }
         return this.elementData[positiveMod(this.head + i)];
     }
@@ -376,7 +376,7 @@ public final class ArrayDeque extends java.util.AbstractList implements List {
     public final Object remove(int i) {
         int i2 = this.size;
         if (i < 0 || i >= i2) {
-            throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
+            throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
         }
         if (i == size() - 1) {
             return removeLast();
@@ -630,7 +630,7 @@ public final class ArrayDeque extends java.util.AbstractList implements List {
     public final Object set(int i, Object obj) {
         int i2 = this.size;
         if (i < 0 || i >= i2) {
-            throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
+            throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
         }
         int iPositiveMod = positiveMod(this.head + i);
         Object[] objArr = this.elementData;

@@ -12,8 +12,8 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.BlurSettingsBottomSheet$$ExternalSyntheticOutline0;
+import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 
@@ -27,8 +27,22 @@ public final class TextCheckbox2Cell extends FrameLayout {
     public final TextView textView;
     public final TextView valueTextView;
 
+    public final class AnonymousClass1 extends AnimationProperties.FloatProperty {
+        @Override
+        public final Float get(Object obj) {
+            return Float.valueOf(((TextCheckbox2Cell) obj).animationProgress);
+        }
+
+        @Override
+        public final void setValue(Object obj, float f) {
+            TextCheckbox2Cell textCheckbox2Cell = (TextCheckbox2Cell) obj;
+            textCheckbox2Cell.setAnimationProgress(f);
+            textCheckbox2Cell.invalidate();
+        }
+    }
+
     static {
-        new ChatActivity.AnonymousClass5("animationProgress", 3);
+        new AnonymousClass1("animationProgress");
     }
 
     public TextCheckbox2Cell(Context context) {
@@ -36,7 +50,9 @@ public final class TextCheckbox2Cell extends FrameLayout {
         this.height = 50;
         TextView textView = new TextView(context);
         this.textView = textView;
-        ArticleViewer.IBlock.CC.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 16.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -59,7 +75,7 @@ public final class TextCheckbox2Cell extends FrameLayout {
         checkBox2.setDrawUnchecked(true);
         checkBox2.setDrawBackgroundAsArc(10);
         checkBox2.setDuration(100L);
-        checkBox2.checkBoxBase.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
+        checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
         addView(checkBox2, LayoutHelper.createFrame(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         setClipChildren(false);
     }
@@ -83,7 +99,7 @@ public final class TextCheckbox2Cell extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.checkbox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.checkbox.checkBoxBase.isChecked);
+        accessibilityNodeInfo.setChecked(this.checkbox.isChecked());
         StringBuilder sb = new StringBuilder();
         sb.append(this.textView.getText());
         TextView textView = this.valueTextView;
@@ -116,7 +132,7 @@ public final class TextCheckbox2Cell extends FrameLayout {
     }
 
     public void setChecked(boolean z) {
-        this.checkbox.checkBoxBase.setChecked(-1, z, true);
+        this.checkbox.setChecked(z, true);
     }
 
     public void setHeight(int i) {

@@ -5,25 +5,23 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda112;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.DarkAlertDialog;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda454;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda488;
-import org.telegram.ui.Components.AlertsCreator$$ExternalSyntheticLambda55;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda14;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.DialogsActivity;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda15;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
+import org.telegram.ui.Gifts.AuctionBidSheet$$ExternalSyntheticLambda15;
 import org.webrtc.EglRenderer$$ExternalSyntheticLambda8;
 
 public abstract class RichInlineButtonEditor {
@@ -62,6 +60,7 @@ public abstract class RichInlineButtonEditor {
         TL_keyboard.InlineButtonType inlineButtonType = (richInlineButtonSpan == null || (textbutton = richInlineButtonSpan.button) == null) ? null : textbutton.type;
         if (inlineButtonType == null) {
             final int i = 0;
+            final int i2 = 1;
             itemOptions.add(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
                 @Override
                 public final void run() {
@@ -74,9 +73,7 @@ public abstract class RichInlineButtonEditor {
                             break;
                     }
                 }
-            }, false);
-            final int i2 = 1;
-            itemOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+            }).add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
                 @Override
                 public final void run() {
                     switch (i2) {
@@ -88,10 +85,8 @@ public abstract class RichInlineButtonEditor {
                             break;
                     }
                 }
-            }, false);
-            itemOptions.add(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new EglRenderer$$ExternalSyntheticLambda8(baseFragment, inlineButtonEdit, z, 14), false);
-            itemOptions.show();
-            return itemOptions;
+            }).add(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new EglRenderer$$ExternalSyntheticLambda8(baseFragment, inlineButtonEdit, z, 16));
+            return itemOptions.show();
         }
         if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) {
             showInlineLinkDialog(inlineButtonEdit, z);
@@ -103,7 +98,7 @@ public abstract class RichInlineButtonEditor {
         }
         if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
             RichEditorListView.this.hideTextSelectionUi(true);
-            showUserPicker(baseFragment, z, new RichInlineButtonEditor$$ExternalSyntheticLambda4(inlineButtonEdit, 2));
+            showUserPicker(baseFragment, z, new RichInlineButtonEditor$$ExternalSyntheticLambda3(inlineButtonEdit, 2));
         }
         return null;
     }
@@ -126,6 +121,7 @@ public abstract class RichInlineButtonEditor {
         TL_keyboard.InlineButtonType inlineButtonType = pageButton == null ? null : pageButton.type;
         if (inlineButtonType == null) {
             final int i2 = 0;
+            final int i3 = 1;
             itemOptions.add(R.drawable.media_link_24, LocaleController.getString(R.string.ChatLink), new Runnable() {
                 @Override
                 public final void run() {
@@ -138,9 +134,7 @@ public abstract class RichInlineButtonEditor {
                             break;
                     }
                 }
-            }, false);
-            final int i3 = 1;
-            itemOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
+            }).add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new Runnable() {
                 @Override
                 public final void run() {
                     switch (i3) {
@@ -152,10 +146,8 @@ public abstract class RichInlineButtonEditor {
                             break;
                     }
                 }
-            }, false);
-            itemOptions.add(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new ChatActivity$$ExternalSyntheticLambda488(baseFragment, context, resourcesProvider, blockButtonEdit, z, 23), false);
-            itemOptions.show();
-            return itemOptions;
+            }).add(R.drawable.left_status_profile, LocaleController.getString(R.string.RichEditorUserProfile), new MessagesStorage$$ExternalSyntheticLambda112(baseFragment, context, resourcesProvider, blockButtonEdit, z, 13));
+            return itemOptions.show();
         }
         if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) {
             showBlockLinkDialog(context, resourcesProvider, blockButtonEdit, z);
@@ -188,7 +180,7 @@ public abstract class RichInlineButtonEditor {
         }
         TL_keyboard.PageButton pageButton = (pageblockbuttonrow == null || (i = blockButtonEdit.index) < 0 || i >= pageblockbuttonrow.buttons.size()) ? null : pageblockbuttonrow.buttons.get(i);
         TL_keyboard.InlineButtonType inlineButtonType = pageButton != null ? pageButton.type : null;
-        showBlockTextAndValueDialog(context, resourcesProvider, blockButtonEdit, z, LocaleController.getString(zExists ? R.string.RichEditorEditCopyButton : R.string.RichEditorCreateCopyButton), LocaleController.getString(R.string.RichEditorButtonCopyText), inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy ? ((TL_keyboard.TL_inlineButtonTypeCopy) inlineButtonType).copy_text : "", new RichInlineButtonEditor$$ExternalSyntheticLambda0(blockButtonEdit, 3));
+        showBlockTextAndValueDialog(context, resourcesProvider, blockButtonEdit, z, LocaleController.getString(zExists ? R.string.RichEditorEditCopyButton : R.string.RichEditorCreateCopyButton), LocaleController.getString(R.string.RichEditorButtonCopyText), inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy ? ((TL_keyboard.TL_inlineButtonTypeCopy) inlineButtonType).copy_text : "", new RichInlineButtonEditor$$ExternalSyntheticLambda10(blockButtonEdit, 2));
     }
 
     public static void showBlockLinkDialog(Context context, Theme.ResourcesProvider resourcesProvider, RichEditorListView.BlockButtonEdit blockButtonEdit, boolean z) {
@@ -208,14 +200,14 @@ public abstract class RichInlineButtonEditor {
         }
         TL_keyboard.PageButton pageButton = (pageblockbuttonrow == null || (i = blockButtonEdit.index) < 0 || i >= pageblockbuttonrow.buttons.size()) ? null : pageblockbuttonrow.buttons.get(i);
         TL_keyboard.InlineButtonType inlineButtonType = pageButton != null ? pageButton.type : null;
-        showBlockTextAndValueDialog(context, resourcesProvider, blockButtonEdit, z, LocaleController.getString(zExists ? R.string.RichEditorEditLinkButton : R.string.RichEditorCreateLinkButton), LocaleController.getString(R.string.RichEditorButtonURL), inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl ? ((TL_keyboard.TL_inlineButtonTypeUrl) inlineButtonType).url : "http://", new RichInlineButtonEditor$$ExternalSyntheticLambda0(blockButtonEdit, 1));
+        showBlockTextAndValueDialog(context, resourcesProvider, blockButtonEdit, z, LocaleController.getString(zExists ? R.string.RichEditorEditLinkButton : R.string.RichEditorCreateLinkButton), LocaleController.getString(R.string.RichEditorButtonURL), inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl ? ((TL_keyboard.TL_inlineButtonTypeUrl) inlineButtonType).url : "http://", new RichInlineButtonEditor$$ExternalSyntheticLambda10(blockButtonEdit, 0));
     }
 
     public static void showBlockProfileDialog(BaseFragment baseFragment, Context context, Theme.ResourcesProvider resourcesProvider, RichEditorListView.BlockButtonEdit blockButtonEdit, boolean z) {
         TL_iv.pageBlockButtonRow pageblockbuttonrow;
         int i;
         boolean zExists = blockButtonEdit.exists();
-        LinearLayout linearLayoutM = zzkf.m(context, 1);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
         int i2 = 0;
         linearLayoutM.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         String string = LocaleController.getString(R.string.RichEditorButtonText);
@@ -233,32 +225,22 @@ public abstract class RichInlineButtonEditor {
         TL_keyboard.PageButton pageButton = (pageblockbuttonrow == null || (i = blockButtonEdit.index) < 0 || i >= pageblockbuttonrow.buttons.size()) ? null : pageblockbuttonrow.buttons.get(i);
         EditTextBoldCursor editTextBoldCursorCreateField = createField(context, string, pageButton == null ? "" : RichTextStyle.plainOf(pageButton.text), resourcesProvider);
         linearLayoutM.addView(editTextBoldCursorCreateField, LayoutHelper.createLinear(-1, 64));
-        QrActivity$$ExternalSyntheticLambda15 qrActivity$$ExternalSyntheticLambda15 = new QrActivity$$ExternalSyntheticLambda15(editTextBoldCursorCreateField, baseFragment, z, blockButtonEdit, 27);
-        AlertDialog.Builder builder = z ? new AlertDialog.Builder(context, 0, resourcesProvider) : new AlertDialogDecor.Builder(context, 0, resourcesProvider);
-        String string2 = LocaleController.getString(zExists ? R.string.RichEditorEditProfileButton : R.string.RichEditorCreateProfileButton);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string2;
-        builder.setView(linearLayoutM);
-        builder.setPositiveButton(LocaleController.getString(R.string.OK), new ChatActivity$$ExternalSyntheticLambda454(zExists, qrActivity$$ExternalSyntheticLambda15, editTextBoldCursorCreateField, blockButtonEdit, 6));
+        Theme$$ExternalSyntheticLambda14 theme$$ExternalSyntheticLambda14 = new Theme$$ExternalSyntheticLambda14(editTextBoldCursorCreateField, baseFragment, z, blockButtonEdit, 9);
+        AlertDialog.Builder builder = z ? new AlertDialog.Builder(context, 0, resourcesProvider) : new DarkAlertDialog.Builder(context, 0, resourcesProvider);
+        builder.setTitle(LocaleController.getString(zExists ? R.string.RichEditorEditProfileButton : R.string.RichEditorCreateProfileButton)).setView(linearLayoutM).setPositiveButton(LocaleController.getString(R.string.OK), new RichInlineButtonEditor$$ExternalSyntheticLambda12(zExists, theme$$ExternalSyntheticLambda14, editTextBoldCursorCreateField, blockButtonEdit));
         if (zExists) {
-            builder.setNeutralButton(LocaleController.getString(R.string.RichEditorChangeUser), new TodoItemMenu$$ExternalSyntheticLambda3(qrActivity$$ExternalSyntheticLambda15, 13));
-            String string3 = LocaleController.getString(R.string.Delete);
-            RichInlineButtonEditor$$ExternalSyntheticLambda0 richInlineButtonEditor$$ExternalSyntheticLambda0 = new RichInlineButtonEditor$$ExternalSyntheticLambda0(blockButtonEdit, 2);
-            alertDialog.negative2ButtonText = string3;
-            alertDialog.negative2ButtonListener = richInlineButtonEditor$$ExternalSyntheticLambda0;
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            alertDialog.twoRowsButtonsWhenNeeded = true;
             i2 = -4;
+            builder.setNeutralButton(LocaleController.getString(R.string.RichEditorChangeUser), new RichEditor$3$$ExternalSyntheticLambda0(theme$$ExternalSyntheticLambda14, 10)).setButton(-4, LocaleController.getString(R.string.Delete), new RichInlineButtonEditor$$ExternalSyntheticLambda10(blockButtonEdit, 1)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).twoRowsButtonsWhenNeeded();
         } else {
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         }
         showInputDialog(builder, editTextBoldCursorCreateField, i2, resourcesProvider);
     }
 
-    public static void showBlockTextAndValueDialog(Context context, Theme.ResourcesProvider resourcesProvider, RichEditorListView.BlockButtonEdit blockButtonEdit, boolean z, String str, String str2, String str3, RichInlineButtonEditor$$ExternalSyntheticLambda0 richInlineButtonEditor$$ExternalSyntheticLambda0) {
+    public static void showBlockTextAndValueDialog(Context context, Theme.ResourcesProvider resourcesProvider, RichEditorListView.BlockButtonEdit blockButtonEdit, boolean z, String str, String str2, String str3, RichInlineButtonEditor$$ExternalSyntheticLambda10 richInlineButtonEditor$$ExternalSyntheticLambda10) {
         TL_iv.pageBlockButtonRow pageblockbuttonrow;
         int i;
-        LinearLayout linearLayoutM = zzkf.m(context, 1);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
         linearLayoutM.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         String string = LocaleController.getString(R.string.RichEditorButtonText);
         BlockRow blockRow = blockButtonEdit.row;
@@ -277,13 +259,10 @@ public abstract class RichInlineButtonEditor {
         EditTextBoldCursor editTextBoldCursorCreateField2 = createField(context, str2, str3, resourcesProvider);
         linearLayoutM.addView(editTextBoldCursorCreateField, LayoutHelper.createLinear(-1, 64));
         linearLayoutM.addView(editTextBoldCursorCreateField2, LayoutHelper.createLinear(-1, 64));
-        AlertDialog.Builder builder = z ? new AlertDialog.Builder(context, 0, resourcesProvider) : new AlertDialogDecor.Builder(context, 0, resourcesProvider);
-        builder.alertDialog.title = str;
-        builder.setView(linearLayoutM);
-        builder.setPositiveButton(LocaleController.getString(R.string.OK), new RichInlineButtonEditor$$ExternalSyntheticLambda19(editTextBoldCursorCreateField, editTextBoldCursorCreateField2, richInlineButtonEditor$$ExternalSyntheticLambda0, 0));
+        AlertDialog.Builder builder = z ? new AlertDialog.Builder(context, 0, resourcesProvider) : new DarkAlertDialog.Builder(context, 0, resourcesProvider);
+        builder.setTitle(str).setView(linearLayoutM).setPositiveButton(LocaleController.getString(R.string.OK), new RichEditor$$ExternalSyntheticLambda60(editTextBoldCursorCreateField, editTextBoldCursorCreateField2, richInlineButtonEditor$$ExternalSyntheticLambda10, 17));
         if (blockButtonEdit.exists()) {
-            builder.setNeutralButton(LocaleController.getString(R.string.Delete), new RichInlineButtonEditor$$ExternalSyntheticLambda0(blockButtonEdit, 0));
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            builder.setNeutralButton(LocaleController.getString(R.string.Delete), new RichInlineButtonEditor$$ExternalSyntheticLambda10(blockButtonEdit, 3)).setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         } else {
             builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
         }
@@ -300,7 +279,7 @@ public abstract class RichInlineButtonEditor {
         boolean z2 = inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy;
         String strPlainOf = z2 ? ((TL_keyboard.TL_inlineButtonTypeCopy) inlineButtonType).copy_text : RichTextStyle.plainOf(inlineButtonEdit.label);
         RichEditorListView.this.hideTextSelectionUi(false);
-        inlineButtonEdit.editText.showInputDialog(LocaleController.getString(z2 ? R.string.RichEditorEditCopyButton : R.string.RichEditorCreateCopyButton), LocaleController.getString(R.string.RichEditorButtonCopyText), strPlainOf, false, !z, new RichInlineButtonEditor$$ExternalSyntheticLambda4(inlineButtonEdit, 1));
+        inlineButtonEdit.editText.showInputDialog(LocaleController.getString(z2 ? R.string.RichEditorEditCopyButton : R.string.RichEditorCreateCopyButton), LocaleController.getString(R.string.RichEditorButtonCopyText), strPlainOf, false, !z, new RichInlineButtonEditor$$ExternalSyntheticLambda3(inlineButtonEdit, 1));
     }
 
     public static void showInlineLinkDialog(RichEditorListView.InlineButtonEdit inlineButtonEdit, boolean z) {
@@ -310,18 +289,17 @@ public abstract class RichInlineButtonEditor {
         boolean z2 = inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl;
         String str = z2 ? ((TL_keyboard.TL_inlineButtonTypeUrl) inlineButtonType).url : "http://";
         RichEditorListView.this.hideTextSelectionUi(false);
-        inlineButtonEdit.editText.showInputDialog(LocaleController.getString(z2 ? R.string.RichEditorEditLinkButton : R.string.RichEditorCreateLinkButton), LocaleController.getString(R.string.RichEditorButtonURL), str, true, !z, new RichInlineButtonEditor$$ExternalSyntheticLambda4(inlineButtonEdit, 0));
+        inlineButtonEdit.editText.showInputDialog(LocaleController.getString(z2 ? R.string.RichEditorEditLinkButton : R.string.RichEditorCreateLinkButton), LocaleController.getString(R.string.RichEditorButtonURL), str, true, !z, new RichInlineButtonEditor$$ExternalSyntheticLambda3(inlineButtonEdit, 0));
     }
 
     public static void showInputDialog(AlertDialog.Builder builder, EditTextBoldCursor editTextBoldCursor, int i, Theme.ResourcesProvider resourcesProvider) {
-        AlertsCreator$$ExternalSyntheticLambda55 alertsCreator$$ExternalSyntheticLambda55 = new AlertsCreator$$ExternalSyntheticLambda55(5, editTextBoldCursor);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.setOnShowListener(alertsCreator$$ExternalSyntheticLambda55);
-        alertDialog.showDelayed(250L);
-        if (i == 0 || !(alertDialog.getButton(i) instanceof TextView)) {
+        AlertDialog alertDialogCreate = builder.create();
+        alertDialogCreate.setOnShowListener(new AuctionBidSheet$$ExternalSyntheticLambda15(3, editTextBoldCursor));
+        alertDialogCreate.showDelayed(250L);
+        if (i == 0 || !(alertDialogCreate.getButton(i) instanceof TextView)) {
             return;
         }
-        ((TextView) alertDialog.getButton(i)).setTextColor(Theme.getColor(Theme.key_text_RedBold, resourcesProvider));
+        ((TextView) alertDialogCreate.getButton(i)).setTextColor(Theme.getColor(Theme.key_text_RedBold, resourcesProvider));
     }
 
     public static void showUserPicker(BaseFragment baseFragment, boolean z, UserPicked userPicked) {
@@ -333,7 +311,7 @@ public abstract class RichInlineButtonEditor {
         bundle.putBoolean("checkCanWrite", false);
         bundle.putInt("dialogsType", 4);
         DialogsActivity dialogsActivity = new DialogsActivity(bundle);
-        dialogsActivity.delegate = new TodoItemMenu$$ExternalSyntheticLambda3(userPicked, 14);
+        dialogsActivity.setDelegate(new RichEditor$3$$ExternalSyntheticLambda0(userPicked, 11));
         if (!z) {
             baseFragment.presentFragment(dialogsActivity);
             return;

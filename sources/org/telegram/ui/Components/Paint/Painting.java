@@ -14,7 +14,6 @@ import android.graphics.RectF;
 import android.opengl.GLES20;
 import androidx.core.graphics.ColorUtils;
 import com.google.common.base.Splitter;
-import com.google.zxing.BinaryBitmap;
 import com.stripe.android.Stripe;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -31,10 +30,10 @@ import java.util.zip.Inflater;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda14;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.BlurringShader;
-import org.telegram.ui.Components.HintView$1$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.Size;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda15;
 
 public final class Painting {
     public Path activePath;
@@ -48,7 +47,7 @@ public final class Painting {
     public Texture bluredTexture;
     public Brush brush;
     public final ByteBuffer dataBuffer;
-    public Stripe.AnonymousClass1 delegate;
+    public RenderView.AnonymousClass2 delegate;
     public boolean hasBlur;
     public float helperAlpha;
     public ValueAnimator helperAnimator;
@@ -92,10 +91,10 @@ public final class Painting {
                 case 0:
                     Painting painting = this.this$0;
                     painting.helperAnimator = null;
-                    painting.renderView.performInContext(new HintView$1$$ExternalSyntheticLambda0(this, 26));
+                    painting.renderView.performInContext(new ChatbotSheet$$ExternalSyntheticLambda0(this, 17));
                     break;
                 default:
-                    this.this$0.renderView.performInContext(new HintView$1$$ExternalSyntheticLambda0(this, 27));
+                    this.this$0.renderView.performInContext(new ChatbotSheet$$ExternalSyntheticLambda0(this, 18));
                     break;
             }
         }
@@ -204,9 +203,9 @@ public final class Painting {
             GLES20.glClear(16384);
         }
         GLES20.glBindFramebuffer(36160, 0);
-        Stripe.AnonymousClass1 anonymousClass1 = this.delegate;
-        if (anonymousClass1 != null) {
-            anonymousClass1.contentChanged();
+        RenderView.AnonymousClass2 anonymousClass2 = this.delegate;
+        if (anonymousClass2 != null) {
+            anonymousClass2.contentChanged();
         }
         RenderState renderState = this.renderState;
         renderState.count = 0;
@@ -220,17 +219,17 @@ public final class Painting {
         this.helperApplyAlpha = 0.0f;
     }
 
-    public final void commitPath(Path path, int i, boolean z, Input$$ExternalSyntheticLambda1 input$$ExternalSyntheticLambda1) {
+    public final void commitPath(Path path, int i, boolean z, Input$$ExternalSyntheticLambda2 input$$ExternalSyntheticLambda2) {
         if (this.shaders == null || this.brush == null) {
             return;
         }
-        this.renderView.performInContext(new Painting$$ExternalSyntheticLambda7(this, path, i, z, input$$ExternalSyntheticLambda1));
+        this.renderView.performInContext(new Painting$$ExternalSyntheticLambda7(this, path, i, z, input$$ExternalSyntheticLambda2));
     }
 
     public final Splitter commitPathInternal(Path path, int i, RectF rectF) {
         Splitter splitterRegisterUndo;
-        Stripe.AnonymousClass1 anonymousClass1;
-        Object obj;
+        RenderView.AnonymousClass2 anonymousClass2;
+        Object textureLock;
         boolean z;
         Brush brush = this.brush;
         if (path != null) {
@@ -246,15 +245,15 @@ public final class Painting {
             } else {
                 Size size = this.size;
                 if (rectF.setIntersect(rectF, new RectF(0.0f, 0.0f, size.width, size.height))) {
-                    ByteBuffer byteBuffer = (ByteBuffer) getPaintingData(rectF, true, false, false).matrix;
-                    Object obj2 = this.delegate.this$0;
+                    ByteBuffer byteBuffer = (ByteBuffer) getPaintingData(rectF, true, false, false).defaultPublishableKey;
+                    RenderView renderView = RenderView.this;
                     Splitter splitter = new Splitter(byteBuffer, 0, rectF);
-                    ByteBuffer byteBuffer2 = (ByteBuffer) getPaintingData(rectF, true, true, false).matrix;
-                    Object obj3 = this.delegate.this$0;
+                    ByteBuffer byteBuffer2 = (ByteBuffer) getPaintingData(rectF, true, true, false).defaultPublishableKey;
+                    RenderView renderView2 = RenderView.this;
                     Splitter splitter2 = new Splitter(byteBuffer2, 1, rectF);
-                    UndoStore undoStore = ((RenderView) this.delegate.this$0).undoStore;
+                    UndoStore undoStore = RenderView.this.undoStore;
                     UUID uuidRandomUUID = UUID.randomUUID();
-                    undoStore.uuidToOperationMap.put(uuidRandomUUID, new QrActivity$$ExternalSyntheticLambda15(this, splitter, splitter2, z2, 13));
+                    undoStore.uuidToOperationMap.put(uuidRandomUUID, new Theme$$ExternalSyntheticLambda14(this, splitter, splitter2, z2, 3));
                     undoStore.operations.add(uuidRandomUUID);
                     undoStore.notifyOfHistoryChanges();
                     splitterRegisterUndo = splitter;
@@ -298,23 +297,22 @@ public final class Painting {
                 GLES20.glActiveTexture(33986);
                 BlurringShader.BlurManager blurManager = this.blurManager;
                 if (blurManager != null) {
-                    obj = blurManager.textureLock;
-                    BlurringShader blurringShader = blurManager.currentShader;
-                    GLES20.glBindTexture(3553, blurringShader != null ? blurringShader.texture[2] : -1);
+                    textureLock = blurManager.getTextureLock();
+                    GLES20.glBindTexture(3553, this.blurManager.getTexture());
                 } else {
                     GLES20.glBindTexture(3553, this.bluredTexture.texture());
-                    obj = null;
+                    textureLock = null;
                 }
             } else {
-                obj = null;
+                textureLock = null;
             }
             GLES20.glBlendFunc(1, 0);
             GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.vertexBuffer);
             GLES20.glEnableVertexAttribArray(0);
             GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.textureBuffer);
             GLES20.glEnableVertexAttribArray(1);
-            if (obj != null) {
-                synchronized (obj) {
+            if (textureLock != null) {
+                synchronized (textureLock) {
                     GLES20.glDrawArrays(5, 0, 4);
                 }
             } else {
@@ -324,8 +322,8 @@ public final class Painting {
             GLES20.glTexParameteri(3553, 10241, 9729);
         }
         GLES20.glBindFramebuffer(36160, 0);
-        if (this.suppressChangesCounter <= 0 && (anonymousClass1 = this.delegate) != null) {
-            anonymousClass1.contentChanged();
+        if (this.suppressChangesCounter <= 0 && (anonymousClass2 = this.delegate) != null) {
+            anonymousClass2.contentChanged();
         }
         this.suppressChangesCounter--;
         RenderState renderState = this.renderState;
@@ -394,9 +392,9 @@ public final class Painting {
         GLES20.glBindTexture(3553, getTexture());
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glBindFramebuffer(36160, 0);
-        Stripe.AnonymousClass1 anonymousClass1 = this.delegate;
-        if (anonymousClass1 != null && this.suppressChangesCounter <= 0) {
-            anonymousClass1.contentChanged();
+        RenderView.AnonymousClass2 anonymousClass2 = this.delegate;
+        if (anonymousClass2 != null && this.suppressChangesCounter <= 0) {
+            anonymousClass2.contentChanged();
         }
         this.suppressChangesCounter--;
         RenderState renderState = this.renderState;
@@ -422,10 +420,10 @@ public final class Painting {
         return this.paintTexture;
     }
 
-    public final BinaryBitmap getPaintingData(RectF rectF, boolean z, boolean z2, boolean z3) {
+    public final Stripe getPaintingData(RectF rectF, boolean z, boolean z2, boolean z3) {
         String str;
         Texture texture;
-        BinaryBitmap binaryBitmap;
+        Stripe stripe;
         Shader shader;
         Texture texture2;
         int i = (int) rectF.left;
@@ -442,7 +440,6 @@ public final class Painting {
         GLES20.glTexParameteri(3553, 10243, 33071);
         GLES20.glTexParameteri(3553, 10241, 9729);
         GLES20.glTexParameteri(3553, 10240, 9728);
-        boolean z4 = false;
         GLES20.glTexImage2D(3553, 0, 6408, iWidth, iHeight, 0, 6408, 5121, null);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, i4, 0);
         Size size = this.size;
@@ -495,8 +492,7 @@ public final class Painting {
                     GLES20.glTexParameteri(3553, 10241, 9729);
                     GLES20.glUniform1i(((Integer) shader.uniformsMap.get("blured")).intValue(), 1);
                     GLES20.glActiveTexture(33985);
-                    BlurringShader blurringShader = this.blurManager.currentShader;
-                    GLES20.glBindTexture(3553, blurringShader != null ? blurringShader.texture[2] : -1);
+                    GLES20.glBindTexture(3553, this.blurManager.getTexture());
                     GLES20.glUniform1f(((Integer) shader.uniformsMap.get("eraser")).intValue(), 0.0f);
                     GLES20.glUniform1i(((Integer) shader.uniformsMap.get("mask")).intValue(), 2);
                     GLES20.glActiveTexture(33986);
@@ -506,18 +502,18 @@ public final class Painting {
                     GLES20.glEnableVertexAttribArray(0);
                     GLES20.glVertexAttribPointer(1, 2, 5126, false, 8, (Buffer) this.textureBuffer);
                     GLES20.glEnableVertexAttribArray(1);
-                    synchronized (this.blurManager.textureLock) {
+                    synchronized (this.blurManager.getTextureLock()) {
                         GLES20.glDrawArrays(5, 0, 4);
                     }
                 }
                 this.dataBuffer.limit(iWidth * iHeight * 4);
                 GLES20.glReadPixels(0, 0, iWidth, iHeight, 6408, 5121, this.dataBuffer);
                 if (z) {
-                    binaryBitmap = new BinaryBitmap(obj, this.dataBuffer, z4, 26);
+                    stripe = new Stripe(18, obj, this.dataBuffer);
                 } else {
                     Bitmap bitmapCreateBitmap = Bitmap.createBitmap(iWidth, iHeight, Bitmap.Config.ARGB_8888);
                     bitmapCreateBitmap.copyPixelsFromBuffer(this.dataBuffer);
-                    binaryBitmap = new BinaryBitmap(bitmapCreateBitmap, obj, z4, 26);
+                    stripe = new Stripe(18, bitmapCreateBitmap, obj);
                 }
                 this.dataBuffer.rewind();
                 int[] iArr = this.buffers;
@@ -526,7 +522,7 @@ public final class Painting {
                 int[] iArr2 = this.buffers;
                 iArr2[0] = i4;
                 GLES20.glDeleteTextures(1, iArr2, 0);
-                return binaryBitmap;
+                return stripe;
             }
         }
         return null;
@@ -554,13 +550,13 @@ public final class Painting {
         if (shape == null) {
             return;
         }
-        this.renderView.performInContext(new Painting$$ExternalSyntheticLambda0(this, shape, 0));
+        this.renderView.performInContext(new Painting$$ExternalSyntheticLambda1(this, shape, 0));
     }
 
     public final void paintStrokeInternal(Path path, boolean z, boolean z2) {
         int i;
         int i2;
-        Stripe.AnonymousClass1 anonymousClass1;
+        RenderView.AnonymousClass2 anonymousClass2;
         RectF rectF;
         char c;
         char c2;
@@ -879,9 +875,9 @@ public final class Painting {
                 i2 = 36160;
             }
             GLES20.glBindFramebuffer(i2, i);
-            anonymousClass1 = this.delegate;
-            if (anonymousClass1 != null) {
-                anonymousClass1.contentChanged();
+            anonymousClass2 = this.delegate;
+            if (anonymousClass2 != null) {
+                anonymousClass2.contentChanged();
             }
             rectF = this.activeStrokeBounds;
             if (rectF != null) {
@@ -893,9 +889,9 @@ public final class Painting {
         i = 0;
         i2 = 36160;
         GLES20.glBindFramebuffer(i2, i);
-        anonymousClass1 = this.delegate;
-        if (anonymousClass1 != null) {
-            anonymousClass1.contentChanged();
+        anonymousClass2 = this.delegate;
+        if (anonymousClass2 != null) {
+            anonymousClass2.contentChanged();
         }
         rectF = this.activeStrokeBounds;
         if (rectF != null) {
@@ -913,10 +909,10 @@ public final class Painting {
         if (!rectF.setIntersect(rectF, new RectF(0.0f, 0.0f, size.width, size.height))) {
             return null;
         }
-        ByteBuffer byteBuffer = (ByteBuffer) getPaintingData(rectF, true, z, false).matrix;
-        Object obj = this.delegate.this$0;
+        ByteBuffer byteBuffer = (ByteBuffer) getPaintingData(rectF, true, z, false).defaultPublishableKey;
+        RenderView renderView = RenderView.this;
         Splitter splitter = new Splitter(byteBuffer, z ? 1 : 0, rectF);
-        UndoStore undoStore = ((RenderView) this.delegate.this$0).undoStore;
+        UndoStore undoStore = RenderView.this.undoStore;
         UUID uuidRandomUUID = UUID.randomUUID();
         undoStore.uuidToOperationMap.put(uuidRandomUUID, new Painting$$ExternalSyntheticLambda4(this, splitter, 1));
         undoStore.operations.add(uuidRandomUUID);
@@ -925,7 +921,7 @@ public final class Painting {
     }
 
     public final void renderBlitPath(int i, Path path, float f) {
-        Object obj;
+        Object textureLock;
         if (path == null) {
             return;
         }
@@ -963,19 +959,19 @@ public final class Painting {
             GLES20.glActiveTexture(33986);
             BlurringShader.BlurManager blurManager = this.blurManager;
             if (blurManager != null) {
-                obj = blurManager.textureLock;
-                BlurringShader blurringShader = blurManager.currentShader;
-                GLES20.glBindTexture(3553, blurringShader != null ? blurringShader.texture[2] : -1);
+                textureLock = blurManager.getTextureLock();
+                GLES20.glBindTexture(3553, this.blurManager.getTexture());
             } else {
                 Texture texture = this.bluredTexture;
                 if (texture != null) {
                     GLES20.glBindTexture(3553, texture.texture());
                 }
-                obj = null;
+                textureLock = null;
             }
         } else {
-            obj = null;
+            textureLock = null;
         }
+        Object obj = textureLock;
         GLES20.glBlendFunc(1, 771);
         GLES20.glVertexAttribPointer(0, 2, 5126, false, 8, (Buffer) this.vertexBuffer);
         GLES20.glEnableVertexAttribArray(0);
@@ -1043,7 +1039,7 @@ public final class Painting {
     public final void restoreSliceInternal(Splitter splitter, boolean z) {
         ByteBuffer byteBuffer;
         File file;
-        Stripe.AnonymousClass1 anonymousClass1;
+        RenderView.AnonymousClass2 anonymousClass2;
         Texture texture;
         if (splitter == null) {
             return;
@@ -1089,8 +1085,8 @@ public final class Painting {
         GLES20.glBindTexture(3553, texture2);
         RectF rectF = (RectF) splitter.trimmer;
         GLES20.glTexSubImage2D(3553, 0, (int) rectF.left, (int) rectF.top, (int) rectF.width(), (int) ((RectF) splitter.trimmer).height(), 6408, 5121, byteBuffer);
-        if (this.suppressChangesCounter <= 0 && (anonymousClass1 = this.delegate) != null) {
-            anonymousClass1.contentChanged();
+        if (this.suppressChangesCounter <= 0 && (anonymousClass2 = this.delegate) != null) {
+            anonymousClass2.contentChanged();
         }
         if (!z || (file = (File) splitter.strategy) == null) {
             return;

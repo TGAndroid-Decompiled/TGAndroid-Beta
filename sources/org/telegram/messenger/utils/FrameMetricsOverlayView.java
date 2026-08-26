@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import androidx.lifecycle.LiveData;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.pip.PipActivityHandler$$ExternalSyntheticLambda3;
-import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.LaunchActivity;
 
 public final class FrameMetricsOverlayView extends View {
@@ -31,7 +31,7 @@ public final class FrameMetricsOverlayView extends View {
     public final AtomicInteger onDrawCountAccum;
     public FrameMetricsOverlayView$$ExternalSyntheticLambda5 onDrawListener;
     public int onDrawPerSecond;
-    public final BubbleActivity.AnonymousClass1 redraw;
+    public final LiveData.AnonymousClass1 redraw;
     public final AtomicBoolean running;
     public final Paint textPaint;
     public final Handler uiHandler;
@@ -41,16 +41,16 @@ public final class FrameMetricsOverlayView extends View {
     public WindowManager wm;
 
     public enum Metric {
-        EF11(24, "UNKNOWN_DELAY_DURATION", "unknown delay"),
-        EF25(24, "INPUT_HANDLING_DURATION", "input"),
-        EF38(24, "ANIMATION_DURATION", "animation"),
-        EF52(24, "LAYOUT_MEASURE_DURATION", "layout"),
-        EF65(24, "DRAW_DURATION", "draw"),
-        EF79(24, "SYNC_DURATION", "sync"),
-        EF92(24, "COMMAND_ISSUE_DURATION", "cmd issue"),
-        EF106(24, "SWAP_BUFFERS_DURATION", "swap buffers"),
-        EF122(31, "GPU_DURATION", "gpu"),
-        EF138(24, "TOTAL_DURATION", "total");
+        UNKNOWN_DELAY_DURATION("unknown delay", 0, 24),
+        INPUT_HANDLING_DURATION("input", 1, 24),
+        ANIMATION_DURATION("animation", 2, 24),
+        LAYOUT_MEASURE_DURATION("layout", 3, 24),
+        DRAW_DURATION("draw", 4, 24),
+        SYNC_DURATION("sync", 5, 24),
+        COMMAND_ISSUE_DURATION("cmd issue", 6, 24),
+        SWAP_BUFFERS_DURATION("swap buffers", 7, 24),
+        GPU_DURATION("gpu", 12, 31),
+        TOTAL_DURATION("total", 8, 24);
 
         public final int key;
         public final String label;
@@ -58,10 +58,10 @@ public final class FrameMetricsOverlayView extends View {
         public long last = Long.MIN_VALUE;
         public double avgMs = 0.0d;
 
-        Metric(int i, String str, String str2) {
+        Metric(String str, int i, int i2) {
             this.key = i;
-            this.label = str2;
-            this.minApi = i;
+            this.label = str;
+            this.minApi = i2;
         }
     }
 
@@ -79,7 +79,7 @@ public final class FrameMetricsOverlayView extends View {
         this.running = new AtomicBoolean(false);
         this.attachedToWindowManager = new AtomicBoolean(false);
         this.uiHandler = new Handler(Looper.getMainLooper());
-        this.redraw = new BubbleActivity.AnonymousClass1(this, 1);
+        this.redraw = new LiveData.AnonymousClass1(this, 26);
         paint.setColor(-1342177280);
         paint2.setColor(-1);
         paint2.setTextSize(AndroidUtilities.dp(9.0f));
@@ -183,15 +183,15 @@ public final class FrameMetricsOverlayView extends View {
                 if (j7 >= 0) {
                     str = String.format(Locale.US, "%-16s : %5.2f / %5.2f ms", str2, Double.valueOf(j7 / 1000000.0d), Double.valueOf(metric.avgMs));
                     switch (metric) {
-                        case EF11:
-                        case EF106:
+                        case UNKNOWN_DELAY_DURATION:
+                        case SWAP_BUFFERS_DURATION:
                             j4 += metric.last;
                             d3 += metric.avgMs;
                             break;
-                        case EF25:
-                        case EF38:
-                        case EF52:
-                        case EF65:
+                        case INPUT_HANDLING_DURATION:
+                        case ANIMATION_DURATION:
+                        case LAYOUT_MEASURE_DURATION:
+                        case DRAW_DURATION:
                             j += metric.last;
                             j3 = j3;
                             d2 = d2;
@@ -199,7 +199,7 @@ public final class FrameMetricsOverlayView extends View {
                             d += metric.avgMs;
                             f2 = f2;
                             break;
-                        case EF79:
+                        case SYNC_DURATION:
                             double d7 = d;
                             long j8 = j2;
                             double d8 = d2;
@@ -213,14 +213,14 @@ public final class FrameMetricsOverlayView extends View {
                             d = d;
                             j3 = j3;
                             break;
-                        case EF92:
+                        case COMMAND_ISSUE_DURATION:
                             d = d;
                             j2 += metric.last;
                             d2 += metric.avgMs;
                             d = d;
                             j3 = j3;
                             break;
-                        case EF122:
+                        case GPU_DURATION:
                             j3 += metric.last;
                             d4 += metric.avgMs;
                             f2 = f2;

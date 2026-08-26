@@ -21,21 +21,21 @@ public final class ID3v2TagHeader {
         this.headerSize = 0;
         this.totalTagSize = 0;
         this.footerSize = 0;
-        Stripe stripe = new Stripe(positionInputStream, 12);
+        Stripe.AnonymousClass1 anonymousClass1 = new Stripe.AnonymousClass1(positionInputStream, 12);
         byte[] bArr = new byte[3];
-        stripe.readFully(3, bArr);
+        anonymousClass1.readFully(3, bArr);
         String str = new String(bArr, "ISO-8859-1");
         if (!"ID3".equals(str)) {
             throw new ID3v2Exception("Invalid ID3 identifier: ".concat(str));
         }
-        byte b = stripe.readByte();
+        byte b = anonymousClass1.readByte();
         this.version = b;
         if (b != 2 && b != 3 && b != 4) {
             throw new ID3v2Exception(DiffUtil.m(b, "Unsupported ID3v2 version: "));
         }
-        this.revision = stripe.readByte();
-        byte b2 = stripe.readByte();
-        int syncsafeInt = stripe.readSyncsafeInt();
+        this.revision = anonymousClass1.readByte();
+        byte b2 = anonymousClass1.readByte();
+        int syncsafeInt = anonymousClass1.readSyncsafeInt();
         this.totalTagSize = syncsafeInt + 10;
         if (b == 2) {
             this.unsynchronization = (b2 & 128) != 0;
@@ -44,13 +44,13 @@ public final class ID3v2TagHeader {
             this.unsynchronization = (b2 & 128) != 0;
             if ((b2 & 64) != 0) {
                 if (b == 3) {
-                    int i = stripe.readInt();
-                    stripe.readByte();
-                    stripe.readByte();
-                    stripe.readInt();
-                    stripe.skipFully(i - 6);
+                    int i = anonymousClass1.readInt();
+                    anonymousClass1.readByte();
+                    anonymousClass1.readByte();
+                    anonymousClass1.readInt();
+                    anonymousClass1.skipFully(i - 6);
                 } else {
-                    stripe.skipFully(stripe.readSyncsafeInt() - 4);
+                    anonymousClass1.skipFully(anonymousClass1.readSyncsafeInt() - 4);
                 }
             }
             if (b >= 4 && (b2 & 16) != 0) {

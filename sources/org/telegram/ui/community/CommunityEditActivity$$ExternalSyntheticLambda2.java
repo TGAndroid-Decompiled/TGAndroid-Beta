@@ -29,15 +29,15 @@ public final class CommunityEditActivity$$ExternalSyntheticLambda2 implements Ut
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        return Boolean.valueOf(this.f$0.onLongClick$6((UItem) obj, (View) obj2));
+        return Boolean.valueOf(this.f$0.onLongClick$3((UItem) obj, (View) obj2));
     }
 
     @Override
-    public void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) throws Throwable {
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        this.f$0.onClick$12((UItem) obj);
+        this.f$0.onClick$9((UItem) obj);
     }
 
     @Override

@@ -22,13 +22,13 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda19;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda9;
-import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
+import org.telegram.ui.bots.BotSensors$1$$ExternalSyntheticLambda0;
 import org.telegram.ui.iv.RichEditorListView.BlockButtonEdit;
 
 public final class RichButtonRowCell extends RichBlockCell implements Theme.Colorable {
@@ -44,16 +44,16 @@ public final class RichButtonRowCell extends RichBlockCell implements Theme.Colo
     public final class ButtonView extends View {
         public final RichMessageLayout.RichButton button;
         public final int index;
-        public final VoIPFragment$$ExternalSyntheticLambda9 longPressRunnable;
+        public final Theme$$ExternalSyntheticLambda19 longPressRunnable;
         public boolean longPressed;
         public boolean pressed;
 
         public ButtonView(Context context, TL_keyboard.PageButton pageButton, int i) {
             super(context);
             this.index = i;
-            RichMessageLayout.RichButton richButtonCreateEditorPageButton = RichMessageLayout.createEditorPageButton(RichButtonRowCell.this.currentAccount, BotFullscreenButtons$$ExternalSyntheticOutline1.m(AndroidUtilities.displaySize.x, 32.0f, AndroidUtilities.dp(240.0f)), RichButtonRowCell.this.resourcesProvider, pageButton, new VoIPFragment$8$$ExternalSyntheticLambda1(this, 15));
+            RichMessageLayout.RichButton richButtonCreateEditorPageButton = RichMessageLayout.createEditorPageButton(RichButtonRowCell.this.currentAccount, BotFullscreenButtons$$ExternalSyntheticOutline1.m(32.0f, AndroidUtilities.displaySize.x, AndroidUtilities.dp(240.0f)), RichButtonRowCell.this.resourcesProvider, pageButton, new BotSensors$1$$ExternalSyntheticLambda0(this, 27));
             this.button = richButtonCreateEditorPageButton;
-            this.longPressRunnable = new VoIPFragment$$ExternalSyntheticLambda9(this, i, 4);
+            this.longPressRunnable = new Theme$$ExternalSyntheticLambda19(this, i, 24);
             richButtonCreateEditorPageButton.width = richButtonCreateEditorPageButton.getPreferredWidth();
             setContentDescription(RichTextStyle.plainOf(pageButton.text));
             setClickable(true);
@@ -97,20 +97,20 @@ public final class RichButtonRowCell extends RichBlockCell implements Theme.Colo
             BlockRow blockRow;
             char c;
             int actionMasked = motionEvent.getActionMasked();
-            VoIPFragment$$ExternalSyntheticLambda9 voIPFragment$$ExternalSyntheticLambda9 = this.longPressRunnable;
+            Theme$$ExternalSyntheticLambda19 theme$$ExternalSyntheticLambda19 = this.longPressRunnable;
             RichMessageLayout.RichButton richButton = this.button;
             if (actionMasked == 0) {
                 this.pressed = true;
                 this.longPressed = false;
                 richButton.setPressed(true);
-                AndroidUtilities.runOnUIThread(voIPFragment$$ExternalSyntheticLambda9, ViewConfiguration.getLongPressTimeout());
+                AndroidUtilities.runOnUIThread(theme$$ExternalSyntheticLambda19, ViewConfiguration.getLongPressTimeout());
                 return true;
             }
             if (actionMasked == 1) {
                 boolean z = this.pressed && !this.longPressed;
                 this.pressed = false;
                 richButton.setPressed(false);
-                AndroidUtilities.cancelRunOnUIThread(voIPFragment$$ExternalSyntheticLambda9);
+                AndroidUtilities.cancelRunOnUIThread(theme$$ExternalSyntheticLambda19);
                 if (z && (delegate = (richButtonRowCell = RichButtonRowCell.this).delegate) != null && (blockRow = richButtonRowCell.currentRow) != null) {
                     RichEditorListView.AnonymousClass5 anonymousClass5 = (RichEditorListView.AnonymousClass5) delegate;
                     TL_iv.PageBlock pageBlock = blockRow.block;
@@ -160,13 +160,13 @@ public final class RichButtonRowCell extends RichBlockCell implements Theme.Colo
                     }
                     this.pressed = false;
                     richButton.setPressed(false);
-                    AndroidUtilities.cancelRunOnUIThread(voIPFragment$$ExternalSyntheticLambda9);
+                    AndroidUtilities.cancelRunOnUIThread(theme$$ExternalSyntheticLambda19);
                     return true;
                 }
                 if (motionEvent.getX() < 0.0f || motionEvent.getY() < 0.0f || motionEvent.getX() > getWidth() || motionEvent.getY() > getHeight()) {
                     this.pressed = false;
                     richButton.setPressed(false);
-                    AndroidUtilities.cancelRunOnUIThread(voIPFragment$$ExternalSyntheticLambda9);
+                    AndroidUtilities.cancelRunOnUIThread(theme$$ExternalSyntheticLambda19);
                     return true;
                 }
             }
@@ -224,7 +224,7 @@ public final class RichButtonRowCell extends RichBlockCell implements Theme.Colo
         addView(horizontalScrollView, LayoutHelper.createFrame(-1, -1, 23));
         RichEditor.Button button = new RichEditor.Button(context, R.drawable.msg_add, resourcesProvider);
         button.roundRadius = 19;
-        button.updateColors$1();
+        button.updateColors();
         this.addButton = button;
         button.setSelected(true);
         button.setContentDescription(LocaleController.getString(R.string.Add));
@@ -498,8 +498,8 @@ public final class RichButtonRowCell extends RichBlockCell implements Theme.Colo
     }
 
     @Override
-    public final void updateColors$1() {
-        this.addButton.updateColors$1();
+    public final void updateColors() {
+        this.addButton.updateColors();
         updateAddButtonColors();
         rebuildButtons();
     }

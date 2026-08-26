@@ -11,8 +11,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda136;
-import org.telegram.ui.ReportBottomSheet$$ExternalSyntheticLambda15;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda54;
+import org.telegram.ui.ReportBottomSheet$$ExternalSyntheticLambda25;
 import org.telegram.ui.Stories.StoriesUtilities;
 
 public final class PhotoUtilities$$ExternalSyntheticLambda2 implements RequestDelegate {
@@ -35,7 +35,7 @@ public final class PhotoUtilities$$ExternalSyntheticLambda2 implements RequestDe
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.$r8$classId) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ReportBottomSheet$$ExternalSyntheticLambda15(tL_error, (ChatActivity) this.f$0, tLObject, (TLRPC.FileLocation[]) this.f$1, (String) this.f$2, (TLRPC.FileLocation[]) this.f$3, this.f$4));
+                AndroidUtilities.runOnUIThread(new ReportBottomSheet$$ExternalSyntheticLambda25(tL_error, (ChatActivity) this.f$0, tLObject, (TLRPC.FileLocation[]) this.f$1, (String) this.f$2, (TLRPC.FileLocation[]) this.f$3, this.f$4));
                 break;
             case 1:
                 ((ConferenceCall) this.f$0).lambda$poll$8((TL_phone.getGroupCallChainBlocks) this.f$1, this.f$4, (AtomicBoolean) this.f$3, (AtomicInteger) this.f$2, tLObject, tL_error);
@@ -43,7 +43,7 @@ public final class PhotoUtilities$$ExternalSyntheticLambda2 implements RequestDe
             default:
                 StoriesUtilities.UserStoriesLoadOperation userStoriesLoadOperation = (StoriesUtilities.UserStoriesLoadOperation) this.f$0;
                 userStoriesLoadOperation.getClass();
-                AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda136(userStoriesLoadOperation, tLObject, this.f$4, (View) this.f$1, (StoriesUtilities.AvatarStoryParams) this.f$3, (MessagesController) this.f$2, 6));
+                AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda54(userStoriesLoadOperation, tLObject, this.f$4, (View) this.f$1, (StoriesUtilities.AvatarStoryParams) this.f$3, (MessagesController) this.f$2, 6));
                 break;
         }
     }

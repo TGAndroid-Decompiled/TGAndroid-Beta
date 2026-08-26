@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -13,55 +14,35 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
 
-public final class EmptyTextProgressView extends FrameLayout {
-    public static final int $r8$clinit = 0;
-    public boolean inLayout;
-    public final RLottieImageView lottieImageView;
-    public final RadialProgressView progressView;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public int showAtPos;
-    public final TextView textView;
+public class EmptyTextProgressView extends FrameLayout {
+    private boolean inLayout;
+    private RLottieImageView lottieImageView;
+    private View progressView;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private int showAtPos;
+    private TextView textView;
+    private LinearLayout textViewLayout;
 
-    public EmptyTextProgressView(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context);
-        this.resourcesProvider = resourcesProvider;
-        RadialProgressView radialProgressView = new RadialProgressView(context, null);
-        addView(radialProgressView, LayoutHelper.createFrame(-2.0f, -2));
-        this.progressView = radialProgressView;
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        linearLayout.setGravity(1);
-        linearLayout.setClipChildren(false);
-        linearLayout.setClipToPadding(false);
-        linearLayout.setOrientation(1);
-        RLottieImageView rLottieImageView = new RLottieImageView(context);
-        this.lottieImageView = rLottieImageView;
-        rLottieImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        rLottieImageView.setImportantForAccessibility(2);
-        rLottieImageView.setVisibility(8);
-        linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(150, 150, 17, 0, 0, 0, 20));
-        TextView textView = new TextView(context);
-        this.textView = textView;
-        textView.setTextSize(1, 20.0f);
-        textView.setTextColor(Theme.getColor(Theme.key_emptyListPlaceholder, resourcesProvider));
-        textView.setGravity(1);
-        textView.setText(LocaleController.getString(R.string.NoResult));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 17));
-        addView(linearLayout, LayoutHelper.createFrame(-2.0f, -2));
-        AndroidUtilities.updateViewVisibilityAnimated(textView, false, 2.0f, false);
-        AndroidUtilities.updateViewVisibilityAnimated(radialProgressView, false, 1.0f, false);
-        setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(17));
+    public EmptyTextProgressView(Context context) {
+        this(context, null, null);
+    }
+
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public static boolean lambda$new$0(View view, MotionEvent motionEvent) {
+        return true;
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
+    public boolean hasOverlappingRendering() {
         return false;
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         int measuredHeight;
         int paddingTop;
         this.inLayout = true;
@@ -72,17 +53,22 @@ public final class EmptyTextProgressView extends FrameLayout {
             View childAt = getChildAt(i7);
             if (childAt.getVisibility() != 8) {
                 int measuredWidth = (i5 - childAt.getMeasuredWidth()) / 2;
-                RadialProgressView radialProgressView = this.progressView;
-                int i8 = this.showAtPos;
-                if (i8 == 2) {
-                    measuredHeight = (AndroidUtilities.dp(100.0f) - childAt.getMeasuredHeight()) / 2;
-                    paddingTop = getPaddingTop();
-                } else if (i8 == 1) {
-                    measuredHeight = ((i6 / 2) - childAt.getMeasuredHeight()) / 2;
-                    paddingTop = getPaddingTop();
-                } else {
+                View view = this.progressView;
+                if (childAt == view && (view instanceof FlickerLoadingView)) {
                     measuredHeight = (i6 - childAt.getMeasuredHeight()) / 2;
                     paddingTop = getPaddingTop();
+                } else {
+                    int i8 = this.showAtPos;
+                    if (i8 == 2) {
+                        measuredHeight = (AndroidUtilities.dp(100.0f) - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    } else if (i8 == 1) {
+                        measuredHeight = ((i6 / 2) - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    } else {
+                        measuredHeight = (i6 - childAt.getMeasuredHeight()) / 2;
+                        paddingTop = getPaddingTop();
+                    }
                 }
                 int i9 = paddingTop + measuredHeight;
                 childAt.layout(measuredWidth, i9, childAt.getMeasuredWidth() + measuredWidth, childAt.getMeasuredHeight() + i9);
@@ -92,26 +78,25 @@ public final class EmptyTextProgressView extends FrameLayout {
     }
 
     @Override
-    public final void requestLayout() {
+    public void requestLayout() {
         if (this.inLayout) {
             return;
         }
         super.requestLayout();
     }
 
-    public final void setLottie(int i, int i2, int i3) {
-        RLottieImageView rLottieImageView = this.lottieImageView;
-        rLottieImageView.setVisibility(i != 0 ? 0 : 8);
+    public void setLottie(int i, int i2, int i3) {
+        this.lottieImageView.setVisibility(i != 0 ? 0 : 8);
         if (i != 0) {
-            rLottieImageView.setAnimation(i, i2, i3, null);
-            rLottieImageView.playAnimation();
+            this.lottieImageView.setAnimation(i, i2, i3);
+            this.lottieImageView.playAnimation();
         }
     }
 
     public void setProgressBarColor(int i) {
-        RadialProgressView radialProgressView = this.progressView;
-        if (radialProgressView != null) {
-            radialProgressView.setProgressColor(i);
+        View view = this.progressView;
+        if (view instanceof RadialProgressView) {
+            ((RadialProgressView) view).setProgressColor(i);
         }
     }
 
@@ -136,26 +121,70 @@ public final class EmptyTextProgressView extends FrameLayout {
     }
 
     public void setTopImage(int i) {
-        TextView textView = this.textView;
         if (i == 0) {
-            textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
+            this.textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (Drawable) null, (Drawable) null);
             return;
         }
         Drawable drawableMutate = getContext().getResources().getDrawable(i).mutate();
         if (drawableMutate != null) {
-            drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_emptyListPlaceholder, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            drawableMutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_emptyListPlaceholder), PorterDuff.Mode.MULTIPLY));
         }
-        textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, drawableMutate, (Drawable) null, (Drawable) null);
-        textView.setCompoundDrawablePadding(AndroidUtilities.dp(1.0f));
+        this.textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, drawableMutate, (Drawable) null, (Drawable) null);
+        this.textView.setCompoundDrawablePadding(AndroidUtilities.dp(1.0f));
     }
 
-    public final void showProgress() {
-        AndroidUtilities.updateViewVisibilityAnimated(this.textView, false, 0.9f, true);
-        AndroidUtilities.updateViewVisibilityAnimated(this.progressView, true, 1.0f, true);
+    public void showProgress() {
+        showProgress(true);
     }
 
-    public final void showTextView() {
+    public void showTextView() {
         AndroidUtilities.updateViewVisibilityAnimated(this.textView, true, 0.9f, true);
         AndroidUtilities.updateViewVisibilityAnimated(this.progressView, false, 1.0f, true);
+    }
+
+    public EmptyTextProgressView(Context context, View view) {
+        this(context, view, null);
+    }
+
+    public void showProgress(boolean z) {
+        AndroidUtilities.updateViewVisibilityAnimated(this.textView, false, 0.9f, z);
+        AndroidUtilities.updateViewVisibilityAnimated(this.progressView, true, 1.0f, z);
+    }
+
+    public EmptyTextProgressView(Context context, View view, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
+        View radialProgressView = view;
+        this.resourcesProvider = resourcesProvider;
+        if (radialProgressView == null) {
+            radialProgressView = new RadialProgressView(context);
+            addView(radialProgressView, LayoutHelper.createFrame(-2, -2.0f));
+        } else {
+            addView(radialProgressView, LayoutHelper.createFrame(-1, -1.0f));
+        }
+        this.progressView = radialProgressView;
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.textViewLayout = linearLayout;
+        linearLayout.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        this.textViewLayout.setGravity(1);
+        this.textViewLayout.setClipChildren(false);
+        this.textViewLayout.setClipToPadding(false);
+        this.textViewLayout.setOrientation(1);
+        RLottieImageView rLottieImageView = new RLottieImageView(context);
+        this.lottieImageView = rLottieImageView;
+        rLottieImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        this.lottieImageView.setImportantForAccessibility(2);
+        this.lottieImageView.setVisibility(8);
+        this.textViewLayout.addView(this.lottieImageView, LayoutHelper.createLinear(150, 150, 17, 0, 0, 0, 20));
+        TextView textView = new TextView(context);
+        this.textView = textView;
+        textView.setTextSize(1, 20.0f);
+        this.textView.setTextColor(getThemedColor(Theme.key_emptyListPlaceholder));
+        this.textView.setGravity(1);
+        this.textView.setText(LocaleController.getString(R.string.NoResult));
+        this.textViewLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 17));
+        addView(this.textViewLayout, LayoutHelper.createFrame(-2, -2.0f));
+        AndroidUtilities.updateViewVisibilityAnimated(this.textView, false, 2.0f, false);
+        AndroidUtilities.updateViewVisibilityAnimated(radialProgressView, false, 1.0f, false);
+        setOnTouchListener(new ShareAlert$$ExternalSyntheticLambda19(24));
     }
 }

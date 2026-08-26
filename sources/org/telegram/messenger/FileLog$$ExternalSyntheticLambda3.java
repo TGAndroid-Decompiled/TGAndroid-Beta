@@ -83,7 +83,7 @@ public final class FileLog$$ExternalSyntheticLambda3 implements Runnable {
                 MediaDataController.lambda$loadReplyMessagesForMessages$172((AtomicInteger) this.f$0, (Runnable) this.f$1);
                 break;
             case 20:
-                MediaDataController.lambda$fillWithAnimatedEmoji$228((boolean[]) this.f$0, (MessagesController$$ExternalSyntheticLambda69) this.f$1);
+                MediaDataController.lambda$fillWithAnimatedEmoji$228((boolean[]) this.f$0, (MessagesController$$ExternalSyntheticLambda71) this.f$1);
                 break;
             case 21:
                 ((MediaDataController) this.f$0).lambda$loadGroupStickerSet$44((TLRPC.StickerSet) this.f$1);

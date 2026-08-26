@@ -1,7 +1,7 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.TimeInterpolator;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -23,7 +23,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda8;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda26;
 
 public final class EndCloseLayout extends FrameLayout {
     public final EndCloseView endCloseView;
@@ -43,8 +43,8 @@ public final class EndCloseLayout extends FrameLayout {
         public final Paint textPaint;
         public final Paint textPaintMask;
 
-        public EndCloseView(Activity activity) {
-            super(activity);
+        public EndCloseView(Context context) {
+            super(context);
             this.backgroundPaint = new Paint(1);
             Paint paint = new Paint(1);
             this.textPaintMask = paint;
@@ -136,11 +136,11 @@ public final class EndCloseLayout extends FrameLayout {
         }
     }
 
-    public EndCloseLayout(Activity activity) {
-        super(activity);
+    public EndCloseLayout(Context context) {
+        super(context);
         this.isClosedState = false;
         setWillNotDraw(false);
-        EndCloseView endCloseView = new EndCloseView(activity);
+        EndCloseView endCloseView = new EndCloseView(context);
         this.endCloseView = endCloseView;
         addView(endCloseView, LayoutHelper.createFrame(52, 52, 5));
         TransitionSet transitionSet = new TransitionSet();
@@ -171,6 +171,6 @@ public final class EndCloseLayout extends FrameLayout {
         ViewGroup.LayoutParams layoutParams = endCloseView.getLayoutParams();
         layoutParams.width = -1;
         endCloseView.setLayoutParams(layoutParams);
-        AndroidUtilities.runOnUIThread(new DialogsActivity$$ExternalSyntheticLambda8(10, this, onClickListener), 500L);
+        AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda26(17, this, onClickListener), 500L);
     }
 }

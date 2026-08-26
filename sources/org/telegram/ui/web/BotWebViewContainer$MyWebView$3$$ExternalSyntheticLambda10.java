@@ -18,50 +18,55 @@ public final class BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda10 im
 
     @Override
     public final void accept(Object obj) {
-        String str = this.f$2;
-        PermissionRequest permissionRequest = this.f$1;
-        BotWebViewContainer.MyWebView.AnonymousClass3 anonymousClass3 = this.f$0;
         Boolean bool = (Boolean) obj;
         switch (this.$r8$classId) {
             case 0:
+                BotWebViewContainer.MyWebView.AnonymousClass3 anonymousClass3 = this.f$0;
                 if (anonymousClass3.lastPermissionsDialog != null) {
                     anonymousClass3.lastPermissionsDialog = null;
-                    if (!bool.booleanValue()) {
+                    boolean zBooleanValue = bool.booleanValue();
+                    PermissionRequest permissionRequest = this.f$1;
+                    if (!zBooleanValue) {
                         permissionRequest.deny();
                     } else {
-                        BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda10 botWebViewContainer$MyWebView$3$$ExternalSyntheticLambda10 = new BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda10(anonymousClass3, permissionRequest, str, 2);
-                        int i = BotWebViewContainer.tags;
-                        BotWebViewContainer.MyWebView.this.botWebViewContainer.runWithPermissions(botWebViewContainer$MyWebView$3$$ExternalSyntheticLambda10, new String[]{"android.permission.RECORD_AUDIO"});
+                        BotWebViewContainer.MyWebView.this.botWebViewContainer.runWithPermissions(new BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda10(anonymousClass3, permissionRequest, this.f$2, 2), new String[]{"android.permission.RECORD_AUDIO"});
                     }
                 }
                 break;
             case 1:
-                if (anonymousClass3.lastPermissionsDialog != null) {
-                    anonymousClass3.lastPermissionsDialog = null;
-                    if (!bool.booleanValue()) {
-                        permissionRequest.deny();
+                BotWebViewContainer.MyWebView.AnonymousClass3 anonymousClass4 = this.f$0;
+                if (anonymousClass4.lastPermissionsDialog != null) {
+                    anonymousClass4.lastPermissionsDialog = null;
+                    boolean zBooleanValue2 = bool.booleanValue();
+                    PermissionRequest permissionRequest2 = this.f$1;
+                    if (!zBooleanValue2) {
+                        permissionRequest2.deny();
                     } else {
-                        BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda10 botWebViewContainer$MyWebView$3$$ExternalSyntheticLambda11 = new BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda10(anonymousClass3, permissionRequest, str, 3);
-                        int i2 = BotWebViewContainer.tags;
-                        BotWebViewContainer.MyWebView.this.botWebViewContainer.runWithPermissions(botWebViewContainer$MyWebView$3$$ExternalSyntheticLambda11, new String[]{"android.permission.CAMERA"});
+                        BotWebViewContainer.MyWebView.this.botWebViewContainer.runWithPermissions(new BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda10(anonymousClass4, permissionRequest2, this.f$2, 3), new String[]{"android.permission.CAMERA"});
                     }
                 }
                 break;
             case 2:
-                anonymousClass3.getClass();
-                if (!bool.booleanValue()) {
-                    permissionRequest.deny();
+                BotWebViewContainer.MyWebView.AnonymousClass3 anonymousClass5 = this.f$0;
+                anonymousClass5.getClass();
+                boolean zBooleanValue3 = bool.booleanValue();
+                PermissionRequest permissionRequest3 = this.f$1;
+                if (!zBooleanValue3) {
+                    permissionRequest3.deny();
                 } else {
-                    permissionRequest.grant(new String[]{str});
+                    permissionRequest3.grant(new String[]{this.f$2});
                     BotWebViewContainer.MyWebView.this.botWebViewContainer.hasUserPermissions = true;
                 }
                 break;
             default:
-                anonymousClass3.getClass();
-                if (!bool.booleanValue()) {
-                    permissionRequest.deny();
+                BotWebViewContainer.MyWebView.AnonymousClass3 anonymousClass6 = this.f$0;
+                anonymousClass6.getClass();
+                boolean zBooleanValue4 = bool.booleanValue();
+                PermissionRequest permissionRequest4 = this.f$1;
+                if (!zBooleanValue4) {
+                    permissionRequest4.deny();
                 } else {
-                    permissionRequest.grant(new String[]{str});
+                    permissionRequest4.grant(new String[]{this.f$2});
                     BotWebViewContainer.MyWebView.this.botWebViewContainer.hasUserPermissions = true;
                 }
                 break;

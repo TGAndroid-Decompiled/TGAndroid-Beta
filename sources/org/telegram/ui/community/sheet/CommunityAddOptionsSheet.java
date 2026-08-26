@@ -21,10 +21,10 @@ import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UniversalAdapter;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda12;
+import org.telegram.ui.Stars.GiftOfferSheet$$ExternalSyntheticLambda2;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
-import org.telegram.ui.TopicsFragment$$ExternalSyntheticLambda9;
+import org.telegram.ui.TON.TONIntroActivity$$ExternalSyntheticLambda3;
+import org.telegram.ui.bots.BotDownloads$$ExternalSyntheticLambda0;
 import org.webrtc.EglRenderer$$ExternalSyntheticLambda8;
 
 public final class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListView {
@@ -36,7 +36,7 @@ public final class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListV
     public int visibleRow;
 
     public CommunityAddOptionsSheet(Context context, TLRPC.Chat chat, long j, Utilities.Callback callback) {
-        super(context, null, false, true, false, false, false, 2, null);
+        super(context, null, false, true, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
         TLRPC.Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
         this.isBot = UserObject.isBot(user);
@@ -55,28 +55,28 @@ public final class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListV
         } else if (user != null) {
             profileSearchCell.setData(user, null, DialogObject.getName(user), LocaleController.getString(R.string.Bot), false, false);
         }
-        frameLayout.addView(profileSearchCell, LayoutHelper.createFrame(-2.0f, -1));
+        frameLayout.addView(profileSearchCell, LayoutHelper.createFrame(-1, -2.0f));
         RecyclerListView recyclerListView = this.recyclerListView;
         int i = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i, 0, i, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
         this.recyclerListView.setSections();
         this.recyclerListView.setClipToPadding(false);
-        this.recyclerListView.setOnItemClickListener(new TopicsFragment$$ExternalSyntheticLambda9(this, 28));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider, true);
+        this.recyclerListView.setOnItemClickListener(new TONIntroActivity$$ExternalSyntheticLambda3(this, 18));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, this.resourcesProvider);
         if (chat != null) {
             buttonWithCounterView.setText(LocaleController.getString(ChatObject.canAddChatToCommunity(chat) ? R.string.CommunityAddToCommunityButton : R.string.CommunityAddToCommunityRequestButton));
         } else {
             buttonWithCounterView.setText(LocaleController.getString(R.string.CommunityCreateCommunity));
         }
-        buttonWithCounterView.setRoundRadius(24);
-        buttonWithCounterView.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(this, callback, chat, 22));
-        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+        buttonWithCounterView.setRound();
+        buttonWithCounterView.setOnClickListener(new GiftOfferSheet$$ExternalSyntheticLambda2(this, callback, chat, 16));
+        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(12.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
         this.adapter.update(false);
     }
 
     public final void apply(Utilities.Callback callback, boolean z, boolean z2) {
         if (z2 && !z && !this.isBot) {
-            AlertsCreator.createSimpleConfirmAlert(getContext(), this.resourcesProvider, LocaleController.getString(R.string.CommunityAddToCommunityTitle), LocaleController.getString(this.isChannel ? R.string.CommunityAddToCommunityChannelMessage : R.string.CommunityAddToCommunityGroupMessage), LocaleController.getString(R.string.Add), new EglRenderer$$ExternalSyntheticLambda8(this, callback, z, 11)).show();
+            AlertsCreator.showSimpleConfirmAlert(getContext(), this.resourcesProvider, LocaleController.getString(R.string.CommunityAddToCommunityTitle), LocaleController.getString(this.isChannel ? R.string.CommunityAddToCommunityChannelMessage : R.string.CommunityAddToCommunityGroupMessage), LocaleController.getString(R.string.Add), false, new EglRenderer$$ExternalSyntheticLambda8(this, callback, z, 13));
         } else {
             callback.run(Boolean.valueOf(z));
             lambda$showGiftOfferSheet$15();
@@ -85,10 +85,10 @@ public final class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListV
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, false, new TodoItemMenu$$ExternalSyntheticLambda17(this, 16), this.resourcesProvider);
+        UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, false, new BotDownloads$$ExternalSyntheticLambda0(this, 15), this.resourcesProvider);
         this.adapter = universalAdapter;
-        universalAdapter.applyBackground = false;
-        return universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override
@@ -102,16 +102,14 @@ public final class CommunityAddOptionsSheet extends BottomSheetWithRecyclerListV
             return;
         }
         this.isHidden = z;
-        int i = this.visibleRow + 1;
-        RecyclerListView recyclerListView = this.recyclerListView;
-        View viewFindViewByPosition = recyclerListView.findViewByPosition(i);
+        View viewFindViewByPosition = this.recyclerListView.findViewByPosition(this.visibleRow + 1);
         if (viewFindViewByPosition instanceof RadioButtonCell) {
             ((RadioButtonCell) viewFindViewByPosition).radioButton.setChecked(!z, true);
             z2 = false;
         } else {
             z2 = true;
         }
-        View viewFindViewByPosition2 = recyclerListView.findViewByPosition(this.visibleRow + 2);
+        View viewFindViewByPosition2 = this.recyclerListView.findViewByPosition(this.visibleRow + 2);
         if (viewFindViewByPosition2 instanceof RadioButtonCell) {
             ((RadioButtonCell) viewFindViewByPosition2).radioButton.setChecked(z, true);
         } else {

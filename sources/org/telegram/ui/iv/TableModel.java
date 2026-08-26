@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.function.ToIntFunction;
 import org.telegram.tgnet.tl.TL_iv;
 
 public final class TableModel {
@@ -281,7 +282,7 @@ public final class TableModel {
         }
     }
 
-    public final void rewriteBlockRows(IdentityHashMap identityHashMap, int i) {
+    public final void rewriteBlockRows(final IdentityHashMap identityHashMap, int i) {
         TL_iv.pageBlockTable pageblocktable = this.block;
         pageblocktable.rows.clear();
         for (int i2 = 0; i2 < i; i2++) {
@@ -293,7 +294,12 @@ public final class TableModel {
                     arrayList.add((TL_iv.pageTableCell) entry.getKey());
                 }
             }
-            Collections.sort(arrayList, Comparator$CC.comparingInt(new TableModel$$ExternalSyntheticLambda2(identityHashMap, 0)));
+            Collections.sort(arrayList, Comparator$CC.comparingInt(new ToIntFunction() {
+                @Override
+                public final int applyAsInt(Object obj) {
+                    return ((int[]) identityHashMap.get((TL_iv.pageTableCell) obj))[1];
+                }
+            }));
             int size = arrayList.size();
             int i3 = 0;
             while (i3 < size) {

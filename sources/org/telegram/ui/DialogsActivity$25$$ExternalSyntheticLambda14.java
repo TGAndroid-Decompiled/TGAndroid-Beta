@@ -1,8 +1,6 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Stories.DialogStoriesCell;
 
 public final class DialogsActivity$25$$ExternalSyntheticLambda14 {
     public final int $r8$classId;
@@ -18,24 +16,10 @@ public final class DialogsActivity$25$$ExternalSyntheticLambda14 {
     public final void onButtonClicked(boolean z) {
         switch (this.$r8$classId) {
             case 0:
-                DialogsActivity.AnonymousClass25 anonymousClass25 = this.f$0;
-                View view = this.f$1;
-                if (view instanceof DialogStoriesCell.StoryCell) {
-                    DialogsActivity.this.dialogStoriesCell.openStoryForCell((DialogStoriesCell.StoryCell) view, false);
-                    if (z) {
-                        AndroidUtilities.runOnUIThread(new QrActivity$5$$ExternalSyntheticLambda1(12), 500L);
-                    }
-                }
+                this.f$0.lambda$onUserLongPressed$11(this.f$1, z);
                 break;
             default:
-                DialogsActivity.AnonymousClass25 anonymousClass26 = this.f$0;
-                View view2 = this.f$1;
-                if (view2 instanceof DialogStoriesCell.StoryCell) {
-                    DialogsActivity.this.dialogStoriesCell.openStoryForCell((DialogStoriesCell.StoryCell) view2, false);
-                    if (z) {
-                        AndroidUtilities.runOnUIThread(new QrActivity$5$$ExternalSyntheticLambda1(12), 500L);
-                    }
-                }
+                this.f$0.lambda$onUserLongPressed$9(this.f$1, z);
                 break;
         }
     }

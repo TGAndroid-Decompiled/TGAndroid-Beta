@@ -25,7 +25,7 @@ public final class ActionBtnCell extends FrameLayout {
         View view = new View(context);
         this.backgroundView = view;
         addView(view, LayoutHelper.createLinear(-1, -1));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
         this.button = buttonWithCounterView;
         addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 17, 14.0f, 0.0f, 14.0f, 0.0f));
     }
@@ -46,7 +46,7 @@ public final class ActionBtnCell extends FrameLayout {
         ButtonWithCounterView buttonWithCounterView = this.button;
         buttonWithCounterView.setShowZero(false);
         buttonWithCounterView.setEnabled(true);
-        buttonWithCounterView.setText(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
+        buttonWithCounterView.setText(LocaleController.formatString("Close", R.string.Close, new Object[0]), false);
         this.drawDivider = z;
     }
 
@@ -55,7 +55,7 @@ public final class ActionBtnCell extends FrameLayout {
         ButtonWithCounterView buttonWithCounterView = this.button;
         buttonWithCounterView.setShowZero(false);
         buttonWithCounterView.setEnabled(true);
-        buttonWithCounterView.setText(z ? LocaleController.formatString("BoostingUseLink", R.string.BoostingUseLink, new Object[0]) : LocaleController.formatString("OK", R.string.OK, new Object[0]), false, true);
+        buttonWithCounterView.setText(z ? LocaleController.formatString("BoostingUseLink", R.string.BoostingUseLink, new Object[0]) : LocaleController.formatString("OK", R.string.OK, new Object[0]), false);
     }
 
     @Override
@@ -70,7 +70,7 @@ public final class ActionBtnCell extends FrameLayout {
         buttonWithCounterView.setShowZero(true);
         buttonWithCounterView.setEnabled(true);
         buttonWithCounterView.setCount(i, z);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.BoostingStartGiveaway), z, true);
+        buttonWithCounterView.setText(LocaleController.getString(R.string.BoostingStartGiveaway), z);
         this.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
     }
 }

@@ -18,7 +18,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 
 public final class RingtoneDataStore {
     public static volatile long lastReloadTimeMs;
@@ -56,7 +56,7 @@ public final class RingtoneDataStore {
             loadFromPrefs(true);
             this.loaded = true;
         }
-        Utilities.globalQueue.postRunnable(new ClickHelper$$ExternalSyntheticLambda0(7, this, new ArrayList(this.userRingtones)));
+        Utilities.globalQueue.postRunnable(new ClickHelper$$ExternalSyntheticLambda0(6, this, new ArrayList(this.userRingtones)));
     }
 
     public final TLRPC.Document getDocument(long j) {
@@ -142,7 +142,7 @@ public final class RingtoneDataStore {
         TL_account.getSavedRingtones getsavedringtones = new TL_account.getSavedRingtones();
         getsavedringtones.hash = queryHash;
         if (z2) {
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsavedringtones, new CallLogActivity$$ExternalSyntheticLambda1(this, 1));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsavedringtones, new RichMediaUploader$$ExternalSyntheticLambda0(this, 1));
             return;
         }
         if (!this.loaded) {

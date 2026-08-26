@@ -19,16 +19,15 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.TextureRenderer$$ExternalSyntheticOutline0;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
-import org.telegram.ui.Components.Tooltip;
-import org.telegram.ui.PremiumPreviewFragment;
 import org.webrtc.RendererCommon;
 import org.webrtc.TextureViewRenderer;
 
@@ -104,7 +103,7 @@ public class VoIPTextureView extends FrameLayout {
             View view = new View(context);
             this.backgroundView = view;
             view.setBackgroundColor(-14999773);
-            addView(view, LayoutHelper.createFrame(-1.0f, -1));
+            addView(view, LayoutHelper.createFrame(-1, -1.0f));
             if (z4) {
                 TextureView textureView = new TextureView(context);
                 this.blurRenderer = textureView;
@@ -134,8 +133,8 @@ public class VoIPTextureView extends FrameLayout {
         }
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.screencastView = frameLayout;
-        frameLayout.setBackground(new MotionBackgroundDrawable(-14602694, -13935795, -14395293, -14203560, true, 0, false));
-        addView(frameLayout, LayoutHelper.createFrame(-1.0f, -1));
+        frameLayout.setBackground(new MotionBackgroundDrawable(-14602694, -13935795, -14395293, -14203560, true));
+        addView(frameLayout, LayoutHelper.createFrame(-1, -1.0f));
         frameLayout.setVisibility(8);
         ImageView imageView2 = new ImageView(getContext());
         this.screencastImage = imageView2;
@@ -147,10 +146,10 @@ public class VoIPTextureView extends FrameLayout {
         textView.setText(LocaleController.getString(R.string.VoipVideoScreenSharing));
         textView.setGravity(17);
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(15.0f, -1, 1, textView);
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView, -1, 1, 15.0f);
         frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 17, 21.0f, 28.0f, 21.0f, 0.0f));
         if (z3) {
-            setOutlineProvider(new PremiumPreviewFragment.AnonymousClass3(this, 7));
+            setOutlineProvider(new ActionBarLayout.AnonymousClass4(this, 3));
             setClipToOutline(true);
         }
         if (z && this.cameraLastBitmap == null) {
@@ -225,7 +224,7 @@ public class VoIPTextureView extends FrameLayout {
         if (this.placeholderView == null) {
             View view = new View(getContext());
             this.placeholderView = view;
-            addView(view, LayoutHelper.createFrame(-1.0f, -1));
+            addView(view, LayoutHelper.createFrameMatchParent());
         }
         return this.placeholderView;
     }
@@ -389,7 +388,7 @@ public class VoIPTextureView extends FrameLayout {
             this.currentAnimation.setDuration(350L);
         }
         this.currentAnimation.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.currentAnimation.addListener(new Tooltip.AnonymousClass1(this, 29));
+        this.currentAnimation.addListener(new VoIPWindowView.AnonymousClass1(this, 6));
         this.currentAnimation.start();
         ArrayList arrayList = this.animateOnNextLayoutAnimations;
         if (!arrayList.isEmpty()) {

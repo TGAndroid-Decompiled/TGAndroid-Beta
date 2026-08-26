@@ -15,16 +15,10 @@ public final class PopupSwipeBackLayout$$ExternalSyntheticLambda0 implements Val
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                PopupSwipeBackLayout popupSwipeBackLayout = this.f$0;
-                popupSwipeBackLayout.getClass();
-                popupSwipeBackLayout.transitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                popupSwipeBackLayout.invalidateTransforms(true);
+                this.f$0.lambda$animateToState$0(valueAnimator);
                 break;
             default:
-                PopupSwipeBackLayout popupSwipeBackLayout2 = this.f$0;
-                popupSwipeBackLayout2.getClass();
-                popupSwipeBackLayout2.overrideForegroundHeight = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                popupSwipeBackLayout2.invalidateTransforms(true);
+                this.f$0.lambda$setNewForegroundHeight$1(valueAnimator);
                 break;
         }
     }

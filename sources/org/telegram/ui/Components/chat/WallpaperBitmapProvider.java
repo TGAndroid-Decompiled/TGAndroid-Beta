@@ -6,22 +6,22 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceWrapped;
-import org.telegram.ui.ContactsActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.Components.blur3.utils.BitmapMemoizedMetadata;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
 
 public final class WallpaperBitmapProvider {
     public static final Rect tmpRect = new Rect();
     public final BlurredBackgroundSourceColor sourceColor = new BlurredBackgroundSourceColor();
     public final BlurredBackgroundSourceBitmap sourceBitmap = new BlurredBackgroundSourceBitmap();
-    public final ChatActivity.AnonymousClass117 blurredFromBitmap = new ChatActivity.AnonymousClass117(new ContactsActivity$$ExternalSyntheticLambda18(23));
-    public final ChatActivity.AnonymousClass117 navbarColorFromBitmap = new ChatActivity.AnonymousClass117(new ContactsActivity$$ExternalSyntheticLambda18(24));
-    public final ChatActivity.AnonymousClass117 statusBarColorFromBitmap = new ChatActivity.AnonymousClass117(new ContactsActivity$$ExternalSyntheticLambda18(25));
+    public final BitmapMemoizedMetadata blurredFromBitmap = new BitmapMemoizedMetadata(new LivePlayer$$ExternalSyntheticLambda1(18));
+    public final BitmapMemoizedMetadata navbarColorFromBitmap = new BitmapMemoizedMetadata(new LivePlayer$$ExternalSyntheticLambda1(19));
+    public final BitmapMemoizedMetadata statusBarColorFromBitmap = new BitmapMemoizedMetadata(new LivePlayer$$ExternalSyntheticLambda1(20));
 
     public final int getNavigationBarColor(BlurredBackgroundSource blurredBackgroundSource) {
         if (blurredBackgroundSource instanceof BlurredBackgroundSourceColor) {
@@ -60,17 +60,17 @@ public final class WallpaperBitmapProvider {
         BlurredBackgroundSourceBitmap blurredBackgroundSourceBitmap = this.sourceBitmap;
         if (z2) {
             MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) drawable;
-            if (motionBackgroundDrawable.intensity < 0) {
+            if (motionBackgroundDrawable.getIntensity() < 0) {
                 blurredBackgroundSourceColor.paint.setColor(-16777216);
                 return blurredBackgroundSourceColor;
             }
-            blurredBackgroundSourceBitmap.setBitmap(motionBackgroundDrawable.currentBitmap);
+            blurredBackgroundSourceBitmap.setBitmap(motionBackgroundDrawable.getBitmap());
             return blurredBackgroundSourceBitmap;
         }
         boolean z3 = drawable instanceof BitmapDrawable;
-        ChatActivity.AnonymousClass117 anonymousClass117 = this.blurredFromBitmap;
+        BitmapMemoizedMetadata bitmapMemoizedMetadata = this.blurredFromBitmap;
         if (z3) {
-            blurredBackgroundSourceBitmap.setBitmap((Bitmap) anonymousClass117.get(((BitmapDrawable) drawable).getBitmap()));
+            blurredBackgroundSourceBitmap.setBitmap((Bitmap) bitmapMemoizedMetadata.get(((BitmapDrawable) drawable).getBitmap()));
             return blurredBackgroundSourceBitmap;
         }
         if (drawable instanceof ChatBackgroundDrawable) {
@@ -98,7 +98,7 @@ public final class WallpaperBitmapProvider {
             drawable.setBounds(rect);
             blurredBackgroundSourceBitmap.setBitmap(blurredBackgroundSourceBitmap.bitmapInternal);
             blurredBackgroundSourceBitmap.bitmapInternal = null;
-            blurredBackgroundSourceBitmap.setBitmap((Bitmap) anonymousClass117.get(blurredBackgroundSourceBitmap.bitmap));
+            blurredBackgroundSourceBitmap.setBitmap((Bitmap) bitmapMemoizedMetadata.get(blurredBackgroundSourceBitmap.bitmap));
         }
         return blurredBackgroundSourceBitmap;
     }

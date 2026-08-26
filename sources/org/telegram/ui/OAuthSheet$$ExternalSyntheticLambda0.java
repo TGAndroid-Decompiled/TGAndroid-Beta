@@ -1,111 +1,103 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
-import androidx.profileinstaller.Encoding;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.browser.Browser;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.GroupCallPip;
-import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
-import org.telegram.ui.Stars.ExplainStarsSheet;
+import android.view.View;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.SaveToGallerySettingsHelper;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow;
+import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.SimpleTextView;
+import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.Cells.RadioButtonCell;
+import org.telegram.ui.Components.ChatActivityEnterTopView;
+import org.telegram.ui.Components.ItemOptions;
+import org.telegram.ui.Components.ReactedUsersListView;
+import org.telegram.ui.Components.VideoPlayer;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-public final class OAuthSheet$$ExternalSyntheticLambda0 implements Runnable {
+public final class OAuthSheet$$ExternalSyntheticLambda0 implements View.OnClickListener {
     public final int $r8$classId;
-    public final Context f$0;
+    public final Object f$0;
+    public final Object f$1;
+    public final Object f$2;
 
-    public OAuthSheet$$ExternalSyntheticLambda0(Context context, int i) {
+    public OAuthSheet$$ExternalSyntheticLambda0(Object obj, Object obj2, Object obj3, int i) {
         this.$r8$classId = i;
-        this.f$0 = context;
+        this.f$0 = obj;
+        this.f$1 = obj2;
+        this.f$2 = obj3;
     }
 
     @Override
-    public final void run() {
+    public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                Activity activityFindActivity = AndroidUtilities.findActivity(this.f$0);
-                if (activityFindActivity == null) {
-                    activityFindActivity = LaunchActivity.instance;
-                }
-                if (activityFindActivity != null && !activityFindActivity.isFinishing()) {
-                    activityFindActivity.moveTaskToBack(true);
-                    break;
-                }
+                OAuthSheet.lambda$showMatchCodeSheet$21((BottomSheet[]) this.f$0, (Utilities.Callback) this.f$1, (String) this.f$2, view);
                 break;
             case 1:
-                new ThreadPoolExecutor(0, 1, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue()).execute(new OAuthSheet$$ExternalSyntheticLambda0(this.f$0, 2));
+                ((CachedMediaLayout.AnonymousClass1) this.f$0).lambda$createView$3((CachedMediaLayout.ItemInner) this.f$1, (BaseFragment) this.f$2, view);
                 break;
             case 2:
-                Encoding.writeProfile(this.f$0, new LinkManager$$ExternalSyntheticLambda9(1), Encoding.EMPTY_DIAGNOSTICS, false);
+                ((ChatActivity.ChatMessageCellDelegate) this.f$0).lambda$didPressChannelRecommendation$42((TLRPC.Chat) this.f$1, (ChatMessageCell) this.f$2, view);
                 break;
             case 3:
-                GroupCallPip.updateVisibility(this.f$0);
+                ((ArticleViewer) this.f$0).lambda$setParentActivity$22((String) this.f$2, (ArticleViewer.PageLayout) this.f$1, view);
                 break;
             case 4:
-                Browser.openUrl(this.f$0, LocaleController.getString(R.string.StarsTOSLink));
+                ((ChatActivity) this.f$0).lambda$createView$54((boolean[]) this.f$1, (Context) this.f$2, view);
                 break;
             case 5:
-                Activity activityFindActivity2 = AndroidUtilities.findActivity(this.f$0);
-                if (activityFindActivity2 instanceof LaunchActivity) {
-                    ((LaunchActivity) activityFindActivity2).presentFragment(new PremiumPreviewFragment(0, LimitReachedBottomSheet.limitTypeToServerString(9)));
-                }
+                ((ChatActivity) this.f$0).lambda$createView$58((ChatActivityEnterTopView.EditViewButton) this.f$1, (boolean[]) this.f$2, view);
                 break;
             case 6:
-                Activity activityFindActivity3 = AndroidUtilities.findActivity(this.f$0);
-                if (activityFindActivity3 instanceof LaunchActivity) {
-                    ((LaunchActivity) activityFindActivity3).presentFragment(new PremiumPreviewFragment(0, LimitReachedBottomSheet.limitTypeToServerString(10)));
-                }
+                ((ChatActivity) this.f$0).lambda$didPressReaction$463((View) this.f$1, (TLRPC.ReactionCount) this.f$2, view);
                 break;
             case 7:
-                Theme.createChatResources(this.f$0);
+                ChatActivity.lambda$createMenu$264((ReactedUsersListView) this.f$0, (ActionBarPopupWindow.ActionBarPopupWindowLayout) this.f$1, (int[]) this.f$2, view);
                 break;
             case 8:
-                new ExplainStarsSheet(this.f$0).show();
+                ((ChatActivity) this.f$0).lambda$updatePinnedMessageView$224((TL_keyboard.KeyboardInlineButton) this.f$1, (MessageObject) this.f$2, view);
                 break;
             case 9:
-                Browser.openUrl(this.f$0, "https://promote.telegram.org/guidelines");
+                ((ChatEditActivity) this.f$0).lambda$createView$21((RadioButtonCell[]) this.f$1, (BottomSheet.Builder) this.f$2, view);
                 break;
             case 10:
-                Browser.openUrl(this.f$0, "https://promote.telegram.org/guidelines");
+                ((ChooseDownloadQualityLayout) this.f$0).lambda$update$1((MessageObject) this.f$1, (VideoPlayer.Quality) this.f$2, view);
                 break;
             case 11:
-                Browser.openUrl(this.f$0, "https://promote.telegram.org/guidelines");
+                ((ContactAddActivity) this.f$0).lambda$createView$10((Context) this.f$1, (TLRPC.User) this.f$2, view);
                 break;
             case 12:
-                Browser.openUrl(this.f$0, LocaleController.getString(R.string.StarsTOSLink));
+                ((MainTabsActivity) this.f$0).lambda$openFoldersSelector$7((ItemOptions) this.f$1, (MessagesController.DialogFilter) this.f$2, view);
                 break;
             case 13:
-                new ExplainStarsSheet(this.f$0).show();
+                OAuthSheet.lambda$showMatchCodeSheet$23((ButtonWithCounterView) this.f$1, (BottomSheet[]) this.f$0, (Runnable) this.f$2, view);
                 break;
             case 14:
-                Browser.openUrl(this.f$0, LocaleController.getString(R.string.StarsTOSLink));
-                break;
-            case 15:
-                Browser.openUrl(this.f$0, LocaleController.getString(R.string.StarsTOSLink));
-                break;
-            case 16:
-                Browser.openUrl(this.f$0, LocaleController.getString(R.string.PaidContentInfoLink));
-                break;
-            case 17:
-                Browser.openUrl(this.f$0, LocaleController.getString(R.string.StarsSubscribeInfoLink));
-                break;
-            case 18:
-                Browser.openUrl(this.f$0, LocaleController.getString(R.string.StarsReactionTermsLink));
-                break;
-            case 19:
-                new ExplainStarsSheet(this.f$0).show();
-                break;
-            case 20:
-                Browser.openUrl(this.f$0, LocaleController.getString(R.string.WebAppDisclaimerUrl));
+                ((ProfileActivity) this.f$0).lambda$updateProfileData$105((TLRPC.User) this.f$1, (SimpleTextView) this.f$2, view);
                 break;
             default:
-                Browser.openUrl(this.f$0, LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfoLink));
+                ((SaveToGallerySettingsActivity) this.f$0).lambda$createView$4((ActionBarPopupWindow) this.f$1, (SaveToGallerySettingsHelper.DialogException) this.f$2, view);
                 break;
         }
+    }
+
+    public OAuthSheet$$ExternalSyntheticLambda0(ArticleViewer articleViewer, String str, ArticleViewer.PageLayout pageLayout) {
+        this.$r8$classId = 3;
+        this.f$0 = articleViewer;
+        this.f$2 = str;
+        this.f$1 = pageLayout;
+    }
+
+    public OAuthSheet$$ExternalSyntheticLambda0(ButtonWithCounterView buttonWithCounterView, BottomSheet[] bottomSheetArr, Runnable runnable) {
+        this.$r8$classId = 13;
+        this.f$1 = buttonWithCounterView;
+        this.f$0 = bottomSheetArr;
+        this.f$2 = runnable;
     }
 }

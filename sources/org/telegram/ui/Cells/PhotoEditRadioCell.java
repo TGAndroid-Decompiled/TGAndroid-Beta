@@ -7,7 +7,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
 
@@ -37,8 +36,8 @@ public final class PhotoEditRadioCell extends FrameLayout {
             RadioButton radioButton = new RadioButton(context);
             radioButton.setSize(AndroidUtilities.dp(20.0f));
             radioButton.setTag(Integer.valueOf(i));
-            this.tintButtonsContainer.addView(radioButton, LayoutHelper.createLinear(1.0f / this.tintShadowColors.length, 0, -1));
-            radioButton.setOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 26));
+            this.tintButtonsContainer.addView(radioButton, LayoutHelper.createLinear(0, -1, 1.0f / this.tintShadowColors.length));
+            radioButton.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 15));
         }
         addView(this.tintButtonsContainer, LayoutHelper.createFrame(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
     }
@@ -67,11 +66,7 @@ public final class PhotoEditRadioCell extends FrameLayout {
                 int iIntValue = ((Integer) radioButton.getTag()).intValue();
                 int[] iArr = this.tintShadowColors;
                 radioButton.setChecked(this.currentColor == iArr[iIntValue], z);
-                int i2 = iIntValue == 0 ? -1 : iArr[iIntValue];
-                int i3 = iIntValue != 0 ? iArr[iIntValue] : -1;
-                radioButton.color = i2;
-                radioButton.checkedColor = i3;
-                radioButton.invalidate();
+                radioButton.setColor(iIntValue == 0 ? -1 : iArr[iIntValue], iIntValue != 0 ? iArr[iIntValue] : -1);
             }
         }
     }

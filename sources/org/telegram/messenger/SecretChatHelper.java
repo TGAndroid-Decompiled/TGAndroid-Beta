@@ -7,8 +7,8 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -28,7 +28,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.AccountFrozenAlert;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.LocationActivity$$ExternalSyntheticLambda44;
 
 public class SecretChatHelper extends BaseController {
     public static int CURRENT_SECRET_CHAT_LAYER = 151;
@@ -813,10 +812,8 @@ public class SecretChatHelper extends BaseController {
             FileLog.e(e);
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, null);
-        String string = LocaleController.getString(R.string.AppName);
-        AlertDialog alertDialog2 = builder.alertDialog;
-        alertDialog2.title = string;
-        alertDialog2.message = LocaleController.getString(R.string.CreateEncryptedChatError);
+        builder.setTitle(LocaleController.getString(R.string.AppName));
+        builder.setMessage(LocaleController.getString(R.string.CreateEncryptedChatError));
         builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
         builder.show().setCanceledOnTouchOutside(true);
     }
@@ -851,7 +848,7 @@ public class SecretChatHelper extends BaseController {
         TLRPC.messages_DhConfig messages_dhconfig = (TLRPC.messages_DhConfig) tLObject;
         if (tLObject instanceof TLRPC.TL_messages_dhConfig) {
             if (!Utilities.isGoodPrime(messages_dhconfig.p, messages_dhconfig.g)) {
-                AndroidUtilities.runOnUIThread(new SecretChatHelper$$ExternalSyntheticLambda26(0, context, alertDialog));
+                AndroidUtilities.runOnUIThread(new SecretChatHelper$$ExternalSyntheticLambda26(context, alertDialog, 0));
                 return;
             }
             getMessagesStorage().setSecretPBytes(messages_dhconfig.p);
@@ -895,7 +892,7 @@ public class SecretChatHelper extends BaseController {
         if (encryptedFile != null) {
             TLRPC.MessageMedia messageMedia = message.media;
             if ((messageMedia instanceof TLRPC.TL_messageMediaPhoto) && (photo = messageMedia.photo) != null) {
-                TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) zziq.m(1, photo.sizes);
+                TLRPC.PhotoSize photoSize = (TLRPC.PhotoSize) zzin.m(1, photo.sizes);
                 String str2 = photoSize.location.volume_id + "_" + photoSize.location.local_id;
                 TLRPC.TL_fileEncryptedLocation tL_fileEncryptedLocation = new TLRPC.TL_fileEncryptedLocation();
                 photoSize.location = tL_fileEncryptedLocation;
@@ -907,7 +904,7 @@ public class SecretChatHelper extends BaseController {
                 tL_fileEncryptedLocation.secret = encryptedFile.access_hash;
                 tL_fileEncryptedLocation.local_id = encryptedFile.key_fingerprint;
                 String str3 = photoSize.location.volume_id + "_" + photoSize.location.local_id;
-                new File(FileLoader.getDirectory(4), zzhr.m(str2, ".jpg")).renameTo(getFileLoader().getPathToAttach(photoSize));
+                new File(FileLoader.getDirectory(4), zzhp.m(str2, ".jpg")).renameTo(getFileLoader().getPathToAttach(photoSize));
                 ImageLoader.getInstance().replaceImageInCache(str2, str3, ImageLocation.getForPhoto(photoSize, message.media.photo), true);
                 ArrayList<TLRPC.Message> arrayList = new ArrayList<>();
                 arrayList.add(message);
@@ -2032,7 +2029,7 @@ public class SecretChatHelper extends BaseController {
         TLRPC.TL_messages_getDhConfig tL_messages_getDhConfig = new TLRPC.TL_messages_getDhConfig();
         tL_messages_getDhConfig.random_length = 256;
         tL_messages_getDhConfig.version = getMessagesStorage().getLastSecretVersion();
-        alertDialog.setOnCancelListener(new SecretChatHelper$$ExternalSyntheticLambda10(this, getConnectionsManager().sendRequest(tL_messages_getDhConfig, new SecretChatHelper$$ExternalSyntheticLambda9(this, context, alertDialog, user, 0), 2), 0));
+        alertDialog.setOnCancelListener(new SecretChatHelper$$ExternalSyntheticLambda10(this, getConnectionsManager().sendRequest(tL_messages_getDhConfig, new SecretChatHelper$$ExternalSyntheticLambda9(0, this, context, alertDialog, user), 2), 0));
         try {
             alertDialog.show();
         } catch (Exception unused) {
@@ -2062,7 +2059,7 @@ public class SecretChatHelper extends BaseController {
         TLRPC.TL_messages_discardEncryption tL_messages_discardEncryption = new TLRPC.TL_messages_discardEncryption();
         tL_messages_discardEncryption.chat_id = i;
         tL_messages_discardEncryption.delete_history = z;
-        getConnectionsManager().sendRequest(tL_messages_discardEncryption, new LocationActivity$$ExternalSyntheticLambda44(this, j, 4));
+        getConnectionsManager().sendRequest(tL_messages_discardEncryption, new SecretChatHelper$$ExternalSyntheticLambda29(this, j, 0));
     }
 
     public void performSendEncryptedRequest(TLRPC.DecryptedMessage decryptedMessage, TLRPC.Message message, TLRPC.EncryptedChat encryptedChat, TLRPC.InputEncryptedFile inputEncryptedFile, String str, MessageObject messageObject) {
@@ -2070,6 +2067,6 @@ public class SecretChatHelper extends BaseController {
             return;
         }
         getSendMessagesHelper().putToSendingMessages(message, false);
-        Utilities.stageQueue.postRunnable(new AndroidUtilities$$ExternalSyntheticLambda42(this, encryptedChat, decryptedMessage, message, inputEncryptedFile, messageObject, str));
+        Utilities.stageQueue.postRunnable(new AndroidUtilities$$ExternalSyntheticLambda41(this, encryptedChat, decryptedMessage, message, inputEncryptedFile, messageObject, str));
     }
 }

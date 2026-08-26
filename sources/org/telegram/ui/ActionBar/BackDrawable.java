@@ -107,6 +107,11 @@ public final class BackDrawable extends Drawable {
         this.paint.setAlpha(i);
     }
 
+    public final void setColor(int i) {
+        this.color = i;
+        invalidateSelf();
+    }
+
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
         this.paint.setColorFilter(colorFilter);

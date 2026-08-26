@@ -1,11 +1,11 @@
 package org.telegram.ui.Business;
 
-import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import androidx.recyclerview.widget.DiffUtil;
 import com.google.android.exoplayer2.util.Log;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
@@ -20,13 +20,11 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda168;
+import org.telegram.ui.Cells.ChatMessageCell$$ExternalSyntheticLambda25;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LoginActivity$$ExternalSyntheticLambda31;
 import org.telegram.ui.UsersSelectActivity;
 
 public final class BusinessRecipientsHelper {
@@ -63,32 +61,32 @@ public final class BusinessRecipientsHelper {
         String strM = "";
         if (!this.exclude) {
             if ((flags & 1) != 0) {
-                string = NotificationsController$$ExternalSyntheticOutline1.m(Log.m(!TextUtils.isEmpty("") ? ", " : ""), R.string.FilterExistingChats);
+                string = NotificationsController$$ExternalSyntheticOutline1.m(DiffUtil.m(!TextUtils.isEmpty("") ? ", " : ""), R.string.FilterExistingChats);
             } else {
                 string = "";
             }
             if ((flags & 2) != 0) {
                 if (!TextUtils.isEmpty(string)) {
-                    string = zzhr.m(string, ", ");
+                    string = zzhp.m(string, ", ");
                 }
-                string = NotificationsController$$ExternalSyntheticOutline1.m(Log.m(string), R.string.FilterNewChats);
+                string = NotificationsController$$ExternalSyntheticOutline1.m(DiffUtil.m(string), R.string.FilterNewChats);
             }
             if ((flags & 4) != 0) {
                 if (!TextUtils.isEmpty(string)) {
-                    string = zzhr.m(string, ", ");
+                    string = zzhp.m(string, ", ");
                 }
-                string = NotificationsController$$ExternalSyntheticOutline1.m(Log.m(string), R.string.FilterContacts);
+                string = NotificationsController$$ExternalSyntheticOutline1.m(DiffUtil.m(string), R.string.FilterContacts);
             }
             if ((flags & 8) != 0) {
                 if (!TextUtils.isEmpty(string)) {
-                    string = zzhr.m(string, ", ");
+                    string = zzhp.m(string, ", ");
                 }
-                string = NotificationsController$$ExternalSyntheticOutline1.m(Log.m(string), R.string.FilterNonContacts);
+                string = NotificationsController$$ExternalSyntheticOutline1.m(DiffUtil.m(string), R.string.FilterNonContacts);
             }
             ArrayList arrayList2 = this.alwaysShow;
             if (!arrayList2.isEmpty()) {
                 if (TextUtils.isEmpty(string)) {
-                    StringBuilder sbM = Log.m(string);
+                    StringBuilder sbM = DiffUtil.m(string);
                     sbM.append(LocaleController.formatPluralStringComma("Chats", arrayList2.size()));
                     string = sbM.toString();
                 } else {
@@ -100,39 +98,37 @@ public final class BusinessRecipientsHelper {
             if (TextUtils.isEmpty(string)) {
                 string = LocaleController.getString(R.string.BusinessChatsIncludedAdd2);
             }
-            UItem uItemAsButton = UItem.asButton(LocaleController.getString(R.string.BusinessChatsIncluded), string, 101);
-            uItemAsButton.enabled = z;
-            arrayList.add(uItemAsButton);
+            arrayList.add(UItem.asButton(101, LocaleController.getString(R.string.BusinessChatsIncluded), string).setEnabled(z));
         }
         boolean z2 = this.bot;
         if (z2 || this.exclude) {
             if (!z2 || this.exclude) {
                 if ((flags & 1) != 0) {
-                    strM = NotificationsController$$ExternalSyntheticOutline1.m(Log.m(TextUtils.isEmpty("") ? "" : ", "), R.string.FilterExistingChats);
+                    strM = NotificationsController$$ExternalSyntheticOutline1.m(DiffUtil.m(TextUtils.isEmpty("") ? "" : ", "), R.string.FilterExistingChats);
                 }
                 if ((flags & 2) != 0) {
                     if (!TextUtils.isEmpty(strM)) {
-                        strM = zzhr.m(strM, ", ");
+                        strM = zzhp.m(strM, ", ");
                     }
-                    strM = NotificationsController$$ExternalSyntheticOutline1.m(Log.m(strM), R.string.FilterNewChats);
+                    strM = NotificationsController$$ExternalSyntheticOutline1.m(DiffUtil.m(strM), R.string.FilterNewChats);
                 }
                 if ((flags & 4) != 0) {
                     if (!TextUtils.isEmpty(strM)) {
-                        strM = zzhr.m(strM, ", ");
+                        strM = zzhp.m(strM, ", ");
                     }
-                    strM = NotificationsController$$ExternalSyntheticOutline1.m(Log.m(strM), R.string.FilterContacts);
+                    strM = NotificationsController$$ExternalSyntheticOutline1.m(DiffUtil.m(strM), R.string.FilterContacts);
                 }
                 if ((flags & 8) != 0) {
                     if (!TextUtils.isEmpty(strM)) {
-                        strM = zzhr.m(strM, ", ");
+                        strM = zzhp.m(strM, ", ");
                     }
-                    strM = NotificationsController$$ExternalSyntheticOutline1.m(Log.m(strM), R.string.FilterNonContacts);
+                    strM = NotificationsController$$ExternalSyntheticOutline1.m(DiffUtil.m(strM), R.string.FilterNonContacts);
                 }
             }
             ArrayList arrayList3 = this.neverShow;
             if (!arrayList3.isEmpty()) {
                 if (TextUtils.isEmpty(strM)) {
-                    StringBuilder sbM3 = Log.m(strM);
+                    StringBuilder sbM3 = DiffUtil.m(strM);
                     sbM3.append(LocaleController.formatPluralStringComma("Chats", arrayList3.size()));
                     strM = sbM3.toString();
                 } else {
@@ -144,9 +140,7 @@ public final class BusinessRecipientsHelper {
             if (TextUtils.isEmpty(strM)) {
                 strM = LocaleController.getString(R.string.BusinessChatsExcludedAdd2);
             }
-            UItem uItemAsButton2 = UItem.asButton(LocaleController.getString(R.string.BusinessChatsExcluded), strM, 103);
-            uItemAsButton2.enabled = z;
-            arrayList.add(uItemAsButton2);
+            arrayList.add(UItem.asButton(103, LocaleController.getString(R.string.BusinessChatsExcluded), strM).setEnabled(z));
         }
         universalAdapter.whiteSectionEnd();
     }
@@ -311,25 +305,24 @@ public final class BusinessRecipientsHelper {
         return false;
     }
 
-    public final boolean onClick(UItem uItem) {
-        int i = uItem.id;
+    public final boolean onClick(final UItem uItem) {
+        final int i;
+        String string;
+        int i2 = uItem.id;
         BaseFragment baseFragment = this.fragment;
         boolean z = false;
-        int i2 = 1;
-        if (i == 101 || i == 103) {
-            boolean z2 = i == 101;
-            UsersSelectActivity usersSelectActivity = new UsersSelectActivity(getFlags(), z2 ? this.alwaysShow : this.neverShow, z2);
-            usersSelectActivity.type = 2;
-            usersSelectActivity.allowSelf = false;
-            usersSelectActivity.noChatTypes = (!this.bot || this.exclude || z2) ? false : true;
-            usersSelectActivity.allowSelf = false;
+        if (i2 == 101 || i2 == 103) {
+            boolean z2 = i2 == 101;
+            UsersSelectActivity usersSelectActivityAsPrivateChats = new UsersSelectActivity(z2, z2 ? this.alwaysShow : this.neverShow, getFlags()).asPrivateChats();
+            usersSelectActivityAsPrivateChats.noChatTypes = (!this.bot || this.exclude || z2) ? false : true;
+            usersSelectActivityAsPrivateChats.allowSelf = false;
             if (!z2 && this.doNotExcludeNewChats) {
                 z = true;
             }
-            usersSelectActivity.doNotNewChats = z;
-            usersSelectActivity.delegate = new ChatActivity$$ExternalSyntheticLambda168(i2, this, z2);
+            usersSelectActivityAsPrivateChats.doNotNewChats = z;
+            usersSelectActivityAsPrivateChats.setDelegate(new ChatMessageCell$$ExternalSyntheticLambda25(this, z2));
             if (baseFragment != null) {
-                baseFragment.presentFragment(usersSelectActivity);
+                baseFragment.presentFragment(usersSelectActivityAsPrivateChats);
                 return true;
             }
             BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
@@ -338,35 +331,74 @@ public final class BusinessRecipientsHelper {
             }
             BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
             bottomSheetParams.transitionFromLeft = true;
-            safeLastFragment.showAsSheet(usersSelectActivity, bottomSheetParams);
+            safeLastFragment.showAsSheet(usersSelectActivityAsPrivateChats, bottomSheetParams);
             return true;
         }
         Runnable runnable = this.update;
-        if (i == 102) {
+        if (i2 == 102) {
             runnable.run();
             return true;
         }
-        if (i == 104) {
+        if (i2 == 104) {
             runnable.run();
             return true;
         }
         if (uItem.viewType != 11) {
             return false;
         }
-        boolean z3 = uItem.include;
-        String peerName = MessagesController.getInstance(this.currentAccount).getPeerName(uItem.dialogId);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this.context, 0, this.resourcesProvider);
-        String string = LocaleController.getString(!z3 ? R.string.BusinessRecipientsRemoveExcludeTitle : R.string.BusinessRecipientsRemoveIncludeTitle);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = LocaleController.formatString(!z3 ? R.string.BusinessRecipientsRemoveExcludeMessage : R.string.BusinessRecipientsRemoveIncludeMessage, peerName);
-        builder.setPositiveButton(LocaleController.getString(R.string.Remove), new LoginActivity$$ExternalSyntheticLambda31(this, z3, uItem, 4));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        final boolean z3 = uItem.include;
+        String str = uItem.chatType;
+        if (str != null) {
+            switch (str) {
+                case "non_contacts":
+                    i = 8;
+                    break;
+                case "contacts":
+                    i = 4;
+                    break;
+                case "new_chats":
+                    i = 2;
+                    break;
+                case "existing_chats":
+                    i = 1;
+                    break;
+                default:
+                    i = 0;
+                    break;
+            }
+        } else {
+            i = 0;
+        }
+        if (i == 0) {
+            string = MessagesController.getInstance(this.currentAccount).getPeerName(uItem.dialogId);
+        } else if (i == 1) {
+            string = LocaleController.getString(R.string.FilterExistingChats);
+        } else if (i != 2) {
+            string = i != 4 ? LocaleController.getString(R.string.FilterNonContacts) : LocaleController.getString(R.string.FilterContacts);
+        } else {
+            string = LocaleController.getString(R.string.FilterNewChats);
+        }
+        AlertDialog alertDialogCreate = new AlertDialog.Builder(this.context, 0, this.resourcesProvider).setTitle(LocaleController.getString(!z3 ? R.string.BusinessRecipientsRemoveExcludeTitle : R.string.BusinessRecipientsRemoveIncludeTitle)).setMessage(LocaleController.formatString(!z3 ? R.string.BusinessRecipientsRemoveExcludeMessage : R.string.BusinessRecipientsRemoveIncludeMessage, string)).setPositiveButton(LocaleController.getString(R.string.Remove), new AlertDialog.OnButtonClickListener() {
+            @Override
+            public final void onClick(AlertDialog alertDialog, int i3) {
+                BusinessRecipientsHelper businessRecipientsHelper = this.f$0;
+                int i4 = i;
+                boolean z4 = z3;
+                if (i4 == 0) {
+                    (!z4 ? businessRecipientsHelper.neverShow : businessRecipientsHelper.alwaysShow).remove(Long.valueOf(uItem.dialogId));
+                } else if (z4) {
+                    businessRecipientsHelper.includeFlags = (~i4) & businessRecipientsHelper.includeFlags;
+                } else {
+                    businessRecipientsHelper.excludeFlags = (~i4) & businessRecipientsHelper.excludeFlags;
+                }
+                businessRecipientsHelper.update.run();
+            }
+        }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
         if (baseFragment != null) {
-            baseFragment.showDialog(alertDialog);
+            baseFragment.showDialog(alertDialogCreate);
             return true;
         }
-        alertDialog.show();
+        alertDialogCreate.show();
         return true;
     }
 
@@ -427,14 +459,14 @@ public final class BusinessRecipientsHelper {
         return false;
     }
 
-    public BusinessRecipientsHelper(Activity activity, int i, ArticleViewer$$ExternalSyntheticLambda3 articleViewer$$ExternalSyntheticLambda3, Theme.ResourcesProvider resourcesProvider) {
+    public BusinessRecipientsHelper(Context context, int i, Theme.ResourcesProvider resourcesProvider, ChatbotSheet$$ExternalSyntheticLambda0 chatbotSheet$$ExternalSyntheticLambda0) {
         this.alwaysShow = new ArrayList();
         this.neverShow = new ArrayList();
         this.shiftDp = -4;
-        this.context = activity;
+        this.context = context;
         this.currentAccount = i;
         this.fragment = null;
-        this.update = articleViewer$$ExternalSyntheticLambda3;
+        this.update = chatbotSheet$$ExternalSyntheticLambda0;
         this.resourcesProvider = resourcesProvider;
     }
 

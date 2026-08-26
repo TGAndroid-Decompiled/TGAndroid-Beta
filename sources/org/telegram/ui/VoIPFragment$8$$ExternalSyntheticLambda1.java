@@ -1,34 +1,7 @@
 package org.telegram.ui;
 
-import android.view.WindowManager;
-import androidx.appcompat.widget.TooltipPopup;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.browser.Browser;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.EditTextCaption;
-import org.telegram.ui.Components.voip.VoIPPiPView;
-import org.telegram.ui.bots.BotDownloads;
-import org.telegram.ui.bots.BotSensors;
-import org.telegram.ui.bots.BotWebViewSheet;
-import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
-import org.telegram.ui.iv.RichAIComposeSheet;
-import org.telegram.ui.iv.RichButtonRowCell;
-import org.telegram.ui.iv.RichEditor;
-import org.telegram.ui.iv.RichEditorHistory;
-import org.telegram.ui.web.AddressBarList;
-import org.telegram.ui.web.BookmarksFragment;
-import org.telegram.ui.web.BotWebViewContainer;
-import org.telegram.ui.web.HistoryFragment;
-import org.telegram.ui.web.HttpGetFileTask;
-import org.telegram.ui.web.WebActionBar;
-import org.telegram.ui.web.WebBrowserSettings;
-import org.webrtc.EglRenderer$$ExternalSyntheticLambda6;
-import org.webrtc.OrientationHelper;
+import android.animation.AnimatorSet;
+import org.telegram.ui.Components.BulletinFactory;
 
 public final class VoIPFragment$8$$ExternalSyntheticLambda1 implements Runnable {
     public final int $r8$classId;
@@ -43,142 +16,94 @@ public final class VoIPFragment$8$$ExternalSyntheticLambda1 implements Runnable 
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                VoIPFragment.AnonymousClass8 anonymousClass8 = (VoIPFragment.AnonymousClass8) this.f$0;
-                anonymousClass8.getClass();
-                if (VoIPService.getSharedState() != null) {
-                    VoIPService.getSharedState().acceptIncomingCall();
-                    if (VoIPFragment.this.currentUserIsVideo && VoIPService.getSharedInstance() != null) {
-                        VoIPService.getSharedInstance().requestVideoCall(false);
-                        break;
-                    }
-                }
+                ((VoIPFragment.AnonymousClass8) this.f$0).lambda$onAccept$0();
                 break;
             case 1:
-                VoIPFragment.AnonymousClass11 anonymousClass11 = (VoIPFragment.AnonymousClass11) this.f$0;
-                anonymousClass11.this$0.notificationsLocker.unlock();
-                VoIPPiPView.instance.getClass();
-                if (VoIPService.getSharedInstance() != null) {
-                    VoIPService.getSharedInstance().swapSinks();
-                }
-                anonymousClass11.this$0.currentUserCameraFloatingLayout.setCornerRadius(-1.0f);
-                anonymousClass11.this$0.callingUserTextureView.renderer.release();
-                anonymousClass11.this$0.currentUserTextureView.renderer.release();
-                anonymousClass11.this$0.callingUserMiniTextureRenderer.release();
-                anonymousClass11.this$0.destroy$1$1();
-                VoIPFragment.AnonymousClass1 anonymousClass1 = anonymousClass11.this$0.windowView;
-                if (anonymousClass1.getParent() != null) {
-                    AndroidUtilities.unlockOrientation(anonymousClass1.activity);
-                    WindowManager windowManager = (WindowManager) anonymousClass1.activity.getSystemService("window");
-                    anonymousClass1.setVisibility(8);
-                    windowManager.removeView(anonymousClass1);
-                    OrientationHelper.cameraRotationDisabled = false;
-                }
-                VoIPPiPView.switchingToPip = false;
-                anonymousClass11.this$0.switchingToPip = false;
-                VoIPFragment.instance = null;
+                ((PrivacyControlActivity.MessageCell) this.f$0).invalidate();
                 break;
             case 2:
-                ((VoIPPermissionActivity) this.f$0).finish();
+                ((ProfileActivity.AnonymousClass13) this.f$0).lambda$onAllAnimationsDone$0();
                 break;
             case 3:
-                ((WallpapersListActivity) this.f$0).loadWallpapers(false);
+                ((ProfileActivity.AnonymousClass20) this.f$0).lambda$dispatchDraw$0();
                 break;
             case 4:
-                ((BotDownloads.DownloadBulletin.BackgroundDrawable) this.f$0).invalidateSelf();
+                ((ProfileActivity.AnonymousClass6) this.f$0).lambda$onItemClick$1();
                 break;
             case 5:
-                ((BotDownloads.DownloadBulletin.StatusDrawable) this.f$0).invalidateSelf();
+                ((ProfileActivity.AnonymousClass7) this.f$0).lambda$onMeasure$0();
                 break;
             case 6:
-                ((BotDownloads.FileDownload) this.f$0).updateProgress();
+                ((ProfileActivity.AnonymousClass9) this.f$0).lambda$onAttachedToWindow$1();
                 break;
             case 7:
-                ((BotSensors.AnonymousClass1) this.f$0).post();
+                ((ProfileActivity.NestedFrameLayout) this.f$0).lambda$onNestedScroll$0();
                 break;
             case 8:
-                ((BotSensors.AnonymousClass1) this.f$0).post();
+                ((ProfileActivity.PagerIndicatorView) this.f$0).updateAvatarItemsInternal();
                 break;
             case 9:
-                ((BotSensors.AnonymousClass3) this.f$0).post();
+                ((ProfileActivity2.ContainerView) this.f$0).lambda$onNestedScroll$0();
                 break;
             case 10:
-                ((BotSensors.AnonymousClass4) this.f$0).post();
+                ProfileBirthdayEffect.ImageReceiverAsset.AnonymousClass1.lambda$didSetImage$0((Runnable[]) this.f$0);
                 break;
             case 11:
-                ((BotWebViewSheet.WindowView) this.f$0).invalidate();
+                ReportBottomSheet.AnonymousClass3.lambda$onReported$0((BulletinFactory) this.f$0);
                 break;
             case 12:
-                ((AnimationNotificationsLocker) this.f$0).unlock();
+                ((SecretMediaViewer.AnonymousClass17) this.f$0).lambda$onAnimationEnd$0();
                 break;
             case 13:
-                ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = (ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) this.f$0;
-                webViewSwipeContainer.drawnSwipeOffsetY = webViewSwipeContainer.swipeOffsetY;
+                ((SecretVoicePlayer.AnonymousClass5) this.f$0).lambda$onRenderedFirstFrame$0();
                 break;
             case 14:
-                AndroidUtilities.showKeyboard(((RichAIComposeSheet) this.f$0).promptCell.editText);
+                ((SelectChatUserSheet.AnonymousClass2) this.f$0).lambda$$0();
                 break;
             case 15:
-                ((RichButtonRowCell.ButtonView) this.f$0).invalidate();
+                ((TopicsFragment.AnonymousClass10) this.f$0).lambda$onLayoutChildren$0();
                 break;
             case 16:
-                TooltipPopup tooltipPopup = (TooltipPopup) this.f$0;
-                tooltipPopup.mMessageView = null;
-                tooltipPopup.mLayoutParams = null;
-                tooltipPopup.mTmpDisplayFrame = null;
-                tooltipPopup.mTmpAnchorPos = null;
-                tooltipPopup.setBackgroundCell(null);
+                ((TopicsFragment.AnonymousClass2) this.f$0).lambda$onItemClick$5();
                 break;
             case 17:
-                ((RichEditor.DraggingDrawable) this.f$0).invalidateSelf();
+                ((VoIPFragment.AnonymousClass12) this.f$0).lambda$onFirstFrameRendered$0();
                 break;
             case 18:
-                ((RichEditorHistory) this.f$0).commit();
+                ((VoIPFragment.AnonymousClass13) this.f$0).lambda$onFirstFrameRendered$0();
                 break;
             case 19:
-                ((AddressBarList) this.f$0).listView.adapter.update(true);
+                ((VoIPFragment.AnonymousClass14) this.f$0).lambda$onAnimationEnd$0();
                 break;
             case 20:
-                AddressBarList.BookmarksList bookmarksList = ((BookmarksFragment.AnonymousClass2) this.f$0).this$0.searchList;
-                if (bookmarksList != null) {
-                    bookmarksList.load$1();
-                }
+                ((TodoItemMenu$$ExternalSyntheticLambda2) this.f$0).run();
                 break;
             case 21:
-                ((EditTextCaption) this.f$0).requestFocus();
+                ((ArchiveSettingsActivity) this.f$0).lambda$createView$0();
                 break;
             case 22:
-                Browser.openUrl(BotWebViewContainer.MyWebView.this.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                ((ArticleViewer.BlockChannelCell) this.f$0).setState(2, false);
                 break;
             case 23:
-                HistoryFragment.AnonymousClass2 anonymousClass2 = (HistoryFragment.AnonymousClass2) this.f$0;
-                anonymousClass2.getClass();
-                Utilities.searchQueue.postRunnable(new EglRenderer$$ExternalSyntheticLambda6(anonymousClass2, new ArrayList(HistoryFragment.this.history), HistoryFragment.this.query, 11));
+                ((AnimatorSet) this.f$0).start();
                 break;
             case 24:
-                ((HttpGetFileTask) this.f$0).progressCallback.run(Float.valueOf(1.0f));
+                ((ArticleViewer.BlockPhotoCell) this.f$0).lambda$onMeasure$0();
                 break;
             case 25:
-                ((WebActionBar.ForwardDrawable) this.f$0).invalidateSelf();
+                ((ArticleViewer.Sheet) this.f$0).lambda$dismiss$1();
+                break;
+            case 26:
+                ((ArticleViewer.WebpageAdapter) this.f$0).lambda$new$1();
+                break;
+            case 27:
+                ((CacheChatsExceptionsFragment) this.f$0).lambda$createView$2();
+                break;
+            case 28:
+                ((ChangeNameActivity) this.f$0).lambda$onTransitionAnimationEnd$4();
                 break;
             default:
-                WebBrowserSettings webBrowserSettings = (WebBrowserSettings) this.f$0;
-                webBrowserSettings.getClass();
-                File databasePath = ApplicationLoader.applicationContext.getDatabasePath("webview.db");
-                long length = (databasePath == null || !databasePath.exists()) ? 0L : databasePath.length();
-                File databasePath2 = ApplicationLoader.applicationContext.getDatabasePath("webviewCache.db");
-                if (databasePath2 != null && databasePath2.exists()) {
-                    length += databasePath2.length();
-                }
-                File file = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                if (file.exists()) {
-                    length += WebBrowserSettings.getDirectorySize(file, Boolean.FALSE);
-                }
-                File file2 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "cache/WebView");
-                if (file2.exists()) {
-                    length += WebBrowserSettings.getDirectorySize(file2, null);
-                }
-                File file3 = new File(ApplicationLoader.applicationContext.getApplicationInfo().dataDir, "app_webview");
-                AndroidUtilities.runOnUIThread(new ChatEditActivity$$ExternalSyntheticLambda58(webBrowserSettings, length, file3.exists() ? WebBrowserSettings.getDirectorySize(file3, Boolean.TRUE) : 0L, 1));
+                ((ChangeUsernameActivity) this.f$0).lambda$createView$1();
                 break;
         }
     }

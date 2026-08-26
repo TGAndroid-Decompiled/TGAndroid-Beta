@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Business.ChatbotsActivity;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.StickersAlert$$ExternalSyntheticLambda35;
 import org.telegram.ui.Delegates.MemberRequestsDelegate;
-import org.telegram.ui.TwoStepVerificationSetupActivity;
 
 public final class ContactsController$$ExternalSyntheticLambda37 implements RequestDelegate {
     public final int $r8$classId = 0;
@@ -43,20 +40,10 @@ public final class ContactsController$$ExternalSyntheticLambda37 implements Requ
             case 3:
                 ChatbotsActivity chatbotsActivity = (ChatbotsActivity) this.f$0;
                 chatbotsActivity.getClass();
-                AndroidUtilities.runOnUIThread(new StickersAlert$$ExternalSyntheticLambda35(chatbotsActivity, tL_error, tLObject, (int[]) this.f$2, (ArrayList) this.f$1, this.f$3, (TLRPC.User) this.f$4));
-                break;
-            case 4:
-                MemberRequestsDelegate memberRequestsDelegate = (MemberRequestsDelegate) this.f$0;
-                memberRequestsDelegate.getClass();
-                if (tL_error == null) {
-                    MessagesController.getInstance(memberRequestsDelegate.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
-                }
-                AndroidUtilities.runOnUIThread(new StickersAlert$$ExternalSyntheticLambda35(memberRequestsDelegate, tL_error, tLObject, (TLRPC.TL_chatInviteImporter) this.f$1, this.f$3, (TLRPC.User) this.f$2, (TLRPC.TL_messages_hideChatJoinRequest) this.f$4));
+                AndroidUtilities.runOnUIThread(new SendMessagesHelper$$ExternalSyntheticLambda27(chatbotsActivity, tL_error, tLObject, (int[]) this.f$2, (ArrayList) this.f$1, this.f$3, (TLRPC.User) this.f$4));
                 break;
             default:
-                TwoStepVerificationSetupActivity twoStepVerificationSetupActivity = (TwoStepVerificationSetupActivity) this.f$0;
-                twoStepVerificationSetupActivity.getClass();
-                AndroidUtilities.runOnUIThread(new StickersAlert$$ExternalSyntheticLambda35(twoStepVerificationSetupActivity, tL_error, this.f$3, tLObject, (byte[]) this.f$1, (String) this.f$4, (TL_account.passwordInputSettings) this.f$2));
+                ((MemberRequestsDelegate) this.f$0).lambda$hideChatJoinRequest$7((TLRPC.TL_chatInviteImporter) this.f$1, this.f$3, (TLRPC.User) this.f$2, (TLRPC.TL_messages_hideChatJoinRequest) this.f$4, tLObject, tL_error);
                 break;
         }
     }
@@ -91,13 +78,5 @@ public final class ContactsController$$ExternalSyntheticLambda37 implements Requ
         this.f$3 = z;
         this.f$2 = user;
         this.f$4 = tL_messages_hideChatJoinRequest;
-    }
-
-    public ContactsController$$ExternalSyntheticLambda37(TwoStepVerificationSetupActivity twoStepVerificationSetupActivity, boolean z, byte[] bArr, String str, TL_account.passwordInputSettings passwordinputsettings) {
-        this.f$0 = twoStepVerificationSetupActivity;
-        this.f$3 = z;
-        this.f$1 = bArr;
-        this.f$4 = str;
-        this.f$2 = passwordinputsettings;
     }
 }

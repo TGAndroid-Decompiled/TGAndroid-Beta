@@ -151,7 +151,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                             avatarDrawable.setAvatarType(1);
                         }
                     } else {
-                        AvatarDrawable avatarDrawable2 = new AvatarDrawable((Theme.ResourcesProvider) null);
+                        AvatarDrawable avatarDrawable2 = new AvatarDrawable();
                         avatarDrawable2.setInfo(this.accountInstance.getCurrentAccount(), chat);
                         avatarDrawable = avatarDrawable2;
                     }

@@ -10,7 +10,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda31;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda484;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.UItem;
 
@@ -30,7 +30,7 @@ public final class CommunitySheet$$ExternalSyntheticLambda1 implements Utilities
         WindowInsetsCompat.Impl impl = windowInsetsCompat.mImpl;
         communitySheet.systemAndImeInsets = impl.getInsets(527);
         communitySheet.systemInsets = impl.getInsets(519);
-        communitySheet.filteredSearchView.setPagesPaddings(AndroidUtilities.dp(56.0f) + communitySheet.systemAndImeInsets.top, communitySheet.systemAndImeInsets.bottom, false);
+        communitySheet.filteredSearchView.setPagesPaddings(AndroidUtilities.dp(56.0f) + communitySheet.systemAndImeInsets.top, communitySheet.systemAndImeInsets.bottom);
         communitySheet.communityPageFadeView.invalidate();
         return WindowInsetsCompat.CONSUMED;
     }
@@ -70,8 +70,8 @@ public final class CommunitySheet$$ExternalSyntheticLambda1 implements Utilities
         z2 = false;
         z = zIsChannelAndNotMegaGroup;
         if (zCanRemoveBotFromCommunity) {
-            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(communitySheet.container, null, view);
-            itemOptionsMakeOptions.add(R.drawable.msg_cancel, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), new ChatActivity$$ExternalSyntheticLambda31(communitySheet, z2, z, j, 3), true);
+            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(communitySheet.container, view);
+            itemOptionsMakeOptions.add(R.drawable.msg_cancel, (CharSequence) LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), true, (Runnable) new ChatActivity$$ExternalSyntheticLambda484(communitySheet, z2, z, j, 3));
             itemOptionsMakeOptions.setScrimViewBackground(communitySheet.communityPage.listView.getClipBackground(view, true));
             itemOptionsMakeOptions.show();
             z3 = true;
@@ -80,7 +80,7 @@ public final class CommunitySheet$$ExternalSyntheticLambda1 implements Utilities
     }
 
     @Override
-    public void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         CommunitySheet communitySheet = this.f$0;
         UItem uItem = (UItem) obj;
         View view = (View) obj2;

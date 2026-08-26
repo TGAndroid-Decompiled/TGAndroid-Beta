@@ -1,6 +1,6 @@
 package kotlinx.coroutines.scheduling;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.concurrent.Executor;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.EmptyCoroutineContext;
@@ -25,11 +25,11 @@ public final class DefaultIoScheduler extends ExecutorCoroutineDispatcher implem
         int iSystemProp$default = AtomicKt.systemProp$default(i, 12, "kotlinx.coroutines.io.parallelism");
         unlimitedIoScheduler.getClass();
         if (iSystemProp$default < 1) {
-            throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(iSystemProp$default, "Expected positive parallelism level, but got ").toString());
+            throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(iSystemProp$default, "Expected positive parallelism level, but got ").toString());
         }
         if (iSystemProp$default < TasksKt.MAX_POOL_SIZE) {
             if (iSystemProp$default < 1) {
-                throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(iSystemProp$default, "Expected positive parallelism level, but got ").toString());
+                throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(iSystemProp$default, "Expected positive parallelism level, but got ").toString());
             }
             limitedDispatcher = new LimitedDispatcher(unlimitedIoScheduler, iSystemProp$default);
         }

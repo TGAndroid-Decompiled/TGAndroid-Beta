@@ -1,24 +1,29 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import com.google.android.gms.internal.mlkit_vision_common.zzkm;
+import com.google.android.gms.internal.mlkit_vision_common.zzkn;
 
 public class CombinedDrawable extends Drawable implements Drawable.Callback {
-    public int backHeight;
-    public int backWidth;
-    public Drawable background;
-    public boolean center;
-    public boolean fullSize;
-    public final Drawable icon;
-    public int iconHeight;
-    public int iconWidth;
-    public final int left;
-    public int offsetX;
-    public int offsetY;
-    public final int top;
+    private int backHeight;
+    private int backWidth;
+    private Drawable background;
+    private boolean both;
+    private boolean center;
+    private boolean fullSize;
+    private Drawable icon;
+    private int iconHeight;
+    private int iconWidth;
+    private int left;
+    private int offsetX;
+    private int offsetY;
+    private int top;
     public float translateX;
+    public float translateY;
 
     public CombinedDrawable(Drawable drawable, Drawable drawable2, int i, int i2) {
         this.background = drawable;
@@ -33,7 +38,7 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
     @Override
     public void draw(Canvas canvas) {
         canvas.save();
-        canvas.translate(this.translateX, 0.0f);
+        canvas.translate(this.translateX, this.translateY);
         if (this.center) {
             Rect bounds = getBounds();
             setBounds(bounds.centerX() - (getIntrinsicWidth() / 2), bounds.centerY() - (getIntrinsicHeight() / 2), (getIntrinsicWidth() / 2) + bounds.centerX(), (getIntrinsicHeight() / 2) + bounds.centerY());
@@ -43,118 +48,178 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
             drawable.setBounds(getBounds());
             this.background.draw(canvas);
         }
-        Drawable drawable2 = this.icon;
-        if (drawable2 != null) {
-            boolean z = this.fullSize;
-            int i = this.top;
-            int i2 = this.left;
-            if (z) {
+        if (this.icon != null) {
+            if (this.fullSize) {
                 Rect bounds2 = getBounds();
-                if (i2 != 0) {
-                    drawable2.setBounds(bounds2.left + i2, bounds2.top + i, bounds2.right - i2, bounds2.bottom - i);
+                int i = this.left;
+                if (i != 0) {
+                    Drawable drawable2 = this.icon;
+                    int i2 = bounds2.left + i;
+                    int i3 = bounds2.top;
+                    int i4 = this.top;
+                    drawable2.setBounds(i2, i3 + i4, bounds2.right - i, bounds2.bottom - i4);
                 } else {
-                    drawable2.setBounds(bounds2);
+                    this.icon.setBounds(bounds2);
                 }
             } else if (this.iconWidth != 0) {
-                int iCenterX = (getBounds().centerX() - (this.iconWidth / 2)) + i2 + this.offsetX;
+                int iCenterX = (getBounds().centerX() - (this.iconWidth / 2)) + this.left + this.offsetX;
                 int iCenterY = getBounds().centerY();
-                int i3 = this.iconHeight;
-                int i4 = (iCenterY - (i3 / 2)) + i + this.offsetY;
-                drawable2.setBounds(iCenterX, i4, this.iconWidth + iCenterX, i3 + i4);
+                int i5 = this.iconHeight;
+                int i6 = (iCenterY - (i5 / 2)) + this.top + this.offsetY;
+                this.icon.setBounds(iCenterX, i6, this.iconWidth + iCenterX, i5 + i6);
             } else {
-                int iCenterX2 = (getBounds().centerX() - (drawable2.getIntrinsicWidth() / 2)) + i2;
-                int iCenterY2 = (getBounds().centerY() - (drawable2.getIntrinsicHeight() / 2)) + i;
-                drawable2.setBounds(iCenterX2, iCenterY2, drawable2.getIntrinsicWidth() + iCenterX2, drawable2.getIntrinsicHeight() + iCenterY2);
+                int iM = zzkn.m(getBounds().centerX(), this.icon) + this.left;
+                int iM2 = zzkm.m(getBounds().centerY(), this.icon) + this.top;
+                Drawable drawable3 = this.icon;
+                drawable3.setBounds(iM, iM2, drawable3.getIntrinsicWidth() + iM, this.icon.getIntrinsicHeight() + iM2);
             }
-            drawable2.draw(canvas);
+            this.icon.draw(canvas);
         }
         canvas.restore();
     }
 
-    @Override
-    public final Drawable.ConstantState getConstantState() {
-        return this.icon.getConstantState();
+    public Drawable getBackground() {
+        return this.background;
+    }
+
+    public Drawable getBackgroundDrawable() {
+        return this.background;
     }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public Drawable.ConstantState getConstantState() {
+        return this.icon.getConstantState();
+    }
+
+    public Drawable getIcon() {
+        return this.icon;
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
         int i = this.backHeight;
         return i != 0 ? i : this.background.getIntrinsicHeight();
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         int i = this.backWidth;
         return i != 0 ? i : this.background.getIntrinsicWidth();
     }
 
     @Override
-    public final int getMinimumHeight() {
+    public int getMinimumHeight() {
         int i = this.backHeight;
         return i != 0 ? i : this.background.getMinimumHeight();
     }
 
     @Override
-    public final int getMinimumWidth() {
+    public int getMinimumWidth() {
         int i = this.backWidth;
         return i != 0 ? i : this.background.getMinimumWidth();
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return this.icon.getOpacity();
     }
 
     @Override
-    public final int[] getState() {
+    public int[] getState() {
         return this.icon.getState();
     }
 
     @Override
-    public final void invalidateDrawable(Drawable drawable) {
+    public void invalidateDrawable(Drawable drawable) {
         invalidateSelf();
     }
 
     @Override
-    public final boolean isStateful() {
+    public boolean isStateful() {
         return this.icon.isStateful();
     }
 
     @Override
-    public final void jumpToCurrentState() {
+    public void jumpToCurrentState() {
         this.icon.jumpToCurrentState();
     }
 
     @Override
-    public final boolean onStateChange(int[] iArr) {
+    public boolean onStateChange(int[] iArr) {
         return true;
     }
 
     @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+    public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
         scheduleSelf(runnable, j);
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
         this.icon.setAlpha(i);
         this.background.setAlpha(i);
+    }
+
+    public void setBackgroundDrawable(Drawable drawable) {
+        this.background = drawable;
+        invalidateSelf();
+    }
+
+    public void setCenter(boolean z) {
+        this.center = z;
     }
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
         this.icon.setColorFilter(colorFilter);
+        if (this.both) {
+            this.background.setColorFilter(colorFilter);
+        }
+    }
+
+    public void setCustomSize(int i, int i2) {
+        this.backWidth = i;
+        this.backHeight = i2;
+    }
+
+    public void setFullsize(boolean z) {
+        this.fullSize = z;
+    }
+
+    public void setIconDrawable(Drawable drawable) {
+        this.icon = drawable;
+        invalidateSelf();
+    }
+
+    public void setIconOffset(int i, int i2) {
+        this.offsetX = i;
+        this.offsetY = i2;
+    }
+
+    public void setIconSize(int i, int i2) {
+        this.iconWidth = i;
+        this.iconHeight = i2;
     }
 
     @Override
-    public final boolean setState(int[] iArr) {
+    public boolean setState(int[] iArr) {
         this.icon.setState(iArr);
         return true;
     }
 
     @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+    public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
         unscheduleSelf(runnable);
+    }
+
+    public CombinedDrawable(Context context, int i, int i2) {
+        this.background = context.getResources().getDrawable(i);
+        Drawable drawable = context.getResources().getDrawable(i2);
+        this.icon = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        this.both = true;
     }
 
     public CombinedDrawable(Drawable drawable, Drawable drawable2) {

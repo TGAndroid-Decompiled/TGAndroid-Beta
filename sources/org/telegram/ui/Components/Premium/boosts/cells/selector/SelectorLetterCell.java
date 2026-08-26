@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
@@ -20,7 +20,7 @@ public final class SelectorLetterCell extends FrameLayout {
         setBackgroundColor(Theme.getColor(Theme.key_graySection, resourcesProvider));
         TextView textView = new TextView(getContext());
         this.textView = textView;
-        zzkk.m(14.0f, 1, textView);
+        zzkb.m(14.0f, 1, textView);
         textView.setTextColor(Theme.getColor(Theme.key_graySectionText, resourcesProvider));
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));

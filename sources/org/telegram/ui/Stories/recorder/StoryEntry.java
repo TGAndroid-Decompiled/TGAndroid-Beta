@@ -42,12 +42,10 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda33;
 import org.telegram.ui.Components.RLottieNative;
-import org.telegram.ui.LoginActivity$$ExternalSyntheticLambda42;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda149;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda8;
-import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda16;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda140;
+import org.telegram.ui.bots.BotVerifySheet$$ExternalSyntheticLambda7;
 
 public final class StoryEntry {
     public HashSet albums;
@@ -131,7 +129,7 @@ public final class StoryEntry {
     public Bitmap thumbBitmap;
     public String thumbPath;
     public Bitmap thumbPathBitmap;
-    public ArticleViewer$$ExternalSyntheticLambda33 updateDocumentRef;
+    public StarGiftSheet$$ExternalSyntheticLambda140 updateDocumentRef;
     public File uploadThumbFile;
     public long videoOffset;
     public int width;
@@ -439,23 +437,8 @@ public final class StoryEntry {
     }
 
     public static boolean isAnimated(TLRPC.Document document, String str) {
-        long j;
         if (document != null) {
-            if (!"video/webm".equals(document.mime_type) && !"video/mp4".equals(document.mime_type)) {
-                if (MessageObject.isAnimatedStickerDocument(document, true)) {
-                    RLottieNative rLottieNativeCreateFromFile = RLottieNative.createFromFile(str, null, 0, 0, null, false, null, false, 0, null);
-                    if (rLottieNativeCreateFromFile != null) {
-                        int i = rLottieNativeCreateFromFile.mMetaData[0];
-                        rLottieNativeCreateFromFile.recycle();
-                        j = i;
-                    } else {
-                        j = 0;
-                    }
-                    if (j > 1) {
-                    }
-                }
-            }
-            return true;
+            return "video/webm".equals(document.mime_type) || "video/mp4".equals(document.mime_type) || (MessageObject.isAnimatedStickerDocument(document, true) && RLottieNative.getFramesCount(str, null) > 1);
         }
         return false;
     }
@@ -1063,7 +1046,7 @@ public final class StoryEntry {
                         tL_inputDocument.file_reference = new byte[0];
                     }
                     tL_messages_getAttachedStickers.media = tL_inputStickeredMediaDocument;
-                    this.checkStickersReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new LoginActivity$$ExternalSyntheticLambda42(this, storyItem, tL_messages_getAttachedStickers, new RichMediaUploader$$ExternalSyntheticLambda0(this, 7), 18));
+                    this.checkStickersReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new GiftSheet$$ExternalSyntheticLambda16(9, this, storyItem, tL_messages_getAttachedStickers, new StoryEntry$$ExternalSyntheticLambda12(this, 0)));
                 }
             } else if (photo.has_stickers) {
                 TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
@@ -1077,7 +1060,7 @@ public final class StoryEntry {
                     tL_inputPhoto.file_reference = new byte[0];
                 }
                 tL_messages_getAttachedStickers.media = tL_inputStickeredMediaPhoto;
-                this.checkStickersReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new LoginActivity$$ExternalSyntheticLambda42(this, storyItem, tL_messages_getAttachedStickers, new RichMediaUploader$$ExternalSyntheticLambda0(this, 7), 18));
+                this.checkStickersReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getAttachedStickers, new GiftSheet$$ExternalSyntheticLambda16(9, this, storyItem, tL_messages_getAttachedStickers, new StoryEntry$$ExternalSyntheticLambda12(this, 0)));
             }
         }
     }
@@ -1389,13 +1372,13 @@ public final class StoryEntry {
         String absolutePath = file == null ? null : file.getAbsolutePath();
         int[][] iArr = (int[][]) Array.newInstance((Class<?>) Integer.TYPE, Math.max(1, isCollage() ? this.collageContent.size() : 0), 11);
         iArr[0] = new int[11];
-        ProfileActivity$$ExternalSyntheticLambda149 profileActivity$$ExternalSyntheticLambda149 = new ProfileActivity$$ExternalSyntheticLambda149(this, absolutePath, iArr, callback);
+        BotVerifySheet$$ExternalSyntheticLambda7 botVerifySheet$$ExternalSyntheticLambda7 = new BotVerifySheet$$ExternalSyntheticLambda7(3, this, absolutePath, iArr, callback);
         if (!isCollage()) {
             if (this.file == null) {
-                profileActivity$$ExternalSyntheticLambda149.run();
+                botVerifySheet$$ExternalSyntheticLambda7.run();
                 return;
             } else {
-                Utilities.globalQueue.postRunnable(new TodoItemMenu$$ExternalSyntheticLambda8(absolutePath, iArr, profileActivity$$ExternalSyntheticLambda149, 14));
+                Utilities.globalQueue.postRunnable(new HintView2$$ExternalSyntheticLambda2(absolutePath, iArr, botVerifySheet$$ExternalSyntheticLambda7, 6));
                 return;
             }
         }
@@ -1404,7 +1387,7 @@ public final class StoryEntry {
             strArr[i2] = ((StoryEntry) this.collageContent.get(i2)).file == null ? null : ((StoryEntry) this.collageContent.get(i2)).file.getAbsolutePath();
             iArr[i2] = new int[11];
         }
-        Utilities.globalQueue.postRunnable(new TodoItemMenu$$ExternalSyntheticLambda8(strArr, iArr, profileActivity$$ExternalSyntheticLambda149, 13));
+        Utilities.globalQueue.postRunnable(new HintView2$$ExternalSyntheticLambda2(strArr, iArr, botVerifySheet$$ExternalSyntheticLambda7, 5));
     }
 
     public final boolean isCollage() {

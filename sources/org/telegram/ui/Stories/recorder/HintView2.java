@@ -1,18 +1,28 @@
 package org.telegram.ui.Stories.recorder;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.CornerPathEffect;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.Layout;
@@ -21,13 +31,19 @@ import android.text.Spanned;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.text.style.ReplacementSpan;
+import android.util.StateSet;
 import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
@@ -39,83 +55,196 @@ import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.Premium.VideoScreenPreview;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.TypefaceSpan;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda127;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
-import org.telegram.ui.WebviewActivity;
+import org.telegram.ui.MainTabsLayout$$ExternalSyntheticLambda0;
 
 public class HintView2 extends View {
-    public float arrowHalfWidth;
-    public float arrowHeight;
-    public float arrowX;
-    public float arrowY;
-    public final Paint backgroundPaint;
-    public final ButtonBounce bounce;
-    public ValueAnimator bounceAnimator;
-    public float bounceT;
-    public final RectF bounds;
-    public final Rect boundsWithArrow;
-    public boolean closeButton;
-    public Drawable closeButtonDrawable;
-    public float closeButtonMargin;
-    public Paint cutSelectorPaint;
-    public int direction;
-    public long duration;
-    public AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans;
-    public boolean firstDraw;
-    public boolean flicker;
-    public final RectF flickerBounds;
-    public Paint flickerFillPaint;
-    public LinearGradient flickerGradient;
-    public Matrix flickerGradientMatrix;
-    public long flickerStart;
-    public LinearGradient flickerStrokeGradient;
-    public Paint flickerStrokePaint;
-    public Path flickerStrokePath;
-    public float flickerStrokePathExtrude;
-    public boolean hideByTouch;
-    public final PhotoViewer$$ExternalSyntheticLambda127 hideRunnable;
-    public RLottieDrawable icon;
-    public int iconHeight;
-    public boolean iconLeft;
-    public int iconMargin;
-    public float iconTy;
-    public int iconWidth;
-    public final RectF innerPadding;
-    public float joint;
-    public float jointTranslate;
-    public final LinkSpanDrawable.LinkCollector links;
-    public boolean multiline;
-    public Runnable onHidden;
-    public final RectF oval;
-    public final Path path;
-    public float pathLastHeight;
-    public float pathLastWidth;
-    public boolean pathSet;
-    public LinkSpanDrawable pressedLink;
-    public boolean repeatedBounce;
-    public boolean roundWithCornerEffect;
-    public float rounding;
-    public BaseCell.RippleDrawableSafe selectorDrawable;
-    public int shadowColor;
-    public float shadowDy;
-    public float shadowRadius;
-    public final AnimatedFloat show;
-    public boolean shown;
-    public final AnimatedTextView.AnimatedTextDrawable textDrawable;
-    public StaticLayout textLayout;
-    public Layout.Alignment textLayoutAlignment;
-    public float textLayoutHeight;
-    public float textLayoutLeft;
-    public float textLayoutWidth;
-    public int textMaxWidth;
-    public final TextPaint textPaint;
-    public CharSequence textToSet;
-    public float textX;
-    public float textY;
-    public final boolean useAlpha;
-    public boolean useScale;
+    public static final int DIRECTION_BOTTOM = 3;
+    public static final int DIRECTION_LEFT = 0;
+    public static final int DIRECTION_RIGHT = 2;
+    public static final int DIRECTION_TOP = 1;
+    private float arrowHalfWidth;
+    private float arrowHeight;
+    private float arrowX;
+    private float arrowY;
+    protected final Paint backgroundPaint;
+    private float blurAlpha;
+    private Paint blurBackgroundPaint;
+    private int blurBitmapHeight;
+    private Matrix blurBitmapMatrix;
+    private BitmapShader blurBitmapShader;
+    private int blurBitmapWidth;
+    private Paint blurCutPaint;
+    private int[] blurPos;
+    private float blurScale;
+    private final ButtonBounce bounce;
+    private ValueAnimator bounceAnimator;
+    private float bounceT;
+    private float bounceX;
+    private float bounceY;
+    private final RectF bounds;
+    private final Rect boundsWithArrow;
+    private boolean closeButton;
+    private Drawable closeButtonDrawable;
+    private float closeButtonMargin;
+    private Paint cutSelectorPaint;
+    private int direction;
+    private boolean drawingMyBlur;
+    private long duration;
+    private AnimatedEmojiSpan.EmojiGroupedSpans emojiGroupedSpans;
+    private boolean firstDraw;
+    private boolean flicker;
+    private final RectF flickerBounds;
+    private Paint flickerFillPaint;
+    private LinearGradient flickerGradient;
+    private Matrix flickerGradientMatrix;
+    private long flickerStart;
+    private LinearGradient flickerStrokeGradient;
+    private Paint flickerStrokePaint;
+    private Path flickerStrokePath;
+    private float flickerStrokePathExtrude;
+    private boolean hideByTouch;
+    private final Runnable hideRunnable;
+    private Drawable icon;
+    private int iconHeight;
+    private boolean iconLeft;
+    private int iconMargin;
+    private float iconTx;
+    private float iconTy;
+    private int iconWidth;
+    private final RectF innerPadding;
+    private float joint;
+    private float jointTranslate;
+    private LinkSpanDrawable.LinkCollector links;
+    private boolean multiline;
+    private Runnable onHidden;
+    private LinkSpanDrawable.LinksTextView.OnLinkPress onLongPressListener;
+    private LinkSpanDrawable.LinksTextView.OnLinkPress onPressListener;
+    private final RectF oval;
+    protected final Path path;
+    private float pathLastHeight;
+    private float pathLastWidth;
+    private boolean pathSet;
+    private LinkSpanDrawable<ClickableSpan> pressedLink;
+    private boolean repeatedBounce;
+    private boolean roundWithCornerEffect;
+    protected float rounding;
+    private Drawable selectorDrawable;
+    private int shadowColor;
+    private float shadowDx;
+    private float shadowDy;
+    private float shadowRadius;
+    private AnimatedFloat show;
+    private boolean shown;
+    private AnimatedTextView.AnimatedTextDrawable textDrawable;
+    private StaticLayout textLayout;
+    private Layout.Alignment textLayoutAlignment;
+    private float textLayoutHeight;
+    private float textLayoutLeft;
+    private float textLayoutWidth;
+    private int textMaxWidth;
+    private final TextPaint textPaint;
+    private CharSequence textToSet;
+    private float textX;
+    private float textY;
+    private boolean useAlpha;
+    private boolean useBlur;
+    private boolean useScale;
+    private boolean useTranslate;
+
+    public final class AnonymousClass2 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass2(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public final void onAnimationEnd(Animator animator) {
+            switch (this.$r8$classId) {
+                case 0:
+                    HintView2 hintView2 = (HintView2) this.this$0;
+                    hintView2.bounceT = 1.0f;
+                    hintView2.invalidate();
+                    break;
+                case 1:
+                    CaptionContainerView.AnonymousClass3 anonymousClass3 = (CaptionContainerView.AnonymousClass3) this.this$0;
+                    if (CaptionContainerView.this.scrollAnimator == animator) {
+                        CaptionContainerView.this.scrollAnimator = null;
+                        CaptionContainerView.this.editText.getEditText().setScrollY(CaptionContainerView.this.goingToScrollY);
+                        break;
+                    }
+                    break;
+                case 2:
+                    ButtonWithCounterView buttonWithCounterView = (ButtonWithCounterView) this.this$0;
+                    buttonWithCounterView.countScale = 1.0f;
+                    buttonWithCounterView.invalidate();
+                    break;
+                case 3:
+                    CollageLayoutView2.Part part = (CollageLayoutView2.Part) this.this$0;
+                    part.boundsTransition = 1.0f;
+                    if (CollageLayoutView2.this.removingParts.contains(part)) {
+                        part.imageReceiver.onDetachedFromWindow();
+                        VideoScreenPreview.AnonymousClass3 anonymousClass4 = part.videoPlayer;
+                        if (anonymousClass4 != null) {
+                            anonymousClass4.pause();
+                            part.videoPlayer.release(null);
+                            part.videoPlayer = null;
+                        }
+                        TextureView textureView = part.textureView;
+                        if (textureView != null) {
+                            AndroidUtilities.removeFromParent(textureView);
+                            part.textureView = null;
+                        }
+                        part.textureViewReady = false;
+                        CollageLayoutView2.this.removingParts.remove(part);
+                    }
+                    CollageLayoutView2.this.invalidate();
+                    break;
+                case 4:
+                    GalleryListView.AnonymousClass12 anonymousClass12 = (GalleryListView.AnonymousClass12) this.this$0;
+                    GalleryListView.this.dropDownContainer.setVisibility(8);
+                    GalleryListView.this.listView.setVisibility(8);
+                    break;
+                case 5:
+                    AndroidUtilities.removeFromParent((ReactionsContainerLayout) this.this$0);
+                    break;
+                case 6:
+                    super.onAnimationEnd(animator);
+                    PaintView.PopupButton popupButton = (PaintView.PopupButton) this.this$0;
+                    ImageView imageView = popupButton.imageView;
+                    popupButton.imageView = popupButton.image2View;
+                    popupButton.image2View = imageView;
+                    imageView.bringToFront();
+                    popupButton.image2View.setVisibility(8);
+                    popupButton.imageSwitchAnimator = null;
+                    break;
+                case 7:
+                    super.onAnimationEnd(animator);
+                    ((PreviewButtons.ShareButtonView) this.this$0).backAnimator = null;
+                    break;
+                case 8:
+                    RoundVideoRecorder roundVideoRecorder = (RoundVideoRecorder) this.this$0;
+                    if (roundVideoRecorder.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) roundVideoRecorder.getParent()).removeView(roundVideoRecorder);
+                    }
+                    break;
+                case 9:
+                    ((StoryPrivacyBottomSheet.Page) this.this$0).searchTranslationAnimating = false;
+                    break;
+                default:
+                    StoryPrivacyBottomSheet.Page.ButtonContainer buttonContainer = (StoryPrivacyBottomSheet.Page.ButtonContainer) this.this$0;
+                    buttonContainer.setTranslationY(0.0f);
+                    buttonContainer.animator = null;
+                    break;
+            }
+        }
+    }
 
     public HintView2(Context context, int i) {
         super(context);
@@ -123,7 +252,9 @@ public class HintView2 extends View {
         this.jointTranslate = 0.0f;
         this.duration = 3500L;
         this.useScale = true;
+        this.useTranslate = true;
         this.useAlpha = true;
+        this.useBlur = false;
         this.textMaxWidth = -1;
         this.roundWithCornerEffect = true;
         this.rounding = AndroidUtilities.dp(8.0f);
@@ -133,16 +264,17 @@ public class HintView2 extends View {
         this.arrowHeight = AndroidUtilities.dp(6.0f);
         Paint paint = new Paint(1);
         this.backgroundPaint = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.textPaint = textPaint;
+        this.blurScale = 12.0f;
+        this.blurAlpha = 0.25f;
+        this.textPaint = new TextPaint(1);
         this.textLayoutAlignment = Layout.Alignment.ALIGN_NORMAL;
         this.links = new LinkSpanDrawable.LinkCollector();
         this.hideByTouch = true;
         this.repeatedBounce = true;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.show = new AnimatedFloat(350L, this, cubicBezierInterpolator);
+        this.show = new AnimatedFloat(this, 350L, cubicBezierInterpolator);
         this.iconMargin = AndroidUtilities.dp(2.0f);
-        this.hideRunnable = new PhotoViewer$$ExternalSyntheticLambda127(this, 3);
+        this.hideRunnable = new MainTabsLayout$$ExternalSyntheticLambda0(this, 14);
         this.bounceT = 1.0f;
         this.bounce = new ButtonBounce(this, 2.0f, 5.0f);
         this.boundsWithArrow = new Rect();
@@ -154,18 +286,12 @@ public class HintView2 extends View {
         this.direction = i;
         paint.setColor(-433575896);
         paint.setPathEffect(new CornerPathEffect(this.rounding));
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
         this.textDrawable = animatedTextDrawable;
-        animatedTextDrawable.moveAmplitude = 0.4f;
-        animatedTextDrawable.animateDuration = 320L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
-        animatedTextDrawable.setCallback(this);
-        animatedTextDrawable.setTextSize(AndroidUtilities.dpf2(14.0f));
-        textPaint.setTextSize(AndroidUtilities.dpf2(14.0f));
-        animatedTextDrawable.textPaint.setColor(-1);
-        animatedTextDrawable.alpha = Color.alpha(-1);
-        textPaint.setColor(-1);
+        animatedTextDrawable.setAnimationProperties(0.4f, 0L, 320L, cubicBezierInterpolator);
+        this.textDrawable.setCallback(this);
+        setTextSize(14.0f);
+        setTextColor(-1);
     }
 
     public static int cutInFancyHalf(CharSequence charSequence, TextPaint textPaint) {
@@ -258,35 +384,35 @@ public class HintView2 extends View {
         return Math.max(0, iMin);
     }
 
-    public static float measureCorrectly(CharSequence charSequence, TextPaint textPaint) {
+    public static float measureCorrectly(CharSequence charSequence, Paint paint) {
         float fMeasureText = 0.0f;
         if (charSequence == null) {
             return 0.0f;
         }
         if (!(charSequence instanceof Spanned)) {
-            return textPaint.measureText(charSequence.toString());
+            return paint.measureText(charSequence.toString());
         }
         Spanned spanned = (Spanned) charSequence;
         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) spanned.getSpans(0, charSequence.length(), TypefaceSpan.class);
         ReplacementSpan[] replacementSpanArr = (ReplacementSpan[]) spanned.getSpans(0, charSequence.length(), ReplacementSpan.class);
         int i = 0;
         int iMax = 0;
-        TextPaint textPaint2 = textPaint;
+        Paint paint2 = paint;
         while (i < replacementSpanArr.length) {
             ReplacementSpan replacementSpan = replacementSpanArr[i];
             int spanStart = spanned.getSpanStart(replacementSpan);
             int spanEnd = spanned.getSpanEnd(replacementSpan);
             CharSequence charSequence2 = charSequence;
-            TextPaint textPaint3 = textPaint2;
-            iMax = (int) (Math.max(0.0f, replacementSpan.getSize(textPaint3, charSequence2, spanStart, spanEnd, textPaint2.getFontMetricsInt()) - textPaint3.measureText(spanned, spanStart, spanEnd)) + iMax);
+            Paint paint3 = paint2;
+            iMax = (int) (Math.max(0.0f, replacementSpan.getSize(paint3, charSequence2, spanStart, spanEnd, paint2.getFontMetricsInt()) - paint3.measureText(spanned, spanStart, spanEnd)) + iMax);
             i++;
-            textPaint2 = textPaint3;
+            paint2 = paint3;
             charSequence = charSequence2;
         }
         CharSequence charSequence3 = charSequence;
-        TextPaint textPaint4 = textPaint2;
+        Paint paint4 = paint2;
         if (typefaceSpanArr == null || typefaceSpanArr.length == 0) {
-            return textPaint4.measureText(charSequence3.toString()) + iMax;
+            return paint4.measureText(charSequence3.toString()) + iMax;
         }
         int iMax2 = 0;
         for (int i2 = 0; i2 < typefaceSpanArr.length; i2++) {
@@ -294,32 +420,127 @@ public class HintView2 extends View {
             int spanEnd2 = spanned.getSpanEnd(typefaceSpanArr[i2]);
             int iMax3 = Math.max(iMax2, spanStart2);
             if (iMax3 - iMax2 > 0) {
-                fMeasureText += textPaint4.measureText(spanned, iMax2, iMax3);
+                fMeasureText += paint4.measureText(spanned, iMax2, iMax3);
             }
             iMax2 = Math.max(iMax3, spanEnd2);
             if (iMax2 - iMax3 > 0) {
-                Typeface typeface = textPaint4.getTypeface();
-                textPaint4.setTypeface(typefaceSpanArr[i2].typeface);
-                float fMeasureText2 = textPaint4.measureText(spanned, iMax3, iMax2) + fMeasureText;
-                textPaint4.setTypeface(typeface);
+                Typeface typeface = paint4.getTypeface();
+                paint4.setTypeface(typefaceSpanArr[i2].getTypeface());
+                float fMeasureText2 = paint4.measureText(spanned, iMax3, iMax2) + fMeasureText;
+                paint4.setTypeface(typeface);
                 fMeasureText = fMeasureText2;
             }
         }
         int iMax4 = Math.max(iMax2, charSequence3.length());
         if (iMax4 - iMax2 > 0) {
-            fMeasureText += textPaint4.measureText(spanned, iMax2, iMax4);
+            fMeasureText += paint4.measureText(spanned, iMax2, iMax4);
         }
         return fMeasureText + iMax;
     }
 
+    public HintView2 allowBlur() {
+        return allowBlur(true);
+    }
+
+    public final void bounceShow() {
+        int i = 0;
+        if (this.repeatedBounce) {
+            ValueAnimator valueAnimator = this.bounceAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.bounceAnimator = null;
+            }
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.bounceAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new HintView2$$ExternalSyntheticLambda1(this, i));
+            this.bounceAnimator.addListener(new AnonymousClass2(this, i));
+            this.bounceAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_BACK);
+            this.bounceAnimator.setDuration(300L);
+            this.bounceAnimator.start();
+        }
+    }
+
+    public final boolean checkTouchLinks(MotionEvent motionEvent) {
+        ClickableSpan clickableSpan;
+        if (this.textLayout != null) {
+            int x = (int) motionEvent.getX();
+            int y = (int) motionEvent.getY();
+            StaticLayout staticLayout = this.textLayout;
+            if (staticLayout == null) {
+                clickableSpan = null;
+            } else {
+                int i = (int) (x - this.textX);
+                int i2 = (int) (y - this.textY);
+                int lineForVertical = staticLayout.getLineForVertical(i2);
+                float f = i;
+                int offsetForHorizontal = this.textLayout.getOffsetForHorizontal(lineForVertical, f);
+                float lineLeft = this.textLayout.getLineLeft(lineForVertical);
+                if (lineLeft > f || this.textLayout.getLineWidth(lineForVertical) + lineLeft < f || i2 < 0 || i2 > this.textLayout.getHeight()) {
+                    clickableSpan = null;
+                } else {
+                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(this.textLayout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
+                    if (clickableSpanArr.length == 0 || AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
+                        clickableSpan = null;
+                    } else {
+                        clickableSpan = clickableSpanArr[0];
+                    }
+                }
+            }
+            if (clickableSpan != null && motionEvent.getAction() == 0) {
+                LinkSpanDrawable<ClickableSpan> linkSpanDrawable = new LinkSpanDrawable<>(clickableSpan, null, motionEvent.getX(), motionEvent.getY());
+                this.pressedLink = linkSpanDrawable;
+                this.links.addLink(linkSpanDrawable);
+                SpannableString spannableString = new SpannableString(this.textLayout.getText());
+                int spanStart = spannableString.getSpanStart(this.pressedLink.getSpan());
+                int spanEnd = spannableString.getSpanEnd(this.pressedLink.getSpan());
+                LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
+                linkPathObtainNewPath.setCurrentLayout(this.textLayout, spanStart, 0.0f);
+                this.textLayout.getSelectionPath(spanStart, spanEnd, linkPathObtainNewPath);
+                invalidate();
+                AndroidUtilities.runOnUIThread(new HintView2$$ExternalSyntheticLambda2(this, linkSpanDrawable, clickableSpan, 0), ViewConfiguration.getLongPressTimeout());
+                pause();
+                return true;
+            }
+            if (motionEvent.getAction() == 1) {
+                this.links.clear();
+                invalidate();
+                unpause();
+                LinkSpanDrawable<ClickableSpan> linkSpanDrawable2 = this.pressedLink;
+                if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == clickableSpan) {
+                    LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onPressListener;
+                    if (onLinkPress != null) {
+                        onLinkPress.run((ClickableSpan) this.pressedLink.getSpan());
+                    } else if (this.pressedLink.getSpan() != null) {
+                        ((ClickableSpan) this.pressedLink.getSpan()).onClick(this);
+                    }
+                    this.pressedLink = null;
+                    return true;
+                }
+                this.pressedLink = null;
+            }
+            if (motionEvent.getAction() == 3) {
+                this.links.clear();
+                invalidate();
+                unpause();
+                this.pressedLink = null;
+            }
+        }
+        return this.pressedLink != null;
+    }
+
+    public boolean containsTouch(MotionEvent motionEvent, float f, float f2) {
+        return this.bounds.contains(motionEvent.getX() - f, motionEvent.getY() - f2);
+    }
+
     @Override
     public void dispatchDraw(Canvas canvas) {
-        RectF rectF;
         float f;
         float f2;
-        HintView2 hintView2;
         float f3;
         Canvas canvas2;
+        if (this.drawingMyBlur) {
+            return;
+        }
         if (this.multiline && this.textLayout == null) {
             return;
         }
@@ -328,13 +549,12 @@ public class HintView2 extends View {
             this.firstDraw = false;
             invalidate();
         }
+        float f5 = 0.0f;
         if (f4 <= 0.0f) {
             return;
         }
-        boolean z = this.multiline;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-        float currentWidth = z ? this.textLayoutWidth : animatedTextDrawable.getCurrentWidth();
-        float fMax = this.multiline ? this.textLayoutHeight : animatedTextDrawable.currentHeight;
+        float currentWidth = this.multiline ? this.textLayoutWidth : this.textDrawable.getCurrentWidth();
+        float height = this.multiline ? this.textLayoutHeight : this.textDrawable.getHeight();
         if (this.closeButton) {
             if (this.closeButtonDrawable == null) {
                 Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_close_tooltip).mutate();
@@ -342,31 +562,29 @@ public class HintView2 extends View {
                 drawableMutate.setColorFilter(new PorterDuffColorFilter(2113929215, PorterDuff.Mode.MULTIPLY));
             }
             currentWidth += this.closeButtonMargin + this.closeButtonDrawable.getIntrinsicWidth();
-            fMax = Math.max(this.closeButtonDrawable.getIntrinsicHeight(), fMax);
+            height = Math.max(this.closeButtonDrawable.getIntrinsicHeight(), height);
         }
         if (this.icon != null) {
             currentWidth += this.iconWidth + this.iconMargin;
-            fMax = Math.max(this.iconHeight, fMax);
+            height = Math.max(this.iconHeight, height);
         }
-        float f5 = currentWidth;
-        RectF rectF2 = this.innerPadding;
-        float f6 = rectF2.left + f5 + rectF2.right;
-        float f7 = rectF2.top + fMax + rectF2.bottom;
-        boolean z2 = this.pathSet;
-        RectF rectF3 = this.bounds;
-        if (!z2 || Math.abs(f6 - this.pathLastWidth) > 0.1f || Math.abs(f7 - this.pathLastHeight) > 0.1f) {
+        float f6 = currentWidth;
+        RectF rectF = this.innerPadding;
+        float f7 = rectF.left + f6 + rectF.right;
+        float f8 = rectF.top + height + rectF.bottom;
+        if (!this.pathSet || Math.abs(f7 - this.pathLastWidth) > 0.1f || Math.abs(f8 - this.pathLastHeight) > 0.1f) {
             Path path = this.path;
-            this.pathLastWidth = f6;
-            this.pathLastHeight = f7;
-            fillPath(path, f6, f7, 0.0f, rectF3, this.boundsWithArrow);
-            rectF = rectF3;
+            this.pathLastWidth = f7;
+            this.pathLastHeight = f8;
+            f = f8;
+            fillPath(path, f7, f, 0.0f, this.bounds, this.boundsWithArrow);
             if (this.flicker) {
-                fillPath(this.flickerStrokePath, f6, f7, this.flickerStrokePathExtrude, this.flickerBounds, null);
+                fillPath(this.flickerStrokePath, f7, f, this.flickerStrokePathExtrude, this.flickerBounds, null);
             }
         } else {
-            rectF = rectF3;
+            f = f8;
         }
-        float f8 = this.useAlpha ? f4 : 1.0f;
+        float f9 = this.useAlpha ? f4 : 1.0f;
         canvas.save();
         if (f4 < 1.0f && this.useScale) {
             float fLerp = AndroidUtilities.lerp(0.75f, 1.0f, f4);
@@ -384,99 +602,133 @@ public class HintView2 extends View {
                 canvas.translate((this.bounceT - 1.0f) * Math.max(i == 0 ? getPaddingLeft() : getPaddingRight(), AndroidUtilities.dp(24.0f)) * (this.direction != 0 ? 1 : -1), 0.0f);
             }
         }
-        RectF rectF4 = AndroidUtilities.rectTmp;
-        rectF4.set(rectF);
-        float f9 = -this.arrowHeight;
-        rectF4.inset(f9, f9);
-        drawBgPath(canvas, f8);
-        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.selectorDrawable;
-        if (rippleDrawableSafe != null) {
-            rippleDrawableSafe.setAlpha((int) (f8 * 255.0f));
+        if (this.useBlur && this.blurBitmapShader != null && this.blurBitmapMatrix != null) {
+            if (this.blurPos == null) {
+                this.blurPos = new int[2];
+            }
+            getLocationOnScreen(this.blurPos);
+            this.blurBitmapMatrix.reset();
+            Matrix matrix = this.blurBitmapMatrix;
+            Point point = AndroidUtilities.displaySize;
+            matrix.postScale(point.x / this.blurBitmapWidth, (point.y + AndroidUtilities.statusBarHeight) / this.blurBitmapHeight);
+            Matrix matrix2 = this.blurBitmapMatrix;
+            int[] iArr = this.blurPos;
+            matrix2.postTranslate(-iArr[0], -iArr[1]);
+            if (this.show.get() < 1.0f && this.useScale) {
+                float fLerp2 = 1.0f / AndroidUtilities.lerp(0.75f, 1.0f, this.show.get());
+                this.blurBitmapMatrix.postScale(fLerp2, fLerp2, this.arrowX, this.arrowY);
+            }
+            this.blurBitmapShader.setLocalMatrix(this.blurBitmapMatrix);
+        }
+        RectF rectF2 = AndroidUtilities.rectTmp;
+        rectF2.set(this.bounds);
+        float f10 = -this.arrowHeight;
+        rectF2.inset(f10, f10);
+        Paint paint = this.blurBackgroundPaint;
+        if (paint == null || !this.useBlur) {
+            f2 = f9;
+        } else {
+            f2 = (1.0f - this.blurAlpha) * f9;
+            paint.setAlpha((int) (f9 * 255.0f));
+        }
+        drawBgPath(canvas, f2);
+        Drawable drawable = this.selectorDrawable;
+        if (drawable != null) {
+            drawable.setAlpha((int) (f9 * 255.0f));
             this.selectorDrawable.setBounds(this.boundsWithArrow);
             this.selectorDrawable.draw(canvas);
         }
-        float f10 = ((rectF.top + rectF2.top) + (rectF.bottom - rectF2.bottom)) / 2.0f;
-        RLottieDrawable rLottieDrawable = this.icon;
-        if (rLottieDrawable != null) {
+        RectF rectF3 = this.bounds;
+        float f11 = rectF3.bottom;
+        RectF rectF4 = this.innerPadding;
+        float f12 = ((rectF3.top + rectF4.top) + (f11 - rectF4.bottom)) / 2.0f;
+        Drawable drawable2 = this.icon;
+        if (drawable2 != null) {
             if (this.iconLeft) {
-                float f11 = (rectF2.left / 2.0f) + rectF.left + 0.0f;
-                float f12 = this.iconTy + f10;
-                f = 255.0f;
-                float f13 = this.iconHeight / 2.0f;
-                rLottieDrawable.setBounds((int) f11, (int) (f12 - f13), (int) (f11 + this.iconWidth), (int) (f13 + f12));
-                f2 = this.iconWidth + this.iconMargin + 0.0f;
+                float f13 = (rectF4.left / 2.0f) + this.iconTx + rectF3.left;
+                float f14 = this.iconTy + f12;
+                float f15 = this.iconHeight / 2.0f;
+                f3 = 255.0f;
+                drawable2.setBounds((int) f13, (int) (f14 - f15), (int) (f13 + this.iconWidth), (int) (f15 + f14));
+                f5 = 0.0f + this.iconWidth + this.iconMargin;
             } else {
-                f = 255.0f;
-                float f14 = (rectF.right + 0.0f) - (rectF2.right / 2.0f);
-                int i2 = (int) (f14 - this.iconWidth);
-                float f15 = this.iconTy + f10;
-                float f16 = this.iconHeight / 2.0f;
-                rLottieDrawable.setBounds(i2, (int) (f15 - f16), (int) f14, (int) (f16 + f15));
-                f2 = 0.0f;
+                f3 = 255.0f;
+                float f16 = (this.iconTx + rectF3.right) - (rectF4.right / 2.0f);
+                int i2 = (int) (f16 - this.iconWidth);
+                float f17 = this.iconTy + f12;
+                float f18 = this.iconHeight / 2.0f;
+                drawable2.setBounds(i2, (int) (f17 - f18), (int) f16, (int) (f18 + f17));
             }
-            this.icon.setAlpha((int) (f8 * f));
+            this.icon.setAlpha((int) (f9 * f3));
             this.icon.draw(canvas);
         } else {
-            f = 255.0f;
-            f2 = 0.0f;
+            f3 = 255.0f;
         }
         if (this.multiline) {
-            f3 = f8;
-            hintView2 = this;
             canvas2 = canvas;
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), Math.max(getHeight(), f7), (int) (f8 * f), 31);
-            float f17 = ((f2 + rectF.left) + rectF2.left) - hintView2.textLayoutLeft;
-            hintView2.textX = f17;
-            float f18 = f10 - (hintView2.textLayoutHeight / 2.0f);
-            hintView2.textY = f18;
-            canvas2.translate(f17, f18);
-            if (hintView2.links.draw(canvas2)) {
-                hintView2.invalidate();
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), Math.max(getHeight(), f), (int) (f9 * f3), 31);
+            float f19 = ((f5 + this.bounds.left) + this.innerPadding.left) - this.textLayoutLeft;
+            this.textX = f19;
+            float f20 = f12 - (this.textLayoutHeight / 2.0f);
+            this.textY = f20;
+            canvas2.translate(f19, f20);
+            if (this.links.draw(canvas2)) {
+                invalidate();
             }
-            hintView2.textLayout.draw(canvas2);
-            AnimatedEmojiSpan.drawAnimatedEmojis(canvas2, hintView2.textLayout, hintView2.emojiGroupedSpans, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
+            this.textLayout.draw(canvas2);
+            AnimatedEmojiSpan.drawAnimatedEmojis(canvas2, this.textLayout, this.emojiGroupedSpans, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f);
             canvas2.restore();
         } else {
-            hintView2 = this;
-            f3 = f8;
             canvas2 = canvas;
-            CharSequence charSequence = hintView2.textToSet;
+            CharSequence charSequence = this.textToSet;
             if (charSequence != null) {
-                animatedTextDrawable.setText(charSequence, hintView2.shown, true);
-                hintView2.textToSet = null;
+                this.textDrawable.setText(charSequence, this.shown);
+                this.textToSet = null;
             }
-            float f19 = rectF.left;
-            float f20 = rectF2.left;
-            float f21 = hintView2.textLayoutHeight / 2.0f;
-            animatedTextDrawable.setBounds((int) (f2 + f19 + f20), (int) (f10 - f21), (int) (f19 + f20 + f5), (int) (f21 + f10));
-            animatedTextDrawable.alpha = (int) (f3 * f);
-            animatedTextDrawable.draw(canvas2);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
+            float f21 = this.bounds.left;
+            float f22 = this.innerPadding.left;
+            float f23 = this.textLayoutHeight / 2.0f;
+            animatedTextDrawable.setBounds((int) (f5 + f21 + f22), (int) (f12 - f23), (int) (f21 + f22 + f6), (int) (f23 + f12));
+            this.textDrawable.setAlpha((int) (f9 * f3));
+            this.textDrawable.draw(canvas2);
         }
-        if (hintView2.closeButton) {
-            if (hintView2.closeButtonDrawable == null) {
-                Drawable drawableMutate2 = hintView2.getContext().getResources().getDrawable(R.drawable.msg_mini_close_tooltip).mutate();
-                hintView2.closeButtonDrawable = drawableMutate2;
+        if (this.closeButton) {
+            if (this.closeButtonDrawable == null) {
+                Drawable drawableMutate2 = getContext().getResources().getDrawable(R.drawable.msg_mini_close_tooltip).mutate();
+                this.closeButtonDrawable = drawableMutate2;
                 drawableMutate2.setColorFilter(new PorterDuffColorFilter(2113929215, PorterDuff.Mode.MULTIPLY));
             }
-            hintView2.closeButtonDrawable.setAlpha((int) (f3 * f));
-            Drawable drawable = hintView2.closeButtonDrawable;
-            drawable.setBounds((int) ((rectF.right - (rectF2.right * 0.66f)) - drawable.getIntrinsicWidth()), (int) (rectF.centerY() - (hintView2.closeButtonDrawable.getIntrinsicHeight() / 2.0f)), (int) (rectF.right - (rectF2.right * 0.66f)), (int) ((hintView2.closeButtonDrawable.getIntrinsicHeight() / 2.0f) + rectF.centerY()));
-            hintView2.closeButtonDrawable.draw(canvas2);
+            this.closeButtonDrawable.setAlpha((int) (f9 * f3));
+            Drawable drawable3 = this.closeButtonDrawable;
+            int intrinsicWidth = (int) ((this.bounds.right - (this.innerPadding.right * 0.66f)) - drawable3.getIntrinsicWidth());
+            int iCenterY = (int) (this.bounds.centerY() - (this.closeButtonDrawable.getIntrinsicHeight() / 2.0f));
+            RectF rectF5 = this.bounds;
+            drawable3.setBounds(intrinsicWidth, iCenterY, (int) (rectF5.right - (this.innerPadding.right * 0.66f)), (int) ((this.closeButtonDrawable.getIntrinsicHeight() / 2.0f) + rectF5.centerY()));
+            this.closeButtonDrawable.draw(canvas2);
         }
         canvas2.restore();
     }
 
     public void drawBgPath(Canvas canvas, float f) {
-        int i = this.shadowColor;
-        Paint paint = this.backgroundPaint;
-        if (i != 0) {
-            paint.setShadowLayer(this.shadowRadius, 0.0f, this.shadowDy, Theme.multAlpha(f, i));
+        Canvas canvas2;
+        if (this.blurBackgroundPaint != null) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+            canvas2.drawPath(this.path, this.blurBackgroundPaint);
+            canvas2.drawPath(this.path, this.blurCutPaint);
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
         }
-        int alpha = paint.getAlpha();
-        paint.setAlpha((int) (alpha * f));
-        Path path = this.path;
-        canvas.drawPath(path, paint);
-        paint.setAlpha(alpha);
+        int i = this.shadowColor;
+        if (i != 0) {
+            this.backgroundPaint.setShadowLayer(this.shadowRadius, this.shadowDx, this.shadowDy, Theme.multAlpha(f, i));
+        }
+        int alpha = this.backgroundPaint.getAlpha();
+        this.backgroundPaint.setAlpha((int) (alpha * f));
+        canvas2.drawPath(this.path, this.backgroundPaint);
+        this.backgroundPaint.setAlpha(alpha);
         if (this.flicker) {
             int iDp = AndroidUtilities.dp(64.0f);
             float fCurrentTimeMillis = (((this.pathLastWidth * 4.0f) + (iDp * 2)) * (((System.currentTimeMillis() - this.flickerStart) % 4000) / 4000.0f)) + (-iDp);
@@ -484,8 +736,8 @@ public class HintView2 extends View {
             this.flickerGradientMatrix.postTranslate(this.bounds.left + fCurrentTimeMillis, 0.0f);
             this.flickerGradient.setLocalMatrix(this.flickerGradientMatrix);
             this.flickerStrokeGradient.setLocalMatrix(this.flickerGradientMatrix);
-            canvas.drawPath(path, this.flickerFillPaint);
-            canvas.drawPath(this.flickerStrokePath, this.flickerStrokePaint);
+            canvas2.drawPath(this.path, this.flickerFillPaint);
+            canvas2.drawPath(this.flickerStrokePath, this.flickerStrokePaint);
             invalidate();
         }
     }
@@ -526,16 +778,15 @@ public class HintView2 extends View {
             rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
         }
         path.rewind();
-        boolean z = this.roundWithCornerEffect;
-        RectF rectF2 = this.oval;
-        if (z) {
+        if (this.roundWithCornerEffect) {
             path.moveTo(rectF.left, rectF.bottom);
         } else {
+            RectF rectF2 = this.oval;
             float f11 = rectF.left;
             float f12 = rectF.bottom;
             float f13 = fMin * 2.0f;
             rectF2.set(f11, f12 - f13, f13 + f11, f12);
-            path.arcTo(rectF2, 90.0f, 90.0f);
+            path.arcTo(this.oval, 90.0f, 90.0f);
         }
         if (this.direction == 0) {
             path.lineTo(rectF.left, this.arrowHalfWidth + fClamp + AndroidUtilities.dp(2.0f));
@@ -554,11 +805,12 @@ public class HintView2 extends View {
         if (this.roundWithCornerEffect) {
             path.lineTo(rectF.left, rectF.top);
         } else {
+            RectF rectF3 = this.oval;
             float f15 = rectF.left;
             float f16 = rectF.top;
             float f17 = fMin * 2.0f;
-            rectF2.set(f15, f16, f15 + f17, f17 + f16);
-            path.arcTo(rectF2, 180.0f, 90.0f);
+            rectF3.set(f15, f16, f15 + f17, f17 + f16);
+            path.arcTo(this.oval, 180.0f, 90.0f);
         }
         if (this.direction == 1) {
             path.lineTo((fClamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f), rectF.top);
@@ -576,11 +828,12 @@ public class HintView2 extends View {
         if (this.roundWithCornerEffect) {
             path.lineTo(rectF.right, rectF.top);
         } else {
+            RectF rectF4 = this.oval;
             float f18 = rectF.right;
             float f19 = fMin * 2.0f;
             float f20 = rectF.top;
-            rectF2.set(f18 - f19, f20, f18, f19 + f20);
-            path.arcTo(rectF2, 270.0f, 90.0f);
+            rectF4.set(f18 - f19, f20, f18, f19 + f20);
+            path.arcTo(this.oval, 270.0f, 90.0f);
         }
         if (this.direction == 2) {
             path.lineTo(rectF.right, (fClamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f));
@@ -599,11 +852,12 @@ public class HintView2 extends View {
         if (this.roundWithCornerEffect) {
             path.lineTo(rectF.right, rectF.bottom);
         } else {
+            RectF rectF5 = this.oval;
             float f22 = rectF.right;
             float f23 = fMin * 2.0f;
             float f24 = rectF.bottom;
-            rectF2.set(f22 - f23, f24 - f23, f22, f24);
-            path.arcTo(rectF2, 0.0f, 90.0f);
+            rectF5.set(f22 - f23, f24 - f23, f22, f24);
+            path.arcTo(this.oval, 0.0f, 90.0f);
         }
         if (this.direction == 3) {
             path.lineTo(this.arrowHalfWidth + fClamp + AndroidUtilities.dp(2.0f), rectF.bottom);
@@ -628,7 +882,7 @@ public class HintView2 extends View {
             return charSequence;
         }
         if (!this.multiline) {
-            return this.textDrawable.currentText;
+            return this.textDrawable.getText();
         }
         StaticLayout staticLayout = this.textLayout;
         if (staticLayout != null) {
@@ -638,30 +892,49 @@ public class HintView2 extends View {
     }
 
     public TextPaint getTextPaint() {
-        return this.multiline ? this.textPaint : this.textDrawable.textPaint;
+        return this.multiline ? this.textPaint : this.textDrawable.getPaint();
     }
 
-    public final void hide(boolean z) {
-        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
-        Runnable runnable = this.onHidden;
-        if (runnable != null) {
-            AndroidUtilities.cancelRunOnUIThread(runnable);
-        }
-        this.shown = false;
-        AnimatedFloat animatedFloat = this.show;
-        if (!z) {
-            animatedFloat.getClass();
-            animatedFloat.set(0.0f, false);
-        }
+    public void hide() {
+        hide(true);
+    }
+
+    public final void lambda$bounceShow$0(ValueAnimator valueAnimator) {
+        this.bounceT = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
         invalidate();
-        Runnable runnable2 = this.onHidden;
-        if (runnable2 != null) {
-            AndroidUtilities.runOnUIThread(runnable2, (long) (animatedFloat.value * animatedFloat.transitionDuration));
-        }
-        this.links.clear(true);
     }
 
-    public final void makeLayout(int i, CharSequence charSequence) {
+    public final void lambda$checkTouchLinks$1(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onLongPressListener;
+        if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
+            return;
+        }
+        onLinkPress.run(clickableSpan);
+        this.pressedLink = null;
+        this.links.clear();
+    }
+
+    public final void lambda$prepareBlur$2(Bitmap bitmap) {
+        this.drawingMyBlur = false;
+        this.blurBitmapWidth = bitmap.getWidth();
+        this.blurBitmapHeight = bitmap.getHeight();
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.blurBitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+        this.blurBitmapMatrix = new Matrix();
+        Paint paint = new Paint(1);
+        this.blurBackgroundPaint = paint;
+        paint.setShader(this.blurBitmapShader);
+        ColorMatrix colorMatrix = new ColorMatrix();
+        colorMatrix.setSaturation(1.5f);
+        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.currentTheme.isDark() ? 0.12f : -0.08f);
+        this.blurBackgroundPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        Paint paint2 = new Paint(1);
+        this.blurCutPaint = paint2;
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        this.blurCutPaint.setPathEffect(new CornerPathEffect(this.rounding));
+    }
+
+    public final void makeLayout(CharSequence charSequence, int i) {
         this.textLayout = new StaticLayout(charSequence, this.textPaint, i, this.textLayoutAlignment, 1.0f, 0.0f, false);
         float fMin = i;
         float fMax = 0.0f;
@@ -676,18 +949,17 @@ public class HintView2 extends View {
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         AnimatedEmojiSpan.release(this, this.emojiGroupedSpans);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
         this.pathSet = false;
         int textMaxWidth = getTextMaxWidth();
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-        animatedTextDrawable.overrideFullWidth = textMaxWidth;
+        this.textDrawable.setOverrideFullWidth(textMaxWidth);
         if (this.multiline) {
             CharSequence text = this.textToSet;
             if (text == null) {
@@ -700,249 +972,413 @@ public class HintView2 extends View {
             }
             StaticLayout staticLayout2 = this.textLayout;
             if (staticLayout2 == null || staticLayout2.getWidth() != textMaxWidth) {
-                makeLayout(textMaxWidth, text);
+                makeLayout(text, textMaxWidth);
             }
         } else {
             CharSequence charSequence = this.textToSet;
             if (charSequence != null) {
-                animatedTextDrawable.setText(charSequence, false, true);
+                this.textDrawable.setText(charSequence, false);
             }
         }
         this.textToSet = null;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ClickableSpan clickableSpan;
-        CharacterStyle characterStyle;
-        if ((this.hideByTouch || hasOnClickListeners()) && this.shown) {
-            if (this.textLayout != null) {
-                int x = (int) motionEvent.getX();
-                int y = (int) motionEvent.getY();
-                StaticLayout staticLayout = this.textLayout;
-                if (staticLayout == null) {
-                    clickableSpan = null;
-                } else {
-                    int i = (int) (x - this.textX);
-                    int i2 = (int) (y - this.textY);
-                    int lineForVertical = staticLayout.getLineForVertical(i2);
-                    float f = i;
-                    int offsetForHorizontal = this.textLayout.getOffsetForHorizontal(lineForVertical, f);
-                    float lineLeft = this.textLayout.getLineLeft(lineForVertical);
-                    if (lineLeft > f || this.textLayout.getLineWidth(lineForVertical) + lineLeft < f || i2 < 0 || i2 > this.textLayout.getHeight()) {
-                        clickableSpan = null;
-                    } else {
-                        ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(this.textLayout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-                        if (clickableSpanArr.length == 0 || AndroidUtilities.isAccessibilityScreenReaderEnabled()) {
-                            clickableSpan = null;
-                        } else {
-                            clickableSpan = clickableSpanArr[0];
-                        }
-                    }
-                }
-                PhotoViewer$$ExternalSyntheticLambda127 photoViewer$$ExternalSyntheticLambda127 = this.hideRunnable;
-                LinkSpanDrawable.LinkCollector linkCollector = this.links;
-                if (clickableSpan != null && motionEvent.getAction() == 0) {
-                    LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpan, null, motionEvent.getX(), motionEvent.getY());
-                    this.pressedLink = linkSpanDrawable;
-                    linkCollector.addLink(linkSpanDrawable, null);
-                    SpannableString spannableString = new SpannableString(this.textLayout.getText());
-                    int spanStart = spannableString.getSpanStart(this.pressedLink.mSpan);
-                    int spanEnd = spannableString.getSpanEnd(this.pressedLink.mSpan);
-                    LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
-                    linkPathObtainNewPath.setCurrentLayout(this.textLayout, spanStart, 0.0f, 0.0f);
-                    this.textLayout.getSelectionPath(spanStart, spanEnd, linkPathObtainNewPath);
-                    invalidate();
-                    AndroidUtilities.runOnUIThread(new PhotoViewer$$ExternalSyntheticLambda127(this, linkSpanDrawable, clickableSpan), ViewConfiguration.getLongPressTimeout());
-                    AndroidUtilities.cancelRunOnUIThread(photoViewer$$ExternalSyntheticLambda127);
-                    return true;
-                }
-                if (motionEvent.getAction() == 1) {
-                    linkCollector.clear(true);
-                    invalidate();
-                    AndroidUtilities.cancelRunOnUIThread(photoViewer$$ExternalSyntheticLambda127);
-                    long j = this.duration;
-                    if (j > 0) {
-                        AndroidUtilities.runOnUIThread(photoViewer$$ExternalSyntheticLambda127, j);
-                    }
-                    LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
-                    if (linkSpanDrawable2 != null && (characterStyle = linkSpanDrawable2.mSpan) == clickableSpan) {
-                        if (characterStyle != null) {
-                            ((ClickableSpan) characterStyle).onClick(this);
-                        }
-                        this.pressedLink = null;
-                        return true;
-                    }
-                    this.pressedLink = null;
-                }
-                if (motionEvent.getAction() == 3) {
-                    linkCollector.clear(true);
-                    invalidate();
-                    AndroidUtilities.cancelRunOnUIThread(photoViewer$$ExternalSyntheticLambda127);
-                    long j2 = this.duration;
-                    if (j2 > 0) {
-                        AndroidUtilities.runOnUIThread(photoViewer$$ExternalSyntheticLambda127, j2);
-                    }
-                    this.pressedLink = null;
-                }
-            }
-            if (this.pressedLink == null) {
-                float x2 = motionEvent.getX();
-                float y2 = motionEvent.getY();
-                int action = motionEvent.getAction();
-                ButtonBounce buttonBounce = this.bounce;
-                if (action == 0 && this.bounds.contains(motionEvent.getX() - 0.0f, motionEvent.getY() - 0.0f)) {
-                    buttonBounce.setPressed(true);
-                    BaseCell.RippleDrawableSafe rippleDrawableSafe = this.selectorDrawable;
-                    if (rippleDrawableSafe != null) {
-                        rippleDrawableSafe.setHotspot(x2, y2);
-                        this.selectorDrawable.setState(new int[]{16842919, 16842910});
-                        return true;
-                    }
-                } else if (motionEvent.getAction() == 1) {
-                    if (hasOnClickListeners()) {
-                        performClick();
-                    } else if (this.hideByTouch) {
-                        hide(true);
-                    }
-                    buttonBounce.setPressed(false);
-                    BaseCell.RippleDrawableSafe rippleDrawableSafe2 = this.selectorDrawable;
-                    if (rippleDrawableSafe2 != null) {
-                        rippleDrawableSafe2.setState(new int[0]);
-                        return true;
-                    }
-                } else if (motionEvent.getAction() == 3) {
-                    buttonBounce.setPressed(false);
-                    BaseCell.RippleDrawableSafe rippleDrawableSafe3 = this.selectorDrawable;
-                    if (rippleDrawableSafe3 != null) {
-                        rippleDrawableSafe3.setState(new int[0]);
-                    }
-                }
-            }
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if ((!this.hideByTouch && !hasOnClickListeners()) || !this.shown) {
+            return false;
+        }
+        if (checkTouchLinks(motionEvent)) {
             return true;
         }
-        return false;
+        float x = motionEvent.getX();
+        float y = motionEvent.getY();
+        if (motionEvent.getAction() == 0 && containsTouch(motionEvent, 0.0f, 0.0f)) {
+            this.bounceX = x;
+            this.bounceY = y;
+            this.bounce.setPressed(true);
+            Drawable drawable = this.selectorDrawable;
+            if (drawable != null) {
+                drawable.setHotspot(x, y);
+                this.selectorDrawable.setState(new int[]{16842919, 16842910});
+            }
+        } else if (motionEvent.getAction() == 1) {
+            if (hasOnClickListeners()) {
+                performClick();
+            } else if (this.hideByTouch) {
+                hide();
+            }
+            this.bounce.setPressed(false);
+            Drawable drawable2 = this.selectorDrawable;
+            if (drawable2 != null) {
+                drawable2.setState(new int[0]);
+            }
+        } else {
+            if (motionEvent.getAction() != 3) {
+                return false;
+            }
+            this.bounce.setPressed(false);
+            Drawable drawable3 = this.selectorDrawable;
+            if (drawable3 != null) {
+                drawable3.setState(new int[0]);
+            }
+        }
+        return true;
     }
 
-    public final void setCloseButton() {
-        this.closeButton = true;
-        if (this.multiline) {
-            return;
-        }
-        this.innerPadding.set(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(this.closeButton ? 15.0f : 11.0f), AndroidUtilities.dp(7.0f));
+    public void pause() {
+        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
     }
 
-    public final void setIcon(RLottieDrawable rLottieDrawable) {
-        RLottieDrawable rLottieDrawable2 = this.icon;
-        if (rLottieDrawable2 != null) {
-            rLottieDrawable2.setCallback(null);
+    public final void prepareBlur() {
+        if (this.useBlur) {
+            this.drawingMyBlur = true;
+            AndroidUtilities.makeGlobalBlurBitmap(new HintView2$$ExternalSyntheticLambda0(this, 0), this.blurScale);
         }
-        this.icon = rLottieDrawable;
-        rLottieDrawable.setCallback(this);
-        RLottieDrawable rLottieDrawable3 = this.icon;
-        if (rLottieDrawable3 != null) {
-            this.duration = Math.max(this.duration, rLottieDrawable3.getDuration());
-        }
-        RLottieDrawable rLottieDrawable4 = this.icon;
-        this.iconWidth = rLottieDrawable4.width;
-        this.iconHeight = rLottieDrawable4.height;
-        this.iconLeft = true;
     }
 
-    public final void setInnerPadding(float f, float f2, float f3, float f4) {
+    public HintView2 setAnimatedTextHacks(boolean z, boolean z2, boolean z3) {
+        this.textDrawable.setHacks(z, z2, z3);
+        return this;
+    }
+
+    public HintView2 setArrowSize(float f, float f2) {
+        this.arrowHalfWidth = AndroidUtilities.dpf2(f);
+        this.arrowHeight = AndroidUtilities.dpf2(f2);
+        return this;
+    }
+
+    public HintView2 setBgColor(int i) {
+        if (this.backgroundPaint.getColor() != i) {
+            this.backgroundPaint.setColor(i);
+            invalidate();
+        }
+        return this;
+    }
+
+    public HintView2 setBounce(boolean z) {
+        this.repeatedBounce = z;
+        return this;
+    }
+
+    public HintView2 setCloseButton(boolean z) {
+        this.closeButton = z;
+        if (!this.multiline) {
+            this.innerPadding.set(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(this.closeButton ? 15.0f : 11.0f), AndroidUtilities.dp(7.0f));
+        }
+        return this;
+    }
+
+    public HintView2 setCloseButtonMargin(int i) {
+        this.closeButtonMargin = AndroidUtilities.dp(i);
+        return this;
+    }
+
+    public HintView2 setDirection(int i) {
+        this.direction = i;
+        return this;
+    }
+
+    public HintView2 setDuration(long j) {
+        this.duration = j;
+        return this;
+    }
+
+    public HintView2 setFlicker(float f, int i) {
+        this.flicker = true;
+        this.flickerStart = System.currentTimeMillis();
+        this.flickerStrokePath = new Path();
+        this.flickerStrokePathExtrude = AndroidUtilities.dpf2(f) / 2.0f;
+        this.flickerFillPaint = new Paint(1);
+        this.flickerStrokePaint = new Paint(1);
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(64.0f), 0.0f, new int[]{Theme.multAlpha(0.0f, i), Theme.multAlpha(1.0f, i), Theme.multAlpha(0.0f, i)}, new float[]{0.0f, 0.5f, 1.0f}, tileMode);
+        this.flickerStrokeGradient = linearGradient;
+        this.flickerStrokePaint.setShader(linearGradient);
+        this.flickerGradient = new LinearGradient(0.0f, 0.0f, AndroidUtilities.dp(64.0f), 0.0f, new int[]{Theme.multAlpha(0.0f, i), Theme.multAlpha(0.5f, i), Theme.multAlpha(0.0f, i)}, new float[]{0.0f, 0.5f, 1.0f}, tileMode);
+        this.flickerGradientMatrix = new Matrix();
+        this.flickerFillPaint.setShader(this.flickerGradient);
+        this.flickerStrokePaint.setStyle(Paint.Style.STROKE);
+        this.flickerStrokePaint.setStrokeJoin(Paint.Join.ROUND);
+        this.flickerStrokePaint.setStrokeCap(Paint.Cap.ROUND);
+        this.flickerStrokePaint.setStrokeWidth(AndroidUtilities.dpf2(f));
+        return this;
+    }
+
+    public HintView2 setHideByTouch(boolean z) {
+        this.hideByTouch = z;
+        return this;
+    }
+
+    public HintView2 setIcon(int i) {
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, DiffUtil.m(i, ""), AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f));
+        rLottieDrawable.start();
+        return setIcon(rLottieDrawable);
+    }
+
+    public HintView2 setIconMargin(int i) {
+        this.iconMargin = AndroidUtilities.dp(i);
+        return this;
+    }
+
+    public HintView2 setIconTranslate(float f, float f2) {
+        this.iconTx = f;
+        this.iconTy = f2;
+        return this;
+    }
+
+    public HintView2 setInnerPadding(float f, float f2, float f3, float f4) {
         this.innerPadding.set(AndroidUtilities.dpf2(f), AndroidUtilities.dpf2(f2), AndroidUtilities.dpf2(f3), AndroidUtilities.dpf2(f4));
+        return this;
     }
 
-    public final void setJoint(float f, float f2) {
+    public HintView2 setJoint(float f, float f2) {
         if (Math.abs(this.joint - f) >= 1.0f || Math.abs(this.jointTranslate - AndroidUtilities.dp(f2)) >= 1.0f) {
             this.pathSet = false;
             invalidate();
         }
         this.joint = f;
         this.jointTranslate = AndroidUtilities.dp(f2);
+        return this;
     }
 
-    public final void setJointPx(float f, float f2) {
+    public HintView2 setJointPx(float f, float f2) {
         if (Math.abs(this.joint - f) >= 1.0f || Math.abs(this.jointTranslate - f2) >= 1.0f) {
             this.pathSet = false;
             invalidate();
         }
         this.joint = f;
         this.jointTranslate = f2;
+        return this;
     }
 
-    public final void setMaxWidth() {
-        this.textMaxWidth = AndroidUtilities.dp(165.0f);
+    public HintView2 setMaxWidth(float f) {
+        this.textMaxWidth = AndroidUtilities.dp(f);
+        return this;
     }
 
-    public final void setMaxWidthPx(int i) {
+    public HintView2 setMaxWidthPx(int i) {
         this.textMaxWidth = i;
+        return this;
     }
 
-    public final void setMultilineText(boolean z) {
+    public HintView2 setMultilineText(boolean z) {
         this.multiline = z;
-        RectF rectF = this.innerPadding;
         if (z) {
-            rectF.set(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(8.0f));
+            this.innerPadding.set(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(8.0f));
             this.closeButtonMargin = AndroidUtilities.dp(6.0f);
-        } else {
-            rectF.set(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(this.closeButton ? 15.0f : 11.0f), AndroidUtilities.dp(7.0f));
-            this.closeButtonMargin = AndroidUtilities.dp(2.0f);
+            return this;
         }
+        this.innerPadding.set(AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(this.closeButton ? 15.0f : 11.0f), AndroidUtilities.dp(7.0f));
+        this.closeButtonMargin = AndroidUtilities.dp(2.0f);
+        return this;
     }
 
-    public final void setRounding(float f) {
+    public HintView2 setOnHiddenListener(Runnable runnable) {
+        this.onHidden = runnable;
+        return this;
+    }
+
+    public HintView2 setRounding(float f) {
         this.rounding = AndroidUtilities.dp(f);
         this.backgroundPaint.setPathEffect(this.roundWithCornerEffect ? new CornerPathEffect(this.rounding) : null);
         Paint paint = this.cutSelectorPaint;
         if (paint != null) {
             paint.setPathEffect(this.roundWithCornerEffect ? new CornerPathEffect(this.rounding) : null);
         }
+        Paint paint2 = this.blurCutPaint;
+        if (paint2 != null) {
+            paint2.setPathEffect(this.roundWithCornerEffect ? new CornerPathEffect(this.rounding) : null);
+        }
+        return this;
     }
 
-    public final void setText(CharSequence charSequence) {
+    public HintView2 setRoundingWithCornerEffect(boolean z) {
+        this.roundWithCornerEffect = z;
+        this.backgroundPaint.setPathEffect(z ? new CornerPathEffect(this.rounding) : null);
+        return this;
+    }
+
+    public HintView2 setSelectorColor(int i) {
+        Paint paint = new Paint(1);
+        this.cutSelectorPaint = paint;
+        paint.setPathEffect(new CornerPathEffect(this.rounding));
+        BaseCell.RippleDrawableSafe rippleDrawableSafe = new BaseCell.RippleDrawableSafe(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new Drawable() {
+            @Override
+            public final void draw(Canvas canvas) {
+                canvas.save();
+                HintView2 hintView2 = HintView2.this;
+                canvas.drawPath(hintView2.path, hintView2.cutSelectorPaint);
+                canvas.restore();
+            }
+
+            @Override
+            public final int getOpacity() {
+                return -2;
+            }
+
+            @Override
+            public final void setAlpha(int i2) {
+            }
+
+            @Override
+            public final void setColorFilter(ColorFilter colorFilter) {
+            }
+        });
+        this.selectorDrawable = rippleDrawableSafe;
+        rippleDrawableSafe.setCallback(this);
+        return this;
+    }
+
+    public HintView2 setShadow(float f, float f2, float f3, int i) {
+        Paint paint = this.backgroundPaint;
+        this.shadowRadius = f;
+        this.shadowDx = f2;
+        this.shadowDy = f3;
+        this.shadowColor = i;
+        paint.setShadowLayer(f, f2, f3, i);
+        return this;
+    }
+
+    public HintView2 setText(CharSequence charSequence) {
         if (getMeasuredWidth() < 0) {
             this.textToSet = charSequence;
-        } else if (this.multiline) {
-            makeLayout(getTextMaxWidth(), charSequence);
+            return this;
+        }
+        if (this.multiline) {
+            makeLayout(charSequence, getTextMaxWidth());
+            return this;
+        }
+        this.textDrawable.setText(charSequence, false);
+        return this;
+    }
+
+    public HintView2 setTextAlign(Layout.Alignment alignment) {
+        this.textLayoutAlignment = alignment;
+        return this;
+    }
+
+    public HintView2 setTextColor(int i) {
+        this.textDrawable.setTextColor(i);
+        this.textPaint.setColor(i);
+        return this;
+    }
+
+    public HintView2 setTextSize(float f) {
+        this.textDrawable.setTextSize(AndroidUtilities.dpf2(f));
+        this.textPaint.setTextSize(AndroidUtilities.dpf2(f));
+        return this;
+    }
+
+    public HintView2 setTextTypeface(Typeface typeface) {
+        this.textDrawable.setTypeface(typeface);
+        this.textPaint.setTypeface(typeface);
+        return this;
+    }
+
+    public void show(boolean z) {
+        if (z) {
+            show();
         } else {
-            this.textDrawable.setText(charSequence, false, true);
+            hide();
         }
     }
 
-    public final void show() {
-        int i = 1;
-        if (this.shown && this.repeatedBounce) {
-            ValueAnimator valueAnimator = this.bounceAnimator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-                this.bounceAnimator = null;
-            }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.bounceAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 9));
-            this.bounceAnimator.addListener(new WebviewActivity.AnonymousClass3.AnonymousClass1(this, i));
-            this.bounceAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_BACK);
-            this.bounceAnimator.setDuration(300L);
-            this.bounceAnimator.start();
+    public boolean shown() {
+        return this.shown;
+    }
+
+    public void unpause() {
+        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
+        long j = this.duration;
+        if (j > 0) {
+            AndroidUtilities.runOnUIThread(this.hideRunnable, j);
+        }
+    }
+
+    public HintView2 useScale(boolean z) {
+        this.useScale = z;
+        return this;
+    }
+
+    public HintView2 useTranslate(boolean z) {
+        this.useTranslate = z;
+        return this;
+    }
+
+    @Override
+    public boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.textDrawable || drawable == this.selectorDrawable || drawable == this.icon || super.verifyDrawable(drawable);
+    }
+
+    public HintView2 allowBlur(boolean z) {
+        this.useBlur = z && LiteMode.isEnabled(256);
+        return this;
+    }
+
+    public void hide(boolean z) {
+        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
+        Runnable runnable = this.onHidden;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        this.shown = false;
+        if (!z) {
+            this.show.set(false, false);
+        }
+        invalidate();
+        Runnable runnable2 = this.onHidden;
+        if (runnable2 != null) {
+            AndroidUtilities.runOnUIThread(runnable2, (long) (this.show.get() * this.show.getDuration()));
+        }
+        this.links.clear();
+    }
+
+    public HintView2 show() {
+        prepareBlur();
+        if (this.shown) {
+            bounceShow();
         }
         AndroidUtilities.makeAccessibilityAnnouncement(getText());
         this.shown = true;
         invalidate();
-        PhotoViewer$$ExternalSyntheticLambda127 photoViewer$$ExternalSyntheticLambda127 = this.hideRunnable;
-        AndroidUtilities.cancelRunOnUIThread(photoViewer$$ExternalSyntheticLambda127);
+        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
         long j = this.duration;
         if (j > 0) {
-            AndroidUtilities.runOnUIThread(photoViewer$$ExternalSyntheticLambda127, j);
+            AndroidUtilities.runOnUIThread(this.hideRunnable, j);
         }
         Runnable runnable = this.onHidden;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
         }
+        return this;
     }
 
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.textDrawable || drawable == this.selectorDrawable || drawable == this.icon || super.verifyDrawable(drawable);
+    public HintView2 setIcon(Drawable drawable) {
+        Drawable drawable2 = this.icon;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.icon = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+            Drawable drawable3 = this.icon;
+            if (drawable3 instanceof RLottieDrawable) {
+                this.duration = Math.max(this.duration, ((RLottieDrawable) drawable3).getDuration());
+            }
+            this.iconWidth = this.icon.getIntrinsicWidth();
+            this.iconHeight = this.icon.getIntrinsicHeight();
+            this.iconLeft = true;
+        }
+        return this;
+    }
+
+    public HintView2 setText(CharSequence charSequence, boolean z) {
+        if (getMeasuredWidth() < 0) {
+            this.textToSet = charSequence;
+            return this;
+        }
+        this.textDrawable.setText(charSequence, !LocaleController.isRTL && z);
+        return this;
     }
 }

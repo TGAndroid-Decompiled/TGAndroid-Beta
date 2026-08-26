@@ -84,7 +84,7 @@ public final class PollAddButtonDrawable extends PollButtonDrawableBase implemen
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override

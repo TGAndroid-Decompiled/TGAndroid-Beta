@@ -36,7 +36,7 @@ public final class FoundStickerPacksHeaderCell extends FrameLayout implements Th
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         addView(textView, LayoutHelper.createFrame(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
-        updateColors$1();
+        updateColors();
     }
 
     public int[] getColorKeys() {
@@ -48,7 +48,7 @@ public final class FoundStickerPacksHeaderCell extends FrameLayout implements Th
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         int i = Theme.key_glass_defaultIcon;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         int i2 = (int) 153.0f;

@@ -39,7 +39,7 @@ public final class ChartPickerDelegate {
             this.a = valueAnimatorOfFloat;
             valueAnimatorOfFloat.setDuration(600L);
             this.a.setInterpolator(BaseChartView.INTERPOLATOR);
-            this.a.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 15));
+            this.a.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 10));
             this.a.start();
         }
     }
@@ -212,7 +212,7 @@ public final class ChartPickerDelegate {
         return true;
     }
 
-    public final boolean uncapture(int i, MotionEvent motionEvent) {
+    public final boolean uncapture(MotionEvent motionEvent, int i) {
         ValueAnimator valueAnimator;
         ValueAnimator valueAnimator2;
         float f;

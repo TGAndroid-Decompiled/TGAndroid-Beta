@@ -16,9 +16,7 @@ public final class AiButtonDrawable$$ExternalSyntheticLambda0 implements Runnabl
                 this.f$0.invalidateSelf();
                 break;
             default:
-                AiButtonDrawable aiButtonDrawable = this.f$0;
-                aiButtonDrawable.animation.set(0.0f, true);
-                aiButtonDrawable.invalidateSelf();
+                this.f$0.animate();
                 break;
         }
     }

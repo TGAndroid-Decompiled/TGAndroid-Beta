@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.commonmark.node.Node;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.messenger.audioinfo.mp3.ID3v1Genre$EnumUnboxingLocalUtility;
 import org.telegram.messenger.audioinfo.util.PositionInputStream;
@@ -32,7 +31,7 @@ public final class M4AInfo extends AudioInfo {
             logger.log(level, mP4Atom2.toString());
         }
         MP4Atom mP4AtomNextChild4 = mP4Atom2.nextChild();
-        String str = (String) mP4AtomNextChild4.lastChild;
+        String str = mP4AtomNextChild4.type;
         if (!str.matches("ftyp")) {
             throw new IOException("atom type mismatch, expected ftyp, got ".concat(str));
         }
@@ -60,21 +59,21 @@ public final class M4AInfo extends AudioInfo {
             sb2.append(" (expected M4A or M4P)");
             logger.warning(sb2.toString());
         }
-        String.valueOf(((DataInputStream) mP4AtomNextChild4.prev).readInt());
+        String.valueOf(mP4AtomNextChild4.data.readInt());
         do {
             mP4AtomNextChild = mP4Atom2.nextChild();
-        } while (!((String) mP4AtomNextChild.lastChild).matches("moov"));
+        } while (!mP4AtomNextChild.type.matches("moov"));
         if (logger.isLoggable(this.debugLevel)) {
             logger.log(this.debugLevel, mP4AtomNextChild.toString());
         }
         while (mP4AtomNextChild.hasMoreChildren()) {
             MP4Atom mP4AtomNextChild5 = mP4AtomNextChild.nextChild();
-            switch ((String) mP4AtomNextChild5.lastChild) {
+            switch (mP4AtomNextChild5.type) {
                 case "mvhd":
                     if (logger.isLoggable(this.debugLevel)) {
                         logger.log(this.debugLevel, mP4AtomNextChild5.toString());
                     }
-                    DataInputStream dataInputStream = (DataInputStream) mP4AtomNextChild5.prev;
+                    DataInputStream dataInputStream = mP4AtomNextChild5.data;
                     byte b = dataInputStream.readByte();
                     mP4AtomNextChild5.skip(i);
                     mP4AtomNextChild5.skip(b == 1 ? 16 : 8);
@@ -101,19 +100,19 @@ public final class M4AInfo extends AudioInfo {
                             throw new IOException("atom type mismatch, not found: ".concat("mdia"));
                         }
                         mP4AtomNextChild2 = mP4AtomNextChild5.nextChild();
-                    } while (!((String) mP4AtomNextChild2.lastChild).matches("mdia"));
+                    } while (!mP4AtomNextChild2.type.matches("mdia"));
                     if (logger.isLoggable(this.debugLevel)) {
                         logger.log(this.debugLevel, mP4AtomNextChild2.toString());
                     }
                     MP4Atom mP4AtomNextChild6 = mP4AtomNextChild2.nextChild();
-                    String str2 = (String) mP4AtomNextChild6.lastChild;
+                    String str2 = mP4AtomNextChild6.type;
                     if (!str2.matches("mdhd")) {
                         throw new IOException("atom type mismatch, expected mdhd, got ".concat(str2));
                     }
                     if (logger.isLoggable(this.debugLevel)) {
                         logger.log(this.debugLevel, mP4AtomNextChild6.toString());
                     }
-                    DataInputStream dataInputStream2 = (DataInputStream) mP4AtomNextChild6.prev;
+                    DataInputStream dataInputStream2 = mP4AtomNextChild6.data;
                     byte b2 = dataInputStream2.readByte();
                     mP4AtomNextChild6.skip(i);
                     mP4AtomNextChild6.skip(b2 == 1 ? 16 : 8);
@@ -138,14 +137,14 @@ public final class M4AInfo extends AudioInfo {
                             continue;
                         }
                         MP4Atom mP4AtomNextChild7 = mP4AtomNextChild5.nextChild();
-                        if ("meta".equals((String) mP4AtomNextChild7.lastChild)) {
+                        if ("meta".equals(mP4AtomNextChild7.type)) {
                             if (logger.isLoggable(this.debugLevel)) {
                                 logger.log(this.debugLevel, mP4AtomNextChild7.toString());
                             }
                             mP4AtomNextChild7.skip(i2);
                             while (mP4AtomNextChild7.hasMoreChildren()) {
                                 MP4Atom mP4AtomNextChild8 = mP4AtomNextChild7.nextChild();
-                                if ("ilst".equals((String) mP4AtomNextChild8.lastChild)) {
+                                if ("ilst".equals(mP4AtomNextChild8.type)) {
                                     if (logger.isLoggable(this.debugLevel)) {
                                         logger.log(this.debugLevel, mP4AtomNextChild8.toString());
                                     }
@@ -160,14 +159,14 @@ public final class M4AInfo extends AudioInfo {
                                                     throw new IOException("atom type mismatch, not found: ".concat("data"));
                                                 }
                                                 mP4AtomNextChild3 = mP4AtomNextChild9.nextChild();
-                                            } while (!((String) mP4AtomNextChild3.lastChild).matches("data"));
+                                            } while (!mP4AtomNextChild3.type.matches("data"));
                                             if (logger.isLoggable(this.debugLevel)) {
                                                 logger.log(this.debugLevel, mP4AtomNextChild3.toString());
                                             }
                                             mP4AtomNextChild3.skip(i2);
                                             mP4AtomNextChild3.skip(i2);
-                                            String str3 = (String) ((Node) mP4AtomNextChild3.firstChild).lastChild;
-                                            DataInputStream dataInputStream3 = (DataInputStream) mP4AtomNextChild3.prev;
+                                            String str3 = mP4AtomNextChild3.parent.type;
+                                            DataInputStream dataInputStream3 = mP4AtomNextChild3.data;
                                             switch (str3) {
                                                 case "aART":
                                                     mP4Atom = mP4AtomNextChild8;

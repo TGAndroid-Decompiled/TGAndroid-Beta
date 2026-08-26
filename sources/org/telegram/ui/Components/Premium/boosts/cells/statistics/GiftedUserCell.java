@@ -15,7 +15,6 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell;
-import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 
 public final class GiftedUserCell extends UserCell {
@@ -37,20 +36,19 @@ public final class GiftedUserCell extends UserCell {
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(12.0f);
         textView.setGravity(17);
-        frameLayout.addView(textView, LayoutHelper.createFrame(22.0f, -2));
+        frameLayout.addView(textView, LayoutHelper.createFrame(-2, 22.0f));
         frameLayout.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         boolean z = LocaleController.isRTL;
         addView(frameLayout, LayoutHelper.createFrame(-2, -2.0f, (z ? 3 : 5) | 48, z ? 9 : 0, 9.0f, z ? 0 : 9, 0.0f));
     }
 
     private void setAvatarColorByMonths(int i) {
-        AvatarDrawable avatarDrawable = this.avatarDrawable;
         if (i == 12) {
-            avatarDrawable.setColor(-31392, -2796986);
+            this.avatarDrawable.setColor(-31392, -2796986);
         } else if (i == 6) {
-            avatarDrawable.setColor(-10703110, -12481584);
+            this.avatarDrawable.setColor(-10703110, -12481584);
         } else {
-            avatarDrawable.setColor(-6631068, -11945404);
+            this.avatarDrawable.setColor(-6631068, -11945404);
         }
     }
 
@@ -70,41 +68,33 @@ public final class GiftedUserCell extends UserCell {
         boolean z = boost.gift;
         FrameLayout frameLayout = this.badgeLayout;
         TextView textView = this.badgeTextView;
-        SimpleTextView simpleTextView = this.nameTextView;
         if (z || boost.giveaway) {
             frameLayout.setVisibility(0);
             int i = ((boost.expires - boost.date) / 30) / 86400;
             long j = boost.stars;
-            UserCell.AnonymousClass2 anonymousClass2 = this.avatarImageView;
-            AvatarDrawable avatarDrawable = this.avatarDrawable;
             if (j > 0) {
-                simpleTextView.setText(LocaleController.formatPluralString("BoostingBoostStars", (int) j, new Object[0]), false);
-                avatarDrawable.setAvatarType(26);
-                anonymousClass2.imageReceiver.setForUserOrChat(null, avatarDrawable);
-                anonymousClass2.onNewImageSet();
-                simpleTextView.setRightDrawable((Drawable) null);
+                this.nameTextView.setText(LocaleController.formatPluralString("BoostingBoostStars", (int) j, new Object[0]));
+                this.avatarDrawable.setAvatarType(26);
+                this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
+                this.nameTextView.setRightDrawable((Drawable) null);
             } else if (boost.unclaimed) {
-                simpleTextView.setText(LocaleController.getString(R.string.BoostingUnclaimed), false);
-                avatarDrawable.setAvatarType(18);
+                this.nameTextView.setText(LocaleController.getString(R.string.BoostingUnclaimed));
+                this.avatarDrawable.setAvatarType(18);
                 setAvatarColorByMonths(i);
-                anonymousClass2.imageReceiver.setForUserOrChat(null, avatarDrawable);
-                anonymousClass2.onNewImageSet();
-                simpleTextView.setRightDrawable((Drawable) null);
+                this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
+                this.nameTextView.setRightDrawable((Drawable) null);
             } else if (boost.user_id == -1) {
-                simpleTextView.setText(LocaleController.getString(R.string.BoostingToBeDistributed), false);
-                avatarDrawable.setAvatarType(19);
+                this.nameTextView.setText(LocaleController.getString(R.string.BoostingToBeDistributed));
+                this.avatarDrawable.setAvatarType(19);
                 setAvatarColorByMonths(i);
-                anonymousClass2.imageReceiver.setForUserOrChat(null, avatarDrawable);
-                anonymousClass2.onNewImageSet();
-                simpleTextView.setRightDrawable((Drawable) null);
+                this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
+                this.nameTextView.setRightDrawable((Drawable) null);
             }
             String str = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(((long) boost.expires) * 1000));
-            long j2 = boost.stars;
-            SimpleTextView simpleTextView2 = this.statusTextView;
-            if (j2 > 0) {
-                simpleTextView2.setText(LocaleController.formatString(R.string.BoostingStarsExpires, str), false);
+            if (boost.stars > 0) {
+                this.statusTextView.setText(LocaleController.formatString(R.string.BoostingStarsExpires, str));
             } else {
-                simpleTextView2.setText(LocaleController.formatString(R.string.BoostingExpires, str), false);
+                this.statusTextView.setText(LocaleController.formatString(R.string.BoostingExpires, str));
             }
             if (boost.gift) {
                 if (this.giftDrawable == null) {
@@ -140,15 +130,17 @@ public final class GiftedUserCell extends UserCell {
             counterDrawable.text = strValueOf;
             counterDrawable.textWith = counterDrawable.textPaint.measureText(strValueOf);
             counterDrawable.invalidateSelf();
-            simpleTextView.setRightDrawable(counterDrawable);
+            this.nameTextView.setRightDrawable(counterDrawable);
         } else {
-            simpleTextView.setRightDrawable((Drawable) null);
+            this.nameTextView.setRightDrawable((Drawable) null);
         }
         if (frameLayout.getVisibility() != 0) {
-            simpleTextView.setPadding(0, simpleTextView.getPaddingTop(), 0, simpleTextView.getPaddingBottom());
+            SimpleTextView simpleTextView = this.nameTextView;
+            simpleTextView.setPadding(0, simpleTextView.getPaddingTop(), 0, this.nameTextView.getPaddingBottom());
         } else {
             int iDp = AndroidUtilities.dp(22.0f) + ((int) textView.getPaint().measureText(textView.getText().toString()));
-            simpleTextView.setPadding(LocaleController.isRTL ? iDp : 0, simpleTextView.getPaddingTop(), LocaleController.isRTL ? 0 : iDp, simpleTextView.getPaddingBottom());
+            SimpleTextView simpleTextView2 = this.nameTextView;
+            simpleTextView2.setPadding(LocaleController.isRTL ? iDp : 0, simpleTextView2.getPaddingTop(), LocaleController.isRTL ? 0 : iDp, this.nameTextView.getPaddingBottom());
         }
     }
 }

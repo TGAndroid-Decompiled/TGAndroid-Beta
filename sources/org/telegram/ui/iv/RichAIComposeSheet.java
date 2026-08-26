@@ -31,8 +31,8 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
-import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
+import org.telegram.ui.bots.BotDownloads$$ExternalSyntheticLambda0;
+import org.telegram.ui.bots.BotSensors$1$$ExternalSyntheticLambda0;
 
 public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
     public UniversalAdapter adapter;
@@ -48,7 +48,7 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
     public TL_iv.RichMessage result;
     public final FrameLayout topView;
 
-    public RichAIComposeSheet(int i, Context context, Utilities.Callback callback, Theme.ResourcesProvider resourcesProvider) {
+    public RichAIComposeSheet(Context context, int i, Theme.ResourcesProvider resourcesProvider, Utilities.Callback callback) {
         super(context, null, true, false, false, resourcesProvider);
         this.currentAccount = i;
         this.onAddToPage = callback;
@@ -70,7 +70,7 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         imageView.setImageResource(R.drawable.ic_close_white);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3, resourcesProvider), PorterDuff.Mode.SRC_IN));
-        ScaleStateListAnimator.apply(imageView, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(imageView);
         final int i4 = 0;
         imageView.setOnClickListener(new View.OnClickListener(this) {
             public final RichAIComposeSheet f$0;
@@ -83,7 +83,7 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
             public final void onClick(View view) {
                 switch (i4) {
                     case 0:
-                        this.f$0.lambda$new$0$42(view);
+                        this.f$0.lambda$new$0$20(view);
                         break;
                     default:
                         RichAIComposeSheet richAIComposeSheet = this.f$0;
@@ -99,7 +99,7 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
                                     TL_aicompose.inputAiComposeToneSingleUse inputaicomposetonesingleuse = new TL_aicompose.inputAiComposeToneSingleUse();
                                     inputaicomposetonesingleuse.custom_prompt = strTrim;
                                     tL_messages_composeRichMessageWithAI.tone = inputaicomposetonesingleuse;
-                                    richAIComposeSheet.reqId = ConnectionsManager.getInstance(richAIComposeSheet.currentAccount).sendRequest(tL_messages_composeRichMessageWithAI, new RichMediaUploader$$ExternalSyntheticLambda0(richAIComposeSheet, 14));
+                                    richAIComposeSheet.reqId = ConnectionsManager.getInstance(richAIComposeSheet.currentAccount).sendRequest(tL_messages_composeRichMessageWithAI, new RichMediaUploader$$ExternalSyntheticLambda0(richAIComposeSheet, 27));
                                     AndroidUtilities.hideKeyboard(editTextCell.editText);
                                     break;
                                 }
@@ -125,23 +125,22 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
         int iDp = AndroidUtilities.dp(12.0f);
         int i5 = Theme.key_windowBackgroundWhite;
         previewView.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i5, resourcesProvider)));
-        frameLayout2.addView(previewView, LayoutHelper.createFrame(-2.0f, -1));
+        frameLayout2.addView(previewView, LayoutHelper.createFrame(-1, -2.0f));
         frameLayout2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), 0);
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.promptBox = frameLayout3;
         EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.ArticleAIPrompt), true, false, MessagesController.getInstance(i).config.aicomposeTonePromptLengthMax.get(), resourcesProvider);
         this.promptCell = editTextCell;
-        EditTextCell.AnonymousClass2 anonymousClass2 = editTextCell.editText;
-        anonymousClass2.setImeOptions(6);
-        anonymousClass2.setMaxLines(5);
+        editTextCell.editText.setImeOptions(6);
+        editTextCell.editText.setMaxLines(5);
         editTextCell.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(20.0f), Theme.getColor(i5, resourcesProvider)));
-        anonymousClass2.addTextChangedListener(new TextWatcher() {
+        editTextCell.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public final void afterTextChanged(Editable editable) {
                 RichAIComposeSheet richAIComposeSheet = RichAIComposeSheet.this;
                 if (richAIComposeSheet.result != null) {
                     richAIComposeSheet.result = null;
-                    richAIComposeSheet.button.setText(LocaleController.getString(R.string.ArticleAIGenerate), true, true);
+                    richAIComposeSheet.button.setText(LocaleController.getString(R.string.ArticleAIGenerate), true);
                     UniversalAdapter universalAdapter = richAIComposeSheet.adapter;
                     if (universalAdapter != null) {
                         universalAdapter.update(true);
@@ -158,14 +157,13 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
             public final void onTextChanged(CharSequence charSequence, int i6, int i7, int i8) {
             }
         });
-        frameLayout3.addView(editTextCell, LayoutHelper.createFrame(-2.0f, -1));
+        frameLayout3.addView(editTextCell, LayoutHelper.createFrame(-1, -2.0f));
         frameLayout3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
-        buttonWithCounterView.setRoundRadius(24);
-        this.button = buttonWithCounterView;
-        buttonWithCounterView.setText(LocaleController.getString(R.string.ArticleAIGenerate), false, true);
+        ButtonWithCounterView round = new ButtonWithCounterView(context, true, resourcesProvider).setRound();
+        this.button = round;
+        round.setText(LocaleController.getString(R.string.ArticleAIGenerate), false);
         final int i6 = 1;
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener(this) {
+        round.setOnClickListener(new View.OnClickListener(this) {
             public final RichAIComposeSheet f$0;
 
             {
@@ -176,7 +174,7 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
             public final void onClick(View view) {
                 switch (i6) {
                     case 0:
-                        this.f$0.lambda$new$0$42(view);
+                        this.f$0.lambda$new$0$20(view);
                         break;
                     default:
                         RichAIComposeSheet richAIComposeSheet = this.f$0;
@@ -192,7 +190,7 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
                                     TL_aicompose.inputAiComposeToneSingleUse inputaicomposetonesingleuse = new TL_aicompose.inputAiComposeToneSingleUse();
                                     inputaicomposetonesingleuse.custom_prompt = strTrim;
                                     tL_messages_composeRichMessageWithAI.tone = inputaicomposetonesingleuse;
-                                    richAIComposeSheet.reqId = ConnectionsManager.getInstance(richAIComposeSheet.currentAccount).sendRequest(tL_messages_composeRichMessageWithAI, new RichMediaUploader$$ExternalSyntheticLambda0(richAIComposeSheet, 14));
+                                    richAIComposeSheet.reqId = ConnectionsManager.getInstance(richAIComposeSheet.currentAccount).sendRequest(tL_messages_composeRichMessageWithAI, new RichMediaUploader$$ExternalSyntheticLambda0(richAIComposeSheet, 27));
                                     AndroidUtilities.hideKeyboard(editTextCell2.editText);
                                     break;
                                 }
@@ -209,19 +207,15 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
                 }
             }
         });
-        this.containerView.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
-        ((ViewGroup.MarginLayoutParams) buttonWithCounterView.getLayoutParams()).leftMargin += this.backgroundPaddingLeft;
-        ((ViewGroup.MarginLayoutParams) buttonWithCounterView.getLayoutParams()).rightMargin += this.backgroundPaddingLeft;
+        this.containerView.addView(round, LayoutHelper.createFrame(-1, 48.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
+        ((ViewGroup.MarginLayoutParams) round.getLayoutParams()).leftMargin += this.backgroundPaddingLeft;
+        ((ViewGroup.MarginLayoutParams) round.getLayoutParams()).rightMargin += this.backgroundPaddingLeft;
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        defaultItemAnimator.delayAnimations = false;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         defaultItemAnimator.setDurations(350L);
-        this.recyclerListView.setItemAnimator(defaultItemAnimator);
+        this.recyclerListView.lambda$onCellEnter$52(defaultItemAnimator);
         RecyclerListView recyclerListView = this.recyclerListView;
         int i7 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i7, 0, i7, AndroidUtilities.dp(72.0f));
@@ -232,7 +226,7 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new TodoItemMenu$$ExternalSyntheticLambda17(this, 19), this.resourcesProvider);
+        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new BotDownloads$$ExternalSyntheticLambda0(this, 18), this.resourcesProvider);
         this.adapter = universalAdapter;
         return universalAdapter;
     }
@@ -255,7 +249,7 @@ public final class RichAIComposeSheet extends BottomSheetWithRecyclerListView {
     @Override
     public final void show() {
         super.show();
-        AndroidUtilities.runOnUIThread(new VoIPFragment$8$$ExternalSyntheticLambda1(this, 14), 200L);
+        AndroidUtilities.runOnUIThread(new BotSensors$1$$ExternalSyntheticLambda0(this, 26), 200L);
     }
 
     public final void updateButtonEnabled() {

@@ -1,6 +1,6 @@
 package kotlin.collections;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Iterator;
@@ -123,7 +123,7 @@ public final class EmptyList implements List, Serializable, RandomAccess {
         if (i == 0 && i2 == 0) {
             return this;
         }
-        throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "fromIndex: ", ", toIndex: "));
+        throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, i2, "fromIndex: ", ", toIndex: "));
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class EmptyList implements List, Serializable, RandomAccess {
         if (i == 0) {
             return EmptyIterator.INSTANCE;
         }
-        throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, "Index: "));
+        throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, "Index: "));
     }
 
     @Override

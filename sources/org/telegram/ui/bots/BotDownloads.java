@@ -21,8 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzij;
-import com.google.android.gms.internal.mlkit_vision_common.zzle;
+import com.google.android.gms.internal.mlkit_language_id_common.zzig;
+import com.google.android.gms.internal.mlkit_vision_common.zzkn;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,7 +40,6 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CircularProgressDrawable;
@@ -48,7 +47,6 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
 
 public final class BotDownloads {
     public final long botId;
@@ -82,10 +80,10 @@ public final class BotDownloads {
             public BackgroundDrawable(int i) {
                 Path path = new Path();
                 this.path = path;
-                VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = new VoIPFragment$8$$ExternalSyntheticLambda1(this, 4);
+                BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = new BotSensors$1$$ExternalSyntheticLambda0(this, 17);
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                this.arrowProgress = new AnimatedFloat(voIPFragment$8$$ExternalSyntheticLambda1, 320L, cubicBezierInterpolator, 0);
-                this.arrowX = new AnimatedFloat(new VoIPFragment$8$$ExternalSyntheticLambda1(this, 4), 320L, cubicBezierInterpolator, 0);
+                this.arrowProgress = new AnimatedFloat(botSensors$1$$ExternalSyntheticLambda0, 0L, 320L, cubicBezierInterpolator);
+                this.arrowX = new AnimatedFloat(new BotSensors$1$$ExternalSyntheticLambda0(this, 17), 0L, 320L, cubicBezierInterpolator);
                 this.r = i;
                 path.moveTo(-AndroidUtilities.dp(6.5f), 0.0f);
                 path.lineTo(AndroidUtilities.dp(6.5f), 0.0f);
@@ -102,7 +100,7 @@ public final class BotDownloads {
                 Paint paint = this.paint;
                 canvas.drawRoundRect(rectF, f, f, paint);
                 float f2 = this.arrowProgress.set(this.arrow);
-                float fDp = (rectF.right + AndroidUtilities.dp(8.0f)) - this.arrowX.set(this.arrowMargin, false);
+                float fDp = (rectF.right + AndroidUtilities.dp(8.0f)) - this.arrowX.set(this.arrowMargin);
                 if (f2 > 0.0f) {
                     canvas.save();
                     canvas.translate(fDp, DiffUtil.m(1.0f, f2, AndroidUtilities.dp(6.16f), AndroidUtilities.dp(8.0f)));
@@ -144,12 +142,12 @@ public final class BotDownloads {
                 this.strokePaint = paint;
                 this.rect = new RectF();
                 this.done = false;
-                int i = 5;
-                VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = new VoIPFragment$8$$ExternalSyntheticLambda1(this, i);
+                int i = 18;
+                BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = new BotSensors$1$$ExternalSyntheticLambda0(this, i);
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                this.animatedHasPercent = new AnimatedFloat(voIPFragment$8$$ExternalSyntheticLambda1, 320L, cubicBezierInterpolator, 0);
-                this.animatedProgress = new AnimatedFloat(new VoIPFragment$8$$ExternalSyntheticLambda1(this, i), 320L, cubicBezierInterpolator, 0);
-                this.animatedDone = new AnimatedFloat(new VoIPFragment$8$$ExternalSyntheticLambda1(this, i), 320L, cubicBezierInterpolator, 0);
+                this.animatedHasPercent = new AnimatedFloat(botSensors$1$$ExternalSyntheticLambda0, 0L, 320L, cubicBezierInterpolator);
+                this.animatedProgress = new AnimatedFloat(new BotSensors$1$$ExternalSyntheticLambda0(this, i), 0L, 320L, cubicBezierInterpolator);
+                this.animatedDone = new AnimatedFloat(new BotSensors$1$$ExternalSyntheticLambda0(this, i), 0L, 320L, cubicBezierInterpolator);
                 this.view = imageView;
                 this.start = System.currentTimeMillis();
                 this.doc = context.getResources().getDrawable(R.drawable.search_files_filled).mutate();
@@ -177,7 +175,7 @@ public final class BotDownloads {
                     float f7 = iCenterY;
                     canvas2.scale(f5, f5, f6, f7);
                     Drawable drawable = this.doc;
-                    drawable.setBounds(zzle.m(iCenterX, drawable), iCenterY - (drawable.getIntrinsicHeight() / 2), (drawable.getIntrinsicWidth() / 2) + iCenterX, (drawable.getIntrinsicHeight() / 2) + iCenterY);
+                    drawable.setBounds(zzkn.m(iCenterX, drawable), iCenterY - (drawable.getIntrinsicHeight() / 2), (drawable.getIntrinsicWidth() / 2) + iCenterX, (drawable.getIntrinsicHeight() / 2) + iCenterY);
                     drawable.setAlpha((int) (f4 * 255.0f));
                     drawable.draw(canvas2);
                     float fDp = AndroidUtilities.dp(14.0f);
@@ -205,7 +203,7 @@ public final class BotDownloads {
                     f2 = 0.0f;
                     paint.setColor(Theme.multAlpha(f8, -1));
                     canvas2 = canvas;
-                    canvas2.drawArc(rectF, (-90.0f) - fMax, Math.max(0.02f, this.animatedProgress.set(this.progress, false)) * (-360.0f) * f9, false, paint);
+                    canvas2.drawArc(rectF, (-90.0f) - fMax, Math.max(0.02f, this.animatedProgress.set(this.progress)) * (-360.0f) * f9, false, paint);
                     invalidateSelf();
                     canvas2.restore();
                 } else {
@@ -215,9 +213,7 @@ public final class BotDownloads {
                 if (f3 <= f2 || (rLottieDrawable = this.doneDrawable) == null) {
                     return;
                 }
-                int i3 = rLottieDrawable.width / 2;
-                int i4 = rLottieDrawable.height / 2;
-                rLottieDrawable.setBounds(iCenterX - i3, iCenterY - i4, i3 + iCenterX, i4 + iCenterY);
+                rLottieDrawable.setBounds(iCenterX - (rLottieDrawable.getIntrinsicWidth() / 2), iCenterY - (this.doneDrawable.getIntrinsicHeight() / 2), (this.doneDrawable.getIntrinsicWidth() / 2) + iCenterX, (this.doneDrawable.getIntrinsicHeight() / 2) + iCenterY);
                 this.doneDrawable.setAlpha((int) (f3 * f));
                 this.doneDrawable.draw(canvas2);
             }
@@ -269,7 +265,7 @@ public final class BotDownloads {
             int i = Theme.key_undo_infoColor;
             textView.setTextColor(Theme.getColor(i, resourcesProvider));
             textView.setTypeface(AndroidUtilities.bold());
-            TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 2), context);
+            TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 2), context);
             this.subtitleView = textViewM;
             textViewM.setTextSize(1, 13.0f);
             textViewM.setTextColor(Theme.getColor(i, resourcesProvider));
@@ -287,14 +283,8 @@ public final class BotDownloads {
             }
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             if (i == 1) {
-                Bulletin.UndoButton undoButton = new Bulletin.UndoButton(getContext(), resourcesProvider, true, false);
-                String string = LocaleController.getString(R.string.BotFileDownloadCancel);
-                TextView textView = undoButton.undoTextView;
-                if (textView != null) {
-                    textView.setText(string);
-                }
                 final int i2 = 0;
-                undoButton.undoAction = new Runnable(this) {
+                Bulletin.UndoButton undoAction = new Bulletin.UndoButton(getContext(), true, resourcesProvider).setText(LocaleController.getString(R.string.BotFileDownloadCancel)).setUndoAction(new Runnable(this) {
                     public final BotDownloads.DownloadBulletin f$0;
 
                     {
@@ -309,7 +299,7 @@ public final class BotDownloads {
                                 BotDownloads.DownloadBulletin downloadBulletin = this.f$0;
                                 Bulletin bulletin = downloadBulletin.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.duration = 2750;
+                                    bulletin.setDuration(2750);
                                     bulletin.setCanHide(true);
                                 }
                                 BotDownloads.FileDownload fileDownload = downloadBulletin.file;
@@ -332,22 +322,16 @@ public final class BotDownloads {
                                 break;
                         }
                     }
-                };
+                });
                 if (getBulletin() != null) {
-                    undoButton.bulletin = getBulletin();
+                    undoAction.onAttach(this, getBulletin());
                 }
-                setButton(undoButton);
+                setButton(undoAction);
                 return;
             }
             if (i == 2) {
-                Bulletin.UndoButton undoButton2 = new Bulletin.UndoButton(getContext(), resourcesProvider, true, false);
-                String string2 = LocaleController.getString(R.string.BotFileDownloadOpen);
-                TextView textView2 = undoButton2.undoTextView;
-                if (textView2 != null) {
-                    textView2.setText(string2);
-                }
                 final int i3 = 1;
-                undoButton2.undoAction = new Runnable(this) {
+                Bulletin.UndoButton undoAction2 = new Bulletin.UndoButton(getContext(), true, resourcesProvider).setText(LocaleController.getString(R.string.BotFileDownloadOpen)).setUndoAction(new Runnable(this) {
                     public final BotDownloads.DownloadBulletin f$0;
 
                     {
@@ -362,7 +346,7 @@ public final class BotDownloads {
                                 BotDownloads.DownloadBulletin downloadBulletin = this.f$0;
                                 Bulletin bulletin = downloadBulletin.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.duration = 2750;
+                                    bulletin.setDuration(2750);
                                     bulletin.setCanHide(true);
                                 }
                                 BotDownloads.FileDownload fileDownload = downloadBulletin.file;
@@ -385,11 +369,11 @@ public final class BotDownloads {
                                 break;
                         }
                     }
-                };
+                });
                 if (getBulletin() != null) {
-                    undoButton2.bulletin = getBulletin();
+                    undoAction2.onAttach(this, getBulletin());
                 }
-                setButton(undoButton2);
+                setButton(undoAction2);
             }
         }
 
@@ -404,17 +388,14 @@ public final class BotDownloads {
             if (fileDownload2 != fileDownload) {
                 AnimatedFloat animatedFloat = statusDrawable.animatedDone;
                 statusDrawable.done = false;
-                animatedFloat.getClass();
-                animatedFloat.set(0.0f, true);
+                animatedFloat.set(false, true);
                 RLottieDrawable rLottieDrawable = statusDrawable.doneDrawable;
                 if (rLottieDrawable != null) {
                     rLottieDrawable.recycle(true);
                     statusDrawable.doneDrawable = null;
                 }
                 statusDrawable.hasPercent = false;
-                AnimatedFloat animatedFloat2 = statusDrawable.animatedHasPercent;
-                animatedFloat2.getClass();
-                animatedFloat2.set(0.0f, true);
+                statusDrawable.animatedHasPercent.set(false, true);
             }
             this.file = fileDownload;
             this.titleView.setText(fileDownload.file_name);
@@ -451,18 +432,17 @@ public final class BotDownloads {
                 setButton(2);
                 if (!statusDrawable.done) {
                     statusDrawable.done = true;
-                    RLottieDrawable rLottieDrawable2 = new RLottieDrawable(R.raw.contact_check, "contact_check", AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f), true, null);
+                    RLottieDrawable rLottieDrawable2 = new RLottieDrawable(R.raw.contact_check, "contact_check", AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
                     statusDrawable.doneDrawable = rLottieDrawable2;
-                    rLottieDrawable2.masterParent = statusDrawable.view;
-                    rLottieDrawable2.decodeSingleFrame = true;
-                    rLottieDrawable2.scheduleNextGetFrame();
+                    rLottieDrawable2.setMasterParent(statusDrawable.view);
+                    statusDrawable.doneDrawable.setAllowDecodeSingleFrame(true);
                     statusDrawable.doneDrawable.start();
                     statusDrawable.progress = 1.0f;
                 }
                 Bulletin bulletin2 = getBulletin();
                 if (bulletin2 != null) {
                     bulletin2.setCanHide(false);
-                    bulletin2.duration = 5000;
+                    bulletin2.setDuration(5000);
                     bulletin2.setCanHide(true);
                 }
             }
@@ -559,7 +539,7 @@ public final class BotDownloads {
         public boolean resaved;
         public boolean shown;
         public long size;
-        public final Runnable updateProgressRunnable = new VoIPFragment$8$$ExternalSyntheticLambda1(this, 6);
+        public final Runnable updateProgressRunnable = new BotSensors$1$$ExternalSyntheticLambda0(this, 19);
         public final String url;
 
         public FileDownload(String str, String str2) {
@@ -568,7 +548,7 @@ public final class BotDownloads {
             TLRPC.User user = MessagesController.getInstance(BotDownloads.this.currentAccount).getUser(Long.valueOf(BotDownloads.this.botId));
             DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
             request.setTitle(UserObject.getUserName(user));
-            request.setDescription(TextUtils.isEmpty(str2) ? "Downloading file..." : zzij.m("Downloading ", str2, "..."));
+            request.setDescription(TextUtils.isEmpty(str2) ? "Downloading file..." : zzig.m("Downloading ", str2, "..."));
             request.setNotificationVisibility(0);
             request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, str2);
             this.id = Long.valueOf(BotDownloads.this.downloadManager.enqueue(request));

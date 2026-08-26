@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -10,8 +11,10 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,7 +24,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
@@ -29,52 +32,58 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda68;
-import org.telegram.ui.ChatActivity$16$$ExternalSyntheticLambda4;
-import org.telegram.ui.FiltersSetupActivity;
-import org.telegram.ui.GroupCallActivity;
 
-public abstract class GroupCallRecordAlert extends BottomSheet {
-    public int currentPage;
-    public float pageOffset;
-    public final AnonymousClass3 positiveButton;
-    public final TextView[] titles;
-    public final LinearLayout titlesLayout;
-    public final ViewPager viewPager;
+public class GroupCallRecordAlert extends BottomSheet {
+    private int currentPage;
+    private float pageOffset;
+    private TextView positiveButton;
+    private TextView[] titles;
+    private LinearLayout titlesLayout;
+    private ViewPager viewPager;
 
-    public final class Adapter extends PagerAdapter {
-        public final GroupCallActivity.AnonymousClass6.AnonymousClass1 this$0;
+    public class Adapter extends PagerAdapter {
+        private Adapter() {
+        }
 
-        public Adapter(GroupCallActivity.AnonymousClass6.AnonymousClass1 anonymousClass1) {
-            this.this$0 = anonymousClass1;
+        public void lambda$instantiateItem$0(int i, View view) {
+            GroupCallRecordAlert.this.onStartRecord(i);
+            GroupCallRecordAlert.this.lambda$showGiftOfferSheet$15();
         }
 
         @Override
-        public final void destroyItem(ViewPager viewPager, Object obj) {
-            viewPager.removeView((View) obj);
+        public void destroyItem(ViewGroup viewGroup, int i, Object obj) {
+            viewGroup.removeView((View) obj);
         }
 
         @Override
-        public final int getCount() {
-            return this.this$0.titles.length;
+        public int getCount() {
+            return GroupCallRecordAlert.this.titles.length;
         }
 
         @Override
-        public final Object instantiateItem(ViewPager viewPager, int i) {
+        public Object instantiateItem(ViewGroup viewGroup, final int i) {
             int i2;
-            FiltersSetupActivity.FilterCell.AnonymousClass1 anonymousClass1 = new FiltersSetupActivity.FilterCell.AnonymousClass1(this, this.this$0.getContext(), i, 1);
-            anonymousClass1.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda68(this, i, 5));
-            anonymousClass1.setFocusable(true);
-            anonymousClass1.setTag(Integer.valueOf(i));
-            anonymousClass1.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-            anonymousClass1.setScaleType(ImageView.ScaleType.FIT_XY);
-            anonymousClass1.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
+            ImageView imageView = new ImageView(GroupCallRecordAlert.this.getContext()) {
+                @Override
+                public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+                    super.onInitializeAccessibilityEvent(accessibilityEvent);
+                    if (accessibilityEvent.getEventType() == 32768) {
+                        GroupCallRecordAlert.this.viewPager.setCurrentItem(i, true);
+                    }
+                }
+            };
+            imageView.setOnClickListener(new ReportAlert$$ExternalSyntheticLambda1(this, i, 1));
+            imageView.setFocusable(true);
+            imageView.setTag(Integer.valueOf(i));
+            imageView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
             if (i == 0) {
-                anonymousClass1.setContentDescription(LocaleController.getString(R.string.VoipRecordAudio));
+                imageView.setContentDescription(LocaleController.getString(R.string.VoipRecordAudio));
             } else if (i == 1) {
-                anonymousClass1.setContentDescription(LocaleController.getString(R.string.VoipRecordPortrait));
+                imageView.setContentDescription(LocaleController.getString(R.string.VoipRecordPortrait));
             } else {
-                anonymousClass1.setContentDescription(LocaleController.getString(R.string.VoipRecordLandscape));
+                imageView.setContentDescription(LocaleController.getString(R.string.VoipRecordLandscape));
             }
             if (i == 0) {
                 i2 = R.raw.record_audio;
@@ -83,37 +92,58 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             }
             SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(AndroidUtilities.readRes(i2));
             drawable.setAspectFill(false);
-            anonymousClass1.setImageDrawable(drawable);
-            if (anonymousClass1.getParent() != null) {
-                ((ViewGroup) anonymousClass1.getParent()).removeView(anonymousClass1);
+            imageView.setImageDrawable(drawable);
+            if (imageView.getParent() != null) {
+                ((ViewGroup) imageView.getParent()).removeView(imageView);
             }
-            viewPager.addView(anonymousClass1, 0);
-            return anonymousClass1;
+            viewGroup.addView(imageView, 0);
+            return imageView;
         }
 
         @Override
-        public final boolean isViewFromObject(View view, Object obj) {
+        public boolean isViewFromObject(View view, Object obj) {
             return view.equals(obj);
+        }
+
+        @Override
+        public void restoreState(Parcelable parcelable, ClassLoader classLoader) {
+        }
+
+        @Override
+        public Parcelable saveState() {
+            return null;
+        }
+
+        @Override
+        public void setPrimaryItem(ViewGroup viewGroup, int i, Object obj) {
+            super.setPrimaryItem(viewGroup, i, obj);
+        }
+
+        @Override
+        public void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
+            if (dataSetObserver != null) {
+                super.unregisterDataSetObserver(dataSetObserver);
+            }
         }
     }
 
     public GroupCallRecordAlert(Context context, TLRPC.Chat chat, boolean z) {
-        super(context, null, false, false);
+        super(context, false, false, null);
         int color = Theme.getColor(null, Theme.key_voipgroup_inviteMembersBackground, false);
         this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
-        final GroupCallActivity.AnonymousClass6.AnonymousClass1 anonymousClass1 = (GroupCallActivity.AnonymousClass6.AnonymousClass1) this;
         FrameLayout frameLayout = new FrameLayout(context) {
+            boolean ignoreLayout;
+
             @Override
-            public final void onLayout(boolean z2, int i, int i2, int i3, int i4) {
+            public void onLayout(boolean z2, int i, int i2, int i3, int i4) {
                 super.onLayout(z2, i, i2, i3, i4);
-                GroupCallRecordAlert.access$300(anonymousClass1);
+                GroupCallRecordAlert.this.updateTitlesLayout();
             }
 
             @Override
-            public final void onMeasure(int i, int i2) {
+            public void onMeasure(int i, int i2) {
                 boolean z2 = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
-                GroupCallActivity.AnonymousClass6.AnonymousClass1 anonymousClass2 = anonymousClass1;
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) anonymousClass2.positiveButton.getLayoutParams();
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) GroupCallRecordAlert.this.positiveButton.getLayoutParams();
                 if (z2) {
                     int iDp = AndroidUtilities.dp(80.0f);
                     marginLayoutParams.leftMargin = iDp;
@@ -124,9 +154,17 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
                     marginLayoutParams.rightMargin = iDp2;
                 }
                 int iM$2 = OKLCH.m$2(200.0f, View.MeasureSpec.getSize(i), 2);
-                anonymousClass2.viewPager.setPadding(iM$2, 0, iM$2, 0);
+                GroupCallRecordAlert.this.viewPager.setPadding(iM$2, 0, iM$2, 0);
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(370.0f), 1073741824));
-                measureChildWithMargins(anonymousClass2.titlesLayout, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
+                measureChildWithMargins(GroupCallRecordAlert.this.titlesLayout, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
+            }
+
+            @Override
+            public void requestLayout() {
+                if (this.ignoreLayout) {
+                    return;
+                }
+                super.requestLayout();
             }
         };
         this.containerView = frameLayout;
@@ -142,7 +180,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         } else {
             textView.setText(LocaleController.getString(R.string.VoipRecordVoiceChat));
         }
-        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(20.0f, -1, 1, textView);
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView, -1, 1, 20.0f);
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         this.containerView.addView(textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 29.0f, 24.0f, 0.0f));
         TextView textView2 = new TextView(getContext());
@@ -155,27 +193,26 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         ViewPager viewPager = new ViewPager(context);
         this.viewPager = viewPager;
         viewPager.setClipChildren(false);
-        viewPager.setOffscreenPageLimit(4);
-        viewPager.setClipToPadding(false);
-        AndroidUtilities.setViewPagerEdgeEffectColor(viewPager, 2130706432);
-        viewPager.setAdapter(new Adapter(anonymousClass1));
-        viewPager.setPageMargin(0);
-        this.containerView.addView(viewPager, LayoutHelper.createFrame(-1, -1.0f, 1, 0.0f, 100.0f, 0.0f, 130.0f));
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        this.viewPager.setOffscreenPageLimit(4);
+        this.viewPager.setClipToPadding(false);
+        AndroidUtilities.setViewPagerEdgeEffectColor(this.viewPager, 2130706432);
+        this.viewPager.setAdapter(new Adapter());
+        this.viewPager.setPageMargin(0);
+        this.containerView.addView(this.viewPager, LayoutHelper.createFrame(-1, -1.0f, 1, 0.0f, 100.0f, 0.0f, 130.0f));
+        this.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public final void onPageScrollStateChanged(int i2) {
+            public void onPageScrollStateChanged(int i2) {
             }
 
             @Override
-            public final void onPageScrolled(float f, int i2, int i3) {
-                GroupCallActivity.AnonymousClass6.AnonymousClass1 anonymousClass2 = anonymousClass1;
-                anonymousClass2.currentPage = i2;
-                anonymousClass2.pageOffset = f;
-                GroupCallRecordAlert.access$300(anonymousClass2);
+            public void onPageScrolled(int i2, float f, int i3) {
+                GroupCallRecordAlert.this.currentPage = i2;
+                GroupCallRecordAlert.this.pageOffset = f;
+                GroupCallRecordAlert.this.updateTitlesLayout();
             }
 
             @Override
-            public final void onPageSelected(int i2) {
+            public void onPageSelected(int i2) {
             }
         });
         View view = new View(getContext());
@@ -185,12 +222,11 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         View view2 = new View(getContext());
         view2.setBackground(new GradientDrawable(orientation, new int[]{0, color}));
         this.containerView.addView(view2, LayoutHelper.createFrame(120, -1.0f, 53, 0.0f, 100.0f, 0.0f, 130.0f));
-        ?? r4 = new TextView(getContext()) {
-            public final Paint[] gradientPaint;
+        TextView textView3 = new TextView(getContext()) {
+            private Paint[] gradientPaint;
 
             {
-                super(context);
-                this.gradientPaint = new Paint[this.this$0.titles.length];
+                this.gradientPaint = new Paint[GroupCallRecordAlert.this.titles.length];
                 int i2 = 0;
                 while (true) {
                     Paint[] paintArr = this.gradientPaint;
@@ -203,35 +239,29 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             }
 
             @Override
-            public final void onDraw(Canvas canvas) {
-                int i2;
+            public void onDraw(Canvas canvas) {
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                GroupCallActivity.AnonymousClass6.AnonymousClass1 anonymousClass2 = this.this$0;
-                int i3 = anonymousClass2.currentPage;
-                Paint[] paintArr = this.gradientPaint;
-                paintArr[i3].setAlpha(255);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[anonymousClass2.currentPage]);
-                float f = anonymousClass2.pageOffset;
-                if (f > 0.0f && (i2 = anonymousClass2.currentPage + 1) < paintArr.length) {
-                    paintArr[i2].setAlpha((int) (f * 255.0f));
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paintArr[anonymousClass2.currentPage + 1]);
+                this.gradientPaint[GroupCallRecordAlert.this.currentPage].setAlpha(255);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.gradientPaint[GroupCallRecordAlert.this.currentPage]);
+                if (GroupCallRecordAlert.this.pageOffset > 0.0f) {
+                    int i2 = GroupCallRecordAlert.this.currentPage + 1;
+                    Paint[] paintArr = this.gradientPaint;
+                    if (i2 < paintArr.length) {
+                        paintArr[GroupCallRecordAlert.this.currentPage + 1].setAlpha((int) (GroupCallRecordAlert.this.pageOffset * 255.0f));
+                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.gradientPaint[GroupCallRecordAlert.this.currentPage + 1]);
+                    }
                 }
                 super.onDraw(canvas);
             }
 
             @Override
-            public final void onSizeChanged(int i2, int i3, int i4, int i5) {
+            public void onSizeChanged(int i2, int i3, int i4, int i5) {
                 int i6;
                 int i7;
                 LinearGradient linearGradient;
                 super.onSizeChanged(i2, i3, i4, i5);
-                int i8 = 0;
-                while (true) {
-                    Paint[] paintArr = this.gradientPaint;
-                    if (i8 >= paintArr.length) {
-                        return;
-                    }
+                for (int i8 = 0; i8 < this.gradientPaint.length; i8++) {
                     int i9 = -9015575;
                     if (i8 == 0) {
                         i9 = -11033346;
@@ -249,8 +279,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
                         } else {
                             linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i9, i6}, (float[]) null, Shader.TileMode.CLAMP);
                         }
-                        paintArr[i8].setShader(linearGradient);
-                        i8++;
+                        this.gradientPaint[i8].setShader(linearGradient);
                     }
                     i7 = 0;
                     if (i7 != 0) {
@@ -258,29 +287,29 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
                     } else {
                         linearGradient = new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{i9, i6}, (float[]) null, Shader.TileMode.CLAMP);
                     }
-                    paintArr[i8].setShader(linearGradient);
-                    i8++;
+                    this.gradientPaint[i8].setShader(linearGradient);
                 }
             }
         };
-        this.positiveButton = r4;
-        r4.setMinWidth(AndroidUtilities.dp(64.0f));
-        r4.setTag(-1);
-        r4.setTextSize(1, 14.0f);
+        this.positiveButton = textView3;
+        textView3.setMinWidth(AndroidUtilities.dp(64.0f));
+        this.positiveButton.setTag(-1);
+        this.positiveButton.setTextSize(1, 14.0f);
+        TextView textView4 = this.positiveButton;
         int i2 = Theme.key_voipgroup_nameText;
-        r4.setTextColor(Theme.getColor(null, i2, false));
-        r4.setGravity(17);
-        r4.setTypeface(AndroidUtilities.bold());
-        r4.setText(LocaleController.getString(R.string.VoipRecordStart));
+        textView4.setTextColor(Theme.getColor(null, i2, false));
+        this.positiveButton.setGravity(17);
+        this.positiveButton.setTypeface(AndroidUtilities.bold());
+        this.positiveButton.setText(LocaleController.getString(R.string.VoipRecordStart));
         if (Build.VERSION.SDK_INT >= 23) {
+            TextView textView5 = this.positiveButton;
             int iDp = AndroidUtilities.dp(6.0f);
             int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(null, i2, false), 76);
-            r4.setForeground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, 0, alphaComponent, alphaComponent));
+            textView5.setForeground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, 0, alphaComponent, alphaComponent));
         }
-        r4.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
-        GroupCallActivity.AnonymousClass6.AnonymousClass1 anonymousClass2 = (GroupCallActivity.AnonymousClass6.AnonymousClass1) this;
-        r4.setOnClickListener(new ChatActivity$16$$ExternalSyntheticLambda4(anonymousClass2, 26));
-        this.containerView.addView((View) r4, LayoutHelper.createFrame(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
+        this.positiveButton.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
+        this.positiveButton.setOnClickListener(new HintView$$ExternalSyntheticLambda0(this, 26));
+        this.containerView.addView(this.positiveButton, LayoutHelper.createFrame(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.titlesLayout = linearLayout;
         this.containerView.addView(linearLayout, LayoutHelper.createFrame(-2, 64, 80));
@@ -305,7 +334,7 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
             } else {
                 this.titles[i3].setText(LocaleController.getString(R.string.VoipRecordLandscape));
             }
-            this.titles[i3].setOnClickListener(new ChatActivity$$ExternalSyntheticLambda68(anonymousClass2, i3, 4));
+            this.titles[i3].setOnClickListener(new ReportAlert$$ExternalSyntheticLambda1(this, i3, 5));
             i3++;
         }
         if (z) {
@@ -313,37 +342,59 @@ public abstract class GroupCallRecordAlert extends BottomSheet {
         }
     }
 
-    public static void access$300(GroupCallActivity.AnonymousClass6.AnonymousClass1 anonymousClass1) {
-        int i = anonymousClass1.currentPage;
-        TextView[] textViewArr = anonymousClass1.titles;
+    public void lambda$new$0(View view) {
+        onStartRecord(this.currentPage);
+        lambda$showGiftOfferSheet$15();
+    }
+
+    public void lambda$new$1(int i, View view) {
+        this.viewPager.setCurrentItem(i, true);
+    }
+
+    public void updateTitlesLayout() {
+        TextView[] textViewArr = this.titles;
+        int i = this.currentPage;
         TextView textView = textViewArr[i];
         TextView textView2 = i < textViewArr.length + (-1) ? textViewArr[i + 1] : null;
-        anonymousClass1.containerView.getMeasuredWidth();
+        this.containerView.getMeasuredWidth();
         float measuredWidth = (textView.getMeasuredWidth() / 2) + textView.getLeft();
-        float measuredWidth2 = (anonymousClass1.containerView.getMeasuredWidth() / 2) - measuredWidth;
+        float measuredWidth2 = (this.containerView.getMeasuredWidth() / 2) - measuredWidth;
         if (textView2 != null) {
-            measuredWidth2 -= (((textView2.getMeasuredWidth() / 2) + textView2.getLeft()) - measuredWidth) * anonymousClass1.pageOffset;
+            measuredWidth2 -= (((textView2.getMeasuredWidth() / 2) + textView2.getLeft()) - measuredWidth) * this.pageOffset;
         }
-        for (int i2 = 0; i2 < textViewArr.length; i2++) {
-            int i3 = anonymousClass1.currentPage;
+        int i2 = 0;
+        while (true) {
+            TextView[] textViewArr2 = this.titles;
+            if (i2 >= textViewArr2.length) {
+                this.titlesLayout.setTranslationX(measuredWidth2);
+                this.positiveButton.invalidate();
+                return;
+            }
+            int i3 = this.currentPage;
             float f = 0.9f;
             float f2 = 0.7f;
             if (i2 >= i3 && i2 <= i3 + 1) {
                 if (i2 == i3) {
-                    float f3 = anonymousClass1.pageOffset;
+                    float f3 = this.pageOffset;
                     f2 = 1.0f - (0.3f * f3);
                     f = 1.0f - (f3 * 0.1f);
                 } else {
-                    float f4 = anonymousClass1.pageOffset;
+                    float f4 = this.pageOffset;
                     f2 = 0.7f + (0.3f * f4);
                     f = 0.9f + (f4 * 0.1f);
                 }
             }
-            textViewArr[i2].setAlpha(f2);
-            textViewArr[i2].setScaleX(f);
-            textViewArr[i2].setScaleY(f);
+            textViewArr2[i2].setAlpha(f2);
+            this.titles[i2].setScaleX(f);
+            this.titles[i2].setScaleY(f);
+            i2++;
         }
-        anonymousClass1.titlesLayout.setTranslationX(measuredWidth2);
-        anonymousClass1.positiveButton.invalidate();
+    }
+
+    public void onStartRecord(int i) {
+    }
+
+    @Override
+    public void setLastVisible(boolean z) {
     }
 }

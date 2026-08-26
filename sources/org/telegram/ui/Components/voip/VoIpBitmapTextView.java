@@ -8,7 +8,7 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ComposeDrawable$$ExternalSyntheticLambda0;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
 
 public final class VoIpBitmapTextView extends View {
     public volatile Bitmap bitmap;
@@ -42,7 +42,7 @@ public final class VoIpBitmapTextView extends View {
     public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         if (z) {
-            Utilities.globalQueue.postRunnable(new ComposeDrawable$$ExternalSyntheticLambda0(this, 4));
+            Utilities.globalQueue.postRunnable(new GiftSheet$$ExternalSyntheticLambda9(this, 24));
         }
     }
 

@@ -30,7 +30,6 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.AnimatedFileBuffer;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
@@ -138,7 +137,7 @@ public class WebmEncoder {
                 canvas.drawBitmap(mediaEntity.bitmap, mediaEntity.matrix, this.bitmapPaint);
                 float f = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
                 mediaEntity.currentFrame = f;
-                if (f >= mediaEntity.lottieNative.mMetaData[0]) {
+                if (f >= mediaEntity.lottieNative.getFrameCount()) {
                     mediaEntity.currentFrame = 0.0f;
                     return;
                 }
@@ -152,10 +151,9 @@ public class WebmEncoder {
                 for (int i4 = (int) f3; i3 != i4; i4--) {
                     mediaEntity.animatedFileDrawable.getNextFrame(true);
                 }
-                AnimatedFileBuffer animatedFileBuffer = mediaEntity.animatedFileDrawable.backgroundBuffer;
-                Bitmap bitmap3 = animatedFileBuffer != null ? animatedFileBuffer.bitmap : null;
-                if (bitmap3 != null) {
-                    canvas.drawBitmap(bitmap3, mediaEntity.matrix, this.bitmapPaint);
+                Bitmap backgroundBitmap = mediaEntity.animatedFileDrawable.getBackgroundBitmap();
+                if (backgroundBitmap != null) {
+                    canvas.drawBitmap(backgroundBitmap, mediaEntity.matrix, this.bitmapPaint);
                     return;
                 }
                 return;
@@ -203,16 +201,16 @@ public class WebmEncoder {
                     return;
                 }
                 mediaEntity.bitmap = Bitmap.createBitmap(i5, i, Bitmap.Config.ARGB_8888);
-                RLottieNative rLottieNativeCreateFromFile = RLottieNative.createFromFile(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, null, false, null, false, 0, null);
+                RLottieNative rLottieNativeCreateFromFile = RLottieNative.createFromFile(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, false, null, false, 0);
                 mediaEntity.lottieNative = rLottieNativeCreateFromFile;
-                mediaEntity.framesPerDraw = rLottieNativeCreateFromFile != null ? rLottieNativeCreateFromFile.mMetaData[1] / this.fps : 0.0f;
+                mediaEntity.framesPerDraw = rLottieNativeCreateFromFile != null ? rLottieNativeCreateFromFile.getFps() / this.fps : 0.0f;
             } else if ((b & 4) != 0) {
                 mediaEntity.looped = false;
-                AnimatedFileDrawable animatedFileDrawable = new AnimatedFileDrawable(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, 512, 512, null, 0, true);
+                AnimatedFileDrawable animatedFileDrawable = new AnimatedFileDrawable(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, 512, 512, null);
                 mediaEntity.animatedFileDrawable = animatedFileDrawable;
-                mediaEntity.framesPerDraw = animatedFileDrawable.metaData[5] / this.fps;
+                mediaEntity.framesPerDraw = animatedFileDrawable.getFps() / this.fps;
                 mediaEntity.currentFrame = 1.0f;
-                animatedFileDrawable.getNextFrame(true);
+                mediaEntity.animatedFileDrawable.getNextFrame(true);
                 if (mediaEntity.type == 5) {
                     mediaEntity.firstSeek = true;
                 }
@@ -377,15 +375,13 @@ public class WebmEncoder {
 
         private void setupMatrix(VideoEditedInfo.MediaEntity mediaEntity) {
             AnimatedFileDrawable animatedFileDrawable;
-            Matrix matrix = new Matrix();
-            mediaEntity.matrix = matrix;
-            Bitmap bitmap = mediaEntity.bitmap;
-            if (bitmap == null && (animatedFileDrawable = mediaEntity.animatedFileDrawable) != null) {
-                AnimatedFileBuffer animatedFileBuffer = animatedFileDrawable.backgroundBuffer;
-                bitmap = animatedFileBuffer != null ? animatedFileBuffer.bitmap : null;
+            mediaEntity.matrix = new Matrix();
+            Bitmap backgroundBitmap = mediaEntity.bitmap;
+            if (backgroundBitmap == null && (animatedFileDrawable = mediaEntity.animatedFileDrawable) != null) {
+                backgroundBitmap = animatedFileDrawable.getBackgroundBitmap();
             }
-            if (bitmap != null) {
-                matrix.postScale(1.0f / bitmap.getWidth(), 1.0f / bitmap.getHeight());
+            if (backgroundBitmap != null) {
+                mediaEntity.matrix.postScale(1.0f / backgroundBitmap.getWidth(), 1.0f / backgroundBitmap.getHeight());
             }
             if (mediaEntity.type != 1 && (mediaEntity.subType & 2) != 0) {
                 mediaEntity.matrix.postScale(-1.0f, 1.0f, 0.5f, 0.5f);

@@ -1,14 +1,14 @@
 package org.telegram.ui.Components.chat;
 
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.ChatActivity;
 
 public final class ChatActivityDraftMessageMeasureController {
     public long groupIdToOverride;
     public boolean hasAdditionalHeight;
     public int messageIdToOverride;
     public int previousMessageHeight;
-    public ChatActivity.AnonymousClass21 recyclerView;
+    public RecyclerView recyclerView;
 
     public final boolean filter(MessageObject messageObject) {
         if (messageObject == null) {
@@ -39,7 +39,7 @@ public final class ChatActivityDraftMessageMeasureController {
         this.previousMessageHeight = i;
     }
 
-    public final void setRecyclerView(ChatActivity.AnonymousClass21 anonymousClass21) {
-        this.recyclerView = anonymousClass21;
+    public final void setRecyclerView(RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
     }
 }

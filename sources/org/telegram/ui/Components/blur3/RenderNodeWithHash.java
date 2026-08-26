@@ -2,6 +2,7 @@ package org.telegram.ui.Components.blur3;
 
 import android.graphics.Canvas;
 import android.graphics.RenderNode;
+import org.telegram.ui.Components.blur3.capture.IBlur3Hash;
 
 public final class RenderNodeWithHash {
     public final Blur3HashImpl hashBuilder = new Blur3HashImpl();
@@ -12,7 +13,7 @@ public final class RenderNodeWithHash {
     public final Renderer renderer;
 
     public interface Renderer {
-        void renderNodeCalculateHash(Blur3HashImpl blur3HashImpl);
+        void renderNodeCalculateHash(IBlur3Hash iBlur3Hash);
 
         void renderNodeUpdateDisplayList(Canvas canvas);
     }

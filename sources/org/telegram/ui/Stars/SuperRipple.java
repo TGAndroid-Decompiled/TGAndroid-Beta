@@ -5,13 +5,12 @@ import android.graphics.RuntimeShader;
 import android.view.RoundedCorner;
 import android.view.View;
 import android.view.WindowInsets;
-import androidx.credentials.Credential;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline0;
 
-public final class SuperRipple extends Credential {
+public final class SuperRipple extends ISuperRipple {
     public final float[] centerX;
     public final float[] centerY;
     public int count;
@@ -51,7 +50,7 @@ public final class SuperRipple extends Credential {
     }
 
     public final void setupSizeUniforms(boolean z) {
-        View view = (View) this.data;
+        View view = this.view;
         if (z || this.width != view.getWidth() || this.height != view.getHeight() || Math.abs(this.density - AndroidUtilities.density) > 0.01f) {
             RuntimeShader runtimeShader = this.shader;
             int width = view.getWidth();
@@ -79,7 +78,7 @@ public final class SuperRipple extends Credential {
         float[] fArr4;
         ArrayList arrayList = this.effects;
         boolean zIsEmpty = arrayList.isEmpty();
-        View view = (View) this.data;
+        View view = this.view;
         boolean z = false;
         if (!zIsEmpty) {
             boolean z2 = true;

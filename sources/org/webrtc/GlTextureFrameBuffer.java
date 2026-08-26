@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import android.opengl.GLES20;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
 
 public class GlTextureFrameBuffer {
@@ -52,7 +52,7 @@ public class GlTextureFrameBuffer {
 
     public void setSize(int i, int i2) {
         if (i <= 0 || i2 <= 0) {
-            throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "Invalid size: ", "x"));
+            throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(i, i2, "Invalid size: ", "x"));
         }
         if (i == this.width && i2 == this.height) {
             return;

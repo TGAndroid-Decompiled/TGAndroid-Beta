@@ -6,25 +6,43 @@ import android.graphics.Paint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
-public final class SendingFileDrawable extends StatusDrawable {
-    public final Paint currentPaint;
-    public float progress;
-    public boolean isChat = false;
-    public long lastUpdateTime = 0;
-    public boolean started = false;
+public class SendingFileDrawable extends StatusDrawable {
+    Paint currentPaint;
+    private float progress;
+    private boolean isChat = false;
+    private long lastUpdateTime = 0;
+    private boolean started = false;
 
     public SendingFileDrawable(boolean z) {
         if (z) {
             Paint paint = new Paint(1);
             this.currentPaint = paint;
             paint.setStyle(Paint.Style.STROKE);
-            paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            this.currentPaint.setStrokeCap(Paint.Cap.ROUND);
+            this.currentPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        }
+    }
+
+    private void update() {
+        long jCurrentTimeMillis = System.currentTimeMillis();
+        long j = jCurrentTimeMillis - this.lastUpdateTime;
+        this.lastUpdateTime = jCurrentTimeMillis;
+        if (j > 50) {
+            j = 50;
+        }
+        this.progress = (j / 500.0f) + this.progress;
+        while (true) {
+            float f = this.progress;
+            if (f <= 1.0f) {
+                invalidateLimited();
+                return;
+            }
+            this.progress = f - 1.0f;
         }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         Paint paint = this.currentPaint;
         if (paint == null) {
             paint = Theme.chat_statusRecordPaint;
@@ -52,47 +70,32 @@ public final class SendingFileDrawable extends StatusDrawable {
             i++;
             canvas = canvas2;
         }
-        if (!this.started) {
-            return;
-        }
-        long jCurrentTimeMillis = System.currentTimeMillis();
-        long j = jCurrentTimeMillis - this.lastUpdateTime;
-        this.lastUpdateTime = jCurrentTimeMillis;
-        if (j > 50) {
-            j = 50;
-        }
-        this.progress = (j / 500.0f) + this.progress;
-        while (true) {
-            float f2 = this.progress;
-            if (f2 <= 1.0f) {
-                invalidateLimited();
-                return;
-            }
-            this.progress = f2 - 1.0f;
+        if (this.started) {
+            update();
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return AndroidUtilities.dp(14.0f);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return AndroidUtilities.dp(18.0f);
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return 0;
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
     }
 
     @Override
-    public final void setColor(int i) {
+    public void setColor(int i) {
         Paint paint = this.currentPaint;
         if (paint != null) {
             paint.setColor(i);
@@ -100,23 +103,23 @@ public final class SendingFileDrawable extends StatusDrawable {
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
     }
 
     @Override
-    public final void setIsChat(boolean z) {
+    public void setIsChat(boolean z) {
         this.isChat = z;
     }
 
     @Override
-    public final void start() {
+    public void start() {
         this.lastUpdateTime = System.currentTimeMillis();
         this.started = true;
         invalidateSelf();
     }
 
     @Override
-    public final void stop() {
+    public void stop() {
         this.started = false;
     }
 }

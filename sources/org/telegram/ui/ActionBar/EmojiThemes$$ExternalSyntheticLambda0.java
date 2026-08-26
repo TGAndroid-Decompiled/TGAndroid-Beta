@@ -2,14 +2,10 @@ package org.telegram.ui.ActionBar;
 
 import android.util.Pair;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.StickerCategoriesListView;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda12;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public final class EmojiThemes$$ExternalSyntheticLambda0 implements Utilities.Callback {
@@ -32,13 +28,6 @@ public final class EmojiThemes$$ExternalSyntheticLambda0 implements Utilities.Ca
                 ResultCallback resultCallback = (ResultCallback) this.f$0;
                 if (resultCallback != null) {
                     resultCallback.onComplete(new Pair(Long.valueOf(this.f$1), wallpaperBitmapHolder));
-                }
-                break;
-            case 1:
-                TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
-                StickerCategoriesListView stickerCategoriesListView = (StickerCategoriesListView) this.f$0;
-                if (tL_messages_emojiGroups != null) {
-                    NotificationCenter.getInstance(UserConfig.selectedAccount).doOnIdle(new PollItemMenu$$ExternalSyntheticLambda12(stickerCategoriesListView, tL_messages_emojiGroups, this.f$1, 15));
                 }
                 break;
             default:

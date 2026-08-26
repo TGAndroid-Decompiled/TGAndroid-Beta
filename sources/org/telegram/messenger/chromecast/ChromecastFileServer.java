@@ -9,13 +9,13 @@ import android.util.Log;
 import android.util.Pair;
 import androidx.datastore.preferences.PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
+import com.android.billingclient.api.zzcm;
+import com.android.billingclient.api.zzcs;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.gms.cast.MediaMetadata;
-import com.google.android.gms.dynamite.zzf;
-import com.google.android.gms.internal.mlkit_language_id_common.zzij;
-import com.google.firebase.crashlytics.internal.common.CrashlyticsCore$$ExternalSyntheticLambda0;
+import com.google.android.gms.internal.mlkit_language_id_common.zzig;
+import com.google.firebase.messaging.FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0;
 import fi.iki.elonen.NanoHTTPD;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -36,16 +36,14 @@ import java.util.logging.Level;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
-import org.telegram.ui.PollItemMenu;
-import org.telegram.ui.ProfileActivity;
 
 public final class ChromecastFileServer extends NanoHTTPD {
     public static final ChromecastMedia ASSET_FALLBACK_FILE;
     public static final HashMap ASSET_FILES_MAP;
-    public final CrashlyticsCore$$ExternalSyntheticLambda0 assetDataSourceFactory;
+    public final FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0 assetDataSourceFactory;
     public final HashMap castedFiles;
     public Pair coverFile;
-    public final PollItemMenu.AnonymousClass8 fileDataSourceFactory;
+    public final zzcm fileDataSourceFactory;
     public final ExtendedDefaultDataSourceFactory mediaDataSourceFactory;
     public final AtomicInteger reqId;
     public boolean started;
@@ -61,7 +59,7 @@ public final class ChromecastFileServer extends NanoHTTPD {
     }
 
     static {
-        ChromecastMedia chromecastMedia = new ChromecastMedia(new RecyclerView.Recycler(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
+        ChromecastMedia chromecastMedia = new ChromecastMedia(new ChromecastMedia.Builder(Uri.parse("file:///android_asset/cast/default.png"), "image/png", "/assets/default"));
         ASSET_FALLBACK_FILE = chromecastMedia;
         ChromecastMedia[] chromecastMediaArr = {chromecastMedia};
         HashMap map = new HashMap();
@@ -71,14 +69,14 @@ public final class ChromecastFileServer extends NanoHTTPD {
     }
 
     public ChromecastFileServer() {
-        this.tempFileManagerFactory = new zzf(20);
-        this.asyncRunner = new ProfileActivity.AnonymousClass33(10);
+        this.tempFileManagerFactory = new zzcs(21);
+        this.asyncRunner = new NanoHTTPD.DefaultAsyncRunner(0);
         this.castedFiles = new HashMap();
         this.coverFile = null;
         this.started = false;
         this.reqId = new AtomicInteger();
-        this.assetDataSourceFactory = new CrashlyticsCore$$ExternalSyntheticLambda0(26);
-        this.fileDataSourceFactory = new PollItemMenu.AnonymousClass8(11);
+        this.assetDataSourceFactory = new FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0(14);
+        this.fileDataSourceFactory = new zzcm();
         this.mediaDataSourceFactory = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
     }
 
@@ -123,9 +121,9 @@ public final class ChromecastFileServer extends NanoHTTPD {
         if (this.started) {
             try {
                 NanoHTTPD.safeClose(this.myServerSocket);
-                ProfileActivity.AnonymousClass33 anonymousClass33 = this.asyncRunner;
-                anonymousClass33.getClass();
-                ArrayList arrayList = new ArrayList((List) anonymousClass33.this$0);
+                NanoHTTPD.DefaultAsyncRunner defaultAsyncRunner = this.asyncRunner;
+                defaultAsyncRunner.getClass();
+                ArrayList arrayList = new ArrayList((List) defaultAsyncRunner.running);
                 int size = arrayList.size();
                 int i = 0;
                 while (i < size) {
@@ -253,14 +251,14 @@ public final class ChromecastFileServer extends NanoHTTPD {
                 if (sb.length() > 0) {
                     sb.append('\n');
                 }
-                sb.append(zzij.m("http://", str, (String) this.coverFile.first));
+                sb.append(zzig.m("http://", str, (String) this.coverFile.first));
             }
             while (i < 2) {
                 for (Map.Entry entry : (i == 0 ? map2 : map).entrySet()) {
                     if (sb.length() > 0) {
                         sb.append('\n');
                     }
-                    sb.append(zzij.m("http://", str, (String) entry.getKey()));
+                    sb.append(zzig.m("http://", str, (String) entry.getKey()));
                     MediaMetadata mediaMetadata = ((ChromecastMedia) entry.getValue()).mediaMetadata;
                     if (mediaMetadata != null) {
                         MediaMetadata.throwIfWrongType(1, "com.google.android.gms.cast.metadata.TITLE");
@@ -297,7 +295,7 @@ public final class ChromecastFileServer extends NanoHTTPD {
         boolean zStartsWith = uri.toString().startsWith("data:application/x-mpegurl;base64,");
         String str3 = chromecastMedia.mimeType;
         if (zStartsWith) {
-            return NanoHTTPD.newFixedLengthResponse(status, str3, new String(Base64.decode(uri.toString().substring(34), 0)).replaceAll("mtproto:", zzij.m("http://", str2, "/mtproto_")));
+            return NanoHTTPD.newFixedLengthResponse(status, str3, new String(Base64.decode(uri.toString().substring(34), 0)).replaceAll("mtproto:", zzig.m("http://", str2, "/mtproto_")));
         }
         DataSource dataSourceCreateDataSource = (uri.toString().startsWith("file://") ? uri.toString().startsWith("file:///android_asset/") ? this.assetDataSourceFactory : this.fileDataSourceFactory : this.mediaDataSourceFactory).createDataSource();
         Map map3 = Collections.EMPTY_MAP;
@@ -338,7 +336,7 @@ public final class ChromecastFileServer extends NanoHTTPD {
                 dataSourceCreateDataSource.open(new DataSpec(uri, null, map3, j4, j5, null, 0));
                 dataSourceCreateDataSource.read(bArr, 0, i2);
                 dataSourceCreateDataSource.close();
-                return NanoHTTPD.newFixedLengthResponse(status, str3, new String(bArr).replaceAll("mtproto:", zzij.m("http://", str2, "/mtproto_")));
+                return NanoHTTPD.newFixedLengthResponse(status, str3, new String(bArr).replaceAll("mtproto:", zzig.m("http://", str2, "/mtproto_")));
             }
             if (j != 0) {
                 DataSourceInputStream dataSourceInputStream = new DataSourceInputStream(dataSourceCreateDataSource, new DataSpec(uri, null, map3, j4, j5, null, 0));
@@ -373,7 +371,7 @@ public final class ChromecastFileServer extends NanoHTTPD {
             dataSourceCreateDataSource.open(new DataSpec(uri, null, map3, j4, j5, null, 0));
             dataSourceCreateDataSource.read(bArr2, 0, i3);
             dataSourceCreateDataSource.close();
-            return NanoHTTPD.newFixedLengthResponse(status, str3, new String(bArr2).replaceAll("mtproto:", zzij.m("http://", str2, "/mtproto_")));
+            return NanoHTTPD.newFixedLengthResponse(status, str3, new String(bArr2).replaceAll("mtproto:", zzig.m("http://", str2, "/mtproto_")));
         }
         if (j != 0) {
             DataSourceInputStream dataSourceInputStream2 = new DataSourceInputStream(dataSourceCreateDataSource, new DataSpec(uri, null, map3, j4, j5, null, 0));

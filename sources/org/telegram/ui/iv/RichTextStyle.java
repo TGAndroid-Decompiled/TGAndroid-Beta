@@ -1,5 +1,6 @@
 package org.telegram.ui.iv;
 
+import android.graphics.Paint;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
@@ -56,7 +57,7 @@ public abstract class RichTextStyle {
                 if (spannableStringBuilder.length() > length) {
                     TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
                     textStyleRun.flags = 8192;
-                    spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun, 0), length, spannableStringBuilder.length(), 33);
+                    spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun), length, spannableStringBuilder.length(), 33);
                     return;
                 }
                 return;
@@ -72,7 +73,7 @@ public abstract class RichTextStyle {
                 if (spannableStringBuilder.length() > length) {
                     TextStyleSpan.TextStyleRun textStyleRun2 = new TextStyleSpan.TextStyleRun();
                     textStyleRun2.flags = 4096;
-                    spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun2, 0), length, spannableStringBuilder.length(), 33);
+                    spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun2), length, spannableStringBuilder.length(), 33);
                     return;
                 }
                 return;
@@ -86,7 +87,7 @@ public abstract class RichTextStyle {
             int length2 = spannableStringBuilder.length();
             spannableStringBuilder.append((CharSequence) str2);
             if (i != 0) {
-                spannableStringBuilder.setSpan(spanFor(i, pageBlock), length2, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(spanFor(pageBlock, i), length2, spannableStringBuilder.length(), 33);
                 return;
             }
             return;
@@ -97,11 +98,11 @@ public abstract class RichTextStyle {
             CharSequence charSequence = (str3 == null || str3.isEmpty()) ? "😀" : textcustomemoji.alt;
             int length3 = spannableStringBuilder.length();
             spannableStringBuilder.append(charSequence);
-            AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(textcustomemoji.document_id, 1.2f, null);
+            AnimatedEmojiSpan animatedEmojiSpan = new AnimatedEmojiSpan(textcustomemoji.document_id, (Paint.FontMetricsInt) null);
             animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
             spannableStringBuilder.setSpan(animatedEmojiSpan, length3, spannableStringBuilder.length(), 33);
             if (i != 0) {
-                spannableStringBuilder.setSpan(spanFor(i, pageBlock), length3, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(spanFor(pageBlock, i), length3, spannableStringBuilder.length(), 33);
                 return;
             }
             return;
@@ -153,7 +154,7 @@ public abstract class RichTextStyle {
             if (spannableStringBuilder.length() <= length6 || i == 0) {
                 return;
             }
-            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length6, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(spanFor(pageBlock, i), length6, spannableStringBuilder.length(), 33);
             return;
         }
         if (richText instanceof TL_iv.textButton) {
@@ -196,7 +197,7 @@ public abstract class RichTextStyle {
         int length9 = spannableStringBuilder.length();
         spannableStringBuilder.append((CharSequence) strPlainOf);
         if (i != 0) {
-            spannableStringBuilder.setSpan(spanFor(i, pageBlock), length9, spannableStringBuilder.length(), 33);
+            spannableStringBuilder.setSpan(spanFor(pageBlock, i), length9, spannableStringBuilder.length(), 33);
         }
     }
 
@@ -248,11 +249,11 @@ public abstract class RichTextStyle {
         TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) spanned.getSpans(i, i2, TextStyleSpan.class);
         int i3 = 0;
         for (TextStyleSpan textStyleSpan : textStyleSpanArr) {
-            int i4 = textStyleSpan.style.flags;
-            if ((i4 & 512) != 0) {
-                i4 |= 256;
+            int styleFlags = textStyleSpan.getStyleFlags();
+            if ((styleFlags & 512) != 0) {
+                styleFlags |= 256;
             }
-            i3 |= i4;
+            i3 |= styleFlags;
         }
         return 114975 & i3;
     }
@@ -428,40 +429,40 @@ public abstract class RichTextStyle {
         for (TextStyleSpan textStyleSpan : (TextStyleSpan[]) spannable.getSpans(iMax, iMax2, TextStyleSpan.class)) {
             int spanStart = spannable.getSpanStart(textStyleSpan);
             int spanEnd = spannable.getSpanEnd(textStyleSpan);
-            int i4 = textStyleSpan.style.flags;
+            int styleFlags = textStyleSpan.getStyleFlags();
             spannable.removeSpan(textStyleSpan);
-            if (spanStart < iMax && i4 != 0) {
-                spannable.setSpan(spanFor(i4, pageBlock), spanStart, iMax, 33);
+            if (spanStart < iMax && styleFlags != 0) {
+                spannable.setSpan(spanFor(pageBlock, styleFlags), spanStart, iMax, 33);
             }
-            if (iMax2 < spanEnd && i4 != 0) {
-                spannable.setSpan(spanFor(i4, pageBlock), iMax2, spanEnd, 33);
+            if (iMax2 < spanEnd && styleFlags != 0) {
+                spannable.setSpan(spanFor(pageBlock, styleFlags), iMax2, spanEnd, 33);
             }
             int iMax3 = Math.max(spanStart, iMax);
             int iMin = Math.min(spanEnd, iMax2);
-            int i5 = z ? i4 | i3 : (~i3) & i4;
-            if (iMax3 < iMin && i5 != 0) {
-                spannable.setSpan(spanFor(i5, pageBlock), iMax3, iMin, 33);
+            int i4 = z ? styleFlags | i3 : (~i3) & styleFlags;
+            if (iMax3 < iMin && i4 != 0) {
+                spannable.setSpan(spanFor(pageBlock, i4), iMax3, iMin, 33);
             }
         }
         if (z) {
             while (iMax < iMax2) {
                 int iNextSpanTransition = spannable.nextSpanTransition(iMax, iMax2, TextStyleSpan.class);
                 if (flagsBetween(spannable, iMax, iNextSpanTransition) == 0 && iMax < iNextSpanTransition && i3 != 0) {
-                    spannable.setSpan(spanFor(i3, pageBlock), iMax, iNextSpanTransition, 33);
+                    spannable.setSpan(spanFor(pageBlock, i3), iMax, iNextSpanTransition, 33);
                 }
                 iMax = iNextSpanTransition;
             }
         }
     }
 
-    public static TextStyleSpan spanFor(int i, TL_iv.PageBlock pageBlock) {
+    public static TextStyleSpan spanFor(TL_iv.PageBlock pageBlock, int i) {
         TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
         textStyleRun.flags = i;
         textStyleRun.header = (pageBlock instanceof TL_iv.pageBlockTitle) || (pageBlock instanceof TL_iv.pageBlockSubheader) || (pageBlock instanceof TL_iv.pageBlockHeader) || (pageBlock instanceof TL_iv.pageBlockHeading1) || (pageBlock instanceof TL_iv.pageBlockHeading2) || (pageBlock instanceof TL_iv.pageBlockHeading3) || (pageBlock instanceof TL_iv.pageBlockHeading4) || (pageBlock instanceof TL_iv.pageBlockHeading5) || (pageBlock instanceof TL_iv.pageBlockHeading6);
-        return new TextStyleSpan(textStyleRun, 0);
+        return new TextStyleSpan(textStyleRun);
     }
 
-    public static int stylesFullyCovering(int i, int i2, CharSequence charSequence) {
+    public static int stylesFullyCovering(CharSequence charSequence, int i, int i2) {
         int[] iArr = STYLE_FLAGS;
         int i3 = 0;
         for (int i4 = 0; i4 < 9; i4++) {
@@ -570,9 +571,9 @@ public abstract class RichTextStyle {
         if (formattedDateSpan == null) {
             return richText11;
         }
+        TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = formattedDateSpan.entity;
         TL_iv.textDate textdate = new TL_iv.textDate();
         textdate.text = richText11;
-        TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = formattedDateSpan.entity;
         textdate.flags = tL_messageEntityFormattedDate.flags;
         textdate.relative = tL_messageEntityFormattedDate.relative;
         textdate.short_time = tL_messageEntityFormattedDate.short_time;

@@ -22,8 +22,8 @@ import org.telegram.tgnet.json.TLJsonBuilder;
 import org.telegram.tgnet.json.TLJsonParser;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda37;
-import org.telegram.ui.LinkManager$3$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda199;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
 
 public class GroupCallMessagesController extends BaseController {
     private static volatile GroupCallMessagesController[] Instance = new GroupCallMessagesController[4];
@@ -202,7 +202,7 @@ public class GroupCallMessagesController extends BaseController {
                     it2.next().onNewGroupCallMessage(j, groupCallMessage);
                 }
             }
-            AndroidUtilities.runOnUIThread(new LinkManager$3$$ExternalSyntheticLambda0(this, j, 4), getAppGlobalConfig().groupCallMessageTtl.get(TimeUnit.MILLISECONDS));
+            AndroidUtilities.runOnUIThread(new RichEditor$$ExternalSyntheticLambda48(this, j, 6), getAppGlobalConfig().groupCallMessageTtl.get(TimeUnit.MILLISECONDS));
         }
     }
 
@@ -293,6 +293,6 @@ public class GroupCallMessagesController extends BaseController {
         if (getUserConfig().clientUserId == peerDialogId) {
             return;
         }
-        Utilities.globalQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda37(8, j, peerDialogId, this, bArr));
+        Utilities.globalQueue.postRunnable(new StarGiftSheet$$ExternalSyntheticLambda199(this, j, peerDialogId, bArr, 10));
     }
 }

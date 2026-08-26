@@ -43,7 +43,7 @@ public class NotificationBadge {
             intent.putExtra("CNAME", NotificationBadge.componentName.getClassName());
             intent.putExtra("COUNT", i);
             if (NotificationBadge.canResolveBroadcast(intent)) {
-                AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda57(intent, 1));
+                AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda56(1, intent));
             }
         }
 
@@ -70,7 +70,7 @@ public class NotificationBadge {
             intent.putExtra("count", i);
             intent.putExtra("class", NotificationBadge.componentName.getClassName());
             if (NotificationBadge.canResolveBroadcast(intent)) {
-                AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda57(intent, 2));
+                AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda56(2, intent));
             }
         }
 
@@ -98,7 +98,7 @@ public class NotificationBadge {
             intent.putExtra("badge_count_class_name", NotificationBadge.componentName.getClassName());
             intent.putExtra("badge_vip_count", 0);
             if (NotificationBadge.canResolveBroadcast(intent)) {
-                AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda57(intent, 3));
+                AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda56(3, intent));
             }
         }
 
@@ -133,7 +133,7 @@ public class NotificationBadge {
             intent.putExtra("badge_count", i);
             intent.putExtra("badge_count_package_name", NotificationBadge.componentName.getPackageName());
             intent.putExtra("badge_count_class_name", NotificationBadge.componentName.getClassName());
-            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda57(intent, 4));
+            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda56(4, intent));
         }
 
         @Override
@@ -323,7 +323,7 @@ public class NotificationBadge {
             intent.putExtra("com.sonyericsson.home.intent.extra.badge.ACTIVITY_NAME", NotificationBadge.componentName.getClassName());
             intent.putExtra("com.sonyericsson.home.intent.extra.badge.MESSAGE", String.valueOf(i));
             intent.putExtra("com.sonyericsson.home.intent.extra.badge.SHOW_MESSAGE", i > 0);
-            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda57(intent, 5));
+            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda56(5, intent));
         }
 
         private void executeBadgeByContentProvider(int i) {

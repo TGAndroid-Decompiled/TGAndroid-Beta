@@ -1,6 +1,6 @@
 package org.telegram.messenger;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -1225,7 +1225,7 @@ public class DatabaseMigrationHelper {
         long jCurrentTimeMillis;
         boolean z3;
         long j;
-        File file4 = new File(ApplicationLoader.getFilesDirFixed(), SurfaceContainer$$ExternalSyntheticOutline0.m(i, "recover_database_", "/"));
+        File file4 = new File(ApplicationLoader.getFilesDirFixed(), Fragment$$ExternalSyntheticOutline0.m(i, "recover_database_", "/"));
         file4.mkdirs();
         File file5 = new File(file4, "cache4.db");
         File file6 = new File(file4, "cache4.db-wal");

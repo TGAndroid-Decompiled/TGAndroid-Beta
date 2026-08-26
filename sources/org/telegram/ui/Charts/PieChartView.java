@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.DiffUtil;
 import com.google.android.exoplayer2.RendererCapabilities;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjd;
+import com.google.android.gms.internal.mlkit_language_id_common.zzir;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Charts.data.ChartData;
@@ -23,7 +23,7 @@ import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.PieLegendView;
 import org.telegram.ui.Charts.view_data.StackLinearViewData;
 import org.telegram.ui.Charts.view_data.TransitionParams;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda14;
+import org.telegram.ui.Stars.SuperRipple$$ExternalSyntheticLambda7;
 
 public final class PieChartView extends StackLinearChartView {
     public float MAX_TEXT_SIZE;
@@ -168,7 +168,7 @@ public final class PieChartView extends StackLinearChartView {
                     if (canvas != null) {
                         canvas.save();
                     }
-                    double dM = zzjd.m(f14, 2.0f, 360.0f, f13);
+                    double dM = zzir.m(f14, 2.0f, 360.0f, f13);
                     if (((PieChartViewData) arrayList.get(i6)).selectionA > 0.0f) {
                         float interpolation = fastOutSlowInInterpolator.getInterpolation(((PieChartViewData) arrayList.get(i6)).selectionA);
                         if (canvas != null) {
@@ -207,7 +207,7 @@ public final class PieChartView extends StackLinearChartView {
                 if (((PieChartViewData) arrayList.get(i8)).alpha > 0.0f || ((PieChartViewData) arrayList.get(i8)).enabled) {
                     float f16 = (((PieChartViewData) arrayList.get(i8)).drawingPart * ((PieChartViewData) arrayList.get(i8)).alpha) / f12;
                     canvas.save();
-                    double dM2 = zzjd.m(f16, f, 360.0f, f15);
+                    double dM2 = zzir.m(f16, f, 360.0f, f15);
                     if (((PieChartViewData) arrayList.get(i8)).selectionA > 0.0f) {
                         f2 = 2.0f;
                         double interpolation2 = fastOutSlowInInterpolator.getInterpolation(((PieChartViewData) arrayList.get(i8)).selectionA);
@@ -588,7 +588,7 @@ public final class PieChartView extends StackLinearChartView {
                 valueAnimator.cancel();
             }
             float f4 = this.sum;
-            ValueAnimator valueAnimatorCreateAnimator = BaseChartView.createAnimator(pieChartViewData.drawingPart, f4 == 0.0f ? 0.0f : this.values[i] / f4, new QrActivity$$ExternalSyntheticLambda14(5, this, pieChartViewData));
+            ValueAnimator valueAnimatorCreateAnimator = BaseChartView.createAnimator(pieChartViewData.drawingPart, f4 == 0.0f ? 0.0f : this.values[i] / f4, new SuperRipple$$ExternalSyntheticLambda7(4, this, pieChartViewData));
             pieChartViewData.animator = valueAnimatorCreateAnimator;
             valueAnimatorCreateAnimator.start();
             i++;

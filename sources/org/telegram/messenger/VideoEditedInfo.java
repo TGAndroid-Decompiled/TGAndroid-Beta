@@ -7,7 +7,7 @@ import android.graphics.PointF;
 import android.graphics.SurfaceTexture;
 import android.text.TextUtils;
 import android.view.View;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.File;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
@@ -289,7 +289,7 @@ public class VideoEditedInfo {
         sb.append("_");
         sb.append(j4);
         sb.append("_-");
-        return SurfaceContainer$$ExternalSyntheticOutline0.m(str3, "_", str4, sb);
+        return Fragment$$ExternalSyntheticOutline0.m(str3, "_", str4, sb);
     }
 
     public boolean needConvert() {

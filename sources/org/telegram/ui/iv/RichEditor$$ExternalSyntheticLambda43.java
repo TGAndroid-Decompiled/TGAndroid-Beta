@@ -1,6 +1,5 @@
 package org.telegram.ui.iv;
 
-import android.text.Editable;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
@@ -19,10 +18,10 @@ public final class RichEditor$$ExternalSyntheticLambda43 implements ChatAttachAl
     }
 
     @Override
-    public void didSelectAudio(ArrayList arrayList, Editable editable, boolean z, int i, int i2, long j, boolean z2, long j2) {
+    public void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
         RichEditor richEditor = this.f$0;
         richEditor.getClass();
-        if (!arrayList.isEmpty()) {
+        if (arrayList != null && !arrayList.isEmpty()) {
             richEditor.listView.attachAudio((MessageObject) arrayList.get(0));
         }
         this.f$1.dismiss(true);

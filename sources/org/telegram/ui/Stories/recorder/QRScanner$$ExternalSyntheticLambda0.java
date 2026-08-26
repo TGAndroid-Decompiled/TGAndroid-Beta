@@ -96,7 +96,7 @@ public final class QRScanner$$ExternalSyntheticLambda0 implements Runnable {
                         QRScanner.Detected detected2 = qRScanner.lastDetected;
                         if ((detected2 != null) != (detected != null)) {
                             qRScanner.lastDetected = detected;
-                            AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(24, qRScanner, detected));
+                            AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(27, qRScanner, detected));
                         } else if (detected != null && detected2 != null) {
                             if (TextUtils.equals(detected.link, detected2.link)) {
                                 PointF[] pointFArr2 = detected.points;
@@ -104,14 +104,14 @@ public final class QRScanner$$ExternalSyntheticLambda0 implements Runnable {
                                 if (pointFArr2 != pointFArr3) {
                                     if (pointFArr2.length != pointFArr3.length) {
                                         qRScanner.lastDetected = detected;
-                                        AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(24, qRScanner, detected));
+                                        AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(27, qRScanner, detected));
                                     } else {
                                         while (true) {
                                             PointF[] pointFArr4 = detected.points;
                                             if (i < pointFArr4.length) {
                                                 if (Math.abs(pointFArr4[i].x - detected2.points[i].x) > 0.001f || Math.abs(detected.points[i].y - detected2.points[i].y) > 0.001f) {
                                                     qRScanner.lastDetected = detected;
-                                                    AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(24, qRScanner, detected));
+                                                    AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(27, qRScanner, detected));
                                                 } else {
                                                     i++;
                                                 }
@@ -121,7 +121,7 @@ public final class QRScanner$$ExternalSyntheticLambda0 implements Runnable {
                                 }
                             } else {
                                 qRScanner.lastDetected = detected;
-                                AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(24, qRScanner, detected));
+                                AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(27, qRScanner, detected));
                             }
                         }
                     }

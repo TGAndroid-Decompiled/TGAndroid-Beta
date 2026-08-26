@@ -11,7 +11,15 @@ public final class FixedHeightEmptyCell extends View {
     public FixedHeightEmptyCell(Context context, int i, int i2) {
         super(context);
         this.$r8$classId = i2;
-        this.heightInDp = i;
+        switch (i2) {
+            case 1:
+                this.heightInDp = i;
+                super(context);
+                break;
+            default:
+                this.heightInDp = i;
+                break;
+        }
     }
 
     @Override
@@ -20,18 +28,9 @@ public final class FixedHeightEmptyCell extends View {
             case 0:
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.heightInDp), 1073741824));
                 break;
-            case 1:
+            default:
                 super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.heightInDp), 1073741824));
                 break;
-            default:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(this.heightInDp, 1073741824));
-                break;
         }
-    }
-
-    public FixedHeightEmptyCell(Context context, int i) {
-        super(context);
-        this.$r8$classId = 0;
-        this.heightInDp = i;
     }
 }

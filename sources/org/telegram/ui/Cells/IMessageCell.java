@@ -1,5 +1,6 @@
 package org.telegram.ui.Cells;
 
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 
@@ -12,7 +13,11 @@ public interface IMessageCell {
 
     float getAlpha();
 
+    ImageReceiver getAvatarImage();
+
     float getCheckBoxTranslation();
+
+    MessageObject.GroupedMessagePosition getCurrentPosition();
 
     float getDeltaBottom();
 

@@ -2,31 +2,42 @@ package org.telegram.ui.Components;
 
 import androidx.dynamicanimation.animation.FloatPropertyCompat;
 
-public final class SimpleFloatPropertyCompat extends FloatPropertyCompat {
-    public final Getter getter;
-    public float multiplier = 1.0f;
-    public final Setter setter;
+public class SimpleFloatPropertyCompat<T> extends FloatPropertyCompat {
+    private Getter<T> getter;
+    private float multiplier;
+    private Setter<T> setter;
 
-    public interface Getter {
-        float get(Object obj);
+    public interface Getter<T> {
+        float get(T t);
     }
 
-    public interface Setter {
-        void set(Object obj, float f);
+    public interface Setter<T> {
+        void set(T t, float f);
     }
 
-    public SimpleFloatPropertyCompat(Getter getter, Setter setter) {
+    public SimpleFloatPropertyCompat(String str, Getter<T> getter, Setter<T> setter) {
+        super(str);
+        this.multiplier = 1.0f;
         this.getter = getter;
         this.setter = setter;
     }
 
-    @Override
-    public final float getValue(Object obj) {
-        return this.getter.get(obj) * this.multiplier;
+    public float getMultiplier() {
+        return this.multiplier;
     }
 
     @Override
-    public final void setValue(Object obj, float f) {
-        this.setter.set(obj, f / this.multiplier);
+    public float getValue(T t) {
+        return this.getter.get(t) * this.multiplier;
+    }
+
+    public SimpleFloatPropertyCompat<T> setMultiplier(float f) {
+        this.multiplier = f;
+        return this;
+    }
+
+    @Override
+    public void setValue(T t, float f) {
+        this.setter.set(t, f / this.multiplier);
     }
 }

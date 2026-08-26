@@ -11,7 +11,7 @@ public final class ImageLoader$5$$ExternalSyntheticLambda2 implements Runnable {
     public final Object f$2;
     public final boolean f$3;
 
-    public ImageLoader$5$$ExternalSyntheticLambda2(int i, int i2, Object obj, TLObject tLObject, boolean z) {
+    public ImageLoader$5$$ExternalSyntheticLambda2(Object obj, TLObject tLObject, boolean z, int i, int i2) {
         this.$r8$classId = i2;
         this.f$0 = obj;
         this.f$2 = tLObject;

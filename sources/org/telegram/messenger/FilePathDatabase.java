@@ -2,8 +2,8 @@ package org.telegram.messenger;
 
 import android.os.Looper;
 import android.util.LongSparseArray;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.File;
 import java.io.IOException;
@@ -58,7 +58,7 @@ public class FilePathDatabase {
     private void createBackup() {
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (this.currentAccount != 0) {
-            File file = new File(filesDirFixed, SurfaceContainer$$ExternalSyntheticOutline0.m(this.currentAccount, "/", new StringBuilder("account")));
+            File file = new File(filesDirFixed, Fragment$$ExternalSyntheticOutline0.m(this.currentAccount, "/", new StringBuilder("account")));
             file.mkdirs();
             filesDirFixed = file;
         }
@@ -377,7 +377,7 @@ public class FilePathDatabase {
     private boolean restoreBackup() {
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (this.currentAccount != 0) {
-            File file = new File(filesDirFixed, SurfaceContainer$$ExternalSyntheticOutline0.m(this.currentAccount, "/", new StringBuilder("account")));
+            File file = new File(filesDirFixed, Fragment$$ExternalSyntheticOutline0.m(this.currentAccount, "/", new StringBuilder("account")));
             file.mkdirs();
             filesDirFixed = file;
         }
@@ -405,7 +405,7 @@ public class FilePathDatabase {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         long jCurrentTimeMillis = System.currentTimeMillis();
         long[] jArr = new long[1];
-        postToFrontRunnable(new ImageLoader$$ExternalSyntheticLambda10(this, arrayList2, jArr, countDownLatch, 7));
+        postToFrontRunnable(new ImageLoader$$ExternalSyntheticLambda10(7, this, arrayList2, jArr, countDownLatch));
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -416,7 +416,7 @@ public class FilePathDatabase {
         sb.append(" time=");
         sb.append(System.currentTimeMillis() - jCurrentTimeMillis);
         sb.append(" thread_time=");
-        zzjj.m(sb, jArr[0]);
+        zzjg.m(sb, jArr[0]);
         if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
             FileLog.e(new Exception("warning, not allowed in main thread"));
         }
@@ -430,7 +430,7 @@ public class FilePathDatabase {
     public void createDatabase(int i, boolean z) {
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (this.currentAccount != 0) {
-            File file = new File(filesDirFixed, SurfaceContainer$$ExternalSyntheticOutline0.m(this.currentAccount, "/", new StringBuilder("account")));
+            File file = new File(filesDirFixed, Fragment$$ExternalSyntheticOutline0.m(this.currentAccount, "/", new StringBuilder("account")));
             file.mkdirs();
             filesDirFixed = file;
         }
@@ -725,7 +725,7 @@ public class FilePathDatabase {
     public LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> lookupFiles(ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> longSparseArray = new LongSparseArray<>();
-        postRunnable(new ImageLoader$$ExternalSyntheticLambda10(this, arrayList, longSparseArray, countDownLatch, 6));
+        postRunnable(new ImageLoader$$ExternalSyntheticLambda10(6, this, arrayList, longSparseArray, countDownLatch));
         try {
             countDownLatch.await();
             return longSparseArray;

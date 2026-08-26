@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
@@ -14,47 +15,53 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import androidx.core.math.MathUtils;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
-import com.android.billingclient.api.zzcv;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji$EmojiSpan$$ExternalSyntheticOutline0;
+import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline1;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.pip.PipSource;
 import org.telegram.messenger.pip.source.IPipSourceDelegate;
-import org.telegram.messenger.pip.utils.Trigger;
-import org.telegram.ui.ActionIntroActivity;
+import org.telegram.ui.Cells.ChatLoadingCell;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.Crop.CropAreaView;
+import org.telegram.ui.Components.Crop.CropGestureDetector;
+import org.telegram.ui.Components.Crop.CropView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
-import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.voip.RTMPStreamPipOverlay;
-import org.telegram.ui.IntroActivity;
-import org.telegram.ui.PaymentFormActivity;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda97;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
+import org.telegram.ui.Stars.BalanceCloud$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stories.recorder.LivePlayerView;
-import org.telegram.ui.TodoItemMenu;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda31;
+import org.telegram.ui.bots.BotWebViewSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.iv.RichMediaCell$$ExternalSyntheticLambda1;
+import org.telegram.ui.web.AddressBarList;
 import org.webrtc.TextureViewRenderer;
 
 public final class LiveStoryPipOverlay implements NotificationCenter.NotificationCenterDelegate, IPipSourceDelegate {
-    public static final SimpleFloatPropertyCompat PIP_X_PROPERTY = new SimpleFloatPropertyCompat(new PhotoViewer$$ExternalSyntheticLambda97(23), new PhotoViewer$$ExternalSyntheticLambda97(24));
-    public static final SimpleFloatPropertyCompat PIP_Y_PROPERTY = new SimpleFloatPropertyCompat(new PhotoViewer$$ExternalSyntheticLambda97(25), new PhotoViewer$$ExternalSyntheticLambda97(26));
+    public static final SimpleFloatPropertyCompat PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", new LivePlayer$$ExternalSyntheticLambda1(29), new BotWebViewSheet$$ExternalSyntheticLambda2(1));
+    public static final SimpleFloatPropertyCompat PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", new BotWebViewSheet$$ExternalSyntheticLambda2(2), new BotWebViewSheet$$ExternalSyntheticLambda2(3));
     public static final LiveStoryPipOverlay instance = new LiveStoryPipOverlay();
     public Float aspectRatio;
     public BackupImageView avatarImageView;
     public View consumingChild;
-    public IntroActivity.AnonymousClass1 contentFrameLayout;
-    public ActionIntroActivity.AnonymousClass2 contentView;
+    public ChatLoadingCell.AnonymousClass1 contentFrameLayout;
+    public AnonymousClass6 contentView;
     public FrameLayout controlsView;
     public int currentAccount;
-    public PaymentFormActivity.AnonymousClass2 flickerView;
-    public zzcv gestureDetector;
+    public AddressBarList.AnonymousClass2 flickerView;
+    public GestureDetectorCompat gestureDetector;
     public boolean isScrollDisallowed;
     public boolean isScrolling;
     public boolean isShowingControls;
@@ -78,7 +85,7 @@ public final class LiveStoryPipOverlay implements NotificationCenter.Notificatio
     public float maxScaleFactor = 1.4f;
     public boolean placeholderShown = true;
     public float scaleFactor = 1.0f;
-    public final LivePlayer$1$$ExternalSyntheticLambda0 dismissControlsCallback = new LivePlayer$1$$ExternalSyntheticLambda0(this, 7);
+    public final BalanceCloud$$ExternalSyntheticLambda1 dismissControlsCallback = new BalanceCloud$$ExternalSyntheticLambda1(this, 22);
 
     public final class AnonymousClass4 extends GestureDetector.SimpleOnGestureListener {
         public final int $r8$classId;
@@ -248,16 +255,16 @@ public final class LiveStoryPipOverlay implements NotificationCenter.Notificatio
                     LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
                     if (liveStoryPipOverlay.scaleAnimator == null) {
                         boolean z = liveStoryPipOverlay.postedDismissControls;
-                        LivePlayer$1$$ExternalSyntheticLambda0 livePlayer$1$$ExternalSyntheticLambda0 = liveStoryPipOverlay.dismissControlsCallback;
+                        BalanceCloud$$ExternalSyntheticLambda1 balanceCloud$$ExternalSyntheticLambda1 = liveStoryPipOverlay.dismissControlsCallback;
                         if (z) {
-                            AndroidUtilities.cancelRunOnUIThread(livePlayer$1$$ExternalSyntheticLambda0);
+                            AndroidUtilities.cancelRunOnUIThread(balanceCloud$$ExternalSyntheticLambda1);
                             liveStoryPipOverlay.postedDismissControls = false;
                         }
                         boolean z2 = !liveStoryPipOverlay.isShowingControls;
                         liveStoryPipOverlay.isShowingControls = z2;
                         liveStoryPipOverlay.toggleControls$1(z2);
                         if (liveStoryPipOverlay.isShowingControls && !liveStoryPipOverlay.postedDismissControls) {
-                            AndroidUtilities.runOnUIThread(livePlayer$1$$ExternalSyntheticLambda0, 2500L);
+                            AndroidUtilities.runOnUIThread(balanceCloud$$ExternalSyntheticLambda1, 2500L);
                             liveStoryPipOverlay.postedDismissControls = true;
                         }
                     }
@@ -266,22 +273,89 @@ public final class LiveStoryPipOverlay implements NotificationCenter.Notificatio
                     RTMPStreamPipOverlay rTMPStreamPipOverlay = (RTMPStreamPipOverlay) this.this$0;
                     if (rTMPStreamPipOverlay.scaleAnimator == null) {
                         boolean z3 = rTMPStreamPipOverlay.postedDismissControls;
-                        Tooltip$$ExternalSyntheticLambda0 tooltip$$ExternalSyntheticLambda0 = rTMPStreamPipOverlay.dismissControlsCallback;
+                        GiftSheet$$ExternalSyntheticLambda9 giftSheet$$ExternalSyntheticLambda9 = rTMPStreamPipOverlay.dismissControlsCallback;
                         if (z3) {
-                            AndroidUtilities.cancelRunOnUIThread(tooltip$$ExternalSyntheticLambda0);
+                            AndroidUtilities.cancelRunOnUIThread(giftSheet$$ExternalSyntheticLambda9);
                             rTMPStreamPipOverlay.postedDismissControls = false;
                         }
                         boolean z4 = !rTMPStreamPipOverlay.isShowingControls;
                         rTMPStreamPipOverlay.isShowingControls = z4;
                         rTMPStreamPipOverlay.toggleControls(z4);
                         if (rTMPStreamPipOverlay.isShowingControls && !rTMPStreamPipOverlay.postedDismissControls) {
-                            AndroidUtilities.runOnUIThread(tooltip$$ExternalSyntheticLambda0, 2500L);
+                            AndroidUtilities.runOnUIThread(giftSheet$$ExternalSyntheticLambda9, 2500L);
                             rTMPStreamPipOverlay.postedDismissControls = true;
                         }
                     }
                     break;
             }
             return true;
+        }
+    }
+
+    public final class AnonymousClass6 extends ViewGroup {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass6(Object obj, Context context, int i) {
+            super(context);
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public final void draw(Canvas canvas) {
+            switch (this.$r8$classId) {
+                case 0:
+                    if (!((LiveStoryPipOverlay) this.this$0).windowViewSkipRender) {
+                        super.draw(canvas);
+                        break;
+                    }
+                    break;
+                default:
+                    if (!((RTMPStreamPipOverlay) this.this$0).windowViewSkipRender) {
+                        super.draw(canvas);
+                        break;
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            switch (this.$r8$classId) {
+                case 0:
+                    LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+                    if (liveStoryPipOverlay.contentFrameLayout.getParent() == this) {
+                        liveStoryPipOverlay.contentFrameLayout.layout(0, 0, liveStoryPipOverlay.pipWidth, liveStoryPipOverlay.pipHeight);
+                    }
+                    break;
+                default:
+                    RTMPStreamPipOverlay rTMPStreamPipOverlay = (RTMPStreamPipOverlay) this.this$0;
+                    if (rTMPStreamPipOverlay.contentFrameLayout.getParent() == this) {
+                        rTMPStreamPipOverlay.contentFrameLayout.layout(0, 0, rTMPStreamPipOverlay.pipWidth, rTMPStreamPipOverlay.pipHeight);
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public final void onMeasure(int i, int i2) {
+            switch (this.$r8$classId) {
+                case 0:
+                    setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
+                    LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+                    if (liveStoryPipOverlay.contentFrameLayout.getParent() == this) {
+                        liveStoryPipOverlay.contentFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(liveStoryPipOverlay.pipWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(liveStoryPipOverlay.pipHeight, 1073741824));
+                    }
+                    break;
+                default:
+                    setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
+                    RTMPStreamPipOverlay rTMPStreamPipOverlay = (RTMPStreamPipOverlay) this.this$0;
+                    if (rTMPStreamPipOverlay.contentFrameLayout.getParent() == this) {
+                        rTMPStreamPipOverlay.contentFrameLayout.measure(View.MeasureSpec.makeMeasureSpec(rTMPStreamPipOverlay.pipWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(rTMPStreamPipOverlay.pipHeight, 1073741824));
+                    }
+                    break;
+            }
         }
     }
 
@@ -339,17 +413,16 @@ public final class LiveStoryPipOverlay implements NotificationCenter.Notificatio
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.didEndCall) {
-            instance.dismissInternal$1(true);
+            instance.dismissInternal(true);
         } else if (i == NotificationCenter.groupCallUpdated) {
             bindTextureView$1$1();
         }
     }
 
-    public final void dismissInternal$1(boolean z) {
-        int i = 2;
+    public final void dismissInternal(boolean z) {
         if (this.isVisible) {
             this.isVisible = false;
-            AndroidUtilities.runOnUIThread(new VoIPFragment$$ExternalSyntheticLambda31(i), 100L);
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda2(20), 100L);
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.liveStoryUpdated);
             ValueAnimator valueAnimator = this.scaleAnimator;
             if (valueAnimator != null) {
@@ -362,8 +435,8 @@ public final class LiveStoryPipOverlay implements NotificationCenter.Notificatio
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
             animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_Y, 0.1f));
-            animatorSet.addListener(new TodoItemMenu.AnonymousClass15(i, this, z));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<AnonymousClass6, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.contentView, (Property<AnonymousClass6, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.contentView, (Property<AnonymousClass6, Float>) View.SCALE_Y, 0.1f));
+            animatorSet.addListener(new StoryViewer.AnonymousClass7(this, z, 10));
             animatorSet.start();
             PipSource pipSource = this.pipSource;
             if (pipSource != null) {
@@ -435,7 +508,7 @@ public final class LiveStoryPipOverlay implements NotificationCenter.Notificatio
     }
 
     @Override
-    public final void pipHidePrimaryWindowView(Trigger trigger) {
+    public final void pipHidePrimaryWindowView(Runnable runnable) {
         bindTextureView$1$1();
         this.windowViewSkipRender = true;
         this.windowManager.removeView(this.contentView);
@@ -456,15 +529,15 @@ public final class LiveStoryPipOverlay implements NotificationCenter.Notificatio
     }
 
     @Override
-    public final void pipShowPrimaryWindowView(Trigger trigger) {
+    public final void pipShowPrimaryWindowView(Runnable runnable) {
         PipSource pipSource = this.pipSource;
         if (pipSource != null && pipSource.params.isValid()) {
             WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-            int iWidth = ((Rect) this.pipSource.params.binarizer).width();
+            int iWidth = ((Rect) this.pipSource.params.tokenCreator).width();
             this.pipWidth = iWidth;
             layoutParams.width = iWidth;
             WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
-            int iHeight = ((Rect) this.pipSource.params.binarizer).height();
+            int iHeight = ((Rect) this.pipSource.params.tokenCreator).height();
             this.pipHeight = iHeight;
             layoutParams2.height = iHeight;
         }
@@ -489,7 +562,7 @@ public final class LiveStoryPipOverlay implements NotificationCenter.Notificatio
         ValueAnimator duration = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f).setDuration(200L);
         this.scaleAnimator = duration;
         duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.scaleAnimator.addUpdateListener(new QrActivity$$ExternalSyntheticLambda18(this, 25));
+        this.scaleAnimator.addUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(this, 8));
         this.scaleAnimator.addListener(new AnonymousClass1(this, i));
         this.scaleAnimator.start();
     }
@@ -530,6 +603,176 @@ public final class LiveStoryPipOverlay implements NotificationCenter.Notificatio
                     super.onAnimationEnd(animator, z);
                     break;
             }
+        }
+    }
+
+    public final class AnonymousClass3 implements ScaleGestureDetector.OnScaleGestureListener {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public final class AnonymousClass1 implements DynamicAnimation.OnAnimationEndListener {
+            public final int $r8$classId;
+            public final ScaleGestureDetector.OnScaleGestureListener this$1;
+            public final ArrayList val$springs;
+
+            public AnonymousClass1(ScaleGestureDetector.OnScaleGestureListener onScaleGestureListener, ArrayList arrayList, int i) {
+                this.$r8$classId = i;
+                this.this$1 = onScaleGestureListener;
+                this.val$springs = arrayList;
+            }
+
+            @Override
+            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        ArrayList arrayList = dynamicAnimation.mEndListeners;
+                        int iIndexOf = arrayList.indexOf(this);
+                        if (iIndexOf >= 0) {
+                            arrayList.set(iIndexOf, null);
+                        }
+                        ArrayList arrayList2 = this.val$springs;
+                        arrayList2.add((SpringAnimation) dynamicAnimation);
+                        if (arrayList2.size() == 2) {
+                            ((AnonymousClass3) this.this$1).updateLayout();
+                        }
+                        break;
+                    default:
+                        ArrayList arrayList3 = dynamicAnimation.mEndListeners;
+                        int iIndexOf2 = arrayList3.indexOf(this);
+                        if (iIndexOf2 >= 0) {
+                            arrayList3.set(iIndexOf2, null);
+                        }
+                        ArrayList arrayList4 = this.val$springs;
+                        arrayList4.add((SpringAnimation) dynamicAnimation);
+                        if (arrayList4.size() == 2) {
+                            ((RTMPStreamPipOverlay.AnonymousClass3) this.this$1).updateLayout();
+                        }
+                        break;
+                }
+            }
+        }
+
+        public AnonymousClass3(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+            switch (this.$r8$classId) {
+                case 0:
+                    LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+                    liveStoryPipOverlay.scaleFactor = MathUtils.clamp(scaleGestureDetector.getScaleFactor() * liveStoryPipOverlay.scaleFactor, 0.6f, liveStoryPipOverlay.maxScaleFactor);
+                    liveStoryPipOverlay.pipWidth = (int) (liveStoryPipOverlay.getSuggestedWidth$1() * liveStoryPipOverlay.scaleFactor);
+                    liveStoryPipOverlay.pipHeight = (int) (liveStoryPipOverlay.getSuggestedHeight$1() * liveStoryPipOverlay.scaleFactor);
+                    AndroidUtilities.runOnUIThread(new BalanceCloud$$ExternalSyntheticLambda1(this, 23));
+                    SpringAnimation springAnimation = liveStoryPipOverlay.pipXSpring;
+                    springAnimation.mValue = liveStoryPipOverlay.pipX;
+                    springAnimation.mStartValueIsSet = true;
+                    SpringForce springForce = springAnimation.mSpring;
+                    float focusX = scaleGestureDetector.getFocusX();
+                    int i = AndroidUtilities.displaySize.x;
+                    springForce.mFinalPosition = focusX >= ((float) i) / 2.0f ? (i - liveStoryPipOverlay.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+                    SpringAnimation springAnimation2 = liveStoryPipOverlay.pipXSpring;
+                    if (!springAnimation2.mRunning) {
+                        springAnimation2.start();
+                    }
+                    SpringAnimation springAnimation3 = liveStoryPipOverlay.pipYSpring;
+                    springAnimation3.mValue = liveStoryPipOverlay.pipY;
+                    springAnimation3.mStartValueIsSet = true;
+                    springAnimation3.mSpring.mFinalPosition = MathUtils.clamp(scaleGestureDetector.getFocusY() - (liveStoryPipOverlay.pipHeight / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - liveStoryPipOverlay.pipHeight) - AndroidUtilities.dp(16.0f));
+                    SpringAnimation springAnimation4 = liveStoryPipOverlay.pipYSpring;
+                    if (!springAnimation4.mRunning) {
+                        springAnimation4.start();
+                    }
+                    return true;
+                default:
+                    float scaleFactor = scaleGestureDetector.getScaleFactor();
+                    if (Float.isNaN(scaleFactor) || Float.isInfinite(scaleFactor)) {
+                        return false;
+                    }
+                    CropView cropView = ((CropGestureDetector) this.this$0).mListener;
+                    float focusX2 = scaleGestureDetector.getFocusX();
+                    float focusY = scaleGestureDetector.getFocusY();
+                    if (!cropView.animating) {
+                        float f = cropView.state.scale;
+                        if (f * scaleFactor > 30.0f) {
+                            scaleFactor = 30.0f / f;
+                        }
+                        float f2 = !cropView.inBubbleMode ? AndroidUtilities.statusBarHeight : 0;
+                        ImageView imageView = cropView.imageView;
+                        float width = focusX2 - (imageView.getWidth() / 2);
+                        CropAreaView cropAreaView = cropView.areaView;
+                        float cropWidth = width / cropAreaView.getCropWidth();
+                        CropView.CropState cropState = cropView.state;
+                        float f3 = ((cropState.orientation + cropState.baseRotation) % 180.0f != 0.0f ? cropState.height : cropState.width) * cropWidth;
+                        float fM = ImageReceiver$$ExternalSyntheticOutline1.m((imageView.getHeight() - cropView.bottomPadding) - f2, cropView.topPadding, 2.0f, focusY) / cropAreaView.getCropHeight();
+                        CropView.CropState cropState2 = cropView.state;
+                        CropView.CropState.access$700(cropState2, scaleFactor, f3, ((cropState2.orientation + cropState2.baseRotation) % 180.0f != 0.0f ? cropState2.width : cropState2.height) * fM);
+                        cropView.updateMatrix(false);
+                    }
+                    return true;
+            }
+        }
+
+        @Override
+        public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+            switch (this.$r8$classId) {
+                case 0:
+                    LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+                    if (liveStoryPipOverlay.isScrolling) {
+                        liveStoryPipOverlay.isScrolling = false;
+                    }
+                    liveStoryPipOverlay.isScrollDisallowed = true;
+                    liveStoryPipOverlay.windowLayoutParams.width = (int) (liveStoryPipOverlay.getSuggestedWidth$1() * liveStoryPipOverlay.maxScaleFactor);
+                    liveStoryPipOverlay.windowLayoutParams.height = (int) (liveStoryPipOverlay.getSuggestedHeight$1() * liveStoryPipOverlay.maxScaleFactor);
+                    AndroidUtilities.updateViewLayout(liveStoryPipOverlay.windowManager, liveStoryPipOverlay.contentView, liveStoryPipOverlay.windowLayoutParams);
+                    break;
+            }
+            return true;
+        }
+
+        @Override
+        public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+            switch (this.$r8$classId) {
+                case 0:
+                    LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+                    if (liveStoryPipOverlay.pipXSpring.mRunning || liveStoryPipOverlay.pipYSpring.mRunning) {
+                        ArrayList arrayList = new ArrayList();
+                        AnonymousClass1 anonymousClass1 = new AnonymousClass1(this, arrayList, 0);
+                        SpringAnimation springAnimation = liveStoryPipOverlay.pipXSpring;
+                        if (springAnimation.mRunning) {
+                            springAnimation.addEndListener(anonymousClass1);
+                        } else {
+                            arrayList.add(springAnimation);
+                        }
+                        SpringAnimation springAnimation2 = liveStoryPipOverlay.pipYSpring;
+                        if (!springAnimation2.mRunning) {
+                            arrayList.add(springAnimation2);
+                        } else {
+                            springAnimation2.addEndListener(anonymousClass1);
+                        }
+                    } else {
+                        updateLayout();
+                    }
+                    break;
+            }
+        }
+
+        public void updateLayout() {
+            LiveStoryPipOverlay liveStoryPipOverlay = (LiveStoryPipOverlay) this.this$0;
+            WindowManager.LayoutParams layoutParams = liveStoryPipOverlay.windowLayoutParams;
+            int suggestedWidth$1 = (int) (liveStoryPipOverlay.getSuggestedWidth$1() * liveStoryPipOverlay.scaleFactor);
+            layoutParams.width = suggestedWidth$1;
+            liveStoryPipOverlay.pipWidth = suggestedWidth$1;
+            WindowManager.LayoutParams layoutParams2 = liveStoryPipOverlay.windowLayoutParams;
+            int suggestedHeight$1 = (int) (liveStoryPipOverlay.getSuggestedHeight$1() * liveStoryPipOverlay.scaleFactor);
+            layoutParams2.height = suggestedHeight$1;
+            liveStoryPipOverlay.pipHeight = suggestedHeight$1;
+            AndroidUtilities.updateViewLayout(liveStoryPipOverlay.windowManager, liveStoryPipOverlay.contentView, liveStoryPipOverlay.windowLayoutParams);
+        }
+
+        private final void onScaleEnd$org$telegram$ui$Components$Crop$CropGestureDetector$1(ScaleGestureDetector scaleGestureDetector) {
         }
     }
 }

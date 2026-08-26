@@ -23,9 +23,9 @@ public final class ScannedLinkPreview$$ExternalSyntheticLambda0 implements Utili
                 scannedLinkPreview.hasResolved = resolvedLink != null;
                 scannedLinkPreview.setup();
                 scannedLinkPreview.invalidate();
-                StoryRecorder$$ExternalSyntheticLambda7 storyRecorder$$ExternalSyntheticLambda7 = scannedLinkPreview.resolvedListener;
-                if (storyRecorder$$ExternalSyntheticLambda7 != null) {
-                    storyRecorder$$ExternalSyntheticLambda7.run();
+                StoryRecorder$$ExternalSyntheticLambda5 storyRecorder$$ExternalSyntheticLambda5 = scannedLinkPreview.resolvedListener;
+                if (storyRecorder$$ExternalSyntheticLambda5 != null) {
+                    storyRecorder$$ExternalSyntheticLambda5.run();
                 }
                 break;
             default:

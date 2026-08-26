@@ -1,27 +1,38 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Utilities;
+import android.view.View;
+import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.Components.RecyclerListView;
 
-public final class CacheControlActivity$$ExternalSyntheticLambda9 implements Runnable {
-    public final int $r8$classId;
-    public final Utilities.Callback f$0;
-    public final long f$1;
+public final class CacheControlActivity$$ExternalSyntheticLambda9 implements AlertDialog.OnButtonClickListener, RecyclerListView.OnItemClickListenerExtended, KeepMediaPopupView.Callback {
+    public final CacheControlActivity f$0;
 
-    public CacheControlActivity$$ExternalSyntheticLambda9(long j, int i, Utilities.Callback callback) {
-        this.$r8$classId = i;
-        this.f$0 = callback;
-        this.f$1 = j;
+    public CacheControlActivity$$ExternalSyntheticLambda9(CacheControlActivity cacheControlActivity) {
+        this.f$0 = cacheControlActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.$r8$classId) {
-            case 0:
-                this.f$0.run(Long.valueOf(this.f$1));
-                break;
-            default:
-                this.f$0.run(Long.valueOf(this.f$1));
-                break;
-        }
+    public boolean hasDoubleTap(View view, int i) {
+        return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
+    }
+
+    @Override
+    public void onClick(AlertDialog alertDialog, int i) {
+        this.f$0.lambda$clearSelectedFiles$20(alertDialog, i);
+    }
+
+    @Override
+    public void onDoubleTap(View view, int i, float f, float f2) {
+        RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
+    }
+
+    @Override
+    public void onItemClick(View view, int i, float f, float f2) {
+        this.f$0.lambda$createView$19(view, i, f, f2);
+    }
+
+    @Override
+    public void onKeepMediaChange(int i, int i2) {
+        this.f$0.lambda$createView$18(i, i2);
     }
 }

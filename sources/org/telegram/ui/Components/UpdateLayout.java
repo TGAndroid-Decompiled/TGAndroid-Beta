@@ -1,7 +1,10 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.graphics.Canvas;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import java.io.File;
@@ -9,37 +12,55 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda68;
 import org.telegram.ui.IUpdateLayout;
 
-public final class UpdateLayout extends IUpdateLayout {
-    public final Activity activity;
-    public final ViewGroup sideMenuContainer;
-    public FrameLayout updateLayout;
-    public RadialProgress2 updateLayoutIcon;
-    public AnonymousClass1 updateTextView;
+public class UpdateLayout extends IUpdateLayout {
+    private final Activity activity;
+    private final ViewGroup sideMenuContainer;
+    private FrameLayout updateLayout;
+    private RadialProgress2 updateLayoutIcon;
+    private AnimatedTextView updateTextView;
 
     public UpdateLayout(Activity activity, ViewGroup viewGroup) {
+        super(activity, viewGroup);
         this.activity = activity;
         this.sideMenuContainer = viewGroup;
     }
 
-    public final void createUpdateUI(int i) {
-        ViewGroup viewGroup = this.sideMenuContainer;
-        if (viewGroup == null || this.updateLayout != null) {
+    public void lambda$createUpdateUI$0(int i, View view) {
+        if (this.updateLayoutIcon.getIcon() == 2) {
+            ApplicationLoader.applicationLoaderInstance.downloadUpdate();
+            updateAppUpdateViews(i, true);
+        } else if (this.updateLayoutIcon.getIcon() == 3) {
+            ApplicationLoader.applicationLoaderInstance.cancelDownloadingUpdate();
+            updateAppUpdateViews(i, true);
+        } else {
+            File downloadedUpdateFile = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
+            if (downloadedUpdateFile != null) {
+                AndroidUtilities.openForView(downloadedUpdateFile, "Telegram.apk", "application/vnd.android.package-archive", this.activity, null, false);
+            }
+        }
+    }
+
+    private void setUpdateText(String str, boolean z) {
+        this.updateTextView.setText(str, z);
+    }
+
+    @Override
+    public void createUpdateUI(int i) {
+        if (this.sideMenuContainer == null || this.updateLayout != null) {
             return;
         }
-        Activity activity = this.activity;
-        FrameLayout frameLayout = new FrameLayout(activity);
+        FrameLayout frameLayout = new FrameLayout(this.activity);
         this.updateLayout = frameLayout;
         frameLayout.setVisibility(4);
         this.updateLayout.setTranslationY(AndroidUtilities.dp(44.0f));
         this.updateLayout.setBackground(Theme.getSelectorDrawable(1090519039, false));
-        viewGroup.addView(this.updateLayout, LayoutHelper.createFrame(-1, 44, 83));
-        this.updateLayout.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda68(this, i, 9));
-        ?? r8 = new AnimatedTextView(activity) {
+        this.sideMenuContainer.addView(this.updateLayout, LayoutHelper.createFrame(-1, 44, 83));
+        this.updateLayout.setOnClickListener(new ReportAlert$$ExternalSyntheticLambda1(this, i, 7));
+        AnimatedTextView animatedTextView = new AnimatedTextView(this.activity, true, true, true) {
             @Override
-            public final void onDraw(Canvas canvas) {
+            public void onDraw(Canvas canvas) {
                 canvas.save();
                 canvas.translate(AndroidUtilities.dp(15.0f), 0.0f);
                 super.onDraw(canvas);
@@ -48,30 +69,24 @@ public final class UpdateLayout extends IUpdateLayout {
                 canvas.restore();
             }
         };
-        this.updateTextView = r8;
-        r8.setTextSize(AndroidUtilities.dp(15.0f));
-        setTypeface(AndroidUtilities.bold());
-        setTextColor(-1);
-        setGravity(17);
-        this.updateLayout.addView(this.updateTextView, LayoutHelper.createFrame(-1.0f, -1));
-        setText(LocaleController.getString(2131690208), false);
+        this.updateTextView = animatedTextView;
+        animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
+        this.updateTextView.setTypeface(AndroidUtilities.bold());
+        this.updateTextView.setTextColor(-1);
+        this.updateTextView.setGravity(17);
+        this.updateLayout.addView(this.updateTextView, LayoutHelper.createFrameMatchParent());
+        this.updateTextView.setText(LocaleController.getString(2131690208), false);
         RadialProgress2 radialProgress2 = new RadialProgress2(this.updateTextView);
         this.updateLayoutIcon = radialProgress2;
         int i2 = Theme.key_featuredStickers_addButton;
         radialProgress2.setColors(-1, -1, Theme.getColor(null, i2, false), Theme.getColor(null, i2, false));
         this.updateLayoutIcon.setProgressRect(0, 0, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f));
         this.updateLayoutIcon.setCircleRadius(AndroidUtilities.dp(11.0f));
-        MediaActionDrawable mediaActionDrawable = this.updateLayoutIcon.mediaActionDrawable;
-        mediaActionDrawable.isMini = true;
-        mediaActionDrawable.paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-    }
-
-    public final void setUpdateText(String str, boolean z) {
-        setText(str, z);
+        this.updateLayoutIcon.setAsMini();
     }
 
     @Override
-    public final void updateAppUpdateViews(int i, boolean z) {
+    public void updateAppUpdateViews(int i, boolean z) {
         if (this.sideMenuContainer == null) {
             return;
         }
@@ -82,7 +97,14 @@ public final class UpdateLayout extends IUpdateLayout {
             }
             this.updateLayout.setTag(null);
             if (z) {
-                this.updateLayout.animate().translationY(AndroidUtilities.dp(44.0f)).setInterpolator(CubicBezierInterpolator.EASE_OUT).setListener(new Tooltip.AnonymousClass1(this, 17)).setDuration(180L).start();
+                this.updateLayout.animate().translationY(AndroidUtilities.dp(44.0f)).setInterpolator(CubicBezierInterpolator.EASE_OUT).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        if (UpdateLayout.this.updateLayout.getTag() == null) {
+                            UpdateLayout.this.updateLayout.setVisibility(4);
+                        }
+                    }
+                }).setDuration(180L).start();
                 return;
             } else {
                 this.updateLayout.setTranslationY(AndroidUtilities.dp(44.0f));
@@ -116,13 +138,13 @@ public final class UpdateLayout extends IUpdateLayout {
     }
 
     @Override
-    public final void updateFileProgress() {
+    public void updateFileProgress(Object[] objArr) {
         if (this.updateLayout == null || this.updateTextView == null || !ApplicationLoader.applicationLoaderInstance.isDownloadingUpdate()) {
             return;
         }
         float downloadingUpdateProgress = ApplicationLoader.applicationLoaderInstance.getDownloadingUpdateProgress();
         this.updateLayoutIcon.setProgress(downloadingUpdateProgress, true);
-        setText(LocaleController.formatString(2131690211, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
+        this.updateTextView.setText(LocaleController.formatString(2131690211, Integer.valueOf((int) (downloadingUpdateProgress * 100.0f))));
         this.updateLayout.invalidate();
     }
 }

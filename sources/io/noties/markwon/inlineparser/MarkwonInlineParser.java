@@ -1,7 +1,7 @@
 package io.noties.markwon.inlineparser;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import com.google.zxing.BinaryBitmap;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -16,17 +16,19 @@ import org.commonmark.internal.InlineParserImpl;
 import org.commonmark.node.Node;
 import org.commonmark.node.Text;
 import org.commonmark.parser.InlineParser;
+import org.commonmark.parser.InlineParserFactory;
 import org.commonmark.parser.delimiter.DelimiterProcessor;
 
-public final class MarkwonInlineParser implements InlineParser {
+public final class MarkwonInlineParser implements InlineParser, MarkwonInlineParserContext {
     public Node block;
     public final HashMap delimiterProcessors;
     public int index;
-    public final BinaryBitmap inlineParserContext;
+    public final Stripe inlineParserContext;
     public final HashMap inlineProcessors;
     public String input;
     public Bracket lastBracket;
     public Delimiter lastDelimiter;
+    public final boolean referencesEnabled;
     public final BitSet specialCharacters;
     public static final Pattern PUNCTUATION = Pattern.compile("^[!\"#\\$%&'\\(\\)\\*\\+,\\-\\./:;<=>\\?@\\[\\\\\\]\\^_`\\{\\|\\}~\\p{Pc}\\p{Pd}\\p{Pe}\\p{Pf}\\p{Pi}\\p{Po}\\p{Ps}]");
     public static final Pattern SPNL = Pattern.compile("^ *(?:\n *)?");
@@ -34,9 +36,10 @@ public final class MarkwonInlineParser implements InlineParser {
     public static final Pattern ESCAPABLE = Pattern.compile("^[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]");
     public static final Pattern WHITESPACE = Pattern.compile("\\s+");
 
-    public MarkwonInlineParser(BinaryBitmap binaryBitmap, ArrayList arrayList, List list) {
+    public MarkwonInlineParser(Stripe stripe, boolean z, ArrayList arrayList, List list) {
         StaggeredDelimiterProcessor staggeredDelimiterProcessor;
-        this.inlineParserContext = binaryBitmap;
+        this.inlineParserContext = stripe;
+        this.referencesEnabled = z;
         HashMap map = new HashMap(arrayList.size());
         int size = arrayList.size();
         int i = 0;
@@ -117,7 +120,6 @@ public final class MarkwonInlineParser implements InlineParser {
     @Override
     public final void parse(String str, Node node) {
         Node text;
-        Node text2;
         boolean z;
         boolean z2;
         InlineParserImpl.DelimiterData delimiterData;
@@ -129,58 +131,30 @@ public final class MarkwonInlineParser implements InlineParser {
         while (true) {
             char cPeek = peek();
             if (cPeek == 0) {
-                text2 = null;
+                text = null;
             } else {
-                List<InlineProcessor> list = (List) this.inlineProcessors.get(Character.valueOf(cPeek));
+                List list = (List) this.inlineProcessors.get(Character.valueOf(cPeek));
                 if (list != null) {
                     int i = this.index;
-                    text2 = null;
-                    for (InlineProcessor inlineProcessor : list) {
-                        inlineProcessor.context = this;
-                        inlineProcessor.block = this.block;
-                        inlineProcessor.input = this.input;
-                        inlineProcessor.index = this.index;
-                        text = inlineProcessor.parse();
-                        this.index = inlineProcessor.index;
-                        if (text != null) {
-                            text2 = text;
-                            break;
-                        } else {
-                            this.index = i;
-                            text2 = text;
-                        }
+                    Iterator it = list.iterator();
+                    text = null;
+                    while (it.hasNext() && (text = ((InlineProcessor) it.next()).parse(this)) == null) {
+                        this.index = i;
                     }
                 } else {
                     DelimiterProcessor delimiterProcessor = (DelimiterProcessor) this.delimiterProcessors.get(Character.valueOf(cPeek));
-                    if (delimiterProcessor == null) {
+                    if (delimiterProcessor != null) {
                         int i2 = this.index;
-                        int length = this.input.length();
-                        while (true) {
-                            int i3 = this.index;
-                            if (i3 == length || this.specialCharacters.get(this.input.charAt(i3))) {
-                                break;
-                            } else {
-                                this.index++;
-                            }
-                        }
-                        int i4 = this.index;
-                        if (i2 != i4) {
-                            text = new Text(this.input.substring(i2, i4));
-                            text2 = text;
-                            break;
-                        }
-                    } else {
-                        int i5 = this.index;
-                        int i6 = 0;
+                        int i3 = 0;
                         while (peek() == cPeek) {
-                            i6++;
+                            i3++;
                             this.index++;
                         }
-                        if (i6 < delimiterProcessor.getMinLength()) {
-                            this.index = i5;
+                        if (i3 < delimiterProcessor.getMinLength()) {
+                            this.index = i2;
                             delimiterData = null;
                         } else {
-                            String strSubstring = i5 == 0 ? "\n" : this.input.substring(i5 - 1, i5);
+                            String strSubstring = i2 == 0 ? "\n" : this.input.substring(i2 - 1, i2);
                             char cPeek2 = peek();
                             String strValueOf = cPeek2 != 0 ? String.valueOf(cPeek2) : "\n";
                             Pattern pattern = PUNCTUATION;
@@ -199,43 +173,61 @@ public final class MarkwonInlineParser implements InlineParser {
                                 z = z4 && cPeek == delimiterProcessor.getClosingCharacter();
                                 z2 = z5;
                             }
-                            this.index = i5;
-                            delimiterData = new InlineParserImpl.DelimiterData(i6, z2, z);
+                            this.index = i2;
+                            delimiterData = new InlineParserImpl.DelimiterData(i3, z2, z);
                         }
-                        if (delimiterData != null) {
-                            int i7 = this.index;
-                            int i8 = delimiterData.count;
-                            int i9 = i7 + i8;
-                            this.index = i9;
+                        if (delimiterData == null) {
+                            text = null;
+                        } else {
+                            int i4 = this.index;
+                            int i5 = delimiterData.count;
+                            int i6 = i4 + i5;
+                            this.index = i6;
                             InlineParserImpl.DelimiterData delimiterData2 = delimiterData;
-                            Text text3 = new Text(this.input.substring(i7, i9));
+                            Text text2 = new Text(this.input.substring(i4, i6));
                             Delimiter delimiter = this.lastDelimiter;
-                            Delimiter delimiter2 = new Delimiter(text3, cPeek, delimiterData2.canOpen, delimiterData2.canClose, delimiter);
+                            Delimiter delimiter2 = new Delimiter(text2, cPeek, delimiterData2.canOpen, delimiterData2.canClose, delimiter);
                             this.lastDelimiter = delimiter2;
-                            delimiter2.length = i8;
-                            delimiter2.originalLength = i8;
+                            delimiter2.length = i5;
+                            delimiter2.originalLength = i5;
                             if (delimiter != null) {
                                 delimiter.next = delimiter2;
                             }
-                            text2 = text3;
+                            text = text2;
+                        }
+                    } else {
+                        int i7 = this.index;
+                        int length = this.input.length();
+                        while (true) {
+                            int i8 = this.index;
+                            if (i8 == length || this.specialCharacters.get(this.input.charAt(i8))) {
+                                break;
+                            } else {
+                                this.index++;
+                            }
+                        }
+                        int i9 = this.index;
+                        if (i7 != i9) {
+                            text = new Text(this.input.substring(i7, i9));
+                        } else {
+                            text = null;
                         }
                     }
-                    text2 = null;
                 }
-                if (text2 == null) {
+                if (text == null) {
                     this.index++;
-                    text2 = new Text(String.valueOf(cPeek));
+                    text = new Text(String.valueOf(cPeek));
                 }
             }
-            if (text2 == null) {
+            if (text == null) {
                 break;
             } else {
-                node.appendChild(text2);
+                node.appendChild(text);
             }
         }
         processDelimiters(null);
-        Node node2 = (Node) node.firstChild;
-        Node node3 = (Node) node.lastChild;
+        Node node2 = node.firstChild;
+        Node node3 = node.lastChild;
         if (node2 == node3) {
             return;
         }
@@ -293,17 +285,17 @@ public final class MarkwonInlineParser implements InlineParser {
                     Text text = delimiter4.node;
                     delimiter4.length -= delimiterUse;
                     delimiter2.length -= delimiterUse;
-                    text.literal = SurfaceContainer$$ExternalSyntheticOutline0.m(delimiterUse, 0, text.literal);
+                    text.literal = Fragment$$ExternalSyntheticOutline0.m(delimiterUse, 0, text.literal);
                     Text text2 = delimiter2.node;
-                    text2.literal = SurfaceContainer$$ExternalSyntheticOutline0.m(delimiterUse, 0, text2.literal);
+                    text2.literal = Fragment$$ExternalSyntheticOutline0.m(delimiterUse, 0, text2.literal);
                     Delimiter delimiter5 = delimiter2.previous;
                     while (delimiter5 != null && delimiter5 != delimiter4) {
                         Delimiter delimiter6 = delimiter5.previous;
                         removeDelimiter(delimiter5);
                         delimiter5 = delimiter6;
                     }
-                    if (text != text2 && (node = (Node) text.next) != text2) {
-                        InlineParserUtils.mergeTextNodesInclusive(node, (Node) text2.prev);
+                    if (text != text2 && (node = text.next) != text2) {
+                        InlineParserUtils.mergeTextNodesInclusive(node, text2.prev);
                     }
                     delimiterProcessor.process(text, text2, delimiterUse);
                     if (delimiter4.length == 0) {
@@ -347,6 +339,37 @@ public final class MarkwonInlineParser implements InlineParser {
             this.lastDelimiter = delimiter2;
         } else {
             delimiter3.previous = delimiter2;
+        }
+    }
+
+    public final class FactoryBuilderImpl implements InlineParserFactory {
+        public final ArrayList delimiterProcessors;
+        public final ArrayList inlineProcessors;
+        public boolean referencesEnabled;
+
+        public FactoryBuilderImpl() {
+            this.inlineProcessors = new ArrayList(3);
+            this.delimiterProcessors = new ArrayList(3);
+        }
+
+        @Override
+        public InlineParser create(Stripe stripe) {
+            ArrayList arrayList = (ArrayList) stripe.tokenCreator;
+            int size = arrayList != null ? arrayList.size() : 0;
+            ArrayList arrayList2 = this.delimiterProcessors;
+            if (size > 0) {
+                ArrayList arrayList3 = new ArrayList(arrayList2.size() + size);
+                arrayList3.addAll(arrayList2);
+                arrayList3.addAll(arrayList);
+                arrayList2 = arrayList3;
+            }
+            return new MarkwonInlineParser(stripe, this.referencesEnabled, this.inlineProcessors, arrayList2);
+        }
+
+        public FactoryBuilderImpl(ArrayList arrayList, ArrayList arrayList2, boolean z) {
+            this.referencesEnabled = z;
+            this.inlineProcessors = arrayList;
+            this.delimiterProcessors = arrayList2;
         }
     }
 }

@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -9,107 +10,96 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
-public final class PasscodeViewDialog extends Dialog {
-    public final AnonymousClass1 passcodeView;
-    public final FrameLayout windowView;
+public class PasscodeViewDialog extends Dialog {
+    public final Context context;
+    public final PasscodeView passcodeView;
+    private final FrameLayout windowView;
 
-    public PasscodeViewDialog(LaunchActivity launchActivity) {
-        super(launchActivity, R.style.TransparentDialog);
+    public PasscodeViewDialog(Context context) {
+        super(context, R.style.TransparentDialog);
+        this.context = context;
         AndroidUtilities.enableEdgeToEdge(getWindow());
-        FrameLayout frameLayout = new FrameLayout(launchActivity);
+        FrameLayout frameLayout = new FrameLayout(context);
         this.windowView = frameLayout;
-        ShareAlert$$ExternalSyntheticLambda15 shareAlert$$ExternalSyntheticLambda15 = new ShareAlert$$ExternalSyntheticLambda15(14);
+        EmojiView$$ExternalSyntheticLambda30 emojiView$$ExternalSyntheticLambda30 = new EmojiView$$ExternalSyntheticLambda30(23);
         WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
-        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(frameLayout, shareAlert$$ExternalSyntheticLambda15);
-        ?? r1 = new PasscodeView(launchActivity) {
+        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(frameLayout, emojiView$$ExternalSyntheticLambda30);
+        PasscodeView passcodeView = new PasscodeView(context) {
             @Override
-            public final void onAnimationUpdate(float f) {
-                LaunchActivity launchActivity2 = LaunchActivity.instance;
-                if (launchActivity2 == null) {
+            public void onAnimationUpdate(float f) {
+                LaunchActivity launchActivity = LaunchActivity.instance;
+                if (launchActivity == null) {
                     return;
                 }
-                DrawerLayoutContainer drawerLayoutContainer = launchActivity2.drawerLayoutContainer;
+                DrawerLayoutContainer drawerLayoutContainer = launchActivity.drawerLayoutContainer;
                 drawerLayoutContainer.setScaleX(AndroidUtilities.lerp(1.0f, 1.25f, f));
                 drawerLayoutContainer.setScaleY(AndroidUtilities.lerp(1.0f, 1.25f, f));
             }
 
             @Override
-            public final void onHidden() {
+            public void onHidden() {
                 PasscodeViewDialog.super.dismiss();
-                LaunchActivity launchActivity2 = LaunchActivity.instance;
-                if (launchActivity2 == null) {
+                LaunchActivity launchActivity = LaunchActivity.instance;
+                if (launchActivity == null) {
                     return;
                 }
-                DrawerLayoutContainer drawerLayoutContainer = launchActivity2.drawerLayoutContainer;
+                DrawerLayoutContainer drawerLayoutContainer = launchActivity.drawerLayoutContainer;
                 drawerLayoutContainer.setScaleX(1.0f);
                 drawerLayoutContainer.setScaleY(1.0f);
             }
         };
-        this.passcodeView = r1;
-        frameLayout.addView((View) r1, LayoutHelper.createFrame(-1, -1, 119));
+        this.passcodeView = passcodeView;
+        frameLayout.addView(passcodeView, LayoutHelper.createFrame(-1, -1, 119));
+    }
+
+    public static WindowInsetsCompat lambda$new$0(View view, WindowInsetsCompat windowInsetsCompat) {
+        return WindowInsetsCompat.CONSUMED;
     }
 
     @Override
-    public final void dismiss() {
-        AnonymousClass1 anonymousClass1 = this.passcodeView;
-        KeyboardNotifier keyboardNotifier = anonymousClass1.keyboardNotifier;
-        if (keyboardNotifier != null && keyboardNotifier.keyboardVisible()) {
-            AndroidUtilities.hideKeyboard(anonymousClass1.passwordEditText);
+    public void dismiss() {
+        LaunchActivity launchActivity;
+        if (!this.passcodeView.onBackPressed() || (launchActivity = LaunchActivity.instance) == null) {
             return;
         }
-        LaunchActivity launchActivity = LaunchActivity.instance;
-        if (launchActivity != null) {
-            launchActivity.moveTaskToBack(true);
-        }
+        launchActivity.moveTaskToBack(true);
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+    public boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        LaunchActivity launchActivity;
         if (keyEvent.getKeyCode() != 4 || keyEvent.getRepeatCount() != 0) {
             return super.dispatchKeyEvent(keyEvent);
         }
-        AnonymousClass1 anonymousClass1 = this.passcodeView;
-        KeyboardNotifier keyboardNotifier = anonymousClass1.keyboardNotifier;
-        if (keyboardNotifier == null || !keyboardNotifier.keyboardVisible()) {
-            LaunchActivity launchActivity = LaunchActivity.instance;
-            if (launchActivity != null) {
-                launchActivity.moveTaskToBack(true);
-            }
-        } else {
-            AndroidUtilities.hideKeyboard(anonymousClass1.passwordEditText);
+        if (this.passcodeView.onBackPressed() && (launchActivity = LaunchActivity.instance) != null) {
+            launchActivity.moveTaskToBack(true);
         }
         return true;
     }
 
     @Override
-    public final void onBackPressed() {
-        AnonymousClass1 anonymousClass1 = this.passcodeView;
-        KeyboardNotifier keyboardNotifier = anonymousClass1.keyboardNotifier;
-        if (keyboardNotifier != null && keyboardNotifier.keyboardVisible()) {
-            AndroidUtilities.hideKeyboard(anonymousClass1.passwordEditText);
+    public void onBackPressed() {
+        LaunchActivity launchActivity;
+        if (!this.passcodeView.onBackPressed() || (launchActivity = LaunchActivity.instance) == null) {
             return;
         }
-        LaunchActivity launchActivity = LaunchActivity.instance;
-        if (launchActivity != null) {
-            launchActivity.moveTaskToBack(true);
-        }
+        launchActivity.moveTaskToBack(true);
     }
 
     @Override
-    public final void onCreate(Bundle bundle) {
+    public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         Window window = getWindow();
         window.setWindowAnimations(R.style.DialogNoAnimation);
-        FrameLayout frameLayout = this.windowView;
-        setContentView(frameLayout, new ViewGroup.LayoutParams(-1, -1));
+        setContentView(this.windowView, new ViewGroup.LayoutParams(-1, -1));
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
         attributes.height = -1;
@@ -124,7 +114,7 @@ public final class PasscodeViewDialog extends Dialog {
         }
         attributes.flags |= -2013198976;
         window.setAttributes(attributes);
-        frameLayout.setSystemUiVisibility(256);
+        this.windowView.setSystemUiVisibility(256);
         AndroidUtilities.setLightNavigationBar((Dialog) this, false);
     }
 }

@@ -12,11 +12,13 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 
 public final class DateEndCell extends FrameLayout {
+    public final Theme.ResourcesProvider resourcesProvider;
     public long selectedTime;
     public final SimpleTextView timeTextView;
 
     public DateEndCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         SimpleTextView simpleTextView = new SimpleTextView(context);
         simpleTextView.setTextSize(16);
         simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
@@ -28,7 +30,7 @@ public final class DateEndCell extends FrameLayout {
         simpleTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
         simpleTextView2.setGravity(LocaleController.isRTL ? 3 : 5);
         addView(simpleTextView2);
-        simpleTextView.setText(LocaleController.formatString("BoostingDateAndTime", R.string.BoostingDateAndTime, new Object[0]), false);
+        simpleTextView.setText(LocaleController.formatString("BoostingDateAndTime", R.string.BoostingDateAndTime, new Object[0]));
         boolean z = LocaleController.isRTL;
         simpleTextView.setLayoutParams(LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 16, z ? 0.0f : 21.0f, 0.0f, z ? 21.0f : 0.0f, 0.0f));
         boolean z2 = LocaleController.isRTL;
@@ -48,6 +50,6 @@ public final class DateEndCell extends FrameLayout {
     public void setDate(long j) {
         this.selectedTime = j;
         Date date = new Date(j);
-        this.timeTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
+        this.timeTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)));
     }
 }

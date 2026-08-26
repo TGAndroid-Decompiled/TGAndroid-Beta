@@ -21,7 +21,7 @@ public final class StoryRecorder$13$$ExternalSyntheticLambda0 implements Runnabl
                     qRScanner.setPaused(false);
                 }
                 if (storyRecorder.takingVideo && storyRecorder.stoppingTakingVideo && storyRecorder.cameraView != null) {
-                    storyRecorder.showZoomControls$1(false);
+                    storyRecorder.showZoomControls(false);
                     CameraController.getInstance().stopVideoRecording(storyRecorder.cameraView.getCameraSessionRecording(), false, false);
                     break;
                 }

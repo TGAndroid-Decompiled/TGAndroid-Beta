@@ -1,6 +1,6 @@
 package org.telegram.PhoneFormat;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -305,7 +305,7 @@ public final class PhoneFormat {
                 phoneRule.format = strValueString3;
                 int iIndexOf = strValueString3.indexOf("[[");
                 if (iIndexOf != -1) {
-                    phoneRule.format = SurfaceContainer$$ExternalSyntheticOutline0.m$1(phoneRule.format.substring(0, iIndexOf), phoneRule.format.substring(phoneRule.format.indexOf("]]") + 2));
+                    phoneRule.format = Fragment$$ExternalSyntheticOutline0.m$1(phoneRule.format.substring(0, iIndexOf), phoneRule.format.substring(phoneRule.format.indexOf("]]") + 2));
                 }
                 arrayList4.add(phoneRule);
                 i6++;

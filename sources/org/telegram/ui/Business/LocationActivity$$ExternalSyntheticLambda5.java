@@ -37,7 +37,7 @@ public final class LocationActivity$$ExternalSyntheticLambda5 implements Request
                                         locationActivity2.finishFragment();
                                     } else {
                                         locationActivity2.doneButtonDrawable.animateToProgress(0.0f);
-                                        UserNameResolver$$ExternalSyntheticOutline0.m(R.string.UnknownError, BulletinFactory.of(locationActivity2), null);
+                                        UserNameResolver$$ExternalSyntheticOutline0.m(BulletinFactory.of(locationActivity2), R.string.UnknownError);
                                     }
                                 } else {
                                     locationActivity2.doneButtonDrawable.animateToProgress(0.0f);
@@ -53,7 +53,7 @@ public final class LocationActivity$$ExternalSyntheticLambda5 implements Request
                                 } else if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
                                     locationActivity3.finishFragment();
                                 } else {
-                                    UserNameResolver$$ExternalSyntheticOutline0.m(R.string.UnknownError, BulletinFactory.of(locationActivity3), null);
+                                    UserNameResolver$$ExternalSyntheticOutline0.m(BulletinFactory.of(locationActivity3), R.string.UnknownError);
                                 }
                                 break;
                         }
@@ -76,7 +76,7 @@ public final class LocationActivity$$ExternalSyntheticLambda5 implements Request
                                         locationActivity3.finishFragment();
                                     } else {
                                         locationActivity3.doneButtonDrawable.animateToProgress(0.0f);
-                                        UserNameResolver$$ExternalSyntheticOutline0.m(R.string.UnknownError, BulletinFactory.of(locationActivity3), null);
+                                        UserNameResolver$$ExternalSyntheticOutline0.m(BulletinFactory.of(locationActivity3), R.string.UnknownError);
                                     }
                                 } else {
                                     locationActivity3.doneButtonDrawable.animateToProgress(0.0f);
@@ -92,7 +92,7 @@ public final class LocationActivity$$ExternalSyntheticLambda5 implements Request
                                 } else if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
                                     locationActivity4.finishFragment();
                                 } else {
-                                    UserNameResolver$$ExternalSyntheticOutline0.m(R.string.UnknownError, BulletinFactory.of(locationActivity4), null);
+                                    UserNameResolver$$ExternalSyntheticOutline0.m(BulletinFactory.of(locationActivity4), R.string.UnknownError);
                                 }
                                 break;
                         }

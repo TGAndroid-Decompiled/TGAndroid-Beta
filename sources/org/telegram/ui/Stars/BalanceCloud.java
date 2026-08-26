@@ -18,7 +18,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
-import org.telegram.ui.ProfileActivity$9$$ExternalSyntheticLambda1;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda26;
 
 public final class BalanceCloud extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
     public final ColoredImageSpan[] coloredImageSpansTon;
@@ -46,7 +46,7 @@ public final class BalanceCloud extends LinearLayout implements NotificationCent
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
         this.textView2 = linksTextView;
         linksTextView.setTextSize(1, 12.0f);
-        linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new BalanceCloud$$ExternalSyntheticLambda0(context, resourcesProvider)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
+        linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new GiftSheet$$ExternalSyntheticLambda26(25, context, resourcesProvider)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
         linksTextView.setGravity(17);
         addView(linksTextView, LayoutHelper.createLinear(-2, -2, 0.0f, 17, 0, 1, 0, 0));
         updateBalance();
@@ -89,13 +89,14 @@ public final class BalanceCloud extends LinearLayout implements NotificationCent
         AmountUtils$Currency amountUtils$Currency3 = AmountUtils$Currency.STARS;
         TextView textView = this.textView1;
         LinkSpanDrawable.LinksTextView linksTextView = this.textView2;
+        int i2 = 0;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         if (amountUtils$Currency2 == amountUtils$Currency3) {
             textView.setText(StarsIntroActivity.replaceStarsWithPlain(false, LocaleController.formatString(R.string.Gift2MessageStarsInfo, LocaleController.formatNumber(balanceAmount.nanos / 1000000000, ',')), 0.6f, null));
-            int i2 = Theme.key_undo_cancelColor;
-            linksTextView.setTextColor(Theme.getColor(i2, resourcesProvider));
-            linksTextView.setLinkTextColor(Theme.getColor(i2, resourcesProvider));
-            linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new ProfileActivity$9$$ExternalSyntheticLambda1(this, 17)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
+            int i3 = Theme.key_undo_cancelColor;
+            linksTextView.setTextColor(Theme.getColor(i3, resourcesProvider));
+            linksTextView.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
+            linksTextView.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2MessageStarsInfoLink), new BalanceCloud$$ExternalSyntheticLambda1(this, i2)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.0f)));
             return;
         }
         if (amountUtils$Currency2 == AmountUtils$Currency.TON) {
@@ -106,11 +107,11 @@ public final class BalanceCloud extends LinearLayout implements NotificationCent
             StringBuilder sb = new StringBuilder(10);
             sb.append('~');
             sb.append(BillingController.getInstance().formatCurrency((long) (MessagesController.getInstance(i).config.tonUsdRate.get() * balanceAmount.asDouble() * 100.0d), "USD", 2));
-            int i3 = Theme.key_undo_infoColor;
-            int color = Theme.getColor(i3, resourcesProvider);
-            int i4 = Theme.key_undo_background;
-            linksTextView.setTextColor(ColorUtils.blendARGB(0.33f, color, Theme.getColor(i4, resourcesProvider)));
-            linksTextView.setLinkTextColor(ColorUtils.blendARGB(0.33f, Theme.getColor(i3, resourcesProvider), Theme.getColor(i4, resourcesProvider)));
+            int i4 = Theme.key_undo_infoColor;
+            int color = Theme.getColor(i4, resourcesProvider);
+            int i5 = Theme.key_undo_background;
+            linksTextView.setTextColor(ColorUtils.blendARGB(0.33f, color, Theme.getColor(i5, resourcesProvider)));
+            linksTextView.setLinkTextColor(ColorUtils.blendARGB(0.33f, Theme.getColor(i4, resourcesProvider), Theme.getColor(i5, resourcesProvider)));
             linksTextView.setText(sb);
         }
     }

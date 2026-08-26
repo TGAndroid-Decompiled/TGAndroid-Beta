@@ -1,6 +1,5 @@
 package org.telegram.ui.Stories;
 
-import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -23,17 +22,13 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline1;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Charts.BaseChartView;
+import org.telegram.ui.Charts.StackBarChartView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.GradientTools;
-import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
-import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
-import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView$1$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.StaticLayoutEx;
-import org.telegram.ui.PhotoViewer;
 
 public abstract class SelfStoriesPreviewView extends View {
     public boolean checkScroll;
@@ -122,12 +117,12 @@ public abstract class SelfStoriesPreviewView extends View {
             TextPaint textPaint = this.paint;
             int i = (int) (selfStoriesPreviewView.textWidth + 1.0f);
             Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, textPaint, i, alignment, 0.0f, false, null, Integer.MAX_VALUE, 1, true);
+            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, textPaint, i, alignment, 1.0f, 0.0f, false, null, Integer.MAX_VALUE, 1);
             this.layout = staticLayoutCreateStaticLayout;
             if (staticLayoutCreateStaticLayout.getLineCount() > 1) {
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
                 SelfStoriesPreviewView.access$200(spannableStringBuilder2, this.storyItem.storyItem.views, true);
-                this.layout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, textPaint, (int) (selfStoriesPreviewView.textWidth + 1.0f), alignment, 0.0f, false, null, Integer.MAX_VALUE, 2, true);
+                this.layout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, textPaint, (int) (selfStoriesPreviewView.textWidth + 1.0f), alignment, 1.0f, 0.0f, false, null, Integer.MAX_VALUE, 2);
             }
         }
     }
@@ -138,7 +133,78 @@ public abstract class SelfStoriesPreviewView extends View {
         this.storyItems = new ArrayList();
         this.imageReceiversTmp = new ArrayList();
         this.lastDrawnImageReceivers = new ArrayList();
-        this.gestureDetector = new GestureDetector(new AnonymousClass1(0, this));
+        this.gestureDetector = new GestureDetector(new GestureDetector.OnGestureListener() {
+            @Override
+            public final boolean onDown(MotionEvent motionEvent) {
+                SelfStoriesPreviewView selfStoriesPreviewView = SelfStoriesPreviewView.this;
+                selfStoriesPreviewView.scroller.abortAnimation();
+                ValueAnimator valueAnimator = selfStoriesPreviewView.scrollAnimator;
+                if (valueAnimator != null) {
+                    valueAnimator.removeAllListeners();
+                    selfStoriesPreviewView.scrollAnimator.cancel();
+                    selfStoriesPreviewView.scrollAnimator = null;
+                }
+                selfStoriesPreviewView.checkScroll = false;
+                ((SelfStoryViewsView.AnonymousClass1) selfStoriesPreviewView).this$0.listenPager = false;
+                return true;
+            }
+
+            @Override
+            public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+                SelfStoriesPreviewView selfStoriesPreviewView = SelfStoriesPreviewView.this;
+                selfStoriesPreviewView.scroller.fling((int) selfStoriesPreviewView.scrollX, 0, (int) (-f), 0, (int) selfStoriesPreviewView.minScroll, (int) selfStoriesPreviewView.maxScroll, 0, 0);
+                selfStoriesPreviewView.invalidate();
+                return false;
+            }
+
+            @Override
+            public final void onLongPress(MotionEvent motionEvent) {
+            }
+
+            @Override
+            public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+                SelfStoriesPreviewView selfStoriesPreviewView = SelfStoriesPreviewView.this;
+                float f3 = selfStoriesPreviewView.scrollX + f;
+                selfStoriesPreviewView.scrollX = f3;
+                float f4 = selfStoriesPreviewView.minScroll;
+                if (f3 < f4) {
+                    selfStoriesPreviewView.scrollX = f4;
+                }
+                float f5 = selfStoriesPreviewView.scrollX;
+                float f6 = selfStoriesPreviewView.maxScroll;
+                if (f5 > f6) {
+                    selfStoriesPreviewView.scrollX = f6;
+                }
+                selfStoriesPreviewView.invalidate();
+                return false;
+            }
+
+            @Override
+            public final void onShowPress(MotionEvent motionEvent) {
+            }
+
+            @Override
+            public final boolean onSingleTapUp(MotionEvent motionEvent) {
+                int i = 0;
+                while (true) {
+                    SelfStoriesPreviewView selfStoriesPreviewView = SelfStoriesPreviewView.this;
+                    if (i >= selfStoriesPreviewView.lastDrawnImageReceivers.size()) {
+                        return false;
+                    }
+                    ImageHolder imageHolder = (ImageHolder) selfStoriesPreviewView.lastDrawnImageReceivers.get(i);
+                    if (((ImageHolder) selfStoriesPreviewView.lastDrawnImageReceivers.get(i)).receiver.getDrawRegion().contains(motionEvent.getX(), motionEvent.getY())) {
+                        int i2 = selfStoriesPreviewView.lastClosestPosition;
+                        int i3 = imageHolder.position;
+                        if (i2 != i3) {
+                            selfStoriesPreviewView.scrollToPosition(i3, true, false);
+                        } else {
+                            ((SelfStoryViewsView.AnonymousClass1) selfStoriesPreviewView).val$storyViewer.cancelSwipeToViews(false);
+                        }
+                    }
+                    i++;
+                }
+            }
+        });
         this.scroller = new Scroller(context, new OvershootInterpolator());
         this.gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, ColorUtils.setAlphaComponent(-16777216, 160)});
     }
@@ -397,8 +463,8 @@ public abstract class SelfStoriesPreviewView extends View {
             }
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f4, f3);
             this.scrollAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ChatActivity.AnonymousClass133(this, 13));
-            this.scrollAnimator.addListener(new PhotoViewer.AnonymousClass78.AnonymousClass1(this, 23));
+            valueAnimatorOfFloat.addUpdateListener(new StackBarChartView.AnonymousClass1(this, 4));
+            this.scrollAnimator.addListener(new BaseChartView.AnonymousClass4(this, 23));
             this.scrollAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.scrollAnimator.setDuration(200L);
             this.scrollAnimator.start();
@@ -411,144 +477,5 @@ public abstract class SelfStoriesPreviewView extends View {
         }
         this.progressToOpen = f;
         invalidate();
-    }
-
-    public final class AnonymousClass1 implements GestureDetector.OnGestureListener {
-        public final int $r8$classId;
-        public final View this$0;
-
-        public AnonymousClass1(int i, View view) {
-            this.$r8$classId = i;
-            this.this$0 = view;
-        }
-
-        @Override
-        public final boolean onDown(MotionEvent motionEvent) {
-            switch (this.$r8$classId) {
-                case 0:
-                    SelfStoriesPreviewView selfStoriesPreviewView = (SelfStoriesPreviewView) this.this$0;
-                    selfStoriesPreviewView.scroller.abortAnimation();
-                    ValueAnimator valueAnimator = selfStoriesPreviewView.scrollAnimator;
-                    if (valueAnimator != null) {
-                        valueAnimator.removeAllListeners();
-                        selfStoriesPreviewView.scrollAnimator.cancel();
-                        selfStoriesPreviewView.scrollAnimator = null;
-                    }
-                    selfStoriesPreviewView.checkScroll = false;
-                    ((SelfStoryViewsView.AnonymousClass1) selfStoriesPreviewView).this$0.listenPager = false;
-                    break;
-                default:
-                    GLIconTextureView gLIconTextureView = (GLIconTextureView) this.this$0;
-                    ValueAnimator valueAnimator2 = gLIconTextureView.backAnimation;
-                    if (valueAnimator2 != null) {
-                        valueAnimator2.removeAllListeners();
-                        gLIconTextureView.backAnimation.cancel();
-                        gLIconTextureView.backAnimation = null;
-                    }
-                    AnimatorSet animatorSet = gLIconTextureView.animatorSet;
-                    if (animatorSet != null) {
-                        animatorSet.removeAllListeners();
-                        gLIconTextureView.animatorSet.cancel();
-                        gLIconTextureView.animatorSet = null;
-                    }
-                    AndroidUtilities.cancelRunOnUIThread(gLIconTextureView.idleAnimation);
-                    gLIconTextureView.touched = true;
-                    break;
-            }
-            return true;
-        }
-
-        @Override
-        public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-            switch (this.$r8$classId) {
-                case 0:
-                    SelfStoriesPreviewView selfStoriesPreviewView = (SelfStoriesPreviewView) this.this$0;
-                    selfStoriesPreviewView.scroller.fling((int) selfStoriesPreviewView.scrollX, 0, (int) (-f), 0, (int) selfStoriesPreviewView.minScroll, (int) selfStoriesPreviewView.maxScroll, 0, 0);
-                    selfStoriesPreviewView.invalidate();
-                    break;
-            }
-            return false;
-        }
-
-        @Override
-        public final void onLongPress(MotionEvent motionEvent) {
-            switch (this.$r8$classId) {
-                case 0:
-                    break;
-                default:
-                    ((GLIconTextureView) this.this$0).onLongPress();
-                    break;
-            }
-        }
-
-        @Override
-        public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
-            switch (this.$r8$classId) {
-                case 0:
-                    SelfStoriesPreviewView selfStoriesPreviewView = (SelfStoriesPreviewView) this.this$0;
-                    float f3 = selfStoriesPreviewView.scrollX + f;
-                    selfStoriesPreviewView.scrollX = f3;
-                    float f4 = selfStoriesPreviewView.minScroll;
-                    if (f3 < f4) {
-                        selfStoriesPreviewView.scrollX = f4;
-                    }
-                    float f5 = selfStoriesPreviewView.scrollX;
-                    float f6 = selfStoriesPreviewView.maxScroll;
-                    if (f5 > f6) {
-                        selfStoriesPreviewView.scrollX = f6;
-                    }
-                    selfStoriesPreviewView.invalidate();
-                    return false;
-                default:
-                    GLIconRenderer gLIconRenderer = ((GLIconTextureView) this.this$0).mRenderer;
-                    gLIconRenderer.angleX = (f * 0.5f) + gLIconRenderer.angleX;
-                    gLIconRenderer.angleY = (f2 * 0.05f) + gLIconRenderer.angleY;
-                    return true;
-            }
-        }
-
-        @Override
-        public final void onShowPress(MotionEvent motionEvent) {
-            int i = this.$r8$classId;
-        }
-
-        @Override
-        public final boolean onSingleTapUp(MotionEvent motionEvent) {
-            switch (this.$r8$classId) {
-                case 0:
-                    int i = 0;
-                    while (true) {
-                        SelfStoriesPreviewView selfStoriesPreviewView = (SelfStoriesPreviewView) this.this$0;
-                        if (i >= selfStoriesPreviewView.lastDrawnImageReceivers.size()) {
-                            return false;
-                        }
-                        ImageHolder imageHolder = (ImageHolder) selfStoriesPreviewView.lastDrawnImageReceivers.get(i);
-                        if (((ImageHolder) selfStoriesPreviewView.lastDrawnImageReceivers.get(i)).receiver.getDrawRegion().contains(motionEvent.getX(), motionEvent.getY())) {
-                            int i2 = selfStoriesPreviewView.lastClosestPosition;
-                            int i3 = imageHolder.position;
-                            if (i2 != i3) {
-                                selfStoriesPreviewView.scrollToPosition(i3, true, false);
-                            } else {
-                                ((SelfStoryViewsView.AnonymousClass1) selfStoriesPreviewView).val$storyViewer.cancelSwipeToViews(false);
-                            }
-                        }
-                        i++;
-                    }
-                    break;
-                default:
-                    float measuredWidth = ((GLIconTextureView) this.this$0).getMeasuredWidth() / 2.0f;
-                    AndroidUtilities.runOnUIThread(new GLIconTextureView$1$$ExternalSyntheticLambda0(this, ((measuredWidth - motionEvent.getX()) * (Utilities.random.nextInt(30) + 40)) / measuredWidth, ((measuredWidth - motionEvent.getY()) * (Utilities.random.nextInt(30) + 40)) / measuredWidth, 0), 16L);
-                    return true;
-            }
-        }
-
-        private final void onLongPress$org$telegram$ui$Stories$SelfStoriesPreviewView$1(MotionEvent motionEvent) {
-        }
-
-        private final void onShowPress$org$telegram$ui$Components$Premium$GLIcon$GLIconTextureView$1(MotionEvent motionEvent) {
-        }
-
-        private final void onShowPress$org$telegram$ui$Stories$SelfStoriesPreviewView$1(MotionEvent motionEvent) {
-        }
     }
 }

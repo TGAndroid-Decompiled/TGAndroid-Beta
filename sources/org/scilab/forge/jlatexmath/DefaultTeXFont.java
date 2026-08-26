@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -518,9 +518,9 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     public static void addAlphabet(Character.UnicodeBlock unicodeBlock, String str) {
-        String strM = SurfaceContainer$$ExternalSyntheticOutline0.m("fonts/", str, "/language_", str, ".xml");
-        String strM2 = SurfaceContainer$$ExternalSyntheticOutline0.m("fonts/", str, "/symbols_", str, ".xml");
-        String strM3 = SurfaceContainer$$ExternalSyntheticOutline0.m("fonts/", str, "/mappings_", str, ".xml");
+        String strM = Fragment$$ExternalSyntheticOutline0.m("fonts/", str, "/language_", str, ".xml");
+        String strM2 = Fragment$$ExternalSyntheticOutline0.m("fonts/", str, "/symbols_", str, ".xml");
+        String strM3 = Fragment$$ExternalSyntheticOutline0.m("fonts/", str, "/mappings_", str, ".xml");
         try {
             addAlphabet(unicodeBlock, JLatexMathAndroid.getResourceAsStream(strM), strM, JLatexMathAndroid.getResourceAsStream(strM2), strM2, JLatexMathAndroid.getResourceAsStream(strM3), strM3);
         } catch (FontAlreadyLoadedException unused) {

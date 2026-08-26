@@ -2,7 +2,7 @@ package org.telegram.messenger.video;
 
 import android.media.MediaCodec;
 import android.media.MediaFormat;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.coremedia.iso.Hex;
 import com.coremedia.iso.boxes.AbstractMediaHeaderBox;
 import com.coremedia.iso.boxes.SampleDescriptionBox;
@@ -198,7 +198,7 @@ public class Track {
             byteBufferAllocate4.put((byte) (sLConfigDescriptor2.predefined & 255));
             byteBufferAllocate.put(byteBufferAllocate2.array());
             byteBufferAllocate.put(byteBufferAllocate4.array());
-            SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(AbstractDescriptorBox.ajc$tjp_4, eSDescriptorBox, eSDescriptorBox, byteBufferAllocate));
+            Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(AbstractDescriptorBox.ajc$tjp_4, eSDescriptorBox, eSDescriptorBox, byteBufferAllocate));
             eSDescriptorBox.data = byteBufferAllocate;
             audioSampleEntry.addBox(eSDescriptorBox);
             this.sampleDescriptionBox.addBox(audioSampleEntry);
@@ -317,9 +317,9 @@ public class Track {
             byte[] bArr5 = new byte[byteBuffer2.remaining()];
             byteBuffer2.get(bArr5);
             arrayList2.add(bArr5);
-            SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_12, avcConfigurationBox, avcConfigurationBox, arrayList));
+            Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_12, avcConfigurationBox, avcConfigurationBox, arrayList));
             avcConfigurationBox.avcDecoderConfigurationRecord.sequenceParameterSets = arrayList;
-            SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_13, avcConfigurationBox, avcConfigurationBox, arrayList2));
+            Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_13, avcConfigurationBox, avcConfigurationBox, arrayList2));
             avcConfigurationBox.avcDecoderConfigurationRecord.pictureParameterSets = arrayList2;
         }
         if (mediaFormat.containsKey("level")) {
@@ -382,17 +382,17 @@ public class Track {
         } else {
             avcConfigurationBox.setAvcProfileIndication(100);
         }
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_17, avcConfigurationBox, avcConfigurationBox, new Integer(-1)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_17, avcConfigurationBox, avcConfigurationBox, new Integer(-1)));
         avcConfigurationBox.avcDecoderConfigurationRecord.bitDepthLumaMinus8 = -1;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_19, avcConfigurationBox, avcConfigurationBox, new Integer(-1)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_19, avcConfigurationBox, avcConfigurationBox, new Integer(-1)));
         avcConfigurationBox.avcDecoderConfigurationRecord.bitDepthChromaMinus8 = -1;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_15, avcConfigurationBox, avcConfigurationBox, new Integer(-1)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_15, avcConfigurationBox, avcConfigurationBox, new Integer(-1)));
         avcConfigurationBox.avcDecoderConfigurationRecord.chromaFormat = -1;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_7, avcConfigurationBox, avcConfigurationBox, new Integer(1)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_7, avcConfigurationBox, avcConfigurationBox, new Integer(1)));
         avcConfigurationBox.avcDecoderConfigurationRecord.configurationVersion = 1;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_11, avcConfigurationBox, avcConfigurationBox, new Integer(3)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_11, avcConfigurationBox, avcConfigurationBox, new Integer(3)));
         avcConfigurationBox.avcDecoderConfigurationRecord.lengthSizeMinusOne = 3;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_9, avcConfigurationBox, avcConfigurationBox, new Integer(0)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(AvcConfigurationBox.ajc$tjp_9, avcConfigurationBox, avcConfigurationBox, new Integer(0)));
         avcConfigurationBox.avcDecoderConfigurationRecord.profileCompatibility = 0;
         visualSampleEntry2.addBox(avcConfigurationBox);
         this.sampleDescriptionBox.addBox(visualSampleEntry2);

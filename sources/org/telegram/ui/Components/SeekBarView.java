@@ -21,9 +21,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjd;
+import com.google.android.gms.internal.mlkit_language_id_common.zzir;
 import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
@@ -34,120 +35,63 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.TextureRenderer$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
-import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda18;
-import org.telegram.ui.ProfileActivity;
 
 public class SeekBarView extends FrameLayout {
-    public static Path tmpPath;
-    public static float[] tmpRadii;
-    public final AnimatedFloat animatedThumbX;
-    public float bufferedProgress;
-    public boolean captured;
-    public float currentRadius;
-    public int currentTimestamp;
+    private static Path tmpPath;
+    private static float[] tmpRadii;
+    private final float TIMESTAMP_GAP;
+    private AnimatedFloat animatedThumbX;
+    private float bufferedProgress;
+    boolean captured;
+    private float currentRadius;
+    private int currentTimestamp;
     public SeekBarViewDelegate delegate;
-    public final BaseCell.RippleDrawableSafe hoverDrawable;
-    public final Paint innerPaint1;
-    public CharSequence lastCaption;
-    public long lastDuration;
-    public int lastTimestampLabelWidth;
-    public long lastTimestampUpdate;
-    public int lastValue;
-    public float lastWidth;
-    public int lineWidthDp;
-    public float minProgress;
-    public final Paint outerPaint1;
-    public boolean pressed;
-    public final int[] pressedState;
-    public float progressToSet;
-    public final RectF rect;
-    public boolean reportChanges;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public final ChatMessageCell.AnonymousClass5 seekBarAccessibilityDelegate;
-    public final int selectorWidth;
-    public int separatorsCount;
-    public float sx;
-    public float sy;
-    public final ProfileActivity.AnonymousClass26 textViewSwitcher;
-    public int thumbDX;
-    public final int thumbSize;
-    public int thumbX;
-    public int timestampChangeDirection;
-    public float timestampChangeT;
-    public int timestampIndex;
-    public StaticLayout[] timestampLabel;
-    public TextPaint timestampLabelPaint;
-    public ArrayList timestamps;
-    public float timestampsAppearing;
-    public float transitionProgress;
-    public int transitionThumbX;
-    public boolean twoSided;
+    private Drawable hoverDrawable;
+    private Paint innerPaint1;
+    private CharSequence lastCaption;
+    private long lastDuration;
+    private int lastTimestamp;
+    private int lastTimestampLabelWidth;
+    private long lastTimestampUpdate;
+    private long lastTimestampsAppearingUpdate;
+    private long lastUpdateTime;
+    int lastValue;
+    private float lastWidth;
+    private int lineWidthDp;
+    private float minProgress;
+    private Paint outerPaint1;
+    private boolean pressed;
+    private boolean pressedDelayed;
+    private int[] pressedState;
+    private float progressToSet;
+    private RectF rect;
+    private boolean reportChanges;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private final SeekBarAccessibilityDelegate seekBarAccessibilityDelegate;
+    private int selectorWidth;
+    private int separatorsCount;
+    float sx;
+    float sy;
+    private final AudioPlayerAlert.ClippingTextViewSwitcher textViewSwitcher;
+    private int thumbDX;
+    private int thumbSize;
+    private int thumbX;
+    private int timestampChangeDirection;
+    private float timestampChangeT;
+    private int timestampIndex;
+    private StaticLayout[] timestampLabel;
+    private TextPaint timestampLabelPaint;
+    private ArrayList<Pair<Float, CharSequence>> timestamps;
+    private float timestampsAppearing;
+    private float transitionProgress;
+    private int transitionThumbX;
+    private boolean twoSided;
 
-    public interface SeekBarViewDelegate {
-        CharSequence getContentDescription();
-
-        int getStepsCount();
-
-        void onSeekBarDrag(float f, boolean z);
-
-        void onSeekBarPressed();
+    public SeekBarView(Context context) {
+        this(context, null);
     }
 
-    public SeekBarView(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
-        super(context);
-        this.animatedThumbX = new AnimatedFloat(this, 0L, 60L, CubicBezierInterpolator.EASE_OUT);
-        this.progressToSet = -100.0f;
-        this.minProgress = -1.0f;
-        this.pressedState = new int[]{16842910, 16842919};
-        this.transitionProgress = 1.0f;
-        this.lineWidthDp = 3;
-        this.timestampsAppearing = 0.0f;
-        this.currentTimestamp = -1;
-        this.timestampChangeT = 1.0f;
-        this.lastWidth = -1.0f;
-        this.rect = new RectF();
-        this.timestampIndex = -1;
-        this.resourcesProvider = resourcesProvider;
-        setWillNotDraw(false);
-        this.innerPaint1 = new Paint(1);
-        Paint paint = new Paint(1);
-        this.outerPaint1 = paint;
-        int i = Theme.key_player_progress;
-        paint.setColor(Theme.getColor(i, resourcesProvider));
-        this.selectorWidth = AndroidUtilities.dp(32.0f);
-        this.thumbSize = AndroidUtilities.dp(24.0f);
-        this.currentRadius = AndroidUtilities.dp(6.0f);
-        BaseCell.RippleDrawableSafe rippleDrawableSafeCreateSelectorDrawable = Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor(i, resourcesProvider), 40), 1, AndroidUtilities.dp(16.0f));
-        this.hoverDrawable = rippleDrawableSafeCreateSelectorDrawable;
-        rippleDrawableSafeCreateSelectorDrawable.setCallback(this);
-        rippleDrawableSafeCreateSelectorDrawable.setVisible(true, false);
-        ProfileActivity.AnonymousClass26 anonymousClass26 = new ProfileActivity.AnonymousClass26(this, context, context, 1);
-        this.textViewSwitcher = anonymousClass26;
-        anonymousClass26.isCenter = true;
-        addView(anonymousClass26, LayoutHelper.createFrame(-2.0f, -1));
-        setImportantForAccessibility(1);
-        ChatMessageCell.AnonymousClass5 anonymousClass5 = new ChatMessageCell.AnonymousClass5(this, z);
-        this.seekBarAccessibilityDelegate = anonymousClass5;
-        setAccessibilityDelegate(anonymousClass5);
-    }
-
-    private int getTimestampLabelWidth() {
-        int i = this.selectorWidth;
-        return (int) (Math.abs(((i / 2.0f) + (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0)) - ((getMeasuredWidth() - (i / 2.0f)) - (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0))) - AndroidUtilities.dp(66.0f));
-    }
-
-    private void setTimestampIndex(int i) {
-        if (this.timestampIndex != i) {
-            this.timestampIndex = i;
-            if (i < 0 || i >= this.timestamps.size()) {
-                return;
-            }
-            this.textViewSwitcher.setText((CharSequence) ((Pair) this.timestamps.get(this.timestampIndex)).second);
-        }
-    }
-
-    public final void drawProgressBar(Canvas canvas, RectF rectF, Paint paint) {
+    private void drawProgressBar(Canvas canvas, RectF rectF, Paint paint) {
         int size;
         char c;
         float fFloatValue;
@@ -155,15 +99,14 @@ public class SeekBarView extends FrameLayout {
         char c3;
         SeekBarView seekBarView = this;
         float fDp = AndroidUtilities.dp(2.0f);
-        ArrayList arrayList = seekBarView.timestamps;
+        ArrayList<Pair<Float, CharSequence>> arrayList = seekBarView.timestamps;
         if (arrayList == null || arrayList.isEmpty()) {
             canvas.drawRoundRect(rectF, fDp, fDp, paint);
             return;
         }
         float f = rectF.bottom;
-        int i = seekBarView.selectorWidth;
-        float f2 = i / 2.0f;
-        float measuredWidth = seekBarView.getMeasuredWidth() - (i / 2.0f);
+        float f2 = seekBarView.selectorWidth / 2.0f;
+        float measuredWidth = seekBarView.getMeasuredWidth() - (seekBarView.selectorWidth / 2.0f);
         AndroidUtilities.rectTmp.set(rectF);
         float fDp2 = AndroidUtilities.dp(seekBarView.timestampsAppearing * 1.0f) / 2.0f;
         if (tmpPath == null) {
@@ -171,23 +114,23 @@ public class SeekBarView extends FrameLayout {
         }
         tmpPath.reset();
         float fDp3 = AndroidUtilities.dp(4.0f) / (measuredWidth - f2);
-        int i2 = 0;
+        int i = 0;
         while (true) {
             size = -1;
-            if (i2 >= seekBarView.timestamps.size()) {
-                i2 = -1;
+            if (i >= seekBarView.timestamps.size()) {
+                i = -1;
                 break;
-            } else if (((Float) ((Pair) seekBarView.timestamps.get(i2)).first).floatValue() >= fDp3) {
+            } else if (((Float) seekBarView.timestamps.get(i).first).floatValue() >= fDp3) {
                 break;
             } else {
-                i2++;
+                i++;
             }
         }
-        if (i2 < 0) {
-            i2 = 0;
+        if (i < 0) {
+            i = 0;
         }
         for (int size2 = seekBarView.timestamps.size() - 1; size2 >= 0; size2--) {
-            if (1.0f - ((Float) ((Pair) seekBarView.timestamps.get(size2)).first).floatValue() >= fDp3) {
+            if (1.0f - ((Float) seekBarView.timestamps.get(size2).first).floatValue() >= fDp3) {
                 size = size2 + 1;
                 break;
             }
@@ -195,31 +138,31 @@ public class SeekBarView extends FrameLayout {
         if (size < 0) {
             size = seekBarView.timestamps.size();
         }
-        int i3 = i2;
-        while (i3 <= size) {
-            if (i3 == i2) {
+        int i2 = i;
+        while (i2 <= size) {
+            if (i2 == i) {
                 fFloatValue = 0.0f;
                 c = 0;
             } else {
                 c = 0;
-                fFloatValue = ((Float) ((Pair) seekBarView.timestamps.get(i3 - 1)).first).floatValue();
+                fFloatValue = ((Float) seekBarView.timestamps.get(i2 - 1).first).floatValue();
             }
-            float fFloatValue2 = i3 == size ? 1.0f : ((Float) ((Pair) seekBarView.timestamps.get(i3)).first).floatValue();
+            float fFloatValue2 = i2 == size ? 1.0f : ((Float) seekBarView.timestamps.get(i2).first).floatValue();
             while (true) {
-                if (i3 == size || i3 == 0) {
+                if (i2 == size || i2 == 0) {
                     c2 = 1;
                     break;
                 }
                 c2 = 1;
-                if (i3 >= seekBarView.timestamps.size() - 1 || ((Float) ((Pair) seekBarView.timestamps.get(i3)).first).floatValue() - fFloatValue > fDp3) {
+                if (i2 >= seekBarView.timestamps.size() - 1 || ((Float) seekBarView.timestamps.get(i2).first).floatValue() - fFloatValue > fDp3) {
                     break;
                 }
-                i3++;
-                fFloatValue2 = ((Float) ((Pair) seekBarView.timestamps.get(i3)).first).floatValue();
+                i2++;
+                fFloatValue2 = ((Float) seekBarView.timestamps.get(i2).first).floatValue();
             }
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.left = AndroidUtilities.lerp(f2, measuredWidth, fFloatValue) + (i3 > 0 ? fDp2 : 0.0f);
-            float fLerp = AndroidUtilities.lerp(f2, measuredWidth, fFloatValue2) - (i3 < size ? fDp2 : 0.0f);
+            rectF2.left = AndroidUtilities.lerp(f2, measuredWidth, fFloatValue) + (i2 > 0 ? fDp2 : 0.0f);
+            float fLerp = AndroidUtilities.lerp(f2, measuredWidth, fFloatValue2) - (i2 < size ? fDp2 : 0.0f);
             rectF2.right = fLerp;
             float f3 = rectF.right;
             boolean z = fLerp > f3;
@@ -235,7 +178,7 @@ public class SeekBarView extends FrameLayout {
                 if (tmpRadii == null) {
                     tmpRadii = new float[8];
                 }
-                if (i3 != i2) {
+                if (i2 != i) {
                     if (z) {
                         c3 = 3;
                         if (rectF2.left >= rectF.left) {
@@ -247,7 +190,7 @@ public class SeekBarView extends FrameLayout {
                     } else {
                         c3 = 3;
                     }
-                    if (i3 >= size) {
+                    if (i2 >= size) {
                         float[] fArr = tmpRadii;
                         float f6 = 0.7f * fDp * seekBarView.timestampsAppearing;
                         fArr[7] = f6;
@@ -294,27 +237,138 @@ public class SeekBarView extends FrameLayout {
                     break;
                 }
             }
-            i3++;
+            i2++;
             seekBarView = this;
         }
         canvas.drawPath(tmpPath, paint);
     }
 
-    public float getProgress() {
-        return getMeasuredWidth() == 0 ? this.progressToSet : this.thumbX / (getMeasuredWidth() - this.selectorWidth);
+    private void drawTimestampLabel(Canvas canvas) {
+        CharSequence charSequence;
+        ArrayList<Pair<Float, CharSequence>> arrayList = this.timestamps;
+        if (arrayList == null || arrayList.isEmpty()) {
+            return;
+        }
+        float progress = getProgress();
+        int size = this.timestamps.size() - 1;
+        while (true) {
+            if (size < 0) {
+                size = -1;
+                break;
+            } else if (((Float) this.timestamps.get(size).first).floatValue() - 0.001f <= progress) {
+                break;
+            } else {
+                size--;
+            }
+        }
+        setTimestampIndex(size);
+        if (this.timestampLabel == null) {
+            this.timestampLabel = new StaticLayout[2];
+        }
+        float fDp = (this.selectorWidth / 2.0f) + (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0);
+        float fAbs = Math.abs(fDp - ((getMeasuredWidth() - (this.selectorWidth / 2.0f)) - (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0))) - AndroidUtilities.dp(66.0f);
+        float f = this.lastWidth;
+        if (f > 0.0f && Math.abs(f - fAbs) > 0.01f) {
+            StaticLayout[] staticLayoutArr = this.timestampLabel;
+            StaticLayout staticLayout = staticLayoutArr[0];
+            if (staticLayout != null) {
+                staticLayoutArr[0] = makeStaticLayout(staticLayout.getText(), (int) fAbs);
+            }
+            StaticLayout[] staticLayoutArr2 = this.timestampLabel;
+            StaticLayout staticLayout2 = staticLayoutArr2[1];
+            if (staticLayout2 != null) {
+                staticLayoutArr2[1] = makeStaticLayout(staticLayout2.getText(), (int) fAbs);
+            }
+        }
+        this.lastWidth = fAbs;
+        if (size != this.currentTimestamp) {
+            StaticLayout[] staticLayoutArr3 = this.timestampLabel;
+            staticLayoutArr3[1] = staticLayoutArr3[0];
+            if (this.pressed) {
+                AndroidUtilities.vibrateCursor(this);
+            }
+            if (size < 0 || size >= this.timestamps.size() || (charSequence = (CharSequence) this.timestamps.get(size).second) == null) {
+                this.timestampLabel[0] = null;
+            } else {
+                this.timestampLabel[0] = makeStaticLayout(charSequence, (int) fAbs);
+            }
+            this.timestampChangeT = 0.0f;
+            if (size == -1) {
+                this.timestampChangeDirection = -1;
+            } else {
+                int i = this.currentTimestamp;
+                if (i == -1) {
+                    this.timestampChangeDirection = 1;
+                } else if (size < i) {
+                    this.timestampChangeDirection = -1;
+                } else if (size > i) {
+                    this.timestampChangeDirection = 1;
+                }
+            }
+            this.lastTimestamp = this.currentTimestamp;
+            this.currentTimestamp = size;
+        }
+        if (this.timestampChangeT < 1.0f) {
+            this.timestampChangeT = Math.min((Math.min(17L, Math.abs(SystemClock.elapsedRealtime() - this.lastTimestampUpdate)) / (this.timestamps.size() > 8 ? 160.0f : 220.0f)) + this.timestampChangeT, 1.0f);
+            invalidate();
+            this.lastTimestampUpdate = SystemClock.elapsedRealtime();
+        }
+        if (this.timestampsAppearing < 1.0f) {
+            this.timestampsAppearing = Math.min((Math.min(17L, Math.abs(SystemClock.elapsedRealtime() - this.lastTimestampUpdate)) / 200.0f) + this.timestampsAppearing, 1.0f);
+            invalidate();
+            this.lastTimestampsAppearingUpdate = SystemClock.elapsedRealtime();
+        }
+        float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(this.timestampChangeT);
+        canvas.save();
+        canvas.translate(fDp + AndroidUtilities.dp(25.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(14.0f));
+        this.timestampLabelPaint.setColor(getThemedColor(Theme.key_player_time));
+        if (this.timestampLabel[1] != null) {
+            canvas.save();
+            if (this.timestampChangeDirection != 0) {
+                canvas.translate((AndroidUtilities.dp(16.0f) * (-this.timestampChangeDirection) * interpolation) + AndroidUtilities.dp(8.0f), 0.0f);
+            }
+            canvas.translate(0.0f, (-this.timestampLabel[1].getHeight()) / 2.0f);
+            this.timestampLabelPaint.setAlpha((int) ((1.0f - interpolation) * 255.0f * this.timestampsAppearing));
+            canvas.restore();
+        }
+        if (this.timestampLabel[0] != null) {
+            canvas.save();
+            if (this.timestampChangeDirection != 0) {
+                canvas.translate(DiffUtil.m(1.0f, interpolation, AndroidUtilities.dp(16.0f) * this.timestampChangeDirection, AndroidUtilities.dp(8.0f)), 0.0f);
+            }
+            canvas.translate(0.0f, (-this.timestampLabel[0].getHeight()) / 2.0f);
+            this.timestampLabelPaint.setAlpha((int) (interpolation * 255.0f * this.timestampsAppearing));
+            canvas.restore();
+        }
+        canvas.restore();
     }
 
-    public SeekBarAccessibilityDelegate getSeekBarAccessibilityDelegate() {
-        return this.seekBarAccessibilityDelegate;
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
-    public final StaticLayout makeStaticLayout(int i, CharSequence charSequence) {
+    private int getTimestampLabelWidth() {
+        return (int) (Math.abs(((this.selectorWidth / 2.0f) + (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0)) - ((getMeasuredWidth() - (this.selectorWidth / 2.0f)) - (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0))) - AndroidUtilities.dp(66.0f));
+    }
+
+    public void lambda$onTouch$0() {
+        this.pressedDelayed = false;
+    }
+
+    public static int lambda$updateTimestamps$1(Pair pair, Pair pair2) {
+        if (((Float) pair.first).floatValue() > ((Float) pair2.first).floatValue()) {
+            return 1;
+        }
+        return ((Float) pair2.first).floatValue() > ((Float) pair.first).floatValue() ? -1 : 0;
+    }
+
+    private StaticLayout makeStaticLayout(CharSequence charSequence, int i) {
         if (this.timestampLabelPaint == null) {
             TextPaint textPaint = new TextPaint(1);
             this.timestampLabelPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         }
-        this.timestampLabelPaint.setColor(Theme.getColor(Theme.key_player_time, this.resourcesProvider));
+        this.timestampLabelPaint.setColor(getThemedColor(Theme.key_player_time));
         if (charSequence == null) {
             charSequence = "";
         }
@@ -329,258 +383,315 @@ public class SeekBarView extends FrameLayout {
         return alignment2.setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(Math.min(AndroidUtilities.dp(400.0f), i)).build();
     }
 
-    public final int minThumbX() {
+    private int minThumbX() {
         return Math.max((int) (this.minProgress * (getMeasuredWidth() - this.selectorWidth)), 0);
     }
 
+    public void setSeekBarDrag(boolean z, float f) {
+        SeekBarViewDelegate seekBarViewDelegate = this.delegate;
+        if (seekBarViewDelegate != null) {
+            seekBarViewDelegate.onSeekBarDrag(z, f);
+        }
+        int i = this.separatorsCount;
+        if (i > 1) {
+            int iRound = Math.round((i - 1) * f);
+            if (!z && iRound != this.lastValue) {
+                AndroidUtilities.vibrateCursor(this);
+            }
+            this.lastValue = iRound;
+        }
+    }
+
+    private void setTimestampIndex(int i) {
+        if (this.timestampIndex != i) {
+            this.timestampIndex = i;
+            if (i < 0 || i >= this.timestamps.size()) {
+                return;
+            }
+            this.textViewSwitcher.setText((CharSequence) this.timestamps.get(this.timestampIndex).second);
+        }
+    }
+
+    public void clearTimestamps() {
+        this.timestamps = null;
+        this.currentTimestamp = -1;
+        this.timestampsAppearing = 0.0f;
+        StaticLayout[] staticLayoutArr = this.timestampLabel;
+        if (staticLayoutArr != null) {
+            staticLayoutArr[1] = null;
+            staticLayoutArr[0] = null;
+        }
+        this.lastCaption = null;
+        this.lastDuration = -1L;
+    }
+
+    public float getProgress() {
+        return getMeasuredWidth() == 0 ? this.progressToSet : this.thumbX / (getMeasuredWidth() - this.selectorWidth);
+    }
+
+    public SeekBarAccessibilityDelegate getSeekBarAccessibilityDelegate() {
+        return this.seekBarAccessibilityDelegate;
+    }
+
+    public boolean isDragging() {
+        return this.pressed;
+    }
+
+    public boolean isTwoSided() {
+        return this.twoSided;
+    }
+
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
+        float fRound;
+        int i;
+        int measuredHeight;
         float f;
+        float measuredWidth;
+        float fDp;
+        float fDp2;
         float f2;
+        long jElapsedRealtime;
         float f3;
-        boolean z;
         float f4;
+        boolean z;
         float f5;
-        CharSequence charSequence;
+        float f6;
+        float interpolation;
+        float f7;
+        float fM;
+        float fM2;
+        int measuredWidth2;
+        int i2;
         Canvas canvas2 = canvas;
-        int i = this.thumbX;
-        boolean z2 = this.twoSided;
-        int i2 = this.selectorWidth;
-        if (!z2 && this.separatorsCount > 1) {
-            float measuredWidth = (getMeasuredWidth() - i2) / (this.separatorsCount - 1.0f);
-            i = (int) this.animatedThumbX.set(Math.round(i / measuredWidth) * measuredWidth, false);
+        int i3 = this.thumbX;
+        boolean z2 = true;
+        if (this.twoSided || this.separatorsCount <= 1) {
+            SeekBarViewDelegate seekBarViewDelegate = this.delegate;
+            if (seekBarViewDelegate != null && seekBarViewDelegate.needVisuallyDivideSteps()) {
+                float measuredWidth3 = (getMeasuredWidth() - this.selectorWidth) / (this.delegate.getStepsCount() - 1.0f);
+                fRound = Math.round(i3 / measuredWidth3) * measuredWidth3;
+            }
+            i = i3;
+            measuredHeight = (getMeasuredHeight() - this.thumbSize) / 2;
+            this.innerPaint1.setColor(getThemedColor(Theme.key_player_progressBackground));
+            float measuredHeight2 = getMeasuredHeight() / 2.0f;
+            f = this.selectorWidth / 2.0f;
+            measuredWidth = getMeasuredWidth() - (this.selectorWidth / 2);
+            fDp = measuredHeight2 - (AndroidUtilities.dp(this.lineWidthDp) / 2.0f);
+            fDp2 = (AndroidUtilities.dp(this.lineWidthDp) / 2.0f) + measuredHeight2;
+            this.rect.set(f, fDp, measuredWidth, fDp2);
+            drawProgressBar(canvas2, this.rect, this.innerPaint1);
+            if (this.bufferedProgress > 0.0f) {
+                this.innerPaint1.setColor(getThemedColor(Theme.key_player_progressCachedBackground));
+                this.rect.set(f, fDp, (this.bufferedProgress * (getMeasuredWidth() - this.selectorWidth)) + (this.selectorWidth / 2.0f), fDp2);
+                drawProgressBar(canvas2, this.rect, this.innerPaint1);
+            }
+            if (this.twoSided) {
+                canvas2.drawRect((getMeasuredWidth() / 2) - AndroidUtilities.dp(1.0f), (getMeasuredHeight() / 2) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + (getMeasuredWidth() / 2), AndroidUtilities.dp(6.0f) + (getMeasuredHeight() / 2), this.outerPaint1);
+                measuredWidth2 = getMeasuredWidth();
+                i2 = this.selectorWidth;
+                if (i > (measuredWidth2 - i2) / 2) {
+                    canvas2 = canvas;
+                    canvas2.drawRect(getMeasuredWidth() / 2, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), (this.selectorWidth / 2) + i, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), this.outerPaint1);
+                } else {
+                    canvas2 = canvas;
+                    canvas2.drawRect((i2 / 2) + i, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), getMeasuredWidth() / 2, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), this.outerPaint1);
+                }
+            } else {
+                f2 = this.minProgress;
+                if (f2 >= 0.0f) {
+                    float f8 = measuredWidth - f;
+                    this.rect.set((f2 * f8) + f, fDp, i + f, fDp2);
+                    drawProgressBar(canvas2, this.rect, this.outerPaint1);
+                    int alpha = this.outerPaint1.getAlpha();
+                    this.rect.set(f, fDp, (this.minProgress * f8) + f, fDp2);
+                    this.outerPaint1.setAlpha((int) (alpha * 0.5f));
+                    drawProgressBar(canvas2, this.rect, this.outerPaint1);
+                    this.outerPaint1.setAlpha(alpha);
+                } else {
+                    this.rect.set(f, fDp, i + f, fDp2);
+                    drawProgressBar(canvas2, this.rect, this.outerPaint1);
+                }
+            }
+            if (this.hoverDrawable != null) {
+                int iDp = ((this.selectorWidth / 2) + i) - AndroidUtilities.dp(16.0f);
+                int iDp2 = ((this.thumbSize / 2) + measuredHeight) - AndroidUtilities.dp(16.0f);
+                this.hoverDrawable.setBounds(iDp, iDp2, AndroidUtilities.dp(32.0f) + iDp, AndroidUtilities.dp(32.0f) + iDp2);
+                this.hoverDrawable.draw(canvas2);
+            }
+            int iDp3 = AndroidUtilities.dp(this.pressed ? 8.0f : 6.0f);
+            jElapsedRealtime = SystemClock.elapsedRealtime() - this.lastUpdateTime;
+            if (jElapsedRealtime > 18) {
+                jElapsedRealtime = 16;
+            }
+            f3 = this.currentRadius;
+            f4 = iDp3;
+            if (f3 != f4) {
+                if (f3 < f4) {
+                    fM2 = zzir.m(jElapsedRealtime, 60.0f, AndroidUtilities.dp(1.0f), f3);
+                    this.currentRadius = fM2;
+                    if (fM2 > f4) {
+                        this.currentRadius = f4;
+                    }
+                } else {
+                    fM = TextureRenderer$$ExternalSyntheticOutline0.m(jElapsedRealtime, 60.0f, AndroidUtilities.dp(1.0f), f3);
+                    this.currentRadius = fM;
+                    if (fM < f4) {
+                        this.currentRadius = f4;
+                    }
+                }
+                z = true;
+            } else {
+                z = false;
+            }
+            f5 = this.transitionProgress;
+            if (f5 < 1.0f) {
+                f7 = (jElapsedRealtime / 225.0f) + f5;
+                this.transitionProgress = f7;
+                if (f7 >= 1.0f) {
+                    this.transitionProgress = 1.0f;
+                    z2 = z;
+                }
+            } else {
+                z2 = z;
+            }
+            f6 = this.transitionProgress;
+            if (f6 < 1.0f) {
+                interpolation = 1.0f - Easings.easeInQuad.getInterpolation(Math.min(1.0f, f6 * 3.0f));
+                float interpolation2 = Easings.easeOutQuad.getInterpolation(this.transitionProgress);
+                if (interpolation > 0.0f) {
+                    canvas2.drawCircle((this.selectorWidth / 2) + this.transitionThumbX, (this.thumbSize / 2) + measuredHeight, this.currentRadius * interpolation, this.outerPaint1);
+                }
+                canvas2.drawCircle((this.selectorWidth / 2) + i, (this.thumbSize / 2) + measuredHeight, this.currentRadius * interpolation2, this.outerPaint1);
+            } else {
+                canvas2.drawCircle((this.selectorWidth / 2) + i, (this.thumbSize / 2) + measuredHeight, this.currentRadius, this.outerPaint1);
+            }
+            drawTimestampLabel(canvas);
+            if (z2) {
+                postInvalidateOnAnimation();
+            }
         }
-        int i3 = i;
-        int measuredHeight = getMeasuredHeight();
-        int i4 = this.thumbSize;
-        int i5 = (measuredHeight - i4) / 2;
-        Paint paint = this.innerPaint1;
-        int i6 = Theme.key_player_progressBackground;
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        paint.setColor(Theme.getColor(i6, resourcesProvider));
-        float measuredHeight2 = getMeasuredHeight() / 2.0f;
-        float f6 = i2 / 2.0f;
-        int i7 = i2 / 2;
-        float measuredWidth2 = getMeasuredWidth() - i7;
-        float fDp = measuredHeight2 - (AndroidUtilities.dp(this.lineWidthDp) / 2.0f);
-        float fDp2 = (AndroidUtilities.dp(this.lineWidthDp) / 2.0f) + measuredHeight2;
-        RectF rectF = this.rect;
-        rectF.set(f6, fDp, measuredWidth2, fDp2);
-        drawProgressBar(canvas2, rectF, paint);
+        float measuredWidth4 = (getMeasuredWidth() - this.selectorWidth) / (this.separatorsCount - 1.0f);
+        fRound = this.animatedThumbX.set(Math.round(i3 / measuredWidth4) * measuredWidth4);
+        i3 = (int) fRound;
+        i = i3;
+        measuredHeight = (getMeasuredHeight() - this.thumbSize) / 2;
+        this.innerPaint1.setColor(getThemedColor(Theme.key_player_progressBackground));
+        float measuredHeight3 = getMeasuredHeight() / 2.0f;
+        f = this.selectorWidth / 2.0f;
+        measuredWidth = getMeasuredWidth() - (this.selectorWidth / 2);
+        fDp = measuredHeight3 - (AndroidUtilities.dp(this.lineWidthDp) / 2.0f);
+        fDp2 = (AndroidUtilities.dp(this.lineWidthDp) / 2.0f) + measuredHeight3;
+        this.rect.set(f, fDp, measuredWidth, fDp2);
+        drawProgressBar(canvas2, this.rect, this.innerPaint1);
         if (this.bufferedProgress > 0.0f) {
-            paint.setColor(Theme.getColor(Theme.key_player_progressCachedBackground, resourcesProvider));
-            f = 0.0f;
-            rectF.set(f6, fDp, (this.bufferedProgress * (getMeasuredWidth() - i2)) + f6, fDp2);
-            drawProgressBar(canvas2, rectF, paint);
-        } else {
-            f = 0.0f;
+            this.innerPaint1.setColor(getThemedColor(Theme.key_player_progressCachedBackground));
+            this.rect.set(f, fDp, (this.bufferedProgress * (getMeasuredWidth() - this.selectorWidth)) + (this.selectorWidth / 2.0f), fDp2);
+            drawProgressBar(canvas2, this.rect, this.innerPaint1);
         }
-        boolean z3 = this.twoSided;
-        Paint paint2 = this.outerPaint1;
-        if (z3) {
-            canvas2.drawRect((getMeasuredWidth() / 2) - AndroidUtilities.dp(1.0f), (getMeasuredHeight() / 2) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + (getMeasuredWidth() / 2), AndroidUtilities.dp(6.0f) + (getMeasuredHeight() / 2), paint2);
-            if (i3 > (getMeasuredWidth() - i2) / 2) {
+        if (this.twoSided) {
+            canvas2.drawRect((getMeasuredWidth() / 2) - AndroidUtilities.dp(1.0f), (getMeasuredHeight() / 2) - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f) + (getMeasuredWidth() / 2), AndroidUtilities.dp(6.0f) + (getMeasuredHeight() / 2), this.outerPaint1);
+            measuredWidth2 = getMeasuredWidth();
+            i2 = this.selectorWidth;
+            if (i > (measuredWidth2 - i2) / 2) {
                 canvas2 = canvas;
-                canvas2.drawRect(getMeasuredWidth() / 2, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), i7 + i3, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), paint2);
+                canvas2.drawRect(getMeasuredWidth() / 2, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), (this.selectorWidth / 2) + i, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), this.outerPaint1);
             } else {
                 canvas2 = canvas;
-                canvas2.drawRect(i7 + i3, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), getMeasuredWidth() / 2, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), paint2);
+                canvas2.drawRect((i2 / 2) + i, (getMeasuredHeight() / 2) - AndroidUtilities.dp(1.0f), getMeasuredWidth() / 2, AndroidUtilities.dp(1.0f) + (getMeasuredHeight() / 2), this.outerPaint1);
             }
-            f6 = f6;
         } else {
-            float f7 = this.minProgress;
-            if (f7 >= f) {
-                float f8 = measuredWidth2 - f6;
-                rectF.set((f7 * f8) + f6, fDp, i3 + f6, fDp2);
-                drawProgressBar(canvas2, rectF, paint2);
-                int alpha = paint2.getAlpha();
-                rectF.set(f6, fDp, (this.minProgress * f8) + f6, fDp2);
-                paint2.setAlpha((int) (alpha * 0.5f));
-                drawProgressBar(canvas2, rectF, paint2);
-                paint2.setAlpha(alpha);
+            f2 = this.minProgress;
+            if (f2 >= 0.0f) {
+                float f9 = measuredWidth - f;
+                this.rect.set((f2 * f9) + f, fDp, i + f, fDp2);
+                drawProgressBar(canvas2, this.rect, this.outerPaint1);
+                int alpha2 = this.outerPaint1.getAlpha();
+                this.rect.set(f, fDp, (this.minProgress * f9) + f, fDp2);
+                this.outerPaint1.setAlpha((int) (alpha2 * 0.5f));
+                drawProgressBar(canvas2, this.rect, this.outerPaint1);
+                this.outerPaint1.setAlpha(alpha2);
             } else {
-                rectF.set(f6, fDp, i3 + f6, fDp2);
-                drawProgressBar(canvas2, rectF, paint2);
+                this.rect.set(f, fDp, i + f, fDp2);
+                drawProgressBar(canvas2, this.rect, this.outerPaint1);
             }
         }
-        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.hoverDrawable;
-        if (rippleDrawableSafe != null) {
-            int iDp = (i7 + i3) - AndroidUtilities.dp(16.0f);
-            int iDp2 = ((i4 / 2) + i5) - AndroidUtilities.dp(16.0f);
-            rippleDrawableSafe.setBounds(iDp, iDp2, AndroidUtilities.dp(32.0f) + iDp, AndroidUtilities.dp(32.0f) + iDp2);
-            rippleDrawableSafe.draw(canvas2);
+        if (this.hoverDrawable != null) {
+            int iDp4 = ((this.selectorWidth / 2) + i) - AndroidUtilities.dp(16.0f);
+            int iDp5 = ((this.thumbSize / 2) + measuredHeight) - AndroidUtilities.dp(16.0f);
+            this.hoverDrawable.setBounds(iDp4, iDp5, AndroidUtilities.dp(32.0f) + iDp4, AndroidUtilities.dp(32.0f) + iDp5);
+            this.hoverDrawable.draw(canvas2);
         }
-        int iDp3 = AndroidUtilities.dp(this.pressed ? 8.0f : 6.0f);
-        long jElapsedRealtime = SystemClock.elapsedRealtime();
+        int iDp6 = AndroidUtilities.dp(this.pressed ? 8.0f : 6.0f);
+        jElapsedRealtime = SystemClock.elapsedRealtime() - this.lastUpdateTime;
         if (jElapsedRealtime > 18) {
             jElapsedRealtime = 16;
         }
-        float f9 = this.currentRadius;
-        float f10 = iDp3;
-        if (f9 != f10) {
-            if (f9 < f10) {
-                f2 = 16.0f;
-                f3 = 8.0f;
-                float fM = zzjd.m(jElapsedRealtime, 60.0f, AndroidUtilities.dp(1.0f), f9);
-                this.currentRadius = fM;
-                if (fM > f10) {
-                    this.currentRadius = f10;
+        f3 = this.currentRadius;
+        f4 = iDp6;
+        if (f3 != f4) {
+            if (f3 < f4) {
+                fM2 = zzir.m(jElapsedRealtime, 60.0f, AndroidUtilities.dp(1.0f), f3);
+                this.currentRadius = fM2;
+                if (fM2 > f4) {
+                    this.currentRadius = f4;
                 }
             } else {
-                f2 = 16.0f;
-                f3 = 8.0f;
-                float fM2 = TextureRenderer$$ExternalSyntheticOutline0.m(jElapsedRealtime, 60.0f, AndroidUtilities.dp(1.0f), f9);
-                this.currentRadius = fM2;
-                if (fM2 < f10) {
-                    this.currentRadius = f10;
+                fM = TextureRenderer$$ExternalSyntheticOutline0.m(jElapsedRealtime, 60.0f, AndroidUtilities.dp(1.0f), f3);
+                this.currentRadius = fM;
+                if (fM < f4) {
+                    this.currentRadius = f4;
                 }
             }
             z = true;
         } else {
-            f2 = 16.0f;
-            f3 = 8.0f;
             z = false;
         }
-        float f11 = this.transitionProgress;
-        if (f11 < 1.0f) {
-            float f12 = (jElapsedRealtime / 225.0f) + f11;
-            this.transitionProgress = f12;
-            if (f12 < 1.0f) {
-                z = true;
-            } else {
+        f5 = this.transitionProgress;
+        if (f5 < 1.0f) {
+            f7 = (jElapsedRealtime / 225.0f) + f5;
+            this.transitionProgress = f7;
+            if (f7 >= 1.0f) {
                 this.transitionProgress = 1.0f;
+                z2 = z;
             }
-        }
-        float f13 = this.transitionProgress;
-        if (f13 < 1.0f) {
-            float interpolation = 1.0f - Easings.easeInQuad.getInterpolation(Math.min(1.0f, f13 * 3.0f));
-            float interpolation2 = Easings.easeOutQuad.getInterpolation(this.transitionProgress);
-            if (interpolation > f) {
-                canvas2.drawCircle(i7 + this.transitionThumbX, (i4 / 2) + i5, this.currentRadius * interpolation, paint2);
-            }
-            canvas2.drawCircle(i7 + i3, (i4 / 2) + i5, this.currentRadius * interpolation2, paint2);
         } else {
-            canvas2.drawCircle(i7 + i3, (i4 / 2) + i5, this.currentRadius, paint2);
+            z2 = z;
         }
-        ArrayList arrayList = this.timestamps;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            float progress = getProgress();
-            int size = this.timestamps.size();
-            do {
-                size--;
-                if (size < 0) {
-                    size = -1;
-                    break;
-                }
-            } while (((Float) ((Pair) this.timestamps.get(size)).first).floatValue() - 0.001f > progress);
-            setTimestampIndex(size);
-            if (this.timestampLabel == null) {
-                this.timestampLabel = new StaticLayout[2];
+        f6 = this.transitionProgress;
+        if (f6 < 1.0f) {
+            interpolation = 1.0f - Easings.easeInQuad.getInterpolation(Math.min(1.0f, f6 * 3.0f));
+            float interpolation3 = Easings.easeOutQuad.getInterpolation(this.transitionProgress);
+            if (interpolation > 0.0f) {
+                canvas2.drawCircle((this.selectorWidth / 2) + this.transitionThumbX, (this.thumbSize / 2) + measuredHeight, this.currentRadius * interpolation, this.outerPaint1);
             }
-            float fDp3 = (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0) + f6;
-            float fAbs = Math.abs(fDp3 - ((getMeasuredWidth() - f6) - (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0))) - AndroidUtilities.dp(66.0f);
-            float f14 = this.lastWidth;
-            if (f14 > f && Math.abs(f14 - fAbs) > 0.01f) {
-                StaticLayout[] staticLayoutArr = this.timestampLabel;
-                StaticLayout staticLayout = staticLayoutArr[0];
-                if (staticLayout != null) {
-                    staticLayoutArr[0] = makeStaticLayout((int) fAbs, staticLayout.getText());
-                }
-                StaticLayout[] staticLayoutArr2 = this.timestampLabel;
-                StaticLayout staticLayout2 = staticLayoutArr2[1];
-                if (staticLayout2 != null) {
-                    staticLayoutArr2[1] = makeStaticLayout((int) fAbs, staticLayout2.getText());
-                }
-            }
-            this.lastWidth = fAbs;
-            if (size != this.currentTimestamp) {
-                StaticLayout[] staticLayoutArr3 = this.timestampLabel;
-                staticLayoutArr3[1] = staticLayoutArr3[0];
-                if (this.pressed) {
-                    AndroidUtilities.vibrateCursor(this);
-                }
-                if (size < 0 || size >= this.timestamps.size() || (charSequence = (CharSequence) ((Pair) this.timestamps.get(size)).second) == null) {
-                    this.timestampLabel[0] = null;
-                } else {
-                    this.timestampLabel[0] = makeStaticLayout((int) fAbs, charSequence);
-                }
-                this.timestampChangeT = 0.0f;
-                if (size == -1) {
-                    this.timestampChangeDirection = -1;
-                } else {
-                    int i8 = this.currentTimestamp;
-                    if (i8 == -1) {
-                        this.timestampChangeDirection = 1;
-                    } else if (size < i8) {
-                        this.timestampChangeDirection = -1;
-                    } else if (size > i8) {
-                        this.timestampChangeDirection = 1;
-                    }
-                }
-                this.currentTimestamp = size;
-            }
-            if (this.timestampChangeT < 1.0f) {
-                this.timestampChangeT = Math.min((Math.min(17L, Math.abs(SystemClock.elapsedRealtime() - this.lastTimestampUpdate)) / (this.timestamps.size() > 8 ? 160.0f : 220.0f)) + this.timestampChangeT, 1.0f);
-                invalidate();
-                this.lastTimestampUpdate = SystemClock.elapsedRealtime();
-            }
-            if (this.timestampsAppearing < 1.0f) {
-                this.timestampsAppearing = Math.min((Math.min(17L, Math.abs(SystemClock.elapsedRealtime() - this.lastTimestampUpdate)) / 200.0f) + this.timestampsAppearing, 1.0f);
-                invalidate();
-                SystemClock.elapsedRealtime();
-            }
-            float interpolation3 = CubicBezierInterpolator.DEFAULT.getInterpolation(this.timestampChangeT);
-            canvas2.save();
-            canvas2.translate(fDp3 + AndroidUtilities.dp(25.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(14.0f));
-            this.timestampLabelPaint.setColor(Theme.getColor(Theme.key_player_time, resourcesProvider));
-            if (this.timestampLabel[1] != null) {
-                canvas2.save();
-                if (this.timestampChangeDirection != 0) {
-                    f5 = 0.0f;
-                    canvas2.translate((AndroidUtilities.dp(f2) * (-this.timestampChangeDirection) * interpolation3) + AndroidUtilities.dp(f3), 0.0f);
-                } else {
-                    f5 = 0.0f;
-                }
-                canvas2.translate(f5, (-this.timestampLabel[1].getHeight()) / 2.0f);
-                this.timestampLabelPaint.setAlpha((int) ((1.0f - interpolation3) * 255.0f * this.timestampsAppearing));
-                canvas2.restore();
-            }
-            if (this.timestampLabel[0] != null) {
-                canvas2.save();
-                if (this.timestampChangeDirection != 0) {
-                    f4 = 0.0f;
-                    canvas2.translate(DiffUtil.m(1.0f, interpolation3, AndroidUtilities.dp(f2) * this.timestampChangeDirection, AndroidUtilities.dp(f3)), 0.0f);
-                } else {
-                    f4 = 0.0f;
-                }
-                canvas2.translate(f4, (-this.timestampLabel[0].getHeight()) / 2.0f);
-                this.timestampLabelPaint.setAlpha((int) (interpolation3 * 255.0f * this.timestampsAppearing));
-                canvas2.restore();
-            }
-            canvas2.restore();
+            canvas2.drawCircle((this.selectorWidth / 2) + i, (this.thumbSize / 2) + measuredHeight, this.currentRadius * interpolation3, this.outerPaint1);
+        } else {
+            canvas2.drawCircle((this.selectorWidth / 2) + i, (this.thumbSize / 2) + measuredHeight, this.currentRadius, this.outerPaint1);
         }
-        if (z) {
+        drawTimestampLabel(canvas);
+        if (z2) {
             postInvalidateOnAnimation();
         }
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         return onTouch(motionEvent);
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        int iDp = AndroidUtilities.dp(14.0f) + (getMeasuredHeight() / 2);
-        ProfileActivity.AnonymousClass26 anonymousClass26 = this.textViewSwitcher;
-        int measuredHeight = (anonymousClass26.getMeasuredHeight() / 2) + iDp;
-        int iDp2 = AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(25.0f) + (this.selectorWidth / 2) + (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0);
-        anonymousClass26.layout(iDp2, measuredHeight - anonymousClass26.getMeasuredHeight(), anonymousClass26.getMeasuredWidth() + iDp2, measuredHeight);
+        int measuredHeight = (this.textViewSwitcher.getMeasuredHeight() / 2) + AndroidUtilities.dp(14.0f) + (getMeasuredHeight() / 2);
+        int iDp = AndroidUtilities.dp(8.0f) + AndroidUtilities.dp(25.0f) + (this.selectorWidth / 2) + (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0);
+        AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher = this.textViewSwitcher;
+        clippingTextViewSwitcher.layout(iDp, measuredHeight - clippingTextViewSwitcher.getMeasuredHeight(), this.textViewSwitcher.getMeasuredWidth() + iDp, measuredHeight);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         int timestampLabelWidth = getTimestampLabelWidth();
         this.lastTimestampLabelWidth = timestampLabelWidth;
@@ -598,48 +709,46 @@ public class SeekBarView extends FrameLayout {
             this.sy = motionEvent.getY();
             return true;
         }
-        int action = motionEvent.getAction();
-        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.hoverDrawable;
-        int i = this.thumbSize;
-        int i2 = this.selectorWidth;
-        if (action == 1 || motionEvent.getAction() == 3) {
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             this.captured = false;
             if (motionEvent.getAction() == 1) {
                 if (Math.abs(motionEvent.getY() - this.sy) < ViewConfiguration.get(getContext()).getScaledTouchSlop()) {
-                    int measuredHeight = (getMeasuredHeight() - i) / 2;
-                    if (this.thumbX - measuredHeight > motionEvent.getX() || motionEvent.getX() > this.thumbX + i + measuredHeight) {
-                        int x = ((int) motionEvent.getX()) - (i / 2);
+                    int measuredHeight = (getMeasuredHeight() - this.thumbSize) / 2;
+                    if (this.thumbX - measuredHeight > motionEvent.getX() || motionEvent.getX() > this.thumbX + this.thumbSize + measuredHeight) {
+                        int x = ((int) motionEvent.getX()) - (this.thumbSize / 2);
                         this.thumbX = x;
                         if (x < minThumbX()) {
                             this.thumbX = minThumbX();
-                        } else if (this.thumbX > getMeasuredWidth() - i2) {
-                            this.thumbX = getMeasuredWidth() - i2;
+                        } else if (this.thumbX > getMeasuredWidth() - this.selectorWidth) {
+                            this.thumbX = getMeasuredWidth() - this.selectorWidth;
                         }
                     }
                     this.thumbDX = (int) (motionEvent.getX() - this.thumbX);
+                    this.pressedDelayed = true;
                     this.pressed = true;
                 }
             }
             if (this.pressed) {
                 if (motionEvent.getAction() == 1) {
                     if (this.twoSided) {
-                        float measuredWidth = (getMeasuredWidth() - i2) / 2;
+                        float measuredWidth = (getMeasuredWidth() - this.selectorWidth) / 2;
                         float f = this.thumbX;
                         if (f >= measuredWidth) {
-                            setSeekBarDrag((f - measuredWidth) / measuredWidth, false);
+                            setSeekBarDrag(false, (f - measuredWidth) / measuredWidth);
                         } else {
-                            setSeekBarDrag(-Math.max(0.01f, 1.0f - ((measuredWidth - f) / measuredWidth)), false);
+                            setSeekBarDrag(false, -Math.max(0.01f, 1.0f - ((measuredWidth - f) / measuredWidth)));
                         }
                     } else {
-                        setSeekBarDrag(this.thumbX / (getMeasuredWidth() - i2), true);
+                        setSeekBarDrag(true, this.thumbX / (getMeasuredWidth() - this.selectorWidth));
                     }
                 }
-                if (rippleDrawableSafe != null) {
-                    rippleDrawableSafe.setState(StateSet.NOTHING);
+                Drawable drawable = this.hoverDrawable;
+                if (drawable != null) {
+                    drawable.setState(StateSet.NOTHING);
                 }
-                this.delegate.onSeekBarPressed();
+                this.delegate.onSeekBarPressed(false);
                 this.pressed = false;
-                AndroidUtilities.runOnUIThread(new SeekBarView$$ExternalSyntheticLambda1(this, 0), 50L);
+                AndroidUtilities.runOnUIThread(new Tooltip$$ExternalSyntheticLambda0(this, 11), 50L);
                 invalidate();
                 return true;
             }
@@ -649,23 +758,25 @@ public class SeekBarView extends FrameLayout {
                 if (Math.abs(motionEvent.getY() - this.sy) <= viewConfiguration.getScaledTouchSlop() && Math.abs(motionEvent.getX() - this.sx) > viewConfiguration.getScaledTouchSlop()) {
                     this.captured = true;
                     getParent().requestDisallowInterceptTouchEvent(true);
-                    int measuredHeight2 = (getMeasuredHeight() - i) / 2;
+                    int measuredHeight2 = (getMeasuredHeight() - this.thumbSize) / 2;
                     if (motionEvent.getY() >= 0.0f && motionEvent.getY() <= getMeasuredHeight()) {
-                        if (this.thumbX - measuredHeight2 > motionEvent.getX() || motionEvent.getX() > this.thumbX + i + measuredHeight2) {
-                            int x2 = ((int) motionEvent.getX()) - (i / 2);
+                        if (this.thumbX - measuredHeight2 > motionEvent.getX() || motionEvent.getX() > this.thumbX + this.thumbSize + measuredHeight2) {
+                            int x2 = ((int) motionEvent.getX()) - (this.thumbSize / 2);
                             this.thumbX = x2;
                             if (x2 < minThumbX()) {
                                 this.thumbX = minThumbX();
-                            } else if (this.thumbX > getMeasuredWidth() - i2) {
-                                this.thumbX = getMeasuredWidth() - i2;
+                            } else if (this.thumbX > getMeasuredWidth() - this.selectorWidth) {
+                                this.thumbX = getMeasuredWidth() - this.selectorWidth;
                             }
                         }
                         this.thumbDX = (int) (motionEvent.getX() - this.thumbX);
+                        this.pressedDelayed = true;
                         this.pressed = true;
-                        this.delegate.onSeekBarPressed();
-                        if (rippleDrawableSafe != null) {
-                            rippleDrawableSafe.setState(this.pressedState);
-                            rippleDrawableSafe.setHotspot(motionEvent.getX(), motionEvent.getY());
+                        this.delegate.onSeekBarPressed(true);
+                        Drawable drawable2 = this.hoverDrawable;
+                        if (drawable2 != null) {
+                            drawable2.setState(this.pressedState);
+                            this.hoverDrawable.setHotspot(motionEvent.getX(), motionEvent.getY());
                         }
                         invalidate();
                         return true;
@@ -676,24 +787,25 @@ public class SeekBarView extends FrameLayout {
                 this.thumbX = x3;
                 if (x3 < minThumbX()) {
                     this.thumbX = minThumbX();
-                } else if (this.thumbX > getMeasuredWidth() - i2) {
-                    this.thumbX = getMeasuredWidth() - i2;
+                } else if (this.thumbX > getMeasuredWidth() - this.selectorWidth) {
+                    this.thumbX = getMeasuredWidth() - this.selectorWidth;
                 }
                 if (this.reportChanges) {
                     if (this.twoSided) {
-                        float measuredWidth2 = (getMeasuredWidth() - i2) / 2;
+                        float measuredWidth2 = (getMeasuredWidth() - this.selectorWidth) / 2;
                         float f2 = this.thumbX;
                         if (f2 >= measuredWidth2) {
-                            setSeekBarDrag((f2 - measuredWidth2) / measuredWidth2, false);
+                            setSeekBarDrag(false, (f2 - measuredWidth2) / measuredWidth2);
                         } else {
-                            setSeekBarDrag(-Math.max(0.01f, 1.0f - ((measuredWidth2 - f2) / measuredWidth2)), false);
+                            setSeekBarDrag(false, -Math.max(0.01f, 1.0f - ((measuredWidth2 - f2) / measuredWidth2)));
                         }
                     } else {
-                        setSeekBarDrag(this.thumbX / (getMeasuredWidth() - i2), false);
+                        setSeekBarDrag(false, this.thumbX / (getMeasuredWidth() - this.selectorWidth));
                     }
                 }
-                if (rippleDrawableSafe != null) {
-                    rippleDrawableSafe.setHotspot(motionEvent.getX(), motionEvent.getY());
+                Drawable drawable3 = this.hoverDrawable;
+                if (drawable3 != null) {
+                    drawable3.setHotspot(motionEvent.getX(), motionEvent.getY());
                 }
                 invalidate();
                 return true;
@@ -710,6 +822,15 @@ public class SeekBarView extends FrameLayout {
     public void setBufferedProgress(float f) {
         this.bufferedProgress = f;
         invalidate();
+    }
+
+    public void setColors(int i, int i2) {
+        this.innerPaint1.setColor(i);
+        this.outerPaint1.setColor(i2);
+        Drawable drawable = this.hoverDrawable;
+        if (drawable != null) {
+            Theme.setSelectorDrawableColor(drawable, ColorUtils.setAlphaComponent(i2, 40), true);
+        }
     }
 
     public void setDelegate(SeekBarViewDelegate seekBarViewDelegate) {
@@ -736,9 +857,9 @@ public class SeekBarView extends FrameLayout {
 
     public void setOuterColor(int i) {
         this.outerPaint1.setColor(i);
-        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.hoverDrawable;
-        if (rippleDrawableSafe != null) {
-            Theme.setSelectorDrawableColor(rippleDrawableSafe, ColorUtils.setAlphaComponent(i, 40), true);
+        Drawable drawable = this.hoverDrawable;
+        if (drawable != null) {
+            Theme.setSelectorDrawableColor(drawable, ColorUtils.setAlphaComponent(i, 40), true);
         }
     }
 
@@ -750,21 +871,6 @@ public class SeekBarView extends FrameLayout {
         this.reportChanges = z;
     }
 
-    public final void setSeekBarDrag(float f, boolean z) {
-        SeekBarViewDelegate seekBarViewDelegate = this.delegate;
-        if (seekBarViewDelegate != null) {
-            seekBarViewDelegate.onSeekBarDrag(f, z);
-        }
-        int i = this.separatorsCount;
-        if (i > 1) {
-            int iRound = Math.round((i - 1) * f);
-            if (!z && iRound != this.lastValue) {
-                AndroidUtilities.vibrateCursor(this);
-            }
-            this.lastValue = iRound;
-        }
-    }
-
     public void setSeparatorsCount(int i) {
         this.separatorsCount = i;
     }
@@ -773,36 +879,32 @@ public class SeekBarView extends FrameLayout {
         this.twoSided = z;
     }
 
-    public final void updateTimestamps(MessageObject messageObject) {
+    public void updateTimestamps(MessageObject messageObject, Long l) {
         Integer num;
         String str;
-        long duration = (long) messageObject.getDuration();
-        long j = duration * 1000;
-        if (j < 0) {
-            this.timestamps = null;
-            this.currentTimestamp = -1;
-            this.timestampsAppearing = 0.0f;
-            StaticLayout[] staticLayoutArr = this.timestampLabel;
-            if (staticLayoutArr != null) {
-                staticLayoutArr[1] = null;
-                staticLayoutArr[0] = null;
-            }
-            this.lastCaption = null;
-            this.lastDuration = -1L;
+        if (messageObject == null) {
+            clearTimestamps();
+            return;
+        }
+        if (l == null) {
+            l = Long.valueOf(((long) messageObject.getDuration()) * 1000);
+        }
+        if (l.longValue() < 0) {
+            clearTimestamps();
             return;
         }
         CharSequence charSequence = messageObject.caption;
         if (messageObject.isYouTubeVideo()) {
             if (messageObject.youtubeDescription == null && (str = messageObject.messageOwner.media.webpage.description) != null) {
                 messageObject.youtubeDescription = SpannableString.valueOf(str);
-                MessageObject.addUrlsByPattern(messageObject.isOut(), messageObject.youtubeDescription, false, 3, (int) j, false);
+                MessageObject.addUrlsByPattern(messageObject.isOut(), messageObject.youtubeDescription, false, 3, (int) l.longValue(), false);
             }
             charSequence = messageObject.youtubeDescription;
         }
         boolean z = charSequence != this.lastCaption;
-        if (z || this.lastDuration != j) {
+        if (z || this.lastDuration != l.longValue()) {
             this.lastCaption = charSequence;
-            this.lastDuration = duration * 10000;
+            this.lastDuration = l.longValue() * 10;
             if (getTimestampLabelWidth() != this.lastTimestampLabelWidth) {
                 requestLayout();
             }
@@ -810,10 +912,10 @@ public class SeekBarView extends FrameLayout {
                 this.timestamps = null;
                 this.currentTimestamp = -1;
                 this.timestampsAppearing = 0.0f;
-                StaticLayout[] staticLayoutArr2 = this.timestampLabel;
-                if (staticLayoutArr2 != null) {
-                    staticLayoutArr2[1] = null;
-                    staticLayoutArr2[0] = null;
+                StaticLayout[] staticLayoutArr = this.timestampLabel;
+                if (staticLayoutArr != null) {
+                    staticLayoutArr[1] = null;
+                    staticLayoutArr[0] = null;
                     return;
                 }
                 return;
@@ -821,7 +923,7 @@ public class SeekBarView extends FrameLayout {
             Spanned spanned = (Spanned) charSequence;
             try {
                 URLSpanNoUnderline[] uRLSpanNoUnderlineArr = (URLSpanNoUnderline[]) spanned.getSpans(0, spanned.length(), URLSpanNoUnderline.class);
-                this.timestamps = new ArrayList();
+                this.timestamps = new ArrayList<>();
                 if (z) {
                     this.timestampsAppearing = 0.0f;
                 }
@@ -833,61 +935,171 @@ public class SeekBarView extends FrameLayout {
                 }
                 for (URLSpanNoUnderline uRLSpanNoUnderline : uRLSpanNoUnderlineArr) {
                     if (uRLSpanNoUnderline != null && uRLSpanNoUnderline.getURL() != null && uRLSpanNoUnderline.label != null && uRLSpanNoUnderline.getURL().startsWith("audio?") && (num = Utilities.parseInt((CharSequence) uRLSpanNoUnderline.getURL().substring(6))) != null && num.intValue() >= 0) {
-                        float fIntValue = (((long) num.intValue()) * 1000) / j;
+                        float fIntValue = (((long) num.intValue()) * 1000) / l.longValue();
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(uRLSpanNoUnderline.label);
                         Emoji.replaceEmoji(spannableStringBuilder, this.timestampLabelPaint.getFontMetricsInt(), false);
-                        this.timestamps.add(new Pair(Float.valueOf(fIntValue), spannableStringBuilder));
+                        this.timestamps.add(new Pair<>(Float.valueOf(fIntValue), spannableStringBuilder));
                     }
                 }
-                Collections.sort(this.timestamps, new ChatActivity$$ExternalSyntheticLambda18(22));
+                Collections.sort(this.timestamps, new SeekBar$$ExternalSyntheticLambda0(10));
             } catch (Exception e) {
                 FileLog.e(e);
                 this.timestamps = null;
                 this.currentTimestamp = -1;
                 this.timestampsAppearing = 0.0f;
-                StaticLayout[] staticLayoutArr3 = this.timestampLabel;
-                if (staticLayoutArr3 != null) {
-                    staticLayoutArr3[1] = null;
-                    staticLayoutArr3[0] = null;
+                StaticLayout[] staticLayoutArr2 = this.timestampLabel;
+                if (staticLayoutArr2 != null) {
+                    staticLayoutArr2[1] = null;
+                    staticLayoutArr2[0] = null;
                 }
             }
         }
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
+    public boolean verifyDrawable(Drawable drawable) {
         return super.verifyDrawable(drawable) || drawable == this.hoverDrawable;
     }
 
-    public final void setProgress(float f, boolean z) {
+    public SeekBarView(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, false, resourcesProvider);
+    }
+
+    public void setProgress(float f, boolean z) {
         double dCeil;
         if (getMeasuredWidth() == 0) {
             this.progressToSet = f;
             return;
         }
         this.progressToSet = -100.0f;
-        boolean z2 = this.twoSided;
-        int i = this.selectorWidth;
-        if (z2) {
-            float measuredWidth = (getMeasuredWidth() - i) / 2;
+        if (this.twoSided) {
+            float measuredWidth = (getMeasuredWidth() - this.selectorWidth) / 2;
             dCeil = f < 0.0f ? Math.ceil(((-(f + 1.0f)) * measuredWidth) + measuredWidth) : Math.ceil((f * measuredWidth) + measuredWidth);
         } else {
-            dCeil = Math.ceil((getMeasuredWidth() - i) * f);
+            dCeil = Math.ceil((getMeasuredWidth() - this.selectorWidth) * f);
         }
-        int i2 = (int) dCeil;
-        int i3 = this.thumbX;
-        if (i3 != i2) {
+        int i = (int) dCeil;
+        int i2 = this.thumbX;
+        if (i2 != i) {
             if (z) {
-                this.transitionThumbX = i3;
+                this.transitionThumbX = i2;
                 this.transitionProgress = 0.0f;
             }
-            this.thumbX = i2;
-            if (i2 < minThumbX()) {
+            this.thumbX = i;
+            if (i < minThumbX()) {
                 this.thumbX = minThumbX();
-            } else if (this.thumbX > getMeasuredWidth() - i) {
-                this.thumbX = getMeasuredWidth() - i;
+            } else if (this.thumbX > getMeasuredWidth() - this.selectorWidth) {
+                this.thumbX = getMeasuredWidth() - this.selectorWidth;
             }
             invalidate();
+        }
+    }
+
+    public SeekBarView(final Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
+        this.animatedThumbX = new AnimatedFloat(this, 0L, 60L, CubicBezierInterpolator.EASE_OUT);
+        this.progressToSet = -100.0f;
+        this.minProgress = -1.0f;
+        this.pressedState = new int[]{16842910, 16842919};
+        this.transitionProgress = 1.0f;
+        this.lineWidthDp = 3;
+        this.timestampsAppearing = 0.0f;
+        this.TIMESTAMP_GAP = 1.0f;
+        this.currentTimestamp = -1;
+        this.lastTimestamp = -1;
+        this.timestampChangeT = 1.0f;
+        this.lastWidth = -1.0f;
+        this.rect = new RectF();
+        this.timestampIndex = -1;
+        this.resourcesProvider = resourcesProvider;
+        setWillNotDraw(false);
+        this.innerPaint1 = new Paint(1);
+        Paint paint = new Paint(1);
+        this.outerPaint1 = paint;
+        int i = Theme.key_player_progress;
+        paint.setColor(getThemedColor(i));
+        this.selectorWidth = AndroidUtilities.dp(32.0f);
+        this.thumbSize = AndroidUtilities.dp(24.0f);
+        this.currentRadius = AndroidUtilities.dp(6.0f);
+        BaseCell.RippleDrawableSafe rippleDrawableSafeCreateSelectorDrawable = Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(getThemedColor(i), 40), 1, AndroidUtilities.dp(16.0f));
+        this.hoverDrawable = rippleDrawableSafeCreateSelectorDrawable;
+        rippleDrawableSafeCreateSelectorDrawable.setCallback(this);
+        this.hoverDrawable.setVisible(true, false);
+        AudioPlayerAlert.ClippingTextViewSwitcher clippingTextViewSwitcher = new AudioPlayerAlert.ClippingTextViewSwitcher(context) {
+            @Override
+            public TextView createTextView() {
+                MarqueeTextView marqueeTextView = new MarqueeTextView(context);
+                marqueeTextView.setTextColor(SeekBarView.this.getThemedColor(Theme.key_player_time));
+                marqueeTextView.setTextSize(1, 12.0f);
+                marqueeTextView.setEllipsize(TextUtils.TruncateAt.END);
+                marqueeTextView.setSingleLine(true);
+                marqueeTextView.setPadding(AndroidUtilities.dp(0.0f), 0, AndroidUtilities.dp(0.0f), AndroidUtilities.dp(0.0f));
+                return marqueeTextView;
+            }
+        };
+        this.textViewSwitcher = clippingTextViewSwitcher;
+        clippingTextViewSwitcher.setIsCenter();
+        addView(clippingTextViewSwitcher, LayoutHelper.createFrame(-1, -2.0f));
+        setImportantForAccessibility(1);
+        FloatSeekBarAccessibilityDelegate floatSeekBarAccessibilityDelegate = new FloatSeekBarAccessibilityDelegate(z) {
+            @Override
+            public CharSequence getContentDescription(View view) {
+                SeekBarViewDelegate seekBarViewDelegate = SeekBarView.this.delegate;
+                if (seekBarViewDelegate != null) {
+                    return seekBarViewDelegate.getContentDescription();
+                }
+                return null;
+            }
+
+            @Override
+            public float getDelta() {
+                int stepsCount = SeekBarView.this.delegate.getStepsCount();
+                return stepsCount > 0 ? 1.0f / stepsCount : super.getDelta();
+            }
+
+            @Override
+            public float getProgress() {
+                return SeekBarView.this.getProgress();
+            }
+
+            @Override
+            public void setProgress(float f) {
+                SeekBarView.this.pressed = true;
+                SeekBarView.this.setProgress(f);
+                SeekBarView.this.setSeekBarDrag(true, f);
+                SeekBarView.this.pressed = false;
+            }
+        };
+        this.seekBarAccessibilityDelegate = floatSeekBarAccessibilityDelegate;
+        setAccessibilityDelegate(floatSeekBarAccessibilityDelegate);
+    }
+
+    public interface SeekBarViewDelegate {
+        CharSequence getContentDescription();
+
+        int getStepsCount();
+
+        boolean needVisuallyDivideSteps();
+
+        void onSeekBarDrag(boolean z, float f);
+
+        void onSeekBarPressed(boolean z);
+
+        public abstract class CC {
+            public static CharSequence $default$getContentDescription(SeekBarViewDelegate seekBarViewDelegate) {
+                return null;
+            }
+
+            public static int $default$getStepsCount(SeekBarViewDelegate seekBarViewDelegate) {
+                return 0;
+            }
+
+            public static boolean $default$needVisuallyDivideSteps(SeekBarViewDelegate seekBarViewDelegate) {
+                return false;
+            }
+
+            public static void $default$onSeekBarPressed(SeekBarViewDelegate seekBarViewDelegate, boolean z) {
+            }
         }
     }
 }

@@ -1,8 +1,5 @@
 package org.telegram.ui.Stories.recorder;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.RecyclerListView;
-
 public final class GalleryListView$Adapter$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
     public final GalleryListView.Adapter f$0;
@@ -18,37 +15,21 @@ public final class GalleryListView$Adapter$$ExternalSyntheticLambda0 implements 
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                GalleryListView.AnonymousClass1 anonymousClass1 = GalleryListView.this.listView;
-                anonymousClass1.getClass();
+                GalleryListView galleryListView = GalleryListView.this;
+                GalleryListView.AnonymousClass1 anonymousClass1 = galleryListView.listView;
                 GalleryListView.Cell cell = this.f$1;
-                int childAdapterPosition = RecyclerView.getChildAdapterPosition(cell);
+                int childAdapterPosition = anonymousClass1.getChildAdapterPosition(cell);
                 if (childAdapterPosition != -1) {
-                    RecyclerListView.OnItemClickListener onItemClickListener = anonymousClass1.onItemClickListener;
-                    if (onItemClickListener == null) {
-                        RecyclerListView.OnItemClickListenerExtended onItemClickListenerExtended = anonymousClass1.onItemClickListenerExtended;
-                        if (onItemClickListenerExtended != null) {
-                            onItemClickListenerExtended.onItemClick(cell, childAdapterPosition, 0.0f, 0.0f);
-                        }
-                    } else {
-                        onItemClickListener.onItemClick(childAdapterPosition, cell);
-                    }
+                    galleryListView.listView.clickItem(cell, childAdapterPosition);
                 }
                 break;
             default:
-                GalleryListView.AnonymousClass1 anonymousClass2 = GalleryListView.this.listView;
-                anonymousClass2.getClass();
+                GalleryListView galleryListView2 = GalleryListView.this;
+                GalleryListView.AnonymousClass1 anonymousClass2 = galleryListView2.listView;
                 GalleryListView.Cell cell2 = this.f$1;
-                int childAdapterPosition2 = RecyclerView.getChildAdapterPosition(cell2);
+                int childAdapterPosition2 = anonymousClass2.getChildAdapterPosition(cell2);
                 if (childAdapterPosition2 != -1) {
-                    RecyclerListView.OnItemLongClickListener onItemLongClickListener = anonymousClass2.onItemLongClickListener;
-                    if (onItemLongClickListener == null) {
-                        RecyclerListView.OnItemLongClickListenerExtended onItemLongClickListenerExtended = anonymousClass2.onItemLongClickListenerExtended;
-                        if (onItemLongClickListenerExtended != null) {
-                            onItemLongClickListenerExtended.mo1082onItemClick(cell2, childAdapterPosition2, 0.0f, 0.0f);
-                        }
-                    } else {
-                        onItemLongClickListener.onItemClick(childAdapterPosition2, cell2);
-                    }
+                    galleryListView2.listView.longClickItem(cell2, childAdapterPosition2);
                 }
                 break;
         }

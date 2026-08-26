@@ -1,7 +1,7 @@
 package kotlinx.coroutines;
 
 import androidx.car.app.HostException;
-import com.google.android.gms.internal.mlkit_vision_common.zzjj;
+import com.google.android.gms.internal.mlkit_vision_common.zzjf;
 import java.lang.reflect.InvocationTargetException;
 import kotlin.Result;
 import kotlin.ResultKt;
@@ -60,9 +60,9 @@ public abstract class AbstractCoroutine extends JobSupport implements Continuati
 
     @Override
     public final void resumeWith(Object obj) {
-        Throwable thM139exceptionOrNullimpl = Result.m139exceptionOrNullimpl(obj);
-        if (thM139exceptionOrNullimpl != null) {
-            obj = new CompletedExceptionally(thM139exceptionOrNullimpl, false);
+        Throwable thM144exceptionOrNullimpl = Result.m144exceptionOrNullimpl(obj);
+        if (thM144exceptionOrNullimpl != null) {
+            obj = new CompletedExceptionally(thM144exceptionOrNullimpl, false);
         }
         Object objMakeCompletingOnce$kotlinx_coroutines_core = makeCompletingOnce$kotlinx_coroutines_core(obj);
         if (objMakeCompletingOnce$kotlinx_coroutines_core == JobKt.COMPLETING_WAITING_CHILDREN) {
@@ -81,7 +81,7 @@ public abstract class AbstractCoroutine extends JobSupport implements Continuati
         if (iOrdinal != 1) {
             if (iOrdinal == 2) {
                 Intrinsics.checkNotNullParameter(function2, "<this>");
-                zzjj.intercepted(zzjj.createCoroutineUnintercepted(abstractCoroutine, this, function2)).resumeWith(Unit.INSTANCE);
+                zzjf.intercepted(zzjf.createCoroutineUnintercepted(abstractCoroutine, this, function2)).resumeWith(Unit.INSTANCE);
                 return;
             }
             if (iOrdinal != 3) {

@@ -51,14 +51,14 @@ public final class CommunityLinkView2 extends FrameLayout implements Theme.Color
         textView2.setTextSize(1, 13.0f);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 2.0f, 0.0f, 0.0f));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 19, 58.0f, 0.0f, 48.0f, 1.0f));
         ImageView imageView = new ImageView(context);
         this.arrowView = imageView;
         imageView.setImageResource(R.drawable.msg_inputarrow);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        updateColors$1();
+        updateColors();
     }
 
     @Override
@@ -91,9 +91,7 @@ public final class CommunityLinkView2 extends FrameLayout implements Theme.Color
         TLRPC.ChatFull chatFull = MessagesController.getInstance(i).getChatFull(chat.id);
         setTitle(DialogObject.getShortName(chat));
         setSubtitle(LocaleController.formatPluralString("CommunityWithChats", chatFull != null ? chatFull.linked_peers.size() : 0, new Object[0]));
-        BackupImageView backupImageView = this.avatarView;
-        backupImageView.imageReceiver.setForUserOrChat(chat, new AvatarDrawable(chat));
-        backupImageView.onNewImageSet();
+        this.avatarView.setForUserOrChat(chat, new AvatarDrawable(chat));
     }
 
     public void setSubtitle(CharSequence charSequence) {
@@ -105,7 +103,7 @@ public final class CommunityLinkView2 extends FrameLayout implements Theme.Color
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         int i = Theme.key_windowBackgroundWhiteGrayText2;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         this.arrowView.setColorFilter(Theme.getColor(i, resourcesProvider));

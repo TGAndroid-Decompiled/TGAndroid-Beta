@@ -15,12 +15,8 @@ import org.telegram.ui.Components.SlideChooseView;
 public final class BoostViaGiftsBottomSheet$$ExternalSyntheticLambda2 implements AlertsCreator.ScheduleDatePickerDelegate, SlideChooseView.Callback, ChatCell.ChatDeleteListener, EnterPrizeCell.AfterTextChangedListener {
     public final BoostViaGiftsBottomSheet f$0;
 
-    public BoostViaGiftsBottomSheet$$ExternalSyntheticLambda2(BoostViaGiftsBottomSheet boostViaGiftsBottomSheet) {
-        this.f$0 = boostViaGiftsBottomSheet;
-    }
-
     @Override
-    public void didSelectDate(int i, int i2, boolean z) {
+    public void didSelectDate(boolean z, int i, int i2) {
         BoostViaGiftsBottomSheet boostViaGiftsBottomSheet = this.f$0;
         boostViaGiftsBottomSheet.selectedEndDate = ((long) i) * 1000;
         boostViaGiftsBottomSheet.updateRows(false, true);
@@ -55,8 +51,8 @@ public final class BoostViaGiftsBottomSheet$$ExternalSyntheticLambda2 implements
                     subtitleWithCounterCell.getClass();
                     pluralString = LocaleController.formatPluralString("BoostingBoostsCountTitle", selectedSliderValueWithBoosts, Integer.valueOf(selectedSliderValueWithBoosts));
                 }
-                subtitleWithCounterCell.counterTextView.drawable.cancelAnimation();
-                subtitleWithCounterCell.counterTextView.setText(pluralString, true, true);
+                subtitleWithCounterCell.counterTextView.cancelAnimation();
+                subtitleWithCounterCell.counterTextView.setText(pluralString, true);
             }
             if (childAt instanceof ChatCell) {
                 ChatCell chatCell = (ChatCell) childAt;
@@ -69,11 +65,12 @@ public final class BoostViaGiftsBottomSheet$$ExternalSyntheticLambda2 implements
                 }
             }
         }
-        boostAdapter.notifyItemChanged(8);
-        boostAdapter.mObservable.notifyItemRangeChanged(boostAdapter.items.size() - 12, 12, null);
+        boostAdapter.lambda$onBindViewHolder$31(8);
+        boostAdapter.notifyItemRangeChanged(boostAdapter.items.size() - 12, 12);
     }
 
     @Override
     public void onTouchEnd() {
+        SlideChooseView.Callback.CC.$default$onTouchEnd(this);
     }
 }

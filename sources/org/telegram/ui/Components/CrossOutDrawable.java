@@ -13,38 +13,37 @@ import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
-public final class CrossOutDrawable extends Drawable {
-    public int color;
-    public final int colorKey;
-    public boolean cross;
-    public final Drawable iconDrawable;
-    public float lenOffsetBottom;
-    public float lenOffsetTop;
-    public final Paint paint;
-    public float progress;
-    public final RectF rectF = new RectF();
-    public float xOffset;
-    public final Paint xRefPaint;
+public class CrossOutDrawable extends Drawable {
+    int color;
+    int colorKey;
+    boolean cross;
+    Drawable iconDrawable;
+    private float lenOffsetBottom;
+    private float lenOffsetTop;
+    float progress;
+    private float xOffset;
+    final Paint xRefPaint;
+    RectF rectF = new RectF();
+    Paint paint = new Paint(1);
 
     public CrossOutDrawable(Context context, int i, int i2) {
         Paint paint = new Paint(1);
-        this.paint = paint;
-        Paint paint2 = new Paint(1);
-        this.xRefPaint = paint2;
+        this.xRefPaint = paint;
         this.iconDrawable = context.getDrawable(i);
         this.colorKey = i2;
+        Paint paint2 = this.paint;
         Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(-16777216);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
+        this.paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
+        this.paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setColor(-16777216);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
     }
 
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         float f;
         boolean z = this.cross;
         if (z) {
@@ -77,26 +76,22 @@ public final class CrossOutDrawable extends Drawable {
         }
         int i = this.colorKey;
         int color = i < 0 ? -1 : Theme.getColor(null, i, false);
-        int i2 = this.color;
-        Drawable drawable = this.iconDrawable;
-        Paint paint = this.paint;
-        if (i2 != color) {
+        if (this.color != color) {
             this.color = color;
-            paint.setColor(color);
-            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+            this.paint.setColor(color);
+            this.iconDrawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         }
         if (this.progress == 0.0f) {
-            drawable.draw(canvas);
+            this.iconDrawable.draw(canvas);
             return;
         }
-        RectF rectF = this.rectF;
-        rectF.set(drawable.getBounds());
-        canvas.saveLayerAlpha(rectF, 255, 31);
-        drawable.draw(canvas);
-        float fDpf2 = AndroidUtilities.dpf2(4.5f) + rectF.left + this.xOffset + this.lenOffsetTop;
-        float fDpf3 = ((AndroidUtilities.dpf2(4.5f) + rectF.top) - AndroidUtilities.dp(1.0f)) + this.lenOffsetTop;
-        float fDp = ((rectF.right - AndroidUtilities.dp(3.0f)) + this.xOffset) - this.lenOffsetBottom;
-        float fDp2 = ((rectF.bottom - AndroidUtilities.dp(1.0f)) - AndroidUtilities.dp(3.0f)) - this.lenOffsetBottom;
+        this.rectF.set(this.iconDrawable.getBounds());
+        canvas.saveLayerAlpha(this.rectF, 255, 31);
+        this.iconDrawable.draw(canvas);
+        float fDpf2 = AndroidUtilities.dpf2(4.5f) + this.rectF.left + this.xOffset + this.lenOffsetTop;
+        float fDpf3 = ((AndroidUtilities.dpf2(4.5f) + this.rectF.top) - AndroidUtilities.dp(1.0f)) + this.lenOffsetTop;
+        float fDp = ((this.rectF.right - AndroidUtilities.dp(3.0f)) + this.xOffset) - this.lenOffsetBottom;
+        float fDp2 = ((this.rectF.bottom - AndroidUtilities.dp(1.0f)) - AndroidUtilities.dp(3.0f)) - this.lenOffsetBottom;
         if (this.cross) {
             float f3 = this.progress;
             fDp = ((fDp - fDpf2) * f3) + fDpf2;
@@ -106,50 +101,53 @@ public final class CrossOutDrawable extends Drawable {
             fDpf2 = DiffUtil.m(1.0f, f4, fDp - fDpf2, fDpf2);
             fDpf3 = DiffUtil.m(1.0f, f4, fDp2 - fDpf3, fDpf3);
         }
-        float f5 = fDp2;
-        float f6 = fDpf3;
-        float f7 = fDpf2;
-        float f8 = fDp;
-        float strokeWidth = f6 - paint.getStrokeWidth();
-        float strokeWidth2 = f5 - paint.getStrokeWidth();
-        Paint paint2 = this.xRefPaint;
-        canvas.drawLine(f7, strokeWidth, f8, strokeWidth2, paint2);
-        float strokeWidth3 = ((paint2.getStrokeWidth() - paint.getStrokeWidth()) / 2.0f) + 1.0f;
-        canvas.drawLine(f7, f6 - strokeWidth3, f8, f5 - strokeWidth3, paint2);
-        canvas.drawLine(f7, f6, f8, f5, paint);
+        float f5 = fDp;
+        float f6 = fDpf2;
+        canvas.drawLine(f6, fDpf3 - this.paint.getStrokeWidth(), f5, fDp2 - this.paint.getStrokeWidth(), this.xRefPaint);
+        float strokeWidth = ((this.xRefPaint.getStrokeWidth() - this.paint.getStrokeWidth()) / 2.0f) + 1.0f;
+        canvas.drawLine(f6, fDpf3 - strokeWidth, f5, fDp2 - strokeWidth, this.xRefPaint);
+        canvas.drawLine(f6, fDpf3, f5, fDp2, this.paint);
         canvas.restore();
     }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return this.iconDrawable.getIntrinsicHeight();
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return this.iconDrawable.getIntrinsicWidth();
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
-    @Override
-    public final void setAlpha(int i) {
+    public float getProgress() {
+        return this.progress;
     }
 
     @Override
-    public final void setBounds(int i, int i2, int i3, int i4) {
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setBounds(int i, int i2, int i3, int i4) {
         super.setBounds(i, i2, i3, i4);
         this.iconDrawable.setBounds(i, i2, i3, i4);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
     }
 
-    public final void setCrossOut(boolean z, boolean z2) {
+    public void setColorKey(int i) {
+        this.colorKey = i;
+    }
+
+    public void setCrossOut(boolean z, boolean z2) {
         if (this.cross != z) {
             this.cross = z;
             if (z2) {
@@ -159,5 +157,17 @@ public final class CrossOutDrawable extends Drawable {
             }
             invalidateSelf();
         }
+    }
+
+    public void setOffsets(float f, float f2, float f3) {
+        this.xOffset = f;
+        this.lenOffsetTop = f2;
+        this.lenOffsetBottom = f3;
+        invalidateSelf();
+    }
+
+    public void setStrokeWidth(float f) {
+        this.paint.setStrokeWidth(f);
+        this.xRefPaint.setStrokeWidth(f * 1.47f);
     }
 }

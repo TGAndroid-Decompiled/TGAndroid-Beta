@@ -1,25 +1,39 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.ui.AvatarSpan;
 
-public abstract class CompatDrawable extends Drawable {
+public class CompatDrawable extends Drawable {
     public final Paint paint = new Paint(1);
 
     public CompatDrawable(View view) {
         if (view != null) {
-            view.addOnAttachStateChangeListener(new AvatarSpan.AnonymousClass1(this, 7));
+            view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                @Override
+                public void onViewAttachedToWindow(View view2) {
+                    CompatDrawable.this.onAttachedToWindow();
+                }
+
+                @Override
+                public void onViewDetachedFromWindow(View view2) {
+                    CompatDrawable.this.onDetachedToWindow();
+                }
+            });
             if (view.isAttachedToWindow()) {
-                view.post(new Bulletin$2$$ExternalSyntheticLambda1(this, 23));
+                view.post(new GroupCallPip$$ExternalSyntheticLambda2(this, 7));
             }
         }
     }
 
     @Override
-    public final int getOpacity() {
+    public void draw(Canvas canvas) {
+    }
+
+    @Override
+    public int getOpacity() {
         return -2;
     }
 
@@ -35,7 +49,7 @@ public abstract class CompatDrawable extends Drawable {
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
         this.paint.setColorFilter(colorFilter);
     }
 }

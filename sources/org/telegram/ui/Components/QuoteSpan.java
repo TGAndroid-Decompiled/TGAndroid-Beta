@@ -20,6 +20,7 @@ import android.text.style.CharacterStyle;
 import android.text.style.LeadingMarginSpan;
 import android.text.style.LineHeightSpan;
 import android.text.style.MetricAffectingSpan;
+import android.view.MotionEvent;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
@@ -32,44 +33,46 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.iv.RichTextCell;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.Theme;
 
-public final class QuoteSpan implements LeadingMarginSpan {
+public class QuoteSpan implements LeadingMarginSpan {
+    public static int COLLAPSE_LINES = 3;
     public boolean adaptLineHeight = true;
-    public final Paint backgroundPaint;
-    public final Path backgroundPath;
-    public final float[] backgroundPathRadii;
+    private final Paint backgroundPaint;
+    private final Path backgroundPath;
+    private final float[] backgroundPathRadii;
     public QuoteCollapseButton collapseButton;
-    public RichTextCell.CollapsedTextPart collapsedSpan;
-    public int color;
+    public QuoteCollapsedPart collapsedSpan;
+    private int color;
     public final boolean edit;
     public int end;
     public boolean first;
     public boolean isCollapsing;
     public boolean last;
-    public final Paint linePaint;
-    public final Path linePath;
-    public final float[] linePathRadii;
-    public SpannableString newline;
-    public final Drawable quoteDrawable;
+    private final Paint linePaint;
+    private final Path linePath;
+    private final float[] linePathRadii;
+    private SpannableString newline;
+    private final Drawable quoteDrawable;
     public boolean rtl;
     public boolean singleLine;
     public int start;
     public final QuoteStyleSpan styleSpan;
 
-    public final class Block {
+    public static class Block {
         public final int bottom;
         public RectF collapseButtonBounds;
         public final TextPaint paint;
         public final QuoteSpan span;
         public final int top;
-        public final EditTextEffects view;
+        public final View view;
         public final int width;
 
-        public Block(EditTextEffects editTextEffects, Layout layout, Spanned spanned, QuoteSpan quoteSpan) {
+        public Block(View view, Layout layout, Spanned spanned, QuoteSpan quoteSpan) {
             int i;
             int i2;
-            this.view = editTextEffects;
+            this.view = view;
             this.span = quoteSpan;
             this.paint = layout.getPaint();
             quoteSpan.start = spanned.getSpanStart(quoteSpan);
@@ -83,8 +86,7 @@ public final class QuoteSpan implements LeadingMarginSpan {
             quoteSpan.singleLine = lineForOffset2 - lineForOffset < 1;
             quoteSpan.first = lineForOffset <= 0;
             quoteSpan.last = lineForOffset2 + 1 >= layout.getLineCount();
-            boolean z = quoteSpan.edit;
-            if (z) {
+            if (quoteSpan.edit) {
                 int lineTop = layout.getLineTop(lineForOffset);
                 if (quoteSpan.singleLine) {
                     i = 0;
@@ -113,100 +115,109 @@ public final class QuoteSpan implements LeadingMarginSpan {
                 lineForOffset++;
             }
             this.width = (int) Math.ceil(fMax);
-            if (z && editTextEffects != null && quoteSpan.collapseButton == null) {
-                quoteSpan.collapseButton = new QuoteCollapseButton(editTextEffects);
+            if (quoteSpan.edit && view != null && quoteSpan.collapseButton == null) {
+                quoteSpan.collapseButton = new QuoteCollapseButton(view);
             }
         }
 
-        public final void draw(Canvas canvas, int i, int i2) {
-            float f;
-            QuoteSpan quoteSpan = this.span;
-            int i3 = quoteSpan.color;
-            Paint paint = quoteSpan.backgroundPaint;
-            Paint paint2 = quoteSpan.linePaint;
-            Drawable drawable = quoteSpan.quoteDrawable;
-            if (i3 != i2) {
-                quoteSpan.color = i2;
-                drawable.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.SRC_IN));
-                paint2.setColor(i2);
-                paint.setColor(ColorUtils.setAlphaComponent(i2, 30));
+        public int buttonWidth() {
+            QuoteCollapseButton quoteCollapseButton = this.span.collapseButton;
+            return quoteCollapseButton != null ? quoteCollapseButton.width() : RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(3.333f, 2, AndroidUtilities.dp(23.66f));
+        }
+
+        public void draw(Canvas canvas, float f, int i, int i2, float f2, TextPaint textPaint) {
+            int iDp;
+            char c;
+            this.span.setColor(i2);
+            if (this.span.edit) {
+                iDp = i;
+            } else {
+                iDp = AndroidUtilities.dp(32.0f) + this.width;
             }
-            boolean z = quoteSpan.edit;
-            int iDp = z ? i : AndroidUtilities.dp(32.0f) + this.width;
-            int i4 = ((double) iDp) >= ((double) i) * 0.95d ? i : iDp;
+            int i3 = ((double) iDp) >= ((double) i) * 0.95d ? i : iDp;
             canvas.save();
-            canvas.translate(0.0f, 0.0f);
+            canvas.translate(0.0f, f);
             RectF rectF = AndroidUtilities.rectTmp;
-            int i5 = this.top;
-            float f2 = i5;
-            int i6 = this.bottom;
-            float f3 = i6;
-            rectF.set(0.0f, f2, i4, f3);
-            float[] fArr = quoteSpan.backgroundPathRadii;
-            fArr[7] = 0.0f;
-            fArr[6] = 0.0f;
-            fArr[1] = 0.0f;
+            rectF.set(0.0f, this.top, i3, this.bottom);
+            float[] fArr = this.span.backgroundPathRadii;
+            float[] fArr2 = this.span.backgroundPathRadii;
+            float[] fArr3 = this.span.backgroundPathRadii;
+            this.span.backgroundPathRadii[7] = 0.0f;
+            fArr3[6] = 0.0f;
+            fArr2[1] = 0.0f;
             fArr[0] = 0.0f;
+            float[] fArr4 = this.span.backgroundPathRadii;
+            float[] fArr5 = this.span.backgroundPathRadii;
+            float[] fArr6 = this.span.backgroundPathRadii;
+            float[] fArr7 = this.span.backgroundPathRadii;
             float fDp = AndroidUtilities.dp(4.0f);
-            fArr[5] = fDp;
-            fArr[4] = fDp;
-            fArr[3] = fDp;
-            fArr[2] = fDp;
-            Path path = quoteSpan.backgroundPath;
-            path.rewind();
-            int i7 = i4;
+            fArr7[5] = fDp;
+            fArr6[4] = fDp;
+            fArr5[3] = fDp;
+            fArr4[2] = fDp;
+            this.span.backgroundPath.rewind();
+            Path path = this.span.backgroundPath;
+            float[] fArr8 = this.span.backgroundPathRadii;
             Path.Direction direction = Path.Direction.CW;
-            path.addRoundRect(rectF, fArr, direction);
-            canvas.drawPath(path, paint);
-            if (!z || this.view == null || quoteSpan.collapseButton == null) {
-                f = f3;
+            path.addRoundRect(rectF, fArr8, direction);
+            canvas.drawPath(this.span.backgroundPath, this.span.backgroundPaint);
+            QuoteSpan quoteSpan = this.span;
+            if (!quoteSpan.edit || this.view == null || quoteSpan.collapseButton == null) {
+                c = 7;
             } else {
                 if (this.collapseButtonBounds == null) {
                     this.collapseButtonBounds = new RectF();
                 }
                 int iDp2 = AndroidUtilities.dp(3.333f);
-                f = f3;
-                quoteSpan.collapseButton.draw(canvas, this.collapseButtonBounds, i7 - iDp2, i6 - iDp2, i2, quoteSpan.isCollapsing, hasButton());
+                QuoteSpan quoteSpan2 = this.span;
+                c = 7;
+                quoteSpan2.collapseButton.draw(canvas, this.collapseButtonBounds, i3 - iDp2, this.bottom - iDp2, i2, quoteSpan2.isCollapsing, hasButton());
             }
-            rectF.set(-AndroidUtilities.dp(3.0f), f2, 0.0f, f);
+            rectF.set(-AndroidUtilities.dp(3.0f), this.top, 0.0f, this.bottom);
+            float[] fArr9 = this.span.linePathRadii;
+            float[] fArr10 = this.span.linePathRadii;
+            float[] fArr11 = this.span.linePathRadii;
+            float[] fArr12 = this.span.linePathRadii;
             float fDp2 = AndroidUtilities.dp(4.0f);
-            float[] fArr2 = quoteSpan.linePathRadii;
-            fArr2[7] = fDp2;
-            fArr2[6] = fDp2;
-            fArr2[1] = fDp2;
-            fArr2[0] = fDp2;
-            fArr2[5] = 0.0f;
-            fArr2[4] = 0.0f;
-            fArr2[3] = 0.0f;
-            fArr2[2] = 0.0f;
-            Path path2 = quoteSpan.linePath;
-            path2.rewind();
-            path2.addRoundRect(rectF, fArr2, direction);
-            canvas.drawPath(path2, paint2);
-            if (!quoteSpan.rtl) {
-                int intrinsicHeight = (int) (((i5 + i6) - drawable.getIntrinsicHeight()) / 2.0f);
-                if (intrinsicHeight > AndroidUtilities.dp(8.0f) + i5) {
-                    intrinsicHeight = AndroidUtilities.dp(4.0f) + i5;
+            fArr12[c] = fDp2;
+            fArr11[6] = fDp2;
+            fArr10[1] = fDp2;
+            fArr9[0] = fDp2;
+            float[] fArr13 = this.span.linePathRadii;
+            float[] fArr14 = this.span.linePathRadii;
+            float[] fArr15 = this.span.linePathRadii;
+            this.span.linePathRadii[5] = 0.0f;
+            fArr15[4] = 0.0f;
+            fArr14[3] = 0.0f;
+            fArr13[2] = 0.0f;
+            this.span.linePath.rewind();
+            this.span.linePath.addRoundRect(rectF, this.span.linePathRadii, direction);
+            canvas.drawPath(this.span.linePath, this.span.linePaint);
+            QuoteSpan quoteSpan3 = this.span;
+            if (!quoteSpan3.rtl) {
+                int intrinsicHeight = (int) (((this.top + this.bottom) - quoteSpan3.quoteDrawable.getIntrinsicHeight()) / 2.0f);
+                if (intrinsicHeight > AndroidUtilities.dp(8.0f) + this.top) {
+                    intrinsicHeight = this.top + AndroidUtilities.dp(4.0f);
                 }
-                drawable.setBounds((i7 - drawable.getIntrinsicWidth()) - AndroidUtilities.dp(4.0f), intrinsicHeight, i7 - AndroidUtilities.dp(4.0f), drawable.getIntrinsicHeight() + intrinsicHeight);
-                drawable.setAlpha((int) 255.0f);
-                drawable.draw(canvas);
+                this.span.quoteDrawable.setBounds((i3 - this.span.quoteDrawable.getIntrinsicWidth()) - AndroidUtilities.dp(4.0f), intrinsicHeight, i3 - AndroidUtilities.dp(4.0f), this.span.quoteDrawable.getIntrinsicHeight() + intrinsicHeight);
+                this.span.quoteDrawable.setAlpha((int) (255.0f * f2));
+                this.span.quoteDrawable.draw(canvas);
             }
             canvas.restore();
         }
 
-        public final boolean hasButton() {
-            return this.span.edit && ((float) (this.bottom - this.top)) > (this.paint.getTextSize() * 1.3f) * ((float) 3);
+        public boolean hasButton() {
+            return this.span.edit && ((float) (this.bottom - this.top)) > (this.paint.getTextSize() * 1.3f) * ((float) QuoteSpan.COLLAPSE_LINES);
         }
     }
 
-    public final class ExpandDrawable extends Drawable {
-        public int alpha;
-        public final AnimatedFloat animatedState;
-        public final Paint paint;
-        public final Path path;
-        public boolean state;
-        public final View view;
+    public static class ExpandDrawable extends Drawable {
+        private int alpha;
+        private final AnimatedFloat animatedState;
+        private final Paint paint;
+        private final Path path;
+        private boolean state;
+        private final View view;
 
         public ExpandDrawable(View view) {
             Paint paint = new Paint(1);
@@ -233,7 +244,7 @@ public final class QuoteSpan implements LeadingMarginSpan {
         }
 
         @Override
-        public final void draw(Canvas canvas) {
+        public void draw(Canvas canvas) {
             int iCenterX = getBounds().centerX();
             int iCenterY = getBounds().centerY();
             float f = this.animatedState.set(this.state);
@@ -244,48 +255,71 @@ public final class QuoteSpan implements LeadingMarginSpan {
             canvas.translate(fDpf2, fDpf2);
             canvas.rotate(45.0f);
             canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, f), 1.0f);
-            Path path = this.path;
-            Paint paint = this.paint;
-            canvas.drawPath(path, paint);
+            canvas.drawPath(this.path, this.paint);
             canvas.restore();
             canvas.save();
             float f2 = -fDpf2;
             canvas.translate(f2, f2);
             canvas.rotate(225.0f);
             canvas.scale(AndroidUtilities.lerp(-1.0f, 1.0f, f), 1.0f);
-            canvas.drawPath(path, paint);
+            canvas.drawPath(this.path, this.paint);
             canvas.restore();
             canvas.restore();
         }
 
         @Override
-        public final int getOpacity() {
+        public int getOpacity() {
             return -2;
         }
 
         @Override
-        public final void setAlpha(int i) {
+        public void setAlpha(int i) {
             Paint paint = this.paint;
             this.alpha = i;
             paint.setAlpha(i);
         }
 
+        public void setColor(int i) {
+            this.paint.setColor(i);
+            this.paint.setAlpha(this.alpha);
+        }
+
         @Override
-        public final void setColorFilter(ColorFilter colorFilter) {
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public void setState(boolean z) {
+            if (this.state != z) {
+                this.state = z;
+                this.view.invalidate();
+            }
         }
     }
 
-    public final class QuoteButtonNewLineSpan extends CharacterStyle {
+    public static class QuoteButtonNewLineSpan extends CharacterStyle {
         @Override
-        public final void updateDrawState(TextPaint textPaint) {
+        public void updateDrawState(TextPaint textPaint) {
         }
     }
 
-    public final class QuoteStyleSpan extends MetricAffectingSpan implements LineHeightSpan {
+    public static class QuoteCollapsedPart extends CharacterStyle {
+        private final QuoteSpan span;
+
+        public QuoteCollapsedPart(QuoteSpan quoteSpan) {
+            this.span = quoteSpan;
+        }
+
+        @Override
+        public void updateDrawState(TextPaint textPaint) {
+            textPaint.setColor(Theme.blendOver(Theme.multAlpha(0.55f, textPaint.getColor()), Theme.multAlpha(0.4f, this.span.color)));
+        }
+    }
+
+    public static class QuoteStyleSpan extends MetricAffectingSpan implements LineHeightSpan {
         public QuoteSpan span;
 
         @Override
-        public final void chooseHeight(CharSequence charSequence, int i, int i2, int i3, int i4, Paint.FontMetricsInt fontMetricsInt) {
+        public void chooseHeight(CharSequence charSequence, int i, int i2, int i3, int i4, Paint.FontMetricsInt fontMetricsInt) {
             QuoteSpan quoteSpan = this.span;
             if (quoteSpan.adaptLineHeight) {
                 int i5 = quoteSpan.singleLine ? 7 : 2;
@@ -302,7 +336,7 @@ public final class QuoteSpan implements LeadingMarginSpan {
         }
 
         @Override
-        public final void updateDrawState(TextPaint textPaint) {
+        public void updateDrawState(TextPaint textPaint) {
             if (textPaint == null) {
                 return;
             }
@@ -310,7 +344,7 @@ public final class QuoteSpan implements LeadingMarginSpan {
         }
 
         @Override
-        public final void updateMeasureState(TextPaint textPaint) {
+        public void updateMeasureState(TextPaint textPaint) {
             textPaint.setTextSize(AndroidUtilities.dp(this.span.edit ? 16.0f : SharedConfig.fontSize - 2));
             textPaint.setTextScaleX(this.span.edit ? 1.1f : 1.0f);
         }
@@ -334,25 +368,93 @@ public final class QuoteSpan implements LeadingMarginSpan {
         paint.setColor(ColorUtils.setAlphaComponent(this.color, 30));
     }
 
-    public static void normalizeQuotes(SpannableStringBuilder spannableStringBuilder) {
+    public static void mergeQuotes(SpannableStringBuilder spannableStringBuilder, ArrayList<TLRPC.MessageEntity> arrayList) {
         boolean z;
+        if (arrayList == null || spannableStringBuilder == null) {
+            return;
+        }
         TreeSet treeSet = new TreeSet();
         HashMap map = new HashMap();
-        QuoteStyleSpan[] quoteStyleSpanArr = (QuoteStyleSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), QuoteStyleSpan.class);
+        int i = 0;
+        while (true) {
+            if (i >= arrayList.size()) {
+                break;
+            }
+            TLRPC.MessageEntity messageEntity = arrayList.get(i);
+            if (messageEntity.offset + messageEntity.length <= spannableStringBuilder.length()) {
+                int i2 = messageEntity.offset;
+                int i3 = messageEntity.length + i2;
+                if (messageEntity instanceof TLRPC.TL_messageEntityBlockquote) {
+                    treeSet.add(Integer.valueOf(i2));
+                    treeSet.add(Integer.valueOf(i3));
+                    map.put(Integer.valueOf(i2), Integer.valueOf((map.containsKey(Integer.valueOf(i2)) ? ((Integer) map.get(Integer.valueOf(i2))).intValue() : 0) | (messageEntity.collapsed ? 16 : 1)));
+                    map.put(Integer.valueOf(i3), Integer.valueOf((map.containsKey(Integer.valueOf(i3)) ? ((Integer) map.get(Integer.valueOf(i3))).intValue() : 0) | 2));
+                }
+            }
+            i++;
+        }
+        Iterator it = treeSet.iterator();
+        int i4 = 0;
+        int i5 = 0;
+        loop1: while (true) {
+            z = false;
+            while (true) {
+                if (!it.hasNext()) {
+                    break loop1;
+                }
+                Integer num = (Integer) it.next();
+                int iIntValue = num.intValue();
+                int iIntValue2 = ((Integer) map.get(num)).intValue();
+                if (i4 != iIntValue) {
+                    int i6 = iIntValue - 1;
+                    int i7 = (i6 < 0 || i6 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(i6) != '\n') ? iIntValue : iIntValue - 1;
+                    if (i5 > 0) {
+                        putQuoteToEditable(spannableStringBuilder, i4, i7, z);
+                    }
+                    i4 = iIntValue + 1;
+                    if (i4 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(iIntValue) != '\n') {
+                        i4 = iIntValue;
+                    }
+                }
+                if ((iIntValue2 & 2) != 0) {
+                    i5--;
+                }
+                if ((iIntValue2 & 1) != 0 || (iIntValue2 & 16) != 0) {
+                    i5++;
+                    if ((iIntValue2 & 16) != 0) {
+                        z = true;
+                    }
+                }
+            }
+        }
+        if (i4 >= spannableStringBuilder.length() || i5 <= 0) {
+            return;
+        }
+        putQuoteToEditable(spannableStringBuilder, i4, spannableStringBuilder.length(), z);
+    }
+
+    public static void normalizeQuotes(Editable editable) {
+        boolean z;
+        if (editable == null) {
+            return;
+        }
+        TreeSet treeSet = new TreeSet();
+        HashMap map = new HashMap();
+        QuoteStyleSpan[] quoteStyleSpanArr = (QuoteStyleSpan[]) editable.getSpans(0, editable.length(), QuoteStyleSpan.class);
         int i = 0;
         while (true) {
             if (i >= quoteStyleSpanArr.length) {
                 break;
             }
             QuoteStyleSpan quoteStyleSpan = quoteStyleSpanArr[i];
-            int spanStart = spannableStringBuilder.getSpanStart(quoteStyleSpan);
-            int spanEnd = spannableStringBuilder.getSpanEnd(quoteStyleSpan);
+            int spanStart = editable.getSpanStart(quoteStyleSpan);
+            int spanEnd = editable.getSpanEnd(quoteStyleSpan);
             treeSet.add(Integer.valueOf(spanStart));
             map.put(Integer.valueOf(spanStart), Integer.valueOf((quoteStyleSpan.span.isCollapsing ? 16 : 1) | (map.containsKey(Integer.valueOf(spanStart)) ? ((Integer) map.get(Integer.valueOf(spanStart))).intValue() : 0)));
             treeSet.add(Integer.valueOf(spanEnd));
             map.put(Integer.valueOf(spanEnd), Integer.valueOf((map.containsKey(Integer.valueOf(spanEnd)) ? ((Integer) map.get(Integer.valueOf(spanEnd))).intValue() : 0) | 2));
-            spannableStringBuilder.removeSpan(quoteStyleSpan);
-            spannableStringBuilder.removeSpan(quoteStyleSpan.span);
+            editable.removeSpan(quoteStyleSpan);
+            editable.removeSpan(quoteStyleSpan.span);
             i++;
         }
         Iterator it = treeSet.iterator();
@@ -369,12 +471,12 @@ public final class QuoteSpan implements LeadingMarginSpan {
                 int iIntValue2 = ((Integer) map.get(num)).intValue();
                 if (i2 != iIntValue) {
                     int i4 = iIntValue - 1;
-                    int i5 = (i4 < 0 || i4 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(i4) != '\n') ? iIntValue : iIntValue - 1;
+                    int i5 = (i4 < 0 || i4 >= editable.length() || editable.charAt(i4) != '\n') ? iIntValue : iIntValue - 1;
                     if (i3 > 0) {
-                        putQuoteToEditable(spannableStringBuilder, i2, i5, z);
+                        putQuoteToEditable(editable, i2, i5, z);
                     }
                     i2 = iIntValue + 1;
-                    if (i2 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(iIntValue) != '\n') {
+                    if (i2 >= editable.length() || editable.charAt(iIntValue) != '\n') {
                         i2 = iIntValue;
                     }
                 }
@@ -389,25 +491,73 @@ public final class QuoteSpan implements LeadingMarginSpan {
                 }
             }
         }
-        if (i2 >= spannableStringBuilder.length() || i3 <= 0) {
+        if (i2 >= editable.length() || i3 <= 0) {
             return;
         }
-        putQuoteToEditable(spannableStringBuilder, i2, spannableStringBuilder.length(), z);
+        putQuoteToEditable(editable, i2, editable.length(), z);
     }
 
-    public static void putQuote(Spannable spannable, int i, int i2, boolean z) {
-        QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spannable.getSpans(i, i2, QuoteSpan.class);
-        if (quoteSpanArr == null || quoteSpanArr.length <= 0) {
-            int iClamp = Utilities.clamp(i, spannable.length(), 0);
-            int iClamp2 = Utilities.clamp(i2, spannable.length(), 0);
-            QuoteStyleSpan quoteStyleSpan = new QuoteStyleSpan();
-            QuoteSpan quoteSpan = new QuoteSpan(false, z, quoteStyleSpan);
-            quoteStyleSpan.span = quoteSpan;
-            quoteSpan.start = iClamp;
-            quoteSpan.end = iClamp2;
-            spannable.setSpan(quoteStyleSpan, iClamp, iClamp2, 33);
-            spannable.setSpan(quoteSpan, iClamp, iClamp2, 33);
+    public static boolean onTouch(MotionEvent motionEvent, int i, ArrayList<Block> arrayList, Runnable runnable) {
+        if (arrayList == null) {
+            return false;
         }
+        int size = arrayList.size();
+        int i2 = 0;
+        while (true) {
+            boolean z = false;
+            while (i2 < size) {
+                Block block = arrayList.get(i2);
+                i2++;
+                Block block2 = block;
+                QuoteCollapseButton quoteCollapseButton = block2.span.collapseButton;
+                boolean z2 = block2.hasButton() && block2.collapseButtonBounds.contains(motionEvent.getX(), motionEvent.getY() - ((float) i));
+                if (motionEvent.getAction() == 0) {
+                    if (quoteCollapseButton != null) {
+                        quoteCollapseButton.setPressed(z2);
+                    }
+                } else if (motionEvent.getAction() == 1) {
+                    if (quoteCollapseButton != null && quoteCollapseButton.isPressed() && z2) {
+                        QuoteSpan quoteSpan = block2.span;
+                        quoteSpan.isCollapsing = !quoteSpan.isCollapsing;
+                        if (runnable != null) {
+                            runnable.run();
+                        }
+                        z = true;
+                    }
+                    if (quoteCollapseButton != null) {
+                        quoteCollapseButton.setPressed(false);
+                    }
+                } else if (motionEvent.getAction() == 3 && quoteCollapseButton != null) {
+                    quoteCollapseButton.setPressed(false);
+                }
+                if (quoteCollapseButton == null || !quoteCollapseButton.isPressed()) {
+                    if (z) {
+                    }
+                }
+                z = true;
+            }
+            return z;
+        }
+    }
+
+    public static int putQuote(Spannable spannable, int i, int i2, boolean z) {
+        if (spannable == null) {
+            return -1;
+        }
+        QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spannable.getSpans(i, i2, QuoteSpan.class);
+        if (quoteSpanArr != null && quoteSpanArr.length > 0) {
+            return -1;
+        }
+        int iClamp = Utilities.clamp(i, spannable.length(), 0);
+        int iClamp2 = Utilities.clamp(i2, spannable.length(), 0);
+        QuoteStyleSpan quoteStyleSpan = new QuoteStyleSpan();
+        QuoteSpan quoteSpan = new QuoteSpan(false, z, quoteStyleSpan);
+        quoteStyleSpan.span = quoteSpan;
+        quoteSpan.start = iClamp;
+        quoteSpan.end = iClamp2;
+        spannable.setSpan(quoteStyleSpan, iClamp, iClamp2, 33);
+        spannable.setSpan(quoteSpan, iClamp, iClamp2, 33);
+        return iClamp2;
     }
 
     public static int putQuoteToEditable(Editable editable, int i, int i2, boolean z) {
@@ -437,155 +587,30 @@ public final class QuoteSpan implements LeadingMarginSpan {
         return i3;
     }
 
-    public static ArrayList updateQuoteBlocks(EditTextEffects editTextEffects, Layout layout, ArrayList arrayList, boolean[] zArr) {
-        boolean z;
-        int lineStart;
-        int i;
-        boolean z2;
-        int i2;
-        if (layout != null) {
-            CharSequence text = layout.getText();
-            if (text != null && (text instanceof Spannable)) {
-                Spannable spannable = (Spannable) text;
-                if (arrayList != null) {
-                    arrayList.clear();
-                }
-                QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spannable.getSpans(0, spannable.length(), QuoteSpan.class);
-                ArrayList arrayList2 = arrayList;
-                int i3 = 0;
-                while (i3 < quoteSpanArr.length) {
-                    QuoteSpan quoteSpan = quoteSpanArr[i3];
-                    boolean z3 = quoteSpan.last;
-                    Block block = new Block(editTextEffects, layout, spannable, quoteSpan);
-                    if (quoteSpan.edit) {
-                        int i4 = quoteSpan.start;
-                        if (i4 == 0 || text.charAt(i4 - 1) == '\n') {
-                            if (quoteSpan.end != text.length() && text.charAt(quoteSpan.end) != '\n') {
-                                int i5 = quoteSpan.end;
-                                while (i5 <= text.length() && i5 != text.length() && text.charAt(i5) != '\n') {
-                                    i5++;
-                                }
-                                spannable.removeSpan(quoteSpanArr[i3]);
-                                spannable.removeSpan(quoteSpanArr[i3].styleSpan);
-                                QuoteSpan quoteSpan2 = quoteSpanArr[i3];
-                                QuoteSpan quoteSpan3 = block.span;
-                                spannable.setSpan(quoteSpan2, quoteSpan3.start, i5, 33);
-                                spannable.setSpan(quoteSpanArr[i3].styleSpan, quoteSpan3.start, i5, 33);
-                                block = new Block(editTextEffects, layout, spannable, quoteSpanArr[i3]);
-                            }
-                            boolean z4 = spannable instanceof SpannableStringBuilder;
-                            QuoteSpan quoteSpan4 = block.span;
-                            if (z4) {
-                                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) spannable;
-                                int i6 = quoteSpan4.end - 1;
-                                boolean z5 = i6 >= 0 && spannableStringBuilder.charAt(i6) == '\n';
-                                if (block.hasButton()) {
-                                    int i7 = quoteSpan4.end;
-                                    if (i7 - 2 >= 0) {
-                                        z = true;
-                                        float lineRight = layout.getLineRight(layout.getLineForOffset(i7 - 1)) - AndroidUtilities.dp(12.0f);
-                                        QuoteCollapseButton quoteCollapseButton = quoteSpan4.collapseButton;
-                                        z2 = lineRight > ((float) (block.width - (quoteCollapseButton != null ? RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 3.333f, AndroidUtilities.dp(23.66f) + quoteCollapseButton.textWidth) : RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 3.333f, AndroidUtilities.dp(23.66f)))));
-                                    } else {
-                                        z = true;
-                                    }
-                                } else {
-                                    z = true;
-                                }
-                                if (z5 != z2) {
-                                    int i8 = quoteSpan4.end;
-                                    if (z5) {
-                                        i2 = i8 - 1;
-                                        spannableStringBuilder.delete(i8 - 1, i8);
-                                        text = text;
-                                        quoteSpanArr = quoteSpanArr;
-                                    } else {
-                                        i2 = i8 + 2;
-                                        boolean z6 = Selection.getSelectionStart(spannableStringBuilder) == quoteSpan4.end && Selection.getSelectionStart(spannableStringBuilder) == Selection.getSelectionEnd(spannableStringBuilder);
-                                        int i9 = quoteSpan4.end;
-                                        if (quoteSpan4.newline == null) {
-                                            SpannableString spannableString = new SpannableString("\n");
-                                            quoteSpan4.newline = spannableString;
-                                            spannableString.setSpan(new QuoteButtonNewLineSpan(), 0, quoteSpan4.newline.length(), 33);
-                                        }
-                                        spannableStringBuilder.insert(i9, (CharSequence) quoteSpan4.newline);
-                                        if (z6) {
-                                            int selectionStart = Selection.getSelectionStart(spannableStringBuilder);
-                                            int i10 = quoteSpan4.end;
-                                            if (selectionStart != i10) {
-                                                Selection.setSelection(spannableStringBuilder, i10, i10);
-                                            }
-                                        }
-                                    }
-                                    quoteSpan4.end = Math.min(i2, spannable.length());
-                                    spannable.removeSpan(quoteSpanArr[i3]);
-                                    spannable.removeSpan(quoteSpanArr[i3].styleSpan);
-                                    spannable.setSpan(quoteSpanArr[i3], quoteSpan4.start, quoteSpan4.end, 33);
-                                    spannable.setSpan(quoteSpanArr[i3].styleSpan, quoteSpan4.start, quoteSpan4.end, 33);
-                                    if (zArr != null) {
-                                        zArr[0] = z;
-                                    }
-                                } else {
-                                    text = text;
-                                    quoteSpanArr = quoteSpanArr;
-                                }
-                            } else {
-                                text = text;
-                                quoteSpanArr = quoteSpanArr;
-                                z = true;
-                            }
-                            RichTextCell.CollapsedTextPart collapsedTextPart = quoteSpan4.collapsedSpan;
-                            if (collapsedTextPart != null) {
-                                spannable.removeSpan(collapsedTextPart);
-                            }
-                            if (quoteSpan4.isCollapsing && (lineStart = layout.getLineStart(Math.min(layout.getLineForOffset(quoteSpan4.start) + 3, layout.getLineCount()))) < (i = quoteSpan4.end)) {
-                                if (quoteSpan4.collapsedSpan == null) {
-                                    quoteSpan4.collapsedSpan = new RichTextCell.CollapsedTextPart(quoteSpan4);
-                                }
-                                spannable.setSpan(quoteSpan4.collapsedSpan, lineStart, i, 33);
-                            }
-                        } else {
-                            spannable.removeSpan(quoteSpanArr[i3]);
-                            spannable.removeSpan(quoteSpanArr[i3].styleSpan);
-                            RichTextCell.CollapsedTextPart collapsedTextPart2 = quoteSpanArr[i3].collapsedSpan;
-                            if (collapsedTextPart2 != null) {
-                                spannable.removeSpan(collapsedTextPart2);
-                            }
-                            text = text;
-                            quoteSpanArr = quoteSpanArr;
-                        }
-                        i3++;
-                        text = text;
-                        quoteSpanArr = quoteSpanArr;
-                    } else {
-                        text = text;
-                        quoteSpanArr = quoteSpanArr;
-                        z = true;
-                    }
-                    if (arrayList2 == null) {
-                        arrayList2 = new ArrayList();
-                    }
-                    if (quoteSpanArr[i3].last != z3 && zArr != null) {
-                        zArr[0] = z;
-                    }
-                    arrayList2.add(block);
-                    i3++;
-                    text = text;
-                    quoteSpanArr = quoteSpanArr;
-                }
-                return arrayList2;
-            }
-            if (arrayList != null) {
-                arrayList.clear();
-            }
-        } else if (arrayList != null) {
-            arrayList.clear();
-            return arrayList;
+    public static CharSequence stripNewlineHacks(CharSequence charSequence) {
+        if (charSequence == null) {
+            return null;
         }
-        return arrayList;
+        if (!(charSequence instanceof Spanned)) {
+            return charSequence;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        QuoteButtonNewLineSpan[] quoteButtonNewLineSpanArr = (QuoteButtonNewLineSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), QuoteButtonNewLineSpan.class);
+        for (int length = quoteButtonNewLineSpanArr.length - 1; length >= 0; length--) {
+            QuoteButtonNewLineSpan quoteButtonNewLineSpan = quoteButtonNewLineSpanArr[length];
+            int spanStart = spannableStringBuilder.getSpanStart(quoteButtonNewLineSpan);
+            int spanEnd = spannableStringBuilder.getSpanEnd(quoteButtonNewLineSpan);
+            spannableStringBuilder.removeSpan(quoteButtonNewLineSpan);
+            spannableStringBuilder.delete(spanStart, spanEnd);
+        }
+        return spannableStringBuilder;
     }
 
-    public static ArrayList updateQuoteBlocksSpanned(Layout layout, ArrayList arrayList) {
+    public static ArrayList<Block> updateQuoteBlocks(View view, Layout layout, ArrayList<Block> arrayList) {
+        return updateQuoteBlocks(view, layout, arrayList, null);
+    }
+
+    public static ArrayList<Block> updateQuoteBlocksSpanned(Layout layout, ArrayList<Block> arrayList) {
         if (layout != null) {
             CharSequence text = layout.getText();
             if (text != null && (text instanceof Spanned)) {
@@ -597,7 +622,7 @@ public final class QuoteSpan implements LeadingMarginSpan {
                     boolean z = quoteSpan.last;
                     Block block = new Block(null, layout, spanned, quoteSpan);
                     if (arrayList == null) {
-                        arrayList = new ArrayList();
+                        arrayList = new ArrayList<>();
                     }
                     arrayList.add(block);
                 }
@@ -614,11 +639,232 @@ public final class QuoteSpan implements LeadingMarginSpan {
     }
 
     @Override
-    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i, int i2, int i3, int i4, int i5, CharSequence charSequence, int i6, int i7, boolean z, Layout layout) {
+    public void drawLeadingMargin(Canvas canvas, Paint paint, int i, int i2, int i3, int i4, int i5, CharSequence charSequence, int i6, int i7, boolean z, Layout layout) {
     }
 
     @Override
-    public final int getLeadingMargin(boolean z) {
+    public int getLeadingMargin(boolean z) {
         return AndroidUtilities.dp(this.adaptLineHeight ? 8.0f : 10.0f);
+    }
+
+    public SpannableString getNewlineHack() {
+        if (this.newline == null) {
+            SpannableString spannableString = new SpannableString("\n");
+            this.newline = spannableString;
+            spannableString.setSpan(new QuoteButtonNewLineSpan(), 0, this.newline.length(), 33);
+        }
+        return this.newline;
+    }
+
+    public boolean isMyNewlineHack(CharSequence charSequence) {
+        return (charSequence instanceof Spanned) && ((QuoteButtonNewLineSpan[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), QuoteButtonNewLineSpan.class)).length > 0;
+    }
+
+    public void setColor(int i) {
+        if (this.color != i) {
+            Drawable drawable = this.quoteDrawable;
+            this.color = i;
+            drawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+            this.linePaint.setColor(i);
+            this.backgroundPaint.setColor(ColorUtils.setAlphaComponent(i, 30));
+        }
+    }
+
+    public static ArrayList<Block> updateQuoteBlocks(View view, Layout layout, ArrayList<Block> arrayList, boolean[] zArr) {
+        char c;
+        int lineStart;
+        QuoteSpan quoteSpan;
+        int i;
+        boolean z;
+        int i2;
+        if (layout != null) {
+            CharSequence text = layout.getText();
+            if (text != null && (text instanceof Spannable)) {
+                Spannable spannable = (Spannable) text;
+                if (arrayList != null) {
+                    arrayList.clear();
+                }
+                QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spannable.getSpans(0, spannable.length(), QuoteSpan.class);
+                ArrayList<Block> arrayList2 = arrayList;
+                for (int i3 = 0; i3 < quoteSpanArr.length; i3++) {
+                    QuoteSpan quoteSpan2 = quoteSpanArr[i3];
+                    boolean z2 = quoteSpan2.last;
+                    Block block = new Block(view, layout, spannable, quoteSpan2);
+                    QuoteSpan quoteSpan3 = block.span;
+                    if (quoteSpan3.edit) {
+                        int i4 = quoteSpan3.start;
+                        if (i4 == 0 || text.charAt(i4 - 1) == '\n') {
+                            if (block.span.end != text.length() && text.charAt(block.span.end) != '\n') {
+                                int i5 = block.span.end;
+                                while (i5 <= text.length() && i5 != text.length() && text.charAt(i5) != '\n') {
+                                    i5++;
+                                }
+                                spannable.removeSpan(quoteSpanArr[i3]);
+                                spannable.removeSpan(quoteSpanArr[i3].styleSpan);
+                                spannable.setSpan(quoteSpanArr[i3], block.span.start, i5, 33);
+                                spannable.setSpan(quoteSpanArr[i3].styleSpan, block.span.start, i5, 33);
+                                block = new Block(view, layout, spannable, quoteSpanArr[i3]);
+                            }
+                            if (spannable instanceof SpannableStringBuilder) {
+                                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) spannable;
+                                int i6 = block.span.end - 1;
+                                boolean z3 = i6 >= 0 && spannableStringBuilder.charAt(i6) == '\n';
+                                if (block.hasButton()) {
+                                    int i7 = block.span.end;
+                                    if (i7 - 2 < 0 || layout.getLineRight(layout.getLineForOffset(i7 - 1)) - AndroidUtilities.dp(12.0f) <= block.width - block.buttonWidth()) {
+                                        z = false;
+                                    } else {
+                                        z = true;
+                                    }
+                                } else {
+                                    z = false;
+                                }
+                                if (z3 != z) {
+                                    int i8 = block.span.end;
+                                    if (z3) {
+                                        i2 = i8 - 1;
+                                        spannableStringBuilder.delete(i8 - 1, i8);
+                                        c = 0;
+                                    } else {
+                                        i2 = i8 + 2;
+                                        boolean z4 = Selection.getSelectionStart(spannableStringBuilder) == block.span.end && Selection.getSelectionStart(spannableStringBuilder) == Selection.getSelectionEnd(spannableStringBuilder);
+                                        QuoteSpan quoteSpan4 = block.span;
+                                        c = 0;
+                                        spannableStringBuilder.insert(quoteSpan4.end, (CharSequence) quoteSpan4.getNewlineHack());
+                                        if (z4) {
+                                            int selectionStart = Selection.getSelectionStart(spannableStringBuilder);
+                                            int i9 = block.span.end;
+                                            if (selectionStart != i9) {
+                                                Selection.setSelection(spannableStringBuilder, i9, i9);
+                                            }
+                                        }
+                                    }
+                                    block.span.end = Math.min(i2, spannable.length());
+                                    spannable.removeSpan(quoteSpanArr[i3]);
+                                    spannable.removeSpan(quoteSpanArr[i3].styleSpan);
+                                    QuoteSpan quoteSpan5 = quoteSpanArr[i3];
+                                    QuoteSpan quoteSpan6 = block.span;
+                                    spannable.setSpan(quoteSpan5, quoteSpan6.start, quoteSpan6.end, 33);
+                                    QuoteStyleSpan quoteStyleSpan = quoteSpanArr[i3].styleSpan;
+                                    QuoteSpan quoteSpan7 = block.span;
+                                    spannable.setSpan(quoteStyleSpan, quoteSpan7.start, quoteSpan7.end, 33);
+                                    if (zArr != null) {
+                                        zArr[c] = true;
+                                    }
+                                } else {
+                                    c = 0;
+                                }
+                            } else {
+                                c = 0;
+                            }
+                            QuoteCollapsedPart quoteCollapsedPart = block.span.collapsedSpan;
+                            if (quoteCollapsedPart != null) {
+                                spannable.removeSpan(quoteCollapsedPart);
+                            }
+                            QuoteSpan quoteSpan8 = block.span;
+                            if (quoteSpan8.isCollapsing && (lineStart = layout.getLineStart(Math.min(layout.getLineForOffset(quoteSpan8.start) + COLLAPSE_LINES, layout.getLineCount()))) < (i = (quoteSpan = block.span).end)) {
+                                if (quoteSpan.collapsedSpan == null) {
+                                    quoteSpan.collapsedSpan = new QuoteCollapsedPart(block.span);
+                                }
+                                spannable.setSpan(block.span.collapsedSpan, lineStart, i, 33);
+                            }
+                        } else {
+                            spannable.removeSpan(quoteSpanArr[i3]);
+                            spannable.removeSpan(quoteSpanArr[i3].styleSpan);
+                            QuoteCollapsedPart quoteCollapsedPart2 = quoteSpanArr[i3].collapsedSpan;
+                            if (quoteCollapsedPart2 != null) {
+                                spannable.removeSpan(quoteCollapsedPart2);
+                            }
+                        }
+                    } else {
+                        c = 0;
+                    }
+                    if (arrayList2 == null) {
+                        arrayList2 = new ArrayList<>();
+                    }
+                    if (quoteSpanArr[i3].last != z2 && zArr != null) {
+                        zArr[c] = true;
+                    }
+                    arrayList2.add(block);
+                }
+                return arrayList2;
+            }
+            if (arrayList != null) {
+                arrayList.clear();
+            }
+        } else if (arrayList != null) {
+            arrayList.clear();
+            return arrayList;
+        }
+        return arrayList;
+    }
+
+    public static void normalizeQuotes(Spannable spannable) {
+        boolean z;
+        if (spannable == null) {
+            return;
+        }
+        TreeSet treeSet = new TreeSet();
+        HashMap map = new HashMap();
+        QuoteStyleSpan[] quoteStyleSpanArr = (QuoteStyleSpan[]) spannable.getSpans(0, spannable.length(), QuoteStyleSpan.class);
+        int i = 0;
+        while (true) {
+            if (i >= quoteStyleSpanArr.length) {
+                break;
+            }
+            QuoteStyleSpan quoteStyleSpan = quoteStyleSpanArr[i];
+            int spanStart = spannable.getSpanStart(quoteStyleSpan);
+            int spanEnd = spannable.getSpanEnd(quoteStyleSpan);
+            treeSet.add(Integer.valueOf(spanStart));
+            map.put(Integer.valueOf(spanStart), Integer.valueOf((quoteStyleSpan.span.isCollapsing ? 16 : 1) | (map.containsKey(Integer.valueOf(spanStart)) ? ((Integer) map.get(Integer.valueOf(spanStart))).intValue() : 0)));
+            treeSet.add(Integer.valueOf(spanEnd));
+            map.put(Integer.valueOf(spanEnd), Integer.valueOf((map.containsKey(Integer.valueOf(spanEnd)) ? ((Integer) map.get(Integer.valueOf(spanEnd))).intValue() : 0) | 2));
+            spannable.removeSpan(quoteStyleSpan);
+            spannable.removeSpan(quoteStyleSpan.span);
+            i++;
+        }
+        Iterator it = treeSet.iterator();
+        int i2 = 0;
+        int i3 = 0;
+        loop1: while (true) {
+            z = false;
+            while (true) {
+                if (!it.hasNext()) {
+                    break loop1;
+                }
+                Integer num = (Integer) it.next();
+                int iIntValue = num.intValue();
+                int iIntValue2 = ((Integer) map.get(num)).intValue();
+                int i4 = iIntValue2 & 2;
+                if (i4 == 0 || (iIntValue2 & 17) == 0) {
+                    if (i3 <= 0 || (iIntValue2 & 17) == 0) {
+                        if (i2 != iIntValue) {
+                            int i5 = iIntValue - 1;
+                            int i6 = (i5 < 0 || i5 >= spannable.length() || spannable.charAt(i5) != '\n') ? iIntValue : iIntValue - 1;
+                            if (i3 > 0) {
+                                putQuote(spannable, i2, i6, z);
+                            }
+                            i2 = iIntValue + 1;
+                            if (i2 >= spannable.length() || spannable.charAt(iIntValue) != '\n') {
+                                i2 = iIntValue;
+                            }
+                        }
+                        if (i4 != 0) {
+                            i3--;
+                        }
+                        if ((iIntValue2 & 1) != 0 || (iIntValue2 & 16) != 0) {
+                            i3++;
+                            if ((iIntValue2 & 16) != 0) {
+                                z = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        if (i2 >= spannable.length() || i3 <= 0) {
+            return;
+        }
+        putQuote(spannable, i2, spannable.length(), z);
     }
 }

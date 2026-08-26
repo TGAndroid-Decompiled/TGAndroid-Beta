@@ -18,25 +18,13 @@ public final class BangInlineProcessor extends InlineProcessor {
                 }
                 this.index++;
                 Text text = text("![");
-                MarkwonInlineParser markwonInlineParser = this.context;
-                Bracket bracket = markwonInlineParser.lastBracket;
-                Bracket bracket2 = new Bracket(text, i, bracket, markwonInlineParser.lastDelimiter, true);
-                if (bracket != null) {
-                    bracket.bracketAfter = true;
-                }
-                markwonInlineParser.lastBracket = bracket2;
+                addBracket(new Bracket(text, i, lastBracket(), lastDelimiter(), true));
                 return text;
             default:
                 int i2 = this.index;
                 this.index = i2 + 1;
                 Text text2 = text("[");
-                MarkwonInlineParser markwonInlineParser2 = this.context;
-                Bracket bracket3 = markwonInlineParser2.lastBracket;
-                Bracket bracket4 = new Bracket(text2, i2, bracket3, markwonInlineParser2.lastDelimiter, false);
-                if (bracket3 != null) {
-                    bracket3.bracketAfter = true;
-                }
-                markwonInlineParser2.lastBracket = bracket4;
+                addBracket(new Bracket(text2, i2, lastBracket(), lastDelimiter(), false));
                 return text2;
         }
     }

@@ -1,7 +1,7 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -16,16 +16,14 @@ import android.view.WindowInsets;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_vision_common.zzle;
+import com.google.android.gms.internal.mlkit_vision_common.zzkn;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.Tooltip;
-import org.telegram.ui.PhotoViewer$73$$ExternalSyntheticLambda0;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda12;
+import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda19;
 
 public final class VoIPFloatingLayout extends FrameLayout {
     public boolean active;
@@ -45,10 +43,10 @@ public final class VoIPFloatingLayout extends FrameLayout {
     public final Drawable mutedDrawable;
     public final Paint mutedPaint;
     public float mutedProgress;
-    public final PhotoViewer$73$$ExternalSyntheticLambda0 mutedUpdateListener;
+    public final BotButton$$ExternalSyntheticLambda0 mutedUpdateListener;
     public float overrideCornerRadius;
     public final Path path;
-    public final ChatActivity.AnonymousClass133 progressUpdateListener;
+    public final VoIPPiPView.AnonymousClass2 progressUpdateListener;
     public final RectF rectF;
     public float relativePositionToSetX;
     public float relativePositionToSetY;
@@ -106,7 +104,7 @@ public final class VoIPFloatingLayout extends FrameLayout {
             voIPFloatingLayout.setScaleX(0.23f);
             voIPFloatingLayout.setScaleY(0.23f);
             voIPFloatingLayout.animate().setListener(null).cancel();
-            voIPFloatingLayout.animate().setListener(new Tooltip.AnonymousClass1(this, 28)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
+            voIPFloatingLayout.animate().setListener(new VoIPWindowView.AnonymousClass1(this, 5)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
             return false;
         }
     }
@@ -114,8 +112,8 @@ public final class VoIPFloatingLayout extends FrameLayout {
     public interface VoIPFloatingLayoutDelegate {
     }
 
-    public VoIPFloatingLayout(Activity activity) {
-        super(activity);
+    public VoIPFloatingLayout(Context context) {
+        super(context);
         this.path = new Path();
         this.rectF = new RectF();
         new Paint(1);
@@ -127,13 +125,13 @@ public final class VoIPFloatingLayout extends FrameLayout {
         this.mutedProgress = 0.0f;
         this.overrideCornerRadius = -1.0f;
         this.active = true;
-        this.progressUpdateListener = new ChatActivity.AnonymousClass133(this, 11);
-        this.mutedUpdateListener = new PhotoViewer$73$$ExternalSyntheticLambda0(this, 8);
-        this.touchSlop = ViewConfiguration.get(activity).getScaledTouchSlop();
-        setOutlineProvider(new PremiumPreviewFragment.AnonymousClass3(this, 6));
+        this.progressUpdateListener = new VoIPPiPView.AnonymousClass2(this, 2);
+        this.mutedUpdateListener = new BotButton$$ExternalSyntheticLambda0(this, 22);
+        this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        setOutlineProvider(new ActionBarLayout.AnonymousClass4(this, 2));
         setClipToOutline(true);
         paint.setColor(ColorUtils.setAlphaComponent(-16777216, 102));
-        this.mutedDrawable = activity.getDrawable(R.drawable.calls_mute_mini);
+        this.mutedDrawable = context.getDrawable(R.drawable.calls_mute_mini);
     }
 
     @Override
@@ -177,7 +175,7 @@ public final class VoIPFloatingLayout extends FrameLayout {
         canvas.scale((1.0f / getScaleX()) * voIPFloatingLayout.toFloatingModeProgress * voIPFloatingLayout.mutedProgress, (1.0f / getScaleY()) * voIPFloatingLayout.toFloatingModeProgress * voIPFloatingLayout.mutedProgress, f, f2);
         canvas.drawCircle(f, f2, AndroidUtilities.dp(14.0f), voIPFloatingLayout.mutedPaint);
         Drawable drawable = voIPFloatingLayout.mutedDrawable;
-        drawable.setBounds(zzle.m(measuredWidth, drawable), measuredHeight - (drawable.getIntrinsicHeight() / 2), (drawable.getIntrinsicWidth() / 2) + measuredWidth, (drawable.getIntrinsicHeight() / 2) + measuredHeight);
+        drawable.setBounds(zzkn.m(measuredWidth, drawable), measuredHeight - (drawable.getIntrinsicHeight() / 2), (drawable.getIntrinsicWidth() / 2) + measuredWidth, (drawable.getIntrinsicHeight() / 2) + measuredHeight);
         drawable.draw(canvas);
         canvas.restore();
         if (voIPFloatingLayout.switchingToFloatingMode) {
@@ -205,7 +203,7 @@ public final class VoIPFloatingLayout extends FrameLayout {
         }
         VoIPFloatingLayoutDelegate voIPFloatingLayoutDelegate = this.delegate;
         if (voIPFloatingLayoutDelegate != null) {
-            ((VoIPFragment$$ExternalSyntheticLambda12) voIPFloatingLayoutDelegate).f$0.currentUserTextureView.setScreenshareMiniProgress(this.toFloatingModeProgress, this.measuredAsFloatingMode);
+            ((VoIPFragment$$ExternalSyntheticLambda19) voIPFloatingLayoutDelegate).f$0.lambda$createView$5(this.toFloatingModeProgress, this.measuredAsFloatingMode);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
         if (getMeasuredHeight() != this.lastH && getMeasuredWidth() != this.lastW) {

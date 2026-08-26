@@ -1,151 +1,97 @@
 package org.telegram.ui.Cells;
 
-import android.view.View;
-import com.google.android.gms.wearable.internal.zzff;
-import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.LocationController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.SharedMediaLayout;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda17;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Stories.StoriesController;
 
 public final class ChatMessageCell$$ExternalSyntheticLambda7 implements Runnable {
     public final int $r8$classId;
-    public final ChatMessageCell f$0;
+    public final Object f$0;
+    public final long f$1;
+    public final int f$2;
 
-    public ChatMessageCell$$ExternalSyntheticLambda7(int i, ChatMessageCell chatMessageCell) {
-        this.$r8$classId = i;
-        this.f$0 = chatMessageCell;
+    public ChatMessageCell$$ExternalSyntheticLambda7(Object obj, int i, long j, int i2) {
+        this.$r8$classId = i2;
+        this.f$0 = obj;
+        this.f$2 = i;
+        this.f$1 = j;
     }
 
     @Override
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                ChatMessageCell chatMessageCell = this.f$0;
-                ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate = chatMessageCell.delegate;
-                if (chatMessageCellDelegate != null) {
-                    chatMessageCellDelegate.didPressSideButton(chatMessageCell);
-                }
+                ((ChatMessageCell) this.f$0).lambda$setMessageContent$7(this.f$1, this.f$2);
                 break;
             case 1:
-                this.f$0.scheduleUpdateRelativeDates();
+                ((LocationController) this.f$0).lambda$setProximityLocation$12(this.f$2, this.f$1);
                 break;
             case 2:
-                ChatMessageCell chatMessageCell2 = this.f$0;
-                ChatMessageCell$$ExternalSyntheticLambda7 chatMessageCell$$ExternalSyntheticLambda7 = chatMessageCell2.scheduleUpdateRelativeDatesRunnable;
-                zzff zzffVar = chatMessageCell2.postRunnableHolder;
-                Runnable runnable = (Runnable) zzffVar.zza.remove(chatMessageCell$$ExternalSyntheticLambda7);
-                if (runnable != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
-                }
-                Runnable runnable2 = (Runnable) zzffVar.zza.remove(chatMessageCell2.doUpdateRelativeDatesRunnable);
-                if (runnable2 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable2);
-                }
-                chatMessageCell2.scheduleUpdateRelativeDates();
-                MessageObject messageObject = chatMessageCell2.currentMessageObject;
-                if (messageObject != null) {
-                    messageObject.generateLayout(null);
-                    MessageObject messageObject2 = chatMessageCell2.currentMessageObject;
-                    if (messageObject2.caption != null) {
-                        messageObject2.caption = null;
-                        messageObject2.generateCaption();
-                    }
-                    ChatMessageCell.ChatMessageCellDelegate chatMessageCellDelegate2 = chatMessageCell2.delegate;
-                    if (chatMessageCellDelegate2 != null) {
-                        chatMessageCellDelegate2.forceUpdateNoAnimation(chatMessageCell2);
-                    }
-                    break;
-                }
+                ((MediaController) this.f$0).lambda$prepareResumedRecording$23(this.f$2, this.f$1);
                 break;
             case 3:
-                ChatMessageCell chatMessageCell3 = this.f$0;
-                if (chatMessageCell3.replyPressed && !chatMessageCell3.replySelectorPressed && chatMessageCell3.replySelectorCanBePressed) {
-                    chatMessageCell3.replySelectorPressed = true;
-                    chatMessageCell3.replySelector.setState(new int[]{16842919, 16842910});
-                    break;
-                }
+                ((MediaDataController) this.f$0).lambda$deletePeer$159(this.f$1, this.f$2);
                 break;
             case 4:
-                ChatMessageCell chatMessageCell4 = this.f$0;
-                chatMessageCell4.replySelector.setState(new int[0]);
-                chatMessageCell4.invalidate();
+                ((MessagesController) this.f$0).lambda$processUpdateArray$420(this.f$1, this.f$2);
                 break;
             case 5:
-                ChatMessageCell chatMessageCell5 = this.f$0;
-                chatMessageCell5.replySelector.setState(new int[0]);
-                chatMessageCell5.invalidate();
+                SendMessagesHelper.lambda$finishGroup$117((AccountInstance) this.f$0, this.f$1, this.f$2);
                 break;
             case 6:
-                ChatMessageCell chatMessageCell6 = this.f$0;
-                chatMessageCell6.post(new ChatMessageCell$$ExternalSyntheticLambda7(7, chatMessageCell6));
+                ((SharedMediaLayout) this.f$0).lambda$openDeleteStoriesAlbumAlert$71(this.f$1, this.f$2);
                 break;
             case 7:
-                ChatMessageCell chatMessageCell7 = this.f$0;
-                int i = 0;
-                chatMessageCell7.isSpoilerRevealing = false;
-                chatMessageCell7.getMessageObject().isSpoilersRevealed = true;
-                MessageObject.TextLayoutBlocks textLayoutBlocks = chatMessageCell7.explanationLayout;
-                if (textLayoutBlocks != null) {
-                    ArrayList<MessageObject.TextLayoutBlock> arrayList = textLayoutBlocks.textLayoutBlocks;
-                    int size = arrayList.size();
-                    int i2 = 0;
-                    while (i2 < size) {
-                        MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i2);
-                        i2++;
-                        textLayoutBlock.spoilers.clear();
+                BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                if (safeLastFragment != null) {
+                    Long l = (Long) this.f$0;
+                    ChatActivity chatActivityOf = ChatActivity.of(l.longValue());
+                    safeLastFragment.presentFragment(chatActivityOf);
+                    TLRPC.Chat chat = MessagesController.getInstance(this.f$2).getChat(Long.valueOf(-l.longValue()));
+                    if (chat != null) {
+                        AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda17(chatActivityOf, this.f$1, chat, 9), 250L);
                     }
-                }
-                MessageObject.TextLayoutBlocks textLayoutBlocks2 = chatMessageCell7.captionLayout;
-                if (textLayoutBlocks2 != null) {
-                    ArrayList<MessageObject.TextLayoutBlock> arrayList2 = textLayoutBlocks2.textLayoutBlocks;
-                    int size2 = arrayList2.size();
-                    while (i < size2) {
-                        MessageObject.TextLayoutBlock textLayoutBlock2 = arrayList2.get(i);
-                        i++;
-                        textLayoutBlock2.spoilers.clear();
-                    }
-                } else {
-                    ArrayList<MessageObject.TextLayoutBlock> arrayList3 = chatMessageCell7.currentMessageObject.textLayoutBlocks;
-                    if (arrayList3 != null) {
-                        int size3 = arrayList3.size();
-                        while (i < size3) {
-                            MessageObject.TextLayoutBlock textLayoutBlock3 = arrayList3.get(i);
-                            i++;
-                            textLayoutBlock3.spoilers.clear();
-                        }
-                    }
-                }
-                chatMessageCell7.invalidate();
-                break;
-            case 8:
-                ChatMessageCell chatMessageCell8 = this.f$0;
-                chatMessageCell8.getMessageObject().replyMessageObject.isSpoilersRevealed = true;
-                chatMessageCell8.replySpoilers.clear();
-                chatMessageCell8.invalidate();
-                break;
-            case 9:
-                this.f$0.invalidateParentForce();
-                break;
-            case 10:
-                this.f$0.invalidateOutbounds();
-                break;
-            case 11:
-                ChatMessageCell chatMessageCell9 = this.f$0;
-                if (chatMessageCell9 != null) {
-                    chatMessageCell9.invalidate();
-                }
-                if (chatMessageCell9.getParent() instanceof View) {
-                    ((View) chatMessageCell9.getParent()).invalidate();
+                    break;
                 }
                 break;
             default:
-                ChatMessageCell chatMessageCell10 = this.f$0;
-                if (chatMessageCell10 != null) {
-                    chatMessageCell10.invalidate();
-                }
-                if (chatMessageCell10.getParent() instanceof View) {
-                    ((View) chatMessageCell10.getParent()).invalidate();
+                StoriesController storiesController = (StoriesController) this.f$0;
+                LongSparseIntArray longSparseIntArray = storiesController.dialogIdToMaxReadId;
+                long j = this.f$1;
+                int i = longSparseIntArray.get(j, 0);
+                int i2 = this.f$2;
+                int iMax = Math.max(i, i2);
+                storiesController.dialogIdToMaxReadId.put(j, iMax);
+                storiesController.storiesStorage.updateMaxReadId(iMax, j);
+                TL_stories.PeerStories peerStories = (TL_stories.PeerStories) storiesController.allStoriesMap.get(j);
+                if (peerStories != null && i2 > peerStories.max_read_id) {
+                    peerStories.max_read_id = i2;
+                    Collections.sort(storiesController.dialogListStories, storiesController.peerStoriesComparator);
+                    NotificationCenter.getInstance(storiesController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                 }
                 break;
         }
+    }
+
+    public ChatMessageCell$$ExternalSyntheticLambda7(Object obj, long j, int i, int i2) {
+        this.$r8$classId = i2;
+        this.f$0 = obj;
+        this.f$1 = j;
+        this.f$2 = i;
     }
 }

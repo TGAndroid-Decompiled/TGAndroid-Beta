@@ -2,14 +2,14 @@ package org.telegram.ui.Stories;
 
 import android.content.Context;
 import android.view.View;
-import com.google.android.gms.internal.mlkit_vision_common.zzkv;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.CalendarActivity$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.AvatarsImageView;
 
 public final class HwAvatarsImageView extends AvatarsImageView {
     public final int $r8$classId;
 
-    public HwAvatarsImageView(int i, Context context, boolean z) {
+    public HwAvatarsImageView(Context context, int i, boolean z) {
         super(context, z);
         this.$r8$classId = i;
     }
@@ -35,7 +35,7 @@ public final class HwAvatarsImageView extends AvatarsImageView {
         switch (this.$r8$classId) {
             case 1:
                 int i3 = this.avatarsDrawable.count;
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(i3 == 0 ? 0 : zzkv.m(i3, 1, 20, 24)), 1073741824), i2);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(i3 == 0 ? 0 : CalendarActivity$$ExternalSyntheticOutline0.m(i3, 1, 20, 24)), 1073741824), i2);
                 break;
             default:
                 super.onMeasure(i, i2);

@@ -7,18 +7,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzkl;
+import com.google.android.gms.internal.mlkit_vision_common.zzkd;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.FixedHeightEmptyCell;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.PhotoViewer;
 
 public final class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.SelectionAdapter {
     public DoubleLimitsPageView containerView;
@@ -37,6 +37,7 @@ public final class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Sel
         this.resourcesProvider = resourcesProvider;
         PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4, resourcesProvider);
         this.gradientTools = premiumGradientTools;
+        premiumGradientTools.x1 = 0.0f;
         premiumGradientTools.y1 = 0.0f;
         premiumGradientTools.x2 = 0.0f;
         premiumGradientTools.y2 = 1.0f;
@@ -77,7 +78,7 @@ public final class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Sel
 
     @Override
     public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        if (viewHolder.mItemViewType == 0) {
+        if (viewHolder.getItemViewType() == 0) {
             DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = (DoubledLimitsBottomSheet$LimitCell) viewHolder.itemView;
             ArrayList arrayList = this.limits;
             int i2 = i - this.limitsStartRow;
@@ -105,11 +106,11 @@ public final class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Sel
                 limitPreviewView.setStaticGradinet(this.gradientTools);
                 fixedHeightEmptyCell = doubledLimitsBottomSheet$LimitCell;
             } else {
-                fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 16);
+                fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 16, 0);
             }
         } else if (this.drawHeader) {
-            PhotoViewer.AnonymousClass19 anonymousClass19 = new PhotoViewer.AnonymousClass19(context, 16);
-            LinearLayout linearLayoutM = zzkf.m(context, 0);
+            ActionBar.AnonymousClass8 anonymousClass8 = new ActionBar.AnonymousClass8(context, 4);
+            LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context);
             ImageView imageView = new ImageView(context);
             imageView.setImageDrawable(PremiumGradient.createGradientDrawable(context.getDrawable(R.drawable.other_2x_large), PremiumGradient.getInstance().mainGradient));
             linearLayoutM.addView(imageView, LayoutHelper.createFrame(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
@@ -120,11 +121,11 @@ public final class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Sel
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             textView.setTypeface(AndroidUtilities.bold());
             linearLayoutM.addView(textView, LayoutHelper.createFrame(-2, -2, 16));
-            anonymousClass19.addView(linearLayoutM, LayoutHelper.createFrame(-2, -2, 17));
-            fixedHeightEmptyCell = anonymousClass19;
+            anonymousClass8.addView(linearLayoutM, LayoutHelper.createFrame(-2, -2, 17));
+            fixedHeightEmptyCell = anonymousClass8;
         } else {
-            fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 64);
+            fixedHeightEmptyCell = new FixedHeightEmptyCell(context, 64, 0);
         }
-        return zzkl.m(fixedHeightEmptyCell, fixedHeightEmptyCell);
+        return zzkd.m(fixedHeightEmptyCell, fixedHeightEmptyCell, -2);
     }
 }

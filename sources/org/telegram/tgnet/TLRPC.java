@@ -6,9 +6,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.SparseArray;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -3689,9 +3689,9 @@ public class TLRPC {
                         StringBuilder sb = new StringBuilder();
                         sb.append(entry.getKey());
                         sb.append("|=|");
-                        strM = SurfaceContainer$$ExternalSyntheticOutline0.m(entry.getValue(), "||", strM, sb);
+                        strM = Fragment$$ExternalSyntheticOutline0.m(entry.getValue(), "||", strM, sb);
                     }
-                    strM = zzil.m("||", strM);
+                    strM = zzii.m("||", strM);
                 }
                 outputSerializedData.writeString(strM);
                 return;
@@ -3723,12 +3723,12 @@ public class TLRPC {
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append(entry2.getKey());
                     sb2.append("|=|");
-                    strM2 = SurfaceContainer$$ExternalSyntheticOutline0.m(entry2.getValue(), "||", strM2, sb2);
+                    strM2 = Fragment$$ExternalSyntheticOutline0.m(entry2.getValue(), "||", strM2, sb2);
                 }
-                strM2 = zzil.m("||", strM2);
+                strM2 = zzii.m("||", strM2);
             }
             if (z) {
-                strM2 = zzil.m("poll_with_media=", strM2);
+                strM2 = zzii.m("poll_with_media=", strM2);
             }
             outputSerializedData.writeString(strM2);
             if ((this.flags & 4) == 0 || this.id >= 0) {
@@ -56993,7 +56993,7 @@ public class TLRPC {
             if (arrayListDeserializeInt.isEmpty()) {
                 return;
             }
-            this.size = ((Integer) zziq.m(1, this.sizes)).intValue();
+            this.size = ((Integer) zzin.m(1, this.sizes)).intValue();
         }
 
         @Override
@@ -57020,7 +57020,7 @@ public class TLRPC {
             if (arrayListDeserializeInt.isEmpty()) {
                 return;
             }
-            this.size = ((Integer) zziq.m(1, this.sizes)).intValue();
+            this.size = ((Integer) zzin.m(1, this.sizes)).intValue();
         }
 
         @Override
@@ -61090,7 +61090,7 @@ public class TLRPC {
             this.title = inputSerializedData.readString(z);
             this.short_name = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.thumbs = Vector.deserialize(inputSerializedData, new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 12), z);
+                this.thumbs = Vector.deserialize(inputSerializedData, new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 10), z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.thumb_dc_id = inputSerializedData.readInt32(z);
@@ -61373,7 +61373,7 @@ public class TLRPC {
             this.title = inputSerializedData.readString(z);
             this.short_name = inputSerializedData.readString(z);
             if (TLObject.hasFlag(this.flags, 16)) {
-                this.thumbs = Vector.deserialize(inputSerializedData, new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 13), z);
+                this.thumbs = Vector.deserialize(inputSerializedData, new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 11), z);
             }
             if (TLObject.hasFlag(this.flags, 16)) {
                 this.thumb_dc_id = inputSerializedData.readInt32(z);

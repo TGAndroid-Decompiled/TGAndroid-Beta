@@ -9,7 +9,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import com.google.android.gms.internal.mlkit_language_id_common.zzij;
+import com.google.android.gms.internal.mlkit_language_id_common.zzig;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +26,7 @@ import org.telegram.messenger.Timer;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Gifts.SendGiftSheet$$ExternalSyntheticLambda16;
 import org.telegram.ui.LaunchActivity;
 
 public final class WebInstantView$$ExternalSyntheticLambda0 implements Utilities.Callback {
@@ -99,7 +100,7 @@ public final class WebInstantView$$ExternalSyntheticLambda0 implements Utilities
                                         String str3;
                                         if (this.firstLoad) {
                                             this.firstLoad = false;
-                                            return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(zzij.m("<script>\n", AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), "\n</script>").getBytes(StandardCharsets.UTF_8)));
+                                            return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(zzig.m("<script>\n", AndroidUtilities.readRes(R.raw.instant).replace("$DEBUG$", "" + BuildVars.DEBUG_VERSION), "\n</script>").getBytes(StandardCharsets.UTF_8)));
                                         }
                                         WebInstantView webInstantView2 = WebInstantView.this;
                                         if (str2 == null || !str2.endsWith("/index.html")) {
@@ -143,7 +144,7 @@ public final class WebInstantView$$ExternalSyntheticLambda0 implements Utilities
                                     }
                                 });
                                 webView.setWebChromeClient(new WebInstantView.AnonymousClass3());
-                                anonymousClass1.addView(webView, LayoutHelper.createFrame(-1.0f, -1));
+                                anonymousClass1.addView(webView, LayoutHelper.createFrame(-1, -1.0f));
                                 final boolean[] zArr2 = {false};
                                 webView.addJavascriptInterface(new Object() {
                                     public final boolean[] val$done;
@@ -160,7 +161,7 @@ public final class WebInstantView$$ExternalSyntheticLambda0 implements Utilities
 
                                     @JavascriptInterface
                                     public void done(String str2) {
-                                        AndroidUtilities.runOnUIThread(new WebInstantView$4$$ExternalSyntheticLambda0(zArr, webView, anonymousClass1, str2, webInstantView$$ExternalSyntheticLambda0, 0));
+                                        AndroidUtilities.runOnUIThread(new SendGiftSheet$$ExternalSyntheticLambda16(zArr, webView, anonymousClass1, str2, webInstantView$$ExternalSyntheticLambda0, 28));
                                     }
                                 }, "Instant");
                                 webView.loadUrl(str);

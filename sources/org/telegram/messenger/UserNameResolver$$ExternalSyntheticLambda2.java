@@ -13,7 +13,7 @@ public final class UserNameResolver$$ExternalSyntheticLambda2 implements Runnabl
     public final Object f$2;
     public final Object f$3;
 
-    public UserNameResolver$$ExternalSyntheticLambda2(Object obj, Object obj2, Object obj3, Object obj4, int i) {
+    public UserNameResolver$$ExternalSyntheticLambda2(int i, Object obj, Object obj2, Object obj3, Object obj4) {
         this.$r8$classId = i;
         this.f$0 = obj;
         this.f$1 = obj2;

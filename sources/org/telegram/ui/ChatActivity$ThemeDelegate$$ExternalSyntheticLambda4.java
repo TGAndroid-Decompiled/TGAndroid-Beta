@@ -16,22 +16,13 @@ public final class ChatActivity$ThemeDelegate$$ExternalSyntheticLambda4 implemen
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                MotionBackgroundDrawable motionBackgroundDrawable = this.f$0;
-                motionBackgroundDrawable.patternAlpha = fFloatValue;
-                motionBackgroundDrawable.invalidateParent();
+                ChatActivity.ThemeDelegate.lambda$getBackgroundDrawableFromTheme$7(this.f$0, valueAnimator);
                 break;
             case 1:
-                float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                MotionBackgroundDrawable motionBackgroundDrawable2 = this.f$0;
-                motionBackgroundDrawable2.patternAlpha = fFloatValue2;
-                motionBackgroundDrawable2.invalidateParent();
+                ChatActivity.ThemeDelegate.lambda$setupChatTheme$4(this.f$0, valueAnimator);
                 break;
             default:
-                float fFloatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                MotionBackgroundDrawable motionBackgroundDrawable3 = this.f$0;
-                motionBackgroundDrawable3.patternAlpha = fFloatValue3;
-                motionBackgroundDrawable3.invalidateParent();
+                ChatActivity.ThemeDelegate.lambda$setupChatTheme$5(this.f$0, valueAnimator);
                 break;
         }
     }

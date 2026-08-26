@@ -14,6 +14,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -23,17 +24,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Comparator$CC;
 import j$.util.List;
 import j$.util.Objects;
 import java.util.ArrayList;
+import java.util.function.ToDoubleFunction;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.core.BitwiseUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -45,13 +49,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda68;
+import org.telegram.ui.Business.ChatAttachAlertQuickRepliesLayout;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda24;
 import org.telegram.ui.Components.ExtendedGridLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -70,15 +75,14 @@ import org.telegram.ui.Components.chat.ViewPositionWatcher;
 import org.telegram.ui.Components.glass.GlassTabView;
 import org.telegram.ui.Components.glass.GlassTabsView;
 import org.telegram.ui.Gifts.GiftSheet;
-import org.telegram.ui.GroupCreateActivity;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda1;
-import org.telegram.ui.PeerColorActivity;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda52;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
-import org.telegram.ui.SettingsActivity;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
-import org.telegram.ui.TopicsFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
+import org.telegram.ui.Gifts.ResaleGiftsFragment;
+import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 import org.telegram.ui.bots.AffiliateProgramFragment;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda0;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda2;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda29;
 
 public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView {
     public static final int $r8$clinit = 0;
@@ -86,7 +90,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
     public final ImageView backButton;
     public final ArrayList backdrops;
     public final ArrayList blurredPositions;
-    public final GroupCreateActivity.AnonymousClass7[] buttons;
+    public final Button[] buttons;
     public final LinearLayout buttonsLayout;
     public final boolean crafting;
     public final int currentAccount;
@@ -115,6 +119,47 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
     public final AnonymousClass4 topView;
     public final ViewGroupPartRenderer viewGroupPartRenderer;
 
+    public final class AnonymousClass1 extends GridLayoutManager.SpanSizeLookup {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass1(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public final int getSpanSize(int i) {
+            int i2;
+            int i3;
+            switch (this.$r8$classId) {
+                case 0:
+                    StarGiftPreviewSheet starGiftPreviewSheet = (StarGiftPreviewSheet) this.this$0;
+                    AnonymousClass5 anonymousClass5 = starGiftPreviewSheet.adapter;
+                    if (anonymousClass5 == null || i == 0) {
+                        return starGiftPreviewSheet.layoutManager.getSpanCount();
+                    }
+                    UItem item = anonymousClass5.getItem(i - 1);
+                    return (item == null || (i2 = item.spanCount) == -1) ? starGiftPreviewSheet.layoutManager.getSpanCount() : i2;
+                case 1:
+                    UItem item2 = ((ResaleGiftsFragment.SelectGiftSheet) this.this$0).adapter.getItem(i - 1);
+                    if (item2 == null || (i3 = item2.spanCount) == -1) {
+                        return 3;
+                    }
+                    return i3;
+                case 2:
+                    EmojiBottomSheet.GifPage.GifLayoutManager gifLayoutManager = (EmojiBottomSheet.GifPage.GifLayoutManager) this.this$0;
+                    return EmojiBottomSheet.GifPage.this.adapter.getItem(i) == null ? gifLayoutManager.getSpanCount() : gifLayoutManager.getSpanSizeForItem(i);
+                default:
+                    EmojiBottomSheet.Page page = (EmojiBottomSheet.Page) this.this$0;
+                    if (page.adapter.getItemViewType(i) != 2) {
+                        return page.spanCount;
+                    }
+                    return 1;
+            }
+        }
+    }
+
     public final class AnonymousClass3 extends DefaultItemAnimator {
         @Override
         public final float animateByScale(View view) {
@@ -123,8 +168,8 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
     }
 
     public final class AnonymousClass5 extends UniversalAdapter {
-        public AnonymousClass5(RecyclerListView recyclerListView, Context context, int i, LinkManager$$ExternalSyntheticLambda1 linkManager$$ExternalSyntheticLambda1, Theme.ResourcesProvider resourcesProvider) {
-            super(recyclerListView, context, i, 0, true, linkManager$$ExternalSyntheticLambda1, resourcesProvider);
+        public AnonymousClass5(RecyclerListView recyclerListView, Context context, int i, GiftSheet$$ExternalSyntheticLambda8 giftSheet$$ExternalSyntheticLambda8, Theme.ResourcesProvider resourcesProvider) {
+            super(recyclerListView, context, i, 0, true, giftSheet$$ExternalSyntheticLambda8, resourcesProvider);
         }
 
         @Override
@@ -137,7 +182,54 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
                 boolean zIsSelectedWithCurrentTab = StarGiftPreviewSheet.this.isSelectedWithCurrentTab(attributes);
                 giftAttributeCell.cardBackground.setSelected(zIsSelectedWithCurrentTab, false);
                 giftAttributeCell.isSelected.setValue(zIsSelectedWithCurrentTab, false);
-                giftAttributeCell.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda52(16, this, attributes));
+                giftAttributeCell.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(8, this, attributes));
+            }
+        }
+    }
+
+    public final class AnonymousClass6 extends RecyclerListView {
+        public final int $r8$classId;
+        public final KeyEvent.Callback this$0;
+
+        public AnonymousClass6(KeyEvent.Callback callback, Context context, Theme.ResourcesProvider resourcesProvider, int i) {
+            super(context, resourcesProvider);
+            this.$r8$classId = i;
+            this.this$0 = callback;
+        }
+
+        @Override
+        public boolean allowSelectChildAtPosition(float f, float f2) {
+            switch (this.$r8$classId) {
+                case 1:
+                    ChatAttachAlertQuickRepliesLayout chatAttachAlertQuickRepliesLayout = (ChatAttachAlertQuickRepliesLayout) this.this$0;
+                    return f2 >= ((float) ((AndroidUtilities.dp(30.0f) + ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertQuickRepliesLayout).parentAlert.scrollOffsetY[0]) + (!((ChatAttachAlert.AttachAlertLayout) chatAttachAlertQuickRepliesLayout).parentAlert.inBubbleMode ? AndroidUtilities.statusBarHeight : 0)));
+                default:
+                    return super.allowSelectChildAtPosition(f, f2);
+            }
+        }
+
+        @Override
+        public boolean canHighlightChildAt(View view, float f, float f2) {
+            switch (this.$r8$classId) {
+                case 0:
+                    return ((StarGiftPreviewSheet) this.this$0).canHighlightChildAt(view, f, f2);
+                default:
+                    return super.canHighlightChildAt(view, f, f2);
+            }
+        }
+
+        @Override
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            switch (this.$r8$classId) {
+                case 0:
+                    StarGiftPreviewSheet starGiftPreviewSheet = (StarGiftPreviewSheet) this.this$0;
+                    starGiftPreviewSheet.applyScrolledPosition();
+                    super.onLayout(z, i, i2, i3, i4);
+                    starGiftPreviewSheet.invalidateMergedVisibleBlurredPositionsAndSourcesImpl(2);
+                    break;
+                default:
+                    super.onLayout(z, i, i2, i3, i4);
+                    break;
             }
         }
     }
@@ -151,6 +243,40 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
             this.backdrop = stargiftattributebackdrop;
             this.pattern = stargiftattributepattern;
             this.model = stargiftattributemodel;
+        }
+    }
+
+    public final class Button extends FrameLayout {
+        public final AnimatedTextView percentView;
+        public final TextView textView;
+        public final AnimatedTextView titleView;
+
+        public Button(Context context) {
+            super(context);
+            setClipChildren(false);
+            AnimatedTextView animatedTextView = new AnimatedTextView(context, true, false, false);
+            this.titleView = animatedTextView;
+            animatedTextView.setTypeface(AndroidUtilities.bold());
+            animatedTextView.setTextSize(AndroidUtilities.dp(13.0f));
+            animatedTextView.setTextColor(-1);
+            animatedTextView.setGravity(17);
+            addView(animatedTextView, LayoutHelper.createFrame(-1, 16.0f, 49, 4.0f, 6.0f, 4.0f, 0.0f));
+            TextView textView = new TextView(context);
+            this.textView = textView;
+            textView.setTextSize(1, 12.0f);
+            textView.setTextColor(-1879048193);
+            textView.setGravity(17);
+            addView(textView, LayoutHelper.createFrame(-1, -2.0f, 49, 4.0f, 20.0f, 4.0f, 0.0f));
+            AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
+            this.percentView = animatedTextView2;
+            animatedTextView2.setTypeface(AndroidUtilities.bold());
+            animatedTextView2.setTextColor(-1);
+            animatedTextView2.setGravity(5);
+            animatedTextView2.getDrawable().centerY = true;
+            animatedTextView2.setTextSize(AndroidUtilities.dp(11.0f));
+            animatedTextView2.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f));
+            animatedTextView2.setSizeableBackground(new StarGiftSheet.RoundRectStrokeDrawable(AndroidUtilities.dp(10.0f), 285212671));
+            addView(animatedTextView2, LayoutHelper.createFrame(-1, 16.0f, 53, 0.0f, -9.0f, -4.0f, 0.0f));
         }
     }
 
@@ -264,7 +390,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
 
         public static void access$1900(GiftAttributeCell giftAttributeCell, TLRPC.Document document, int i, Object obj, boolean z) {
             if (document == null) {
-                giftAttributeCell.imageView.imageReceiver.clearImage();
+                giftAttributeCell.imageView.clearImage();
                 giftAttributeCell.lastDocument = null;
                 return;
             }
@@ -281,9 +407,8 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
             sb.append(z ? "_nolimit_pcache" : "");
             String string = sb.toString();
             int i2 = (80 - i) / 2;
-            FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(i, i, 49, 0.0f, i2 + 17, 0.0f, i2);
             BackupImageView backupImageView = giftAttributeCell.imageView;
-            backupImageView.setLayoutParams(layoutParamsCreateFrame);
+            backupImageView.setLayoutParams(LayoutHelper.createFrame(i, i, 49, 0.0f, i2 + 17, 0.0f, i2));
             backupImageView.setImage(ImageLocation.getForDocument(document), string, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), string, svgThumb, obj);
         }
 
@@ -319,7 +444,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
         }
 
         @Override
-        public final void onFactorChangeFinished(float f, int i) {
+        public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
         }
 
         @Override
@@ -331,14 +456,14 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
     public final class TabsSelectorView extends GlassTabsView implements FactorAnimator.Target {
         public static final int $r8$clinit = 0;
         public final FactorAnimator animator;
-        public final PollItemMenu$$ExternalSyntheticLambda14 onTabSelectListener;
+        public final DialogCell$$ExternalSyntheticLambda6 onTabSelectListener;
         public int selectedTab;
         public final GlassTabView[] tabs;
 
-        public TabsSelectorView(Context context, Theme.ResourcesProvider resourcesProvider, PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14) {
+        public TabsSelectorView(Context context, Theme.ResourcesProvider resourcesProvider, DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda6) {
             super(context);
             this.animator = new FactorAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 1600L);
-            this.onTabSelectListener = pollItemMenu$$ExternalSyntheticLambda14;
+            this.onTabSelectListener = dialogCell$$ExternalSyntheticLambda6;
             int i = Theme.key_glass_defaultIcon;
             int iMultAlpha = Theme.multAlpha(0.09411765f, Theme.getColor(i, resourcesProvider));
             Theme.multAlpha(0.1254902f, Theme.getColor(i, resourcesProvider));
@@ -351,15 +476,15 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
                     glassTabViewArr[0].setSelected(true, false);
                     return;
                 } else {
-                    this.linearLayout.addView(glassTabViewArr[i2], LayoutHelper.createLinear(1.0f, 0, -1));
-                    this.tabs[i2].setOnClickListener(new ChatActivity$$ExternalSyntheticLambda68(this, i2, 23));
+                    this.linearLayout.addView(glassTabViewArr[i2], LayoutHelper.createLinear(0, -1, 1.0f));
+                    this.tabs[i2].setOnClickListener(new RichEditor$$ExternalSyntheticLambda29(this, i2, 7));
                     i2++;
                 }
             }
         }
 
         @Override
-        public final void onFactorChangeFinished(float f, int i) {
+        public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
         }
 
         @Override
@@ -404,7 +529,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
         RecyclerListView recyclerListView = this.recyclerListView;
         BottomSheet.ContainerView containerView = this.container;
         Objects.requireNonNull(recyclerListView);
-        this.viewGroupPartRenderer = new ViewGroupPartRenderer(recyclerListView, containerView, new TopicsFragment$$ExternalSyntheticLambda7(recyclerListView, 3));
+        this.viewGroupPartRenderer = new ViewGroupPartRenderer(recyclerListView, containerView, new EmojiView$$ExternalSyntheticLambda24(recyclerListView));
         ArrayList arrayListFindAllInstances = TlUtils.findAllInstances(arrayList, TL_stars.starGiftAttributeBackdrop.class);
         this.backdrops = arrayListFindAllInstances;
         BagRandomizer bagRandomizer = new BagRandomizer(arrayListFindAllInstances);
@@ -432,10 +557,62 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
         } else {
             arrayList3.clear();
         }
-        List.EL.sort(this.backdrops, Comparator$CC.comparingDouble(new StarGiftPreviewSheet$$ExternalSyntheticLambda5(0)));
-        List.EL.sort(this.patterns, Comparator$CC.comparingDouble(new StarGiftPreviewSheet$$ExternalSyntheticLambda5(5)));
-        List.EL.sort(this.models, Comparator$CC.comparingDouble(new StarGiftPreviewSheet$$ExternalSyntheticLambda5(6)));
-        List.EL.sort(this.simpleModels, Comparator$CC.comparingDouble(new StarGiftPreviewSheet$$ExternalSyntheticLambda5(6)));
+        final int i3 = 0;
+        List.EL.sort(this.backdrops, Comparator$CC.comparingDouble(new ToDoubleFunction() {
+            @Override
+            public final double applyAsDouble(Object obj) {
+                switch (i3) {
+                    case 0:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributeBackdrop) obj);
+                    case 1:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributePattern) obj);
+                    default:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributeModel) obj);
+                }
+            }
+        }));
+        final int i4 = 1;
+        List.EL.sort(this.patterns, Comparator$CC.comparingDouble(new ToDoubleFunction() {
+            @Override
+            public final double applyAsDouble(Object obj) {
+                switch (i4) {
+                    case 0:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributeBackdrop) obj);
+                    case 1:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributePattern) obj);
+                    default:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributeModel) obj);
+                }
+            }
+        }));
+        final int i5 = 2;
+        List.EL.sort(this.models, Comparator$CC.comparingDouble(new ToDoubleFunction() {
+            @Override
+            public final double applyAsDouble(Object obj) {
+                switch (i5) {
+                    case 0:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributeBackdrop) obj);
+                    case 1:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributePattern) obj);
+                    default:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributeModel) obj);
+                }
+            }
+        }));
+        final int i6 = 2;
+        List.EL.sort(this.simpleModels, Comparator$CC.comparingDouble(new ToDoubleFunction() {
+            @Override
+            public final double applyAsDouble(Object obj) {
+                switch (i6) {
+                    case 0:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributeBackdrop) obj);
+                    case 1:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributePattern) obj);
+                    default:
+                        return StarGiftPreviewSheet.getRarityIndex((TL_stars.starGiftAttributeModel) obj);
+                }
+            }
+        }));
         BagRandomizer bagRandomizer3 = new BagRandomizer(this.models);
         this.rModels = bagRandomizer3;
         bagRandomizer3.reshuffleIfEnd = false;
@@ -446,13 +623,13 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
         this.ignoreTouchActionBar = false;
         this.headerMoveTop = AndroidUtilities.dp(6.0f);
         this.occupyNavigationBar = true;
-        int i3 = Theme.key_dialogBackgroundGray;
-        int themedColor = getThemedColor(i3);
-        int i4 = Theme.key_dialogBackground;
-        setBackgroundColor(ColorUtils.blendARGB(0.1f, themedColor, getThemedColor(i4)));
+        int i7 = Theme.key_dialogBackgroundGray;
+        int themedColor = getThemedColor(i7);
+        int i8 = Theme.key_dialogBackground;
+        setBackgroundColor(ColorUtils.blendARGB(0.1f, themedColor, getThemedColor(i8)));
         fixNavigationBar();
         BlurredBackgroundSourceColor blurredBackgroundSourceColor = new BlurredBackgroundSourceColor();
-        blurredBackgroundSourceColor.paint.setColor(ColorUtils.blendARGB(0.1f, getThemedColor(i3), getThemedColor(i4)));
+        blurredBackgroundSourceColor.paint.setColor(ColorUtils.blendARGB(0.1f, getThemedColor(i7), getThemedColor(i8)));
         if (Build.VERSION.SDK_INT < 31 || !SharedConfig.chatBlurEnabled()) {
             this.scrollableViewNoiseSuppressor = null;
             this.glassSourceRenderNode = null;
@@ -461,7 +638,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
             this.scrollableViewNoiseSuppressor = new DownscaleScrollableNoiseSuppressor(false);
             BlurredBackgroundSourceRenderNode blurredBackgroundSourceRenderNode = new BlurredBackgroundSourceRenderNode(blurredBackgroundSourceColor);
             this.glassSourceRenderNode = blurredBackgroundSourceRenderNode;
-            final int i5 = 0;
+            final int i9 = 0;
             blurredBackgroundSourceRenderNode.onDrawablesRelativePositionChangeListener = new Runnable(this) {
                 public final StarGiftPreviewSheet f$0;
 
@@ -471,15 +648,15 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
 
                 @Override
                 public final void run() {
-                    switch (i5) {
+                    switch (i9) {
                         case 0:
-                            int i6 = Build.VERSION.SDK_INT;
+                            int i10 = Build.VERSION.SDK_INT;
                             StarGiftPreviewSheet starGiftPreviewSheet = this.f$0;
-                            if (i6 < 31) {
+                            if (i10 < 31) {
                                 starGiftPreviewSheet.getClass();
                                 break;
                             } else if (starGiftPreviewSheet.scrollableViewNoiseSuppressor != null) {
-                                starGiftPreviewSheet.invalidateMergedVisibleBlurredPositionsAndSourcesImpl$2(2);
+                                starGiftPreviewSheet.invalidateMergedVisibleBlurredPositionsAndSourcesImpl(2);
                                 break;
                             }
                             break;
@@ -498,31 +675,27 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
         BottomSheet.ContainerView containerView2 = this.container;
         blurredBackgroundDrawableViewFactory2.viewPositionWatcher = viewPositionWatcher;
         blurredBackgroundDrawableViewFactory2.parent = containerView2;
-        ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(3, false);
+        ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(context, 3);
         this.layoutManager = extendedGridLayoutManager;
-        extendedGridLayoutManager.mSpanSizeLookup = new PeerColorActivity.Page.AnonymousClass2(this, 6);
+        extendedGridLayoutManager.setSpanSizeLookup(new AnonymousClass1(this, 0));
         this.recyclerListView.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(74.0f));
         this.recyclerListView.setClipToPadding(false);
         this.recyclerListView.setLayoutManager(extendedGridLayoutManager);
         this.recyclerListView.setSelectorType(9);
         this.recyclerListView.setSelectorDrawableColor(0);
-        this.recyclerListView.addOnScrollListener(new SettingsActivity.AnonymousClass5(this, 9));
+        this.recyclerListView.addOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 13));
         AnonymousClass3 anonymousClass3 = new AnonymousClass3();
         this.itemAnimator = anonymousClass3;
-        anonymousClass3.delayAnimations = false;
-        anonymousClass3.mSupportsChangeAnimations = false;
+        anonymousClass3.setDelayAnimations(false);
+        anonymousClass3.setSupportsChangeAnimations(false);
         anonymousClass3.setDurations(280L);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        anonymousClass3.mAddInterpolator = cubicBezierInterpolator;
-        anonymousClass3.mMoveInterpolator = cubicBezierInterpolator;
-        anonymousClass3.mRemoveInterpolator = cubicBezierInterpolator;
-        anonymousClass3.mChangeInterpolator = cubicBezierInterpolator;
-        anonymousClass3.delayIncrement = 30L;
-        this.recyclerListView.setItemAnimator(anonymousClass3);
+        anonymousClass3.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        anonymousClass3.setDelayIncrement(30L);
+        this.recyclerListView.lambda$onCellEnter$52(anonymousClass3);
         FrameLayout frameLayout = new FrameLayout(context);
         this.headerView = frameLayout;
         frameLayout.setClipChildren(false);
-        final int i6 = 1;
+        final int i10 = 1;
         ?? r5 = new StarGiftSheet.TopView(context, resourcesProvider, new Runnable(this) {
             public final StarGiftPreviewSheet f$0;
 
@@ -532,15 +705,15 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
 
             @Override
             public final void run() {
-                switch (i6) {
+                switch (i10) {
                     case 0:
-                        int i7 = Build.VERSION.SDK_INT;
+                        int i11 = Build.VERSION.SDK_INT;
                         StarGiftPreviewSheet starGiftPreviewSheet = this.f$0;
-                        if (i7 < 31) {
+                        if (i11 < 31) {
                             starGiftPreviewSheet.getClass();
                             break;
                         } else if (starGiftPreviewSheet.scrollableViewNoiseSuppressor != null) {
-                            starGiftPreviewSheet.invalidateMergedVisibleBlurredPositionsAndSourcesImpl$2(2);
+                            starGiftPreviewSheet.invalidateMergedVisibleBlurredPositionsAndSourcesImpl(2);
                             break;
                         }
                         break;
@@ -549,7 +722,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
                         break;
                 }
             }
-        }, new ChatActivity$$ExternalSyntheticLambda267(21), new ChatActivity$$ExternalSyntheticLambda267(21), new ChatActivity$$ExternalSyntheticLambda267(21), new ChatActivity$$ExternalSyntheticLambda267(21), new ChatActivity$$ExternalSyntheticLambda267(21), new ChatActivity$$ExternalSyntheticLambda267(21)) {
+        }, new BotAdView$$ExternalSyntheticLambda0(11), new BotAdView$$ExternalSyntheticLambda0(11), new BotAdView$$ExternalSyntheticLambda0(11), new BotAdView$$ExternalSyntheticLambda0(11), new BotAdView$$ExternalSyntheticLambda0(11), new BotAdView$$ExternalSyntheticLambda0(11)) {
             public final float[] hsv = new float[3];
             public final Path path = new Path();
             public final float[] r = new float[8];
@@ -573,8 +746,8 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
             }
 
             @Override
-            public final void onSizeChanged(int i7, int i8, int i9, int i10) {
-                super.onSizeChanged(i7, i8, i9, i10);
+            public final void onSizeChanged(int i11, int i12, int i13, int i14) {
+                super.onSizeChanged(i11, i12, i13, i14);
                 float fDp = AndroidUtilities.dp(12.0f);
                 float[] fArr = this.r;
                 fArr[3] = fDp;
@@ -583,7 +756,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
                 fArr[0] = fDp;
                 Path path = this.path;
                 path.rewind();
-                path.addRoundRect(0.0f, 0.0f, i7, i8, this.r, Path.Direction.CW);
+                path.addRoundRect(0.0f, 0.0f, i11, i12, this.r, Path.Direction.CW);
             }
 
             @Override
@@ -593,27 +766,27 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
             }
 
             @Override
-            public final void updateButtonsBackgrounds(int i7) {
+            public final void updateButtonsBackgrounds(int i11) {
                 StarGiftPreviewSheet starGiftPreviewSheet = StarGiftPreviewSheet.this;
                 ImageView imageView = starGiftPreviewSheet.backButton;
-                if (imageView != null && Theme.setSelectorDrawableColor(imageView.getBackground(), i7, false)) {
+                if (imageView != null && Theme.setSelectorDrawableColor(imageView.getBackground(), i11, false)) {
                     starGiftPreviewSheet.backButton.invalidate();
                 }
                 ImageView imageView2 = starGiftPreviewSheet.headerPlay;
-                if (imageView2 != null && Theme.setSelectorDrawableColor(imageView2.getBackground(), i7, false)) {
+                if (imageView2 != null && Theme.setSelectorDrawableColor(imageView2.getBackground(), i11, false)) {
                     starGiftPreviewSheet.headerPlay.invalidate();
                 }
-                for (GroupCreateActivity.AnonymousClass7 anonymousClass7 : starGiftPreviewSheet.buttons) {
-                    if (Theme.setSelectorDrawableColor(anonymousClass7.getBackground(), i7, false)) {
-                        anonymousClass7.invalidate();
+                for (Button button : starGiftPreviewSheet.buttons) {
+                    if (Theme.setSelectorDrawableColor(button.getBackground(), i11, false)) {
+                        button.invalidate();
                     }
-                    int iBlendARGB = ColorUtils.blendARGB(0.33f, i7, -1);
+                    int iBlendARGB = ColorUtils.blendARGB(0.33f, i11, -1);
                     float[] fArr = this.hsv;
                     Color.colorToHSV(iBlendARGB, fArr);
                     fArr[1] = Math.min(1.0f, fArr[1] * 1.1f);
                     fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
                     int iHSVToColor = Color.HSVToColor(fArr);
-                    AnimatedTextView animatedTextView = (AnimatedTextView) anonymousClass7.this$0;
+                    AnimatedTextView animatedTextView = button.percentView;
                     if (animatedTextView.getSizeableBackground() instanceof StarGiftSheet.RoundRectStrokeDrawable) {
                         ((StarGiftSheet.RoundRectStrokeDrawable) animatedTextView.getSizeableBackground()).paint.setColor(iHSVToColor);
                         animatedTextView.invalidate();
@@ -627,25 +800,25 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
         r5.onSwitchPage(new StarGiftSheet.PageTransition(1, 1));
         r5.setPreviewingAttributes(arrayList);
         r5.removeView(r5.closeView);
-        frameLayout.addView((View) r5, LayoutHelper.createFrame(-1.0f, -1));
-        int i7 = this.backgroundPaddingLeft;
-        frameLayout.setPadding(i7, 0, i7, 0);
+        frameLayout.addView((View) r5, LayoutHelper.createFrame(-1, -1.0f));
+        int i11 = this.backgroundPaddingLeft;
+        frameLayout.setPadding(i11, 0, i11, 0);
         ImageView imageView = new ImageView(context);
         this.backButton = imageView;
         imageView.setBackground(Theme.createRadSelectorDrawable(0, 285212671, 16, 16));
         imageView.setImageResource(R.drawable.ic_ab_back);
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        imageView.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(this, 9));
-        ScaleStateListAnimator.apply(imageView, 0.1f, 1.5f);
+        imageView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 7));
+        ScaleStateListAnimator.apply(imageView);
         frameLayout.addView(imageView, LayoutHelper.createFrame(32, 32.0f, 51, 12.0f, 14.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.headerPlay = imageView2;
         imageView2.setBackground(Theme.createRadSelectorDrawable(0, 285212671, 16, 16));
         imageView2.setImageResource(R.drawable.filled_gift_pause_24);
         imageView2.setScaleType(scaleType);
-        imageView2.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda52(15, this, arrayList));
-        ScaleStateListAnimator.apply(imageView2, 0.1f, 1.5f);
+        imageView2.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(7, this, arrayList));
+        ScaleStateListAnimator.apply(imageView2);
         frameLayout.addView(imageView2, LayoutHelper.createFrame(32, 32.0f, 53, 0.0f, 14.0f, 12.0f, 0.0f));
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.bold());
@@ -665,12 +838,12 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
         this.buttonsLayout = linearLayout;
         linearLayout.setOrientation(0);
         linearLayout.setClipChildren(false);
-        this.buttons = new GroupCreateActivity.AnonymousClass7[3];
-        this.tabsSelectorView = new TabsSelectorView(context, resourcesProvider, new PollItemMenu$$ExternalSyntheticLambda14(this, 29));
-        int i8 = 0;
+        this.buttons = new Button[3];
+        this.tabsSelectorView = new TabsSelectorView(context, resourcesProvider, new DialogCell$$ExternalSyntheticLambda6(this, 27));
+        int i12 = 0;
         while (true) {
-            GroupCreateActivity.AnonymousClass7[] anonymousClass7Arr = this.buttons;
-            if (i8 >= anonymousClass7Arr.length) {
+            Button[] buttonArr = this.buttons;
+            if (i12 >= buttonArr.length) {
                 this.headerView.addView(this.buttonsLayout, LayoutHelper.createFrame(-1, -2.0f, 87, 16.0f, 0.0f, 16.0f, 18.0f));
                 this.containerView.addView(this.headerView, LayoutHelper.createFrame(-1, 315, 55));
                 int iBlendARGB = ColorUtils.blendARGB(0.1f, getThemedColor(Theme.key_dialogBackgroundGray), getThemedColor(Theme.key_dialogBackground));
@@ -685,7 +858,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
                 BlurredBackgroundDrawable blurredBackgroundDrawableCreate = this.glassFactory.create(this.tabsSelectorView, null, false);
                 blurredBackgroundDrawableCreate.setPadding(AndroidUtilities.dp(4.0f));
                 blurredBackgroundDrawableCreate.setRadius(AndroidUtilities.dp(28.0f));
-                blurredBackgroundDrawableCreate.setColorProvider(new BlurredBackgroundColorProviderThemed(Theme.key_windowBackgroundWhite, resourcesProvider));
+                blurredBackgroundDrawableCreate.setColorProvider(new BlurredBackgroundColorProviderThemed(resourcesProvider, Theme.key_windowBackgroundWhite));
                 this.tabsSelectorView.setBackground(blurredBackgroundDrawableCreate);
                 this.containerView.addView(this.tabsSelectorView, LayoutHelper.createFrame(268, 64.0f, 81, 0.0f, 0.0f, 0.0f, 5.0f));
                 this.selectedAttributes = new Attributes((TL_stars.starGiftAttributeBackdrop) TlUtils.findFirstInstance(arrayList, TL_stars.starGiftAttributeBackdrop.class), (TL_stars.starGiftAttributePattern) TlUtils.findFirstInstance(arrayList, TL_stars.starGiftAttributePattern.class), (TL_stars.starGiftAttributeModel) TlUtils.findFirstInstance(arrayList, TL_stars.starGiftAttributeModel.class));
@@ -693,21 +866,21 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
                 updateHeaderAttributes(false);
                 return;
             }
-            anonymousClass7Arr[i8] = new GroupCreateActivity.AnonymousClass7(context);
-            if (i8 == 0) {
-                ((TextView) this.buttons[i8].rectTmp).setText(LocaleController.getString(R.string.GiftPreviewModel));
-            } else if (i8 == 1) {
-                ((TextView) this.buttons[i8].rectTmp).setText(LocaleController.getString(R.string.GiftPreviewBackdrop));
-            } else if (i8 == 2) {
-                ((TextView) this.buttons[i8].rectTmp).setText(LocaleController.getString(R.string.GiftPreviewSymbol));
+            buttonArr[i12] = new Button(context);
+            if (i12 == 0) {
+                this.buttons[i12].textView.setText(LocaleController.getString(R.string.GiftPreviewModel));
+            } else if (i12 == 1) {
+                this.buttons[i12].textView.setText(LocaleController.getString(R.string.GiftPreviewBackdrop));
+            } else if (i12 == 2) {
+                this.buttons[i12].textView.setText(LocaleController.getString(R.string.GiftPreviewSymbol));
             }
-            ScaleStateListAnimator.apply(this.buttons[i8], 0.1f, 1.5f);
-            this.buttons[i8].setOnClickListener(new ChatActivity$$ExternalSyntheticLambda68(this, i8, 22));
-            this.buttons[i8].setBackground(Theme.createRadSelectorDrawable(0, 285212671, 10, 10));
+            ScaleStateListAnimator.apply(this.buttons[i12]);
+            this.buttons[i12].setOnClickListener(new RichEditor$$ExternalSyntheticLambda29(this, i12, 6));
+            this.buttons[i12].setBackground(Theme.createRadSelectorDrawable(0, 285212671, 10, 10));
             LinearLayout linearLayout2 = this.buttonsLayout;
-            GroupCreateActivity.AnonymousClass7[] anonymousClass7Arr2 = this.buttons;
-            linearLayout2.addView(anonymousClass7Arr2[i8], LayoutHelper.createLinear(0, 42, 1.0f, 7, 0, 0, i8 != anonymousClass7Arr2.length - 1 ? 11 : 0, 0));
-            i8++;
+            Button[] buttonArr2 = this.buttons;
+            linearLayout2.addView(buttonArr2[i12], LayoutHelper.createLinear(0, 42, 1.0f, 7, 0, 0, i12 != buttonArr2.length - 1 ? 11 : 0, 0));
+            i12++;
         }
     }
 
@@ -730,15 +903,15 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        AnonymousClass5 anonymousClass5 = new AnonymousClass5(this.recyclerListView, getContext(), this.currentAccount, new LinkManager$$ExternalSyntheticLambda1(this, 18), this.resourcesProvider);
+        AnonymousClass5 anonymousClass5 = new AnonymousClass5(this.recyclerListView, getContext(), this.currentAccount, new GiftSheet$$ExternalSyntheticLambda8(this, 27), this.resourcesProvider);
         this.adapter = anonymousClass5;
-        anonymousClass5.applyBackground = false;
-        return anonymousClass5;
+        anonymousClass5.setApplyBackground(false);
+        return this.adapter;
     }
 
     @Override
     public final RecyclerListView createRecyclerView(Context context) {
-        return new ChatActivity.AnonymousClass34(this, context, this.resourcesProvider, 27);
+        return new AnonymousClass6(this, context, this.resourcesProvider, 0);
     }
 
     @Override
@@ -746,7 +919,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
         return null;
     }
 
-    public final void invalidateMergedVisibleBlurredPositionsAndSourcesImpl$2(int i) {
+    public final void invalidateMergedVisibleBlurredPositionsAndSourcesImpl(int i) {
         DownscaleScrollableNoiseSuppressor downscaleScrollableNoiseSuppressor;
         if (Build.VERSION.SDK_INT < 31 || (downscaleScrollableNoiseSuppressor = this.scrollableViewNoiseSuppressor) == null) {
             return;
@@ -836,7 +1009,7 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
-        invalidateMergedVisibleBlurredPositionsAndSourcesImpl$2(2);
+        invalidateMergedVisibleBlurredPositionsAndSourcesImpl(2);
     }
 
     public final void setMode(int i) {
@@ -854,27 +1027,78 @@ public final class StarGiftPreviewSheet extends BottomSheetWithRecyclerListView 
         if (anonymousClass4.getUpgradeImageViewAttribute() == null || anonymousClass4.getUpgradeBackdropAttribute() == null || anonymousClass4.getUpgradePatternAttribute() == null) {
             return;
         }
-        GroupCreateActivity.AnonymousClass7[] anonymousClass7Arr = this.buttons;
-        ((AnimatedTextView) anonymousClass7Arr[0].paint).setText(anonymousClass4.getUpgradeImageViewAttribute().name, z, true);
-        ((AnimatedTextView) anonymousClass7Arr[0].this$0).setText(StarGiftSheet.getRarityName(anonymousClass4.getUpgradeImageViewAttribute().rarity, new Integer[1]));
-        ((AnimatedTextView) anonymousClass7Arr[1].paint).setText(anonymousClass4.getUpgradeBackdropAttribute().name, z, true);
-        ((AnimatedTextView) anonymousClass7Arr[1].this$0).setText(AffiliateProgramFragment.percents(anonymousClass4.getUpgradeBackdropAttribute().getRarityPermille()), z, true);
-        ((AnimatedTextView) anonymousClass7Arr[2].paint).setText(anonymousClass4.getUpgradePatternAttribute().name, z, true);
-        ((AnimatedTextView) anonymousClass7Arr[2].this$0).setText(AffiliateProgramFragment.percents(anonymousClass4.getUpgradePatternAttribute().getRarityPermille()), z, true);
+        Button[] buttonArr = this.buttons;
+        buttonArr[0].titleView.setText(anonymousClass4.getUpgradeImageViewAttribute().name, z);
+        buttonArr[0].percentView.setText(StarGiftSheet.getRarityName(anonymousClass4.getUpgradeImageViewAttribute().rarity, new Integer[1]));
+        buttonArr[1].titleView.setText(anonymousClass4.getUpgradeBackdropAttribute().name, z);
+        buttonArr[1].percentView.setText(AffiliateProgramFragment.percents(anonymousClass4.getUpgradeBackdropAttribute().getRarityPermille()), z);
+        buttonArr[2].titleView.setText(anonymousClass4.getUpgradePatternAttribute().name, z);
+        buttonArr[2].percentView.setText(AffiliateProgramFragment.percents(anonymousClass4.getUpgradePatternAttribute().getRarityPermille()), z);
     }
 
     public final void updateSelectedForVisibleViews() {
         GiftAttributeCell giftAttributeCell;
         Attributes attributes;
-        RecyclerListView recyclerListView = this.recyclerListView;
-        int childCount = recyclerListView.getChildCount();
+        int childCount = this.recyclerListView.getChildCount();
         for (int i = 0; i < childCount; i++) {
-            View childAt = recyclerListView.getChildAt(i);
+            View childAt = this.recyclerListView.getChildAt(i);
             if ((childAt instanceof GiftAttributeCell) && (attributes = (giftAttributeCell = (GiftAttributeCell) childAt).attributes) != null) {
                 boolean zIsSelectedWithCurrentTab = isSelectedWithCurrentTab(attributes);
                 giftAttributeCell.cardBackground.setSelected(zIsSelectedWithCurrentTab, true);
                 giftAttributeCell.isSelected.setValue(zIsSelectedWithCurrentTab, true);
             }
+        }
+    }
+
+    public final void updateTranslationHeader() {
+        float y;
+        boolean z;
+        float y2;
+        int measuredHeight;
+        boolean z2 = true;
+        int childCount = this.recyclerListView.getChildCount() - 1;
+        while (true) {
+            FrameLayout frameLayout = this.headerView;
+            if (childCount >= 0) {
+                View childAt = this.recyclerListView.getChildAt(childCount);
+                int childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt);
+                if (childAdapterPosition >= 0) {
+                    if (childAdapterPosition == 2) {
+                        y2 = childAt.getY();
+                        measuredHeight = frameLayout.getMeasuredHeight();
+                    } else {
+                        if (childAdapterPosition == 1) {
+                            y = childAt.getY();
+                        } else if (childAdapterPosition == 0) {
+                            y2 = childAt.getY();
+                            measuredHeight = frameLayout.getMeasuredHeight();
+                        }
+                        z = true;
+                    }
+                    y = y2 - measuredHeight;
+                    z = true;
+                }
+                childCount--;
+            } else {
+                y = 0.0f;
+                z = false;
+            }
+            float height = frameLayout.getHeight() + y;
+            if (z && height >= 0.0f) {
+                z2 = false;
+            }
+            if (this.gradientVisible != z2) {
+                this.gradientVisible = z2;
+                View view = this.gradientTop;
+                if (z2) {
+                    view.setVisibility(0);
+                }
+                view.animate().alpha(z2 ? 1.0f : 0.0f).setDuration(200L).withEndAction(new FileLoader$$ExternalSyntheticLambda1(this, z2, 13)).start();
+            }
+            this.headerMoveTop = y <= 0.0f ? 0 : AndroidUtilities.dp(6.0f);
+            frameLayout.setVisibility(z ? 0 : 8);
+            frameLayout.setTranslationY(y);
+            return;
         }
     }
 }

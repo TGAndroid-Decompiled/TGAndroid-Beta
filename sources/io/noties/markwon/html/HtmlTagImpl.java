@@ -3,13 +3,13 @@ package io.noties.markwon.html;
 import java.util.ArrayList;
 import java.util.Map;
 
-public abstract class HtmlTagImpl {
+public abstract class HtmlTagImpl implements HtmlTag {
     public final Map attributes;
     public int end = -1;
     public final String name;
     public final int start;
 
-    public final class BlockImpl extends HtmlTagImpl {
+    public final class BlockImpl extends HtmlTagImpl implements HtmlTag.Block {
         public ArrayList children;
         public final BlockImpl parent;
 
@@ -71,6 +71,7 @@ public abstract class HtmlTagImpl {
         this.attributes = map;
     }
 
+    @Override
     public Map attributes() {
         return this.attributes;
     }

@@ -156,8 +156,8 @@ public final class TableCell extends FrameLayout {
         } else {
             tableLayout.setColumnShrinkable(1, true);
         }
-        addView(tableLayout, LayoutHelper.createFrame(-2.0f, -1));
-        tableLayout.setOutlineProvider(new RichEditor.AnonymousClass5(10));
+        addView(tableLayout, LayoutHelper.createFrame(-1, -2.0f));
+        tableLayout.setOutlineProvider(new RichEditor.AnonymousClass5(5));
         tableLayout.setClipToOutline(true);
         setPaddingRelative(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), 0);
     }

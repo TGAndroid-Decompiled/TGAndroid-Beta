@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 import androidx.car.app.HostException;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -108,7 +108,7 @@ public final class RuntimeClassNameTypeAdapterFactory<T> implements TypeAdapterF
                         try {
                             delegateAdapter2 = gson.getDelegateAdapter(RuntimeClassNameTypeAdapterFactory.this, new TypeToken(Class.forName(asString)));
                         } catch (ClassNotFoundException e3) {
-                            throw new HostException(zzil.m("Cannot find class ", asString), e3);
+                            throw new HostException(zzii.m("Cannot find class ", asString), e3);
                         }
                     }
                     return delegateAdapter2.fromJsonTree(jsonElement);

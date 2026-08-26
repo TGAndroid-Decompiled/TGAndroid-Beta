@@ -10,7 +10,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import me.vkryl.android.AnimatorUtils;
 import org.telegram.ui.Components.voip.VoIPFloatingLayout;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda79;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda6;
 
 public final class FactorAnimator {
     public ValueAnimator animator;
@@ -49,7 +49,7 @@ public final class FactorAnimator {
                 if (factorAnimator.isAnimating) {
                     factorAnimator.isAnimating = false;
                 }
-                target.onFactorChangeFinished(factorAnimator.factor, i);
+                target.onFactorChangeFinished(i, factorAnimator.factor, factorAnimator);
             }
         }
 
@@ -96,7 +96,7 @@ public final class FactorAnimator {
     }
 
     public interface Target {
-        void onFactorChangeFinished(float f, int i);
+        void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator);
 
         void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator);
     }
@@ -110,7 +110,6 @@ public final class FactorAnimator {
 
     public final void animateTo(float f) {
         int i = 0;
-        int i2 = 1;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             throw new AssertionError();
         }
@@ -119,9 +118,9 @@ public final class FactorAnimator {
         }
         float f2 = this.factor;
         Target target = this.target;
-        int i3 = this.id;
+        int i2 = this.id;
         if (f2 == f) {
-            target.onFactorChangeFinished(f2, i3);
+            target.onFactorChangeFinished(i2, f2, this);
             return;
         }
         if (!this.isAnimating) {
@@ -132,12 +131,12 @@ public final class FactorAnimator {
         if (j <= 0) {
             if (this.factor != f) {
                 this.factor = f;
-                target.onFactorChanged(i3, f, 1.0f, this);
+                target.onFactorChanged(i2, f, 1.0f, this);
             }
             if (this.isAnimating) {
                 this.isAnimating = false;
             }
-            target.onFactorChangeFinished(f, i3);
+            target.onFactorChangeFinished(i2, f, this);
             return;
         }
         this.toFactor = f;
@@ -146,7 +145,7 @@ public final class FactorAnimator {
         this.animator = valueAnimatorOfFloat;
         valueAnimatorOfFloat.setDuration(j);
         this.animator.setInterpolator(this.interpolator);
-        this.animator.addUpdateListener(new PhotoViewer$$ExternalSyntheticLambda79(this, f2, f3, i2));
+        this.animator.addUpdateListener(new PhotoViewer$$ExternalSyntheticLambda6(this, f2, f3, 1));
         this.animator.addListener(new AnonymousClass1(this, f2, f3, i));
         try {
             this.animator.start();
@@ -186,7 +185,7 @@ public final class FactorAnimator {
         } else if (!zCancel) {
             return;
         }
-        target.onFactorChangeFinished(f, i);
+        target.onFactorChangeFinished(i, f, this);
     }
 
     public FactorAnimator(int i, Target target, Interpolator interpolator, long j, float f) {

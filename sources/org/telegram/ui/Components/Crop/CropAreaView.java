@@ -25,7 +25,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline0;
 import org.telegram.messenger.audioinfo.mp3.ID3v1Genre$EnumUnboxingLocalUtility;
 import org.telegram.ui.BubbleActivity;
-import org.telegram.ui.Components.CheckBox;
+import org.telegram.ui.Charts.BaseChartView;
 
 public final class CropAreaView extends ViewGroup {
     public int activeControl;
@@ -870,7 +870,7 @@ public final class CropAreaView extends ViewGroup {
         ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "gridProgress", this.gridProgress, f);
         this.gridAnimator = objectAnimatorOfFloat;
         objectAnimatorOfFloat.setDuration(200L);
-        this.gridAnimator.addListener(new CheckBox.AnonymousClass1(this, 24));
+        this.gridAnimator.addListener(new BaseChartView.AnonymousClass4(this, 4));
         if (i == 1) {
             this.gridAnimator.setStartDelay(200L);
         }

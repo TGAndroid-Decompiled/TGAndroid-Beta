@@ -1,6 +1,6 @@
 package kotlin.jvm.internal;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import kotlin.Function;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
@@ -27,7 +27,7 @@ public abstract class TypeIntrinsics {
                     return;
                 }
             }
-            ClassCastException classCastException = new ClassCastException(SurfaceContainer$$ExternalSyntheticOutline0.m$1(obj.getClass().getName(), " cannot be cast to ", SurfaceContainer$$ExternalSyntheticOutline0.m(i, "kotlin.jvm.functions.Function")));
+            ClassCastException classCastException = new ClassCastException(Fragment$$ExternalSyntheticOutline0.m$1(obj.getClass().getName(), " cannot be cast to ", Fragment$$ExternalSyntheticOutline0.m(i, "kotlin.jvm.functions.Function")));
             Intrinsics.sanitizeStackTrace(classCastException, TypeIntrinsics.class.getName());
             throw classCastException;
         }

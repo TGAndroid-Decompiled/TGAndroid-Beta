@@ -14,11 +14,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.GroupCallActivity;
 
 public abstract class DialogsRequestedEmptyCell extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
     public final TextView buttonView;
@@ -34,10 +34,10 @@ public abstract class DialogsRequestedEmptyCell extends LinearLayout implements 
         setOrientation(1);
         final int i2 = 0;
         setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
-        GroupCallActivity.AnonymousClass61 anonymousClass61 = new GroupCallActivity.AnonymousClass61(context, 3);
-        anonymousClass61.setWillNotDraw(false);
-        anonymousClass61.setOrientation(1);
-        anonymousClass61.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
+        FloatingToolbar.AnonymousClass2 anonymousClass2 = new FloatingToolbar.AnonymousClass2(context, 2);
+        anonymousClass2.setWillNotDraw(false);
+        anonymousClass2.setOrientation(1);
+        anonymousClass2.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.stickerView = backupImageView;
         final DialogsAdapter.AnonymousClass3 anonymousClass3 = (DialogsAdapter.AnonymousClass3) this;
@@ -55,20 +55,20 @@ public abstract class DialogsRequestedEmptyCell extends LinearLayout implements 
             }
         });
         updateSticker();
-        anonymousClass61.addView(backupImageView, LayoutHelper.createLinear(130, 130, 49));
+        anonymousClass2.addView(backupImageView, LayoutHelper.createLinear(130, 130, 49));
         TextView textView = new TextView(context);
         this.titleView = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 18.0f);
         textView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
         textView.setTypeface(AndroidUtilities.bold());
-        anonymousClass61.addView(textView, LayoutHelper.createLinear(-1, -2, 49, 0, 6, 0, 0));
+        anonymousClass2.addView(textView, LayoutHelper.createLinear(-1, -2, 49, 0, 6, 0, 0));
         TextView textView2 = new TextView(context);
         this.subtitleView = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
         textView2.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false));
-        anonymousClass61.addView(textView2, LayoutHelper.createLinear(-1, -2, 49, 0, 7, 0, 0));
+        anonymousClass2.addView(textView2, LayoutHelper.createLinear(-1, -2, 49, 0, 7, 0, 0));
         TextView textView3 = new TextView(context);
         this.buttonView = textView3;
         textView3.setGravity(17);
@@ -90,8 +90,8 @@ public abstract class DialogsRequestedEmptyCell extends LinearLayout implements 
                 }
             }
         });
-        anonymousClass61.addView(textView3, LayoutHelper.createLinear(-1, -2, 49, 0, 18, 0, 0));
-        addView(anonymousClass61, LayoutHelper.createLinear(-1, -2));
+        anonymousClass2.addView(textView3, LayoutHelper.createLinear(-1, -2, 49, 0, 18, 0, 0));
+        addView(anonymousClass2, LayoutHelper.createLinear(-1, -2));
         set(null);
     }
 
@@ -156,7 +156,7 @@ public abstract class DialogsRequestedEmptyCell extends LinearLayout implements 
         if (svgThumb != null) {
             svgThumb.overrideWidthAndHeight(512, 512);
         }
-        this.stickerView.setImage(ImageLocation.getForDocument(document), "130_130", null, null, svgThumb, "tgs", 0, tL_messages_stickerSet);
+        this.stickerView.setImage(ImageLocation.getForDocument(document), "130_130", "tgs", svgThumb, tL_messages_stickerSet);
         backupImageView.getImageReceiver().setAutoRepeat(2);
     }
 }

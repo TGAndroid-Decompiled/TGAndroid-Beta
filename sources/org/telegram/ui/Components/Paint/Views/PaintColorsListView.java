@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticOutline1;
-import org.telegram.ui.ChatLinkActivity$$ExternalSyntheticLambda4;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Paint.PersistColorPalette;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.TON.TONIntroActivity$$ExternalSyntheticLambda3;
 
 public abstract class PaintColorsListView extends RecyclerListView {
     public static final Paint checkerboardPaint;
@@ -49,7 +49,7 @@ public abstract class PaintColorsListView extends RecyclerListView {
             }
             float width = ((getWidth() / 2.0f) + getPaddingLeft()) - getPaddingRight();
             float height = ((getHeight() / 2.0f) + getPaddingTop()) - getPaddingBottom();
-            PaintColorsListView.drawColorCircle(width, height, fMin, this.mColor, canvas);
+            PaintColorsListView.drawColorCircle(canvas, width, height, fMin, this.mColor);
             if (this.selectProgress != 0.0f) {
                 float fMin2 = (Math.min((getWidth() - getPaddingLeft()) - getPaddingRight(), (getHeight() - getPaddingTop()) - getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f);
                 paintColorsListView.outlinePaint.setColor(this.mColor);
@@ -71,7 +71,7 @@ public abstract class PaintColorsListView extends RecyclerListView {
     }
 
     public PaintColorsListView(final Context context) {
-        super(context, null);
+        super(context);
         this.paint = new Paint(1);
         Paint paint = new Paint(1);
         this.outlinePaint = paint;
@@ -107,7 +107,7 @@ public abstract class PaintColorsListView extends RecyclerListView {
             }
         });
         setOverScrollMode(2);
-        setOnItemClickListener(new ChatLinkActivity$$ExternalSyntheticLambda4(this, 21));
+        setOnItemClickListener(new TONIntroActivity$$ExternalSyntheticLambda3(this, 7));
     }
 
     public static void drawCheckerboard(Canvas canvas, RectF rectF, int i) {
@@ -137,7 +137,7 @@ public abstract class PaintColorsListView extends RecyclerListView {
         }
     }
 
-    public static void drawColorCircle(float f, float f2, float f3, int i, Canvas canvas) {
+    public static void drawColorCircle(Canvas canvas, float f, float f2, float f3, int i) {
         Paint paint = colorCirclePaint;
         paint.setColor(i);
         if (paint.getAlpha() == 255) {
@@ -145,7 +145,7 @@ public abstract class PaintColorsListView extends RecyclerListView {
             return;
         }
         RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f - f3, f2 - f3, f + f3, f2 + f3);
+        rectF.set(f - f3, f2 - f3, f + f3, f3 + f2);
         paint.setAlpha(255);
         canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
         Path path = colorCirclePath;

@@ -3,7 +3,7 @@ package org.telegram.ui.Stories.recorder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.messenger.camera.CameraView;
-import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda8;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda6;
 
 public final class RoundVideoRecorder$$ExternalSyntheticLambda1 implements CameraView.CameraViewDelegate, CameraController.VideoTakeCallback {
     public final CaptionStory.AnonymousClass1 f$0;
@@ -34,9 +34,9 @@ public final class RoundVideoRecorder$$ExternalSyntheticLambda1 implements Camer
             return;
         }
         anonymousClass1.cameraView.destroy(true, null);
-        BotBiometry$$ExternalSyntheticLambda8 botBiometry$$ExternalSyntheticLambda8 = anonymousClass1.onDoneCallback;
-        if (botBiometry$$ExternalSyntheticLambda8 != null) {
-            botBiometry$$ExternalSyntheticLambda8.run(anonymousClass1.file, str, Long.valueOf(j));
+        BotBiometry$$ExternalSyntheticLambda6 botBiometry$$ExternalSyntheticLambda6 = anonymousClass1.onDoneCallback;
+        if (botBiometry$$ExternalSyntheticLambda6 != null) {
+            botBiometry$$ExternalSyntheticLambda6.run(anonymousClass1.file, str, Long.valueOf(j));
         }
     }
 }

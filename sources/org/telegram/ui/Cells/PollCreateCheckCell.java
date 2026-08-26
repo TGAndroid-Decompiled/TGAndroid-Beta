@@ -12,6 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.IconBackgroundColors;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.SettingsActivity;
@@ -59,10 +60,7 @@ public final class PollCreateCheckCell extends FrameLayout {
         int i = Theme.key_switchTrack;
         int i2 = Theme.key_switchTrackChecked;
         int i3 = Theme.key_windowBackgroundWhite;
-        r3.trackColorKey = i;
-        r3.trackCheckedColorKey = i2;
-        r3.thumbColorKey = i3;
-        r3.thumbCheckedColorKey = i3;
+        r3.setColors(i, i2, i3, i3);
         addView(r3, LayoutHelper.createFrame(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 10.0f, 19.0f, 0.0f));
         r3.setFocusable(false);
     }
@@ -100,7 +98,7 @@ public final class PollCreateCheckCell extends FrameLayout {
         }
         accessibilityNodeInfo.setContentDescription(sb);
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.checkBox.isChecked);
+        accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
     }
 
     public void setAnimationsEnabled(boolean z) {
@@ -108,7 +106,7 @@ public final class PollCreateCheckCell extends FrameLayout {
     }
 
     public void setChecked(boolean z) {
-        this.checkBox.setChecked(0, z, true);
+        this.checkBox.setChecked(z, 0, true);
     }
 
     public void setDivider(boolean z) {
@@ -116,92 +114,20 @@ public final class PollCreateCheckCell extends FrameLayout {
         invalidate();
     }
 
-    public final void setTextAndValueAndIconAndCheck(String str, String str2, int i, int i2, boolean z) {
-        int i3;
-        int i4;
+    public final void setTextAndValueAndIconAndCheck(String str, String str2, IconBackgroundColors iconBackgroundColors, int i, boolean z) {
         this.textView.setText(str);
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         boolean zIsDark = resourcesProvider != null ? resourcesProvider.isDark() : Theme.currentTheme.isDark();
         SettingsActivity.SettingCell.Background background = new SettingsActivity.SettingCell.Background();
-        switch (i) {
-            case 1:
-            case 2:
-                i3 = -14899731;
-                break;
-            case 3:
-                i3 = -11565578;
-                break;
-            case 4:
-                i3 = -14965523;
-                break;
-            case 5:
-                i3 = -1007845;
-                break;
-            case 6:
-                i3 = -881871;
-                break;
-            case 7:
-                i3 = -11154873;
-                break;
-            case 8:
-                i3 = -765355;
-                break;
-            case 9:
-                i3 = -13451058;
-                break;
-            case 10:
-                i3 = -3903756;
-                break;
-            case 11:
-                i3 = -7956054;
-                break;
-            default:
-                throw null;
-        }
-        switch (i) {
-            case 1:
-            case 4:
-                i4 = -15431455;
-                break;
-            case 2:
-                i4 = -15497247;
-                break;
-            case 3:
-                i4 = -13276952;
-                break;
-            case 5:
-                i4 = -1996271;
-                break;
-            case 6:
-                i4 = -1940716;
-                break;
-            case 7:
-                i4 = -14175180;
-                break;
-            case 8:
-                i4 = -2148011;
-                break;
-            case 9:
-                i4 = -14836538;
-                break;
-            case 10:
-                i4 = -6335009;
-                break;
-            case 11:
-                i4 = -9534569;
-                break;
-            default:
-                throw null;
-        }
-        background.setColor(i3, i4);
-        background.border = zIsDark;
+        background.setColor(iconBackgroundColors.top, iconBackgroundColors.bottom);
+        background.setDrawBorder(zIsDark);
         ImageView imageView = this.imageView;
         imageView.setBackground(background);
-        imageView.setImageResource(i2);
-        Switch r7 = this.checkBox;
-        r7.setChecked(0, z, this.animationsEnabled);
+        imageView.setImageResource(i);
+        Switch r6 = this.checkBox;
+        r6.setChecked(z, 0, this.animationsEnabled);
         this.multilineValueTextView.setText(str2);
-        r7.setContentDescription(str);
+        r6.setContentDescription(str);
     }
 
     public void setValue(CharSequence charSequence) {

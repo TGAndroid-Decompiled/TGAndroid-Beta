@@ -10,7 +10,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Premium.boosts.ReassignBoostBottomSheet;
 import org.telegram.ui.LaunchActivity;
@@ -41,9 +40,7 @@ public final class PeerStoriesView$5$$ExternalSyntheticLambda3 implements Consum
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
                 PeerStoriesView.AnonymousClass5 anonymousClass5 = (PeerStoriesView.AnonymousClass5) callback;
                 if (storyItem == null) {
-                    Bulletin bulletinCreateSimpleBulletinWithIconSize = new BulletinFactory(anonymousClass5.this$0.storyContainer, (DarkThemeResourceProvider) obj3).createSimpleBulletinWithIconSize(R.raw.story_bomb2, 36, LocaleController.getString(R.string.StoryNotFound));
-                    bulletinCreateSimpleBulletinWithIconSize.tag = 3;
-                    bulletinCreateSimpleBulletinWithIconSize.show(true);
+                    BulletinFactory.of(anonymousClass5.this$0.storyContainer, (DarkThemeResourceProvider) obj3).createSimpleBulletin(R.raw.story_bomb2, LocaleController.getString(R.string.StoryNotFound)).setTag(3).show(true);
                     break;
                 } else {
                     anonymousClass5.getClass();

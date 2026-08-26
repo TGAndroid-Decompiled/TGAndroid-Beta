@@ -1,7 +1,7 @@
 package org.commonmark.parser;
 
-import com.google.zxing.BinaryBitmap;
+import com.stripe.android.Stripe;
 
 public interface InlineParserFactory {
-    InlineParser create(BinaryBitmap binaryBitmap);
+    InlineParser create(Stripe stripe);
 }

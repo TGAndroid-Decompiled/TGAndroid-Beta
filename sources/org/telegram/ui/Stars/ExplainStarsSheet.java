@@ -9,12 +9,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -24,9 +23,9 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda1;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda2;
 
 public final class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
     public AnonymousClass1 adapter;
@@ -53,7 +52,7 @@ public final class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                ((FeatureCell) view).set(uItem.text, uItem.subtext, uItem.intValue);
+                ((FeatureCell) view).set(uItem.intValue, uItem.text, uItem.subtext);
             }
 
             @Override
@@ -74,7 +73,7 @@ public final class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
             addView(imageView, LayoutHelper.createLinear(24, 24, 51, 0, 6, 16, 0));
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(1);
-            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, null);
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
             this.titleView = linksTextView;
             linksTextView.setTypeface(AndroidUtilities.bold());
             linksTextView.setTextSize(1, 14.0f);
@@ -82,7 +81,7 @@ public final class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
             int i3 = Theme.key_chat_messageLinkIn;
             linksTextView.setLinkTextColor(Theme.getColor(i3, resourcesProvider));
             linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 7, 0, 0, 0, 3));
-            LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, null);
+            LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context);
             this.subtitleView = linksTextView2;
             linksTextView2.setTextSize(1, 14.0f);
             linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
@@ -91,7 +90,7 @@ public final class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
             addView(linearLayout, LayoutHelper.createLinear(-1, -2, 1.0f, 55, 0, 0, 0, 0));
         }
 
-        public final void set(CharSequence charSequence, CharSequence charSequence2, int i) {
+        public final void set(int i, CharSequence charSequence, CharSequence charSequence2) {
             this.imageView.setImageResource(i);
             this.titleView.setText(charSequence);
             this.subtitleView.setText(charSequence2);
@@ -120,7 +119,7 @@ public final class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
         StarsIntroActivity.AnonymousClass4 anonymousClass4 = new StarsIntroActivity.AnonymousClass4(context, 70, 0);
-        frameLayout.addView(anonymousClass4, LayoutHelper.createFrame(-1.0f, -1));
+        frameLayout.addView(anonymousClass4, LayoutHelper.createFrame(-1, -1.0f));
         GLIconTextureView gLIconTextureView = new GLIconTextureView(context, 1, 2);
         GLIconRenderer gLIconRenderer = gLIconTextureView.mRenderer;
         gLIconRenderer.colorKey1 = Theme.key_starsGradient1;
@@ -129,23 +128,23 @@ public final class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
         gLIconTextureView.setStarParticlesView(anonymousClass4);
         frameLayout.addView(gLIconTextureView, LayoutHelper.createFrame(170, 170.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
         gLIconTextureView.setPaused(false);
-        linearLayout.addView(frameLayout, LayoutHelper.createFrame(150.0f, -1));
+        linearLayout.addView(frameLayout, LayoutHelper.createFrame(-1, 150.0f));
         TextView textView = new TextView(context);
-        zzkk.m(20.0f, 1, textView);
+        zzkb.m(20.0f, 1, textView);
         int i2 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i2, this.resourcesProvider));
         textView.setGravity(17);
         textView.setText(LocaleController.getString(R.string.ExplainStarsTitle));
-        TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView, LayoutHelper.createLinear(-2, -2, 1, 0, 2, 0, 0), context);
+        TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(-2, -2, 1, 0, 2, 0, 0), context);
         textViewM.setTextSize(1, 14.0f);
         textViewM.setTextColor(Theme.getColor(i2, this.resourcesProvider));
         textViewM.setGravity(17);
         textViewM.setText(LocaleController.getString(R.string.ExplainStarsTitle2));
         linearLayout.addView(textViewM, LayoutHelper.createLinear(-1, -2, 1, 16, 9, 16, 18));
         FrameLayout frameLayout2 = new FrameLayout(context);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, this.resourcesProvider, true);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.ExplainStarsButton), false, true);
-        buttonWithCounterView.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(this, 6));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, this.resourcesProvider);
+        buttonWithCounterView.setText(LocaleController.getString(R.string.ExplainStarsButton), false);
+        buttonWithCounterView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 4));
         frameLayout2.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         int i3 = this.backgroundPaddingLeft;
         frameLayout2.setPadding(i3, 0, i3, 0);
@@ -156,7 +155,7 @@ public final class ExplainStarsSheet extends BottomSheetWithRecyclerListView {
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        AnonymousClass1 anonymousClass1 = new AnonymousClass1(recyclerListView, getContext(), this.currentAccount, 0, true, new LinkManager$$ExternalSyntheticLambda1(this, 16), this.resourcesProvider);
+        AnonymousClass1 anonymousClass1 = new AnonymousClass1(recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 25), this.resourcesProvider);
         this.adapter = anonymousClass1;
         return anonymousClass1;
     }

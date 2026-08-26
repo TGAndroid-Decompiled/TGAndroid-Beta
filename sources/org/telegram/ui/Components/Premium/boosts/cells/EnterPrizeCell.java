@@ -11,13 +11,14 @@ import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.web.WebActionBar;
 
 public final class EnterPrizeCell extends LinearLayout {
     public AfterTextChangedListener afterTextChangedListener;
     public final EditTextCaption editText;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final TextView textView;
 
     public interface AfterTextChangedListener {
@@ -25,6 +26,7 @@ public final class EnterPrizeCell extends LinearLayout {
 
     public EnterPrizeCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         setOrientation(0);
         EditTextCaption editTextCaption = new EditTextCaption(context, resourcesProvider);
         this.editText = editTextCaption;
@@ -54,7 +56,7 @@ public final class EnterPrizeCell extends LinearLayout {
         editTextCaption.setHandlesColor(Theme.getColor(Theme.key_chat_TextSelectionCursor, resourcesProvider));
         editTextCaption.setBackground(null);
         editTextCaption.setHint(LocaleController.getString(R.string.BoostingGiveawayEnterYourPrize));
-        editTextCaption.addTextChangedListener(new ArticleViewer.AnonymousClass16(this, 15));
+        editTextCaption.addTextChangedListener(new WebActionBar.AnonymousClass5(this, 4));
         editTextCaption.setImeOptions(6);
         TextView textView = new TextView(context);
         this.textView = textView;

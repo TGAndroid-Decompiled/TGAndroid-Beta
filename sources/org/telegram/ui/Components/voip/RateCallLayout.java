@@ -1,6 +1,6 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -16,11 +16,11 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
-import org.telegram.ui.Components.VideoEditTextureView$$ExternalSyntheticLambda1;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda12;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
+import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda19;
 
 public final class RateCallLayout extends FrameLayout {
-    public VoIPFragment$$ExternalSyntheticLambda12 onRateSelected;
+    public VoIPFragment$$ExternalSyntheticLambda19 onRateSelected;
     public final RateCallContainer rateCallContainer;
     public final FrameLayout starsContainer;
     public final StarContainer[] startsViews;
@@ -29,19 +29,19 @@ public final class RateCallLayout extends FrameLayout {
         public final VoIPBackgroundProvider backgroundProvider;
         public final RectF bgRect;
 
-        public RateCallContainer(Activity activity, VoIPBackgroundProvider voIPBackgroundProvider) {
-            super(activity);
+        public RateCallContainer(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
+            super(context);
             this.bgRect = new RectF();
             this.backgroundProvider = voIPBackgroundProvider;
             voIPBackgroundProvider.views.add(this);
             setWillNotDraw(false);
-            TextView textView = new TextView(activity);
+            TextView textView = new TextView(context);
             textView.setTextColor(-1);
             textView.setText(LocaleController.getString(R.string.VoipRateCallTitle));
             textView.setTextSize(1, 15.0f);
             textView.setGravity(1);
             textView.setTypeface(AndroidUtilities.bold());
-            TextView textView2 = new TextView(activity);
+            TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 15.0f);
             textView2.setTextColor(-1);
             textView2.setGravity(1);
@@ -74,19 +74,19 @@ public final class RateCallLayout extends FrameLayout {
         public interface AllStarsProvider {
         }
 
-        public StarContainer(Activity activity) {
-            super(activity);
+        public StarContainer(Context context) {
+            super(context);
             this.pos = 0;
             setWillNotDraw(false);
-            RLottieImageView rLottieImageView = new RLottieImageView(activity);
+            RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.defaultStar = rLottieImageView;
-            RLottieImageView rLottieImageView2 = new RLottieImageView(activity);
+            RLottieImageView rLottieImageView2 = new RLottieImageView(context);
             this.selectedStar = rLottieImageView2;
-            rLottieImageView.setAnimation(R.raw.star_stroke, 37, 37, null);
-            rLottieImageView2.setAnimation(R.raw.star_fill, 37, 37, null);
+            rLottieImageView.setAnimation(R.raw.star_stroke, 37, 37);
+            rLottieImageView2.setAnimation(R.raw.star_fill, 37, 37);
             rLottieImageView2.setAlpha(0.0f);
-            addView(rLottieImageView, LayoutHelper.createFrame(37.0f, 37));
-            addView(rLottieImageView2, LayoutHelper.createFrame(37.0f, 37));
+            addView(rLottieImageView, LayoutHelper.createFrame(37, 37.0f));
+            addView(rLottieImageView2, LayoutHelper.createFrame(37, 37.0f));
             BaseCell.RippleDrawableSafe rippleDrawableSafeCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(37.0f), 0, ColorUtils.setAlphaComponent(-1, 76));
             this.rippleDrawable = rippleDrawableSafeCreateSimpleSelectorCircleDrawable;
             rippleDrawableSafeCreateSimpleSelectorCircleDrawable.setCallback(this);
@@ -102,7 +102,7 @@ public final class RateCallLayout extends FrameLayout {
             if (action == 0) {
                 AllStarsProvider allStarsProvider2 = this.allStarsProvider;
                 if (allStarsProvider2 != null) {
-                    StarContainer[] starContainerArr = ((RateCallLayout) ((VideoEditTextureView$$ExternalSyntheticLambda1) allStarsProvider2).f$0).startsViews;
+                    StarContainer[] starContainerArr = ((RateCallLayout) ((GiftSheet$$ExternalSyntheticLambda6) allStarsProvider2).f$0).startsViews;
                     while (true) {
                         i = this.pos;
                         if (i2 > i) {
@@ -126,7 +126,7 @@ public final class RateCallLayout extends FrameLayout {
             } else if (action == 1) {
                 AllStarsProvider allStarsProvider3 = this.allStarsProvider;
                 if (allStarsProvider3 != null) {
-                    StarContainer[] starContainerArr2 = ((RateCallLayout) ((VideoEditTextureView$$ExternalSyntheticLambda1) allStarsProvider3).f$0).startsViews;
+                    StarContainer[] starContainerArr2 = ((RateCallLayout) ((GiftSheet$$ExternalSyntheticLambda6) allStarsProvider3).f$0).startsViews;
                     for (int i4 = 0; i4 <= this.pos; i4++) {
                         StarContainer starContainer3 = starContainerArr2[i4];
                         RLottieImageView rLottieImageView5 = starContainer3.defaultStar;
@@ -147,14 +147,14 @@ public final class RateCallLayout extends FrameLayout {
                     RateCallLayout rateCallLayout = (RateCallLayout) rateCallLayout$$ExternalSyntheticLambda1.f$0;
                     if (i7 >= 4) {
                         rateCallLayout.getClass();
-                        RLottieImageView rLottieImageView7 = new RLottieImageView((Activity) rateCallLayout$$ExternalSyntheticLambda1.f$1);
+                        RLottieImageView rLottieImageView7 = new RLottieImageView((Context) rateCallLayout$$ExternalSyntheticLambda1.f$1);
                         int iDp = AndroidUtilities.dp(133.0f);
-                        rLottieImageView7.setAnimation(R.raw.rate, 133, 133, null);
+                        rLottieImageView7.setAnimation(R.raw.rate, 133, 133);
                         int[] iArr2 = new int[2];
                         rateCallLayout.getLocationOnScreen(iArr2);
                         int i8 = iArr2[0];
                         int i9 = iArr2[1];
-                        rateCallLayout.addView(rLottieImageView7, LayoutHelper.createFrame(133.0f, 133));
+                        rateCallLayout.addView(rLottieImageView7, LayoutHelper.createFrame(133, 133.0f));
                         float f = width - i8;
                         float f2 = iDp / 2.0f;
                         rLottieImageView7.setTranslationX(f - f2);
@@ -162,13 +162,13 @@ public final class RateCallLayout extends FrameLayout {
                         rLottieImageView7.setOnAnimationEndListener(new RateCallLayout$$ExternalSyntheticLambda2(rateCallLayout, rLottieImageView7, 0));
                         rLottieImageView7.playAnimation();
                     }
-                    VoIPFragment$$ExternalSyntheticLambda12 voIPFragment$$ExternalSyntheticLambda12 = rateCallLayout.onRateSelected;
-                    if (voIPFragment$$ExternalSyntheticLambda12 != null) {
-                        voIPFragment$$ExternalSyntheticLambda12.f$0.selectedRating = i7;
+                    VoIPFragment$$ExternalSyntheticLambda19 voIPFragment$$ExternalSyntheticLambda19 = rateCallLayout.onRateSelected;
+                    if (voIPFragment$$ExternalSyntheticLambda19 != null) {
+                        voIPFragment$$ExternalSyntheticLambda19.f$0.lambda$updateViewState$26(i7);
                     }
                 }
             } else if (action == 3 && (allStarsProvider = this.allStarsProvider) != null) {
-                StarContainer[] starContainerArr3 = ((RateCallLayout) ((VideoEditTextureView$$ExternalSyntheticLambda1) allStarsProvider).f$0).startsViews;
+                StarContainer[] starContainerArr3 = ((RateCallLayout) ((GiftSheet$$ExternalSyntheticLambda6) allStarsProvider).f$0).startsViews;
                 int length = starContainerArr3.length;
                 while (i2 < length) {
                     StarContainer starContainer4 = starContainerArr3[i2];
@@ -220,21 +220,21 @@ public final class RateCallLayout extends FrameLayout {
         }
     }
 
-    public RateCallLayout(Activity activity, VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(activity);
+    public RateCallLayout(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(context);
         this.startsViews = new StarContainer[5];
         setWillNotDraw(false);
-        RateCallContainer rateCallContainer = new RateCallContainer(activity, voIPBackgroundProvider);
+        RateCallContainer rateCallContainer = new RateCallContainer(context, voIPBackgroundProvider);
         this.rateCallContainer = rateCallContainer;
-        FrameLayout frameLayout = new FrameLayout(activity);
+        FrameLayout frameLayout = new FrameLayout(context);
         this.starsContainer = frameLayout;
         rateCallContainer.setVisibility(8);
         frameLayout.setVisibility(8);
         for (int i = 0; i < 5; i++) {
-            this.startsViews[i] = new StarContainer(activity);
-            this.startsViews[i].setAllStarsProvider(new VideoEditTextureView$$ExternalSyntheticLambda1(this, 8));
+            this.startsViews[i] = new StarContainer(context);
+            this.startsViews[i].setAllStarsProvider(new GiftSheet$$ExternalSyntheticLambda6(this, 11));
             StarContainer starContainer = this.startsViews[i];
-            starContainer.onSelectedStar = new RateCallLayout$$ExternalSyntheticLambda1(0, this, activity);
+            starContainer.onSelectedStar = new RateCallLayout$$ExternalSyntheticLambda1(0, this, context);
             starContainer.pos = i;
             this.starsContainer.addView(starContainer, LayoutHelper.createFrame(-2, -2.0f, 51, i * 41, 0.0f, 0.0f, 0.0f));
         }

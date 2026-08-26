@@ -1,23 +1,38 @@
 package org.telegram.messenger;
 
-import java.util.function.ToLongFunction;
+import j$.util.function.Function$CC;
+import java.util.function.Function;
 
-public final class MessagesController$$ExternalSyntheticLambda94 implements ToLongFunction {
+public final class MessagesController$$ExternalSyntheticLambda94 implements Function {
     public final int $r8$classId;
 
     public MessagesController$$ExternalSyntheticLambda94(int i) {
         this.$r8$classId = i;
     }
 
+    public final Function andThen(Function function) {
+        int i = this.$r8$classId;
+        return Function$CC.$default$andThen(this, function);
+    }
+
     @Override
-    public final long applyAsLong(Object obj) {
+    public final Object apply(Object obj) {
         switch (this.$r8$classId) {
             case 0:
-                return Long.parseLong((String) obj);
+                return MessagesController.lambda$new$14((String) obj);
             case 1:
-                return ((NotificationsController.StoryNotification) obj).date;
+                return String.valueOf((Long) obj);
+            case 2:
+                return MessagesController.lambda$applyAppConfig$35((int[]) obj);
+            case 3:
+                return MessagesController.lambda$new$15((String) obj);
             default:
-                return ((NotificationsController.StoryNotification) obj).date;
+                return ((TranslateController.Language) obj).displayName;
         }
+    }
+
+    public final Function compose(Function function) {
+        int i = this.$r8$classId;
+        return Function$CC.$default$compose(this, function);
     }
 }

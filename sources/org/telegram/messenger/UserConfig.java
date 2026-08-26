@@ -626,7 +626,7 @@ public class UserConfig extends BaseController {
     }
 
     public void saveConfig(boolean z) {
-        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new FileLoader$$ExternalSyntheticLambda1(5, this, z));
+        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new FileLoader$$ExternalSyntheticLambda1(this, z, 5));
     }
 
     public void savePassword(byte[] bArr, byte[] bArr2) {

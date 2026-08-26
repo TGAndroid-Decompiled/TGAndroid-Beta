@@ -1,7 +1,7 @@
 package me.vkryl.android.animator;
 
 import android.view.animation.Interpolator;
-import com.google.zxing.BinaryBitmap;
+import com.stripe.android.Stripe;
 import java.util.Collections;
 import java.util.Iterator;
 
@@ -9,13 +9,21 @@ public final class ReplaceAnimator implements Iterable {
     public final ListAnimator list;
 
     public interface Callback {
-        void onForceApplyChanges();
+        boolean hasChanges(ReplaceAnimator replaceAnimator);
 
-        void onItemChanged$1(ReplaceAnimator replaceAnimator);
+        boolean onApplyMetadataAnimation(ReplaceAnimator replaceAnimator, float f);
+
+        void onFinishMetadataAnimation(ReplaceAnimator replaceAnimator, boolean z);
+
+        void onForceApplyChanges(ReplaceAnimator replaceAnimator);
+
+        void onItemChanged(ReplaceAnimator replaceAnimator);
+
+        void onPrepareMetadataAnimation(ReplaceAnimator replaceAnimator);
     }
 
     public ReplaceAnimator(Callback callback, Interpolator interpolator, long j) {
-        this.list = new ListAnimator(new BinaryBitmap(14, this, callback), interpolator, j);
+        this.list = new ListAnimator(new Stripe(this, callback, false, 9), interpolator, j);
     }
 
     @Override

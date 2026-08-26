@@ -71,9 +71,9 @@ public final class SessionCell extends FrameLayout {
         if (i == 1) {
             boolean z = LocaleController.isRTL;
             addView(linearLayout, LayoutHelper.createFrame(-1, 30.0f, (z ? 5 : 3) | 48, z ? 15 : 49, 11.0f, z ? 49 : 15, 0.0f));
-            AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
             this.avatarDrawable = avatarDrawable;
-            avatarDrawable.namePaint.setTextSize(AndroidUtilities.dp(10.0f));
+            avatarDrawable.setTextSize(AndroidUtilities.dp(10.0f));
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(10.0f));
@@ -85,7 +85,7 @@ public final class SessionCell extends FrameLayout {
             backupImageView2.setRoundRadius(AndroidUtilities.dp(10.0f));
             boolean z3 = LocaleController.isRTL;
             addView(backupImageView2, LayoutHelper.createFrame(42, 42.0f, (z3 ? 5 : 3) | 48, z3 ? 0 : 16, 9.0f, z3 ? 16 : 0, 0.0f));
-            this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            this.avatarDrawable = new AvatarDrawable();
             BackupImageView backupImageView3 = new BackupImageView(context);
             this.imageView = backupImageView3;
             backupImageView3.setRoundRadius(AndroidUtilities.dp(10.0f));
@@ -322,10 +322,7 @@ public final class SessionCell extends FrameLayout {
         float f = i;
         CombinedDrawable combinedDrawable = new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.dp(f), i3 == -1 ? -16777216 : Theme.getColor(null, i3, false), i4 != -1 ? Theme.getColor(null, i4, false) : -16777216), drawableMutate);
         if (lowerCase != null && lowerCase.contains("fragment")) {
-            int intrinsicWidth = (int) ((drawableMutate.getIntrinsicWidth() / 44.0f) * f);
-            int intrinsicHeight = (int) ((drawableMutate.getIntrinsicHeight() / 44.0f) * f);
-            combinedDrawable.iconWidth = intrinsicWidth;
-            combinedDrawable.iconHeight = intrinsicHeight;
+            combinedDrawable.setIconSize((int) ((drawableMutate.getIntrinsicWidth() / 44.0f) * f), (int) ((drawableMutate.getIntrinsicHeight() / 44.0f) * f));
         }
         return combinedDrawable;
     }
@@ -363,7 +360,7 @@ public final class SessionCell extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f = this.showStubValue.set(this.showStub ? 1.0f : 0.0f, false);
+        float f = this.showStubValue.set(this.showStub ? 1.0f : 0.0f);
         setContentAlpha(1.0f - f);
         if (f > 0.0f && this.globalGradient != null) {
             if (f < 1.0f) {
@@ -371,17 +368,11 @@ public final class SessionCell extends FrameLayout {
                 rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                 canvas.saveLayerAlpha(rectF, (int) (f * 255.0f), 31);
             }
-            this.globalGradient.updateColors$1();
+            this.globalGradient.updateColors();
             this.globalGradient.updateGradient();
             if (getParent() != null) {
                 View view = (View) getParent();
-                FlickerLoadingView flickerLoadingView = this.globalGradient;
-                int measuredWidth = view.getMeasuredWidth();
-                int measuredHeight = view.getMeasuredHeight();
-                float f2 = -getX();
-                flickerLoadingView.parentWidth = measuredWidth;
-                flickerLoadingView.parentHeight = measuredHeight;
-                flickerLoadingView.parentXOffset = f2;
+                this.globalGradient.setParentSize(view.getMeasuredWidth(), view.getMeasuredHeight(), -getX());
             }
             LinearLayout linearLayout = this.linearLayout;
             float fDp = AndroidUtilities.dp(12.0f) + this.nameTextView.getTop() + linearLayout.getTop();
@@ -428,10 +419,9 @@ public final class SessionCell extends FrameLayout {
         if (z2) {
             TL_account.TL_connectedBot tL_connectedBot = (TL_account.TL_connectedBot) tLObject;
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(tL_connectedBot.bot_id));
-            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+            avatarDrawable.setInfo(user);
             backupImageView.setRoundRadius(AndroidUtilities.dp(21.0f));
-            backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(user, avatarDrawable);
             textView3.setText(UserObject.getUserName(user));
             textView2.setText(LocaleController.getString(R.string.SessionBot));
             if (TLObject.hasFlag(tL_connectedBot.flags, 2)) {
@@ -469,7 +459,7 @@ public final class SessionCell extends FrameLayout {
             }
             if (spannableStringBuilder.length() != 0) {
                 DotDividerSpan dotDividerSpan = new DotDividerSpan();
-                dotDividerSpan.topPadding = AndroidUtilities.dp(1.5f);
+                dotDividerSpan.setTopPadding(AndroidUtilities.dp(1.5f));
                 spannableStringBuilder.append((CharSequence) " . ").setSpan(dotDividerSpan, spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 0);
             }
             spannableStringBuilder.append((CharSequence) strStringForMessageListDate);
@@ -486,8 +476,7 @@ public final class SessionCell extends FrameLayout {
             if (user2 != null) {
                 avatarDrawable.setInfo(i, user2);
                 firstName = UserObject.getFirstName(user2);
-                backupImageView.imageReceiver.setForUserOrChat(user2, avatarDrawable);
-                backupImageView.onNewImageSet();
+                backupImageView.setForUserOrChat(user2, avatarDrawable);
             } else {
                 firstName = "";
             }
@@ -533,44 +522,26 @@ public final class SessionCell extends FrameLayout {
     }
 
     public final class CircleGradientDrawable extends Drawable {
-        public final int $r8$classId;
-        public Object paint;
-        public int size;
+        public final int $r8$classId = 0;
+        public final Paint paint;
+        public final int size;
 
-        public CircleGradientDrawable() {
-            this.$r8$classId = 2;
-            this.size = 255;
+        public CircleGradientDrawable(int i, int i2, int i3) {
+            this.size = i;
+            Paint paint = new Paint(1);
+            this.paint = paint;
+            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, new int[]{i2, i3}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         }
 
         @Override
         public final void draw(Canvas canvas) {
             switch (this.$r8$classId) {
                 case 0:
-                    canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, (Paint) this.paint);
+                    canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, this.paint);
                     break;
-                case 1:
-                    canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, (Paint) this.paint);
+                default:
+                    canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, this.paint);
                     break;
-            }
-        }
-
-        @Override
-        public int getAlpha() {
-            switch (this.$r8$classId) {
-                case 2:
-                    return this.size;
-                default:
-                    return super.getAlpha();
-            }
-        }
-
-        @Override
-        public ColorFilter getColorFilter() {
-            switch (this.$r8$classId) {
-                case 2:
-                    return (ColorFilter) this.paint;
-                default:
-                    return super.getColorFilter();
             }
         }
 
@@ -597,26 +568,18 @@ public final class SessionCell extends FrameLayout {
         @Override
         public final int getOpacity() {
             switch (this.$r8$classId) {
-                case 0:
-                    return -2;
-                case 1:
-                    return -2;
-                default:
-                    return -1;
             }
+            return -2;
         }
 
         @Override
         public final void setAlpha(int i) {
             switch (this.$r8$classId) {
                 case 0:
-                    ((Paint) this.paint).setAlpha(i);
-                    break;
-                case 1:
-                    ((Paint) this.paint).setAlpha(Theme.multAlpha(i / 255.0f, this.size));
+                    this.paint.setAlpha(i);
                     break;
                 default:
-                    this.size = i;
+                    this.paint.setAlpha(Theme.multAlpha(i / 255.0f, this.size));
                     break;
             }
         }
@@ -626,30 +589,15 @@ public final class SessionCell extends FrameLayout {
             switch (this.$r8$classId) {
                 case 0:
                     break;
-                case 1:
-                    ((Paint) this.paint).setColorFilter(colorFilter);
-                    break;
                 default:
-                    this.paint = colorFilter;
+                    this.paint.setColorFilter(colorFilter);
                     break;
             }
         }
 
-        public CircleGradientDrawable(int i, int i2, int i3) {
-            this.$r8$classId = 0;
-            this.size = i;
-            Paint paint = new Paint(1);
-            this.paint = paint;
-            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, new int[]{i2, i3}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-        }
-
         public CircleGradientDrawable(Paint paint, int i) {
-            this.$r8$classId = 1;
             this.paint = paint;
             this.size = i;
-        }
-
-        private final void draw$org$telegram$ui$Components$ActivityWindowEmptyBackgroundDrawable(Canvas canvas) {
         }
 
         private final void setColorFilter$org$telegram$ui$Cells$SessionCell$CircleGradientDrawable(ColorFilter colorFilter) {

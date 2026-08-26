@@ -40,7 +40,7 @@ public final class StarsReactionsSheet$$ExternalSyntheticLambda13 implements Run
                     AndroidUtilities.runOnUIThread(starsReactionsSheet$$ExternalSyntheticLambda13, 5000L);
                     Bulletin bulletin = pendingPaidReactions.bulletin;
                     bulletin.show(true);
-                    bulletin.onHideListener = starsReactionsSheet$$ExternalSyntheticLambda13;
+                    bulletin.setOnHideListener(starsReactionsSheet$$ExternalSyntheticLambda13);
                 }
                 pendingPaidReactions.bulletinLayout.titleTextView.setText(pendingPaidReactions.getToastTitle());
                 break;

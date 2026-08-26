@@ -1,7 +1,7 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -24,19 +24,17 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeProvider;
 import android.widget.Button;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.VoIPFragment;
 
 public final class AcceptDeclineView extends View {
     public final ButtonBounce acceptBounce;
@@ -166,14 +164,9 @@ public final class AcceptDeclineView extends View {
             Listener listener = AcceptDeclineView.this.listener;
             if (listener != null) {
                 if (i == 0) {
-                    ((VoIPFragment.AnonymousClass8) listener).onAccept();
+                    listener.onAccept();
                 } else if (i == 1) {
-                    VoIPFragment voIPFragment = VoIPFragment.this;
-                    if (voIPFragment.currentState == 17 || VoIPService.getSharedState() == null) {
-                        voIPFragment.windowView.finish(330L);
-                    } else {
-                        VoIPService.getSharedState().declineIncomingCall();
-                    }
+                    listener.onDecline();
                 }
             }
             return true;
@@ -193,13 +186,16 @@ public final class AcceptDeclineView extends View {
     }
 
     public interface Listener {
+        void onAccept();
+
+        void onDecline();
     }
 
-    public AcceptDeclineView(Activity activity) {
-        super(activity);
+    public AcceptDeclineView(Context context) {
+        super(context);
         Paint paint = new Paint(1);
-        this.acceptBounce = new ButtonBounce(this, 1.0f, 5.0f);
-        this.declineBounce = new ButtonBounce(this, 1.0f, 5.0f);
+        this.acceptBounce = new ButtonBounce(this);
+        this.declineBounce = new ButtonBounce(this);
         this.expandSmallRadius = true;
         this.expandBigRadius = true;
         this.acceptRect = new Rect();
@@ -215,7 +211,7 @@ public final class AcceptDeclineView extends View {
         avatarWavesDrawable.setAmplitude(0.0d);
         paint2.setColor(-16777216);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        this.touchSlop = ViewConfiguration.get(activity).getScaledTouchSlop();
+        this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         int iDp = AndroidUtilities.dp(60.0f);
         this.buttonWidth = iDp;
         FabBackgroundDrawable fabBackgroundDrawable = new FabBackgroundDrawable();
@@ -239,17 +235,17 @@ public final class AcceptDeclineView extends View {
         this.acceptLayout = new StaticLayout(string, textPaint, iMeasureText, alignment, 1.0f, 0.0f, false);
         this.declineLayout = new StaticLayout(string2, textPaint, (int) textPaint.measureText(string2), alignment, 1.0f, 0.0f, false);
         this.retryLayout = new StaticLayout(string3, textPaint, (int) textPaint.measureText(string3), alignment, 1.0f, 0.0f, false);
-        this.callDrawable = activity.getDrawable(R.drawable.calls_decline).mutate();
-        Drawable drawableMutate = activity.getDrawable(R.drawable.ic_close_white).mutate();
+        this.callDrawable = context.getDrawable(R.drawable.calls_decline).mutate();
+        Drawable drawableMutate = context.getDrawable(R.drawable.ic_close_white).mutate();
         this.cancelDrawable = drawableMutate;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         int i = R.raw.call_accept;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, SurfaceContainer$$ExternalSyntheticOutline0.m(i, ""), AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, Fragment$$ExternalSyntheticOutline0.m(i, ""), AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
         this.acceptVoiceDrawable = rLottieDrawable;
         rLottieDrawable.setAutoRepeat(1);
         rLottieDrawable.setCustomEndFrame(90);
-        rLottieDrawable.masterParent = this;
-        this.acceptVideoDrawable = activity.getDrawable(R.drawable.calls_video).mutate();
+        rLottieDrawable.setMasterParent(this);
+        this.acceptVideoDrawable = context.getDrawable(R.drawable.calls_video).mutate();
         paint.setColor(-1);
         paint.setAlpha(20);
         BaseCell.RippleDrawableSafe rippleDrawableSafeCreateSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(52.0f), 0, ColorUtils.setAlphaComponent(-1, 76));
@@ -287,9 +283,7 @@ public final class AcceptDeclineView extends View {
         if (valueAnimator != null) {
             valueAnimator.cancel();
             this.callAnimator = null;
-            RLottieDrawable rLottieDrawable = this.acceptVoiceDrawable;
-            rLottieDrawable.isRunning = false;
-            rLottieDrawable.checkChoreographer$1();
+            this.acceptVoiceDrawable.stop();
         }
     }
 
@@ -388,7 +382,7 @@ public final class AcceptDeclineView extends View {
             ImageWithWavesView.AvatarWavesDrawable avatarWavesDrawable = this.avatarWavesDrawable;
             avatarWavesDrawable.update();
             float f4 = (int) f3;
-            avatarWavesDrawable.draw(canvas, f4, f4, this);
+            avatarWavesDrawable.draw(canvas, this, f4, f4);
         }
         this.acceptDrawable.draw(canvas);
         if (this.retryMod) {

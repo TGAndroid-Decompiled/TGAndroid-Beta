@@ -13,10 +13,10 @@ public abstract class Theme$$ExternalSyntheticApiModelOutline0 {
         return (OnBackInvokedCallback) obj;
     }
 
-    public static OnBackInvokedDispatcher m1056m(Object obj) {
+    public static OnBackInvokedDispatcher m1058m(Object obj) {
         return (OnBackInvokedDispatcher) obj;
     }
 
-    public static void m1058m() {
+    public static void m1060m() {
     }
 }

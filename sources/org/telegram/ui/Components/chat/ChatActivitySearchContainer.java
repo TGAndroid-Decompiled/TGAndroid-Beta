@@ -16,7 +16,7 @@ public final class ChatActivitySearchContainer extends FrameLayout {
         super(context);
         ChatActivityFadeView chatActivityFadeView = new ChatActivityFadeView(context);
         this.fadeView = chatActivityFadeView;
-        addView(chatActivityFadeView, LayoutHelper.createFrame(-1.0f, -1));
+        addView(chatActivityFadeView, LayoutHelper.createFrameMatchParent());
     }
 
     @Override

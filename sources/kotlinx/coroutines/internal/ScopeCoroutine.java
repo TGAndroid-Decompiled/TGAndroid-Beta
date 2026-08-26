@@ -1,6 +1,6 @@
 package kotlinx.coroutines.internal;
 
-import com.google.android.gms.internal.mlkit_vision_common.zzjj;
+import com.google.android.gms.internal.mlkit_vision_common.zzjf;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.jvm.internal.CoroutineStackFrame;
@@ -17,7 +17,7 @@ public class ScopeCoroutine extends AbstractCoroutine implements CoroutineStackF
 
     @Override
     public void afterCompletion(Object obj) {
-        AtomicKt.resumeCancellableWith(JobKt.recoverResult(obj), zzjj.intercepted(this.uCont));
+        AtomicKt.resumeCancellableWith(JobKt.recoverResult(obj), zzjf.intercepted(this.uCont));
     }
 
     @Override

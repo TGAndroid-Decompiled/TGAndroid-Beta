@@ -7,10 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PointF;
 import android.graphics.RectF;
 import android.net.Uri;
-import android.opengl.GLES20;
 import android.os.AsyncTask;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -20,10 +18,10 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
-import androidx.activity.ComponentDialog$$ExternalSyntheticLambda1;
 import androidx.car.app.HostException;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.core.app.ActivityCompat$$ExternalSyntheticLambda0;
 import androidx.core.util.AtomicFile;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.google.android.datatransport.runtime.backends.MetadataBackendRegistry;
 import com.google.android.datatransport.runtime.dagger.internal.Factory;
 import com.google.android.datatransport.runtime.scheduling.DefaultScheduler;
@@ -77,11 +75,7 @@ import java.io.FileInputStream;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.security.SecureRandom;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -96,21 +90,13 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import javax.inject.Provider;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
-import org.commonmark.internal.DocumentParser;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.BottomSheetTabs;
-import org.telegram.ui.Components.BlurringShader;
-import org.telegram.ui.Components.CanvasButton;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.Paint.Views.ReactionWidgetEntityView;
-import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.chat.layouts.ChatActivityActionsButtonsLayout;
-import org.telegram.ui.Stories.recorder.PaintView;
-import org.telegram.ui.WearAuthSheet;
+import org.telegram.ui.Gifts.ProfileGiftsContainer;
 
-public final class MHTML implements Factory, Subtitle, ComponentContainer, FactorAnimator.Target, ReactionsContainerLayout.ReactionsContainerDelegate {
+public final class MHTML implements Factory, Subtitle, ComponentContainer, FactorAnimator.Target {
     public Object boundary;
     public Object entries;
     public Object entriesByLocation;
@@ -144,7 +130,7 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
         this(context, new ImageHints(-1, 0, 0));
     }
 
-    public static void appendHeader(String str, String str2, HashMap map) {
+    public static void appendHeader(HashMap map, String str, String str2) {
         HeaderValue headerValue = new HeaderValue();
         String[] strArrSplit = str2.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
         for (int i = 0; i < strArrSplit.length; i++) {
@@ -157,7 +143,7 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
                     String strTrim2 = strTrim.substring(0, iIndexOf).trim();
                     String strTrim3 = strTrim.substring(iIndexOf + 1).trim();
                     if (strTrim3.length() >= 2 && strTrim3.charAt(0) == '\"' && strTrim3.charAt(strTrim3.length() - 1) == '\"') {
-                        strTrim3 = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, strTrim3);
+                        strTrim3 = Fragment$$ExternalSyntheticOutline0.m(1, 1, strTrim3);
                     }
                     headerValue.props.put(strTrim2, strTrim3);
                 }
@@ -196,164 +182,6 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
         }
     }
 
-    public static float[] getPreparedSplineCurve(ArrayList arrayList) {
-        double d;
-        double d2;
-        float f;
-        double[] dArr;
-        ArrayList arrayList2;
-        float f2;
-        int i;
-        int size = arrayList.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            PointF pointF = (PointF) arrayList.get(i2);
-            pointF.x *= 255.0f;
-            pointF.y *= 255.0f;
-        }
-        int size2 = arrayList.size();
-        double d3 = 1.0d;
-        if (size2 <= 0 || size2 == 1) {
-            d = 1.0d;
-            d2 = 6.0d;
-            f = 255.0f;
-            dArr = null;
-        } else {
-            double[][] dArr2 = (double[][]) Array.newInstance((Class<?>) Double.TYPE, size2, 3);
-            double[] dArr3 = new double[size2];
-            double[] dArr4 = dArr2[0];
-            dArr4[1] = 1.0d;
-            double d4 = 0.0d;
-            dArr4[0] = 0.0d;
-            dArr4[2] = 0.0d;
-            int i3 = 1;
-            while (true) {
-                i = size2 - 1;
-                if (i3 >= i) {
-                    break;
-                }
-                PointF pointF2 = (PointF) arrayList.get(i3 - 1);
-                PointF pointF3 = (PointF) arrayList.get(i3);
-                int i4 = i3 + 1;
-                double d5 = d3;
-                PointF pointF4 = (PointF) arrayList.get(i4);
-                double[] dArr5 = dArr2[i3];
-                float f3 = pointF3.x;
-                double d6 = d4;
-                float f4 = pointF2.x;
-                double d7 = f3 - f4;
-                dArr5[0] = d7 / 6.0d;
-                float f5 = pointF4.x;
-                dArr5[1] = ((double) (f5 - f4)) / 3.0d;
-                double d8 = f5 - f3;
-                dArr5[2] = d8 / 6.0d;
-                float f6 = pointF4.y;
-                float f7 = pointF3.y;
-                dArr3[i3] = (((double) (f6 - f7)) / d8) - (((double) (f7 - pointF2.y)) / d7);
-                i3 = i4;
-                d3 = d5;
-                d4 = d6;
-            }
-            d = d3;
-            double d9 = d4;
-            d2 = 6.0d;
-            f = 255.0f;
-            dArr3[0] = d9;
-            dArr3[i] = d9;
-            double[] dArr6 = dArr2[i];
-            dArr6[1] = d;
-            dArr6[0] = d9;
-            dArr6[2] = d9;
-            for (int i5 = 1; i5 < size2; i5++) {
-                double[] dArr7 = dArr2[i5];
-                double d10 = dArr7[0];
-                int i6 = i5 - 1;
-                double[] dArr8 = dArr2[i6];
-                double d11 = d10 / dArr8[1];
-                dArr7[1] = dArr7[1] - (dArr8[2] * d11);
-                dArr7[0] = d9;
-                dArr3[i5] = dArr3[i5] - (d11 * dArr3[i6]);
-            }
-            for (int i7 = size2 - 2; i7 >= 0; i7--) {
-                double[] dArr9 = dArr2[i7];
-                double d12 = dArr9[2];
-                int i8 = i7 + 1;
-                double[] dArr10 = dArr2[i8];
-                double d13 = d12 / dArr10[1];
-                dArr9[1] = dArr9[1] - (dArr10[0] * d13);
-                dArr9[2] = d9;
-                dArr3[i7] = dArr3[i7] - (d13 * dArr3[i8]);
-            }
-            dArr = new double[size2];
-            for (int i9 = 0; i9 < size2; i9++) {
-                dArr[i9] = dArr3[i9] / dArr2[i9][1];
-            }
-        }
-        int length = dArr.length;
-        if (length < 1) {
-            arrayList2 = null;
-            f2 = 0.0f;
-        } else {
-            arrayList2 = new ArrayList(length + 1);
-            int i10 = 0;
-            while (i10 < length - 1) {
-                PointF pointF5 = (PointF) arrayList.get(i10);
-                int i11 = i10 + 1;
-                PointF pointF6 = (PointF) arrayList.get(i11);
-                int i12 = (int) pointF5.x;
-                while (true) {
-                    float f8 = pointF6.x;
-                    if (i12 < ((int) f8)) {
-                        float f9 = i12;
-                        float f10 = pointF5.x;
-                        PointF pointF7 = pointF5;
-                        double d14 = f8 - f10;
-                        double d15 = ((double) (f9 - f10)) / d14;
-                        double d16 = d - d15;
-                        int i13 = length;
-                        double[] dArr11 = dArr;
-                        float f11 = (float) (((((((d15 * d15) * d15) - d15) * dArr11[i11]) + ((((d16 * d16) * d16) - d16) * dArr11[i10])) * ((d14 * d14) / d2)) + (((double) pointF6.y) * d15) + (((double) pointF7.y) * d16));
-                        if (f11 > f) {
-                            f11 = 255.0f;
-                        } else if (f11 < 0.0f) {
-                            f11 = 0.0f;
-                        }
-                        arrayList2.add(new PointF(f9, f11));
-                        i12++;
-                        dArr = dArr11;
-                        pointF5 = pointF7;
-                        length = i13;
-                    }
-                }
-                i10 = i11;
-            }
-            f2 = 0.0f;
-            arrayList2.add((PointF) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList));
-        }
-        float f12 = ((PointF) arrayList2.get(0)).x;
-        if (f12 > f2) {
-            for (int i14 = (int) f12; i14 >= 0; i14--) {
-                arrayList2.add(0, new PointF(i14, 0.0f));
-            }
-        }
-        float f13 = ((PointF) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList2)).x;
-        if (f13 < f) {
-            for (int i15 = ((int) f13) + 1; i15 <= 255; i15++) {
-                arrayList2.add(new PointF(i15, 255.0f));
-            }
-        }
-        float[] fArr = new float[arrayList2.size()];
-        int size3 = arrayList2.size();
-        for (int i16 = 0; i16 < size3; i16++) {
-            PointF pointF8 = (PointF) arrayList2.get(i16);
-            float fSqrt = (float) Math.sqrt(Math.pow(pointF8.x - pointF8.y, 2.0d));
-            if (pointF8.x > pointF8.y) {
-                fSqrt = -fSqrt;
-            }
-            fArr[i16] = fSqrt;
-        }
-        return fArr;
-    }
-
     public static void zzf(MHTML mhtml, zzz zzzVar) {
         int i = zzzVar.zze;
         if (i == 2 && ((zzx) mhtml.entriesByLocation) != null) {
@@ -370,69 +198,16 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
         zzxVar.zzh.add(zzzVar);
     }
 
-    public byte[] acceptAndBuildAnswer() {
-        SecureRandom secureRandom = new SecureRandom();
-        BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = WearAuthSheet.DH_G;
-        BigInteger bigInteger3 = WearAuthSheet.DH_P;
-        BigInteger bigIntegerModPow = bigInteger2.modPow(bigInteger, bigInteger3);
-        BigInteger bigInteger4 = BigInteger.ONE;
-        if (bigIntegerModPow.compareTo(bigInteger4) <= 0 || bigIntegerModPow.compareTo(bigInteger3.subtract(bigInteger4)) >= 0) {
-            throw new IllegalStateException("our pubkey invalid (extremely unlikely)");
-        }
-        byte[] bArrAccess$300 = WearAuthSheet.access$300(bigIntegerModPow);
-        byte[] bArr = (byte[]) this.entriesByLocation;
-        BigInteger bigInteger5 = new BigInteger(1, bArr);
-        if (bigInteger5.compareTo(bigInteger4) <= 0 || bigInteger5.compareTo(bigInteger3.subtract(bigInteger4)) >= 0) {
-            throw new IllegalArgumentException("peer pubkey out of range");
-        }
-        byte[] bArrAccess$301 = WearAuthSheet.access$300(bigInteger5.modPow(bigInteger, bigInteger3));
-        byte[] bArr2 = new byte[16];
-        secureRandom.nextBytes(bArr2);
-        byte[] bArr3 = (byte[]) this.file;
-        byte[] bArrAccess$400 = WearAuthSheet.access$400(new byte[][]{bArrAccess$301, bArr3, bArr2});
-        byte[] bArrAccess$401 = WearAuthSheet.access$400(new byte[][]{bArrAccess$301, bArr});
-        this.filePos = bArrAccess$400;
-        String[] strArr = {"👋", "👍", "👎", "👌", "👊", "🤟", "🫵", "👏", "🤝", "✍", "💪", "👀", "👅", "🥶", "🤡", "💀", "👽", "😈", "😎", "🤠", "🤩", "😍", "🤯", "🦄", "🐶", "🐷", "🐔", "🐥", "🦊", "🐙", "🐸", "🐳", "🦉", "🦆", "🐢", "🦖", "🐵", "🐝", "🦁", "🐧", "🦋", "🐬", "🦀", "🐌", "🦠", "🐠", "🌵", "💐", "💐", "🎄", "🍄", "🍔", "🍕", "☕", "🍩", "🍪", "🎂", "🍫", "🍭", "🍎", "🥥", "🍒", "🌶", "🥒", "🥦", "🍇", "🍋", "🍓", "🍌", "🍍", "🍆", "🌽", "🍺", "🍷", "🍾", "🍦", "🍰", "🍞", "🍖", "🌭", "🧊", "🍳", "⭐", "☁", "🚀", "🎈", "💎", "💡", "🔑", "❄", "🔎", "👠", "👕", "👗", "👖", "👙", "👜", "👓", "🎀", "💄", "💍", "♠", "❤", "♦", "♣", "🌈", "🌊", "🎃", "👻", "🎁", "🔮", "🎥", "💿", "💻", "📡", "🔉", "⏳", "🔒", "🚗", "🔱", "🔗", "🎲", "🎮", "⚽", "🎳", "🏁", "🏆", "🎸", "💣", "🚽", "🎹", "🎤", "🎨", "🔫", "💊", "💰", "📦", "📅", "📚", "❗", "❓", "💯", "💦", "💤", "🌍", "🏝", "🚂", "🛢", "🛹", "🚢", "✈", "🛎", "🧳", "🌖", "🌞", "🔥", "🏓", "🎰", "🧸", "🪩", "🎭", "👑", "🎩", "🧢", "🔈", "🔋", "🕯", "✏", "💼", "📌", "✂", "🗑", "🛡", "⚙", "🧲", "\u1fa8f", "⚖", "🧪", "🚪", "🫧", "🛒", "🪑", "🗿", "🏁", "🏴\u200d☠", "📊", "🥁", "🎧", "🎵", "🧩", "⛳", "🥇", "🥈", "🥈", "🌪", "⛺", "🧭", "\u1fac6", "🧠", "💋"};
-        ArrayList arrayList = new ArrayList(4);
-        int i = 0;
-        for (int i2 = 4; i < i2; i2 = 4) {
-            int i3 = i * 8;
-            arrayList.add(strArr[(int) ((((((((((((long) bArrAccess$401[i3]) & 127) << 56) | ((((long) bArrAccess$401[i3 + 1]) & 255) << 48)) | ((((long) bArrAccess$401[i3 + 2]) & 255) << 40)) | ((((long) bArrAccess$401[i3 + 3]) & 255) << 32)) | ((((long) bArrAccess$401[i3 + 4]) & 255) << 24)) | ((((long) bArrAccess$401[i3 + 5]) & 255) << 16)) | ((((long) bArrAccess$401[i3 + 6]) & 255) << 8)) | (((long) bArrAccess$401[i3 + 7]) & 255)) % ((long) 200))]);
-            i++;
-        }
-        this.entries = arrayList;
-        StringBuilder sb = new StringBuilder("wear-auth: built answer; session ");
-        StringBuilder sb2 = new StringBuilder(bArr3.length * 2);
-        for (byte b : bArr3) {
-            sb2.append(String.format("%02x", Byte.valueOf(b)));
-        }
-        sb.append(sb2.toString());
-        sb.append(" emojis=");
-        sb.append((ArrayList) this.entries);
-        FileLog.d(sb.toString());
-        byte[] bArr4 = new byte[288];
-        System.arraycopy(bArr3, 0, bArr4, 0, 16);
-        System.arraycopy(bArr2, 0, bArr4, 16, 16);
-        System.arraycopy(bArrAccess$300, 0, bArr4, 32, 256);
-        return bArr4;
-    }
-
-    @Override
-    public boolean allowLongPress() {
-        return true;
-    }
-
     public AutoValue_CrashlyticsReport_Session_Event_Application_Execution_Thread_Frame build() {
         String strM$1 = ((Long) this.file) == null ? " pc" : "";
         if (((String) this.boundary) == null) {
             strM$1 = strM$1.concat(" symbol");
         }
         if (((Long) this.entriesByLocation) == null) {
-            strM$1 = SurfaceContainer$$ExternalSyntheticOutline0.m$1(strM$1, " offset");
+            strM$1 = Fragment$$ExternalSyntheticOutline0.m$1(strM$1, " offset");
         }
         if (((Integer) this.filePos) == null) {
-            strM$1 = SurfaceContainer$$ExternalSyntheticOutline0.m$1(strM$1, " importance");
+            strM$1 = Fragment$$ExternalSyntheticOutline0.m$1(strM$1, " importance");
         }
         if (strM$1.isEmpty()) {
             return new AutoValue_CrashlyticsReport_Session_Event_Application_Execution_Thread_Frame(((Long) this.file).longValue(), (String) this.boundary, (String) this.entries, ((Long) this.entriesByLocation).longValue(), ((Integer) this.filePos).intValue());
@@ -469,53 +244,6 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
             canvas.drawPath(path, paint);
         }
         canvas.clipPath(path);
-    }
-
-    @Override
-    public boolean drawBackground() {
-        return true;
-    }
-
-    @Override
-    public void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
-        Paint paint;
-        BlurringShader.BlurManager blurManager;
-        BlurringShader.StoryBlurDrawer storyBlurDrawer = (BlurringShader.StoryBlurDrawer) this.entries;
-        Paint paint2 = (Paint) this.entriesByLocation;
-        PaintView paintView = (PaintView) this.filePos;
-        if (!z && (blurManager = paintView.blurManager) != null && blurManager.hasRenderNode()) {
-            if (z) {
-                storyBlurDrawer = (BlurringShader.StoryBlurDrawer) this.file;
-            }
-            Path path = (Path) this.boundary;
-            path.rewind();
-            path.addRoundRect(rectF, f, f, Path.Direction.CW);
-            canvas.save();
-            canvas.clipPath(path);
-            storyBlurDrawer.drawRect(canvas, true);
-            paint2.setAlpha((int) (i * 0.4f));
-            canvas.drawPaint(paint2);
-            canvas.restore();
-            return;
-        }
-        if (z) {
-            if (((BlurringShader.StoryBlurDrawer) this.file) == null) {
-                this.file = new BlurringShader.StoryBlurDrawer(paintView.blurManager, paintView.reactionLayout.getReactionsWindow().windowView, 0, false);
-            }
-            float f4 = -f2;
-            float f5 = -f3;
-            ((BlurringShader.StoryBlurDrawer) this.file).setBounds(f4, f5, paintView.getMeasuredWidth() + f4, paintView.getMeasuredHeight() + f5);
-            paint = ((BlurringShader.StoryBlurDrawer) this.file).paint;
-        } else {
-            float f6 = -f2;
-            float f7 = -f3;
-            storyBlurDrawer.setBounds(f6, f7, paintView.getMeasuredWidth() + f6, paintView.getMeasuredHeight() + f7);
-            paint = storyBlurDrawer.paint;
-        }
-        paint.setAlpha(i);
-        paint2.setAlpha((int) (i * 0.4f));
-        canvas.drawRoundRect(rectF, f, f, paint);
-        canvas.drawRoundRect(rectF, f, f, paint2);
     }
 
     @Override
@@ -639,33 +367,13 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
     }
 
     @Override
-    public boolean needEnterText() {
-        return false;
-    }
-
-    @Override
-    public void onEmojiWindowDismissed() {
-    }
-
-    @Override
-    public void onFactorChangeFinished(float f, int i) {
+    public void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
     public void onFactorChanged(int i, float f, float f2, FactorAnimator factorAnimator) {
         ((TextView) this.boundary).setAlpha(AndroidUtilities.lerp(0.5f, 1.0f, ((BoolAnimator) this.entriesByLocation).floatValue));
         ((ChatActivityActionsButtonsLayout) this.filePos).checkHolderPositionsAndVisibility(this);
-    }
-
-    @Override
-    public void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
-        PaintView paintView = (PaintView) this.filePos;
-        ReactionWidgetEntityView reactionWidgetEntityView = paintView.reactionForEntity;
-        if (reactionWidgetEntityView == null) {
-            return;
-        }
-        reactionWidgetEntityView.setCurrentReaction(visibleReaction, true);
-        paintView.showReactionsLayout(false);
     }
 
     public HashMap parseHeaders(BufferedReader bufferedReader) throws IOException {
@@ -696,7 +404,7 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
                             sb.append(strTrim3);
                             str = strTrim2;
                         } else {
-                            appendHeader(strTrim2, strTrim3, map);
+                            appendHeader(map, strTrim2, strTrim3);
                         }
                     }
                 } else {
@@ -706,10 +414,10 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
                     }
                 }
             }
-            appendHeader(str, sb.toString(), map);
+            appendHeader(map, str, sb.toString());
         }
         if (str != null && sb != null) {
-            appendHeader(str, sb.toString(), map);
+            appendHeader(map, str, sb.toString());
         }
         return map;
     }
@@ -727,7 +435,7 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
         synchronized (((ArrayDeque) this.entriesByLocation)) {
             zRemove = ((ArrayDeque) this.entriesByLocation).remove(obj);
             if (zRemove) {
-                ((ScheduledThreadPoolExecutor) this.filePos).execute(new ComponentDialog$$ExternalSyntheticLambda1(this, 20));
+                ((ScheduledThreadPoolExecutor) this.filePos).execute(new ActivityCompat$$ExternalSyntheticLambda0(this, 19));
             }
         }
         return zRemove;
@@ -744,24 +452,24 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
         stopPlaceholderForActivity();
         stopPlaceholderForSource();
         this.entries = bitmap;
-        CanvasButton.AnonymousClass2 anonymousClass2 = new CanvasButton.AnonymousClass2((Bitmap) this.entries);
-        this.filePos = anonymousClass2;
-        ((View) this.file).setBackground(anonymousClass2);
+        ProfileGiftsContainer.AnonymousClass3 anonymousClass3 = new ProfileGiftsContainer.AnonymousClass3((Bitmap) this.entries);
+        this.filePos = anonymousClass3;
+        ((View) this.file).setBackground(anonymousClass3);
         View view = (View) this.boundary;
         if (view != null) {
-            CanvasButton.AnonymousClass2 anonymousClass3 = new CanvasButton.AnonymousClass2((Bitmap) this.entries);
-            this.entriesByLocation = anonymousClass3;
-            view.setBackground(anonymousClass3);
+            ProfileGiftsContainer.AnonymousClass3 anonymousClass4 = new ProfileGiftsContainer.AnonymousClass3((Bitmap) this.entries);
+            this.entriesByLocation = anonymousClass4;
+            view.setBackground(anonymousClass4);
         }
     }
 
     public void stopPlaceholderForActivity() {
         Bitmap bitmap;
-        if (((CanvasButton.AnonymousClass2) this.filePos) != null) {
+        if (((ProfileGiftsContainer.AnonymousClass3) this.filePos) != null) {
             ((View) this.file).setBackground(null);
             this.filePos = null;
         }
-        if (((CanvasButton.AnonymousClass2) this.entriesByLocation) == null && ((CanvasButton.AnonymousClass2) this.filePos) == null && (bitmap = (Bitmap) this.entries) != null) {
+        if (((ProfileGiftsContainer.AnonymousClass3) this.entriesByLocation) == null && ((ProfileGiftsContainer.AnonymousClass3) this.filePos) == null && (bitmap = (Bitmap) this.entries) != null) {
             bitmap.recycle();
             this.entries = null;
         }
@@ -769,14 +477,14 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
 
     public void stopPlaceholderForSource() {
         Bitmap bitmap;
-        if (((CanvasButton.AnonymousClass2) this.entriesByLocation) != null) {
+        if (((ProfileGiftsContainer.AnonymousClass3) this.entriesByLocation) != null) {
             this.entriesByLocation = null;
             View view = (View) this.boundary;
             if (view != null) {
                 view.setBackground(null);
             }
         }
-        if (((CanvasButton.AnonymousClass2) this.entriesByLocation) == null && ((CanvasButton.AnonymousClass2) this.filePos) == null && (bitmap = (Bitmap) this.entries) != null) {
+        if (((ProfileGiftsContainer.AnonymousClass3) this.entriesByLocation) == null && ((ProfileGiftsContainer.AnonymousClass3) this.filePos) == null && (bitmap = (Bitmap) this.entries) != null) {
             bitmap.recycle();
             this.entries = null;
         }
@@ -1276,57 +984,5 @@ public final class MHTML implements Factory, Subtitle, ComponentContainer, Facto
         this.file = context;
         this.boundary = imageHints;
         zze();
-    }
-
-    public MHTML(int i) {
-        switch (i) {
-            case 16:
-                int[] iArr = new int[1];
-                this.filePos = iArr;
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(new PointF(0.0f, 0.0f));
-                arrayList.add(new PointF(0.5f, 0.5f));
-                arrayList.add(new PointF(1.0f, 1.0f));
-                ArrayList arrayList2 = new ArrayList();
-                arrayList2.add(new PointF(0.0f, 0.0f));
-                arrayList2.add(new PointF(0.47f, 0.57f));
-                arrayList2.add(new PointF(1.0f, 1.0f));
-                float[] preparedSplineCurve = getPreparedSplineCurve(arrayList2);
-                this.file = preparedSplineCurve;
-                float[] preparedSplineCurve2 = getPreparedSplineCurve(arrayList);
-                this.entriesByLocation = preparedSplineCurve2;
-                this.entries = preparedSplineCurve2;
-                this.boundary = preparedSplineCurve2;
-                GLES20.glGenTextures(1, iArr, 0);
-                GLES20.glBindTexture(3553, iArr[0]);
-                GLES20.glTexParameteri(3553, 10241, 9729);
-                GLES20.glTexParameteri(3553, 10240, 9729);
-                GLES20.glTexParameteri(3553, 10242, 33071);
-                GLES20.glTexParameteri(3553, 10243, 33071);
-                ByteBuffer byteBufferAllocateDirect = ByteBuffer.allocateDirect(1024);
-                byteBufferAllocateDirect.order(ByteOrder.LITTLE_ENDIAN);
-                if (preparedSplineCurve2.length >= 256 && preparedSplineCurve2.length >= 256 && preparedSplineCurve2.length >= 256 && preparedSplineCurve.length >= 256) {
-                    for (int i2 = 0; i2 < 256; i2++) {
-                        float f = i2;
-                        int iMin = (int) Math.min(Math.max(((float[]) this.boundary)[i2] + f, 0.0f), 255.0f);
-                        int iMin2 = (int) Math.min(Math.max(((float[]) this.entries)[i2] + f, 0.0f), 255.0f);
-                        int iMin3 = (int) Math.min(Math.max(f + ((float[]) this.entriesByLocation)[i2], 0.0f), 255.0f);
-                        byteBufferAllocateDirect.put((byte) Math.min(Math.max(iMin3 + ((float[]) this.file)[iMin3], 0.0f), 255.0f));
-                        byteBufferAllocateDirect.put((byte) Math.min(Math.max(iMin2 + ((float[]) this.file)[iMin2], 0.0f), 255.0f));
-                        byteBufferAllocateDirect.put((byte) Math.min(Math.max(iMin + ((float[]) this.file)[iMin], 0.0f), 255.0f));
-                        byteBufferAllocateDirect.put((byte) -1);
-                    }
-                    byteBufferAllocateDirect.position(0);
-                    GLES20.glTexImage2D(3553, 0, 6408, 256, 1, 0, 6408, 5121, byteBufferAllocateDirect);
-                    break;
-                }
-                break;
-            default:
-                this.entries = new ArrayList();
-                this.file = new ArrayList();
-                this.boundary = new ArrayList();
-                this.entriesByLocation = DocumentParser.CORE_FACTORY_TYPES;
-                break;
-        }
     }
 }

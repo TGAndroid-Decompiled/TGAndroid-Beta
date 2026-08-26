@@ -1,8 +1,8 @@
 package org.webrtc;
 
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_vision_common.zzkv;
 import java.nio.ByteBuffer;
+import org.telegram.ui.CalendarActivity$$ExternalSyntheticOutline0;
 
 public class JavaI420Buffer implements VideoFrame.I420Buffer {
     private final ByteBuffer dataU;
@@ -46,7 +46,7 @@ public class JavaI420Buffer implements VideoFrame.I420Buffer {
     }
 
     private static void checkCapacity(ByteBuffer byteBuffer, int i, int i2, int i3) {
-        int iM = zzkv.m(i2, 1, i3, i);
+        int iM = CalendarActivity$$ExternalSyntheticOutline0.m(i2, 1, i3, i);
         if (byteBuffer.capacity() >= iM) {
             return;
         }

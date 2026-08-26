@@ -1,5 +1,6 @@
 package org.telegram.ui.Cells;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
@@ -10,7 +11,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.view.ViewCompat;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -21,14 +21,15 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.LayoutHelper;
 
 public class HeaderCell extends FrameLayout {
-    public final boolean animated;
-    public final AnimatedTextView animatedTextView;
-    public final int bottomMargin;
-    public int height;
+    private final boolean animated;
+    private AnimatedTextView animatedTextView;
+    protected int bottomMargin;
+    private int height;
     public int id;
-    public final int padding;
-    public final TextView textView;
-    public final SimpleTextView textView2;
+    protected int padding;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private TextView textView;
+    private SimpleTextView textView2;
 
     public HeaderCell(Context context) {
         this(context, Theme.key_windowBackgroundWhiteBlueHeader, 18, 7, 0, false, false, null);
@@ -47,7 +48,7 @@ public class HeaderCell extends FrameLayout {
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         if (Build.VERSION.SDK_INT >= 28) {
             accessibilityNodeInfo.setHeading(true);
@@ -61,7 +62,7 @@ public class HeaderCell extends FrameLayout {
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
     }
 
@@ -74,27 +75,20 @@ public class HeaderCell extends FrameLayout {
         }
     }
 
-    public final void setEnabled(ArrayList arrayList, boolean z) {
-        TextView textView = this.textView;
-        if (arrayList != null) {
-            arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) View.ALPHA, z ? 1.0f : 0.5f));
-        } else {
-            textView.setAlpha(z ? 1.0f : 0.5f);
-        }
-    }
-
-    public final void setEnabled$1(boolean z) {
+    public void setEnabled(boolean z, boolean z2) {
         super.setEnabled(z);
-        this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
+        if (z2) {
+            this.textView.animate().alpha(z ? 1.0f : 0.5f).start();
+        } else {
+            this.textView.setAlpha(z ? 1.0f : 0.5f);
+        }
     }
 
     public void setHeight(int i) {
         this.height = i;
-        int iDp = AndroidUtilities.dp(i);
-        TextView textView = this.textView;
-        int i2 = iDp - ((FrameLayout.LayoutParams) textView.getLayoutParams()).topMargin;
-        if (textView.getMinHeight() != i2) {
-            textView.setMinHeight(i2);
+        int iDp = AndroidUtilities.dp(i) - ((FrameLayout.LayoutParams) this.textView.getLayoutParams()).topMargin;
+        if (this.textView.getMinHeight() != iDp) {
+            this.textView.setMinHeight(iDp);
             requestLayout();
         }
     }
@@ -112,7 +106,7 @@ public class HeaderCell extends FrameLayout {
         if (simpleTextView == null) {
             return;
         }
-        simpleTextView.setText(charSequence, false);
+        simpleTextView.setText(charSequence);
     }
 
     public void setTextColor(int i) {
@@ -139,20 +133,26 @@ public class HeaderCell extends FrameLayout {
         setHeight(this.height);
     }
 
-    public final void setText(CharSequence charSequence, boolean z) {
+    public void setText(CharSequence charSequence, boolean z) {
         if (this.animated) {
-            AnimatedTextView animatedTextView = this.animatedTextView;
-            animatedTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            animatedTextView.setText(charSequence, z, true);
+            this.animatedTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+            this.animatedTextView.setText(charSequence, z);
         } else {
-            TextView textView = this.textView;
-            textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            textView.setText(charSequence);
+            this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+            this.textView.setText(charSequence);
         }
     }
 
     public HeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         this(context, Theme.key_windowBackgroundWhiteBlueHeader, 18, 7, 0, false, false, resourcesProvider);
+    }
+
+    public void setEnabled(boolean z, ArrayList<Animator> arrayList) {
+        if (arrayList != null) {
+            arrayList.add(ObjectAnimator.ofFloat(this.textView, (Property<TextView, Float>) View.ALPHA, z ? 1.0f : 0.5f));
+        } else {
+            this.textView.setAlpha(z ? 1.0f : 0.5f);
+        }
     }
 
     public HeaderCell(Context context, int i) {
@@ -166,39 +166,41 @@ public class HeaderCell extends FrameLayout {
     public HeaderCell(Context context, int i, int i2, int i3, int i4, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.height = 40;
+        this.resourcesProvider = resourcesProvider;
         this.padding = i2;
         this.bottomMargin = i4;
         this.animated = z2;
         if (z2) {
-            AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, false, false);
+            AnimatedTextView animatedTextView = new AnimatedTextView(getContext());
             this.animatedTextView = animatedTextView;
             animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            animatedTextView.setTypeface(AndroidUtilities.bold());
-            animatedTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            animatedTextView.setTextColor(Theme.getColor(i, resourcesProvider));
-            animatedTextView.setTag(Integer.valueOf(i));
-            animatedTextView.getDrawable().setHacks(true, false);
+            this.animatedTextView.setTypeface(AndroidUtilities.bold());
+            this.animatedTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+            this.animatedTextView.setTextColor(Theme.getColor(i, resourcesProvider));
+            this.animatedTextView.setTag(Integer.valueOf(i));
+            this.animatedTextView.getDrawable().setHacks(true, true, false);
             float f = i2;
-            addView(animatedTextView, LayoutHelper.createFrame(-1, this.height - i3, (LocaleController.isRTL ? 5 : 3) | 48, f, i3, f, z ? 0.0f : i4));
+            addView(this.animatedTextView, LayoutHelper.createFrame(-1, this.height - i3, (LocaleController.isRTL ? 5 : 3) | 48, f, i3, f, z ? 0.0f : i4));
         } else {
             TextView textView = new TextView(getContext());
             this.textView = textView;
-            zzkk.m(14.0f, 1, textView);
-            textView.setEllipsize(TextUtils.TruncateAt.END);
-            textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            textView.setMinHeight(AndroidUtilities.dp(this.height - i3));
-            textView.setTextColor(Theme.getColor(i, resourcesProvider));
-            textView.setTag(Integer.valueOf(i));
+            textView.setTextSize(1, 14.0f);
+            this.textView.setTypeface(AndroidUtilities.bold());
+            this.textView.setEllipsize(TextUtils.TruncateAt.END);
+            this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+            this.textView.setMinHeight(AndroidUtilities.dp(this.height - i3));
+            this.textView.setTextColor(Theme.getColor(i, resourcesProvider));
+            this.textView.setTag(Integer.valueOf(i));
             float f2 = i2;
-            addView(textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f2, i3, f2, z ? 0.0f : i4));
+            addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f2, i3, f2, z ? 0.0f : i4));
         }
         if (z) {
             SimpleTextView simpleTextView = new SimpleTextView(getContext());
             this.textView2 = simpleTextView;
             simpleTextView.setTextSize(13);
-            simpleTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
+            this.textView2.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
             float f3 = i2;
-            addView(simpleTextView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f3, 21.0f, f3, i4));
+            addView(this.textView2, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f3, 21.0f, f3, i4));
         }
         WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
         new ViewCompat.AnonymousClass1(2131296684, Boolean.class, 0, 28, 2).set(this, Boolean.TRUE);

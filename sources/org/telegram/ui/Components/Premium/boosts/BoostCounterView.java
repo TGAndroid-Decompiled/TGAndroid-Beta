@@ -3,19 +3,16 @@ package org.telegram.ui.Components.Premium.boosts;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
+import com.google.android.gms.internal.mlkit_vision_common.zzkk;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.ItemOptions;
-import org.telegram.ui.Components.ScrimOptions$$ExternalSyntheticLambda2;
 
 public final class BoostCounterView extends View {
     public final Paint bgPaint;
@@ -27,22 +24,15 @@ public final class BoostCounterView extends View {
     public BoostCounterView(Context context) {
         super(context);
         this.countScale = 1.0f;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, true, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
         this.countText = animatedTextDrawable;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        animatedTextDrawable.moveAmplitude = 0.3f;
-        animatedTextDrawable.animateDuration = 250L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.5f));
-        Typeface typefaceBold = AndroidUtilities.bold();
-        TextPaint textPaint = animatedTextDrawable.textPaint;
-        textPaint.setTypeface(typefaceBold);
-        textPaint.setColor(-1);
-        animatedTextDrawable.alpha = Color.alpha(-1);
-        animatedTextDrawable.setText("", true, true);
-        animatedTextDrawable.gravity = 17;
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable.setTextColor(-1);
+        animatedTextDrawable.setText("");
+        animatedTextDrawable.setGravity(17);
         Paint paint = new Paint(1);
         this.bgPaint = paint;
         paint.setColor(-6915073);
@@ -77,9 +67,7 @@ public final class BoostCounterView extends View {
 
     @Override
     public final void onMeasure(int i, int i2) {
-        float fDp = AndroidUtilities.dp(15.0f);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (Math.max(animatedTextDrawable.currentWidth, animatedTextDrawable.oldWidth) + fDp), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (this.countText.getWidth() + AndroidUtilities.dp(15.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(26.0f), 1073741824));
     }
 
     public final void setCount(int i, boolean z) {
@@ -101,16 +89,16 @@ public final class BoostCounterView extends View {
             }
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.countAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 1));
-            this.countAnimator.addListener(new ItemOptions.AnonymousClass3(this, 20));
-            this.countAnimator.setInterpolator(new OvershootInterpolator(2.0f));
+            valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 17));
+            this.countAnimator.addListener(new BaseChartView.AnonymousClass4(this, 10));
+            zzkk.m(2.0f, this.countAnimator);
             this.countAnimator.setDuration(200L);
             this.countAnimator.start();
         }
         this.lastCount = i;
-        int length = animatedTextDrawable.currentText.length();
-        animatedTextDrawable.setText("x" + i, z, true);
-        int length2 = animatedTextDrawable.currentText.length();
+        int length = animatedTextDrawable.getText().length();
+        animatedTextDrawable.setText("x" + i, z);
+        int length2 = animatedTextDrawable.getText().length();
         invalidate();
         if (length != length2) {
             requestLayout();

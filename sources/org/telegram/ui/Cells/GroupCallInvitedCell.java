@@ -1,5 +1,6 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -9,68 +10,72 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.LaunchActivity;
 
 public abstract class GroupCallInvitedCell extends FrameLayout {
-    public final AvatarDrawable avatarDrawable;
-    public final BackupImageView avatarImageView;
-    public TLRPC.User currentUser;
-    public final Paint dividerPaint;
-    public int grayIconColor;
-    public final ImageView muteButton;
-    public final SimpleTextView nameTextView;
-    public boolean needDivider;
-    public final SimpleTextView statusTextView;
+    private AvatarDrawable avatarDrawable;
+    private BackupImageView avatarImageView;
+    private TLRPC.User currentUser;
+    private Paint dividerPaint;
+    private int grayIconColor;
+    private ImageView muteButton;
+    private SimpleTextView nameTextView;
+    private boolean needDivider;
+    private SimpleTextView statusTextView;
 
-    public GroupCallInvitedCell(LaunchActivity launchActivity) {
-        super(launchActivity);
+    public GroupCallInvitedCell(Context context) {
+        super(context);
         this.grayIconColor = Theme.key_voipgroup_mutedIcon;
         Paint paint = new Paint();
         this.dividerPaint = paint;
         paint.setColor(Theme.getColor(null, Theme.key_voipgroup_actionBar, false));
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-        BackupImageView backupImageView = new BackupImageView(launchActivity);
+        this.avatarDrawable = new AvatarDrawable();
+        BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(24.0f));
+        BackupImageView backupImageView2 = this.avatarImageView;
         boolean z = LocaleController.isRTL;
-        addView(backupImageView, LayoutHelper.createFrame(46, 46.0f, (z ? 5 : 3) | 48, z ? 0.0f : 11.0f, 6.0f, z ? 11.0f : 0.0f, 0.0f));
-        SimpleTextView simpleTextView = new SimpleTextView(launchActivity);
+        addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z ? 5 : 3) | 48, z ? 0.0f : 11.0f, 6.0f, z ? 11.0f : 0.0f, 0.0f));
+        SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(null, Theme.key_voipgroup_nameText, false));
-        simpleTextView.setTypeface(AndroidUtilities.bold());
-        simpleTextView.setTextSize(16);
-        simpleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        this.nameTextView.setTypeface(AndroidUtilities.bold());
+        this.nameTextView.setTextSize(16);
+        this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        SimpleTextView simpleTextView2 = this.nameTextView;
         boolean z2 = LocaleController.isRTL;
-        addView(simpleTextView, LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? 54.0f : 67.0f, 10.0f, z2 ? 67.0f : 54.0f, 0.0f));
-        SimpleTextView simpleTextView2 = new SimpleTextView(launchActivity);
-        this.statusTextView = simpleTextView2;
-        simpleTextView2.setTextSize(15);
-        simpleTextView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        simpleTextView2.setTextColor(Theme.getColor(null, this.grayIconColor, false));
-        simpleTextView2.setText(LocaleController.getString(R.string.Invited), false);
+        addView(simpleTextView2, LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? 54.0f : 67.0f, 10.0f, z2 ? 67.0f : 54.0f, 0.0f));
+        SimpleTextView simpleTextView3 = new SimpleTextView(context);
+        this.statusTextView = simpleTextView3;
+        simpleTextView3.setTextSize(15);
+        this.statusTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        this.statusTextView.setTextColor(Theme.getColor(null, this.grayIconColor, false));
+        this.statusTextView.setText(LocaleController.getString(R.string.Invited));
+        SimpleTextView simpleTextView4 = this.statusTextView;
         boolean z3 = LocaleController.isRTL;
-        addView(simpleTextView2, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? 54.0f : 67.0f, 32.0f, z3 ? 67.0f : 54.0f, 0.0f));
-        ImageView imageView = new ImageView(launchActivity);
+        addView(simpleTextView4, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? 54.0f : 67.0f, 32.0f, z3 ? 67.0f : 54.0f, 0.0f));
+        ImageView imageView = new ImageView(context);
         this.muteButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.msg_invited);
-        imageView.setImportantForAccessibility(2);
-        imageView.setPadding(0, 0, AndroidUtilities.dp(4.0f), 0);
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, this.grayIconColor, false), PorterDuff.Mode.MULTIPLY));
-        addView(imageView, LayoutHelper.createFrame(48, -1.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
+        this.muteButton.setImageResource(R.drawable.msg_invited);
+        this.muteButton.setImportantForAccessibility(2);
+        this.muteButton.setPadding(0, 0, AndroidUtilities.dp(4.0f), 0);
+        this.muteButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, this.grayIconColor, false), PorterDuff.Mode.MULTIPLY));
+        addView(this.muteButton, LayoutHelper.createFrame(48, -1.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
         setWillNotDraw(false);
         setFocusable(true);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         if (this.needDivider) {
             canvas2 = canvas;
@@ -89,8 +94,12 @@ public abstract class GroupCallInvitedCell extends FrameLayout {
         return this.currentUser;
     }
 
+    public boolean hasAvatarSet() {
+        return this.avatarImageView.getImageReceiver().hasNotThumb();
+    }
+
     @Override
-    public final boolean hasOverlappingRendering() {
+    public boolean hasOverlappingRendering() {
         return false;
     }
 
@@ -99,8 +108,47 @@ public abstract class GroupCallInvitedCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
     }
 
+    public void setData(int i, Long l, boolean z, boolean z2, boolean z3) {
+        int i2;
+        TLRPC.User user = MessagesController.getInstance(i).getUser(l);
+        this.currentUser = user;
+        if (user == null) {
+            this.avatarDrawable.setAvatarType(21);
+        } else {
+            this.avatarDrawable.setInfo(user);
+        }
+        this.nameTextView.setText(UserObject.getUserName(this.currentUser));
+        this.avatarImageView.getImageReceiver().setCurrentAccount(i);
+        this.avatarImageView.setForUserOrChat(this.currentUser, this.avatarDrawable);
+        SimpleTextView simpleTextView = this.statusTextView;
+        if (z3) {
+            i2 = R.string.ShadyLeaving;
+        } else if (z2) {
+            i2 = R.string.ShadyJoining;
+        } else {
+            i2 = z ? R.string.ConferenceCalling : R.string.Invited;
+        }
+        simpleTextView.setText(LocaleController.getString(i2));
+        float f = 0.5f;
+        this.avatarImageView.setAlpha((z2 || z3) ? 0.5f : 1.0f);
+        this.nameTextView.setAlpha((z2 || z3) ? 0.5f : 1.0f);
+        SimpleTextView simpleTextView2 = this.statusTextView;
+        if (!z2 && !z3) {
+            f = 1.0f;
+        }
+        simpleTextView2.setAlpha(f);
+        this.muteButton.setAlpha((z2 || z3) ? 0.0f : 1.0f);
+    }
+
     public void setDrawDivider(boolean z) {
         this.needDivider = z;
         invalidate();
+    }
+
+    public void setGrayIconColor(int i, int i2) {
+        this.grayIconColor = i;
+        this.muteButton.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
+        this.statusTextView.setTextColor(i2);
+        Theme.setSelectorDrawableColor(this.muteButton.getDrawable(), i2 & 620756991, true);
     }
 }

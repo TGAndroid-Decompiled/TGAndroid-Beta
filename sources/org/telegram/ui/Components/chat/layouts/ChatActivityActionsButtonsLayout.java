@@ -13,12 +13,12 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.chat.buttons.ChatActivityBlurredRoundButton;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda0;
 import org.telegram.ui.web.MHTML;
 
 public final class ChatActivityActionsButtonsLayout extends LinearLayout {
@@ -28,27 +28,27 @@ public final class ChatActivityActionsButtonsLayout extends LinearLayout {
     public final Theme.ResourcesProvider resourcesProvider;
     public float totalVisibilityFactor;
 
-    public ChatActivityActionsButtonsLayout(Context context, Theme.ResourcesProvider resourcesProvider, ChatActivity.AnonymousClass14 anonymousClass14, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
+    public ChatActivityActionsButtonsLayout(Context context, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         super(context);
         MHTML mhtml = new MHTML(this);
         this.replyButton = mhtml;
         MHTML mhtml2 = new MHTML(this);
         this.forwardButton = mhtml2;
         this.resourcesProvider = resourcesProvider;
-        ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate = ChatActivityBlurredRoundButton.create(context, resourcesProvider, anonymousClass14, blurredBackgroundDrawableViewFactory);
+        ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate = ChatActivityBlurredRoundButton.create(context, resourcesProvider, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider);
         mhtml.file = chatActivityBlurredRoundButtonCreate;
-        chatActivityBlurredRoundButtonCreate.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(10));
+        chatActivityBlurredRoundButtonCreate.setOnClickListener(new BotAdView$$ExternalSyntheticLambda0(5));
         ScaleStateListAnimator.apply((ChatActivityBlurredRoundButton) mhtml.file, 0.065f, 2.0f);
-        ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate2 = ChatActivityBlurredRoundButton.create(context, resourcesProvider, anonymousClass14, blurredBackgroundDrawableViewFactory);
+        ChatActivityBlurredRoundButton chatActivityBlurredRoundButtonCreate2 = ChatActivityBlurredRoundButton.create(context, resourcesProvider, blurredBackgroundDrawableViewFactory, blurredBackgroundColorProvider);
         mhtml2.file = chatActivityBlurredRoundButtonCreate2;
-        chatActivityBlurredRoundButtonCreate2.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(10));
+        chatActivityBlurredRoundButtonCreate2.setOnClickListener(new BotAdView$$ExternalSyntheticLambda0(5));
         ScaleStateListAnimator.apply((ChatActivityBlurredRoundButton) mhtml2.file, 0.065f, 2.0f);
         addTextView(mhtml, LocaleController.getString(R.string.Reply), R.drawable.input_reply, false);
         addTextView(mhtml2, LocaleController.getString(R.string.Forward), R.drawable.input_forward, true);
         setOrientation(0);
         setClipChildren(false);
-        addView((ChatActivityBlurredRoundButton) mhtml.file, LayoutHelper.createLinear(1.0f, 0, 56, 1, -1, 0));
-        addView((ChatActivityBlurredRoundButton) mhtml2.file, LayoutHelper.createLinear(1.0f, 0, 56, -1, 1, 0));
+        addView((ChatActivityBlurredRoundButton) mhtml.file, LayoutHelper.createLinear(0, 56, 1.0f, 1, 0, -1, 0));
+        addView((ChatActivityBlurredRoundButton) mhtml2.file, LayoutHelper.createLinear(0, 56, 1.0f, -1, 0, 1, 0));
     }
 
     public final void addTextView(MHTML mhtml, String str, int i, boolean z) {

@@ -17,8 +17,8 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.SparseArray;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.graphics.ColorUtils;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -4519,7 +4519,7 @@ public class SvgHelper {
             return f;
         }
         if (stringAttr.endsWith("px")) {
-            stringAttr = SurfaceContainer$$ExternalSyntheticOutline0.m(2, 0, stringAttr);
+            stringAttr = Fragment$$ExternalSyntheticOutline0.m(2, 0, stringAttr);
         } else if (stringAttr.endsWith("mm")) {
             return null;
         }

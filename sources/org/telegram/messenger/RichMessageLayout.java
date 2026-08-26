@@ -28,7 +28,6 @@ import android.graphics.Typeface;
 import android.graphics.Xfermode;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.SystemClock;
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -53,14 +52,14 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.OverScroller;
 import android.widget.TextView;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.graphics.ColorUtils;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
-import com.google.android.gms.internal.mlkit_vision_common.zzkc;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
+import com.google.android.gms.internal.mlkit_vision_common.zzjx;
 import j$.util.Comparator$CC;
 import java.io.File;
 import java.net.URLDecoder;
@@ -250,7 +249,7 @@ public class RichMessageLayout {
         private Runnable textSelectionLongPressRunnable;
         private boolean translationLoading;
 
-        public static final class Factory extends UItem.UItemFactory {
+        public static final class Factory extends UItem.UItemFactory<PreviewView> {
             static {
                 UItem.UItemFactory.setup(new Factory());
             }
@@ -478,7 +477,7 @@ public class RichMessageLayout {
             if (this.textSelectionHelper != null) {
                 int action = motionEvent.getAction();
                 if (action == 0) {
-                    this.textSelectionHelper.setMaybeView(this, (int) motionEvent.getX(), (int) motionEvent.getY());
+                    this.textSelectionHelper.setMaybeView((int) motionEvent.getX(), (int) motionEvent.getY(), this);
                     if (this.textSelectionLongPressRunnable == null) {
                         this.textSelectionLongPressRunnable = new SecretChatHelper$$ExternalSyntheticLambda22(this, 7);
                     }
@@ -638,13 +637,13 @@ public class RichMessageLayout {
             this.currentMessageObject = messageObject;
             this.currentDocument = messageObject != null ? messageObject.getDocument() : null;
             this.observerTag = DownloadController.getInstance(richMessageLayout.currentAccount).generateObserverTag();
-            RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
+            RadialProgress2 radialProgress2 = new RadialProgress2(null);
             this.radialProgress = radialProgress2;
             radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
             radialProgress2.setProgressRect(iDp, iDp2, iDp + iDp3, iDp3 + iDp2);
             SeekBar seekBar = new SeekBar(null);
             this.seekBar = seekBar;
-            seekBar.delegate = new BillingController$$ExternalSyntheticLambda0(this, 13);
+            seekBar.setDelegate(new BillingController$$ExternalSyntheticLambda0(this, 13));
             layoutInner();
             updateButtonState(false);
         }
@@ -733,7 +732,7 @@ public class RichMessageLayout {
             this.layoutWidth = i + richMessageLayout.padLeft + richMessageLayout.padRight;
             int iDp = AndroidUtilities.dp(50.0f) + this.buttonX + this.size;
             this.seekBarX = iDp;
-            this.seekBarWidth = BotFullscreenButtons$$ExternalSyntheticOutline1.m(this.layoutWidth - iDp, 18.0f, 0);
+            this.seekBarWidth = BotFullscreenButtons$$ExternalSyntheticOutline1.m(18.0f, this.layoutWidth - iDp, 0);
             MessageObject messageObject = this.currentMessageObject;
             String musicAuthor = messageObject != null ? messageObject.getMusicAuthor(false) : null;
             MessageObject messageObject2 = this.currentMessageObject;
@@ -745,7 +744,7 @@ public class RichMessageLayout {
                 if (TextUtils.isEmpty(musicTitle) || TextUtils.isEmpty(musicAuthor)) {
                     spannableStringBuilder = !TextUtils.isEmpty(musicTitle) ? new SpannableStringBuilder(musicTitle) : new SpannableStringBuilder(musicAuthor);
                 } else {
-                    spannableStringBuilder = new SpannableStringBuilder(zzkc.m(musicAuthor, " - ", musicTitle));
+                    spannableStringBuilder = new SpannableStringBuilder(zzjx.m(musicAuthor, " - ", musicTitle));
                 }
                 if (!TextUtils.isEmpty(musicAuthor)) {
                     spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, musicAuthor.length(), 18);
@@ -802,7 +801,7 @@ public class RichMessageLayout {
 
         @Override
         public boolean isHorizontallyDragging() {
-            return this.seekBar.pressed;
+            return this.seekBar.isDragging();
         }
 
         @Override
@@ -810,7 +809,7 @@ public class RichMessageLayout {
             View view = this.view;
             if (view != null) {
                 this.radialProgress.setParent(view);
-                this.seekBar.parentView = this.view;
+                this.seekBar.setParent(this.view);
             }
             updateButtonState(false);
             NotificationCenter.getInstance(this.root.currentAccount).addObserver(this, NotificationCenter.messagePlayingDidStart);
@@ -841,18 +840,10 @@ public class RichMessageLayout {
             }
             canvas.save();
             canvas.translate(-this.root.padLeft, 0.0f);
+            this.radialProgress.setColorKeys(this.root.isOut() ? Theme.key_chat_outLoader : Theme.key_chat_inLoader, this.root.isOut() ? Theme.key_chat_outLoaderSelected : Theme.key_chat_inLoaderSelected, this.root.isOut() ? Theme.key_chat_outMediaIcon : Theme.key_chat_inMediaIcon, this.root.isOut() ? Theme.key_chat_outMediaIconSelected : Theme.key_chat_inMediaIconSelected);
             RadialProgress2 radialProgress2 = this.radialProgress;
-            int i3 = this.root.isOut() ? Theme.key_chat_outLoader : Theme.key_chat_inLoader;
-            int i4 = this.root.isOut() ? Theme.key_chat_outLoaderSelected : Theme.key_chat_inLoaderSelected;
-            int i5 = this.root.isOut() ? Theme.key_chat_outMediaIcon : Theme.key_chat_inMediaIcon;
-            int i6 = this.root.isOut() ? Theme.key_chat_outMediaIconSelected : Theme.key_chat_inMediaIconSelected;
-            radialProgress2.circleColorKey = i3;
-            radialProgress2.circlePressedColorKey = i4;
-            radialProgress2.iconColorKey = i5;
-            radialProgress2.iconPressedColorKey = i6;
-            RadialProgress2 radialProgress3 = this.radialProgress;
             RichMessageLayout richMessageLayout2 = this.root;
-            radialProgress3.progressColor = richMessageLayout2.getThemedColor(richMessageLayout2.isOut() ? Theme.key_chat_outFileProgress : Theme.key_chat_inFileProgress);
+            radialProgress2.setProgressColor(richMessageLayout2.getThemedColor(richMessageLayout2.isOut() ? Theme.key_chat_outFileProgress : Theme.key_chat_inFileProgress));
             this.radialProgress.draw(canvas);
             SeekBar seekBar = this.seekBar;
             RichMessageLayout richMessageLayout3 = this.root;
@@ -912,7 +903,7 @@ public class RichMessageLayout {
             int actionMasked = motionEvent.getActionMasked();
             float x = motionEvent.getX() + this.root.padLeft;
             float y = motionEvent.getY();
-            if (this.seekBar.onTouch(x - this.seekBarX, y - this.seekBarY, actionMasked)) {
+            if (this.seekBar.onTouch(actionMasked, x - this.seekBarX, y - this.seekBarY)) {
                 if (actionMasked == 0) {
                     requestDisallowParentIntercept(true);
                 }
@@ -999,14 +990,12 @@ public class RichMessageLayout {
         }
 
         public void updatePlayingMessageProgress() {
-            MessageObject messageObject;
             int i;
-            if (this.currentDocument == null || (messageObject = this.currentMessageObject) == null) {
+            if (this.currentDocument == null || this.currentMessageObject == null) {
                 return;
             }
-            SeekBar seekBar = this.seekBar;
-            if (!seekBar.pressed) {
-                seekBar.setProgress(messageObject.audioProgress);
+            if (!this.seekBar.isDragging()) {
+                this.seekBar.setProgress(this.currentMessageObject.audioProgress);
             }
             if (MediaController.getInstance().isPlayingMessage(this.currentMessageObject)) {
                 i = this.currentMessageObject.audioProgressSec;
@@ -1113,7 +1102,7 @@ public class RichMessageLayout {
                 return ((TL_iv.PageListOrderedItem) tLObject).checked;
             }
             CheckBoxBase checkBoxBase = this.checkbox;
-            return checkBoxBase != null && checkBoxBase.isChecked;
+            return checkBoxBase != null && checkBoxBase.isChecked();
         }
 
         private void invalidateCell() {
@@ -1128,9 +1117,9 @@ public class RichMessageLayout {
             setCheckboxChecked(z2);
             View view = this.root.view;
             if (view != null) {
-                this.checkbox.parentView = view;
+                this.checkbox.setParentView(view);
             }
-            this.checkbox.setChecked(-1, z2, true);
+            this.checkbox.setChecked(z2, true);
             invalidateCell();
         }
 
@@ -1157,15 +1146,15 @@ public class RichMessageLayout {
                 setCheckboxChecked(z);
                 View view = this.root.view;
                 if (view != null) {
-                    this.checkbox.parentView = view;
+                    this.checkbox.setParentView(view);
                 }
-                this.checkbox.setChecked(-1, z, true);
+                this.checkbox.setChecked(z, true);
                 invalidateCell();
                 View view2 = this.root.view;
                 if (view2 != null) {
                     view2.performHapticFeedback(3, 2);
                 }
-                this.root.getDelegate().didToggleRichMessageCheckbox(this.root.getCell(), new FileLoader$$ExternalSyntheticLambda1(4, this, z));
+                this.root.getDelegate().didToggleRichMessageCheckbox(this.root.getCell(), z, new FileLoader$$ExternalSyntheticLambda1(this, z, 4));
             }
         }
 
@@ -1206,15 +1195,15 @@ public class RichMessageLayout {
                 onDetachedFromWindow();
                 CheckBoxBase checkBoxBase = this.checkbox;
                 if (checkBoxBase != null) {
-                    checkBoxBase.attachedToWindow = false;
+                    checkBoxBase.onDetachedFromWindow();
                 }
                 this.view = null;
             }
             this.view = view;
             CheckBoxBase checkBoxBase2 = this.checkbox;
             if (checkBoxBase2 != null) {
-                checkBoxBase2.parentView = view;
-                checkBoxBase2.attachedToWindow = true;
+                checkBoxBase2.setParentView(view);
+                this.checkbox.onAttachedToWindow();
             }
             onAttachedToWindow();
         }
@@ -1229,7 +1218,7 @@ public class RichMessageLayout {
                 onDetachedFromWindow();
                 CheckBoxBase checkBoxBase = this.checkbox;
                 if (checkBoxBase != null) {
-                    checkBoxBase.attachedToWindow = false;
+                    checkBoxBase.onDetachedFromWindow();
                 }
                 this.view = null;
             }
@@ -1244,33 +1233,22 @@ public class RichMessageLayout {
         }
 
         public void drawWithTyping(Canvas canvas) {
-            float fFloatValue;
             MultiLayoutTypingAnimator multiLayoutTypingAnimator = this.typingAnimator;
-            if (multiLayoutTypingAnimator != null && multiLayoutTypingAnimator.running && multiLayoutTypingAnimator.indexOf(this) >= 0) {
+            if (multiLayoutTypingAnimator != null && multiLayoutTypingAnimator.isRunning() && multiLayoutTypingAnimator.indexOf(this) >= 0) {
                 if (!multiLayoutTypingAnimator.needDraw(this)) {
                     return;
                 }
                 if (multiLayoutTypingAnimator.isFadeBlock(this)) {
-                    draw(canvas, multiLayoutTypingAnimator.isFadeBlock(this) ? multiLayoutTypingAnimator.curLineIdx : -1, multiLayoutTypingAnimator.isFadeBlock(this) ? multiLayoutTypingAnimator.xPosition : 0.0f);
+                    draw(canvas, multiLayoutTypingAnimator.getFadeLineIndex(this), multiLayoutTypingAnimator.getFadeXPosition(this));
                     return;
                 }
-                int iIndexOf = multiLayoutTypingAnimator.indexOf(this);
-                if (iIndexOf >= 0) {
-                    ArrayList arrayList = multiLayoutTypingAnimator.blockAlphas;
-                    if (iIndexOf >= arrayList.size()) {
-                        fFloatValue = 1.0f;
-                    } else {
-                        fFloatValue = ((Float) arrayList.get(iIndexOf)).floatValue();
-                    }
-                } else {
-                    fFloatValue = 1.0f;
-                }
-                if (fFloatValue <= 0.0f) {
+                float blockAlpha = multiLayoutTypingAnimator.getBlockAlpha(this);
+                if (blockAlpha <= 0.0f) {
                     return;
                 }
-                if (fFloatValue < 1.0f) {
+                if (blockAlpha < 1.0f) {
                     Rect rect = this.padding;
-                    int iSaveLayerAlpha = canvas.saveLayerAlpha(0.0f, 0.0f, rect.left + this.maxWidth + rect.right, getHeight(), (int) (fFloatValue * 255.0f));
+                    int iSaveLayerAlpha = canvas.saveLayerAlpha(0.0f, 0.0f, rect.left + this.maxWidth + rect.right, getHeight(), (int) (blockAlpha * 255.0f));
                     draw(canvas);
                     canvas.restoreToCount(iSaveLayerAlpha);
                     return;
@@ -1612,7 +1590,7 @@ public class RichMessageLayout {
                         if (zContains && canToggleCheckbox()) {
                             this.checkboxPressed = true;
                             if (this.checkboxBounce == null && (view = this.root.view) != null) {
-                                this.checkboxBounce = new ButtonBounce(view, 1.0f, 5.0f);
+                                this.checkboxBounce = new ButtonBounce(view);
                             }
                             ButtonBounce buttonBounce = this.checkboxBounce;
                             if (buttonBounce != null) {
@@ -1705,12 +1683,8 @@ public class RichMessageLayout {
             if (this.checkbox != null) {
                 int iDp = zIsRtl ? (int) (f2 + AndroidUtilities.dp(6.0f)) : -AndroidUtilities.dp(26.0f);
                 this.checkboxHit.set(iDp - AndroidUtilities.dp(6.0f), this.checkboxY - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f) + AndroidUtilities.dp(20.0f) + iDp, this.checkboxY + AndroidUtilities.dp(20.0f) + AndroidUtilities.dp(6.0f));
-                View view = this.root.view;
-                if (view != null) {
-                    CheckBoxBase checkBoxBase = this.checkbox;
-                    if (checkBoxBase.parentView == null) {
-                        checkBoxBase.parentView = view;
-                    }
+                if (this.root.view != null && this.checkbox.getParentView() == null) {
+                    this.checkbox.setParentView(this.root.view);
                 }
                 ButtonBounce buttonBounce = this.checkboxBounce;
                 float scale = buttonBounce != null ? buttonBounce.getScale(0.1f) : 1.0f;
@@ -1751,14 +1725,14 @@ public class RichMessageLayout {
         public void setCheckbox(boolean z, TLObject tLObject) {
             this.checkboxItem = tLObject;
             if (this.checkbox == null) {
-                CheckBoxBase checkBoxBase = new CheckBoxBase(this.root.resourcesProvider, null, 20);
+                CheckBoxBase checkBoxBase = new CheckBoxBase(null, 20, this.root.resourcesProvider);
                 this.checkbox = checkBoxBase;
                 checkBoxBase.setColor(Theme.key_telegram_color, Theme.key_dialogCheckboxSquareDisabled, Theme.key_checkboxCheck);
                 this.checkbox.setBackgroundType(10);
                 this.checkbox.setDrawUnchecked(true);
                 this.checkbox.setCustomRadius(AndroidUtilities.dp(5.0f));
             }
-            this.checkbox.setChecked(-1, z, false);
+            this.checkbox.setChecked(z, false);
             updateListMarkerY();
         }
     }
@@ -2096,11 +2070,11 @@ public class RichMessageLayout {
                 if (loadingDrawable == null) {
                     LoadingDrawable loadingDrawable2 = new LoadingDrawable();
                     this.loadingDrawable = loadingDrawable2;
-                    loadingDrawable2.appearByGradient = true;
-                    loadingDrawable2.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
+                    loadingDrawable2.setAppearByGradient(true);
+                    this.loadingDrawable.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
                 } else {
-                    loadingDrawable.start = -1L;
-                    loadingDrawable.disappearStart = -1L;
+                    loadingDrawable.reset();
+                    this.loadingDrawable.resetDisappear();
                 }
             } else {
                 LoadingDrawable loadingDrawable3 = this.loadingDrawable;
@@ -2132,7 +2106,7 @@ public class RichMessageLayout {
             if (f != 0.0f) {
                 ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
                 this.pressAnimator = valueAnimatorOfFloat;
-                valueAnimatorOfFloat.addUpdateListener(new AndroidUtilities$$ExternalSyntheticLambda37(this, i));
+                valueAnimatorOfFloat.addUpdateListener(new AndroidUtilities$$ExternalSyntheticLambda36(this, i));
                 this.pressAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
@@ -2156,7 +2130,7 @@ public class RichMessageLayout {
                 this.textColor = themedColor;
                 this.textColorFilter = new PorterDuffColorFilter(this.textColor, PorterDuff.Mode.SRC_IN);
             }
-            this.colorSpan.colorKey = i;
+            this.colorSpan.setColorKey(i);
             this.invalidateRunnable.run();
             Drawable drawable = this.iconDrawable;
             if (drawable != null) {
@@ -2247,12 +2221,12 @@ public class RichMessageLayout {
                 ivButtonColors = Theme.IvButtonColors.DEFAULT_IN_TEXT;
             }
             this.styleKeys = ivButtonColors;
-            ForegroundColorSpanThemable foregroundColorSpanThemable = new ForegroundColorSpanThemable(zBooleanValue ? ivButtonColors.textOut : ivButtonColors.textIn, null);
+            ForegroundColorSpanThemable foregroundColorSpanThemable = new ForegroundColorSpanThemable(zBooleanValue ? ivButtonColors.textOut : ivButtonColors.textIn);
             this.colorSpan = foregroundColorSpanThemable;
-            foregroundColorSpanThemable.alpha = z ? 0.5f : 1.0f;
+            foregroundColorSpanThemable.setAlpha(z ? 0.5f : 1.0f);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
             if (z5) {
-                spannableStringBuilder.setSpan(new URLSpanNoUnderline("", null), 0, spannableStringBuilder.length(), 33);
+                spannableStringBuilder.setSpan(new URLSpanNoUnderline(""), 0, spannableStringBuilder.length(), 33);
             } else {
                 spannableStringBuilder.setSpan(foregroundColorSpanThemable, 0, spannableStringBuilder.length(), 33);
             }
@@ -2623,7 +2597,7 @@ public class RichMessageLayout {
             if (view == null) {
                 return false;
             }
-            return this.clickHelper.onTouchEvent(motionEvent, view);
+            return this.clickHelper.onTouchEvent(view, motionEvent);
         }
     }
 
@@ -2784,7 +2758,7 @@ public class RichMessageLayout {
                     z2 = false;
                 } else {
                     boolean z3 = textconcat.texts.get(0) instanceof TL_iv.textCustomEmoji;
-                    z2 = zziq.m(1, textconcat.texts) instanceof TL_iv.textCustomEmoji;
+                    z2 = zzin.m(1, textconcat.texts) instanceof TL_iv.textCustomEmoji;
                     z = z3;
                 }
             } else {
@@ -3348,16 +3322,12 @@ public class RichMessageLayout {
             super(richMessageLayout, rect, i);
             this.linePaint = new Paint(1);
             this.block = pageblockdetails;
-            Text text = new Text(richMessageLayout, charSequence, BotFullscreenButtons$$ExternalSyntheticOutline1.m(this.maxWidth - AndroidUtilities.dp(53.0f), 16.0f, 0));
+            Text text = new Text(richMessageLayout, charSequence, BotFullscreenButtons$$ExternalSyntheticOutline1.m(16.0f, this.maxWidth - AndroidUtilities.dp(53.0f), 0));
             this.title = text;
             this.texts = new Text[]{text};
-            AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(richMessageLayout.getThemedColor(richMessageLayout.isOut() ? Theme.key_chat_outArticleDetailsArrow : Theme.key_chat_inArticleDetailsArrow));
+            AnimatedArrowDrawable animatedArrowDrawable = new AnimatedArrowDrawable(richMessageLayout.getThemedColor(richMessageLayout.isOut() ? Theme.key_chat_outArticleDetailsArrow : Theme.key_chat_inArticleDetailsArrow), 12.66f, 6.16f, 1.66f);
             this.arrow = animatedArrowDrawable;
-            float f = pageblockdetails.open ? 0.0f : 1.0f;
-            animatedArrowDrawable.animProgress = f;
-            animatedArrowDrawable.animateToProgress = f;
-            animatedArrowDrawable.updatePath();
-            animatedArrowDrawable.invalidateSelf();
+            animatedArrowDrawable.setAnimationProgress(pageblockdetails.open ? 0.0f : 1.0f);
         }
 
         private void ensureBounce() {
@@ -3365,11 +3335,11 @@ public class RichMessageLayout {
             if (this.bounce != null || (view = this.root.view) == null) {
                 return;
             }
-            this.bounce = new ButtonBounce(view, 1.0f, 5.0f);
+            this.bounce = new ButtonBounce(view);
         }
 
         private int getContentHeight() {
-            return MessageObject$$ExternalSyntheticOutline0.m(this.title.getHeight() + AndroidUtilities.dp(14.0f), 12.66f, AndroidUtilities.dp(27.82f));
+            return MessageObject$$ExternalSyntheticOutline0.m(12.66f, this.title.getHeight() + AndroidUtilities.dp(14.0f), AndroidUtilities.dp(27.82f));
         }
 
         private void toggle() {
@@ -3377,13 +3347,7 @@ public class RichMessageLayout {
             TL_iv.pageBlockDetails pageblockdetails = this.block;
             boolean z = pageblockdetails.open;
             pageblockdetails.open = !z;
-            AnimatedArrowDrawable animatedArrowDrawable = this.arrow;
-            float f = !z ? 0.0f : 1.0f;
-            if (animatedArrowDrawable.animateToProgress != f) {
-                animatedArrowDrawable.animateToProgress = f;
-                animatedArrowDrawable.lastUpdateTime = SystemClock.elapsedRealtime();
-                animatedArrowDrawable.invalidateSelf();
-            }
+            this.arrow.setAnimationProgressAnimated(!z ? 0.0f : 1.0f);
             RichMessageLayout richMessageLayout = this.root;
             richMessageLayout.detailsAnimating = true;
             richMessageLayout.reposition();
@@ -3396,7 +3360,7 @@ public class RichMessageLayout {
             if (cell == null || delegate == null) {
                 return;
             }
-            delegate.forceUpdate(cell);
+            delegate.forceUpdate(cell, true, true);
         }
 
         public void updateBubbleInsets() {
@@ -3505,10 +3469,7 @@ public class RichMessageLayout {
                 canvas.scale(scale, scale, (f + f2) / 2.0f, getContentHeight() / 2.0f);
             }
             RichMessageLayout richMessageLayout2 = this.root;
-            int themedColor = richMessageLayout2.getThemedColor(richMessageLayout2.isOut() ? Theme.key_chat_outArticleDetailsArrow : Theme.key_chat_inArticleDetailsArrow);
-            AnimatedArrowDrawable animatedArrowDrawable = this.arrow;
-            animatedArrowDrawable.paint.setColor(themedColor);
-            animatedArrowDrawable.invalidateSelf();
+            this.arrow.setColor(richMessageLayout2.getThemedColor(richMessageLayout2.isOut() ? Theme.key_chat_outArticleDetailsArrow : Theme.key_chat_inArticleDetailsArrow));
             canvas.save();
             canvas.translate(AndroidUtilities.dpf2(22.6f) + f, AndroidUtilities.dpf2(21.66f));
             this.arrow.draw(canvas);
@@ -3590,7 +3551,7 @@ public class RichMessageLayout {
 
         @Override
         public int getHeight() {
-            return RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(this.padding.top, 6.0f, 1) + this.padding.bottom;
+            return RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(6.0f, this.padding.top, 1) + this.padding.bottom;
         }
 
         @Override
@@ -3709,7 +3670,7 @@ public class RichMessageLayout {
             boolean zIsDocumentHasThumb = MessageObject.isDocumentHasThumb(document);
             this.hasPreview = zIsDocumentHasThumb;
             this.observerTag = DownloadController.getInstance(richMessageLayout.currentAccount).generateObserverTag();
-            RadialProgress2 radialProgress2 = new RadialProgress2(null, null);
+            RadialProgress2 radialProgress2 = new RadialProgress2(null);
             this.radialProgress = radialProgress2;
             radialProgress2.setCircleRadius(iDp3 / 2);
             iDp = zIsDocumentHasThumb ? ((AndroidUtilities.dp(86.0f) - iDp3) / 2) + iDp4 : iDp;
@@ -3801,7 +3762,7 @@ public class RichMessageLayout {
             } else {
                 iDp = this.buttonTextSpacing + this.buttonX + this.buttonSize;
             }
-            int iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(this.layoutWidth - iDp, 48.0f, AndroidUtilities.dp(40.0f));
+            int iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(48.0f, this.layoutWidth - iDp, AndroidUtilities.dp(40.0f));
             this.titlePaint.setTextSize(AndroidUtilities.dp(this.root.fontSize - 1));
             this.titlePaint.setTypeface(AndroidUtilities.bold());
             this.sizePaint.setTextSize(AndroidUtilities.dp(this.root.fontSize - 3));
@@ -4029,14 +3990,7 @@ public class RichMessageLayout {
                     if (view2 != null) {
                         view2.playSoundEffect(0);
                     }
-                    this.root.cell.getTextX();
-                    int i2 = this.padding.left;
-                    int i3 = this.root.padLeft;
-                    getMenuX();
-                    this.root.cell.getTextY();
-                    int i4 = this.padding.top;
-                    AndroidUtilities.dp(7.0f);
-                    this.root.delegate.didPressRichDocumentOptions(this.root.cell, this.document);
+                    this.root.delegate.didPressRichDocumentOptions(this.root.cell, this.document, ((this.root.cell.getTextX() + this.padding.left) - this.root.padLeft) + getMenuX(), this.root.cell.getTextY() + this.currY + this.padding.top + AndroidUtilities.dp(7.0f));
                     return true;
                 }
             }
@@ -4045,29 +3999,13 @@ public class RichMessageLayout {
 
         public void updateButtonState(boolean z) {
             if (this.hasPreview) {
-                RadialProgress2 radialProgress2 = this.radialProgress;
-                int i = Theme.key_chat_mediaLoaderPhoto;
-                int i2 = Theme.key_chat_mediaLoaderPhotoSelected;
-                int i3 = Theme.key_chat_mediaLoaderPhotoIcon;
-                int i4 = Theme.key_chat_mediaLoaderPhotoIconSelected;
-                radialProgress2.circleColorKey = i;
-                radialProgress2.circlePressedColorKey = i2;
-                radialProgress2.iconColorKey = i3;
-                radialProgress2.iconPressedColorKey = i4;
-                radialProgress2.progressColor = this.root.getThemedColor(Theme.key_chat_mediaProgress);
+                this.radialProgress.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
+                this.radialProgress.setProgressColor(this.root.getThemedColor(Theme.key_chat_mediaProgress));
             } else {
-                RadialProgress2 radialProgress3 = this.radialProgress;
-                int i5 = this.root.isOut() ? Theme.key_chat_outLoader : Theme.key_chat_inLoader;
-                int i6 = this.root.isOut() ? Theme.key_chat_outLoaderSelected : Theme.key_chat_inLoaderSelected;
-                int i7 = this.root.isOut() ? Theme.key_chat_outMediaIcon : Theme.key_chat_inMediaIcon;
-                int i8 = this.root.isOut() ? Theme.key_chat_outMediaIconSelected : Theme.key_chat_inMediaIconSelected;
-                radialProgress3.circleColorKey = i5;
-                radialProgress3.circlePressedColorKey = i6;
-                radialProgress3.iconColorKey = i7;
-                radialProgress3.iconPressedColorKey = i8;
-                RadialProgress2 radialProgress4 = this.radialProgress;
+                this.radialProgress.setColorKeys(this.root.isOut() ? Theme.key_chat_outLoader : Theme.key_chat_inLoader, this.root.isOut() ? Theme.key_chat_outLoaderSelected : Theme.key_chat_inLoaderSelected, this.root.isOut() ? Theme.key_chat_outMediaIcon : Theme.key_chat_inMediaIcon, this.root.isOut() ? Theme.key_chat_outMediaIconSelected : Theme.key_chat_inMediaIconSelected);
+                RadialProgress2 radialProgress2 = this.radialProgress;
                 RichMessageLayout richMessageLayout = this.root;
-                radialProgress4.progressColor = richMessageLayout.getThemedColor(richMessageLayout.isOut() ? Theme.key_chat_outFileProgress : Theme.key_chat_inFileProgress);
+                radialProgress2.setProgressColor(richMessageLayout.getThemedColor(richMessageLayout.isOut() ? Theme.key_chat_outFileProgress : Theme.key_chat_inFileProgress));
             }
             String attachFileName = FileLoader.getAttachFileName(this.document);
             File filePath = path();
@@ -4326,7 +4264,7 @@ public class RichMessageLayout {
                 this.contentW = latexRender.width;
                 this.contentH = latexRender.height;
             }
-            int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 0.0f, this.contentW);
+            int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(0.0f, 2, this.contentW);
             this.contentWidth = iM;
             this.maxScrollX = Math.max(0, iM - i2);
         }
@@ -4356,7 +4294,7 @@ public class RichMessageLayout {
 
         @Override
         public int getHeight() {
-            return RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 8.0f, this.padding.top + this.contentH) + this.padding.bottom;
+            return RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(8.0f, 2, this.padding.top + this.contentH) + this.padding.bottom;
         }
 
         @Override
@@ -4387,7 +4325,7 @@ public class RichMessageLayout {
             Paint paint = this.paint;
             RichMessageLayout richMessageLayout = this.root;
             paint.setColor(richMessageLayout.getThemedColor(richMessageLayout.isOut() ? Theme.key_chat_messageTextOut : Theme.key_chat_messageTextIn));
-            int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 8.0f, this.contentH);
+            int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(8.0f, 2, this.contentH);
             if (this.maxScrollX > 0) {
                 RichMessageLayout richMessageLayout2 = this.root;
                 float f = -richMessageLayout2.padLeft;
@@ -4669,10 +4607,10 @@ public class RichMessageLayout {
                 radialProgress3.setProgressRect(i, i2, i + i3, i3 + i2);
                 return;
             }
-            RadialProgress2 radialProgress4 = new RadialProgress2(null, view2);
+            RadialProgress2 radialProgress4 = new RadialProgress2(view2);
             this.radialProgress = radialProgress4;
-            radialProgress4.progressColor = -1;
-            radialProgress4.setColors(1711276032, 2130706432, -1, -2500135);
+            radialProgress4.setProgressColor(-1);
+            this.radialProgress.setColors(1711276032, 2130706432, -1, -2500135);
             RadialProgress2 radialProgress5 = this.radialProgress;
             int i4 = this.buttonX;
             int i5 = this.buttonY;
@@ -5256,7 +5194,7 @@ public class RichMessageLayout {
             Text text = new Text(richMessageLayout, this.content, AndroidUtilities.dp(5000.0f), Layout.Alignment.ALIGN_NORMAL, 1.3f);
             this.text = text;
             this.texts = new Text[]{text};
-            int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 0.0f, Math.max(0, text.right - text.left));
+            int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(0.0f, 2, Math.max(0, text.right - text.left));
             this.contentWidth = iM;
             int iMax = Math.max(0, iM - this.viewportWidth);
             this.maxScrollX = iMax;
@@ -5318,7 +5256,7 @@ public class RichMessageLayout {
 
         private void drawTextContent(Canvas canvas, boolean z, int i, float f) {
             int iMin = Math.min(this.viewportWidth, this.contentWidth);
-            int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 8.0f, this.text.getHeight());
+            int iM = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(8.0f, 2, this.text.getHeight());
             if (this.padding.left > 0) {
                 canvas.save();
                 canvas.clipRect(0, 0, iMin, iM);
@@ -5403,7 +5341,7 @@ public class RichMessageLayout {
 
         @Override
         public int getHeight() {
-            return RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 7.0f, this.padding.top) + getBackgroundHeight() + this.padding.bottom;
+            return RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(7.0f, 2, this.padding.top) + getBackgroundHeight() + this.padding.bottom;
         }
 
         @Override
@@ -5691,7 +5629,7 @@ public class RichMessageLayout {
             this.settleAnimator = valueAnimatorOfFloat;
             valueAnimatorOfFloat.setDuration(420L);
             this.settleAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.settleAnimator.addUpdateListener(new AndroidUtilities$$ExternalSyntheticLambda37(this, i2));
+            this.settleAnimator.addUpdateListener(new AndroidUtilities$$ExternalSyntheticLambda36(this, i2));
             this.settleAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
@@ -5906,7 +5844,7 @@ public class RichMessageLayout {
                     slideDotPaint.setShadowLayer(AndroidUtilities.dpf2(f2), 0.0f, AndroidUtilities.dpf2(1.0f), Integer.MIN_VALUE);
                 }
                 float fDp = AndroidUtilities.dp(5.0f) + (this.slideHeight - AndroidUtilities.dp(23.0f));
-                int iDp4 = AndroidUtilities.dp(4.0f) + RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(size - 1, 6.0f, AndroidUtilities.dp(7.0f) * size);
+                int iDp4 = AndroidUtilities.dp(4.0f) + RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(6.0f, size - 1, AndroidUtilities.dp(7.0f) * size);
                 float f12 = this.currentPage + this.pageOffset;
                 if (iDp4 < i7) {
                     fClamp = (i7 - iDp4) / f;
@@ -6282,7 +6220,6 @@ public class RichMessageLayout {
 
         private void drawCellsWithTyping(Canvas canvas, MultiLayoutTypingAnimator multiLayoutTypingAnimator, float f) {
             CellBlock cellBlock;
-            float fFloatValue;
             RichMessageLayout richMessageLayout = this.root;
             float f2 = -richMessageLayout.padLeft;
             int minWidth = richMessageLayout.getMinWidth() + this.root.padRight;
@@ -6303,38 +6240,28 @@ public class RichMessageLayout {
                 }
                 int i3 = i;
                 if (cellBlock == null) {
-                    childAt.draw(canvas, this.view, true);
+                    childAt.draw(canvas, this.view);
                 } else if (!multiLayoutTypingAnimator.needDraw(cellBlock)) {
                     childAt.draw(canvas, this.view, false);
                 } else if (multiLayoutTypingAnimator.isFadeBlock(cellBlock)) {
                     childAt.draw(canvas, this.view, false);
                     if (childAt.textLayout instanceof Text) {
                         canvas.save();
-                        canvas.translate(childAt.x + childAt.textX, childAt.y + childAt.textY);
-                        ((Text) childAt.textLayout).drawFade(canvas, multiLayoutTypingAnimator.isFadeBlock(cellBlock) ? multiLayoutTypingAnimator.curLineIdx : -1, multiLayoutTypingAnimator.isFadeBlock(cellBlock) ? multiLayoutTypingAnimator.xPosition : 0.0f);
+                        canvas.translate(childAt.getTextX(), childAt.getTextY());
+                        ((Text) childAt.textLayout).drawFade(canvas, multiLayoutTypingAnimator.getFadeLineIndex(cellBlock), multiLayoutTypingAnimator.getFadeXPosition(cellBlock));
                         canvas.restore();
                     }
                 } else {
-                    int iIndexOf = multiLayoutTypingAnimator.indexOf(cellBlock);
-                    if (iIndexOf >= 0) {
-                        ArrayList arrayList = multiLayoutTypingAnimator.blockAlphas;
-                        if (iIndexOf >= arrayList.size()) {
-                            fFloatValue = 1.0f;
-                        } else {
-                            fFloatValue = ((Float) arrayList.get(iIndexOf)).floatValue();
-                        }
-                    } else {
-                        fFloatValue = 1.0f;
-                    }
-                    if (fFloatValue >= 1.0f) {
-                        childAt.draw(canvas, this.view, true);
-                    } else if (fFloatValue <= 0.0f || childAt.textLayout == null) {
+                    float blockAlpha = multiLayoutTypingAnimator.getBlockAlpha(cellBlock);
+                    if (blockAlpha >= 1.0f) {
+                        childAt.draw(canvas, this.view);
+                    } else if (blockAlpha <= 0.0f || childAt.textLayout == null) {
                         childAt.draw(canvas, this.view, false);
                     } else {
                         childAt.draw(canvas, this.view, false);
                         canvas.save();
-                        canvas.translate(childAt.x + childAt.textX, childAt.y + childAt.textY);
-                        int iSaveLayerAlpha2 = canvas.saveLayerAlpha(0.0f, 0.0f, childAt.measuredWidth, childAt.measuredHeight, (int) (fFloatValue * 255.0f), 31);
+                        canvas.translate(childAt.getTextX(), childAt.getTextY());
+                        int iSaveLayerAlpha2 = canvas.saveLayerAlpha(0.0f, 0.0f, childAt.getMeasuredWidth(), childAt.getMeasuredHeight(), (int) (blockAlpha * 255.0f), 31);
                         childAt.textLayout.draw(canvas, this.view);
                         canvas.restoreToCount(iSaveLayerAlpha2);
                         canvas.restore();
@@ -6412,9 +6339,9 @@ public class RichMessageLayout {
                 TableLayout.Child childAt = this.tableLayout.getChildAt(i);
                 if (childAt.textLayout instanceof Text) {
                     int i2 = childAt.x;
-                    if (f3 >= i2 && f3 < i2 + childAt.measuredWidth) {
+                    if (f3 >= i2 && f3 < childAt.getMeasuredWidth() + i2) {
                         int i3 = childAt.y;
-                        if (f4 >= i3 && f4 < i3 + childAt.measuredHeight) {
+                        if (f4 >= i3 && f4 < childAt.getMeasuredHeight() + i3) {
                             return childAt;
                         }
                     }
@@ -6511,7 +6438,7 @@ public class RichMessageLayout {
                             i = i3;
                         } else {
                             canvas.save();
-                            canvas.translate(childAt.x + childAt.textX, childAt.y + childAt.textY);
+                            canvas.translate(childAt.getTextX(), childAt.getTextY());
                             i = i3;
                             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, text.layout, text.animatedEmojiStack, 0.0f, text.spoilers, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
                             canvas.restore();
@@ -6540,24 +6467,13 @@ public class RichMessageLayout {
 
         @Override
         public void drawWithTyping(Canvas canvas) {
-            float fFloatValue;
             MultiLayoutTypingAnimator multiLayoutTypingAnimator = this.typingAnimator;
-            if (multiLayoutTypingAnimator == null || !multiLayoutTypingAnimator.running || this.cellBlocks.isEmpty() || multiLayoutTypingAnimator.indexOf(this.cellBlocks.get(0)) < 0) {
+            if (multiLayoutTypingAnimator == null || !multiLayoutTypingAnimator.isRunning() || this.cellBlocks.isEmpty() || multiLayoutTypingAnimator.indexOf(this.cellBlocks.get(0)) < 0) {
                 draw(canvas);
                 return;
             }
-            int iIndexOf = multiLayoutTypingAnimator.indexOf(this.cellBlocks.get(0));
-            if (iIndexOf >= 0) {
-                ArrayList arrayList = multiLayoutTypingAnimator.blockAlphas;
-                if (iIndexOf >= arrayList.size()) {
-                    fFloatValue = 1.0f;
-                } else {
-                    fFloatValue = ((Float) arrayList.get(iIndexOf)).floatValue();
-                }
-            } else {
-                fFloatValue = 1.0f;
-            }
-            if (fFloatValue <= 0.0f) {
+            float blockAlpha = multiLayoutTypingAnimator.getBlockAlpha(this.cellBlocks.get(0));
+            if (blockAlpha <= 0.0f) {
                 return;
             }
             canvas.save();
@@ -6565,7 +6481,7 @@ public class RichMessageLayout {
             canvas.translate(rect.left, rect.top);
             drawTitle(canvas);
             canvas.translate(0.0f, this.titleHeight);
-            drawCellsWithTyping(canvas, multiLayoutTypingAnimator, fFloatValue);
+            drawCellsWithTyping(canvas, multiLayoutTypingAnimator, blockAlpha);
             canvas.restore();
         }
 
@@ -6584,8 +6500,8 @@ public class RichMessageLayout {
                 if (cellText instanceof Text) {
                     Text text2 = (Text) cellText;
                     if (text2.fillFoundLink(characterStyle, foundLink)) {
-                        foundLink.x = (((childAt.x + childAt.textX) + this.padding.left) - this.scrollX) - text2.drawLeft();
-                        foundLink.y = childAt.y + childAt.textY + i + this.padding.top + this.titleHeight;
+                        foundLink.x = ((childAt.getTextX() + this.padding.left) - this.scrollX) - text2.drawLeft();
+                        foundLink.y = childAt.getTextY() + i + this.padding.top + this.titleHeight;
                         return true;
                     }
                 }
@@ -6593,6 +6509,7 @@ public class RichMessageLayout {
             return false;
         }
 
+        @Override
         public Paint getHalfLinePaint() {
             ensurePaints();
             return this.halfLinePaint;
@@ -6692,7 +6609,7 @@ public class RichMessageLayout {
             canvas.translate(-this.scrollX, 0.0f);
             int childCount = this.tableLayout.getChildCount();
             for (int i = 0; i < childCount; i++) {
-                this.tableLayout.getChildAt(i).draw(canvas, this.view, true);
+                this.tableLayout.getChildAt(i).draw(canvas, this.view);
             }
             canvas.restore();
             RectF rectF = AndroidUtilities.rectTmp;
@@ -6709,7 +6626,8 @@ public class RichMessageLayout {
         }
 
         @Override
-        public void onLayoutChild(TableLayout.CellText cellText, int i, int i2) {
+        public final void onLayoutChild(TableLayout.CellText cellText, int i, int i2) {
+            TableLayout.TableLayoutDelegate.CC.$default$onLayoutChild(this, cellText, i, i2);
         }
 
         @Override
@@ -6749,16 +6667,10 @@ public class RichMessageLayout {
                     }
                 }
                 if (!this.textHandlingTouch && (childFindCellChildAt = findCellChildAt(motionEvent.getX(), motionEvent.getY())) != null) {
-                    Text text = (Text) childFindCellChildAt.textLayout;
-                    this.pressedCellText = text;
-                    int i = childFindCellChildAt.x;
-                    int i2 = childFindCellChildAt.textX + i;
-                    this.cellDx = i2 - this.scrollX;
-                    int i3 = this.titleHeight;
-                    int i4 = childFindCellChildAt.y;
-                    int i5 = childFindCellChildAt.textY + i4;
-                    this.cellDy = i3 + i5;
-                    text.setSoleButtonHitBounds(i - i2, i4 - i5, (i + childFindCellChildAt.measuredWidth) - i2, (i4 + childFindCellChildAt.measuredHeight) - i5);
+                    this.pressedCellText = (Text) childFindCellChildAt.textLayout;
+                    this.cellDx = childFindCellChildAt.getTextX() - this.scrollX;
+                    this.cellDy = childFindCellChildAt.getTextY() + this.titleHeight;
+                    this.pressedCellText.setSoleButtonHitBounds(childFindCellChildAt.x - childFindCellChildAt.getTextX(), childFindCellChildAt.y - childFindCellChildAt.getTextY(), (childFindCellChildAt.getMeasuredWidth() + childFindCellChildAt.x) - childFindCellChildAt.getTextX(), (childFindCellChildAt.getMeasuredHeight() + childFindCellChildAt.y) - childFindCellChildAt.getTextY());
                     motionEvent.offsetLocation(-this.cellDx, -this.cellDy);
                     this.textHandlingTouch = this.pressedCellText.onTouchEvent(motionEvent);
                     motionEvent.offsetLocation(this.cellDx, this.cellDy);
@@ -6786,14 +6698,14 @@ public class RichMessageLayout {
                 if (!this.dragging) {
                     return this.textHandlingTouch;
                 }
-                int i6 = (int) (this.downScrollX - x);
-                int i7 = i6 >= 0 ? i6 : 0;
-                int i8 = this.maxScrollX;
-                if (i7 > i8) {
-                    i7 = i8;
+                int i = (int) (this.downScrollX - x);
+                int i2 = i >= 0 ? i : 0;
+                int i3 = this.maxScrollX;
+                if (i2 > i3) {
+                    i2 = i3;
                 }
-                if (i7 != this.scrollX) {
-                    this.scrollX = i7;
+                if (i2 != this.scrollX) {
+                    this.scrollX = i2;
                     placeTexts(this.layoutX, this.layoutY, this.layoutRow);
                     View view = this.view;
                     if (view != null) {
@@ -6852,8 +6764,8 @@ public class RichMessageLayout {
                 TableLayout.CellText cellText = childAt.textLayout;
                 if (cellText instanceof Text) {
                     Text text2 = (Text) cellText;
-                    text2.setX((((childAt.x + childAt.textX) + i) - this.scrollX) - text2.drawLeft());
-                    text2.setY(childAt.y + childAt.textY + this.titleHeight + i2);
+                    text2.setX(((childAt.getTextX() + i) - this.scrollX) - text2.drawLeft());
+                    text2.setY(childAt.getTextY() + this.titleHeight + i2);
                     text2.setRow(i3);
                 }
             }
@@ -7067,7 +6979,7 @@ public class RichMessageLayout {
             if (this.bounce != null || (view = this.root.view) == null) {
                 return;
             }
-            this.bounce = new ButtonBounce(view, 1.0f, 5.0f);
+            this.bounce = new ButtonBounce(view);
         }
 
         private void toggle() {
@@ -7085,7 +6997,7 @@ public class RichMessageLayout {
             if (cell == null || delegate == null) {
                 return;
             }
-            delegate.forceUpdate(cell);
+            delegate.forceUpdate(cell, true, true);
         }
 
         @Override
@@ -7931,7 +7843,7 @@ public class RichMessageLayout {
         private RichButtonSpan pressedButtonSpan;
         private AnimatedEmojiSpan pressedEmoji;
         private CharacterStyle pressedLink;
-        private LinkSpanDrawable pressedLinkDrawable;
+        private LinkSpanDrawable<CharacterStyle> pressedLinkDrawable;
         private int pressedLinkEnd;
         private int pressedLinkStart;
         private SpoilerEffect pressedSpoiler;
@@ -8075,7 +7987,7 @@ public class RichMessageLayout {
                 }
                 return;
             }
-            CharacterStyle uRLSpanMono = ((characterStyle instanceof StyleSpan) && TLObject.hasFlag(((StyleSpan) characterStyle).flags, 256)) ? new URLSpanMono(this.layout.getText(), this.pressedLinkStart, this.pressedLinkEnd, this.root.isOut() ? (byte) 1 : (byte) 0, null) : characterStyle;
+            CharacterStyle uRLSpanMono = ((characterStyle instanceof StyleSpan) && TLObject.hasFlag(((StyleSpan) characterStyle).flags, 256)) ? new URLSpanMono(this.layout.getText(), this.pressedLinkStart, this.pressedLinkEnd, this.root.isOut() ? (byte) 1 : (byte) 0) : characterStyle;
             ChatMessageCell.ChatMessageCellDelegate delegate = this.root.getDelegate();
             ChatMessageCell cell = this.root.getCell();
             if (delegate != null && cell != null) {
@@ -8103,28 +8015,25 @@ public class RichMessageLayout {
             if (this.translationLoadingDrawable == null) {
                 LoadingDrawable loadingDrawable = new LoadingDrawable();
                 this.translationLoadingDrawable = loadingDrawable;
-                loadingDrawable.appearByGradient = true;
-                LinkPath linkPath = new LinkPath(0);
+                loadingDrawable.setAppearByGradient(true);
+                LinkPath linkPath = new LinkPath(true);
                 this.translationLoadingPath = linkPath;
-                linkPath.useCornerPathImplementation = true;
-                LoadingDrawable loadingDrawable2 = this.translationLoadingDrawable;
-                loadingDrawable2.usePath = linkPath;
-                loadingDrawable2.setRadii(AndroidUtilities.dp(5.0f));
-                this.translationLoadingDrawable.start = -1L;
+                linkPath.setUseCornerPathImplementation(true);
+                this.translationLoadingDrawable.usePath(this.translationLoadingPath);
+                this.translationLoadingDrawable.setRadiiDp(5.0f);
+                this.translationLoadingDrawable.reset();
                 this.translationLoadingPath.reset();
-                this.translationLoadingPath.setCurrentLayout(this.layout, 0, 0.0f, 0.0f);
-                this.translationLoadingPath.allowReset = false;
+                this.translationLoadingPath.setCurrentLayout(this.layout, 0, 0.0f);
+                this.translationLoadingPath.setAllowReset(false);
                 StaticLayout staticLayout = this.layout;
                 staticLayout.getSelectionPath(0, staticLayout.getText().length(), this.translationLoadingPath);
-                LinkPath linkPath2 = this.translationLoadingPath;
-                linkPath2.allowReset = true;
-                linkPath2.closeRects();
+                this.translationLoadingPath.setAllowReset(true);
+                this.translationLoadingPath.closeRects();
                 this.translationLoadingDrawable.updateBounds();
             }
             if (zIsTranslating && (this.translationLoadingDrawable.isDisappearing() || this.translationLoadingDrawable.isDisappeared())) {
-                LoadingDrawable loadingDrawable3 = this.translationLoadingDrawable;
-                loadingDrawable3.start = -1L;
-                loadingDrawable3.disappearStart = -1L;
+                this.translationLoadingDrawable.reset();
+                this.translationLoadingDrawable.resetDisappear();
             } else if (!zIsTranslating && !this.translationLoadingDrawable.isDisappearing() && !this.translationLoadingDrawable.isDisappeared()) {
                 this.translationLoadingDrawable.disappear();
             }
@@ -8230,7 +8139,7 @@ public class RichMessageLayout {
             dispatchLinkClick(this.pressedLink, true);
             LinkSpanDrawable.LinkCollector linkCollector = this.linkCollector;
             if (linkCollector != null) {
-                linkCollector.clear(true);
+                linkCollector.clear();
             }
             this.pressedLinkDrawable = null;
         }
@@ -8457,11 +8366,8 @@ public class RichMessageLayout {
         }
 
         @Override
-        public CharSequence getText() {
-            if (getLayout() == null) {
-                return null;
-            }
-            return getLayout().getText();
+        public final CharSequence getText() {
+            return TableLayout.CellText.CC.$default$getText(this);
         }
 
         @Override
@@ -8492,7 +8398,7 @@ public class RichMessageLayout {
             this.animatedEmojiStack = AnimatedEmojiSpan.update(0, this.view, this.root.invalidateAnimatedEmojiInParent && !this.doNotInvalidateEmojiInParent, this.animatedEmojiStack, this.layout);
             LinkSpanDrawable.LinkCollector linkCollector = this.linkCollector;
             if (linkCollector != null) {
-                linkCollector.mParent = this.view;
+                linkCollector.setParent(this.view);
             }
             RichButtonSpan[] buttonSpans = getButtonSpans();
             if (buttonSpans != null) {
@@ -8507,7 +8413,7 @@ public class RichMessageLayout {
             this.animatedEmojiStack = null;
             LinkSpanDrawable.LinkCollector linkCollector = this.linkCollector;
             if (linkCollector != null) {
-                linkCollector.mParent = null;
+                linkCollector.setParent(null);
             }
             RichButtonSpan[] buttonSpans = getButtonSpans();
             if (buttonSpans != null) {
@@ -8520,8 +8426,8 @@ public class RichMessageLayout {
         public boolean onTouchEvent(MotionEvent motionEvent) {
             StyleSpan styleSpan;
             boolean z;
+            int i;
             StyleSpan styleSpan2;
-            int spanEnd;
             StyleSpan styleSpan3;
             int spanStart;
             int actionMasked = motionEvent.getActionMasked();
@@ -8555,7 +8461,7 @@ public class RichMessageLayout {
                             cancelLongPress();
                             LinkSpanDrawable.LinkCollector linkCollector = this.linkCollector;
                             if (linkCollector != null) {
-                                linkCollector.clear(true);
+                                linkCollector.clear();
                             }
                             this.pressedLink = null;
                             this.pressedLinkDrawable = null;
@@ -8591,7 +8497,7 @@ public class RichMessageLayout {
                     }
                     LinkSpanDrawable.LinkCollector linkCollector2 = this.linkCollector;
                     if (linkCollector2 != null) {
-                        linkCollector2.clear(true);
+                        linkCollector2.clear();
                     }
                     this.pressedLink = null;
                     this.pressedLinkDrawable = null;
@@ -8612,7 +8518,7 @@ public class RichMessageLayout {
                 if (view2 != null) {
                     view2.playSoundEffect(0);
                 }
-                delegate.didPressAnimatedEmoji(animatedEmojiSpan);
+                delegate.didPressAnimatedEmoji(cell, animatedEmojiSpan);
                 return true;
             }
             this.pressedSpoiler = null;
@@ -8659,15 +8565,15 @@ public class RichMessageLayout {
                         this.pressedLinkStart = spannable.getSpanStart(clickableSpan);
                         this.pressedLinkEnd = spannable.getSpanEnd(this.pressedLink);
                         this.longPressFired = false;
-                        LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(this.pressedLink, this.root.resourcesProvider, f, y);
+                        LinkSpanDrawable<CharacterStyle> linkSpanDrawable = new LinkSpanDrawable<>(this.pressedLink, this.root.resourcesProvider, f, y, false);
                         LinkPath linkPathObtainNewPath = linkSpanDrawable.obtainNewPath();
-                        linkPathObtainNewPath.setCurrentLayout(this.layout, this.pressedLinkStart, 0.0f, 0.0f);
+                        linkPathObtainNewPath.setCurrentLayout(this.layout, this.pressedLinkStart, 0.0f);
                         this.layout.getSelectionPath(this.pressedLinkStart, this.pressedLinkEnd, linkPathObtainNewPath);
                         this.pressedLinkDrawable = linkSpanDrawable;
                         if (this.linkCollector == null) {
                             this.linkCollector = new LinkSpanDrawable.LinkCollector(this.view);
                         }
-                        this.linkCollector.addLink(linkSpanDrawable, null);
+                        this.linkCollector.addLink(linkSpanDrawable);
                         View view4 = this.view;
                         if (view4 != null) {
                             view4.invalidate();
@@ -8681,80 +8587,84 @@ public class RichMessageLayout {
                         break;
                     }
                     int length = styleSpanArr.length;
-                    int i = 0;
+                    int i2 = 0;
                     while (true) {
-                        if (i >= length) {
+                        if (i2 >= length) {
                             styleSpan = null;
                             break;
                         }
-                        styleSpan = styleSpanArr[i];
+                        styleSpan = styleSpanArr[i2];
                         if (TLObject.hasFlag(styleSpan.flags, 256)) {
                             break;
                         }
-                        i++;
+                        i2++;
                     }
                     if (styleSpan != null) {
                         int spanStart2 = spannable.getSpanStart(styleSpan);
-                        int spanEnd2 = spannable.getSpanEnd(styleSpan);
+                        int spanEnd = spannable.getSpanEnd(styleSpan);
                         while (true) {
                             if (spanStart2 <= 0) {
                                 z = true;
                                 break;
                             }
-                            int i2 = spanStart2 - 1;
-                            StyleSpan[] styleSpanArr2 = (StyleSpan[]) spannable.getSpans(i2, i2, StyleSpan.class);
+                            int i3 = spanStart2 - 1;
+                            StyleSpan[] styleSpanArr2 = (StyleSpan[]) spannable.getSpans(i3, i3, StyleSpan.class);
                             int length2 = styleSpanArr2.length;
-                            int i3 = 0;
+                            int i4 = 0;
                             while (true) {
                                 z = true;
-                                if (i3 >= length2) {
+                                if (i4 >= length2) {
                                     styleSpan3 = null;
                                     break;
                                 }
-                                styleSpan3 = styleSpanArr2[i3];
+                                styleSpan3 = styleSpanArr2[i4];
                                 if (TLObject.hasFlag(styleSpan3.flags, 256)) {
                                     break;
                                 }
-                                i3++;
+                                i4++;
                             }
                             if (styleSpan3 == null || (spanStart = spannable.getSpanStart(styleSpan3)) >= spanStart2) {
                                 break;
                             }
                             spanStart2 = spanStart;
                         }
-                        while (spanEnd2 < spannable.length()) {
-                            StyleSpan[] styleSpanArr3 = (StyleSpan[]) spannable.getSpans(spanEnd2, spanEnd2, StyleSpan.class);
+                        do {
+                            i = spanEnd;
+                            if (i >= spannable.length()) {
+                                break;
+                            }
+                            StyleSpan[] styleSpanArr3 = (StyleSpan[]) spannable.getSpans(i, i, StyleSpan.class);
                             int length3 = styleSpanArr3.length;
-                            int i4 = 0;
+                            int i5 = 0;
                             while (true) {
-                                if (i4 >= length3) {
+                                if (i5 >= length3) {
                                     styleSpan2 = null;
                                     break;
                                 }
-                                styleSpan2 = styleSpanArr3[i4];
+                                styleSpan2 = styleSpanArr3[i5];
                                 if (TLObject.hasFlag(styleSpan2.flags, 256)) {
                                     break;
                                 }
-                                i4++;
+                                i5++;
                             }
-                            if (styleSpan2 == null || (spanEnd = spannable.getSpanEnd(styleSpan2)) <= spanEnd2) {
+                            if (styleSpan2 == null) {
                                 break;
                             }
-                            spanEnd2 = spanEnd;
-                        }
+                            spanEnd = spannable.getSpanEnd(styleSpan2);
+                        } while (spanEnd > i);
                         this.pressedLink = styleSpan;
                         this.pressedLinkStart = spanStart2;
-                        this.pressedLinkEnd = spanEnd2;
+                        this.pressedLinkEnd = i;
                         this.longPressFired = false;
-                        LinkSpanDrawable linkSpanDrawable2 = new LinkSpanDrawable(styleSpan, this.root.resourcesProvider, f, y);
+                        LinkSpanDrawable<CharacterStyle> linkSpanDrawable2 = new LinkSpanDrawable<>(styleSpan, this.root.resourcesProvider, f, y, true);
                         LinkPath linkPathObtainNewPath2 = linkSpanDrawable2.obtainNewPath();
-                        linkPathObtainNewPath2.setCurrentLayout(this.layout, spanStart2, 0.0f, 0.0f);
-                        this.layout.getSelectionPath(spanStart2, spanEnd2, linkPathObtainNewPath2);
+                        linkPathObtainNewPath2.setCurrentLayout(this.layout, spanStart2, 0.0f);
+                        this.layout.getSelectionPath(spanStart2, i, linkPathObtainNewPath2);
                         this.pressedLinkDrawable = linkSpanDrawable2;
                         if (this.linkCollector == null) {
                             this.linkCollector = new LinkSpanDrawable.LinkCollector(this.view);
                         }
-                        this.linkCollector.addLink(linkSpanDrawable2, null);
+                        this.linkCollector.addLink(linkSpanDrawable2);
                         View view5 = this.view;
                         if (view5 != null) {
                             view5.invalidate();
@@ -8941,10 +8851,10 @@ public class RichMessageLayout {
                         int spanEnd2 = spanned2.getSpanEnd(styleSpan3);
                         if (spanStart2 >= 0 && spanEnd2 > spanStart2) {
                             if (linkPath == null) {
-                                linkPath = new LinkPath(0);
-                                linkPath.allowReset = false;
+                                linkPath = new LinkPath(true);
+                                linkPath.setAllowReset(false);
                             }
-                            linkPath.setCurrentLayout(this.layout, spanStart2, 0.0f, 0.0f);
+                            linkPath.setCurrentLayout(this.layout, spanStart2, 0.0f);
                             if (TLObject.hasFlag(styleSpan3.flags, 4096)) {
                                 iDp = -AndroidUtilities.dp(6.0f);
                             } else {
@@ -8955,13 +8865,13 @@ public class RichMessageLayout {
                             } else {
                                 iDp2 = 0;
                             }
-                            linkPath.baselineShift = iDp2;
+                            linkPath.setBaselineShift(iDp2);
                             this.layout.getSelectionPath(spanStart2, spanEnd2, linkPath);
                         }
                     }
                 }
                 if (linkPath != null) {
-                    linkPath.allowReset = true;
+                    linkPath.setAllowReset(true);
                     this.markPath = linkPath;
                 }
             }
@@ -9023,7 +8933,7 @@ public class RichMessageLayout {
 
     private void closeLists(StringBuilder sb, ArrayList<Boolean> arrayList) {
         while (!arrayList.isEmpty()) {
-            sb.append(((Boolean) arrayList.remove(arrayList.size() - 1)).booleanValue() ? "</ol>" : "</ul>");
+            sb.append(arrayList.remove(arrayList.size() + (-1)).booleanValue() ? "</ol>" : "</ul>");
         }
     }
 
@@ -9387,7 +9297,7 @@ public class RichMessageLayout {
                 canvas.scale(blockBackgroundScale, blockBackgroundScale, rectF.centerX(), rectF.centerY());
                 float fFloor = (float) Math.floor(SharedConfig.bubbleRadius / 3.0f);
                 this.quoteLine.drawBackground(canvas, rectF, fFloor, fFloor, fFloor, 1.0f, false, false);
-                this.quoteLine.drawLine(canvas, rectF, 1.0f);
+                this.quoteLine.drawLine(canvas, rectF);
                 canvas.restore();
                 i = i2;
             }
@@ -9458,7 +9368,7 @@ public class RichMessageLayout {
         canvas.clipRect(fDp, fDp3, fDp2, fDp4);
         int i = (int) fDp;
         int i2 = (int) fDp3;
-        this.pullquoteIcon.setBounds(AndroidUtilities.dp(8.0f) + i, AndroidUtilities.dp(7.0f) + i2, RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(i, 8.0f, intrinsicWidth), RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(i2, 7.0f, intrinsicHeight));
+        this.pullquoteIcon.setBounds(AndroidUtilities.dp(8.0f) + i, AndroidUtilities.dp(7.0f) + i2, RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(8.0f, i, intrinsicWidth), RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(7.0f, i2, intrinsicHeight));
         canvas.scale(-1.0f, -1.0f, this.pullquoteIcon.getBounds().centerX(), this.pullquoteIcon.getBounds().centerY());
         this.pullquoteIcon.draw(canvas);
         canvas.restore();
@@ -9466,7 +9376,7 @@ public class RichMessageLayout {
         canvas.clipRect(fDp, fDp3, fDp2, fDp4);
         int i3 = (int) fDp2;
         int i4 = (int) fDp4;
-        this.pullquoteIcon.setBounds(RichMessageLayout$$ExternalSyntheticOutline2.m(i3, 8.0f, intrinsicWidth), RichMessageLayout$$ExternalSyntheticOutline2.m(i4, 7.0f, intrinsicHeight), i3 - AndroidUtilities.dp(8.0f), i4 - AndroidUtilities.dp(7.0f));
+        this.pullquoteIcon.setBounds(RichMessageLayout$$ExternalSyntheticOutline1.m(8.0f, i3, intrinsicWidth), RichMessageLayout$$ExternalSyntheticOutline1.m(7.0f, i4, intrinsicHeight), i3 - AndroidUtilities.dp(8.0f), i4 - AndroidUtilities.dp(7.0f));
         canvas.scale(1.0f, -1.0f, this.pullquoteIcon.getBounds().centerX(), this.pullquoteIcon.getBounds().centerY());
         this.pullquoteIcon.draw(canvas);
         canvas.restore();
@@ -9483,10 +9393,10 @@ public class RichMessageLayout {
         if (buttonBounce == null) {
             this.showMoreBounce = new ButtonBounce(this.view, 1.5f, 2.0f);
         } else {
-            View view = buttonBounce.view;
+            View view = buttonBounce.getView();
             View view2 = this.view;
             if (view != view2) {
-                buttonBounce.view = view2;
+                this.showMoreBounce.setView(view2);
             }
         }
         if (this.showMorePaint == null) {
@@ -9494,16 +9404,16 @@ public class RichMessageLayout {
         }
         this.showMorePaint.setColor(Theme.multAlpha(0.1f, themedColor));
         float fDp = AndroidUtilities.dp(42.0f);
-        float f = this.showMoreText.width;
+        float currentWidth = this.showMoreText.getCurrentWidth();
         float minWidth = ((getMinWidth() + this.padLeft) + this.padRight) - AndroidUtilities.dp(24.0f);
         int minWidth2 = getMinWidth();
         int i2 = this.padLeft;
-        float f2 = (((minWidth2 + i2) + this.padRight) / 2.0f) - i2;
+        float f = (((minWidth2 + i2) + this.padRight) / 2.0f) - i2;
         float fDp2 = AndroidUtilities.dp(4.0f) + i;
-        float f3 = minWidth / 2.0f;
-        this.showMoreRect.set(f2 - f3, fDp2, f2 + f3, fDp + fDp2);
+        float f2 = minWidth / 2.0f;
+        this.showMoreRect.set(f - f2, fDp2, f + f2, fDp + fDp2);
         ChatMessageCell chatMessageCell = this.cell;
-        boolean z = (chatMessageCell == null || (chatMessageCellDelegate = this.delegate) == null || !chatMessageCellDelegate.isProgressLoading(7, chatMessageCell)) ? false : true;
+        boolean z = (chatMessageCell == null || (chatMessageCellDelegate = this.delegate) == null || !chatMessageCellDelegate.isProgressLoading(chatMessageCell, 7)) ? false : true;
         LoadingDrawable loadingDrawable = this.showMoreLoading;
         if (loadingDrawable != null && !z && !loadingDrawable.isDisappeared() && !this.showMoreLoading.isDisappearing()) {
             this.showMoreLoading.disappear();
@@ -9513,15 +9423,14 @@ public class RichMessageLayout {
             LoadingDrawable loadingDrawable3 = new LoadingDrawable();
             this.showMoreLoading = loadingDrawable3;
             loadingDrawable3.strokePaint.setStrokeWidth(AndroidUtilities.dp(1.25f));
-            this.showMoreLoading.appearByGradient = true;
+            this.showMoreLoading.setAppearByGradient(true);
         } else if (loadingDrawable2 != null && z && (loadingDrawable2.isDisappeared() || this.showMoreLoading.isDisappearing())) {
-            LoadingDrawable loadingDrawable4 = this.showMoreLoading;
-            loadingDrawable4.start = -1L;
-            loadingDrawable4.disappearStart = -1L;
+            this.showMoreLoading.reset();
+            this.showMoreLoading.resetDisappear();
         }
-        LoadingDrawable loadingDrawable5 = this.showMoreLoading;
-        if (loadingDrawable5 != null) {
-            loadingDrawable5.setColors(Theme.multAlpha(0.1f, themedColor), Theme.multAlpha(0.3f, themedColor), Theme.multAlpha(0.3f, themedColor), Theme.multAlpha(1.2f, themedColor));
+        LoadingDrawable loadingDrawable4 = this.showMoreLoading;
+        if (loadingDrawable4 != null) {
+            loadingDrawable4.setColors(Theme.multAlpha(0.1f, themedColor), Theme.multAlpha(0.3f, themedColor), Theme.multAlpha(0.3f, themedColor), Theme.multAlpha(1.2f, themedColor));
         }
         float scale = this.showMoreBounce.getScale(0.075f);
         boolean z2 = scale != 1.0f;
@@ -9530,19 +9439,17 @@ public class RichMessageLayout {
             canvas.scale(scale, scale, this.showMoreRect.centerX(), this.showMoreRect.centerY());
         }
         canvas.drawRoundRect(this.showMoreRect, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.showMorePaint);
-        LoadingDrawable loadingDrawable6 = this.showMoreLoading;
-        if (loadingDrawable6 != null && !loadingDrawable6.isDisappeared()) {
+        LoadingDrawable loadingDrawable5 = this.showMoreLoading;
+        if (loadingDrawable5 != null && !loadingDrawable5.isDisappeared()) {
             this.showMoreLoading.setBounds(this.showMoreRect);
-            LoadingDrawable loadingDrawable7 = this.showMoreLoading;
-            loadingDrawable7.getClass();
-            loadingDrawable7.setRadii(AndroidUtilities.dp(8.0f));
+            this.showMoreLoading.setRadiiDp(8.0f);
             this.showMoreLoading.draw(canvas);
             View view3 = this.view;
             if (view3 != null) {
                 view3.invalidate();
             }
         }
-        this.showMoreText.draw(this.showMoreRect.centerX() - (f / 2.0f), this.showMoreRect.centerY(), 1.0f, themedColor, canvas);
+        this.showMoreText.draw(canvas, this.showMoreRect.centerX() - (currentWidth / 2.0f), this.showMoreRect.centerY(), themedColor, 1.0f);
         if (z2) {
             canvas.restore();
         }
@@ -10011,38 +9918,33 @@ public class RichMessageLayout {
     }
 
     private int getBlockBottom(int i, ChatMessageCell.TransitionParams transitionParams) {
-        int height;
-        int i2 = 0;
         if (i >= 0 && i < this.blocks.size() && transitionParams != null && (this.detailsAnimating || this.blockquoteAnimating)) {
             float fMax = Math.max(0.0f, Math.min(1.0f, transitionParams.animateChangeProgress));
             RichBlock richBlock = this.blocks.get(i);
-            int iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(richBlock.padding.bottom, 4.0f, 0);
+            int iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(4.0f, richBlock.padding.bottom, 0);
             return Math.round(AndroidUtilities.lerp((richBlock.prevY + richBlock.prevH) - (richBlock.prevVisible ? iM : 0), (richBlock.currY + richBlock.currH) - (richBlock.currVisible ? iM : 0), fMax));
         }
         boolean z = false;
-        int iM2 = 0;
-        while (i2 < this.blocks.size()) {
+        int gap = 0;
+        for (int i2 = 0; i2 < this.blocks.size(); i2++) {
             RichBlock richBlock2 = this.blocks.get(i2);
             boolean zIsVisible = richBlock2.isVisible();
             if (zIsVisible && z) {
-                iM2 += getGap();
+                gap += getGap();
             }
             if (zIsVisible) {
-                if (transitionParams == null || !(this.detailsAnimating || this.blockquoteAnimating)) {
-                    height = richBlock2.getHeight();
-                } else {
-                    height = AndroidUtilities.lerp(richBlock2.prevH, richBlock2.currH, Math.max(0.0f, Math.min(1.0f, transitionParams.animateChangeProgress)));
+                int height = ((transitionParams == null || !(this.detailsAnimating || this.blockquoteAnimating)) ? richBlock2.getHeight() : AndroidUtilities.lerp(richBlock2.prevH, richBlock2.currH, Math.max(0.0f, Math.min(1.0f, transitionParams.animateChangeProgress)))) + gap;
+                if (i2 == i && richBlock2.padding.bottom > AndroidUtilities.dp(4.0f)) {
+                    height -= richBlock2.padding.bottom - AndroidUtilities.dp(4.0f);
                 }
-                int i3 = height + iM2;
-                iM2 = (i2 != i || richBlock2.padding.bottom <= AndroidUtilities.dp(4.0f)) ? i3 : RichMessageLayout$$ExternalSyntheticOutline1.m(richBlock2.padding.bottom, 4.0f, i3);
+                gap = height;
             }
             if (i2 == i) {
-                return iM2;
+                return gap;
             }
             if (zIsVisible) {
                 z = true;
             }
-            i2++;
         }
         return this.height;
     }
@@ -10239,7 +10141,7 @@ public class RichMessageLayout {
             return pageListOrderedItem.num.endsWith(".") ? pageListOrderedItem.num : MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0.m(new StringBuilder(), pageListOrderedItem.num, ".");
         }
         if (TLObject.hasFlag(pageListOrderedItem.flags, 8)) {
-            return SurfaceContainer$$ExternalSyntheticOutline0.m(pageListOrderedItem.value, ".", new StringBuilder());
+            return Fragment$$ExternalSyntheticOutline0.m(pageListOrderedItem.value, ".", new StringBuilder());
         }
         if (!TLObject.hasFlag(pageblockorderedlist.flags, 1)) {
             return (i + 1) + ".";
@@ -10316,7 +10218,7 @@ public class RichMessageLayout {
         if (recyclerView == null) {
             return false;
         }
-        recyclerView.smoothScrollBy(0, (((this.cell.getTop() + this.cell.textY) + getBlockTop(i, null)) - recyclerView.getPaddingTop()) - AndroidUtilities.dp(8.0f), null);
+        recyclerView.smoothScrollBy(0, (((this.cell.getTop() + this.cell.textY) + getBlockTop(i, null)) - recyclerView.getPaddingTop()) - AndroidUtilities.dp(8.0f));
         return true;
     }
 
@@ -10385,7 +10287,7 @@ public class RichMessageLayout {
         }
         String str = textanchor.name;
         CharSequence text = formatText(WebInstantView.filterRecursiveAnchorLinks(textanchor.text, "", str == null ? "" : str.toLowerCase()));
-        BottomSheet bottomSheet = new BottomSheet(context, this.resourcesProvider, true, false);
+        BottomSheet bottomSheet = new BottomSheet(context, true, false, this.resourcesProvider);
         bottomSheet.fixNavigationBar();
         bottomSheet.applyTopPadding = false;
         bottomSheet.applyBottomPadding = false;
@@ -10408,7 +10310,7 @@ public class RichMessageLayout {
         linksTextView.setText(text);
         linearLayout.addView(linksTextView, new LinearLayout.LayoutParams(-1, -2));
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2.0f, -1));
+        frameLayout.addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f));
         bottomSheet.customView = frameLayout;
         bottomSheet.show();
         return true;
@@ -10420,7 +10322,7 @@ public class RichMessageLayout {
             if (arrayList.size() <= i) {
                 break;
             }
-            if (((Boolean) arrayList.remove(arrayList.size() - 1)).booleanValue()) {
+            if (arrayList.remove(arrayList.size() - 1).booleanValue()) {
                 str = "</ol>";
             }
             sb.append(str);
@@ -10436,10 +10338,10 @@ public class RichMessageLayout {
             sb.append(str2);
             arrayList.add(Boolean.valueOf(z));
         }
-        if (arrayList.isEmpty() || ((Boolean) SurfaceContainer$$ExternalSyntheticOutline0.m(1, (ArrayList) arrayList)).booleanValue() == z) {
+        if (arrayList.isEmpty() || ((Boolean) Fragment$$ExternalSyntheticOutline0.m(1, (ArrayList) arrayList)).booleanValue() == z) {
             return;
         }
-        sb.append(((Boolean) arrayList.remove(arrayList.size() - 1)).booleanValue() ? "</ol>" : "</ul>");
+        sb.append(arrayList.remove(arrayList.size() - 1).booleanValue() ? "</ol>" : "</ul>");
         sb.append(z ? "<ol>" : "<ul>");
         arrayList.add(Boolean.valueOf(z));
     }
@@ -10468,7 +10370,7 @@ public class RichMessageLayout {
             if (spanEnd > spanStart && (textStyleFlags = toTextStyleFlags(styleSpan.flags)) != 0) {
                 TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
                 textStyleRun.flags = textStyleFlags;
-                spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun, 0), spanStart, spanEnd, 33);
+                spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun), spanStart, spanEnd, 33);
             }
         }
         return spannableStringBuilder;
@@ -10507,7 +10409,7 @@ public class RichMessageLayout {
         if (this.translationLoadingFloat == null) {
             this.translationLoadingFloat = new AnimatedFloat(0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         }
-        float f = this.translationLoadingFloat.set(zIsTranslating ? 1.0f : 0.0f, false);
+        float f = this.translationLoadingFloat.set(zIsTranslating ? 1.0f : 0.0f);
         this.translationLoadingValue = f;
         if (f <= 0.0f || (view = this.view) == null) {
             return;
@@ -10536,17 +10438,7 @@ public class RichMessageLayout {
             return;
         }
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        boolean zIsDark = resourcesProvider != null ? resourcesProvider.isDark() : Theme.currentTheme.isDark();
-        ReplyMessageLine replyMessageLine = this.quoteLine;
-        int color = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
-        replyMessageLine.reversedOut = false;
-        replyMessageLine.hasColor3 = false;
-        replyMessageLine.hasColor2 = false;
-        replyMessageLine.color3 = color;
-        replyMessageLine.color2 = color;
-        replyMessageLine.color1 = color;
-        replyMessageLine.backgroundColor = Theme.multAlpha(zIsDark ? 0.12f : 0.1f, color);
-        replyMessageLine.emojiColor = color;
+        this.quoteLine.setSimpleColor(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), resourcesProvider != null ? resourcesProvider.isDark() : Theme.currentTheme.isDark());
     }
 
     public void collectMediaBlocks(List<TL_iv.PageBlock> list) {
@@ -10733,7 +10625,7 @@ public class RichMessageLayout {
                 }
             }
         }
-        return ((RichBlock) zziq.m(1, this.blocks)).forcesTimeToNewLine();
+        return ((RichBlock) zzin.m(1, this.blocks)).forcesTimeToNewLine();
     }
 
     public CharSequence formatText(TL_iv.RichText richText) {
@@ -10805,7 +10697,7 @@ public class RichMessageLayout {
                 }
             }
         }
-        RichBlock richBlock = (RichBlock) zziq.m(1, this.blocks);
+        RichBlock richBlock = (RichBlock) zzin.m(1, this.blocks);
         return richBlock.forcesTimeToNewLine() ? getMinWidth() : richBlock.getLastLineWidth();
     }
 
@@ -10906,7 +10798,7 @@ public class RichMessageLayout {
                                         sb3.append(RichHtml.escapeAttr(str3));
                                         sb3.append("\">");
                                     }
-                                    strM = SurfaceContainer$$ExternalSyntheticOutline0.m(sb3, string, "</pre>");
+                                    strM = Fragment$$ExternalSyntheticOutline0.m(sb3, string, "</pre>");
                                 }
                                 sb.append(strM);
                             } else if (z) {
@@ -11013,7 +10905,7 @@ public class RichMessageLayout {
 
     public boolean isOverlayActive() {
         MultiLayoutTypingAnimator multiLayoutTypingAnimator = this.typingAnimator;
-        return multiLayoutTypingAnimator == null || !multiLayoutTypingAnimator.running;
+        return multiLayoutTypingAnimator == null || !multiLayoutTypingAnimator.isRunning();
     }
 
     public boolean isPinnedTop() {
@@ -11348,14 +11240,13 @@ public class RichMessageLayout {
             super(richMessageLayout, rect, i);
             this.index = i2;
             this.level = i3;
-            Theme.ResourcesProvider resourcesProvider = richMessageLayout.resourcesProvider;
-            UnsupportedBlockDrawable unsupportedBlockDrawable = new UnsupportedBlockDrawable();
+            UnsupportedBlockDrawable unsupportedBlockDrawable = new UnsupportedBlockDrawable(richMessageLayout.resourcesProvider);
             this.unsupportedBlockDrawable = unsupportedBlockDrawable;
             unsupportedBlockDrawable.setCallback(this);
-            unsupportedBlockDrawable.title = LocaleController.getString(R.string.UnsupportedBlockTitle);
-            unsupportedBlockDrawable.subtitle = LocaleController.getString(R.string.UnsupportedBlockMessage);
-            unsupportedBlockDrawable.buttonText = LocaleController.getString(R.string.UnsupportedUpdate);
-            unsupportedBlockDrawable.onClickListener = new SecretChatHelper$$ExternalSyntheticLambda22(richMessageLayout, 10);
+            unsupportedBlockDrawable.setTitle(LocaleController.getString(R.string.UnsupportedBlockTitle));
+            unsupportedBlockDrawable.setSubtitle(LocaleController.getString(R.string.UnsupportedBlockMessage));
+            unsupportedBlockDrawable.setButtonText(LocaleController.getString(R.string.UnsupportedUpdate));
+            unsupportedBlockDrawable.setOnClickListener(new SecretChatHelper$$ExternalSyntheticLambda22(richMessageLayout, 10));
             int i4 = this.maxWidth;
             this.unsupportedBlockWidth = i4;
             this.unsupportedBlockHeight = unsupportedBlockDrawable.measure(i4);
@@ -11413,7 +11304,7 @@ public class RichMessageLayout {
         @Override
         public boolean onTouchEvent(MotionEvent motionEvent) {
             View view = this.view;
-            return view != null ? this.unsupportedBlockDrawable.clickHelper.onTouchEvent(motionEvent, view) : super.onTouchEvent(motionEvent);
+            return view != null ? this.unsupportedBlockDrawable.onTouchEvent(view, motionEvent) : super.onTouchEvent(motionEvent);
         }
 
         @Override
@@ -11475,11 +11366,11 @@ public class RichMessageLayout {
             boolean zIsEmpty = RichTextStyle.isEmpty(textdiff.text);
             boolean zIsEmpty2 = RichTextStyle.isEmpty(textdiff.old_text);
             if (zIsEmpty && !zIsEmpty2) {
-                formatTextAndSetSpan(textdiff.old_text, spannableStringBuilder, i, new TextStyleSpan(getTextStyleRun(8192), 0));
+                formatTextAndSetSpan(textdiff.old_text, spannableStringBuilder, i, new TextStyleSpan(getTextStyleRun(8192)));
                 return spannableStringBuilder;
             }
             if (!zIsEmpty && zIsEmpty2) {
-                formatTextAndSetSpan(textdiff.text, spannableStringBuilder, i, new TextStyleSpan(getTextStyleRun(4096), 0));
+                formatTextAndSetSpan(textdiff.text, spannableStringBuilder, i, new TextStyleSpan(getTextStyleRun(4096)));
                 return spannableStringBuilder;
             }
             if (!zIsEmpty) {
@@ -11544,9 +11435,9 @@ public class RichMessageLayout {
                     TL_iv.textPhone textphone = (TL_iv.textPhone) richText;
                     String strStripExceptNumbers = PhoneFormat.stripExceptNumbers(textphone.phone, false);
                     if (textphone.phone.startsWith("+")) {
-                        strStripExceptNumbers = zzil.m("+", strStripExceptNumbers);
+                        strStripExceptNumbers = zzii.m("+", strStripExceptNumbers);
                     }
-                    formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanReplacement(zzil.m("tel:", strStripExceptNumbers), getTextStyleRun(1024)));
+                    formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanReplacement(zzii.m("tel:", strStripExceptNumbers), getTextStyleRun(1024)));
                     return spannableStringBuilder;
                 }
                 if (richText instanceof TL_iv.textAnchor) {
@@ -11604,13 +11495,13 @@ public class RichMessageLayout {
                             new StyleSpan(this, i, true).applyStyle(textPaint);
                             size = new AnimatedEmojiSpan(textcustomemoji.document_id, 0.85f, textPaint.getFontMetricsInt());
                         } else {
-                            size = new AnimatedEmojiSpan(textcustomemoji.document_id, zHasFlag ? 1.0f : 1.2f, null).setSize(AndroidUtilities.dp(this.fontSize + 4 + (zHasFlag ? -2 : 4)));
+                            size = new AnimatedEmojiSpan(textcustomemoji.document_id, zHasFlag ? 1.0f : 1.2f, (Paint.FontMetricsInt) null).setSize(AndroidUtilities.dp(this.fontSize + 4 + (zHasFlag ? -2 : 4)));
                         }
                         spannableStringBuilder.setSpan(size, length3, length4, 33);
                         return spannableStringBuilder;
                     }
                     if (richText instanceof TL_iv.textSpoiler) {
-                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new TextStyleSpan(getTextStyleRun(256), 0));
+                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new TextStyleSpan(getTextStyleRun(256)));
                         return spannableStringBuilder;
                     }
                     if (richText instanceof TL_iv.textMention) {
@@ -11628,7 +11519,7 @@ public class RichMessageLayout {
                         return spannableStringBuilder;
                     }
                     if (richText instanceof TL_iv.textBotCommand) {
-                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanBotCommand(getString(richText), isOut() ? 1 : 0, null));
+                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanBotCommand(getString(richText), isOut() ? 1 : 0));
                         return spannableStringBuilder;
                     }
                     if (richText instanceof TL_iv.textCashtag) {
@@ -11643,24 +11534,24 @@ public class RichMessageLayout {
                         return spannableStringBuilder;
                     }
                     if (richText instanceof TL_iv.textAutoEmail) {
-                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanReplacement(zzil.m("mailto:", getString(richText)), getTextStyleRun(1024)));
+                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanReplacement(zzii.m("mailto:", getString(richText)), getTextStyleRun(1024)));
                         return spannableStringBuilder;
                     }
                     if (richText instanceof TL_iv.textAutoPhone) {
                         String string = getString(richText);
                         String strStripExceptNumbers2 = PhoneFormat.stripExceptNumbers(string, false);
                         if (string.startsWith("+")) {
-                            strStripExceptNumbers2 = zzil.m("+", strStripExceptNumbers2);
+                            strStripExceptNumbers2 = zzii.m("+", strStripExceptNumbers2);
                         }
-                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanReplacement(zzil.m("tel:", strStripExceptNumbers2), getTextStyleRun(1024)));
+                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanReplacement(zzii.m("tel:", strStripExceptNumbers2), getTextStyleRun(1024)));
                         return spannableStringBuilder;
                     }
                     if (richText instanceof TL_iv.textBankCard) {
-                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanNoUnderline(zzil.m("card:", getString(richText)), null));
+                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanNoUnderline(zzii.m("card:", getString(richText))));
                         return spannableStringBuilder;
                     }
                     if (richText instanceof TL_iv.textMentionName) {
-                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanUserMention("" + ((TL_iv.textMentionName) richText).user_id, isOut() ? 1 : 0, null));
+                        formatTextAndSetSpan(richText.text, spannableStringBuilder, i, new URLSpanUserMention("" + ((TL_iv.textMentionName) richText).user_id, isOut() ? 1 : 0));
                         return spannableStringBuilder;
                     }
                     if (richText instanceof TL_iv.textDate) {
@@ -12070,10 +11961,10 @@ public class RichMessageLayout {
                 radialProgress3.setProgressRect(i, i2, i + i3, i3 + i2);
                 return;
             }
-            RadialProgress2 radialProgress4 = new RadialProgress2(null, view);
+            RadialProgress2 radialProgress4 = new RadialProgress2(view);
             this.radialProgress = radialProgress4;
-            radialProgress4.progressColor = -1;
-            radialProgress4.setColors(1711276032, 2130706432, -1, -2500135);
+            radialProgress4.setProgressColor(-1);
+            this.radialProgress.setColors(1711276032, 2130706432, -1, -2500135);
             RadialProgress2 radialProgress5 = this.radialProgress;
             int i4 = this.buttonX;
             int i5 = this.buttonY;

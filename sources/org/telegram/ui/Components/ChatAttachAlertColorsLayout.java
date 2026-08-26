@@ -2,64 +2,201 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.core.util.Consumer;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.PeerColorActivity;
+import org.telegram.ui.Cells.WallpaperCell;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.WallpapersListActivity;
 
-public final class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayout {
-    public final BottomSheetWithRecyclerListView.AnonymousClass8 adapter;
-    public final ChatActivity.AnonymousClass34 gridView;
-    public int itemSize;
-    public int itemsPerRow;
-    public final StickersAlert.AnonymousClass7 layoutManager;
-    public Consumer wallpaperConsumer;
+public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayout {
+    Adapter adapter;
+    public int currentItemTop;
+    public RecyclerListView gridView;
+    private int itemSize;
+    private int itemsPerRow;
+    GridLayoutManager layoutManager;
+    Consumer wallpaperConsumer;
 
-    public ChatAttachAlertColorsLayout(Context context, Theme.ResourcesProvider resourcesProvider, ChatAttachAlert chatAttachAlert) {
-        super(context, resourcesProvider, chatAttachAlert);
+    public class Adapter extends RecyclerListView.SelectionAdapter {
+        private Context mContext;
+        private final ArrayList<Object> wallpapers = new ArrayList<>();
+
+        public Adapter(Context context) {
+            this.mContext = context;
+        }
+
+        @Override
+        public int getItemCount() {
+            return this.wallpapers.size();
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            return 0;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.getItemViewType() == 0;
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            WallpaperCell wallpaperCell = (WallpaperCell) viewHolder.itemView;
+            wallpaperCell.setParams(1, false, false);
+            wallpaperCell.setSize(ChatAttachAlertColorsLayout.this.itemSize);
+            wallpaperCell.setWallpaper(1, 0, this.wallpapers.get(i), null, null, false);
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            WallpaperCell wallpaperCell = new WallpaperCell(this.mContext, 1) {
+                @Override
+                public void onWallpaperClick(Object obj, int i2) {
+                    Consumer consumer = ChatAttachAlertColorsLayout.this.wallpaperConsumer;
+                    if (consumer != null) {
+                        consumer.accept(obj);
+                    }
+                }
+            };
+            wallpaperCell.drawStubBackground = false;
+            return new RecyclerListView.Holder(wallpaperCell);
+        }
+    }
+
+    public ChatAttachAlertColorsLayout(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(chatAttachAlert, context, resourcesProvider);
         this.itemSize = AndroidUtilities.dp(80.0f);
         this.itemsPerRow = 3;
-        ChatActivity.AnonymousClass34 anonymousClass34 = new ChatActivity.AnonymousClass34(this, context, resourcesProvider, 8);
-        this.gridView = anonymousClass34;
-        BottomSheetWithRecyclerListView.AnonymousClass8 anonymousClass8 = new BottomSheetWithRecyclerListView.AnonymousClass8(this, context);
-        this.adapter = anonymousClass8;
-        anonymousClass34.setAdapter(anonymousClass8);
-        anonymousClass34.setClipToPadding(false);
-        anonymousClass34.setItemAnimator(null);
-        anonymousClass34.setLayoutAnimation(null);
-        anonymousClass34.setVerticalScrollBarEnabled(false);
-        anonymousClass34.setGlowColor(Theme.getColor(Theme.key_dialogScrollGlow, this.resourcesProvider));
-        addView(anonymousClass34, LayoutHelper.createFrame(-1.0f, -1));
-        anonymousClass34.setOnScrollListener(new ChatActivity.AnonymousClass53(this, 16));
-        int i = 1;
-        StickersAlert.AnonymousClass7 anonymousClass7 = new StickersAlert.AnonymousClass7(this, this.itemSize, i);
-        this.layoutManager = anonymousClass7;
-        anonymousClass7.mSpanSizeLookup = new PeerColorActivity.Page.AnonymousClass2(this, i);
-        anonymousClass34.setLayoutManager(anonymousClass7);
+        this.currentItemTop = 0;
+        RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() != 0 || motionEvent.getY() >= ChatAttachAlertColorsLayout.this.parentAlert.scrollOffsetY[0] - AndroidUtilities.dp(80.0f)) {
+                    return super.onInterceptTouchEvent(motionEvent);
+                }
+                return false;
+            }
+
+            @Override
+            public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                super.onLayout(z, i, i2, i3, i4);
+                PhotoViewer.getInstance().checkCurrentImageVisibility();
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() != 0 || motionEvent.getY() >= ChatAttachAlertColorsLayout.this.parentAlert.scrollOffsetY[0] - AndroidUtilities.dp(80.0f)) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            }
+        };
+        this.gridView = recyclerListView;
+        Adapter adapter = new Adapter(context);
+        this.adapter = adapter;
+        recyclerListView.setAdapter(adapter);
+        this.gridView.setClipToPadding(false);
+        this.gridView.lambda$onCellEnter$52(null);
+        this.gridView.setLayoutAnimation(null);
+        this.gridView.setVerticalScrollBarEnabled(false);
+        this.gridView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
+        addView(this.gridView, LayoutHelper.createFrame(-1, -1.0f));
+        this.gridView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            boolean parentPinnedToTop;
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int i) {
+                RecyclerListView.Holder holder;
+                if (i == 0) {
+                    int iDp = AndroidUtilities.dp(13.0f);
+                    ActionBarMenuItem actionBarMenuItem = ChatAttachAlertColorsLayout.this.parentAlert.selectedMenuItem;
+                    int iDp2 = iDp + (actionBarMenuItem != null ? AndroidUtilities.dp(actionBarMenuItem.getAlpha() * 26.0f) : 0);
+                    int backgroundPaddingTop = ChatAttachAlertColorsLayout.this.parentAlert.getBackgroundPaddingTop();
+                    if (((ChatAttachAlertColorsLayout.this.parentAlert.scrollOffsetY[0] - backgroundPaddingTop) - iDp2) + backgroundPaddingTop >= ActionBar.getCurrentActionBarHeight() || (holder = (RecyclerListView.Holder) ChatAttachAlertColorsLayout.this.gridView.findViewHolderForAdapterPosition(0)) == null || holder.itemView.getTop() <= AndroidUtilities.dp(7.0f)) {
+                        return;
+                    }
+                    ChatAttachAlertColorsLayout.this.gridView.smoothScrollBy(0, holder.itemView.getTop() - AndroidUtilities.dp(7.0f));
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                if (ChatAttachAlertColorsLayout.this.gridView.getChildCount() <= 0) {
+                    return;
+                }
+                ChatAttachAlertColorsLayout chatAttachAlertColorsLayout = ChatAttachAlertColorsLayout.this;
+                chatAttachAlertColorsLayout.parentAlert.updateLayout(chatAttachAlertColorsLayout, true, i2);
+            }
+        });
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(context, this.itemSize) {
+            {
+                super(i);
+            }
+
+            @Override
+            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
+                LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
+                    @Override
+                    public int calculateDyToMakeVisible(View view, int i2) {
+                        return super.calculateDyToMakeVisible(view, i2) - (ChatAttachAlertColorsLayout.this.gridView.getPaddingTop() - AndroidUtilities.dp(7.0f));
+                    }
+
+                    @Override
+                    public int calculateTimeForDeceleration(int i2) {
+                        return super.calculateTimeForDeceleration(i2) * 2;
+                    }
+                };
+                linearSmoothScroller.setTargetPosition(i);
+                startSmoothScroll(linearSmoothScroller);
+            }
+
+            @Override
+            public boolean supportsPredictiveItemAnimations() {
+                return false;
+            }
+        };
+        this.layoutManager = gridLayoutManager;
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int i) {
+                return ChatAttachAlertColorsLayout.this.itemSize + (i % ChatAttachAlertColorsLayout.this.itemsPerRow != ChatAttachAlertColorsLayout.this.itemsPerRow + (-1) ? AndroidUtilities.dp(5.0f) : 0);
+            }
+        });
+        this.gridView.setLayoutManager(this.layoutManager);
     }
 
     @Override
     public int getCurrentItemTop() {
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.gridView;
-        if (anonymousClass34.getChildCount() <= 0) {
-            anonymousClass34.setTopGlowOffset(anonymousClass34.getPaddingTop());
+        if (this.gridView.getChildCount() <= 0) {
+            RecyclerListView recyclerListView = this.gridView;
+            int paddingTop = recyclerListView.getPaddingTop();
+            this.currentItemTop = paddingTop;
+            recyclerListView.setTopGlowOffset(paddingTop);
             return Integer.MAX_VALUE;
         }
-        View childAt = anonymousClass34.getChildAt(0);
-        RecyclerListView.Holder holder = (RecyclerListView.Holder) anonymousClass34.findContainingViewHolder(childAt);
+        View childAt = this.gridView.getChildAt(0);
+        RecyclerListView.Holder holder = (RecyclerListView.Holder) this.gridView.findContainingViewHolder(childAt);
         int top = childAt.getTop();
         int iDp = AndroidUtilities.dp(7.0f);
         if (top < AndroidUtilities.dp(7.0f) || holder == null || holder.getAdapterPosition() != 0) {
             top = iDp;
         }
-        anonymousClass34.setTopGlowOffset(top);
+        this.gridView.setTopGlowOffset(top);
+        this.currentItemTop = top;
         return top;
     }
 
@@ -74,12 +211,12 @@ public final class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAle
     }
 
     @Override
-    public final int needsActionBar() {
+    public int needsActionBar() {
         return 1;
     }
 
     @Override
-    public final void onPreMeasure(int i, int i2) {
+    public void onPreMeasure(int i, int i2) {
         int i3;
         if (AndroidUtilities.isTablet()) {
             this.itemsPerRow = 4;
@@ -93,14 +230,12 @@ public final class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAle
         }
         ((FrameLayout.LayoutParams) getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight();
         int iDp = ((i - AndroidUtilities.dp(12.0f)) - AndroidUtilities.dp(10.0f)) / this.itemsPerRow;
-        int i4 = this.itemSize;
-        BottomSheetWithRecyclerListView.AnonymousClass8 anonymousClass8 = this.adapter;
-        if (i4 != iDp) {
+        if (this.itemSize != iDp) {
             this.itemSize = iDp;
-            anonymousClass8.mObservable.notifyChanged();
+            this.adapter.notifyDataSetChanged();
         }
         this.layoutManager.setSpanCount(Math.max(1, ((this.itemsPerRow - 1) * AndroidUtilities.dp(5.0f)) + (this.itemsPerRow * iDp)));
-        int iCeil = (int) Math.ceil((((ArrayList) anonymousClass8.val$adapter).size() - 1) / this.itemsPerRow);
+        int iCeil = (int) Math.ceil((this.adapter.getItemCount() - 1) / this.itemsPerRow);
         Math.max(0, ((i2 - ((AndroidUtilities.dp(5.0f) * (iCeil - 1)) + (iDp * iCeil))) - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.dp(60.0f));
         if (AndroidUtilities.isTablet()) {
             i3 = (i2 / 5) * 2;
@@ -113,27 +248,24 @@ public final class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAle
             }
         }
         int iDp2 = i3 - AndroidUtilities.dp(52.0f);
-        int i5 = iDp2 >= 0 ? iDp2 : 0;
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.gridView;
-        if (anonymousClass34.getPaddingTop() != i5) {
-            anonymousClass34.setPadding(AndroidUtilities.dp(6.0f), i5, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(48.0f));
+        int i4 = iDp2 >= 0 ? iDp2 : 0;
+        if (this.gridView.getPaddingTop() != i4) {
+            this.gridView.setPadding(AndroidUtilities.dp(6.0f), i4, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(48.0f));
         }
     }
 
     @Override
-    public final void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
-        ChatAttachAlert chatAttachAlert = this.parentAlert;
+    public void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
         try {
-            chatAttachAlert.actionBar.getTitleTextView().setBuildFullLayout(true);
+            this.parentAlert.actionBar.getTitleTextView().setBuildFullLayout(true);
         } catch (Exception unused) {
         }
-        chatAttachAlert.actionBar.setTitle(LocaleController.getString(R.string.SelectColor));
-        StickersAlert.AnonymousClass7 anonymousClass7 = this.layoutManager;
-        anonymousClass7.scrollToPositionWithOffset(0, 0, anonymousClass7.mShouldReverseLayout);
+        this.parentAlert.actionBar.setTitle(LocaleController.getString(R.string.SelectColor));
+        this.layoutManager.scrollToPositionWithOffset(0, 0);
     }
 
     @Override
-    public final void scrollToTop() {
+    public void scrollToTop() {
         this.gridView.smoothScrollToPosition(0);
     }
 
@@ -146,5 +278,11 @@ public final class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAle
         super.setTranslationY(f);
         this.parentAlert.getSheetContainer().invalidate();
         invalidate();
+    }
+
+    public void updateColors(boolean z) {
+        this.adapter.wallpapers.clear();
+        WallpapersListActivity.fillDefaultColors(this.adapter.wallpapers, z);
+        this.adapter.notifyDataSetChanged();
     }
 }

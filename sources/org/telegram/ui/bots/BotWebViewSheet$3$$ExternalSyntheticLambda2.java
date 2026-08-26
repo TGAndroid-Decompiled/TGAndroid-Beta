@@ -5,7 +5,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda8;
+import org.webrtc.EglRenderer$$ExternalSyntheticLambda6;
 
 public final class BotWebViewSheet$3$$ExternalSyntheticLambda2 implements RequestDelegate {
     public final int $r8$classId;
@@ -32,7 +32,7 @@ public final class BotWebViewSheet$3$$ExternalSyntheticLambda2 implements Reques
             default:
                 BotWebViewSheet.AnonymousClass3 anonymousClass4 = this.f$0;
                 anonymousClass4.getClass();
-                AndroidUtilities.runOnUIThread(new TodoItemMenu$$ExternalSyntheticLambda8(anonymousClass4, tLObject, tL_error, 26));
+                AndroidUtilities.runOnUIThread(new EglRenderer$$ExternalSyntheticLambda6(anonymousClass4, tLObject, tL_error, 7));
                 break;
         }
     }

@@ -24,7 +24,7 @@ public final class PollAttachedMediaPack {
         return -1;
     }
 
-    public static String getAttachPath(int i, TLRPC.Message message) {
+    public static String getAttachPath(TLRPC.Message message, int i) {
         SparseArray<String> sparseArray;
         if (message == null || (sparseArray = message.pollMediaAttachPaths) == null) {
             return null;

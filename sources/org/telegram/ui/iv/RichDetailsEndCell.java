@@ -43,7 +43,7 @@ public final class RichDetailsEndCell extends View implements Theme.Colorable {
         super(context);
         this.paint = new Paint();
         this.resourcesProvider = resourcesProvider;
-        updateColors$1();
+        updateColors();
     }
 
     public int[] getColorKeys() {
@@ -65,7 +65,7 @@ public final class RichDetailsEndCell extends View implements Theme.Colorable {
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         this.paint.setColor(Theme.getColor(Theme.key_chat_inArticleDetailsLine, this.resourcesProvider));
     }
 }

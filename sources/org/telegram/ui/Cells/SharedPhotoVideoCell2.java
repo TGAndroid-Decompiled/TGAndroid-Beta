@@ -30,7 +30,7 @@ import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
@@ -45,14 +45,12 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController$$ExternalSyntheticOutline1;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.WindowVisibilityManager$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
 import org.telegram.ui.AvatarSpan;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda356;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CanvasButton;
@@ -72,37 +70,39 @@ import org.telegram.ui.Stories.recorder.DominantColors;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
 public class SharedPhotoVideoCell2 extends FrameLayout {
-    public static boolean lastAutoDownload;
-    public static long lastUpdateDownloadSettingsTime;
-    public final AnimatedFloat animatedProgress;
-    public final AnimatedFloat animatedReordering;
-    public ValueAnimator animator;
-    public boolean attached;
-    public Text authorText;
-    public final ImageReceiver blurImageReceiver;
-    public final RectF bounds;
-    public CanvasButton canvasButton;
-    public boolean check2;
-    public CheckBoxBase checkBoxBase;
-    public float checkBoxProgress;
-    public Path clipPath;
-    public float crossfadeProgress;
-    public float crossfadeToColumnsCount;
-    public SharedPhotoVideoCell2 crossfadeView;
-    public final int currentAccount;
-    public MessageObject currentMessageObject;
-    public int currentParentColumnsCount;
-    public boolean drawVideoIcon;
-    public boolean drawViews;
-    public FlickerLoadingView globalGradientView;
-    public GradientDrawable gradientDrawable;
-    public boolean gradientDrawableLoading;
-    public float highlightProgress;
-    public float imageAlpha;
-    public final ImageReceiver imageReceiver;
+    public static final int STYLE_CACHE = 1;
+    public static final int STYLE_SHARED_MEDIA = 0;
+    static boolean lastAutoDownload;
+    static long lastUpdateDownloadSettingsTime;
+    private final AnimatedFloat animatedProgress;
+    private final AnimatedFloat animatedReordering;
+    ValueAnimator animator;
+    private boolean attached;
+    private Text authorText;
+    public ImageReceiver blurImageReceiver;
+    private final RectF bounds;
+    CanvasButton canvasButton;
+    private boolean check2;
+    CheckBoxBase checkBoxBase;
+    float checkBoxProgress;
+    private Path clipPath;
+    float crossfadeProgress;
+    float crossfadeToColumnsCount;
+    SharedPhotoVideoCell2 crossfadeView;
+    int currentAccount;
+    MessageObject currentMessageObject;
+    int currentParentColumnsCount;
+    boolean drawVideoIcon;
+    boolean drawViews;
+    FlickerLoadingView globalGradientView;
+    private Drawable gradientDrawable;
+    private boolean gradientDrawableLoading;
+    float highlightProgress;
+    float imageAlpha;
+    public ImageReceiver imageReceiver;
     public int imageReceiverColor;
-    public final ImageReceiver imageReceiverFullSize;
-    public float imageScale;
+    public ImageReceiver imageReceiverFullSize;
+    float imageScale;
     public boolean isFirst;
     public boolean isLast;
     public boolean isSearchingHashtag;
@@ -110,33 +110,34 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     public boolean isStoryPinned;
     public boolean isStoryUploading;
     public boolean isTop;
-    public SpoilerEffect mediaSpoilerEffect;
-    public SpoilerEffect2 mediaSpoilerEffect2;
-    public final Path path;
-    public Bitmap privacyBitmap;
-    public Paint privacyPaint;
-    public int privacyType;
-    public final Paint progressPaint;
-    public final Path rectPath;
-    public boolean reorder;
-    public boolean reordering;
-    public final Paint scrimPaint;
-    public Text sensitiveText;
-    public Text sensitiveTextShort;
-    public Text sensitiveTextShort2;
-    public Shaker shaker;
-    public final SharedResources sharedResources;
-    public boolean showLivePhoto;
-    public boolean showVideoLayout;
-    public float spoilerMaxRadius;
-    public float spoilerRevealProgress;
-    public float spoilerRevealX;
-    public float spoilerRevealY;
-    public int style;
-    public StaticLayout videoInfoLayot;
-    public String videoText;
-    public final AnimatedFloat viewsAlpha;
-    public final AnimatedTextView.AnimatedTextDrawable viewsText;
+    private SpoilerEffect mediaSpoilerEffect;
+    private SpoilerEffect2 mediaSpoilerEffect2;
+    private Path path;
+    private Bitmap privacyBitmap;
+    private Paint privacyPaint;
+    private int privacyType;
+    private final Paint progressPaint;
+    private final Path rectPath;
+    private boolean reorder;
+    private boolean reordering;
+    private final Paint scrimPaint;
+    private Text sensitiveText;
+    private Text sensitiveTextShort;
+    private Text sensitiveTextShort2;
+    private Shaker shaker;
+    SharedResources sharedResources;
+    boolean showLivePhoto;
+    boolean showVideoLayout;
+    private float spoilerMaxRadius;
+    private float spoilerRevealProgress;
+    private float spoilerRevealX;
+    private float spoilerRevealY;
+    public int storyId;
+    private int style;
+    StaticLayout videoInfoLayot;
+    String videoText;
+    AnimatedFloat viewsAlpha;
+    AnimatedTextView.AnimatedTextDrawable viewsText;
 
     public final class SharedResources {
         public final Paint backgroundPaint;
@@ -171,19 +172,15 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     public SharedPhotoVideoCell2(Context context, SharedResources sharedResources, int i) {
         super(context);
         this.imageReceiverColor = 0;
-        ImageReceiver imageReceiver = new ImageReceiver();
-        this.imageReceiverFullSize = imageReceiver;
-        ImageReceiver imageReceiver2 = new ImageReceiver();
-        this.imageReceiver = imageReceiver2;
-        ImageReceiver imageReceiver3 = new ImageReceiver();
-        this.blurImageReceiver = imageReceiver3;
+        this.imageReceiverFullSize = new ImageReceiver();
+        this.imageReceiver = new ImageReceiver();
+        this.blurImageReceiver = new ImageReceiver();
         this.imageAlpha = 1.0f;
         this.imageScale = 1.0f;
         this.drawVideoIcon = true;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.viewsAlpha = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
-        this.viewsText = animatedTextDrawable;
+        this.viewsText = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
         this.path = new Path();
         this.rectPath = new Path();
         this.style = 0;
@@ -195,17 +192,15 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         this.sharedResources = sharedResources;
         this.currentAccount = i;
         setChecked(false, false);
-        imageReceiver2.setParentView(this);
-        imageReceiver.setParentView(this);
-        imageReceiver3.setParentView(this);
-        imageReceiver2.setDelegate(new ChatActivity$$ExternalSyntheticLambda356(this, 6));
-        animatedTextDrawable.setCallback(this);
-        animatedTextDrawable.setTextSize(AndroidUtilities.dp(12.0f));
-        TextPaint textPaint = animatedTextDrawable.textPaint;
-        textPaint.setColor(-1);
-        animatedTextDrawable.alpha = Color.alpha(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
+        this.imageReceiver.setParentView(this);
+        this.imageReceiverFullSize.setParentView(this);
+        this.blurImageReceiver.setParentView(this);
+        this.imageReceiver.setDelegate(new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 21));
+        this.viewsText.setCallback(this);
+        this.viewsText.setTextSize(AndroidUtilities.dp(12.0f));
+        this.viewsText.setTextColor(-1);
+        this.viewsText.setTypeface(AndroidUtilities.bold());
+        this.viewsText.setOverrideFullWidth(AndroidUtilities.displaySize.x);
         setWillNotDraw(false);
     }
 
@@ -239,8 +234,8 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             i2 = R.drawable.msg_folders_groups;
         }
         if (i2 != 0) {
-            Context context = getContext();
             SharedResources sharedResources = this.sharedResources;
+            Context context = getContext();
             Bitmap bitmap = (Bitmap) sharedResources.privacyBitmaps.get(Integer.valueOf(i2));
             if (bitmap == null) {
                 Bitmap bitmapDecodeResource = BitmapFactory.decodeResource(context.getResources(), i2);
@@ -271,7 +266,12 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         invalidate();
     }
 
-    public final void customDraw(Canvas canvas, float f, float f2, float f3) {
+    public boolean canRevealSpoiler() {
+        MessageObject messageObject = this.currentMessageObject;
+        return messageObject != null && messageObject.hasMediaSpoilers() && this.spoilerRevealProgress == 0.0f && !this.currentMessageObject.isMediaSpoilersRevealedInSharedMedia;
+    }
+
+    public void customDraw(View view, Canvas canvas, float f, float f2, float f3) {
         canvas.save();
         if (this.clipPath == null) {
             this.clipPath = new Path();
@@ -287,29 +287,35 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         boolean zHasImageLoaded = this.imageReceiverFullSize.hasImageLoaded();
         if (!zHasImageLoaded || f3 < 1.0f) {
             float f4 = 1.0f - f3;
-            drawImpl(f4, 1.0f, f4, canvas, false);
+            drawImpl(canvas, f4, 1.0f, f4, false);
         }
         if (zHasImageLoaded && f3 > 0.0f) {
-            drawImpl(1.0f - f3, f3, 0.0f, canvas, true);
+            drawImpl(canvas, 1.0f - f3, f3, 0.0f, true);
         }
         canvas.restore();
     }
 
-    public final void drawAuthor(Canvas canvas, RectF rectF, float f) {
+    public void drawAuthor(Canvas canvas, RectF rectF, float f) {
         if (this.isStory) {
             ImageReceiver imageReceiver = this.imageReceiver;
             if ((imageReceiver == null || imageReceiver.getVisible()) && this.isSearchingHashtag && this.authorText != null) {
                 float fDp = AndroidUtilities.dp(5.33f);
-                Text text = this.authorText;
-                text.ellipsizeWidth = (int) (rectF.width() - (2.0f * fDp));
-                text.vertPad = AndroidUtilities.dp(14.0f);
-                text.paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(0.4f * f, -16777216));
-                text.draw(rectF.left + fDp, rectF.top + AndroidUtilities.dp(this.currentParentColumnsCount <= 2 ? 15.0f : 11.33f), 1.0f, Theme.multAlpha(f, -1), canvas);
+                this.authorText.ellipsize((int) (rectF.width() - (2.0f * fDp))).setVerticalClipPadding(AndroidUtilities.dp(14.0f)).setShadow(0.4f * f).draw(canvas, rectF.left + fDp, rectF.top + AndroidUtilities.dp(this.currentParentColumnsCount <= 2 ? 15.0f : 11.33f), Theme.multAlpha(f, -1), 1.0f);
             }
         }
     }
 
-    public final void drawDuration(Canvas canvas, RectF rectF, float f) {
+    public void drawCrossafadeImage(Canvas canvas) {
+        if (this.crossfadeView != null) {
+            canvas.save();
+            canvas.translate(getX(), getY());
+            this.crossfadeView.setImageScale(((getMeasuredWidth() - AndroidUtilities.dp(2.0f)) * this.imageScale) / (this.crossfadeView.getMeasuredWidth() - AndroidUtilities.dp(2.0f)), false);
+            this.crossfadeView.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    public void drawDuration(Canvas canvas, RectF rectF, float f) {
         String str;
         float fPow = f;
         if (this.showVideoLayout) {
@@ -325,9 +331,8 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                 canvas.scale(fWidth, fWidth, 0.0f, rectF.height());
                 canvas.clipRect(0.0f, 0.0f, rectF.width(), rectF.height());
                 int i = this.currentParentColumnsCount;
-                SharedResources sharedResources = this.sharedResources;
                 if (i != 9 && this.videoInfoLayot == null && (str = this.videoText) != null) {
-                    this.videoInfoLayot = new StaticLayout(this.videoText, sharedResources.textPaint, (int) Math.ceil(sharedResources.textPaint.measureText(str)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    this.videoInfoLayot = new StaticLayout(this.videoText, this.sharedResources.textPaint, (int) Math.ceil(this.sharedResources.textPaint.measureText(str)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 } else if ((i >= 9 || this.videoText == null) && this.videoInfoLayot != null) {
                     this.videoInfoLayot = null;
                 }
@@ -344,223 +349,202 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                 Theme.chat_timeBackgroundPaint.setAlpha(alpha);
                 if (this.drawVideoIcon) {
                     canvas.save();
-                    canvas.translate(this.videoInfoLayot == null ? AndroidUtilities.dp(5.0f) : AndroidUtilities.dp(4.0f), (AndroidUtilities.dp(17.0f) - sharedResources.playDrawable.getIntrinsicHeight()) / 2.0f);
-                    int i2 = (int) (this.imageAlpha * 255.0f * fPow);
-                    Drawable drawable = sharedResources.playDrawable;
-                    drawable.setAlpha(i2);
-                    drawable.draw(canvas);
+                    canvas.translate(this.videoInfoLayot == null ? AndroidUtilities.dp(5.0f) : AndroidUtilities.dp(4.0f), (AndroidUtilities.dp(17.0f) - this.sharedResources.playDrawable.getIntrinsicHeight()) / 2.0f);
+                    this.sharedResources.playDrawable.setAlpha((int) (this.imageAlpha * 255.0f * fPow));
+                    this.sharedResources.playDrawable.draw(canvas);
                     canvas.restore();
                 }
                 if (this.videoInfoLayot != null) {
                     canvas.translate(AndroidUtilities.dp((this.drawVideoIcon ? 10 : 0) + 4), (AndroidUtilities.dp(17.0f) - this.videoInfoLayot.getHeight()) / 2.0f);
-                    int alpha2 = sharedResources.textPaint.getAlpha();
-                    TextPaint textPaint = sharedResources.textPaint;
-                    textPaint.setAlpha((int) (alpha2 * fPow));
+                    int alpha2 = this.sharedResources.textPaint.getAlpha();
+                    this.sharedResources.textPaint.setAlpha((int) (alpha2 * fPow));
                     this.videoInfoLayot.draw(canvas);
-                    textPaint.setAlpha(alpha2);
+                    this.sharedResources.textPaint.setAlpha(alpha2);
                 }
                 canvas.restore();
             }
         }
     }
 
-    public final void drawImpl(float f, float f2, float f3, Canvas canvas, boolean z) {
+    public final void drawImpl(Canvas canvas, float f, float f2, float f3, boolean z) {
         float f4;
-        boolean z2;
         float f5;
-        Canvas canvas2;
         float f6;
+        ?? r14;
         float f7;
-        ImageReceiver imageReceiver;
         float f8;
+        Canvas canvas2;
+        float f9;
         SharedPhotoVideoCell2 sharedPhotoVideoCell2;
+        float f10;
         float fDp;
         float fDp2;
         Drawable drawable;
-        Canvas canvas3;
         int i;
+        boolean z2;
         FlickerLoadingView flickerLoadingView;
         float padding = getPadding() * f;
-        float f9 = this.isFirst ? padding : 0.0f;
-        float f10 = this.animatedReordering.set(this.reordering);
-        float measuredWidth = ((getMeasuredWidth() - f9) - padding) * this.imageScale;
+        float f11 = this.isFirst ? padding : 0.0f;
+        float f12 = this.animatedReordering.set(this.reordering);
+        float measuredWidth = ((getMeasuredWidth() - f11) - padding) * this.imageScale;
         float measuredHeight = ((getMeasuredHeight() - 0.0f) - padding) * this.imageScale;
-        ImageReceiver imageReceiver2 = z ? this.imageReceiverFullSize : this.imageReceiver;
-        imageReceiver2.setAlpha(f2);
+        ImageReceiver imageReceiver = z ? this.imageReceiverFullSize : this.imageReceiver;
+        imageReceiver.setAlpha(f2);
         if (this.crossfadeProgress > 0.5f && this.crossfadeToColumnsCount != 9.0f && this.currentParentColumnsCount != 9) {
-            float f11 = f * 2.0f;
-            measuredWidth -= f11;
-            measuredHeight -= f11;
+            float f13 = f * 2.0f;
+            measuredWidth -= f13;
+            measuredHeight -= f13;
         }
-        if ((this.currentMessageObject != null || this.style == 1) && imageReceiver2.hasBitmapImage() && imageReceiver2.getCurrentAlpha() == 1.0f && this.imageAlpha == 1.0f) {
-            f4 = 1.0f;
-            z2 = true;
-            f5 = 0.0f;
+        float f14 = measuredWidth;
+        if ((this.currentMessageObject != null || this.style == 1) && imageReceiver.hasBitmapImage() && imageReceiver.getCurrentAlpha() == 1.0f && this.imageAlpha == 1.0f) {
+            f4 = measuredHeight;
+            f5 = 1.0f;
+            f6 = 9.0f;
+            r14 = 1;
         } else {
             if (getParent() == null || (flickerLoadingView = this.globalGradientView) == null) {
-                f4 = 1.0f;
+                f4 = measuredHeight;
+                f5 = 1.0f;
+                f6 = 9.0f;
                 z2 = true;
-                f5 = 0.0f;
             } else {
-                int measuredWidth2 = ((View) getParent()).getMeasuredWidth();
-                int measuredHeight2 = getMeasuredHeight();
-                float f12 = -getX();
-                flickerLoadingView.parentWidth = measuredWidth2;
-                flickerLoadingView.parentHeight = measuredHeight2;
-                flickerLoadingView.parentXOffset = f12;
-                this.globalGradientView.updateColors$1();
+                flickerLoadingView.setParentSize(((View) getParent()).getMeasuredWidth(), getMeasuredHeight(), -getX());
+                this.globalGradientView.updateColors();
                 this.globalGradientView.updateGradient();
-                float f13 = (this.crossfadeProgress <= 0.5f || this.crossfadeToColumnsCount == 9.0f || this.currentParentColumnsCount == 9) ? 0.0f : 1.0f;
-                float f14 = f9 + f13;
-                float f15 = f13 + padding;
-                f4 = 1.0f;
+                float f15 = (this.crossfadeProgress <= 0.5f || this.crossfadeToColumnsCount == 9.0f || this.currentParentColumnsCount == 9) ? 0.0f : 1.0f;
+                float f16 = measuredHeight;
+                float f17 = f11 + f15;
+                float f18 = f15 + padding;
+                f4 = f16;
+                f5 = 1.0f;
+                f6 = 9.0f;
                 z2 = true;
-                f5 = 0.0f;
-                canvas.drawRect(f14, f15, f14 + measuredWidth, f15 + measuredHeight, this.globalGradientView.getPaint());
+                canvas.drawRect(f17, f18, f17 + f14, f18 + f16, this.globalGradientView.getPaint());
             }
             invalidate();
+            r14 = z2;
         }
-        float f16 = this.imageAlpha;
-        if (f16 != f4) {
-            canvas.saveLayerAlpha(0.0f, 0.0f, f9 + padding + measuredWidth, padding + f5 + measuredHeight, (int) (f16 * 255.0f), 31);
+        float f19 = this.imageAlpha;
+        if (f19 != f5) {
+            f7 = f14;
+            f8 = 0.0f;
+            canvas.saveLayerAlpha(0.0f, 0.0f, f11 + padding + f14, padding + 0.0f + f4, (int) (f19 * 255.0f), 31);
         } else {
+            f7 = f14;
+            f8 = 0.0f;
             canvas.save();
         }
         CheckBoxBase checkBoxBase = this.checkBoxBase;
-        SharedResources sharedResources = this.sharedResources;
-        if (((checkBoxBase == null || !checkBoxBase.isChecked) && !PhotoViewer.isShowingImage(this.currentMessageObject)) || this.check2) {
+        if (((checkBoxBase == null || !checkBoxBase.isChecked()) && !PhotoViewer.isShowingImage(this.currentMessageObject)) || this.check2) {
             canvas2 = canvas;
-            f6 = f9;
+            f9 = f11;
         } else {
             canvas2 = canvas;
-            f6 = f9;
-            canvas2.drawRect(f6, 0.0f, (f9 + measuredWidth) - padding, (measuredHeight + f5) - padding, sharedResources.backgroundPaint);
+            f9 = f11;
+            canvas2.drawRect(f9, 0.0f, (f11 + f7) - padding, (f4 + f8) - padding, this.sharedResources.backgroundPaint);
         }
-        boolean z3 = this.isStory;
-        ImageReceiver imageReceiver3 = this.blurImageReceiver;
-        if (z3 && this.currentParentColumnsCount == z2) {
+        if (this.isStory && this.currentParentColumnsCount == r14) {
             float height = getHeight() * 0.72f;
-            GradientDrawable gradientDrawable = this.gradientDrawable;
-            if (gradientDrawable != null) {
-                gradientDrawable.setBounds(0, 0, getWidth(), getHeight());
+            Drawable drawable2 = this.gradientDrawable;
+            if (drawable2 != null) {
+                drawable2.setBounds(0, 0, getWidth(), getHeight());
                 this.gradientDrawable.draw(canvas2);
-            } else if (!this.gradientDrawableLoading && imageReceiver2.getBitmap() != null) {
-                this.gradientDrawableLoading = z2;
-                Bitmap bitmap = imageReceiver2.getBitmap();
+            } else if (!this.gradientDrawableLoading && imageReceiver.getBitmap() != null) {
+                this.gradientDrawableLoading = r14;
+                Bitmap bitmap = imageReceiver.getBitmap();
                 boolean zIsDark = Theme.currentTheme.isDark();
                 if (bitmap == null) {
-                    int[] iArr = {0, 0};
-                    if (this.gradientDrawableLoading) {
-                        this.gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, iArr);
-                        invalidate();
-                        this.gradientDrawableLoading = false;
-                    }
+                    lambda$drawImpl$2(new int[]{0, 0});
                 } else {
-                    int[] colorsSync = DominantColors.getColorsSync(bitmap, zIsDark);
-                    if (this.gradientDrawableLoading) {
-                        this.gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, colorsSync);
-                        invalidate();
-                        this.gradientDrawableLoading = false;
-                    }
+                    lambda$drawImpl$2(DominantColors.getColorsSync(bitmap, zIsDark));
                 }
             }
-            imageReceiver2.setImageCoords((measuredWidth - height) / 2.0f, 0.0f, height, getHeight());
+            imageReceiver.setImageCoords((f7 - height) / 2.0f, 0.0f, height, getHeight());
         } else if (this.checkBoxProgress > 0.0f) {
             float fDp3 = AndroidUtilities.dp(this.check2 ? 7.0f : 10.0f) * this.checkBoxProgress;
-            float f17 = f6 + fDp3;
-            float f18 = padding + fDp3;
-            float f19 = fDp3 * 2.0f;
-            float f20 = measuredWidth - f19;
-            float f21 = measuredHeight - f19;
-            imageReceiver2.setImageCoords(f17, f18, f20, f21);
-            imageReceiver3.setImageCoords(f17, f18, f20, f21);
+            float f20 = f9 + fDp3;
+            float f21 = padding + fDp3;
+            float f22 = fDp3 * 2.0f;
+            float f23 = f7 - f22;
+            float f24 = f4 - f22;
+            imageReceiver.setImageCoords(f20, f21, f23, f24);
+            this.blurImageReceiver.setImageCoords(f20, f21, f23, f24);
         } else {
-            float f22 = (this.crossfadeProgress <= 0.5f || this.crossfadeToColumnsCount == 9.0f || this.currentParentColumnsCount == 9) ? 0.0f : 1.0f;
-            float f23 = f6 + f22;
-            float f24 = f22 + padding;
-            imageReceiver2.setImageCoords(f23, f24, measuredWidth, measuredHeight);
-            imageReceiver3.setImageCoords(f23, f24, measuredWidth, measuredHeight);
+            float f25 = (this.crossfadeProgress <= 0.5f || this.crossfadeToColumnsCount == f6 || this.currentParentColumnsCount == 9) ? 0.0f : 1.0f;
+            float f26 = f9 + f25;
+            float f27 = f25 + padding;
+            imageReceiver.setImageCoords(f26, f27, f7, f4);
+            this.blurImageReceiver.setImageCoords(f26, f27, f7, f4);
         }
-        imageReceiver2.setRoundRadius(AndroidUtilities.lerp((this.isFirst && this.isTop) ? AndroidUtilities.dp(18.0f) : AndroidUtilities.dp(f4), AndroidUtilities.dp(8.0f), this.checkBoxProgress), AndroidUtilities.lerp((this.isLast && this.isTop) ? AndroidUtilities.dp(18.0f) : AndroidUtilities.dp(f4), AndroidUtilities.dp(8.0f), this.checkBoxProgress), AndroidUtilities.lerp(AndroidUtilities.dp(f4), AndroidUtilities.dp(8.0f), this.checkBoxProgress), AndroidUtilities.lerp(AndroidUtilities.dp(f4), AndroidUtilities.dp(8.0f), this.checkBoxProgress));
+        imageReceiver.setRoundRadius(AndroidUtilities.lerp((this.isFirst && this.isTop) ? AndroidUtilities.dp(18.0f) : AndroidUtilities.dp(f5), AndroidUtilities.dp(8.0f), this.checkBoxProgress), AndroidUtilities.lerp((this.isLast && this.isTop) ? AndroidUtilities.dp(18.0f) : AndroidUtilities.dp(f5), AndroidUtilities.dp(8.0f), this.checkBoxProgress), AndroidUtilities.lerp(AndroidUtilities.dp(f5), AndroidUtilities.dp(8.0f), this.checkBoxProgress), AndroidUtilities.lerp(AndroidUtilities.dp(f5), AndroidUtilities.dp(8.0f), this.checkBoxProgress));
         if (this.check2) {
             canvas2.save();
             if (this.reorder || this.reordering) {
-                canvas2.translate(imageReceiver2.getCenterX(), imageReceiver2.getCenterY());
+                canvas2.translate(imageReceiver.getCenterX(), imageReceiver.getCenterY());
                 if (this.shaker == null) {
                     this.shaker = new Shaker(this);
                 }
-                this.shaker.concat(canvas2, Math.max(this.checkBoxProgress, f10));
-                float f25 = f4 - (f10 * 0.075f);
-                canvas2.scale(f25, f25);
-                canvas2.translate(-imageReceiver2.getCenterX(), -imageReceiver2.getCenterY());
+                this.shaker.concat(canvas2, Math.max(this.checkBoxProgress, f12));
+                float f28 = f5 - (f12 * 0.075f);
+                canvas2.scale(f28, f28);
+                canvas2.translate(-imageReceiver.getCenterX(), -imageReceiver.getCenterY());
             }
         }
         if (PhotoViewer.isShowingImage(this.currentMessageObject)) {
-            f7 = f10;
-            measuredWidth = measuredWidth;
-            imageReceiver = imageReceiver2;
-            f8 = 0.075f;
             sharedPhotoVideoCell2 = this;
+            f7 = f7;
+            imageReceiver = imageReceiver;
+            f10 = 0.075f;
         } else {
-            imageReceiver2.draw(canvas2);
+            imageReceiver.draw(canvas2);
             MessageObject messageObject = this.currentMessageObject;
             if (messageObject == null || !messageObject.hasMediaSpoilers() || this.currentMessageObject.isMediaSpoilersRevealedInSharedMedia) {
-                f7 = f10;
-                measuredWidth = measuredWidth;
-                imageReceiver = imageReceiver2;
-                f8 = 0.075f;
                 sharedPhotoVideoCell2 = this;
+                f7 = f7;
+                imageReceiver = imageReceiver;
+                f10 = 0.075f;
             } else {
                 canvas2.save();
-                canvas2.clipRect(f6, 0.0f, (f6 + measuredWidth) - padding, (measuredHeight + 0.0f) - padding);
+                canvas2.clipRect(f9, 0.0f, (f9 + f7) - padding, (f4 + 0.0f) - padding);
                 if (this.spoilerRevealProgress != 0.0f) {
-                    Path path = this.path;
-                    path.rewind();
-                    path.addCircle(this.spoilerRevealX, this.spoilerRevealY, this.spoilerMaxRadius * this.spoilerRevealProgress, Path.Direction.CW);
-                    canvas2.clipPath(path, Region.Op.DIFFERENCE);
+                    this.path.rewind();
+                    this.path.addCircle(this.spoilerRevealX, this.spoilerRevealY, this.spoilerMaxRadius * this.spoilerRevealProgress, Path.Direction.CW);
+                    canvas2.clipPath(this.path, Region.Op.DIFFERENCE);
                 }
-                imageReceiver3.draw(canvas2);
+                this.blurImageReceiver.draw(canvas2);
                 if (this.mediaSpoilerEffect2 != null) {
-                    canvas2.clipRect(imageReceiver2.getImageX(), imageReceiver2.getImageY(), imageReceiver2.getImageX2(), imageReceiver2.getImageY2());
-                    imageReceiver = imageReceiver2;
-                    Canvas canvas4 = canvas2;
-                    f7 = f10;
-                    this.mediaSpoilerEffect2.draw(canvas4, this, (int) imageReceiver2.getImageWidth(), (int) imageReceiver2.getImageHeight(), 1.0f, false);
-                    canvas3 = canvas4;
+                    canvas2.clipRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+                    Canvas canvas3 = canvas2;
+                    this.mediaSpoilerEffect2.draw(canvas3, this, (int) imageReceiver.getImageWidth(), (int) imageReceiver.getImageHeight(), 1.0f, false);
+                    canvas2 = canvas3;
                     sharedPhotoVideoCell2 = this;
                 } else {
-                    imageReceiver = imageReceiver2;
-                    canvas3 = canvas2;
                     sharedPhotoVideoCell2 = this;
-                    f7 = f10;
                     if (sharedPhotoVideoCell2.mediaSpoilerEffect == null) {
                         sharedPhotoVideoCell2.mediaSpoilerEffect = new SpoilerEffect();
                     }
                     sharedPhotoVideoCell2.mediaSpoilerEffect.setColor(ColorUtils.setAlphaComponent(-1, (int) (Color.alpha(-1) * 0.325f)));
                     sharedPhotoVideoCell2.mediaSpoilerEffect.setBounds((int) imageReceiver.getImageX(), (int) imageReceiver.getImageY(), (int) imageReceiver.getImageX2(), (int) imageReceiver.getImageY2());
-                    sharedPhotoVideoCell2.mediaSpoilerEffect.draw(canvas3);
+                    sharedPhotoVideoCell2.mediaSpoilerEffect.draw(canvas2);
                 }
-                canvas3.restore();
+                canvas2.restore();
                 if (sharedPhotoVideoCell2.currentMessageObject.isSensitive()) {
                     if (sharedPhotoVideoCell2.sensitiveText == null) {
-                        f8 = 0.075f;
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(NotificationsController$$ExternalSyntheticOutline1.m(new StringBuilder("x "), R.string.MessageSensitiveContent));
-                        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.filled_sensitive), 0, 1, 33);
+                        spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.filled_sensitive), 0, r14, 33);
                         sharedPhotoVideoCell2.sensitiveText = new Text(spannableStringBuilder, 14.0f, AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
-                    } else {
-                        f8 = 0.075f;
                     }
                     Text text = sharedPhotoVideoCell2.sensitiveText;
                     int i2 = 13;
-                    if (measuredWidth < (AndroidUtilities.dp(13) * 2) + text.width) {
+                    if (f7 < text.getCurrentWidth() + (AndroidUtilities.dp(13) * 2)) {
                         if (sharedPhotoVideoCell2.sensitiveTextShort == null) {
                             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(NotificationsController$$ExternalSyntheticOutline1.m(new StringBuilder("x "), R.string.MessageSensitiveContentShort));
-                            spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.filled_sensitive), 0, 1, 33);
+                            spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.filled_sensitive), 0, r14, 33);
                             sharedPhotoVideoCell2.sensitiveTextShort = new Text(spannableStringBuilder2, 14.0f, AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
                         }
                         text = sharedPhotoVideoCell2.sensitiveTextShort;
                     }
-                    if (measuredWidth < (AndroidUtilities.dp(26) * 2) + text.width) {
+                    if (f7 < text.getCurrentWidth() + (AndroidUtilities.dp(26) * 2)) {
                         if (sharedPhotoVideoCell2.sensitiveTextShort2 == null) {
                             sharedPhotoVideoCell2.sensitiveTextShort2 = new Text(new SpannableStringBuilder(LocaleController.getString(R.string.MessageSensitiveContentShort)), 13.0f, AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
                         }
@@ -572,124 +556,118 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                     }
                     float imageWidth = (imageReceiver.getImageWidth() / 2.0f) + imageReceiver.getImageX();
                     float imageHeight = (imageReceiver.getImageHeight() / 2.0f) + imageReceiver.getImageY();
-                    float fDp4 = text.width + AndroidUtilities.dp(i2 + i2);
-                    float fDp5 = AndroidUtilities.dp(i) / 2.0f;
-                    Text text2 = text;
-                    float fLerp = AndroidUtilities.lerp(0.8f, 1.0f, f4 - sharedPhotoVideoCell2.spoilerRevealProgress);
+                    float currentWidth = text.getCurrentWidth() + AndroidUtilities.dp(i2 + i2);
+                    float fDp4 = AndroidUtilities.dp(i) / 2.0f;
+                    f10 = 0.075f;
+                    float fLerp = AndroidUtilities.lerp(0.8f, 1.0f, f5 - sharedPhotoVideoCell2.spoilerRevealProgress);
                     RectF rectF = AndroidUtilities.rectTmp;
-                    float f26 = fDp4 / 2.0f;
-                    float f27 = f26 * fLerp;
-                    float f28 = fDp5 * fLerp;
-                    rectF.set(imageWidth - f27, imageHeight - f28, f27 + imageWidth, imageHeight + f28);
-                    Path path2 = sharedPhotoVideoCell2.rectPath;
-                    path2.reset();
-                    path2.addRoundRect(rectF, fDp5, fDp5, Path.Direction.CW);
-                    canvas3.save();
-                    canvas3.clipPath(path2);
-                    float alpha = imageReceiver3.getAlpha();
-                    imageReceiver3.setAlpha((1.0f - sharedPhotoVideoCell2.spoilerRevealProgress) * alpha);
-                    imageReceiver3.draw(canvas3);
-                    imageReceiver3.setAlpha(alpha);
-                    canvas3.restore();
+                    float f29 = currentWidth / 2.0f;
+                    float f30 = f29 * fLerp;
+                    float f31 = fDp4 * fLerp;
+                    Text text2 = text;
+                    rectF.set(imageWidth - f30, imageHeight - f31, f30 + imageWidth, imageHeight + f31);
+                    sharedPhotoVideoCell2.rectPath.reset();
+                    sharedPhotoVideoCell2.rectPath.addRoundRect(rectF, fDp4, fDp4, Path.Direction.CW);
+                    canvas2.save();
+                    canvas2.clipPath(sharedPhotoVideoCell2.rectPath);
+                    float alpha = sharedPhotoVideoCell2.blurImageReceiver.getAlpha();
+                    sharedPhotoVideoCell2.blurImageReceiver.setAlpha((1.0f - sharedPhotoVideoCell2.spoilerRevealProgress) * alpha);
+                    sharedPhotoVideoCell2.blurImageReceiver.draw(canvas2);
+                    sharedPhotoVideoCell2.blurImageReceiver.setAlpha(alpha);
+                    canvas2.restore();
                     Paint themePaint = Theme.getThemePaint("paintChatTimeBackground");
                     int alpha2 = themePaint.getAlpha();
                     themePaint.setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, sharedPhotoVideoCell2.spoilerRevealProgress, alpha2, 0.35f));
-                    canvas3.drawRoundRect(rectF, fDp5, fDp5, themePaint);
+                    canvas2.drawRoundRect(rectF, fDp4, fDp4, themePaint);
                     themePaint.setAlpha(alpha2);
-                    canvas3.save();
-                    canvas3.scale(fLerp, fLerp, imageWidth, imageHeight);
-                    Canvas canvas5 = canvas3;
-                    text2.draw(AndroidUtilities.dp(i2) + (imageWidth - f26), imageHeight, 1.0f - sharedPhotoVideoCell2.spoilerRevealProgress, -1, canvas5);
-                    canvas2 = canvas5;
+                    canvas2.save();
+                    canvas2.scale(fLerp, fLerp, imageWidth, imageHeight);
+                    Canvas canvas4 = canvas2;
+                    text2.draw(canvas4, (imageWidth - f29) + AndroidUtilities.dp(i2), imageHeight, -1, 1.0f - sharedPhotoVideoCell2.spoilerRevealProgress);
+                    canvas2 = canvas4;
                     canvas2.restore();
                 } else {
-                    f8 = 0.075f;
-                    canvas2 = canvas3;
+                    f10 = 0.075f;
                 }
                 sharedPhotoVideoCell2.invalidate();
             }
             if (!sharedPhotoVideoCell2.isSearchingHashtag) {
-                float f29 = sharedPhotoVideoCell2.highlightProgress;
-                if (f29 > 0.0f) {
-                    sharedResources.highlightPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (f29 * 0.5f * 255.0f)));
-                    canvas2.drawRect(imageReceiver.getDrawRegion(), sharedResources.highlightPaint);
+                float f32 = sharedPhotoVideoCell2.highlightProgress;
+                if (f32 > 0.0f) {
+                    sharedPhotoVideoCell2.sharedResources.highlightPaint.setColor(ColorUtils.setAlphaComponent(-16777216, (int) (f32 * 0.5f * 255.0f)));
+                    canvas2.drawRect(imageReceiver.getDrawRegion(), sharedPhotoVideoCell2.sharedResources.highlightPaint);
                 }
             }
         }
         if (sharedPhotoVideoCell2.isStoryUploading) {
-            Paint paint = sharedPhotoVideoCell2.scrimPaint;
-            paint.setColor(805306368);
-            canvas2.drawRect(imageReceiver.getDrawRegion(), paint);
-            Paint paint2 = sharedPhotoVideoCell2.progressPaint;
-            paint2.setStyle(Paint.Style.STROKE);
-            paint2.setColor(-1);
-            paint2.setStrokeWidth(AndroidUtilities.dp(3.0f));
-            paint2.setStrokeJoin(Paint.Join.ROUND);
-            paint2.setStrokeCap(Paint.Cap.ROUND);
-            float fDp6 = AndroidUtilities.dp(18.0f);
+            sharedPhotoVideoCell2.scrimPaint.setColor(805306368);
+            canvas2.drawRect(imageReceiver.getDrawRegion(), sharedPhotoVideoCell2.scrimPaint);
+            sharedPhotoVideoCell2.progressPaint.setStyle(Paint.Style.STROKE);
+            sharedPhotoVideoCell2.progressPaint.setColor(-1);
+            sharedPhotoVideoCell2.progressPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+            sharedPhotoVideoCell2.progressPaint.setStrokeJoin(Paint.Join.ROUND);
+            sharedPhotoVideoCell2.progressPaint.setStrokeCap(Paint.Cap.ROUND);
+            float fDp5 = AndroidUtilities.dp(18.0f);
             RectF rectF2 = AndroidUtilities.rectTmp;
-            rectF2.set(imageReceiver.getCenterX() - fDp6, imageReceiver.getCenterY() - fDp6, imageReceiver.getCenterX() + fDp6, imageReceiver.getCenterY() + fDp6);
+            rectF2.set(imageReceiver.getCenterX() - fDp5, imageReceiver.getCenterY() - fDp5, imageReceiver.getCenterX() + fDp5, imageReceiver.getCenterY() + fDp5);
             float fCurrentTimeMillis = ((System.currentTimeMillis() % 1500) / 1500.0f) * 360.0f;
+            AnimatedFloat animatedFloat = sharedPhotoVideoCell2.animatedProgress;
             MessageObject messageObject2 = sharedPhotoVideoCell2.currentMessageObject;
-            canvas2.drawArc(rectF2, fCurrentTimeMillis, sharedPhotoVideoCell2.animatedProgress.set(AndroidUtilities.lerp(0.15f, 0.95f, messageObject2 != null ? messageObject2.getProgress() : 0.0f), false) * 360.0f, false, paint2);
+            canvas.drawArc(rectF2, fCurrentTimeMillis, animatedFloat.set(AndroidUtilities.lerp(0.15f, 0.95f, messageObject2 != null ? messageObject2.getProgress() : 0.0f)) * 360.0f, false, sharedPhotoVideoCell2.progressPaint);
+            canvas2 = canvas;
             sharedPhotoVideoCell2.invalidate();
         }
-        RectF rectF3 = sharedPhotoVideoCell2.bounds;
-        rectF3.set(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        sharedPhotoVideoCell2.bounds.set(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
         if (sharedPhotoVideoCell2.showLivePhoto && (drawable = Theme.chat_livePhoto) != null) {
-            drawable.setBounds((int) (rectF3.left + AndroidUtilities.dp(8.0f)), (int) (rectF3.top + AndroidUtilities.dp(8.0f)), (int) ((Theme.chat_livePhoto.getIntrinsicWidth() * 0.75f) + rectF3.left + AndroidUtilities.dp(8.0f)), (int) ((Theme.chat_livePhoto.getIntrinsicHeight() * 0.75f) + rectF3.top + AndroidUtilities.dp(8.0f)));
+            drawable.setBounds((int) (sharedPhotoVideoCell2.bounds.left + AndroidUtilities.dp(8.0f)), (int) (sharedPhotoVideoCell2.bounds.top + AndroidUtilities.dp(8.0f)), (int) ((Theme.chat_livePhoto.getIntrinsicWidth() * 0.75f) + sharedPhotoVideoCell2.bounds.left + AndroidUtilities.dp(8.0f)), (int) ((Theme.chat_livePhoto.getIntrinsicHeight() * 0.75f) + sharedPhotoVideoCell2.bounds.top + AndroidUtilities.dp(8.0f)));
             Theme.chat_livePhoto.draw(canvas2);
         }
-        sharedPhotoVideoCell2.drawDuration(canvas2, rectF3, f3);
-        sharedPhotoVideoCell2.drawViews(canvas2, rectF3, f3);
+        sharedPhotoVideoCell2.drawDuration(canvas2, sharedPhotoVideoCell2.bounds, f3);
+        sharedPhotoVideoCell2.drawViews(canvas2, sharedPhotoVideoCell2.bounds, f3);
         if (sharedPhotoVideoCell2.isSearchingHashtag) {
-            sharedPhotoVideoCell2.drawAuthor(canvas2, rectF3, f3);
+            sharedPhotoVideoCell2.drawAuthor(canvas2, sharedPhotoVideoCell2.bounds, f3);
         } else {
-            sharedPhotoVideoCell2.drawPrivacy(canvas2, rectF3, f3);
+            sharedPhotoVideoCell2.drawPrivacy(canvas2, sharedPhotoVideoCell2.bounds, f3);
         }
         if (sharedPhotoVideoCell2.check2) {
             canvas2.restore();
         }
         CheckBoxBase checkBoxBase2 = sharedPhotoVideoCell2.checkBoxBase;
-        if (checkBoxBase2 != null && (sharedPhotoVideoCell2.style == 1 || checkBoxBase2.progress != 0.0f)) {
+        if (checkBoxBase2 != null && (sharedPhotoVideoCell2.style == 1 || checkBoxBase2.getProgress() != 0.0f)) {
             canvas2.save();
             if (sharedPhotoVideoCell2.check2 && (sharedPhotoVideoCell2.reorder || sharedPhotoVideoCell2.reordering)) {
                 canvas2.translate(imageReceiver.getCenterX(), imageReceiver.getCenterY());
                 if (sharedPhotoVideoCell2.shaker == null) {
                     sharedPhotoVideoCell2.shaker = new Shaker(sharedPhotoVideoCell2);
                 }
-                float f30 = f7;
-                sharedPhotoVideoCell2.shaker.concat(canvas2, Math.max(sharedPhotoVideoCell2.checkBoxProgress, f30) * 0.5f);
-                float f31 = 1.0f - (f30 * f8);
-                canvas2.scale(f31, f31);
+                sharedPhotoVideoCell2.shaker.concat(canvas2, Math.max(sharedPhotoVideoCell2.checkBoxProgress, f12) * 0.5f);
+                float f33 = 1.0f - (f12 * f10);
+                canvas2.scale(f33, f33);
                 canvas2.translate(-imageReceiver.getCenterX(), -imageReceiver.getCenterY());
             }
             if (sharedPhotoVideoCell2.style == 1) {
-                fDp = ((measuredWidth + AndroidUtilities.dp(2.0f)) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(4.0f);
+                fDp = ((f7 + AndroidUtilities.dp(2.0f)) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(4.0f);
                 fDp2 = AndroidUtilities.dp(4.0f);
             } else if (sharedPhotoVideoCell2.check2) {
-                fDp = (measuredWidth + AndroidUtilities.dp(2.0f)) - AndroidUtilities.dp((sharedPhotoVideoCell2.checkBoxProgress * 5.0f) + 22.0f);
+                fDp = (f7 + AndroidUtilities.dp(2.0f)) - AndroidUtilities.dp((sharedPhotoVideoCell2.checkBoxProgress * 5.0f) + 22.0f);
                 fDp2 = (AndroidUtilities.dp(5.0f) * sharedPhotoVideoCell2.checkBoxProgress) + AndroidUtilities.dp(-2.0f);
             } else {
-                fDp = (measuredWidth + AndroidUtilities.dp(2.0f)) - AndroidUtilities.dp(25.0f);
+                fDp = (f7 + AndroidUtilities.dp(2.0f)) - AndroidUtilities.dp(25.0f);
                 fDp2 = 0.0f;
             }
             canvas2.translate(fDp, fDp2);
             sharedPhotoVideoCell2.checkBoxBase.draw(canvas2);
             if (sharedPhotoVideoCell2.canvasButton != null) {
-                RectF rectF4 = AndroidUtilities.rectTmp;
-                rectF4.set(fDp, fDp2, sharedPhotoVideoCell2.checkBoxBase.bounds.width() + fDp, sharedPhotoVideoCell2.checkBoxBase.bounds.height() + fDp2);
-                CanvasButton canvasButton = sharedPhotoVideoCell2.canvasButton;
-                canvasButton.pathCreated = false;
-                canvasButton.usingRectCount = 0;
-                canvasButton.addRect(rectF4);
+                RectF rectF3 = AndroidUtilities.rectTmp;
+                rectF3.set(fDp, fDp2, sharedPhotoVideoCell2.checkBoxBase.bounds.width() + fDp, sharedPhotoVideoCell2.checkBoxBase.bounds.height() + fDp2);
+                sharedPhotoVideoCell2.canvasButton.setRect(rectF3);
             }
             canvas2.restore();
         }
         canvas2.restore();
     }
 
-    public final void drawPrivacy(Canvas canvas, RectF rectF, float f) {
+    public void drawPrivacy(Canvas canvas, RectF rectF, float f) {
         Bitmap bitmap;
         if (!this.isStory || (bitmap = this.privacyBitmap) == null || bitmap.isRecycled()) {
             return;
@@ -708,7 +686,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         canvas.restore();
     }
 
-    public final void drawViews(Canvas canvas, RectF rectF, float f) {
+    public void drawViews(Canvas canvas, RectF rectF, float f) {
         if (this.isStory) {
             ImageReceiver imageReceiver = this.imageReceiver;
             if ((imageReceiver == null || imageReceiver.getVisible()) && this.currentParentColumnsCount < 5) {
@@ -727,9 +705,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                 canvas.translate(rectF.left, rectF.top);
                 canvas.scale(fWidth, fWidth, zViewsOnLeft ? 0.0f : rectF.width(), rectF.height());
                 canvas.clipRect(0.0f, 0.0f, rectF.width(), rectF.height());
-                float fDp2 = AndroidUtilities.dp(26.0f);
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.viewsText;
-                float currentWidth = animatedTextDrawable.getCurrentWidth() + fDp2;
+                float currentWidth = this.viewsText.getCurrentWidth() + AndroidUtilities.dp(26.0f);
                 canvas.translate(zViewsOnLeft ? AndroidUtilities.dp(5.0f) : (rectF.width() - AndroidUtilities.dp(5.0f)) - currentWidth, ((rectF.height() + AndroidUtilities.dp(1.0f)) - AndroidUtilities.dp(17.0f)) - AndroidUtilities.dp(4.0f));
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(0.0f, 0.0f, currentWidth, AndroidUtilities.dp(17.0f));
@@ -738,19 +714,14 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                 canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), Theme.chat_timeBackgroundPaint);
                 Theme.chat_timeBackgroundPaint.setAlpha(alpha);
                 canvas.save();
-                float fDp3 = AndroidUtilities.dp(3.0f);
-                int iDp = AndroidUtilities.dp(17.0f);
-                SharedResources sharedResources = this.sharedResources;
-                canvas.translate(fDp3, (iDp - sharedResources.viewDrawable.getBounds().height()) / 2.0f);
-                int i = (int) (this.imageAlpha * 255.0f * fPow);
-                Drawable drawable = sharedResources.viewDrawable;
-                drawable.setAlpha(i);
-                drawable.draw(canvas);
+                canvas.translate(AndroidUtilities.dp(3.0f), (AndroidUtilities.dp(17.0f) - this.sharedResources.viewDrawable.getBounds().height()) / 2.0f);
+                this.sharedResources.viewDrawable.setAlpha((int) (this.imageAlpha * 255.0f * fPow));
+                this.sharedResources.viewDrawable.draw(canvas);
                 canvas.restore();
                 canvas.translate(AndroidUtilities.dp(22.0f), 0.0f);
-                animatedTextDrawable.setBounds(0, 0, (int) currentWidth, AndroidUtilities.dp(17.0f));
-                animatedTextDrawable.alpha = (int) (fPow * 255.0f);
-                animatedTextDrawable.draw(canvas);
+                this.viewsText.setBounds(0, 0, (int) currentWidth, AndroidUtilities.dp(17.0f));
+                this.viewsText.setAlpha((int) (fPow * 255.0f));
+                this.viewsText.draw(canvas);
                 canvas.restore();
             }
         }
@@ -794,13 +765,53 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         return this.style;
     }
 
+    public void initFullSizeReceiver() {
+        setMessageObject(this.currentMessageObject, this.currentParentColumnsCount, true);
+    }
+
+    public final void lambda$drawImpl$2(int[] iArr) {
+        if (this.gradientDrawableLoading) {
+            this.gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, iArr);
+            invalidate();
+            this.gradientDrawableLoading = false;
+        }
+    }
+
+    public final void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+        MessageObject messageObject;
+        if (z && !z2 && (messageObject = this.currentMessageObject) != null && messageObject.hasMediaSpoilers() && this.imageReceiver.getBitmap() != null) {
+            if (this.blurImageReceiver.getBitmap() != null) {
+                this.blurImageReceiver.getBitmap().recycle();
+            }
+            this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapMax(this.imageReceiver.getBitmap()));
+        }
+        if (!z || z2 || !this.check2 || this.imageReceiver.getBitmap() == null) {
+            return;
+        }
+        int dominantColor = AndroidUtilities.getDominantColor(this.imageReceiver.getBitmap());
+        this.imageReceiverColor = dominantColor;
+        CheckBoxBase checkBoxBase = this.checkBoxBase;
+        if (checkBoxBase != null) {
+            checkBoxBase.setBackgroundColor(Theme.blendOver(dominantColor, Theme.multAlpha(0.25f, -1)));
+        }
+    }
+
+    public final void lambda$startRevealMedia$3(ValueAnimator valueAnimator) {
+        this.spoilerRevealProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void moveImageToFront() {
+        this.imageReceiver.moveImageToFront();
+    }
+
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attached = true;
         CheckBoxBase checkBoxBase = this.checkBoxBase;
         if (checkBoxBase != null) {
-            checkBoxBase.attachedToWindow = true;
+            checkBoxBase.onAttachedToWindow();
         }
         if (this.currentMessageObject != null) {
             this.imageReceiver.onAttachedToWindow();
@@ -817,16 +828,16 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         }
     }
 
-    public void onCheckBoxPressed() {
+    public void lambda$setStyle$1() {
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attached = false;
         CheckBoxBase checkBoxBase = this.checkBoxBase;
         if (checkBoxBase != null) {
-            checkBoxBase.attachedToWindow = false;
+            checkBoxBase.onDetachedFromWindow();
         }
         if (this.currentMessageObject != null) {
             this.imageReceiver.onDetachedFromWindow();
@@ -840,13 +851,13 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        drawImpl(1.0f, 1.0f, 1.0f, canvas, false);
+        drawImpl(canvas, 1.0f, 1.0f, 1.0f, false);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         try {
             if (this.currentMessageObject != null) {
@@ -860,7 +871,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
         boolean z = this.isStory;
         int i3 = z ? (int) (size * 1.25f) : size;
@@ -886,7 +897,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         CanvasButton canvasButton = this.canvasButton;
         if (canvasButton == null || !canvasButton.checkTouchEvent(motionEvent)) {
             return super.onTouchEvent(motionEvent);
@@ -894,32 +905,32 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         return true;
     }
 
-    public final void setChecked(boolean z, boolean z2) {
+    public void setCheck2() {
+        this.check2 = true;
+    }
+
+    public void setChecked(boolean z, boolean z2) {
         int i;
         CheckBoxBase checkBoxBase = this.checkBoxBase;
-        if ((checkBoxBase != null && checkBoxBase.isChecked) == z) {
+        int i2 = 1;
+        if ((checkBoxBase != null && checkBoxBase.isChecked()) == z) {
             return;
         }
-        if (checkBoxBase == null) {
-            CheckBoxBase checkBoxBase2 = new CheckBoxBase(null, this, 21);
+        if (this.checkBoxBase == null) {
+            CheckBoxBase checkBoxBase2 = new CheckBoxBase(this, 21, null);
             this.checkBoxBase = checkBoxBase2;
             checkBoxBase2.setColor(-1, Theme.key_sharedMedia_photoPlaceholder, Theme.key_checkboxCheck);
             if (this.check2 && (i = this.imageReceiverColor) != 0) {
-                CheckBoxBase checkBoxBase3 = this.checkBoxBase;
-                int iBlendOver = Theme.blendOver(i, Theme.multAlpha(0.25f, -1));
-                if (checkBoxBase3.backgroundColor != iBlendOver) {
-                    checkBoxBase3.backgroundColor = iBlendOver;
-                    checkBoxBase3.invalidate();
-                }
+                this.checkBoxBase.setBackgroundColor(Theme.blendOver(i, Theme.multAlpha(0.25f, -1)));
             }
             this.checkBoxBase.setDrawUnchecked(false);
             this.checkBoxBase.setBackgroundType(1);
             this.checkBoxBase.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             if (this.attached) {
-                this.checkBoxBase.attachedToWindow = true;
+                this.checkBoxBase.onAttachedToWindow();
             }
         }
-        this.checkBoxBase.setChecked(-1, z, z2);
+        this.checkBoxBase.setChecked(z, z2);
         ValueAnimator valueAnimator = this.animator;
         if (valueAnimator != null) {
             this.animator = null;
@@ -928,14 +939,28 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         if (z2) {
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.checkBoxProgress, z ? 1.0f : 0.0f);
             this.animator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new ChatActivity.AnonymousClass133(this, 3));
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    float fFloatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                    SharedPhotoVideoCell2 sharedPhotoVideoCell2 = SharedPhotoVideoCell2.this;
+                    sharedPhotoVideoCell2.checkBoxProgress = fFloatValue;
+                    sharedPhotoVideoCell2.invalidate();
+                }
+            });
             this.animator.setDuration(200L);
-            this.animator.addListener(new ChatActivity.AnonymousClass77(8, this, z));
+            this.animator.addListener(new ContextLinkCell.AnonymousClass3(this, z, i2));
             this.animator.start();
         } else {
             this.checkBoxProgress = z ? 1.0f : 0.0f;
         }
         invalidate();
+    }
+
+    public void setCrossfadeView(SharedPhotoVideoCell2 sharedPhotoVideoCell2, float f, int i) {
+        this.crossfadeView = sharedPhotoVideoCell2;
+        this.crossfadeProgress = f;
+        this.crossfadeToColumnsCount = i;
     }
 
     public void setGradientView(FlickerLoadingView flickerLoadingView) {
@@ -949,7 +974,16 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         }
     }
 
-    public final void setImageScale(float f, boolean z) {
+    public void setImageAlpha(float f, boolean z) {
+        if (this.imageAlpha != f) {
+            this.imageAlpha = f;
+            if (z) {
+                invalidate();
+            }
+        }
+    }
+
+    public void setImageScale(float f, boolean z) {
         if (this.imageScale != f) {
             this.imageScale = f;
             if (z) {
@@ -958,427 +992,8 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         }
     }
 
-    public final void setMessageObject(MessageObject messageObject, int i, boolean z) {
-        boolean z2;
-        long j;
-        ImageLocation imageLocation;
-        TLRPC.PhotoSize closestPhotoSizeWithSize;
-        TLRPC.PhotoSize closestPhotoSizeWithSize2;
-        ImageLocation forObject;
-        long j2;
-        int i2;
-        long j3;
-        int i3;
-        BitmapDrawable bitmapDrawable;
-        String str;
-        TL_stories.StoryItem storyItem;
-        long dialogId;
-        AvatarSpan avatarSpan;
-        float f;
-        int i4;
-        float f2;
-        TL_stories.StoryViews storyViews;
-        TLRPC.Document document;
-        TLRPC.Photo photo;
-        TLRPC.Photo photo2;
-        TLRPC.Document document2;
-        TL_stories.StoryItem storyItem2;
-        int i5 = i;
-        if (i5 < 1) {
-            i5 = 1;
-        }
-        int i6 = this.currentParentColumnsCount;
-        this.currentParentColumnsCount = i5;
-        MessageObject messageObject2 = this.currentMessageObject;
-        if (messageObject2 == null && messageObject == null) {
-            return;
-        }
-        if (messageObject2 != null && messageObject != null && messageObject2.getId() == messageObject.getId()) {
-            MessageObject messageObject3 = this.currentMessageObject;
-            if ((messageObject3 != null ? messageObject3.uploadingStory : null) == messageObject.uploadingStory) {
-                if ((messageObject3 != null ? messageObject3.parentStoriesList : null) == messageObject.parentStoriesList) {
-                    TLRPC.MessageMedia messageMedia = (messageObject3 == null || (storyItem2 = messageObject3.storyItem) == null) ? null : storyItem2.media;
-                    TL_stories.StoryItem storyItem3 = messageObject.storyItem;
-                    TLRPC.MessageMedia messageMedia2 = storyItem3 == null ? null : storyItem3.media;
-                    if (((messageMedia == null && messageMedia2 == null) || (messageMedia != null && messageMedia2 != null && ((document = messageMedia.document) == null ? !((photo = messageMedia.photo) == null || (photo2 = messageMedia2.photo) == null || photo2.id != photo.id) : !((document2 = messageMedia2.document) == null || document2.id != document.id)))) && i6 == i5) {
-                        int i7 = this.privacyType;
-                        if ((i7 == 100) == this.isStoryPinned && i7 == getPrivacyType(messageObject) && !z) {
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-        this.currentMessageObject = messageObject;
-        this.isStory = messageObject != null && messageObject.isStory();
-        MessageObject messageObject4 = this.currentMessageObject;
-        this.isStoryUploading = (messageObject4 == null || messageObject4.uploadingStory == null) ? false : true;
-        if (getMeasuredHeight() > 0 && getMeasuredWidth() > 0) {
-            MessageObject messageObject5 = this.currentMessageObject;
-            if (messageObject5 == null || !messageObject5.hasMediaSpoilers()) {
-                SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
-                if (spoilerEffect2 != null) {
-                    spoilerEffect2.detach(this);
-                    this.mediaSpoilerEffect2 = null;
-                }
-            } else if (this.mediaSpoilerEffect2 == null) {
-                this.mediaSpoilerEffect2 = SpoilerEffect2.getInstance(this);
-            }
-        }
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.viewsText;
-        ImageReceiver imageReceiver = this.imageReceiverFullSize;
-        ImageReceiver imageReceiver2 = this.imageReceiver;
-        ImageReceiver imageReceiver3 = this.blurImageReceiver;
-        AnimatedFloat animatedFloat = this.viewsAlpha;
-        if (messageObject == null) {
-            imageReceiver2.onDetachedFromWindow();
-            imageReceiver.onDetachedFromWindow();
-            imageReceiver3.onDetachedFromWindow();
-            this.videoText = null;
-            this.drawViews = false;
-            animatedFloat.set(0.0f, true);
-            animatedTextDrawable.setText("", false, true);
-            this.videoInfoLayot = null;
-            this.showVideoLayout = false;
-            this.showLivePhoto = false;
-            this.gradientDrawableLoading = false;
-            this.gradientDrawable = null;
-            this.privacyType = -1;
-            this.privacyBitmap = null;
-            this.authorText = null;
-            updateAccessibilityDescription();
-            return;
-        }
-        if (this.attached) {
-            imageReceiver2.onAttachedToWindow();
-            imageReceiver.onAttachedToWindow();
-            imageReceiver3.onAttachedToWindow();
-        }
-        ImageReceiver imageReceiver4 = z ? imageReceiver : imageReceiver2;
-        int i8 = this.currentAccount;
-        String restrictionReason = MessagesController.getInstance(i8).getRestrictionReason(messageObject.messageOwner.restriction_reason);
-        int i9 = (int) ((AndroidUtilities.displaySize.x / i5) / AndroidUtilities.density);
-        if (z) {
-            i9 = (((int) (AndroidUtilities.displaySize.x / AndroidUtilities.density)) * 3) / 5;
-        }
-        SharedResources sharedResources = this.sharedResources;
-        String str2 = (String) sharedResources.imageFilters.get(i9);
-        if (str2 == null) {
-            str2 = i9 + "_" + i9 + "_isc";
-            sharedResources.imageFilters.put(i9, str2);
-        }
-        String str3 = str2;
-        int photoSize = (i5 <= 2 || z) ? AndroidUtilities.getPhotoSize() : 320;
-        this.videoText = null;
-        this.videoInfoLayot = null;
-        this.showVideoLayout = false;
-        this.showLivePhoto = false;
-        imageReceiver2.clearDecorators();
-        imageReceiver.clearDecorators();
-        if (!this.isStory || (storyViews = messageObject.storyItem.views) == null) {
-            z2 = true;
-            this.drawViews = false;
-            animatedFloat.set(0.0f, true);
-            animatedTextDrawable.setText("", false, true);
-        } else {
-            int i10 = storyViews.views_count;
-            this.drawViews = i10 > 0;
-            z2 = true;
-            animatedTextDrawable.setText(AndroidUtilities.formatWholeNumber(i10, 0), false, true);
-        }
-        animatedFloat.set(this.drawViews ? 1.0f : 0.0f, z2);
-        Object obj = messageObject.parentStoriesList != null ? messageObject.storyItem : messageObject;
-        if (TextUtils.isEmpty(restrictionReason)) {
-            TL_stories.StoryItem storyItem4 = messageObject.storyItem;
-            if (storyItem4 == null || !(storyItem4.media instanceof TLRPC.TL_messageMediaUnsupported)) {
-                StoriesController.UploadingStory uploadingStory = messageObject.uploadingStory;
-                if (uploadingStory == null || (str = uploadingStory.firstFramePath) == null) {
-                    TLRPC.Document document3 = messageObject.getDocument();
-                    TLRPC.Photo photo3 = messageObject.getPhoto();
-                    if (MessageObject.isVideoDocument(document3)) {
-                        this.showVideoLayout = !messageObject.isLivePhoto();
-                        this.showLivePhoto = messageObject.isLivePhoto();
-                        if (i5 != 9 && !messageObject.isLivePhoto()) {
-                            this.videoText = AndroidUtilities.formatShortDuration((int) messageObject.getDuration());
-                        }
-                        ImageLocation imageLocation2 = messageObject.mediaThumb;
-                        if (imageLocation2 != null) {
-                            BitmapDrawable bitmapDrawable2 = messageObject.strippedThumb;
-                            if (bitmapDrawable2 != null) {
-                                imageReceiver4.setImage(imageLocation2, str3, bitmapDrawable2, null, obj, 0);
-                            } else {
-                                imageReceiver4.setImage(imageLocation2, str3, messageObject.mediaSmallThumb, zzhr.m(str3, "_b"), null, 0L, null, obj, 0);
-                            }
-                        } else if (messageObject.hasVideoCover()) {
-                            TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
-                            TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, photoSize, false, closestPhotoSizeWithSize3, this.isStory);
-                            if (closestPhotoSizeWithSize4 == closestPhotoSizeWithSize3) {
-                                closestPhotoSizeWithSize3 = null;
-                            }
-                            if (messageObject.strippedThumb != null) {
-                                imageReceiver4.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), str3, null, null, messageObject.strippedThumb, closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, obj, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
-                            } else {
-                                imageReceiver4.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), str3, ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), zzhr.m(str3, "_b"), closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, obj, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
-                            }
-                        } else {
-                            TLRPC.Document document4 = messageObject.getDocument();
-                            TLRPC.PhotoSize closestPhotoSizeWithSize5 = FileLoader.getClosestPhotoSizeWithSize(document4.thumbs, 50);
-                            j = 0;
-                            TLRPC.PhotoSize closestPhotoSizeWithSize6 = FileLoader.getClosestPhotoSizeWithSize(document4.thumbs, photoSize, false, null, this.isStory);
-                            TLRPC.PhotoSize photoSize2 = (closestPhotoSizeWithSize5 != closestPhotoSizeWithSize6 || this.isStory) ? closestPhotoSizeWithSize6 : null;
-                            if (closestPhotoSizeWithSize5 != null) {
-                                if (messageObject.strippedThumb != null) {
-                                    imageReceiver4.setImage(ImageLocation.getForDocument(photoSize2, document4), str3, messageObject.strippedThumb, null, obj, 0);
-                                } else {
-                                    imageReceiver4.setImage(ImageLocation.getForDocument(photoSize2, document4), str3, ImageLocation.getForDocument(closestPhotoSizeWithSize5, document4), zzhr.m(str3, "_b"), null, 0L, null, obj, 0);
-                                }
-                            }
-                        }
-                    } else {
-                        j = 0;
-                        if (photo3 != null && !messageObject.photoThumbs.isEmpty()) {
-                            if (messageObject.mediaExists) {
-                                imageLocation = messageObject.mediaThumb;
-                                if (imageLocation != null) {
-                                    bitmapDrawable = messageObject.strippedThumb;
-                                    if (bitmapDrawable != null) {
-                                        imageReceiver4.setImage(imageLocation, str3, bitmapDrawable, null, obj, 0);
-                                    } else {
-                                        imageReceiver4.setImage(imageLocation, str3, messageObject.mediaSmallThumb, zzhr.m(str3, "_b"), null, 0L, null, obj, 0);
-                                    }
-                                } else {
-                                    closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
-                                    closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, photoSize, false, closestPhotoSizeWithSize, this.isStory);
-                                    if (closestPhotoSizeWithSize2 == closestPhotoSizeWithSize) {
-                                        closestPhotoSizeWithSize = null;
-                                    }
-                                    if (messageObject.strippedThumb != null) {
-                                        ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject);
-                                        BitmapDrawable bitmapDrawable3 = messageObject.strippedThumb;
-                                        if (closestPhotoSizeWithSize2 != null) {
-                                            j3 = closestPhotoSizeWithSize2.size;
-                                        } else {
-                                            j3 = 0;
-                                        }
-                                        if (messageObject.shouldEncryptPhotoOrVideo()) {
-                                            i3 = 2;
-                                        } else {
-                                            i3 = 1;
-                                        }
-                                        imageReceiver4.setImage(forObject2, str3, null, null, bitmapDrawable3, j3, null, obj, i3);
-                                    } else {
-                                        ImageLocation forObject3 = ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject);
-                                        if (z) {
-                                            forObject = null;
-                                        } else {
-                                            forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject);
-                                        }
-                                        String strM = zzhr.m(str3, "_b");
-                                        if (closestPhotoSizeWithSize2 != null) {
-                                            j2 = closestPhotoSizeWithSize2.size;
-                                        } else {
-                                            j2 = 0;
-                                        }
-                                        if (messageObject.shouldEncryptPhotoOrVideo()) {
-                                            i2 = 2;
-                                        } else {
-                                            i2 = 1;
-                                        }
-                                        imageReceiver4.setImage(forObject3, str3, forObject, strM, j2, null, obj, i2);
-                                    }
-                                }
-                            } else {
-                                if (System.currentTimeMillis() - lastUpdateDownloadSettingsTime > 5000) {
-                                    lastUpdateDownloadSettingsTime = System.currentTimeMillis();
-                                    lastAutoDownload = DownloadController.getInstance(i8).canDownloadMedia(messageObject);
-                                }
-                                if (lastAutoDownload || this.isStory) {
-                                    imageLocation = messageObject.mediaThumb;
-                                    if (imageLocation != null) {
-                                        bitmapDrawable = messageObject.strippedThumb;
-                                        if (bitmapDrawable != null) {
-                                            imageReceiver4.setImage(imageLocation, str3, bitmapDrawable, null, obj, 0);
-                                        } else {
-                                            imageReceiver4.setImage(imageLocation, str3, messageObject.mediaSmallThumb, zzhr.m(str3, "_b"), null, 0L, null, obj, 0);
-                                        }
-                                    } else {
-                                        closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
-                                        closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, photoSize, false, closestPhotoSizeWithSize, this.isStory);
-                                        if (closestPhotoSizeWithSize2 == closestPhotoSizeWithSize) {
-                                            closestPhotoSizeWithSize = null;
-                                        }
-                                        if (messageObject.strippedThumb != null) {
-                                            ImageLocation forObject4 = ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject);
-                                            BitmapDrawable bitmapDrawable4 = messageObject.strippedThumb;
-                                            if (closestPhotoSizeWithSize2 != null) {
-                                                j3 = closestPhotoSizeWithSize2.size;
-                                            } else {
-                                                j3 = 0;
-                                            }
-                                            if (messageObject.shouldEncryptPhotoOrVideo()) {
-                                                i3 = 2;
-                                            } else {
-                                                i3 = 1;
-                                            }
-                                            imageReceiver4.setImage(forObject4, str3, null, null, bitmapDrawable4, j3, null, obj, i3);
-                                        } else {
-                                            ImageLocation forObject5 = ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject);
-                                            if (z) {
-                                                forObject = null;
-                                            } else {
-                                                forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject);
-                                            }
-                                            String strM2 = zzhr.m(str3, "_b");
-                                            if (closestPhotoSizeWithSize2 != null) {
-                                                j2 = closestPhotoSizeWithSize2.size;
-                                            } else {
-                                                j2 = 0;
-                                            }
-                                            if (messageObject.shouldEncryptPhotoOrVideo()) {
-                                                i2 = 2;
-                                            } else {
-                                                i2 = 1;
-                                            }
-                                            imageReceiver4.setImage(forObject5, str3, forObject, strM2, j2, null, obj, i2);
-                                        }
-                                    }
-                                } else {
-                                    BitmapDrawable bitmapDrawable5 = messageObject.strippedThumb;
-                                    if (bitmapDrawable5 != null) {
-                                        imageReceiver4.setImage(null, null, null, null, bitmapDrawable5, 0L, null, obj, 0);
-                                    } else {
-                                        imageReceiver4.setImage(null, null, ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50), messageObject.photoThumbsObject), "b", null, 0L, null, obj, 0);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if (imageReceiver3.getBitmap() != null) {
-                        imageReceiver3.getBitmap().recycle();
-                        imageReceiver3.setImageBitmap((Bitmap) null);
-                    }
-                    if (imageReceiver4.getBitmap() != null && this.currentMessageObject.hasMediaSpoilers() && !this.currentMessageObject.isMediaSpoilersRevealed) {
-                        imageReceiver3.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver4.getBitmap()));
-                    }
-                    storyItem = messageObject.storyItem;
-                    if (storyItem != null) {
-                        imageReceiver4.addDecorator(new StoryWidgetsImageDecorator(storyItem));
-                    }
-                    setPrivacyType(getPrivacyType(messageObject));
-                    if (this.isSearchingHashtag) {
-                        dialogId = messageObject.getDialogId();
-                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x ");
-                        spannableStringBuilder.append((CharSequence) MessagesController.getInstance(i8).getPeerName(dialogId));
-                        if (i5 == 2) {
-                            f = 16.0f;
-                        } else {
-                            f = 13.66f;
-                        }
-                        avatarSpan = new AvatarSpan(this, f, i8);
-                        i4 = avatarSpan.currentAccount;
-                        if (dialogId >= j) {
-                            avatarSpan.setUser(MessagesController.getInstance(i4).getUser(Long.valueOf(dialogId)));
-                        } else {
-                            avatarSpan.setChat(MessagesController.getInstance(i4).getChat(Long.valueOf(-dialogId)));
-                        }
-                        spannableStringBuilder.setSpan(avatarSpan, 0, 1, 33);
-                        if (i5 == 2) {
-                            f2 = 14.0f;
-                        } else {
-                            f2 = 10.1666f;
-                        }
-                        this.authorText = new Text(spannableStringBuilder, f2, AndroidUtilities.bold());
-                    }
-                    updateAccessibilityDescription();
-                    invalidate();
-                }
-                imageReceiver4.setImage(ImageLocation.getForPath(str), str3, null, null, obj, 0);
-            } else {
-                storyItem4.dialogId = messageObject.getDialogId();
-                Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_emoji_recent).mutate();
-                drawableMutate.setColorFilter(new PorterDuffColorFilter(1090519039, PorterDuff.Mode.SRC_IN));
-                imageReceiver4.setImageBitmap(new CombinedDrawable(new ColorDrawable(-13421773), drawableMutate));
-            }
-            j = 0;
-            if (imageReceiver3.getBitmap() != null) {
-                imageReceiver3.getBitmap().recycle();
-                imageReceiver3.setImageBitmap((Bitmap) null);
-            }
-            if (imageReceiver4.getBitmap() != null) {
-                imageReceiver3.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver4.getBitmap()));
-            }
-            storyItem = messageObject.storyItem;
-            if (storyItem != null) {
-                imageReceiver4.addDecorator(new StoryWidgetsImageDecorator(storyItem));
-            }
-            setPrivacyType(getPrivacyType(messageObject));
-            if (this.isSearchingHashtag) {
-                dialogId = messageObject.getDialogId();
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x ");
-                spannableStringBuilder2.append((CharSequence) MessagesController.getInstance(i8).getPeerName(dialogId));
-                if (i5 == 2) {
-                    f = 16.0f;
-                } else {
-                    f = 13.66f;
-                }
-                avatarSpan = new AvatarSpan(this, f, i8);
-                i4 = avatarSpan.currentAccount;
-                if (dialogId >= j) {
-                    avatarSpan.setUser(MessagesController.getInstance(i4).getUser(Long.valueOf(dialogId)));
-                } else {
-                    avatarSpan.setChat(MessagesController.getInstance(i4).getChat(Long.valueOf(-dialogId)));
-                }
-                spannableStringBuilder2.setSpan(avatarSpan, 0, 1, 33);
-                if (i5 == 2) {
-                    f2 = 14.0f;
-                } else {
-                    f2 = 10.1666f;
-                }
-                this.authorText = new Text(spannableStringBuilder2, f2, AndroidUtilities.bold());
-            }
-            updateAccessibilityDescription();
-            invalidate();
-        }
-        j = 0;
-        imageReceiver4.setImageBitmap(getContext().getDrawable(R.drawable.photo_placeholder_in));
-        if (imageReceiver3.getBitmap() != null) {
-            imageReceiver3.getBitmap().recycle();
-            imageReceiver3.setImageBitmap((Bitmap) null);
-        }
-        if (imageReceiver4.getBitmap() != null) {
-            imageReceiver3.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver4.getBitmap()));
-        }
-        storyItem = messageObject.storyItem;
-        if (storyItem != null) {
-            imageReceiver4.addDecorator(new StoryWidgetsImageDecorator(storyItem));
-        }
-        setPrivacyType(getPrivacyType(messageObject));
-        if (this.isSearchingHashtag) {
-            dialogId = messageObject.getDialogId();
-            SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder("x ");
-            spannableStringBuilder3.append((CharSequence) MessagesController.getInstance(i8).getPeerName(dialogId));
-            if (i5 == 2) {
-                f = 16.0f;
-            } else {
-                f = 13.66f;
-            }
-            avatarSpan = new AvatarSpan(this, f, i8);
-            i4 = avatarSpan.currentAccount;
-            if (dialogId >= j) {
-                avatarSpan.setUser(MessagesController.getInstance(i4).getUser(Long.valueOf(dialogId)));
-            } else {
-                avatarSpan.setChat(MessagesController.getInstance(i4).getChat(Long.valueOf(-dialogId)));
-            }
-            spannableStringBuilder3.setSpan(avatarSpan, 0, 1, 33);
-            if (i5 == 2) {
-                f2 = 14.0f;
-            } else {
-                f2 = 10.1666f;
-            }
-            this.authorText = new Text(spannableStringBuilder3, f2, AndroidUtilities.bold());
-        }
-        updateAccessibilityDescription();
-        invalidate();
+    public void setMessageObject(MessageObject messageObject, int i) {
+        setMessageObject(messageObject, i, false);
     }
 
     public void setReorder(boolean z) {
@@ -1386,7 +1001,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         invalidate();
     }
 
-    public final void setReordering(boolean z, boolean z2) {
+    public void setReordering(boolean z, boolean z2) {
         if (this.reordering == z) {
             return;
         }
@@ -1403,22 +1018,22 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         }
         this.style = i;
         if (i == 1) {
-            CheckBoxBase checkBoxBase = new CheckBoxBase(null, this, 21);
+            CheckBoxBase checkBoxBase = new CheckBoxBase(this, 21, null);
             this.checkBoxBase = checkBoxBase;
             checkBoxBase.setColor(-1, Theme.key_sharedMedia_photoPlaceholder, Theme.key_checkboxCheck);
             this.checkBoxBase.setDrawUnchecked(true);
             this.checkBoxBase.setBackgroundType(0);
             this.checkBoxBase.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
             if (this.attached) {
-                this.checkBoxBase.attachedToWindow = true;
+                this.checkBoxBase.onAttachedToWindow();
             }
             CanvasButton canvasButton = new CanvasButton(this);
             this.canvasButton = canvasButton;
-            canvasButton.delegate = new ArticleViewer$$ExternalSyntheticLambda3(this, 29);
+            canvasButton.setDelegate(new ChatbotSheet$$ExternalSyntheticLambda0(this, 11));
         }
     }
 
-    public final void setVideoText(String str, boolean z) {
+    public void setVideoText(String str, boolean z) {
         StaticLayout staticLayout;
         this.videoText = str;
         boolean z2 = str != null;
@@ -1430,14 +1045,17 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         this.drawVideoIcon = z;
     }
 
-    public final void startRevealMedia(float f, float f2) {
+    public void startHighlight() {
+    }
+
+    public void startRevealMedia(float f, float f2) {
         this.spoilerRevealX = f;
         this.spoilerRevealY = f2;
         this.spoilerMaxRadius = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration((long) MathUtils.clamp(this.spoilerMaxRadius * 0.3f, 250.0f, 550.0f));
         duration.setInterpolator(CubicBezierInterpolator.EASE_BOTH);
-        duration.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 10));
-        duration.addListener(new ArticleViewer.AnonymousClass25(this, 18));
+        duration.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 6));
+        duration.addListener(new BotButton.AnonymousClass1(this, 1));
         duration.start();
     }
 
@@ -1522,12 +1140,26 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         }
     }
 
+    public void updateViews() {
+        MessageObject messageObject;
+        TL_stories.StoryItem storyItem;
+        TL_stories.StoryViews storyViews;
+        if (!this.isStory || (messageObject = this.currentMessageObject) == null || (storyItem = messageObject.storyItem) == null || (storyViews = storyItem.views) == null) {
+            this.drawViews = false;
+            this.viewsText.setText("", false);
+        } else {
+            int i = storyViews.views_count;
+            this.drawViews = i > 0;
+            this.viewsText.setText(AndroidUtilities.formatWholeNumber(i, 0), true);
+        }
+    }
+
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
+    public boolean verifyDrawable(Drawable drawable) {
         return this.viewsText == drawable || super.verifyDrawable(drawable);
     }
 
-    public final boolean viewsOnLeft(float f) {
+    public boolean viewsOnLeft(float f) {
         int width;
         if (this.isStory && this.currentParentColumnsCount < 5) {
             int iDp = AndroidUtilities.dp(26.0f) + ((int) this.viewsText.getCurrentWidth());
@@ -1543,5 +1175,373 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             }
         }
         return false;
+    }
+
+    public final void setMessageObject(MessageObject messageObject, int i, boolean z) {
+        int i2;
+        ImageLocation imageLocation;
+        TLRPC.PhotoSize closestPhotoSizeWithSize;
+        TLRPC.PhotoSize closestPhotoSizeWithSize2;
+        ImageLocation forObject;
+        long j;
+        int i3;
+        long j2;
+        int i4;
+        BitmapDrawable bitmapDrawable;
+        String str;
+        TL_stories.StoryItem storyItem;
+        float f;
+        float f2;
+        TL_stories.StoryViews storyViews;
+        TLRPC.Document document;
+        TLRPC.Photo photo;
+        TLRPC.Photo photo2;
+        TLRPC.Document document2;
+        TL_stories.StoryItem storyItem2;
+        int i5 = i;
+        if (i5 < 1) {
+            i5 = 1;
+        }
+        int i6 = this.currentParentColumnsCount;
+        this.currentParentColumnsCount = i5;
+        MessageObject messageObject2 = this.currentMessageObject;
+        if (messageObject2 == null && messageObject == null) {
+            return;
+        }
+        if (messageObject2 != null && messageObject != null && messageObject2.getId() == messageObject.getId()) {
+            MessageObject messageObject3 = this.currentMessageObject;
+            if ((messageObject3 != null ? messageObject3.uploadingStory : null) == messageObject.uploadingStory) {
+                if ((messageObject3 != null ? messageObject3.parentStoriesList : null) == messageObject.parentStoriesList) {
+                    TLRPC.MessageMedia messageMedia = (messageObject3 == null || (storyItem2 = messageObject3.storyItem) == null) ? null : storyItem2.media;
+                    TL_stories.StoryItem storyItem3 = messageObject.storyItem;
+                    TLRPC.MessageMedia messageMedia2 = storyItem3 == null ? null : storyItem3.media;
+                    if (((messageMedia == null && messageMedia2 == null) || (messageMedia != null && messageMedia2 != null && ((document = messageMedia.document) == null ? !((photo = messageMedia.photo) == null || (photo2 = messageMedia2.photo) == null || photo2.id != photo.id) : !((document2 = messageMedia2.document) == null || document2.id != document.id)))) && i6 == i5) {
+                        int i7 = this.privacyType;
+                        if ((i7 == 100) == this.isStoryPinned && i7 == getPrivacyType(messageObject) && !z) {
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        this.currentMessageObject = messageObject;
+        this.isStory = messageObject != null && messageObject.isStory();
+        MessageObject messageObject4 = this.currentMessageObject;
+        this.isStoryUploading = (messageObject4 == null || messageObject4.uploadingStory == null) ? false : true;
+        if (getMeasuredHeight() > 0 && getMeasuredWidth() > 0) {
+            MessageObject messageObject5 = this.currentMessageObject;
+            if (messageObject5 == null || !messageObject5.hasMediaSpoilers()) {
+                SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
+                if (spoilerEffect2 != null) {
+                    spoilerEffect2.detach(this);
+                    this.mediaSpoilerEffect2 = null;
+                }
+            } else if (this.mediaSpoilerEffect2 == null) {
+                this.mediaSpoilerEffect2 = SpoilerEffect2.getInstance(this);
+            }
+        }
+        if (messageObject == null) {
+            this.imageReceiver.onDetachedFromWindow();
+            this.imageReceiverFullSize.onDetachedFromWindow();
+            this.blurImageReceiver.onDetachedFromWindow();
+            this.videoText = null;
+            this.drawViews = false;
+            this.viewsAlpha.set(0.0f, true);
+            this.viewsText.setText("", false);
+            this.videoInfoLayot = null;
+            this.showVideoLayout = false;
+            this.showLivePhoto = false;
+            this.gradientDrawableLoading = false;
+            this.gradientDrawable = null;
+            this.privacyType = -1;
+            this.privacyBitmap = null;
+            this.authorText = null;
+            updateAccessibilityDescription();
+            return;
+        }
+        if (this.attached) {
+            this.imageReceiver.onAttachedToWindow();
+            this.imageReceiverFullSize.onAttachedToWindow();
+            this.blurImageReceiver.onAttachedToWindow();
+        }
+        ImageReceiver imageReceiver = z ? this.imageReceiverFullSize : this.imageReceiver;
+        String restrictionReason = MessagesController.getInstance(this.currentAccount).getRestrictionReason(messageObject.messageOwner.restriction_reason);
+        int i8 = (int) ((AndroidUtilities.displaySize.x / i5) / AndroidUtilities.density);
+        if (z) {
+            i8 = (((int) (AndroidUtilities.displaySize.x / AndroidUtilities.density)) * 3) / 5;
+        }
+        SharedResources sharedResources = this.sharedResources;
+        String str2 = (String) sharedResources.imageFilters.get(i8);
+        if (str2 == null) {
+            str2 = i8 + "_" + i8 + "_isc";
+            sharedResources.imageFilters.put(i8, str2);
+        }
+        String str3 = str2;
+        int photoSize = (i5 <= 2 || z) ? AndroidUtilities.getPhotoSize() : 320;
+        this.videoText = null;
+        this.videoInfoLayot = null;
+        this.showVideoLayout = false;
+        this.showLivePhoto = false;
+        this.imageReceiver.clearDecorators();
+        this.imageReceiverFullSize.clearDecorators();
+        if (!this.isStory || (storyViews = messageObject.storyItem.views) == null) {
+            this.drawViews = false;
+            this.viewsAlpha.set(0.0f, true);
+            this.viewsText.setText("", false);
+        } else {
+            int i9 = storyViews.views_count;
+            this.drawViews = i9 > 0;
+            this.viewsText.setText(AndroidUtilities.formatWholeNumber(i9, 0), false);
+        }
+        this.viewsAlpha.set(this.drawViews ? 1.0f : 0.0f, true);
+        Object obj = messageObject.parentStoriesList != null ? messageObject.storyItem : messageObject;
+        if (TextUtils.isEmpty(restrictionReason)) {
+            TL_stories.StoryItem storyItem4 = messageObject.storyItem;
+            if (storyItem4 == null || !(storyItem4.media instanceof TLRPC.TL_messageMediaUnsupported)) {
+                StoriesController.UploadingStory uploadingStory = messageObject.uploadingStory;
+                if (uploadingStory == null || (str = uploadingStory.firstFramePath) == null) {
+                    i2 = 2;
+                    TLRPC.Document document3 = messageObject.getDocument();
+                    TLRPC.Photo photo3 = messageObject.getPhoto();
+                    if (MessageObject.isVideoDocument(document3)) {
+                        this.showVideoLayout = !messageObject.isLivePhoto();
+                        this.showLivePhoto = messageObject.isLivePhoto();
+                        if (i5 != 9 && !messageObject.isLivePhoto()) {
+                            this.videoText = AndroidUtilities.formatShortDuration((int) messageObject.getDuration());
+                        }
+                        ImageLocation imageLocation2 = messageObject.mediaThumb;
+                        if (imageLocation2 != null) {
+                            BitmapDrawable bitmapDrawable2 = messageObject.strippedThumb;
+                            if (bitmapDrawable2 != null) {
+                                imageReceiver.setImage(imageLocation2, str3, bitmapDrawable2, null, obj, 0);
+                            } else {
+                                imageReceiver.setImage(imageLocation2, str3, messageObject.mediaSmallThumb, zzhp.m(str3, "_b"), null, 0L, null, obj, 0);
+                            }
+                        } else if (messageObject.hasVideoCover()) {
+                            TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
+                            TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, photoSize, false, closestPhotoSizeWithSize3, this.isStory);
+                            if (closestPhotoSizeWithSize4 == closestPhotoSizeWithSize3) {
+                                closestPhotoSizeWithSize3 = null;
+                            }
+                            if (messageObject.strippedThumb != null) {
+                                imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), str3, null, null, messageObject.strippedThumb, closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, obj, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
+                            } else {
+                                imageReceiver.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject), str3, ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), zzhp.m(str3, "_b"), closestPhotoSizeWithSize4 != null ? closestPhotoSizeWithSize4.size : 0L, null, obj, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
+                            }
+                        } else {
+                            TLRPC.Document document4 = messageObject.getDocument();
+                            TLRPC.PhotoSize closestPhotoSizeWithSize5 = FileLoader.getClosestPhotoSizeWithSize(document4.thumbs, 50);
+                            TLRPC.PhotoSize closestPhotoSizeWithSize6 = FileLoader.getClosestPhotoSizeWithSize(document4.thumbs, photoSize, false, null, this.isStory);
+                            if (closestPhotoSizeWithSize5 == closestPhotoSizeWithSize6 && !this.isStory) {
+                                closestPhotoSizeWithSize6 = null;
+                            }
+                            if (closestPhotoSizeWithSize5 != null) {
+                                if (messageObject.strippedThumb != null) {
+                                    imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize6, document4), str3, messageObject.strippedThumb, null, obj, 0);
+                                } else {
+                                    imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize6, document4), str3, ImageLocation.getForDocument(closestPhotoSizeWithSize5, document4), zzhp.m(str3, "_b"), null, 0L, null, obj, 0);
+                                }
+                            }
+                        }
+                    } else if (photo3 != null && !messageObject.photoThumbs.isEmpty()) {
+                        if (messageObject.mediaExists) {
+                            imageLocation = messageObject.mediaThumb;
+                            if (imageLocation != null) {
+                                bitmapDrawable = messageObject.strippedThumb;
+                                if (bitmapDrawable != null) {
+                                    imageReceiver.setImage(imageLocation, str3, bitmapDrawable, null, obj, 0);
+                                } else {
+                                    imageReceiver.setImage(imageLocation, str3, messageObject.mediaSmallThumb, zzhp.m(str3, "_b"), null, 0L, null, obj, 0);
+                                }
+                            } else {
+                                closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
+                                closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, photoSize, false, closestPhotoSizeWithSize, this.isStory);
+                                if (closestPhotoSizeWithSize2 == closestPhotoSizeWithSize) {
+                                    closestPhotoSizeWithSize = null;
+                                }
+                                if (messageObject.strippedThumb != null) {
+                                    ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject);
+                                    BitmapDrawable bitmapDrawable3 = messageObject.strippedThumb;
+                                    if (closestPhotoSizeWithSize2 != null) {
+                                        j2 = closestPhotoSizeWithSize2.size;
+                                    } else {
+                                        j2 = 0;
+                                    }
+                                    if (messageObject.shouldEncryptPhotoOrVideo()) {
+                                        i4 = 2;
+                                    } else {
+                                        i4 = 1;
+                                    }
+                                    imageReceiver.setImage(forObject2, str3, null, null, bitmapDrawable3, j2, null, obj, i4);
+                                } else {
+                                    ImageLocation forObject3 = ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject);
+                                    if (z) {
+                                        forObject = null;
+                                    } else {
+                                        forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject);
+                                    }
+                                    String strM = zzhp.m(str3, "_b");
+                                    if (closestPhotoSizeWithSize2 != null) {
+                                        j = closestPhotoSizeWithSize2.size;
+                                    } else {
+                                        j = 0;
+                                    }
+                                    Object obj2 = obj;
+                                    if (messageObject.shouldEncryptPhotoOrVideo()) {
+                                        i3 = 2;
+                                    } else {
+                                        i3 = 1;
+                                    }
+                                    imageReceiver.setImage(forObject3, str3, forObject, strM, j, null, obj2, i3);
+                                }
+                            }
+                        } else {
+                            if (System.currentTimeMillis() - lastUpdateDownloadSettingsTime > 5000) {
+                                lastUpdateDownloadSettingsTime = System.currentTimeMillis();
+                                lastAutoDownload = DownloadController.getInstance(this.currentAccount).canDownloadMedia(messageObject);
+                            }
+                            if (lastAutoDownload || this.isStory) {
+                                imageLocation = messageObject.mediaThumb;
+                                if (imageLocation != null) {
+                                    bitmapDrawable = messageObject.strippedThumb;
+                                    if (bitmapDrawable != null) {
+                                        imageReceiver.setImage(imageLocation, str3, bitmapDrawable, null, obj, 0);
+                                    } else {
+                                        imageReceiver.setImage(imageLocation, str3, messageObject.mediaSmallThumb, zzhp.m(str3, "_b"), null, 0L, null, obj, 0);
+                                    }
+                                } else {
+                                    closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
+                                    closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, photoSize, false, closestPhotoSizeWithSize, this.isStory);
+                                    if (closestPhotoSizeWithSize2 == closestPhotoSizeWithSize) {
+                                        closestPhotoSizeWithSize = null;
+                                    }
+                                    if (messageObject.strippedThumb != null) {
+                                        ImageLocation forObject4 = ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject);
+                                        BitmapDrawable bitmapDrawable4 = messageObject.strippedThumb;
+                                        if (closestPhotoSizeWithSize2 != null) {
+                                            j2 = closestPhotoSizeWithSize2.size;
+                                        } else {
+                                            j2 = 0;
+                                        }
+                                        if (messageObject.shouldEncryptPhotoOrVideo()) {
+                                            i4 = 2;
+                                        } else {
+                                            i4 = 1;
+                                        }
+                                        imageReceiver.setImage(forObject4, str3, null, null, bitmapDrawable4, j2, null, obj, i4);
+                                    } else {
+                                        ImageLocation forObject5 = ImageLocation.getForObject(closestPhotoSizeWithSize2, messageObject.photoThumbsObject);
+                                        if (z) {
+                                            forObject = null;
+                                        } else {
+                                            forObject = ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject);
+                                        }
+                                        String strM2 = zzhp.m(str3, "_b");
+                                        if (closestPhotoSizeWithSize2 != null) {
+                                            j = closestPhotoSizeWithSize2.size;
+                                        } else {
+                                            j = 0;
+                                        }
+                                        Object obj3 = obj;
+                                        if (messageObject.shouldEncryptPhotoOrVideo()) {
+                                            i3 = 2;
+                                        } else {
+                                            i3 = 1;
+                                        }
+                                        imageReceiver.setImage(forObject5, str3, forObject, strM2, j, null, obj3, i3);
+                                    }
+                                }
+                            } else {
+                                BitmapDrawable bitmapDrawable5 = messageObject.strippedThumb;
+                                if (bitmapDrawable5 != null) {
+                                    imageReceiver.setImage(null, null, null, null, bitmapDrawable5, 0L, null, obj, 0);
+                                } else {
+                                    imageReceiver.setImage(null, null, ImageLocation.getForObject(FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50), messageObject.photoThumbsObject), "b", null, 0L, null, obj, 0);
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    i2 = 2;
+                    imageReceiver.setImage(ImageLocation.getForPath(str), str3, null, null, obj, 0);
+                }
+            } else {
+                storyItem4.dialogId = messageObject.getDialogId();
+                Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_emoji_recent).mutate();
+                drawableMutate.setColorFilter(new PorterDuffColorFilter(1090519039, PorterDuff.Mode.SRC_IN));
+                imageReceiver.setImageBitmap(new CombinedDrawable(new ColorDrawable(-13421773), drawableMutate));
+                i2 = 2;
+            }
+            if (this.blurImageReceiver.getBitmap() != null) {
+                this.blurImageReceiver.getBitmap().recycle();
+                this.blurImageReceiver.setImageBitmap((Bitmap) null);
+            }
+            if (imageReceiver.getBitmap() != null && this.currentMessageObject.hasMediaSpoilers() && !this.currentMessageObject.isMediaSpoilersRevealed) {
+                this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver.getBitmap()));
+            }
+            storyItem = messageObject.storyItem;
+            if (storyItem != null) {
+                imageReceiver.addDecorator(new StoryWidgetsImageDecorator(storyItem));
+            }
+            setPrivacyType(getPrivacyType(messageObject));
+            if (this.isSearchingHashtag) {
+                long dialogId = messageObject.getDialogId();
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x ");
+                spannableStringBuilder.append((CharSequence) MessagesController.getInstance(this.currentAccount).getPeerName(dialogId));
+                int i10 = this.currentAccount;
+                if (i5 == i2) {
+                    f = 16.0f;
+                } else {
+                    f = 13.66f;
+                }
+                AvatarSpan avatarSpan = new AvatarSpan(this, i10, f);
+                avatarSpan.setDialogId(dialogId);
+                spannableStringBuilder.setSpan(avatarSpan, 0, 1, 33);
+                if (i5 == i2) {
+                    f2 = 14.0f;
+                } else {
+                    f2 = 10.1666f;
+                }
+                this.authorText = new Text(spannableStringBuilder, f2, AndroidUtilities.bold());
+            }
+            updateAccessibilityDescription();
+            invalidate();
+        }
+        i2 = 2;
+        imageReceiver.setImageBitmap(getContext().getDrawable(R.drawable.photo_placeholder_in));
+        if (this.blurImageReceiver.getBitmap() != null) {
+            this.blurImageReceiver.getBitmap().recycle();
+            this.blurImageReceiver.setImageBitmap((Bitmap) null);
+        }
+        if (imageReceiver.getBitmap() != null) {
+            this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapMax(imageReceiver.getBitmap()));
+        }
+        storyItem = messageObject.storyItem;
+        if (storyItem != null) {
+            imageReceiver.addDecorator(new StoryWidgetsImageDecorator(storyItem));
+        }
+        setPrivacyType(getPrivacyType(messageObject));
+        if (this.isSearchingHashtag) {
+            long dialogId2 = messageObject.getDialogId();
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("x ");
+            spannableStringBuilder2.append((CharSequence) MessagesController.getInstance(this.currentAccount).getPeerName(dialogId2));
+            int i11 = this.currentAccount;
+            if (i5 == i2) {
+                f = 16.0f;
+            } else {
+                f = 13.66f;
+            }
+            AvatarSpan avatarSpan2 = new AvatarSpan(this, i11, f);
+            avatarSpan2.setDialogId(dialogId2);
+            spannableStringBuilder2.setSpan(avatarSpan2, 0, 1, 33);
+            if (i5 == i2) {
+                f2 = 14.0f;
+            } else {
+                f2 = 10.1666f;
+            }
+            this.authorText = new Text(spannableStringBuilder2, f2, AndroidUtilities.bold());
+        }
+        updateAccessibilityDescription();
+        invalidate();
     }
 }

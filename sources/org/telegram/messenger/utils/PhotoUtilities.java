@@ -1,6 +1,6 @@
 package org.telegram.messenger.utils;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -37,11 +37,11 @@ public abstract class PhotoUtilities {
             StringBuilder sb = new StringBuilder();
             sb.append(closestPhotoSizeWithSize.location.volume_id);
             sb.append("_");
-            String strM = SurfaceContainer$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize.location.local_id, "@50_50", sb);
+            String strM = Fragment$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize.location.local_id, "@50_50", sb);
             StringBuilder sb2 = new StringBuilder();
             sb2.append(closestPhotoSizeWithSize3.location.volume_id);
             sb2.append("_");
-            ImageLoader.getInstance().replaceImageInCache(strM, SurfaceContainer$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize3.location.local_id, "@50_50", sb2), ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), false);
+            ImageLoader.getInstance().replaceImageInCache(strM, Fragment$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize3.location.local_id, "@50_50", sb2), ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), false);
         }
         if (closestPhotoSizeWithSize4 == null || closestPhotoSizeWithSize2 == null) {
             return;
@@ -50,10 +50,10 @@ public abstract class PhotoUtilities {
         StringBuilder sb3 = new StringBuilder();
         sb3.append(closestPhotoSizeWithSize2.location.volume_id);
         sb3.append("_");
-        String strM2 = SurfaceContainer$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize2.location.local_id, "@150_150", sb3);
+        String strM2 = Fragment$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize2.location.local_id, "@150_150", sb3);
         StringBuilder sb4 = new StringBuilder();
         sb4.append(closestPhotoSizeWithSize4.location.volume_id);
         sb4.append("_");
-        ImageLoader.getInstance().replaceImageInCache(strM2, SurfaceContainer$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize4.location.local_id, "@150_150", sb4), ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), false);
+        ImageLoader.getInstance().replaceImageInCache(strM2, Fragment$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize4.location.local_id, "@150_150", sb4), ImageLocation.getForPhoto(closestPhotoSizeWithSize2, photo), false);
     }
 }

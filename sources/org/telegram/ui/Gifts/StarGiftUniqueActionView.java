@@ -34,7 +34,7 @@ public final class StarGiftUniqueActionView extends View {
     public StarGiftUniqueActionView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
-        StarGiftUniqueActionLayout starGiftUniqueActionLayout = new StarGiftUniqueActionLayout(resourcesProvider, this, i);
+        StarGiftUniqueActionLayout starGiftUniqueActionLayout = new StarGiftUniqueActionLayout(i, this, resourcesProvider);
         this.layout = starGiftUniqueActionLayout;
         starGiftUniqueActionLayout.messageDrawable.setCallback(this);
         NotificationCenter.listenEmojiLoading(this);
@@ -74,7 +74,7 @@ public final class StarGiftUniqueActionView extends View {
         int height = getParent() instanceof View ? ((View) getParent()).getHeight() : 0;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         if (resourcesProvider != null) {
-            resourcesProvider.applyServiceShaderMatrix(0.0f, getY(), getMeasuredWidth(), height);
+            resourcesProvider.applyServiceShaderMatrix(getMeasuredWidth(), height, 0.0f, getY());
         } else {
             Theme.applyServiceShaderMatrix(Theme.serviceBitmap, Theme.serviceBitmapShader, Theme.serviceBitmapMatrix, getMeasuredWidth(), height, 0.0f, getY());
         }
@@ -110,7 +110,7 @@ public final class StarGiftUniqueActionView extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.layout.onTouchEvent(this.layoutX, this.layoutY, motionEvent);
+        return this.layout.onTouchEvent(motionEvent, this.layoutX, this.layoutY);
     }
 
     public final void set(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z) {
@@ -129,7 +129,7 @@ public final class StarGiftUniqueActionView extends View {
         TL_stars.starGiftAttributePattern stargiftattributepattern = starGiftUniqueActionLayout.pattern;
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = starGiftUniqueActionLayout.emoji;
         if (stargiftattributepattern != null) {
-            swapAnimatedEmojiDrawable.set(stargiftattributepattern.document, swapAnimatedEmojiDrawable.cacheType, false);
+            swapAnimatedEmojiDrawable.set(stargiftattributepattern.document, false);
         } else {
             swapAnimatedEmojiDrawable.set((Drawable) null, false);
         }

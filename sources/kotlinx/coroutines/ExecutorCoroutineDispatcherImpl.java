@@ -1,6 +1,6 @@
 package kotlinx.coroutines;
 
-import com.google.android.gms.wearable.zzy;
+import com.google.mlkit.common.sdkinternal.zzb;
 import java.lang.reflect.Method;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.Executor;
@@ -82,7 +82,7 @@ public final class ExecutorCoroutineDispatcherImpl extends ExecutorCoroutineDisp
         ScheduledExecutorService scheduledExecutorService = executor instanceof ScheduledExecutorService ? (ScheduledExecutorService) executor : null;
         if (scheduledExecutorService != null) {
             try {
-                scheduledFutureSchedule = scheduledExecutorService.schedule(new zzy(this, cancellableContinuationImpl, false, 7), j, TimeUnit.MILLISECONDS);
+                scheduledFutureSchedule = scheduledExecutorService.schedule(new zzb(this, cancellableContinuationImpl, false, 6), j, TimeUnit.MILLISECONDS);
             } catch (RejectedExecutionException e) {
                 CancellationException cancellationException = new CancellationException("The task was rejected");
                 cancellationException.initCause(e);

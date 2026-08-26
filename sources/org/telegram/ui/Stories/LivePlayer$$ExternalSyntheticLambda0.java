@@ -1,6 +1,6 @@
 package org.telegram.ui.Stories;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.google.android.exoplayer2.util.Log;
 import java.util.ArrayList;
 import org.telegram.SQLite.SQLitePreparedStatement$$ExternalSyntheticOutline0;
@@ -17,10 +17,7 @@ import org.telegram.tgnet.RequestDelegateTimestamp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda112;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda51;
-import org.telegram.ui.StickersActivity$$ExternalSyntheticLambda18;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda2;
+import org.telegram.ui.iv.RichTextCell$2$$ExternalSyntheticLambda1;
 
 public final class LivePlayer$$ExternalSyntheticLambda0 implements NativeInstance.PayloadCallback, RequestDelegateTimestamp, NativeInstance.VideoSourcesCallback, NativeInstance.RequestBroadcastPartCallback, NativeInstance.RequestCurrentTimeCallback {
     public final int $r8$classId;
@@ -106,9 +103,9 @@ public final class LivePlayer$$ExternalSyntheticLambda0 implements NativeInstanc
                 return;
             }
             ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i);
-            LaunchActivity$$ExternalSyntheticLambda112 launchActivity$$ExternalSyntheticLambda112 = new LaunchActivity$$ExternalSyntheticLambda112(livePlayer, j, 9);
+            LivePlayer$$ExternalSyntheticLambda8 livePlayer$$ExternalSyntheticLambda8 = new LivePlayer$$ExternalSyntheticLambda8(livePlayer, j);
             TLRPC.GroupCall groupCall2 = livePlayer.call;
-            connectionsManager.sendRequest(getgroupcallstreamchannels, launchActivity$$ExternalSyntheticLambda112, 65536, 2, (groupCall2 == null || (groupCall2.flags & 16) == 0) ? Integer.MAX_VALUE : groupCall2.stream_dc_id);
+            connectionsManager.sendRequest(getgroupcallstreamchannels, livePlayer$$ExternalSyntheticLambda8, 65536, 2, (groupCall2 == null || (groupCall2.flags & 16) == 0) ? Integer.MAX_VALUE : groupCall2.stream_dc_id);
             return;
         }
         NativeInstance nativeInstance = livePlayer.instance;
@@ -161,7 +158,7 @@ public final class LivePlayer$$ExternalSyntheticLambda0 implements NativeInstanc
                             if (livePlayer2.destroyed || livePlayer2.instance == null) {
                                 return;
                             }
-                            AndroidUtilities.runOnUIThread(new StickersActivity$$ExternalSyntheticLambda18(19, livePlayer2, str));
+                            AndroidUtilities.runOnUIThread(new LivePlayer$$ExternalSyntheticLambda17(22, livePlayer2, str));
                             long j4 = jCurrentTimeMillis;
                             long j5 = j;
                             long j6 = j2;
@@ -228,7 +225,7 @@ public final class LivePlayer$$ExternalSyntheticLambda0 implements NativeInstanc
                         }
                     };
                     TLRPC.GroupCall groupCall = livePlayer.call;
-                    AndroidUtilities.runOnUIThread(new TodoItemMenu$$ExternalSyntheticLambda2(livePlayer, str, connectionsManager.sendRequest(tL_upload_getFile, requestDelegateTimestamp, 2, 2, (groupCall == null || (groupCall.flags & 16) == 0) ? Integer.MAX_VALUE : groupCall.stream_dc_id), 7));
+                    AndroidUtilities.runOnUIThread(new RichTextCell$2$$ExternalSyntheticLambda1(livePlayer, str, connectionsManager.sendRequest(tL_upload_getFile, requestDelegateTimestamp, 2, 2, (groupCall == null || (groupCall.flags & 16) == 0) ? Integer.MAX_VALUE : groupCall.stream_dc_id), 17));
                     break;
                 }
                 break;
@@ -238,7 +235,7 @@ public final class LivePlayer$$ExternalSyntheticLambda0 implements NativeInstanc
                 StringBuilder sb2 = new StringBuilder("[LivePlayer] cancelling getFile time_ms=");
                 sb2.append(j);
                 sb2.append(j2 == 500 ? ", scale = 1" : "");
-                SQLitePreparedStatement$$ExternalSyntheticOutline0.m(i != 0 ? SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, ", video_channel = ", ", video_quality = ") : "", sb2);
+                SQLitePreparedStatement$$ExternalSyntheticOutline0.m(i != 0 ? Fragment$$ExternalSyntheticOutline0.m(i, i2, ", video_channel = ", ", video_quality = ") : "", sb2);
                 AndroidUtilities.runOnUIThread(new LivePlayer$$ExternalSyntheticLambda9(i, i2, 0, j, livePlayer2));
                 break;
         }
@@ -257,6 +254,6 @@ public final class LivePlayer$$ExternalSyntheticLambda0 implements NativeInstanc
         while (iM < iArr.length) {
             iM = LocationController$$ExternalSyntheticOutline0.m(iArr[iM], iM, 1, getgroupparticipants.sources);
         }
-        ConnectionsManager.getInstance(livePlayer.currentAccount).sendRequest(getgroupparticipants, new LaunchActivity$$ExternalSyntheticLambda51(livePlayer, iArr, j));
+        ConnectionsManager.getInstance(livePlayer.currentAccount).sendRequest(getgroupparticipants, new LivePlayer$$ExternalSyntheticLambda15(livePlayer, iArr, j, 0));
     }
 }

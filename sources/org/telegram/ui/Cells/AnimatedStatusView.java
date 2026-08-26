@@ -37,22 +37,22 @@ public final class AnimatedStatusView extends View {
 
     public final void animateChange(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
         TLRPC.TL_availableReaction tL_availableReaction;
-        TLRPC.Document documentFindDocument;
         String strFindAnimatedEmojiEmoticon;
+        TLRPC.Document document = null;
         TLRPC.TL_availableReaction tL_availableReaction2 = visibleReaction.emojicon != null ? MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(visibleReaction.emojicon) : null;
         if (tL_availableReaction2 == null) {
-            documentFindDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, visibleReaction.documentId);
+            TLRPC.Document documentFindDocument = AnimatedEmojiDrawable.findDocument(UserConfig.selectedAccount, visibleReaction.documentId);
             if (documentFindDocument != null && (strFindAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(documentFindDocument, null)) != null) {
                 tL_availableReaction2 = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(strFindAnimatedEmojiEmoticon);
             }
             tL_availableReaction = tL_availableReaction2;
+            document = documentFindDocument;
         } else {
             tL_availableReaction = tL_availableReaction2;
-            documentFindDocument = null;
         }
         ArrayList arrayList = this.animations;
-        if (documentFindDocument != null || tL_availableReaction == null) {
-            AnimatedEmojiDrawable animatedEmojiDrawableMake = documentFindDocument == null ? AnimatedEmojiDrawable.make(2, visibleReaction.documentId, null, UserConfig.selectedAccount) : AnimatedEmojiDrawable.make(2, UserConfig.selectedAccount, documentFindDocument);
+        if (document != null || tL_availableReaction == null) {
+            AnimatedEmojiDrawable animatedEmojiDrawableMake = document == null ? AnimatedEmojiDrawable.make(2, UserConfig.selectedAccount, visibleReaction.documentId) : AnimatedEmojiDrawable.make(2, UserConfig.selectedAccount, document);
             if (this.color != null) {
                 animatedEmojiDrawableMake.setColorFilter(new PorterDuffColorFilter(this.color.intValue(), PorterDuff.Mode.MULTIPLY));
             }

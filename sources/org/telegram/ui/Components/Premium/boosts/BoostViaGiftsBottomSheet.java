@@ -3,6 +3,8 @@ package org.telegram.ui.Components.Premium.boosts;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Point;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,8 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.billingclient.api.AccountIdentifiers;
-import com.google.zxing.BinaryBitmap;
+import com.google.firebase.messaging.FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -25,7 +28,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController$$ExternalSyntheticLambda8;
 import org.telegram.messenger.MessagesController;
@@ -43,16 +46,14 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda6;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda54;
-import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda0;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda206;
-import org.telegram.ui.ChatActivity$106$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AlertsCreator$$ExternalSyntheticLambda50;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.NumberPicker;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.adapters.BoostAdapter;
@@ -65,25 +66,26 @@ import org.telegram.ui.Components.Premium.boosts.cells.DurationCell;
 import org.telegram.ui.Components.Premium.boosts.cells.ParticipantsTypeCell;
 import org.telegram.ui.Components.Premium.boosts.cells.StarGiveawayOptionCell;
 import org.telegram.ui.Components.Premium.boosts.cells.SwitcherCell;
-import org.telegram.ui.Components.ProfileGooeyView$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.ShareAlert$$ExternalSyntheticLambda15;
 import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
-import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda51;
-import org.telegram.ui.GroupCallActivity$$ExternalSyntheticLambda23;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
+import org.telegram.ui.GroupCallActivity$$ExternalSyntheticLambda48;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda18;
-import org.telegram.ui.PassportActivity$3$$ExternalSyntheticLambda3;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda7;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stars.StarsController;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda119;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda63;
 import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stories.SelfStoryViewsPage$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.WearAuthSheet$$ExternalSyntheticLambda1;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda10;
 import org.telegram.ui.bots.BotWebViewSheet;
+import org.telegram.ui.bots.SetupEmojiStatusSheet$$ExternalSyntheticLambda3;
 
 public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     public final ActionBtnCell actionBtn;
-    public BinaryBitmap actionListener;
+    public Stripe actionListener;
     public BoostAdapter adapter;
     public String additionalPrize;
     public final TLRPC.Chat currentChat;
@@ -118,11 +120,10 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         }
     }
 
-    public BoostViaGiftsBottomSheet(long j, TL_stories.PrepaidGiveaway prepaidGiveaway, BaseFragment baseFragment) {
-        super(baseFragment, false);
-        int i = 0;
+    public BoostViaGiftsBottomSheet(final long j, final TL_stories.PrepaidGiveaway prepaidGiveaway, final BaseFragment baseFragment) {
+        super(baseFragment, false, false);
         this.items = new ArrayList();
-        int i2 = 5;
+        int i = 1;
         this.sliderValues = BoostRepository.isGoogleBillingAvailable() ? Arrays.asList(1, 3, 5, 7, 10, 25, 50) : Arrays.asList(1, 3, 5, 7, 10, 25, 50, 100);
         if (BoostRepository.isGoogleBillingAvailable()) {
             Arrays.asList(1, 3, 5, 7, 10, 25, 50);
@@ -134,10 +135,10 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         this.selectedUsers = new ArrayList();
         this.selectedCountries = new ArrayList();
         this.giftCodeOptions = new ArrayList();
-        int i3 = BoostTypeCell.$r8$clinit;
+        int i2 = BoostTypeCell.$r8$clinit;
         this.selectedBoostType = 2;
         this.selectedBoostSubType = 0;
-        int i4 = ParticipantsTypeCell.$r8$clinit;
+        int i3 = ParticipantsTypeCell.$r8$clinit;
         this.selectedParticipantsType = 0;
         this.selectedMonths = 12;
         long time = new Date().getTime() + 259200000;
@@ -145,45 +146,41 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         calendar.setTimeInMillis(time);
         calendar.set(14, 0);
         calendar.set(13, 0);
-        int i5 = calendar.get(12);
-        while (i5 % 5 != 0) {
-            i5++;
+        int i4 = calendar.get(12);
+        while (i4 % 5 != 0) {
+            i4++;
         }
-        calendar.set(12, i5);
+        calendar.set(12, i4);
         this.selectedEndDate = calendar.getTimeInMillis();
         this.selectedSliderIndex = 2;
         this.selectedStarsSliderIndex = 2;
         this.additionalPrize = "";
         this.isShowWinnersSelected = true;
-        this.hideKeyboardRunnable = new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda0(this, i);
+        this.hideKeyboardRunnable = new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda0(this, 0);
         this.prepaidGiveaway = prepaidGiveaway;
         this.topPadding = 0.15f;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         this.useBackgroundTopPadding = false;
         this.backgroundPaddingLeft = 0;
-        updateTitle$1();
+        updateTitle();
         ((ViewGroup.MarginLayoutParams) this.actionBar.getLayoutParams()).leftMargin = 0;
         ((ViewGroup.MarginLayoutParams) this.actionBar.getLayoutParams()).rightMargin = 0;
         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
-            int i6 = BoostTypeCell.$r8$clinit;
+            int i5 = BoostTypeCell.$r8$clinit;
             this.selectedBoostType = 3;
         }
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.delayAnimations = false;
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        this.recyclerListView.setItemAnimator(defaultItemAnimator);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        this.recyclerListView.lambda$onCellEnter$52(defaultItemAnimator);
         RecyclerListView recyclerListView = this.recyclerListView;
-        int i7 = this.backgroundPaddingLeft;
-        recyclerListView.setPadding(i7, 0, i7, AndroidUtilities.dp(68.0f));
+        int i6 = this.backgroundPaddingLeft;
+        recyclerListView.setPadding(i6, 0, i6, AndroidUtilities.dp(68.0f));
         this.recyclerListView.setOnScrollListener(new AnonymousClass1());
-        this.recyclerListView.setOnItemClickListener(new BoostsActivity$$ExternalSyntheticLambda0(11, this, baseFragment));
+        this.recyclerListView.setOnItemClickListener(new SelfStoryViewsPage$$ExternalSyntheticLambda0(i, this, baseFragment));
         TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
         this.currentChat = chat;
         BoostAdapter boostAdapter = this.adapter;
@@ -201,10 +198,16 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         updateRows(false, false);
         ActionBtnCell actionBtnCell = new ActionBtnCell(getContext(), this.resourcesProvider);
         this.actionBtn = actionBtnCell;
-        actionBtnCell.setOnClickListener(new DialogsActivity$$ExternalSyntheticLambda51(this, prepaidGiveaway, j, baseFragment));
+        actionBtnCell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                BaseFragment baseFragment2 = baseFragment;
+                this.f$0.lambda$new$20(j, prepaidGiveaway, baseFragment2);
+            }
+        });
         updateActionButton(false);
         this.containerView.addView(actionBtnCell, LayoutHelper.createFrame(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        BoostRepository.loadGiftOptions(this.currentAccount, chat, new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13(this, i2));
+        BoostRepository.loadGiftOptions(this.currentAccount, chat, new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13(this, 5));
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.starGiveawayOptionsLoaded);
     }
 
@@ -218,7 +221,7 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
         RecyclerListView recyclerListView;
-        if (i == NotificationCenter.starGiveawayOptionsLoaded && (recyclerListView = this.recyclerListView) != null && recyclerListView.mIsAttached) {
+        if (i == NotificationCenter.starGiveawayOptionsLoaded && (recyclerListView = this.recyclerListView) != null && recyclerListView.isAttachedToWindow()) {
             updateRows(true, true);
         }
     }
@@ -324,25 +327,41 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         return i == 1 ? LocaleController.getString(R.string.GiftPremium) : LocaleController.formatString("BoostingStartGiveaway", R.string.BoostingStartGiveaway, new Object[0]);
     }
 
+    public final int getTop() {
+        int iDp;
+        int i = -AndroidUtilities.dp(16.0f);
+        int i2 = this.top;
+        if (this.actionBar.getVisibility() == 0) {
+            iDp = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
+        } else {
+            iDp = 0;
+        }
+        return Math.max(i, i2 - iDp);
+    }
+
     public final boolean isPreparedGiveaway() {
         return this.prepaidGiveaway != null;
     }
 
+    public final void lambda$new$0$4$1() {
+        AndroidUtilities.hideKeyboard(this.recyclerListView);
+    }
+
     public final void lambda$new$2(BaseFragment baseFragment, View view) {
-        BinaryBitmap binaryBitmap;
+        Stripe stripe;
         if (view instanceof SwitcherCell) {
             SwitcherCell switcherCell = (SwitcherCell) view;
             int type = switcherCell.getType();
-            boolean z = switcherCell.checkBox.isChecked;
-            boolean z2 = !z;
-            switcherCell.setChecked(z2);
+            boolean zIsChecked = switcherCell.isChecked();
+            boolean z = !zIsChecked;
+            switcherCell.setChecked(z);
             int i = SwitcherCell.$r8$clinit;
             if (type == 0) {
-                this.isShowWinnersSelected = z2;
+                this.isShowWinnersSelected = z;
                 updateRows(false, false);
             } else if (type == 1) {
-                switcherCell.setDivider(z2);
-                this.isAdditionalPrizeSelected = z2;
+                switcherCell.setDivider(z);
+                this.isAdditionalPrizeSelected = z;
                 updateRows(false, false);
                 BoostAdapter boostAdapter = this.adapter;
                 for (int i2 = 0; i2 < boostAdapter.items.size(); i2++) {
@@ -351,12 +370,11 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                         int i3 = item.subType;
                         int i4 = SwitcherCell.$r8$clinit;
                         if (i3 == 1) {
-                            RecyclerView.AdapterDataObservable adapterDataObservable = boostAdapter.mObservable;
-                            if (z) {
-                                adapterDataObservable.notifyItemRangeRemoved(i2 + 1, 1);
+                            if (zIsChecked) {
+                                boostAdapter.notifyItemRemoved(i2 + 1);
                                 break;
                             } else {
-                                adapterDataObservable.notifyItemRangeInserted(i2 + 1, 1);
+                                boostAdapter.notifyItemInserted(i2 + 1);
                                 break;
                             }
                         }
@@ -365,12 +383,12 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 BoostAdapter boostAdapter2 = this.adapter;
                 for (int i5 = 0; i5 < boostAdapter2.items.size(); i5++) {
                     if (((BoostAdapter.Item) boostAdapter2.items.get(i5)).viewType == 7) {
-                        boostAdapter2.notifyItemChanged(i5);
+                        boostAdapter2.lambda$onBindViewHolder$31(i5);
                     }
                 }
-                boolean z3 = this.isAdditionalPrizeSelected;
+                boolean z2 = this.isAdditionalPrizeSelected;
                 BoostViaGiftsBottomSheet$$ExternalSyntheticLambda0 boostViaGiftsBottomSheet$$ExternalSyntheticLambda0 = this.hideKeyboardRunnable;
-                if (z3) {
+                if (z2) {
                     AndroidUtilities.cancelRunOnUIThread(boostViaGiftsBottomSheet$$ExternalSyntheticLambda0);
                 } else {
                     AndroidUtilities.runOnUIThread(boostViaGiftsBottomSheet$$ExternalSyntheticLambda0, 250L);
@@ -378,32 +396,16 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
             }
         }
         if (view instanceof BaseCell) {
-            if (!(view instanceof BoostTypeCell)) {
-                BaseCell baseCell = (BaseCell) view;
-                if (baseCell.needCheck()) {
-                    int i6 = 0;
-                    while (true) {
-                        RecyclerListView recyclerListView = this.recyclerListView;
-                        if (i6 >= recyclerListView.getChildCount()) {
-                            break;
-                        }
-                        View childAt = recyclerListView.getChildAt(i6);
-                        if (childAt.getClass().isInstance(baseCell)) {
-                            ((BaseCell) childAt).setChecked(childAt == baseCell, true);
-                        }
-                        i6++;
-                    }
-                }
-            } else {
+            if (view instanceof BoostTypeCell) {
                 int selectedType = ((BoostTypeCell) view).getSelectedType();
-                int i7 = BoostTypeCell.$r8$clinit;
+                int i6 = BoostTypeCell.$r8$clinit;
                 ArrayList arrayList = this.selectedUsers;
                 if (selectedType == 2 || selectedType == 3) {
                     if (selectedType == 2 && this.selectedBoostType == selectedType) {
-                        BinaryBitmap binaryBitmap2 = this.actionListener;
-                        if (binaryBitmap2 != null) {
-                            ((SelectorBottomSheet) binaryBitmap2.binarizer).prepare(1, arrayList);
-                            ((BoostPagerBottomSheet) binaryBitmap2.matrix).viewPager.scrollToPosition$1(1);
+                        Stripe stripe2 = this.actionListener;
+                        if (stripe2 != null) {
+                            ((SelectorBottomSheet) stripe2.tokenCreator).prepare(1, arrayList);
+                            ((BoostPagerBottomSheet) stripe2.defaultPublishableKey).viewPager.scrollToPosition(1);
                             return;
                         }
                         return;
@@ -411,26 +413,37 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                     this.selectedBoostType = selectedType;
                     updateRows(true, true);
                     updateActionButton(true);
-                    updateTitle$1();
+                    updateTitle();
                 } else if (selectedType == 1) {
-                    BinaryBitmap binaryBitmap3 = this.actionListener;
-                    if (binaryBitmap3 != null) {
-                        ((SelectorBottomSheet) binaryBitmap3.binarizer).prepare(1, arrayList);
-                        ((BoostPagerBottomSheet) binaryBitmap3.matrix).viewPager.scrollToPosition$1(1);
+                    Stripe stripe3 = this.actionListener;
+                    if (stripe3 != null) {
+                        ((SelectorBottomSheet) stripe3.tokenCreator).prepare(1, arrayList);
+                        ((BoostPagerBottomSheet) stripe3.defaultPublishableKey).viewPager.scrollToPosition(1);
                     }
                 } else {
                     this.selectedBoostSubType = selectedType;
                     updateRows(true, true);
                     updateActionButton(true);
-                    updateTitle$1();
+                    updateTitle();
+                }
+            } else {
+                BaseCell baseCell = (BaseCell) view;
+                RecyclerListView recyclerListView = this.recyclerListView;
+                if (baseCell.needCheck()) {
+                    for (int i7 = 0; i7 < recyclerListView.getChildCount(); i7++) {
+                        View childAt = recyclerListView.getChildAt(i7);
+                        if (childAt.getClass().isInstance(baseCell)) {
+                            ((BaseCell) childAt).setChecked(childAt == baseCell, true);
+                        }
+                    }
                 }
             }
         }
         if (view instanceof ParticipantsTypeCell) {
             int selectedType2 = ((ParticipantsTypeCell) view).getSelectedType();
-            if (this.selectedParticipantsType == selectedType2 && (binaryBitmap = this.actionListener) != null) {
-                ((SelectorBottomSheet) binaryBitmap.binarizer).prepare(3, this.selectedCountries);
-                ((BoostPagerBottomSheet) binaryBitmap.matrix).viewPager.scrollToPosition$1(1);
+            if (this.selectedParticipantsType == selectedType2 && (stripe = this.actionListener) != null) {
+                ((SelectorBottomSheet) stripe.tokenCreator).prepare(3, this.selectedCountries);
+                ((BoostPagerBottomSheet) stripe.defaultPublishableKey).viewPager.scrollToPosition(1);
             }
             this.selectedParticipantsType = selectedType2;
             updateRows(false, false);
@@ -442,17 +455,17 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
             BoostAdapter boostAdapter3 = this.adapter;
             for (int i8 = 0; i8 < boostAdapter3.items.size(); i8++) {
                 if (((BoostAdapter.Item) boostAdapter3.items.get(i8)).viewType == 7) {
-                    boostAdapter3.notifyItemChanged(i8);
+                    boostAdapter3.lambda$onBindViewHolder$31(i8);
                 }
             }
             return;
         }
         if (!(view instanceof DateEndCell)) {
             if (view instanceof AddChannelCell) {
-                BinaryBitmap binaryBitmap4 = this.actionListener;
-                if (binaryBitmap4 != null) {
-                    ((SelectorBottomSheet) binaryBitmap4.binarizer).prepare(2, this.selectedChats);
-                    ((BoostPagerBottomSheet) binaryBitmap4.matrix).viewPager.scrollToPosition$1(1);
+                Stripe stripe4 = this.actionListener;
+                if (stripe4 != null) {
+                    ((SelectorBottomSheet) stripe4.tokenCreator).prepare(2, this.selectedChats);
+                    ((BoostPagerBottomSheet) stripe4.defaultPublishableKey).viewPager.scrollToPosition(1);
                     return;
                 }
                 return;
@@ -470,7 +483,7 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 this.selectedStars = option.stars;
                 updateRows(true, true);
                 updateActionButton(true);
-                updateTitle$1();
+                updateTitle();
                 return;
             }
             return;
@@ -483,69 +496,120 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         BottomSheet.Builder builder = new BottomSheet.Builder(context, resourcesProvider);
         BottomSheet bottomSheet = builder.bottomSheet;
         bottomSheet.applyBottomPadding = false;
-        NumberPicker numberPicker = new NumberPicker(context, 18, resourcesProvider);
-        int i9 = scheduleDatePickerColors.textColor;
-        numberPicker.setTextColor(i9);
+        NumberPicker numberPicker = new NumberPicker(context, resourcesProvider);
+        numberPicker.setTextColor(scheduleDatePickerColors.textColor);
         numberPicker.setTextOffset(AndroidUtilities.dp(10.0f));
         numberPicker.setItemCount(5);
-        BoostDialogs.AnonymousClass1 anonymousClass1 = new BoostDialogs.AnonymousClass1(context, 18, resourcesProvider);
+        BoostDialogs.AnonymousClass1 anonymousClass1 = new BoostDialogs.AnonymousClass1(context, resourcesProvider);
         anonymousClass1.setWrapSelectorWheel(true);
         anonymousClass1.setAllItemsCount(24);
         anonymousClass1.setItemCount(5);
-        anonymousClass1.setTextColor(i9);
+        anonymousClass1.setTextColor(scheduleDatePickerColors.textColor);
         anonymousClass1.setTextOffset(-AndroidUtilities.dp(10.0f));
         anonymousClass1.setTag("HOUR");
-        BoostDialogs.AnonymousClass2 anonymousClass2 = new BoostDialogs.AnonymousClass2(context, 18, resourcesProvider);
+        BoostDialogs.AnonymousClass2 anonymousClass2 = new BoostDialogs.AnonymousClass2(context, resourcesProvider);
         anonymousClass2.setWrapSelectorWheel(true);
         anonymousClass2.setAllItemsCount(60);
         anonymousClass2.setItemCount(5);
-        anonymousClass2.setTextColor(i9);
+        anonymousClass2.setTextColor(scheduleDatePickerColors.textColor);
         anonymousClass2.setTextOffset(-AndroidUtilities.dp(34.0f));
-        AlertsCreator.AnonymousClass35 anonymousClass35 = new AlertsCreator.AnonymousClass35(context, scheduleDatePickerColors, numberPicker, anonymousClass1, anonymousClass2);
-        anonymousClass35.setOrientation(1);
-        FrameLayout frameLayout = new FrameLayout(context);
-        anonymousClass35.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
-        TextView textView = new TextView(context);
+        BoostDialogs.AnonymousClass3 anonymousClass3 = new LinearLayout(context, scheduleDatePickerColors, numberPicker, anonymousClass1, anonymousClass2) {
+            public boolean ignoreLayout = false;
+            public final TextPaint paint;
+            public final NumberPicker val$dayPicker;
+            public final AnonymousClass1 val$hourPicker;
+            public final AnonymousClass2 val$minutePicker;
+
+            public AnonymousClass3(Context context2, AlertsCreator.ScheduleDatePickerColors scheduleDatePickerColors2, NumberPicker numberPicker2, AnonymousClass1 anonymousClass4, AnonymousClass2 anonymousClass5) {
+                super(context2);
+                this.val$dayPicker = numberPicker2;
+                this.val$hourPicker = anonymousClass4;
+                this.val$minutePicker = anonymousClass5;
+                this.ignoreLayout = false;
+                TextPaint textPaint = new TextPaint(1);
+                this.paint = textPaint;
+                setWillNotDraw(false);
+                textPaint.setTextSize(AndroidUtilities.dp(20.0f));
+                textPaint.setTypeface(AndroidUtilities.bold());
+                textPaint.setColor(scheduleDatePickerColors2.textColor);
+            }
+
+            @Override
+            public final void onDraw(Canvas canvas) {
+                super.onDraw(canvas);
+                canvas.drawText(":", this.val$hourPicker.getRight() - AndroidUtilities.dp(12.0f), (getHeight() / 2.0f) - AndroidUtilities.dp(11.0f), this.paint);
+            }
+
+            @Override
+            public final void onMeasure(int i9, int i10) {
+                this.ignoreLayout = true;
+                Point point = AndroidUtilities.displaySize;
+                int i11 = point.x > point.y ? 3 : 5;
+                NumberPicker numberPicker2 = this.val$dayPicker;
+                numberPicker2.setItemCount(i11);
+                AnonymousClass1 anonymousClass4 = this.val$hourPicker;
+                anonymousClass4.setItemCount(i11);
+                AnonymousClass2 anonymousClass5 = this.val$minutePicker;
+                anonymousClass5.setItemCount(i11);
+                numberPicker2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i11;
+                anonymousClass4.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i11;
+                anonymousClass5.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i11;
+                this.ignoreLayout = false;
+                super.onMeasure(i9, i10);
+            }
+
+            @Override
+            public final void requestLayout() {
+                if (this.ignoreLayout) {
+                    return;
+                }
+                super.requestLayout();
+            }
+        };
+        anonymousClass3.setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(context2);
+        anonymousClass3.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
+        TextView textView = new TextView(context2);
         textView.setText(LocaleController.getString("BoostingSelectDateTime", R.string.BoostingSelectDateTime));
-        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(20.0f, i9, 1, textView);
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView, scheduleDatePickerColors2.textColor, 1, 20.0f);
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
-        textView.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(2));
-        LinearLayout linearLayout = new LinearLayout(context);
+        textView.setOnTouchListener(new BottomSheet$$ExternalSyntheticLambda6(1));
+        LinearLayout linearLayout = new LinearLayout(context2);
         linearLayout.setOrientation(0);
         linearLayout.setWeightSum(1.0f);
-        anonymousClass35.addView(linearLayout, LayoutHelper.createLinear(-1, -2, 1.0f, 0, 0, 12, 0, 12));
+        anonymousClass3.addView(linearLayout, LayoutHelper.createLinear(-1, -2, 1.0f, 0, 0, 12, 0, 12));
         long jCurrentTimeMillis = System.currentTimeMillis();
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(jCurrentTimeMillis);
-        int i10 = calendar.get(1);
-        BoostDialogs.AnonymousClass4 anonymousClass4 = new BoostDialogs.AnonymousClass4(context);
+        int i9 = calendar.get(1);
+        BoostDialogs.AnonymousClass4 anonymousClass4 = new BoostDialogs.AnonymousClass4(context2);
         long j2 = MessagesController.getInstance(UserConfig.selectedAccount).giveawayPeriodMax * 1000;
         Calendar calendar2 = Calendar.getInstance();
         calendar2.setTimeInMillis(j2);
-        int i11 = calendar2.get(6);
+        int i10 = calendar2.get(6);
         calendar2.setTimeInMillis(System.currentTimeMillis());
         calendar2.add(14, (int) j2);
-        int i12 = calendar2.get(11);
-        int i13 = calendar.get(12);
-        linearLayout.addView(numberPicker, LayoutHelper.createLinear(0.5f, 0, 270));
-        numberPicker.setMinValue(0);
-        numberPicker.setMaxValue(i11 - 1);
-        numberPicker.setWrapSelectorWheel(false);
-        numberPicker.setTag("DAY");
-        numberPicker.setFormatter(new GroupCallActivity$$ExternalSyntheticLambda23(jCurrentTimeMillis, calendar, i10, 1));
-        ChatActivity$106$$ExternalSyntheticLambda2 chatActivity$106$$ExternalSyntheticLambda2 = new ChatActivity$106$$ExternalSyntheticLambda2(anonymousClass35, anonymousClass1, anonymousClass2, i12, i13, numberPicker);
-        numberPicker.setOnValueChangedListener(chatActivity$106$$ExternalSyntheticLambda2);
-        anonymousClass1.setMinValue(0);
-        anonymousClass1.setMaxValue(23);
-        linearLayout.addView(anonymousClass1, LayoutHelper.createLinear(0.2f, 0, 270));
-        anonymousClass1.setFormatter(new ShareAlert$$ExternalSyntheticLambda15(21));
-        anonymousClass1.setOnValueChangedListener(chatActivity$106$$ExternalSyntheticLambda2);
-        anonymousClass2.setMinValue(0);
-        anonymousClass2.setMaxValue(11);
-        anonymousClass2.setValue(0);
-        anonymousClass2.setFormatter(new ShareAlert$$ExternalSyntheticLambda15(22));
-        linearLayout.addView(anonymousClass2, LayoutHelper.createLinear(0.3f, 0, 270));
-        anonymousClass2.setOnValueChangedListener(chatActivity$106$$ExternalSyntheticLambda2);
+        int i11 = calendar2.get(11);
+        int i12 = calendar.get(12);
+        linearLayout.addView(numberPicker2, LayoutHelper.createLinear(0, 270, 0.5f));
+        numberPicker2.setMinValue(0);
+        numberPicker2.setMaxValue(i10 - 1);
+        numberPicker2.setWrapSelectorWheel(false);
+        numberPicker2.setTag("DAY");
+        numberPicker2.setFormatter(new GroupCallActivity$$ExternalSyntheticLambda48(jCurrentTimeMillis, calendar, i9, 1));
+        SetupEmojiStatusSheet$$ExternalSyntheticLambda3 setupEmojiStatusSheet$$ExternalSyntheticLambda3 = new SetupEmojiStatusSheet$$ExternalSyntheticLambda3(anonymousClass3, anonymousClass4, anonymousClass5, i11, i12, numberPicker2);
+        numberPicker2.setOnValueChangedListener(setupEmojiStatusSheet$$ExternalSyntheticLambda3);
+        anonymousClass4.setMinValue(0);
+        anonymousClass4.setMaxValue(23);
+        linearLayout.addView(anonymousClass4, LayoutHelper.createLinear(0, 270, 0.2f));
+        anonymousClass4.setFormatter(new FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0(28));
+        anonymousClass4.setOnValueChangedListener(setupEmojiStatusSheet$$ExternalSyntheticLambda3);
+        anonymousClass5.setMinValue(0);
+        anonymousClass5.setMaxValue(11);
+        anonymousClass5.setValue(0);
+        anonymousClass5.setFormatter(new FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0(29));
+        linearLayout.addView(anonymousClass5, LayoutHelper.createLinear(0, 270, 0.3f));
+        anonymousClass5.setOnValueChangedListener(setupEmojiStatusSheet$$ExternalSyntheticLambda3);
         if (j > 0) {
             calendar.setTimeInMillis(System.currentTimeMillis());
             calendar.set(12, 0);
@@ -554,39 +618,36 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
             calendar.set(11, 0);
             int timeInMillis = (int) ((j - calendar.getTimeInMillis()) / 86400000);
             calendar.setTimeInMillis(j);
-            anonymousClass2.setValue(calendar.get(12) / 5);
-            anonymousClass1.setValue(calendar.get(11));
-            numberPicker.setValue(timeInMillis);
-            numberPicker.getValue();
-            chatActivity$106$$ExternalSyntheticLambda2.onValueChange(numberPicker, numberPicker.getValue());
-            anonymousClass1.getValue();
-            chatActivity$106$$ExternalSyntheticLambda2.onValueChange(anonymousClass1, anonymousClass1.getValue());
+            anonymousClass5.setValue(calendar.get(12) / 5);
+            anonymousClass4.setValue(calendar.get(11));
+            numberPicker2.setValue(timeInMillis);
+            setupEmojiStatusSheet$$ExternalSyntheticLambda3.onValueChange(numberPicker2, numberPicker2.getValue(), numberPicker2.getValue());
+            setupEmojiStatusSheet$$ExternalSyntheticLambda3.onValueChange(anonymousClass4, anonymousClass4.getValue(), anonymousClass4.getValue());
         }
         anonymousClass4.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         anonymousClass4.setGravity(17);
-        anonymousClass4.setTextColor(scheduleDatePickerColors.buttonTextColor);
+        anonymousClass4.setTextColor(r8.buttonTextColor);
         anonymousClass4.setTextSize(1, 14.0f);
         anonymousClass4.setTypeface(AndroidUtilities.bold());
-        int i14 = scheduleDatePickerColors.buttonBackgroundColor;
-        anonymousClass4.setBackground(Theme.AdaptiveRipple.createRect(new float[]{8.0f}, i14, Theme.AdaptiveRipple.calcRippleColor(i14)));
+        int i13 = r8.buttonBackgroundColor;
+        anonymousClass4.setBackground(Theme.AdaptiveRipple.createRect(new float[]{8.0f}, i13, Theme.AdaptiveRipple.calcRippleColor(i13)));
         anonymousClass4.setText(LocaleController.getString("BoostingConfirm", R.string.BoostingConfirm));
-        anonymousClass35.addView(anonymousClass4, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
-        anonymousClass4.setOnClickListener(new WearAuthSheet$$ExternalSyntheticLambda1(calendar, numberPicker, anonymousClass1, anonymousClass2, boostViaGiftsBottomSheet$$ExternalSyntheticLambda2, builder, 4));
-        bottomSheet.customView = anonymousClass35;
+        anonymousClass3.addView(anonymousClass4, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
+        anonymousClass4.setOnClickListener(new AlertsCreator$$ExternalSyntheticLambda50(calendar, numberPicker2, anonymousClass4, anonymousClass5, boostViaGiftsBottomSheet$$ExternalSyntheticLambda2, builder));
+        bottomSheet.customView = anonymousClass3;
         bottomSheet.show();
-        int i15 = scheduleDatePickerColors.backgroundColor;
-        bottomSheet.setBackgroundColor(i15);
-        bottomSheet.fixNavigationBar(i15);
-        AndroidUtilities.setLightStatusBar(bottomSheet, ColorUtils.calculateLuminance(i15) > 0.699999988079071d);
+        bottomSheet.setBackgroundColor(r8.backgroundColor);
+        bottomSheet.fixNavigationBar(r8.backgroundColor);
+        AndroidUtilities.setLightStatusBar(bottomSheet, ColorUtils.calculateLuminance(scheduleDatePickerColors2.backgroundColor) > 0.699999988079071d);
     }
 
     public final void lambda$new$20(long j, TL_stories.PrepaidGiveaway prepaidGiveaway, BaseFragment baseFragment) {
         String str;
         BoostViaGiftsBottomSheet boostViaGiftsBottomSheet = this;
-        int i = 24;
-        int i2 = 11;
+        int i = 3;
+        int i2 = 2;
         ActionBtnCell actionBtnCell = boostViaGiftsBottomSheet.actionBtn;
-        if (actionBtnCell.button.loading) {
+        if (actionBtnCell.button.isLoading()) {
             return;
         }
         if (boostViaGiftsBottomSheet.isPreparedGiveaway()) {
@@ -597,12 +658,10 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 return;
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), 0, lastFragment.getResourceProvider());
-            String string = LocaleController.getString(R.string.BoostingStartGiveawayConfirmTitle);
-            AlertDialog alertDialog = builder.alertDialog;
-            alertDialog.title = string;
-            alertDialog.message = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingStartGiveawayConfirmText));
-            builder.setPositiveButton(LocaleController.getString(R.string.Start), new ProfileGooeyView$$ExternalSyntheticLambda0(mediaController$$ExternalSyntheticLambda8, 15));
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new ShareAlert$$ExternalSyntheticLambda15(23));
+            builder.setTitle(LocaleController.getString(R.string.BoostingStartGiveawayConfirmTitle));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingStartGiveawayConfirmText)));
+            builder.setPositiveButton(LocaleController.getString(R.string.Start), new GiftSheet$$ExternalSyntheticLambda6(mediaController$$ExternalSyntheticLambda8, i2));
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new LivePlayer$$ExternalSyntheticLambda1(1));
             builder.show();
             return;
         }
@@ -638,7 +697,7 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
             boolean z2 = boostViaGiftsBottomSheet.isShowWinnersSelected;
             boolean z3 = boostViaGiftsBottomSheet.isAdditionalPrizeSelected;
             String str2 = boostViaGiftsBottomSheet.additionalPrize;
-            OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18 = new OAuthSheet$$ExternalSyntheticLambda18(i2, boostViaGiftsBottomSheet, selectedStarsOption);
+            BotBiometry$$ExternalSyntheticLambda10 botBiometry$$ExternalSyntheticLambda10 = new BotBiometry$$ExternalSyntheticLambda10(2, boostViaGiftsBottomSheet, selectedStarsOption);
             int i8 = starsController.currentAccount;
             if (!MessagesController.getInstance(i8).starsPurchaseAvailable()) {
                 BaseFragment lastFragment2 = LaunchActivity.getLastFragment();
@@ -650,32 +709,34 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                     return;
                 }
             }
+            Activity activity = activityFindActivity;
             TLRPC.TL_inputStorePaymentStarsGiveaway tL_inputStorePaymentStarsGiveaway = new TLRPC.TL_inputStorePaymentStarsGiveaway();
             tL_inputStorePaymentStarsGiveaway.only_new_subscribers = z;
             tL_inputStorePaymentStarsGiveaway.winners_are_visible = z2;
+            int i9 = i8;
             tL_inputStorePaymentStarsGiveaway.stars = selectedStarsOption.stars;
-            MessagesController.getInstance(i8);
+            MessagesController.getInstance(i9);
             tL_inputStorePaymentStarsGiveaway.boost_peer = MessagesController.getInputPeer(chat);
             if (arrayList2 != null && !arrayList2.isEmpty()) {
                 tL_inputStorePaymentStarsGiveaway.flags |= 2;
                 int size = arrayList2.size();
-                int i9 = 0;
-                while (i9 < size) {
-                    Object obj = arrayList2.get(i9);
-                    i9++;
-                    Activity activity = activityFindActivity;
+                int i10 = 0;
+                while (i10 < size) {
+                    Object obj = arrayList2.get(i10);
+                    i10++;
+                    int i11 = i9;
                     ArrayList<TLRPC.InputPeer> arrayList3 = tL_inputStorePaymentStarsGiveaway.additional_peers;
-                    MessagesController.getInstance(i8);
+                    MessagesController.getInstance(i11);
                     arrayList3.add(MessagesController.getInputPeer((TLObject) obj));
-                    activityFindActivity = activity;
+                    i9 = i11;
                 }
             }
-            Activity activity2 = activityFindActivity;
+            int i12 = i9;
             int size2 = arrayList.size();
-            int i10 = 0;
-            while (i10 < size2) {
-                Object obj2 = arrayList.get(i10);
-                i10++;
+            int i13 = 0;
+            while (i13 < size2) {
+                Object obj2 = arrayList.get(i13);
+                i13++;
                 tL_inputStorePaymentStarsGiveaway.countries_iso2.add(((TLRPC.TL_help_country) ((TLObject) obj2)).iso2);
             }
             if (!tL_inputStorePaymentStarsGiveaway.countries_iso2.isEmpty()) {
@@ -685,7 +746,7 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 tL_inputStorePaymentStarsGiveaway.flags |= 16;
                 tL_inputStorePaymentStarsGiveaway.prize_description = str2;
             }
-            tL_inputStorePaymentStarsGiveaway.random_id = SendMessagesHelper.getInstance(i8).getNextRandomId();
+            tL_inputStorePaymentStarsGiveaway.random_id = SendMessagesHelper.getInstance(i12).getNextRandomId();
             tL_inputStorePaymentStarsGiveaway.until_date = i7;
             tL_inputStorePaymentStarsGiveaway.currency = selectedStarsOption.currency;
             tL_inputStorePaymentStarsGiveaway.amount = selectedStarsOption.amount;
@@ -694,7 +755,7 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 AccountIdentifiers accountIdentifiers = new AccountIdentifiers();
                 accountIdentifiers.zzb = "inapp";
                 accountIdentifiers.zza = str;
-                BillingController.getInstance().queryProductDetails(Arrays.asList(accountIdentifiers.build()), new ArticleViewer$$ExternalSyntheticLambda54(starsController, oAuthSheet$$ExternalSyntheticLambda18, tL_inputStorePaymentStarsGiveaway, activity2, 19));
+                BillingController.getInstance().queryProductDetails(Arrays.asList(accountIdentifiers.build()), new StarsController$$ExternalSyntheticLambda63(3, starsController, botBiometry$$ExternalSyntheticLambda10, tL_inputStorePaymentStarsGiveaway, activity));
                 return;
             }
             TLRPC.TL_inputInvoiceStars tL_inputInvoiceStars = new TLRPC.TL_inputInvoiceStars();
@@ -708,16 +769,17 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 tL_payments_getPaymentForm.flags |= 1;
             }
             tL_payments_getPaymentForm.invoice = tL_inputInvoiceStars;
-            ConnectionsManager.getInstance(i8).sendRequest(tL_payments_getPaymentForm, new StarGiftSheet$$ExternalSyntheticLambda7(starsController, oAuthSheet$$ExternalSyntheticLambda18, tL_inputInvoiceStars, 3));
+            ConnectionsManager.getInstance(i12).sendRequest(tL_payments_getPaymentForm, new StarGiftSheet$$ExternalSyntheticLambda1(starsController, botBiometry$$ExternalSyntheticLambda10, tL_inputInvoiceStars, 13));
             return;
         }
-        int i11 = boostViaGiftsBottomSheet.selectedBoostSubType;
+        int i14 = boostViaGiftsBottomSheet.selectedBoostSubType;
         ArrayList arrayList4 = boostViaGiftsBottomSheet.giftCodeOptions;
-        if (i11 == 1) {
+        if (i14 == 1) {
             ArrayList arrayList5 = boostViaGiftsBottomSheet.selectedUsers;
             ArrayList arrayListFilterGiftOptions = BoostRepository.filterGiftOptions(arrayList5.size(), arrayList4);
-            for (int i12 = 0; i12 < arrayListFilterGiftOptions.size(); i12++) {
-                TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) arrayListFilterGiftOptions.get(i12);
+            int i15 = 0;
+            while (i15 < arrayListFilterGiftOptions.size()) {
+                TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption = (TLRPC.TL_premiumGiftCodeOption) arrayListFilterGiftOptions.get(i15);
                 if (tL_premiumGiftCodeOption.months == boostViaGiftsBottomSheet.selectedMonths && arrayList5.size() > 0) {
                     if (BoostRepository.isGoogleBillingAvailable()) {
                         Context context = boostViaGiftsBottomSheet.getContext();
@@ -725,23 +787,21 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                         if (tL_premiumGiftCodeOption.store_product == null) {
                             ArrayList arrayList6 = new ArrayList();
                             int size3 = arrayList4.size();
-                            int i13 = 0;
-                            while (i13 < size3) {
-                                Object obj3 = arrayList4.get(i13);
-                                i13++;
+                            int i16 = 0;
+                            while (i16 < size3) {
+                                Object obj3 = arrayList4.get(i16);
+                                i16++;
                                 TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption2 = (TLRPC.TL_premiumGiftCodeOption) obj3;
                                 if (tL_premiumGiftCodeOption2.months == tL_premiumGiftCodeOption.months && tL_premiumGiftCodeOption2.store_product != null) {
                                     arrayList6.add(Integer.valueOf(tL_premiumGiftCodeOption2.users));
                                 }
                             }
                             String strJoin = TextUtils.join(", ", arrayList6);
-                            int i14 = tL_premiumGiftCodeOption.users;
+                            int i17 = tL_premiumGiftCodeOption.users;
                             AlertDialog.Builder builder2 = new AlertDialog.Builder(context, 0, resourcesProvider);
-                            String string2 = LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity);
-                            AlertDialog alertDialog2 = builder2.alertDialog;
-                            alertDialog2.title = string2;
-                            alertDialog2.message = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceUsersTextPlural", i14, strJoin));
-                            builder2.setPositiveButton(LocaleController.getString("OK", R.string.OK), new ShareAlert$$ExternalSyntheticLambda15(i));
+                            builder2.setTitle(LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity));
+                            builder2.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceUsersTextPlural", i17, strJoin)));
+                            builder2.setPositiveButton(LocaleController.getString("OK", R.string.OK), new LivePlayer$$ExternalSyntheticLambda1(3));
                             builder2.show();
                             return;
                         }
@@ -749,10 +809,10 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                     buttonWithCounterView.setLoading(true);
                     BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13 boostViaGiftsBottomSheet$$ExternalSyntheticLambda13 = new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13(boostViaGiftsBottomSheet, 0);
                     BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13 boostViaGiftsBottomSheet$$ExternalSyntheticLambda14 = new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13(boostViaGiftsBottomSheet, 1);
-                    int i15 = UserConfig.selectedAccount;
+                    int i18 = UserConfig.selectedAccount;
                     HashMap map = BoostRepository.cachedGiftOptions;
                     if (map != null) {
-                        map.remove(Integer.valueOf(i15));
+                        map.remove(Integer.valueOf(i18));
                     }
                     boolean zIsGoogleBillingAvailable = BoostRepository.isGoogleBillingAvailable();
                     TLRPC.Chat chat2 = boostViaGiftsBottomSheet.currentChat;
@@ -764,13 +824,15 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                         return;
                     }
                 }
+                i15++;
+                arrayList5 = arrayList5;
             }
             return;
         }
         ArrayList arrayListFilterGiftOptions2 = BoostRepository.filterGiftOptions(boostViaGiftsBottomSheet.getSelectedSliderValue(), arrayList4);
-        int i16 = 0;
-        while (i16 < arrayListFilterGiftOptions2.size()) {
-            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption3 = (TLRPC.TL_premiumGiftCodeOption) arrayListFilterGiftOptions2.get(i16);
+        int i19 = 0;
+        while (i19 < arrayListFilterGiftOptions2.size()) {
+            TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption3 = (TLRPC.TL_premiumGiftCodeOption) arrayListFilterGiftOptions2.get(i19);
             if (tL_premiumGiftCodeOption3.months == boostViaGiftsBottomSheet.selectedMonths) {
                 if (BoostRepository.isGoogleBillingAvailable()) {
                     Context context2 = boostViaGiftsBottomSheet.getContext();
@@ -779,10 +841,10 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                     if (tL_premiumGiftCodeOption3.store_product == null) {
                         ArrayList arrayList7 = new ArrayList();
                         int size4 = arrayList4.size();
-                        int i17 = 0;
-                        while (i17 < size4) {
-                            Object obj4 = arrayList4.get(i17);
-                            i17++;
+                        int i20 = 0;
+                        while (i20 < size4) {
+                            Object obj4 = arrayList4.get(i20);
+                            i20++;
                             TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption4 = (TLRPC.TL_premiumGiftCodeOption) obj4;
                             if (tL_premiumGiftCodeOption4.months == tL_premiumGiftCodeOption3.months && tL_premiumGiftCodeOption4.store_product != null && boostViaGiftsBottomSheet.sliderValues.contains(Integer.valueOf(tL_premiumGiftCodeOption4.users))) {
                                 arrayList7.add(tL_premiumGiftCodeOption4);
@@ -790,39 +852,37 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                         }
                         TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption5 = (TLRPC.TL_premiumGiftCodeOption) arrayList7.get(0);
                         int size5 = arrayList7.size();
-                        int i18 = 0;
-                        while (i18 < size5) {
-                            Object obj5 = arrayList7.get(i18);
-                            i18++;
+                        int i21 = 0;
+                        while (i21 < size5) {
+                            Object obj5 = arrayList7.get(i21);
+                            i21++;
                             TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption6 = (TLRPC.TL_premiumGiftCodeOption) obj5;
-                            int i19 = tL_premiumGiftCodeOption3.users;
-                            int i20 = tL_premiumGiftCodeOption6.users;
-                            if (i19 > i20 && i20 > tL_premiumGiftCodeOption5.users) {
+                            int i22 = tL_premiumGiftCodeOption3.users;
+                            int i23 = tL_premiumGiftCodeOption6.users;
+                            if (i22 > i23 && i23 > tL_premiumGiftCodeOption5.users) {
                                 tL_premiumGiftCodeOption5 = tL_premiumGiftCodeOption6;
                             }
                         }
                         String pluralString = LocaleController.formatPluralString("GiftMonths", tL_premiumGiftCodeOption5.months, new Object[0]);
-                        int i21 = tL_premiumGiftCodeOption3.users;
-                        int i22 = tL_premiumGiftCodeOption5.users;
+                        int i24 = tL_premiumGiftCodeOption3.users;
+                        int i25 = tL_premiumGiftCodeOption5.users;
                         AlertDialog.Builder builder3 = new AlertDialog.Builder(context2, 0, resourcesProvider2);
-                        String string3 = LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity);
-                        AlertDialog alertDialog3 = builder3.alertDialog;
-                        alertDialog3.title = string3;
-                        alertDialog3.message = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceQuantityTextPlural", i21, pluralString, Integer.valueOf(i22)));
-                        builder3.setPositiveButton(LocaleController.getString("Reduce", R.string.Reduce), new RateCallLayout$$ExternalSyntheticLambda1(i2, boostViaGiftsBottomSheet$$ExternalSyntheticLambda15, tL_premiumGiftCodeOption5));
-                        builder3.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new ShareAlert$$ExternalSyntheticLambda15(i));
+                        builder3.setTitle(LocaleController.getString("BoostingReduceQuantity", R.string.BoostingReduceQuantity));
+                        builder3.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReduceQuantityTextPlural", i24, pluralString, Integer.valueOf(i25))));
+                        builder3.setPositiveButton(LocaleController.getString("Reduce", R.string.Reduce), new RateCallLayout$$ExternalSyntheticLambda1(i, boostViaGiftsBottomSheet$$ExternalSyntheticLambda15, tL_premiumGiftCodeOption5));
+                        builder3.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new LivePlayer$$ExternalSyntheticLambda1(3));
                         builder3.show();
                         return;
                     }
                 }
-                int i23 = boostViaGiftsBottomSheet.selectedParticipantsType;
-                int i24 = ParticipantsTypeCell.$r8$clinit;
-                boolean z4 = i23 == 1;
+                int i26 = boostViaGiftsBottomSheet.selectedParticipantsType;
+                int i27 = ParticipantsTypeCell.$r8$clinit;
+                boolean z4 = i26 == 1;
                 long jCurrentTimeMillis2 = boostViaGiftsBottomSheet.selectedEndDate;
                 if (jCurrentTimeMillis2 < System.currentTimeMillis() + 120000) {
                     jCurrentTimeMillis2 = System.currentTimeMillis() + 120000;
                 }
-                int i25 = (int) (jCurrentTimeMillis2 / 1000);
+                int i28 = (int) (jCurrentTimeMillis2 / 1000);
                 buttonWithCounterView.setLoading(true);
                 boolean z5 = boostViaGiftsBottomSheet.isShowWinnersSelected;
                 boolean z6 = boostViaGiftsBottomSheet.isAdditionalPrizeSelected;
@@ -830,44 +890,44 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13 boostViaGiftsBottomSheet$$ExternalSyntheticLambda16 = new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13(boostViaGiftsBottomSheet, 3);
                 BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13 boostViaGiftsBottomSheet$$ExternalSyntheticLambda17 = new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13(boostViaGiftsBottomSheet, 4);
                 if (BoostRepository.isGoogleBillingAvailable()) {
-                    BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13 boostViaGiftsBottomSheet$$ExternalSyntheticLambda18 = boostViaGiftsBottomSheet$$ExternalSyntheticLambda17;
                     MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(UserConfig.selectedAccount);
                     TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = new TLRPC.TL_inputStorePaymentPremiumGiveaway();
                     tL_inputStorePaymentPremiumGiveaway.only_new_subscribers = z4;
                     tL_inputStorePaymentPremiumGiveaway.winners_are_visible = z5;
                     tL_inputStorePaymentPremiumGiveaway.prize_description = str3;
-                    tL_inputStorePaymentPremiumGiveaway.until_date = i25;
-                    int i26 = tL_inputStorePaymentPremiumGiveaway.flags;
-                    tL_inputStorePaymentPremiumGiveaway.flags = i26 | 6;
+                    tL_inputStorePaymentPremiumGiveaway.until_date = i28;
+                    int i29 = tL_inputStorePaymentPremiumGiveaway.flags;
+                    tL_inputStorePaymentPremiumGiveaway.flags = i29 | 6;
                     if (z6) {
-                        tL_inputStorePaymentPremiumGiveaway.flags = i26 | 22;
+                        tL_inputStorePaymentPremiumGiveaway.flags = i29 | 22;
                     }
                     tL_inputStorePaymentPremiumGiveaway.random_id = System.currentTimeMillis();
                     tL_inputStorePaymentPremiumGiveaway.additional_peers = new ArrayList<>();
-                    int i27 = 0;
-                    for (int size6 = arrayList2.size(); i27 < size6; size6 = size6) {
-                        Object obj6 = arrayList2.get(i27);
-                        i27++;
+                    int size6 = arrayList2.size();
+                    int i30 = 0;
+                    while (i30 < size6) {
+                        Object obj6 = arrayList2.get(i30);
+                        int i31 = i30 + 1;
                         TLObject tLObject = (TLObject) obj6;
                         if (tLObject instanceof TLRPC.Chat) {
                             tL_inputStorePaymentPremiumGiveaway.additional_peers.add(messagesController.getInputPeer(-((TLRPC.Chat) tLObject).id));
                         }
-                        boostViaGiftsBottomSheet$$ExternalSyntheticLambda18 = boostViaGiftsBottomSheet$$ExternalSyntheticLambda18;
+                        i30 = i31;
+                        arrayList2 = arrayList2;
                     }
-                    BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13 boostViaGiftsBottomSheet$$ExternalSyntheticLambda19 = boostViaGiftsBottomSheet$$ExternalSyntheticLambda18;
                     tL_inputStorePaymentPremiumGiveaway.boost_peer = messagesController.getInputPeer(-chat.id);
                     int size7 = arrayList.size();
-                    int i28 = 0;
-                    while (i28 < size7) {
-                        Object obj7 = arrayList.get(i28);
-                        i28++;
+                    int i32 = 0;
+                    while (i32 < size7) {
+                        Object obj7 = arrayList.get(i32);
+                        i32++;
                         tL_inputStorePaymentPremiumGiveaway.countries_iso2.add(((TLRPC.TL_help_country) ((TLObject) obj7)).iso2);
                     }
                     AccountIdentifiers accountIdentifiers2 = new AccountIdentifiers();
                     accountIdentifiers2.zzb = "inapp";
                     accountIdentifiers2.zza = tL_premiumGiftCodeOption3.store_product;
-                    BillingController.getInstance().queryProductDetails(Arrays.asList(accountIdentifiers2.build()), new PassportActivity$3$$ExternalSyntheticLambda3(tL_inputStorePaymentPremiumGiveaway, tL_premiumGiftCodeOption3, connectionsManager, boostViaGiftsBottomSheet$$ExternalSyntheticLambda19, boostViaGiftsBottomSheet$$ExternalSyntheticLambda16, baseFragment, 2));
+                    BillingController.getInstance().queryProductDetails(Arrays.asList(accountIdentifiers2.build()), new BoostRepository$$ExternalSyntheticLambda8(tL_inputStorePaymentPremiumGiveaway, tL_premiumGiftCodeOption3, connectionsManager, boostViaGiftsBottomSheet$$ExternalSyntheticLambda17, boostViaGiftsBottomSheet$$ExternalSyntheticLambda16, baseFragment, 0));
                     return;
                 }
                 MessagesController messagesController2 = MessagesController.getInstance(UserConfig.selectedAccount);
@@ -878,34 +938,33 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 tL_inputStorePaymentPremiumGiveaway2.only_new_subscribers = z4;
                 tL_inputStorePaymentPremiumGiveaway2.winners_are_visible = z5;
                 tL_inputStorePaymentPremiumGiveaway2.prize_description = str3;
-                tL_inputStorePaymentPremiumGiveaway2.until_date = i25;
-                int i29 = tL_inputStorePaymentPremiumGiveaway2.flags;
-                tL_inputStorePaymentPremiumGiveaway2.flags = i29 | 6;
+                tL_inputStorePaymentPremiumGiveaway2.until_date = i28;
+                int i33 = tL_inputStorePaymentPremiumGiveaway2.flags;
+                tL_inputStorePaymentPremiumGiveaway2.flags = i33 | 6;
                 if (z6) {
-                    tL_inputStorePaymentPremiumGiveaway2.flags = i29 | 22;
+                    tL_inputStorePaymentPremiumGiveaway2.flags = i33 | 22;
                 }
                 tL_inputStorePaymentPremiumGiveaway2.random_id = System.currentTimeMillis();
                 tL_inputStorePaymentPremiumGiveaway2.additional_peers = new ArrayList<>();
                 int size8 = arrayList2.size();
-                int i30 = 0;
-                while (i30 < size8) {
-                    Object obj8 = arrayList2.get(i30);
-                    int i31 = i30 + 1;
+                int i34 = 0;
+                while (i34 < size8) {
+                    Object obj8 = arrayList2.get(i34);
+                    i34++;
                     TLObject tLObject2 = (TLObject) obj8;
                     if (tLObject2 instanceof TLRPC.Chat) {
                         tL_inputStorePaymentPremiumGiveaway2.additional_peers.add(messagesController2.getInputPeer(-((TLRPC.Chat) tLObject2).id));
                     }
-                    i30 = i31;
                 }
                 tL_inputStorePaymentPremiumGiveaway2.boost_peer = messagesController2.getInputPeer(-chat.id);
                 tL_inputStorePaymentPremiumGiveaway2.boost_peer = messagesController2.getInputPeer(-chat.id);
                 tL_inputStorePaymentPremiumGiveaway2.currency = tL_premiumGiftCodeOption3.currency;
                 tL_inputStorePaymentPremiumGiveaway2.amount = tL_premiumGiftCodeOption3.amount;
                 int size9 = arrayList.size();
-                int i32 = 0;
-                while (i32 < size9) {
-                    Object obj9 = arrayList.get(i32);
-                    i32++;
+                int i35 = 0;
+                while (i35 < size9) {
+                    Object obj9 = arrayList.get(i35);
+                    i35++;
                     tL_inputStorePaymentPremiumGiveaway2.countries_iso2.add(((TLRPC.TL_help_country) ((TLObject) obj9)).iso2);
                 }
                 tL_inputInvoicePremiumGiftCode.purpose = tL_inputStorePaymentPremiumGiveaway2;
@@ -918,32 +977,35 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                     tL_payments_getPaymentForm2.flags |= 1;
                 }
                 tL_payments_getPaymentForm2.invoice = tL_inputInvoicePremiumGiftCode;
-                connectionsManager2.sendRequest(tL_payments_getPaymentForm2, new ChatActivity$$ExternalSyntheticLambda206(boostViaGiftsBottomSheet$$ExternalSyntheticLambda17, messagesController2, tL_inputInvoicePremiumGiftCode, baseFragment, boostViaGiftsBottomSheet$$ExternalSyntheticLambda16, 5));
+                connectionsManager2.sendRequest(tL_payments_getPaymentForm2, new StarsController$$ExternalSyntheticLambda119(boostViaGiftsBottomSheet$$ExternalSyntheticLambda17, messagesController2, tL_inputInvoicePremiumGiftCode, baseFragment, boostViaGiftsBottomSheet$$ExternalSyntheticLambda16, 1));
                 return;
             }
-            i16++;
+            i19++;
             boostViaGiftsBottomSheet = this;
         }
     }
 
     public final void lambda$updateRows$24() {
-        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(this.baseFragment, this.currentAccount, null, null, null, this.resourcesProvider);
-        int i = 0;
-        premiumPreviewBottomSheet.setOnDismissListener(new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda8(this, i));
-        premiumPreviewBottomSheet.setOnShowListener(new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda9(this, i));
+        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(getBaseFragment(), this.currentAccount, null, null, null, this.resourcesProvider);
+        premiumPreviewBottomSheet.setOnDismissListener(new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda8(this, 0));
+        premiumPreviewBottomSheet.setOnShowListener(new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda9(this, 0));
         premiumPreviewBottomSheet.show();
     }
 
     public final void lambda$updateRows$27() {
-        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(this.baseFragment, this.currentAccount, null, null, null, this.resourcesProvider);
-        int i = 1;
-        premiumPreviewBottomSheet.setOnDismissListener(new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda8(this, i));
-        premiumPreviewBottomSheet.setOnShowListener(new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda9(this, i));
+        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(getBaseFragment(), this.currentAccount, null, null, null, this.resourcesProvider);
+        premiumPreviewBottomSheet.setOnDismissListener(new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda8(this, 1));
+        premiumPreviewBottomSheet.setOnShowListener(new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda9(this, 1));
         premiumPreviewBottomSheet.show();
     }
 
     @Override
-    public final void onPreDraw(Canvas canvas, int i) {
+    public final boolean needPaddingShadow() {
+        return false;
+    }
+
+    @Override
+    public final void onPreDraw(Canvas canvas, int i, float f) {
         this.top = i;
     }
 
@@ -975,7 +1037,7 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         buttonWithCounterView.setShowZero(true);
         buttonWithCounterView.setEnabled(z2);
         buttonWithCounterView.setCount(size, z);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.GiftPremium), z, true);
+        buttonWithCounterView.setText(LocaleController.getString(R.string.GiftPremium), z);
         actionBtnCell.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, actionBtnCell.resourcesProvider));
     }
 
@@ -995,8 +1057,8 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         ?? r8;
         ?? r9;
         long jLongValue;
-        ArrayList arrayList = this.items;
-        ArrayList arrayList2 = new ArrayList(arrayList);
+        ArrayList<? extends AdapterWithDiffUtils.Item> arrayList = this.items;
+        ArrayList<? extends AdapterWithDiffUtils.Item> arrayList2 = new ArrayList<>(arrayList);
         arrayList.clear();
         int i4 = this.selectedBoostType;
         int i5 = BoostTypeCell.$r8$clinit;
@@ -1086,8 +1148,8 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 arrayList.add(BoostAdapter.Item.asDivider(LocaleController.getString(R.string.BoostingChooseChannelsGroupsNeedToJoin), r7));
                 arrayList.add(BoostAdapter.Item.asSubTitle(LocaleController.getString(R.string.BoostingEligibleUsers)));
                 int i10 = ParticipantsTypeCell.$r8$clinit;
-                arrayList.add(BoostAdapter.Item.asParticipants(r7, this.selectedParticipantsType, true, arrayList4));
-                arrayList.add(BoostAdapter.Item.asParticipants(1, this.selectedParticipantsType, r7, arrayList4));
+                arrayList.add(BoostAdapter.Item.asParticipants(arrayList4, r7, true, this.selectedParticipantsType));
+                arrayList.add(BoostAdapter.Item.asParticipants(arrayList4, 1, r7, this.selectedParticipantsType));
                 arrayList.add(BoostAdapter.Item.asDivider(LocaleController.getString(z3 ? R.string.BoostingChooseLimitGiveaway : R.string.BoostingChooseLimitGiveawayGroups), r7));
             }
             if (!isPreparedGiveaway()) {
@@ -1122,7 +1184,7 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
             }
             if (!isPreparedGiveaway()) {
                 i = 3;
-                arrayList.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BoostingStoriesFeaturesAndTerms), Theme.key_chat_messageLinkIn, 0, new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda0(this, i), this.resourcesProvider), true));
+                arrayList.add(BoostAdapter.Item.asDivider(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BoostingStoriesFeaturesAndTerms), Theme.key_chat_messageLinkIn, 0, new BoostViaGiftsBottomSheet$$ExternalSyntheticLambda0(this, 3), this.resourcesProvider), true));
             }
             i2 = this.selectedBoostType;
             int i19 = BoostTypeCell.$r8$clinit;
@@ -1213,7 +1275,7 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
                 if (z) {
                     boostAdapter.setItems(arrayList2, arrayList);
                 } else {
-                    boostAdapter.mObservable.notifyChanged();
+                    boostAdapter.notifyDataSetChanged();
                 }
             }
             return;
@@ -1370,8 +1432,8 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         arrayList.add(BoostAdapter.Item.asDivider(LocaleController.getString(R.string.BoostingChooseChannelsGroupsNeedToJoin), r8));
         arrayList.add(BoostAdapter.Item.asSubTitle(LocaleController.getString(R.string.BoostingEligibleUsers)));
         int i30 = ParticipantsTypeCell.$r8$clinit;
-        arrayList.add(BoostAdapter.Item.asParticipants(r8, this.selectedParticipantsType, true, arrayList4));
-        arrayList.add(BoostAdapter.Item.asParticipants(1, this.selectedParticipantsType, r8, arrayList4));
+        arrayList.add(BoostAdapter.Item.asParticipants(arrayList4, r8, true, this.selectedParticipantsType));
+        arrayList.add(BoostAdapter.Item.asParticipants(arrayList4, 1, r8, this.selectedParticipantsType));
         arrayList.add(BoostAdapter.Item.asDivider(LocaleController.getString(z3 ? R.string.BoostingChooseLimitGiveaway : R.string.BoostingChooseLimitGiveawayGroups), r8));
         i = 3;
         i2 = this.selectedBoostType;
@@ -1546,7 +1608,7 @@ public final class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListV
         if (z) {
             boostAdapter.setItems(arrayList2, arrayList);
         } else {
-            boostAdapter.mObservable.notifyChanged();
+            boostAdapter.notifyDataSetChanged();
         }
     }
 }

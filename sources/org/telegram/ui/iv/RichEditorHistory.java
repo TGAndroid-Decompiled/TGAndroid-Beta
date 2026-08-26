@@ -6,32 +6,32 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import kotlinx.coroutines.flow.SafeFlow;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
+import org.telegram.ui.web.AddressBarList$$ExternalSyntheticLambda4;
 
 public final class RichEditorHistory {
-    public final PhotoViewer.AnonymousClass24 delegate;
+    public final SafeFlow delegate;
     public boolean dirty;
     public boolean restoring;
     public final ArrayDeque undoStack = new ArrayDeque();
     public final ArrayDeque redoStack = new ArrayDeque();
-    public final VoIPFragment$8$$ExternalSyntheticLambda1 commitRunnable = new VoIPFragment$8$$ExternalSyntheticLambda1(this, 18);
+    public final AddressBarList$$ExternalSyntheticLambda4 commitRunnable = new AddressBarList$$ExternalSyntheticLambda4(this, 1);
     public Snapshot baseline = capture();
 
     public final class FocusState {
-        public static final FocusState NONE = new FocusState(-1, -1, 0, 0);
+        public static final FocusState NONE = new FocusState(-1, 0, 0, -1);
         public final int childIndex;
         public final long rowId;
         public final int selEnd;
         public final int selStart;
 
-        public FocusState(long j, int i, int i2, int i3) {
+        public FocusState(int i, int i2, int i3, long j) {
             this.rowId = j;
             this.childIndex = i;
             this.selStart = i2;
@@ -75,8 +75,8 @@ public final class RichEditorHistory {
         }
     }
 
-    public RichEditorHistory(PhotoViewer.AnonymousClass24 anonymousClass24) {
-        this.delegate = anonymousClass24;
+    public RichEditorHistory(SafeFlow safeFlow) {
+        this.delegate = safeFlow;
     }
 
     public static void normalize(TL_iv.PageBlock pageBlock) {
@@ -251,9 +251,9 @@ public final class RichEditorHistory {
             blockRow.quoteIds.addAll(rowState.quoteIds);
             arrayList.add(blockRow);
         }
-        PhotoViewer.AnonymousClass24 anonymousClass24 = this.delegate;
-        RichEditorListView richEditorListView = (RichEditorListView) anonymousClass24.this$0;
-        richEditorListView.textSelectionHelper.clear(false);
+        SafeFlow safeFlow = this.delegate;
+        RichEditorListView richEditorListView = (RichEditorListView) safeFlow.block;
+        richEditorListView.textSelectionHelper.clear();
         ArrayList arrayList3 = richEditorListView.rows;
         arrayList3.clear();
         arrayList3.addAll(arrayList);
@@ -261,11 +261,11 @@ public final class RichEditorHistory {
         richEditorListView.adapter.update(false);
         FocusState focusState = snapshot.focus;
         if (focusState.rowId >= 0) {
-            richEditorListView.post(new RichTableCell$$ExternalSyntheticLambda3(13, richEditorListView, focusState));
+            richEditorListView.post(new RichTableCell$$ExternalSyntheticLambda3(24, richEditorListView, focusState));
         }
         richEditorListView.delegate.onContentChanged();
         this.restoring = false;
-        ((RichEditorListView) anonymousClass24.this$0).delegate.onHistoryChanged();
+        ((RichEditorListView) safeFlow.block).delegate.onHistoryChanged();
     }
 
     public final boolean canUndo() {
@@ -278,8 +278,8 @@ public final class RichEditorHistory {
         int i;
         int iIndexOf;
         ArrayList arrayList;
-        PhotoViewer.AnonymousClass24 anonymousClass24 = this.delegate;
-        ArrayList arrayList2 = ((RichEditorListView) anonymousClass24.this$0).rows;
+        SafeFlow safeFlow = this.delegate;
+        ArrayList arrayList2 = ((RichEditorListView) safeFlow.block).rows;
         HashMap map = new HashMap();
         Snapshot snapshot = this.baseline;
         if (snapshot != null) {
@@ -373,7 +373,7 @@ public final class RichEditorHistory {
             map = map;
             arrayList2 = arrayList2;
         }
-        View viewFindFocus = ((RichEditorListView) anonymousClass24.this$0).findFocus();
+        View viewFindFocus = ((RichEditorListView) safeFlow.block).findFocus();
         boolean z13 = viewFindFocus instanceof RichEditText;
         FocusState focusState2 = FocusState.NONE;
         if (z13) {
@@ -406,14 +406,14 @@ public final class RichEditorHistory {
                     if (r1 instanceof RichTextCell) {
                         RichTextCell richTextCell = (RichTextCell) r1;
                         if (richTextCell.getRow() != null) {
-                            focusState = new FocusState(richTextCell.getRow().id, -1, selectionStart, selectionEnd);
+                            focusState = new FocusState(-1, selectionStart, selectionEnd, richTextCell.getRow().id);
                         }
                     }
                 } else {
-                    focusState = new FocusState(richCaptionHost.getRow().id, -1, selectionStart, selectionEnd);
+                    focusState = new FocusState(-1, selectionStart, selectionEnd, richCaptionHost.getRow().id);
                 }
             } else if (r1 == FindTableCellAncestor.getTitleEditText()) {
-                focusState = new FocusState(FindTableCellAncestor.getRow().id, 0, selectionStart, selectionEnd);
+                focusState = new FocusState(0, selectionStart, selectionEnd, FindTableCellAncestor.getRow().id);
             } else {
                 RichTableCellHost richTableCellHostFindHostContaining = FindTableCellAncestor.findHostContaining(r1);
                 if (richTableCellHostFindHostContaining != null) {
@@ -427,7 +427,7 @@ public final class RichEditorHistory {
                 } else {
                     i = -1;
                 }
-                focusState = new FocusState(FindTableCellAncestor.getRow().id, i, selectionStart, selectionEnd);
+                focusState = new FocusState(i, selectionStart, selectionEnd, FindTableCellAncestor.getRow().id);
             }
             focusState2 = focusState;
         }
@@ -461,7 +461,7 @@ public final class RichEditorHistory {
         }
         this.redoStack.clear();
         this.baseline = snapshotCapture;
-        ((RichEditorListView) this.delegate.this$0).delegate.onHistoryChanged();
+        ((RichEditorListView) this.delegate.block).delegate.onHistoryChanged();
     }
 
     public final void onBeforeChange(int i, int i2) {
@@ -479,10 +479,10 @@ public final class RichEditorHistory {
             return;
         }
         this.dirty = true;
-        VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = this.commitRunnable;
-        AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
-        AndroidUtilities.runOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1, 800L);
-        ((RichEditorListView) this.delegate.this$0).delegate.onHistoryChanged();
+        AddressBarList$$ExternalSyntheticLambda4 addressBarList$$ExternalSyntheticLambda4 = this.commitRunnable;
+        AndroidUtilities.cancelRunOnUIThread(addressBarList$$ExternalSyntheticLambda4);
+        AndroidUtilities.runOnUIThread(addressBarList$$ExternalSyntheticLambda4, 800L);
+        ((RichEditorListView) this.delegate.block).delegate.onHistoryChanged();
     }
 
     public final void record() {
@@ -513,7 +513,7 @@ public final class RichEditorHistory {
         this.redoStack.clear();
         this.baseline = capture();
         this.dirty = false;
-        ((RichEditorListView) this.delegate.this$0).delegate.onHistoryChanged();
+        ((RichEditorListView) this.delegate.block).delegate.onHistoryChanged();
     }
 
     public final void undo() {

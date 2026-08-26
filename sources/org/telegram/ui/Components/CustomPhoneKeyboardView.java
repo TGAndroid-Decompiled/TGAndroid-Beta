@@ -3,8 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.text.Editable;
 import android.text.TextPaint;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -12,69 +15,32 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
-import com.android.billingclient.api.zzcv;
+import androidx.core.view.GestureDetectorCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.BaseCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
 
-public final class CustomPhoneKeyboardView extends ViewGroup {
-    public static final int $r8$clinit = 0;
-    public final AnonymousClass1 backButton;
-    public final CustomPhoneKeyboardView$$ExternalSyntheticLambda0 detectLongClick;
-    public boolean dispatchBackWhenEmpty;
-    public EditText editText;
-    public final CustomPhoneKeyboardView$$ExternalSyntheticLambda0 onBackButton;
-    public boolean postedLongClick;
-    public boolean runningLongClick;
-    public View viewToFindFocus;
-    public final View[] views;
+public class CustomPhoneKeyboardView extends ViewGroup {
+    private static final int BUTTON_PADDING = 6;
+    public static final int KEYBOARD_HEIGHT_DP = 230;
+    private static final int SIDE_PADDING = 10;
+    private final ImageView backButton;
+    private final Runnable detectLongClick;
+    private boolean dispatchBackWhenEmpty;
+    private EditText editText;
+    private final Runnable onBackButton;
+    private boolean postedLongClick;
+    private boolean runningLongClick;
+    private View viewToFindFocus;
+    private final View[] views;
 
-    public final class AnonymousClass1 extends ImageView {
-        public final int $r8$classId = 0;
-        public final ViewGroup this$0;
-        public Object val$backDetector;
-
-        public AnonymousClass1(CustomPhoneKeyboardView customPhoneKeyboardView, Context context, zzcv zzcvVar) {
-            super(context);
-            this.this$0 = customPhoneKeyboardView;
-            this.val$backDetector = zzcvVar;
-        }
-
-        @Override
-        public boolean onTouchEvent(MotionEvent motionEvent) {
-            switch (this.$r8$classId) {
-                case 0:
-                    if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                        CustomPhoneKeyboardView customPhoneKeyboardView = (CustomPhoneKeyboardView) this.this$0;
-                        if (customPhoneKeyboardView.postedLongClick || customPhoneKeyboardView.runningLongClick) {
-                            customPhoneKeyboardView.postedLongClick = false;
-                            customPhoneKeyboardView.runningLongClick = false;
-                            removeCallbacks(customPhoneKeyboardView.detectLongClick);
-                            removeCallbacks(customPhoneKeyboardView.onBackButton);
-                        }
-                    }
-                    super.onTouchEvent(motionEvent);
-                    return ((GestureDetector) ((zzcv) this.val$backDetector).zza).onTouchEvent(motionEvent);
-                default:
-                    return super.onTouchEvent(motionEvent);
-            }
-        }
-
-        public AnonymousClass1(ReactionsContainerLayout reactionsContainerLayout, Context context) {
-            super(context);
-            this.this$0 = reactionsContainerLayout;
-        }
-    }
-
-    public final class NumberButtonView extends View {
-        public final String mNumber;
-        public final String mSymbols;
-        public final TextPaint numberTextPaint;
-        public final Rect rect;
-        public final TextPaint symbolsTextPaint;
+    public static final class NumberButtonView extends View {
+        private final String mNumber;
+        private final String mSymbols;
+        private final TextPaint numberTextPaint;
+        private final Rect rect;
+        private final TextPaint symbolsTextPaint;
 
         public NumberButtonView(Context context, String str, String str2) {
             super(context);
@@ -87,26 +53,28 @@ public final class CustomPhoneKeyboardView extends ViewGroup {
             this.mSymbols = str2;
             textPaint.setTextSize(AndroidUtilities.dp(24.0f));
             textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
-            textPaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
-            textPaint2.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteHintText, false));
+            updateColors();
+        }
+
+        public void updateColors() {
+            this.numberTextPaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+            this.symbolsTextPaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteHintText, false));
         }
 
         @Override
-        public final void onDraw(Canvas canvas) {
-            TextPaint textPaint = this.symbolsTextPaint;
-            String str = this.mSymbols;
-            float fMeasureText = textPaint.measureText(str);
-            TextPaint textPaint2 = this.numberTextPaint;
-            String str2 = this.mNumber;
-            float fMeasureText2 = textPaint2.measureText(str2);
-            int length = str2.length();
-            Rect rect = this.rect;
-            textPaint2.getTextBounds(str2, 0, length, rect);
-            float fHeight = rect.height() / 2.0f;
-            textPaint.getTextBounds(str, 0, str.length(), rect);
-            float fHeight2 = rect.height() / 2.0f;
-            canvas.drawText(str2, (getWidth() * 0.25f) - (fMeasureText2 / 2.0f), (getHeight() / 2.0f) + fHeight, textPaint2);
-            canvas.drawText(str, (getWidth() * 0.7f) - (fMeasureText / 2.0f), (getHeight() / 2.0f) + fHeight2, textPaint);
+        public void onDraw(Canvas canvas) {
+            float fMeasureText = this.symbolsTextPaint.measureText(this.mSymbols);
+            float fMeasureText2 = this.numberTextPaint.measureText(this.mNumber);
+            TextPaint textPaint = this.numberTextPaint;
+            String str = this.mNumber;
+            textPaint.getTextBounds(str, 0, str.length(), this.rect);
+            float fHeight = this.rect.height() / 2.0f;
+            TextPaint textPaint2 = this.symbolsTextPaint;
+            String str2 = this.mSymbols;
+            textPaint2.getTextBounds(str2, 0, str2.length(), this.rect);
+            float fHeight2 = this.rect.height() / 2.0f;
+            canvas.drawText(this.mNumber, (getWidth() * 0.25f) - (fMeasureText2 / 2.0f), (getHeight() / 2.0f) + fHeight, this.numberTextPaint);
+            canvas.drawText(this.mSymbols, (getWidth() * 0.7f) - (fMeasureText / 2.0f), (getHeight() / 2.0f) + fHeight2, this.symbolsTextPaint);
         }
     }
 
@@ -114,13 +82,51 @@ public final class CustomPhoneKeyboardView extends ViewGroup {
         String str;
         super(context);
         this.views = new View[12];
-        this.onBackButton = new CustomPhoneKeyboardView$$ExternalSyntheticLambda0(this, 0);
-        this.detectLongClick = new CustomPhoneKeyboardView$$ExternalSyntheticLambda0(this, 1);
-        int i = 0;
-        int i2 = 0;
-        while (i2 < 11) {
-            if (i2 != 9) {
+        final int i = 0;
+        this.onBackButton = new Runnable(this) {
+            public final CustomPhoneKeyboardView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (i) {
+                    case 0:
+                        this.f$0.lambda$new$0();
+                        break;
+                    default:
+                        this.f$0.lambda$new$1();
+                        break;
+                }
+            }
+        };
+        final int i2 = 1;
+        this.detectLongClick = new Runnable(this) {
+            public final CustomPhoneKeyboardView f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run() {
                 switch (i2) {
+                    case 0:
+                        this.f$0.lambda$new$0();
+                        break;
+                    default:
+                        this.f$0.lambda$new$1();
+                        break;
+                }
+            }
+        };
+        int i3 = 0;
+        int i4 = 0;
+        while (i4 < 11) {
+            if (i4 != 9) {
+                switch (i4) {
                     case 1:
                         str = "ABC";
                         break;
@@ -153,37 +159,50 @@ public final class CustomPhoneKeyboardView extends ViewGroup {
                         str = "+";
                         break;
                 }
-                String strValueOf = String.valueOf(i2 != 10 ? i2 + 1 : 0);
-                this.views[i2] = new NumberButtonView(context, strValueOf, str);
-                this.views[i2].setOnClickListener(new ItemOptions$$ExternalSyntheticLambda7(19, this, strValueOf));
-                addView(this.views[i2]);
+                String strValueOf = String.valueOf(i4 != 10 ? i4 + 1 : 0);
+                this.views[i4] = new NumberButtonView(context, strValueOf, str);
+                this.views[i4].setOnClickListener(new AIEditorAlert$$ExternalSyntheticLambda16(23, this, strValueOf));
+                addView(this.views[i4]);
             }
-            i2++;
+            i4++;
         }
-        AnonymousClass1 anonymousClass1 = new AnonymousClass1(this, context, new zzcv(context, new PopupSwipeBackLayout.AnonymousClass1(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.backButton = anonymousClass1;
-        anonymousClass1.setImageResource(R.drawable.msg_clear_input);
-        anonymousClass1.setColorFilter(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+        final GestureDetectorCompat gestureDetectorCompat = setupBackButtonDetector(context);
+        ImageView imageView = new ImageView(context) {
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (CustomPhoneKeyboardView.this.postedLongClick || CustomPhoneKeyboardView.this.runningLongClick)) {
+                    CustomPhoneKeyboardView.this.postedLongClick = false;
+                    CustomPhoneKeyboardView.this.runningLongClick = false;
+                    removeCallbacks(CustomPhoneKeyboardView.this.detectLongClick);
+                    removeCallbacks(CustomPhoneKeyboardView.this.onBackButton);
+                }
+                super.onTouchEvent(motionEvent);
+                return gestureDetectorCompat.mDetector.onTouchEvent(motionEvent);
+            }
+        };
+        this.backButton = imageView;
+        imageView.setImageResource(R.drawable.msg_clear_input);
+        imageView.setColorFilter(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
         int iDp = AndroidUtilities.dp(11.0f);
-        anonymousClass1.setPadding(iDp, iDp, iDp, iDp);
-        anonymousClass1.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(4));
-        this.views[11] = anonymousClass1;
-        addView(anonymousClass1);
+        imageView.setPadding(iDp, iDp, iDp, iDp);
+        imageView.setOnClickListener(new ColorPicker$$ExternalSyntheticLambda4(2));
+        this.views[11] = imageView;
+        addView(imageView);
         while (true) {
             View[] viewArr = this.views;
-            if (i >= viewArr.length) {
+            if (i3 >= viewArr.length) {
                 return;
             }
-            View view = viewArr[i];
+            View view = viewArr[i3];
             if (view != null) {
                 ScaleStateListAnimator.apply(view, 0.02f, 1.2f);
-                view.setBackground(getButtonDrawable(i));
+                view.setBackground(getButtonDrawable(i3));
             }
-            i++;
+            i3++;
         }
     }
 
-    public static BaseCell.RippleDrawableSafe getButtonDrawable(int i) {
+    private static Drawable getButtonDrawable(int i) {
         boolean z = i < 3;
         int i2 = i % 3;
         boolean z2 = i2 == 0;
@@ -202,35 +221,138 @@ public final class CustomPhoneKeyboardView extends ViewGroup {
         return Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp2, iDp3, AndroidUtilities.dp(f), color, alphaComponent, alphaComponent);
     }
 
-    @Override
-    public final boolean canScrollHorizontally(int i) {
-        return true;
+    public void lambda$new$0() {
+        checkFindEditText();
+        EditText editText = this.editText;
+        if (editText != null) {
+            if (editText.length() != 0 || this.dispatchBackWhenEmpty) {
+                try {
+                    performHapticFeedback(3, 2);
+                    playSoundEffect(0);
+                } catch (Exception unused) {
+                }
+                this.editText.dispatchKeyEvent(new KeyEvent(0, 67));
+                this.editText.dispatchKeyEvent(new KeyEvent(1, 67));
+                if (this.runningLongClick) {
+                    postDelayed(this.onBackButton, 50L);
+                }
+            }
+        }
+    }
+
+    public void lambda$new$1() {
+        this.postedLongClick = false;
+        this.runningLongClick = true;
+        this.onBackButton.run();
+    }
+
+    public void lambda$new$2(String str, View view) {
+        int length;
+        checkFindEditText();
+        if (this.editText == null) {
+            return;
+        }
+        try {
+            performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        EditText editText = this.editText;
+        if (editText instanceof EditTextBoldCursor) {
+            ((EditTextBoldCursor) editText).setTextWatchersSuppressed(true, false);
+        }
+        Editable text = this.editText.getText();
+        if (this.editText.getSelectionEnd() == this.editText.length()) {
+            length = -1;
+        } else {
+            length = str.length() + this.editText.getSelectionStart();
+        }
+        if (this.editText.getSelectionStart() == -1 || this.editText.getSelectionEnd() == -1) {
+            this.editText.setText(str);
+            EditText editText2 = this.editText;
+            editText2.setSelection(editText2.length());
+        } else {
+            EditText editText3 = this.editText;
+            editText3.setText(text.replace(editText3.getSelectionStart(), this.editText.getSelectionEnd(), str));
+            EditText editText4 = this.editText;
+            if (length == -1) {
+                length = editText4.length();
+            }
+            editText4.setSelection(length);
+        }
+        EditText editText5 = this.editText;
+        if (editText5 instanceof EditTextBoldCursor) {
+            ((EditTextBoldCursor) editText5).setTextWatchersSuppressed(false, true);
+        }
+    }
+
+    public static void lambda$new$3(View view) {
+    }
+
+    private GestureDetectorCompat setupBackButtonDetector(Context context) {
+        final int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        return new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent motionEvent) {
+                if (CustomPhoneKeyboardView.this.postedLongClick) {
+                    CustomPhoneKeyboardView customPhoneKeyboardView = CustomPhoneKeyboardView.this;
+                    customPhoneKeyboardView.removeCallbacks(customPhoneKeyboardView.detectLongClick);
+                }
+                CustomPhoneKeyboardView.this.postedLongClick = true;
+                CustomPhoneKeyboardView customPhoneKeyboardView2 = CustomPhoneKeyboardView.this;
+                customPhoneKeyboardView2.postDelayed(customPhoneKeyboardView2.detectLongClick, 200L);
+                CustomPhoneKeyboardView.this.onBackButton.run();
+                return true;
+            }
+
+            @Override
+            public boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
+                if ((CustomPhoneKeyboardView.this.postedLongClick || CustomPhoneKeyboardView.this.runningLongClick) && (Math.abs(f) >= scaledTouchSlop || Math.abs(f2) >= scaledTouchSlop)) {
+                    CustomPhoneKeyboardView.this.postedLongClick = false;
+                    CustomPhoneKeyboardView.this.runningLongClick = false;
+                    CustomPhoneKeyboardView customPhoneKeyboardView = CustomPhoneKeyboardView.this;
+                    customPhoneKeyboardView.removeCallbacks(customPhoneKeyboardView.detectLongClick);
+                    CustomPhoneKeyboardView customPhoneKeyboardView2 = CustomPhoneKeyboardView.this;
+                    customPhoneKeyboardView2.removeCallbacks(customPhoneKeyboardView2.onBackButton);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        int iM$2 = OKLCH.m$2(32.0f, getWidth(), 3);
-        int iM$3 = OKLCH.m$2(42.0f, getHeight(), 4);
-        int i5 = 0;
-        while (true) {
-            View[] viewArr = this.views;
-            if (i5 >= viewArr.length) {
-                return;
-            }
-            int iDp = AndroidUtilities.dp(6.0f) + iM$2;
-            int iDp2 = AndroidUtilities.dp(10.0f) + (iDp * (i5 % 3));
-            int iDp3 = AndroidUtilities.dp(6.0f) + iM$3;
-            int iDp4 = AndroidUtilities.dp(10.0f) + (iDp3 * (i5 / 3));
-            View view = viewArr[i5];
-            if (view != null) {
-                view.layout(iDp2, iDp4, iDp2 + iM$2, iDp4 + iM$3);
-            }
-            i5++;
+    public boolean canScrollHorizontally(int i) {
+        return true;
+    }
+
+    public void checkFindEditText() {
+        View view;
+        if (this.editText != null || (view = this.viewToFindFocus) == null) {
+            return;
+        }
+        View viewFindFocus = view.findFocus();
+        if (viewFindFocus instanceof EditText) {
+            this.editText = (EditText) viewFindFocus;
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        int iM$2 = OKLCH.m$2(32.0f, getWidth(), 3);
+        int iM$3 = OKLCH.m$2(42.0f, getHeight(), 4);
+        for (int i5 = 0; i5 < this.views.length; i5++) {
+            int iDp = AndroidUtilities.dp(6.0f) + iM$2;
+            int iDp2 = AndroidUtilities.dp(10.0f) + (iDp * (i5 % 3));
+            int iDp3 = AndroidUtilities.dp(6.0f) + iM$3;
+            int iDp4 = AndroidUtilities.dp(10.0f) + (iDp3 * (i5 / 3));
+            View view = this.views[i5];
+            if (view != null) {
+                view.layout(iDp2, iDp4, iDp2 + iM$2, iDp4 + iM$3);
+            }
+        }
+    }
+
+    @Override
+    public void onMeasure(int i, int i2) {
         setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
         int iM$2 = OKLCH.m$2(32.0f, getWidth(), 3);
         int iM$3 = OKLCH.m$2(42.0f, getHeight(), 4);
@@ -252,5 +374,24 @@ public final class CustomPhoneKeyboardView extends ViewGroup {
 
     public void setViewToFindFocus(View view) {
         this.viewToFindFocus = view;
+    }
+
+    public void updateColors() {
+        int i = 0;
+        this.backButton.setColorFilter(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+        while (true) {
+            View[] viewArr = this.views;
+            if (i >= viewArr.length) {
+                return;
+            }
+            View view = viewArr[i];
+            if (view != null) {
+                view.setBackground(getButtonDrawable(i));
+                if (view instanceof NumberButtonView) {
+                    ((NumberButtonView) view).updateColors();
+                }
+            }
+            i++;
+        }
     }
 }

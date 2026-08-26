@@ -3,7 +3,7 @@ package kotlin.coroutines;
 import android.os.CancellationSignal;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import androidx.credentials.playservices.controllers.CredentialProviderController;
-import com.google.android.gms.internal.mlkit_language_id_common.zzgu;
+import com.google.android.gms.internal.mlkit_language_id_common.zzgs;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function2;
@@ -34,7 +34,7 @@ public final class CombinedContext$$ExternalSyntheticLambda0 implements Function
                 Function0 f = (Function0) obj2;
                 Intrinsics.checkNotNullParameter(f, "f");
                 int i = CredentialProviderController.$r8$clinit;
-                zzgu.cancelOrCallbackExceptionOrResult$credentials_play_services_auth_release((CancellationSignal) obj, f);
+                zzgs.cancelOrCallbackExceptionOrResult$credentials_play_services_auth_release((CancellationSignal) obj, f);
                 return unit;
             case 2:
                 Function0 f2 = (Function0) obj2;

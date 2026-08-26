@@ -46,14 +46,14 @@ public final class CommunityLinkView extends FrameLayout implements Theme.Colora
         textView2.setTextSize(1, 13.0f);
         textView2.setSingleLine(true);
         textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0.0f, 2.0f, 0.0f, 0.0f));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 19, 67.0f, 0.0f, 48.0f, 1.0f));
         ImageView imageView = new ImageView(context);
         this.arrowView = imageView;
         imageView.setImageResource(R.drawable.msg_inputarrow);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        updateColors$1();
+        updateColors();
     }
 
     @Override
@@ -82,7 +82,7 @@ public final class CommunityLinkView extends FrameLayout implements Theme.Colora
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         int i = Theme.key_windowBackgroundWhiteGrayText2;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         this.arrowView.setColorFilter(Theme.getColor(i, resourcesProvider));

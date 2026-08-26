@@ -3,19 +3,19 @@ package org.telegram.messenger.utils;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import org.telegram.ui.ActionBar.OKLCH;
-import org.telegram.ui.UsersSelectActivity;
+import android.widget.EditText;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 
 public final class SearchTextWatcher implements TextWatcher {
     public boolean doNotCloseAfterFieldEmpty;
-    public final UsersSelectActivity.AnonymousClass4 editText;
-    public final OKLCH listener;
+    public final EditText editText;
+    public final ActionBarMenuItem.ActionBarMenuItemSearchListener listener;
     public boolean searchIsExpanded;
     public String searchQuery;
 
-    public SearchTextWatcher(UsersSelectActivity.AnonymousClass4 anonymousClass4, OKLCH oklch) {
-        this.listener = oklch;
-        this.editText = anonymousClass4;
+    public SearchTextWatcher(EditText editText, ActionBarMenuItem.ActionBarMenuItemSearchListener actionBarMenuItemSearchListener) {
+        this.listener = actionBarMenuItemSearchListener;
+        this.editText = editText;
     }
 
     @Override
@@ -50,12 +50,13 @@ public final class SearchTextWatcher implements TextWatcher {
         if (this.searchIsExpanded == z) {
             return;
         }
-        OKLCH oklch = this.listener;
-        if (oklch.canToggleSearch()) {
+        ActionBarMenuItem.ActionBarMenuItemSearchListener actionBarMenuItemSearchListener = this.listener;
+        actionBarMenuItemSearchListener.onPreToggleSearch();
+        if (actionBarMenuItemSearchListener.canToggleSearch()) {
             if (z) {
-                oklch.onSearchExpand();
+                actionBarMenuItemSearchListener.onSearchExpand();
             } else {
-                oklch.onSearchCollapse();
+                actionBarMenuItemSearchListener.onSearchCollapse();
             }
             this.searchIsExpanded = z;
         }

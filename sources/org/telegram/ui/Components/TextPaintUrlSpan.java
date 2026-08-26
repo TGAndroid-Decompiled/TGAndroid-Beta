@@ -4,37 +4,49 @@ import android.text.TextPaint;
 import android.text.style.MetricAffectingSpan;
 
 public class TextPaintUrlSpan extends MetricAffectingSpan {
-    public final String currentUrl;
-    public final TextPaint textPaint;
+    private int color;
+    private String currentUrl;
+    private TextPaint textPaint;
+    private int textSize;
 
     public TextPaintUrlSpan(TextPaint textPaint, String str) {
         this.textPaint = textPaint;
         this.currentUrl = str;
     }
 
+    public TextPaint getTextPaint() {
+        return this.textPaint;
+    }
+
+    public String getUrl() {
+        return this.currentUrl;
+    }
+
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public void updateDrawState(TextPaint textPaint) {
         TextPaint textPaint2 = this.textPaint;
         if (textPaint2 != null) {
             textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
+            textPaint.setTypeface(this.textPaint.getTypeface());
+            textPaint.setFlags(this.textPaint.getFlags());
+            textPaint.setTextSize(this.textPaint.getTextSize());
+            TextPaint textPaint3 = this.textPaint;
+            textPaint.baselineShift = textPaint3.baselineShift;
+            textPaint.bgColor = textPaint3.bgColor;
         }
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
+    public void updateMeasureState(TextPaint textPaint) {
         TextPaint textPaint2 = this.textPaint;
         if (textPaint2 != null) {
             textPaint.setColor(textPaint2.getColor());
-            textPaint.setTypeface(textPaint2.getTypeface());
-            textPaint.setFlags(textPaint2.getFlags());
-            textPaint.setTextSize(textPaint2.getTextSize());
-            textPaint.baselineShift = textPaint2.baselineShift;
-            textPaint.bgColor = textPaint2.bgColor;
+            textPaint.setTypeface(this.textPaint.getTypeface());
+            textPaint.setFlags(this.textPaint.getFlags());
+            textPaint.setTextSize(this.textPaint.getTextSize());
+            TextPaint textPaint3 = this.textPaint;
+            textPaint.baselineShift = textPaint3.baselineShift;
+            textPaint.bgColor = textPaint3.bgColor;
         }
     }
 }

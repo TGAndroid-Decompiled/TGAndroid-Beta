@@ -4,49 +4,73 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticOutline0;
 
-public final class PickerBottomLayoutViewer extends FrameLayout {
-    public final TextView cancelButton;
-    public final TextView doneButton;
-    public final TextView doneButtonBadgeTextView;
-    public final boolean isDarkTheme;
+public class PickerBottomLayoutViewer extends FrameLayout {
+    public TextView cancelButton;
+    public TextView doneButton;
+    public TextView doneButtonBadgeTextView;
+    private boolean isDarkTheme;
 
     public PickerBottomLayoutViewer(Context context) {
+        this(context, true);
+    }
+
+    public void updateSelectedCount(int i, boolean z) {
+        if (i == 0) {
+            this.doneButtonBadgeTextView.setVisibility(8);
+            if (!z) {
+                this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
+                return;
+            } else {
+                this.doneButton.setTextColor(-6710887);
+                this.doneButton.setEnabled(false);
+                return;
+            }
+        }
+        this.doneButtonBadgeTextView.setVisibility(0);
+        this.doneButtonBadgeTextView.setText(String.format("%d", Integer.valueOf(i)));
+        this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
+        if (z) {
+            this.doneButton.setEnabled(true);
+        }
+    }
+
+    public PickerBottomLayoutViewer(Context context, boolean z) {
         super(context);
-        this.isDarkTheme = true;
-        setBackgroundColor(-15066598);
+        this.isDarkTheme = z;
+        setBackgroundColor(z ? -15066598 : -1);
         TextView textView = new TextView(context);
         this.cancelButton = textView;
         textView.setTextSize(1, 14.0f);
-        textView.setTextColor(-1);
-        textView.setGravity(17);
-        textView.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
-        textView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        textView.setText(LocaleController.getString(R.string.Cancel).toUpperCase());
-        textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, LayoutHelper.createFrame(-2, -1, 51));
+        this.cancelButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
+        this.cancelButton.setGravity(17);
+        this.cancelButton.setBackground(Theme.createSelectorDrawable(this.isDarkTheme ? -12763843 : 788529152, 0, -1));
+        this.cancelButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        ArticleViewer$$ExternalSyntheticOutline0.m(R.string.Cancel, this.cancelButton);
+        this.cancelButton.setTypeface(AndroidUtilities.bold());
+        addView(this.cancelButton, LayoutHelper.createFrame(-2, -1, 51));
         TextView textView2 = new TextView(context);
         this.doneButton = textView2;
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(-1);
-        textView2.setGravity(17);
-        textView2.setBackgroundDrawable(Theme.createSelectorDrawable(-12763843, 0, -1));
-        textView2.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
-        textView2.setText(LocaleController.getString(R.string.Send).toUpperCase());
-        textView2.setTypeface(AndroidUtilities.bold());
-        addView(textView2, LayoutHelper.createFrame(-2, -1, 53));
+        this.doneButton.setTextColor(this.isDarkTheme ? -1 : -15095832);
+        this.doneButton.setGravity(17);
+        this.doneButton.setBackgroundDrawable(Theme.createSelectorDrawable(this.isDarkTheme ? -12763843 : 788529152, 0, -1));
+        this.doneButton.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
+        ArticleViewer$$ExternalSyntheticOutline0.m(R.string.Send, this.doneButton);
+        this.doneButton.setTypeface(AndroidUtilities.bold());
+        addView(this.doneButton, LayoutHelper.createFrame(-2, -1, 53));
         TextView textView3 = new TextView(context);
         this.doneButtonBadgeTextView = textView3;
         textView3.setTypeface(AndroidUtilities.bold());
-        textView3.setTextSize(1, 13.0f);
-        textView3.setTextColor(-1);
-        textView3.setGravity(17);
-        textView3.setBackgroundResource(R.drawable.photobadge);
-        textView3.setMinWidth(AndroidUtilities.dp(23.0f));
-        textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
-        addView(textView3, LayoutHelper.createFrame(-2, 23.0f, 53, 0.0f, 0.0f, 7.0f, 0.0f));
+        this.doneButtonBadgeTextView.setTextSize(1, 13.0f);
+        this.doneButtonBadgeTextView.setTextColor(-1);
+        this.doneButtonBadgeTextView.setGravity(17);
+        this.doneButtonBadgeTextView.setBackgroundResource(this.isDarkTheme ? R.drawable.photobadge : R.drawable.bluecounter);
+        this.doneButtonBadgeTextView.setMinWidth(AndroidUtilities.dp(23.0f));
+        this.doneButtonBadgeTextView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
+        addView(this.doneButtonBadgeTextView, LayoutHelper.createFrame(-2, 23.0f, 53, 0.0f, 0.0f, 7.0f, 0.0f));
     }
 }

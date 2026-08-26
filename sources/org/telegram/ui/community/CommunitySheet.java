@@ -1,6 +1,5 @@
 package org.telegram.ui.community;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -16,15 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzlu;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
 import me.vkryl.android.animator.BoolAnimator;
@@ -43,6 +39,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.FBool;
 import org.telegram.messenger.utils.GradientProtectionDrawable;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -51,7 +48,6 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.FiltersView;
-import org.telegram.ui.CacheControlActivity$$ExternalSyntheticLambda23;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.TextCheckCell2;
 import org.telegram.ui.ChatActivity;
@@ -63,36 +59,35 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.FragmentSearchField;
+import org.telegram.ui.Components.IconBackgroundColors;
 import org.telegram.ui.Components.JoinGroupAlert;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SearchViewPager;
-import org.telegram.ui.Components.Switch;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Components.chat.layouts.ChatActivityFadeView;
 import org.telegram.ui.FilteredSearchView;
-import org.telegram.ui.LinkManager$3$$ExternalSyntheticLambda0;
-import org.telegram.ui.PollItemMenu;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda85;
-import org.telegram.ui.SettingsActivity;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stories.MuteButton;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
 import org.telegram.ui.TopicsFragment;
-import org.telegram.ui.UserInfoActivity;
-import org.telegram.ui.UsersSelectActivity;
-import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda1;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda2;
 import org.telegram.ui.community.cells.CommunityPendingRequestCell;
 import org.telegram.ui.community.cells.CommunityRequestsCell;
 import org.telegram.ui.community.sheet.CommunityAddOptionsSheet;
 import org.telegram.ui.community.sheet.CommunityInviteOnlySheet;
-import org.telegram.ui.iv.RichDetailsCell;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda51;
 import org.telegram.ui.iv.RichTableCell$$ExternalSyntheticLambda3;
+import org.telegram.ui.web.HistoryFragment;
 
 public final class CommunitySheet extends BottomSheet implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target, DialogCell.DialogCellDelegate {
     public static final int $r8$clinit = 0;
@@ -101,15 +96,15 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
     public final BoolAnimator animatorSearchMessagesVisible;
     public final Paint backgroundPaint;
     public final ChatsToAddListPage chatsPage;
-    public final RichDetailsCell.AnonymousClass2 chatsPageFadeView;
+    public final MuteButton.AnonymousClass1 chatsPageFadeView;
     public final FragmentSearchField chatsSearchView;
-    public final CacheControlActivity$$ExternalSyntheticLambda23 chatsToAddCallback;
+    public final CommunityUtils$$ExternalSyntheticLambda2 chatsToAddCallback;
     public ArrayList chatsToAddToCommunity;
     public ButtonWithCounterView closeChatToCommunityButton;
     public boolean collapsedInDialogs;
     public final long communityId;
     public final CommunityPage communityPage;
-    public final RichDetailsCell.AnonymousClass2 communityPageFadeView;
+    public final MuteButton.AnonymousClass1 communityPageFadeView;
     public TLRPC.Chat currentCommunity;
     public final View fakeAnchorView;
     public final FilteredSearchView filteredSearchView;
@@ -125,7 +120,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
     public final PendingRequestsPage requestsPage;
     public Insets systemAndImeInsets;
     public Insets systemInsets;
-    public final PollItemMenu.AnonymousClass3 viewPager;
+    public final AnonymousClass9 viewPager;
 
     public final class AnonymousClass4 implements SearchViewPager.ChatPreviewDelegate {
         @Override
@@ -137,24 +132,24 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         }
 
         @Override
-        public final void startChatPreview(DialogCell dialogCell) {
+        public final void startChatPreview(RecyclerListView recyclerListView, DialogCell dialogCell) {
         }
     }
 
     public final class AnonymousClass8 implements Bulletin.Delegate {
         @Override
         public final boolean allowLayoutChanges() {
-            return true;
+            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
         }
 
         @Override
         public final boolean bottomOffsetAnimated() {
-            return true;
+            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
         }
 
         @Override
         public final boolean clipWithGradient(int i) {
-            return false;
+            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
         }
 
         @Override
@@ -163,20 +158,180 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         }
 
         @Override
-        public final int getTopOffset() {
-            return 0;
+        public final int getLeftPadding() {
+            return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+        }
+
+        @Override
+        public final int getRightPadding() {
+            return Bulletin.Delegate.CC.$default$getRightPadding(this);
+        }
+
+        @Override
+        public final int getTopOffset(int i) {
+            return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
         }
 
         @Override
         public final void onBottomOffsetChange(float f) {
+            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
         }
 
         @Override
         public final void onHide(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
         }
 
         @Override
         public final void onShow(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+        }
+    }
+
+    public final class AnonymousClass9 extends ViewPagerFixed {
+        public final int $r8$classId;
+        public final BottomSheet this$0;
+
+        public AnonymousClass9(BottomSheet bottomSheet, Context context, int i) {
+            super(context);
+            this.$r8$classId = i;
+            this.this$0 = bottomSheet;
+        }
+
+        @Override
+        public boolean canScroll(MotionEvent motionEvent) {
+            int i;
+            RecyclerListView recyclerListView;
+            View viewFindChildViewUnder;
+            int childAdapterPosition;
+            switch (this.$r8$classId) {
+                case 2:
+                    StoryPrivacyBottomSheet storyPrivacyBottomSheet = (StoryPrivacyBottomSheet) this.this$0;
+                    View currentView = storyPrivacyBottomSheet.viewPager.getCurrentView();
+                    if (!(currentView instanceof StoryPrivacyBottomSheet.Page)) {
+                        return true;
+                    }
+                    if (getCurrentPosition() > 0) {
+                        storyPrivacyBottomSheet.closeKeyboard();
+                        return true;
+                    }
+                    StoryPrivacyBottomSheet.Page page = (StoryPrivacyBottomSheet.Page) currentView;
+                    if (page.pageType != 0 || motionEvent == null || (viewFindChildViewUnder = (recyclerListView = page.listView).findChildViewUnder(motionEvent.getX(), motionEvent.getY() - page.contentView.getPaddingTop())) == null || (childAdapterPosition = recyclerListView.getChildAdapterPosition(viewFindChildViewUnder)) < 0) {
+                        i = -1;
+                    } else {
+                        ArrayList arrayList = page.items;
+                        if (childAdapterPosition >= arrayList.size()) {
+                            i = -1;
+                        } else {
+                            StoryPrivacyBottomSheet.ItemInner itemInner = (StoryPrivacyBottomSheet.ItemInner) arrayList.get(childAdapterPosition);
+                            if (itemInner.viewType != 3 || itemInner.sendAs) {
+                                i = -1;
+                            } else {
+                                boolean z = LocaleController.isRTL;
+                                float x = motionEvent.getX();
+                                if (!z ? x > AndroidUtilities.dp(100.0f) : x < page.getWidth() - AndroidUtilities.dp(100.0f)) {
+                                    i = -1;
+                                } else {
+                                    i = itemInner.type;
+                                }
+                            }
+                        }
+                    }
+                    if (i != -1) {
+                        storyPrivacyBottomSheet.activePage = i;
+                        if (i == 3) {
+                            if (!storyPrivacyBottomSheet.selectedContacts.isEmpty() && !storyPrivacyBottomSheet.selectedContactsByGroup.isEmpty()) {
+                                storyPrivacyBottomSheet.selectedType = i;
+                            }
+                        } else if (i != 4) {
+                            storyPrivacyBottomSheet.selectedType = i;
+                        } else if (!storyPrivacyBottomSheet.excludedEveryone.isEmpty() && !storyPrivacyBottomSheet.excludedEveryoneByGroup.isEmpty()) {
+                            storyPrivacyBottomSheet.selectedType = i;
+                        }
+                        page.updateCheckboxes$1(true);
+                        page.updateButton(true);
+                    }
+                    if (i != -1) {
+                        storyPrivacyBottomSheet.closeKeyboard();
+                    }
+                    return i != -1;
+                default:
+                    return super.canScroll(motionEvent);
+            }
+        }
+
+        @Override
+        public boolean canScrollBackward(MotionEvent motionEvent) {
+            switch (this.$r8$classId) {
+                case 0:
+                    return getCurrentPosition() != 2;
+                default:
+                    return super.canScrollBackward(motionEvent);
+            }
+        }
+
+        @Override
+        public boolean canScrollForward(MotionEvent motionEvent) {
+            switch (this.$r8$classId) {
+                case 0:
+                    return false;
+                default:
+                    return super.canScrollForward(motionEvent);
+            }
+        }
+
+        @Override
+        public void onItemSelected(View view, View view2, int i, int i2) {
+            switch (this.$r8$classId) {
+                case 2:
+                    StoryPrivacyBottomSheet storyPrivacyBottomSheet = (StoryPrivacyBottomSheet) this.this$0;
+                    if (((BottomSheet) storyPrivacyBottomSheet).keyboardVisible) {
+                        storyPrivacyBottomSheet.closeKeyboard();
+                    }
+                    break;
+                default:
+                    super.onItemSelected(view, view2, i, i2);
+                    break;
+            }
+        }
+
+        @Override
+        public void onScrollEnd() {
+            switch (this.$r8$classId) {
+                case 0:
+                    super.onScrollEnd();
+                    if (getCurrentPosition() == 1) {
+                        ((CommunitySheet) this.this$0).communityPage.listView.adapter.update(false);
+                    }
+                    break;
+                default:
+                    super.onScrollEnd();
+                    break;
+            }
+        }
+
+        @Override
+        public final void onTabAnimationUpdate(boolean z) {
+            switch (this.$r8$classId) {
+                case 0:
+                    ((BottomSheet) ((CommunitySheet) this.this$0)).containerView.invalidate();
+                    break;
+                case 1:
+                    EmojiBottomSheet emojiBottomSheet = (EmojiBottomSheet) this.this$0;
+                    AnonymousClass9 anonymousClass9 = emojiBottomSheet.viewPager;
+                    EmojiBottomSheet.TabsView tabsView = emojiBottomSheet.tabsView;
+                    if (tabsView != null) {
+                        tabsView.type = anonymousClass9.getPositionAnimated();
+                        tabsView.invalidate();
+                    }
+                    ((BottomSheet) emojiBottomSheet).containerView.invalidate();
+                    invalidate();
+                    EmojiBottomSheet.savedPosition = anonymousClass9.getCurrentPosition();
+                    break;
+                default:
+                    ((BottomSheet) ((StoryPrivacyBottomSheet) this.this$0)).containerView.invalidate();
+                    break;
+            }
         }
     }
 
@@ -187,13 +342,12 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, ((BottomSheet) CommunitySheet.this).currentAccount, 0, new CommunitySheet$$ExternalSyntheticLambda0(CommunitySheet.this, 3), new CommunitySheet$$ExternalSyntheticLambda1(CommunitySheet.this, 2), null, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.listView = universalRecyclerView;
             universalRecyclerView.setSections();
-            UniversalRecyclerView universalRecyclerView2 = this.listView;
-            universalRecyclerView2.adapter.applyBackground = false;
-            universalRecyclerView2.setClipToPadding(false);
+            this.listView.adapter.setApplyBackground(false);
+            this.listView.setClipToPadding(false);
             this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
-            this.contentView.addView(CommunitySheet.this.foundChatsView, LayoutHelper.createFrame(-1.0f, -1));
-            this.contentView.addView(this.listView, 0, LayoutHelper.createFrame(-1.0f, -1));
-            this.contentView.addView(CommunitySheet.this.chatsPageFadeView, LayoutHelper.createFrame(-1.0f, -1));
+            this.contentView.addView(CommunitySheet.this.foundChatsView, LayoutHelper.createFrameMatchParent());
+            this.contentView.addView(this.listView, 0, LayoutHelper.createFrame(-1, -1.0f));
+            this.contentView.addView(CommunitySheet.this.chatsPageFadeView, LayoutHelper.createFrameMatchParent());
             ActionBar actionBar = new ActionBar(context, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.actionBar = actionBar;
             actionBar.setOccupyStatusBar(false);
@@ -205,22 +359,22 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             this.actionBar.setItemsColor(CommunitySheet.this.getThemedColor(Theme.key_actionBarActionModeDefaultIcon), false);
             this.actionBar.setTitle(LocaleController.getString(R.string.CommunityAddAChatToCommunity));
             this.actionBar.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
-            this.actionBar.setActionBarMenuOnItemClick(new UserInfoActivity.AnonymousClass4(this, 10));
+            this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 21));
             this.contentView.addView(this.actionBar, LayoutHelper.createFrame(-1, 56, 48));
             this.contentView.addView(CommunitySheet.this.chatsSearchView, LayoutHelper.createFrame(-1, 40.0f, 48, 11.0f, 0.0f, 11.0f, 0.0f));
             ActionBarMenu actionBarMenuCreateMenu = this.actionBar.createMenu();
             actionBarMenuCreateMenu.setGlassMode(true);
             actionBarMenuCreateMenu.setTranslationX(-AndroidUtilities.dp(7.0f));
             actionBarMenuCreateMenu.addItem(3, R.drawable.outline_header_search);
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), ((BottomSheet) CommunitySheet.this).resourcesProvider, true);
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), true, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             CommunitySheet.this.closeChatToCommunityButton = buttonWithCounterView;
-            buttonWithCounterView.setRoundRadius(24);
+            buttonWithCounterView.setRound();
             CommunitySheet.this.closeChatToCommunityButton.setText(LocaleController.getString(R.string.OK));
-            CommunitySheet.this.closeChatToCommunityButton.setOnClickListener(new BotAdView$$ExternalSyntheticLambda1(this, 7));
+            CommunitySheet.this.closeChatToCommunityButton.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 25));
             if (z) {
                 CommunitySheet.this.closeChatToCommunityButton.setVisibility(8);
             }
-            this.contentView.addView(CommunitySheet.this.closeChatToCommunityButton, LayoutHelper.createFrameMarginPx(48.0f, 80, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+            this.contentView.addView(CommunitySheet.this.closeChatToCommunityButton, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
             afterInit();
         }
 
@@ -245,14 +399,13 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, ((BottomSheet) CommunitySheet.this).currentAccount, 0, new CommunitySheet$$ExternalSyntheticLambda0(CommunitySheet.this, 4), new CommunitySheet$$ExternalSyntheticLambda1(CommunitySheet.this, 3), new CommunitySheet$$ExternalSyntheticLambda1(CommunitySheet.this, 4), ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.listView = universalRecyclerView;
             universalRecyclerView.setSections();
-            UniversalRecyclerView universalRecyclerView2 = this.listView;
-            universalRecyclerView2.adapter.applyBackground = false;
-            universalRecyclerView2.setClipToPadding(false);
+            this.listView.adapter.setApplyBackground(false);
+            this.listView.setClipToPadding(false);
             this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
             AndroidUtilities.removeFromParent(this.fadeView);
-            this.contentView.addView(CommunitySheet.this.filteredSearchView, LayoutHelper.createFrame(-1.0f, -1));
-            this.contentView.addView(this.listView, LayoutHelper.createFrame(-1.0f, -1));
-            this.contentView.addView(CommunitySheet.this.communityPageFadeView, LayoutHelper.createFrame(-1.0f, -1));
+            this.contentView.addView(CommunitySheet.this.filteredSearchView, LayoutHelper.createFrameMatchParent());
+            this.contentView.addView(this.listView, LayoutHelper.createFrameMatchParent());
+            this.contentView.addView(CommunitySheet.this.communityPageFadeView, LayoutHelper.createFrameMatchParent());
             ActionBar actionBar = new ActionBar(context, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.actionBar = actionBar;
             actionBar.setOccupyStatusBar(false);
@@ -262,14 +415,13 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             this.actionBar.setItemsColor(CommunitySheet.this.getThemedColor(Theme.key_actionBarActionModeDefaultIcon), false);
             this.actionBar.setTitle(DialogObject.getName(CommunitySheet.this.currentCommunity));
             this.actionBar.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
-            this.actionBar.setActionBarMenuOnItemClick(new UserInfoActivity.AnonymousClass4(this, 11));
+            this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 22));
             AvatarDrawable avatarDrawable = new AvatarDrawable(CommunitySheet.this.currentCommunity);
             this.avatarDrawable = avatarDrawable;
             BackupImageView backupImageView = new BackupImageView(getContext());
             this.avatarImage = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(9.0f));
-            backupImageView.imageReceiver.setForUserOrChat(CommunitySheet.this.currentCommunity, avatarDrawable);
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(CommunitySheet.this.currentCommunity, avatarDrawable);
             this.actionBar.addView(backupImageView, LayoutHelper.createFrame(27.33f, 27.33f, 83, 14.33f, 0.0f, 0.0f, 14.33f));
             this.contentView.addView(this.actionBar, LayoutHelper.createFrame(-1, 56, 48));
             this.contentView.addView(CommunitySheet.this.messagesSearchView, LayoutHelper.createFrame(-1, 40.0f, 48, 11.0f, 0.0f, 11.0f, 0.0f));
@@ -280,8 +432,8 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             if (ChatObject.hasAdminRights(CommunitySheet.this.currentCommunity)) {
                 actionBarMenuCreateMenu.addItem(2, R.drawable.msg_download_settings);
             }
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), ((BottomSheet) CommunitySheet.this).resourcesProvider, true);
-            buttonWithCounterView.setRoundRadius(24);
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), true, ((BottomSheet) CommunitySheet.this).resourcesProvider);
+            buttonWithCounterView.setRound();
             if (ChatObject.canAddChatToCommunity(CommunitySheet.this.currentCommunity)) {
                 ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.filled_add_album);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("+ ");
@@ -292,8 +444,8 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                 buttonWithCounterView.setText(LocaleController.getString(R.string.OK));
             }
             CommunitySheet.this.addChatToCommunityButton = buttonWithCounterView;
-            buttonWithCounterView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda1(this, 8));
-            this.contentView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(48.0f, 80, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
+            buttonWithCounterView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 26));
+            this.contentView.addView(buttonWithCounterView, LayoutHelper.createFrameMarginPx(-1, 48.0f, 80, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + AndroidUtilities.navigationBarHeight));
             afterInit();
         }
 
@@ -330,11 +482,11 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             chatActivityFadeView.setFadeHeightBottom(AndroidUtilities.dp(24.0f));
             chatActivityFadeView.setFadeZoneTop(AndroidUtilities.dp(64.0f) + AndroidUtilities.statusBarHeight);
             chatActivityFadeView.fadeDrawableTop.setFadeHeight(-AndroidUtilities.dp(20.0f), false);
-            frameLayout.addView(chatActivityFadeView, LayoutHelper.createFrame(-1.0f, -1));
+            frameLayout.addView(chatActivityFadeView, LayoutHelper.createFrameMatchParent());
         }
 
         public final void afterInit() {
-            this.listView.addOnScrollListener(new SettingsActivity.AnonymousClass5(this, 24));
+            this.listView.addOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 20));
             DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
                 @Override
                 public final boolean canReuseUpdatedViewHolder(RecyclerView.ViewHolder viewHolder) {
@@ -342,14 +494,14 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                 }
 
                 @Override
-                public final void onAddAnimationUpdate() {
+                public final void onAddAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     Page page = Page.this;
                     ((BottomSheet) CommunitySheet.this).containerView.invalidate();
                     page.contentView.invalidate();
                 }
 
                 @Override
-                public final void onChangeAnimationUpdate() {
+                public final void onChangeAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     Page page = Page.this;
                     ((BottomSheet) CommunitySheet.this).containerView.invalidate();
                     page.contentView.invalidate();
@@ -364,21 +516,17 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                 }
 
                 @Override
-                public final void onRemoveAnimationUpdate() {
+                public final void onRemoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     Page page = Page.this;
                     ((BottomSheet) CommunitySheet.this).containerView.invalidate();
                     page.contentView.invalidate();
                 }
             };
             defaultItemAnimator.setDurations(350L);
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.delayAnimations = false;
-            defaultItemAnimator.mSupportsChangeAnimations = false;
-            this.listView.setItemAnimator(defaultItemAnimator);
+            defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            defaultItemAnimator.setDelayAnimations(false);
+            defaultItemAnimator.setSupportsChangeAnimations(false);
+            this.listView.lambda$onCellEnter$52(defaultItemAnimator);
         }
 
         public float top() {
@@ -412,12 +560,11 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, ((BottomSheet) CommunitySheet.this).currentAccount, 0, new CommunitySheet$$ExternalSyntheticLambda0(CommunitySheet.this, i), new CommunitySheet$$ExternalSyntheticLambda1(CommunitySheet.this, i), null, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.listView = universalRecyclerView;
             universalRecyclerView.setSections();
-            UniversalRecyclerView universalRecyclerView2 = this.listView;
-            universalRecyclerView2.adapter.applyBackground = false;
-            universalRecyclerView2.setClipToPadding(false);
+            this.listView.adapter.setApplyBackground(false);
+            this.listView.setClipToPadding(false);
             this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
-            this.listView.addOnScrollListener(new SettingsActivity.AnonymousClass5(this, 25));
-            this.contentView.addView(this.listView, 0, LayoutHelper.createFrame(-1.0f, -1));
+            this.listView.addOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 21));
+            this.contentView.addView(this.listView, 0, LayoutHelper.createFrame(-1, -1.0f));
             ActionBar actionBar = new ActionBar(context, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             this.actionBar = actionBar;
             actionBar.setOccupyStatusBar(false);
@@ -429,15 +576,15 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             this.actionBar.setItemsColor(CommunitySheet.this.getThemedColor(Theme.key_actionBarActionModeDefaultIcon), false);
             this.actionBar.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
             this.actionBar.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
-            this.actionBar.setActionBarMenuOnItemClick(new UserInfoActivity.AnonymousClass4(this, 12));
+            this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 23));
             this.contentView.addView(this.actionBar, LayoutHelper.createFrame(-1, 56, 48));
-            LinearLayout linearLayoutM = zzkf.m(context, 0);
+            LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context);
             linearLayoutM.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(12.0f));
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, ((BottomSheet) CommunitySheet.this).resourcesProvider, true);
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             buttonWithCounterView.setNeutral();
             buttonWithCounterView.setColor(ColorUtils.blendARGB(0.125f, CommunitySheet.this.getThemedColor(Theme.key_windowBackgroundWhite), CommunitySheet.this.getThemedColor(i2)));
             buttonWithCounterView.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
-            buttonWithCounterView.setRoundRadius(24);
+            buttonWithCounterView.setRound();
             final int i3 = 0;
             buttonWithCounterView.setOnClickListener(new View.OnClickListener(this) {
                 public final CommunitySheet.PendingRequestsPage f$0;
@@ -459,9 +606,9 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                 }
             });
             linearLayoutM.addView(buttonWithCounterView, LayoutHelper.createLinear(0, 48, 1.0f, 0, 4, 0, 4, 0));
-            ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, ((BottomSheet) CommunitySheet.this).resourcesProvider, true);
+            ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, true, ((BottomSheet) CommunitySheet.this).resourcesProvider);
             buttonWithCounterView2.setText(LocaleController.getString(R.string.CommunityPendingRequestAddAll));
-            buttonWithCounterView2.setRoundRadius(24);
+            buttonWithCounterView2.setRound();
             final int i4 = 1;
             buttonWithCounterView2.setOnClickListener(new View.OnClickListener(this) {
                 public final CommunitySheet.PendingRequestsPage f$0;
@@ -483,20 +630,19 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                 }
             });
             linearLayoutM.addView(buttonWithCounterView2, LayoutHelper.createLinear(0, 48, 1.0f, 0, 4, 0, 4, 0));
-            this.contentView.addView(linearLayoutM, LayoutHelper.createFrameMarginPx(-2.0f, 80, 0, 0, 0, AndroidUtilities.navigationBarHeight));
+            this.contentView.addView(linearLayoutM, LayoutHelper.createFrameMarginPx(-1, -2.0f, 80, 0, 0, 0, AndroidUtilities.navigationBarHeight));
             afterInit();
         }
     }
 
-    public CommunitySheet(final BaseFragment baseFragment, long j, ArrayList arrayList, CacheControlActivity$$ExternalSyntheticLambda23 cacheControlActivity$$ExternalSyntheticLambda23) {
-        super(baseFragment.getContext(), baseFragment.getResourceProvider(), true, true);
-        int i = 5;
+    public CommunitySheet(final BaseFragment baseFragment, long j, ArrayList arrayList, CommunityUtils$$ExternalSyntheticLambda2 communityUtils$$ExternalSyntheticLambda2) {
+        super(baseFragment.getContext(), true, true, baseFragment.getResourceProvider());
+        int i = 6;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorSearchMessagesVisible = new BoolAnimator(1, this, cubicBezierInterpolator, 350L, false);
         this.animatorSearchChatsVisible = new BoolAnimator(2, this, cubicBezierInterpolator, 350L, false);
         int i2 = 2;
         this.gradientProtectionDrawableTop = new GradientProtectionDrawable(2);
-        int i3 = 8;
         this.gradientProtectionDrawableBottom = new GradientProtectionDrawable(8);
         Paint paint = new Paint(1);
         this.backgroundPaint = paint;
@@ -505,83 +651,79 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         this.systemInsets = insets;
         AndroidUtilities.enableEdgeToEdge(getWindow());
         this.parentFragment = baseFragment;
-        int i4 = 0;
+        int i3 = 0;
         this.onlyChatsMode = arrayList != null;
         this.chatsToAddToCommunity = arrayList;
-        this.chatsToAddCallback = cacheControlActivity$$ExternalSyntheticLambda23;
+        this.chatsToAddCallback = communityUtils$$ExternalSyntheticLambda2;
         Context context = baseFragment.getContext();
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatInfoDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.updateInterfaces);
-        int i5 = Theme.key_windowBackgroundGray;
-        paint.setColor(Theme.getColor(i5, this.resourcesProvider));
-        fixNavigationBar(Theme.getColor(i5, this.resourcesProvider));
+        int i4 = Theme.key_windowBackgroundGray;
+        paint.setColor(Theme.getColor(i4, this.resourcesProvider));
+        fixNavigationBar(Theme.getColor(i4, this.resourcesProvider));
         this.containerView = new ContainerView(this, context);
-        PollItemMenu.AnonymousClass3 anonymousClass3 = new PollItemMenu.AnonymousClass3(this, context, i3);
-        this.viewPager = anonymousClass3;
-        int i6 = this.backgroundPaddingLeft;
-        anonymousClass3.setPadding(i6, 0, i6, 0);
-        this.containerView.addView(anonymousClass3, LayoutHelper.createFrame(-1, -1, 119));
-        this.communityPageFadeView = new RichDetailsCell.AnonymousClass2(this, context, i);
-        this.chatsPageFadeView = new RichDetailsCell.AnonymousClass2(this, context, i);
+        AnonymousClass9 anonymousClass9 = new AnonymousClass9(this, context, i3);
+        this.viewPager = anonymousClass9;
+        int i5 = this.backgroundPaddingLeft;
+        anonymousClass9.setPadding(i5, 0, i5, 0);
+        this.containerView.addView(anonymousClass9, LayoutHelper.createFrame(-1, -1, 119));
+        this.communityPageFadeView = new MuteButton.AnonymousClass1(this, context, i);
+        this.chatsPageFadeView = new MuteButton.AnonymousClass1(this, context, i);
         FragmentSearchField fragmentSearchField = new FragmentSearchField(context, this.resourcesProvider);
         this.messagesSearchView = fragmentSearchField;
         fragmentSearchField.setCloseButtonVisible(true);
-        fragmentSearchField.isWhiteBackground = true;
-        fragmentSearchField.updateColors$1();
-        int i7 = R.string.Search;
-        String string = LocaleController.getString(i7);
-        UsersSelectActivity.AnonymousClass4 anonymousClass4 = fragmentSearchField.editText;
-        anonymousClass4.setHint(string);
-        anonymousClass4.addTextChangedListener(new TextWatcher() {
+        fragmentSearchField.setWhiteBackground();
+        EditTextBoldCursor editTextBoldCursor = fragmentSearchField.editText;
+        int i6 = R.string.Search;
+        editTextBoldCursor.setHint(LocaleController.getString(i6));
+        fragmentSearchField.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public final void afterTextChanged(Editable editable) {
-                String string2 = editable.toString();
+                String string = editable.toString();
                 CommunitySheet communitySheet = CommunitySheet.this;
                 boolean zIsEmpty = TextUtils.isEmpty(communitySheet.lastSearchString);
-                communitySheet.lastSearchString = string2;
-                communitySheet.filteredSearchView.search(0L, communitySheet.communityId, 0L, 0L, null, false, string2, zIsEmpty);
+                communitySheet.lastSearchString = string;
+                communitySheet.filteredSearchView.search(0L, communitySheet.communityId, 0L, 0L, null, false, string, zIsEmpty);
             }
 
             @Override
-            public final void beforeTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
+            public final void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
             }
 
             @Override
-            public final void onTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
+            public final void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
             }
         });
         fragmentSearchField.setVisibility(8);
         FragmentSearchField fragmentSearchField2 = new FragmentSearchField(context, this.resourcesProvider);
         this.chatsSearchView = fragmentSearchField2;
         fragmentSearchField2.setCloseButtonVisible(true);
-        fragmentSearchField2.isWhiteBackground = true;
-        fragmentSearchField2.updateColors$1();
-        String string2 = LocaleController.getString(i7);
-        UsersSelectActivity.AnonymousClass4 anonymousClass5 = fragmentSearchField2.editText;
-        anonymousClass5.setHint(string2);
-        anonymousClass5.addTextChangedListener(new TextWatcher() {
+        fragmentSearchField2.setWhiteBackground();
+        fragmentSearchField2.editText.setHint(LocaleController.getString(i6));
+        fragmentSearchField2.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public final void afterTextChanged(Editable editable) {
-                String string3 = editable.toString();
+                String string = editable.toString();
                 CommunitySheet communitySheet = CommunitySheet.this;
-                communitySheet.lastSearchChatsString = string3;
+                communitySheet.lastSearchChatsString = string;
                 communitySheet.foundChatsView.adapter.update(true);
             }
 
             @Override
-            public final void beforeTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
+            public final void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
             }
 
             @Override
-            public final void onTextChanged(CharSequence charSequence, int i8, int i9, int i10) {
+            public final void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
             }
         });
         fragmentSearchField2.setVisibility(8);
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new CommunitySheet$$ExternalSyntheticLambda0(this, i4), new CommunitySheet$$ExternalSyntheticLambda1(this, i4), null, this.resourcesProvider);
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(context, this.currentAccount, 0, new CommunitySheet$$ExternalSyntheticLambda0(this, i3), new CommunitySheet$$ExternalSyntheticLambda1(this, i3), null, this.resourcesProvider);
         this.foundChatsView = universalRecyclerView;
         universalRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public final void onScrolled(RecyclerView recyclerView, int i8, int i9) {
+            public final void onScrolled(RecyclerView recyclerView, int i7, int i8) {
+                super.onScrolled(recyclerView, i7, i8);
                 CommunitySheet communitySheet = CommunitySheet.this;
                 if (communitySheet.foundChatsView.scrollingByUser) {
                     AndroidUtilities.hideKeyboard(communitySheet.chatsSearchView.editText);
@@ -591,7 +733,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         universalRecyclerView.setClipToPadding(false);
         universalRecyclerView.setVisibility(8);
         universalRecyclerView.setSections();
-        universalRecyclerView.adapter.applyBackground = false;
+        universalRecyclerView.adapter.setApplyBackground(false);
         universalRecyclerView.setPadding(0, AndroidUtilities.dp(52.0f) + AndroidUtilities.statusBarHeight, 0, AndroidUtilities.navigationBarHeight);
         FilteredSearchView filteredSearchView = new FilteredSearchView(baseFragment);
         this.filteredSearchView = filteredSearchView;
@@ -605,9 +747,14 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             }
 
             @Override
+            public final int getFolderId() {
+                return 0;
+            }
+
+            @Override
             public final void goToMessage(MessageObject messageObject) {
                 CommunitySheet communitySheet = CommunitySheet.this;
-                communitySheet.parentFragment.presentFragment(SearchViewPager.createFragmentFromMessage(messageObject, ((BottomSheet) communitySheet).currentAccount));
+                communitySheet.parentFragment.presentFragment(SearchViewPager.createFragmentFromMessage(((BottomSheet) communitySheet).currentAccount, messageObject));
                 communitySheet.lambda$showGiftOfferSheet$15();
             }
 
@@ -621,19 +768,19 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             }
 
             @Override
-            public final void toggleItemSelection(MessageObject messageObject, View view, int i8) {
+            public final void toggleItemSelection(MessageObject messageObject, View view, int i7) {
             }
         });
         filteredSearchView.recyclerListView.setClipToPadding(false);
         this.fakeAnchorView = new View(getContext());
         Context context2 = getContext();
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        CommunityUtils.PendingRequests pendingRequests = new CommunityUtils.PendingRequests(context2, resourcesProvider, new BulletinFactory((FrameLayout) this.containerView, resourcesProvider), this.currentAccount, j);
+        CommunityUtils.PendingRequests pendingRequests = new CommunityUtils.PendingRequests(context2, resourcesProvider, BulletinFactory.of((FrameLayout) this.containerView, resourcesProvider), this.currentAccount, j);
         this.pendingRequestsList = pendingRequests;
         pendingRequests.delegate = new CommunityUtils.PendingRequests.Delegate() {
             @Override
             public final void close() {
-                CommunitySheet.this.viewPager.scrollToPosition$1(0);
+                CommunitySheet.this.viewPager.scrollToPosition(0);
             }
 
             @Override
@@ -657,27 +804,24 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         FiltersView.MediaFilterData mediaFilterData = new FiltersView.MediaFilterData(R.drawable.search_users_filled, 4, DialogObject.getShortName(chat));
         mediaFilterData.chat = this.currentCommunity;
         mediaFilterData.removable = false;
-        ArrayList arrayList2 = fragmentSearchField.currentSearchFilters;
-        arrayList2.add(mediaFilterData);
-        fragmentSearchField.selectedFilterIndex = arrayList2.size() - 1;
-        fragmentSearchField.onFiltersChanged();
-        setBackgroundColor(Theme.getColor(i5, this.resourcesProvider));
+        fragmentSearchField.addSearchFilter(mediaFilterData);
+        setBackgroundColor(Theme.getColor(i4, this.resourcesProvider));
         this.requestsPage = new PendingRequestsPage(context);
         this.communityPage = new CommunityPage(context);
         this.chatsPage = new ChatsToAddListPage(context);
-        anonymousClass3.setAdapter(new ViewPagerFixed.Adapter() {
+        anonymousClass9.setAdapter(new ViewPagerFixed.Adapter() {
             @Override
-            public final void bindView(View view, int i8, int i9) {
+            public final void bindView(View view, int i7, int i8) {
                 ((Page) view).getClass();
             }
 
             @Override
-            public final View createView(int i8) {
+            public final View createView(int i7) {
                 CommunitySheet communitySheet = CommunitySheet.this;
-                if (i8 == 2) {
+                if (i7 == 2) {
                     return communitySheet.chatsPage;
                 }
-                return i8 == 0 ? communitySheet.communityPage : communitySheet.requestsPage;
+                return i7 == 0 ? communitySheet.communityPage : communitySheet.requestsPage;
             }
 
             @Override
@@ -686,22 +830,18 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             }
 
             @Override
-            public final int getItemViewType(int i8) {
-                if (CommunitySheet.this.onlyChatsMode || i8 == 2) {
+            public final int getItemViewType(int i7) {
+                if (CommunitySheet.this.onlyChatsMode || i7 == 2) {
                     return 2;
                 }
-                return i8 == 0 ? 0 : 1;
+                return i7 == 0 ? 0 : 1;
             }
         });
-        fragmentSearchField.setCloseButtonOnClickListener(new CommunitySheet$$ExternalSyntheticLambda2(this, i4));
+        fragmentSearchField.setCloseButtonOnClickListener(new CommunitySheet$$ExternalSyntheticLambda2(this, i3));
         fragmentSearchField2.setCloseButtonOnClickListener(new CommunitySheet$$ExternalSyntheticLambda2(this, i2));
         pendingRequests.loadNext();
         MessagesController.getInstance(this.currentAccount).loadFullChat(j, 0, true);
-        FrameLayout frameLayout = (FrameLayout) this.containerView;
-        AnonymousClass8 anonymousClass8 = new AnonymousClass8();
-        if (frameLayout != null) {
-            frameLayout.setTag(R.id.bulletin_delegate_tag, anonymousClass8);
-        }
+        Bulletin.addDelegate((FrameLayout) this.containerView, new AnonymousClass8());
         ViewGroup viewGroup = this.containerView;
         CommunitySheet$$ExternalSyntheticLambda1 communitySheet$$ExternalSyntheticLambda1 = new CommunitySheet$$ExternalSyntheticLambda1(this, 1);
         WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
@@ -719,17 +859,16 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         if (i == 101) {
             communitySheet.collapsedInDialogs = !communitySheet.collapsedInDialogs;
             MessagesController.getInstance(communitySheet.currentAccount).toggleCommunityCollapsedInDialogs(communitySheet.communityId, communitySheet.collapsedInDialogs);
-            if (!(view instanceof TextCheckCell2)) {
-                communitySheet.communityPage.listView.adapter.update(false);
+            if (view instanceof TextCheckCell2) {
+                ((TextCheckCell2) view).getCheckBox().setChecked(communitySheet.collapsedInDialogs, true);
                 return;
             } else {
-                Switch checkBox = ((TextCheckCell2) view).getCheckBox();
-                checkBox.setChecked(checkBox.drawIconType, communitySheet.collapsedInDialogs, true);
+                communitySheet.communityPage.listView.adapter.update(false);
                 return;
             }
         }
         if (i == 100) {
-            communitySheet.viewPager.scrollToPosition$1(1);
+            communitySheet.viewPager.scrollToPosition(1);
             communitySheet.pendingRequestsList.markAsViewed();
             return;
         }
@@ -749,13 +888,11 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         int communityChatType = CommunityUtils.getCommunityChatType(communitySheet.currentAccount, j);
         if (communityChatType != 1 && communityChatType != 2) {
             if (communityChatType == 3) {
-                JoinGroupAlert joinGroupAlert = new JoinGroupAlert(communitySheet.getContext(), chat2, null, communitySheet.parentFragment, communitySheet.resourcesProvider);
-                joinGroupAlert.bulletinFactory = new BulletinFactory((FrameLayout) communitySheet.containerView, communitySheet.resourcesProvider);
-                joinGroupAlert.show();
+                new JoinGroupAlert(communitySheet.getContext(), chat2, null, communitySheet.parentFragment, communitySheet.resourcesProvider).setBulletinFactory(BulletinFactory.of((FrameLayout) communitySheet.containerView, communitySheet.resourcesProvider)).show();
                 return;
             } else {
                 if (communityChatType == 4) {
-                    FactCheckController$$ExternalSyntheticOutline0.m(zIsChannelAndNotMegaGroup ? R.string.CommunityHiddenChannelUnavailable : R.string.CommunityHiddenGroupUnavailable, new BulletinFactory((FrameLayout) communitySheet.containerView, communitySheet.resourcesProvider), R.raw.e_hand_2, 36);
+                    FactCheckController$$ExternalSyntheticOutline0.m(zIsChannelAndNotMegaGroup ? R.string.CommunityHiddenChannelUnavailable : R.string.CommunityHiddenGroupUnavailable, BulletinFactory.of((FrameLayout) communitySheet.containerView, communitySheet.resourcesProvider), R.raw.e_hand_2);
                     return;
                 }
                 return;
@@ -763,10 +900,9 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         }
         BaseFragment baseFragment = communitySheet.parentFragment;
         if (baseFragment instanceof ChatActivity) {
-            ChatActivity chatActivity = (ChatActivity) baseFragment;
-            TLRPC.Chat chat3 = chatActivity.currentChat;
-            TLRPC.User currentUser = chatActivity.getCurrentUser();
-            if ((chat3 != null && chat3.id == (-j)) || (currentUser != null && currentUser.id == j)) {
+            TLRPC.Chat currentChat = ((ChatActivity) baseFragment).getCurrentChat();
+            TLRPC.User currentUser = ((ChatActivity) baseFragment).getCurrentUser();
+            if ((currentChat != null && currentChat.id == (-j)) || (currentUser != null && currentUser.id == j)) {
                 communitySheet.lambda$showGiftOfferSheet$15();
                 return;
             }
@@ -780,9 +916,9 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         if (!ChatObject.isForum(chat2)) {
             baseFragment.presentFragment(new ChatActivity(bundle));
         } else if (ChatObject.areTabsEnabled(chat2)) {
-            ChatActivity chatActivity2 = new ChatActivity(bundle);
-            ForumUtilities.applyTopic(chatActivity2, MessagesStorage.TopicKey.of(j, MessagesController.getInstance(communitySheet.currentAccount).getForumLastTopicId(chat2.id)));
-            baseFragment.presentFragment(chatActivity2);
+            ChatActivity chatActivity = new ChatActivity(bundle);
+            ForumUtilities.applyTopic(chatActivity, MessagesStorage.TopicKey.of(j, MessagesController.getInstance(communitySheet.currentAccount).getForumLastTopicId(chat2.id)));
+            baseFragment.presentFragment(chatActivity);
         } else {
             baseFragment.presentFragment(new TopicsFragment(bundle));
         }
@@ -796,13 +932,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         arrayList.add(UItem.asSpace(99, Math.min(AndroidUtilities.dp(176.0f) + AndroidUtilities.statusBarHeight, (int) (AndroidUtilities.displaySize.y * 0.25f))));
         int i = 0;
         arrayList.add(UItem.asSpace(0, AndroidUtilities.dp(56.0f)));
-        String string = LocaleController.getString(R.string.CommunityShowAsOneChat);
-        UItem uItem = new UItem(39);
-        uItem.id = 101;
-        uItem.text = string;
-        uItem.intValue = 0;
-        uItem.setChecked(communitySheet.collapsedInDialogs);
-        arrayList.add(uItem);
+        arrayList.add(UItem.asSwitchNoIcon(101, LocaleController.getString(R.string.CommunityShowAsOneChat)).setChecked(communitySheet.collapsedInDialogs));
         arrayList.add(UItem.asShadow(2, LocaleController.getString(R.string.CommunityShowAsOneChatInfo)));
         CommunityUtils.PendingRequests pendingRequests = communitySheet.pendingRequestsList;
         if (pendingRequests.finished && pendingRequests.totalCount == 1 && (arrayList2 = pendingRequests.pendingRequests) != null && arrayList2.size() == 1) {
@@ -813,16 +943,17 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             int i2 = pendingRequests.totalCount;
             if (i2 > 0) {
                 int i3 = pendingRequests.unreadPendingRequests;
+                IconBackgroundColors iconBackgroundColors = IconBackgroundColors.BLUE_ALT;
                 int i4 = R.drawable.filled_requests_24;
-                String string2 = i2 == i3 ? LocaleController.getString(R.string.CommunityPendingRequests) : LocaleController.formatPluralString("CommunityPendingRequestsRow", i2, new Object[0]);
-                String string3 = i3 > 0 ? Integer.toString(i3) : null;
+                String string = i2 == i3 ? LocaleController.getString(R.string.CommunityPendingRequests) : LocaleController.formatPluralString("CommunityPendingRequestsRow", i2, new Object[0]);
+                String string2 = i3 > 0 ? Integer.toString(i3) : null;
                 int i5 = CommunityRequestsCell.Factory.$r8$clinit;
                 UItem uItemOfFactory = UItem.ofFactory(CommunityRequestsCell.Factory.class);
                 uItemOfFactory.id = 100;
                 uItemOfFactory.iconResId = i4;
-                uItemOfFactory.text = string2;
-                uItemOfFactory.textValue = string3;
-                uItemOfFactory.longValue = (((long) (-15497247)) << 32) | (((long) (-14899731)) & 4294967295L);
+                uItemOfFactory.text = string;
+                uItemOfFactory.textValue = string2;
+                uItemOfFactory.longValue = (((long) iconBackgroundColors.top) & 4294967295L) | (((long) iconBackgroundColors.bottom) << 32);
                 uItemOfFactory.accent = true;
                 arrayList.add(uItemOfFactory);
                 arrayList.add(UItem.asSpace(5, AndroidUtilities.dp(14.33f)));
@@ -931,7 +1062,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             baseFragment.presentFragment(ChatActivity.of(-chat.id));
             return true;
         }
-        new CommunityInviteOnlySheet(getContext(), chat, new RichTableCell$$ExternalSyntheticLambda3(9, this, data)).show();
+        new CommunityInviteOnlySheet(getContext(), chat, new RichTableCell$$ExternalSyntheticLambda3(20, this, data)).show();
         return true;
     }
 
@@ -943,11 +1074,8 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         if (i == i3) {
             if (((TLRPC.ChatFull) objArr[0]).id == j) {
                 communityPage.listView.adapter.update(true);
-                return;
             }
-            return;
-        }
-        if (i == NotificationCenter.updateInterfaces) {
+        } else if (i == NotificationCenter.updateInterfaces) {
             Integer num = (Integer) objArr[0];
             if ((num.intValue() & MessagesController.UPDATE_MASK_CHAT) == 0 && (num.intValue() & MessagesController.UPDATE_MASK_AVATAR) == 0 && (num.intValue() & MessagesController.UPDATE_MASK_CHAT_AVATAR) == 0 && (num.intValue() & MessagesController.UPDATE_MASK_CHAT_NAME) == 0) {
                 return;
@@ -955,9 +1083,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
             TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
             this.currentCommunity = chat;
             communityPage.actionBar.setTitle(DialogObject.getName(chat));
-            BackupImageView backupImageView = communityPage.avatarImage;
-            backupImageView.imageReceiver.setForUserOrChat(this.currentCommunity, communityPage.avatarDrawable);
-            backupImageView.onNewImageSet();
+            communityPage.avatarImage.setForUserOrChat(this.currentCommunity, communityPage.avatarDrawable);
         }
     }
 
@@ -984,15 +1110,11 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                 i++;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
                 if (!z || TextUtils.isEmpty(lowerCase)) {
-                    UItem uItem = new UItem(32);
-                    uItem.object = chat;
-                    arrayList.add(uItem);
+                    arrayList.add(UItem.asProfileCell(chat));
                 } else {
                     String str2 = chat.title;
                     if (str2 != null && str2.toLowerCase().contains(lowerCase)) {
-                        UItem uItem2 = new UItem(32);
-                        uItem2.object = chat;
-                        arrayList.add(uItem2);
+                        arrayList.add(UItem.asProfileCell(chat));
                     }
                 }
             }
@@ -1000,15 +1122,15 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
     }
 
     public final void lambda$linkToCommunity$10(boolean z, TLRPC.TL_error tL_error) {
-        PollItemMenu.AnonymousClass3 anonymousClass3 = this.viewPager;
+        AnonymousClass9 anonymousClass9 = this.viewPager;
         if (tL_error == null) {
-            CommunityUtils.showCommunityLinkSuccessToast(new BulletinFactory((FrameLayout) this.containerView, this.resourcesProvider), 1, z);
-            anonymousClass3.scrollToPosition$1(0);
+            CommunityUtils.showCommunityLinkSuccessToast(BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider), 1, z);
+            anonymousClass9.scrollToPosition(0);
         } else if (!TextUtils.equals("COMMUNITY_REQUEST_CREATED", tL_error.text)) {
-            zzlu.m((FrameLayout) this.containerView, this.resourcesProvider, tL_error);
+            BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).showForError(tL_error);
         } else {
-            CommunityUtils.showCommunityLinkSuccessToast(new BulletinFactory((FrameLayout) this.containerView, this.resourcesProvider), 2, z);
-            anonymousClass3.scrollToPosition$1(0);
+            CommunityUtils.showCommunityLinkSuccessToast(BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider), 2, z);
+            anonymousClass9.scrollToPosition(0);
         }
     }
 
@@ -1023,23 +1145,23 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
     public final void lambda$loadChatsToAddToCommunity$8(ArrayList arrayList, TLRPC.TL_error tL_error) {
         this.addChatToCommunityButton.setLoading(false);
         if (tL_error != null) {
-            zzlu.m((FrameLayout) this.containerView, this.resourcesProvider, tL_error);
+            BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).showForError(tL_error);
             return;
         }
         if (arrayList != null) {
             this.chatsToAddToCommunity = arrayList;
             if (!arrayList.isEmpty()) {
                 this.chatsPage.listView.adapter.update(false);
-                this.viewPager.scrollToPosition$1(2);
+                this.viewPager.scrollToPosition(2);
             } else {
-                FactCheckController$$ExternalSyntheticOutline0.m(R.string.CommunityNoChatsToAdd, new BulletinFactory((FrameLayout) this.containerView, this.resourcesProvider), R.raw.info, 36);
+                FactCheckController$$ExternalSyntheticOutline0.m(R.string.CommunityNoChatsToAdd, BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider), R.raw.info);
             }
         }
     }
 
     public final void lambda$onLongClickCommunity$4(TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            zzlu.m((FrameLayout) this.containerView, this.resourcesProvider, tL_error);
+            BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).showForError(tL_error);
         }
     }
 
@@ -1057,19 +1179,14 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         } else {
             i = z2 ? R.string.CommunityMenuRemoveChannelFromCommunityConfirm : R.string.CommunityMenuRemoveGroupFromCommunityConfirm;
         }
-        AlertDialog alertDialogCreateSimpleConfirmAlert = AlertsCreator.createSimpleConfirmAlert(context, resourcesProvider, string, LocaleController.getString(i), LocaleController.getString(R.string.Remove), new LinkManager$3$$ExternalSyntheticLambda0(this, j, 29));
-        alertDialogCreateSimpleConfirmAlert.show();
-        TextView textView = (TextView) alertDialogCreateSimpleConfirmAlert.getButton(-1);
-        if (textView != null) {
-            textView.setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
-        }
+        AlertsCreator.showSimpleConfirmAlert(context, resourcesProvider, string, LocaleController.getString(i), LocaleController.getString(R.string.Remove), true, new RichEditor$$ExternalSyntheticLambda48(this, j, 20));
     }
 
     public final void linkToCommunity(TLRPC.Chat chat, long j, boolean z) {
         long j2 = -chat.id;
         boolean zIsChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
         if (ChatObject.isChannel(chat)) {
-            MessagesController.getInstance(this.currentAccount).linkCommunity(j2, j, z, new ProfileActivity$$ExternalSyntheticLambda85(zIsChannelAndNotMegaGroup, this, 2));
+            MessagesController.getInstance(this.currentAccount).linkCommunity(j2, j, z, new CommunitySheet$$ExternalSyntheticLambda7(zIsChannelAndNotMegaGroup, this, 0));
             return;
         }
         AlertDialog alertDialog = new AlertDialog(getContext(), 3, null);
@@ -1080,22 +1197,21 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
     }
 
     public final void loadChatsToAddToCommunity() {
-        ButtonWithCounterView buttonWithCounterView = this.addChatToCommunityButton;
-        if (buttonWithCounterView.loading) {
+        if (this.addChatToCommunityButton.isLoading()) {
             return;
         }
-        buttonWithCounterView.setLoading(true);
+        this.addChatToCommunityButton.setLoading(true);
         MessagesController.getInstance(this.currentAccount).fetchChatsToAddToCommunity(new CommunitySheet$$ExternalSyntheticLambda0(this, 2));
     }
 
     @Override
     public final void lambda$openCrafting$8() {
-        PollItemMenu.AnonymousClass3 anonymousClass3 = this.viewPager;
-        if (anonymousClass3.getCurrentPosition() <= 0) {
+        AnonymousClass9 anonymousClass9 = this.viewPager;
+        if (anonymousClass9.getCurrentPosition() <= 0) {
             super.lambda$openCrafting$8();
             return;
         }
-        if (anonymousClass3.getCurrentPosition() == 2) {
+        if (anonymousClass9.getCurrentPosition() == 2) {
             BoolAnimator boolAnimator = this.animatorSearchChatsVisible;
             if (boolAnimator.value) {
                 this.chatsPage.listView.layoutManager.scrollToPositionWithOffset(1, this.systemInsets.top);
@@ -1107,7 +1223,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                 return;
             }
         }
-        anonymousClass3.scrollToPosition$1(0);
+        anonymousClass9.scrollToPosition(0);
     }
 
     @Override
@@ -1128,7 +1244,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (!this.onlyChatsMode) {
-                new CommunityAddOptionsSheet(getContext(), this.currentCommunity, -chat.id, new ThemeActivity$$ExternalSyntheticLambda19(16, this, chat)).show();
+                new CommunityAddOptionsSheet(getContext(), this.currentCommunity, -chat.id, new RichEditor$$ExternalSyntheticLambda51(1, this, chat)).show();
             } else {
                 this.chatsToAddCallback.run(chat);
                 lambda$showGiftOfferSheet$15();
@@ -1137,7 +1253,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
@@ -1203,7 +1319,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
     }
 
     @Override
-    public final void openStory(DialogCell dialogCell) {
+    public final void openStory(DialogCell dialogCell, Runnable runnable) {
         if (MessagesController.getInstance(this.currentAccount).getStoriesController().hasStories(dialogCell.getDialogId())) {
             BaseFragment baseFragment = this.parentFragment;
             baseFragment.getOrCreateStoryViewer().getClass();
@@ -1217,23 +1333,20 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
 
     public final class ContainerView extends FrameLayout {
         public final int $r8$classId = 1;
-        public final Object isActionBar;
+        public final AnimatedFloat isActionBar;
         public final Path path;
-        public final Object this$0;
+        public final BottomSheet this$0;
         public float top;
 
-        public ContainerView(Activity activity) {
-            super(activity);
-            Paint paint = new Paint();
-            this.isActionBar = paint;
-            this.this$0 = new float[8];
+        public ContainerView(StoryPrivacyBottomSheet storyPrivacyBottomSheet, Context context) {
+            super(context);
+            this.this$0 = storyPrivacyBottomSheet;
+            this.isActionBar = new AnimatedFloat(this, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.path = new Path();
-            setWillNotDraw(false);
-            paint.setColor(Theme.getColor(null, Theme.key_featuredStickers_addButton, false));
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
+        public final void dispatchDraw(Canvas canvas) {
             float paddingTop;
             float y;
             switch (this.$r8$classId) {
@@ -1250,7 +1363,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                             }
                         }
                     }
-                    float f = ((AnimatedFloat) this.isActionBar).set(this.top <= ((float) AndroidUtilities.statusBarHeight) ? 1.0f : 0.0f, false);
+                    float f = this.isActionBar.set(this.top <= ((float) AndroidUtilities.statusBarHeight) ? 1.0f : 0.0f);
                     this.top = (Math.max(AndroidUtilities.statusBarHeight, this.top) - (AndroidUtilities.statusBarHeight * f)) - (AndroidUtilities.dp(10.0f) * Math.max(communitySheet.animatorSearchMessagesVisible.floatValue, communitySheet.animatorSearchChatsVisible.floatValue));
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(((BottomSheet) communitySheet).backgroundPaddingLeft, this.top, getWidth() - ((BottomSheet) communitySheet).backgroundPaddingLeft, AndroidUtilities.dp(8.0f) + getHeight());
@@ -1264,11 +1377,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                     super.dispatchDraw(canvas);
                     canvas.restore();
                     break;
-                case 1:
                 default:
-                    super.dispatchDraw(canvas);
-                    break;
-                case 2:
                     StoryPrivacyBottomSheet storyPrivacyBottomSheet = (StoryPrivacyBottomSheet) this.this$0;
                     View[] viewPages2 = storyPrivacyBottomSheet.viewPager.getViewPages();
                     float f2 = 0.0f;
@@ -1281,15 +1390,15 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                             float fClamp = Utilities.clamp(1.0f - Math.abs(page2.getTranslationX() / page2.getMeasuredWidth()), 1.0f, f2);
                             float f3 = this.top;
                             LinearLayoutManager linearLayoutManager = page2.layoutManager;
-                            float fMin = (linearLayoutManager.mReverseLayout || page2.pageType == 0) ? AndroidUtilities.displaySize.y : 0.0f;
+                            float fMin = (linearLayoutManager.getReverseLayout() || page2.pageType == 0) ? AndroidUtilities.displaySize.y : 0.0f;
                             int i2 = 0;
                             while (true) {
                                 RecyclerListView recyclerListView = page2.listView;
                                 if (i2 < recyclerListView.getChildCount()) {
                                     View childAt = recyclerListView.getChildAt(i2);
-                                    boolean z = linearLayoutManager.mReverseLayout;
+                                    boolean reverseLayout = linearLayoutManager.getReverseLayout();
                                     FrameLayout frameLayout = page2.contentView;
-                                    if (z) {
+                                    if (reverseLayout) {
                                         float y2 = childAt.getY() + frameLayout.getPaddingTop();
                                         float alpha = childAt.getAlpha();
                                         if (y2 < fMin) {
@@ -1319,7 +1428,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                         i++;
                         f2 = 0.0f;
                     }
-                    float f4 = ((AnimatedFloat) this.isActionBar).set(this.top <= ((float) AndroidUtilities.statusBarHeight) ? 1.0f : 0.0f, false);
+                    float f4 = this.isActionBar.set(this.top <= ((float) AndroidUtilities.statusBarHeight) ? 1.0f : 0.0f);
                     this.top = Math.max(AndroidUtilities.statusBarHeight, this.top) - (AndroidUtilities.statusBarHeight * f4);
                     RectF rectF2 = AndroidUtilities.rectTmp;
                     rectF2.set(((BottomSheet) storyPrivacyBottomSheet).backgroundPaddingLeft, this.top, getWidth() - ((BottomSheet) storyPrivacyBottomSheet).backgroundPaddingLeft, AndroidUtilities.dp(8.0f) + getHeight());
@@ -1337,7 +1446,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         }
 
         @Override
-        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
             switch (this.$r8$classId) {
                 case 0:
                     if (motionEvent.getAction() != 0 || motionEvent.getY() >= this.top) {
@@ -1345,10 +1454,7 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
                     }
                     ((CommunitySheet) this.this$0).lambda$showGiftOfferSheet$15();
                     return true;
-                case 1:
                 default:
-                    return super.dispatchTouchEvent(motionEvent);
-                case 2:
                     if (motionEvent.getAction() != 0 || motionEvent.getY() >= this.top) {
                         return super.dispatchTouchEvent(motionEvent);
                     }
@@ -1358,78 +1464,21 @@ public final class CommunitySheet extends BottomSheet implements NotificationCen
         }
 
         @Override
-        public void onDraw(Canvas canvas) {
-            switch (this.$r8$classId) {
-                case 1:
-                    super.onDraw(canvas);
-                    float measuredWidth = getMeasuredWidth() / 2.0f;
-                    Path path = this.path;
-                    path.rewind();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(0.0f, 0.0f, measuredWidth - AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.top), getMeasuredHeight());
-                    float fDp = AndroidUtilities.dp(8.0f);
-                    float fLerp = AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.top);
-                    float[] fArr = (float[]) this.this$0;
-                    fArr[7] = fDp;
-                    fArr[6] = fDp;
-                    fArr[1] = fDp;
-                    fArr[0] = fDp;
-                    fArr[5] = fLerp;
-                    fArr[4] = fLerp;
-                    fArr[3] = fLerp;
-                    fArr[2] = fLerp;
-                    Path.Direction direction = Path.Direction.CW;
-                    path.addRoundRect(rectF, fArr, direction);
-                    Paint paint = (Paint) this.isActionBar;
-                    canvas.drawPath(path, paint);
-                    path.rewind();
-                    rectF.set(measuredWidth + AndroidUtilities.lerp(0, AndroidUtilities.dp(4.0f), this.top), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    float fLerp2 = AndroidUtilities.lerp(0, AndroidUtilities.dp(8.0f), this.top);
-                    float fDp2 = AndroidUtilities.dp(8.0f);
-                    fArr[7] = fLerp2;
-                    fArr[6] = fLerp2;
-                    fArr[1] = fLerp2;
-                    fArr[0] = fLerp2;
-                    fArr[5] = fDp2;
-                    fArr[4] = fDp2;
-                    fArr[3] = fDp2;
-                    fArr[2] = fDp2;
-                    path.addRoundRect(rectF, fArr, direction);
-                    canvas.drawPath(path, paint);
-                    break;
-                default:
-                    super.onDraw(canvas);
-                    break;
-            }
-        }
-
-        @Override
-        public void onMeasure(int i, int i2) {
+        public final void onMeasure(int i, int i2) {
             switch (this.$r8$classId) {
                 case 0:
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
                     break;
-                case 1:
                 default:
-                    super.onMeasure(i, i2);
-                    break;
-                case 2:
                     super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824));
                     break;
             }
-        }
-
-        public ContainerView(StoryPrivacyBottomSheet storyPrivacyBottomSheet, Context context) {
-            super(context);
-            this.this$0 = storyPrivacyBottomSheet;
-            this.isActionBar = new AnimatedFloat(250L, this, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.path = new Path();
         }
 
         public ContainerView(CommunitySheet communitySheet, Context context) {
             super(context);
             this.this$0 = communitySheet;
-            this.isActionBar = new AnimatedFloat(250L, this, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.isActionBar = new AnimatedFloat(this, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.path = new Path();
         }
     }

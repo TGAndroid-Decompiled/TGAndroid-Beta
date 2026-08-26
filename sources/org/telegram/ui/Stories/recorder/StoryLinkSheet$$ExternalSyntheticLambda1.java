@@ -16,10 +16,10 @@ public final class StoryLinkSheet$$ExternalSyntheticLambda1 implements Runnable 
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.lambda$new$7$2$3();
+                this.f$0.lambda$new$7$1$2();
                 break;
             case 1:
-                this.f$0.processDone$10();
+                this.f$0.processDone$5();
                 break;
             default:
                 StoryLinkSheet storyLinkSheet = this.f$0;

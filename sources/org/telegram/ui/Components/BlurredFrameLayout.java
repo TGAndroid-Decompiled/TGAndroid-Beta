@@ -8,13 +8,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.SharedConfig;
 
-public abstract class BlurredFrameLayout extends FrameLayout {
+public class BlurredFrameLayout extends FrameLayout {
     public int backgroundColor;
-    public Paint backgroundPaint;
-    public final Rect blurBounds;
-    public final boolean drawBlur;
-    public final boolean isTopView;
-    public final SizeNotifierFrameLayout sizeNotifierFrameLayout;
+    public int backgroundPaddingBottom;
+    public int backgroundPaddingTop;
+    protected Paint backgroundPaint;
+    private Rect blurBounds;
+    public boolean drawBlur;
+    public boolean isTopView;
+    protected final SizeNotifierFrameLayout sizeNotifierFrameLayout;
 
     public BlurredFrameLayout(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
         super(context);
@@ -26,7 +28,7 @@ public abstract class BlurredFrameLayout extends FrameLayout {
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null || !this.drawBlur || this.backgroundColor == 0) {
             canvas2 = canvas;
@@ -35,7 +37,7 @@ public abstract class BlurredFrameLayout extends FrameLayout {
                 this.backgroundPaint = new Paint();
             }
             this.backgroundPaint.setColor(this.backgroundColor);
-            this.blurBounds.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            this.blurBounds.set(0, this.backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight() - this.backgroundPaddingBottom);
             float y = 0.0f;
             View view = this;
             while (true) {

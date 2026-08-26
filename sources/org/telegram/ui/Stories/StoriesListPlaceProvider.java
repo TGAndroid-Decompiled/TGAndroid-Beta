@@ -1,5 +1,6 @@
 package org.telegram.ui.Stories;
 
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.View;
@@ -8,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -19,6 +19,7 @@ import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.ManageChatUserCell;
+import org.telegram.ui.Cells.ProfileChannelCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.ReactedUserHolderView;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
@@ -28,8 +29,8 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BlurredRecyclerView;
 import org.telegram.ui.Components.FillLastLinearLayoutManager;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda42;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda60;
 
 public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
     public int addBottomClip;
@@ -40,10 +41,11 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
     public LoadNextInterface loadNextInterface;
     public boolean onlySelfStories;
     public boolean onlyUnreadStories;
-    public final ProfileActivity.ListAdapter.AnonymousClass10 profileChannelCell;
+    public final ProfileChannelCell profileChannelCell;
     public final RecyclerListView recyclerListView;
 
     public interface AvatarOverlaysView {
+        boolean drawAvatarOverlays(Canvas canvas);
     }
 
     public interface ClippedView {
@@ -71,9 +73,9 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
         RecyclerListView recyclerListView = this.recyclerListView;
         DialogStoriesCell dialogStoriesCell = (recyclerListView == null || !(recyclerListView.getParent() instanceof DialogStoriesCell)) ? null : (DialogStoriesCell) recyclerListView.getParent();
         ViewGroup viewGroup = (dialogStoriesCell == null || dialogStoriesCell.isExpanded()) ? recyclerListView : dialogStoriesCell.listViewMini;
-        ProfileActivity.ListAdapter.AnonymousClass10 anonymousClass10 = this.profileChannelCell;
-        if (anonymousClass10 != null) {
-            viewGroup = anonymousClass10;
+        ProfileChannelCell profileChannelCell = this.profileChannelCell;
+        if (profileChannelCell != null) {
+            viewGroup = profileChannelCell;
         }
         if (viewGroup != null) {
             int i4 = 0;
@@ -92,7 +94,7 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
                         transitionViewHolder.clipTop = 0.0f;
                         transitionViewHolder.alpha = 1.0f;
                         if (storyCell.isFail && dialogStoriesCell2.isExpanded()) {
-                            transitionViewHolder.drawClip = new StoriesViewPager$$ExternalSyntheticLambda0(new Path(), 18);
+                            transitionViewHolder.drawClip = new GiftSheet$$ExternalSyntheticLambda6(new Path(), 27);
                             return true;
                         }
                         transitionViewHolder.drawClip = holderClip;
@@ -104,14 +106,12 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
                     boolean z = this.isHiddenArchive;
                     if ((dialogId == j && !z) || (z && dialogCell.isDialogFolder())) {
                         transitionViewHolder.view = childAt;
-                        DialogCell.AnonymousClass1 anonymousClass1 = dialogCell.storyParams;
-                        transitionViewHolder.params = anonymousClass1;
-                        ImageReceiver imageReceiver = dialogCell.avatarImage;
-                        transitionViewHolder.avatarImage = imageReceiver;
+                        transitionViewHolder.params = dialogCell.storyParams;
+                        transitionViewHolder.avatarImage = dialogCell.avatarImage;
                         transitionViewHolder.clipParent = (View) dialogCell.getParent();
                         if (z) {
-                            transitionViewHolder.crossfadeToAvatarImage = imageReceiver;
-                            boolean z2 = anonymousClass1.drawnLive;
+                            transitionViewHolder.crossfadeToAvatarImage = dialogCell.avatarImage;
+                            boolean z2 = dialogCell.storyParams.drawnLive;
                         }
                         transitionViewHolder.alpha = 1.0f;
                         updateClip(transitionViewHolder);
@@ -148,7 +148,7 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
                 } else if ((childAt instanceof SharedPhotoVideoCell2) && recyclerListView != null) {
                     SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) childAt;
                     MessageObject messageObject = sharedPhotoVideoCell2.getMessageObject();
-                    if ((sharedPhotoVideoCell2.getStyle() == 1 && i2 == 0) || (messageObject != null && messageObject.isStory() && messageObject.getId() == i2 && messageObject.storyItem.dialogId == j)) {
+                    if ((sharedPhotoVideoCell2.getStyle() == 1 && sharedPhotoVideoCell2.storyId == i2) || (messageObject != null && messageObject.isStory() && messageObject.getId() == i2 && messageObject.storyItem.dialogId == j)) {
                         RecyclerListView.FastScroll fastScroll = recyclerListView.getFastScroll();
                         int[] iArr = new int[2];
                         if (fastScroll != null) {
@@ -156,7 +156,7 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
                         }
                         transitionViewHolder.view = childAt;
                         transitionViewHolder.storyImage = sharedPhotoVideoCell2.imageReceiver;
-                        transitionViewHolder.drawAbove = new VoIPFragment$$ExternalSyntheticLambda42(sharedPhotoVideoCell2, fastScroll, iArr, 21);
+                        transitionViewHolder.drawAbove = new RichEditor$$ExternalSyntheticLambda60(sharedPhotoVideoCell2, fastScroll, iArr, 13);
                         transitionViewHolder.clipParent = (View) sharedPhotoVideoCell2.getParent();
                         transitionViewHolder.alpha = 1.0f;
                         updateClip(transitionViewHolder);
@@ -165,10 +165,10 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
                 } else if (childAt instanceof UserCell) {
                     UserCell userCell = (UserCell) childAt;
                     if (userCell.getDialogId() == j) {
-                        UserCell.AnonymousClass2 anonymousClass2 = userCell.avatarImageView;
-                        transitionViewHolder.view = anonymousClass2;
+                        BackupImageView backupImageView = userCell.avatarImageView;
+                        transitionViewHolder.view = backupImageView;
                         transitionViewHolder.params = userCell.storyParams;
-                        transitionViewHolder.avatarImage = anonymousClass2.getImageReceiver();
+                        transitionViewHolder.avatarImage = backupImageView.getImageReceiver();
                         transitionViewHolder.clipParent = (View) userCell.getParent();
                         transitionViewHolder.alpha = 1.0f;
                         updateClip(transitionViewHolder);
@@ -179,11 +179,11 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
                     if (reactedUserHolderView.dialogId != j) {
                         continue;
                     } else {
-                        BackupImageView backupImageView = reactedUserHolderView.storyPreviewView;
-                        boolean z3 = (backupImageView == null || backupImageView.getImageReceiver() == null || backupImageView.getImageReceiver().getImageDrawable() == null) ? false : true;
+                        BackupImageView backupImageView2 = reactedUserHolderView.storyPreviewView;
+                        boolean z3 = (backupImageView2 == null || backupImageView2.getImageReceiver() == null || backupImageView2.getImageReceiver().getImageDrawable() == null) ? false : true;
                         if (reactedUserHolderView.storyId == i2 && z3) {
-                            transitionViewHolder.view = backupImageView;
-                            transitionViewHolder.storyImage = backupImageView.getImageReceiver();
+                            transitionViewHolder.view = backupImageView2;
+                            transitionViewHolder.storyImage = backupImageView2.getImageReceiver();
                             transitionViewHolder.clipParent = (View) reactedUserHolderView.getParent();
                             float alphaInternal = reactedUserHolderView.getAlphaInternal() * reactedUserHolderView.getAlpha();
                             transitionViewHolder.alpha = alphaInternal;
@@ -196,10 +196,10 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
                             return true;
                         }
                         if (!z3) {
-                            ReactedUserHolderView.AnonymousClass2 anonymousClass3 = reactedUserHolderView.avatarView;
-                            transitionViewHolder.view = anonymousClass3;
+                            ReactedUserHolderView.AnonymousClass2 anonymousClass2 = reactedUserHolderView.avatarView;
+                            transitionViewHolder.view = anonymousClass2;
                             transitionViewHolder.params = reactedUserHolderView.params;
-                            transitionViewHolder.avatarImage = anonymousClass3.getImageReceiver();
+                            transitionViewHolder.avatarImage = anonymousClass2.getImageReceiver();
                             transitionViewHolder.clipParent = (View) reactedUserHolderView.getParent();
                             float alphaInternal2 = reactedUserHolderView.getAlphaInternal() * reactedUserHolderView.getAlpha();
                             transitionViewHolder.alpha = alphaInternal2;
@@ -264,16 +264,16 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
     }
 
     @Override
-    public final void preLayout(int i, long j, StoryViewer$$ExternalSyntheticLambda2 storyViewer$$ExternalSyntheticLambda2) {
+    public final void preLayout(long j, int i, Runnable runnable) {
         FillLastLinearLayoutManager fillLastLinearLayoutManager;
         RecyclerListView recyclerListView = this.recyclerListView;
         if (recyclerListView != null && (recyclerListView.getParent() instanceof DialogStoriesCell)) {
             DialogStoriesCell dialogStoriesCell = (DialogStoriesCell) recyclerListView.getParent();
             if (dialogStoriesCell.scrollTo(j)) {
-                dialogStoriesCell.afterNextLayout.add(storyViewer$$ExternalSyntheticLambda2);
+                dialogStoriesCell.afterNextLayout(runnable);
                 return;
             } else {
-                storyViewer$$ExternalSyntheticLambda2.run();
+                ((StoryViewer$$ExternalSyntheticLambda2) runnable).run();
                 return;
             }
         }
@@ -286,7 +286,7 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
                 Collections.sort(arrayList, storiesController.peerStoriesComparator);
                 NotificationCenter.getInstance(storiesController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
             }
-            storyViewer$$ExternalSyntheticLambda2.run();
+            ((StoryViewer$$ExternalSyntheticLambda2) runnable).run();
             return;
         }
         SelfStoryViewsPage selfStoryViewsPage = (SelfStoryViewsPage) recyclerListView.getParent();
@@ -316,13 +316,13 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
                 int iFindFirstVisibleItemPosition = fillLastLinearLayoutManager.findFirstVisibleItemPosition();
                 int iFindLastVisibleItemPosition = fillLastLinearLayoutManager.findLastVisibleItemPosition();
                 if (i2 < iFindFirstVisibleItemPosition || i2 > iFindLastVisibleItemPosition) {
-                    fillLastLinearLayoutManager.scrollToPositionWithOffset(i2, AndroidUtilities.dp(60.0f), fillLastLinearLayoutManager.mShouldReverseLayout);
-                    recyclerListView.post(storyViewer$$ExternalSyntheticLambda2);
+                    fillLastLinearLayoutManager.scrollToPositionWithOffset(i2, AndroidUtilities.dp(60.0f));
+                    recyclerListView.post(runnable);
                     return;
                 }
             }
         }
-        storyViewer$$ExternalSyntheticLambda2.run();
+        ((StoryViewer$$ExternalSyntheticLambda2) runnable).run();
     }
 
     public final void updateClip(StoryViewer.TransitionViewHolder transitionViewHolder) {
@@ -346,9 +346,9 @@ public final class StoriesListPlaceProvider implements StoryViewer.PlaceProvider
         }
     }
 
-    public StoriesListPlaceProvider(ProfileActivity.ListAdapter.AnonymousClass10 anonymousClass10) {
+    public StoriesListPlaceProvider(ProfileChannelCell profileChannelCell) {
         this.clipPoint = new int[2];
-        this.profileChannelCell = anonymousClass10;
+        this.profileChannelCell = profileChannelCell;
         this.recyclerListView = null;
     }
 }

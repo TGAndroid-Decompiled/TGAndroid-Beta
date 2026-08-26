@@ -2,7 +2,7 @@ package org.webrtc;
 
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGLContext;
 
@@ -136,7 +136,7 @@ public interface EglBase {
 
         public ConfigBuilder setOpenGlesVersion(int i) {
             if (i < 1 || i > 3) {
-                throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, "OpenGL ES version ", " not supported"));
+                throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(i, "OpenGL ES version ", " not supported"));
             }
             this.openGlesVersion = i;
             return this;

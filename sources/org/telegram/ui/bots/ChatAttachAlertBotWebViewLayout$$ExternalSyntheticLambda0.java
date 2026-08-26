@@ -52,17 +52,14 @@ public final class ChatAttachAlertBotWebViewLayout$$ExternalSyntheticLambda0 imp
                         tL_messages_prolongWebView.send_as = MessagesController.getInstance(chatAttachAlertBotWebViewLayout.currentAccount).getInputPeer(peer);
                         tL_messages_prolongWebView.flags |= 8192;
                     }
-                    ConnectionsManager.getInstance(chatAttachAlertBotWebViewLayout.currentAccount).sendRequest(tL_messages_prolongWebView, new RichMediaUploader$$ExternalSyntheticLambda0(chatAttachAlertBotWebViewLayout, 13));
+                    ConnectionsManager.getInstance(chatAttachAlertBotWebViewLayout.currentAccount).sendRequest(tL_messages_prolongWebView, new RichMediaUploader$$ExternalSyntheticLambda0(chatAttachAlertBotWebViewLayout, 26));
                 }
                 break;
             case 3:
-                ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout2 = this.f$0;
-                chatAttachAlertBotWebViewLayout2.parentAlert.updateLayout(chatAttachAlertBotWebViewLayout2, true, 0);
-                chatAttachAlertBotWebViewLayout2.webViewContainer.invalidateViewPortHeight(false, false);
-                System.currentTimeMillis();
+                this.f$0.lambda$new$3$2$2();
                 break;
             default:
-                this.f$0.webViewContainer.invalidateViewPortHeight(true, false);
+                this.f$0.webViewContainer.invalidateViewPortHeight(true);
                 break;
         }
     }

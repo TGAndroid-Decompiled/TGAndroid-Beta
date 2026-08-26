@@ -176,7 +176,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i) {
         try {
-            new UpdateAppAlertDialog(context, betaUpdate).show();
+            new UpdateAppAlertDialog(context, betaUpdate, i).show();
             return true;
         } catch (Exception e) {
             FileLog.e(e);

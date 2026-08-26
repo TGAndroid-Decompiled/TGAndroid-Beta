@@ -10,9 +10,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.Stories.PeerStoriesView$8$$ExternalSyntheticLambda54;
 import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.ThemeSetUrlActivity$$ExternalSyntheticLambda6;
+import org.telegram.ui.bots.BotVerifySheet$$ExternalSyntheticLambda6;
 import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 
 public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3 implements View.OnClickListener {
@@ -63,7 +62,7 @@ public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3 implem
             case 1:
                 StoryPrivacyBottomSheet.Page page2 = this.f$0;
                 ButtonWithCounterView buttonWithCounterView = page2.button;
-                if (!buttonWithCounterView.loading) {
+                if (!buttonWithCounterView.isLoading()) {
                     StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
                     MessagesController messagesController = MessagesController.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount);
                     int i3 = page2.pageType;
@@ -79,7 +78,7 @@ public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3 implem
                         TLRPC.TL_editCloseFriends tL_editCloseFriends = new TLRPC.TL_editCloseFriends();
                         tL_editCloseFriends.id.addAll(arrayList3);
                         buttonWithCounterView.setLoading(true);
-                        ConnectionsManager.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).sendRequest(tL_editCloseFriends, new ThemeSetUrlActivity$$ExternalSyntheticLambda6(4, page2, messagesController));
+                        ConnectionsManager.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).sendRequest(tL_editCloseFriends, new BotVerifySheet$$ExternalSyntheticLambda6(1, page2, messagesController));
                         break;
                     } else if (i3 == 0) {
                         int i4 = storyPrivacyBottomSheet.selectedType;
@@ -108,15 +107,15 @@ public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3 implem
                         } else {
                             storyPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(i4, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, (ArrayList) null);
                         }
-                        storyPrivacyBottomSheet.done(storyPrivacy, new PeerStoriesView$8$$ExternalSyntheticLambda54(storyPrivacyBottomSheet, 1), false);
+                        storyPrivacyBottomSheet.done(storyPrivacy, new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda8(storyPrivacyBottomSheet, 1), false);
                         break;
                     } else if (i3 == 2) {
                         if (storyPrivacyBottomSheet.isEdit) {
                             storyPrivacyBottomSheet.closeKeyboard();
-                            storyPrivacyBottomSheet.done(new StoryPrivacyBottomSheet.StoryPrivacy(2, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, arrayList3), new PeerStoriesView$8$$ExternalSyntheticLambda54(storyPrivacyBottomSheet, 1), false);
+                            storyPrivacyBottomSheet.done(new StoryPrivacyBottomSheet.StoryPrivacy(2, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, arrayList3), new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda8(storyPrivacyBottomSheet, 1), false);
                         } else {
                             storyPrivacyBottomSheet.closeKeyboard();
-                            storyPrivacyBottomSheet.viewPager.scrollToPosition$1(0);
+                            storyPrivacyBottomSheet.viewPager.scrollToPosition(0);
                         }
                         break;
                     } else {
@@ -125,7 +124,7 @@ public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3 implem
                             if (i3 != 6) {
                                 storyPrivacyBottomSheet.selectedType = i3;
                                 storyPrivacyBottomSheet.closeKeyboard();
-                                storyPrivacyBottomSheet.viewPager.scrollToPosition$1(0);
+                                storyPrivacyBottomSheet.viewPager.scrollToPosition(0);
                                 break;
                             } else {
                                 HashSet hashSetMergeUsers = StoryPrivacyBottomSheet.mergeUsers(arrayList3, map6);
@@ -150,7 +149,7 @@ public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3 implem
                                     if (!zHasNext) {
                                         storiesController.blocklistCount = hashSet.size() + storiesController.blocklistCount;
                                         tL_contacts_setBlocked.limit = Math.max(tL_contacts_setBlocked.limit, hashSet.size());
-                                        ConnectionsManager.getInstance(i5).sendRequest(tL_contacts_setBlocked, new RichMediaUploader$$ExternalSyntheticLambda0(storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1, 2));
+                                        ConnectionsManager.getInstance(i5).sendRequest(tL_contacts_setBlocked, new RichMediaUploader$$ExternalSyntheticLambda0(storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1, 23));
                                         break;
                                     } else {
                                         Long l = (Long) it.next();
@@ -179,7 +178,7 @@ public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3 implem
                         } else if (!StoryPrivacyBottomSheet.mergeUsers(arrayList3, map6).isEmpty()) {
                             storyPrivacyBottomSheet.selectedType = 3;
                             storyPrivacyBottomSheet.closeKeyboard();
-                            storyPrivacyBottomSheet.viewPager.scrollToPosition$1(0);
+                            storyPrivacyBottomSheet.viewPager.scrollToPosition(0);
                             break;
                         }
                     }
@@ -190,7 +189,7 @@ public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda3 implem
                 StoryPrivacyBottomSheet storyPrivacyBottomSheet2 = StoryPrivacyBottomSheet.this;
                 if (storyPrivacyBottomSheet2.startedFromSendAsMessage) {
                     storyPrivacyBottomSheet2.activePage = 5;
-                    storyPrivacyBottomSheet2.viewPager.scrollToPosition$1(1);
+                    storyPrivacyBottomSheet2.viewPager.scrollToPosition(1);
                 } else {
                     StoryPrivacyBottomSheet storyPrivacyBottomSheet3 = new StoryPrivacyBottomSheet(page3.getContext(), ((BottomSheet) storyPrivacyBottomSheet2).resourcesProvider);
                     storyPrivacyBottomSheet3.onDone2 = new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda6(page3, 2);

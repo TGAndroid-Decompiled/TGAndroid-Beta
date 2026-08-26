@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.text.Layout;
 import android.view.View;
 import java.util.ArrayList;
+import kotlinx.coroutines.flow.SafeFlow;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -18,8 +19,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
 
 public final class RichQuoteAuthorCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
     public final RichEditText authorEditText;
@@ -89,10 +88,10 @@ public final class RichQuoteAuthorCell extends RichBlockCell implements Theme.Co
         richEditText.setTextColorKey(Theme.key_featuredStickers_addButton);
         richEditText.setAccentHint(true);
         richEditText.setHint(LocaleController.getString(R.string.ArticleHintAuthor));
-        richEditText.setListener(new PhotoViewer.AnonymousClass24(this, 12));
-        richEditText.setDelegate(new TodoItemMenu$$ExternalSyntheticLambda3(this, 15));
+        richEditText.setListener(new SafeFlow(this));
+        richEditText.setDelegate(new RichEditor$3$$ExternalSyntheticLambda0(this, 12));
         addView(richEditText, LayoutHelper.createFrame(-1, -2, 51));
-        updateColors$1();
+        updateColors();
     }
 
     @Override
@@ -149,7 +148,7 @@ public final class RichQuoteAuthorCell extends RichBlockCell implements Theme.Co
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         RichEditText richEditText = this.authorEditText;
         richEditText.updateColors();
         int i = Theme.key_featuredStickers_addButton;

@@ -28,7 +28,7 @@ public final class LocationActivity$$ExternalSyntheticLambda8 implements Runnabl
                 org.telegram.ui.LocationActivity locationActivity = this.f$1;
                 LocationActivity locationActivity2 = this.f$0;
                 try {
-                    List<Address> fromLocationName = new Geocoder(locationActivity2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(locationActivity2.address, 1);
+                    List<Address> fromLocationName = new Geocoder(locationActivity2.getContext(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(locationActivity2.address, 1);
                     if (!fromLocationName.isEmpty()) {
                         Address address = fromLocationName.get(0);
                         TLRPC.TL_channelLocation tL_channelLocation = new TLRPC.TL_channelLocation();
@@ -37,7 +37,7 @@ public final class LocationActivity$$ExternalSyntheticLambda8 implements Runnabl
                         tL_channelLocation.geo_point = tL_geoPoint;
                         tL_geoPoint.lat = address.getLatitude();
                         tL_channelLocation.geo_point._long = address.getLongitude();
-                        locationActivity.initialLocation = tL_channelLocation;
+                        locationActivity.setInitialLocation(tL_channelLocation);
                     }
                 } catch (Exception e) {
                     FileLog.e(e);

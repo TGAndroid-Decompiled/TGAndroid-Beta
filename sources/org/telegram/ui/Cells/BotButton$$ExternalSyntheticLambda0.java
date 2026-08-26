@@ -5,31 +5,28 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import android.view.View;
 import androidx.appcompat.app.WindowDecorActionBar;
-import androidx.core.graphics.ColorUtils;
 import com.google.android.gms.cast.zzbe;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.AvatarPreviewPagerIndicator;
-import org.telegram.ui.CacheControlActivity;
-import org.telegram.ui.CalendarActivity;
-import org.telegram.ui.ChannelCreateActivity;
 import org.telegram.ui.Charts.ChartPickerDelegate;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatEditTypeActivity;
-import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.AttachBotIntroTopView;
-import org.telegram.ui.Components.AudioPlayerAlert;
-import org.telegram.ui.Components.AvatarConstructorFragment;
-import org.telegram.ui.Components.AvatarsDrawable;
 import org.telegram.ui.Components.BackupImageView;
-import org.telegram.ui.Components.BatteryDrawable;
-import org.telegram.ui.Components.BlurringShader;
-import org.telegram.ui.Components.ButtonBounce;
-import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview;
-import org.telegram.ui.Components.CrossfadeDrawable;
-import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Components.Paint.ColorPickerBottomSheet;
+import org.telegram.ui.Components.Paint.Views.MaskPaintView;
+import org.telegram.ui.Components.Paint.Views.PaintToolsView;
+import org.telegram.ui.Components.Paint.Views.PipettePickerView;
+import org.telegram.ui.Components.Paint.Views.StickerMakerView;
+import org.telegram.ui.Components.Paint.Views.StoryLinkPreviewDialog;
+import org.telegram.ui.Components.Premium.boosts.BoostCounterView;
+import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell;
+import org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay;
+import org.telegram.ui.Components.voip.ImageWithWavesView;
+import org.telegram.ui.Components.voip.RTMPStreamPipOverlay;
+import org.telegram.ui.Components.voip.VoIPFloatingLayout;
+import org.telegram.ui.Components.voip.VoIPPiPView;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stars.StarReactionsOverlay;
+import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.web.WebActionBar;
 
 public final class BotButton$$ExternalSyntheticLambda0 implements ValueAnimator.AnimatorUpdateListener {
     public final int $r8$classId;
@@ -42,6 +39,8 @@ public final class BotButton$$ExternalSyntheticLambda0 implements ValueAnimator.
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        StarGiftSheet.CraftTopView.Cube3D.AnimSequence animSequence;
+        boolean z;
         switch (this.$r8$classId) {
             case 0:
                 BotButton botButton = (BotButton) this.f$0;
@@ -53,214 +52,177 @@ public final class BotButton$$ExternalSyntheticLambda0 implements ValueAnimator.
                 ((View) ((WindowDecorActionBar) ((zzbe) this.f$0).zza).mContainerView.getParent()).invalidate();
                 break;
             case 2:
-                ArticleViewer.ErrorContainer errorContainer = (ArticleViewer.ErrorContainer) this.f$0;
-                errorContainer.getClass();
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                errorContainer.titleView.setTextColor(ColorUtils.blendARGB(fFloatValue, -16777216, -1));
-                errorContainer.descriptionView.setTextColor(ColorUtils.blendARGB(fFloatValue, -16777216, -1));
-                errorContainer.codeView.setTextColor(ColorUtils.blendARGB(fFloatValue, -16777216, -1));
-                break;
-            case 3:
-                AvatarPreviewPagerIndicator avatarPreviewPagerIndicator = (AvatarPreviewPagerIndicator) this.f$0;
-                float fLerp = AndroidUtilities.lerp(avatarPreviewPagerIndicator.animatorValues, valueAnimator.getAnimatedFraction());
-                int i = (int) (255.0f * fLerp);
-                avatarPreviewPagerIndicator.topOverlayGradient.setAlpha(i);
-                avatarPreviewPagerIndicator.bottomOverlayGradient.setAlpha(i);
-                avatarPreviewPagerIndicator.backgroundPaint.setAlpha((int) (66.0f * fLerp));
-                avatarPreviewPagerIndicator.barPaint.setAlpha((int) (85.0f * fLerp));
-                avatarPreviewPagerIndicator.selectedBarPaint.setAlpha(i);
-                avatarPreviewPagerIndicator.alpha = fLerp;
-                avatarPreviewPagerIndicator.invalidate();
-                break;
-            case 4:
-                ((CacheControlActivity) this.f$0).lambda$updateActionBar$21(valueAnimator);
-                break;
-            case 5:
-                CalendarActivity calendarActivity = (CalendarActivity) this.f$0;
-                calendarActivity.getClass();
-                float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                for (int i2 = 0; i2 < calendarActivity.listView.getChildCount(); i2++) {
-                    CalendarActivity.MonthView.access$1200((CalendarActivity.MonthView) calendarActivity.listView.getChildAt(i2), fFloatValue2);
-                }
-                break;
-            case 6:
                 AppIconsSelectorCell.IconHolderView iconHolderView = (AppIconsSelectorCell.IconHolderView) this.f$0;
                 iconHolderView.getClass();
                 iconHolderView.setProgress(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 break;
-            case 7:
-                ChatMessageCell chatMessageCell = (ChatMessageCell) this.f$0;
-                chatMessageCell.getClass();
-                chatMessageCell.mediaSpoilerRevealProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                chatMessageCell.invalidate();
+            case 3:
+                ((ChatMessageCell) this.f$0).lambda$startRevealMedia$14(valueAnimator);
                 break;
-            case 8:
+            case 4:
                 GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) this.f$0;
                 groupCreateUserCell.getClass();
-                float fFloatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float f = 0.18f * fFloatValue3;
+                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f = 0.18f * fFloatValue;
                 float f2 = groupCreateUserCell.isChecked ? 1.0f - f : 0.82f + f;
                 BackupImageView backupImageView = groupCreateUserCell.avatarImageView;
                 backupImageView.setScaleX(f2);
                 backupImageView.setScaleY(f2);
                 if (!groupCreateUserCell.isChecked) {
-                    fFloatValue3 = 1.0f - fFloatValue3;
+                    fFloatValue = 1.0f - fFloatValue;
                 }
-                groupCreateUserCell.checkProgress = fFloatValue3;
+                groupCreateUserCell.checkProgress = fFloatValue;
                 groupCreateUserCell.invalidate();
                 break;
-            case 9:
+            case 5:
                 ReactedUserHolderView reactedUserHolderView = (ReactedUserHolderView) this.f$0;
                 reactedUserHolderView.getClass();
                 reactedUserHolderView.alphaInternal = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 reactedUserHolderView.invalidate();
                 break;
-            case 10:
-                SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) this.f$0;
-                sharedPhotoVideoCell2.getClass();
-                sharedPhotoVideoCell2.spoilerRevealProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                sharedPhotoVideoCell2.invalidate();
+            case 6:
+                ((SharedPhotoVideoCell2) this.f$0).lambda$startRevealMedia$3(valueAnimator);
                 break;
-            case 11:
+            case 7:
                 SlideIntChooseView slideIntChooseView = (SlideIntChooseView) this.f$0;
                 slideIntChooseView.getClass();
                 ColorMatrix colorMatrix = new ColorMatrix();
-                float fFloatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                slideIntChooseView.maxTextEmojiSaturation = fFloatValue4;
-                colorMatrix.setSaturation(fFloatValue4);
+                float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                slideIntChooseView.maxTextEmojiSaturation = fFloatValue2;
+                colorMatrix.setSaturation(fFloatValue2);
                 if (Theme.currentTheme.isDark()) {
                     AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, (1.0f - slideIntChooseView.maxTextEmojiSaturation) * (-0.3f));
                 }
                 slideIntChooseView.maxText.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 break;
-            case 12:
-                TextSelectionHelper textSelectionHelper = (TextSelectionHelper) this.f$0;
-                textSelectionHelper.getClass();
-                textSelectionHelper.handleViewProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                textSelectionHelper.textSelectionOverlay.invalidate();
+            case 8:
+                ((TextSelectionHelper) this.f$0).lambda$showHandleViews$0(valueAnimator);
                 break;
-            case 13:
-                ThemePreviewMessagesCell.AnonymousClass1.C00061 c00061 = (ThemePreviewMessagesCell.AnonymousClass1.C00061) ((PhotoViewer.AnonymousClass9) this.f$0).this$0;
+            case 9:
+                ThemePreviewMessagesCell.AnonymousClass1.C00081 c00081 = ThemePreviewMessagesCell.AnonymousClass1.C00081.this;
                 ThemePreviewMessagesCell.AnonymousClass1.this.getTransitionParams().animateChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 ThemePreviewMessagesCell.AnonymousClass1.this.invalidate();
                 break;
-            case 14:
-                ChannelCreateActivity channelCreateActivity = (ChannelCreateActivity) this.f$0;
-                CrossfadeDrawable crossfadeDrawable = channelCreateActivity.doneButtonDrawable;
-                crossfadeDrawable.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                crossfadeDrawable.invalidateSelf();
-                channelCreateActivity.doneButtonDrawable.invalidateSelf();
-                break;
-            case 15:
+            case 10:
                 ChartPickerDelegate.CapturesData capturesData = (ChartPickerDelegate.CapturesData) this.f$0;
                 capturesData.getClass();
                 capturesData.aValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 ChartPickerDelegate.this.view.invalidate();
                 break;
+            case 11:
+                ((MaskPaintView) this.f$0).onRenderViewAlphaUpdate(valueAnimator);
+                break;
+            case 12:
+                PaintToolsView paintToolsView = (PaintToolsView) this.f$0;
+                paintToolsView.getClass();
+                paintToolsView.nextSelectedIndexProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                paintToolsView.invalidate();
+                break;
+            case 13:
+                PipettePickerView pipettePickerView = (PipettePickerView) this.f$0;
+                pipettePickerView.getClass();
+                pipettePickerView.appearProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                pipettePickerView.invalidate();
+                break;
+            case 14:
+                ColorPickerBottomSheet.AnonymousClass1 anonymousClass1 = (ColorPickerBottomSheet.AnonymousClass1) this.f$0;
+                anonymousClass1.appearProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                anonymousClass1.invalidate();
+                break;
+            case 15:
+                StickerMakerView stickerMakerView = (StickerMakerView) this.f$0;
+                stickerMakerView.getClass();
+                stickerMakerView.bordersAnimatorValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                break;
             case 16:
-                ChatActivity.AnonymousClass58 anonymousClass58 = (ChatActivity.AnonymousClass58) this.f$0;
-                anonymousClass58.getClass();
-                anonymousClass58.setBubbleOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                anonymousClass58.invalidate();
+                StoryLinkPreviewDialog storyLinkPreviewDialog = (StoryLinkPreviewDialog) this.f$0;
+                storyLinkPreviewDialog.getClass();
+                float fFloatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                storyLinkPreviewDialog.openProgress = fFloatValue3;
+                WebActionBar.AnonymousClass1 anonymousClass2 = storyLinkPreviewDialog.containerView;
+                anonymousClass2.setAlpha(fFloatValue3);
+                anonymousClass2.setScaleX(AndroidUtilities.lerp(0.9f, 1.0f, storyLinkPreviewDialog.openProgress));
+                anonymousClass2.setScaleY(AndroidUtilities.lerp(0.9f, 1.0f, storyLinkPreviewDialog.openProgress));
+                storyLinkPreviewDialog.windowView.invalidate();
                 break;
             case 17:
-                ChatEditTypeActivity chatEditTypeActivity = (ChatEditTypeActivity) this.f$0;
-                CrossfadeDrawable crossfadeDrawable2 = chatEditTypeActivity.doneButtonDrawable;
-                crossfadeDrawable2.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                crossfadeDrawable2.invalidateSelf();
-                chatEditTypeActivity.doneButtonDrawable.invalidateSelf();
+                BoostCounterView boostCounterView = (BoostCounterView) this.f$0;
+                boostCounterView.getClass();
+                boostCounterView.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                boostCounterView.invalidate();
                 break;
             case 18:
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = (AnimatedTextView.AnimatedTextDrawable) this.f$0;
-                animatedTextDrawable.getClass();
-                animatedTextDrawable.t = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                animatedTextDrawable.invalidateSelf();
-                Runnable runnable = animatedTextDrawable.widthUpdatedListener;
-                if (runnable != null) {
-                    runnable.run();
-                }
+                ((SelectorSearchCell) this.f$0).lambda$getContainerHeightAnimator$1(valueAnimator);
                 break;
             case 19:
-                AttachBotIntroTopView attachBotIntroTopView = (AttachBotIntroTopView) this.f$0;
-                attachBotIntroTopView.imageReceiver.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                attachBotIntroTopView.invalidate();
+                ChatSelectionReactionMenuOverlay chatSelectionReactionMenuOverlay = (ChatSelectionReactionMenuOverlay) this.f$0;
+                chatSelectionReactionMenuOverlay.getClass();
+                float fFloatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ChatSelectionReactionMenuOverlay.AnonymousClass2 anonymousClass3 = chatSelectionReactionMenuOverlay.reactionsContainerLayout;
+                if (anonymousClass3 != null) {
+                    anonymousClass3.setAlpha(fFloatValue4);
+                }
                 break;
             case 20:
-                AudioPlayerAlert audioPlayerAlert = (AudioPlayerAlert) this.f$0;
-                audioPlayerAlert.getClass();
-                audioPlayerAlert.titleTextView.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
-                audioPlayerAlert.authorTextView.setCustomPaddingRight(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                ImageWithWavesView.AvatarWavesDrawable avatarWavesDrawable = (ImageWithWavesView.AvatarWavesDrawable) this.f$0;
+                avatarWavesDrawable.getClass();
+                avatarWavesDrawable.muteToStaticProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 break;
             case 21:
-                AvatarConstructorFragment avatarConstructorFragment = (AvatarConstructorFragment) this.f$0;
-                avatarConstructorFragment.getClass();
-                float fFloatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (avatarConstructorFragment.progressToLightStatusBar != fFloatValue5) {
-                    avatarConstructorFragment.progressToLightStatusBar = fFloatValue5;
-                    int iBlendARGB = ColorUtils.blendARGB(fFloatValue5, -16777216, -1);
-                    int alphaComponent = ColorUtils.setAlphaComponent(iBlendARGB, 60);
-                    avatarConstructorFragment.overlayActionBar.setItemsColor(iBlendARGB, false);
-                    avatarConstructorFragment.setPhotoItem.setBackground(Theme.createSelectorDrawable(alphaComponent, 3, -1));
-                }
+                RTMPStreamPipOverlay rTMPStreamPipOverlay = (RTMPStreamPipOverlay) this.f$0;
+                rTMPStreamPipOverlay.getClass();
+                rTMPStreamPipOverlay.controlsView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 break;
             case 22:
-                AvatarsDrawable avatarsDrawable = (AvatarsDrawable) this.f$0;
-                avatarsDrawable.getClass();
-                avatarsDrawable.transitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = avatarsDrawable.parent;
-                if (view != null) {
-                    view.invalidate();
-                }
+                VoIPFloatingLayout voIPFloatingLayout = (VoIPFloatingLayout) this.f$0;
+                voIPFloatingLayout.getClass();
+                voIPFloatingLayout.mutedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                voIPFloatingLayout.invalidate();
                 break;
             case 23:
-                BatteryDrawable batteryDrawable = (BatteryDrawable) this.f$0;
-                batteryDrawable.getClass();
-                batteryDrawable.fillValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                batteryDrawable.invalidateSelf();
+                VoIPPiPView voIPPiPView = (VoIPPiPView) this.f$0;
+                voIPPiPView.getClass();
+                voIPPiPView.progressToCameraMini = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                voIPPiPView.floatingView.invalidate();
                 break;
             case 24:
-                BlurringShader.StoryBlurDrawer storyBlurDrawer = (BlurringShader.StoryBlurDrawer) this.f$0;
-                storyBlurDrawer.getClass();
-                storyBlurDrawer.oldPaintAlpha = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                storyBlurDrawer.view.invalidate();
+                StarGiftSheet starGiftSheet = (StarGiftSheet) this.f$0;
+                starGiftSheet.currentPage.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                starGiftSheet.onSwitchedPage();
                 break;
             case 25:
-                ButtonBounce buttonBounce = (ButtonBounce) this.f$0;
-                buttonBounce.getClass();
-                buttonBounce.pressedT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                buttonBounce.invalidate();
+                ((StarGiftSheet.CraftTopView) this.f$0).cube.invalidate();
                 break;
             case 26:
-                ChatAttachAlert.AnonymousClass24 anonymousClass24 = (ChatAttachAlert.AnonymousClass24) this.f$0;
-                anonymousClass24.getClass();
-                anonymousClass24.countBounceScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                StarGiftSheet.CraftTopView.Cube3D cube3D = (StarGiftSheet.CraftTopView.Cube3D) this.f$0;
+                cube3D.getClass();
+                float fFloatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                cube3D.pullingT = fFloatValue5;
+                if (fFloatValue5 >= 0.8f && (animSequence = cube3D.sequence) != null && (z = animSequence.waitingForPull) && z) {
+                    animSequence.waitingForPull = false;
+                    animSequence.executeNext();
+                }
+                cube3D.invalidate();
                 break;
             case 27:
-                ChatAttachAlert.AnonymousClass1 anonymousClass1 = (ChatAttachAlert.AnonymousClass1) this.f$0;
-                anonymousClass1.getClass();
-                float fFloatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
-                chatAttachAlert.buttonsRecyclerViewWrapper.setAlpha(1.0f - fFloatValue6);
-                chatAttachAlert.botMainButtonTextView.setAlpha(fFloatValue6);
-                float fDp = fFloatValue6 * AndroidUtilities.dp(36.0f);
-                chatAttachAlert.botMainButtonOffsetY = fDp;
-                chatAttachAlert.buttonsRecyclerViewWrapper.setTranslationY(fDp);
+                float fSin = (((float) Math.sin(((double) ((Float) valueAnimator.getAnimatedValue()).floatValue()) * 3.141592653589793d)) * 0.03f) + 1.0f;
+                View view = (View) this.f$0;
+                view.setScaleX(fSin);
+                view.setScaleY(fSin);
                 break;
             case 28:
-                ChatAttachAlert.AnonymousClass17 anonymousClass17 = (ChatAttachAlert.AnonymousClass17) this.f$0;
-                anonymousClass17.getClass();
-                float fFloatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ChatAttachAlert chatAttachAlert2 = ChatAttachAlert.this;
-                chatAttachAlert2.captionEditTextTopOffset = fFloatValue7;
-                chatAttachAlert2.captionContainer.invalidate();
-                chatAttachAlert2.frameLayout2.invalidate();
-                anonymousClass17.invalidate();
+                StarReactionsOverlay starReactionsOverlay = (StarReactionsOverlay) this.f$0;
+                starReactionsOverlay.getClass();
+                starReactionsOverlay.focus = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                starReactionsOverlay.invalidate();
                 break;
             default:
-                ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.PreviewGroupCell.MediaCell mediaCell = (ChatAttachAlertPhotoLayoutPreview.PreviewGroupsView.PreviewGroupCell.MediaCell) this.f$0;
-                mediaCell.getClass();
-                mediaCell.spoilerRevealProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                mediaCell.this$2.this$1.invalidate();
+                StarsIntroActivity.StarsBalanceView starsBalanceView = (StarsIntroActivity.StarsBalanceView) this.f$0;
+                starsBalanceView.getClass();
+                float fFloatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                StarsIntroActivity.StarsBalanceView.AnonymousClass1 anonymousClass4 = starsBalanceView.amountTextView;
+                anonymousClass4.setScaleX(fFloatValue6);
+                anonymousClass4.setScaleY(fFloatValue6);
                 break;
         }
     }

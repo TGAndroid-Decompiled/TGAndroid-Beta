@@ -16,17 +16,15 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.utils.WindowVisibilityManager$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda356;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -44,7 +42,7 @@ public final class HintDialogCell extends FrameLayout {
     public final BackupImageView imageView;
     public int lastUnreadCount;
     public Drawable lockDrawable;
-    public final ArticleViewer.AnonymousClass9 nameTextView;
+    public final MentionCell.AnonymousClass1 nameTextView;
     public boolean premiumBlocked;
     public final AnimatedFloat premiumBlockedT;
     public PremiumGradient.PremiumGradientTools premiumGradient;
@@ -54,9 +52,9 @@ public final class HintDialogCell extends FrameLayout {
     public long starsPriceBlocked;
     public boolean wasDraw;
 
-    public HintDialogCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public HintDialogCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         new RectF();
         this.currentAccount = UserConfig.selectedAccount;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -68,38 +66,30 @@ public final class HintDialogCell extends FrameLayout {
         this.imageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(27.0f));
         addView(backupImageView, LayoutHelper.createFrame(54, 54.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
-        ArticleViewer.AnonymousClass9 anonymousClass9 = new ArticleViewer.AnonymousClass9(context, 2);
-        this.nameTextView = anonymousClass9;
-        NotificationCenter.listenEmojiLoading(anonymousClass9);
-        anonymousClass9.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-        anonymousClass9.setTextSize(1, 12.0f);
-        anonymousClass9.setMaxLines(1);
-        anonymousClass9.setGravity(49);
-        anonymousClass9.setLines(1);
-        anonymousClass9.setEllipsize(TextUtils.TruncateAt.END);
-        addView(anonymousClass9, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, 64.0f, 6.0f, 0.0f));
+        MentionCell.AnonymousClass1 anonymousClass1 = new MentionCell.AnonymousClass1(context, 2);
+        this.nameTextView = anonymousClass1;
+        NotificationCenter.listenEmojiLoading(anonymousClass1);
+        anonymousClass1.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        anonymousClass1.setTextSize(1, 12.0f);
+        anonymousClass1.setMaxLines(1);
+        anonymousClass1.setGravity(49);
+        anonymousClass1.setLines(1);
+        anonymousClass1.setEllipsize(TextUtils.TruncateAt.END);
+        addView(anonymousClass1, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, 64.0f, 6.0f, 0.0f));
         CounterView counterView = new CounterView(context, resourcesProvider);
         this.counterView = counterView;
         addView(counterView, LayoutHelper.createFrame(-1, 28.0f, 48, 0.0f, 4.0f, 0.0f, 0.0f));
-        int i = Theme.key_chats_unreadCounterText;
-        int i2 = Theme.key_chats_unreadCounter;
-        CounterView.CounterDrawable counterDrawable = counterView.counterDrawable;
-        counterDrawable.textColorKey = i;
-        counterDrawable.circleColorKey = i2;
+        counterView.setColors(Theme.key_chats_unreadCounterText, Theme.key_chats_unreadCounter);
         counterView.setGravity(5);
         if (z) {
             CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox2;
-            int i3 = Theme.key_dialogRoundCheckBox;
-            int i4 = Theme.key_dialogBackground;
-            int i5 = Theme.key_dialogRoundCheckBoxCheck;
-            CheckBoxBase checkBoxBase = checkBox2.checkBoxBase;
-            checkBoxBase.setColor(i3, i4, i5);
+            checkBox2.setColor(Theme.key_dialogRoundCheckBox, Theme.key_dialogBackground, Theme.key_dialogRoundCheckBoxCheck);
             checkBox2.setDrawUnchecked(false);
             checkBox2.setDrawBackgroundAsArc(4);
-            checkBox2.setProgressDelegate(new ChatActivity$$ExternalSyntheticLambda356(this, 4));
+            checkBox2.setProgressDelegate(new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 19));
             addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, 49, 19.0f, 42.0f, 0.0f, 0.0f));
-            checkBoxBase.setChecked(-1, false, false);
+            checkBox2.setChecked(false, false);
             setWillNotDraw(false);
         }
     }
@@ -167,7 +157,7 @@ public final class HintDialogCell extends FrameLayout {
                 if (this.premiumGradient == null) {
                     this.premiumGradient = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, -1, -1, null);
                 }
-                this.premiumGradient.gradientMatrix((int) (width - AndroidUtilities.dp(10.0f)), 0.0f, (int) (height - AndroidUtilities.dp(10.0f)), (int) (AndroidUtilities.dp(10.0f) + width), 0.0f, (int) (AndroidUtilities.dp(10.0f) + height));
+                this.premiumGradient.gradientMatrix((int) (width - AndroidUtilities.dp(10.0f)), (int) (height - AndroidUtilities.dp(10.0f)), (int) (AndroidUtilities.dp(10.0f) + width), (int) (AndroidUtilities.dp(10.0f) + height), 0.0f, 0.0f);
                 canvas.drawCircle(width, height, AndroidUtilities.dp(10.0f) * f5, this.premiumGradient.paint);
                 if (this.lockDrawable == null) {
                     Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.msg_mini_lock2).mutate();
@@ -230,33 +220,31 @@ public final class HintDialogCell extends FrameLayout {
         BackupImageView backupImageView = this.imageView;
         AvatarDrawable avatarDrawable = this.avatarDrawable;
         int i = this.currentAccount;
-        ArticleViewer.AnonymousClass9 anonymousClass9 = this.nameTextView;
+        MentionCell.AnonymousClass1 anonymousClass1 = this.nameTextView;
         if (zIsUserDialog) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
             this.currentUser = user;
             if (str != null) {
-                anonymousClass9.setText(str);
+                anonymousClass1.setText(str);
             } else if (user != null) {
-                anonymousClass9.setText(UserObject.getFirstName(user));
+                anonymousClass1.setText(UserObject.getFirstName(user));
             } else {
-                anonymousClass9.setText("");
+                anonymousClass1.setText("");
             }
             avatarDrawable.setInfo(i, this.currentUser);
-            backupImageView.imageReceiver.setForUserOrChat(this.currentUser, avatarDrawable);
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(this.currentUser, avatarDrawable);
         } else {
             TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
             if (str != null) {
-                anonymousClass9.setText(str);
+                anonymousClass1.setText(str);
             } else if (chat != null) {
-                anonymousClass9.setText(chat.title);
+                anonymousClass1.setText(chat.title);
             } else {
-                anonymousClass9.setText("");
+                anonymousClass1.setText("");
             }
             avatarDrawable.setInfo(i, chat);
             this.currentUser = null;
-            backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(chat, avatarDrawable);
         }
         updatePremiumBlocked(false);
         update(0);
@@ -278,10 +266,10 @@ public final class HintDialogCell extends FrameLayout {
         CounterView counterView = this.counterView;
         if (dialog == null || (i2 = dialog.unread_count) == 0) {
             this.lastUnreadCount = 0;
-            counterView.counterDrawable.setCount(0, this.wasDraw);
+            counterView.setCount(0, this.wasDraw);
         } else if (this.lastUnreadCount != i2) {
             this.lastUnreadCount = i2;
-            counterView.counterDrawable.setCount(i2, this.wasDraw);
+            counterView.setCount(i2, this.wasDraw);
         }
     }
 

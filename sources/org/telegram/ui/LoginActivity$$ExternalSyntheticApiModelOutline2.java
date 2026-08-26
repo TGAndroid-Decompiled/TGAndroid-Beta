@@ -8,6 +8,10 @@ public abstract class LoginActivity$$ExternalSyntheticApiModelOutline2 {
         return (SubscriptionInfo) obj;
     }
 
+    public static SubscriptionManager m2786m(Object obj) {
+        return (SubscriptionManager) obj;
+    }
+
     public static Class m() {
         return SubscriptionManager.class;
     }

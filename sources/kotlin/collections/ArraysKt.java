@@ -74,7 +74,7 @@ public abstract class ArraysKt extends ArraysKt__ArraysJVMKt {
         return EmptyList.INSTANCE;
     }
 
-    public static void copyInto(int i, int i2, int i3, int[] iArr, int[] destination) {
+    public static void copyInto(int i, int i2, int[] iArr, int[] destination, int i3) {
         Intrinsics.checkNotNullParameter(iArr, "<this>");
         Intrinsics.checkNotNullParameter(destination, "destination");
         System.arraycopy(iArr, i2, destination, i, i3 - i2);

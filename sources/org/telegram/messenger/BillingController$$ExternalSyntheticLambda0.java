@@ -47,6 +47,11 @@ public final class BillingController$$ExternalSyntheticLambda0 implements Reques
     }
 
     @Override
+    public boolean isSeekBarDragAllowed() {
+        return SeekBar.SeekBarDelegate.CC.$default$isSeekBarDragAllowed(this);
+    }
+
+    @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
         ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
     }
@@ -83,6 +88,7 @@ public final class BillingController$$ExternalSyntheticLambda0 implements Reques
 
     @Override
     public void onSeekBarContinuousDrag(float f) {
+        SeekBar.SeekBarDelegate.CC.$default$onSeekBarContinuousDrag(this, f);
     }
 
     @Override
@@ -91,8 +97,23 @@ public final class BillingController$$ExternalSyntheticLambda0 implements Reques
     }
 
     @Override
+    public void onSeekBarPressed() {
+        SeekBar.SeekBarDelegate.CC.$default$onSeekBarPressed(this);
+    }
+
+    @Override
+    public void onSeekBarReleased() {
+        SeekBar.SeekBarDelegate.CC.$default$onSeekBarReleased(this);
+    }
+
+    @Override
     public void onSuccess(Object obj) {
         LanguageDetector.lambda$detectLanguage$0((LanguageDetector.StringCallback) this.f$0, (String) obj);
+    }
+
+    @Override
+    public boolean reverseWaveform() {
+        return SeekBar.SeekBarDelegate.CC.$default$reverseWaveform(this);
     }
 
     @Override

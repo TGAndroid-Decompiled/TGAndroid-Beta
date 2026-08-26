@@ -1,11 +1,10 @@
 package org.telegram.ui.Components.Premium.boosts;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.BubbleActivity;
+import org.telegram.ui.Stories.PeerStoriesView;
 
 public final class UserSelectorBottomSheet$$ExternalSyntheticLambda5 implements Utilities.Callback {
     public final int $r8$classId;
@@ -22,22 +21,12 @@ public final class UserSelectorBottomSheet$$ExternalSyntheticLambda5 implements 
             case 0:
                 UserSelectorBottomSheet userSelectorBottomSheet = this.f$0;
                 userSelectorBottomSheet.query = (String) obj;
-                BubbleActivity.AnonymousClass1 anonymousClass1 = userSelectorBottomSheet.remoteSearchRunnable;
-                AndroidUtilities.cancelRunOnUIThread(anonymousClass1);
-                AndroidUtilities.runOnUIThread(anonymousClass1, 350L);
+                PeerStoriesView.AnonymousClass34 anonymousClass34 = userSelectorBottomSheet.remoteSearchRunnable;
+                AndroidUtilities.cancelRunOnUIThread(anonymousClass34);
+                AndroidUtilities.runOnUIThread(anonymousClass34, 350L);
                 break;
             case 1:
-                UserSelectorBottomSheet userSelectorBottomSheet2 = this.f$0;
-                ArrayList arrayList = userSelectorBottomSheet2.paymentOptions;
-                arrayList.clear();
-                arrayList.addAll((List) obj);
-                UserSelectorBottomSheet.AnonymousClass7 anonymousClass7 = userSelectorBottomSheet2.actionButton;
-                if (anonymousClass7.loading) {
-                    anonymousClass7.setLoading(false);
-                    if (userSelectorBottomSheet2.recyclerListView.mIsAttached) {
-                        userSelectorBottomSheet2.next();
-                    }
-                }
+                this.f$0.lambda$new$13((List) obj);
                 break;
             case 2:
                 this.f$0.dismiss(((Boolean) obj).booleanValue());

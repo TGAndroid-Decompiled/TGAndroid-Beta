@@ -8,9 +8,9 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda17;
-import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda34;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda12;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda10;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda17;
+import org.telegram.ui.iv.RichTextCell$2$$ExternalSyntheticLambda1;
 import org.webrtc.ContextUtils;
 import org.webrtc.VideoSink;
 
@@ -115,7 +115,7 @@ public class NativeInstance {
         if (this.isGroup && iArr != null && iArr.length == 0) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new VoIPService$$ExternalSyntheticLambda53(this, iArr, fArr, zArr, 2));
+        AndroidUtilities.runOnUIThread(new VoIPService$$ExternalSyntheticLambda53(2, this, iArr, fArr, zArr));
     }
 
     private void onCancelRequestBroadcastPart(long j, int i, int i2) {
@@ -124,7 +124,7 @@ public class NativeInstance {
 
     private void onEmitJoinPayload(String str, int i) {
         try {
-            AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda17(this, i, str, 4));
+            AndroidUtilities.runOnUIThread(new RichTextCell$2$$ExternalSyntheticLambda1(this, i, str, 4));
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -132,7 +132,7 @@ public class NativeInstance {
 
     private void onNetworkStateUpdated(boolean z, boolean z2) {
         if (this.onStateUpdatedListener != null) {
-            AndroidUtilities.runOnUIThread(new EmojiView$$ExternalSyntheticLambda34(this, z, z2, 2));
+            AndroidUtilities.runOnUIThread(new EmojiView$$ExternalSyntheticLambda10(this, z, z2, 2));
         }
     }
 
@@ -140,7 +140,7 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new PollItemMenu$$ExternalSyntheticLambda12(this, j, iArr, 3));
+        AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda17(this, j, iArr, 3));
     }
 
     private void onRemoteMediaStateUpdated(int i, int i2) {

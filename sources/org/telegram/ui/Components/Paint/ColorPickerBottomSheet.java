@@ -11,6 +11,9 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.LongSparseArray;
 import android.view.MotionEvent;
 import android.view.View;
@@ -22,45 +25,186 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import androidx.core.util.Consumer;
+import j$.util.Objects;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline0;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.video.TextureRenderer$$ExternalSyntheticOutline0;
+import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda5;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CacheControlActivity;
-import org.telegram.ui.Components.ColorPicker;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticOutline0;
+import org.telegram.ui.Cells.AboutLinkCell$$ExternalSyntheticLambda1;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.PaintColorsListView;
 import org.telegram.ui.Components.Paint.Views.PipettePickerView;
-import org.telegram.ui.Components.SearchField$$ExternalSyntheticLambda0;
-import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda8;
-import org.telegram.ui.LoginActivity;
-import org.telegram.ui.PassportActivity;
-import org.telegram.ui.PaymentFormActivity$$ExternalSyntheticLambda11;
+import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Gifts.ResaleGiftsFragment;
 import org.telegram.ui.iv.RichTextCell$$ExternalSyntheticLambda3;
 
 public final class ColorPickerBottomSheet extends BottomSheet {
     public static final int $r8$clinit = 0;
-    public final CacheControlActivity.ClearingCacheView.ProgressView alphaPickerView;
+    public final AlphaPickerView alphaPickerView;
     public Consumer colorListener;
     public final ImageView doneView;
     public boolean initialized;
     public int mColor;
     public final android.graphics.Path path;
-    public final ColorPicker.AnonymousClass1 pickerView;
+    public final ColorPickerView pickerView;
     public PipetteDelegate pipetteDelegate;
     public final ImageView pipetteView;
 
     public final class AnonymousClass1 extends PipettePickerView {
         public AnonymousClass1(Context context, Bitmap bitmap) {
             super(context, bitmap);
+        }
+    }
+
+    public final class AlphaPickerView extends View {
+        public float alpha;
+        public final Paint colorPaint;
+        public final Paint outlinePaint;
+
+        public AlphaPickerView(Context context) {
+            super(context);
+            this.colorPaint = new Paint(1);
+            Paint paint = new Paint(1);
+            this.outlinePaint = paint;
+            paint.setColor(-1);
+            paint.setStyle(Paint.Style.FILL_AND_STROKE);
+            paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        }
+
+        @Override
+        public final void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            float height = getHeight() / 2.0f;
+            float fDp = AndroidUtilities.dp(6.0f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            float f = height - fDp;
+            float f2 = height + fDp;
+            rectF.set(fDp, f, getWidth() - fDp, f2);
+            canvas.save();
+            ColorPickerBottomSheet colorPickerBottomSheet = ColorPickerBottomSheet.this;
+            colorPickerBottomSheet.path.rewind();
+            colorPickerBottomSheet.path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), android.graphics.Path.Direction.CW);
+            canvas.clipPath(colorPickerBottomSheet.path);
+            PaintColorsListView.drawCheckerboard(canvas, rectF, AndroidUtilities.dp(6.0f));
+            canvas.restore();
+            rectF.set(fDp, f, getWidth() - fDp, f2);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.colorPaint);
+            float fDp2 = AndroidUtilities.dp(13.0f);
+            Paint paint = this.outlinePaint;
+            float strokeWidth = fDp2 - (paint.getStrokeWidth() / 2.0f);
+            float fMax = Math.max(fDp + strokeWidth, (((getWidth() - (2.0f * fDp)) * this.alpha) + fDp) - strokeWidth);
+            canvas.drawCircle(fMax, height, fDp2, paint);
+            PaintColorsListView.drawColorCircle(canvas, fMax, height, strokeWidth, ColorUtils.setAlphaComponent(colorPickerBottomSheet.mColor, (int) (this.alpha * 255.0f)));
+        }
+
+        @Override
+        public final void onSizeChanged(int i, int i2, int i3, int i4) {
+            super.onSizeChanged(i, i2, i3, i4);
+            this.colorPaint.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{0, ColorPickerBottomSheet.this.mColor}, (float[]) null, android.graphics.Shader.TileMode.CLAMP));
+        }
+
+        @Override
+        public final boolean onTouchEvent(MotionEvent motionEvent) {
+            int actionMasked = motionEvent.getActionMasked();
+            if (actionMasked != 0) {
+                if (actionMasked == 1) {
+                    updatePosition(motionEvent.getX());
+                    getParent().requestDisallowInterceptTouchEvent(false);
+                } else if (actionMasked != 2) {
+                    if (actionMasked == 3) {
+                        getParent().requestDisallowInterceptTouchEvent(false);
+                    }
+                }
+                return true;
+            }
+            getParent().requestDisallowInterceptTouchEvent(true);
+            updatePosition(motionEvent.getX());
+            return true;
+        }
+
+        public final void updatePosition(float f) {
+            float fDp = AndroidUtilities.dp(6.0f);
+            float fClamp = MathUtils.clamp(((f - fDp) + (AndroidUtilities.dp(13.0f) - (this.outlinePaint.getStrokeWidth() / 2.0f))) / (getWidth() - (fDp * 2.0f)), 0.0f, 1.0f);
+            this.alpha = fClamp;
+            ColorPickerBottomSheet colorPickerBottomSheet = ColorPickerBottomSheet.this;
+            colorPickerBottomSheet.onSetColor(ColorUtils.setAlphaComponent(colorPickerBottomSheet.mColor, (int) (fClamp * 255.0f)), 1);
+            invalidate();
+        }
+    }
+
+    public final class ColorPickerView extends LinearLayout {
+        public final GradientPickerView gradientPickerView;
+        public final GridPickerView gridPickerView;
+        public final SlidersPickerView slidersPickerView;
+
+        public final class AnonymousClass1 extends ViewPagerFixed {
+            @Override
+            public final int tabMarginDp() {
+                return 0;
+            }
+        }
+
+        public ColorPickerView(ColorPickerBottomSheet colorPickerBottomSheet, Context context) {
+            super(context);
+            setOrientation(1);
+            GridPickerView gridPickerView = colorPickerBottomSheet.new GridPickerView(context);
+            this.gridPickerView = gridPickerView;
+            gridPickerView.setCurrentColor(colorPickerBottomSheet.mColor);
+            this.gradientPickerView = colorPickerBottomSheet.new GradientPickerView(context);
+            this.slidersPickerView = colorPickerBottomSheet.new SlidersPickerView(context);
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(context, ((BottomSheet) colorPickerBottomSheet).resourcesProvider);
+            anonymousClass1.setAdapter(new ViewPagerFixed.Adapter() {
+                @Override
+                public final void bindView(View view, int i, int i2) {
+                }
+
+                @Override
+                public final View createView(int i) {
+                    ColorPickerView colorPickerView = ColorPickerView.this;
+                    if (i != 1) {
+                        return i != 2 ? colorPickerView.gridPickerView : colorPickerView.slidersPickerView;
+                    }
+                    return colorPickerView.gradientPickerView;
+                }
+
+                @Override
+                public final int getItemCount() {
+                    return 3;
+                }
+
+                @Override
+                public final CharSequence getItemTitle(int i) {
+                    if (i != 1) {
+                        return i != 2 ? LocaleController.getString(R.string.PaintPaletteGrid).toUpperCase() : LocaleController.getString(R.string.PaintPaletteSliders).toUpperCase();
+                    }
+                    return LocaleController.getString(R.string.PaintPaletteSpectrum).toUpperCase();
+                }
+
+                @Override
+                public final int getItemViewType(int i) {
+                    return i;
+                }
+            });
+            addView(anonymousClass1, LayoutHelper.createLinear(-1, 0, 1.0f));
+            addView(colorPickerBottomSheet.alphaPickerView, LayoutHelper.createLinear(-1, 48, 12.0f, 0.0f, 12.0f, 0.0f));
+            LinearLayout linearLayout = new LinearLayout(context);
+            linearLayout.setOrientation(0);
+            linearLayout.setGravity(16);
+            linearLayout.addView(colorPickerBottomSheet.pipetteView, LayoutHelper.createLinear(28, 28));
+            linearLayout.addView(anonymousClass1.createTabsView(false, 8), LayoutHelper.createLinear(-1, 40, 1.0f, 16, 12, 0, 12, 0));
+            linearLayout.addView(colorPickerBottomSheet.doneView, LayoutHelper.createLinear(28, 28));
+            addView(linearLayout, LayoutHelper.createLinear(-1, 48, 14.0f, 0.0f, 14.0f, 0.0f));
         }
     }
 
@@ -120,7 +264,7 @@ public final class ColorPickerBottomSheet extends BottomSheet {
             float strokeWidth = fDp2 - (paint.getStrokeWidth() / 2.0f);
             float fMax = Math.max(fDp + strokeWidth, (((getWidth() - (2.0f * fDp)) * f) + fDp) - strokeWidth);
             canvas.drawCircle(fMax, height, fDp2, paint);
-            PaintColorsListView.drawColorCircle(fMax, height, strokeWidth, this.filledColor, canvas);
+            PaintColorsListView.drawColorCircle(canvas, fMax, height, strokeWidth, this.filledColor);
         }
 
         @Override
@@ -213,7 +357,7 @@ public final class ColorPickerBottomSheet extends BottomSheet {
             drawable.setBounds(i, i2, (int) (fClamp + fDp + f3), (int) (fClamp2 + fDp + f3));
             drawable.draw(canvas);
             canvas.drawCircle(fClamp, fClamp2, fDp, paint);
-            PaintColorsListView.drawColorCircle(fClamp, fClamp2, strokeWidth, ColorUtils.setAlphaComponent(ColorPickerBottomSheet.this.mColor, 255), canvas);
+            PaintColorsListView.drawColorCircle(canvas, fClamp, fClamp2, strokeWidth, ColorUtils.setAlphaComponent(ColorPickerBottomSheet.this.mColor, 255));
         }
 
         @Override
@@ -471,7 +615,7 @@ public final class ColorPickerBottomSheet extends BottomSheet {
             super(context);
             TextView textView = new TextView(context);
             this.titleView = textView;
-            FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(14.0f, -1711276033, 1, textView);
+            FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView, -1711276033, 1, 14.0f);
             addView(textView, LayoutHelper.createFrame(-2, -2.0f, 3, 8.0f, 0.0f, 8.0f, 0.0f));
             ColorSliderView colorSliderView = ColorPickerBottomSheet.this.new ColorSliderView(context);
             this.sliderView = colorSliderView;
@@ -488,9 +632,9 @@ public final class ColorPickerBottomSheet extends BottomSheet {
             editTextBoldCursor.setImeActionLabel(LocaleController.getString(R.string.Done), 6);
             editTextBoldCursor.setInputType(2);
             editTextBoldCursor.setTypeface(AndroidUtilities.bold());
-            editTextBoldCursor.addTextChangedListener(new LoginActivity.AnonymousClass7(this));
-            editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 2));
-            editTextBoldCursor.setOnEditorActionListener(new PaymentFormActivity$$ExternalSyntheticLambda11(3));
+            editTextBoldCursor.addTextChangedListener(new ResaleGiftsFragment.AnonymousClass6(this));
+            editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 1));
+            editTextBoldCursor.setOnEditorActionListener(new ColorPickerBottomSheet$SliderCell$$ExternalSyntheticLambda1(0));
             addView(editTextBoldCursor, LayoutHelper.createFrame(72, 36, 85));
         }
 
@@ -499,11 +643,11 @@ public final class ColorPickerBottomSheet extends BottomSheet {
             this.sliderView.mode = i;
             TextView textView = this.titleView;
             if (i == 0) {
-                textView.setText(LocaleController.getString(R.string.PaintPaletteSlidersRed).toUpperCase());
+                ArticleViewer$$ExternalSyntheticOutline0.m(R.string.PaintPaletteSlidersRed, textView);
             } else if (i == 1) {
-                textView.setText(LocaleController.getString(R.string.PaintPaletteSlidersGreen).toUpperCase());
+                ArticleViewer$$ExternalSyntheticOutline0.m(R.string.PaintPaletteSlidersGreen, textView);
             } else if (i == 2) {
-                textView.setText(LocaleController.getString(R.string.PaintPaletteSlidersBlue).toUpperCase());
+                ArticleViewer$$ExternalSyntheticOutline0.m(R.string.PaintPaletteSlidersBlue, textView);
             }
             invalidateColor();
         }
@@ -562,13 +706,13 @@ public final class ColorPickerBottomSheet extends BottomSheet {
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
             linearLayout.setGravity(21);
-            addView(linearLayout, LayoutHelper.createFrame(64.0f, -1));
+            addView(linearLayout, LayoutHelper.createFrame(-1, 64.0f));
             TextView textView = new TextView(context);
             textView.setTextColor(-1711276033);
             textView.setTextSize(1, 16.0f);
             textView.setText(LocaleController.getString(R.string.PaintPaletteSlidersHexColor).toUpperCase());
             textView.setTypeface(AndroidUtilities.bold());
-            linearLayout.addView(textView, LayoutHelper.createLinear(0.0f, 0.0f, 8.0f, 0.0f, -2, -2));
+            linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 8.0f, 0.0f));
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
             this.hexEdit = editTextBoldCursor;
             editTextBoldCursor.setTextSize(1, 16.0f);
@@ -580,15 +724,67 @@ public final class ColorPickerBottomSheet extends BottomSheet {
             editTextBoldCursor.setImeOptions(6);
             editTextBoldCursor.setImeActionLabel(LocaleController.getString(R.string.Done), 6);
             editTextBoldCursor.setTypeface(AndroidUtilities.bold());
-            editTextBoldCursor.addTextChangedListener(new PassportActivity.AnonymousClass13(this));
-            editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 3));
-            editTextBoldCursor.setOnEditorActionListener(new PaymentFormActivity$$ExternalSyntheticLambda11(4));
+            editTextBoldCursor.addTextChangedListener(new TextWatcher() {
+                public final Pattern pattern = Pattern.compile("^[0-9a-fA-F]*$");
+                public String previous;
+
+                @Override
+                public final void afterTextChanged(Editable editable) {
+                    long j;
+                    int i;
+                    SlidersPickerView slidersPickerView = SlidersPickerView.this;
+                    if (slidersPickerView.isInvalidatingColor || this.previous == null || editable == null || TextUtils.isEmpty(editable) || Objects.equals(this.previous.toString(), editable.toString())) {
+                        return;
+                    }
+                    String string = editable.toString();
+                    if (string.length() > 8) {
+                        EditTextBoldCursor editTextBoldCursor2 = slidersPickerView.hexEdit;
+                        editTextBoldCursor2.setText(string.substring(2, 8).toUpperCase());
+                        editTextBoldCursor2.setSelection(8);
+                        return;
+                    }
+                    if (this.pattern.matcher(editable).find()) {
+                        int length = string.length();
+                        ColorPickerBottomSheet colorPickerBottomSheet = ColorPickerBottomSheet.this;
+                        if (length != 3) {
+                            if (length == 6) {
+                                i = ((int) Long.parseLong(string, 16)) - 16777216;
+                            } else if (length != 8) {
+                                i = colorPickerBottomSheet.mColor;
+                            } else {
+                                j = Long.parseLong(string, 16);
+                            }
+                            if (i == colorPickerBottomSheet.mColor) {
+                                return;
+                            }
+                            colorPickerBottomSheet.onSetColor(i, 5);
+                        }
+                        j = Long.parseLong("FF" + string.charAt(0) + string.charAt(0) + string.charAt(1) + string.charAt(1) + string.charAt(2) + string.charAt(2), 16);
+                        i = (int) j;
+                        if (i == colorPickerBottomSheet.mColor) {
+                            return;
+                        }
+                        colorPickerBottomSheet.onSetColor(i, 5);
+                    }
+                }
+
+                @Override
+                public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                    this.previous = charSequence.toString();
+                }
+
+                @Override
+                public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
+            });
+            editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 2));
+            editTextBoldCursor.setOnEditorActionListener(new ColorPickerBottomSheet$SliderCell$$ExternalSyntheticLambda1(1));
             linearLayout.addView(editTextBoldCursor, LayoutHelper.createLinear(72, 36));
         }
     }
 
     public ColorPickerBottomSheet(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider, true, false);
+        super(context, true, false, resourcesProvider);
         this.path = new android.graphics.Path();
         fixNavigationBar(-14342875);
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
@@ -603,21 +799,21 @@ public final class ColorPickerBottomSheet extends BottomSheet {
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
         imageView.setBackground(Theme.createSelectorDrawable(1090519039, 1, -1));
-        imageView.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(2, this, context));
+        imageView.setOnClickListener(new AlertDialog$$ExternalSyntheticLambda5(12, this, context));
         ImageView imageView2 = new ImageView(context);
         this.doneView = imageView2;
         imageView2.setImageResource(R.drawable.ic_ab_done);
         imageView2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         imageView2.setBackground(Theme.createSelectorDrawable(1090519039, 1, -1));
-        imageView2.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 8));
-        CacheControlActivity.ClearingCacheView.ProgressView progressView = new CacheControlActivity.ClearingCacheView.ProgressView(this, context);
-        this.alphaPickerView = progressView;
-        progressView.progress = Color.alpha(-65536) / 255.0f;
-        progressView.in.setShader(new LinearGradient(0.0f, 0.0f, progressView.getWidth(), 0.0f, new int[]{0, this.mColor}, (float[]) null, android.graphics.Shader.TileMode.CLAMP));
-        progressView.invalidate();
-        ColorPicker.AnonymousClass1 anonymousClass1 = new ColorPicker.AnonymousClass1(this, context);
-        this.pickerView = anonymousClass1;
-        linearLayout.addView(anonymousClass1, LayoutHelper.createLinear(-1, 0));
+        imageView2.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 18));
+        AlphaPickerView alphaPickerView = new AlphaPickerView(context);
+        this.alphaPickerView = alphaPickerView;
+        alphaPickerView.alpha = Color.alpha(-65536) / 255.0f;
+        alphaPickerView.colorPaint.setShader(new LinearGradient(0.0f, 0.0f, alphaPickerView.getWidth(), 0.0f, new int[]{0, this.mColor}, (float[]) null, android.graphics.Shader.TileMode.CLAMP));
+        alphaPickerView.invalidate();
+        ColorPickerView colorPickerView = new ColorPickerView(this, context);
+        this.pickerView = colorPickerView;
+        linearLayout.addView(colorPickerView, LayoutHelper.createLinear(-1, 0));
         ScrollView scrollView = new ScrollView(context) {
             {
                 setWillNotDraw(false);
@@ -662,16 +858,16 @@ public final class ColorPickerBottomSheet extends BottomSheet {
                 this.initialized = true;
             }
         }
-        ColorPicker.AnonymousClass1 anonymousClass1 = this.pickerView;
-        if (i2 != 5 && (viewFindFocus = anonymousClass1.findFocus()) != null) {
+        ColorPickerView colorPickerView = this.pickerView;
+        if (i2 != 5 && (viewFindFocus = colorPickerView.findFocus()) != null) {
             viewFindFocus.clearFocus();
             AndroidUtilities.hideKeyboard(viewFindFocus);
         }
         if (i2 != 3) {
-            ((GridPickerView) anonymousClass1.rect).setCurrentColor(i);
+            colorPickerView.gridPickerView.setCurrentColor(i);
         }
         if (i2 != 0) {
-            GradientPickerView gradientPickerView = (GradientPickerView) anonymousClass1.paint;
+            GradientPickerView gradientPickerView = colorPickerView.gradientPickerView;
             boolean z = i2 != 1;
             ColorPickerBottomSheet.this.mColor = i;
             float[] fArr = gradientPickerView.hsv;
@@ -685,13 +881,13 @@ public final class ColorPickerBottomSheet extends BottomSheet {
             gradientPickerView.invalidate();
         }
         if (i2 != 1) {
-            CacheControlActivity.ClearingCacheView.ProgressView progressView = this.alphaPickerView;
-            progressView.getClass();
-            progressView.progress = Color.alpha(i) / 255.0f;
-            progressView.in.setShader(new LinearGradient(0.0f, 0.0f, progressView.getWidth(), 0.0f, new int[]{0, ((ColorPickerBottomSheet) progressView.progressT).mColor}, (float[]) null, android.graphics.Shader.TileMode.CLAMP));
-            progressView.invalidate();
+            AlphaPickerView alphaPickerView = this.alphaPickerView;
+            alphaPickerView.getClass();
+            alphaPickerView.alpha = Color.alpha(i) / 255.0f;
+            alphaPickerView.colorPaint.setShader(new LinearGradient(0.0f, 0.0f, alphaPickerView.getWidth(), 0.0f, new int[]{0, ColorPickerBottomSheet.this.mColor}, (float[]) null, android.graphics.Shader.TileMode.CLAMP));
+            alphaPickerView.invalidate();
         }
-        SlidersPickerView slidersPickerView = (SlidersPickerView) anonymousClass1.this$0;
+        SlidersPickerView slidersPickerView = colorPickerView.slidersPickerView;
         slidersPickerView.isInvalidatingColor = true;
         slidersPickerView.red.invalidateColor();
         slidersPickerView.green.invalidateColor();

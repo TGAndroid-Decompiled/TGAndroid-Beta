@@ -1,27 +1,41 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ChatActivity;
 
-public abstract class ChatSearchTabs extends FrameLayout {
-    public ValueAnimator actionBarTagsAnimator;
-    public float actionBarTagsT;
-    public boolean shown;
+public class ChatSearchTabs extends FrameLayout {
+    private ValueAnimator actionBarTagsAnimator;
+    private float actionBarTagsT;
+    private boolean shown;
     public float shownT;
     public ViewPagerFixed.TabsView tabs;
+
+    public ChatSearchTabs(Context context) {
+        super(context);
+    }
+
+    public void lambda$show$0(ValueAnimator valueAnimator) {
+        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.actionBarTagsT = fFloatValue;
+        setShown(fFloatValue);
+        onShownUpdate(false);
+    }
 
     public int getCurrentHeight() {
         return (int) (getMeasuredHeight() * this.shownT);
     }
 
     @Override
-    public final boolean isShown() {
+    public boolean isShown() {
         return this.shown;
     }
 
-    public abstract void onShownUpdate(boolean z);
+    public void onShownUpdate(boolean z) {
+    }
 
     public void setShown(float f) {
         this.shownT = f;
@@ -38,10 +52,10 @@ public abstract class ChatSearchTabs extends FrameLayout {
 
     public void setTabs(ViewPagerFixed.TabsView tabsView) {
         this.tabs = tabsView;
-        addView(tabsView, LayoutHelper.createFrame(-1.0f, -1));
+        addView(tabsView, LayoutHelper.createFrame(-1, -1.0f));
     }
 
-    public final void show(boolean z) {
+    public void show(final boolean z) {
         this.shown = z;
         ValueAnimator valueAnimator = this.actionBarTagsAnimator;
         if (valueAnimator != null) {
@@ -53,10 +67,28 @@ public abstract class ChatSearchTabs extends FrameLayout {
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.actionBarTagsT, z ? 1.0f : 0.0f);
         this.actionBarTagsAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ItemOptions$$ExternalSyntheticLambda4(this, 1));
+        valueAnimatorOfFloat.addUpdateListener(new ButtonBounce$$ExternalSyntheticLambda0(this, 29));
         this.actionBarTagsAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.actionBarTagsAnimator.setDuration(320L);
-        this.actionBarTagsAnimator.addListener(new ChatActivity.AnonymousClass77(17, this, z));
+        this.actionBarTagsAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                if (animator != ChatSearchTabs.this.actionBarTagsAnimator) {
+                    return;
+                }
+                ChatSearchTabs.this.actionBarTagsT = z ? 1.0f : 0.0f;
+                ChatSearchTabs chatSearchTabs = ChatSearchTabs.this;
+                chatSearchTabs.setShown(chatSearchTabs.actionBarTagsT);
+                if (!z) {
+                    ChatSearchTabs.this.setVisibility(8);
+                }
+                ChatSearchTabs.this.onShownUpdate(true);
+            }
+        });
         this.actionBarTagsAnimator.start();
+    }
+
+    public boolean shown() {
+        return this.shownT > 0.5f;
     }
 }

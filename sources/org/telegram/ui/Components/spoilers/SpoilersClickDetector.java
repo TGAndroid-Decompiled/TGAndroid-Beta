@@ -3,12 +3,12 @@ package org.telegram.ui.Components.spoilers;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import com.android.billingclient.api.zzcv;
+import androidx.core.view.GestureDetectorCompat;
 import java.util.Iterator;
 import java.util.List;
 
 public final class SpoilersClickDetector {
-    public final zzcv gestureDetector;
+    public final GestureDetectorCompat gestureDetector;
     public int horizontalPadding;
     public boolean trackingTap;
     public int verticalPadding;
@@ -18,7 +18,7 @@ public final class SpoilersClickDetector {
     }
 
     public SpoilersClickDetector(final View view, final List list, final OnSpoilerClickedListener onSpoilerClickedListener) {
-        this.gestureDetector = new zzcv(view.getContext(), new GestureDetector.SimpleOnGestureListener() {
+        this.gestureDetector = new GestureDetectorCompat(view.getContext(), new GestureDetector.SimpleOnGestureListener() {
             @Override
             public final boolean onDown(MotionEvent motionEvent) {
                 int x = (int) motionEvent.getX();

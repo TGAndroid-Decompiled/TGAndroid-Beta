@@ -1,6 +1,5 @@
 package org.telegram.ui.Components;
 
-import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.ContactsController;
 
 public final class ChatAttachAlertContactsLayout$ShareAdapter$$ExternalSyntheticLambda0 implements ChatAttachAlertContactsLayout.UserCell.CharSequenceCallback {
@@ -13,14 +12,12 @@ public final class ChatAttachAlertContactsLayout$ShareAdapter$$ExternalSynthetic
     }
 
     @Override
-    public final String run() {
+    public final CharSequence run() {
         switch (this.$r8$classId) {
             case 0:
-                ContactsController.Contact contact = this.f$0;
-                return contact.phones.isEmpty() ? "" : PhoneFormat.getInstance().format(contact.phones.get(0));
+                return ChatAttachAlertContactsLayout.ShareAdapter.lambda$onBindViewHolder$0(this.f$0);
             default:
-                ContactsController.Contact contact2 = this.f$0;
-                return contact2.phones.isEmpty() ? "" : PhoneFormat.getInstance().format(contact2.phones.get(0));
+                return ChatAttachAlertContactsLayout.ShareSearchAdapter.lambda$onBindViewHolder$4(this.f$0);
         }
     }
 }

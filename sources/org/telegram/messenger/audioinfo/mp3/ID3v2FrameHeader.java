@@ -41,31 +41,31 @@ public final class ID3v2FrameHeader {
         long j = rangeInputStream.position;
         ID3v2TagHeader iD3v2TagHeader = (ID3v2TagHeader) result.resultPoints;
         int i = iD3v2TagHeader.version;
-        Stripe stripe = (Stripe) result.resultMetadata;
+        Stripe.AnonymousClass1 anonymousClass1 = (Stripe.AnonymousClass1) result.resultMetadata;
         byte b3 = 2;
         if (i == 2) {
-            stripe.getClass();
+            anonymousClass1.getClass();
             byte[] bArr = new byte[3];
-            stripe.readFully(3, bArr);
+            anonymousClass1.readFully(3, bArr);
             this.frameId = new String(bArr, "ISO-8859-1");
         } else {
-            stripe.getClass();
+            anonymousClass1.getClass();
             byte[] bArr2 = new byte[4];
-            stripe.readFully(4, bArr2);
+            anonymousClass1.readFully(4, bArr2);
             this.frameId = new String(bArr2, "ISO-8859-1");
         }
         int i2 = iD3v2TagHeader.version;
         byte b4 = 8;
         if (i2 == 2) {
-            this.bodySize = ((stripe.readByte() & 255) << 16) | ((stripe.readByte() & 255) << 8) | (stripe.readByte() & 255);
+            this.bodySize = ((anonymousClass1.readByte() & 255) << 16) | ((anonymousClass1.readByte() & 255) << 8) | (anonymousClass1.readByte() & 255);
         } else if (i2 == 3) {
-            this.bodySize = stripe.readInt();
+            this.bodySize = anonymousClass1.readInt();
         } else {
-            this.bodySize = stripe.readSyncsafeInt();
+            this.bodySize = anonymousClass1.readSyncsafeInt();
         }
         if (i2 > 2) {
-            stripe.readByte();
-            byte b5 = stripe.readByte();
+            anonymousClass1.readByte();
+            byte b5 = anonymousClass1.readByte();
             byte b6 = 64;
             if (i2 == 3) {
                 b4 = 128;
@@ -84,28 +84,28 @@ public final class ID3v2FrameHeader {
             this.encryption = z2;
             if (i2 == 3) {
                 if (z) {
-                    this.dataLengthIndicator = stripe.readInt();
+                    this.dataLengthIndicator = anonymousClass1.readInt();
                     this.bodySize -= 4;
                 }
                 if (z2) {
-                    stripe.readByte();
+                    anonymousClass1.readByte();
                     this.bodySize--;
                 }
                 if ((b5 & b) != 0) {
-                    stripe.readByte();
+                    anonymousClass1.readByte();
                     this.bodySize--;
                 }
             } else {
                 if ((b5 & b) != 0) {
-                    stripe.readByte();
+                    anonymousClass1.readByte();
                     this.bodySize--;
                 }
                 if (z2) {
-                    stripe.readByte();
+                    anonymousClass1.readByte();
                     this.bodySize--;
                 }
                 if ((b5 & b2) != 0) {
-                    this.dataLengthIndicator = stripe.readSyncsafeInt();
+                    this.dataLengthIndicator = anonymousClass1.readSyncsafeInt();
                     this.bodySize -= 4;
                 }
             }

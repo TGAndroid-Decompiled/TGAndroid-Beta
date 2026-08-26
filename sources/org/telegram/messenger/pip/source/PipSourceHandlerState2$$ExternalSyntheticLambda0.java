@@ -2,15 +2,14 @@ package org.telegram.messenger.pip.source;
 
 import android.os.Build;
 import android.util.Log;
-import androidx.activity.ComponentDialog$$ExternalSyntheticLambda1;
-import androidx.appcompat.widget.TooltipPopup;
+import androidx.core.app.ActivityCompat$$ExternalSyntheticLambda0;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.pip.PipActivityContentLayout;
+import org.telegram.messenger.pip.PipActivityController;
 import org.telegram.messenger.pip.utils.Trigger;
-import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.web.MHTML;
 
 public final class PipSourceHandlerState2$$ExternalSyntheticLambda0 {
@@ -49,11 +48,11 @@ public final class PipSourceHandlerState2$$ExternalSyntheticLambda0 {
                             case 1:
                                 PipSourceHandlerState2 pipSourceHandlerState4 = pipSourceHandlerState2;
                                 if (pipSourceHandlerState4.state == 4) {
-                                    TooltipPopup tooltipPopup = pipSourceHandlerState4.source.controller;
-                                    if (((PipActivityContentLayout) tooltipPopup.mMessageView) == null) {
-                                        tooltipPopup.mMessageView = new PipActivityContentLayout((LaunchActivity) tooltipPopup.mLayoutParams);
+                                    PipActivityController pipActivityController = pipSourceHandlerState4.source.controller;
+                                    if (pipActivityController.pipContentView == null) {
+                                        pipActivityController.pipContentView = new PipActivityContentLayout(pipActivityController.activity);
                                     }
-                                    ((PipActivityContentLayout) tooltipPopup.mMessageView).removeView(pipSourceHandlerState4.pictureInPictureWrapperView);
+                                    pipActivityController.pipContentView.removeView(pipSourceHandlerState4.pictureInPictureWrapperView);
                                     pipSourceHandlerState4.pictureInPictureView = null;
                                     pipSourceHandlerState4.pictureInPictureWrapperView = null;
                                     pipSourceHandlerState4.pictureInPicturePlaceholderView = null;
@@ -122,11 +121,11 @@ public final class PipSourceHandlerState2$$ExternalSyntheticLambda0 {
                             case 1:
                                 PipSourceHandlerState2 pipSourceHandlerState5 = pipSourceHandlerState3;
                                 if (pipSourceHandlerState5.state == 4) {
-                                    TooltipPopup tooltipPopup = pipSourceHandlerState5.source.controller;
-                                    if (((PipActivityContentLayout) tooltipPopup.mMessageView) == null) {
-                                        tooltipPopup.mMessageView = new PipActivityContentLayout((LaunchActivity) tooltipPopup.mLayoutParams);
+                                    PipActivityController pipActivityController = pipSourceHandlerState5.source.controller;
+                                    if (pipActivityController.pipContentView == null) {
+                                        pipActivityController.pipContentView = new PipActivityContentLayout(pipActivityController.activity);
                                     }
-                                    ((PipActivityContentLayout) tooltipPopup.mMessageView).removeView(pipSourceHandlerState5.pictureInPictureWrapperView);
+                                    pipActivityController.pipContentView.removeView(pipSourceHandlerState5.pictureInPictureWrapperView);
                                     pipSourceHandlerState5.pictureInPictureView = null;
                                     pipSourceHandlerState5.pictureInPictureWrapperView = null;
                                     pipSourceHandlerState5.pictureInPicturePlaceholderView = null;
@@ -180,7 +179,7 @@ public final class PipSourceHandlerState2$$ExternalSyntheticLambda0 {
                 Log.i("PIP_DEBUG", "[HANDLER] on old source render first frame " + z);
                 MHTML mhtml = pipSourceHandlerState4.pipSourcePlaceholder;
                 Objects.requireNonNull(mhtml);
-                AndroidUtilities.runOnUIThread(new ComponentDialog$$ExternalSyntheticLambda1(mhtml, 22));
+                AndroidUtilities.runOnUIThread(new ActivityCompat$$ExternalSyntheticLambda0(mhtml, 21));
                 break;
             default:
                 final PipSourceHandlerState2 pipSourceHandlerState5 = this.f$0;
@@ -207,11 +206,11 @@ public final class PipSourceHandlerState2$$ExternalSyntheticLambda0 {
                             case 1:
                                 PipSourceHandlerState2 pipSourceHandlerState7 = pipSourceHandlerState5;
                                 if (pipSourceHandlerState7.state == 4) {
-                                    TooltipPopup tooltipPopup = pipSourceHandlerState7.source.controller;
-                                    if (((PipActivityContentLayout) tooltipPopup.mMessageView) == null) {
-                                        tooltipPopup.mMessageView = new PipActivityContentLayout((LaunchActivity) tooltipPopup.mLayoutParams);
+                                    PipActivityController pipActivityController = pipSourceHandlerState7.source.controller;
+                                    if (pipActivityController.pipContentView == null) {
+                                        pipActivityController.pipContentView = new PipActivityContentLayout(pipActivityController.activity);
                                     }
-                                    ((PipActivityContentLayout) tooltipPopup.mMessageView).removeView(pipSourceHandlerState7.pictureInPictureWrapperView);
+                                    pipActivityController.pipContentView.removeView(pipSourceHandlerState7.pictureInPictureWrapperView);
                                     pipSourceHandlerState7.pictureInPictureView = null;
                                     pipSourceHandlerState7.pictureInPictureWrapperView = null;
                                     pipSourceHandlerState7.pictureInPicturePlaceholderView = null;

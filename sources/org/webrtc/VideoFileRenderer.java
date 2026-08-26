@@ -103,7 +103,7 @@ public class VideoFileRenderer implements VideoSink {
         videoFrame.release();
         VideoFrame.I420Buffer i420 = bufferCropAndScale.toI420();
         bufferCropAndScale.release();
-        this.fileThreadHandler.post(new EglRenderer$$ExternalSyntheticLambda6(this, i420, videoFrame, 14));
+        this.fileThreadHandler.post(new EglRenderer$$ExternalSyntheticLambda6(this, i420, videoFrame, 24));
     }
 
     @Override

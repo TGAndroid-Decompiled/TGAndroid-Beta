@@ -1,6 +1,7 @@
 package kotlinx.coroutines.internal;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.google.common.base.Joiner;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CancellationException;
@@ -25,12 +26,12 @@ import kotlinx.coroutines.UndispatchedCoroutine;
 import kotlinx.coroutines.android.AndroidExceptionPreHandler;
 
 public abstract class AtomicKt {
-    public static final Symbol NO_DECISION = new Symbol("NO_DECISION", 0);
-    public static final Symbol CLOSED = new Symbol("CLOSED", 0);
-    public static final Symbol UNDEFINED = new Symbol("UNDEFINED", 0);
-    public static final Symbol REUSABLE_CLAIMED = new Symbol("REUSABLE_CLAIMED", 0);
-    public static final Symbol CONDITION_FALSE = new Symbol("CONDITION_FALSE", 0);
-    public static final Symbol NO_THREAD_ELEMENTS = new Symbol("NO_THREAD_ELEMENTS", 0);
+    public static final Joiner NO_DECISION = new Joiner("NO_DECISION", 2);
+    public static final Joiner CLOSED = new Joiner("CLOSED", 2);
+    public static final Joiner UNDEFINED = new Joiner("UNDEFINED", 2);
+    public static final Joiner REUSABLE_CLAIMED = new Joiner("REUSABLE_CLAIMED", 2);
+    public static final Joiner CONDITION_FALSE = new Joiner("CONDITION_FALSE", 2);
+    public static final Joiner NO_THREAD_ELEMENTS = new Joiner("NO_THREAD_ELEMENTS", 2);
 
     public static final Object findSegmentInternal(Segment segment, long j, Function2 function2) {
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater;
@@ -39,9 +40,9 @@ public abstract class AtomicKt {
                 return segment;
             }
             Object obj = ConcurrentLinkedListNode._next$volatile$FU.get(segment);
-            Symbol symbol = CLOSED;
-            if (obj == symbol) {
-                return symbol;
+            Joiner joiner = CLOSED;
+            if (obj == joiner) {
+                return joiner;
             }
             Segment segment2 = (Segment) ((ConcurrentLinkedListNode) obj);
             if (segment2 == null) {
@@ -59,7 +60,7 @@ public abstract class AtomicKt {
         }
     }
 
-    public static final Segment m143getSegmentimpl(Object obj) {
+    public static final Segment m148getSegmentimpl(Object obj) {
         if (obj != CLOSED) {
             return (Segment) obj;
         }
@@ -91,11 +92,11 @@ public abstract class AtomicKt {
         threadCurrentThread2.getUncaughtExceptionHandler().uncaughtException(threadCurrentThread2, th);
     }
 
-    public static final boolean m144isClosedimpl(Object obj) {
+    public static final boolean m149isClosedimpl(Object obj) {
         return obj == CLOSED;
     }
 
-    public static final Object m145plusFjFbRPM(Object obj, Object obj2) {
+    public static final Object m150plusFjFbRPM(Object obj, Object obj2) {
         if (obj == null) {
             return obj2;
         }
@@ -116,7 +117,7 @@ public abstract class AtomicKt {
         if (!(obj instanceof ThreadState)) {
             Object objFold = coroutineContext.fold(null, ThreadContextKt$findOne$1.INSTANCE);
             Intrinsics.checkNotNull(objFold, "null cannot be cast to non-null type kotlinx.coroutines.ThreadContextElement<kotlin.Any?>");
-            SurfaceContainer$$ExternalSyntheticOutline0.m(objFold);
+            Fragment$$ExternalSyntheticOutline0.m(objFold);
             throw null;
         }
         ThreadState threadState = (ThreadState) obj;
@@ -137,8 +138,8 @@ public abstract class AtomicKt {
             return;
         }
         DispatchedContinuation dispatchedContinuation = (DispatchedContinuation) continuation;
-        Throwable thM139exceptionOrNullimpl = Result.m139exceptionOrNullimpl(obj);
-        Object completedExceptionally = thM139exceptionOrNullimpl == null ? obj : new CompletedExceptionally(thM139exceptionOrNullimpl, false);
+        Throwable thM144exceptionOrNullimpl = Result.m144exceptionOrNullimpl(obj);
+        Object completedExceptionally = thM144exceptionOrNullimpl == null ? obj : new CompletedExceptionally(thM144exceptionOrNullimpl, false);
         ContinuationImpl continuationImpl = dispatchedContinuation.continuation;
         continuationImpl.getContext();
         CoroutineDispatcher coroutineDispatcher = dispatchedContinuation.dispatcher;
@@ -354,7 +355,7 @@ public abstract class AtomicKt {
         if (obj instanceof Integer) {
             return coroutineContext.fold(new ThreadState(((Number) obj).intValue(), coroutineContext), ThreadContextKt$findOne$1.INSTANCE$2);
         }
-        SurfaceContainer$$ExternalSyntheticOutline0.m(obj);
+        Fragment$$ExternalSyntheticOutline0.m(obj);
         throw null;
     }
 }

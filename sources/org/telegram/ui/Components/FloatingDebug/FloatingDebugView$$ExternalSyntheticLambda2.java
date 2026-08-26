@@ -23,7 +23,8 @@ public final class FloatingDebugView$$ExternalSyntheticLambda2 implements Runnab
         switch (this.$r8$classId) {
             case 0:
                 FloatingDebugView floatingDebugView = this.f$0;
-                new BlurSettingsBottomSheet(LaunchActivity.getLastFragment()).show();
+                floatingDebugView.getClass();
+                BlurSettingsBottomSheet.show(LaunchActivity.getLastFragment());
                 floatingDebugView.showBigMenu(false);
                 break;
             case 1:

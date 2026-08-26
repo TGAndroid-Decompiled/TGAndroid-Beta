@@ -10,14 +10,13 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda5;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell2;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.ContactAddActivity$$ExternalSyntheticLambda8;
 
 public final class ChatCell extends BaseCell {
     public TLRPC.Chat chat;
@@ -64,11 +63,10 @@ public final class ChatCell extends BaseCell {
         this.removable = z;
         this.chat = chat;
         AvatarDrawable avatarDrawable = this.avatarDrawable;
-        avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
+        avatarDrawable.setInfo(chat);
         BackupImageView backupImageView = this.imageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-        backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-        backupImageView.onNewImageSet();
+        backupImageView.setForUserOrChat(chat, avatarDrawable);
         String str = chat.title;
         UserCell2.AnonymousClass1 anonymousClass1 = this.titleTextView;
         anonymousClass1.setText(Emoji.replaceEmoji(str, anonymousClass1.getPaint().getFontMetricsInt(), false));
@@ -91,7 +89,7 @@ public final class ChatCell extends BaseCell {
         } else {
             imageView.setVisibility(4);
         }
-        imageView.setOnClickListener(new ContactAddActivity$$ExternalSyntheticLambda8(10, this, chat));
+        imageView.setOnClickListener(new AlertDialog$$ExternalSyntheticLambda5(21, this, chat));
     }
 
     public void setChatDeleteListener(ChatDeleteListener chatDeleteListener) {

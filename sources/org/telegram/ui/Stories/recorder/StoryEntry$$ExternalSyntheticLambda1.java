@@ -5,24 +5,23 @@ import android.media.MediaFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
 
 public final class StoryEntry$$ExternalSyntheticLambda1 implements Runnable {
     public final int $r8$classId;
     public final StoryEntry f$0;
-    public final VoIPFragment$$ExternalSyntheticLambda7 f$1;
+    public final HintView2$$ExternalSyntheticLambda0 f$1;
 
-    public StoryEntry$$ExternalSyntheticLambda1(StoryEntry storyEntry, VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7, int i) {
+    public StoryEntry$$ExternalSyntheticLambda1(StoryEntry storyEntry, HintView2$$ExternalSyntheticLambda0 hintView2$$ExternalSyntheticLambda0, int i) {
         this.$r8$classId = i;
         this.f$0 = storyEntry;
-        this.f$1 = voIPFragment$$ExternalSyntheticLambda7;
+        this.f$1 = hintView2$$ExternalSyntheticLambda0;
     }
 
     @Override
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7 = this.f$1;
+                HintView2$$ExternalSyntheticLambda0 hintView2$$ExternalSyntheticLambda0 = this.f$1;
                 StoryEntry storyEntry = this.f$0;
                 storyEntry.getClass();
                 try {
@@ -52,7 +51,7 @@ public final class StoryEntry$$ExternalSyntheticLambda1 implements Runnable {
                     return;
                 } finally {
                     storyEntry.hdrInfo = storyEntry.hdrInfo;
-                    AndroidUtilities.runOnUIThread(new StoryEntry$$ExternalSyntheticLambda1(storyEntry, voIPFragment$$ExternalSyntheticLambda7, 1));
+                    AndroidUtilities.runOnUIThread(new StoryEntry$$ExternalSyntheticLambda1(storyEntry, hintView2$$ExternalSyntheticLambda0, 1));
                 }
             default:
                 this.f$1.run(this.f$0.hdrInfo);

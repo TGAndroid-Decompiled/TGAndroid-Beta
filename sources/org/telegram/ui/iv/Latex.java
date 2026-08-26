@@ -17,8 +17,6 @@ import androidx.datastore.preferences.protobuf.Protobuf;
 import androidx.datastore.preferences.protobuf.Schema;
 import androidx.datastore.preferences.protobuf.Utf8;
 import androidx.datastore.preferences.protobuf.WireFormat$FieldType;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.upstream.Allocation;
 import com.google.android.exoplayer2.util.Util;
 import java.util.ArrayList;
@@ -115,31 +113,6 @@ public final class Latex {
         }
     }
 
-    public void addPosition(int i, int i2) {
-        if (i < 0) {
-            throw new IllegalArgumentException("Layout positions must be non-negative");
-        }
-        if (i2 < 0) {
-            throw new IllegalArgumentException("Pixel distance must be non-negative");
-        }
-        int i3 = this.depth;
-        int i4 = i3 * 2;
-        int[] iArr = (int[]) this.bitmap;
-        if (iArr == null) {
-            int[] iArr2 = new int[4];
-            this.bitmap = iArr2;
-            Arrays.fill(iArr2, -1);
-        } else if (i4 >= iArr.length) {
-            int[] iArr3 = new int[i3 * 4];
-            this.bitmap = iArr3;
-            System.arraycopy(iArr, 0, iArr3, 0, iArr.length);
-        }
-        int[] iArr4 = (int[]) this.bitmap;
-        iArr4[i4] = i;
-        iArr4[i4 + 1] = i2;
-        this.depth++;
-    }
-
     public synchronized Allocation allocate() {
         int i = this.height + 1;
         this.height = i;
@@ -160,64 +133,6 @@ public final class Latex {
         allocation2.getClass();
         ((Allocation[]) this.bitmap)[this.depth] = null;
         return allocation2;
-    }
-
-    public void collectPrefetchPositionsFromView(RecyclerView recyclerView, boolean z) {
-        int i;
-        boolean z2;
-        int i2;
-        this.depth = 0;
-        int[] iArr = (int[]) this.bitmap;
-        if (iArr != null) {
-            Arrays.fill(iArr, -1);
-        }
-        RecyclerView.LayoutManager layoutManager = recyclerView.mLayout;
-        if (recyclerView.mAdapter == null || layoutManager == null || !layoutManager.mItemPrefetchEnabled) {
-            return;
-        }
-        if (z) {
-            if (((ArrayList) recyclerView.mAdapterHelper.mPendingUpdates).size() <= 0) {
-                int itemCount = recyclerView.mAdapter.getItemCount();
-                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) layoutManager;
-                LinearLayoutManager.SavedState savedState = linearLayoutManager.mPendingSavedState;
-                if (savedState == null || (i2 = savedState.mAnchorPosition) < 0) {
-                    linearLayoutManager.resolveShouldLayoutReverse();
-                    z2 = linearLayoutManager.mShouldReverseLayout;
-                    i2 = linearLayoutManager.mPendingScrollPosition;
-                    if (i2 == -1) {
-                        i2 = z2 ? itemCount - 1 : 0;
-                    }
-                } else {
-                    z2 = savedState.mAnchorLayoutFromEnd;
-                }
-                i = z2 ? -1 : 1;
-                for (int i3 = 0; i3 < linearLayoutManager.mInitialPrefetchItemCount && i2 >= 0 && i2 < itemCount; i3++) {
-                    addPosition(i2, 0);
-                    i2 += i;
-                }
-            }
-        } else if (!recyclerView.hasPendingAdapterUpdates()) {
-            int i4 = this.width;
-            int i5 = this.height;
-            LinearLayoutManager linearLayoutManager2 = (LinearLayoutManager) layoutManager;
-            if (linearLayoutManager2.mOrientation != 0) {
-                i4 = i5;
-            }
-            if (linearLayoutManager2.getChildCount() != 0 && i4 != 0) {
-                linearLayoutManager2.ensureLayoutState();
-                i = i4 > 0 ? 1 : -1;
-                int iAbs = Math.abs(i4);
-                RecyclerView.State state = recyclerView.mState;
-                linearLayoutManager2.updateLayoutState(i, iAbs, true, state);
-                linearLayoutManager2.collectPrefetchPositionsForLayoutState(state, linearLayoutManager2.mLayoutState, this);
-            }
-        }
-        int i6 = this.depth;
-        if (i6 > layoutManager.mPrefetchMaxCountObserved) {
-            layoutManager.mPrefetchMaxCountObserved = i6;
-            layoutManager.mPrefetchMaxObservedInInitialPrefetch = z;
-            recyclerView.mRecycler.updateViewCacheSize();
-        }
     }
 
     public int getFieldNumber() {

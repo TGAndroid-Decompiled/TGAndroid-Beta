@@ -32,16 +32,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
+import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.VideoEditTextureView$$ExternalSyntheticLambda1;
-import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda8;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda26;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
 
 public final class QuickShareSelectorDrawable extends Drawable implements Animator.AnimatorListener {
-    public static final ChatActivity.AnonymousClass5 CLOSE_FACTOR;
-    public static final ChatActivity.AnonymousClass5 OPEN_FACTOR;
     public final QuickShareAvatarCell[] avatarCells;
     public BitmapShader bitmapShader;
     public float bubbleOffset;
@@ -58,12 +56,14 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
     public final MessageObject messageObject;
     public int offsetX;
     public int offsetY;
-    public final DialogsActivity$$ExternalSyntheticLambda8 onFinish;
+    public final GiftSheet$$ExternalSyntheticLambda26 onFinish;
     public final QuickShareSelectorOverlayLayout parent;
     public final Drawable shadowDrawable;
     public static final RectF tmpRectF = new RectF();
     public static final Rect tmpRect = new Rect();
     public static final int[] tmpCords = new int[2];
+    public static final AnonymousClass2 OPEN_FACTOR = new AnonymousClass2("openFactor");
+    public static final AnonymousClass3 CLOSE_FACTOR = new AnonymousClass3("openFactor");
     public final Paint paintBubbleBg = new Paint(1);
     public final Matrix shaderMatrix = new Matrix();
     public final Path path = new Path();
@@ -82,6 +82,136 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
     public int selectedIndex = -1;
     public final ObjectAnimator openAnimation = ObjectAnimator.ofFloat(this, OPEN_FACTOR, 1.0f).setDuration(560L);
     public final ObjectAnimator closeAnimation = ObjectAnimator.ofFloat(this, CLOSE_FACTOR, 1.0f).setDuration(240L);
+
+    public final class AnonymousClass2 extends AnimationProperties.FloatProperty {
+        @Override
+        public final Float get(Object obj) {
+            return Float.valueOf(((QuickShareSelectorDrawable) obj).openProgress);
+        }
+
+        @Override
+        public final void setValue(Object obj, float f) {
+            QuickShareSelectorDrawable quickShareSelectorDrawable;
+            float degrees;
+            QuickShareSelectorDrawable quickShareSelectorDrawable2 = (QuickShareSelectorDrawable) obj;
+            quickShareSelectorDrawable2.openProgress = f;
+            float interpolation = 1.0f - Interpolators.overshootCancel.getInterpolation(f);
+            float interpolation2 = (Interpolators.buttonJumpUp.getInterpolation(quickShareSelectorDrawable2.openProgress) - Interpolators.buttonJumpDown.getInterpolation(quickShareSelectorDrawable2.openProgress)) * AndroidUtilities.dp(13.0f);
+            RectF rectF = quickShareSelectorDrawable2.buttonCurrent;
+            RectF rectF2 = quickShareSelectorDrawable2.bubbleStart;
+            rectF.set(rectF2);
+            rectF.offset(0.0f, -interpolation2);
+            float fHeight = rectF.height();
+            float fDp = (((((AndroidUtilities.dp(2.0f) * interpolation) + AndroidUtilities.dp(56)) - fHeight) * Interpolators.heightExpansion.getInterpolation(quickShareSelectorDrawable2.openProgress)) + fHeight) / 2.0f;
+            float fWidth = rectF.width();
+            float fDp2 = (AndroidUtilities.dp(10.0f) * interpolation) + AndroidUtilities.dp((53 * quickShareSelectorDrawable2.avatarCells.length) + 7);
+            QuickShareSelectorDrawable$$ExternalSyntheticLambda0 quickShareSelectorDrawable$$ExternalSyntheticLambda0 = Interpolators.widthExpansion;
+            float fM = DiffUtil.m(fDp2, fWidth, quickShareSelectorDrawable$$ExternalSyntheticLambda0.getInterpolation(quickShareSelectorDrawable2.openProgress), fWidth);
+            float f2 = fDp * 2.0f;
+            float fMax = Math.max(fM, f2);
+            float interpolation3 = (quickShareSelectorDrawable$$ExternalSyntheticLambda0.getInterpolation(quickShareSelectorDrawable2.openProgress) * Math.min(AndroidUtilities.dp(-12.0f) + quickShareSelectorDrawable2.bubbleOffset, (fMax - Math.max(rectF.width(), f2)) / 2.0f)) + rectF2.centerX() + fDp;
+            float interpolation4 = ((rectF2.bottom - fDp) - 1.0f) - (Interpolators.bubbleY.getInterpolation(quickShareSelectorDrawable2.openProgress) * ((AndroidUtilities.dp(6.0f) * interpolation) + AndroidUtilities.dp(38.0f)));
+            RectF rectF3 = quickShareSelectorDrawable2.bubbleCurrent;
+            rectF3.left = interpolation3 - fMax;
+            rectF3.top = interpolation4 - fDp;
+            rectF3.right = interpolation3;
+            rectF3.bottom = interpolation4 + fDp;
+            if (!quickShareSelectorDrawable2.ballsAllowed || quickShareSelectorDrawable2.openAnimationCompleted) {
+                quickShareSelectorDrawable = quickShareSelectorDrawable2;
+            } else {
+                float fDp3 = AndroidUtilities.dp(5.0f);
+                float fM2 = DiffUtil.m(AndroidUtilities.dp(3.0f), fDp3, Interpolators.ballsRadius.getInterpolation(quickShareSelectorDrawable2.openProgress), fDp3);
+                float f3 = rectF3.bottom + fM2;
+                double dWidth = (rectF.width() / 2.0f) + fM2;
+                double dAbs = Math.abs(f3 - rectF.centerY());
+                float fSqrt = (float) (dWidth <= dAbs ? 0.0d : Math.sqrt((dWidth * dWidth) - (dAbs * dAbs)));
+                float fCenterX = rectF.centerX() - fSqrt;
+                boolean z = fCenterX < (rectF3.height() / 2.0f) + rectF3.left;
+                if (z) {
+                    PointF pointFFindIntersectionWithGravity = QuickShareSelectorDrawable.findIntersectionWithGravity(rectF.centerX(), rectF.centerY(), (rectF.height() / 2.0f) + fM2, (rectF3.height() / 2.0f) + rectF3.left, rectF3.centerY(), (rectF3.height() / 2.0f) + fM2, true);
+                    if (pointFFindIntersectionWithGravity != null) {
+                        fCenterX = pointFFindIntersectionWithGravity.x;
+                        f3 = pointFFindIntersectionWithGravity.y;
+                    } else {
+                        quickShareSelectorDrawable2.ballsAllowed = false;
+                    }
+                }
+                RectF rectF4 = quickShareSelectorDrawable2.ballLeft;
+                rectF4.set(fCenterX - fM2, f3 - fM2, fCenterX + fM2, f3 + fM2);
+                float f4 = rectF3.bottom + fM2;
+                float fCenterX2 = rectF.centerX() + fSqrt;
+                boolean z2 = fCenterX2 > rectF3.right - (rectF3.height() / 2.0f);
+                if (z2) {
+                    PointF pointFFindIntersectionWithGravity2 = QuickShareSelectorDrawable.findIntersectionWithGravity(rectF.centerX(), rectF.centerY(), (rectF.height() / 2.0f) + fM2, rectF3.right - (rectF3.height() / 2.0f), rectF3.centerY(), (rectF3.height() / 2.0f) + fM2, false);
+                    if (pointFFindIntersectionWithGravity2 != null) {
+                        fCenterX2 = pointFFindIntersectionWithGravity2.x;
+                        f4 = pointFFindIntersectionWithGravity2.y;
+                    } else {
+                        quickShareSelectorDrawable2.ballsAllowed = false;
+                    }
+                }
+                RectF rectF5 = quickShareSelectorDrawable2.ballRight;
+                rectF5.set(fCenterX2 - fM2, f4 - fM2, fCenterX2 + fM2, f4 + fM2);
+                float fAbs = Math.abs(rectF4.centerX() - rectF5.centerX());
+                float fAbs2 = Math.abs(rectF4.centerY() - rectF5.centerY());
+                if (Math.sqrt((fAbs2 * fAbs2) + (fAbs * fAbs)) <= (rectF5.width() + rectF4.width()) / 2.0f && quickShareSelectorDrawable2.ballsAllowed) {
+                    quickShareSelectorDrawable2.ballsAllowed = false;
+                }
+                if (quickShareSelectorDrawable2.ballsAllowed) {
+                    quickShareSelectorDrawable = quickShareSelectorDrawable2;
+                    Path path = quickShareSelectorDrawable.path;
+                    path.reset();
+                    float degrees2 = (float) Math.toDegrees((float) Math.atan2(rectF5.centerY() - rectF.centerY(), rectF5.centerX() - rectF.centerX()));
+                    float degrees3 = (float) Math.toDegrees((float) Math.atan2(rectF4.centerY() - rectF.centerY(), rectF4.centerX() - rectF.centerX()));
+                    quickShareSelectorDrawable.arcTo(path, rectF, degrees2, degrees3, false, false);
+                    float degrees4 = -90.0f;
+                    if (z) {
+                        degrees = (float) Math.toDegrees((float) Math.atan2(rectF3.centerY() - rectF4.centerY(), ((rectF3.height() / 2.0f) + rectF3.left) - rectF4.centerX()));
+                    } else {
+                        degrees = -90.0f;
+                    }
+                    float f5 = degrees3 <= 0.0f ? degrees3 + 180.0f : degrees3 - 180.0f;
+                    float f6 = degrees;
+                    quickShareSelectorDrawable.arcTo(path, rectF4, f5, f6, true, true);
+                    if (!z) {
+                        path.lineTo((rectF3.height() / 2.0f) + rectF3.left, rectF3.bottom);
+                    }
+                    RectF rectF6 = QuickShareSelectorDrawable.tmpRectF;
+                    float f7 = rectF3.left;
+                    rectF6.set(f7, rectF3.top, rectF3.height() + f7, rectF3.bottom);
+                    quickShareSelectorDrawable.arcTo(path, rectF6, f6 <= 0.0f ? f6 + 180.0f : f6 - 180.0f, -90.0f, false, false);
+                    path.lineTo(rectF3.right - (rectF3.height() / 2.0f), rectF3.top);
+                    if (z2) {
+                        degrees4 = (float) Math.toDegrees((float) Math.atan2(rectF3.centerY() - rectF5.centerY(), (rectF3.right - (rectF3.height() / 2.0f)) - rectF5.centerX()));
+                    }
+                    rectF6.set(rectF3.right - rectF3.height(), rectF3.top, rectF3.right, rectF3.bottom);
+                    quickShareSelectorDrawable.arcTo(path, rectF6, -90.0f, degrees4 <= 0.0f ? degrees4 + 180.0f : degrees4 - 180.0f, false, false);
+                    if (!z2) {
+                        path.lineTo(rectF5.centerX(), rectF3.bottom);
+                    }
+                    quickShareSelectorDrawable.arcTo(path, rectF5, degrees4, degrees2 <= 0.0f ? degrees2 + 180.0f : degrees2 - 180.0f, true, true);
+                    path.close();
+                } else {
+                    quickShareSelectorDrawable = quickShareSelectorDrawable2;
+                }
+            }
+            quickShareSelectorDrawable.invalidateSelf();
+        }
+    }
+
+    public final class AnonymousClass3 extends AnimationProperties.FloatProperty {
+        @Override
+        public final Float get(Object obj) {
+            return Float.valueOf(((QuickShareSelectorDrawable) obj).closeProgress);
+        }
+
+        @Override
+        public final void setValue(Object obj, float f) {
+            QuickShareSelectorDrawable quickShareSelectorDrawable = (QuickShareSelectorDrawable) obj;
+            quickShareSelectorDrawable.closeProgress = f;
+            quickShareSelectorDrawable.invalidateSelf();
+        }
+    }
 
     public abstract class Interpolators {
         public static final DecelerateInterpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
@@ -130,14 +260,8 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
         }
     }
 
-    static {
-        String str = "openFactor";
-        OPEN_FACTOR = new ChatActivity.AnonymousClass5(str, 14);
-        CLOSE_FACTOR = new ChatActivity.AnonymousClass5(str, 15);
-    }
-
-    public QuickShareSelectorDrawable(QuickShareSelectorOverlayLayout quickShareSelectorOverlayLayout, ChatMessageCell chatMessageCell, ArrayList arrayList, DialogsActivity$$ExternalSyntheticLambda8 dialogsActivity$$ExternalSyntheticLambda8) {
-        this.onFinish = dialogsActivity$$ExternalSyntheticLambda8;
+    public QuickShareSelectorDrawable(QuickShareSelectorOverlayLayout quickShareSelectorOverlayLayout, ChatMessageCell chatMessageCell, ArrayList arrayList, GiftSheet$$ExternalSyntheticLambda26 giftSheet$$ExternalSyntheticLambda26) {
+        this.onFinish = giftSheet$$ExternalSyntheticLambda26;
         this.parent = quickShareSelectorOverlayLayout;
         this.cell = chatMessageCell;
         this.messageObject = chatMessageCell.getMessageObject();
@@ -162,7 +286,7 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
                 this.openAnimation.addListener(this);
                 this.closeAnimation.setInterpolator(linearInterpolator);
                 this.closeAnimation.addListener(this);
-                AndroidUtilities.makeGlobalBlurBitmap(new PollItemMenu$$ExternalSyntheticLambda14(this, 9), 15.0f);
+                AndroidUtilities.makeGlobalBlurBitmap(new DialogCell$$ExternalSyntheticLambda6(this, 21), 15.0f);
                 return;
             }
             quickShareAvatarCellArr[i] = new QuickShareAvatarCell(this, ((Long) arrayList.get(i)).longValue());
@@ -218,7 +342,7 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
         this.closeAnimation.start();
         this.closeAnimationStarted = true;
         if (this.openAnimationCompleted && !this.isDestroyed) {
-            BlurVisibilityDrawable blurVisibilityDrawable = new BlurVisibilityDrawable(new VideoEditTextureView$$ExternalSyntheticLambda1(this, 6));
+            BlurVisibilityDrawable blurVisibilityDrawable = new BlurVisibilityDrawable(new GiftSheet$$ExternalSyntheticLambda6(this, 9));
             this.closeAnimationDrawable = blurVisibilityDrawable;
             RectF rectF = this.bubbleCurrent;
             blurVisibilityDrawable.render((int) rectF.width(), (int) (rectF.height() + AndroidUtilities.dp(30.0f)), 4.0f, AndroidUtilities.dp(10));
@@ -275,13 +399,13 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
     @Override
     public final void onAnimationEnd(Animator animator) {
         ObjectAnimator objectAnimator = this.openAnimation;
-        DialogsActivity$$ExternalSyntheticLambda8 dialogsActivity$$ExternalSyntheticLambda8 = this.onFinish;
+        GiftSheet$$ExternalSyntheticLambda26 giftSheet$$ExternalSyntheticLambda26 = this.onFinish;
         if (animator == objectAnimator) {
             this.cell.setHideSideButtonByQuickShare(false);
             this.openAnimationCompleted = true;
             invalidateSelf();
             if (this.closeAnimationCompleted) {
-                dialogsActivity$$ExternalSyntheticLambda8.run();
+                giftSheet$$ExternalSyntheticLambda26.run();
                 return;
             }
             return;
@@ -294,7 +418,7 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
                 lottieLayout.imageView.setVisibility(0);
             }
             if (this.openAnimationCompleted) {
-                dialogsActivity$$ExternalSyntheticLambda8.run();
+                giftSheet$$ExternalSyntheticLambda26.run();
             }
         }
     }
@@ -421,7 +545,7 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
                                     } else {
                                         Point point = AndroidUtilities.displaySize;
                                         f9 = 21.0f;
-                                        chatMessageCell2.applyServiceShaderMatrix(0.0f, 0.0f, point.x, point.y);
+                                        chatMessageCell2.applyServiceShaderMatrix(point.x, point.y, 0.0f, 0.0f);
                                         Paint themedPaint = chatMessageCell2.getThemedPaint("paintChatActionBackground");
                                         int alpha2 = themedPaint.getAlpha();
                                         themedPaint.setAlpha((int) ((zHasGradientService ? alpha2 : 229.5f) * f12));
@@ -562,7 +686,7 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
                         canvas.save();
                         canvas.scale(f17, f17, fDp4, fCenterY2);
                         float f18 = quickShareAvatarCell2.selectedFactor * f10;
-                        float fM3 = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(2, 8, staticLayout.getWidth());
+                        float fM3 = RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(8, 2, staticLayout.getWidth());
                         quickShareAvatarCell2.bgX1 = QuickShareAvatarCell.fixX(QuickShareAvatarCell.fixX(fDp4, fM3, f13, f14), fM3, fDp5, measuredWidth) - (fM3 / 2.0f);
                         quickShareAvatarCell2.bgY = fCenterY2 - AndroidUtilities.dp(58.0f);
                         if (quickShareAvatarCell2.blurredTextDrawable == null) {
@@ -600,7 +724,7 @@ public final class QuickShareSelectorDrawable extends Drawable implements Animat
                                                 } else {
                                                     Point point = AndroidUtilities.displaySize;
                                                     f19 = 21.0f;
-                                                    chatMessageCell2.applyServiceShaderMatrix(0.0f, 0.0f, point.x, point.y);
+                                                    chatMessageCell2.applyServiceShaderMatrix(point.x, point.y, 0.0f, 0.0f);
                                                     Paint themedPaint = chatMessageCell2.getThemedPaint("paintChatActionBackground");
                                                     int alpha2 = themedPaint.getAlpha();
                                                     themedPaint.setAlpha((int) ((zHasGradientService ? alpha2 : 229.5f) * f112));

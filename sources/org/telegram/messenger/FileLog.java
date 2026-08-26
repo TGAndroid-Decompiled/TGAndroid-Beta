@@ -23,6 +23,7 @@ import com.google.gson.internal.sql.SqlTypesSupport;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.stripe.android.Stripe;
 import j$.util.Objects;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,7 +43,6 @@ import org.telegram.messenger.time.FastDateFormat;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.LaunchActivity;
 
@@ -123,10 +123,10 @@ public class FileLog {
                             if (obj != null) {
                                 Class<?> cls = obj.getClass();
                                 if (!cls.isInstance(DispatchQueue.class) && !cls.isInstance(AnimatedFileDrawable.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
-                                    jsonObject.add(field.getName(), ((ChatActivity.AnonymousClass1) jsonSerializationContext).serialize(obj));
+                                    jsonObject.add(field.getName(), ((Stripe.AnonymousClass1) jsonSerializationContext).serialize(obj));
                                 }
                             } else {
-                                jsonObject.add(field.getName(), ((ChatActivity.AnonymousClass1) jsonSerializationContext).serialize(obj));
+                                jsonObject.add(field.getName(), ((Stripe.AnonymousClass1) jsonSerializationContext).serialize(obj));
                             }
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
@@ -195,7 +195,7 @@ public class FileLog {
             ArrayDeque arrayDeque = new ArrayDeque();
             ExclusionStrategy exclusionStrategy2 = exclusionStrategy;
             Objects.requireNonNull(exclusionStrategy2);
-            Excluder excluderClone = excluder.m128clone();
+            Excluder excluderClone = excluder.m133clone();
             ArrayList arrayList3 = new ArrayList(excluder.serializationStrategies);
             excluderClone.serializationStrategies = arrayList3;
             arrayList3.add(exclusionStrategy2);
@@ -439,16 +439,14 @@ public class FileLog {
     }
 
     public static void lambda$d$6(String str) {
-        LaunchActivity launchActivity;
         try {
             getInstance().streamWriter.write(getInstance().dateFormat.format(System.currentTimeMillis()) + " D/tmessages: " + str + "\n");
             getInstance().streamWriter.flush();
         } catch (Exception e) {
             e.printStackTrace();
-            if (!AndroidUtilities.isENOSPC(e) || (launchActivity = LaunchActivity.staticInstanceForAlerts) == null) {
-                return;
+            if (AndroidUtilities.isENOSPC(e)) {
+                LaunchActivity.checkFreeDiscSpaceStatic(1);
             }
-            launchActivity.checkFreeDiscSpace(1);
         }
     }
 

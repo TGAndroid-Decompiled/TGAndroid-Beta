@@ -2,7 +2,8 @@ package org.telegram.messenger.video;
 
 import android.media.MediaCodec;
 import android.media.MediaFormat;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.emoji2.text.MetadataRepo;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.coremedia.iso.BoxParser;
 import com.coremedia.iso.IsoFile;
 import com.coremedia.iso.boxes.Box;
@@ -41,7 +42,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import org.aspectj.runtime.reflect.Factory;
-import org.commonmark.parser.Parser;
 import org.telegram.messenger.AndroidUtilities;
 
 public class MP4Builder {
@@ -169,7 +169,7 @@ public class MP4Builder {
         }
         CompositionTimeToSample compositionTimeToSample = new CompositionTimeToSample("ctts");
         compositionTimeToSample.entries = Collections.EMPTY_LIST;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(CompositionTimeToSample.ajc$tjp_1, compositionTimeToSample, compositionTimeToSample, arrayList));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(CompositionTimeToSample.ajc$tjp_1, compositionTimeToSample, compositionTimeToSample, arrayList));
         compositionTimeToSample.entries = arrayList;
         sampleTableBox.addBox(compositionTimeToSample);
     }
@@ -212,19 +212,19 @@ public class MP4Builder {
         Matrix matrix = Matrix.ROTATE_0;
         movieHeaderBox.matrix = matrix;
         Date date = new Date();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_9, movieHeaderBox, movieHeaderBox, date));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_9, movieHeaderBox, movieHeaderBox, date));
         movieHeaderBox.creationTime = date;
         long j = 4294967296L;
         if (DateHelper.convert(date) >= 4294967296L) {
             movieHeaderBox.setVersion();
         }
         Date date2 = new Date();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_10, movieHeaderBox, movieHeaderBox, date2));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_10, movieHeaderBox, movieHeaderBox, date2));
         movieHeaderBox.modificationTime = date2;
         if (DateHelper.convert(date2) >= 4294967296L) {
             movieHeaderBox.setVersion();
         }
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_15, movieHeaderBox, movieHeaderBox, matrix));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_15, movieHeaderBox, movieHeaderBox, matrix));
         movieHeaderBox.matrix = matrix;
         long timescale = getTimescale(mp4Movie);
         ArrayList<Track> tracks = mp4Movie.getTracks();
@@ -245,15 +245,15 @@ public class MP4Builder {
             j = j3;
         }
         long j4 = j;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_12, movieHeaderBox, movieHeaderBox, new Long(j2)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_12, movieHeaderBox, movieHeaderBox, new Long(j2)));
         movieHeaderBox.duration = j2;
         if (j2 >= j4) {
             movieHeaderBox.setVersion();
         }
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_11, movieHeaderBox, movieHeaderBox, new Long(timescale)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_11, movieHeaderBox, movieHeaderBox, new Long(timescale)));
         movieHeaderBox.timescale = timescale;
         long size2 = mp4Movie.getTracks().size() + 1;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_16, movieHeaderBox, movieHeaderBox, new Long(size2)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MovieHeaderBox.ajc$tjp_16, movieHeaderBox, movieHeaderBox, new Long(size2)));
         movieHeaderBox.nextTrackId = size2;
         movieBox.addBox(movieHeaderBox);
         ArrayList<Track> tracks2 = mp4Movie.getTracks();
@@ -306,7 +306,7 @@ public class MP4Builder {
         }
         StaticChunkOffsetBox staticChunkOffsetBox = new StaticChunkOffsetBox("stco");
         staticChunkOffsetBox.chunkOffsets = new long[0];
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(StaticChunkOffsetBox.ajc$tjp_1, staticChunkOffsetBox, staticChunkOffsetBox, jArr));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(StaticChunkOffsetBox.ajc$tjp_1, staticChunkOffsetBox, staticChunkOffsetBox, jArr));
         staticChunkOffsetBox.chunkOffsets = jArr;
         sampleTableBox.addBox(staticChunkOffsetBox);
     }
@@ -315,7 +315,7 @@ public class MP4Builder {
         SampleToChunkBox sampleToChunkBox = new SampleToChunkBox("stsc");
         sampleToChunkBox.entries = Collections.EMPTY_LIST;
         LinkedList linkedList = new LinkedList();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(SampleToChunkBox.ajc$tjp_1, sampleToChunkBox, sampleToChunkBox, linkedList));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(SampleToChunkBox.ajc$tjp_1, sampleToChunkBox, sampleToChunkBox, linkedList));
         sampleToChunkBox.entries = linkedList;
         int size = track.getSamples().size();
         int i = -1;
@@ -327,7 +327,7 @@ public class MP4Builder {
             i2++;
             if (i4 == size - 1 || size2 != track.getSamples().get(i4 + 1).getOffset()) {
                 if (i != i2) {
-                    SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(SampleToChunkBox.ajc$tjp_0, sampleToChunkBox, sampleToChunkBox));
+                    Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(SampleToChunkBox.ajc$tjp_0, sampleToChunkBox, sampleToChunkBox));
                     sampleToChunkBox.entries.add(new SampleToChunkBox.Entry(i3, i2, 1L));
                     i = i2;
                 }
@@ -348,7 +348,7 @@ public class MP4Builder {
             return;
         }
         SyncSampleBox syncSampleBox = new SyncSampleBox("stss");
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(SyncSampleBox.ajc$tjp_2, syncSampleBox, syncSampleBox, syncSamples));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(SyncSampleBox.ajc$tjp_2, syncSampleBox, syncSampleBox, syncSamples));
         syncSampleBox.sampleNumber = syncSamples;
         sampleTableBox.addBox(syncSampleBox);
     }
@@ -357,7 +357,7 @@ public class MP4Builder {
         SampleSizeBox sampleSizeBox = new SampleSizeBox("stsz");
         sampleSizeBox.sampleSizes = new long[0];
         long[] jArr = this.track2SampleSizes.get(track);
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(SampleSizeBox.ajc$tjp_5, sampleSizeBox, sampleSizeBox, jArr));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(SampleSizeBox.ajc$tjp_5, sampleSizeBox, sampleSizeBox, jArr));
         sampleSizeBox.sampleSizes = jArr;
         sampleTableBox.addBox(sampleSizeBox);
     }
@@ -375,7 +375,7 @@ public class MP4Builder {
         }
         TimeToSampleBox timeToSampleBox = new TimeToSampleBox("stts");
         timeToSampleBox.entries = Collections.EMPTY_LIST;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TimeToSampleBox.ajc$tjp_1, timeToSampleBox, timeToSampleBox, arrayList));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TimeToSampleBox.ajc$tjp_1, timeToSampleBox, timeToSampleBox, arrayList));
         timeToSampleBox.entries = arrayList;
         sampleTableBox.addBox(timeToSampleBox);
     }
@@ -385,59 +385,59 @@ public class MP4Builder {
         TrackHeaderBox trackHeaderBox = new TrackHeaderBox("tkhd");
         Matrix matrix = Matrix.ROTATE_0;
         trackHeaderBox.matrix = matrix;
-        Parser parserMakeJP = Factory.makeJP(TrackHeaderBox.ajc$tjp_26, trackHeaderBox, trackHeaderBox, new Boolean(true));
+        MetadataRepo metadataRepoMakeJP = Factory.makeJP(TrackHeaderBox.ajc$tjp_26, trackHeaderBox, trackHeaderBox, new Boolean(true));
         RequiresParseDetailAspect.aspectOf().getClass();
-        RequiresParseDetailAspect.before(parserMakeJP);
+        RequiresParseDetailAspect.before(metadataRepoMakeJP);
         trackHeaderBox.setFlags(trackHeaderBox.getFlags() | 1);
-        Parser parserMakeJP2 = Factory.makeJP(TrackHeaderBox.ajc$tjp_27, trackHeaderBox, trackHeaderBox, new Boolean(true));
+        MetadataRepo metadataRepoMakeJP2 = Factory.makeJP(TrackHeaderBox.ajc$tjp_27, trackHeaderBox, trackHeaderBox, new Boolean(true));
         RequiresParseDetailAspect.aspectOf().getClass();
-        RequiresParseDetailAspect.before(parserMakeJP2);
+        RequiresParseDetailAspect.before(metadataRepoMakeJP2);
         trackHeaderBox.setFlags(trackHeaderBox.getFlags() | 2);
-        Parser parserMakeJP3 = Factory.makeJP(TrackHeaderBox.ajc$tjp_28, trackHeaderBox, trackHeaderBox, new Boolean(true));
+        MetadataRepo metadataRepoMakeJP3 = Factory.makeJP(TrackHeaderBox.ajc$tjp_28, trackHeaderBox, trackHeaderBox, new Boolean(true));
         RequiresParseDetailAspect.aspectOf().getClass();
-        RequiresParseDetailAspect.before(parserMakeJP3);
+        RequiresParseDetailAspect.before(metadataRepoMakeJP3);
         trackHeaderBox.setFlags(trackHeaderBox.getFlags() | 4);
         if (track.isAudio()) {
-            SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_19, trackHeaderBox, trackHeaderBox, matrix));
+            Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_19, trackHeaderBox, trackHeaderBox, matrix));
             trackHeaderBox.matrix = matrix;
         } else {
             Matrix matrix2 = mp4Movie.getMatrix();
-            SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_19, trackHeaderBox, trackHeaderBox, matrix2));
+            Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_19, trackHeaderBox, trackHeaderBox, matrix2));
             trackHeaderBox.matrix = matrix2;
         }
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_17, trackHeaderBox, trackHeaderBox, new Integer(0)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_17, trackHeaderBox, trackHeaderBox, new Integer(0)));
         trackHeaderBox.alternateGroup = 0;
         Date creationTime = track.getCreationTime();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_12, trackHeaderBox, trackHeaderBox, creationTime));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_12, trackHeaderBox, trackHeaderBox, creationTime));
         trackHeaderBox.creationTime = creationTime;
         if (DateHelper.convert(creationTime) >= 4294967296L) {
             trackHeaderBox.setVersion();
         }
         long timescale = (getTimescale(mp4Movie) * track.getDuration()) / ((long) track.getTimeScale());
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_15, trackHeaderBox, trackHeaderBox, new Long(timescale)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_15, trackHeaderBox, trackHeaderBox, new Long(timescale)));
         trackHeaderBox.duration = timescale;
         if (timescale >= 4294967296L) {
             trackHeaderBox.setFlags(1);
         }
         double height = track.getHeight();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_21, trackHeaderBox, trackHeaderBox, new Double(height)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_21, trackHeaderBox, trackHeaderBox, new Double(height)));
         trackHeaderBox.height = height;
         double width = track.getWidth();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_20, trackHeaderBox, trackHeaderBox, new Double(width)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_20, trackHeaderBox, trackHeaderBox, new Double(width)));
         trackHeaderBox.width = width;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_16, trackHeaderBox, trackHeaderBox, new Integer(0)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_16, trackHeaderBox, trackHeaderBox, new Integer(0)));
         trackHeaderBox.layer = 0;
         Date date = new Date();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_13, trackHeaderBox, trackHeaderBox, date));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_13, trackHeaderBox, trackHeaderBox, date));
         trackHeaderBox.modificationTime = date;
         if (DateHelper.convert(date) >= 4294967296L) {
             trackHeaderBox.setVersion();
         }
         long trackId = track.getTrackId() + 1;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_14, trackHeaderBox, trackHeaderBox, new Long(trackId)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_14, trackHeaderBox, trackHeaderBox, new Long(trackId)));
         trackHeaderBox.trackId = trackId;
         float volume = track.getVolume();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_18, trackHeaderBox, trackHeaderBox, new Float(volume)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(TrackHeaderBox.ajc$tjp_18, trackHeaderBox, trackHeaderBox, new Float(volume)));
         trackHeaderBox.volume = volume;
         trackBox.addBox(trackHeaderBox);
         MediaBox mediaBox = new MediaBox("mdia", 0);
@@ -447,25 +447,25 @@ public class MP4Builder {
         mediaHeaderBox.modificationTime = new Date();
         mediaHeaderBox.language = "eng";
         Date creationTime2 = track.getCreationTime();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MediaHeaderBox.ajc$tjp_5, mediaHeaderBox, mediaHeaderBox, creationTime2));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MediaHeaderBox.ajc$tjp_5, mediaHeaderBox, mediaHeaderBox, creationTime2));
         mediaHeaderBox.creationTime = creationTime2;
         long duration = track.getDuration();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MediaHeaderBox.ajc$tjp_8, mediaHeaderBox, mediaHeaderBox, new Long(duration)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MediaHeaderBox.ajc$tjp_8, mediaHeaderBox, mediaHeaderBox, new Long(duration)));
         mediaHeaderBox.duration = duration;
         long timeScale = track.getTimeScale();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MediaHeaderBox.ajc$tjp_7, mediaHeaderBox, mediaHeaderBox, new Long(timeScale)));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MediaHeaderBox.ajc$tjp_7, mediaHeaderBox, mediaHeaderBox, new Long(timeScale)));
         mediaHeaderBox.timescale = timeScale;
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(MediaHeaderBox.ajc$tjp_9, mediaHeaderBox, mediaHeaderBox, "eng"));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(MediaHeaderBox.ajc$tjp_9, mediaHeaderBox, mediaHeaderBox, "eng"));
         mediaHeaderBox.language = "eng";
         mediaBox.addBox(mediaHeaderBox);
         HandlerBox handlerBox = new HandlerBox("hdlr");
         handlerBox.name = null;
         handlerBox.zeroTerm = true;
         String str = track.isAudio() ? "SoundHandle" : "VideoHandle";
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(HandlerBox.ajc$tjp_1, handlerBox, handlerBox, str));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(HandlerBox.ajc$tjp_1, handlerBox, handlerBox, str));
         handlerBox.name = str;
         String handler = track.getHandler();
-        SurfaceContainer$$ExternalSyntheticOutline0.m(Factory.makeJP(HandlerBox.ajc$tjp_2, handlerBox, handlerBox, handler));
+        Fragment$$ExternalSyntheticOutline0.m(Factory.makeJP(HandlerBox.ajc$tjp_2, handlerBox, handlerBox, handler));
         handlerBox.handlerType = handler;
         mediaBox.addBox(handlerBox);
         MediaBox mediaBox2 = new MediaBox("minf", 3);

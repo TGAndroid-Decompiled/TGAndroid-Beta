@@ -3,7 +3,6 @@ package org.telegram.ui.iv;
 import android.text.TextUtils;
 import org.telegram.messenger.CodeHighlighting;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda68;
 
 public final class RichTextCell$$ExternalSyntheticLambda7 implements Runnable {
     public final int $r8$classId;
@@ -30,7 +29,7 @@ public final class RichTextCell$$ExternalSyntheticLambda7 implements Runnable {
                             String str = ((TL_iv.pageBlockPreformatted) blockRow2.block).language;
                             int i = richTextCell.highlightGeneration + 1;
                             richTextCell.highlightGeneration = i;
-                            CodeHighlighting.highlightEditable(string, str, new PhotoViewer$$ExternalSyntheticLambda68(richTextCell, i, blockRow2, string, 4));
+                            CodeHighlighting.highlightEditable(string, str, new RichTextCell$$ExternalSyntheticLambda9(richTextCell, i, blockRow2, string, 0));
                             break;
                         }
                     }

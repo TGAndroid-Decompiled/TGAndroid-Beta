@@ -19,14 +19,14 @@ public final class BotWebViewContainer$MyWebView$2$$ExternalSyntheticLambda2 imp
                 BotWebViewContainer botWebViewContainer = myWebView.botWebViewContainer;
                 if (botWebViewContainer != null) {
                     myWebView.errorShown = false;
-                    botWebViewContainer.onErrorShown(null, false);
+                    botWebViewContainer.onErrorShown(false, 0, null);
                 }
                 break;
             case 1:
                 BotWebViewContainer.MyWebView myWebView2 = BotWebViewContainer.MyWebView.this;
                 BotWebViewContainer botWebViewContainer2 = myWebView2.botWebViewContainer;
                 if (botWebViewContainer2 != null) {
-                    botWebViewContainer2.onURLChanged(!myWebView2.canGoBack(), !myWebView2.canGoForward());
+                    botWebViewContainer2.onURLChanged(myWebView2.urlFallback, !myWebView2.canGoBack(), !myWebView2.canGoForward());
                 }
                 break;
             default:

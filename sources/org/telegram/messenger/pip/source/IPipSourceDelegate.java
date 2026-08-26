@@ -3,7 +3,6 @@ package org.telegram.messenger.pip.source;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.pip.utils.Trigger;
 
 public interface IPipSourceDelegate {
     View pipCreatePictureInPictureView();
@@ -12,7 +11,7 @@ public interface IPipSourceDelegate {
 
     Bitmap pipCreatePrimaryWindowViewBitmap();
 
-    void pipHidePrimaryWindowView(Trigger trigger);
+    void pipHidePrimaryWindowView(Runnable runnable);
 
     boolean pipIsAvailable();
 
@@ -20,5 +19,5 @@ public interface IPipSourceDelegate {
 
     void pipRenderForeground(Canvas canvas);
 
-    void pipShowPrimaryWindowView(Trigger trigger);
+    void pipShowPrimaryWindowView(Runnable runnable);
 }

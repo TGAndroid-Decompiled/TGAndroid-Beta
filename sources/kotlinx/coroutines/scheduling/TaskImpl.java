@@ -1,13 +1,13 @@
 package kotlinx.coroutines.scheduling;
 
+import com.google.android.gms.dynamite.zzn;
 import kotlinx.coroutines.JobKt;
-import org.telegram.ui.CastSync;
 
 public final class TaskImpl extends Task {
     public final Runnable block;
 
-    public TaskImpl(Runnable runnable, long j, CastSync.AnonymousClass1 anonymousClass1) {
-        super(j, anonymousClass1);
+    public TaskImpl(Runnable runnable, long j, zzn zznVar) {
+        super(j, zznVar);
         this.block = runnable;
     }
 

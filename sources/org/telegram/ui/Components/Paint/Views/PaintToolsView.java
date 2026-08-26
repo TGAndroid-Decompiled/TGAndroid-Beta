@@ -14,16 +14,16 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline1;
 import org.telegram.messenger.R;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
+import org.telegram.ui.Cells.WallpaperCell$$ExternalSyntheticLambda0;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.ItemOptions;
-import org.telegram.ui.Components.ItemOptions$$ExternalSyntheticLambda4;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Brush;
 import org.telegram.ui.Components.Paint.PersistColorPalette;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
-import org.telegram.ui.Components.Shaker$$ExternalSyntheticLambda0;
-import org.telegram.ui.WearAuthSheet$$ExternalSyntheticLambda6;
 
 public final class PaintToolsView extends LinearLayout {
     public final int brushesCount;
@@ -37,7 +37,7 @@ public final class PaintToolsView extends LinearLayout {
     public final Paint selectorPaint;
 
     public interface Delegate {
-        void onAddButtonPressed();
+        void onAddButtonPressed(View view);
 
         void onBrushSelected(Brush brush);
 
@@ -73,7 +73,7 @@ public final class PaintToolsView extends LinearLayout {
             boolean z3 = i == list2.size() + 1;
             RLottieImageView rLottieImageView = new RLottieImageView(getContext());
             rLottieImageView.setPadding(AndroidUtilities.dp(z2 ? 0.0f : 8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(z3 ? 0.0f : 8.0f), AndroidUtilities.dp(8.0f));
-            rLottieImageView.setLayoutParams(LayoutHelper.createLinear(1.0f, 0, 40));
+            rLottieImageView.setLayoutParams(LayoutHelper.createLinear(0, 40, 1.0f));
             rLottieImageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             rLottieImageViewArr[i2] = rLottieImageView;
             if (i == 0) {
@@ -92,7 +92,7 @@ public final class PaintToolsView extends LinearLayout {
                                 this.f$0.delegate.onColorPickerSelected();
                                 break;
                             default:
-                                this.f$0.delegate.onAddButtonPressed();
+                                this.f$0.delegate.onAddButtonPressed(view);
                                 break;
                         }
                     }
@@ -100,8 +100,8 @@ public final class PaintToolsView extends LinearLayout {
             } else if (i > 0 && i <= list2.size()) {
                 Brush brush = (Brush) list2.get(i - 1);
                 if (z || !(brush instanceof Brush.Blurer)) {
-                    this.buttons[i2].setAnimation(brush.getIconRes(), 28, 28, null);
-                    this.buttons[i2].setOnClickListener(new WearAuthSheet$$ExternalSyntheticLambda6(this, i2, brush, 9));
+                    this.buttons[i2].setAnimation(brush.getIconRes(), 28, 28);
+                    this.buttons[i2].setOnClickListener(new WallpaperCell$$ExternalSyntheticLambda0(this, i2, brush, 2));
                 }
                 i++;
             } else if (i == list2.size() + 1) {
@@ -121,7 +121,7 @@ public final class PaintToolsView extends LinearLayout {
                                 this.f$0.delegate.onColorPickerSelected();
                                 break;
                             default:
-                                this.f$0.delegate.onAddButtonPressed();
+                                this.f$0.delegate.onAddButtonPressed(view);
                                 break;
                         }
                     }
@@ -145,7 +145,7 @@ public final class PaintToolsView extends LinearLayout {
                     Drawable drawable = rLottieImageView.getDrawable();
                     if (drawable instanceof RLottieDrawable) {
                         RLottieDrawable rLottieDrawable = (RLottieDrawable) drawable;
-                        rLottieDrawable.setCurrentFrame(0, true, false);
+                        rLottieDrawable.setCurrentFrame(0);
                         rLottieDrawable.start();
                     }
                 }
@@ -165,8 +165,8 @@ public final class PaintToolsView extends LinearLayout {
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(250L);
                 this.nextSelectedAnimator = duration;
                 duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-                this.nextSelectedAnimator.addUpdateListener(new ItemOptions$$ExternalSyntheticLambda4(this, 20));
-                this.nextSelectedAnimator.addListener(new ItemOptions.AnonymousClass3(this, 11));
+                this.nextSelectedAnimator.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 12));
+                this.nextSelectedAnimator.addListener(new BaseChartView.AnonymousClass4(this, 7));
                 this.nextSelectedAnimator.start();
             }
         }
@@ -183,12 +183,12 @@ public final class PaintToolsView extends LinearLayout {
                     if (this.nextSelectedAnimator != null) {
                         if (this.nextSelectedIndex != i) {
                             animateNextIndex(i);
-                            post(new Shaker$$ExternalSyntheticLambda0(2, childAt));
+                            post(new ChatbotSheet$$ExternalSyntheticLambda0(childAt, 23));
                             return true;
                         }
                     } else if (this.selectedIndex != i) {
                         animateNextIndex(i);
-                        post(new Shaker$$ExternalSyntheticLambda0(2, childAt));
+                        post(new ChatbotSheet$$ExternalSyntheticLambda0(childAt, 23));
                         return true;
                     }
                 }

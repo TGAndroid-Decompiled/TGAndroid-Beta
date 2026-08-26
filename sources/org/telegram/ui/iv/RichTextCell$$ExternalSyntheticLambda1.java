@@ -35,7 +35,7 @@ public final class RichTextCell$$ExternalSyntheticLambda1 implements View.OnClic
                 if (blockRow != null && blockRow.checkbox) {
                     boolean z = !blockRow.checked;
                     blockRow.checked = z;
-                    ((CheckBoxBase) richTextCell.checkBoxView.this$0).setChecked(-1, z, true);
+                    ((CheckBoxBase) richTextCell.checkBoxView.progressDrawable).setChecked(z, true);
                     RichTextCell.Delegate delegate = richTextCell.delegate;
                     if (delegate != null) {
                         BlockRow blockRow2 = richTextCell.currentRow;
@@ -66,11 +66,11 @@ public final class RichTextCell$$ExternalSyntheticLambda1 implements View.OnClic
                         TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) blockRow3.block;
                         ItemOptions itemOptionsMakeMenu = richEditorListView2.delegate.makeMenu(view);
                         itemOptionsMakeMenu.setScrimViewBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(3.0f), Theme.getColor(Theme.key_windowBackgroundWhite, richEditorListView2.resourcesProvider)));
-                        itemOptionsMakeMenu.allowShowingOnTopOfKeyboard = true;
-                        itemOptionsMakeMenu.maxHeight = AndroidUtilities.dp(350.0f);
-                        itemOptionsMakeMenu.addChecked(new RichEditorListView$$ExternalSyntheticLambda2(richEditorListView2, blockRow3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));
+                        itemOptionsMakeMenu.allowShowingOnTopOfKeyboard();
+                        itemOptionsMakeMenu.setMaxHeight(AndroidUtilities.dp(350.0f));
+                        itemOptionsMakeMenu.addChecked(TextUtils.isEmpty(pageblockpreformatted.language), LocaleController.getString(R.string.ArticleNone), new RichEditorListView$$ExternalSyntheticLambda2(richEditorListView2, blockRow3, 25));
                         if (!TextUtils.isEmpty(pageblockpreformatted.language)) {
-                            itemOptionsMakeMenu.addChecked(null, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), true);
+                            itemOptionsMakeMenu.addChecked(true, MessageObject.TextLayoutBlock.capitalizeLanguage(pageblockpreformatted.language), null);
                         }
                         itemOptionsMakeMenu.addGap();
                         int size = arrayList.size();
@@ -79,7 +79,7 @@ public final class RichTextCell$$ExternalSyntheticLambda1 implements View.OnClic
                             Object obj = arrayList.get(i);
                             i++;
                             String str = (String) obj;
-                            itemOptionsMakeMenu.addChecked(new EglRenderer$$ExternalSyntheticLambda6(richEditorListView2, blockRow3, str, 2), MessageObject.TextLayoutBlock.capitalizeLanguage(str), TextUtils.equals(str, pageblockpreformatted.language));
+                            itemOptionsMakeMenu.addChecked(TextUtils.equals(str, pageblockpreformatted.language), MessageObject.TextLayoutBlock.capitalizeLanguage(str), new EglRenderer$$ExternalSyntheticLambda6(richEditorListView2, blockRow3, str, 12));
                         }
                         itemOptionsMakeMenu.show();
                         break;

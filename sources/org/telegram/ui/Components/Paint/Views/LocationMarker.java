@@ -71,7 +71,7 @@ public class LocationMarker extends View {
         this.textScale = 1.0f;
         this.bounds = new RectF();
         new Path();
-        this.animatedVideo = new AnimatedFloat(350L, this, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.animatedVideo = new AnimatedFloat(this, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.density = f;
         imageReceiver.setCrossfadeWithOldImage(true);
         imageReceiver.setInvalidateAll(true);
@@ -88,7 +88,7 @@ public class LocationMarker extends View {
         NotificationCenter.listenEmojiLoading(this);
     }
 
-    public static TLRPC.Document findDocument(String str, TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
+    public static TLRPC.Document findDocument(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str) {
         if (tL_messages_stickerSet != null && tL_messages_stickerSet.packs != null && tL_messages_stickerSet.documents != null) {
             for (int i = 0; i < tL_messages_stickerSet.packs.size(); i++) {
                 TLRPC.TL_stickerPack tL_stickerPack = tL_messages_stickerSet.packs.get(i);
@@ -123,7 +123,7 @@ public class LocationMarker extends View {
         if (emojiBigDrawable == null) {
             return null;
         }
-        return new TextCell.AnonymousClass2(emojiBigDrawable, 3);
+        return new TextCell.AnonymousClass2(emojiBigDrawable, 4);
     }
 
     @Override
@@ -273,7 +273,7 @@ public class LocationMarker extends View {
                             LocationMarker locationMarker = this.f$0;
                             locationMarker.getClass();
                             String str2 = str;
-                            TLRPC.Document documentFindDocument = LocationMarker.findDocument(str2, (TLRPC.TL_messages_stickerSet) obj);
+                            TLRPC.Document documentFindDocument = LocationMarker.findDocument((TLRPC.TL_messages_stickerSet) obj, str2);
                             locationMarker.flagDocument = documentFindDocument;
                             locationMarker.flagImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument), "80_80", LocationMarker.getEmojiThumb(str2), null, null, 0);
                             locationMarker.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(locationMarker.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(locationMarker.flagDocument), "80_80", null, null, LocationMarker.getEmojiThumb(str2), 0L, null, null, 0);
@@ -282,7 +282,7 @@ public class LocationMarker extends View {
                             LocationMarker locationMarker2 = this.f$0;
                             locationMarker2.getClass();
                             String str3 = str;
-                            TLRPC.Document documentFindDocument2 = LocationMarker.findDocument(str3, (TLRPC.TL_messages_stickerSet) obj);
+                            TLRPC.Document documentFindDocument2 = LocationMarker.findDocument((TLRPC.TL_messages_stickerSet) obj, str3);
                             locationMarker2.flagAnimatedDocument = documentFindDocument2;
                             if (documentFindDocument2 != null) {
                                 locationMarker2.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument2), "80_80", ImageLocation.getForDocument(locationMarker2.flagDocument), "80_80", null, null, LocationMarker.getEmojiThumb(str3), 0L, null, null, 0);
@@ -309,7 +309,7 @@ public class LocationMarker extends View {
                             LocationMarker locationMarker = this.f$0;
                             locationMarker.getClass();
                             String str2 = str;
-                            TLRPC.Document documentFindDocument = LocationMarker.findDocument(str2, (TLRPC.TL_messages_stickerSet) obj);
+                            TLRPC.Document documentFindDocument = LocationMarker.findDocument((TLRPC.TL_messages_stickerSet) obj, str2);
                             locationMarker.flagDocument = documentFindDocument;
                             locationMarker.flagImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument), "80_80", LocationMarker.getEmojiThumb(str2), null, null, 0);
                             locationMarker.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(locationMarker.flagAnimatedDocument), "80_80", ImageLocation.getForDocument(locationMarker.flagDocument), "80_80", null, null, LocationMarker.getEmojiThumb(str2), 0L, null, null, 0);
@@ -318,7 +318,7 @@ public class LocationMarker extends View {
                             LocationMarker locationMarker2 = this.f$0;
                             locationMarker2.getClass();
                             String str3 = str;
-                            TLRPC.Document documentFindDocument2 = LocationMarker.findDocument(str3, (TLRPC.TL_messages_stickerSet) obj);
+                            TLRPC.Document documentFindDocument2 = LocationMarker.findDocument((TLRPC.TL_messages_stickerSet) obj, str3);
                             locationMarker2.flagAnimatedDocument = documentFindDocument2;
                             if (documentFindDocument2 != null) {
                                 locationMarker2.flagAnimatedImageReceiver.setImage(ImageLocation.getForDocument(documentFindDocument2), "80_80", ImageLocation.getForDocument(locationMarker2.flagDocument), "80_80", null, null, LocationMarker.getEmojiThumb(str3), 0L, null, null, 0);

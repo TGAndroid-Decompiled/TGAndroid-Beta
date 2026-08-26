@@ -1,91 +1,106 @@
 package org.telegram.ui;
 
-import android.view.WindowManager;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.SharedMediaLayout;
-
 public final class PhotoViewer$$ExternalSyntheticLambda10 implements Runnable {
     public final int $r8$classId;
     public final PhotoViewer f$0;
-    public final PhotoViewer.PlaceProviderObject f$1;
 
-    public PhotoViewer$$ExternalSyntheticLambda10(PhotoViewer photoViewer, PhotoViewer.PlaceProviderObject placeProviderObject, int i) {
+    public PhotoViewer$$ExternalSyntheticLambda10(PhotoViewer photoViewer, int i) {
         this.$r8$classId = i;
         this.f$0 = photoViewer;
-        this.f$1 = placeProviderObject;
     }
 
     @Override
     public final void run() {
-        ArrayList arrayList;
-        SharedMediaLayout.AnonymousClass26 anonymousClass26;
-        ArrayList arrayList2;
         switch (this.$r8$classId) {
             case 0:
-                PhotoViewer photoViewer = this.f$0;
-                photoViewer.animationEndRunnable = null;
-                int i = 0;
-                photoViewer.containerView.setLayerType(0, null);
-                photoViewer.animationInProgress = 0;
-                photoViewer.invalidateBlur$1();
-                photoViewer.onPhotoClosed(this.f$1);
-                MediaController.getInstance().tryResumePausedAudio();
-                if (photoViewer.stickerEmpty && !photoViewer.stickerEmptySent && (arrayList = photoViewer.imagesArrLocals) != null) {
-                    int size = arrayList.size();
-                    while (i < size) {
-                        Object obj = arrayList.get(i);
-                        i++;
-                        if (obj instanceof MediaController.PhotoEntry) {
-                            ((MediaController.PhotoEntry) obj).deleteAll();
-                        }
-                    }
-                    break;
-                }
+                this.f$0.applyCurrentEditMode();
                 break;
             case 1:
-                PhotoViewer photoViewer2 = this.f$0;
-                photoViewer2.animatingImageView.setImageBitmap(null);
-                PhotoViewer.PlaceProviderObject placeProviderObject = this.f$1;
-                if (placeProviderObject != null && !AndroidUtilities.isTablet() && (anonymousClass26 = placeProviderObject.animatingImageView) != null) {
-                    anonymousClass26.setImageBitmap(null);
-                }
-                try {
-                    if (photoViewer2.windowView.getParent() != null) {
-                        ((WindowManager) photoViewer2.parentActivity.getSystemService("window")).removeView(photoViewer2.windowView);
-                        photoViewer2.onHideView();
-                    }
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                PhotoViewer.access$16700(this.f$0);
+                break;
+            case 2:
+                this.f$0.lambda$onDraw$155();
+                break;
+            case 3:
+                this.f$0.lambda$onDraw$156();
+                break;
+            case 4:
+                this.f$0.lambda$onDraw$157();
+                break;
+            case 5:
+                this.f$0.lambda$closePaintMode$124();
+                break;
+            case 6:
+                this.f$0.lambda$setParentActivity$61();
+                break;
+            case 7:
+                this.f$0.lambda$setParentActivity$62();
+                break;
+            case 8:
+                this.f$0.replacePressed();
+                break;
+            case 9:
+                this.f$0.showScheduleDatePickerDialog();
+                break;
+            case 10:
+                this.f$0.lambda$setParentActivity$63();
+                break;
+            case 11:
+                this.f$0.pipInvalidateAvailability();
+                break;
+            case 12:
+                this.f$0.lambda$setParentActivity$51();
+                break;
+            case 13:
+                this.f$0.lambda$new$0();
+                break;
+            case 14:
+                this.f$0.onUserLeaveHint();
+                break;
+            case 15:
+                this.f$0.lambda$new$5();
+                break;
+            case 16:
+                this.f$0.onLongPress();
+                break;
+            case 17:
+                this.f$0.lambda$setParentActivity$76();
+                break;
+            case 18:
+                this.f$0.lambda$createPaintView$120();
+                break;
+            case 19:
+                this.f$0.lambda$createPaintView$121();
+                break;
+            case 20:
+                this.f$0.lambda$setImageIndex$137();
+                break;
+            case 21:
+                this.f$0.lambda$setParentActivity$22();
+                break;
+            case 22:
+                this.f$0.lambda$setParentActivity$23();
+                break;
+            case 23:
+                this.f$0.lambda$showCaptionLimitBulletin$83();
+                break;
+            case 24:
+                this.f$0.lambda$showCaptionLimitBulletin$84();
+                break;
+            case 25:
+                this.f$0.lambda$setParentActivity$73();
+                break;
+            case 26:
+                this.f$0.lambda$setParentActivity$29();
+                break;
+            case 27:
+                this.f$0.lambda$setParentActivity$30();
+                break;
+            case 28:
+                this.f$0.lambda$sendPressed$89();
                 break;
             default:
-                PhotoViewer photoViewer3 = this.f$0;
-                photoViewer3.animationEndRunnable = null;
-                PhotoViewer.FrameLayoutDrawer frameLayoutDrawer = photoViewer3.containerView;
-                if (frameLayoutDrawer != null) {
-                    int i2 = 0;
-                    frameLayoutDrawer.setLayerType(0, null);
-                    photoViewer3.animationInProgress = 0;
-                    photoViewer3.onPhotoClosed(this.f$1);
-                    photoViewer3.containerView.setScaleX(1.0f);
-                    photoViewer3.containerView.setScaleY(1.0f);
-                    MediaController.getInstance().tryResumePausedAudio();
-                    if (photoViewer3.stickerEmpty && !photoViewer3.stickerEmptySent && (arrayList2 = photoViewer3.imagesArrLocals) != null) {
-                        int size2 = arrayList2.size();
-                        while (i2 < size2) {
-                            Object obj2 = arrayList2.get(i2);
-                            i2++;
-                            if (obj2 instanceof MediaController.PhotoEntry) {
-                                ((MediaController.PhotoEntry) obj2).deleteAll();
-                            }
-                        }
-                        break;
-                    }
-                }
+                this.f$0.updateQualityItems();
                 break;
         }
     }

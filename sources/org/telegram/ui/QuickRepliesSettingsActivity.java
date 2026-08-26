@@ -7,11 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzku;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -22,94 +22,88 @@ import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 
-public final class QuickRepliesSettingsActivity extends BaseFragment {
-    public int explanationRow;
-    public ListAdapter listAdapter;
-    public RecyclerListView listView;
-    public int reply2Row;
-    public int reply3Row;
-    public int reply4Row;
-    public int rowCount;
-    public final EditTextSettingsCell[] textCells;
+public class QuickRepliesSettingsActivity extends BaseFragment {
+    private int explanationRow;
+    private ListAdapter listAdapter;
+    private RecyclerListView listView;
+    private int reply1Row;
+    private int reply2Row;
+    private int reply3Row;
+    private int reply4Row;
+    private int rowCount;
+    private EditTextSettingsCell[] textCells;
 
-    public final class ListAdapter extends RecyclerListView.SelectionAdapter {
-        public final Context mContext;
+    public class ListAdapter extends RecyclerListView.SelectionAdapter {
+        private Context mContext;
 
         public ListAdapter(Context context) {
             this.mContext = context;
         }
 
         @Override
-        public final int getItemCount() {
+        public int getItemCount() {
             return QuickRepliesSettingsActivity.this.rowCount;
         }
 
         @Override
-        public final int getItemViewType(int i) {
-            QuickRepliesSettingsActivity quickRepliesSettingsActivity = QuickRepliesSettingsActivity.this;
-            if (i == quickRepliesSettingsActivity.explanationRow) {
+        public int getItemViewType(int i) {
+            if (i == QuickRepliesSettingsActivity.this.explanationRow) {
                 return 0;
             }
-            if (i == 0 || i == quickRepliesSettingsActivity.reply2Row || i == quickRepliesSettingsActivity.reply3Row || i == quickRepliesSettingsActivity.reply4Row) {
-                return i + 9;
+            if (i == QuickRepliesSettingsActivity.this.reply1Row || i == QuickRepliesSettingsActivity.this.reply2Row || i == QuickRepliesSettingsActivity.this.reply3Row || i == QuickRepliesSettingsActivity.this.reply4Row) {
+                return (i - QuickRepliesSettingsActivity.this.reply1Row) + 9;
             }
             return 1;
         }
 
         @Override
-        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             int adapterPosition = viewHolder.getAdapterPosition();
-            if (adapterPosition == 0) {
-                return true;
-            }
-            QuickRepliesSettingsActivity quickRepliesSettingsActivity = QuickRepliesSettingsActivity.this;
-            return adapterPosition == quickRepliesSettingsActivity.reply2Row || adapterPosition == quickRepliesSettingsActivity.reply3Row || adapterPosition == quickRepliesSettingsActivity.reply4Row;
+            return adapterPosition == QuickRepliesSettingsActivity.this.reply1Row || adapterPosition == QuickRepliesSettingsActivity.this.reply2Row || adapterPosition == QuickRepliesSettingsActivity.this.reply3Row || adapterPosition == QuickRepliesSettingsActivity.this.reply4Row;
         }
 
         @Override
-        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             String string;
             String str;
-            int i2 = viewHolder.mItemViewType;
-            View view = viewHolder.itemView;
-            if (i2 == 0) {
-                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) view;
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 0) {
+                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 textInfoPrivacyCell.setText(LocaleController.getString(R.string.VoipQuickRepliesExplain));
                 return;
             }
-            if (i2 == 1) {
+            if (itemViewType == 1) {
                 return;
             }
-            QuickRepliesSettingsActivity quickRepliesSettingsActivity = QuickRepliesSettingsActivity.this;
-            if (i2 == 4) {
-                ((TextCheckCell) view).setTextAndCheck(LocaleController.getString(R.string.AllowCustomQuickReply), quickRepliesSettingsActivity.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
+            if (itemViewType == 4) {
+                ((TextCheckCell) viewHolder.itemView).setTextAndCheck(LocaleController.getString(R.string.AllowCustomQuickReply), QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getBoolean("quick_reply_allow_custom", true), false);
                 return;
             }
-            switch (i2) {
+            switch (itemViewType) {
                 case 9:
                 case 10:
                 case 11:
                 case 12:
-                    EditTextSettingsCell editTextSettingsCell = (EditTextSettingsCell) view;
-                    if (i == 0) {
+                    EditTextSettingsCell editTextSettingsCell = (EditTextSettingsCell) viewHolder.itemView;
+                    if (i == QuickRepliesSettingsActivity.this.reply1Row) {
                         string = LocaleController.getString(R.string.QuickReplyDefault1);
                         str = "quick_reply_msg1";
-                    } else if (i == quickRepliesSettingsActivity.reply2Row) {
+                    } else if (i == QuickRepliesSettingsActivity.this.reply2Row) {
                         string = LocaleController.getString(R.string.QuickReplyDefault2);
                         str = "quick_reply_msg2";
-                    } else if (i == quickRepliesSettingsActivity.reply3Row) {
+                    } else if (i == QuickRepliesSettingsActivity.this.reply3Row) {
                         string = LocaleController.getString(R.string.QuickReplyDefault3);
                         str = "quick_reply_msg3";
-                    } else if (i == quickRepliesSettingsActivity.reply4Row) {
+                    } else if (i == QuickRepliesSettingsActivity.this.reply4Row) {
                         string = LocaleController.getString(R.string.QuickReplyDefault4);
                         str = "quick_reply_msg4";
                     } else {
                         string = null;
                         str = null;
                     }
-                    String string2 = quickRepliesSettingsActivity.getParentActivity().getSharedPreferences("mainconfig", 0).getString(str, "");
-                    boolean z = i != quickRepliesSettingsActivity.reply4Row;
+                    String string2 = QuickRepliesSettingsActivity.this.getParentActivity().getSharedPreferences("mainconfig", 0).getString(str, "");
+                    boolean z = i != QuickRepliesSettingsActivity.this.reply4Row;
                     editTextSettingsCell.textView.setText(string2);
                     editTextSettingsCell.textView.setHint(string);
                     editTextSettingsCell.needDivider = z;
@@ -119,29 +113,28 @@ public final class QuickRepliesSettingsActivity extends BaseFragment {
         }
 
         @Override
-        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View textInfoPrivacyCell;
-            Context context = this.mContext;
             if (i == 0) {
-                textInfoPrivacyCell = new TextInfoPrivacyCell(context, 24, null);
+                textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext, 24, null);
             } else if (i != 1) {
                 switch (i) {
                     case 9:
                     case 10:
                     case 11:
                     case 12:
-                        EditTextSettingsCell editTextSettingsCell = new EditTextSettingsCell(context);
+                        EditTextSettingsCell editTextSettingsCell = new EditTextSettingsCell(this.mContext);
                         editTextSettingsCell.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
                         QuickRepliesSettingsActivity.this.textCells[i - 9] = editTextSettingsCell;
                         textInfoPrivacyCell = editTextSettingsCell;
                         break;
                     default:
-                        textInfoPrivacyCell = new TextCheckCell(context);
+                        textInfoPrivacyCell = new TextCheckCell(this.mContext);
                         textInfoPrivacyCell.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
                         break;
                 }
             } else {
-                textInfoPrivacyCell = new TextSettingsCell(context, 0, null);
+                textInfoPrivacyCell = new TextSettingsCell(this.mContext, null, 0);
                 textInfoPrivacyCell.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
             }
             textInfoPrivacyCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
@@ -155,24 +148,31 @@ public final class QuickRepliesSettingsActivity extends BaseFragment {
     }
 
     @Override
-    public final View createView(Context context) {
+    public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setTitle(LocaleController.getString(R.string.VoipQuickReplies));
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
         }
         this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new LogoutActivity.AnonymousClass1(this, 18));
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i) {
+                if (i == -1) {
+                    QuickRepliesSettingsActivity.this.finishFragment();
+                }
+            }
+        });
         this.listAdapter = new ListAdapter(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
         FrameLayout frameLayout2 = (FrameLayout) this.fragmentView;
-        RecyclerListView recyclerListView = new RecyclerListView(context, null);
+        RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setSections();
         this.listView.setVerticalScrollBarEnabled(false);
-        zzku.m(this.listView);
+        CacheChatsExceptionsFragment$$ExternalSyntheticOutline0.m(1, this.listView, false);
         frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1, 51));
         this.listView.setAdapter(this.listAdapter);
         this.actionBar.setAdaptiveBackground(this.listView);
@@ -180,8 +180,8 @@ public final class QuickRepliesSettingsActivity extends BaseFragment {
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
+    public ArrayList<ThemeDescription> getThemeDescriptions() {
+        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
         arrayList.add(new ThemeDescription(this.listView, 16, new Class[]{TextSettingsCell.class, TextCheckCell.class, EditTextSettingsCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.fragmentView, 1, null, null, null, null, Theme.key_windowBackgroundGray));
         arrayList.add(new ThemeDescription(this.listView, 32768, null, null, null, null, Theme.key_actionBarDefault));
@@ -199,8 +199,9 @@ public final class QuickRepliesSettingsActivity extends BaseFragment {
     }
 
     @Override
-    public final boolean onFragmentCreate() {
+    public boolean onFragmentCreate() {
         super.onFragmentCreate();
+        this.reply1Row = 0;
         this.reply2Row = 1;
         this.reply3Row = 2;
         this.reply4Row = 3;
@@ -210,7 +211,7 @@ public final class QuickRepliesSettingsActivity extends BaseFragment {
     }
 
     @Override
-    public final void onFragmentDestroy() {
+    public void onFragmentDestroy() {
         super.onFragmentDestroy();
         int i = 0;
         SharedPreferences.Editor editorEdit = getParentActivity().getSharedPreferences("mainconfig", 0).edit();
@@ -234,11 +235,11 @@ public final class QuickRepliesSettingsActivity extends BaseFragment {
     }
 
     @Override
-    public final void onResume() {
+    public void onResume() {
         super.onResume();
         ListAdapter listAdapter = this.listAdapter;
         if (listAdapter != null) {
-            listAdapter.mObservable.notifyChanged();
+            listAdapter.notifyDataSetChanged();
         }
     }
 }

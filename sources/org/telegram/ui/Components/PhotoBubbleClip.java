@@ -4,12 +4,12 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 
-public final class PhotoBubbleClip extends Path {
-    public int lastCx;
-    public int lastCy;
-    public int lastR;
+public class PhotoBubbleClip extends Path {
+    private int lastCx;
+    private int lastCy;
+    private int lastR;
 
-    public final void setBounds(int i, int i2, int i3) {
+    public void setBounds(int i, int i2, int i3) {
         if (this.lastCx == i && this.lastCy == i2 && this.lastR == i3) {
             return;
         }

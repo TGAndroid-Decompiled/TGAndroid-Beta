@@ -15,16 +15,10 @@ public final class FilterTabsView$4$$ExternalSyntheticLambda1 implements ValueAn
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                FilterTabsView.TabView tabView = this.f$0;
-                tabView.changeProgress = fFloatValue;
-                tabView.invalidate();
+                FilterTabsView.AnonymousClass4.lambda$animateMoveImpl$1(this.f$0, valueAnimator);
                 break;
             default:
-                FilterTabsView.TabView tabView2 = this.f$0;
-                tabView2.getClass();
-                tabView2.locIconXOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                tabView2.invalidate();
+                this.f$0.lambda$shakeLockIcon$0(valueAnimator);
                 break;
         }
     }

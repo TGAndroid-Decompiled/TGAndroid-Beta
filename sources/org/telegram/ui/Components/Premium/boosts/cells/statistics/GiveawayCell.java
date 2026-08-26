@@ -9,7 +9,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell;
-import org.telegram.ui.Components.AvatarDrawable;
 
 public final class GiveawayCell extends UserCell {
     public final CounterDrawable counterDrawable;
@@ -35,22 +34,21 @@ public final class GiveawayCell extends UserCell {
         this.prepaidGiveaway = prepaidGiveaway;
         boolean z = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         CounterDrawable counterDrawable = this.counterDrawable;
-        AvatarDrawable avatarDrawable = this.avatarDrawable;
         if (z) {
-            avatarDrawable.setAvatarType(26);
+            this.avatarDrawable.setAvatarType(26);
             String strValueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
             counterDrawable.text = strValueOf;
             counterDrawable.textWith = counterDrawable.textPaint.measureText(strValueOf);
             counterDrawable.invalidateSelf();
         } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            avatarDrawable.setAvatarType(16);
+            this.avatarDrawable.setAvatarType(16);
             int i = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
             if (i == 12) {
-                avatarDrawable.setColor(-31392, -2796986);
+                this.avatarDrawable.setColor(-31392, -2796986);
             } else if (i == 6) {
-                avatarDrawable.setColor(-10703110, -12481584);
+                this.avatarDrawable.setColor(-10703110, -12481584);
             } else {
-                avatarDrawable.setColor(-6631068, -11945404);
+                this.avatarDrawable.setColor(-6631068, -11945404);
             }
             String strValueOf2 = String.valueOf(prepaidGiveaway.quantity * ((int) MessagesController.getInstance(UserConfig.selectedAccount).giveawayBoostsPerPremium));
             counterDrawable.text = strValueOf2;

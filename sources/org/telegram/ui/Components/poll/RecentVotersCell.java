@@ -21,10 +21,10 @@ import org.telegram.ui.Components.AvatarsListDrawable;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
 import org.telegram.ui.MessageSeenView;
 
 public final class RecentVotersCell extends FrameLayout {
@@ -42,7 +42,7 @@ public final class RecentVotersCell extends FrameLayout {
         @Override
         public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
             MessageSeenView.UserCell userCell = (MessageSeenView.UserCell) view;
-            userCell.setUser((TLObject) uItem.object, true, uItem.intValue);
+            userCell.setUser((TLObject) uItem.object, uItem.intValue, true);
             userCell.setOnClickListener(uItem.clickCallback);
         }
 
@@ -73,7 +73,7 @@ public final class RecentVotersCell extends FrameLayout {
 
         @Override
         public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, null);
+            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
             flickerLoadingView.setViewType(16);
             flickerLoadingView.setMinimumHeight(AndroidUtilities.dp(48.0f));
             return flickerLoadingView;
@@ -89,7 +89,7 @@ public final class RecentVotersCell extends FrameLayout {
 
         @Override
         public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, null);
+            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
             flickerLoadingView.setViewType(16);
             flickerLoadingView.setMinimumHeight(AndroidUtilities.dp(48.0f));
             return flickerLoadingView;
@@ -103,17 +103,17 @@ public final class RecentVotersCell extends FrameLayout {
         public final int msgId;
         public String nextOffset;
         public final Utilities.Callback onClick;
-        public final Tooltip$$ExternalSyntheticLambda0 onUpdate;
+        public final GiftSheet$$ExternalSyntheticLambda9 onUpdate;
         public final byte[] option;
         public final TLRPC.InputPeer peer;
         public final ArrayList votes = new ArrayList();
 
-        public VotesList(int i, TLRPC.InputPeer inputPeer, int i2, byte[] bArr, Tooltip$$ExternalSyntheticLambda0 tooltip$$ExternalSyntheticLambda0, Utilities.Callback callback) {
+        public VotesList(int i, TLRPC.InputPeer inputPeer, int i2, byte[] bArr, GiftSheet$$ExternalSyntheticLambda9 giftSheet$$ExternalSyntheticLambda9, Utilities.Callback callback) {
             this.currentAccount = i;
             this.peer = inputPeer;
             this.msgId = i2;
             this.option = bArr;
-            this.onUpdate = tooltip$$ExternalSyntheticLambda0;
+            this.onUpdate = giftSheet$$ExternalSyntheticLambda9;
             this.onClick = callback;
         }
 
@@ -145,34 +145,27 @@ public final class RecentVotersCell extends FrameLayout {
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setTextSize(1, 16.0f);
         setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(68.0f), 0);
-        addView(textView, LayoutHelper.createFrame(-1.0f, -1));
+        addView(textView, LayoutHelper.createFrameMatchParent());
     }
 
-    public final AnonymousClass1 createListView(BaseFragment baseFragment, long j, int i, byte[] bArr, int i2, Utilities.Callback callback) {
+    public final AnonymousClass1 createListView(BaseFragment baseFragment, long j, int i, byte[] bArr, final int i2, Utilities.Callback callback) {
         AnonymousClass1 anonymousClass1 = this.listView;
         if (anonymousClass1 != null) {
             return anonymousClass1;
         }
-        final VotesList votesList = new VotesList(baseFragment.getCurrentAccount(), baseFragment.getMessagesController().getInputPeer(j), i, bArr, new Tooltip$$ExternalSyntheticLambda0(this, 22), callback);
-        AndroidUtilities.runOnUIThread(new Tooltip$$ExternalSyntheticLambda0(votesList, 23), 1000L);
-        ?? r10 = new UniversalRecyclerView(baseFragment, new RecentVotersCell$$ExternalSyntheticLambda2(votesList, 0), i2) {
-            public final int val$estimated;
-
-            {
-                super(baseFragment.getContext(), baseFragment.getCurrentAccount(), baseFragment.getClassGuid(), recentVotersCell$$ExternalSyntheticLambda2, null, null, baseFragment.getResourceProvider());
-                this.val$estimated = i2;
-            }
-
+        final VotesList votesList = new VotesList(baseFragment.getCurrentAccount(), baseFragment.getMessagesController().getInputPeer(j), i, bArr, new GiftSheet$$ExternalSyntheticLambda9(this, 13), callback);
+        AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda9(votesList, 14), 1000L);
+        ?? r10 = new UniversalRecyclerView(baseFragment, new RecentVotersCell$$ExternalSyntheticLambda2(votesList, 0)) {
             @Override
             public final void onMeasure(int i3, int i4) {
                 int iMin = Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i3));
                 View.MeasureSpec.getSize(i4);
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(iMin, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(MathUtils.clamp(this.val$estimated, 1, 5) * 48), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(iMin, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(MathUtils.clamp(i2, 1, 5) * 48), 1073741824));
             }
         };
         this.listView = r10;
-        r10.adapter.applyBackground = false;
-        r10.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        r10.adapter.setApplyBackground(false);
+        addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public final void onScrolled(RecyclerView recyclerView, int i3, int i4) {
                 VotesList votesList2 = votesList;
@@ -180,7 +173,7 @@ public final class RecentVotersCell extends FrameLayout {
                     return;
                 }
                 RecentVotersCell recentVotersCell = RecentVotersCell.this;
-                if ((recentVotersCell.listView.adapter.items.size() - 1) - recentVotersCell.listView.layoutManager.findLastCompletelyVisibleItemPosition() < 5) {
+                if ((recentVotersCell.listView.adapter.getItemCount() - 1) - recentVotersCell.listView.layoutManager.findLastCompletelyVisibleItemPosition() < 5) {
                     votesList2.load();
                 }
             }
@@ -193,8 +186,8 @@ public final class RecentVotersCell extends FrameLayout {
         super.dispatchDraw(canvas);
         int width = getWidth() - AndroidUtilities.dp(11.0f);
         AvatarsListDrawable avatarsListDrawable = this.avatarsListDrawable;
-        avatarsListDrawable.setBounds(width - ((int) avatarsListDrawable.animator.metadata.totalWidth.now), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
-        avatarsListDrawable.draw$1(canvas);
+        avatarsListDrawable.setBounds(width - ((int) avatarsListDrawable.getAnimatedWidth()), AndroidUtilities.dp(12.0f), getWidth() - AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f) + AndroidUtilities.dp(12.0f));
+        avatarsListDrawable.draw(canvas);
     }
 
     @Override

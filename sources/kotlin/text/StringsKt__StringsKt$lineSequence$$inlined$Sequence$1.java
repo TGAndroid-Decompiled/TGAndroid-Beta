@@ -1,6 +1,6 @@
 package kotlin.text;
 
-import com.google.android.gms.internal.mlkit_vision_common.zzjj;
+import com.google.android.gms.internal.mlkit_vision_common.zzjf;
 import java.util.Iterator;
 import kotlin.sequences.Sequence;
 import kotlin.sequences.SequenceBuilderIterator;
@@ -23,7 +23,7 @@ public final class StringsKt__StringsKt$lineSequence$$inlined$Sequence$1 impleme
             case 1:
                 JobSupport$children$1 jobSupport$children$1 = (JobSupport$children$1) this.$this_lineSequence$inlined;
                 SequenceBuilderIterator sequenceBuilderIterator = new SequenceBuilderIterator();
-                sequenceBuilderIterator.nextStep = zzjj.createCoroutineUnintercepted(sequenceBuilderIterator, sequenceBuilderIterator, jobSupport$children$1);
+                sequenceBuilderIterator.nextStep = zzjf.createCoroutineUnintercepted(sequenceBuilderIterator, sequenceBuilderIterator, jobSupport$children$1);
                 return sequenceBuilderIterator;
             default:
                 return (Iterator) this.$this_lineSequence$inlined;

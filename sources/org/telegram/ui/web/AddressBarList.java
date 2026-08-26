@@ -15,7 +15,6 @@ import android.os.AsyncTask;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.URLSpan;
-import android.util.SparseIntArray;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -47,8 +46,8 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda10;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda33;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda27;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda28;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.BackupImageView;
@@ -60,11 +59,9 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda3;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.ProfileActivity$6$$ExternalSyntheticLambda7;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
-import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
+import org.telegram.ui.Storage.CacheModel$$ExternalSyntheticLambda0;
+import org.telegram.ui.WrappedResourceProvider;
+import org.telegram.ui.bots.BotDownloads$$ExternalSyntheticLambda0;
 
 public final class AddressBarList extends FrameLayout {
     public int backgroundColor;
@@ -82,12 +79,12 @@ public final class AddressBarList extends FrameLayout {
     public AsyncTask lastTask;
     public int listBackgroundColor;
     public final AnonymousClass1 listView;
-    public ArticleViewer$$ExternalSyntheticLambda33 onQueryClick;
-    public ArticleViewer$$ExternalSyntheticLambda10 onQueryInsertClick;
-    public ArticleViewer$$ExternalSyntheticLambda10 onURLClick;
+    public ArticleViewer$$ExternalSyntheticLambda27 onQueryClick;
+    public ArticleViewer$$ExternalSyntheticLambda28 onQueryInsertClick;
+    public ArticleViewer$$ExternalSyntheticLambda28 onURLClick;
     public float openProgress;
     public boolean opened;
-    public final PhotoViewer.AnonymousClass14 resourceProvider;
+    public final WrappedResourceProvider resourceProvider;
     public int rippleColor;
     public final AnonymousClass2 space;
     public final ArrayList suggestions;
@@ -102,13 +99,71 @@ public final class AddressBarList extends FrameLayout {
         }
 
         @Override
-        public final void onMeasure(int i, int i2) {
+        public void onDraw(Canvas canvas) {
+            switch (this.$r8$classId) {
+                case 5:
+                    super.onDraw(canvas);
+                    canvas.drawLine(0.0f, AndroidUtilities.dp(14.0f), 2.0f, getMeasuredHeight() - AndroidUtilities.dp(14.0f), Theme.dividerPaint);
+                    break;
+                case 8:
+                    if (getAlpha() != 0.0f) {
+                        AndroidUtilities.rectTmp.set(0.0f, 0.0f, getWidth(), getHeight());
+                        invalidate();
+                        break;
+                    }
+                    break;
+                default:
+                    super.onDraw(canvas);
+                    break;
+            }
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
             switch (this.$r8$classId) {
                 case 0:
                     super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(6.0f), 1073741824));
                     break;
+                case 1:
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
+                    break;
+                case 2:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(81.0f), 1073741824));
+                    break;
+                case 3:
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(8.0f), 1073741824));
+                    break;
+                case 4:
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
+                    break;
+                case 5:
+                case 8:
                 default:
+                    super.onMeasure(i, i2);
+                    break;
+                case 6:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
+                    break;
+                case 7:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(68.0f), 1073741824));
+                    break;
+                case 9:
+                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
+                    break;
+                case 10:
                     super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+                    break;
+            }
+        }
+
+        @Override
+        public void onSizeChanged(int i, int i2, int i3, int i4) {
+            switch (this.$r8$classId) {
+                case 8:
+                    super.onSizeChanged(i, i2, i3, i4);
+                    break;
+                default:
+                    super.onSizeChanged(i, i2, i3, i4);
                     break;
             }
         }
@@ -230,19 +285,20 @@ public final class AddressBarList extends FrameLayout {
             public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
                 String strDecode;
                 Bitmap bitmap;
-                CharSequence charSequence;
                 String str;
                 TLRPC.Photo photo;
+                String strSubstring;
                 Bitmap bitmap2;
                 String str2;
                 BookmarkView bookmarkView = (BookmarkView) view;
                 Object obj = uItem.object2;
+                int i = 1;
                 if (!(obj instanceof MessageObject)) {
                     if (obj instanceof BrowserHistory.Entry) {
                         BrowserHistory.Entry entry = (BrowserHistory.Entry) obj;
-                        CharSequence charSequence2 = uItem.subtext;
-                        String string = charSequence2 == null ? null : charSequence2.toString();
-                        bookmarkView.updateColors$1();
+                        CharSequence charSequence = uItem.subtext;
+                        String string = charSequence == null ? null : charSequence.toString();
+                        bookmarkView.updateColors();
                         if (entry == null) {
                             return;
                         }
@@ -267,7 +323,7 @@ public final class AddressBarList extends FrameLayout {
                             String string2 = textView.getText() == null ? "" : textView.getText().toString();
                             BreakIterator characterInstance = BreakIterator.getCharacterInstance();
                             characterInstance.setText(string2);
-                            CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(0.1f, bookmarkView.textColor)), new Drawable(bookmarkView, string2.isEmpty() ? "" : string2.substring(characterInstance.first(), characterInstance.next()), 1) {
+                            CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(0.1f, bookmarkView.textColor)), new Drawable(bookmarkView, string2.isEmpty() ? "" : string2.substring(characterInstance.first(), characterInstance.next()), i) {
                                 public final int $r8$classId;
                                 public final Text text;
                                 public final BookmarkView this$0;
@@ -290,10 +346,10 @@ public final class AddressBarList extends FrameLayout {
                                 public final void draw(Canvas canvas) {
                                     switch (this.$r8$classId) {
                                         case 0:
-                                            this.text.draw(getBounds().centerX() - (this.text.width / 2.0f), getBounds().centerY(), 1.0f, this.this$0.textColor, canvas);
+                                            this.text.draw(canvas, getBounds().centerX() - (this.text.getCurrentWidth() / 2.0f), getBounds().centerY(), this.this$0.textColor, 1.0f);
                                             break;
                                         default:
-                                            this.text.draw(getBounds().centerX() - (this.text.width / 2.0f), getBounds().centerY(), 1.0f, this.this$0.textColor, canvas);
+                                            this.text.draw(canvas, getBounds().centerX() - (this.text.getCurrentWidth() / 2.0f), getBounds().centerY(), this.this$0.textColor, 1.0f);
                                             break;
                                     }
                                 }
@@ -306,19 +362,19 @@ public final class AddressBarList extends FrameLayout {
                                 }
 
                                 @Override
-                                public final void setAlpha(int i) {
-                                    int i2 = this.$r8$classId;
+                                public final void setAlpha(int i2) {
+                                    int i3 = this.$r8$classId;
                                 }
 
                                 @Override
                                 public final void setColorFilter(ColorFilter colorFilter) {
-                                    int i = this.$r8$classId;
+                                    int i2 = this.$r8$classId;
                                 }
 
-                                private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$2(int i) {
+                                private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$2(int i2) {
                                 }
 
-                                private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$3(int i) {
+                                private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$3(int i2) {
                                 }
 
                                 private final void setColorFilter$org$telegram$ui$web$AddressBarList$BookmarkView$2(ColorFilter colorFilter) {
@@ -327,10 +383,7 @@ public final class AddressBarList extends FrameLayout {
                                 private final void setColorFilter$org$telegram$ui$web$AddressBarList$BookmarkView$3(ColorFilter colorFilter) {
                                 }
                             });
-                            int iDp = AndroidUtilities.dp(28.0f);
-                            int iDp2 = AndroidUtilities.dp(28.0f);
-                            combinedDrawable.backWidth = iDp;
-                            combinedDrawable.backHeight = iDp2;
+                            combinedDrawable.setCustomSize(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f));
                             backupImageView.setImageDrawable(combinedDrawable);
                         } else {
                             backupImageView.setImageBitmap(bitmap);
@@ -341,13 +394,13 @@ public final class AddressBarList extends FrameLayout {
                                 Uri uri = Uri.parse(strReplace);
                                 strReplace = Browser.replace(uri, null, null, Browser.IDN_toUnicode(uri.getHost()), null);
                             } catch (Exception e) {
-                                FileLog.e(e);
-                                strDecode = strReplace;
+                                FileLog.e((Throwable) e, false);
                             }
+                            strDecode = URLDecoder.decode(strReplace.replaceAll("\\+", "%2b"), "UTF-8");
                         } catch (Exception e2) {
-                            FileLog.e((Throwable) e2, false);
+                            FileLog.e(e2);
+                            strDecode = strReplace;
                         }
-                        strDecode = URLDecoder.decode(strReplace.replaceAll("\\+", "%2b"), "UTF-8");
                         TextView textView2 = bookmarkView.subtextView;
                         textView2.setText(strDecode);
                         if (!TextUtils.isEmpty(string)) {
@@ -359,9 +412,10 @@ public final class AddressBarList extends FrameLayout {
                         textView.setText(Emoji.replaceEmoji(textView.getText(), textView.getPaint().getFontMetricsInt(), false));
                         textView2.setText(Emoji.replaceEmoji(textView2.getText(), textView2.getPaint().getFontMetricsInt(), false));
                         bookmarkView.timeView.setText(LocaleController.getInstance().getFormatterDay().format(entry.time));
-                        bookmarkView.checkBox.checkBoxBase.setChecked(-1, false, false);
+                        bookmarkView.checkBox.setChecked(false, false);
+                        int iDp = AndroidUtilities.dp(70.0f);
                         FrameLayout.LayoutParams layoutParams = bookmarkView.textLayoutParams;
-                        layoutParams.rightMargin = AndroidUtilities.dp(70.0f);
+                        layoutParams.rightMargin = iDp;
                         bookmarkView.textLayout.setLayoutParams(layoutParams);
                         bookmarkView.needDivider = z;
                         bookmarkView.setWillNotDraw(!z);
@@ -371,10 +425,10 @@ public final class AddressBarList extends FrameLayout {
                 }
                 MessageObject messageObject = (MessageObject) obj;
                 boolean z2 = uItem.accent;
-                CharSequence charSequence3 = uItem.subtext;
-                String string3 = charSequence3 == null ? null : charSequence3.toString();
+                CharSequence charSequence2 = uItem.subtext;
+                String string3 = charSequence2 == null ? null : charSequence2.toString();
                 boolean z3 = uItem.checked;
-                bookmarkView.updateColors$1();
+                bookmarkView.updateColors();
                 TLRPC.WebPage webPage = MessageObject.getMedia(messageObject) != null ? MessageObject.getMedia(messageObject).webpage : null;
                 String link = webPage != null ? webPage.url : AddressBarList.getLink(messageObject);
                 String hostAuthority = AndroidUtilities.getHostAuthority(link, true);
@@ -403,22 +457,20 @@ public final class AddressBarList extends FrameLayout {
                         String str4 = strArrSplit2[strArrSplit2.length - 2];
                         textView3.setText(str4.substring(0, 1).toUpperCase() + str4.substring(1));
                     } catch (Exception unused2) {
-                        charSequence = r15;
-                        textView3.setText(charSequence);
+                        textView3.setText("");
                     }
                 } else {
                     textView3.setText(webMetadata2.sitename);
                 }
-                charSequence = "";
                 BackupImageView backupImageView2 = bookmarkView.iconView;
-                backupImageView2.imageReceiver.clearImage();
+                backupImageView2.clearImage();
                 if (webMetadata2 != null && (bitmap2 = webMetadata2.favicon) != null) {
                     backupImageView2.setImageBitmap(bitmap2);
                 } else if (webPage == null || (photo = webPage.photo) == null) {
-                    String string4 = textView3.getText() == null ? charSequence : textView3.getText().toString();
+                    String string4 = textView3.getText() == null ? "" : textView3.getText().toString();
                     BreakIterator characterInstance2 = BreakIterator.getCharacterInstance();
                     characterInstance2.setText(string4);
-                    CombinedDrawable combinedDrawable2 = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(0.1f, bookmarkView.textColor)), new Drawable(bookmarkView, string4.isEmpty() ? charSequence : string4.substring(characterInstance2.first(), characterInstance2.next()), 0) {
+                    CombinedDrawable combinedDrawable2 = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(0.1f, bookmarkView.textColor)), new Drawable(bookmarkView, string4.isEmpty() ? "" : string4.substring(characterInstance2.first(), characterInstance2.next()), 0) {
                         public final int $r8$classId;
                         public final Text text;
                         public final BookmarkView this$0;
@@ -441,10 +493,10 @@ public final class AddressBarList extends FrameLayout {
                         public final void draw(Canvas canvas) {
                             switch (this.$r8$classId) {
                                 case 0:
-                                    this.text.draw(getBounds().centerX() - (this.text.width / 2.0f), getBounds().centerY(), 1.0f, this.this$0.textColor, canvas);
+                                    this.text.draw(canvas, getBounds().centerX() - (this.text.getCurrentWidth() / 2.0f), getBounds().centerY(), this.this$0.textColor, 1.0f);
                                     break;
                                 default:
-                                    this.text.draw(getBounds().centerX() - (this.text.width / 2.0f), getBounds().centerY(), 1.0f, this.this$0.textColor, canvas);
+                                    this.text.draw(canvas, getBounds().centerX() - (this.text.getCurrentWidth() / 2.0f), getBounds().centerY(), this.this$0.textColor, 1.0f);
                                     break;
                             }
                         }
@@ -457,19 +509,19 @@ public final class AddressBarList extends FrameLayout {
                         }
 
                         @Override
-                        public final void setAlpha(int i) {
-                            int i2 = this.$r8$classId;
+                        public final void setAlpha(int i2) {
+                            int i3 = this.$r8$classId;
                         }
 
                         @Override
                         public final void setColorFilter(ColorFilter colorFilter) {
-                            int i = this.$r8$classId;
+                            int i2 = this.$r8$classId;
                         }
 
-                        private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$2(int i) {
+                        private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$2(int i2) {
                         }
 
-                        private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$3(int i) {
+                        private final void setAlpha$org$telegram$ui$web$AddressBarList$BookmarkView$3(int i2) {
                         }
 
                         private final void setColorFilter$org$telegram$ui$web$AddressBarList$BookmarkView$2(ColorFilter colorFilter) {
@@ -478,13 +530,10 @@ public final class AddressBarList extends FrameLayout {
                         private final void setColorFilter$org$telegram$ui$web$AddressBarList$BookmarkView$3(ColorFilter colorFilter) {
                         }
                     });
-                    int iDp3 = AndroidUtilities.dp(28.0f);
-                    int iDp4 = AndroidUtilities.dp(28.0f);
-                    combinedDrawable2.backWidth = iDp3;
-                    combinedDrawable2.backHeight = iDp4;
+                    combinedDrawable2.setCustomSize(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f));
                     backupImageView2.setImageDrawable(combinedDrawable2);
                 } else {
-                    backupImageView2.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(32.0f), true, null, true), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, AndroidUtilities.dp(32.0f), true, null, false), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), null, null, 0, messageObject);
+                    backupImageView2.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(32.0f), true, null, true), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(webPage.photo.sizes, AndroidUtilities.dp(32.0f), true, null, false), webPage.photo), AndroidUtilities.dp(32.0f) + "_" + AndroidUtilities.dp(32.0f), 0, messageObject);
                 }
                 bookmarkView.timeView.setVisibility(8);
                 bookmarkView.insertView.setVisibility(z2 ? 0 : 8);
@@ -499,29 +548,30 @@ public final class AddressBarList extends FrameLayout {
                     link2 = URLDecoder.decode(link2.replaceAll("\\+", "%2b"), "UTF-8");
                     HashMap map = BottomSheetTabs.tabs;
                     if (link2 == null) {
-                        link2 = null;
+                        strSubstring = null;
                     } else {
                         int iIndexOf = link2.indexOf(35);
-                        if (iIndexOf >= 0) {
-                            link2 = link2.substring(0, iIndexOf + 1);
-                        }
+                        strSubstring = iIndexOf >= 0 ? link2.substring(0, iIndexOf + 1) : link2;
                     }
                 } catch (Exception e4) {
+                    strSubstring = link2;
                     FileLog.e(e4);
                 }
                 TextView textView4 = bookmarkView.subtextView;
-                textView4.setText(link2);
+                textView4.setText(strSubstring);
                 if (!TextUtils.isEmpty(string3)) {
                     CharSequence text2 = textView3.getText();
                     Theme.ResourcesProvider resourcesProvider2 = bookmarkView.resourcesProvider;
-                    textView3.setText(AndroidUtilities.highlightText(text2, string3, resourcesProvider2));
-                    textView4.setText(AndroidUtilities.highlightText(textView4.getText(), string3, resourcesProvider2));
+                    String str5 = string3;
+                    textView3.setText(AndroidUtilities.highlightText(text2, str5, resourcesProvider2));
+                    textView4.setText(AndroidUtilities.highlightText(textView4.getText(), str5, resourcesProvider2));
                 }
                 textView3.setText(Emoji.replaceEmoji(textView3.getText(), textView3.getPaint().getFontMetricsInt(), false));
                 textView4.setText(Emoji.replaceEmoji(textView4.getText(), textView4.getPaint().getFontMetricsInt(), false));
-                bookmarkView.checkBox.checkBoxBase.setChecked(-1, z3, false);
+                bookmarkView.checkBox.setChecked(z3, false);
+                int iDp2 = AndroidUtilities.dp(52.0f);
                 FrameLayout.LayoutParams layoutParams2 = bookmarkView.textLayoutParams;
-                layoutParams2.rightMargin = AndroidUtilities.dp(52.0f);
+                layoutParams2.rightMargin = iDp2;
                 bookmarkView.textLayout.setLayoutParams(layoutParams2);
                 bookmarkView.needDivider = z;
                 bookmarkView.setWillNotDraw(!z);
@@ -586,7 +636,7 @@ public final class AddressBarList extends FrameLayout {
             addView(imageView, LayoutHelper.createFrame(32, 32.0f, 21, 8.0f, 8.0f, 8.0f, 8.0f));
             DialogCell.AnonymousClass3 anonymousClass3 = new DialogCell.AnonymousClass3(this, getContext(), resourcesProvider, 2);
             this.checkBox = anonymousClass3;
-            anonymousClass3.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+            anonymousClass3.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             anonymousClass3.setDrawUnchecked(false);
             anonymousClass3.setDrawBackgroundAsArc(3);
             addView(anonymousClass3, LayoutHelper.createFrame(24, 24.0f, 19, 26.0f, 12.0f, 0.0f, 0.0f));
@@ -610,11 +660,11 @@ public final class AddressBarList extends FrameLayout {
         }
 
         public void setChecked(boolean z) {
-            this.checkBox.checkBoxBase.setChecked(-1, z, true);
+            this.checkBox.setChecked(z, true);
         }
 
         @Override
-        public final void updateColors$1() {
+        public final void updateColors() {
             int i = Theme.key_windowBackgroundWhite;
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             int color = Theme.getColor(i, resourcesProvider);
@@ -654,7 +704,7 @@ public final class AddressBarList extends FrameLayout {
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.mediaDidLoad);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.bookmarkAdded);
             if (TextUtils.isEmpty(this.query)) {
-                load$1();
+                load();
             }
         }
 
@@ -686,7 +736,7 @@ public final class AddressBarList extends FrameLayout {
             }
         }
 
-        public final void load$1() {
+        public final void load() {
             ArrayList arrayList;
             if (this.loading || this.endReached) {
                 return;
@@ -731,22 +781,23 @@ public final class AddressBarList extends FrameLayout {
         this.openProgress = 0.0f;
         setWillNotDraw(false);
         int i2 = UserConfig.selectedAccount;
-        TodoItemMenu$$ExternalSyntheticLambda17 todoItemMenu$$ExternalSyntheticLambda17 = new TodoItemMenu$$ExternalSyntheticLambda17(this, 22);
-        AddressBarList$$ExternalSyntheticLambda2 addressBarList$$ExternalSyntheticLambda2 = new AddressBarList$$ExternalSyntheticLambda2(this);
-        PhotoViewer.AnonymousClass14 anonymousClass14 = new PhotoViewer.AnonymousClass14((Theme.ResourcesProvider) null);
-        this.resourceProvider = anonymousClass14;
-        ?? r0 = new UniversalRecyclerView(activity, i2, todoItemMenu$$ExternalSyntheticLambda17, addressBarList$$ExternalSyntheticLambda2, anonymousClass14) {
+        BotDownloads$$ExternalSyntheticLambda0 botDownloads$$ExternalSyntheticLambda0 = new BotDownloads$$ExternalSyntheticLambda0(this, 21);
+        AddressBarList$$ExternalSyntheticLambda3 addressBarList$$ExternalSyntheticLambda3 = new AddressBarList$$ExternalSyntheticLambda3(this);
+        WrappedResourceProvider wrappedResourceProvider = new WrappedResourceProvider(null);
+        this.resourceProvider = wrappedResourceProvider;
+        ?? r0 = new UniversalRecyclerView(activity, i2, botDownloads$$ExternalSyntheticLambda0, addressBarList$$ExternalSyntheticLambda3, wrappedResourceProvider) {
             @Override
             public final void onScrolled(int i3, int i4) {
                 BookmarksList bookmarksList;
+                super.onScrolled(i3, i4);
                 if (canScrollVertically(1) || (bookmarksList = AddressBarList.this.bookmarksList) == null || !bookmarksList.attached) {
                     return;
                 }
-                bookmarksList.load$1();
+                bookmarksList.load();
             }
         };
         this.listView = r0;
-        r0.adapter.applyBackground = false;
+        r0.adapter.setApplyBackground(false);
         r0.setOverScrollMode(2);
         r0.setPadding(0, 0, 0, 0);
         addView((View) r0, LayoutHelper.createFrame(-1, -1, 119));
@@ -764,7 +815,7 @@ public final class AddressBarList extends FrameLayout {
         frameLayout2.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 16.0f, 16.0f, 16.0f, 16.0f));
         ImageView imageView2 = new ImageView(activity);
         this.currentCopyView = imageView2;
-        ScaleStateListAnimator.apply(imageView2, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(imageView2);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(R.drawable.msg_copy);
         BaseCell.RippleDrawableSafe rippleDrawableSafeCreateRadSelectorDrawable2 = Theme.createRadSelectorDrawable(0, 0, 6, 6);
@@ -787,7 +838,7 @@ public final class AddressBarList extends FrameLayout {
         textView2.setMaxLines(3);
         textView2.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 0));
-        this.bookmarksList = new BookmarksList(null, i, new VoIPFragment$8$$ExternalSyntheticLambda1(this, 19));
+        this.bookmarksList = new BookmarksList(null, i, new AddressBarList$$ExternalSyntheticLambda4(this, 0));
         this.space = new AnonymousClass2(activity, 0);
         int i3 = Theme.key_iv_background;
         setColors(Theme.getColor(null, i3, false), AndroidUtilities.computePerceivedBrightness(Theme.getColor(null, i3, false)) >= 0.721f ? -16777216 : -1);
@@ -831,7 +882,7 @@ public final class AddressBarList extends FrameLayout {
                     queryEntry2.rank = jSONObject.optDouble("rank", 0.0d);
                     arrayList.add(queryEntry2);
                 }
-                Collections.sort(arrayList, new OAuthSheet$$ExternalSyntheticLambda3(24));
+                Collections.sort(arrayList, new CacheModel$$ExternalSyntheticLambda0(19));
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -929,13 +980,13 @@ public final class AddressBarList extends FrameLayout {
         Theme.setSelectorDrawableColor(this.currentCopyBackground, Theme.multAlpha(1.5f, this.rippleColor), true);
         int iBlendOver = Theme.blendOver(i, Theme.multAlpha(0.05f, i2));
         int iBlendOver2 = Theme.blendOver(i, Theme.multAlpha(0.55f, i2));
-        PhotoViewer.AnonymousClass14 anonymousClass14 = this.resourceProvider;
-        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_windowBackgroundWhite, this.listBackgroundColor);
-        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_windowBackgroundWhiteBlackText, i2);
-        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_graySection, iBlendOver);
-        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_graySectionText, iBlendOver2);
-        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_actionBarDefaultSubmenuBackground, Theme.multAlpha(0.2f, i2));
-        ((SparseIntArray) anonymousClass14.blur).put(Theme.key_listSelector, Theme.multAlpha(AndroidUtilities.lerp(0.05f, 0.12f, f), i2));
+        WrappedResourceProvider wrappedResourceProvider = this.resourceProvider;
+        wrappedResourceProvider.sparseIntArray.put(Theme.key_windowBackgroundWhite, this.listBackgroundColor);
+        wrappedResourceProvider.sparseIntArray.put(Theme.key_windowBackgroundWhiteBlackText, i2);
+        wrappedResourceProvider.sparseIntArray.put(Theme.key_graySection, iBlendOver);
+        wrappedResourceProvider.sparseIntArray.put(Theme.key_graySectionText, iBlendOver2);
+        wrappedResourceProvider.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuBackground, Theme.multAlpha(0.2f, i2));
+        wrappedResourceProvider.sparseIntArray.put(Theme.key_listSelector, Theme.multAlpha(AndroidUtilities.lerp(0.05f, 0.12f, f), i2));
         invalidateViews();
     }
 
@@ -958,7 +1009,7 @@ public final class AddressBarList extends FrameLayout {
             }
             return;
         }
-        HttpGetTask httpGetTask = new HttpGetTask(new ProfileActivity$6$$ExternalSyntheticLambda7(5, this, z));
+        HttpGetTask httpGetTask = new HttpGetTask(new AddressBarList$$ExternalSyntheticLambda1(this, z, 0));
         SearchEngine current = SearchEngine.getCurrent();
         if (current.autocomplete_url != null) {
             str2 = current.autocomplete_url + URLEncoder.encode(str);

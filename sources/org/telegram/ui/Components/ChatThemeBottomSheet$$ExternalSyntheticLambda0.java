@@ -1,10 +1,5 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda470;
-import org.telegram.ui.StatisticActivity;
-
 public final class ChatThemeBottomSheet$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
     public final ChatThemeBottomSheet f$0;
@@ -18,40 +13,28 @@ public final class ChatThemeBottomSheet$$ExternalSyntheticLambda0 implements Run
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.adapter.mObservable.notifyChanged();
+                this.f$0.lambda$didReceivedNotification$10();
                 break;
             case 1:
-                this.f$0.applySelectedTheme(true);
+                this.f$0.lambda$onCreate$7();
                 break;
             case 2:
-                ChatThemeBottomSheet chatThemeBottomSheet = this.f$0;
-                ChatActivity chatActivity = chatThemeBottomSheet.chatActivity;
-                BaseFragment baseFragmentCreate = StatisticActivity.create(chatActivity.getMessagesController().getChat(Long.valueOf(-chatActivity.getDialogId())), true);
-                BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
-                bottomSheetParams.transitionFromLeft = true;
-                baseFragmentCreate.setResourceProvider(chatActivity.getResourceProvider());
-                bottomSheetParams.onOpenAnimationFinished = new ChatActivity$$ExternalSyntheticLambda470(19);
-                bottomSheetParams.onPreFinished = new ChatThemeBottomSheet$$ExternalSyntheticLambda0(chatThemeBottomSheet, 3);
-                bottomSheetParams.onDismiss = new ChatThemeBottomSheet$$ExternalSyntheticLambda0(chatThemeBottomSheet, 4);
-                bottomSheetParams.occupyNavigationBar = true;
-                chatThemeBottomSheet.overlayFragment = baseFragmentCreate;
-                chatActivity.showAsSheet(baseFragmentCreate, bottomSheetParams);
+                this.f$0.lambda$applySelectedTheme$13();
                 break;
             case 3:
-                this.f$0.fixColorsAfterAnotherWindow();
+                this.f$0.lambda$applySelectedTheme$15();
                 break;
             case 4:
-                this.f$0.overlayFragment = null;
+                this.f$0.lambda$showAsSheet$18();
                 break;
             case 5:
-                this.f$0.fixColorsAfterAnotherWindow();
+                this.f$0.lambda$showAsSheet$19();
                 break;
             case 6:
-                this.f$0.overlayFragment = null;
+                this.f$0.lambda$showAsSheet$21();
                 break;
             default:
-                ChatThemeBottomSheet chatThemeBottomSheet2 = this.f$0;
-                chatThemeBottomSheet2.hintView.showForView(chatThemeBottomSheet2.darkThemeView, true);
+                this.f$0.lambda$showAsSheet$22();
                 break;
         }
     }

@@ -1,48 +1,47 @@
 package org.telegram.ui;
 
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.KeyEvent;
+import android.view.View;
+import androidx.collection.LongSparseArray;
+import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.InviteMembersBottomSheet;
+import org.telegram.ui.Components.RecyclerListView;
 
-public final class ChannelBoostLayout$$ExternalSyntheticLambda2 implements Runnable {
-    public final int $r8$classId;
-    public final ChannelBoostLayout f$0;
+public final class ChannelBoostLayout$$ExternalSyntheticLambda2 implements RecyclerListView.OnItemClickListener {
+    public final int $r8$classId = 0;
+    public final KeyEvent.Callback f$0;
+    public final Context f$1;
+    public final long f$2;
+    public final Object f$3;
+    public final BaseFragment f$4;
 
-    public ChannelBoostLayout$$ExternalSyntheticLambda2(ChannelBoostLayout channelBoostLayout, int i) {
-        this.$r8$classId = i;
+    public ChannelBoostLayout$$ExternalSyntheticLambda2(ChannelBoostLayout channelBoostLayout, Context context, long j, Theme.ResourcesProvider resourcesProvider, BaseFragment baseFragment) {
         this.f$0 = channelBoostLayout;
+        this.f$1 = context;
+        this.f$2 = j;
+        this.f$3 = resourcesProvider;
+        this.f$4 = baseFragment;
     }
 
     @Override
-    public final void run() {
+    public final void onItemClick(View view, int i) {
         switch (this.$r8$classId) {
             case 0:
-                ChannelBoostLayout channelBoostLayout = this.f$0;
-                channelBoostLayout.getClass();
-                CountDownLatch countDownLatch = new CountDownLatch(2);
-                channelBoostLayout.loadOnlyBoosts(countDownLatch, null);
-                channelBoostLayout.loadOnlyGifts(countDownLatch, null);
-                try {
-                    countDownLatch.await();
-                    break;
-                } catch (InterruptedException unused) {
-                }
-                AndroidUtilities.runOnUIThread(new ChannelBoostLayout$$ExternalSyntheticLambda2(channelBoostLayout, 3));
-                break;
-            case 1:
-                ChannelBoostLayout channelBoostLayout2 = this.f$0;
-                channelBoostLayout2.usersLoading = false;
-                channelBoostLayout2.updateRows(true);
-                break;
-            case 2:
-                ChannelBoostLayout channelBoostLayout3 = this.f$0;
-                channelBoostLayout3.usersLoading = false;
-                channelBoostLayout3.updateRows(true);
+                ((ChannelBoostLayout) this.f$0).lambda$new$0(this.f$1, this.f$2, (Theme.ResourcesProvider) this.f$3, this.f$4, view, i);
                 break;
             default:
-                ChannelBoostLayout channelBoostLayout4 = this.f$0;
-                channelBoostLayout4.usersLoading = false;
-                channelBoostLayout4.updateRows(true);
+                ((InviteMembersBottomSheet) this.f$0).lambda$new$0(this.f$2, this.f$4, (LongSparseArray) this.f$3, this.f$1, view, i);
                 break;
         }
+    }
+
+    public ChannelBoostLayout$$ExternalSyntheticLambda2(InviteMembersBottomSheet inviteMembersBottomSheet, long j, BaseFragment baseFragment, LongSparseArray longSparseArray, Context context) {
+        this.f$0 = inviteMembersBottomSheet;
+        this.f$2 = j;
+        this.f$4 = baseFragment;
+        this.f$3 = longSparseArray;
+        this.f$1 = context;
     }
 }

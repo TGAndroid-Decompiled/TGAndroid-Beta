@@ -1,27 +1,26 @@
 package org.telegram.ui;
 
-public final class PremiumPreviewFragment$$ExternalSyntheticLambda4 implements Runnable {
-    public final int $r8$classId;
-    public final PremiumPreviewFragment f$0;
+import java.util.Comparator;
+import org.telegram.messenger.MessagesController;
 
-    public PremiumPreviewFragment$$ExternalSyntheticLambda4(PremiumPreviewFragment premiumPreviewFragment, int i) {
+public final class PremiumPreviewFragment$$ExternalSyntheticLambda4 implements Comparator {
+    public final int $r8$classId;
+    public final MessagesController f$0;
+
+    public PremiumPreviewFragment$$ExternalSyntheticLambda4(MessagesController messagesController, int i) {
         this.$r8$classId = i;
-        this.f$0 = premiumPreviewFragment;
+        this.f$0 = messagesController;
     }
 
     @Override
-    public final void run() {
+    public final int compare(Object obj, Object obj2) {
+        PremiumPreviewFragment.PremiumFeatureData premiumFeatureData = (PremiumPreviewFragment.PremiumFeatureData) obj;
+        PremiumPreviewFragment.PremiumFeatureData premiumFeatureData2 = (PremiumPreviewFragment.PremiumFeatureData) obj2;
         switch (this.$r8$classId) {
             case 0:
-                PremiumPreviewFragment premiumPreviewFragment = this.f$0;
-                premiumPreviewFragment.listView.postOnAnimation(new PremiumPreviewFragment$$ExternalSyntheticLambda4(premiumPreviewFragment, 1));
-                break;
-            case 1:
-                this.f$0.blur3_InvalidateBlur$7();
-                break;
+                return PremiumPreviewFragment.lambda$fillBusinessFeaturesList$8(this.f$0, premiumFeatureData, premiumFeatureData2);
             default:
-                this.f$0.getMediaDataController().loadPremiumPromo(false);
-                break;
+                return PremiumPreviewFragment.lambda$fillPremiumFeaturesList$7(this.f$0, premiumFeatureData, premiumFeatureData2);
         }
     }
 }

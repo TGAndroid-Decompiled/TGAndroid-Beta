@@ -1,36 +1,22 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.CrossfadeDrawable;
+import android.content.DialogInterface;
 
-public final class ChatRightsEditActivity$$ExternalSyntheticLambda11 implements ValueAnimator.AnimatorUpdateListener {
+public final class ChatRightsEditActivity$$ExternalSyntheticLambda11 implements DialogInterface.OnClickListener {
     public final int $r8$classId;
-    public final ChatRightsEditActivity f$0;
 
-    public ChatRightsEditActivity$$ExternalSyntheticLambda11(ChatRightsEditActivity chatRightsEditActivity, int i) {
+    public ChatRightsEditActivity$$ExternalSyntheticLambda11(int i) {
         this.$r8$classId = i;
-        this.f$0 = chatRightsEditActivity;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+    public final void onClick(DialogInterface dialogInterface, int i) {
         switch (this.$r8$classId) {
             case 0:
-                ChatRightsEditActivity chatRightsEditActivity = this.f$0;
-                chatRightsEditActivity.getClass();
-                chatRightsEditActivity.asAdminT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                FrameLayout frameLayout = chatRightsEditActivity.addBotButton;
-                if (frameLayout != null) {
-                    frameLayout.invalidate();
-                }
+                ChatRightsEditActivity.lambda$createView$1(dialogInterface, i);
                 break;
             default:
-                ChatRightsEditActivity chatRightsEditActivity2 = this.f$0;
-                CrossfadeDrawable crossfadeDrawable = chatRightsEditActivity2.doneDrawable;
-                crossfadeDrawable.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                crossfadeDrawable.invalidateSelf();
-                chatRightsEditActivity2.doneDrawable.invalidateSelf();
+                ChatRightsEditActivity.lambda$createView$3(dialogInterface, i);
                 break;
         }
     }

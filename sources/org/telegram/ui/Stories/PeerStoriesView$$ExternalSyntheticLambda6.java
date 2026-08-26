@@ -1,5 +1,6 @@
 package org.telegram.ui.Stories;
 
+import android.view.View;
 import androidx.collection.LongSparseArray;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,10 +23,12 @@ public final class PeerStoriesView$$ExternalSyntheticLambda6 implements ButtonOn
     }
 
     @Override
-    public void onClick(int i) {
+    public void onClick(int i, View view) {
         PeerStoriesView peerStoriesView = this.f$0;
         if (i == 0) {
-            peerStoriesView.openAttachMenu$2();
+            peerStoriesView.openAttachMenu();
+        } else {
+            peerStoriesView.getClass();
         }
     }
 
@@ -155,10 +158,10 @@ public final class PeerStoriesView$$ExternalSyntheticLambda6 implements ButtonOn
                                 TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
                                 tL_stories_deleteStories.peer = MessagesController.getInstance(i3).getInputPeer(j2);
                                 tL_stories_deleteStories.id.add(Integer.valueOf(storyItem2.id));
-                                ConnectionsManager.getInstance(i3).sendRequest(tL_stories_deleteStories, new StoriesController$$ExternalSyntheticLambda0(storiesController, 5));
+                                ConnectionsManager.getInstance(i3).sendRequest(tL_stories_deleteStories, new StoriesController$$ExternalSyntheticLambda0(storiesController, 3));
                                 int i5 = storyItem2.id;
                                 StoriesStorage storiesStorage = storiesController.storiesStorage;
-                                storiesStorage.storage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda6(storiesStorage, j2, i5, 1));
+                                storiesStorage.storage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda9(storiesStorage, j2, i5, 1));
                                 NotificationCenter.getInstance(i3).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                                 MessagesController.getInstance(i3).checkArchiveFolder();
                                 storiesController.updateDeletedStoriesInLists(j2, Arrays.asList(storyItem2));

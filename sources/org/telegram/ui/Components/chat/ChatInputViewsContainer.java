@@ -15,14 +15,14 @@ import android.widget.FrameLayout;
 import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject$$ExternalSyntheticOutline0;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.blur3.BlurredBackgroundWithFadeDrawable;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.inset.InAppKeyboardInsetView;
 import org.telegram.ui.Components.inset.WindowInsetsProvider;
 import org.telegram.ui.Components.inset.WindowInsetsStateHolder;
-import org.telegram.ui.QrActivity;
+import org.telegram.ui.Stories.MuteButton;
+import org.telegram.ui.TON.TONIntroActivity;
 
 public final class ChatInputViewsContainer extends FrameLayout {
     public BlurredBackgroundWithFadeDrawable backgroundWithFadeDrawable;
@@ -32,9 +32,9 @@ public final class ChatInputViewsContainer extends FrameLayout {
     public boolean captured;
     public int currentBlurredHeight;
     public boolean drawInputBackground;
-    public final QrActivity.AnonymousClass2 fadeView;
+    public final MuteButton.AnonymousClass1 fadeView;
     public float imeBottomInset;
-    public final ChatActivity.AnonymousClass60 inAppKeyboardBubbleContainer;
+    public final TONIntroActivity.AnonymousClass2 inAppKeyboardBubbleContainer;
     public float inputBubbleHeight;
     public int inputBubbleHeightRound;
     public float inputBubbleOffsetLeft;
@@ -57,10 +57,10 @@ public final class ChatInputViewsContainer extends FrameLayout {
         FrameLayout frameLayout = new FrameLayout(context);
         this.inputIslandBubbleContainer = frameLayout;
         addView(frameLayout, LayoutHelper.createFrame(-1, -2, 80));
-        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(this, context, 29);
-        this.inAppKeyboardBubbleContainer = anonymousClass60;
-        addView(anonymousClass60, LayoutHelper.createFrame(-1, -2, 80));
-        this.fadeView = new QrActivity.AnonymousClass2(this, context, 19);
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = new TONIntroActivity.AnonymousClass2(this, context, 8);
+        this.inAppKeyboardBubbleContainer = anonymousClass2;
+        addView(anonymousClass2, LayoutHelper.createFrame(-1, -2, 80));
+        this.fadeView = new MuteButton.AnonymousClass1(this, context, 3);
     }
 
     public final void checkBlurredHeight(boolean z) {
@@ -96,10 +96,10 @@ public final class ChatInputViewsContainer extends FrameLayout {
         WindowInsetsCompat windowInsetsCompat = ((WindowInsetsStateHolder) this.windowInsetsProvider).lastInsets;
         int i = windowInsetsCompat != null ? windowInsetsCompat.mImpl.getInsets(2).bottom : 0;
         float animatedImeBottomInset = ((WindowInsetsStateHolder) this.windowInsetsProvider).getAnimatedImeBottomInset();
-        ChatActivity.AnonymousClass60 anonymousClass60 = this.inAppKeyboardBubbleContainer;
-        int childCount = anonymousClass60.getChildCount();
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = this.inAppKeyboardBubbleContainer;
+        int childCount = anonymousClass2.getChildCount();
         for (int i2 = 0; i2 < childCount; i2++) {
-            KeyEvent.Callback childAt = anonymousClass60.getChildAt(i2);
+            KeyEvent.Callback childAt = anonymousClass2.getChildAt(i2);
             if (childAt instanceof InAppKeyboardInsetView) {
                 InAppKeyboardInsetView inAppKeyboardInsetView = (InAppKeyboardInsetView) childAt;
                 inAppKeyboardInsetView.applyNavigationBarHeight(i);
@@ -115,13 +115,13 @@ public final class ChatInputViewsContainer extends FrameLayout {
         this.imeBottomInset = ((WindowInsetsStateHolder) this.windowInsetsProvider).getAnimatedImeBottomInset();
         int i = 0;
         this.needDrawInAppKeyboard = ((WindowInsetsStateHolder) this.windowInsetsProvider).inAppKeyboardState != 1;
-        ChatActivity.AnonymousClass60 anonymousClass60 = this.inAppKeyboardBubbleContainer;
-        boolean z = anonymousClass60.getVisibility() == 0;
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = this.inAppKeyboardBubbleContainer;
+        boolean z = anonymousClass2.getVisibility() == 0;
         boolean z2 = this.needDrawInAppKeyboard;
         if (z != z2) {
-            anonymousClass60.setVisibility(z2 ? 0 : 8);
+            anonymousClass2.setVisibility(z2 ? 0 : 8);
         }
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) anonymousClass60.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) anonymousClass2.getLayoutParams();
         int i2 = layoutParams.height;
         int i3 = ((WindowInsetsStateHolder) this.windowInsetsProvider).inAppKeyboardViewHeight;
         if (i2 != i3) {
@@ -151,13 +151,13 @@ public final class ChatInputViewsContainer extends FrameLayout {
 
     public final void checkViewsPositions() {
         this.inputIslandBubbleContainer.setTranslationY((-this.maxBottomInset) - AndroidUtilities.dp(9.0f));
-        ChatActivity.AnonymousClass60 anonymousClass60 = this.inAppKeyboardBubbleContainer;
-        anonymousClass60.setTranslationY(anonymousClass60.getMeasuredHeight() - this.imeBottomInset);
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = this.inAppKeyboardBubbleContainer;
+        anonymousClass2.setTranslationY(anonymousClass2.getMeasuredHeight() - this.imeBottomInset);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        this.underKeyboardBackgroundDrawable.setBounds(0, getMeasuredHeight() - ((int) this.imeBottomInset), getMeasuredWidth(), MessageObject$$ExternalSyntheticOutline0.m(getMeasuredHeight() - ((int) this.imeBottomInset), 58.0f, getMeasuredHeight()));
+        this.underKeyboardBackgroundDrawable.setBounds(0, getMeasuredHeight() - ((int) this.imeBottomInset), getMeasuredWidth(), MessageObject$$ExternalSyntheticOutline0.m(58.0f, getMeasuredHeight() - ((int) this.imeBottomInset), getMeasuredHeight()));
         int measuredHeight = getMeasuredHeight() - this.currentBlurredHeight;
         int iRound = Math.round(this.inputBubbleOffsetLeft);
         int measuredWidth = getMeasuredWidth() - Math.round(this.inputBubbleOffsetRight);

@@ -15,16 +15,10 @@ public final class PinnedLineView$$ExternalSyntheticLambda0 implements ValueAnim
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                PinnedLineView pinnedLineView = this.f$0;
-                pinnedLineView.getClass();
-                pinnedLineView.animationProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pinnedLineView.invalidate();
+                this.f$0.lambda$selectPosition$0(valueAnimator);
                 break;
             default:
-                PinnedLineView pinnedLineView2 = this.f$0;
-                pinnedLineView2.getClass();
-                pinnedLineView2.animationProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                pinnedLineView2.invalidate();
+                this.f$0.lambda$set$1(valueAnimator);
                 break;
         }
     }

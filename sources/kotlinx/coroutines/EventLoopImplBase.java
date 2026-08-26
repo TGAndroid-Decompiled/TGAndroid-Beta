@@ -1,5 +1,6 @@
 package kotlinx.coroutines;
 
+import com.google.common.base.Joiner;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
@@ -7,7 +8,6 @@ import kotlin.collections.ArrayDeque;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.internal.LockFreeTaskQueueCore;
-import kotlinx.coroutines.internal.Symbol;
 import kotlinx.coroutines.internal.ThreadSafeHeap;
 
 public abstract class EventLoopImplBase extends EventLoopImplPlatform implements Delay {
@@ -79,15 +79,15 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
             synchronized (this) {
                 try {
                     Object obj = this._heap;
-                    Symbol symbol = JobKt.DISPOSED_TASK;
-                    if (obj == symbol) {
+                    Joiner joiner = JobKt.DISPOSED_TASK;
+                    if (obj == joiner) {
                         return;
                     }
                     DelayedTaskQueue delayedTaskQueue = obj instanceof DelayedTaskQueue ? (DelayedTaskQueue) obj : null;
                     if (delayedTaskQueue != null) {
                         delayedTaskQueue.remove(this);
                     }
-                    this._heap = symbol;
+                    this._heap = joiner;
                 } catch (Throwable th) {
                     throw th;
                 }
@@ -381,10 +381,10 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
         loop0: while (true) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = _queue$volatile$FU;
             Object obj = atomicReferenceFieldUpdater.get(this);
-            Symbol symbol = JobKt.CLOSED_EMPTY;
+            Joiner joiner = JobKt.CLOSED_EMPTY;
             if (obj == null) {
                 do {
-                    if (atomicReferenceFieldUpdater.compareAndSet(this, null, symbol)) {
+                    if (atomicReferenceFieldUpdater.compareAndSet(this, null, joiner)) {
                         break loop0;
                     }
                 } while (atomicReferenceFieldUpdater.get(this) == null);
@@ -392,7 +392,7 @@ public abstract class EventLoopImplBase extends EventLoopImplPlatform implements
                 ((LockFreeTaskQueueCore) obj).close();
                 break;
             } else {
-                if (obj == symbol) {
+                if (obj == joiner) {
                     break;
                 }
                 LockFreeTaskQueueCore lockFreeTaskQueueCore = new LockFreeTaskQueueCore(8, true);

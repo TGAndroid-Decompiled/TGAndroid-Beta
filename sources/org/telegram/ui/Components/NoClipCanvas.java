@@ -18,11 +18,12 @@ import android.graphics.fonts.Font;
 import android.graphics.text.MeasuredText;
 import android.os.Build;
 
-public final class NoClipCanvas extends Canvas {
+public class NoClipCanvas extends Canvas {
     public Canvas canvas;
+    public boolean disableReject;
 
     @Override
-    public final boolean clipOutPath(Path path) {
+    public boolean clipOutPath(Path path) {
         if (Build.VERSION.SDK_INT >= 26) {
             return this.canvas.clipOutPath(path);
         }
@@ -30,7 +31,7 @@ public final class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public final boolean clipOutRect(float f, float f2, float f3, float f4) {
+    public boolean clipOutRect(float f, float f2, float f3, float f4) {
         if (Build.VERSION.SDK_INT >= 26) {
             return this.canvas.clipOutRect(f, f2, f3, f4);
         }
@@ -38,377 +39,377 @@ public final class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public final boolean clipPath(Path path) {
+    public boolean clipPath(Path path) {
         return this.canvas.clipPath(path);
     }
 
     @Override
-    public final boolean clipRect(float f, float f2, float f3, float f4) {
+    public boolean clipRect(float f, float f2, float f3, float f4) {
         return false;
     }
 
     @Override
-    public final void concat(Matrix matrix) {
+    public void concat(Matrix matrix) {
         this.canvas.concat(matrix);
     }
 
     @Override
-    public final void disableZ() {
+    public void disableZ() {
         if (Build.VERSION.SDK_INT >= 29) {
             this.canvas.disableZ();
         }
     }
 
     @Override
-    public final void drawARGB(int i, int i2, int i3, int i4) {
+    public void drawARGB(int i, int i2, int i3, int i4) {
         this.canvas.drawARGB(i, i2, i3, i4);
     }
 
     @Override
-    public final void drawArc(RectF rectF, float f, float f2, boolean z, Paint paint) {
+    public void drawArc(RectF rectF, float f, float f2, boolean z, Paint paint) {
         this.canvas.drawArc(rectF, f, f2, z, paint);
     }
 
     @Override
-    public final void drawBitmap(Bitmap bitmap, Matrix matrix, Paint paint) {
+    public void drawBitmap(Bitmap bitmap, Matrix matrix, Paint paint) {
         this.canvas.drawBitmap(bitmap, matrix, paint);
     }
 
     @Override
-    public final void drawBitmapMesh(Bitmap bitmap, int i, int i2, float[] fArr, int i3, int[] iArr, int i4, Paint paint) {
+    public void drawBitmapMesh(Bitmap bitmap, int i, int i2, float[] fArr, int i3, int[] iArr, int i4, Paint paint) {
         this.canvas.drawBitmapMesh(bitmap, i, i2, fArr, i3, iArr, i4, paint);
     }
 
     @Override
-    public final void drawCircle(float f, float f2, float f3, Paint paint) {
+    public void drawCircle(float f, float f2, float f3, Paint paint) {
         this.canvas.drawCircle(f, f2, f3, paint);
     }
 
     @Override
-    public final void drawColor(long j, BlendMode blendMode) {
+    public void drawColor(long j, BlendMode blendMode) {
         if (Build.VERSION.SDK_INT >= 29) {
             this.canvas.drawColor(j, blendMode);
         }
     }
 
     @Override
-    public final void drawDoubleRoundRect(RectF rectF, float[] fArr, RectF rectF2, float[] fArr2, Paint paint) {
+    public void drawDoubleRoundRect(RectF rectF, float[] fArr, RectF rectF2, float[] fArr2, Paint paint) {
         if (Build.VERSION.SDK_INT >= 29) {
             this.canvas.drawDoubleRoundRect(rectF, fArr, rectF2, fArr2, paint);
         }
     }
 
     @Override
-    public final void drawGlyphs(int[] iArr, int i, float[] fArr, int i2, int i3, Font font, Paint paint) {
+    public void drawGlyphs(int[] iArr, int i, float[] fArr, int i2, int i3, Font font, Paint paint) {
         this.canvas.drawGlyphs(iArr, i, fArr, i2, i3, font, paint);
     }
 
     @Override
-    public final void drawLine(float f, float f2, float f3, float f4, Paint paint) {
+    public void drawLine(float f, float f2, float f3, float f4, Paint paint) {
         this.canvas.drawLine(f, f2, f3, f4, paint);
     }
 
     @Override
-    public final void drawLines(float[] fArr, int i, int i2, Paint paint) {
+    public void drawLines(float[] fArr, int i, int i2, Paint paint) {
         this.canvas.drawLines(fArr, i, i2, paint);
     }
 
     @Override
-    public final void drawOval(RectF rectF, Paint paint) {
+    public void drawOval(RectF rectF, Paint paint) {
         this.canvas.drawOval(rectF, paint);
     }
 
     @Override
-    public final void drawPaint(Paint paint) {
+    public void drawPaint(Paint paint) {
         this.canvas.drawPaint(paint);
     }
 
     @Override
-    public final void drawPatch(NinePatch ninePatch, RectF rectF, Paint paint) {
+    public void drawPatch(NinePatch ninePatch, RectF rectF, Paint paint) {
         if (Build.VERSION.SDK_INT >= 31) {
             this.canvas.drawPatch(ninePatch, rectF, paint);
         }
     }
 
     @Override
-    public final void drawPath(Path path, Paint paint) {
+    public void drawPath(Path path, Paint paint) {
         this.canvas.drawPath(path, paint);
     }
 
     @Override
-    public final void drawPicture(Picture picture, RectF rectF) {
+    public void drawPicture(Picture picture, RectF rectF) {
         this.canvas.drawPicture(picture, rectF);
     }
 
     @Override
-    public final void drawPoint(float f, float f2, Paint paint) {
+    public void drawPoint(float f, float f2, Paint paint) {
         this.canvas.drawPoint(f, f2, paint);
     }
 
     @Override
-    public final void drawPoints(float[] fArr, int i, int i2, Paint paint) {
+    public void drawPoints(float[] fArr, int i, int i2, Paint paint) {
         this.canvas.drawPoints(fArr, i, i2, paint);
     }
 
     @Override
-    public final void drawPosText(String str, float[] fArr, Paint paint) {
+    public void drawPosText(String str, float[] fArr, Paint paint) {
         this.canvas.drawPosText(str, fArr, paint);
     }
 
     @Override
-    public final void drawRGB(int i, int i2, int i3) {
+    public void drawRGB(int i, int i2, int i3) {
         this.canvas.drawRGB(i, i2, i3);
     }
 
     @Override
-    public final void drawRect(Rect rect, Paint paint) {
+    public void drawRect(Rect rect, Paint paint) {
         this.canvas.drawRect(rect, paint);
     }
 
     @Override
-    public final void drawRenderNode(RenderNode renderNode) {
+    public void drawRenderNode(RenderNode renderNode) {
         if (Build.VERSION.SDK_INT >= 29) {
             this.canvas.drawRenderNode(renderNode);
         }
     }
 
     @Override
-    public final void drawRoundRect(RectF rectF, float f, float f2, Paint paint) {
+    public void drawRoundRect(RectF rectF, float f, float f2, Paint paint) {
         this.canvas.drawRoundRect(rectF, f, f2, paint);
     }
 
     @Override
-    public final void drawText(String str, float f, float f2, Paint paint) {
+    public void drawText(String str, float f, float f2, Paint paint) {
         this.canvas.drawText(str, f, f2, paint);
     }
 
     @Override
-    public final void drawTextOnPath(char[] cArr, int i, int i2, Path path, float f, float f2, Paint paint) {
+    public void drawTextOnPath(char[] cArr, int i, int i2, Path path, float f, float f2, Paint paint) {
         this.canvas.drawTextOnPath(cArr, i, i2, path, f, f2, paint);
     }
 
     @Override
-    public final void drawTextRun(char[] cArr, int i, int i2, int i3, int i4, float f, float f2, boolean z, Paint paint) {
+    public void drawTextRun(char[] cArr, int i, int i2, int i3, int i4, float f, float f2, boolean z, Paint paint) {
         this.canvas.drawTextRun(cArr, i, i2, i3, i4, f, f2, z, paint);
     }
 
     @Override
-    public final void drawVertices(Canvas.VertexMode vertexMode, int i, float[] fArr, int i2, float[] fArr2, int i3, int[] iArr, int i4, short[] sArr, int i5, int i6, Paint paint) {
+    public void drawVertices(Canvas.VertexMode vertexMode, int i, float[] fArr, int i2, float[] fArr2, int i3, int[] iArr, int i4, short[] sArr, int i5, int i6, Paint paint) {
         this.canvas.drawVertices(vertexMode, i, fArr, i2, fArr2, i3, iArr, i4, sArr, i5, i6, paint);
     }
 
     @Override
-    public final void enableZ() {
+    public void enableZ() {
         if (Build.VERSION.SDK_INT >= 29) {
             this.canvas.enableZ();
         }
     }
 
     @Override
-    public final boolean getClipBounds(Rect rect) {
+    public boolean getClipBounds(Rect rect) {
         return this.canvas.getClipBounds(rect);
     }
 
     @Override
-    public final int getDensity() {
+    public int getDensity() {
         return this.canvas.getDensity();
     }
 
     @Override
-    public final DrawFilter getDrawFilter() {
+    public DrawFilter getDrawFilter() {
         return this.canvas.getDrawFilter();
     }
 
     @Override
-    public final int getHeight() {
+    public int getHeight() {
         return this.canvas.getHeight();
     }
 
     @Override
-    public final void getMatrix(Matrix matrix) {
+    public void getMatrix(Matrix matrix) {
         this.canvas.getMatrix(matrix);
     }
 
     @Override
-    public final int getMaximumBitmapHeight() {
+    public int getMaximumBitmapHeight() {
         return this.canvas.getMaximumBitmapHeight();
     }
 
     @Override
-    public final int getMaximumBitmapWidth() {
+    public int getMaximumBitmapWidth() {
         return this.canvas.getMaximumBitmapWidth();
     }
 
     @Override
-    public final int getSaveCount() {
+    public int getSaveCount() {
         return this.canvas.getSaveCount();
     }
 
     @Override
-    public final int getWidth() {
+    public int getWidth() {
         return this.canvas.getWidth();
     }
 
     @Override
-    public final boolean isOpaque() {
+    public boolean isOpaque() {
         return this.canvas.isOpaque();
     }
 
     @Override
-    public final boolean quickReject(float f, float f2, float f3, float f4) {
-        if (Build.VERSION.SDK_INT >= 30) {
+    public boolean quickReject(float f, float f2, float f3, float f4) {
+        if (!this.disableReject && Build.VERSION.SDK_INT >= 30) {
             return this.canvas.quickReject(f, f2, f3, f4);
         }
         return false;
     }
 
     @Override
-    public final void restore() {
+    public void restore() {
         this.canvas.restore();
     }
 
     @Override
-    public final void restoreToCount(int i) {
+    public void restoreToCount(int i) {
         this.canvas.restoreToCount(i);
     }
 
     @Override
-    public final void rotate(float f) {
+    public void rotate(float f) {
         this.canvas.rotate(f);
     }
 
     @Override
-    public final int save() {
+    public int save() {
         return this.canvas.save();
     }
 
     @Override
-    public final int saveLayer(float f, float f2, float f3, float f4, Paint paint) {
+    public int saveLayer(float f, float f2, float f3, float f4, Paint paint) {
         return this.canvas.saveLayer(f, f2, f3, f4, paint);
     }
 
     @Override
-    public final int saveLayerAlpha(RectF rectF, int i, int i2) {
+    public int saveLayerAlpha(RectF rectF, int i, int i2) {
         return this.canvas.saveLayerAlpha(rectF, i, i2);
     }
 
     @Override
-    public final void scale(float f, float f2) {
+    public void scale(float f, float f2) {
         this.canvas.scale(f, f2);
     }
 
     @Override
-    public final void setBitmap(Bitmap bitmap) {
+    public void setBitmap(Bitmap bitmap) {
         this.canvas.setBitmap(bitmap);
     }
 
     @Override
-    public final void setDensity(int i) {
+    public void setDensity(int i) {
         this.canvas.setDensity(i);
     }
 
     @Override
-    public final void setDrawFilter(DrawFilter drawFilter) {
+    public void setDrawFilter(DrawFilter drawFilter) {
         this.canvas.setDrawFilter(drawFilter);
     }
 
     @Override
-    public final void setMatrix(Matrix matrix) {
+    public void setMatrix(Matrix matrix) {
         this.canvas.setMatrix(matrix);
     }
 
     @Override
-    public final void skew(float f, float f2) {
+    public void skew(float f, float f2) {
         this.canvas.skew(f, f2);
     }
 
     @Override
-    public final void translate(float f, float f2) {
+    public void translate(float f, float f2) {
         this.canvas.translate(f, f2);
     }
 
     @Override
-    public final boolean clipPath(Path path, Region.Op op) {
+    public boolean clipPath(Path path, Region.Op op) {
         return this.canvas.clipPath(path, op);
     }
 
     @Override
-    public final boolean clipRect(float f, float f2, float f3, float f4, Region.Op op) {
+    public boolean clipRect(float f, float f2, float f3, float f4, Region.Op op) {
         return false;
     }
 
     @Override
-    public final void drawArc(float f, float f2, float f3, float f4, float f5, float f6, boolean z, Paint paint) {
+    public void drawArc(float f, float f2, float f3, float f4, float f5, float f6, boolean z, Paint paint) {
         this.canvas.drawArc(f, f2, f3, f4, f5, f6, z, paint);
     }
 
     @Override
-    public final void drawBitmap(Bitmap bitmap, Rect rect, Rect rect2, Paint paint) {
+    public void drawBitmap(Bitmap bitmap, Rect rect, Rect rect2, Paint paint) {
         this.canvas.drawBitmap(bitmap, rect, rect2, paint);
     }
 
     @Override
-    public final void drawLines(float[] fArr, Paint paint) {
+    public void drawLines(float[] fArr, Paint paint) {
         this.canvas.drawLines(fArr, paint);
     }
 
     @Override
-    public final void drawOval(float f, float f2, float f3, float f4, Paint paint) {
+    public void drawOval(float f, float f2, float f3, float f4, Paint paint) {
         this.canvas.drawOval(f, f2, f3, f4, paint);
     }
 
     @Override
-    public final void drawPicture(Picture picture) {
+    public void drawPicture(Picture picture) {
         this.canvas.drawPicture(picture);
     }
 
     @Override
-    public final void drawPoints(float[] fArr, Paint paint) {
+    public void drawPoints(float[] fArr, Paint paint) {
         this.canvas.drawPoints(fArr, paint);
     }
 
     @Override
-    public final void drawPosText(char[] cArr, int i, int i2, float[] fArr, Paint paint) {
+    public void drawPosText(char[] cArr, int i, int i2, float[] fArr, Paint paint) {
         this.canvas.drawPosText(cArr, i, i2, fArr, paint);
     }
 
     @Override
-    public final void drawRect(RectF rectF, Paint paint) {
+    public void drawRect(RectF rectF, Paint paint) {
         this.canvas.drawRect(rectF, paint);
     }
 
     @Override
-    public final void drawRoundRect(float f, float f2, float f3, float f4, float f5, float f6, Paint paint) {
+    public void drawRoundRect(float f, float f2, float f3, float f4, float f5, float f6, Paint paint) {
         this.canvas.drawRoundRect(f, f2, f3, f4, f5, f6, paint);
     }
 
     @Override
-    public final void drawText(String str, int i, int i2, float f, float f2, Paint paint) {
+    public void drawText(String str, int i, int i2, float f, float f2, Paint paint) {
         this.canvas.drawText(str, i, i2, f, f2, paint);
     }
 
     @Override
-    public final void drawTextOnPath(String str, Path path, float f, float f2, Paint paint) {
+    public void drawTextOnPath(String str, Path path, float f, float f2, Paint paint) {
         this.canvas.drawTextOnPath(str, path, f, f2, paint);
     }
 
     @Override
-    public final void drawTextRun(MeasuredText measuredText, int i, int i2, int i3, int i4, float f, float f2, boolean z, Paint paint) {
+    public void drawTextRun(MeasuredText measuredText, int i, int i2, int i3, int i4, float f, float f2, boolean z, Paint paint) {
         this.canvas.drawTextRun(measuredText, i, i2, i3, i4, f, f2, z, paint);
     }
 
     @Override
-    public final int saveLayer(RectF rectF, Paint paint) {
+    public int saveLayer(RectF rectF, Paint paint) {
         return this.canvas.saveLayer(rectF, paint);
     }
 
     @Override
-    public final int saveLayerAlpha(float f, float f2, float f3, float f4, int i) {
+    public int saveLayerAlpha(float f, float f2, float f3, float f4, int i) {
         return this.canvas.saveLayerAlpha(f, f2, f3, f4, i);
     }
 
     @Override
-    public final boolean clipOutRect(int i, int i2, int i3, int i4) {
+    public boolean clipOutRect(int i, int i2, int i3, int i4) {
         if (Build.VERSION.SDK_INT >= 26) {
             return this.canvas.clipOutRect(i, i2, i3, i4);
         }
@@ -416,101 +417,101 @@ public final class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public final boolean clipRect(int i, int i2, int i3, int i4) {
+    public boolean clipRect(int i, int i2, int i3, int i4) {
         return false;
     }
 
     @Override
-    public final void drawBitmap(int[] iArr, int i, int i2, float f, float f2, int i3, int i4, boolean z, Paint paint) {
+    public void drawBitmap(int[] iArr, int i, int i2, float f, float f2, int i3, int i4, boolean z, Paint paint) {
         this.canvas.drawBitmap(iArr, i, i2, f, f2, i3, i4, z, paint);
     }
 
     @Override
-    public final void drawColor(int i, BlendMode blendMode) {
+    public void drawColor(int i, BlendMode blendMode) {
         if (Build.VERSION.SDK_INT >= 29) {
             this.canvas.drawColor(i, blendMode);
         }
     }
 
     @Override
-    public final void drawDoubleRoundRect(RectF rectF, float f, float f2, RectF rectF2, float f3, float f4, Paint paint) {
+    public void drawDoubleRoundRect(RectF rectF, float f, float f2, RectF rectF2, float f3, float f4, Paint paint) {
         if (Build.VERSION.SDK_INT >= 29) {
             this.canvas.drawDoubleRoundRect(rectF, f, f2, rectF2, f3, f4, paint);
         }
     }
 
     @Override
-    public final void drawPatch(NinePatch ninePatch, Rect rect, Paint paint) {
+    public void drawPatch(NinePatch ninePatch, Rect rect, Paint paint) {
         if (Build.VERSION.SDK_INT >= 31) {
             this.canvas.drawPatch(ninePatch, rect, paint);
         }
     }
 
     @Override
-    public final void drawPicture(Picture picture, Rect rect) {
+    public void drawPicture(Picture picture, Rect rect) {
         this.canvas.drawPicture(picture, rect);
     }
 
     @Override
-    public final void drawRect(float f, float f2, float f3, float f4, Paint paint) {
+    public void drawRect(float f, float f2, float f3, float f4, Paint paint) {
         this.canvas.drawRect(f, f2, f3, f4, paint);
     }
 
     @Override
-    public final void drawText(char[] cArr, int i, int i2, float f, float f2, Paint paint) {
+    public void drawText(char[] cArr, int i, int i2, float f, float f2, Paint paint) {
         this.canvas.drawText(cArr, i, i2, f, f2, paint);
     }
 
     @Override
-    public final void drawTextRun(CharSequence charSequence, int i, int i2, int i3, int i4, float f, float f2, boolean z, Paint paint) {
+    public void drawTextRun(CharSequence charSequence, int i, int i2, int i3, int i4, float f, float f2, boolean z, Paint paint) {
         this.canvas.drawTextRun(charSequence, i, i2, i3, i4, f, f2, z, paint);
     }
 
     @Override
-    public final boolean quickReject(RectF rectF) {
-        if (Build.VERSION.SDK_INT >= 30) {
+    public int saveLayer(float f, float f2, float f3, float f4, Paint paint, int i) {
+        return this.canvas.saveLayer(f, f2, f3, f4, paint, i);
+    }
+
+    @Override
+    public int saveLayerAlpha(RectF rectF, int i) {
+        return this.canvas.saveLayerAlpha(rectF, i);
+    }
+
+    @Override
+    public boolean clipRect(Rect rect) {
+        return false;
+    }
+
+    @Override
+    public void drawBitmap(int[] iArr, int i, int i2, int i3, int i4, int i5, int i6, boolean z, Paint paint) {
+        this.canvas.drawBitmap(iArr, i, i2, i3, i4, i5, i6, z, paint);
+    }
+
+    @Override
+    public void drawText(CharSequence charSequence, int i, int i2, float f, float f2, Paint paint) {
+        this.canvas.drawText(charSequence, i, i2, f, f2, paint);
+    }
+
+    @Override
+    public boolean quickReject(RectF rectF) {
+        if (!this.disableReject && Build.VERSION.SDK_INT >= 30) {
             return this.canvas.quickReject(rectF);
         }
         return false;
     }
 
     @Override
-    public final int saveLayer(float f, float f2, float f3, float f4, Paint paint, int i) {
-        return this.canvas.saveLayer(f, f2, f3, f4, paint, i);
-    }
-
-    @Override
-    public final int saveLayerAlpha(RectF rectF, int i) {
-        return this.canvas.saveLayerAlpha(rectF, i);
-    }
-
-    @Override
-    public final boolean clipRect(Rect rect) {
-        return false;
-    }
-
-    @Override
-    public final void drawBitmap(int[] iArr, int i, int i2, int i3, int i4, int i5, int i6, boolean z, Paint paint) {
-        this.canvas.drawBitmap(iArr, i, i2, i3, i4, i5, i6, z, paint);
-    }
-
-    @Override
-    public final void drawText(CharSequence charSequence, int i, int i2, float f, float f2, Paint paint) {
-        this.canvas.drawText(charSequence, i, i2, f, f2, paint);
-    }
-
-    @Override
-    public final int saveLayer(RectF rectF, Paint paint, int i) {
+    public int saveLayer(RectF rectF, Paint paint, int i) {
         return this.canvas.saveLayer(rectF, paint, i);
     }
 
     @Override
-    public final int saveLayerAlpha(float f, float f2, float f3, float f4, int i, int i2) {
+    public int saveLayerAlpha(float f, float f2, float f3, float f4, int i, int i2) {
         return this.canvas.saveLayerAlpha(f, f2, f3, f4, i, i2);
     }
 
     @Override
-    public final boolean clipOutRect(RectF rectF) {
+    public boolean clipOutRect(RectF rectF) {
         if (Build.VERSION.SDK_INT >= 26) {
             return this.canvas.clipOutRect(rectF);
         }
@@ -518,45 +519,37 @@ public final class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public final boolean clipRect(Rect rect, Region.Op op) {
+    public boolean clipRect(Rect rect, Region.Op op) {
         return false;
     }
 
     @Override
-    public final void drawBitmap(Bitmap bitmap, Rect rect, RectF rectF, Paint paint) {
+    public void drawBitmap(Bitmap bitmap, Rect rect, RectF rectF, Paint paint) {
         this.canvas.drawBitmap(bitmap, rect, rectF, paint);
     }
 
     @Override
-    public final void drawColor(int i) {
+    public void drawColor(int i) {
         this.canvas.drawColor(i);
     }
 
     @Override
-    public final boolean quickReject(Path path) {
-        if (Build.VERSION.SDK_INT >= 30) {
-            return this.canvas.quickReject(path);
-        }
+    public boolean clipRect(RectF rectF) {
         return false;
     }
 
     @Override
-    public final boolean clipRect(RectF rectF) {
-        return false;
-    }
-
-    @Override
-    public final void drawBitmap(Bitmap bitmap, float f, float f2, Paint paint) {
+    public void drawBitmap(Bitmap bitmap, float f, float f2, Paint paint) {
         this.canvas.drawBitmap(bitmap, f, f2, paint);
     }
 
     @Override
-    public final void drawColor(int i, PorterDuff.Mode mode) {
+    public void drawColor(int i, PorterDuff.Mode mode) {
         this.canvas.drawColor(i, mode);
     }
 
     @Override
-    public final boolean clipOutRect(Rect rect) {
+    public boolean clipOutRect(Rect rect) {
         if (Build.VERSION.SDK_INT >= 26) {
             return this.canvas.clipOutRect(rect);
         }
@@ -564,29 +557,46 @@ public final class NoClipCanvas extends Canvas {
     }
 
     @Override
-    public final boolean clipRect(RectF rectF, Region.Op op) {
+    public boolean clipRect(RectF rectF, Region.Op op) {
         return false;
     }
 
     @Override
-    public final void drawColor(long j) {
+    public void drawColor(long j) {
         if (Build.VERSION.SDK_INT >= 29) {
             this.canvas.drawColor(j);
         }
     }
 
     @Override
-    public final boolean quickReject(RectF rectF, Canvas.EdgeType edgeType) {
+    public boolean quickReject(Path path) {
+        if (!this.disableReject && Build.VERSION.SDK_INT >= 30) {
+            return this.canvas.quickReject(path);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean quickReject(RectF rectF, Canvas.EdgeType edgeType) {
+        if (this.disableReject) {
+            return false;
+        }
         return this.canvas.quickReject(rectF, edgeType);
     }
 
     @Override
-    public final boolean quickReject(Path path, Canvas.EdgeType edgeType) {
+    public boolean quickReject(Path path, Canvas.EdgeType edgeType) {
+        if (this.disableReject) {
+            return false;
+        }
         return this.canvas.quickReject(path, edgeType);
     }
 
     @Override
-    public final boolean quickReject(float f, float f2, float f3, float f4, Canvas.EdgeType edgeType) {
+    public boolean quickReject(float f, float f2, float f3, float f4, Canvas.EdgeType edgeType) {
+        if (this.disableReject) {
+            return false;
+        }
         return this.canvas.quickReject(f, f2, f3, f4, edgeType);
     }
 }

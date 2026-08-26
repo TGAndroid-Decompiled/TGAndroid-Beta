@@ -1,11 +1,11 @@
 package kotlinx.coroutines;
 
+import com.google.common.base.Joiner;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.AtomicOp;
 import kotlinx.coroutines.internal.LockFreeLinkedListNode;
-import kotlinx.coroutines.internal.Symbol;
 
 public final class JobSupport$addLastAtomic$$inlined$addLastIf$1 extends AtomicOp {
     public final Incomplete $expect$inlined;
@@ -41,7 +41,7 @@ public final class JobSupport$addLastAtomic$$inlined$addLastIf$1 extends AtomicO
     }
 
     @Override
-    public final Symbol prepare(Object obj) {
+    public final Joiner prepare(Object obj) {
         if (this.this$0.getState$kotlinx_coroutines_core() == this.$expect$inlined) {
             return null;
         }

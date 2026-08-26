@@ -20,13 +20,12 @@ import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.PaymentFormActivity;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda51;
+import org.telegram.ui.web.AddressBarList;
 
 public final class TextCheckCell2 extends FrameLayout {
     public AnimatedTextView animatedTextView;
     public final Switch checkBox;
-    public PaymentFormActivity.AnonymousClass2 checkBoxClickArea;
+    public AddressBarList.AnonymousClass2 checkBoxClickArea;
     public LinearLayout collapseViewContainer;
     public View collapsedArrow;
     public int id;
@@ -58,7 +57,7 @@ public final class TextCheckCell2 extends FrameLayout {
         textView2.setEllipsize(truncateAt);
         boolean z2 = LocaleController.isRTL;
         addView(textView2, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 64.0f : 21.0f, 35.0f, z2 ? 21.0f : 64.0f, 0.0f));
-        Switch r2 = new Switch(context, null);
+        Switch r2 = new Switch(context);
         this.checkBox = r2;
         r2.setDrawIconType(1);
         addView(r2, LayoutHelper.createFrame(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
@@ -80,7 +79,7 @@ public final class TextCheckCell2 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.checkBox.isChecked);
+        accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
     }
 
     @Override
@@ -104,11 +103,10 @@ public final class TextCheckCell2 extends FrameLayout {
     }
 
     public void setChecked(boolean z) {
-        Switch r0 = this.checkBox;
-        r0.setChecked(r0.drawIconType, z, true);
+        this.checkBox.setChecked(z, true);
     }
 
-    public final void setCollapseArrow(Runnable runnable, String str, boolean z) {
+    public final void setCollapseArrow(String str, boolean z, Runnable runnable) {
         if (this.collapseViewContainer == null) {
             LinearLayout linearLayout = new LinearLayout(getContext());
             this.collapseViewContainer = linearLayout;
@@ -116,19 +114,13 @@ public final class TextCheckCell2 extends FrameLayout {
             AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, true, true);
             this.animatedTextView = animatedTextView;
             animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.animatedTextView.getDrawable().allowCancel = true;
+            this.animatedTextView.getDrawable().setAllowCancel(true);
             AnimatedTextView animatedTextView2 = this.animatedTextView;
             int i = Theme.key_windowBackgroundWhiteBlackText;
             animatedTextView2.setTextColor(Theme.getColor(null, i, false));
             this.animatedTextView.setTypeface(AndroidUtilities.bold());
-            AnimatedTextView animatedTextView3 = this.animatedTextView;
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = animatedTextView3.drawable;
-            animatedTextDrawable.moveAmplitude = 0.4f;
-            animatedTextDrawable.animateDuration = 320L;
-            animatedTextDrawable.animateWave = 1.0f;
-            animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
-            this.collapseViewContainer.addView(animatedTextView3, LayoutHelper.createFrame(20.0f, -2));
+            this.animatedTextView.setAnimationProperties(0.4f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.collapseViewContainer.addView(this.animatedTextView, LayoutHelper.createFrame(-2, 20.0f));
             this.collapsedArrow = new View(getContext());
             Drawable drawableMutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
             drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), PorterDuff.Mode.MULTIPLY));
@@ -137,7 +129,7 @@ public final class TextCheckCell2 extends FrameLayout {
             this.collapseViewContainer.setClipChildren(false);
             setClipChildren(false);
             addView(this.collapseViewContainer, LayoutHelper.createFrame(-2, -2, 16));
-            PaymentFormActivity.AnonymousClass2 anonymousClass2 = new PaymentFormActivity.AnonymousClass2(getContext(), 7);
+            AddressBarList.AnonymousClass2 anonymousClass2 = new AddressBarList.AnonymousClass2(getContext(), 5);
             this.checkBoxClickArea = anonymousClass2;
             anonymousClass2.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, Theme.key_listSelector, false), 2, -1));
             addView(this.checkBoxClickArea, LayoutHelper.createFrame(76, -1, LocaleController.isRTL ? 3 : 5));
@@ -145,7 +137,7 @@ public final class TextCheckCell2 extends FrameLayout {
         this.animatedTextView.setText(str);
         this.collapsedArrow.animate().cancel();
         this.collapsedArrow.animate().rotation(z ? 0.0f : 180.0f).setDuration(340L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
-        this.checkBoxClickArea.setOnClickListener(new ProfileActivity$$ExternalSyntheticLambda51(3, runnable));
+        this.checkBoxClickArea.setOnClickListener(new TextCheckCell2$$ExternalSyntheticLambda0(0, runnable));
     }
 
     @Override
@@ -196,8 +188,7 @@ public final class TextCheckCell2 extends FrameLayout {
     public final void setTextAndCheck(String str, boolean z, boolean z2, boolean z3) {
         TextView textView = this.textView;
         textView.setText(str);
-        Switch r3 = this.checkBox;
-        r3.setChecked(r3.drawIconType, z, z3);
+        this.checkBox.setChecked(z, z3);
         this.needDivider = z2;
         this.valueTextView.setVisibility(8);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();

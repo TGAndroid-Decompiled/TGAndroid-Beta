@@ -6,7 +6,7 @@ import android.media.audiofx.AudioEffect;
 import android.media.audiofx.AutomaticGainControl;
 import android.media.audiofx.NoiseSuppressor;
 import android.text.TextUtils;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.nio.ByteBuffer;
 import java.util.regex.Pattern;
 import me.vkryl.android.util.ClickHelper$$ExternalSyntheticLambda0;
@@ -104,7 +104,7 @@ public class AudioRecordJNI {
             throw new IllegalStateException("thread already started");
         }
         this.running = true;
-        Thread thread = new Thread(new ClickHelper$$ExternalSyntheticLambda0(14, this, this.needResampling ? ByteBuffer.allocateDirect(1764) : null));
+        Thread thread = new Thread(new ClickHelper$$ExternalSyntheticLambda0(13, this, this.needResampling ? ByteBuffer.allocateDirect(1764) : null));
         this.thread = thread;
         thread.start();
     }
@@ -118,7 +118,7 @@ public class AudioRecordJNI {
             } catch (Exception unused) {
             }
         }
-        VLog.i(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "Trying to initialize AudioRecord with source=", " and sample rate="));
+        VLog.i(Fragment$$ExternalSyntheticOutline0.m(i, i2, "Trying to initialize AudioRecord with source=", " and sample rate="));
         try {
             i3 = i2;
             try {

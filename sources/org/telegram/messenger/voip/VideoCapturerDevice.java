@@ -8,15 +8,15 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.Display;
 import android.view.WindowManager;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import me.vkryl.android.util.ClickHelper$$ExternalSyntheticLambda0;
 import org.telegram.SQLite.SQLitePreparedStatement$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.LinkManager$3$$ExternalSyntheticLambda0;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda12;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda17;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
@@ -125,7 +125,7 @@ public class VideoCapturerDevice {
     public VideoCapturerDevice(boolean z) {
         Logging.enableLogToDebugOutput(Logging.Severity.LS_VERBOSE);
         Logging.d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
-        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda1(7, this, z));
+        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda1(this, z, 7));
     }
 
     public static void checkScreenCapturerSize() {
@@ -141,7 +141,7 @@ public class VideoCapturerDevice {
         }
         videoCapturerDevice.currentWidth = i2;
         videoCapturerDevice.currentHeight = screenCaptureSize.y;
-        videoCapturerDevice.handler.post(new ClickHelper$$ExternalSyntheticLambda0(16, videoCapturerDevice, screenCaptureSize));
+        videoCapturerDevice.handler.post(new ClickHelper$$ExternalSyntheticLambda0(15, videoCapturerDevice, screenCaptureSize));
     }
 
     public static EglBase getEglBase() {
@@ -175,7 +175,7 @@ public class VideoCapturerDevice {
     }
 
     private void init(long j, String str) {
-        AndroidUtilities.runOnUIThread(new PollItemMenu$$ExternalSyntheticLambda12(this, j, str, 4));
+        AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda17(this, j, str, 4));
     }
 
     public static void lambda$checkScreenCapturerSize$1(VideoCapturerDevice videoCapturerDevice, Point point) {
@@ -240,11 +240,11 @@ public class VideoCapturerDevice {
                 if (this.videoCapturer == null) {
                     this.videoCapturer = camera2Enumerator.createCapturer(str2, new AnonymousClass2());
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new LinkManager$3$$ExternalSyntheticLambda0(this, j, 5));
+                    this.handler.post(new RichEditor$$ExternalSyntheticLambda48(this, j, 7));
                     return;
                 } else {
                     FileLog.d("VideoCapturerDevice init(" + j + "): videoCapturer.switchCamera CAMERA");
-                    this.handler.post(new ClickHelper$$ExternalSyntheticLambda0(17, this, str2));
+                    this.handler.post(new ClickHelper$$ExternalSyntheticLambda0(16, this, str2));
                     return;
                 }
             }
@@ -254,7 +254,7 @@ public class VideoCapturerDevice {
                 this.currentWidth = screenCaptureSize.x;
                 this.currentHeight = screenCaptureSize.y;
                 this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("ScreenCapturerThread", eglBase.getEglBaseContext());
-                this.handler.post(new PollItemMenu$$ExternalSyntheticLambda12(this, j, screenCaptureSize, 5));
+                this.handler.post(new GiftSheet$$ExternalSyntheticLambda17(this, j, screenCaptureSize, 5));
             }
         }
     }
@@ -347,7 +347,7 @@ public class VideoCapturerDevice {
     }
 
     private void onDestroy() {
-        zzjj.m(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
+        zzjg.m(new StringBuilder("VideoCapturerDevice onDestroy ptr="), this.nativePtr);
         this.nativePtr = 0L;
         AndroidUtilities.runOnUIThread(new VideoCapturerDevice$$ExternalSyntheticLambda7(this, 1));
     }

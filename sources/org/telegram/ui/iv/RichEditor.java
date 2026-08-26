@@ -1,11 +1,14 @@
 package org.telegram.ui.iv;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Outline;
@@ -18,85 +21,85 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.hardware.fingerprint.FingerprintManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.Editable;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.text.style.CharacterStyle;
 import android.util.Log;
 import android.util.Property;
+import android.util.Size;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
 import android.view.ViewPropertyAnimator;
-import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.view.menu.MenuPresenter;
-import androidx.appcompat.widget.AppCompatHintHelper;
 import androidx.appcompat.widget.TooltipPopup;
+import androidx.collection.LongSparseArray;
 import androidx.core.graphics.Insets;
-import androidx.core.text.PrecomputedTextCompat;
-import androidx.core.view.ScrollFeedbackProviderCompat;
+import androidx.core.view.WindowInsetsAnimationCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.fragment.app.FragmentManagerViewModel;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider$Factory;
-import androidx.lifecycle.viewmodel.MutableCreationExtras;
-import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.datatransport.Priority;
-import com.google.android.datatransport.runtime.dagger.internal.Factory;
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.AutoValue_SchedulerConfig;
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.AutoValue_SchedulerConfig_ConfigValue;
-import com.google.android.datatransport.runtime.scheduling.jobscheduling.SchedulerConfig$Flag;
-import com.google.android.exoplayer2.extractor.DefaultExtractorInput;
-import com.google.android.exoplayer2.extractor.SeekMap;
-import com.google.android.exoplayer2.extractor.ogg.OggSeeker;
-import com.google.android.exoplayer2.source.chunk.MediaChunkIterator;
-import com.google.android.gms.dynamite.DynamiteModule;
-import com.google.android.gms.internal.mlkit_common.zzru;
-import com.google.android.gms.internal.mlkit_vision_common.zzle;
-import com.google.android.gms.internal.mlkit_vision_common.zzlp;
-import com.google.android.gms.tasks.Continuation;
+import androidx.datastore.preferences.PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility;
+import com.android.billingclient.api.zzbv;
+import com.google.android.gms.internal.mlkit_vision_common.zzkg;
+import com.google.android.gms.internal.mlkit_vision_common.zzkn;
+import com.google.android.gms.tasks.SuccessContinuation;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.vision.Frame$Metadata;
-import com.google.firebase.components.ComponentFactory;
-import com.google.firebase.crashlytics.internal.stacktrace.StackTraceTrimmingStrategy;
-import com.google.gson.internal.ObjectConstructor;
-import com.google.mlkit.common.sdkinternal.MlKitThreadPool;
-import com.google.mlkit.nl.languageid.bundled.internal.zbb;
-import com.stripe.android.time.Clock;
-import io.noties.markwon.html.HtmlTagImpl;
-import j$.util.DesugarCollections;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.android.gms.tasks.Tasks;
+import com.google.firebase.crashlytics.internal.common.CommonUtils;
+import com.google.firebase.crashlytics.internal.common.CrashlyticsController;
+import com.google.firebase.crashlytics.internal.common.CrashlyticsController.AnonymousClass2;
+import com.google.firebase.crashlytics.internal.common.Utils;
+import com.google.firebase.crashlytics.internal.settings.Settings;
+import com.google.firebase.crashlytics.internal.settings.SettingsController;
+import com.google.firebase.crashlytics.internal.settings.SettingsRequest;
+import com.google.mlkit.common.sdkinternal.TaskQueue;
+import com.google.zxing.ChecksumException;
+import com.google.zxing.FormatException;
+import com.google.zxing.ReaderException;
+import com.google.zxing.Result;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.common.BitSource;
+import com.google.zxing.common.CharacterSetECI;
+import com.google.zxing.common.DecoderResult;
+import com.google.zxing.common.reedsolomon.ReedSolomonException;
+import com.google.zxing.qrcode.decoder.DataBlock;
+import com.google.zxing.qrcode.decoder.DecodedBitStreamParser;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.google.zxing.qrcode.decoder.FormatInformation;
+import com.google.zxing.qrcode.decoder.Mode;
+import com.google.zxing.qrcode.decoder.Version;
+import com.stripe.android.Stripe;
+import com.stripe.android.net.RequestOptions;
 import j$.util.Objects;
-import java.nio.ShortBuffer;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.NoSuchElementException;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.MissingFormatArgumentException;
+import java.util.concurrent.TimeoutException;
+import java.util.concurrent.atomic.AtomicReference;
+import kotlinx.coroutines.flow.SafeFlow;
+import kotlinx.coroutines.selects.SelectClause1;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BotInlineKeyboard;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FactCheckController$$ExternalSyntheticOutline0;
-import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaController$$ExternalSyntheticOutline1;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -104,82 +107,92 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessageChatArguments;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.SharedConfig$$ExternalSyntheticApiModelOutline0;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.support.fingerprint.FingerprintManagerCompat;
-import org.telegram.messenger.video.remix.AudioRemixer;
-import org.telegram.messenger.video.resample.AudioResampler;
 import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticOutline0;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.FloatingToolbar;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.OKLCH;
+import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
-import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.Cells.DialogCell;
+import org.telegram.ui.Adapters.SearchAdapterHelper;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.Cells.TextSelectionHelper;
+import org.telegram.ui.Charts.BaseChartView;
+import org.telegram.ui.Charts.view_data.ChartBottomSignatureData;
+import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda326;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda68;
+import org.telegram.ui.ChatActivity$ThemeDelegate$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.AIEditorAlert;
 import org.telegram.ui.Components.AiButtonDrawable;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatActivityEnterView;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
 import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.ChatAttachAlert$$ExternalSyntheticLambda7;
 import org.telegram.ui.Components.ChatAttachAlertDocumentLayout;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EmojiView;
+import org.telegram.ui.Components.GroupCreateSpan;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Paint.Views.PaintWeightChooserView;
+import org.telegram.ui.Components.Paint.Views.ReactionWidgetEntityView;
+import org.telegram.ui.Components.Paint.Views.RoundView;
+import org.telegram.ui.Components.Paint.Views.StickerMakerView;
+import org.telegram.ui.Components.Premium.PremiumAppIconsPreviewView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
-import org.telegram.ui.Components.QuoteSpan;
+import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
+import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.Components.SearchViewPager;
-import org.telegram.ui.Components.SeekBarView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
+import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
-import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.Components.chat.ChatInputViewsContainer;
-import org.telegram.ui.DialogsActivity;
-import org.telegram.ui.GLIconSettingsView;
+import org.telegram.ui.Components.voip.PrivateVideoPreviewDialogNew;
+import org.telegram.ui.Components.voip.VoIpSwitchLayout;
+import org.telegram.ui.Gifts.GiftSheet;
 import org.telegram.ui.GradientClip;
-import org.telegram.ui.LoginActivity$$ExternalSyntheticLambda10;
 import org.telegram.ui.MessageSendPreview;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda133;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda44;
-import org.telegram.ui.PinchToZoomHelper;
-import org.telegram.ui.QrActivity;
-import org.telegram.ui.ShareActivity$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.Stars.SuperRipple;
+import org.telegram.ui.Stars.SuperRipple$$ExternalSyntheticLambda7;
+import org.telegram.ui.Stories.DialogStoriesCell;
+import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
-import org.telegram.ui.TopicsFragment;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda28;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda42;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.Stories.recorder.CaptionStory;
+import org.telegram.ui.Stories.recorder.CollageLayoutView2;
+import org.telegram.ui.Stories.recorder.GalleryListView;
+import org.telegram.ui.Stories.recorder.GallerySheet;
+import org.telegram.ui.Stories.recorder.GallerySheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.Stories.recorder.PreviewView;
+import org.telegram.ui.Stories.recorder.StoryEntry;
+import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
+import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stories.recorder.StoryRecorder;
+import org.telegram.ui.Stories.recorder.TimelineView;
+import org.telegram.ui.TON.TONIntroActivity;
 import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
-import org.telegram.ui.web.MHTML;
+import org.telegram.ui.bots.BotSensors$1$$ExternalSyntheticLambda0;
 
 public final class RichEditor extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public ImageView addButton;
     public ImageView aiButton;
     public Button aiStyleButton;
-    public ChatActivity.AnonymousClass39 animateEnterView;
+    public ChatActivityEnterView animateEnterView;
     public int[] animateEnterViewFrom;
     public int[] animateEnterViewTo;
     public RectF animateFromRect;
@@ -218,7 +231,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
     public LinearLayout formattingLayout1;
     public LinearLayout formattingLayout2;
     public LinearLayout formattingLayout3;
-    public PhotoViewer.AnonymousClass35 formattingPanel;
+    public AnonymousClass6 formattingPanel;
     public LinearLayout formattingPanelLayout;
     public int formattingScrollMaxWidth;
     public AnonymousClass7 formattingScrollView;
@@ -230,7 +243,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
     public final TL_iv.RichMessage initialRichMessage;
     public int initialSelectionEnd;
     public int initialSelectionStart;
-    public final Editable initialText;
+    public final CharSequence initialText;
     public Button inlineButton;
     public int keyboardHeight;
     public int keyboardHeightLand;
@@ -252,7 +265,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
     public AnonymousClass9 sendButton;
     public boolean sendButtonLoading;
     public boolean sent;
-    public LoginActivity$$ExternalSyntheticLambda10 sizeDelegate;
+    public RichEditor$$ExternalSyntheticLambda13 sizeDelegate;
     public final Rect tempRect;
     public View topGradient;
     public FrameLayout topPanel;
@@ -261,742 +274,319 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
     public RLottieImageView trashPanelIcon;
     public ImageView undoButton;
 
-    public class AnonymousClass12 implements MenuPresenter.Callback, ScrollFeedbackProviderCompat.ScrollFeedbackProviderImpl, ViewModelProvider$Factory, Factory, OggSeeker, MediaChunkIterator, DynamiteModule.VersionPolicy, Continuation, StackTraceTrimmingStrategy, ObjectConstructor, ComponentFactory, FingerprintManagerCompat.FingerprintManagerCompatImpl, AudioRemixer, AudioResampler, SeekBarView.SeekBarViewDelegate, ChatMessageCell.ChatMessageCellDelegate, ChatAttachAlert.ChatAttachViewDelegate {
-        public static AnonymousClass12 zza;
+    public final class AnonymousClass1 extends AnimatorListenerAdapter {
         public final int $r8$classId;
+        public final Object this$0;
+        public final Object val$callback;
 
-        public AnonymousClass12(int i) {
+        public AnonymousClass1(int i, Object obj, Object obj2) {
             this.$r8$classId = i;
-        }
-
-        public static String replace(HtmlTagImpl htmlTagImpl) {
-            String str = htmlTagImpl.name;
-            if ("br".equals(str)) {
-                return "\n";
-            }
-            if ("img".equals(str)) {
-                String str2 = (String) htmlTagImpl.attributes().get("alt");
-                return (str2 == null || str2.length() == 0) ? "￼" : str2;
-            }
-            if ("iframe".equals(str)) {
-                return " ";
-            }
-            return null;
+            this.this$0 = obj;
+            this.val$callback = obj2;
         }
 
         @Override
-        public boolean allowAddPollOptions() {
-            return false;
-        }
-
-        @Override
-        public boolean canDrawOutboundsContent() {
-            return true;
-        }
-
-        @Override
-        public boolean canPerformActions() {
-            return false;
-        }
-
-        @Override
-        public boolean canPerformReply() {
-            return false;
-        }
-
-        @Override
-        public boolean canSaveRichDocument(ChatMessageCell chatMessageCell) {
-            return false;
-        }
-
-        @Override
-        public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell) {
-            return false;
-        }
-
-        @Override
-        public Object construct() {
+        public void onAnimationCancel(Animator animator) {
             switch (this.$r8$classId) {
-                case 17:
-                    return new LinkedHashSet();
-                default:
-                    return new TreeMap();
-            }
-        }
-
-        @Override
-        public Object create(MHTML mhtml) {
-            switch (this.$r8$classId) {
-                case 19:
-                    return new MlKitThreadPool();
-                case 20:
-                    synchronized (AppCompatHintHelper.class) {
-                        byte b = (byte) (((byte) 1) | 2);
-                        try {
-                            if (b != 3) {
-                                StringBuilder sb = new StringBuilder();
-                                if ((b & 1) == 0) {
-                                    sb.append(" enableFirelog");
-                                }
-                                if ((b & 2) == 0) {
-                                    sb.append(" firelogEventType");
-                                }
-                                throw new IllegalStateException("Missing required properties:".concat(sb.toString()));
-                            }
-                            AppCompatHintHelper.zza(new zzru());
-                        } catch (Throwable th) {
-                            throw th;
+                case 2:
+                    ActionBar actionBar = (ActionBar) this.this$0;
+                    if (actionBar.actionModeAnimation != null && actionBar.actionModeAnimation.equals(animator)) {
+                        actionBar.actionModeAnimation = null;
+                        break;
+                    }
+                    break;
+                case 3:
+                    ActionBarLayout actionBarLayout = (ActionBarLayout) this.this$0;
+                    if (animator.equals(actionBarLayout.themeAnimatorSet)) {
+                        actionBarLayout.themeAnimatorDescriptions.clear();
+                        actionBarLayout.animateStartColors.clear();
+                        actionBarLayout.animateEndColors.clear();
+                        actionBarLayout.themeAnimatorDelegate.clear();
+                        Theme.animatingColors = null;
+                        actionBarLayout.presentingFragmentDescriptions = null;
+                        actionBarLayout.animationProgressListener = null;
+                        actionBarLayout.themeAnimatorSet = null;
+                        ChatActivity$ThemeDelegate$$ExternalSyntheticLambda2 chatActivity$ThemeDelegate$$ExternalSyntheticLambda2 = ((INavigationLayout.ThemeAnimationSettings) this.val$callback).afterAnimationRunnable;
+                        if (chatActivity$ThemeDelegate$$ExternalSyntheticLambda2 != null) {
+                            chatActivity$ThemeDelegate$$ExternalSyntheticLambda2.run();
                         }
                     }
-                    return new Clock(1);
+                    break;
                 default:
-                    return new zbb();
+                    super.onAnimationCancel(animator);
+                    break;
             }
         }
 
         @Override
-        public SeekMap createSeekMap() {
-            return new SeekMap.Unseekable(-9223372036854775807L, 0L);
-        }
-
-        @Override
-        public void didLongPress(ChatMessageCell chatMessageCell, float f, float f2) {
-        }
-
-        @Override
-        public void didLongPressBotButton(ChatMessageCell chatMessageCell, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        }
-
-        @Override
-        public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat) {
-            return false;
-        }
-
-        @Override
-        public boolean didLongPressPollOption(ChatMessageCell chatMessageCell, TLRPC.PollAnswer pollAnswer) {
-            return false;
-        }
-
-        @Override
-        public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem) {
-            return false;
-        }
-
-        @Override
-        public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user) {
-            return false;
-        }
-
-        @Override
-        public void didPressAboutRevenueSharingAds() {
-        }
-
-        @Override
-        public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressAdmin(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public boolean didPressAnimatedEmoji(AnimatedEmojiSpan animatedEmojiSpan) {
-            return false;
-        }
-
-        @Override
-        public void didPressAppUpdateButton() {
-        }
-
-        @Override
-        public void didPressBoostCounter(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressBotButton(ChatMessageCell chatMessageCell, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-        }
-
-        @Override
-        public void didPressCancelSendButton(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i, float f, float f2, boolean z) {
-        }
-
-        @Override
-        public void didPressChannelRecommendation(ChatMessageCell chatMessageCell, TLObject tLObject, boolean z) {
-        }
-
-        @Override
-        public void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressCodeCopy(MessageObject.TextLayoutBlock textLayoutBlock) {
-        }
-
-        @Override
-        public void didPressCommentButton(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) {
-        }
-
-        @Override
-        public void didPressEffect(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-        }
-
-        @Override
-        public void didPressFactCheck(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressFactCheckWhat(ChatMessageCell chatMessageCell, int i, int i2) {
-        }
-
-        @Override
-        public void didPressGiveawayChatButton(int i, ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressGroupImage(ChatMessageCell chatMessageCell, TLRPC.MessageExtendedMedia messageExtendedMedia) {
-        }
-
-        @Override
-        public void didPressHiddenForward(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressHint(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressImage(ChatMessageCell chatMessageCell, float f, float f2, boolean z) {
-        }
-
-        @Override
-        public void didPressInstantButton(int i, ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressMoreChannelRecommendations() {
-        }
-
-        @Override
-        public void didPressOther(ChatMessageCell chatMessageCell, float f, float f2) {
-        }
-
-        @Override
-        public void didPressPollMedia(ChatMessageCell chatMessageCell, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i) {
-        }
-
-        @Override
-        public void didPressReaction(ChatMessageCell chatMessageCell, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
-        }
-
-        @Override
-        public void didPressReplyMessage(ChatMessageCell chatMessageCell, int i, float f, float f2, boolean z) {
-        }
-
-        @Override
-        public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell, TLRPC.Document document) {
-        }
-
-        @Override
-        public void didPressShowMore(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressSideButton(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressSponsoredClose(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressSponsoredInfo(ChatMessageCell chatMessageCell, float f, float f2) {
-        }
-
-        @Override
-        public void didPressSummarize(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didPressTime() {
-        }
-
-        @Override
-        public boolean didPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem, boolean z) {
-            return false;
-        }
-
-        @Override
-        public void didPressUrl(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, boolean z) {
-        }
-
-        @Override
-        public void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2) {
-        }
-
-        @Override
-        public void didPressUserStatus(ChatMessageCell chatMessageCell, TLRPC.User user, TLRPC.Document document, String str) {
-        }
-
-        @Override
-        public void didPressViaBot(String str) {
-        }
-
-        @Override
-        public void didPressViaBotNotInline(ChatMessageCell chatMessageCell, long j) {
-        }
-
-        @Override
-        public void didPressVoteButtons(ChatMessageCell chatMessageCell, ArrayList arrayList, int i, int i2, int i3) {
-        }
-
-        @Override
-        public void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC.WebPage webPage, String str, boolean z) {
-            ArticleViewer.IBlock.CC.$default$didPressWebPage(chatMessageCell, str);
-        }
-
-        @Override
-        public void didPressedButton(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
-        }
-
-        @Override
-        public void didQuickShareEnd(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didQuickShareMove(ChatMessageCell chatMessageCell, float f, float f2) {
-        }
-
-        @Override
-        public void didQuickShareStart(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didSelectBot(TLRPC.User user) {
-        }
-
-        @Override
-        public void didStartVideoStream(MessageObject messageObject) {
-        }
-
-        @Override
-        public void didTogglePollPreview(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell, FileLoader$$ExternalSyntheticLambda1 fileLoader$$ExternalSyntheticLambda1) {
-        }
-
-        @Override
-        public boolean doNotShowLoadingReply(MessageObject messageObject) {
-            return ArticleViewer.IBlock.CC.$default$doNotShowLoadingReply(messageObject);
-        }
-
-        @Override
-        public void doOnIdle(ChatAttachAlert$$ExternalSyntheticLambda7 chatAttachAlert$$ExternalSyntheticLambda7) {
-            chatAttachAlert$$ExternalSyntheticLambda7.run();
-        }
-
-        @Override
-        public void drawPollMode(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void forceUpdate(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell) {
-        }
-
-        @Override
-        public Object get() {
-            Clock clock = new Clock(7);
-            HashMap map = new HashMap();
-            Priority priority = Priority.DEFAULT;
-            Set set = Collections.EMPTY_SET;
-            if (set == null) {
-                throw new NullPointerException("Null flags");
-            }
-            map.put(priority, new AutoValue_SchedulerConfig_ConfigValue(30000L, 86400000L, set));
-            Priority priority2 = Priority.HIGHEST;
-            if (set == null) {
-                throw new NullPointerException("Null flags");
-            }
-            map.put(priority2, new AutoValue_SchedulerConfig_ConfigValue(1000L, 86400000L, set));
-            Priority priority3 = Priority.VERY_LOW;
-            if (set == null) {
-                throw new NullPointerException("Null flags");
-            }
-            Set setUnmodifiableSet = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(SchedulerConfig$Flag.DEVICE_IDLE)));
-            if (setUnmodifiableSet == null) {
-                throw new NullPointerException("Null flags");
-            }
-            map.put(priority3, new AutoValue_SchedulerConfig_ConfigValue(86400000L, 86400000L, setUnmodifiableSet));
-            if (map.keySet().size() < Priority.values().length) {
-                throw new IllegalStateException("Not all priorities have been configured");
-            }
-            new HashMap();
-            return new AutoValue_SchedulerConfig(clock, map);
-        }
-
-        @Override
-        public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell) {
-            return 0;
-        }
-
-        @Override
-        public String getAdminRank(long j) {
-            return null;
-        }
-
-        @Override
-        public int getChatMode() {
-            return 0;
-        }
-
-        @Override
-        public long getChunkEndTimeUs() {
-            throw new NoSuchElementException();
-        }
-
-        @Override
-        public long getChunkStartTimeUs() {
-            throw new NoSuchElementException();
-        }
-
-        @Override
-        public CharSequence getContentDescription() {
-            return null;
-        }
-
-        @Override
-        public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
-            return null;
-        }
-
-        @Override
-        public PinchToZoomHelper getPinchToZoomHelper() {
-            return null;
-        }
-
-        @Override
-        public String getProgressLoadingBotButtonUrl(ChatMessageCell chatMessageCell) {
-            return null;
-        }
-
-        @Override
-        public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell) {
-            return null;
-        }
-
-        @Override
-        public int getStepsCount() {
-            return 0;
-        }
-
-        @Override
-        public TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
-            return null;
-        }
-
-        @Override
-        public StackTraceElement[] getTrimmedStackTrace(StackTraceElement[] stackTraceElementArr) {
-            if (stackTraceElementArr.length <= 1024) {
-                return stackTraceElementArr;
-            }
-            StackTraceElement[] stackTraceElementArr2 = new StackTraceElement[1024];
-            System.arraycopy(stackTraceElementArr, 0, stackTraceElementArr2, 0, 512);
-            System.arraycopy(stackTraceElementArr, stackTraceElementArr.length - 512, stackTraceElementArr2, 512, 512);
-            return stackTraceElementArr2;
-        }
-
-        @Override
-        public boolean hasEnrolledFingerprints(Context context) {
-            try {
-                FingerprintManager fingerprintManagerM = SharedConfig$$ExternalSyntheticApiModelOutline0.m(context.getSystemService("fingerprint"));
-                if (fingerprintManagerM == null) {
-                    return false;
-                }
-                return fingerprintManagerM.hasEnrolledFingerprints();
-            } catch (Exception e) {
-                FileLog.e(e);
-                return false;
-            }
-        }
-
-        @Override
-        public boolean hasSelectedMessages() {
-            return false;
-        }
-
-        @Override
-        public void invalidateBlur() {
-        }
-
-        @Override
-        public boolean isAdmin(long j) {
-            return false;
-        }
-
-        @Override
-        public boolean isHardwareDetected(Context context) {
-            try {
-                FingerprintManager fingerprintManagerM = SharedConfig$$ExternalSyntheticApiModelOutline0.m(context.getSystemService("fingerprint"));
-                if (fingerprintManagerM == null) {
-                    return false;
-                }
-                return fingerprintManagerM.isHardwareDetected();
-            } catch (Exception e) {
-                FileLog.e(e);
-                return false;
-            }
-        }
-
-        @Override
-        public boolean isLandscape() {
-            return false;
-        }
-
-        @Override
-        public boolean isOwner(long j) {
-            return false;
-        }
-
-        public boolean isPrecomputedText(CharSequence charSequence) {
-            return charSequence instanceof PrecomputedTextCompat;
-        }
-
-        @Override
-        public boolean isProgressLoading(int i, ChatMessageCell chatMessageCell) {
-            return false;
-        }
-
-        @Override
-        public boolean isReplyOrSelf() {
-            return false;
-        }
-
-        @Override
-        public boolean keyboardIsOpened() {
-            return false;
-        }
-
-        @Override
-        public boolean needEnterComment() {
-            return false;
-        }
-
-        @Override
-        public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i, int i2) {
-        }
-
-        @Override
-        public boolean needPlayMessage(ChatMessageCell chatMessageCell, MessageObject messageObject) {
-            return false;
-        }
-
-        @Override
-        public void needReloadPolls() {
-        }
-
-        @Override
-        public void needShowPremiumBulletin(int i) {
-        }
-
-        @Override
-        public boolean next() {
-            return false;
-        }
-
-        @Override
-        public boolean onAccessibilityAction(int i) {
-            return false;
-        }
-
-        @Override
-        public void onCameraOpened() {
-        }
-
-        @Override
-        public void onDiceFinished() {
-        }
-
-        @Override
-        public boolean onOpenSubMenu(MenuBuilder menuBuilder) {
-            return false;
-        }
-
-        @Override
-        public void onSeekBarDrag(float f, boolean z) {
-            GLIconSettingsView.smallStarsSize = f * 2.0f;
-        }
-
-        @Override
-        public void onWallpaperSelected(Object obj) {
-        }
-
-        @Override
-        public void openArticlePhoto(ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock) {
-        }
-
-        @Override
-        public void openAvatarsSearch() {
-        }
-
-        @Override
-        public long read(DefaultExtractorInput defaultExtractorInput) {
-            return -1L;
-        }
-
-        @Override
-        public void remix(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2) {
-            shortBuffer2.put(shortBuffer);
-        }
-
-        @Override
-        public void resample(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2, int i3) {
-            if (i > i2) {
-                throw new IllegalArgumentException("Illegal use of UpsampleAudioResampler");
-            }
-            if (i3 != 1 && i3 != 2) {
-                throw new IllegalArgumentException(DiffUtil.m(i3, "Illegal use of UpsampleAudioResampler. Channels:"));
-            }
-            int iRemaining = shortBuffer.remaining() / i3;
-            int iCeil = ((int) Math.ceil((((double) i2) / ((double) i)) * ((double) iRemaining))) - iRemaining;
-            float f = iRemaining;
-            float f2 = f / f;
-            float f3 = iCeil;
-            float f4 = f3 / f3;
-            while (iRemaining > 0 && iCeil > 0) {
-                if (f2 >= f4) {
-                    shortBuffer2.put(shortBuffer.get());
-                    if (i3 == 2) {
-                        shortBuffer2.put(shortBuffer.get());
+        public final void onAnimationEnd(Animator animator) {
+            boolean[] zArr;
+            switch (this.$r8$classId) {
+                case 0:
+                    RichEditor richEditor = (RichEditor) this.this$0;
+                    richEditor.animatingOpen = false;
+                    richEditor.animateEnterView.setAlpha(1.0f);
+                    richEditor.animateEnterView.sendButtonContainer.setVisibility(0);
+                    richEditor.animateInputBackground.setRadius(AndroidUtilities.dp(22.0f));
+                    richEditor.animateInputBackground.setAlpha(255);
+                    ChatInputViewsContainer chatInputViewsContainer = richEditor.animateInputView;
+                    chatInputViewsContainer.drawInputBackground = true;
+                    chatInputViewsContainer.invalidate();
+                    ((Runnable) this.val$callback).run();
+                    break;
+                case 1:
+                    WindowInsetsAnimationCompat windowInsetsAnimationCompat = (WindowInsetsAnimationCompat) this.val$callback;
+                    windowInsetsAnimationCompat.mImpl.setFraction(1.0f);
+                    WindowInsetsAnimationCompat.Impl21.dispatchOnEnd((View) this.this$0, windowInsetsAnimationCompat);
+                    break;
+                case 2:
+                    ActionBar actionBar = (ActionBar) this.this$0;
+                    if (actionBar.actionModeAnimation != null && actionBar.actionModeAnimation.equals(animator)) {
+                        actionBar.actionModeAnimation = null;
+                        if (actionBar.titleTextView[0] != null) {
+                            actionBar.titleTextView[0].setVisibility(4);
+                        }
+                        if (actionBar.subtitleTextView != null && !TextUtils.isEmpty(actionBar.subtitle)) {
+                            actionBar.subtitleTextView.setVisibility(4);
+                        }
+                        ActionBarMenu actionBarMenu = actionBar.menu;
+                        if (actionBarMenu != null) {
+                            actionBarMenu.setVisibility(4);
+                        }
+                        if (actionBar.actionModeHidingViews != null) {
+                            for (int i = 0; i < actionBar.actionModeHidingViews.length; i++) {
+                                if (actionBar.actionModeHidingViews[i] != null && ((zArr = (boolean[]) this.val$callback) == null || i >= zArr.length || zArr[i])) {
+                                    actionBar.actionModeHidingViews[i].setVisibility(4);
+                                }
+                            }
+                        }
+                        break;
                     }
-                    iRemaining--;
-                    f2 = iRemaining / f;
-                } else {
-                    shortBuffer2.put(shortBuffer2.get(shortBuffer2.position() - i3));
-                    if (i3 == 2) {
-                        shortBuffer2.put(shortBuffer2.get(shortBuffer2.position() - i3));
+                    break;
+                case 3:
+                    ActionBarLayout actionBarLayout = (ActionBarLayout) this.this$0;
+                    actionBarLayout.notificationsLocker.unlock();
+                    if (animator.equals(actionBarLayout.themeAnimatorSet)) {
+                        actionBarLayout.themeAnimatorDescriptions.clear();
+                        actionBarLayout.animateStartColors.clear();
+                        actionBarLayout.animateEndColors.clear();
+                        actionBarLayout.themeAnimatorDelegate.clear();
+                        Theme.animatingColors = null;
+                        actionBarLayout.presentingFragmentDescriptions = null;
+                        actionBarLayout.animationProgressListener = null;
+                        actionBarLayout.themeAnimatorSet = null;
+                        ChatActivity$ThemeDelegate$$ExternalSyntheticLambda2 chatActivity$ThemeDelegate$$ExternalSyntheticLambda2 = ((INavigationLayout.ThemeAnimationSettings) this.val$callback).afterAnimationRunnable;
+                        if (chatActivity$ThemeDelegate$$ExternalSyntheticLambda2 != null) {
+                            chatActivity$ThemeDelegate$$ExternalSyntheticLambda2.run();
+                        }
                     }
-                    iCeil--;
-                    f4 = iCeil / f3;
-                }
+                    break;
+                case 4:
+                    ((ActionBarLayout) this.this$0).previewOpenAnimationInProgress = false;
+                    ((BaseFragment) this.val$callback).onPreviewOpenAnimationEnd();
+                    break;
+                case 5:
+                    BaseChartView baseChartView = (BaseChartView) this.this$0;
+                    baseChartView.horizontalLines.clear();
+                    baseChartView.horizontalLines.add((ChartHorizontalLinesData) this.val$callback);
+                    break;
+                case 6:
+                    super.onAnimationEnd(animator);
+                    BaseChartView baseChartView2 = (BaseChartView) this.this$0;
+                    baseChartView2.bottomSignatureDate.clear();
+                    baseChartView2.bottomSignatureDate.add((ChartBottomSignatureData) this.val$callback);
+                    break;
+                case 7:
+                    RectF rectF = (RectF) this.val$callback;
+                    CropAreaView cropAreaView = (CropAreaView) this.this$0;
+                    cropAreaView.setActualRect(rectF);
+                    cropAreaView.animator = null;
+                    break;
+                case 8:
+                    boolean[] zArr2 = (boolean[]) this.val$callback;
+                    boolean z = zArr2[0];
+                    ReactionWidgetEntityView reactionWidgetEntityView = (ReactionWidgetEntityView) this.this$0;
+                    if (!z) {
+                        zArr2[0] = true;
+                        reactionWidgetEntityView.storyReactionWidgetBackground.setMirror(reactionWidgetEntityView.mirror, false);
+                    }
+                    reactionWidgetEntityView.setRotationY(0.0f);
+                    reactionWidgetEntityView.drawScale = 1.0f;
+                    break;
+                case 9:
+                    ((PremiumFeatureBottomSheet) this.this$0).enterAnimationIsRunning = false;
+                    ((PremiumAppIconsPreviewView) this.val$callback).setOffset(0.0f);
+                    super.onAnimationEnd(animator);
+                    break;
+                case 10:
+                    PremiumPreviewBottomSheet premiumPreviewBottomSheet = (PremiumPreviewBottomSheet) this.this$0;
+                    premiumPreviewBottomSheet.enterTransitionInProgress = false;
+                    premiumPreviewBottomSheet.enterTransitionProgress = 1.0f;
+                    premiumPreviewBottomSheet.iconContainer.invalidate();
+                    Drawable drawable = (Drawable) this.val$callback;
+                    if (drawable != null) {
+                        ValueAnimator valueAnimatorOfInt = ValueAnimator.ofInt(0, 255);
+                        valueAnimatorOfInt.addUpdateListener(new SuperRipple$$ExternalSyntheticLambda7(7, this, drawable));
+                        valueAnimatorOfInt.start();
+                    }
+                    super.onAnimationEnd(animator);
+                    break;
+                case 11:
+                    GroupCreateSpan groupCreateSpan = (GroupCreateSpan) this.val$callback;
+                    SelectorSearchCell.SpansContainer spansContainer = (SelectorSearchCell.SpansContainer) this.this$0;
+                    spansContainer.removeView(groupCreateSpan);
+                    spansContainer.removingSpans.clear();
+                    spansContainer.currentAnimation = null;
+                    spansContainer.animationStarted = false;
+                    SelectorSearchCell.this.editText.setAllowDrawCursor(true);
+                    if (SelectorSearchCell.this.updateHeight != null) {
+                        SelectorSearchCell.this.updateHeight.run();
+                    }
+                    if (SelectorSearchCell.this.scroll) {
+                        SelectorSearchCell.this.fullScroll(130);
+                        SelectorSearchCell.this.scroll = false;
+                    }
+                    break;
+                case 12:
+                    VoIpSwitchLayout voIpSwitchLayout = (VoIpSwitchLayout) this.this$0;
+                    voIpSwitchLayout.currentTextView.setText((String) this.val$callback);
+                    voIpSwitchLayout.currentTextView.setTranslationY(0.0f);
+                    voIpSwitchLayout.currentTextView.setAlpha(1.0f);
+                    break;
+                case 13:
+                    ((VoIpSwitchLayout) this.this$0).removeView((VoIpSwitchLayout.VoIpButtonView) this.val$callback);
+                    break;
+                case 14:
+                    SuperRipple superRipple = (SuperRipple) this.this$0;
+                    superRipple.effects.remove((SuperRipple.Effect) this.val$callback);
+                    superRipple.updateProperties();
+                    break;
+                case 15:
+                    super.onAnimationEnd(animator);
+                    DialogStoriesCell.this.textAnimator = null;
+                    AndroidUtilities.removeFromParent((SimpleTextView) this.val$callback);
+                    break;
+                case 16:
+                    boolean[] zArr3 = (boolean[]) this.val$callback;
+                    boolean z2 = zArr3[0];
+                    ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.this$0;
+                    if (!z2) {
+                        zArr3[0] = true;
+                        profileStoriesView.vibrateNewStory();
+                    }
+                    profileStoriesView.newStoryBounceT = 1.0f;
+                    profileStoriesView.invalidate();
+                    break;
+                case 17:
+                    EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.val$callback;
+                    if (editTextBoldCursor != null) {
+                        editTextBoldCursor.setVisibility(4);
+                    }
+                    GalleryListView.this.searchContainer.setVisibility(8);
+                    break;
+                case 18:
+                    GallerySheet gallerySheet = (GallerySheet) this.this$0;
+                    gallerySheet.galleryOpenCloseAnimator = null;
+                    gallerySheet.galleryListViewOpening = null;
+                    GallerySheet$$ExternalSyntheticLambda2 gallerySheet$$ExternalSyntheticLambda2 = (GallerySheet$$ExternalSyntheticLambda2) this.val$callback;
+                    if (gallerySheet$$ExternalSyntheticLambda2 != null) {
+                        gallerySheet$$ExternalSyntheticLambda2.run();
+                    }
+                    break;
+                case 19:
+                    ((RoundView) this.val$callback).setDraw(true);
+                    CaptionStory.AnonymousClass1 anonymousClass1 = (CaptionStory.AnonymousClass1) this.this$0;
+                    if (anonymousClass1.getParent() instanceof ViewGroup) {
+                        ((ViewGroup) anonymousClass1.getParent()).removeView(anonymousClass1);
+                    }
+                    break;
+                default:
+                    StoryPrivacyBottomSheet.SearchUsersCell.SpansContainer spansContainer2 = (StoryPrivacyBottomSheet.SearchUsersCell.SpansContainer) this.this$0;
+                    spansContainer2.removeView((GroupCreateSpan) this.val$callback);
+                    spansContainer2.removingSpans.clear();
+                    spansContainer2.currentAnimation = null;
+                    spansContainer2.animationStarted = false;
+                    StoryPrivacyBottomSheet.SearchUsersCell searchUsersCell = StoryPrivacyBottomSheet.SearchUsersCell.this;
+                    searchUsersCell.editText.setAllowDrawCursor(true);
+                    StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 = searchUsersCell.updateHeight;
+                    if (storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 != null) {
+                        storyPrivacyBottomSheet$Page$$ExternalSyntheticLambda1.run();
+                    }
+                    if (searchUsersCell.scroll) {
+                        searchUsersCell.fullScroll(130);
+                        searchUsersCell.scroll = false;
+                    }
+                    break;
             }
         }
 
         @Override
-        public boolean selectItemOnClicking() {
-            return false;
-        }
-
-        @Override
-        public Frame$Metadata selectModule(Context context, String str, DynamiteModule.VersionPolicy.IVersions iVersions) {
-            Frame$Metadata frame$Metadata = new Frame$Metadata();
-            frame$Metadata.zza = iVersions.zza(context, str);
-            int i = 1;
-            int iZzb = iVersions.zzb(context, str, true);
-            frame$Metadata.zzb = iZzb;
-            int i2 = frame$Metadata.zza;
-            if (i2 == 0) {
-                i2 = 0;
-                if (iZzb == 0) {
-                    i = 0;
-                } else if (iZzb < i2) {
-                    i = -1;
-                }
-            } else if (iZzb < i2) {
-                i = -1;
+        public void onAnimationStart(Animator animator) {
+            switch (this.$r8$classId) {
+                case 2:
+                    ((ActionBar) this.this$0).actionMode.setVisibility(0);
+                    break;
+                default:
+                    super.onAnimationStart(animator);
+                    break;
             }
-            frame$Metadata.zze = i;
-            return frame$Metadata;
+        }
+
+        public AnonymousClass1(View view, WindowInsetsAnimationCompat windowInsetsAnimationCompat) {
+            this.$r8$classId = 1;
+            this.val$callback = windowInsetsAnimationCompat;
+            this.this$0 = view;
+        }
+    }
+
+    public final class AnonymousClass12 implements ChatAttachAlert.ChatAttachViewDelegate {
+        @Override
+        public final void didPressedButton(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
         }
 
         @Override
-        public void sendAudio(ArrayList arrayList, Editable editable, boolean z, int i, int i2, long j, boolean z2, long j2) {
+        public final void didSelectBot(TLRPC.User user) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, user);
         }
 
         @Override
-        public void setShouldNotRepeatSticker(MessageObject messageObject) {
+        public final void doOnIdle(Runnable runnable) {
+            runnable.run();
         }
 
         @Override
-        public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell, boolean z) {
-            return false;
+        public final View getRevealView() {
+            return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$getRevealView(this);
         }
 
         @Override
-        public boolean shouldRepeatSticker(MessageObject messageObject) {
-            return true;
+        public final boolean needEnterComment() {
+            return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$needEnterComment(this);
         }
 
         @Override
-        public Object then(Task task) {
-            if (task.isSuccessful()) {
-                return null;
-            }
-            Log.e("FirebaseCrashlytics", "Error fetching settings.", task.getException());
-            return null;
+        public final void onCameraOpened() {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onCameraOpened(this);
         }
 
         @Override
-        public void videoTimerReached() {
+        public final void onWallpaperSelected(Object obj) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
         }
 
         @Override
-        public void forceUpdate(ChatMessageCell chatMessageCell, boolean z) {
+        public final void openAvatarsSearch() {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$openAvatarsSearch(this);
         }
 
         @Override
-        public ViewModel create(Class cls) {
-            return new FragmentManagerViewModel(true);
+        public final boolean selectItemOnClicking() {
+            return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$selectItemOnClicking(this);
         }
 
         @Override
-        public ViewModel create(Class cls, MutableCreationExtras mutableCreationExtras) {
-            return create(cls);
-        }
-
-        @Override
-        public void onSeekBarPressed() {
-        }
-
-        @Override
-        public void startSeek(long j) {
-        }
-
-        @Override
-        public void onCloseMenu(MenuBuilder menuBuilder, boolean z) {
-        }
-
-        @Override
-        public int getRemixedSize(int i, int i2, int i3) {
-            return i;
-        }
-
-        @Override
-        public void onScrollLimit(int i, int i2, int i3, boolean z) {
-        }
-
-        @Override
-        public void onScrollProgress(int i, int i2, int i3, int i4) {
+        public final void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, i2, j, z2, j2);
         }
     }
 
@@ -1066,59 +656,31 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                     outline.setRoundRect(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), view.getMeasuredWidth() - AndroidUtilities.dp(1.0f), view.getMeasuredHeight() - AndroidUtilities.dp(1.0f), AndroidUtilities.dp(6.0f));
                     break;
                 case 4:
-                    int i = AndroidUtilities.roundMessageSize;
-                    outline.setOval(0, 0, i, i);
-                    break;
-                case 5:
-                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
-                    break;
-                case 6:
-                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
-                    break;
-                case 7:
-                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), AndroidUtilities.dp(6.0f) + view.getMeasuredHeight(), AndroidUtilities.dpf2(6.0f));
-                    break;
-                case 8:
-                    outline.setOval(0, 0, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f));
-                    break;
-                case 9:
                     float fDp = AndroidUtilities.dp(12.0f);
                     outline.setRoundRect(0, 0, view.getWidth(), (int) (view.getHeight() + fDp), fDp);
                     break;
-                case 10:
+                case 5:
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
                     break;
-                case 11:
-                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(12.0f));
-                    break;
-                case 12:
-                    outline.setRoundRect(0, AndroidUtilities.dp(50.0f), view.getWidth(), AndroidUtilities.dp(24.0f) + view.getHeight(), AndroidUtilities.dp(24.0f));
-                    break;
-                case 13:
+                case 6:
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
                     break;
-                case 14:
+                case 7:
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / view.getScaleX()) * AndroidUtilities.dp(4.0f));
                     break;
-                case 15:
-                    outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-                    break;
-                case 16:
-                    outline.setOval(0, 0, AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-                    break;
-                case 17:
+                case 8:
                     outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(10.0f));
                     break;
-                case 18:
+                case 9:
                     outline.setRoundRect(0, 0, view.getWidth(), AndroidUtilities.dp(29.0f) + view.getHeight(), AndroidUtilities.dp(29.0f));
                     break;
-                case 19:
+                case 10:
                     outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(18.0f));
                     break;
-                case 20:
+                case 11:
                     outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
                     break;
-                case 21:
+                case 12:
                     outline.setRoundRect(0, 0, view.getWidth(), view.getHeight(), AndroidUtilities.dp(22.0f));
                     break;
                 default:
@@ -1128,82 +690,202 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         }
     }
 
-    public final class AnonymousClass9 extends ChatActivityEnterView.SendButton {
+    public final class AnonymousClass6 extends LinearLayout {
         public final int $r8$classId;
         public final Object this$0;
 
-        public AnonymousClass9(Object obj, Context context, int i, Theme.ResourcesProvider resourcesProvider, int i2) {
-            super(i, context, resourcesProvider, true);
-            this.$r8$classId = i2;
+        public AnonymousClass6(Object obj, Context context, int i) {
+            super(context);
+            this.$r8$classId = i;
             this.this$0 = obj;
         }
 
         @Override
-        public boolean isInScheduleMode() {
-            ChatActivity chatActivity;
+        public void dispatchDraw(Canvas canvas) {
+            switch (this.$r8$classId) {
+                case 3:
+                    int width = getWidth() / 2;
+                    int height = getHeight() / 2;
+                    PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew = (PrivateVideoPreviewDialogNew) this.this$0;
+                    privateVideoPreviewDialogNew.camera.save();
+                    privateVideoPreviewDialogNew.camera.rotateY(7.0f);
+                    privateVideoPreviewDialogNew.camera.getMatrix(privateVideoPreviewDialogNew.matrixRight);
+                    privateVideoPreviewDialogNew.camera.restore();
+                    float f = -width;
+                    float f2 = -height;
+                    privateVideoPreviewDialogNew.matrixRight.preTranslate(f, f2);
+                    float f3 = width;
+                    float f4 = height;
+                    privateVideoPreviewDialogNew.matrixRight.postTranslate(f3, f4);
+                    canvas.save();
+                    canvas.clipRect(width, 0, getWidth(), getHeight());
+                    canvas.concat(privateVideoPreviewDialogNew.matrixRight);
+                    super.dispatchDraw(canvas);
+                    canvas.restore();
+                    privateVideoPreviewDialogNew.camera.save();
+                    privateVideoPreviewDialogNew.camera.rotateY(-7.0f);
+                    privateVideoPreviewDialogNew.camera.getMatrix(privateVideoPreviewDialogNew.matrixLeft);
+                    privateVideoPreviewDialogNew.camera.restore();
+                    privateVideoPreviewDialogNew.matrixLeft.preTranslate(f, f2);
+                    privateVideoPreviewDialogNew.matrixLeft.postTranslate(f3, f4);
+                    canvas.save();
+                    canvas.clipRect(0, 0, width, getHeight());
+                    canvas.concat(privateVideoPreviewDialogNew.matrixLeft);
+                    super.dispatchDraw(canvas);
+                    canvas.restore();
+                    break;
+                case 4:
+                    GiftSheet.Tabs tabs = (GiftSheet.Tabs) this.this$0;
+                    tabs.selectedPaint.setColor(Theme.multAlpha(0.1f, Theme.getColor(null, Theme.key_dialogGiftsTabText, false)));
+                    float f5 = tabs.animatedSelected.set(tabs.selected);
+                    double d = f5;
+                    int iClamp = Utilities.clamp((int) Math.floor(d), tabs.tabs.size() - 1, 0);
+                    int iClamp2 = Utilities.clamp((int) Math.ceil(d), tabs.tabs.size() - 1, 0);
+                    if (iClamp < tabs.tabs.size()) {
+                        RectF rectF = tabs.flooredRect;
+                        View view = (View) tabs.tabs.get(iClamp);
+                        rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+                    } else if (iClamp2 < tabs.tabs.size()) {
+                        RectF rectF2 = tabs.flooredRect;
+                        View view2 = (View) tabs.tabs.get(iClamp2);
+                        rectF2.set(view2.getLeft(), view2.getTop(), view2.getRight(), view2.getBottom());
+                    } else {
+                        tabs.flooredRect.set(0.0f, 0.0f, 0.0f, 0.0f);
+                    }
+                    if (iClamp2 < tabs.tabs.size()) {
+                        RectF rectF3 = tabs.ceiledRect;
+                        View view3 = (View) tabs.tabs.get(iClamp2);
+                        rectF3.set(view3.getLeft(), view3.getTop(), view3.getRight(), view3.getBottom());
+                    } else if (iClamp < tabs.tabs.size()) {
+                        RectF rectF4 = tabs.ceiledRect;
+                        View view4 = (View) tabs.tabs.get(iClamp);
+                        rectF4.set(view4.getLeft(), view4.getTop(), view4.getRight(), view4.getBottom());
+                    } else {
+                        tabs.ceiledRect.set(0.0f, 0.0f, 0.0f, 0.0f);
+                    }
+                    AndroidUtilities.lerp(tabs.flooredRect, tabs.ceiledRect, f5 - iClamp, tabs.selectedRect);
+                    float fHeight = tabs.selectedRect.height() / 2.0f;
+                    canvas.drawRoundRect(tabs.selectedRect, fHeight, fHeight, tabs.selectedPaint);
+                    super.dispatchDraw(canvas);
+                    break;
+                default:
+                    super.dispatchDraw(canvas);
+                    break;
+            }
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            switch (this.$r8$classId) {
+                case 5:
+                    if (((StarGiftSheet.TopView) this.this$0).currentPage.is(0)) {
+                        return super.dispatchTouchEvent(motionEvent);
+                    }
+                    return false;
+                case 6:
+                    if (((StarsIntroActivity) this.this$0).twoButtons) {
+                        return super.dispatchTouchEvent(motionEvent);
+                    }
+                    return false;
+                case 7:
+                    if (((TONIntroActivity) this.this$0).twoButtons) {
+                        return super.dispatchTouchEvent(motionEvent);
+                    }
+                    return false;
+                default:
+                    return super.dispatchTouchEvent(motionEvent);
+            }
+        }
+
+        @Override
+        public boolean drawChild(Canvas canvas, View view, long j) {
+            switch (this.$r8$classId) {
+                case 2:
+                    PremiumPreviewBottomSheet premiumPreviewBottomSheet = PremiumPreviewBottomSheet.this;
+                    if (view == premiumPreviewBottomSheet.iconTextureView && premiumPreviewBottomSheet.enterTransitionInProgress) {
+                        return true;
+                    }
+                    return super.drawChild(canvas, view, j);
+                default:
+                    return super.drawChild(canvas, view, j);
+            }
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            switch (this.$r8$classId) {
+                case 1:
+                    return FloatingToolbar.FloatingToolbarPopup.access$2700((FloatingToolbar.FloatingToolbarPopup) this.this$0);
+                default:
+                    return super.onInterceptTouchEvent(motionEvent);
+            }
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            Size size;
             switch (this.$r8$classId) {
                 case 0:
+                    int size2 = View.MeasureSpec.getSize(i);
+                    int paddingRight = getPaddingRight() + getPaddingLeft();
                     RichEditor richEditor = (RichEditor) this.this$0;
-                    return richEditor.editingMessageObject == null && (chatActivity = richEditor.chatActivity) != null && chatActivity.isInScheduleMode();
-                default:
-                    return super.isInScheduleMode();
-            }
-        }
-
-        @Override
-        public boolean isInactive() {
-            switch (this.$r8$classId) {
+                    LinearLayout linearLayout = richEditor.formattingLayout1;
+                    if (linearLayout != null) {
+                        linearLayout.measure(View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+                        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) richEditor.formattingLayout1.getLayoutParams();
+                        paddingRight += richEditor.formattingLayout1.getMeasuredWidth() + marginLayoutParams.leftMargin + marginLayoutParams.rightMargin;
+                    }
+                    LinearLayout linearLayout2 = richEditor.formattingLayout2;
+                    if (linearLayout2 != null) {
+                        linearLayout2.measure(View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+                        ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) richEditor.formattingLayout2.getLayoutParams();
+                        paddingRight += richEditor.formattingLayout2.getMeasuredWidth() + marginLayoutParams2.leftMargin + marginLayoutParams2.rightMargin;
+                    }
+                    LinearLayout linearLayout3 = richEditor.formattingLayout3;
+                    if (linearLayout3 != null) {
+                        linearLayout3.measure(View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+                        ViewGroup.MarginLayoutParams marginLayoutParams3 = (ViewGroup.MarginLayoutParams) richEditor.formattingLayout3.getLayoutParams();
+                        paddingRight += richEditor.formattingLayout3.getMeasuredWidth() + marginLayoutParams3.leftMargin + marginLayoutParams3.rightMargin;
+                    }
+                    richEditor.formattingScrollMaxWidth = Math.max(0, size2 - paddingRight);
+                    super.onMeasure(i, i2);
+                    break;
                 case 1:
-                    return !((ChatActivityEnterView) this.this$0).doneButtonEnabled;
-                default:
-                    return super.isInactive();
-            }
-        }
-
-        @Override
-        public final boolean isOpen() {
-            switch (this.$r8$classId) {
-                case 0:
-                    return ((RichEditor) this.this$0).sendButtonLoading || this.starsPrice > 0;
-                case 1:
-                    return true;
-                case 2:
-                    return true;
-                default:
-                    return ((RichEditorToolbar) this.this$0).sendLoading || this.starsPrice > 0;
-            }
-        }
-
-        @Override
-        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-            switch (this.$r8$classId) {
-                case 2:
-                    super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                    accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", ((DialogsActivity) this.this$0).selectedDialogs.size(), new Object[0]));
-                    accessibilityNodeInfo.setClassName(android.widget.Button.class.getName());
-                    accessibilityNodeInfo.setLongClickable(true);
-                    accessibilityNodeInfo.setClickable(true);
+                    FloatingToolbar.FloatingToolbarPopup floatingToolbarPopup = (FloatingToolbar.FloatingToolbarPopup) this.this$0;
+                    if (FloatingToolbar.FloatingToolbarPopup.access$2700(floatingToolbarPopup) && (size = floatingToolbarPopup.mMainPanelSize) != null) {
+                        i = View.MeasureSpec.makeMeasureSpec(size.getWidth(), 1073741824);
+                    }
+                    super.onMeasure(i, i2);
+                    break;
+                case 8:
+                    int size3 = View.MeasureSpec.getSize(i);
+                    int paddingRight2 = getPaddingRight() + getPaddingLeft();
+                    RichEditorToolbar richEditorToolbar = (RichEditorToolbar) this.this$0;
+                    LinearLayout linearLayout4 = richEditorToolbar.formattingLayout1;
+                    if (linearLayout4 != null) {
+                        linearLayout4.measure(View.MeasureSpec.makeMeasureSpec(size3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+                        ViewGroup.MarginLayoutParams marginLayoutParams4 = (ViewGroup.MarginLayoutParams) richEditorToolbar.formattingLayout1.getLayoutParams();
+                        paddingRight2 += richEditorToolbar.formattingLayout1.getMeasuredWidth() + marginLayoutParams4.leftMargin + marginLayoutParams4.rightMargin;
+                    }
+                    LinearLayout linearLayout5 = richEditorToolbar.formattingLayout2;
+                    if (linearLayout5 != null) {
+                        linearLayout5.measure(View.MeasureSpec.makeMeasureSpec(size3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+                        ViewGroup.MarginLayoutParams marginLayoutParams5 = (ViewGroup.MarginLayoutParams) richEditorToolbar.formattingLayout2.getLayoutParams();
+                        paddingRight2 += richEditorToolbar.formattingLayout2.getMeasuredWidth() + marginLayoutParams5.leftMargin + marginLayoutParams5.rightMargin;
+                    }
+                    LinearLayout linearLayout6 = richEditorToolbar.formattingLayout3;
+                    if (linearLayout6 != null) {
+                        linearLayout6.measure(View.MeasureSpec.makeMeasureSpec(size3, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+                        ViewGroup.MarginLayoutParams marginLayoutParams6 = (ViewGroup.MarginLayoutParams) richEditorToolbar.formattingLayout3.getLayoutParams();
+                        paddingRight2 += richEditorToolbar.formattingLayout3.getMeasuredWidth() + marginLayoutParams6.leftMargin + marginLayoutParams6.rightMargin;
+                    }
+                    richEditorToolbar.formattingScrollMaxWidth = Math.max(0, size3 - paddingRight2);
+                    super.onMeasure(i, i2);
                     break;
                 default:
-                    super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                    super.onMeasure(i, i2);
                     break;
             }
-        }
-
-        @Override
-        public boolean shouldDrawBackground() {
-            switch (this.$r8$classId) {
-                case 2:
-                    return true;
-                default:
-                    return super.shouldDrawBackground();
-            }
-        }
-
-        public AnonymousClass9(DialogsActivity dialogsActivity, Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-            super(i, context, resourcesProvider, false);
-            this.$r8$classId = 2;
-            this.this$0 = dialogsActivity;
         }
     }
 
@@ -1232,8 +914,8 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 setImageResource(i);
             }
             setScaleType(ImageView.ScaleType.CENTER);
-            ScaleStateListAnimator.apply(this, 0.1f, 1.5f);
-            updateColors$1();
+            ScaleStateListAnimator.apply(this);
+            updateColors();
         }
 
         public int[] getColorKeys() {
@@ -1243,7 +925,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         public final void setAccent() {
             if (this.accent) {
                 this.accent = false;
-                updateColors$1();
+                updateColors();
             }
         }
 
@@ -1252,7 +934,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 return;
             }
             this.backgroundColorKey = i;
-            updateColors$1();
+            updateColors();
         }
 
         @Override
@@ -1287,11 +969,11 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 return;
             }
             this.selected = z;
-            updateColors$1();
+            updateColors();
         }
 
         @Override
-        public final void updateColors$1() {
+        public final void updateColors() {
             boolean z = this.selected;
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             if (!z) {
@@ -1329,7 +1011,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         public DraggingDrawable(int i) {
             Paint paint = new Paint(1);
             this.paint = paint;
-            this.animatedDragging = new AnimatedFloat(new VoIPFragment$8$$ExternalSyntheticLambda1(this, 17), 420L, CubicBezierInterpolator.EASE_OUT_QUINT, 0);
+            this.animatedDragging = new AnimatedFloat(new BotSensors$1$$ExternalSyntheticLambda0(this, 29), 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.alpha = 255;
             paint.setColor(i);
         }
@@ -1389,7 +1071,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             int iCenterX = bounds.centerX();
             int iCenterY = bounds.centerY();
             Drawable drawable = this.icon;
-            drawable.setBounds(zzle.m(iCenterX, drawable), iCenterY - (drawable.getIntrinsicHeight() / 2), (drawable.getIntrinsicWidth() / 2) + iCenterX, (drawable.getIntrinsicHeight() / 2) + iCenterY);
+            drawable.setBounds(zzkn.m(iCenterX, drawable), iCenterY - (drawable.getIntrinsicHeight() / 2), (drawable.getIntrinsicWidth() / 2) + iCenterX, (drawable.getIntrinsicHeight() / 2) + iCenterY);
             drawable.draw(canvas);
             if (this.showPremiumIcon) {
                 int iDp = AndroidUtilities.dp(9.0f) + iCenterX;
@@ -1571,7 +1253,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         }
     }
 
-    public RichEditor(Editable editable) {
+    public RichEditor(CharSequence charSequence) {
         super(null);
         this.initialSelectionStart = -1;
         this.initialSelectionEnd = -1;
@@ -1585,7 +1267,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.reorderSavedPanelType = 0;
         this.bottomPanelType = -1;
         this.limitCheckRunnable = new RichEditor$$ExternalSyntheticLambda1(this, 0);
-        this.initialText = editable;
+        this.initialText = charSequence;
     }
 
     public static void access$3500(RichEditor richEditor, boolean z, boolean z2) {
@@ -1605,8 +1287,8 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         RLottieDrawable animatedDrawable = richEditor.trashPanelIcon.getAnimatedDrawable();
         if (animatedDrawable != null) {
             if (z) {
-                if (animatedDrawable.currentFrame > 34) {
-                    animatedDrawable.setCurrentFrame(0, false, false);
+                if (animatedDrawable.getCurrentFrame() > 34) {
+                    animatedDrawable.setCurrentFrame(0, false);
                 }
                 animatedDrawable.setCustomEndFrame(33);
             } else {
@@ -1648,7 +1330,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
     }
 
     public static void openConversionSheet(Context context, final Runnable runnable, final Runnable runnable2, Theme.ResourcesProvider resourcesProvider) {
-        final BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context, resourcesProvider, false, false);
+        final BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context, false, false, resourcesProvider);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         bottomSheetM.customView = linearLayout;
@@ -1664,19 +1346,18 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         textView.setGravity(17);
         int i = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i, resourcesProvider));
-        TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 49, 25, 16, 25, 0), context);
+        TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 49, 25, 16, 25, 0), context);
         textViewM.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ArticleConversionText)));
         textViewM.setTextSize(1, 14.0f);
         textViewM.setGravity(17);
         textViewM.setTextColor(Theme.getColor(i, resourcesProvider));
         linearLayout.addView(textViewM, LayoutHelper.createLinear(-1, -2, 49, 25, 11, 25, 0));
-        ButtonWithCounterView buttonWithCounterViewM = zzlp.m(context, resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterViewM = zzkg.m(context, resourcesProvider, true);
         buttonWithCounterViewM.setText(LocaleController.getString(R.string.ArticleConversionSubscribe));
         linearLayout.addView(buttonWithCounterViewM, LayoutHelper.createLinear(-1, 48, 49, 14, 31, 14, 0));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, false);
-        buttonWithCounterView.setRoundRadius(24);
-        buttonWithCounterView.setText(LocaleController.getString(R.string.ArticleConversionConvert));
-        linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 49, 14, 2, 14, 6));
+        ButtonWithCounterView buttonWithCounterViewM2 = zzkg.m(context, resourcesProvider, false);
+        buttonWithCounterViewM2.setText(LocaleController.getString(R.string.ArticleConversionConvert));
+        linearLayout.addView(buttonWithCounterViewM2, LayoutHelper.createLinear(-1, 48, 49, 14, 2, 14, 6));
         bottomSheetM.show();
         final int i2 = 0;
         buttonWithCounterViewM.setOnClickListener(new View.OnClickListener() {
@@ -1695,7 +1376,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             }
         });
         final int i3 = 1;
-        buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
+        buttonWithCounterViewM2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 switch (i3) {
@@ -1746,7 +1427,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         }
         button.setTag(Integer.valueOf(i2));
         button.setContentDescription(formattingButtonContentDescription(i2));
-        button.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda68(this, i2, 27));
+        button.setOnClickListener(new RichEditor$$ExternalSyntheticLambda29(this, i2, 0));
         this.formattingButtons.add(button);
         LinearLayout linearLayout = this.formattingPanelLayout;
         linearLayout.addView(button, LayoutHelper.createLinear(38, 38, 16, linearLayout.getChildCount() > 0 ? 2 : 0, 0, 0, 0));
@@ -1876,7 +1557,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 RichEditor richEditor = RichEditor.this;
                 if (action == 0 && keyEvent.getKeyCode() == 47 && keyEvent.isCtrlPressed()) {
                     if (richEditor.persistDraft$1()) {
-                        FactCheckController$$ExternalSyntheticOutline0.m(R.string.RichEditorDraftSaved, new BulletinFactory(richEditor.bulletinContainer, richEditor.getResourceProvider()), R.raw.contact_check, 36);
+                        FactCheckController$$ExternalSyntheticOutline0.m(R.string.RichEditorDraftSaved, BulletinFactory.of(richEditor.bulletinContainer, richEditor.getResourceProvider()), R.raw.contact_check);
                         return true;
                     }
                 } else if (!richEditor.listView.handleKeyEvent(keyEvent)) {
@@ -1892,7 +1573,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 if (!richEditor.listView.textSelectionHelper.isInSelectionMode() || !richEditor.listView.textSelectionOverlay.onTouchEvent(motionEvent)) {
                     int height = (!richEditor.emojiSearchOpened || (emojiView = richEditor.emojiView) == null) ? (getHeight() - AndroidUtilities.dp(60.0f)) - Math.max(Math.max(richEditor.emojiPadding, richEditor.bottomInset), richEditor.imeInset) : (int) emojiView.getY();
                     if (motionEvent.getAction() == 0 && richEditor.emojiViewVisible && motionEvent.getY() < height) {
-                        richEditor.hideEmojiPopup$4(true);
+                        richEditor.hideEmojiPopup$2(true);
                     }
                     if (motionEvent.getAction() == 0) {
                         if (motionEvent.getY() > AndroidUtilities.dp(60.0f) + getPaddingTop() && motionEvent.getY() < height) {
@@ -1921,14 +1602,14 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         }
         this.keyboardHeight = MessagesController.getGlobalEmojiSettings().getInt("kbd_height", AndroidUtilities.dp(200.0f));
         this.keyboardHeightLand = MessagesController.getGlobalEmojiSettings().getInt("kbd_height_land3", AndroidUtilities.dp(200.0f));
-        LoginActivity$$ExternalSyntheticLambda10 loginActivity$$ExternalSyntheticLambda10 = new LoginActivity$$ExternalSyntheticLambda10(this, 3);
-        this.sizeDelegate = loginActivity$$ExternalSyntheticLambda10;
-        this.container.delegates.add(loginActivity$$ExternalSyntheticLambda10);
-        RichEditorListView richEditorListView = new RichEditorListView(context, this.currentAccount, getResourceProvider(), new AnonymousClass3(this, 0), new RichEditorListView[1]);
+        RichEditor$$ExternalSyntheticLambda13 richEditor$$ExternalSyntheticLambda13 = new RichEditor$$ExternalSyntheticLambda13(this, 0);
+        this.sizeDelegate = richEditor$$ExternalSyntheticLambda13;
+        addDelegate(richEditor$$ExternalSyntheticLambda13);
+        RichEditorListView richEditorListView = new RichEditorListView(context, this.currentAccount, getResourceProvider(), new AnonymousClass3(this), new RichEditorListView[1]);
         this.listView = richEditorListView;
         richEditorListView.setFileRefParentObject(this.editingMessageObject);
         addView(this.listView, LayoutHelper.createFrame(-1, -1, 119));
-        addView(this.listView.getOverlayView(), LayoutHelper.createFrame(-1.0f, -1));
+        addView(this.listView.getOverlayView(), LayoutHelper.createFrame(-1, -1.0f));
         TL_iv.RichMessage richMessage = this.initialRichMessage;
         if (richMessage != null) {
             RichEditorListView richEditorListView2 = this.listView;
@@ -1953,16 +1634,16 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 if (!zIsEmpty) {
                     RichEditorListView.flattenBlocks(arrayList3, RichMessageConvert.blocksFromCharSequence(charSequence), map);
                 }
-                arrayList3.addAll(richEditorListView3.resolvePastedMedia(RichHtml.parse(str, map)));
+                arrayList3.addAll(richEditorListView3.resolvePastedMedia(RichHtml.parse(map, str)));
                 if (!TextUtils.isEmpty(charSequence2)) {
                     RichEditorListView.flattenBlocks(arrayList3, RichMessageConvert.blocksFromCharSequence(charSequence2), map);
                 }
                 richEditorListView3.normalizeNestedQuotes();
                 richEditorListView3.adapter.update(false);
             } else {
-                Editable editable = this.initialText;
-                if (editable != null) {
-                    this.listView.setInitialText(editable);
+                CharSequence charSequence3 = this.initialText;
+                if (charSequence3 != null) {
+                    this.listView.setInitialText(charSequence3);
                 }
             }
         }
@@ -2001,7 +1682,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         int themedColor3 = getThemedColor(i4);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView4.setColorFilter(new PorterDuffColorFilter(themedColor3, mode));
-        ScaleStateListAnimator.apply(this.backButton, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this.backButton);
         this.backButton.setContentDescription(LocaleController.getString(R.string.AccDescrGoBack));
         this.backButton.setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 3));
         this.topPanel.addView(this.backButton, LayoutHelper.createFrame(44, 44.0f, 51, 8.0f, 8.0f, 8.0f, 8.0f));
@@ -2016,7 +1697,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.undoButton.setScaleType(scaleType);
         this.undoButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i3), 1, -1));
         this.undoButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
-        ScaleStateListAnimator.apply(this.undoButton, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this.undoButton);
         this.undoButton.setContentDescription(LocaleController.getString(R.string.Undo));
         this.undoButton.setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 4));
         this.historyButtons.addView(this.undoButton, LayoutHelper.createLinear(41, 41, 16));
@@ -2026,7 +1707,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.redoButton.setScaleType(scaleType);
         this.redoButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i3), 1, -1));
         this.redoButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
-        ScaleStateListAnimator.apply(this.redoButton, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this.redoButton);
         this.redoButton.setContentDescription(LocaleController.getString(R.string.Redo));
         this.redoButton.setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 5));
         this.historyButtons.addView(this.redoButton, LayoutHelper.createLinear(41, 41, 16));
@@ -2056,7 +1737,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.aiButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
         this.aiButton.setBackground(new ShadowWrapperDrawable(Theme.createRadSelectorDrawable(getThemedColor(i2), Theme.blendOver(getThemedColor(i2), getThemedColor(i3)), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(22.0f))));
         this.bottomPanel.addView(this.aiButton, LayoutHelper.createLinear(44, 44, 0.0f, 19, 0, 0, 8, 0));
-        ScaleStateListAnimator.apply(this.aiButton, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this.aiButton);
         ImageView imageView8 = this.aiButton;
         int i5 = R.string.AIEditor;
         imageView8.setContentDescription(LocaleController.getString(i5));
@@ -2076,7 +1757,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         linearLayout3.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.blocksLayout.setOrientation(0);
         this.blocksScrollView.addView(this.blocksLayout);
-        frameLayout6.addView(this.blocksScrollView, LayoutHelper.createFrame(-1.0f, -1));
+        frameLayout6.addView(this.blocksScrollView, LayoutHelper.createFrame(-1, -1.0f));
         ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = new ChatActivityEnterViewAnimatedIconView(context, 24);
         this.emojiButton = chatActivityEnterViewAnimatedIconView;
         chatActivityEnterViewAnimatedIconView.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
@@ -2084,10 +1765,10 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.emojiButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor(i2), getThemedColor(i3), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
         this.emojiButton.setState(ChatActivityEnterViewAnimatedIconView.State.SMILE, false);
         this.blocksLayout.addView(this.emojiButton, LayoutHelper.createLinear(38, 38, 16));
-        ScaleStateListAnimator.apply(this.emojiButton, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this.emojiButton);
         this.emojiButton.setContentDescription(LocaleController.getString(R.string.AccDescrEmojiButton));
         this.emojiButton.setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 7));
-        addBlockButton(R.drawable.iv_text, 1, false).setOnClickListener(new VoIPFragment$$ExternalSyntheticLambda28(8, this, context));
+        addBlockButton(R.drawable.iv_text, 1, false).setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(0, this, context));
         addBlockButton(R.drawable.iv_lists, 2, true).setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 8));
         addBlockButton(R.drawable.iv_table, 4, true).setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 9));
         int i6 = R.drawable.iv_math;
@@ -2099,13 +1780,13 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.addButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i4), mode));
         this.addButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor(i2), getThemedColor(i3), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f)));
         this.blocksLayout.addView(this.addButton, LayoutHelper.createLinear(38, 38, 16, 2, 0, 0, 0));
-        ScaleStateListAnimator.apply(this.addButton, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this.addButton);
         this.addButton.setContentDescription(LocaleController.getString(R.string.AccDescrAttachButton));
-        this.addButton.setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 10));
-        this.bottomPanel.addView(frameLayout5, LayoutHelper.createLinear(1.0f, 0, 44));
-        PhotoViewer.AnonymousClass35 anonymousClass35 = new PhotoViewer.AnonymousClass35(this, context, 17);
-        this.formattingPanel = anonymousClass35;
-        anonymousClass35.setOrientation(0);
+        this.addButton.setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 11));
+        this.bottomPanel.addView(frameLayout5, LayoutHelper.createLinear(0, 44, 1.0f));
+        AnonymousClass6 anonymousClass6 = new AnonymousClass6(this, context, 0);
+        this.formattingPanel = anonymousClass6;
+        anonymousClass6.setOrientation(0);
         this.formattingPanel.setClipToPadding(false);
         this.formattingPanel.setClipChildren(false);
         this.formattingPanel.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -2118,10 +1799,10 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.bottomContainer.addView(this.trashPanel, LayoutHelper.createFrame(80, 60, 81));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.trashPanelIcon = rLottieImageView;
-        rLottieImageView.setAnimation(R.raw.group_pip_delete_icon, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), null);
+        rLottieImageView.setAnimation(R.raw.group_pip_delete_icon, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
         RLottieDrawable animatedDrawable = this.trashPanelIcon.getAnimatedDrawable();
         if (animatedDrawable != null) {
-            animatedDrawable.playInDirectionOfCustomEndFrame = true;
+            animatedDrawable.setPlayInDirectionOfCustomEndFrame(true);
             animatedDrawable.setAutoRepeat(0);
             animatedDrawable.setCustomEndFrame(0);
         }
@@ -2131,7 +1812,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.trashPanel.addView(this.trashPanelIcon, LayoutHelper.createFrame(-1, -1, 119));
         FrameLayout frameLayout8 = new FrameLayout(context);
         frameLayout8.setBackground(new ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(i2))));
-        this.formattingPanel.addView(frameLayout8, LayoutHelper.createFrame(44.0f, -2));
+        this.formattingPanel.addView(frameLayout8, LayoutHelper.createFrame(-2, 44.0f));
         ?? r3 = new HorizontalScrollView(context) {
             public final GradientClip clip = new GradientClip();
             public final AnimatedFloat leftGradientAlpha;
@@ -2139,8 +1820,8 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
 
             {
                 CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                this.leftGradientAlpha = new AnimatedFloat(300L, this, cubicBezierInterpolator);
-                this.rightGradientAlpha = new AnimatedFloat(300L, this, cubicBezierInterpolator);
+                this.leftGradientAlpha = new AnimatedFloat(this, 300L, cubicBezierInterpolator);
+                this.rightGradientAlpha = new AnimatedFloat(this, 300L, cubicBezierInterpolator);
             }
 
             @Override
@@ -2191,8 +1872,8 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.formattingScrollView = r3;
         r3.setHorizontalScrollBarEnabled(false);
         setClipToOutline(true);
-        setOutlineProvider(new AnonymousClass5(20));
-        frameLayout8.addView(this.formattingScrollView, LayoutHelper.createFrame(-1.0f, -1));
+        setOutlineProvider(new AnonymousClass5(11));
+        frameLayout8.addView(this.formattingScrollView, LayoutHelper.createFrame(-1, -1.0f));
         LinearLayout linearLayout4 = new LinearLayout(context);
         this.formattingPanelLayout = linearLayout4;
         linearLayout4.setOrientation(0);
@@ -2261,17 +1942,29 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.aiStyleButton.setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 1));
         this.formattingLayout1.addView(this.aiStyleButton, LayoutHelper.createLinear(38, 38, 16));
         MessageObject messageObject = this.editingMessageObject;
-        AnonymousClass9 anonymousClass9 = new AnonymousClass9(this, context, messageObject != null ? R.drawable.input_done : (messageObject == null && (chatActivity = this.chatActivity) != null && chatActivity.isInScheduleMode()) ? R.drawable.input_schedule : R.drawable.send_plane_24, getResourceProvider(), 0);
-        this.sendButton = anonymousClass9;
-        anonymousClass9.setBackground(new ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(Theme.key_chat_messagePanelSend))));
-        ScaleStateListAnimator.apply(this.sendButton, 0.1f, 1.5f);
+        ?? r4 = new ChatActivityEnterView.SendButton(context, messageObject != null ? R.drawable.input_done : (messageObject == null && (chatActivity = this.chatActivity) != null && chatActivity.isInScheduleMode()) ? R.drawable.input_schedule : R.drawable.send_plane_24, getResourceProvider()) {
+            @Override
+            public final boolean isInScheduleMode() {
+                ChatActivity chatActivity2;
+                RichEditor richEditor = RichEditor.this;
+                return richEditor.editingMessageObject == null && (chatActivity2 = richEditor.chatActivity) != null && chatActivity2.isInScheduleMode();
+            }
+
+            @Override
+            public final boolean isOpen() {
+                return RichEditor.this.sendButtonLoading || super.isOpen();
+            }
+        };
+        this.sendButton = r4;
+        r4.setBackground(new ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(Theme.key_chat_messagePanelSend))));
+        ScaleStateListAnimator.apply(this.sendButton);
         this.bottomPanel.addView(this.sendButton, LayoutHelper.createLinear(44, 44, 0.0f, 5, 8, 0, 0, 0));
-        this.sendButton.setContentDescription(LocaleController.getString(R.string.Send));
-        this.sendButton.setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 2));
-        this.sendButton.setOnLongClickListener(new PhotoViewer$$ExternalSyntheticLambda44(this, 17));
-        AnonymousClass9 anonymousClass10 = this.sendButton;
-        if (anonymousClass10 != null) {
-            anonymousClass10.setLocked(isSendLocked$1());
+        setContentDescription(LocaleController.getString(R.string.Send));
+        setOnClickListener(new RichEditor$$ExternalSyntheticLambda3(this, 2));
+        setOnLongClickListener(new RichEditor$$ExternalSyntheticLambda12(this, 0));
+        AnonymousClass9 anonymousClass9 = this.sendButton;
+        if (anonymousClass9 != null) {
+            anonymousClass9.setLocked(isSendLocked$1());
         }
         setPadding(0, AndroidUtilities.statusBarHeight, 0, 0);
         checkUI_listViewPadding();
@@ -2320,12 +2013,12 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         return i <= 0 ? AndroidUtilities.dp(200.0f) : i;
     }
 
-    public final void hideEmojiPopup$4(boolean z) {
+    public final void hideEmojiPopup$2(boolean z) {
         if (this.emojiSearchOpened) {
             this.emojiSearchOpened = false;
             EmojiView emojiView = this.emojiView;
             if (emojiView != null) {
-                emojiView.closeSearch(-1L, false);
+                emojiView.closeSearch(false);
                 this.emojiView.hideSearchKeyboard();
             }
         }
@@ -2387,13 +2080,12 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         }
         boolean z = (MessagesController.getInstance(this.currentAccount).richEditorAllowed() || UserConfig.getInstance(this.currentAccount).isPremium()) ? false : true;
         final BlockRow blockRowFindFocusedRow = this.listView.findFocusedRow();
-        final ItemOptions itemOptions2 = new ItemOptions(this, view, true, true);
-        itemOptions2.dontFocus = true;
-        ItemOptions itemOptionsMakeSwipeback = itemOptions2.makeSwipeback();
-        itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda326(10, itemOptions2), false);
+        final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions((BaseFragment) this, view, true).dontFocus();
+        ItemOptions itemOptionsMakeSwipeback = itemOptionsDontFocus.makeSwipeback();
+        itemOptionsMakeSwipeback.add(R.drawable.ic_ab_back, LocaleController.getString(R.string.Back), new RichEditor$$ExternalSyntheticLambda30(0, itemOptionsDontFocus));
         itemOptionsMakeSwipeback.addGap();
         final int i = 0;
-        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading1), R.drawable.iv_h1, null, LocaleController.getString(R.string.ArticleHeading1), new Runnable(this) {
+        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading1), R.drawable.iv_h1, LocaleController.getString(R.string.ArticleHeading1), new Runnable(this) {
             public final RichEditor f$0;
 
             {
@@ -2405,27 +2097,27 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 switch (i) {
                     case 0:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading1());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 1:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading2());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 2:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading3());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 3:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading4());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 4:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading5());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     default:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading6());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                 }
             }
@@ -2433,7 +2125,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
         itemOptionsMakeSwipeback.getLast().textView.setTextSize(1, SharedConfig.fontSize + 2);
         final int i2 = 1;
-        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading2), R.drawable.iv_h2, null, LocaleController.getString(R.string.ArticleHeading2), new Runnable(this) {
+        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading2), R.drawable.iv_h2, LocaleController.getString(R.string.ArticleHeading2), new Runnable(this) {
             public final RichEditor f$0;
 
             {
@@ -2445,27 +2137,27 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 switch (i2) {
                     case 0:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading1());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 1:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading2());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 2:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading3());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 3:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading4());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 4:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading5());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     default:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading6());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                 }
             }
@@ -2473,7 +2165,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
         itemOptionsMakeSwipeback.getLast().textView.setTextSize(1, SharedConfig.fontSize + 1);
         final int i3 = 2;
-        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading3), R.drawable.iv_h3, null, LocaleController.getString(R.string.ArticleHeading3), new Runnable(this) {
+        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading3), R.drawable.iv_h3, LocaleController.getString(R.string.ArticleHeading3), new Runnable(this) {
             public final RichEditor f$0;
 
             {
@@ -2485,27 +2177,27 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 switch (i3) {
                     case 0:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading1());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 1:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading2());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 2:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading3());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 3:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading4());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 4:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading5());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     default:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading6());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                 }
             }
@@ -2513,7 +2205,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
         itemOptionsMakeSwipeback.getLast().textView.setTextSize(1, SharedConfig.fontSize);
         final int i4 = 3;
-        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading4), R.drawable.iv_h4, null, LocaleController.getString(R.string.ArticleHeading4), new Runnable(this) {
+        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading4), R.drawable.iv_h4, LocaleController.getString(R.string.ArticleHeading4), new Runnable(this) {
             public final RichEditor f$0;
 
             {
@@ -2525,27 +2217,27 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 switch (i4) {
                     case 0:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading1());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 1:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading2());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 2:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading3());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 3:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading4());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 4:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading5());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     default:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading6());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                 }
             }
@@ -2553,7 +2245,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
         itemOptionsMakeSwipeback.getLast().textView.setTextSize(1, SharedConfig.fontSize - 1);
         final int i5 = 4;
-        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading5), R.drawable.iv_h5, null, LocaleController.getString(R.string.ArticleHeading5), new Runnable(this) {
+        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading5), R.drawable.iv_h5, LocaleController.getString(R.string.ArticleHeading5), new Runnable(this) {
             public final RichEditor f$0;
 
             {
@@ -2565,27 +2257,27 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 switch (i5) {
                     case 0:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading1());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 1:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading2());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 2:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading3());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 3:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading4());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 4:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading5());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     default:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading6());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                 }
             }
@@ -2593,7 +2285,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         itemOptionsMakeSwipeback.getLast().textView.setTypeface(AndroidUtilities.getTypeface("fonts/mw_bold.ttf"));
         itemOptionsMakeSwipeback.getLast().textView.setTextSize(1, SharedConfig.fontSize - 2);
         final int i6 = 5;
-        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading6), R.drawable.iv_h6, null, LocaleController.getString(R.string.ArticleHeading6), new Runnable(this) {
+        itemOptionsMakeSwipeback.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockHeading6), R.drawable.iv_h6, LocaleController.getString(R.string.ArticleHeading6), new Runnable(this) {
             public final RichEditor f$0;
 
             {
@@ -2605,27 +2297,27 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 switch (i6) {
                     case 0:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading1());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 1:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading2());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 2:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading3());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 3:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading4());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     case 4:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading5());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                     default:
                         this.f$0.listView.turnIntoKeepList(blockRowFindFocusedRow, new TL_iv.pageBlockHeading6());
-                        itemOptions2.dismiss();
+                        itemOptionsDontFocus.dismiss();
                         break;
                 }
             }
@@ -2637,36 +2329,34 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         requiresPremiumDrawable.setPremium(z);
         int i7 = Theme.key_actionBarDefaultSubmenuBackground;
         requiresPremiumDrawable.premiumIconCutoutColorKey = i7;
-        itemOptions2.addChecked(z2, 0, requiresPremiumDrawable, LocaleController.getString(R.string.ArticleHeading), new PhotoViewer$$ExternalSyntheticLambda133(itemOptions2, itemOptionsMakeSwipeback, 11));
-        itemOptions2.getLast().textView.setTypeface(AndroidUtilities.bold());
-        itemOptions2.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
-        itemOptions2.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockParagraph), R.drawable.iv_text2, null, LocaleController.getString(R.string.ArticleText), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 3));
-        itemOptions2.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockBlockquote), R.drawable.iv_quote, null, LocaleController.getString(R.string.ArticleQuote), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 4));
+        itemOptionsDontFocus.addChecked(z2, requiresPremiumDrawable, LocaleController.getString(R.string.ArticleHeading), new RichEditor$$ExternalSyntheticLambda40(itemOptionsDontFocus, itemOptionsMakeSwipeback, 0));
+        itemOptionsDontFocus.getLast().textView.setTypeface(AndroidUtilities.bold());
+        itemOptionsDontFocus.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
+        itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockParagraph), R.drawable.iv_text2, LocaleController.getString(R.string.ArticleText), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 3));
+        itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockBlockquote), R.drawable.iv_quote, LocaleController.getString(R.string.ArticleQuote), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 4));
         boolean z3 = blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockPullquote);
         RequiresPremiumDrawable requiresPremiumDrawable2 = new RequiresPremiumDrawable(context, R.drawable.iv_pullquote);
         requiresPremiumDrawable2.setPremium(z);
         requiresPremiumDrawable2.premiumIconCutoutColorKey = i7;
-        itemOptions2.addChecked(z3, 0, requiresPremiumDrawable2, LocaleController.getString(R.string.ArticlePullquote), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 0));
-        itemOptions2.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
-        itemOptions2.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockPreformatted), R.drawable.iv_code, null, LocaleController.getString(R.string.ArticleCode), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 1));
+        itemOptionsDontFocus.addChecked(z3, requiresPremiumDrawable2, LocaleController.getString(R.string.ArticlePullquote), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 0));
+        itemOptionsDontFocus.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
+        itemOptionsDontFocus.addChecked(blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockPreformatted), R.drawable.iv_code, LocaleController.getString(R.string.ArticleCode), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 1));
         boolean z4 = blockRowFindFocusedRow != null && (blockRowFindFocusedRow.block instanceof TL_iv.pageBlockFooter);
         RequiresPremiumDrawable requiresPremiumDrawable3 = new RequiresPremiumDrawable(context, R.drawable.iv_footer);
         requiresPremiumDrawable3.setPremium(z);
         requiresPremiumDrawable3.premiumIconCutoutColorKey = i7;
-        itemOptions2.addChecked(z4, 0, requiresPremiumDrawable3, LocaleController.getString(R.string.ArticleFooter), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 2));
-        itemOptions2.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
-        itemOptions2.show();
-        this.currentMenuVisible = itemOptions2;
+        itemOptionsDontFocus.addChecked(z4, requiresPremiumDrawable3, LocaleController.getString(R.string.ArticleFooter), new RichEditor$$ExternalSyntheticLambda31(this, blockRowFindFocusedRow, 2));
+        itemOptionsDontFocus.getLast().setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 9.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 9.0f : 18.0f), 0);
+        this.currentMenuVisible = itemOptionsDontFocus.show();
     }
 
-    public final void lambda$createView$5$12$1() {
+    public final void lambda$createView$5$2$1() {
         RichEditorListView.AnonymousClass1 anonymousClass1 = this.listView.textSelectionHelper;
-        if (anonymousClass1 != null && anonymousClass1.isInSelectionMode()) {
+        if (anonymousClass1 == null || !anonymousClass1.isInSelectionMode()) {
+            new RichAIComposeSheet(getContext(), this.currentAccount, getResourceProvider(), new RichEditor$$ExternalSyntheticLambda53(this, 0)).show();
+        } else {
             onAiStyleSelection();
-            return;
         }
-        Activity parentActivity = getParentActivity();
-        new RichAIComposeSheet(this.currentAccount, parentActivity, new VoIPFragment$$ExternalSyntheticLambda7(this, 28), getResourceProvider()).show();
     }
 
     public final void lambda$sendMessage$49(MessageObject messageObject, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, long j, MessageObject messageObject2, MessageObject messageObject3, boolean z, int i, int i2, SendMessageChatArguments sendMessageChatArguments, long j2) {
@@ -2681,7 +2371,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         if (UserConfig.getInstance(this.currentAccount).isPremium()) {
             return;
         }
-        showDialog(new PremiumFeatureBottomSheet(this, getParentActivity(), getCurrentAccount(), false, 43, true, null));
+        showDialog(new PremiumFeatureBottomSheet(this, getContext(), getCurrentAccount(), false, 43, true, null));
     }
 
     @Override
@@ -2709,7 +2399,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             if (richEditorListView.getContext() == null) {
                 return;
             }
-            Utilities.globalQueue.postRunnable(new RichTableCell$$ExternalSyntheticLambda3(12, richEditorListView, data));
+            Utilities.globalQueue.postRunnable(new RichTableCell$$ExternalSyntheticLambda3(23, richEditorListView, data));
         }
     }
 
@@ -2722,10 +2412,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         if (richMessageExtractRichMessage.blocks.isEmpty()) {
             return;
         }
-        AIEditorAlert aIEditorAlert = new AIEditorAlert(getParentActivity(), getResourceProvider());
-        aIEditorAlert.setText(richMessageExtractRichMessage);
-        aIEditorAlert.onUseRichListener = new VoIPFragment$$ExternalSyntheticLambda7(anonymousClass4BeginSelectionEdit, 26);
-        aIEditorAlert.show();
+        new AIEditorAlert(getContext(), getResourceProvider()).setText(richMessageExtractRichMessage).setOnUseRich(new RichEditor$$ExternalSyntheticLambda53(anonymousClass4BeginSelectionEdit, 10)).show();
     }
 
     @Override
@@ -2736,7 +2423,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 this.emojiSearchOpened = false;
                 EmojiView emojiView = this.emojiView;
                 if (emojiView != null) {
-                    emojiView.closeSearch(-1L, false);
+                    emojiView.closeSearch(false);
                     this.emojiView.hideSearchKeyboard();
                 }
                 animateEmojiSearch(false);
@@ -2744,7 +2431,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             }
         } else {
             if (this.emojiViewVisible) {
-                hideEmojiPopup$4(true);
+                hideEmojiPopup$2(true);
                 return false;
             }
             if (!this.listView.deselectIfAny()) {
@@ -2771,7 +2458,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         chatInputViewsContainer.drawInputBackground = false;
         chatInputViewsContainer.invalidate();
         this.animateEnterView.setAlpha(0.0f);
-        setVisibility(4);
+        this.animateEnterView.sendButtonContainer.setVisibility(4);
         updateAnimatingLocations();
         float f = z ? 0.0f : 1.0f;
         this.animateOpenProgress = f;
@@ -2779,7 +2466,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         this.animatingOpen = true;
         invalidate();
         valueAnimatorOfFloat.addUpdateListener(new RichEditor$$ExternalSyntheticLambda2(this, i2));
-        valueAnimatorOfFloat.addListener(new QrActivity.AnonymousClass4(23, this, runnable));
+        valueAnimatorOfFloat.addListener(new AnonymousClass1(i, this, runnable));
         if (z) {
             FrameLayout frameLayout = this.topPanel;
             Property property = View.ALPHA;
@@ -2797,7 +2484,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         }
         animatorSet.setDuration(420L);
         animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        post(new ArticleViewer$$ExternalSyntheticLambda3(animatorSet, i));
+        post(new VoIPFragment$8$$ExternalSyntheticLambda1(animatorSet, 23));
         return animatorSet;
     }
 
@@ -2809,7 +2496,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
 
     @Override
     public final void onFragmentDestroy() {
-        LoginActivity$$ExternalSyntheticLambda10 loginActivity$$ExternalSyntheticLambda10;
+        RichEditor$$ExternalSyntheticLambda13 richEditor$$ExternalSyntheticLambda13;
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
         if (!this.persistedDraftOnEnd) {
             persistDraft$1();
@@ -2839,10 +2526,10 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             emojiView.onDestroy();
         }
         AnonymousClass2 anonymousClass2 = this.container;
-        if (anonymousClass2 == null || (loginActivity$$ExternalSyntheticLambda10 = this.sizeDelegate) == null) {
+        if (anonymousClass2 == null || (richEditor$$ExternalSyntheticLambda13 = this.sizeDelegate) == null) {
             return;
         }
-        anonymousClass2.delegates.remove(loginActivity$$ExternalSyntheticLambda10);
+        anonymousClass2.removeDelegate(richEditor$$ExternalSyntheticLambda13);
     }
 
     @Override
@@ -2875,7 +2562,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             }
         }
         if (this.keyboardVisible && !z && this.emojiViewVisible && !this.emojiSearchOpened) {
-            hideEmojiPopup$4(false);
+            hideEmojiPopup$2(false);
         }
         if (!this.keyboardVisible && z && (itemOptions = this.currentMenuVisible) != null) {
             itemOptions.dismiss();
@@ -2885,7 +2572,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         return WindowInsetsCompat.CONSUMED;
     }
 
-    public final boolean onSendLongClick$3(View view) {
+    public final boolean onSendLongClick(View view) {
         ChatActivity chatActivity = this.chatActivity;
         if (chatActivity != null && this.editingMessageObject == null && !chatActivity.isInScheduleMode() && this.listView.hasAnyText() && !this.listView.hasPendingUploads()) {
             if (!this.listView.isWithinLimits()) {
@@ -2896,15 +2583,14 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             if (!arrayListFlattenRowsToBlocks.isEmpty()) {
                 MessageSendPreview messageSendPreview = this.messageSendPreview;
                 if (messageSendPreview != null) {
-                    messageSendPreview.sent = false;
-                    messageSendPreview.dismiss();
+                    messageSendPreview.dismiss(false);
                     this.messageSendPreview = null;
                 }
-                MessageSendPreview messageSendPreview2 = new MessageSendPreview(getParentActivity(), getResourceProvider());
+                MessageSendPreview messageSendPreview2 = new MessageSendPreview(getContext(), getResourceProvider());
                 this.messageSendPreview = messageSendPreview2;
-                messageSendPreview2.setOnDismissListener(new ShareActivity$$ExternalSyntheticLambda0(this, 9));
+                messageSendPreview2.setOnDismissListener(new RichEditor$$ExternalSyntheticLambda46(this, 0));
                 long dialogId = this.chatActivity.getDialogId();
-                MessageObject messageObject = this.chatActivity.replyingMessageObject;
+                MessageObject replyMessage = this.chatActivity.getReplyMessage();
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.id = 0;
                 tL_message.out = true;
@@ -2916,44 +2602,41 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 richMessage.blocks = arrayListFlattenRowsToBlocks;
                 richMessage.photos = this.listView.collectPhotos();
                 tL_message.rich_message.documents = this.listView.collectDocuments();
-                if (messageObject != null && !messageObject.isTopicMainMessage) {
+                if (replyMessage != null && !replyMessage.isTopicMainMessage) {
                     TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                     tL_messageReplyHeader.flags |= 16;
-                    tL_messageReplyHeader.reply_to_msg_id = messageObject.getId();
+                    tL_messageReplyHeader.reply_to_msg_id = replyMessage.getId();
                     tL_message.reply_to = tL_messageReplyHeader;
                 }
-                MessageObject messageObject2 = new MessageObject(this.currentAccount, tL_message, false, false);
-                if (messageObject != null && !messageObject.isTopicMainMessage) {
-                    messageObject2.replyMessageObject = messageObject;
+                MessageObject messageObject = new MessageObject(this.currentAccount, tL_message, false, false);
+                if (replyMessage != null && !replyMessage.isTopicMainMessage) {
+                    messageObject.replyMessageObject = replyMessage;
                 }
-                messageObject2.sendPreview = true;
-                messageObject2.isOutOwnerCached = Boolean.TRUE;
-                messageObject2.generateLayout(null);
-                messageObject2.notime = true;
-                this.messageSendPreview.setMessageObjects(MediaController$$ExternalSyntheticOutline1.m(messageObject2));
-                this.sendButton.setScaleX(1.0f);
-                this.sendButton.setScaleY(1.0f);
-                MessageSendPreview.AnonymousClass13 sendButton = this.messageSendPreview.setSendButton(this.sendButton, true, new RichEditor$$ExternalSyntheticLambda3(this, 11));
+                messageObject.sendPreview = true;
+                messageObject.isOutOwnerCached = Boolean.TRUE;
+                messageObject.generateLayout(null);
+                messageObject.notime = true;
+                this.messageSendPreview.setMessageObjects(MediaController$$ExternalSyntheticOutline1.m(messageObject));
+                setScaleX(1.0f);
+                setScaleY(1.0f);
+                ChatActivityEnterView.SendButton sendButton = this.messageSendPreview.setSendButton(this.sendButton, true, new RichEditor$$ExternalSyntheticLambda3(this, 10));
                 if (sendButton != null) {
                     sendButton.setBackground(new ShadowWrapperDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(22.0f), getThemedColor(Theme.key_featuredStickers_addButton))));
-                    MessageSendPreview messageSendPreview3 = this.messageSendPreview;
-                    int iDp = AndroidUtilities.dp(44.0f);
-                    messageSendPreview3.customSendButtonWidth = true;
-                    messageSendPreview3.sendButtonWidth = iDp;
+                    this.messageSendPreview.setSendButtonWidth(AndroidUtilities.dp(44.0f));
                 }
-                ItemOptions itemOptions = new ItemOptions(this, this.sendButton, false, true);
+                ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, this.sendButton);
                 boolean zIsUserSelf = UserObject.isUserSelf(this.chatActivity.getCurrentUser());
                 if (this.chatActivity.canScheduleMessage()) {
-                    itemOptions.add(R.drawable.msg_calendar2, LocaleController.getString(zIsUserSelf ? R.string.SetReminder : R.string.ScheduleMessage), new RichEditor$$ExternalSyntheticLambda57(this, dialogId, 0), false);
+                    itemOptionsMakeOptions.add(R.drawable.msg_calendar2, LocaleController.getString(zIsUserSelf ? R.string.SetReminder : R.string.ScheduleMessage), new RichEditor$$ExternalSyntheticLambda48(this, dialogId, 0));
                     if (!zIsUserSelf && dialogId > 0) {
-                        itemOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new RichEditor$$ExternalSyntheticLambda1(this, 5), false);
+                        itemOptionsMakeOptions.add(R.drawable.msg_online, LocaleController.getString(R.string.SendWhenOnline), new RichEditor$$ExternalSyntheticLambda1(this, 5));
                     }
                 }
                 if (!zIsUserSelf) {
-                    itemOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new RichEditor$$ExternalSyntheticLambda1(this, 6), false);
+                    itemOptionsMakeOptions.add(R.drawable.input_notify_off, LocaleController.getString(R.string.SendWithoutSound), new RichEditor$$ExternalSyntheticLambda1(this, 6));
                 }
-                itemOptions.setupSelectors();
-                this.messageSendPreview.setItemOptions(itemOptions);
+                itemOptionsMakeOptions.setupSelectors();
+                this.messageSendPreview.setItemOptions(itemOptionsMakeOptions);
                 this.messageSendPreview.show();
                 try {
                     view.performHapticFeedback(3, 2);
@@ -2993,16 +2676,15 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
     public final void openAttach$1(int i, int i2) {
         RichEditorListView richEditorListView = this.listView;
         richEditorListView.pendingInsertRow = richEditorListView.findFocusedRow();
-        final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getParentActivity(), this, false, false, true, getResourceProvider());
-        chatAttachAlert.delegate = new ChatAttachAlert.ChatAttachViewDelegate() {
+        final ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), this, false, false, true, getResourceProvider());
+        chatAttachAlert.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
             @Override
             public final void didPressedButton(int i3, boolean z, boolean z2, int i4, int i5, long j, boolean z3, boolean z4, long j2) {
                 ChatAttachAlert chatAttachAlert2 = chatAttachAlert;
                 RichEditor richEditor = RichEditor.this;
                 if (i3 == 7 || i3 == 8) {
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = chatAttachAlert2.photoLayout;
-                    HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-                    ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
+                    HashMap<Object, Object> selectedPhotos = chatAttachAlert2.getPhotoLayout().getSelectedPhotos();
+                    ArrayList<Object> selectedPhotosOrder = chatAttachAlert2.getPhotoLayout().getSelectedPhotosOrder();
                     RichEditorListView richEditorListView2 = richEditor.listView;
                     BlockRow blockRow = richEditorListView2.pendingMediaRow;
                     richEditorListView2.pendingMediaRow = null;
@@ -3028,8 +2710,13 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            public final void doOnIdle(ChatAttachAlert$$ExternalSyntheticLambda7 chatAttachAlert$$ExternalSyntheticLambda7) {
-                NotificationCenter.getInstance(RichEditor.this.getCurrentAccount()).doOnIdle(chatAttachAlert$$ExternalSyntheticLambda7);
+            public final void doOnIdle(Runnable runnable) {
+                NotificationCenter.getInstance(RichEditor.this.getCurrentAccount()).doOnIdle(runnable);
+            }
+
+            @Override
+            public final View getRevealView() {
+                return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$getRevealView(this);
             }
 
             @Override
@@ -3043,36 +2730,37 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
 
             @Override
             public final void onWallpaperSelected(Object obj) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
             }
 
             @Override
             public final void openAvatarsSearch() {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$openAvatarsSearch(this);
             }
 
             @Override
             public final boolean selectItemOnClicking() {
-                return false;
+                return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$selectItemOnClicking(this);
             }
 
             @Override
-            public final void sendAudio(ArrayList arrayList, Editable editable, boolean z, int i3, int i4, long j, boolean z2, long j2) {
+            public final void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i3, int i4, long j, boolean z2, long j2) {
+                ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i3, i4, j, z2, j2);
             }
-        };
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = chatAttachAlert.photoLayout;
-        chatAttachAlertPhotoLayout.setIncludeVideosInGallery(true);
-        chatAttachAlertPhotoLayout.loadGalleryPhotos();
+        });
+        chatAttachAlert.getPhotoLayout().setIncludeVideosInGallery(true);
+        chatAttachAlert.getPhotoLayout().loadGalleryPhotos();
         chatAttachAlert.setMaxSelectedPhotos(1, true);
         chatAttachAlert.enablePollAttachMode(i);
-        chatAttachAlert.locationActivityDelegate = new RichEditor$$ExternalSyntheticLambda43(this, chatAttachAlert);
-        chatAttachAlert.audioSelectDelegate = new RichEditor$$ExternalSyntheticLambda43(this, chatAttachAlert);
-        chatAttachAlert.documentsDelegate = new ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate() {
+        chatAttachAlert.setLocationActivityDelegate(new RichEditor$$ExternalSyntheticLambda43(this, chatAttachAlert));
+        chatAttachAlert.setAudioSelectDelegate(new RichEditor$$ExternalSyntheticLambda43(this, chatAttachAlert));
+        chatAttachAlert.setDocumentsDelegate(new ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate() {
             @Override
-            public final void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i3, long j, boolean z2, long j2) {
-                boolean zIsEmpty = arrayList.isEmpty();
+            public final void didSelectFiles(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i3, int i4, long j, boolean z2, long j2) {
                 RichEditor richEditor = RichEditor.this;
-                if (!zIsEmpty) {
+                if (arrayList != null && !arrayList.isEmpty()) {
                     richEditor.listView.attachDocument((String) arrayList.get(0));
-                } else if (!arrayList3.isEmpty()) {
+                } else if (arrayList3 != null && !arrayList3.isEmpty()) {
                     RichEditorListView richEditorListView2 = richEditor.listView;
                     MessageObject messageObject = (MessageObject) arrayList3.get(0);
                     richEditorListView2.getClass();
@@ -3086,7 +2774,8 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             }
 
             @Override
-            public final void didSelectPhotos(long j, ArrayList arrayList, boolean z, int i3) {
+            public final void didSelectPhotos(ArrayList arrayList, boolean z, int i3, int i4, long j) {
+                ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$didSelectPhotos(this, arrayList, z, i3, i4, j);
             }
 
             @Override
@@ -3102,8 +2791,9 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
 
             @Override
             public final void startMusicSelectActivity() {
+                ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate.CC.$default$startMusicSelectActivity(this);
             }
-        };
+        });
         chatAttachAlert.init();
         if (i2 != 0) {
             chatAttachAlert.openAttachLayoutForType(i2);
@@ -3115,7 +2805,6 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
     public final boolean persistDraft$1() {
         RichEditorHistory richEditorHistory;
         TL_iv.RichMessage richMessage;
-        TL_iv.RichMessage richMessage2;
         Runnable runnable;
         if (this.chatActivity == null || this.editingMessageObject != null || (richEditorHistory = this.listView.history) == null || !richEditorHistory.canUndo()) {
             return false;
@@ -3129,11 +2818,11 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
                 if (arrayListFlattenRowsToBlocks.isEmpty()) {
                     richMessage = null;
                 } else {
-                    TL_iv.RichMessage richMessage3 = new TL_iv.RichMessage();
-                    richMessage3.blocks = arrayListFlattenRowsToBlocks;
-                    richMessage3.photos = richEditorListView.collectPhotos();
-                    richMessage3.documents = richEditorListView.collectDocuments();
-                    richMessage = richMessage3;
+                    TL_iv.RichMessage richMessage2 = new TL_iv.RichMessage();
+                    richMessage2.blocks = arrayListFlattenRowsToBlocks;
+                    richMessage2.photos = richEditorListView.collectPhotos();
+                    richMessage2.documents = richEditorListView.collectDocuments();
+                    richMessage = richMessage2;
                 }
             } else {
                 richMessage = null;
@@ -3142,52 +2831,18 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         if (richMessage == null && (runnable = this.onClearedCallback) != null) {
             runnable.run();
         }
-        ChatActivity.AnonymousClass39 anonymousClass39 = this.chatActivity.chatActivityEnterView;
-        if (richMessage == null || this.sent) {
-            MediaDataController mediaDataController = getMediaDataController();
-            long dialogId = this.chatActivity.getDialogId();
-            ChatActivity chatActivity = this.chatActivity;
-            mediaDataController.saveDraft(dialogId, chatActivity.computeDraftThreadId(chatActivity.replyingMessageObject), "", null, null, null, null, 0L, false, false, richMessage);
-            richMessage2 = richMessage;
-            if (anonymousClass39 != null) {
-                anonymousClass39.setRichDraftPreview(richMessage2);
-            }
-        } else {
+        ChatActivityEnterView chatActivityEnterView = this.chatActivity.getChatActivityEnterView();
+        if (richMessage != null && !this.sent) {
             RichEditorListView richEditorListView2 = this.listView;
-            if (!richEditorListView2.hasAnyText() || RichMessageConvert.isLossy(richEditorListView2.rows, richEditorListView2.quoteAuthors) || anonymousClass39 == null) {
-                MediaDataController mediaDataController2 = getMediaDataController();
-                long dialogId2 = this.chatActivity.getDialogId();
-                ChatActivity chatActivity2 = this.chatActivity;
-                mediaDataController2.saveDraft(dialogId2, chatActivity2.computeDraftThreadId(chatActivity2.replyingMessageObject), "", null, null, null, null, 0L, false, false, richMessage);
-                richMessage2 = richMessage;
-                if (anonymousClass39 != null) {
-                    anonymousClass39.setRichDraftPreview(richMessage2);
-                }
-            } else {
-                SpannableStringBuilder spannableStringBuilderRowsToSimpleMessage = RichMessageConvert.rowsToSimpleMessage(this.listView.rows);
-                if (anonymousClass39.messageEditText != null) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(spannableStringBuilderRowsToSimpleMessage);
-                    Emoji.replaceEmoji((CharSequence) spannableStringBuilder, anonymousClass39.messageEditText.getPaint().getFontMetricsInt(), false, (int[]) null);
-                    AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), AnimatedEmojiSpan.class);
-                    if (animatedEmojiSpanArr != null) {
-                        for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
-                            animatedEmojiSpan.applyFontMetrics(anonymousClass39.messageEditText.getPaint().getFontMetricsInt(), AnimatedEmojiDrawable.getCacheTypeForEnterView());
-                        }
-                    }
-                    QuoteSpan.normalizeQuotes(spannableStringBuilder);
-                    ChatActivity chatActivity3 = anonymousClass39.parentFragment;
-                    if (chatActivity3 != null) {
-                        CharSequence[] charSequenceArr = {new SpannableStringBuilder(spannableStringBuilder)};
-                        MediaDataController.getInstance(anonymousClass39.currentAccount).saveDraft(chatActivity3.getDialogId(), chatActivity3.computeDraftThreadId(chatActivity3.replyingMessageObject), charSequenceArr[0], MediaDataController.getInstance(anonymousClass39.currentAccount).getEntities(charSequenceArr, true, false), null, null, null, 0L, false, false, null);
-                    }
-                    anonymousClass39.setRichDraftPreview(null);
-                    if (anonymousClass39.messageEditText.getText() != null) {
-                        anonymousClass39.messageEditText.getText().clear();
-                    }
-                    anonymousClass39.setFieldText(spannableStringBuilder);
-                    return true;
-                }
+            if (richEditorListView2.hasAnyText() && !RichMessageConvert.isLossy(richEditorListView2.rows, richEditorListView2.quoteAuthors) && chatActivityEnterView != null) {
+                chatActivityEnterView.applyConvertedSimpleDraft(RichMessageConvert.rowsToSimpleMessage(this.listView.rows));
+                return true;
             }
+        }
+        getMediaDataController().saveDraft(this.chatActivity.getDialogId(), this.chatActivity.getDraftThreadId(), "", null, null, null, null, 0L, false, false, richMessage);
+        TL_iv.RichMessage richMessage3 = richMessage;
+        if (chatActivityEnterView != null) {
+            chatActivityEnterView.setRichDraftPreview(richMessage3);
         }
         return true;
     }
@@ -3205,8 +2860,8 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             return;
         }
         if (!MessagesController.getInstance(this.currentAccount).richEditorAllowed()) {
-            ChatActivity.AnonymousClass39 anonymousClass39 = this.chatActivity.chatActivityEnterView;
-            if (anonymousClass39 == null) {
+            ChatActivityEnterView chatActivityEnterView = this.chatActivity.getChatActivityEnterView();
+            if (chatActivityEnterView == null) {
                 return;
             }
             this.sent = true;
@@ -3214,7 +2869,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             if (runnable != null) {
                 runnable.run();
             }
-            anonymousClass39.sendConvertedRichAsSimple(RichMessageConvert.rowsToSimpleMessage(this.listView.rows), z, i, i2);
+            chatActivityEnterView.sendConvertedRichAsSimple(RichMessageConvert.rowsToSimpleMessage(this.listView.rows), z, i, i2);
             finishFragment();
             return;
         }
@@ -3227,23 +2882,22 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         final ArrayList arrayListCollectDocuments = this.listView.collectDocuments();
         final ArrayList arrayListCollect = RichMessageButtonUsers.collect(this.currentAccount, arrayListFlattenRowsToBlocks);
         final long dialogId = this.chatActivity.getDialogId();
-        ChatActivity chatActivity = this.chatActivity;
-        final MessageObject messageObject = chatActivity.replyingMessageObject;
-        final MessageObject messageObject2 = chatActivity.threadMessageObject;
-        final long sendMonoForumPeerId = chatActivity.getSendMonoForumPeerId();
+        final MessageObject replyMessage = this.chatActivity.getReplyMessage();
+        final MessageObject threadMessage = this.chatActivity.getThreadMessage();
+        final long sendMonoForumPeerId = this.chatActivity.getSendMonoForumPeerId();
         final SendMessageChatArguments messageChatSendParams = this.chatActivity.getMessageChatSendParams();
-        final MessageObject messageObject3 = this.editingMessageObject;
+        final MessageObject messageObject = this.editingMessageObject;
         ?? r0 = new Runnable() {
             @Override
             public final void run() {
-                this.f$0.lambda$sendMessage$49(messageObject3, arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, arrayListCollect, dialogId, messageObject, messageObject2, z, i, i2, messageChatSendParams, sendMonoForumPeerId);
+                this.f$0.lambda$sendMessage$49(messageObject, arrayListFlattenRowsToBlocks, arrayListCollectPhotos, arrayListCollectDocuments, arrayListCollect, dialogId, replyMessage, threadMessage, z, i, i2, messageChatSendParams, sendMonoForumPeerId);
             }
         };
         Runnable runnable2 = this.onSentCallback;
         if (runnable2 != null) {
             runnable2.run();
         }
-        if (i == 0 || messageObject3 != null) {
+        if (i == 0 || messageObject != null) {
             r0.run();
             finishFragment();
         } else {
@@ -3286,10 +2940,10 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
     }
 
     public final void showConversionSheet$1() {
-        Activity parentActivity = getParentActivity();
+        Context context = getContext();
         RichEditorListView richEditorListView = this.listView;
         Objects.requireNonNull(richEditorListView);
-        openConversionSheet(parentActivity, new RichEditorListView$$ExternalSyntheticLambda4(richEditorListView, 1), new RichEditor$$ExternalSyntheticLambda1(this, 4), getResourceProvider());
+        openConversionSheet(context, new RichEditorListView$$ExternalSyntheticLambda4(richEditorListView, 1), new RichEditor$$ExternalSyntheticLambda1(this, 4), getResourceProvider());
     }
 
     public final void updateAnimatingLocations() {
@@ -3594,220 +3248,623 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             return;
         }
         boolean zIsWithinLimits = this.listView.isWithinLimits();
-        this.sendButton.setEnabled(zIsWithinLimits);
-        OKLCH.m(this.sendButton.animate(), zIsWithinLimits ? 1.0f : 0.5f, 150L);
+        setEnabled(zIsWithinLimits);
+        OKLCH.m(animate(), zIsWithinLimits ? 1.0f : 0.5f, 150L);
     }
 
-    public RichEditor(String str) {
-        super(null);
-        this.initialSelectionStart = -1;
-        this.initialSelectionEnd = -1;
-        this.tempRect = new Rect();
-        this.location = new int[2];
-        this.animateOpenProgress = 1.0f;
-        this.premiumButtons = new ArrayList();
-        this.blockButtons = new ArrayList();
-        this.formattingScrollMaxWidth = Integer.MAX_VALUE;
-        this.formattingButtons = new ArrayList();
-        this.reorderSavedPanelType = 0;
-        this.bottomPanelType = -1;
-        this.limitCheckRunnable = new RichEditor$$ExternalSyntheticLambda1(this, 0);
-        this.initialHtml = str;
-    }
+    public final class AnonymousClass3 implements SuccessContinuation, SelectClause1, SearchAdapterHelper.SearchAdapterHelperDelegate, PaintWeightChooserView.ValueOverride, TimelineView.TimelineDelegate, RichEditorListView.Delegate, RichCaptionController.Host {
+        public Object this$0;
 
-    public RichEditor(TL_iv.RichMessage richMessage) {
-        super(null);
-        this.initialSelectionStart = -1;
-        this.initialSelectionEnd = -1;
-        this.tempRect = new Rect();
-        this.location = new int[2];
-        this.animateOpenProgress = 1.0f;
-        this.premiumButtons = new ArrayList();
-        this.blockButtons = new ArrayList();
-        this.formattingScrollMaxWidth = Integer.MAX_VALUE;
-        this.formattingButtons = new ArrayList();
-        this.reorderSavedPanelType = 0;
-        this.bottomPanelType = -1;
-        this.limitCheckRunnable = new RichEditor$$ExternalSyntheticLambda1(this, 0);
-        this.initialRichMessage = richMessage;
-    }
-
-    public final class AnonymousClass3 implements SearchViewPager.ChatPreviewDelegate, RichCaptionController.Host, RichEditorListView.Delegate {
-        public final int $r8$classId;
-        public final Object this$0;
-
-        public AnonymousClass3(Object obj, int i) {
-            this.$r8$classId = i;
+        public AnonymousClass3(Object obj) {
             this.this$0 = obj;
+        }
+
+        public static boolean isNotification(Bundle bundle) {
+            return "1".equals(bundle.getString("gcm.n.e")) || "1".equals(bundle.getString("gcm.n.e".replace("gcm.n.", "gcm.notification.")));
+        }
+
+        public static String userFriendlyKey(String str) {
+            return str.startsWith("gcm.n.") ? str.substring(6) : str;
+        }
+
+        @Override
+        public boolean canApplySearchResults(int i) {
+            return true;
         }
 
         @Override
         public TextSelectionHelper.ArticleSelectableView cell() {
-            switch (this.$r8$classId) {
-                case 2:
-                    return (RichAudioCell) this.this$0;
-                default:
-                    return (RichMediaCell) this.this$0;
-            }
+            return (RichMediaCell) this.this$0;
         }
 
         @Override
         public BlockRow currentRow() {
-            switch (this.$r8$classId) {
-                case 2:
-                    return ((RichAudioCell) this.this$0).currentRow;
-                default:
-                    return ((RichMediaCell) this.this$0).currentRow;
+            return ((RichMediaCell) this.this$0).currentRow;
+        }
+
+        public DecoderResult decode(TaskQueue taskQueue) throws ChecksumException, FormatException {
+            int i;
+            int bits;
+            Mode mode;
+            int i2;
+            StringBuilder sb;
+            int i3;
+            ArrayList arrayList;
+            int bits2;
+            Version version = taskQueue.readVersion();
+            ErrorCorrectionLevel errorCorrectionLevel = taskQueue.readFormatInformation().errorCorrectionLevel;
+            FormatInformation formatInformation = taskQueue.readFormatInformation();
+            Version version2 = taskQueue.readVersion();
+            int i4 = PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility.values(8)[formatInformation.dataMask];
+            BitMatrix bitMatrix = (BitMatrix) taskQueue.zza;
+            int i5 = bitMatrix.height;
+            for (int i6 = 0; i6 < i5; i6++) {
+                for (int i7 = 0; i7 < i5; i7++) {
+                    if (Theme.ResourcesProvider.CC._dispatch_isMasked(i4, i6, i7)) {
+                        bitMatrix.flip(i7, i6);
+                    }
+                }
+            }
+            int i8 = version2.versionNumber * 4;
+            int i9 = i8 + 17;
+            BitMatrix bitMatrix2 = new BitMatrix(i9, i9);
+            bitMatrix2.setRegion(0, 0, 9, 9);
+            int i10 = i8 + 9;
+            bitMatrix2.setRegion(i10, 0, 8, 9);
+            bitMatrix2.setRegion(0, i10, 9, 8);
+            int[] iArr = version2.alignmentPatternCenters;
+            int bits3 = -1;
+            int length = iArr.length;
+            for (int i11 = 0; i11 < length; i11++) {
+                int i12 = iArr[i11] - 2;
+                for (int i13 = 0; i13 < length; i13++) {
+                    if ((i11 != 0 || (i13 != 0 && i13 != length - 1)) && (i11 != length - 1 || i13 != 0)) {
+                        bitMatrix2.setRegion(iArr[i13] - 2, i12, 5, 5);
+                    }
+                }
+            }
+            int i14 = 6;
+            bitMatrix2.setRegion(6, 9, 1, i8);
+            bitMatrix2.setRegion(9, 6, i8, 1);
+            if (version2.versionNumber > 6) {
+                int i15 = i8 + 6;
+                bitMatrix2.setRegion(i15, 0, 3, 6);
+                bitMatrix2.setRegion(0, i15, 6, 3);
+            }
+            int i16 = version2.totalCodewords;
+            byte[] bArr = new byte[i16];
+            int i17 = i5 - 1;
+            int i18 = i17;
+            int i19 = 0;
+            int i20 = 0;
+            int i21 = 0;
+            boolean z = true;
+            while (i18 > 0) {
+                if (i18 == i14) {
+                    i18--;
+                }
+                for (int i22 = 0; i22 < i5; i22++) {
+                    int i23 = z ? i17 - i22 : i22;
+                    for (int i24 = 0; i24 < 2; i24++) {
+                        int i25 = i18 - i24;
+                        if (!bitMatrix2.get(i25, i23)) {
+                            i20++;
+                            i21 <<= 1;
+                            if (bitMatrix.get(i25, i23)) {
+                                i21 |= 1;
+                            }
+                            if (i20 == 8) {
+                                bArr[i19] = (byte) i21;
+                                i19++;
+                                i20 = 0;
+                                i21 = 0;
+                            }
+                        }
+                    }
+                }
+                z = !z;
+                i18 -= 2;
+                i14 = 6;
+            }
+            if (i19 != i16) {
+                throw FormatException.getFormatInstance();
+            }
+            if (i16 != version.totalCodewords) {
+                throw new IllegalArgumentException();
+            }
+            zzbv zzbvVar = version.ecBlocks[errorCorrectionLevel.ordinal()];
+            Version.ECB[] ecbArr = (Version.ECB[]) zzbvVar.zza;
+            int i26 = 0;
+            for (Version.ECB ecb : ecbArr) {
+                i26 += ecb.count;
+            }
+            DataBlock[] dataBlockArr = new DataBlock[i26];
+            int length2 = ecbArr.length;
+            int i27 = 0;
+            int i28 = 0;
+            while (true) {
+                i = zzbvVar.zzb;
+                if (i28 >= length2) {
+                    break;
+                }
+                Version.ECB ecb2 = ecbArr[i28];
+                int i29 = 0;
+                while (i29 < ecb2.count) {
+                    int i30 = ecb2.dataCodewords;
+                    dataBlockArr[i27] = new DataBlock(i30, new byte[i + i30]);
+                    i29++;
+                    i27++;
+                    zzbvVar = zzbvVar;
+                }
+                i28++;
+            }
+            int length3 = dataBlockArr[0].codewords.length;
+            int i31 = i26 - 1;
+            while (i31 >= 0 && dataBlockArr[i31].codewords.length != length3) {
+                i31--;
+            }
+            int i32 = i31 + 1;
+            int i33 = length3 - i;
+            int i34 = 0;
+            int i35 = 0;
+            while (i34 < i33) {
+                int i36 = i35;
+                int i37 = 0;
+                while (i37 < i27) {
+                    dataBlockArr[i37].codewords[i34] = bArr[i36];
+                    i37++;
+                    i36++;
+                }
+                i34++;
+                i35 = i36;
+            }
+            int i38 = i32;
+            while (i38 < i27) {
+                dataBlockArr[i38].codewords[i33] = bArr[i35];
+                i38++;
+                i35++;
+            }
+            boolean z2 = false;
+            int length4 = dataBlockArr[0].codewords.length;
+            while (i33 < length4) {
+                int i39 = i35;
+                int i40 = 0;
+                while (i40 < i27) {
+                    dataBlockArr[i40].codewords[i40 < i32 ? i33 : i33 + 1] = bArr[i39];
+                    i40++;
+                    i39++;
+                }
+                i33++;
+                i35 = i39;
+            }
+            int i41 = 0;
+            for (int i42 = 0; i42 < i26; i42++) {
+                i41 += dataBlockArr[i42].numDataCodewords;
+            }
+            byte[] bArr2 = new byte[i41];
+            int i43 = 0;
+            int i44 = 0;
+            int i45 = 0;
+            while (i43 < i26) {
+                DataBlock dataBlock = dataBlockArr[i43];
+                byte[] bArr3 = dataBlock.codewords;
+                int i46 = dataBlock.numDataCodewords;
+                int length5 = bArr3.length;
+                int[] iArr2 = new int[length5];
+                for (int i47 = 0; i47 < length5; i47++) {
+                    iArr2[i47] = bArr3[i47] & 255;
+                }
+                try {
+                    int iDecodeWithECCount = ((RichMapCell.AnonymousClass1) this.this$0).decodeWithECCount(bArr3.length - i46, iArr2);
+                    for (int i48 = 0; i48 < i46; i48++) {
+                        bArr3[i48] = (byte) iArr2[i48];
+                    }
+                    i44 += iDecodeWithECCount;
+                    int i49 = i45;
+                    int i50 = 0;
+                    while (i50 < i46) {
+                        bArr2[i49] = bArr3[i50];
+                        i50++;
+                        i49++;
+                    }
+                    i43++;
+                    i45 = i49;
+                } catch (ReedSolomonException unused) {
+                    ChecksumException checksumException = ChecksumException.INSTANCE;
+                    if (ReaderException.isStackTrace) {
+                        throw new ChecksumException();
+                    }
+                    throw ChecksumException.INSTANCE;
+                }
+            }
+            char[] cArr = DecodedBitStreamParser.ALPHANUMERIC_CHARS;
+            BitSource bitSource = new BitSource(bArr2);
+            StringBuilder sb2 = new StringBuilder(50);
+            ArrayList arrayList2 = new ArrayList(1);
+            int bits4 = -1;
+            boolean z3 = false;
+            CharacterSetECI characterSetECI = null;
+            boolean z4 = false;
+            while (true) {
+                try {
+                    int iAvailable = bitSource.available();
+                    Mode mode2 = Mode.TERMINATOR;
+                    if (iAvailable < 4 || (bits = bitSource.readBits(4)) == 0) {
+                        mode = mode2;
+                    } else if (bits == 1) {
+                        mode = Mode.NUMERIC;
+                    } else if (bits == 2) {
+                        mode = Mode.ALPHANUMERIC;
+                    } else if (bits == 3) {
+                        mode = Mode.STRUCTURED_APPEND;
+                    } else if (bits == 4) {
+                        mode = Mode.BYTE;
+                    } else if (bits == 5) {
+                        mode = Mode.FNC1_FIRST_POSITION;
+                    } else if (bits == 7) {
+                        mode = Mode.ECI;
+                    } else if (bits == 8) {
+                        mode = Mode.KANJI;
+                    } else if (bits == 9) {
+                        mode = Mode.FNC1_SECOND_POSITION;
+                    } else {
+                        if (bits != 13) {
+                            throw new IllegalArgumentException();
+                        }
+                        mode = Mode.HANZI;
+                    }
+                    int iOrdinal = mode.ordinal();
+                    if (iOrdinal != 0) {
+                        if (iOrdinal == 3) {
+                            i2 = i44;
+                            sb = sb2;
+                            if (bitSource.available() < 16) {
+                                throw FormatException.getFormatInstance();
+                            }
+                            bits3 = bitSource.readBits(8);
+                            bits4 = bitSource.readBits(8);
+                        } else {
+                            if (iOrdinal == 5) {
+                                i2 = i44;
+                                int bits5 = bitSource.readBits(8);
+                                if ((bits5 & 128) == 0) {
+                                    bits2 = bits5 & 127;
+                                    sb = sb2;
+                                } else {
+                                    sb = sb2;
+                                    if ((bits5 & 192) == 128) {
+                                        bits2 = ((bits5 & 63) << 8) | bitSource.readBits(8);
+                                    } else {
+                                        if ((bits5 & 224) != 192) {
+                                            throw FormatException.getFormatInstance();
+                                        }
+                                        bits2 = ((bits5 & 31) << 16) | bitSource.readBits(16);
+                                    }
+                                    HashMap map = CharacterSetECI.VALUE_TO_ECI;
+                                    if (bits2 >= 0 || bits2 >= 900) {
+                                        throw FormatException.getFormatInstance();
+                                    }
+                                    CharacterSetECI characterSetECI2 = (CharacterSetECI) CharacterSetECI.VALUE_TO_ECI.get(Integer.valueOf(bits2));
+                                    if (characterSetECI2 == null) {
+                                        throw FormatException.getFormatInstance();
+                                    }
+                                    characterSetECI = characterSetECI2;
+                                }
+                                HashMap map2 = CharacterSetECI.VALUE_TO_ECI;
+                                if (bits2 >= 0) {
+                                }
+                                throw FormatException.getFormatInstance();
+                            }
+                            if (iOrdinal == 7) {
+                                i2 = i44;
+                                sb = sb2;
+                                z4 = true;
+                                z2 = true;
+                            } else if (iOrdinal == 8) {
+                                i2 = i44;
+                                sb = sb2;
+                                z3 = true;
+                                z4 = true;
+                            } else if (iOrdinal != 9) {
+                                int bits6 = bitSource.readBits(mode.getCharacterCountBits(version));
+                                int iOrdinal2 = mode.ordinal();
+                                i2 = i44;
+                                if (iOrdinal2 == 1) {
+                                    DecodedBitStreamParser.decodeNumericSegment(bitSource, sb2, bits6);
+                                } else if (iOrdinal2 == 2) {
+                                    DecodedBitStreamParser.decodeAlphanumericSegment(bitSource, sb2, bits6, z4);
+                                } else if (iOrdinal2 == 4) {
+                                    DecodedBitStreamParser.decodeByteSegment(bitSource, sb2, bits6, characterSetECI, arrayList2);
+                                } else {
+                                    if (iOrdinal2 != 6) {
+                                        throw FormatException.getFormatInstance();
+                                    }
+                                    DecodedBitStreamParser.decodeKanjiSegment(bitSource, sb2, bits6);
+                                }
+                            } else {
+                                i2 = i44;
+                                int bits7 = bitSource.readBits(4);
+                                int bits8 = bitSource.readBits(mode.getCharacterCountBits(version));
+                                if (bits7 == 1) {
+                                    DecodedBitStreamParser.decodeHanziSegment(bitSource, sb2, bits8);
+                                }
+                            }
+                        }
+                        if (mode == mode2) {
+                            if (characterSetECI != null) {
+                                if (z2) {
+                                    i3 = 4;
+                                } else if (z3) {
+                                    i3 = 6;
+                                } else {
+                                    i3 = 2;
+                                }
+                            } else if (z2) {
+                                i3 = 3;
+                            } else if (z3) {
+                                i3 = 5;
+                            } else {
+                                i3 = 1;
+                            }
+                            String string = sb.toString();
+                            if (arrayList2.isEmpty()) {
+                                arrayList = null;
+                            } else {
+                                arrayList = arrayList2;
+                            }
+                            DecoderResult decoderResult = new DecoderResult(bArr2, string, arrayList, errorCorrectionLevel.toString(), bits3, bits4, i3);
+                            decoderResult.errorsCorrected = Integer.valueOf(i2);
+                            return decoderResult;
+                        }
+                        sb2 = sb;
+                        i44 = i2;
+                    } else {
+                        i2 = i44;
+                    }
+                    sb = sb2;
+                    if (mode == mode2) {
+                        if (characterSetECI != null) {
+                            if (z2) {
+                                i3 = 4;
+                            } else if (z3) {
+                                i3 = 6;
+                            } else {
+                                i3 = 2;
+                            }
+                        } else if (z2) {
+                            i3 = 3;
+                        } else if (z3) {
+                            i3 = 5;
+                        } else {
+                            i3 = 1;
+                        }
+                        String string2 = sb.toString();
+                        if (arrayList2.isEmpty()) {
+                            arrayList = null;
+                        } else {
+                            arrayList = arrayList2;
+                        }
+                        DecoderResult decoderResult2 = new DecoderResult(bArr2, string2, arrayList, errorCorrectionLevel.toString(), bits3, bits4, i3);
+                        decoderResult2.errorsCorrected = Integer.valueOf(i2);
+                        return decoderResult2;
+                    }
+                    sb2 = sb;
+                    i44 = i2;
+                } catch (IllegalArgumentException unused2) {
+                    throw FormatException.getFormatInstance();
+                }
             }
         }
 
         @Override
-        public void finish() {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                TopicsFragment.this.finishPreviewFragment();
+        public float get() {
+            return ((StickerMakerView) this.this$0).outlineWidth;
+        }
+
+        public boolean getBoolean(String str) {
+            String string = getString(str);
+            return "1".equals(string) || Boolean.parseBoolean(string);
+        }
+
+        @Override
+        public LongSparseArray getExcludeCallParticipants() {
+            return null;
+        }
+
+        @Override
+        public LongSparseArray getExcludeUsers() {
+            return null;
+        }
+
+        public Integer getInteger(String str) {
+            String string = getString(str);
+            if (TextUtils.isEmpty(string)) {
+                return null;
             }
+            try {
+                return Integer.valueOf(Integer.parseInt(string));
+            } catch (NumberFormatException unused) {
+                Log.w("NotificationParams", "Couldn't parse value of " + userFriendlyKey(str) + "(" + string + ") into an int");
+                return null;
+            }
+        }
+
+        public JSONArray getJSONArray(String str) {
+            String string = getString(str);
+            if (TextUtils.isEmpty(string)) {
+                return null;
+            }
+            try {
+                return new JSONArray(string);
+            } catch (JSONException unused) {
+                Log.w("NotificationParams", "Malformed JSON for key " + userFriendlyKey(str) + ": " + string + ", falling back to default");
+                return null;
+            }
+        }
+
+        public String getPossiblyLocalizedString(Resources resources, String str, String str2) {
+            String[] strArr;
+            String string = getString(str2);
+            if (!TextUtils.isEmpty(string)) {
+                return string;
+            }
+            String string2 = getString(str2.concat("_loc_key"));
+            if (!TextUtils.isEmpty(string2)) {
+                int identifier = resources.getIdentifier(string2, "string", str);
+                if (identifier == 0) {
+                    Log.w("NotificationParams", userFriendlyKey(str2.concat("_loc_key")) + " resource not found: " + str2 + " Default value will be used.");
+                    return null;
+                }
+                JSONArray jSONArray = getJSONArray(str2.concat("_loc_args"));
+                if (jSONArray == null) {
+                    strArr = null;
+                } else {
+                    int length = jSONArray.length();
+                    strArr = new String[length];
+                    for (int i = 0; i < length; i++) {
+                        strArr[i] = jSONArray.optString(i);
+                    }
+                }
+                if (strArr == null) {
+                    return resources.getString(identifier);
+                }
+                try {
+                    return resources.getString(identifier, strArr);
+                } catch (MissingFormatArgumentException e) {
+                    Log.w("NotificationParams", "Missing format argument for " + userFriendlyKey(str2) + ": " + Arrays.toString(strArr) + " Default value will be used.", e);
+                }
+            }
+            return null;
+        }
+
+        public String getString(String str) {
+            Bundle bundle = (Bundle) this.this$0;
+            if (!bundle.containsKey(str) && str.startsWith("gcm.n.")) {
+                String strReplace = !str.startsWith("gcm.n.") ? str : str.replace("gcm.n.", "gcm.notification.");
+                if (bundle.containsKey(strReplace)) {
+                    str = strReplace;
+                }
+            }
+            return bundle.getString(str);
         }
 
         @Override
         public ItemOptions makeMenu(View view) {
-            return new ItemOptions((RichEditor) this.this$0, view, false, true);
+            return ItemOptions.makeOptions((RichEditor) this.this$0, view);
         }
 
         @Override
-        public void move(float f) {
-            Point point = AndroidUtilities.displaySize;
-            if (point.x > point.y) {
-                TopicsFragment.this.movePreviewFragment(f);
+        public void onAudioLeftChange(float f) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
             }
+            storyEntry.audioLeft = f;
+            storyEntry.editedMedia = true;
+            previewView.updateAudioPlayer(true);
+        }
+
+        @Override
+        public void onAudioOffsetChange(long j) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.audioOffset = j;
+            storyEntry.editedMedia = true;
+            previewView.updateAudioPlayer(true);
+        }
+
+        @Override
+        public void onAudioRemove() {
+            ((PreviewView) this.this$0).setupAudio(null);
+        }
+
+        @Override
+        public void onAudioRightChange(float f) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.audioRight = f;
+            storyEntry.editedMedia = true;
+            previewView.updateAudioPlayer(true);
+        }
+
+        @Override
+        public void onAudioVolumeChange(float f) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.audioVolume = f;
+            storyEntry.editedMedia = true;
+            previewView.checkVolumes();
         }
 
         @Override
         public void onBlockButtonEditRequested(RichEditorListView.BlockButtonEdit blockButtonEdit, View view) {
             RichEditor richEditor = (RichEditor) this.this$0;
-            ItemOptions itemOptions = new ItemOptions(richEditor, view, false, true);
-            itemOptions.dontFocus = true;
-            richEditor.currentMenuVisible = RichInlineButtonEditor.showBlock(itemOptions, richEditor, richEditor.getParentActivity(), richEditor.getResourceProvider(), blockButtonEdit, false);
+            richEditor.currentMenuVisible = RichInlineButtonEditor.showBlock(ItemOptions.makeOptions(richEditor, view).dontFocus(), richEditor, richEditor.getContext(), richEditor.getResourceProvider(), blockButtonEdit, false);
         }
 
         @Override
         public void onCaptionChanged() {
-            switch (this.$r8$classId) {
-                case 2:
-                    RichEditorListView.AnonymousClass7 anonymousClass7 = ((RichAudioCell) this.this$0).delegate;
-                    if (anonymousClass7 != null) {
-                        RichEditorListView richEditorListView = RichEditorListView.this;
-                        RichEditorHistory richEditorHistory = richEditorListView.history;
-                        if (richEditorHistory != null) {
-                            richEditorHistory.onTyping();
-                        }
-                        richEditorListView.delegate.onContentChanged();
-                    }
-                    break;
-                default:
-                    RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
-                    if (anonymousClass6 != null) {
-                        RichEditorListView richEditorListView2 = RichEditorListView.this;
-                        RichEditorHistory richEditorHistory2 = richEditorListView2.history;
-                        if (richEditorHistory2 != null) {
-                            richEditorHistory2.onTyping();
-                        }
-                        richEditorListView2.delegate.onContentChanged();
-                    }
-                    break;
+            RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
+            if (anonymousClass6 != null) {
+                RichEditorListView richEditorListView = RichEditorListView.this;
+                RichEditorHistory richEditorHistory = richEditorListView.history;
+                if (richEditorHistory != null) {
+                    richEditorHistory.onTyping();
+                }
+                richEditorListView.delegate.onContentChanged();
             }
         }
 
         @Override
         public void onCaptionEnter() {
-            switch (this.$r8$classId) {
-                case 2:
-                    RichAudioCell richAudioCell = (RichAudioCell) this.this$0;
-                    RichEditorListView.AnonymousClass7 anonymousClass7 = richAudioCell.delegate;
-                    if (anonymousClass7 != null) {
-                        RichEditorListView.this.onCaptionEnter(richAudioCell.currentRow);
-                    }
-                    break;
-                default:
-                    RichMediaCell richMediaCell = (RichMediaCell) this.this$0;
-                    RichEditorListView.AnonymousClass6 anonymousClass6 = richMediaCell.delegate;
-                    if (anonymousClass6 != null) {
-                        RichEditorListView.this.onCaptionEnter(richMediaCell.currentRow);
-                    }
-                    break;
+            RichMediaCell richMediaCell = (RichMediaCell) this.this$0;
+            RichEditorListView.AnonymousClass6 anonymousClass6 = richMediaCell.delegate;
+            if (anonymousClass6 != null) {
+                RichEditorListView.this.onCaptionEnter(richMediaCell.currentRow);
             }
         }
 
         @Override
         public void onCaptionLockedInsert(CharSequence charSequence) {
-            switch (this.$r8$classId) {
-                case 2:
-                    RichEditorListView.AnonymousClass7 anonymousClass7 = ((RichAudioCell) this.this$0).delegate;
-                    if (anonymousClass7 != null && charSequence != null && charSequence.length() > 0) {
-                        RichEditorListView.this.replaceHelperSelectionWith(charSequence.toString());
-                        break;
-                    }
-                    break;
-                default:
-                    RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
-                    if (anonymousClass6 != null && charSequence != null && charSequence.length() > 0) {
-                        RichEditorListView.this.replaceHelperSelectionWith(charSequence.toString());
-                        break;
-                    }
-                    break;
+            RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
+            if (anonymousClass6 == null || charSequence == null || charSequence.length() <= 0) {
+                return;
             }
+            RichEditorListView.this.replaceHelperSelectionWith(charSequence.toString());
         }
 
         @Override
         public boolean onCaptionSelectAll() {
-            switch (this.$r8$classId) {
-                case 2:
-                    RichEditorListView.AnonymousClass7 anonymousClass7 = ((RichAudioCell) this.this$0).delegate;
-                    return anonymousClass7 != null && RichEditorListView.this.tryEscalateSelectAll();
-                default:
-                    RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
-                    return anonymousClass6 != null && RichEditorListView.this.tryEscalateSelectAll();
-            }
+            RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
+            return anonymousClass6 != null && RichEditorListView.this.tryEscalateSelectAll();
         }
 
         @Override
         public void onCaptionSpansChanged() {
-            switch (this.$r8$classId) {
-                case 2:
-                    RichEditorListView.AnonymousClass7 anonymousClass7 = ((RichAudioCell) this.this$0).delegate;
-                    if (anonymousClass7 != null) {
-                        RichEditorListView.access$3700(RichEditorListView.this);
-                    }
-                    break;
-                default:
-                    RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
-                    if (anonymousClass6 != null) {
-                        RichEditorListView.access$3700(RichEditorListView.this);
-                    }
-                    break;
+            RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
+            if (anonymousClass6 != null) {
+                RichEditorListView.access$3700(RichEditorListView.this);
             }
         }
 
         @Override
         public void onCaptionWillChange(int i, int i2) {
             RichEditorHistory richEditorHistory;
-            RichEditorHistory richEditorHistory2;
-            switch (this.$r8$classId) {
-                case 2:
-                    RichEditorListView.AnonymousClass7 anonymousClass7 = ((RichAudioCell) this.this$0).delegate;
-                    if (anonymousClass7 != null && (richEditorHistory = RichEditorListView.this.history) != null) {
-                        richEditorHistory.onBeforeChange(i, i2);
-                        break;
-                    }
-                    break;
-                default:
-                    RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
-                    if (anonymousClass6 != null && (richEditorHistory2 = RichEditorListView.this.history) != null) {
-                        richEditorHistory2.onBeforeChange(i, i2);
-                        break;
-                    }
-                    break;
+            RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
+            if (anonymousClass6 == null || (richEditorHistory = RichEditorListView.this.history) == null) {
+                return;
             }
+            richEditorHistory.onBeforeChange(i, i2);
         }
 
         @Override
@@ -3816,7 +3873,7 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             if (richEditor.sendButton != null) {
                 boolean zHasPendingUploads = richEditor.listView.hasPendingUploads();
                 richEditor.sendButtonLoading = zHasPendingUploads;
-                richEditor.sendButton.setLoading(zHasPendingUploads);
+                richEditor.sendButton.setLoading(zHasPendingUploads, -3.0f);
                 richEditor.sendButton.invalidate();
             }
             AnonymousClass9 anonymousClass9 = richEditor.sendButton;
@@ -3825,6 +3882,11 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
             }
             AndroidUtilities.cancelRunOnUIThread(richEditor.limitCheckRunnable);
             AndroidUtilities.runOnUIThread(richEditor.limitCheckRunnable, 1000L);
+        }
+
+        @Override
+        public void onDataSetChanged(int i) {
+            AndroidUtilities.runOnUIThread(new ChatbotSheet$$ExternalSyntheticLambda0(this, 1));
         }
 
         @Override
@@ -3841,11 +3903,10 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         @Override
         public void onInlineButtonEditRequested(RichEditorListView.InlineButtonEdit inlineButtonEdit, View view) {
             RichEditor richEditor = (RichEditor) this.this$0;
-            ItemOptions itemOptions = new ItemOptions(richEditor, view, false, true);
-            itemOptions.dontFocus = true;
-            richEditor.getParentActivity();
+            ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions(richEditor, view).dontFocus();
+            richEditor.getContext();
             richEditor.getResourceProvider();
-            richEditor.currentMenuVisible = RichInlineButtonEditor.show(itemOptions, richEditor, inlineButtonEdit, false);
+            richEditor.currentMenuVisible = RichInlineButtonEditor.show(itemOptionsDontFocus, richEditor, inlineButtonEdit, false);
         }
 
         @Override
@@ -3865,14 +3926,44 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         public void onOpenLocationRequest(BlockRow blockRow) {
             RichEditor richEditor = (RichEditor) this.this$0;
             if (blockRow != null && (blockRow.block instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(richEditor)) {
-                ChatAttachAlert chatAttachAlert = new ChatAttachAlert(richEditor.getParentActivity(), richEditor, false, false, false, richEditor.getResourceProvider());
-                chatAttachAlert.delegate = new AnonymousClass12(0);
-                chatAttachAlert.isLocationPicker = true;
-                chatAttachAlert.buttonsRecyclerViewWrapper.setVisibility(8);
-                chatAttachAlert.locationActivityDelegate = new VoIPFragment$$ExternalSyntheticLambda42(richEditor, blockRow, chatAttachAlert, 29);
+                ChatAttachAlert chatAttachAlert = new ChatAttachAlert(richEditor.getContext(), richEditor, false, false, false, richEditor.getResourceProvider());
+                chatAttachAlert.setDelegate(new AnonymousClass12());
+                chatAttachAlert.setLocationPicker();
+                chatAttachAlert.setLocationActivityDelegate(new RichEditor$$ExternalSyntheticLambda60(richEditor, blockRow, chatAttachAlert, 0));
                 chatAttachAlert.init();
                 chatAttachAlert.show();
             }
+        }
+
+        @Override
+        public void onProgressChange(long j, boolean z) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            if (!z) {
+                previewView.seekTo(j);
+                return;
+            }
+            VideoPlayer videoPlayer = previewView.videoPlayer;
+            if (videoPlayer != null) {
+                videoPlayer.seekTo(j, true);
+                return;
+            }
+            if (previewView.isCollage()) {
+                previewView.collage.seekTo(j, true);
+                return;
+            }
+            VideoPlayer videoPlayer2 = previewView.audioPlayer;
+            if (videoPlayer2 != null) {
+                videoPlayer2.seekTo(j, false);
+            }
+        }
+
+        @Override
+        public void onProgressDragChange(boolean z) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            if (previewView.isCollage()) {
+                previewView.collage.getClass();
+            }
+            previewView.updatePauseReason(-4, z);
         }
 
         @Override
@@ -3913,24 +4004,141 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
 
         @Override
         public void onRequestWindowFocusable(RichEditText richEditText) {
-            switch (this.$r8$classId) {
-                case 2:
-                    RichEditorListView.AnonymousClass7 anonymousClass7 = ((RichAudioCell) this.this$0).delegate;
-                    if (anonymousClass7 != null) {
-                        RichEditorListView richEditorListView = RichEditorListView.this;
-                        richEditorListView.prepareEditText(richEditText);
-                        richEditorListView.delegate.makeEditTextFocusable(richEditText);
-                    }
-                    break;
-                default:
-                    RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
-                    if (anonymousClass6 != null) {
-                        RichEditorListView richEditorListView2 = RichEditorListView.this;
-                        richEditorListView2.prepareEditText(richEditText);
-                        richEditorListView2.delegate.makeEditTextFocusable(richEditText);
-                    }
-                    break;
+            RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
+            if (anonymousClass6 != null) {
+                RichEditorListView richEditorListView = RichEditorListView.this;
+                richEditorListView.prepareEditText(richEditText);
+                richEditorListView.delegate.makeEditTextFocusable(richEditText);
             }
+        }
+
+        @Override
+        public void onRoundLeftChange(float f) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.roundLeft = f;
+            storyEntry.editedMedia = true;
+            previewView.updateRoundPlayer(true);
+        }
+
+        @Override
+        public void onRoundOffsetChange(long j) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.roundOffset = j;
+            storyEntry.editedMedia = true;
+            previewView.updateRoundPlayer(true);
+        }
+
+        @Override
+        public void onRoundRemove() {
+            PreviewView previewView = (PreviewView) this.this$0;
+            previewView.setupRound(null, null, true);
+            StoryRecorder.AnonymousClass7 anonymousClass7 = (StoryRecorder.AnonymousClass7) previewView;
+            StoryRecorder.AnonymousClass7 anonymousClass8 = StoryRecorder.this.previewView;
+            if (anonymousClass8 != null) {
+                anonymousClass8.setupRound(null, null, true);
+            }
+            StoryRecorder storyRecorder = StoryRecorder.this;
+            StoryRecorder.AnonymousClass24 anonymousClass24 = storyRecorder.paintView;
+            if (anonymousClass24 != null) {
+                anonymousClass24.deleteRound();
+            }
+            StoryRecorder.AnonymousClass8 anonymousClass9 = storyRecorder.captionEdit;
+            if (anonymousClass9 != null) {
+                anonymousClass9.setHasRoundVideo(false);
+            }
+            StoryEntry storyEntry = storyRecorder.outputEntry;
+            if (storyEntry != null) {
+                File file = storyEntry.round;
+                if (file != null) {
+                    try {
+                        file.delete();
+                    } catch (Exception unused) {
+                    }
+                    storyRecorder.outputEntry.round = null;
+                }
+                if (storyRecorder.outputEntry.roundThumb != null) {
+                    try {
+                        new File(storyRecorder.outputEntry.roundThumb).delete();
+                    } catch (Exception unused2) {
+                    }
+                    storyRecorder.outputEntry.roundThumb = null;
+                }
+            }
+        }
+
+        @Override
+        public void onRoundRightChange(float f) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.roundRight = f;
+            storyEntry.editedMedia = true;
+            previewView.updateRoundPlayer(true);
+        }
+
+        @Override
+        public void onRoundSelectChange(boolean z) {
+            RoundView roundView;
+            StoryRecorder storyRecorder = StoryRecorder.this;
+            StoryRecorder.AnonymousClass24 anonymousClass24 = storyRecorder.paintView;
+            if (anonymousClass24 == null) {
+                return;
+            }
+            RoundView roundView2 = null;
+            if (!z && (anonymousClass24.getSelectedEntity() instanceof RoundView)) {
+                storyRecorder.paintView.selectEntity$1(null, true);
+                return;
+            }
+            if (!z || (storyRecorder.paintView.getSelectedEntity() instanceof RoundView)) {
+                return;
+            }
+            StoryRecorder.AnonymousClass24 anonymousClass25 = storyRecorder.paintView;
+            int i = 0;
+            while (true) {
+                if (i >= anonymousClass25.entitiesView.getChildCount()) {
+                    roundView = null;
+                    break;
+                }
+                View childAt = anonymousClass25.entitiesView.getChildAt(i);
+                if (childAt instanceof RoundView) {
+                    roundView = (RoundView) childAt;
+                    break;
+                }
+                i++;
+            }
+            if (roundView != null) {
+                StoryRecorder.AnonymousClass24 anonymousClass26 = storyRecorder.paintView;
+                for (int i2 = 0; i2 < anonymousClass26.entitiesView.getChildCount(); i2++) {
+                    View childAt2 = anonymousClass26.entitiesView.getChildAt(i2);
+                    if (childAt2 instanceof RoundView) {
+                        roundView2 = (RoundView) childAt2;
+                        break;
+                    }
+                }
+                anonymousClass26.selectEntity$1(roundView2, true);
+            }
+        }
+
+        @Override
+        public void onRoundVolumeChange(float f) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.roundVolume = f;
+            storyEntry.editedMedia = true;
+            previewView.checkVolumes();
         }
 
         @Override
@@ -3943,41 +4151,292 @@ public final class RichEditor extends BaseFragment implements NotificationCenter
         }
 
         @Override
+        public void onSetHashtags(ArrayList arrayList, HashMap map) {
+        }
+
+        @Override
         public void onSlashSuggest(RichTextCell richTextCell, String str) {
             RichEditor richEditor = (RichEditor) this.this$0;
             if (richEditor.commandSuggestions == null) {
-                richEditor.commandSuggestions = new TooltipPopup(new TodoItemMenu$$ExternalSyntheticLambda3(this, 11), richEditor.getResourceProvider());
+                richEditor.commandSuggestions = new TooltipPopup(new RichEditor$3$$ExternalSyntheticLambda0(this, 0), richEditor.getResourceProvider());
             }
             richEditor.commandSuggestions.update(richTextCell, str);
         }
 
-        @Override
-        public TextSelectionHelper.ArticleTextSelectionHelper selectionHelper() {
-            switch (this.$r8$classId) {
-                case 2:
-                    RichEditorListView.AnonymousClass7 anonymousClass7 = ((RichAudioCell) this.this$0).delegate;
-                    if (anonymousClass7 != null) {
-                        return RichEditorListView.this.getTextSelectionHelper();
+        public void onUncaughtException(SettingsController settingsController, Thread thread, Throwable th) {
+            CrashlyticsController crashlyticsController = (CrashlyticsController) this.this$0;
+            synchronized (crashlyticsController) {
+                try {
+                    String str = "Handling uncaught exception \"" + th + "\" from thread " + thread.getName();
+                    if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                        Log.d("FirebaseCrashlytics", str, null);
                     }
-                    return null;
-                default:
-                    RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
-                    if (anonymousClass6 != null) {
-                        return RichEditorListView.this.getTextSelectionHelper();
+                    try {
+                        try {
+                            Utils.awaitEvenIfOnMainThread(crashlyticsController.backgroundWorker.submitTask(crashlyticsController.new AnonymousClass2(System.currentTimeMillis(), th, thread, settingsController)));
+                        } catch (TimeoutException unused) {
+                            Log.e("FirebaseCrashlytics", "Cannot send reports. Timed out while fetching settings.", null);
+                        }
+                    } catch (Exception e) {
+                        Log.e("FirebaseCrashlytics", "Error handling uncaught exception", e);
                     }
-                    return null;
+                } catch (Throwable th2) {
+                    throw th2;
+                }
             }
         }
 
         @Override
-        public void startChatPreview(DialogCell dialogCell) {
-            TopicsFragment topicsFragment = TopicsFragment.this;
-            HashSet hashSet = TopicsFragment.settingsPreloaded;
-            topicsFragment.showChatPreview$1(dialogCell);
+        public void onVideoLeftChange(boolean z, float f) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.left = f;
+            storyEntry.editedMedia = true;
+            VideoPlayer videoPlayer = previewView.videoPlayer;
+            if (videoPlayer == null || videoPlayer.getDuration() == -9223372036854775807L) {
+                return;
+            }
+            previewView.seekTo((long) (f * previewView.videoPlayer.getDuration()));
+        }
+
+        @Override
+        public void onVideoOffsetChange(int i, long j) {
+            ArrayList arrayList;
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null || (arrayList = storyEntry.collageContent) == null || i < 0 || i >= arrayList.size()) {
+                return;
+            }
+            ((StoryEntry) previewView.entry.collageContent.get(i)).videoOffset = j;
+        }
+
+        @Override
+        public void onVideoRightChange(boolean z, float f) {
+            StoryEntry storyEntry = ((PreviewView) this.this$0).entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.right = f;
+            storyEntry.editedMedia = true;
+        }
+
+        @Override
+        public void onVideoSelected(int i) {
+            CollageLayoutView2 collageLayoutView2 = ((PreviewView) this.this$0).collage;
+            if (collageLayoutView2 != null) {
+                ArrayList arrayList = collageLayoutView2.parts;
+                int size = arrayList.size();
+                int i2 = 0;
+                while (i2 < size) {
+                    Object obj = arrayList.get(i2);
+                    i2++;
+                    CollageLayoutView2.Part part = (CollageLayoutView2.Part) obj;
+                    if (part.index == i) {
+                        part.highlightAnimated.set(1.0f, true);
+                        collageLayoutView2.invalidate();
+                        return;
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void onVideoVolumeChange(float f) {
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null) {
+                return;
+            }
+            storyEntry.videoVolume = f;
+            previewView.checkVolumes();
+        }
+
+        public Bundle paramsForAnalyticsIntent() {
+            Bundle bundle = (Bundle) this.this$0;
+            Bundle bundle2 = new Bundle(bundle);
+            for (String str : bundle.keySet()) {
+                if (!str.startsWith("google.c.a.") && !str.equals("from")) {
+                    bundle2.remove(str);
+                }
+            }
+            return bundle2;
+        }
+
+        @Override
+        public TextSelectionHelper.ArticleTextSelectionHelper selectionHelper() {
+            RichEditorListView.AnonymousClass6 anonymousClass6 = ((RichMediaCell) this.this$0).delegate;
+            if (anonymousClass6 != null) {
+                return RichEditorListView.this.getTextSelectionHelper();
+            }
+            return null;
+        }
+
+        @Override
+        public void set(float f) {
+            ((StickerMakerView) this.this$0).setOutlineWidth(f);
+        }
+
+        @Override
+        public Task then(Object obj) throws Throwable {
+            JSONObject jSONObjectHandleResponse;
+            FileWriter fileWriter;
+            SettingsController settingsController = (SettingsController) this.this$0;
+            SettingsRequest settingsRequest = (SettingsRequest) settingsController.settingsRequest;
+            RequestOptions requestOptions = (RequestOptions) settingsController.settingsSpiCall;
+            String str = requestOptions.mPublishableApiKey;
+            FileWriter fileWriter2 = null;
+            try {
+                HashMap queryParamsFor = RequestOptions.getQueryParamsFor(settingsRequest);
+                Result result = new Result(queryParamsFor, str);
+                result.header("User-Agent", "Crashlytics Android SDK/18.6.0");
+                result.header("X-CRASHLYTICS-DEVELOPER-TOKEN", "470fa2b4ae81cd56ecbcda9735803434cec591fa");
+                RequestOptions.applyHeadersTo(result, settingsRequest);
+                String str2 = "Requesting settings from " + str;
+                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                    Log.d("FirebaseCrashlytics", str2, null);
+                }
+                String str3 = "Settings query params were: " + queryParamsFor;
+                if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+                    Log.v("FirebaseCrashlytics", str3, null);
+                }
+                jSONObjectHandleResponse = requestOptions.handleResponse(result.execute());
+            } catch (IOException e) {
+                Log.e("FirebaseCrashlytics", "Settings request failed.", e);
+                jSONObjectHandleResponse = null;
+            }
+            if (jSONObjectHandleResponse != null) {
+                Settings settingsJson = ((SafeFlow) settingsController.settingsJsonParser).parseSettingsJson(jSONObjectHandleResponse);
+                long j = settingsJson.expiresAtMillis;
+                Stripe.AnonymousClass1 anonymousClass1 = (Stripe.AnonymousClass1) settingsController.cachedSettingsIo;
+                anonymousClass1.getClass();
+                if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+                    Log.v("FirebaseCrashlytics", "Writing settings to cache file...", null);
+                }
+                try {
+                    try {
+                        jSONObjectHandleResponse.put("expires_at", j);
+                        try {
+                            fileWriter = new FileWriter((File) anonymousClass1.this$0);
+                            try {
+                                try {
+                                    fileWriter.write(jSONObjectHandleResponse.toString());
+                                    fileWriter.flush();
+                                } catch (Exception e2) {
+                                    e = e2;
+                                    Log.e("FirebaseCrashlytics", "Failed to cache settings", e);
+                                }
+                            } catch (Throwable th) {
+                                th = th;
+                                fileWriter2 = fileWriter;
+                                CommonUtils.closeOrLog(fileWriter2, "Failed to close settings writer.");
+                                throw th;
+                            }
+                        } catch (Exception e3) {
+                            e = e3;
+                            fileWriter = null;
+                            Log.e("FirebaseCrashlytics", "Failed to cache settings", e);
+                            CommonUtils.closeOrLog(fileWriter, "Failed to close settings writer.");
+                            SettingsController.logSettings("Loaded settings: ", jSONObjectHandleResponse);
+                            String str4 = settingsRequest.instanceId;
+                            SharedPreferences.Editor editorEdit = ((Context) settingsController.context).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                            editorEdit.putString("existing_instance_identifier", str4);
+                            editorEdit.apply();
+                            ((AtomicReference) settingsController.settings).set(settingsJson);
+                            ((TaskCompletionSource) ((AtomicReference) settingsController.settingsTask).get()).trySetResult(settingsJson);
+                            return Tasks.forResult(null);
+                        }
+                    } catch (Exception e4) {
+                        e = e4;
+                    }
+                    CommonUtils.closeOrLog(fileWriter, "Failed to close settings writer.");
+                    SettingsController.logSettings("Loaded settings: ", jSONObjectHandleResponse);
+                    String str5 = settingsRequest.instanceId;
+                    SharedPreferences.Editor editorEdit2 = ((Context) settingsController.context).getSharedPreferences("com.google.firebase.crashlytics", 0).edit();
+                    editorEdit2.putString("existing_instance_identifier", str5);
+                    editorEdit2.apply();
+                    ((AtomicReference) settingsController.settings).set(settingsJson);
+                    ((TaskCompletionSource) ((AtomicReference) settingsController.settingsTask).get()).trySetResult(settingsJson);
+                } catch (Throwable th2) {
+                    th = th2;
+                    CommonUtils.closeOrLog(fileWriter2, "Failed to close settings writer.");
+                    throw th;
+                }
+            }
+            return Tasks.forResult(null);
+        }
+
+        @Override
+        public void onVideoVolumeChange(int i, float f) {
+            ArrayList arrayList;
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null || (arrayList = storyEntry.collageContent) == null || i < 0 || i >= arrayList.size()) {
+                return;
+            }
+            ((StoryEntry) previewView.entry.collageContent.get(i)).videoVolume = f;
+        }
+
+        @Override
+        public void onVideoRightChange(int i, float f) {
+            ArrayList arrayList;
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null || (arrayList = storyEntry.collageContent) == null || i < 0 || i >= arrayList.size()) {
+                return;
+            }
+            ((StoryEntry) previewView.entry.collageContent.get(i)).videoRight = f;
+        }
+
+        @Override
+        public void onVideoLeftChange(int i, float f) {
+            ArrayList arrayList;
+            PreviewView previewView = (PreviewView) this.this$0;
+            StoryEntry storyEntry = previewView.entry;
+            if (storyEntry == null || (arrayList = storyEntry.collageContent) == null || i < 0 || i >= arrayList.size()) {
+                return;
+            }
+            ((StoryEntry) previewView.entry.collageContent.get(i)).videoLeft = f;
         }
 
         @Override
         public void makeEditTextFocusable(RichEditText richEditText) {
         }
+    }
+
+    public RichEditor(String str) {
+        super(null);
+        this.initialSelectionStart = -1;
+        this.initialSelectionEnd = -1;
+        this.tempRect = new Rect();
+        this.location = new int[2];
+        this.animateOpenProgress = 1.0f;
+        this.premiumButtons = new ArrayList();
+        this.blockButtons = new ArrayList();
+        this.formattingScrollMaxWidth = Integer.MAX_VALUE;
+        this.formattingButtons = new ArrayList();
+        this.reorderSavedPanelType = 0;
+        this.bottomPanelType = -1;
+        this.limitCheckRunnable = new RichEditor$$ExternalSyntheticLambda1(this, 0);
+        this.initialHtml = str;
+    }
+
+    public RichEditor(TL_iv.RichMessage richMessage) {
+        super(null);
+        this.initialSelectionStart = -1;
+        this.initialSelectionEnd = -1;
+        this.tempRect = new Rect();
+        this.location = new int[2];
+        this.animateOpenProgress = 1.0f;
+        this.premiumButtons = new ArrayList();
+        this.blockButtons = new ArrayList();
+        this.formattingScrollMaxWidth = Integer.MAX_VALUE;
+        this.formattingButtons = new ArrayList();
+        this.reorderSavedPanelType = 0;
+        this.bottomPanelType = -1;
+        this.limitCheckRunnable = new RichEditor$$ExternalSyntheticLambda1(this, 0);
+        this.initialRichMessage = richMessage;
     }
 }

@@ -10,15 +10,15 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.SvgHelper;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda51;
 
 public final class HttpGetBitmapTask extends AsyncTask {
-    public final ThemeActivity$$ExternalSyntheticLambda19 callback;
+    public final RichEditor$$ExternalSyntheticLambda51 callback;
     public Exception exception;
     public final HashMap headers = new HashMap();
 
-    public HttpGetBitmapTask(ThemeActivity$$ExternalSyntheticLambda19 themeActivity$$ExternalSyntheticLambda19) {
-        this.callback = themeActivity$$ExternalSyntheticLambda19;
+    public HttpGetBitmapTask(RichEditor$$ExternalSyntheticLambda51 richEditor$$ExternalSyntheticLambda51) {
+        this.callback = richEditor$$ExternalSyntheticLambda51;
     }
 
     @Override
@@ -47,12 +47,12 @@ public final class HttpGetBitmapTask extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         Bitmap bitmap = (Bitmap) obj;
-        ThemeActivity$$ExternalSyntheticLambda19 themeActivity$$ExternalSyntheticLambda19 = this.callback;
-        if (themeActivity$$ExternalSyntheticLambda19 != null) {
+        RichEditor$$ExternalSyntheticLambda51 richEditor$$ExternalSyntheticLambda51 = this.callback;
+        if (richEditor$$ExternalSyntheticLambda51 != null) {
             if (this.exception == null) {
-                themeActivity$$ExternalSyntheticLambda19.run(bitmap);
+                richEditor$$ExternalSyntheticLambda51.run(bitmap);
             } else {
-                themeActivity$$ExternalSyntheticLambda19.run(null);
+                richEditor$$ExternalSyntheticLambda51.run(null);
             }
         }
     }

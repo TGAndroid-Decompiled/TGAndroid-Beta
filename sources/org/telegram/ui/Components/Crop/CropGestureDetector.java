@@ -7,7 +7,7 @@ import android.view.ScaleGestureDetector;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.PipVideoOverlay;
+import org.telegram.ui.Stories.LiveStoryPipOverlay;
 
 public final class CropGestureDetector {
     public final ScaleGestureDetector mDetector;
@@ -25,7 +25,7 @@ public final class CropGestureDetector {
 
     public CropGestureDetector(Context context) {
         this.mMinimumVelocity = ViewConfiguration.get(context).getScaledMinimumFlingVelocity();
-        this.mDetector = new ScaleGestureDetector(context, new PipVideoOverlay.AnonymousClass3(this, 1));
+        this.mDetector = new ScaleGestureDetector(context, new LiveStoryPipOverlay.AnonymousClass3(this, 1));
     }
 
     public final void onTouchEvent(MotionEvent motionEvent) {

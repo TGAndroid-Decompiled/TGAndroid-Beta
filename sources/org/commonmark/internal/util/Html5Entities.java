@@ -1,6 +1,6 @@
 package org.commonmark.internal.util;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -54,7 +54,7 @@ public abstract class Html5Entities {
     public static String entityToString(String str) {
         Matcher matcher = NUMERIC_PATTERN.matcher(str);
         if (!matcher.find()) {
-            String str2 = (String) NAMED_CHARACTER_REFERENCES.get(SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, str));
+            String str2 = (String) NAMED_CHARACTER_REFERENCES.get(Fragment$$ExternalSyntheticOutline0.m(1, 1, str));
             return str2 != null ? str2 : str;
         }
         try {

@@ -17,10 +17,12 @@ import org.telegram.ui.Components.CombinedDrawable;
 
 public final class AddChannelCell extends FrameLayout {
     public final ImageView imageView;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final SimpleTextView textView;
 
     public AddChannelCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
         simpleTextView.setTextSize(16);
@@ -33,7 +35,7 @@ public final class AddChannelCell extends FrameLayout {
         this.imageView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        simpleTextView.setText(LocaleController.getString(R.string.BoostingAddChannelOrGroup), false);
+        simpleTextView.setText(LocaleController.getString(R.string.BoostingAddChannelOrGroup));
         Drawable drawable = getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = getResources().getDrawable(R.drawable.poll_add_plus);
         int color = Theme.getColor(Theme.key_switchTrackChecked, resourcesProvider);
@@ -65,7 +67,7 @@ public final class AddChannelCell extends FrameLayout {
     @Override
     public final void onMeasure(int i, int i2) {
         int size = View.MeasureSpec.getSize(i);
-        this.textView.measure(OKLCH.m(size, 94.0f, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.textView.measure(OKLCH.m(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
         this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }

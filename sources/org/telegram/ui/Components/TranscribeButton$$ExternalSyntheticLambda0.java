@@ -1,26 +1,28 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
 
 public final class TranscribeButton$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
     public final MessageObject f$0;
+    public final long f$1;
+    public final String f$2;
 
-    public TranscribeButton$$ExternalSyntheticLambda0(MessageObject messageObject, int i) {
+    public TranscribeButton$$ExternalSyntheticLambda0(String str, MessageObject messageObject, long j, int i) {
         this.$r8$classId = i;
         this.f$0 = messageObject;
+        this.f$1 = j;
+        this.f$2 = str;
     }
 
     @Override
     public final void run() {
-        MessageObject messageObject = this.f$0;
         switch (this.$r8$classId) {
             case 0:
-                NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
+                TranscribeButton.lambda$finishTranscription$8(this.f$0, this.f$1, this.f$2);
                 break;
             default:
-                messageObject.settingAvatar = false;
+                TranscribeButton.finishTranscription(this.f$0, this.f$1, this.f$2);
                 break;
         }
     }

@@ -7,21 +7,21 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkh;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline1;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.AboutLinkCell$$ExternalSyntheticLambda1;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.SearchField$$ExternalSyntheticLambda0;
 
 public class SelectorHeaderCell extends FrameLayout {
-    public final BackDrawable backDrawable;
-    public final ImageView closeView;
-    public final Paint dividerPaint;
-    public Runnable onCloseClickListener;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public final TextView textView;
+    public BackDrawable backDrawable;
+    private final ImageView closeView;
+    private final Paint dividerPaint;
+    private Runnable onCloseClickListener;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private final TextView textView;
 
     public SelectorHeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -29,7 +29,7 @@ public class SelectorHeaderCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         TextView textView = new TextView(context);
         this.textView = textView;
-        zzkh.m(20.0f, textView);
+        AccountFrozenAlert$$ExternalSyntheticOutline1.m(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
         int i = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.getColor(i, resourcesProvider));
@@ -40,29 +40,37 @@ public class SelectorHeaderCell extends FrameLayout {
         BackDrawable backDrawable = new BackDrawable(false);
         this.backDrawable = backDrawable;
         imageView.setImageDrawable(backDrawable);
-        backDrawable.color = Theme.getColor(i, resourcesProvider);
-        backDrawable.invalidateSelf();
-        backDrawable.rotatedColor = Theme.getColor(i, resourcesProvider);
-        backDrawable.invalidateSelf();
-        backDrawable.animationTime = 220.0f;
+        BackDrawable backDrawable2 = this.backDrawable;
+        backDrawable2.color = Theme.getColor(i, resourcesProvider);
+        backDrawable2.invalidateSelf();
+        BackDrawable backDrawable3 = this.backDrawable;
+        backDrawable3.rotatedColor = Theme.getColor(i, resourcesProvider);
+        backDrawable3.invalidateSelf();
+        this.backDrawable.animationTime = 220.0f;
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        imageView.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 21));
+        imageView.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 23));
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        Paint paint = this.dividerPaint;
-        paint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
-        canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
+        this.dividerPaint.setColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
+        canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), this.dividerPaint);
     }
 
     public int getHeaderHeight() {
         return AndroidUtilities.dp(56.0f);
     }
 
+    public final void lambda$new$0(View view) {
+        Runnable runnable = this.onCloseClickListener;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(getHeaderHeight(), 1073741824));
     }
 

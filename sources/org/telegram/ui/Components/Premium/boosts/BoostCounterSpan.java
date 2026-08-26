@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Premium.boosts;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -28,18 +27,14 @@ public final class BoostCounterSpan extends ReplacementSpan {
 
     public BoostCounterSpan(ChatMessageCell chatMessageCell, TextPaint textPaint, int i) {
         this.namePaint = textPaint;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, true, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
         this.countText = animatedTextDrawable;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        animatedTextDrawable.moveAmplitude = 0.3f;
-        animatedTextDrawable.animateDuration = 250L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
         animatedTextDrawable.setCallback(chatMessageCell);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.5f));
-        animatedTextDrawable.textPaint.setTypeface(AndroidUtilities.bold());
-        animatedTextDrawable.setText("", true, true);
-        animatedTextDrawable.gravity = 17;
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable.setText("");
+        animatedTextDrawable.setGravity(17);
         Drawable drawableMutate = chatMessageCell.getContext().getDrawable(R.drawable.mini_boost_profile_badge).mutate();
         this.boostProfileBadge = drawableMutate;
         Drawable drawableMutate2 = chatMessageCell.getContext().getDrawable(R.drawable.mini_boost_profile_badge2).mutate();
@@ -47,7 +42,7 @@ public final class BoostCounterSpan extends ReplacementSpan {
         drawableMutate.setBounds(0, 0, drawableMutate.getIntrinsicWidth(), drawableMutate.getIntrinsicHeight());
         drawableMutate2.setBounds(0, 0, drawableMutate2.getIntrinsicWidth(), drawableMutate2.getIntrinsicHeight());
         this.currentCount = i;
-        animatedTextDrawable.setText(i > 1 ? String.valueOf(i) : "", false, true);
+        animatedTextDrawable.setText(i > 1 ? String.valueOf(i) : "", false);
     }
 
     public static Pair create(ChatMessageCell chatMessageCell, TextPaint textPaint, int i) {
@@ -62,17 +57,15 @@ public final class BoostCounterSpan extends ReplacementSpan {
         TextPaint textPaint = this.namePaint;
         int color = textPaint.getColor();
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        int color2 = animatedTextDrawable.textPaint.getColor();
+        int textColor = animatedTextDrawable.getTextColor();
         Drawable drawable = this.boostProfileBadge2;
         Drawable drawable2 = this.boostProfileBadge;
-        if (color != color2) {
-            int color3 = textPaint.getColor();
-            animatedTextDrawable.textPaint.setColor(color3);
-            animatedTextDrawable.alpha = Color.alpha(color3);
-            int color4 = animatedTextDrawable.textPaint.getColor();
+        if (color != textColor) {
+            animatedTextDrawable.setTextColor(textPaint.getColor());
+            int textColor2 = animatedTextDrawable.getTextColor();
             PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-            drawable2.setColorFilter(new PorterDuffColorFilter(color4, mode));
-            drawable.setColorFilter(new PorterDuffColorFilter(animatedTextDrawable.textPaint.getColor(), mode));
+            drawable2.setColorFilter(new PorterDuffColorFilter(textColor2, mode));
+            drawable.setColorFilter(new PorterDuffColorFilter(animatedTextDrawable.getTextColor(), mode));
         }
         canvas.save();
         canvas.translate(f + ((!this.margin || this.isRtl) ? 0 : AndroidUtilities.dp(8.0f)), -AndroidUtilities.dp(0.2f));
@@ -84,7 +77,7 @@ public final class BoostCounterSpan extends ReplacementSpan {
         }
         canvas.translate(AndroidUtilities.dp(16.0f), 0.0f);
         Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, (int) animatedTextDrawable.getCurrentWidth(), (int) animatedTextDrawable.currentHeight);
+        rect.set(0, 0, (int) animatedTextDrawable.getCurrentWidth(), (int) animatedTextDrawable.getHeight());
         animatedTextDrawable.setBounds(rect);
         animatedTextDrawable.draw(canvas);
         canvas.restore();
@@ -96,8 +89,6 @@ public final class BoostCounterSpan extends ReplacementSpan {
     }
 
     public final int getWidth() {
-        float fDp = AndroidUtilities.dp((this.margin ? 8 : 0) + 16);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        return (int) (Math.max(animatedTextDrawable.currentWidth, animatedTextDrawable.oldWidth) + fDp);
+        return (int) (this.countText.getWidth() + AndroidUtilities.dp((this.margin ? 8 : 0) + 16));
     }
 }

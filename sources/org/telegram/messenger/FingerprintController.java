@@ -57,11 +57,11 @@ public class FingerprintController {
             try {
                 Locale locale = Locale.getDefault();
                 setLocale(Locale.ENGLISH);
-                SharedConfig$$ExternalSyntheticApiModelOutline0.m880m();
+                SharedConfig$$ExternalSyntheticApiModelOutline0.m882m();
                 keyPairGenerator2.initialize(SharedConfig$$ExternalSyntheticApiModelOutline0.m().setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
                 keyPairGenerator2.generateKeyPair();
                 setLocale(locale);
-                AndroidUtilities.runOnUIThread(new LiteMode$$ExternalSyntheticLambda0(2, z));
+                AndroidUtilities.runOnUIThread(new LiteMode$$ExternalSyntheticLambda0(z, 2));
             } catch (InvalidAlgorithmParameterException e) {
                 FileLog.e(e);
             } catch (Exception e2) {
@@ -132,7 +132,7 @@ public class FingerprintController {
         Context context = ApplicationLoader.applicationContext;
         FingerprintManagerCompat.FingerprintManagerCompatImpl fingerprintManagerCompatImpl = FingerprintManagerCompat.IMPL;
         if (fingerprintManagerCompatImpl.isHardwareDetected(context) && fingerprintManagerCompatImpl.hasEnrolledFingerprints(ApplicationLoader.applicationContext)) {
-            Utilities.globalQueue.postRunnable(new LiteMode$$ExternalSyntheticLambda0(1, z));
+            Utilities.globalQueue.postRunnable(new LiteMode$$ExternalSyntheticLambda0(z, 1));
         }
     }
 }

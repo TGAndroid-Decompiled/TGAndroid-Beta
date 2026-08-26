@@ -7,7 +7,7 @@ public final class SendMessagesHelper$$ExternalSyntheticLambda65 implements Runn
     public final int $r8$classId;
     public final BaseFragment f$0;
 
-    public SendMessagesHelper$$ExternalSyntheticLambda65(int i, BaseFragment baseFragment) {
+    public SendMessagesHelper$$ExternalSyntheticLambda65(BaseFragment baseFragment, int i) {
         this.$r8$classId = i;
         this.f$0 = baseFragment;
     }

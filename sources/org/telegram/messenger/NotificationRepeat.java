@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.app.IntentService;
 import android.content.Intent;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda42;
 
 public class NotificationRepeat extends IntentService {
     public NotificationRepeat() {
@@ -20,7 +19,7 @@ public class NotificationRepeat extends IntentService {
         }
         int intExtra = intent.getIntExtra("currentAccount", UserConfig.selectedAccount);
         if (UserConfig.isValidAccount(intExtra)) {
-            AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda42(intExtra, 3));
+            AndroidUtilities.runOnUIThread(new SharedConfig$$ExternalSyntheticLambda1(intExtra, 3));
         }
     }
 }

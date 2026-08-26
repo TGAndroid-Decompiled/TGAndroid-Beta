@@ -50,7 +50,7 @@ public final class RichCommand {
             imageView.setImageResource(richCommand.icon);
             textView.setText(richCommand.name);
             textView2.setText((CharSequence) richCommand.commands.get(0));
-            updateColors$1();
+            updateColors();
         }
 
         public int[] getColorKeys() {
@@ -63,7 +63,7 @@ public final class RichCommand {
         }
 
         @Override
-        public final void updateColors$1() {
+        public final void updateColors() {
             int i = Theme.key_windowBackgroundWhiteBlackText;
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
             this.iconView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.SRC_IN));

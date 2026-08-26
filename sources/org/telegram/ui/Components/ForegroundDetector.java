@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 
-public abstract class ForegroundDetector implements Application.ActivityLifecycleCallbacks {
+public class ForegroundDetector implements Application.ActivityLifecycleCallbacks {
     private static ForegroundDetector Instance;
     private int refs;
     private boolean wasInBackground = true;

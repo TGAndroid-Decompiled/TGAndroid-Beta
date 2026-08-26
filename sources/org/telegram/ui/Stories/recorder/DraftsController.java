@@ -19,7 +19,7 @@ import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Business.BusinessLinksController$$ExternalSyntheticLambda8;
+import org.telegram.ui.Business.QuickRepliesController$$ExternalSyntheticLambda22;
 import org.webrtc.EglRenderer$$ExternalSyntheticLambda8;
 
 public final class DraftsController {
@@ -39,7 +39,7 @@ public final class DraftsController {
         this.loadingFailed = true;
         DraftsController$$ExternalSyntheticLambda1 draftsController$$ExternalSyntheticLambda1 = new DraftsController$$ExternalSyntheticLambda1(this, 0);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
-        messagesStorage.getStorageQueue().postRunnable(new EglRenderer$$ExternalSyntheticLambda8((Object) messagesStorage, true, (Object) draftsController$$ExternalSyntheticLambda1, 7));
+        messagesStorage.getStorageQueue().postRunnable(new EglRenderer$$ExternalSyntheticLambda8((Object) messagesStorage, true, (Object) draftsController$$ExternalSyntheticLambda1, 11));
     }
 
     public final void append(StoryDraft storyDraft) {
@@ -129,7 +129,7 @@ public final class DraftsController {
         this.drafts.removeAll(arrayList);
         int i2 = this.currentAccount;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i2);
-        messagesStorage.getStorageQueue().postRunnable(new BusinessLinksController$$ExternalSyntheticLambda8(2, arrayList2, messagesStorage));
+        messagesStorage.getStorageQueue().postRunnable(new QuickRepliesController$$ExternalSyntheticLambda22(2, arrayList2, messagesStorage));
         NotificationCenter.getInstance(i2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
     }
 

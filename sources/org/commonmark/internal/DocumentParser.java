@@ -1,7 +1,6 @@
 package org.commonmark.internal;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import com.stripe.android.Stripe;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import io.noties.markwon.ext.latex.JLatexMathBlockParser;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.regex.Pattern;
+import kotlinx.coroutines.flow.SafeFlow;
 import org.commonmark.ext.gfm.tables.TableCell;
 import org.commonmark.ext.gfm.tables.internal.TableBlockParser;
 import org.commonmark.internal.util.Parsing;
@@ -91,16 +91,16 @@ public final class DocumentParser {
             LinkReferenceDefinition linkReferenceDefinition = (LinkReferenceDefinition) obj;
             Paragraph paragraph = paragraphParser.block;
             linkReferenceDefinition.unlink();
-            Node node = (Node) paragraph.prev;
+            Node node = paragraph.prev;
             linkReferenceDefinition.prev = node;
             if (node != null) {
                 node.next = linkReferenceDefinition;
             }
             linkReferenceDefinition.next = paragraph;
             paragraph.prev = linkReferenceDefinition;
-            Node node2 = (Node) paragraph.parent;
+            Node node2 = paragraph.parent;
             linkReferenceDefinition.parent = node2;
-            if (((Node) linkReferenceDefinition.prev) == null) {
+            if (linkReferenceDefinition.prev == null) {
                 node2.firstChild = linkReferenceDefinition;
             }
             LinkedHashMap linkedHashMap = this.definitions;
@@ -144,7 +144,7 @@ public final class DocumentParser {
 
     public final void finalize(AbstractBlockParser abstractBlockParser) {
         if (getActiveBlockParser() == abstractBlockParser) {
-            SurfaceContainer$$ExternalSyntheticOutline0.m5m(1, this.activeBlockParsers);
+            Fragment$$ExternalSyntheticOutline0.m81m(1, this.activeBlockParsers);
         }
         if (abstractBlockParser instanceof ParagraphParser) {
             addDefinitionsFrom((ParagraphParser) abstractBlockParser);
@@ -182,7 +182,7 @@ public final class DocumentParser {
     }
 
     public final AbstractBlockParser getActiveBlockParser() {
-        return (AbstractBlockParser) SurfaceContainer$$ExternalSyntheticOutline0.m(1, this.activeBlockParsers);
+        return (AbstractBlockParser) Fragment$$ExternalSyntheticOutline0.m(1, this.activeBlockParsers);
     }
 
     public final void incorporateLine(String str) {
@@ -190,15 +190,17 @@ public final class DocumentParser {
         char c;
         BlockStartImpl blockStartImpl;
         int i;
+        ArrayList arrayList;
         int i2;
         HeadingParser headingParser;
         int i3;
         StringBuilder paragraphContent;
+        BlockStartImpl blockStartImpl2;
         char c2;
         int i4;
         int i5;
         StringBuilder sb;
-        BlockStartImpl blockStartImpl2;
+        BlockStartImpl blockStartImpl3;
         boolean z;
         boolean z2;
         TableCell.Alignment alignment;
@@ -212,20 +214,18 @@ public final class DocumentParser {
         char cCharAt2;
         ListBlockParser.ListData listData2;
         boolean z3;
-        int i9;
         String string = str;
-        ArrayList arrayList = this.activeBlockParsers;
+        ArrayList arrayList2 = this.activeBlockParsers;
         char c4 = '\t';
-        char c5 = ' ';
-        int i10 = 4;
+        int i9 = 4;
         int length = string.length();
         StringBuilder sb2 = null;
-        for (int i11 = 0; i11 < length; i11++) {
-            char cCharAt3 = string.charAt(i11);
+        for (int i10 = 0; i10 < length; i10++) {
+            char cCharAt3 = string.charAt(i10);
             if (cCharAt3 == 0) {
                 if (sb2 == null) {
                     sb2 = new StringBuilder(length);
-                    sb2.append((CharSequence) string, 0, i11);
+                    sb2.append((CharSequence) string, 0, i10);
                 }
                 sb2.append((char) 65533);
             } else if (sb2 != null) {
@@ -239,8 +239,8 @@ public final class DocumentParser {
         this.index = 0;
         this.column = 0;
         this.columnIsInTab = false;
-        int i12 = 1;
-        for (AbstractBlockParser abstractBlockParser2 : arrayList.subList(1, arrayList.size())) {
+        int i11 = 1;
+        for (AbstractBlockParser abstractBlockParser2 : arrayList2.subList(1, arrayList2.size())) {
             findNextNonSpace();
             BlockContinueImpl blockContinueImplTryContinue = abstractBlockParser2.tryContinue(this);
             if (blockContinueImplTryContinue == null) {
@@ -250,44 +250,46 @@ public final class DocumentParser {
                 finalize(abstractBlockParser2);
                 return;
             }
-            int i13 = blockContinueImplTryContinue.newIndex;
-            if (i13 != -1) {
-                setNewIndex(i13);
+            int i12 = blockContinueImplTryContinue.newIndex;
+            if (i12 != -1) {
+                setNewIndex(i12);
             } else {
-                int i14 = blockContinueImplTryContinue.newColumn;
-                if (i14 != -1) {
-                    setNewColumn(i14);
+                int i13 = blockContinueImplTryContinue.newColumn;
+                if (i13 != -1) {
+                    setNewColumn(i13);
                 }
             }
-            i12++;
+            i11++;
         }
-        ArrayList arrayList2 = new ArrayList(arrayList.subList(i12, arrayList.size()));
-        AbstractBlockParser abstractBlockParser3 = (AbstractBlockParser) arrayList.get(i12 - 1);
-        boolean zIsEmpty = arrayList2.isEmpty();
+        ArrayList arrayList3 = new ArrayList(arrayList2.subList(i11, arrayList2.size()));
+        AbstractBlockParser abstractBlockParser3 = (AbstractBlockParser) arrayList2.get(i11 - 1);
+        boolean zIsEmpty = arrayList3.isEmpty();
         boolean zIsContainer = (abstractBlockParser3.getBlock() instanceof Paragraph) || abstractBlockParser3.isContainer();
         while (true) {
             if (zIsContainer) {
                 findNextNonSpace();
                 if (!this.blank) {
-                    if (this.indent < i10) {
+                    if (this.indent < i9) {
                         c = 0;
                         if (Character.isLetter(Character.codePointAt(this.line, this.nextNonSpace))) {
                         }
                     } else {
                         c = 0;
                     }
-                    Stripe.AnonymousClass1 anonymousClass1 = new Stripe.AnonymousClass1(abstractBlockParser3, 16);
-                    ArrayList arrayList3 = this.blockParserFactories;
-                    int size = arrayList3.size();
-                    int i15 = 0;
+                    SafeFlow safeFlow = new SafeFlow(abstractBlockParser3);
+                    Object obj = safeFlow.block;
+                    ArrayList arrayList4 = this.blockParserFactories;
+                    int size = arrayList4.size();
+                    int i14 = 0;
                     while (true) {
-                        if (i15 < size) {
-                            Object obj = arrayList3.get(i15);
-                            i15++;
-                            switch (((HeadingParser.Factory) obj).$r8$classId) {
+                        if (i14 < size) {
+                            Object obj2 = arrayList4.get(i14);
+                            int i15 = i14 + 1;
+                            switch (((HeadingParser.Factory) obj2).$r8$classId) {
                                 case 0:
+                                    i = i15;
                                     abstractBlockParser = abstractBlockParser3;
-                                    i = size;
+                                    arrayList = arrayList4;
                                     if (this.indent < 4) {
                                         CharSequence charSequence = this.line;
                                         int i16 = this.nextNonSpace;
@@ -352,19 +354,19 @@ public final class DocumentParser {
                                         if (headingParser != null) {
                                             AbstractBlockParser[] abstractBlockParserArr = new AbstractBlockParser[i2];
                                             abstractBlockParserArr[c] = headingParser;
-                                            BlockStartImpl blockStartImpl3 = new BlockStartImpl(abstractBlockParserArr);
-                                            blockStartImpl3.newIndex = charSequence.length();
-                                            blockStartImpl = blockStartImpl3;
+                                            blockStartImpl2 = new BlockStartImpl(abstractBlockParserArr);
+                                            blockStartImpl2.newIndex = charSequence.length();
+                                            blockStartImpl = blockStartImpl2;
                                             break;
                                         } else {
                                             char cCharAt7 = charSequence.charAt(i16);
                                             if (cCharAt7 != '-') {
                                                 if (cCharAt7 == '=') {
-                                                    if (Parsing.skipSpaceTab(Parsing.skip('=', charSequence, i16 + 1, charSequence.length()), charSequence.length(), charSequence) >= charSequence.length()) {
+                                                    if (Parsing.skipSpaceTab(charSequence, Parsing.skip('=', charSequence, i16 + 1, charSequence.length()), charSequence.length()) >= charSequence.length()) {
                                                         i3 = 1;
                                                     }
                                                 }
-                                                if (i3 <= 0 && (paragraphContent = anonymousClass1.getParagraphContent()) != null) {
+                                                if (i3 <= 0 && (paragraphContent = safeFlow.getParagraphContent()) != null) {
                                                     HeadingParser headingParser2 = new HeadingParser(i3, paragraphContent.toString());
                                                     AbstractBlockParser[] abstractBlockParserArr2 = new AbstractBlockParser[1];
                                                     abstractBlockParserArr2[c] = headingParser2;
@@ -375,7 +377,7 @@ public final class DocumentParser {
                                                     break;
                                                 }
                                             }
-                                            i3 = Parsing.skipSpaceTab(Parsing.skip('-', charSequence, i16 + 1, charSequence.length()), charSequence.length(), charSequence) >= charSequence.length() ? 2 : 0;
+                                            i3 = Parsing.skipSpaceTab(charSequence, Parsing.skip('-', charSequence, i16 + 1, charSequence.length()), charSequence.length()) >= charSequence.length() ? 2 : 0;
                                             if (i3 <= 0) {
                                             }
                                         }
@@ -383,8 +385,9 @@ public final class DocumentParser {
                                     blockStartImpl = null;
                                     break;
                                 case 1:
+                                    i = i15;
                                     abstractBlockParser = abstractBlockParser3;
-                                    i = size;
+                                    arrayList = arrayList4;
                                     if (this.indent < 4) {
                                         int i21 = this.nextNonSpace;
                                         CharSequence charSequence2 = this.line;
@@ -410,13 +413,14 @@ public final class DocumentParser {
                                     blockStartImpl = null;
                                     break;
                                 case 2:
+                                    i = i15;
                                     abstractBlockParser = abstractBlockParser3;
-                                    i = size;
+                                    arrayList = arrayList4;
                                     CharSequence charSequence3 = this.line;
-                                    StringBuilder paragraphContent2 = anonymousClass1.getParagraphContent();
+                                    StringBuilder paragraphContent2 = safeFlow.getParagraphContent();
                                     if (paragraphContent2 != null && paragraphContent2.toString().contains("|") && !paragraphContent2.toString().contains("\n")) {
                                         CharSequence charSequenceSubSequence = charSequence3.subSequence(this.index, charSequence3.length());
-                                        ArrayList arrayList4 = new ArrayList();
+                                        ArrayList arrayList5 = new ArrayList();
                                         boolean z4 = false;
                                         int i23 = 0;
                                         int i24 = 0;
@@ -429,7 +433,7 @@ public final class DocumentParser {
                                                 } else {
                                                     sb = paragraphContent2;
                                                     if (cCharAt8 == '-' || cCharAt8 == ':') {
-                                                        if (i24 != 0 || arrayList4.isEmpty()) {
+                                                        if (i24 != 0 || arrayList5.isEmpty()) {
                                                             if (cCharAt8 == ':') {
                                                                 i23++;
                                                                 z = true;
@@ -455,7 +459,7 @@ public final class DocumentParser {
                                                                 } else {
                                                                     alignment = z2 ? TableCell.Alignment.RIGHT : null;
                                                                 }
-                                                                arrayList4.add(alignment);
+                                                                arrayList5.add(alignment);
                                                                 i24 = 0;
                                                             }
                                                         }
@@ -473,26 +477,27 @@ public final class DocumentParser {
                                                 if (!z4) {
                                                 }
                                             }
-                                            arrayList4 = null;
+                                            arrayList5 = null;
                                         }
-                                        if (arrayList4 != null && !arrayList4.isEmpty()) {
+                                        if (arrayList5 != null && !arrayList5.isEmpty()) {
                                             ArrayList arrayListSplit = TableBlockParser.split(sb);
-                                            if (arrayList4.size() >= arrayListSplit.size()) {
-                                                TableBlockParser tableBlockParser = new TableBlockParser(arrayList4, arrayListSplit);
+                                            if (arrayList5.size() >= arrayListSplit.size()) {
+                                                TableBlockParser tableBlockParser = new TableBlockParser(arrayList5, arrayListSplit);
                                                 AbstractBlockParser[] abstractBlockParserArr4 = new AbstractBlockParser[1];
                                                 abstractBlockParserArr4[c] = tableBlockParser;
-                                                blockStartImpl2 = new BlockStartImpl(abstractBlockParserArr4);
-                                                blockStartImpl2.newIndex = this.index;
-                                                blockStartImpl2.replaceActiveBlockParser = true;
-                                                blockStartImpl = blockStartImpl2;
+                                                blockStartImpl3 = new BlockStartImpl(abstractBlockParserArr4);
+                                                blockStartImpl3.newIndex = this.index;
+                                                blockStartImpl3.replaceActiveBlockParser = true;
+                                                blockStartImpl = blockStartImpl3;
                                             }
                                         }
                                     }
                                     blockStartImpl = null;
                                     break;
                                 case 3:
+                                    i = i15;
                                     abstractBlockParser = abstractBlockParser3;
-                                    i = size;
+                                    arrayList = arrayList4;
                                     int i25 = this.nextNonSpace;
                                     if (BlockQuoteParser.isMarker(this, i25)) {
                                         int i26 = this.column + this.indent;
@@ -511,8 +516,9 @@ public final class DocumentParser {
                                     }
                                     break;
                                 case 4:
+                                    i = i15;
                                     abstractBlockParser = abstractBlockParser3;
-                                    i = size;
+                                    arrayList = arrayList4;
                                     int i29 = this.indent;
                                     if (i29 < 4) {
                                         int i30 = this.nextNonSpace;
@@ -571,17 +577,18 @@ public final class DocumentParser {
                                         if (fencedCodeBlockParser != null) {
                                             AbstractBlockParser[] abstractBlockParserArr6 = new AbstractBlockParser[1];
                                             abstractBlockParserArr6[c] = fencedCodeBlockParser;
-                                            BlockStartImpl blockStartImpl5 = new BlockStartImpl(abstractBlockParserArr6);
-                                            blockStartImpl5.newIndex = i6 + fencedCodeBlockParser.block.fenceLength;
-                                            blockStartImpl = blockStartImpl5;
+                                            blockStartImpl2 = new BlockStartImpl(abstractBlockParserArr6);
+                                            blockStartImpl2.newIndex = i6 + fencedCodeBlockParser.block.fenceLength;
+                                            blockStartImpl = blockStartImpl2;
                                         }
                                         break;
                                     }
                                     blockStartImpl = null;
                                     break;
                                 case 5:
+                                    i = i15;
                                     abstractBlockParser = abstractBlockParser3;
-                                    i = size;
+                                    arrayList = arrayList4;
                                     int i36 = this.nextNonSpace;
                                     CharSequence charSequence6 = this.line;
                                     if (this.indent >= 4 || charSequence6.charAt(i36) != '<') {
@@ -590,7 +597,7 @@ public final class DocumentParser {
                                         int i37 = 1;
                                         while (true) {
                                             if (i37 <= 7) {
-                                                if (i37 == 7 && (((AbstractBlockParser) anonymousClass1.this$0).getBlock() instanceof Paragraph)) {
+                                                if (i37 == 7 && (((AbstractBlockParser) obj).getBlock() instanceof Paragraph)) {
                                                     i7 = 1;
                                                 } else {
                                                     Pattern[] patternArr = HtmlBlockParser.BLOCK_PATTERNS[i37];
@@ -612,8 +619,9 @@ public final class DocumentParser {
                                     }
                                     break;
                                 case 6:
+                                    i = i15;
                                     abstractBlockParser = abstractBlockParser3;
-                                    i = size;
+                                    arrayList = arrayList4;
                                     if (this.indent < 4 || this.blank || (getActiveBlockParser().getBlock() instanceof Paragraph)) {
                                         blockStartImpl = null;
                                     } else {
@@ -624,19 +632,20 @@ public final class DocumentParser {
                                     }
                                     break;
                                 case 7:
-                                    AbstractBlockParser abstractBlockParser4 = (AbstractBlockParser) anonymousClass1.this$0;
+                                    i = i15;
+                                    AbstractBlockParser abstractBlockParser4 = (AbstractBlockParser) obj;
                                     int i38 = this.indent;
                                     if (i38 < 4) {
                                         int i39 = this.nextNonSpace;
                                         int i40 = this.column + i38;
-                                        boolean z6 = anonymousClass1.getParagraphContent() != null;
+                                        boolean z6 = safeFlow.getParagraphContent() != null;
                                         CharSequence charSequence7 = this.line;
                                         char cCharAt10 = charSequence7.charAt(i39);
                                         boolean z7 = z6;
                                         if (cCharAt10 == '*' || cCharAt10 == '+' || cCharAt10 == '-') {
                                             abstractBlockParser = abstractBlockParser3;
                                             i8 = i40;
-                                            i = size;
+                                            arrayList = arrayList4;
                                             int i41 = i39 + 1;
                                             if (i41 >= charSequence7.length() || (cCharAt2 = charSequence7.charAt(i41)) == '\t' || cCharAt2 == ' ') {
                                                 BulletList bulletList = new BulletList();
@@ -682,11 +691,11 @@ public final class DocumentParser {
                                                             int i45 = i42 + 1;
                                                             if (i45 < charSequence7.length()) {
                                                                 char cCharAt12 = charSequence7.charAt(i45);
-                                                                i = size;
+                                                                arrayList = arrayList4;
                                                                 if (cCharAt12 == '\t' || cCharAt12 == ' ') {
                                                                 }
                                                             } else {
-                                                                i = size;
+                                                                arrayList = arrayList4;
                                                             }
                                                             String string2 = charSequence7.subSequence(i39, i42).toString();
                                                             OrderedList orderedList = new OrderedList();
@@ -699,7 +708,7 @@ public final class DocumentParser {
                                                 } else {
                                                     i8 = i40;
                                                 }
-                                                i = size;
+                                                arrayList = arrayList4;
                                                 listData = null;
                                             }
                                         }
@@ -747,9 +756,9 @@ public final class DocumentParser {
                                                 if (((listBlock3 instanceof BulletList) && (listBlock2 instanceof BulletList)) ? Character.valueOf(((BulletList) listBlock3).bulletMarker).equals(Character.valueOf(((BulletList) listBlock2).bulletMarker)) : ((listBlock3 instanceof OrderedList) && (listBlock2 instanceof OrderedList)) ? Character.valueOf(((OrderedList) listBlock3).delimiter).equals(Character.valueOf(((OrderedList) listBlock2).delimiter)) : false) {
                                                     AbstractBlockParser[] abstractBlockParserArr9 = new AbstractBlockParser[1];
                                                     abstractBlockParserArr9[c] = listItemParser;
-                                                    blockStartImpl2 = new BlockStartImpl(abstractBlockParserArr9);
-                                                    blockStartImpl2.newColumn = i51;
-                                                    blockStartImpl = blockStartImpl2;
+                                                    blockStartImpl3 = new BlockStartImpl(abstractBlockParserArr9);
+                                                    blockStartImpl3.newColumn = i51;
+                                                    blockStartImpl = blockStartImpl3;
                                                 }
                                             }
                                             AbstractBlockParser[] abstractBlockParserArr10 = new AbstractBlockParser[2];
@@ -760,12 +769,13 @@ public final class DocumentParser {
                                         }
                                     } else {
                                         abstractBlockParser = abstractBlockParser3;
-                                        i = size;
+                                        arrayList = arrayList4;
                                     }
                                     blockStartImpl = null;
                                     break;
                                 default:
-                                    if (this.indent >= i10) {
+                                    if (this.indent >= i9) {
+                                        i = i15;
                                         blockStartImpl = null;
                                     } else {
                                         int i52 = this.nextNonSpace;
@@ -776,6 +786,7 @@ public final class DocumentParser {
                                         int i55 = 0;
                                         while (true) {
                                             if (i52 >= length8) {
+                                                i = i15;
                                                 int i56 = i53;
                                                 int i57 = i54;
                                                 int i58 = i55;
@@ -784,40 +795,41 @@ public final class DocumentParser {
                                                     abstractBlockParserArr11[c] = new DocumentBlockParser(1);
                                                     blockStartImpl = new BlockStartImpl(abstractBlockParserArr11);
                                                     blockStartImpl.newIndex = charSequence8.length();
+                                                } else {
+                                                    blockStartImpl = null;
                                                 }
                                             } else {
                                                 char cCharAt14 = charSequence8.charAt(i52);
-                                                if (cCharAt14 == c4 || cCharAt14 == c5) {
-                                                    i9 = i54;
+                                                if (cCharAt14 == c4 || cCharAt14 == ' ') {
                                                     i55 = i55;
+                                                    i54 = i54;
                                                     i53 = i53;
                                                 } else if (cCharAt14 == '*') {
-                                                    i9 = i54;
                                                     i55++;
                                                 } else if (cCharAt14 == '-') {
-                                                    i9 = i54;
                                                     i53++;
-                                                } else if (cCharAt14 == '_') {
-                                                    i9 = i54 + 1;
+                                                } else if (cCharAt14 != '_') {
+                                                    i = i15;
+                                                    blockStartImpl = null;
+                                                } else {
+                                                    i54++;
                                                 }
                                                 i52++;
-                                                i54 = i9;
+                                                i15 = i15;
                                                 c4 = '\t';
-                                                c5 = ' ';
                                             }
-                                            blockStartImpl = null;
                                         }
                                     }
                                     abstractBlockParser = abstractBlockParser3;
-                                    i = size;
+                                    arrayList = arrayList4;
                                     break;
                             }
                             if (blockStartImpl == null) {
+                                i14 = i;
                                 abstractBlockParser3 = abstractBlockParser;
-                                size = i;
+                                arrayList4 = arrayList;
                                 c4 = '\t';
-                                c5 = ' ';
-                                i10 = 4;
+                                i9 = 4;
                             }
                         } else {
                             abstractBlockParser = abstractBlockParser3;
@@ -828,7 +840,7 @@ public final class DocumentParser {
                         setNewIndex(this.nextNonSpace);
                     } else {
                         if (!zIsEmpty) {
-                            finalizeBlocks(arrayList2);
+                            finalizeBlocks(arrayList3);
                             zIsEmpty = true;
                         }
                         int i59 = blockStartImpl.newIndex;
@@ -842,7 +854,7 @@ public final class DocumentParser {
                         }
                         if (blockStartImpl.replaceActiveBlockParser) {
                             AbstractBlockParser activeBlockParser = getActiveBlockParser();
-                            SurfaceContainer$$ExternalSyntheticOutline0.m5m(1, arrayList);
+                            Fragment$$ExternalSyntheticOutline0.m81m(1, arrayList2);
                             this.allBlockParsers.remove(activeBlockParser);
                             if (activeBlockParser instanceof ParagraphParser) {
                                 addDefinitionsFrom((ParagraphParser) activeBlockParser);
@@ -861,8 +873,7 @@ public final class DocumentParser {
                         }
                         abstractBlockParser3 = abstractBlockParser;
                         c4 = '\t';
-                        c5 = ' ';
-                        i10 = 4;
+                        i9 = 4;
                     }
                 }
                 abstractBlockParser = abstractBlockParser3;
@@ -875,7 +886,7 @@ public final class DocumentParser {
                 return;
             }
             if (!zIsEmpty) {
-                finalizeBlocks(arrayList2);
+                finalizeBlocks(arrayList3);
             }
             if (!abstractBlockParser.isContainer()) {
                 addLine();

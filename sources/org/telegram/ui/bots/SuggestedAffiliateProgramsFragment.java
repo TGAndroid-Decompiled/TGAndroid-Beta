@@ -12,16 +12,14 @@ import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BackDrawable;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Stars.BotStarsController;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
-import org.telegram.ui.UserInfoActivity;
+import org.telegram.ui.iv.RichEditor$3$$ExternalSyntheticLambda0;
+import org.telegram.ui.web.HistoryFragment;
 
 public final class SuggestedAffiliateProgramsFragment extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public BackDrawable backDrawable;
@@ -40,7 +38,7 @@ public final class SuggestedAffiliateProgramsFragment extends BaseFragment imple
         this.backDrawable = backDrawable;
         actionBar.setBackButtonDrawable(backDrawable);
         this.backDrawable.animationTime = 240.0f;
-        this.actionBar.setActionBarMenuOnItemClick(new UserInfoActivity.AnonymousClass4(this, 6));
+        this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 17));
         this.actionBar.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
         ActionBar actionBar2 = this.actionBar;
         int i = Theme.key_windowBackgroundWhiteBlackText;
@@ -49,8 +47,8 @@ public final class SuggestedAffiliateProgramsFragment extends BaseFragment imple
         this.actionBar.setItemsBackgroundColor(Theme.getColor(null, Theme.key_actionBarActionModeDefaultSelector, false), false);
         this.actionBar.setTitleColor(Theme.getColor(null, i, false));
         this.actionBar.setTitle(LocaleController.getString(R.string.ChannelAffiliatePrograms));
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context, null);
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new TodoItemMenu$$ExternalSyntheticLambda17(this, 14), new TodoItemMenu$$ExternalSyntheticLambda3(this, 9), null, getResourceProvider());
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context);
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new BotDownloads$$ExternalSyntheticLambda0(this, 13), new RichEditor$3$$ExternalSyntheticLambda0(this, 7), null);
         this.listView = universalRecyclerView;
         sizeNotifierFrameLayout.addView(universalRecyclerView, LayoutHelper.createFrame(-1, -1, 119));
         this.fragmentView = sizeNotifierFrameLayout;
@@ -65,7 +63,7 @@ public final class SuggestedAffiliateProgramsFragment extends BaseFragment imple
         }
     }
 
-    public final void fillItems$1(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    public final void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         BotStarsController.ChannelSuggestedBots channelSuggestedBots = BotStarsController.getInstance(this.currentAccount).getChannelSuggestedBots(this.dialogId);
         int i = 0;
         while (true) {
@@ -82,13 +80,9 @@ public final class SuggestedAffiliateProgramsFragment extends BaseFragment imple
             i++;
         }
         if (channelSuggestedBots.loading) {
-            UItem uItem = new UItem(34);
-            uItem.intValue = 29;
-            UItem uItemM = ArticleViewer.IBlock.CC.m(arrayList, uItem, 34);
-            uItemM.intValue = 29;
-            UItem uItemM2 = ArticleViewer.IBlock.CC.m(arrayList, uItemM, 34);
-            uItemM2.intValue = 29;
-            arrayList.add(uItemM2);
+            arrayList.add(UItem.asFlicker(29));
+            arrayList.add(UItem.asFlicker(29));
+            arrayList.add(UItem.asFlicker(29));
         }
     }
 
@@ -118,10 +112,10 @@ public final class SuggestedAffiliateProgramsFragment extends BaseFragment imple
         super.onFragmentDestroy();
     }
 
-    public final void onItemClick$2(UItem uItem) {
+    public final void onItemClick(UItem uItem) {
         Object obj = uItem.object;
         if (obj instanceof TL_payments.starRefProgram) {
-            ChannelAffiliateProgramsFragment.showConnectAffiliateAlert(getParentActivity(), this.currentAccount, (TL_payments.starRefProgram) obj, this.dialogId, this.resourceProvider, false);
+            ChannelAffiliateProgramsFragment.showConnectAffiliateAlert(getContext(), this.currentAccount, (TL_payments.starRefProgram) obj, this.dialogId, this.resourceProvider, false);
         }
     }
 }

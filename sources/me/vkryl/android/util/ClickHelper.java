@@ -47,7 +47,7 @@ public final class ClickHelper {
         this.delegate = delegate;
     }
 
-    public final boolean onTouchEvent(MotionEvent motionEvent, View view) {
+    public final boolean onTouchEvent(View view, MotionEvent motionEvent) {
         float x = motionEvent.getX();
         float y = motionEvent.getY();
         int action = motionEvent.getAction();

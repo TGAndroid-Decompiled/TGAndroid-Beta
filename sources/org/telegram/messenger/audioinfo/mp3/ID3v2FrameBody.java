@@ -9,7 +9,7 @@ import org.telegram.messenger.audioinfo.util.RangeInputStream;
 
 public final class ID3v2FrameBody {
     public static final zzd textBuffer = new zzd(3);
-    public final Stripe data;
+    public final Stripe.AnonymousClass1 data;
     public final ID3v2FrameHeader frameHeader;
     public final RangeInputStream input;
     public final ID3v2TagHeader tagHeader;
@@ -21,7 +21,7 @@ public final class ID3v2FrameBody {
     public ID3v2FrameBody(InputStream inputStream, long j, int i, ID3v2TagHeader iD3v2TagHeader, ID3v2FrameHeader iD3v2FrameHeader) {
         RangeInputStream rangeInputStream = new RangeInputStream(inputStream, j, i);
         this.input = rangeInputStream;
-        this.data = new Stripe(rangeInputStream, 12);
+        this.data = new Stripe.AnonymousClass1(rangeInputStream, 12);
         this.tagHeader = iD3v2TagHeader;
         this.frameHeader = iD3v2FrameHeader;
     }

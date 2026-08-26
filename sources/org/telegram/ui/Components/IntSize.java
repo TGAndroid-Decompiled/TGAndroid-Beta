@@ -1,21 +1,19 @@
 package org.telegram.ui.Components;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 
-public final class IntSize {
-    public final int height;
-    public final int width;
+public class IntSize {
+    public int height;
+    public int width;
 
-    public IntSize(int i, int i2) {
-        this.width = i;
-        this.height = i2;
+    public IntSize() {
     }
 
-    public final boolean equals(Object obj) {
+    public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (obj != null && IntSize.class == obj.getClass()) {
+        if (obj != null && getClass() == obj.getClass()) {
             IntSize intSize = (IntSize) obj;
             if (this.width == intSize.width && this.height == intSize.height) {
                 return true;
@@ -24,14 +22,29 @@ public final class IntSize {
         return false;
     }
 
-    public final int hashCode() {
+    public int hashCode() {
         return (this.width * 31) + this.height;
     }
 
-    public final String toString() {
+    public void set(int i, int i2) {
+        this.width = i;
+        this.height = i2;
+    }
+
+    public String toString() {
         StringBuilder sb = new StringBuilder("IntSize(");
         sb.append(this.width);
         sb.append(", ");
-        return SurfaceContainer$$ExternalSyntheticOutline0.m(this.height, ")", sb);
+        return Fragment$$ExternalSyntheticOutline0.m(this.height, ")", sb);
+    }
+
+    public IntSize(IntSize intSize) {
+        this.width = intSize.width;
+        this.height = intSize.height;
+    }
+
+    public IntSize(int i, int i2) {
+        this.width = i;
+        this.height = i2;
     }
 }

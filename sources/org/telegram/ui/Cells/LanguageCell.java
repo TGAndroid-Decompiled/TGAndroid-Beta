@@ -30,11 +30,7 @@ public final class LanguageCell extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        int color = Theme.getColor(null, Theme.key_dialogRadioBackground, false);
-        int color2 = Theme.getColor(null, Theme.key_dialogRadioBackgroundChecked, false);
-        radioButton.color = color;
-        radioButton.checkedColor = color2;
-        radioButton.invalidate();
+        radioButton.setColor(Theme.getColor(null, Theme.key_dialogRadioBackground, false), Theme.getColor(null, Theme.key_dialogRadioBackgroundChecked, false));
         boolean z = LocaleController.isRTL;
         addView(radioButton, LayoutHelper.createFrame(22, 22.0f, (z ? 5 : 3) | 16, z ? 0 : 20, 0.0f, z ? 20 : 0, 0.0f));
         TextView textView = new TextView(context);

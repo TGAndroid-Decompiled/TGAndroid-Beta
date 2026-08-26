@@ -7,6 +7,7 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import com.android.billingclient.api.zzbv;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
@@ -15,7 +16,6 @@ import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.pip.PipActivityHandler$$ExternalSyntheticLambda3;
-import org.telegram.ui.PhotoViewer;
 
 public final class SpoilerEffectBitmapFactory {
     public static SpoilerEffectBitmapFactory factory;
@@ -30,7 +30,7 @@ public final class SpoilerEffectBitmapFactory {
     public final int size;
     public final DispatchQueue dispatchQueue = new DispatchQueue("SpoilerEffectBitmapFactory", true, 3);
     public final zzbv[] buffers = new zzbv[SpoilerEffect.ALPHAS.length];
-    public final PhotoViewer.AnonymousClass14[] bitmapBuffers = new PhotoViewer.AnonymousClass14[2];
+    public final Stripe[] bitmapBuffers = new Stripe[2];
     public int currentBitmapBuffer = 0;
     public final Rect clipRegion = new Rect();
     public final PipActivityHandler$$ExternalSyntheticLambda3 postFrameCallback = new PipActivityHandler$$ExternalSyntheticLambda3(this, 3);
@@ -47,7 +47,7 @@ public final class SpoilerEffectBitmapFactory {
             if (i >= zzbvVarArr.length) {
                 return;
             }
-            zzbv zzbvVar = new zzbv((char) 0, 14);
+            zzbv zzbvVar = new zzbv((char) 0, 12);
             zzbvVar.zza = new float[Math.max(64, 2)];
             zzbvVar.zzb = 0;
             zzbvVarArr[i] = zzbvVar;

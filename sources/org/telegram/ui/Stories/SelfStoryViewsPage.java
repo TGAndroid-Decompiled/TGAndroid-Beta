@@ -21,14 +21,12 @@ import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
-import com.google.android.gms.internal.mlkit_vision_common.zzks;
-import com.google.common.base.Splitter;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
+import com.google.android.gms.internal.mlkit_vision_common.zzkh;
 import j$.util.Comparator$CC;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.SQLite.SQLitePreparedStatement$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
@@ -55,11 +53,11 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda0;
 import org.telegram.ui.Cells.FixedHeightEmptyCell;
 import org.telegram.ui.Cells.ReactedUserHolderView;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
@@ -75,27 +73,23 @@ import org.telegram.ui.Components.MessageContainsEmojiButton;
 import org.telegram.ui.Components.MessageSeenCheckDrawable;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
 import org.telegram.ui.Components.RecyclerItemsEnterAnimator;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ReplaceableIconDrawable;
-import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SearchField;
 import org.telegram.ui.Components.StickerEmptyView;
-import org.telegram.ui.Components.spoilers.SpoilersTextView;
-import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda5;
+import org.telegram.ui.Gifts.SendGiftSheet$$ExternalSyntheticLambda16;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda12;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda18;
-import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda0;
-import org.telegram.ui.SettingsActivity;
-import org.telegram.ui.StickersActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.RecyclerListViewScroller;
+import org.telegram.ui.Stars.BalanceCloud$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stars.GiftOfferSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stories.SelfStoryViewsPage.HeaderView.AnonymousClass1;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
-import org.telegram.ui.TopicsFragment;
+import org.telegram.ui.iv.RichMediaCell$$ExternalSyntheticLambda1;
 import org.telegram.ui.iv.TableModel$$ExternalSyntheticLambda1;
-import org.telegram.ui.web.WebInstantView$4$$ExternalSyntheticLambda0;
 
 public abstract class SelfStoryViewsPage extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static final int $r8$clinit = 0;
@@ -112,13 +106,13 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
     public final FillLastLinearLayoutManager layoutManager;
     public final ListAdapter listAdapter;
     public int measuerdHeight;
-    public final QrActivity$5$$ExternalSyntheticLambda0 onSharedStateChanged;
+    public final PeerStoriesView$$ExternalSyntheticLambda27 onSharedStateChanged;
     public HeaderView.AnonymousClass1 popupMenu;
     public final RecyclerItemsEnterAnimator recyclerItemsEnterAnimator;
     public final AnonymousClass1 recyclerListView;
     public int repostsListConsumedCount;
     public final DarkThemeResourceProvider resourcesProvider;
-    public final Splitter scroller;
+    public final RecyclerListViewScroller scroller;
     public final AnonymousClass5 searchField;
     public Drawable shadowDrawable;
     public final View shadowView;
@@ -166,7 +160,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         }
 
         @Override
-        public final boolean onItemClick(int i, View view) {
+        public final boolean onItemClick(View view, int i) {
             int i2;
             final MessagesController messagesController;
             final TLRPC.User user;
@@ -205,16 +199,10 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             }
             StoryViewer.AnonymousClass3 anonymousClass3 = storyViewer.containerView;
             DarkThemeResourceProvider darkThemeResourceProvider = anonymousClass1.resourcesProvider;
-            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(anonymousClass3, darkThemeResourceProvider, view);
-            itemOptionsMakeOptions.gravity = 3;
-            itemOptionsMakeOptions.ignoreX = true;
-            itemOptionsMakeOptions.setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, darkThemeResourceProvider)));
-            itemOptionsMakeOptions.dimAlpha = 133;
-            boolean z4 = (!zIsStoryShownToUser || zIsBlocked || z2 || zIsUserSelf) ? false : true;
             final int i3 = 0;
+            boolean z4 = z2;
             final String str = strSubstring;
-            boolean z5 = z2;
-            itemOptionsMakeOptions.addIf(R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, strSubstring), new Runnable(this) {
+            ItemOptions itemOptionsCutTextInFancyHalf = ItemOptions.makeOptions(anonymousClass3, darkThemeResourceProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, darkThemeResourceProvider))).setDimAlpha(133).addIf((!zIsStoryShownToUser || zIsBlocked || z2 || zIsUserSelf) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, strSubstring), new Runnable(this) {
                 public final SelfStoryViewsPage.AnonymousClass4 f$0;
 
                 {
@@ -235,22 +223,20 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                         case 0:
                             messagesController2.getStoriesController().updateBlockUser(user2.id, true, true);
                             SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass2 = anonymousClass4.this$0;
-                            zzks.m(R.string.StoryHidFromToast, new Object[]{str2}, new BulletinFactory(anonymousClass2, anonymousClass2.resourcesProvider), R.raw.ic_ban);
+                            zzkh.m(R.string.StoryHidFromToast, new Object[]{str2}, BulletinFactory.of(anonymousClass2, anonymousClass2.resourcesProvider), R.raw.ic_ban);
                             reactedUserHolderView2.animateAlpha(anonymousClass2.isStoryShownToUser(storyView2) ? 1.0f : 0.5f, true);
                             break;
                         default:
                             messagesController2.getStoriesController().updateBlockUser(user2.id, false, true);
                             SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass5 = anonymousClass4.this$0;
-                            zzks.m(R.string.StoryShownBackToToast, new Object[]{str2}, new BulletinFactory(anonymousClass5, anonymousClass5.resourcesProvider), R.raw.contact_check);
+                            zzkh.m(R.string.StoryShownBackToToast, new Object[]{str2}, BulletinFactory.of(anonymousClass5, anonymousClass5.resourcesProvider), R.raw.contact_check);
                             reactedUserHolderView2.animateAlpha(anonymousClass5.isStoryShownToUser(storyView2) ? 1.0f : 0.5f, true);
                             break;
                     }
                 }
-            }, z4);
-            itemOptionsMakeOptions.makeMultiline();
-            itemOptionsMakeOptions.cutTextInFancyHalf();
+            }).makeMultiline(false).cutTextInFancyHalf();
             final int i4 = 1;
-            itemOptionsMakeOptions.addIf(R.drawable.msg_menu_stories, LocaleController.formatString(R.string.StoryShowBackTo, str), new Runnable(this) {
+            ItemOptions itemOptionsCutTextInFancyHalf2 = itemOptionsCutTextInFancyHalf.addIf((!zIsBlocked || z4 || zIsUserSelf) ? false : true, R.drawable.msg_menu_stories, LocaleController.formatString(R.string.StoryShowBackTo, str), new Runnable(this) {
                 public final SelfStoryViewsPage.AnonymousClass4 f$0;
 
                 {
@@ -271,25 +257,22 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                         case 0:
                             messagesController2.getStoriesController().updateBlockUser(user2.id, true, true);
                             SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass2 = anonymousClass4.this$0;
-                            zzks.m(R.string.StoryHidFromToast, new Object[]{str2}, new BulletinFactory(anonymousClass2, anonymousClass2.resourcesProvider), R.raw.ic_ban);
+                            zzkh.m(R.string.StoryHidFromToast, new Object[]{str2}, BulletinFactory.of(anonymousClass2, anonymousClass2.resourcesProvider), R.raw.ic_ban);
                             reactedUserHolderView2.animateAlpha(anonymousClass2.isStoryShownToUser(storyView2) ? 1.0f : 0.5f, true);
                             break;
                         default:
                             messagesController2.getStoriesController().updateBlockUser(user2.id, false, true);
                             SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass5 = anonymousClass4.this$0;
-                            zzks.m(R.string.StoryShownBackToToast, new Object[]{str2}, new BulletinFactory(anonymousClass5, anonymousClass5.resourcesProvider), R.raw.contact_check);
+                            zzkh.m(R.string.StoryShownBackToToast, new Object[]{str2}, BulletinFactory.of(anonymousClass5, anonymousClass5.resourcesProvider), R.raw.contact_check);
                             reactedUserHolderView2.animateAlpha(anonymousClass5.isStoryShownToUser(storyView2) ? 1.0f : 0.5f, true);
                             break;
                     }
                 }
-            }, (!zIsBlocked || z5 || zIsUserSelf) ? false : true);
-            itemOptionsMakeOptions.makeMultiline();
-            itemOptionsMakeOptions.cutTextInFancyHalf();
-            boolean z6 = (z3 || z5 || zIsUserSelf) ? false : true;
+            }).makeMultiline(false).cutTextInFancyHalf();
+            boolean z5 = (z3 || z4 || zIsUserSelf) ? false : true;
             int i5 = R.drawable.msg_user_remove;
-            String string = LocaleController.getString(R.string.BlockUser);
             final int i6 = 0;
-            Runnable runnable = new Runnable(this) {
+            ItemOptions itemOptionsAddIf = itemOptionsCutTextInFancyHalf2.addIf(z5, i5, (CharSequence) LocaleController.getString(R.string.BlockUser), true, new Runnable(this) {
                 public final SelfStoryViewsPage.AnonymousClass4 f$0;
 
                 {
@@ -304,7 +287,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                             anonymousClass4.getClass();
                             messagesController.blockPeer(user.id);
                             SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass2 = anonymousClass4.this$0;
-                            new BulletinFactory(anonymousClass2, anonymousClass2.resourcesProvider).createBanBulletin(true).show();
+                            BulletinFactory.of(anonymousClass2, anonymousClass2.resourcesProvider).createBanBulletin(true).show();
                             reactedUserHolderView.animateAlpha(anonymousClass2.isStoryShownToUser(storyView) ? 1.0f : 0.5f, true);
                             break;
                         default:
@@ -316,17 +299,14 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                             storiesController.updateBlockUser(user2.id, false, true);
                             messagesController2.unblockPeer(user2.id);
                             SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass6 = anonymousClass5.this$0;
-                            new BulletinFactory(anonymousClass6, anonymousClass6.resourcesProvider).createBanBulletin(false).show();
+                            BulletinFactory.of(anonymousClass6, anonymousClass6.resourcesProvider).createBanBulletin(false).show();
                             reactedUserHolderView.animateAlpha(anonymousClass6.isStoryShownToUser(storyView) ? 1.0f : 0.5f, true);
                             break;
                     }
                 }
-            };
-            if (z6) {
-                itemOptionsMakeOptions.add(i5, string, runnable, true);
-            }
+            });
             final int i7 = 1;
-            itemOptionsMakeOptions.addIf(R.drawable.msg_block, LocaleController.getString(R.string.Unblock), new Runnable(this) {
+            ItemOptions itemOptionsAddIf2 = itemOptionsAddIf.addIf((z3 || !z4 || zIsUserSelf) ? false : true, R.drawable.msg_block, LocaleController.getString(R.string.Unblock), new Runnable(this) {
                 public final SelfStoryViewsPage.AnonymousClass4 f$0;
 
                 {
@@ -341,7 +321,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                             anonymousClass4.getClass();
                             messagesController.blockPeer(user.id);
                             SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass2 = anonymousClass4.this$0;
-                            new BulletinFactory(anonymousClass2, anonymousClass2.resourcesProvider).createBanBulletin(true).show();
+                            BulletinFactory.of(anonymousClass2, anonymousClass2.resourcesProvider).createBanBulletin(true).show();
                             reactedUserHolderView.animateAlpha(anonymousClass2.isStoryShownToUser(storyView) ? 1.0f : 0.5f, true);
                             break;
                         default:
@@ -353,34 +333,28 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                             storiesController.updateBlockUser(user2.id, false, true);
                             messagesController2.unblockPeer(user2.id);
                             SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass6 = anonymousClass5.this$0;
-                            new BulletinFactory(anonymousClass6, anonymousClass6.resourcesProvider).createBanBulletin(false).show();
+                            BulletinFactory.of(anonymousClass6, anonymousClass6.resourcesProvider).createBanBulletin(false).show();
                             reactedUserHolderView.animateAlpha(anonymousClass6.isStoryShownToUser(storyView) ? 1.0f : 0.5f, true);
                             break;
                     }
                 }
-            }, (z3 || !z5 || zIsUserSelf) ? false : true);
-            boolean z7 = z3 && !zIsUserSelf;
-            String string2 = LocaleController.getString(R.string.StoryDeleteContact);
-            WebInstantView$4$$ExternalSyntheticLambda0 webInstantView$4$$ExternalSyntheticLambda0 = new WebInstantView$4$$ExternalSyntheticLambda0((Object) this, (TLObject) user, str, (Object) reactedUserHolderView, (TLObject) storyView, 5);
-            if (z7) {
-                itemOptionsMakeOptions.add(i5, string2, webInstantView$4$$ExternalSyntheticLambda0, true);
-            }
+            }).addIf(z3 && !zIsUserSelf, i5, (CharSequence) LocaleController.getString(R.string.StoryDeleteContact), true, (Runnable) new SendGiftSheet$$ExternalSyntheticLambda16(this, user, str, reactedUserHolderView, storyView, 21));
             TLRPC.Reaction reaction = storyView.reaction;
             if (!(reaction instanceof TLRPC.TL_reactionCustomEmoji) || (inputStickerSetFindStickerSet = AnimatedEmojiDrawable.getDocumentFetcher(i2).findStickerSet(((TLRPC.TL_reactionCustomEmoji) reaction).document_id)) == null) {
                 z = false;
             } else {
-                itemOptionsMakeOptions.addGap();
+                itemOptionsAddIf2.addGap();
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(inputStickerSetFindStickerSet);
                 MessageContainsEmojiButton messageContainsEmojiButton = new MessageContainsEmojiButton(anonymousClass1.currentAccount, anonymousClass1.getContext(), darkThemeResourceProvider, arrayList, 3);
-                messageContainsEmojiButton.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(this, arrayList, itemOptionsMakeOptions, 18));
-                itemOptionsMakeOptions.addView(messageContainsEmojiButton);
+                messageContainsEmojiButton.setOnClickListener(new GiftOfferSheet$$ExternalSyntheticLambda2(this, arrayList, itemOptionsAddIf2, 15));
+                itemOptionsAddIf2.addView(messageContainsEmojiButton);
                 z = true;
             }
-            if (itemOptionsMakeOptions.getItemsCount() <= 0 && !z) {
+            if (itemOptionsAddIf2.getItemsCount() <= 0 && !z) {
                 return false;
             }
-            itemOptionsMakeOptions.show();
+            itemOptionsAddIf2.show();
             try {
                 anonymousClass1.performHapticFeedback(0, 1);
             } catch (Exception unused) {
@@ -390,21 +364,21 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
     }
 
     public final class AnonymousClass5 extends SearchField {
-        public StickersActivity$$ExternalSyntheticLambda18 runnable;
+        public LivePlayer$$ExternalSyntheticLambda17 runnable;
         public final SelfStoryViewsView.AnonymousClass4.AnonymousClass1 this$0;
 
         public AnonymousClass5(SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass1, Context context, DarkThemeResourceProvider darkThemeResourceProvider) {
-            super(context, 13.0f, darkThemeResourceProvider);
+            super(context, true, 13.0f, darkThemeResourceProvider);
             this.this$0 = anonymousClass1;
         }
 
         @Override
         public final void onTextChange(String str) {
-            StickersActivity$$ExternalSyntheticLambda18 stickersActivity$$ExternalSyntheticLambda18 = this.runnable;
-            if (stickersActivity$$ExternalSyntheticLambda18 != null) {
-                AndroidUtilities.cancelRunOnUIThread(stickersActivity$$ExternalSyntheticLambda18);
+            LivePlayer$$ExternalSyntheticLambda17 livePlayer$$ExternalSyntheticLambda17 = this.runnable;
+            if (livePlayer$$ExternalSyntheticLambda17 != null) {
+                AndroidUtilities.cancelRunOnUIThread(livePlayer$$ExternalSyntheticLambda17);
             }
-            this.runnable = new StickersActivity$$ExternalSyntheticLambda18(23, this, str);
+            this.runnable = new LivePlayer$$ExternalSyntheticLambda17(26, this, str);
             if (TextUtils.isEmpty(str)) {
                 this.runnable.run();
             } else {
@@ -416,9 +390,8 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                     return;
                 }
                 anonymousClass1.isSearchDebounce = true;
-                anonymousClass1.listAdapter.updateRows$2();
-                FillLastLinearLayoutManager fillLastLinearLayoutManager = anonymousClass1.layoutManager;
-                fillLastLinearLayoutManager.scrollToPositionWithOffset(0, -anonymousClass1.recyclerListView.getPaddingTop(), fillLastLinearLayoutManager.mShouldReverseLayout);
+                anonymousClass1.listAdapter.updateRows();
+                anonymousClass1.layoutManager.scrollToPositionWithOffset(0, -anonymousClass1.recyclerListView.getPaddingTop());
             }
         }
     }
@@ -479,14 +452,13 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 } else {
                     i = anonymousClass1.state.sortByReactions ? R.drawable.menu_views_reactions2 : R.drawable.menu_views_reactions;
                 }
-                int i2 = i;
                 String string = LocaleController.getString(z ? R.string.SortByReposts : R.string.SortByReactions);
                 SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass2 = headerView.this$0;
-                ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(false, false, actionBarPopupWindowLayout, i2, string, false, anonymousClass2.resourcesProvider);
+                ActionBarMenuSubItem actionBarMenuSubItemAddItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, i, string, false, anonymousClass2.resourcesProvider);
                 if (!anonymousClass2.state.sortByReactions) {
                     actionBarMenuSubItemAddItem.setAlpha(0.5f);
                 }
-                final int i3 = 0;
+                final int i2 = 0;
                 actionBarMenuSubItemAddItem.setOnClickListener(new View.OnClickListener(this) {
                     public final SelfStoryViewsPage.HeaderView.AnonymousClass1 f$0;
 
@@ -496,8 +468,64 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
 
                     @Override
                     public final void onClick(View view) {
-                        ActionBarPopupWindow actionBarPopupWindow;
-                        ActionBarPopupWindow actionBarPopupWindow2;
+                        switch (i2) {
+                            case 0:
+                                SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass3 = SelfStoryViewsPage.HeaderView.this.this$0;
+                                SelfStoryViewsPage.FiltersState filtersState = anonymousClass3.state;
+                                if (!filtersState.sortByReactions) {
+                                    SelfStoryViewsPage.FiltersState filtersState2 = anonymousClass3.sharedFilterState;
+                                    if (filtersState2 != null) {
+                                        filtersState.sortByReactions = true;
+                                        filtersState2.sortByReactions = true;
+                                    } else {
+                                        filtersState.sortByReactions = true;
+                                    }
+                                    anonymousClass3.updateViewState(true);
+                                    SelfStoryViewsPage.access$600(anonymousClass3);
+                                    anonymousClass3.onSharedStateChanged.accept(anonymousClass3);
+                                }
+                                SelfStoryViewsPage.HeaderView.AnonymousClass1 anonymousClass4 = anonymousClass3.popupMenu;
+                                if (anonymousClass4 != null) {
+                                    anonymousClass4.dismiss();
+                                }
+                                break;
+                            default:
+                                SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass5 = SelfStoryViewsPage.HeaderView.this.this$0;
+                                SelfStoryViewsPage.FiltersState filtersState3 = anonymousClass5.state;
+                                if (filtersState3.sortByReactions) {
+                                    SelfStoryViewsPage.FiltersState filtersState4 = anonymousClass5.sharedFilterState;
+                                    if (filtersState4 != null) {
+                                        filtersState3.sortByReactions = false;
+                                        filtersState4.sortByReactions = false;
+                                    } else {
+                                        filtersState3.sortByReactions = false;
+                                    }
+                                    anonymousClass5.updateViewState(true);
+                                    SelfStoryViewsPage.access$600(anonymousClass5);
+                                    anonymousClass5.onSharedStateChanged.accept(anonymousClass5);
+                                }
+                                SelfStoryViewsPage.HeaderView.AnonymousClass1 anonymousClass6 = anonymousClass5.popupMenu;
+                                if (anonymousClass6 != null) {
+                                    anonymousClass6.dismiss();
+                                }
+                                break;
+                        }
+                    }
+                });
+                ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, !anonymousClass2.state.sortByReactions ? R.drawable.menu_views_recent2 : R.drawable.menu_views_recent, LocaleController.getString(R.string.SortByTime), false, anonymousClass2.resourcesProvider);
+                if (anonymousClass2.state.sortByReactions) {
+                    actionBarMenuSubItemAddItem2.setAlpha(0.5f);
+                }
+                final int i3 = 1;
+                actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener(this) {
+                    public final SelfStoryViewsPage.HeaderView.AnonymousClass1 f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
+                    @Override
+                    public final void onClick(View view) {
                         switch (i3) {
                             case 0:
                                 SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass3 = SelfStoryViewsPage.HeaderView.this.this$0;
@@ -515,9 +543,8 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                                     anonymousClass3.onSharedStateChanged.accept(anonymousClass3);
                                 }
                                 SelfStoryViewsPage.HeaderView.AnonymousClass1 anonymousClass4 = anonymousClass3.popupMenu;
-                                if (anonymousClass4 != null && (actionBarPopupWindow = anonymousClass4.popupWindow) != null) {
-                                    actionBarPopupWindow.dismiss(true);
-                                    break;
+                                if (anonymousClass4 != null) {
+                                    anonymousClass4.dismiss();
                                 }
                                 break;
                             default:
@@ -536,92 +563,17 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                                     anonymousClass5.onSharedStateChanged.accept(anonymousClass5);
                                 }
                                 SelfStoryViewsPage.HeaderView.AnonymousClass1 anonymousClass6 = anonymousClass5.popupMenu;
-                                if (anonymousClass6 != null && (actionBarPopupWindow2 = anonymousClass6.popupWindow) != null) {
-                                    actionBarPopupWindow2.dismiss(true);
-                                    break;
+                                if (anonymousClass6 != null) {
+                                    anonymousClass6.dismiss();
                                 }
                                 break;
                         }
                     }
                 });
-                ActionBarMenuSubItem actionBarMenuSubItemAddItem2 = ActionBarMenuItem.addItem(false, false, actionBarPopupWindowLayout, !anonymousClass2.state.sortByReactions ? R.drawable.menu_views_recent2 : R.drawable.menu_views_recent, LocaleController.getString(R.string.SortByTime), false, anonymousClass2.resourcesProvider);
-                if (anonymousClass2.state.sortByReactions) {
-                    actionBarMenuSubItemAddItem2.setAlpha(0.5f);
-                }
-                final int i4 = 1;
-                actionBarMenuSubItemAddItem2.setOnClickListener(new View.OnClickListener(this) {
-                    public final SelfStoryViewsPage.HeaderView.AnonymousClass1 f$0;
-
-                    {
-                        this.f$0 = this;
-                    }
-
-                    @Override
-                    public final void onClick(View view) {
-                        ActionBarPopupWindow actionBarPopupWindow;
-                        ActionBarPopupWindow actionBarPopupWindow2;
-                        switch (i4) {
-                            case 0:
-                                SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass3 = SelfStoryViewsPage.HeaderView.this.this$0;
-                                SelfStoryViewsPage.FiltersState filtersState = anonymousClass3.state;
-                                if (!filtersState.sortByReactions) {
-                                    SelfStoryViewsPage.FiltersState filtersState2 = anonymousClass3.sharedFilterState;
-                                    if (filtersState2 != null) {
-                                        filtersState.sortByReactions = true;
-                                        filtersState2.sortByReactions = true;
-                                    } else {
-                                        filtersState.sortByReactions = true;
-                                    }
-                                    anonymousClass3.updateViewState(true);
-                                    SelfStoryViewsPage.access$600(anonymousClass3);
-                                    anonymousClass3.onSharedStateChanged.accept(anonymousClass3);
-                                }
-                                SelfStoryViewsPage.HeaderView.AnonymousClass1 anonymousClass4 = anonymousClass3.popupMenu;
-                                if (anonymousClass4 != null && (actionBarPopupWindow = anonymousClass4.popupWindow) != null) {
-                                    actionBarPopupWindow.dismiss(true);
-                                    break;
-                                }
-                                break;
-                            default:
-                                SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass5 = SelfStoryViewsPage.HeaderView.this.this$0;
-                                SelfStoryViewsPage.FiltersState filtersState3 = anonymousClass5.state;
-                                if (filtersState3.sortByReactions) {
-                                    SelfStoryViewsPage.FiltersState filtersState4 = anonymousClass5.sharedFilterState;
-                                    if (filtersState4 != null) {
-                                        filtersState3.sortByReactions = false;
-                                        filtersState4.sortByReactions = false;
-                                    } else {
-                                        filtersState3.sortByReactions = false;
-                                    }
-                                    anonymousClass5.updateViewState(true);
-                                    SelfStoryViewsPage.access$600(anonymousClass5);
-                                    anonymousClass5.onSharedStateChanged.accept(anonymousClass5);
-                                }
-                                SelfStoryViewsPage.HeaderView.AnonymousClass1 anonymousClass6 = anonymousClass5.popupMenu;
-                                if (anonymousClass6 != null && (actionBarPopupWindow2 = anonymousClass6.popupWindow) != null) {
-                                    actionBarPopupWindow2.dismiss(true);
-                                    break;
-                                }
-                                break;
-                        }
-                    }
-                });
-                ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(headerView.getContext(), Theme.key_actionBarDefaultSubmenuSeparator, anonymousClass2.resourcesProvider);
-                int i5 = R.id.fit_width_tag;
-                gapView.setTag(i5, 1);
-                LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(-1, 8);
-                ActionBarPopupWindow.ActionBarPopupWindowLayout.AnonymousClass2 anonymousClass3 = actionBarPopupWindowLayout.linearLayout;
-                anonymousClass3.addView(gapView, layoutParamsCreateLinear);
-                String string2 = LocaleController.getString(z ? R.string.StoryReactionsSortDescription : R.string.StoryViewsSortDescription);
-                DarkThemeResourceProvider darkThemeResourceProvider = anonymousClass2.resourcesProvider;
-                TextView textView = new TextView(actionBarPopupWindowLayout.getContext());
-                textView.setTextSize(1, 13.0f);
-                textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, darkThemeResourceProvider));
-                textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
-                textView.setText(string2);
-                textView.setTag(i5, 1);
-                textView.setMaxWidth(AndroidUtilities.dp(200.0f));
-                anonymousClass3.addView(textView, LayoutHelper.createLinear(-1, -2));
+                ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(headerView.getContext(), anonymousClass2.resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                gapView.setTag(R.id.fit_width_tag, 1);
+                actionBarPopupWindowLayout.addView((View) gapView, LayoutHelper.createLinear(-1, 8));
+                ActionBarMenuItem.addText(actionBarPopupWindowLayout, LocaleController.getString(z ? R.string.StoryReactionsSortDescription : R.string.StoryViewsSortDescription), anonymousClass2.resourcesProvider);
             }
 
             @Override
@@ -677,7 +629,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             ImageView imageView2 = new ImageView(getContext());
             imageView2.setImageResource(R.drawable.arrow_more);
             linearLayout2.addView(imageView2, LayoutHelper.createLinear(16, 26));
-            addView(linearLayout, LayoutHelper.createFrame(-2.0f, -2));
+            addView(linearLayout, LayoutHelper.createFrame(-2, -2.0f));
             addView(linearLayout2, LayoutHelper.createFrame(-2, -2.0f, 5, 13.0f, 6.0f, 13.0f, 6.0f));
             final int i3 = 0;
             textView.setOnClickListener(new View.OnClickListener(this) {
@@ -717,9 +669,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                             SelfStoryViewsPage.HeaderView.AnonymousClass1 anonymousClass5 = headerView.new AnonymousClass1(context2, anonymousClass4.resourcesProvider);
                             anonymousClass4.popupMenu = anonymousClass5;
                             LinearLayout linearLayout3 = headerView.buttonContainer;
-                            int iDp = (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f);
-                            anonymousClass5.isShowing = true;
-                            anonymousClass5.popupWindow.showAsDropDown(linearLayout3, 0, iDp);
+                            anonymousClass5.show(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                             break;
                     }
                 }
@@ -762,9 +712,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                             SelfStoryViewsPage.HeaderView.AnonymousClass1 anonymousClass5 = headerView.new AnonymousClass1(context2, anonymousClass4.resourcesProvider);
                             anonymousClass4.popupMenu = anonymousClass5;
                             LinearLayout linearLayout3 = headerView.buttonContainer;
-                            int iDp = (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f);
-                            anonymousClass5.isShowing = true;
-                            anonymousClass5.popupWindow.showAsDropDown(linearLayout3, 0, iDp);
+                            anonymousClass5.show(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                             break;
                     }
                 }
@@ -807,9 +755,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                             SelfStoryViewsPage.HeaderView.AnonymousClass1 anonymousClass5 = headerView.new AnonymousClass1(context2, anonymousClass4.resourcesProvider);
                             anonymousClass4.popupMenu = anonymousClass5;
                             LinearLayout linearLayout3 = headerView.buttonContainer;
-                            int iDp = (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f);
-                            anonymousClass5.isShowing = true;
-                            anonymousClass5.popupWindow.showAsDropDown(linearLayout3, 0, iDp);
+                            anonymousClass5.show(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                             break;
                     }
                 }
@@ -869,7 +815,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
 
         @Override
         public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.mItemViewType == 1;
+            return viewHolder.getItemViewType() == 1;
         }
 
         @Override
@@ -886,7 +832,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             int i3;
             String str2;
             TLRPC.Message message2;
-            if (viewHolder.mItemViewType != 1 || i < 0) {
+            if (viewHolder.getItemViewType() != 1 || i < 0) {
                 return;
             }
             ArrayList arrayList = this.items;
@@ -998,13 +944,13 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
 
         @Override
         public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View view;
+            int i2;
             View fixedHeightEmptyCell;
-            int i2 = 12;
             final SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass1 = this.this$0;
-            final int i3 = 1;
-            final int i4 = 0;
-            int i5 = anonymousClass1.currentAccount;
+            int i3 = 28;
+            final int i4 = 1;
+            final int i5 = 0;
+            int i6 = anonymousClass1.currentAccount;
             DarkThemeResourceProvider darkThemeResourceProvider = anonymousClass1.resourcesProvider;
             switch (i) {
                 case 0:
@@ -1016,19 +962,18 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                         }
 
                         @Override
-                        public final void onMeasure(int i6, int i7) {
-                            switch (i4) {
+                        public final void onMeasure(int i7, int i8) {
+                            switch (i5) {
                                 case 0:
-                                    super.onMeasure(i6, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.this$1.this$0.TOP_PADDING), 1073741824));
+                                    super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.this$1.this$0.TOP_PADDING), 1073741824));
                                     break;
                                 default:
                                     ListAdapter listAdapter = this.this$1;
-                                    SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass2 = listAdapter.this$0;
-                                    int i8 = anonymousClass2.layoutManager.lastItemHeight;
-                                    if (i8 >= anonymousClass2.recyclerListView.getPaddingTop() && !listAdapter.this$0.showSearch) {
-                                        i8 = 0;
+                                    int lastItemHeight = listAdapter.this$0.layoutManager.getLastItemHeight();
+                                    if (lastItemHeight >= listAdapter.this$0.recyclerListView.getPaddingTop() && !listAdapter.this$0.showSearch) {
+                                        lastItemHeight = 0;
                                     }
-                                    super.onMeasure(i6, View.MeasureSpec.makeMeasureSpec(i8, 1073741824));
+                                    super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(lastItemHeight, 1073741824));
                                     break;
                             }
                         }
@@ -1036,7 +981,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                     break;
                 case 1:
                     MessageSeenCheckDrawable messageSeenCheckDrawable = ReactedUserHolderView.seenDrawable;
-                    fixedHeightEmptyCell = new ReactedUserHolderView(i5, anonymousClass1.getContext(), darkThemeResourceProvider) {
+                    fixedHeightEmptyCell = new ReactedUserHolderView(i6, anonymousClass1.getContext(), darkThemeResourceProvider) {
                         @Override
                         public final void openStory(long j) {
                             BaseFragment lastFragment = LaunchActivity.getLastFragment();
@@ -1060,134 +1005,116 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                         }
 
                         @Override
-                        public final void onMeasure(int i6, int i7) {
-                            switch (i3) {
+                        public final void onMeasure(int i7, int i8) {
+                            switch (i4) {
                                 case 0:
-                                    super.onMeasure(i6, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.this$1.this$0.TOP_PADDING), 1073741824));
+                                    super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.this$1.this$0.TOP_PADDING), 1073741824));
                                     break;
                                 default:
                                     ListAdapter listAdapter = this.this$1;
-                                    SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass2 = listAdapter.this$0;
-                                    int i8 = anonymousClass2.layoutManager.lastItemHeight;
-                                    if (i8 >= anonymousClass2.recyclerListView.getPaddingTop() && !listAdapter.this$0.showSearch) {
-                                        i8 = 0;
+                                    int lastItemHeight = listAdapter.this$0.layoutManager.getLastItemHeight();
+                                    if (lastItemHeight >= listAdapter.this$0.recyclerListView.getPaddingTop() && !listAdapter.this$0.showSearch) {
+                                        lastItemHeight = 0;
                                     }
-                                    super.onMeasure(i6, View.MeasureSpec.makeMeasureSpec(i8, 1073741824));
+                                    super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(lastItemHeight, 1073741824));
                                     break;
                             }
                         }
                     };
                     break;
                 case 3:
-                    fixedHeightEmptyCell = new FixedHeightEmptyCell(anonymousClass1.getContext(), 70);
+                    fixedHeightEmptyCell = new FixedHeightEmptyCell(anonymousClass1.getContext(), 70, 0);
                     break;
                 case 4:
                     FlickerLoadingView flickerLoadingView = new FlickerLoadingView(anonymousClass1.getContext(), darkThemeResourceProvider);
                     flickerLoadingView.setIsSingleCell(true);
                     flickerLoadingView.setViewType(28);
-                    flickerLoadingView.showDate = false;
+                    flickerLoadingView.showDate(false);
                     fixedHeightEmptyCell = flickerLoadingView;
                     break;
                 case 5:
                 case 7:
                 case 8:
                 case 10:
-                    if (!anonymousClass1.defaultModel.isExpiredViews) {
+                    if (anonymousClass1.defaultModel.isExpiredViews) {
+                        i2 = 12;
+                    } else {
                         i2 = (i == 10 || i == 7 || i == 8 || i == 5) ? 1 : 0;
                     }
-                    TopicsFragment.AnonymousClass13 anonymousClass13 = new TopicsFragment.AnonymousClass13(i2, anonymousClass1.getContext(), darkThemeResourceProvider, this);
-                    SpoilersTextView spoilersTextView = anonymousClass13.title;
+                    StickerEmptyView stickerEmptyView = new StickerEmptyView(i2, anonymousClass1.getContext(), darkThemeResourceProvider) {
+                        @Override
+                        public final void onMeasure(int i7, int i8) {
+                            ListAdapter listAdapter = this;
+                            SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass2 = listAdapter.this$0;
+                            super.onMeasure(i7, OKLCH.m(listAdapter.this$0.TOP_PADDING, anonymousClass2.measuerdHeight - anonymousClass2.recyclerListView.getPaddingTop(), 1073741824));
+                        }
+                    };
                     if (i == 7) {
-                        spoilersTextView.setVisibility(8);
-                        anonymousClass13.setSubtitle(LocaleController.getString(R.string.NoResult));
+                        stickerEmptyView.title.setVisibility(8);
+                        stickerEmptyView.setSubtitle(LocaleController.getString(R.string.NoResult));
                     } else if (i == 8) {
-                        spoilersTextView.setVisibility(8);
-                        anonymousClass13.setSubtitle(LocaleController.getString(R.string.NoContactsViewed));
+                        stickerEmptyView.title.setVisibility(8);
+                        stickerEmptyView.setSubtitle(LocaleController.getString(R.string.NoContactsViewed));
                     } else if (i == 10) {
-                        spoilersTextView.setVisibility(0);
-                        spoilersTextView.setText(LocaleController.getString(R.string.ServerErrorViewersTitle));
-                        anonymousClass13.setSubtitle(LocaleController.getString(R.string.ServerErrorViewers));
+                        stickerEmptyView.title.setVisibility(0);
+                        stickerEmptyView.title.setText(LocaleController.getString(R.string.ServerErrorViewersTitle));
+                        stickerEmptyView.setSubtitle(LocaleController.getString(R.string.ServerErrorViewers));
                     } else if (anonymousClass1.defaultModel.isExpiredViews) {
-                        spoilersTextView.setVisibility(8);
+                        stickerEmptyView.title.setVisibility(8);
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString(R.string.ExpiredViewsStub)));
-                        boolean zPremiumFeaturesBlocked = MessagesController.getInstance(i5).premiumFeaturesBlocked();
-                        LinkSpanDrawable.LinksTextView linksTextView = anonymousClass13.subtitle;
-                        if (!zPremiumFeaturesBlocked) {
+                        if (!MessagesController.getInstance(i6).premiumFeaturesBlocked()) {
                             spannableStringBuilder.append((CharSequence) "\n\n");
                             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ExpiredViewsStubPremiumDescription), new Runnable() {
                                 @Override
                                 public final void run() {
                                     SelfStoryViewsPage selfStoryViewsPage = anonymousClass1;
-                                    switch (i4) {
+                                    switch (i5) {
                                         case 0:
-                                            int i6 = SelfStoryViewsPage.$r8$clinit;
+                                            int i7 = SelfStoryViewsPage.$r8$clinit;
                                             selfStoryViewsPage.getClass();
                                             new PremiumFeatureBottomSheet(selfStoryViewsPage.storyViewer.fragment, 14, false).show();
                                             break;
                                         default:
-                                            int i7 = SelfStoryViewsPage.$r8$clinit;
+                                            int i8 = SelfStoryViewsPage.$r8$clinit;
                                             selfStoryViewsPage.getClass();
                                             new PremiumFeatureBottomSheet(selfStoryViewsPage.storyViewer.fragment, 14, false).show();
                                             break;
                                     }
                                 }
                             }));
-                            String string = LocaleController.getString(R.string.LearnMore);
-                            Runnable runnable = new Runnable() {
+                            stickerEmptyView.createButtonLayout(LocaleController.getString(R.string.LearnMore), new Runnable() {
                                 @Override
                                 public final void run() {
                                     SelfStoryViewsPage selfStoryViewsPage = anonymousClass1;
-                                    switch (i3) {
+                                    switch (i4) {
                                         case 0:
-                                            int i6 = SelfStoryViewsPage.$r8$clinit;
+                                            int i7 = SelfStoryViewsPage.$r8$clinit;
                                             selfStoryViewsPage.getClass();
                                             new PremiumFeatureBottomSheet(selfStoryViewsPage.storyViewer.fragment, 14, false).show();
                                             break;
                                         default:
-                                            int i7 = SelfStoryViewsPage.$r8$clinit;
+                                            int i8 = SelfStoryViewsPage.$r8$clinit;
                                             selfStoryViewsPage.getClass();
                                             new PremiumFeatureBottomSheet(selfStoryViewsPage.storyViewer.fragment, 14, false).show();
                                             break;
                                     }
                                 }
-                            };
-                            ((LinearLayout.LayoutParams) linksTextView.getLayoutParams()).topMargin = AndroidUtilities.dp(12.0f);
-                            TextView textView = new TextView(anonymousClass13.getContext());
-                            textView.setText(string);
-                            int i6 = Theme.key_featuredStickers_buttonText;
-                            Theme.ResourcesProvider resourcesProvider = anonymousClass13.resourcesProvider;
-                            textView.setTextColor(Theme.getColor(i6, resourcesProvider));
-                            textView.setPadding(AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(45.0f), AndroidUtilities.dp(12.0f));
-                            textView.setGravity(17);
-                            textView.setTypeface(AndroidUtilities.bold());
-                            textView.setTextSize(1, 15.0f);
-                            PhotoViewer.AnonymousClass19 anonymousClass19 = new PhotoViewer.AnonymousClass19(anonymousClass13.getContext(), 18);
-                            anonymousClass19.setOnClickListener(new GroupCallSheet$$ExternalSyntheticLambda5(runnable, 3));
-                            int iDp = AndroidUtilities.dp(8.0f);
-                            int color = Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider);
-                            int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(i6, resourcesProvider), 30);
-                            anonymousClass19.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, color, alphaComponent, alphaComponent));
-                            ScaleStateListAnimator.apply(anonymousClass19, 0.05f, 1.5f);
-                            anonymousClass19.addView(textView);
-                            StickerEmptyView.AnonymousClass2 anonymousClass2 = anonymousClass13.linearLayout;
-                            anonymousClass2.setClipChildren(false);
-                            anonymousClass2.addView(anonymousClass19, LayoutHelper.createLinear(-2, -2, 1, 0, 28, 0, 4));
+                            });
                         }
-                        linksTextView.setText(spannableStringBuilder);
+                        stickerEmptyView.subtitle.setText(spannableStringBuilder);
                     } else {
-                        spoilersTextView.setVisibility(0);
+                        stickerEmptyView.title.setVisibility(0);
                         if (anonymousClass1.defaultModel.isChannel) {
-                            spoilersTextView.setText(LocaleController.getString(R.string.NoReactions));
-                            anonymousClass13.setSubtitle(LocaleController.getString(R.string.NoReactionsStub));
+                            stickerEmptyView.title.setText(LocaleController.getString(R.string.NoReactions));
+                            stickerEmptyView.setSubtitle(LocaleController.getString(R.string.NoReactionsStub));
                         } else {
-                            spoilersTextView.setText(LocaleController.getString(R.string.NoViews));
-                            anonymousClass13.setSubtitle(LocaleController.getString(R.string.NoViewsStub));
+                            stickerEmptyView.title.setText(LocaleController.getString(R.string.NoViews));
+                            stickerEmptyView.setSubtitle(LocaleController.getString(R.string.NoViewsStub));
                         }
                     }
-                    anonymousClass13.showProgress(false, false);
-                    view = anonymousClass13;
-                    fixedHeightEmptyCell = view;
+                    stickerEmptyView.showProgress(false, false);
+                    fixedHeightEmptyCell = stickerEmptyView;
                     break;
                 case 6:
                     FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(anonymousClass1.getContext(), darkThemeResourceProvider);
@@ -1195,35 +1122,34 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                     flickerLoadingView2.setIgnoreHeightCheck(true);
                     flickerLoadingView2.setItemsCount(20);
                     flickerLoadingView2.setViewType(28);
-                    flickerLoadingView2.showDate = false;
+                    flickerLoadingView2.showDate(false);
                     fixedHeightEmptyCell = flickerLoadingView2;
                     break;
                 case 11:
                 case 12:
-                    LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(anonymousClass1.getContext(), null);
-                    linksTextView2.setTextSize(1, 13.0f);
-                    linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, darkThemeResourceProvider));
-                    linksTextView2.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, darkThemeResourceProvider));
-                    int iDp2 = AndroidUtilities.dp(16.0f);
-                    int iDp3 = AndroidUtilities.dp(21.0f);
-                    linksTextView2.setPadding(iDp3, iDp2, iDp3, iDp2);
-                    linksTextView2.setMaxLines(Integer.MAX_VALUE);
-                    linksTextView2.setGravity(17);
-                    linksTextView2.setDisablePaddingsOffsetY(true);
+                    LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(anonymousClass1.getContext());
+                    linksTextView.setTextSize(1, 13.0f);
+                    linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, darkThemeResourceProvider));
+                    linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, darkThemeResourceProvider));
+                    int iDp = AndroidUtilities.dp(16.0f);
+                    int iDp2 = AndroidUtilities.dp(21.0f);
+                    linksTextView.setPadding(iDp2, iDp, iDp2, iDp);
+                    linksTextView.setMaxLines(Integer.MAX_VALUE);
+                    linksTextView.setGravity(17);
+                    linksTextView.setDisablePaddingsOffsetY(true);
                     if (i == 11) {
-                        linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryViewsPremiumHint), new LivePlayer$1$$ExternalSyntheticLambda0(this, i2)));
+                        linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StoryViewsPremiumHint), new BalanceCloud$$ExternalSyntheticLambda1(this, i3)));
                     } else {
-                        linksTextView2.setText(LocaleController.getString(R.string.ServerErrorViewersFull));
+                        linksTextView.setText(LocaleController.getString(R.string.ServerErrorViewersFull));
                     }
-                    linksTextView2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    view = linksTextView2;
-                    fixedHeightEmptyCell = view;
+                    linksTextView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                    fixedHeightEmptyCell = linksTextView;
                     break;
             }
             return new RecyclerListView.Holder(fixedHeightEmptyCell);
         }
 
-        public final void updateRows$2() {
+        public final void updateRows() {
             ArrayList arrayList;
             FiltersState filtersState;
             ArrayList arrayList2;
@@ -1384,7 +1310,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 }
             }
             arrayList4.add(new Item(9));
-            this.mObservable.notifyChanged();
+            notifyDataSetChanged();
         }
     }
 
@@ -1468,8 +1394,8 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 } else {
                     lowerCase = filtersState.searchQuery.trim().toLowerCase();
                     translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-                    strM2 = zzil.m(" ", lowerCase);
-                    strM = zzil.m(" ", translitString);
+                    strM2 = zzii.m(" ", lowerCase);
+                    strM = zzii.m(" ", translitString);
                 }
                 for (int i = 0; i < arrayList2.size(); i++) {
                     TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(((TL_stories.StoryView) arrayList2.get(i)).user_id));
@@ -1492,7 +1418,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             if (filtersState.sortByReactions) {
                 return;
             }
-            Collections.sort(arrayList, Comparator$CC.comparingInt(new TableModel$$ExternalSyntheticLambda1(17)));
+            Collections.sort(arrayList, Comparator$CC.comparingInt(new TableModel$$ExternalSyntheticLambda1(12)));
         }
 
         public final void loadNext() {
@@ -2385,12 +2311,12 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         }
     }
 
-    public SelfStoryViewsPage(StoryViewer storyViewer, Context context, FiltersState filtersState, QrActivity$5$$ExternalSyntheticLambda0 qrActivity$5$$ExternalSyntheticLambda0) {
+    public SelfStoryViewsPage(StoryViewer storyViewer, Context context, FiltersState filtersState, PeerStoriesView$$ExternalSyntheticLambda27 peerStoriesView$$ExternalSyntheticLambda27) {
         super(context);
         this.TOP_PADDING = 96;
         this.state = new FiltersState();
         this.sharedFilterState = filtersState;
-        this.onSharedStateChanged = qrActivity$5$$ExternalSyntheticLambda0;
+        this.onSharedStateChanged = peerStoriesView$$ExternalSyntheticLambda27;
         DarkThemeResourceProvider darkThemeResourceProvider = storyViewer.resourcesProvider;
         this.resourcesProvider = darkThemeResourceProvider;
         this.storyViewer = storyViewer;
@@ -2401,28 +2327,32 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
-        SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass1 = (SelfStoryViewsView.AnonymousClass4.AnonymousClass1) this;
+        final SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass1 = (SelfStoryViewsView.AnonymousClass4.AnonymousClass1) this;
         HeaderView headerView = new HeaderView(anonymousClass1, getContext());
         this.headerView = headerView;
         AnonymousClass1 anonymousClass2 = new AnonymousClass1(anonymousClass1, context, darkThemeResourceProvider);
         this.recyclerListView = anonymousClass2;
         anonymousClass2.setClipToPadding(false);
         this.recyclerItemsEnterAnimator = new RecyclerItemsEnterAnimator(anonymousClass2, true);
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(anonymousClass2, 0);
+        FillLastLinearLayoutManager fillLastLinearLayoutManager = new FillLastLinearLayoutManager(context, 0, anonymousClass2);
         this.layoutManager = fillLastLinearLayoutManager;
         anonymousClass2.setLayoutManager(fillLastLinearLayoutManager);
         anonymousClass2.setNestedScrollingEnabled(true);
         ListAdapter listAdapter = new ListAdapter(anonymousClass1);
         this.listAdapter = listAdapter;
         anonymousClass2.setAdapter(listAdapter);
-        new SparseArray();
-        new HashMap();
+        new RecyclerAnimationScrollHelper(anonymousClass2, fillLastLinearLayoutManager).setScrollListener(new RecyclerAnimationScrollHelper.ScrollListener() {
+            @Override
+            public final void onScroll() {
+                anonymousClass1.invalidate();
+            }
+        });
         addView(anonymousClass2);
-        this.scroller = new Splitter(anonymousClass2);
-        anonymousClass2.setOnScrollListener(new SettingsActivity.AnonymousClass5(anonymousClass1, 13));
-        anonymousClass2.setOnItemClickListener(new BoostsActivity$$ExternalSyntheticLambda0(21, (SelfStoryViewsView.AnonymousClass4.AnonymousClass1) this, storyViewer));
+        this.scroller = new RecyclerListViewScroller(anonymousClass2);
+        anonymousClass2.setOnScrollListener(new StarGiftSheet.AnonymousClass8(anonymousClass1, 16));
+        anonymousClass2.setOnItemClickListener(new SelfStoryViewsPage$$ExternalSyntheticLambda0(0, (SelfStoryViewsView.AnonymousClass4.AnonymousClass1) this, storyViewer));
         anonymousClass2.setOnItemLongClickListener(new AnonymousClass4(anonymousClass1, storyViewer));
-        listAdapter.updateRows$2();
+        listAdapter.updateRows();
         FrameLayout frameLayout = new FrameLayout(getContext());
         this.topViewsContainer = frameLayout;
         View view = new View(getContext());
@@ -2459,9 +2389,8 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             arrayList.add(anonymousClass1);
         }
         anonymousClass1.currentModel.reloadIfNeed(anonymousClass1.state, anonymousClass1.showContactsFilter, anonymousClass1.showReactionsSort);
-        anonymousClass1.listAdapter.updateRows$2();
-        FillLastLinearLayoutManager fillLastLinearLayoutManager = anonymousClass1.layoutManager;
-        fillLastLinearLayoutManager.scrollToPositionWithOffset(0, (int) (anonymousClass1.getTopOffset() - anonymousClass1.recyclerListView.getPaddingTop()), fillLastLinearLayoutManager.mShouldReverseLayout);
+        anonymousClass1.listAdapter.updateRows();
+        anonymousClass1.layoutManager.scrollToPositionWithOffset(0, (int) (anonymousClass1.getTopOffset() - anonymousClass1.recyclerListView.getPaddingTop()));
     }
 
     public static void preload(int i, long j, TL_stories.StoryItem storyItem) {
@@ -2493,6 +2422,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
 
     @Override
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
+        int childAdapterPosition;
         int i3 = 0;
         if (i == NotificationCenter.storiesUpdated) {
             if (this.storyItem.uploadingStory != null) {
@@ -2533,14 +2463,10 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 return;
             }
             View childAt = anonymousClass1.getChildAt(i3);
-            if (childAt instanceof ReactedUserHolderView) {
-                anonymousClass1.getClass();
-                int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt);
-                if (childAdapterPosition >= 0) {
-                    ListAdapter listAdapter = this.listAdapter;
-                    if (childAdapterPosition < listAdapter.items.size()) {
-                        ((ReactedUserHolderView) childAt).animateAlpha(isStoryShownToUser(((Item) listAdapter.items.get(childAdapterPosition)).view) ? 1.0f : 0.5f, true);
-                    }
+            if ((childAt instanceof ReactedUserHolderView) && (childAdapterPosition = anonymousClass1.getChildAdapterPosition(childAt)) >= 0) {
+                ListAdapter listAdapter = this.listAdapter;
+                if (childAdapterPosition < listAdapter.items.size()) {
+                    ((ReactedUserHolderView) childAt).animateAlpha(isStoryShownToUser(((Item) listAdapter.items.get(childAdapterPosition)).view) ? 1.0f : 0.5f, true);
                 }
             }
             i3++;
@@ -2560,10 +2486,10 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 break;
             }
             View childAt = anonymousClass1.getChildAt(i);
-            int childLayoutPosition = RecyclerView.getChildLayoutPosition(childAt);
+            int childLayoutPosition = anonymousClass1.getChildLayoutPosition(childAt);
             if (childLayoutPosition < i2 || i2 == -1) {
-                view = childAt;
                 i2 = childLayoutPosition;
+                view = childAt;
             }
             i++;
         }
@@ -2578,9 +2504,8 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             frameLayout.setTranslationY(f);
             SelfStoryViewsView.AnonymousClass4.AnonymousClass1 anonymousClass2 = (SelfStoryViewsView.AnonymousClass4.AnonymousClass1) this;
             int iIntValue = ((Integer) anonymousClass2.getTag()).intValue();
-            SelfStoryViewsView.AnonymousClass4 anonymousClass4 = SelfStoryViewsView.AnonymousClass4.this;
-            if (iIntValue == anonymousClass4.this$0.viewPager.getCurrentItem()) {
-                SelfStoryViewsView selfStoryViewsView = anonymousClass4.this$0;
+            SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.AnonymousClass4.this.this$0;
+            if (iIntValue == selfStoryViewsView.viewPager.getCurrentItem()) {
                 selfStoryViewsView.selfStoriesPreviewView.setAlpha(Utilities.clamp(f / selfStoryViewsView.bottomPadding, 1.0f, 0.0f));
                 selfStoryViewsView.selfStoriesPreviewView.setTranslationY((-(selfStoryViewsView.bottomPadding - f)) / 2.0f);
             }
@@ -2592,15 +2517,11 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             if (frameLayout.getTranslationY() != 0.0f && frameLayout.getTranslationY() != anonymousClass1.getPaddingTop()) {
                 float translationY = frameLayout.getTranslationY();
                 float paddingTop2 = anonymousClass1.getPaddingTop() / 2.0f;
-                Splitter splitter = this.scroller;
+                RecyclerListViewScroller recyclerListViewScroller = this.scroller;
                 if (translationY > paddingTop2) {
-                    int i3 = (int) (-(anonymousClass1.getPaddingTop() - frameLayout.getTranslationY()));
-                    splitter.getClass();
-                    splitter.smoothScrollBy(i3, 200L, CubicBezierInterpolator.DEFAULT);
+                    recyclerListViewScroller.smoothScrollBy((int) (-(anonymousClass1.getPaddingTop() - frameLayout.getTranslationY())));
                 } else {
-                    int translationY2 = (int) frameLayout.getTranslationY();
-                    splitter.getClass();
-                    splitter.smoothScrollBy(translationY2, 200L, CubicBezierInterpolator.DEFAULT);
+                    recyclerListViewScroller.smoothScrollBy((int) frameLayout.getTranslationY());
                 }
             }
         }
@@ -2663,11 +2584,61 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
             }
             this.currentModel.animateDateForUsers.clear();
         }
-        this.listAdapter.updateRows$2();
+        this.listAdapter.updateRows();
         int i = this.currentAccount;
         NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.storiesUpdated);
         NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.storiesBlocklistUpdate);
-        Bulletin.addDelegate(this, new ChatActivity.AnonymousClass103(this, 17));
+        Bulletin.addDelegate(this, new Bulletin.Delegate() {
+            @Override
+            public final boolean allowLayoutChanges() {
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public final boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
+            public final boolean clipWithGradient(int i2) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i2);
+            }
+
+            @Override
+            public final int getBottomOffset(int i2) {
+                return SelfStoryViewsPage.this.recyclerListView.getPaddingBottom();
+            }
+
+            @Override
+            public final int getLeftPadding() {
+                return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+            }
+
+            @Override
+            public final int getRightPadding() {
+                return Bulletin.Delegate.CC.$default$getRightPadding(this);
+            }
+
+            @Override
+            public final int getTopOffset(int i2) {
+                return Bulletin.Delegate.CC.$default$getTopOffset(this, i2);
+            }
+
+            @Override
+            public final void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+            }
+
+            @Override
+            public final void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+            }
+
+            @Override
+            public final void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
+        });
     }
 
     public final void onDataRecieved(ViewsModel viewsModel) {
@@ -2680,7 +2651,7 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
         if (TextUtils.isEmpty(filtersState.searchQuery) && !filtersState.contactsOnly) {
             updateViewsVisibility();
         }
-        listAdapter.updateRows$2();
+        listAdapter.updateRows();
         this.recyclerItemsEnterAnimator.showItemsAnimated(size - 1);
         if (this.currentModel != null && this.layoutManager.findLastVisibleItemPosition() > listAdapter.items.size() - 10) {
             this.currentModel.loadNext();
@@ -2765,8 +2736,8 @@ public abstract class SelfStoryViewsPage extends FrameLayout implements Notifica
                 headerView.invalidate();
                 ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 headerView.animator = valueAnimatorOfFloat;
-                valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda18(headerView, 29));
-                headerView.animator.addListener(new PhotoViewer.AnonymousClass78.AnonymousClass1(headerView, 24));
+                valueAnimatorOfFloat.addUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(headerView, 12));
+                headerView.animator.addListener(new BaseChartView.AnonymousClass4(headerView, 24));
                 headerView.animator.setDuration(250L);
                 headerView.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
                 headerView.animator.start();

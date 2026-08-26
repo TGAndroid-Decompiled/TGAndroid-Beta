@@ -15,16 +15,10 @@ public final class VoIPToggleButton$$ExternalSyntheticLambda0 implements ValueAn
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                VoIPToggleButton voIPToggleButton = this.f$0;
-                voIPToggleButton.getClass();
-                voIPToggleButton.checkedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                voIPToggleButton.setBackgroundColor(voIPToggleButton.backgroundCheck1, voIPToggleButton.backgroundCheck2);
+                this.f$0.lambda$setChecked$2(valueAnimator);
                 break;
             default:
-                VoIPToggleButton voIPToggleButton2 = this.f$0;
-                voIPToggleButton2.getClass();
-                voIPToggleButton2.pressedScale = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                voIPToggleButton2.invalidate();
+                this.f$0.lambda$setPressedBtn$0(valueAnimator);
                 break;
         }
     }

@@ -1,42 +1,26 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import android.util.SparseArray;
 
-public final class MessagesController$$ExternalSyntheticLambda9 implements RequestDelegate {
+public final class MessagesController$$ExternalSyntheticLambda9 implements Runnable {
     public final int $r8$classId;
+    public final MessagesController f$0;
+    public final SparseArray f$1;
 
-    public MessagesController$$ExternalSyntheticLambda9(int i) {
+    public MessagesController$$ExternalSyntheticLambda9(MessagesController messagesController, SparseArray sparseArray, int i) {
         this.$r8$classId = i;
+        this.f$0 = messagesController;
+        this.f$1 = sparseArray;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+    public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                MessagesController.lambda$deleteParticipantFromChat$314(tLObject, tL_error);
-                break;
-            case 1:
-                MessagesController.lambda$removeSuggestion$40(tLObject, tL_error);
-                break;
-            case 2:
-                MessagesController.lambda$hidePromoDialog$135(tLObject, tL_error);
-                break;
-            case 3:
-                MessagesController.lambda$blockPeer$89(tLObject, tL_error);
-                break;
-            case 4:
-                MessagesController.lambda$logDeviceStats$31(tLObject, tL_error);
-                break;
-            case 5:
-                NotificationsController.lambda$updateServerNotificationsSettings$52(tLObject, tL_error);
-                break;
-            case 6:
-                NotificationsController.lambda$updateServerNotificationsSettings$51(tLObject, tL_error);
+                this.f$0.lambda$getChannelDifference$339(this.f$1);
                 break;
             default:
-                NotificationsController.lambda$updateServerNotificationsSettings$50(tLObject, tL_error);
+                this.f$0.lambda$getDifference$352(this.f$1);
                 break;
         }
     }

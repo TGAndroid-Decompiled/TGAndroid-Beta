@@ -17,10 +17,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda50;
-import org.telegram.ui.Components.AvatarsDrawable;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda26;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MemberRequestsBottomSheet;
+import org.telegram.ui.Delegates.ChatActivityMemberRequestsDelegate.AnonymousClass2;
 import org.telegram.ui.Stories.HwAvatarsImageView;
 
 public final class ChatActivityMemberRequestsDelegate {
@@ -37,6 +37,22 @@ public final class ChatActivityMemberRequestsDelegate {
     public TextView requestsCountTextView;
     public LinearLayout requestsDataLayout;
     public FrameLayout root;
+
+    public final class AnonymousClass2 extends MemberRequestsBottomSheet {
+        public AnonymousClass2(BaseFragment baseFragment, long j) {
+            super(baseFragment, j);
+        }
+
+        @Override
+        public final void lambda$showGiftOfferSheet$15() {
+            ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = ChatActivityMemberRequestsDelegate.this;
+            AnonymousClass2 anonymousClass2 = chatActivityMemberRequestsDelegate.bottomSheet;
+            if (anonymousClass2 != null && !anonymousClass2.isNeedRestoreDialog()) {
+                chatActivityMemberRequestsDelegate.bottomSheet = null;
+            }
+            super.lambda$showGiftOfferSheet$15();
+        }
+    }
 
     public interface ChangeVisibilityDelegate {
         void setVisible(boolean z, boolean z2);
@@ -97,21 +113,11 @@ public final class ChatActivityMemberRequestsDelegate {
                 public final void onClick(View view) {
                     switch (i) {
                         case 0:
-                            final ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = this.f$0;
+                            ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = this.f$0;
                             ChatActivityMemberRequestsDelegate.AnonymousClass2 anonymousClass2 = chatActivityMemberRequestsDelegate.bottomSheet;
                             BaseFragment baseFragment2 = chatActivityMemberRequestsDelegate.fragment;
                             if (anonymousClass2 == null) {
-                                chatActivityMemberRequestsDelegate.bottomSheet = new MemberRequestsBottomSheet(baseFragment2, chatActivityMemberRequestsDelegate.currentChat.id) {
-                                    @Override
-                                    public final void lambda$showGiftOfferSheet$15() {
-                                        ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate2 = ChatActivityMemberRequestsDelegate.this;
-                                        AnonymousClass2 anonymousClass3 = chatActivityMemberRequestsDelegate2.bottomSheet;
-                                        if (anonymousClass3 != null && !((MemberRequestsBottomSheet) anonymousClass3).delegate.isNeedRestoreList) {
-                                            chatActivityMemberRequestsDelegate2.bottomSheet = null;
-                                        }
-                                        super.lambda$showGiftOfferSheet$15();
-                                    }
-                                };
+                                chatActivityMemberRequestsDelegate.bottomSheet = chatActivityMemberRequestsDelegate.new AnonymousClass2(baseFragment2, chatActivityMemberRequestsDelegate.currentChat.id);
                             }
                             baseFragment2.showDialog(chatActivityMemberRequestsDelegate.bottomSheet);
                             break;
@@ -128,13 +134,10 @@ public final class ChatActivityMemberRequestsDelegate {
             this.requestsDataLayout = linearLayout;
             linearLayout.setOrientation(0);
             this.root.addView(this.requestsDataLayout, LayoutHelper.createFrame(-1, -1.0f, 48, 0.0f, 0.0f, 100.0f, 0.0f));
-            HwAvatarsImageView hwAvatarsImageView = new HwAvatarsImageView(1, baseFragment.getParentActivity(), false);
+            HwAvatarsImageView hwAvatarsImageView = new HwAvatarsImageView(baseFragment.getParentActivity(), 1, false);
             this.avatarsView = hwAvatarsImageView;
             hwAvatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
-            AvatarsDrawable avatarsDrawable = this.avatarsView.avatarsDrawable;
-            for (int i2 = 0; i2 < avatarsDrawable.animatingStates.length; i2++) {
-                avatarsDrawable.setObject(0, null, 0);
-            }
+            this.avatarsView.reset();
             this.requestsDataLayout.addView(this.avatarsView, LayoutHelper.createFrame(-2, -1.0f, 48, 8.0f, 0.0f, 10.0f, 0.0f));
             TextView textView = new TextView(baseFragment.getParentActivity());
             this.requestsCountTextView = textView;
@@ -152,7 +155,7 @@ public final class ChatActivityMemberRequestsDelegate {
             this.closeView.setContentDescription(LocaleController.getString(R.string.Close));
             this.closeView.setImageResource(R.drawable.miniplayer_close);
             this.closeView.setScaleType(ImageView.ScaleType.CENTER);
-            final int i3 = 1;
+            final int i2 = 1;
             this.closeView.setOnClickListener(new View.OnClickListener(this) {
                 public final ChatActivityMemberRequestsDelegate f$0;
 
@@ -162,23 +165,13 @@ public final class ChatActivityMemberRequestsDelegate {
 
                 @Override
                 public final void onClick(View view) {
-                    switch (i3) {
+                    switch (i2) {
                         case 0:
-                            final ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = this.f$0;
+                            ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = this.f$0;
                             ChatActivityMemberRequestsDelegate.AnonymousClass2 anonymousClass2 = chatActivityMemberRequestsDelegate.bottomSheet;
                             BaseFragment baseFragment2 = chatActivityMemberRequestsDelegate.fragment;
                             if (anonymousClass2 == null) {
-                                chatActivityMemberRequestsDelegate.bottomSheet = new MemberRequestsBottomSheet(baseFragment2, chatActivityMemberRequestsDelegate.currentChat.id) {
-                                    @Override
-                                    public final void lambda$showGiftOfferSheet$15() {
-                                        ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate2 = ChatActivityMemberRequestsDelegate.this;
-                                        AnonymousClass2 anonymousClass3 = chatActivityMemberRequestsDelegate2.bottomSheet;
-                                        if (anonymousClass3 != null && !((MemberRequestsBottomSheet) anonymousClass3).delegate.isNeedRestoreList) {
-                                            chatActivityMemberRequestsDelegate2.bottomSheet = null;
-                                        }
-                                        super.lambda$showGiftOfferSheet$15();
-                                    }
-                                };
+                                chatActivityMemberRequestsDelegate.bottomSheet = chatActivityMemberRequestsDelegate.new AnonymousClass2(baseFragment2, chatActivityMemberRequestsDelegate.currentChat.id);
                             }
                             baseFragment2.showDialog(chatActivityMemberRequestsDelegate.bottomSheet);
                             break;
@@ -200,8 +193,8 @@ public final class ChatActivityMemberRequestsDelegate {
         return this.root;
     }
 
-    public final void setDelegate(ChatActivity$$ExternalSyntheticLambda50 chatActivity$$ExternalSyntheticLambda50) {
-        this.delegate = chatActivity$$ExternalSyntheticLambda50;
+    public final void setDelegate(ChatActivity$$ExternalSyntheticLambda26 chatActivity$$ExternalSyntheticLambda26) {
+        this.delegate = chatActivity$$ExternalSyntheticLambda26;
     }
 
     public final void setPendingRequests(int i, List list, boolean z) {
@@ -230,12 +223,11 @@ public final class ChatActivityMemberRequestsDelegate {
             for (int i2 = 0; i2 < iMin; i2++) {
                 TLRPC.User user = baseFragment.getMessagesController().getUser((Long) list.get(i2));
                 if (user != null) {
-                    HwAvatarsImageView hwAvatarsImageView = this.avatarsView;
-                    hwAvatarsImageView.avatarsDrawable.setObject(i2, user, this.currentAccount);
+                    this.avatarsView.setObject(i2, this.currentAccount, user);
                 }
             }
             this.avatarsView.setCount(iMin);
-            this.avatarsView.avatarsDrawable.commitTransition(true, true);
+            this.avatarsView.commitTransition(true);
         }
     }
 }

@@ -1,7 +1,7 @@
 package org.telegram.messenger;
 
 import android.content.SharedPreferences;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.File;
 import java.io.RandomAccessFile;
 import java.lang.reflect.Array;
@@ -105,7 +105,7 @@ public class StatsController extends BaseController {
         };
         File filesDirFixed = ApplicationLoader.getFilesDirFixed();
         if (i != 0) {
-            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), SurfaceContainer$$ExternalSyntheticOutline0.m(i, "account", "/"));
+            filesDirFixed = new File(ApplicationLoader.getFilesDirFixed(), Fragment$$ExternalSyntheticOutline0.m(i, "account", "/"));
             filesDirFixed.mkdirs();
         }
         try {
@@ -158,10 +158,10 @@ public class StatsController extends BaseController {
             this.callsTotalTime[i5] = sharedPreferences.getInt("callsTotalTime" + i5, 0);
             this.resetStatsDate[i5] = sharedPreferences.getLong("resetStatsDate" + i5, 0L);
             for (int i6 = 0; i6 < 8; i6++) {
-                this.sentBytes[i5][i6] = sharedPreferences.getLong(SurfaceContainer$$ExternalSyntheticOutline0.m(i5, i6, "sentBytes", "_"), 0L);
-                this.receivedBytes[i5][i6] = sharedPreferences.getLong(SurfaceContainer$$ExternalSyntheticOutline0.m(i5, i6, "receivedBytes", "_"), 0L);
-                this.sentItems[i5][i6] = sharedPreferences.getInt(SurfaceContainer$$ExternalSyntheticOutline0.m(i5, i6, "sentItems", "_"), 0);
-                this.receivedItems[i5][i6] = sharedPreferences.getInt(SurfaceContainer$$ExternalSyntheticOutline0.m(i5, i6, "receivedItems", "_"), 0);
+                this.sentBytes[i5][i6] = sharedPreferences.getLong(Fragment$$ExternalSyntheticOutline0.m(i5, i6, "sentBytes", "_"), 0L);
+                this.receivedBytes[i5][i6] = sharedPreferences.getLong(Fragment$$ExternalSyntheticOutline0.m(i5, i6, "receivedBytes", "_"), 0L);
+                this.sentItems[i5][i6] = sharedPreferences.getInt(Fragment$$ExternalSyntheticOutline0.m(i5, i6, "sentItems", "_"), 0);
+                this.receivedItems[i5][i6] = sharedPreferences.getInt(Fragment$$ExternalSyntheticOutline0.m(i5, i6, "receivedItems", "_"), 0);
             }
             long[] jArr2 = this.resetStatsDate;
             if (jArr2[i5] == 0) {

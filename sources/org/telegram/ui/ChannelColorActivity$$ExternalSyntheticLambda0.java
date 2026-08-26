@@ -18,8 +18,7 @@ public final class ChannelColorActivity$$ExternalSyntheticLambda0 implements Con
     public final void accept(Object obj) {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.getClass();
-                ChannelColorActivity.updateColors((View) obj);
+                this.f$0.updateColors((View) obj);
                 break;
             case 1:
                 this.f$0.lambda$showLimit$13((ChannelBoostsController.CanApplyBoost) obj);

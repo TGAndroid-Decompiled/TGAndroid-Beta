@@ -10,7 +10,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.text.Spannable;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.MotionEvent;
@@ -23,36 +22,49 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.AvatarSpan;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Switch;
 
 public class TextCheckCell extends FrameLayout {
-    public static final ChatActivity.AnonymousClass5 ANIMATION_PROGRESS = new ChatActivity.AnonymousClass5("animationProgress", 2);
-    public int animatedColorBackground;
-    public Paint animationPaint;
-    public float animationProgress;
-    public ObjectAnimator animator;
-    public boolean attached;
-    public final Switch checkBox;
-    public boolean drawCheckRipple;
-    public int height;
-    public RLottieImageView imageView;
-    public boolean isAnimatingToThumbInsteadOfTouch;
-    public boolean isMultiline;
-    public boolean isRTL;
+    public static final Property<TextCheckCell, Float> ANIMATION_PROGRESS = new AnonymousClass1("animationProgress");
+    private int animatedColorBackground;
+    private Paint animationPaint;
+    private float animationProgress;
+    private ObjectAnimator animator;
+    boolean attached;
+    private Switch checkBox;
+    private boolean drawCheckRipple;
+    private int height;
+    ImageView imageView;
+    private boolean isAnimatingToThumbInsteadOfTouch;
+    private boolean isMultiline;
+    private boolean isRTL;
     public int itemId;
-    public float lastTouchX;
-    public boolean needDivider;
-    public int padding;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public final TextView textView;
-    public final TextView valueTextView;
+    private float lastTouchX;
+    private boolean needDivider;
+    private int padding;
+    private Theme.ResourcesProvider resourcesProvider;
+    private TextView textView;
+    private TextView valueTextView;
+
+    public final class AnonymousClass1 extends AnimationProperties.FloatProperty {
+        @Override
+        public final Float get(Object obj) {
+            return Float.valueOf(((TextCheckCell) obj).animationProgress);
+        }
+
+        @Override
+        public final void setValue(Object obj, float f) {
+            TextCheckCell textCheckCell = (TextCheckCell) obj;
+            textCheckCell.setAnimationProgress(f);
+            textCheckCell.invalidate();
+        }
+    }
 
     public final class AnonymousClass2 extends AnimatorListenerAdapter {
         public final int $r8$classId;
@@ -86,7 +98,7 @@ public class TextCheckCell extends FrameLayout {
     }
 
     public TextCheckCell(Context context) {
-        this(21, context, null, false);
+        this(context, 21, false, null);
     }
 
     private float getLastTouchX() {
@@ -100,27 +112,25 @@ public class TextCheckCell extends FrameLayout {
         this.animationProgress = f;
         float lastTouchX = getLastTouchX();
         float fMax = Math.max(lastTouchX, getMeasuredWidth() - lastTouchX) + AndroidUtilities.dp(40.0f);
-        int measuredHeight = getMeasuredHeight() / 2;
-        float f2 = fMax * this.animationProgress;
-        Switch r2 = this.checkBox;
-        r2.overlayCx = lastTouchX;
-        r2.overlayCy = measuredHeight;
-        r2.overlayRad = f2;
-        r2.invalidate();
+        this.checkBox.setOverrideColorProgress(lastTouchX, getMeasuredHeight() / 2, fMax * this.animationProgress);
     }
 
     public Switch getCheckBox() {
         return this.checkBox;
     }
 
+    public boolean isChecked() {
+        return this.checkBox.isChecked();
+    }
+
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attached = true;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attached = false;
     }
@@ -145,23 +155,22 @@ public class TextCheckCell extends FrameLayout {
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.checkBox.isChecked);
+        accessibilityNodeInfo.setChecked(this.checkBox.isChecked());
         StringBuilder sb = new StringBuilder();
         sb.append(this.textView.getText());
-        TextView textView = this.valueTextView;
-        if (!TextUtils.isEmpty(textView.getText())) {
+        if (!TextUtils.isEmpty(this.valueTextView.getText())) {
             sb.append('\n');
-            sb.append(textView.getText());
+            sb.append(this.valueTextView.getText());
         }
         accessibilityNodeInfo.setContentDescription(sb);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         if (this.isMultiline) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
         } else {
@@ -170,7 +179,7 @@ public class TextCheckCell extends FrameLayout {
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         this.lastTouchX = motionEvent.getX();
         return super.onTouchEvent(motionEvent);
     }
@@ -188,7 +197,7 @@ public class TextCheckCell extends FrameLayout {
         }
     }
 
-    public final void setBackgroundColorAnimated(int i, boolean z) {
+    public void setBackgroundColorAnimated(boolean z, int i) {
         ObjectAnimator objectAnimator = this.animator;
         if (objectAnimator != null) {
             objectAnimator.cancel();
@@ -242,20 +251,18 @@ public class TextCheckCell extends FrameLayout {
     }
 
     public void setChecked(boolean z) {
-        Switch r0 = this.checkBox;
-        r0.setChecked(r0.drawIconType, z, true);
+        this.checkBox.setChecked(z, true);
     }
 
-    public final void setColorfullIcon(int i, int i2) {
+    public void setColorfullIcon(int i, int i2) {
         if (this.imageView == null) {
             RLottieImageView rLottieImageView = new RLottieImageView(getContext());
             this.imageView = rLottieImageView;
             rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.imageView, LayoutHelper.createFrame(29, 29.0f, (LocaleController.isRTL ? 5 : 3) | 16, 19.0f, 0.0f, 19.0f, 0.0f));
             this.padding = AndroidUtilities.dp(65.0f);
-            TextView textView = this.textView;
-            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).leftMargin = LocaleController.isRTL ? 70 : this.padding;
-            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).rightMargin = LocaleController.isRTL ? this.padding : 70;
+            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).leftMargin = LocaleController.isRTL ? 70 : this.padding;
+            ((ViewGroup.MarginLayoutParams) this.textView.getLayoutParams()).rightMargin = LocaleController.isRTL ? this.padding : 70;
         }
         this.imageView.setVisibility(0);
         this.imageView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
@@ -264,15 +271,10 @@ public class TextCheckCell extends FrameLayout {
         this.imageView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.0f), i));
     }
 
-    public final void setColors(int i, int i2, int i3, int i4, int i5) {
-        TextView textView = this.textView;
-        textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
-        Switch r1 = this.checkBox;
-        r1.trackColorKey = i2;
-        r1.trackCheckedColorKey = i3;
-        r1.thumbColorKey = i4;
-        r1.thumbCheckedColorKey = i5;
-        textView.setTag(Integer.valueOf(i));
+    public void setColors(int i, int i2, int i3, int i4, int i5) {
+        this.textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        this.checkBox.setColors(i2, i3, i4, i5);
+        this.textView.setTag(Integer.valueOf(i));
     }
 
     public void setDivider(boolean z) {
@@ -302,136 +304,168 @@ public class TextCheckCell extends FrameLayout {
         super.setPressed(z);
     }
 
-    public final void setTextAndCheck(CharSequence charSequence, boolean z, boolean z2) {
-        int i = AvatarSpan.$r8$clinit;
-        if (charSequence != null && (charSequence instanceof Spannable)) {
-            Spannable spannable = (Spannable) charSequence;
-            for (AvatarSpan avatarSpan : (AvatarSpan[]) spannable.getSpans(0, spannable.length(), AvatarSpan.class)) {
-                avatarSpan.setParent(this);
-            }
-        }
-        TextView textView = this.textView;
-        textView.setText(charSequence);
+    public void setTextAndCheck(CharSequence charSequence, boolean z, boolean z2) {
+        AvatarSpan.checkSpansParent(charSequence, this);
+        this.textView.setText(charSequence);
         this.isMultiline = false;
-        Switch r6 = this.checkBox;
-        r6.setVisibility(0);
-        r6.setChecked(r6.drawIconType, z, this.attached);
+        this.checkBox.setVisibility(0);
+        this.checkBox.setChecked(z, this.attached);
         this.needDivider = z2;
         this.valueTextView.setVisibility(8);
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
         layoutParams.height = -1;
         layoutParams.topMargin = 0;
-        textView.setLayoutParams(layoutParams);
+        this.textView.setLayoutParams(layoutParams);
         setWillNotDraw(!z2);
     }
 
-    public final void setTextAndValueAndCheck(String str, String str2, boolean z, boolean z2, boolean z3) {
-        int i = AvatarSpan.$r8$clinit;
-        if (str != 0 && (str instanceof Spannable)) {
-            Spannable spannable = (Spannable) str;
-            for (AvatarSpan avatarSpan : (AvatarSpan[]) spannable.getSpans(0, spannable.length(), AvatarSpan.class)) {
-                avatarSpan.setParent(this);
-            }
-        }
-        TextView textView = this.textView;
-        textView.setText(str);
-        TextView textView2 = this.valueTextView;
-        textView2.setText(str2);
-        Switch r8 = this.checkBox;
-        r8.setVisibility(0);
-        r8.setChecked(r8.drawIconType, z, false);
-        this.needDivider = z3;
-        textView2.setVisibility(0);
-        this.isMultiline = z2;
-        if (z2) {
-            textView2.setLines(0);
-            textView2.setMaxLines(0);
-            textView2.setSingleLine(false);
-            textView2.setEllipsize(null);
-            textView2.setPadding(0, 0, 0, AndroidUtilities.dp(11.0f));
+    public void setTextAndValue(String str, String str2, boolean z, boolean z2) {
+        AvatarSpan.checkSpansParent(str, this);
+        this.textView.setText(str);
+        this.valueTextView.setText(str2);
+        this.checkBox.setVisibility(8);
+        this.needDivider = z2;
+        this.valueTextView.setVisibility(0);
+        this.isMultiline = z;
+        if (z) {
+            this.valueTextView.setLines(0);
+            this.valueTextView.setMaxLines(0);
+            this.valueTextView.setSingleLine(false);
+            this.valueTextView.setEllipsize(null);
+            this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.dp(11.0f));
         } else {
-            textView2.setLines(1);
-            textView2.setMaxLines(1);
-            textView2.setSingleLine(true);
-            textView2.setEllipsize(TextUtils.TruncateAt.END);
-            textView2.setPadding(0, 0, 0, 0);
+            this.valueTextView.setLines(1);
+            this.valueTextView.setMaxLines(1);
+            this.valueTextView.setSingleLine(true);
+            this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
+            this.valueTextView.setPadding(0, 0, 0, 0);
         }
-        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
         layoutParams.height = -2;
         layoutParams.topMargin = AndroidUtilities.dp(10.0f);
-        textView.setLayoutParams(layoutParams);
-        setWillNotDraw(!z3);
+        this.textView.setLayoutParams(layoutParams);
+        setWillNotDraw(true ^ z2);
+    }
+
+    public void setTextAndValueAndCheck(String str, String str2, boolean z, boolean z2, boolean z3) {
+        AvatarSpan.checkSpansParent(str, this);
+        this.textView.setText(str);
+        this.valueTextView.setText(str2);
+        this.checkBox.setVisibility(0);
+        this.checkBox.setChecked(z, false);
+        this.needDivider = z3;
+        this.valueTextView.setVisibility(0);
+        this.isMultiline = z2;
+        if (z2) {
+            this.valueTextView.setLines(0);
+            this.valueTextView.setMaxLines(0);
+            this.valueTextView.setSingleLine(false);
+            this.valueTextView.setEllipsize(null);
+            this.valueTextView.setPadding(0, 0, 0, AndroidUtilities.dp(11.0f));
+        } else {
+            this.valueTextView.setLines(1);
+            this.valueTextView.setMaxLines(1);
+            this.valueTextView.setSingleLine(true);
+            this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
+            this.valueTextView.setPadding(0, 0, 0, 0);
+        }
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
+        layoutParams.height = -2;
+        layoutParams.topMargin = AndroidUtilities.dp(10.0f);
+        this.textView.setLayoutParams(layoutParams);
+        setWillNotDraw(true ^ z3);
     }
 
     public void setTypeface(Typeface typeface) {
         this.textView.setTypeface(typeface);
     }
 
-    public TextCheckCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-        this(21, context, resourcesProvider, false);
+    public void updateRTL() {
+        boolean z = this.isRTL;
+        boolean z2 = LocaleController.isRTL;
+        if (z == z2) {
+            return;
+        }
+        this.isRTL = z2;
+        this.textView.setGravity((z2 ? 5 : 3) | 16);
+        removeView(this.textView);
+        TextView textView = this.textView;
+        boolean z3 = LocaleController.isRTL;
+        addView(textView, LayoutHelper.createFrame(-1, -1.0f, (z3 ? 5 : 3) | 48, z3 ? 70.0f : this.padding, 0.0f, z3 ? this.padding : 70.0f, 0.0f));
+        this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+        removeView(this.valueTextView);
+        TextView textView2 = this.valueTextView;
+        boolean z4 = LocaleController.isRTL;
+        addView(textView2, LayoutHelper.createFrame(-2, -2.0f, (z4 ? 5 : 3) | 48, z4 ? 64.0f : this.padding, 36.0f, z4 ? this.padding : 64.0f, 0.0f));
+        removeView(this.checkBox);
+        addView(this.checkBox, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
     }
 
-    public TextCheckCell(int i, Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public TextCheckCell(Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(context, 21, false, resourcesProvider);
+    }
+
+    public TextCheckCell(Context context, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.height = 50;
         this.resourcesProvider = resourcesProvider;
         this.padding = i;
         TextView textView = new TextView(context);
         this.textView = textView;
-        OKLCH.m(z ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText, resourcesProvider, textView, 16.0f);
-        textView.setLines(1);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        textView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        this.textView.setTextSize(1, 16.0f);
+        this.textView.setLines(1);
+        this.textView.setMaxLines(1);
+        this.textView.setSingleLine(true);
+        this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        TextView textView2 = this.textView;
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        boolean z2 = LocaleController.isRTL;
-        addView(textView, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 70.0f : i, 0.0f, z2 ? i : 70.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.valueTextView = textView2;
-        OKLCH.m(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider, textView2, 13.0f);
-        textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        textView2.setLines(1);
-        textView2.setMaxLines(1);
-        textView2.setSingleLine(true);
-        textView2.setPadding(0, 0, 0, 0);
         textView2.setEllipsize(truncateAt);
+        TextView textView3 = this.textView;
+        boolean z2 = LocaleController.isRTL;
+        addView(textView3, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 70.0f : i, 0.0f, z2 ? i : 70.0f, 0.0f));
+        TextView textView4 = new TextView(context);
+        this.valueTextView = textView4;
+        textView4.setTextColor(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+        this.valueTextView.setTextSize(1, 13.0f);
+        this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+        this.valueTextView.setLines(1);
+        this.valueTextView.setMaxLines(1);
+        this.valueTextView.setSingleLine(true);
+        this.valueTextView.setPadding(0, 0, 0, 0);
+        this.valueTextView.setEllipsize(truncateAt);
+        TextView textView5 = this.valueTextView;
         boolean z3 = LocaleController.isRTL;
-        addView(textView2, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 70.0f : i, 35.0f, z3 ? i : 70.0f, 0.0f));
-        Switch r1 = new Switch(context, resourcesProvider);
-        this.checkBox = r1;
+        addView(textView5, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 70.0f : i, 35.0f, z3 ? i : 70.0f, 0.0f));
+        Switch r2 = new Switch(context, resourcesProvider);
+        this.checkBox = r2;
         int i2 = Theme.key_switchTrack;
         int i3 = Theme.key_switchTrackChecked;
         int i4 = Theme.key_windowBackgroundWhite;
-        r1.trackColorKey = i2;
-        r1.trackCheckedColorKey = i3;
-        r1.thumbColorKey = i4;
-        r1.thumbCheckedColorKey = i4;
-        addView(r1, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
+        r2.setColors(i2, i3, i4, i4);
+        addView(this.checkBox, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         setClipChildren(false);
         this.isRTL = LocaleController.isRTL;
     }
 
-    public final void setEnabled(ArrayList arrayList, boolean z) {
+    public void setEnabled(boolean z, ArrayList<Animator> arrayList) {
         super.setEnabled(z);
-        Switch r2 = this.checkBox;
-        TextView textView = this.textView;
-        TextView textView2 = this.valueTextView;
         if (arrayList != null) {
+            TextView textView = this.textView;
             float[] fArr = {z ? 1.0f : 0.5f};
             Property property = View.ALPHA;
             arrayList.add(ObjectAnimator.ofFloat(textView, (Property<TextView, Float>) property, fArr));
-            arrayList.add(ObjectAnimator.ofFloat(r2, (Property<Switch, Float>) property, z ? 1.0f : 0.5f));
-            if (textView2.getVisibility() == 0) {
-                arrayList.add(ObjectAnimator.ofFloat(textView2, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
+            arrayList.add(ObjectAnimator.ofFloat(this.checkBox, (Property<Switch, Float>) property, z ? 1.0f : 0.5f));
+            if (this.valueTextView.getVisibility() == 0) {
+                arrayList.add(ObjectAnimator.ofFloat(this.valueTextView, (Property<TextView, Float>) property, z ? 1.0f : 0.5f));
                 return;
             }
             return;
         }
-        textView.setAlpha(z ? 1.0f : 0.5f);
-        r2.setAlpha(z ? 1.0f : 0.5f);
-        if (textView2.getVisibility() == 0) {
-            textView2.setAlpha(z ? 1.0f : 0.5f);
+        this.textView.setAlpha(z ? 1.0f : 0.5f);
+        this.checkBox.setAlpha(z ? 1.0f : 0.5f);
+        if (this.valueTextView.getVisibility() == 0) {
+            this.valueTextView.setAlpha(z ? 1.0f : 0.5f);
         }
     }
 }

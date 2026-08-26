@@ -30,23 +30,23 @@ public final class StrikethroughDelimiterProcessor implements DelimiterProcessor
     @Override
     public final void process(Text text, Text text2, int i) {
         Strikethrough strikethrough = new Strikethrough();
-        Node node = (Node) text.next;
+        Node node = text.next;
         while (node != null && node != text2) {
-            Node node2 = (Node) node.next;
+            Node node2 = node.next;
             strikethrough.appendChild(node);
             node = node2;
         }
         strikethrough.unlink();
-        Node node3 = (Node) text.next;
+        Node node3 = text.next;
         strikethrough.next = node3;
         if (node3 != null) {
             node3.prev = strikethrough;
         }
         strikethrough.prev = text;
         text.next = strikethrough;
-        Node node4 = (Node) text.parent;
+        Node node4 = text.parent;
         strikethrough.parent = node4;
-        if (((Node) strikethrough.next) == null) {
+        if (strikethrough.next == null) {
             node4.lastChild = strikethrough;
         }
     }

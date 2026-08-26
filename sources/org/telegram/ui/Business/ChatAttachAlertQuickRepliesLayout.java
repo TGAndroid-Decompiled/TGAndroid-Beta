@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,34 +15,38 @@ import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SavedMessagesController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda17;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda94;
-import org.telegram.ui.ChatLinkActivity$$ExternalSyntheticLambda4;
+import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.ChatAttachAlert;
-import org.telegram.ui.Components.ChatAttachAlertPollLayout;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmptyTextProgressView;
+import org.telegram.ui.Components.FillLastLinearLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
-import org.telegram.ui.MessageEnterTransitionContainer;
-import org.telegram.ui.UsersSelectActivity;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
+import org.telegram.ui.Stars.StarGiftPreviewSheet;
+import org.telegram.ui.TON.TONIntroActivity$$ExternalSyntheticLambda3;
 
 public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
     public final BoolAnimator animatorFadeVisible;
     public final EmptyTextProgressView emptyView;
     public final FrameLayout frameLayout;
-    public final ChatAttachAlertPollLayout.AnonymousClass4 layoutManager;
+    public final AnonymousClass3 layoutManager;
     public final ShareAdapter listAdapter;
-    public final ChatActivity.AnonymousClass34 listView;
+    public final StarGiftPreviewSheet.AnonymousClass6 listView;
     public final ShareSearchAdapter searchAdapter;
     public final ChatAttachAlert.AttachSearchField searchField;
     public final HashSet selectedReplies;
@@ -119,12 +124,12 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
         }
 
         @Override
-        public final View getSectionHeaderView$1(int i, View view) {
+        public final View getSectionHeaderView(int i, View view) {
             return null;
         }
 
         @Override
-        public final boolean isEnabled(int i, int i2, RecyclerView.ViewHolder viewHolder) {
+        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder, int i, int i2) {
             return (i == 0 || i == 2 || i2 >= this.replies.size()) ? false : true;
         }
 
@@ -140,7 +145,7 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
                 ArrayList arrayList3 = quickRepliesController.replies;
                 if (i >= arrayList3.size()) {
                     arrayList.addAll(arrayList2);
-                    update(false);
+                    super.notifyDataSetChanged();
                     ChatAttachAlertQuickRepliesLayout.this.updateEmptyView();
                     return;
                 } else {
@@ -154,7 +159,7 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
 
         @Override
         public final void onBindViewHolder(int i, int i2, RecyclerView.ViewHolder viewHolder) {
-            if (viewHolder.mItemViewType == 0) {
+            if (viewHolder.getItemViewType() == 0) {
                 QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) viewHolder.itemView;
                 Object item = getItem(i, i2);
                 boolean z = true;
@@ -164,7 +169,7 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
                 if (item instanceof QuickRepliesController.QuickReply) {
                     QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) item;
                     quickReplyView.set(quickReply, null, z);
-                    quickReplyView.checkBox.checkBoxBase.setChecked(-1, ChatAttachAlertQuickRepliesLayout.this.selectedReplies.contains(Integer.valueOf(quickReply.id)), false);
+                    quickReplyView.checkBox.setChecked(ChatAttachAlertQuickRepliesLayout.this.selectedReplies.contains(Integer.valueOf(quickReply.id)), false);
                 }
             }
         }
@@ -174,7 +179,7 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
             View quickReplyView;
             Context context = this.mContext;
             if (i == 0) {
-                quickReplyView = new QuickRepliesActivity.QuickReplyView(context, ChatAttachAlertQuickRepliesLayout.this.resourcesProvider, false);
+                quickReplyView = new QuickRepliesActivity.QuickReplyView(context, false, ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertQuickRepliesLayout.this).resourcesProvider);
             } else if (i != 1) {
                 quickReplyView = new View(context);
                 quickReplyView.setTag(-33024);
@@ -211,18 +216,18 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
 
         @Override
         public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.mItemViewType == 0;
+            return viewHolder.getItemViewType() == 0;
         }
 
         @Override
         public final void notifyDataSetChanged() {
-            this.mObservable.notifyChanged();
+            super.notifyDataSetChanged();
             ChatAttachAlertQuickRepliesLayout.this.updateEmptyView();
         }
 
         @Override
         public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            if (viewHolder.mItemViewType == 0) {
+            if (viewHolder.getItemViewType() == 0) {
                 QuickRepliesActivity.QuickReplyView quickReplyView = (QuickRepliesActivity.QuickReplyView) viewHolder.itemView;
                 ArrayList arrayList = this.searchResult;
                 boolean z = i != arrayList.size();
@@ -231,7 +236,7 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
                 if (obj instanceof QuickRepliesController.QuickReply) {
                     QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) obj;
                     quickReplyView.set(quickReply, this.lastQuery, z);
-                    quickReplyView.checkBox.checkBoxBase.setChecked(-1, ChatAttachAlertQuickRepliesLayout.this.selectedReplies.contains(Integer.valueOf(quickReply.id)), false);
+                    quickReplyView.checkBox.setChecked(ChatAttachAlertQuickRepliesLayout.this.selectedReplies.contains(Integer.valueOf(quickReply.id)), false);
                 }
             }
         }
@@ -241,7 +246,7 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
             View quickReplyView;
             Context context = this.mContext;
             if (i == 0) {
-                quickReplyView = new QuickRepliesActivity.QuickReplyView(context, ChatAttachAlertQuickRepliesLayout.this.resourcesProvider, false);
+                quickReplyView = new QuickRepliesActivity.QuickReplyView(context, false, ((ChatAttachAlert.AttachAlertLayout) ChatAttachAlertQuickRepliesLayout.this).resourcesProvider);
             } else if (i != 1) {
                 quickReplyView = new View(context);
                 quickReplyView.setTag(-33024);
@@ -252,29 +257,62 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
             }
             return new RecyclerListView.Holder(quickReplyView);
         }
+
+        public final void search(String str) {
+            ArrayList arrayList = this.searchResult;
+            arrayList.clear();
+            this.lastQuery = str;
+            String strTranslitSafe = AndroidUtilities.translitSafe(str);
+            if (strTranslitSafe.startsWith("/")) {
+                strTranslitSafe = strTranslitSafe.substring(1);
+            }
+            QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(UserConfig.selectedAccount);
+            int i = 0;
+            while (true) {
+                ArrayList arrayList2 = quickRepliesController.replies;
+                if (i >= arrayList2.size()) {
+                    break;
+                }
+                QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) arrayList2.get(i);
+                if (!QuickRepliesController.isSpecial(quickReply.name)) {
+                    String strTranslitSafe2 = AndroidUtilities.translitSafe(quickReply.name);
+                    if (strTranslitSafe2.startsWith(strTranslitSafe) || SavedMessagesController$$ExternalSyntheticOutline0.m(" ", strTranslitSafe, strTranslitSafe2)) {
+                        arrayList.add(quickReply);
+                    }
+                }
+                i++;
+            }
+            ChatAttachAlertQuickRepliesLayout chatAttachAlertQuickRepliesLayout = ChatAttachAlertQuickRepliesLayout.this;
+            RecyclerView.Adapter adapter = chatAttachAlertQuickRepliesLayout.listView.getAdapter();
+            ShareSearchAdapter shareSearchAdapter = chatAttachAlertQuickRepliesLayout.searchAdapter;
+            if (adapter != shareSearchAdapter) {
+                chatAttachAlertQuickRepliesLayout.listView.setAdapter(shareSearchAdapter);
+            }
+            super.notifyDataSetChanged();
+            chatAttachAlertQuickRepliesLayout.updateEmptyView();
+        }
     }
 
     public abstract class UserCell extends FrameLayout {
     }
 
-    public ChatAttachAlertQuickRepliesLayout(Context context, Theme.ResourcesProvider resourcesProvider, ChatAttachAlert chatAttachAlert) {
-        super(context, resourcesProvider, chatAttachAlert);
+    public ChatAttachAlertQuickRepliesLayout(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(chatAttachAlert, context, resourcesProvider);
         this.animatorFadeVisible = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 380L, false);
         this.selectedReplies = new HashSet();
         this.searchAdapter = new ShareSearchAdapter(context);
-        MessageEnterTransitionContainer messageEnterTransitionContainer = new MessageEnterTransitionContainer(context, Theme.key_windowBackgroundWhite, resourcesProvider);
-        messageEnterTransitionContainer.setVisibility(4);
+        ChatAttachAlert.SearchFadeView searchFadeView = new ChatAttachAlert.SearchFadeView(context, Theme.key_windowBackgroundWhite, resourcesProvider);
+        searchFadeView.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.frameLayout = frameLayout;
-        ChatAttachAlert.AttachSearchField attachSearchField = new ChatAttachAlert.AttachSearchField(context, resourcesProvider, this.parentAlert);
+        ChatAttachAlert.AttachSearchField attachSearchField = new ChatAttachAlert.AttachSearchField(context, this.parentAlert, resourcesProvider);
         this.searchField = attachSearchField;
         attachSearchField.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        TextWatcher textWatcher = new TextWatcher() {
+        attachSearchField.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public final void afterTextChanged(Editable editable) {
                 String string = editable.toString();
                 boolean zIsEmpty = string.isEmpty();
-                int i = 0;
                 ChatAttachAlertQuickRepliesLayout chatAttachAlertQuickRepliesLayout = ChatAttachAlertQuickRepliesLayout.this;
                 if (zIsEmpty) {
                     RecyclerView.Adapter adapter = chatAttachAlertQuickRepliesLayout.listView.getAdapter();
@@ -285,8 +323,7 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
                         chatAttachAlertQuickRepliesLayout.listView.setAdapter(shareAdapter);
                         shareAdapter.notifyDataSetChanged();
                         if (currentTop > 0) {
-                            ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass4 = chatAttachAlertQuickRepliesLayout.layoutManager;
-                            anonymousClass4.scrollToPositionWithOffset(0, -currentTop, anonymousClass4.mShouldReverseLayout);
+                            chatAttachAlertQuickRepliesLayout.layoutManager.scrollToPositionWithOffset(0, -currentTop);
                         }
                     }
                 } else {
@@ -297,35 +334,7 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
                 }
                 ShareSearchAdapter shareSearchAdapter = chatAttachAlertQuickRepliesLayout.searchAdapter;
                 if (shareSearchAdapter != null) {
-                    ArrayList arrayList = shareSearchAdapter.searchResult;
-                    arrayList.clear();
-                    shareSearchAdapter.lastQuery = string;
-                    String strTranslitSafe = AndroidUtilities.translitSafe(string);
-                    if (strTranslitSafe.startsWith("/")) {
-                        strTranslitSafe = strTranslitSafe.substring(1);
-                    }
-                    QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(UserConfig.selectedAccount);
-                    while (true) {
-                        ArrayList arrayList2 = quickRepliesController.replies;
-                        if (i >= arrayList2.size()) {
-                            break;
-                        }
-                        QuickRepliesController.QuickReply quickReply = (QuickRepliesController.QuickReply) arrayList2.get(i);
-                        if (!QuickRepliesController.isSpecial(quickReply.name)) {
-                            String strTranslitSafe2 = AndroidUtilities.translitSafe(quickReply.name);
-                            if (strTranslitSafe2.startsWith(strTranslitSafe) || SavedMessagesController$$ExternalSyntheticOutline0.m(" ", strTranslitSafe, strTranslitSafe2)) {
-                                arrayList.add(quickReply);
-                            }
-                        }
-                        i++;
-                    }
-                    ChatAttachAlertQuickRepliesLayout chatAttachAlertQuickRepliesLayout2 = ChatAttachAlertQuickRepliesLayout.this;
-                    RecyclerView.Adapter adapter2 = chatAttachAlertQuickRepliesLayout2.listView.getAdapter();
-                    ShareSearchAdapter shareSearchAdapter2 = chatAttachAlertQuickRepliesLayout2.searchAdapter;
-                    if (adapter2 != shareSearchAdapter2) {
-                        chatAttachAlertQuickRepliesLayout2.listView.setAdapter(shareSearchAdapter2);
-                    }
-                    shareSearchAdapter.notifyDataSetChanged();
+                    shareSearchAdapter.search(string);
                 }
             }
 
@@ -336,42 +345,63 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
             @Override
             public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             }
-        };
-        UsersSelectActivity.AnonymousClass4 anonymousClass4 = attachSearchField.editText;
-        anonymousClass4.addTextChangedListener(textWatcher);
-        anonymousClass4.setHint(LocaleController.getString(R.string.BusinessRepliesSearch));
-        frameLayout.addView(messageEnterTransitionContainer, LayoutHelper.createFrame(-1.0f, -1));
+        });
+        attachSearchField.editText.setHint(LocaleController.getString(R.string.BusinessRepliesSearch));
+        frameLayout.addView(searchFadeView, LayoutHelper.createFrameMatchParent());
         FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
         ((ViewGroup.MarginLayoutParams) layoutParamsCreateFrame).topMargin += AndroidUtilities.statusBarHeight;
         frameLayout.addView(attachSearchField, layoutParamsCreateFrame);
-        EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, resourcesProvider);
+        EmptyTextProgressView emptyTextProgressView = new EmptyTextProgressView(context, null, resourcesProvider);
         this.emptyView = emptyTextProgressView;
         emptyTextProgressView.showTextView();
         addView(emptyTextProgressView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 52.0f, 0.0f, 0.0f));
-        ChatActivity.AnonymousClass34 anonymousClass34 = new ChatActivity.AnonymousClass34(this, context, resourcesProvider, 2);
-        this.listView = anonymousClass34;
-        anonymousClass34.setSections();
-        this.iBlur3Capture = anonymousClass34;
-        this.iBlur3CaptureView = anonymousClass34;
+        StarGiftPreviewSheet.AnonymousClass6 anonymousClass6 = new StarGiftPreviewSheet.AnonymousClass6(this, context, resourcesProvider, 1);
+        this.listView = anonymousClass6;
+        anonymousClass6.setSections();
+        this.iBlur3Capture = anonymousClass6;
+        this.iBlur3CaptureView = anonymousClass6;
         this.occupyStatusBar = true;
         this.occupyNavigationBar = true;
-        NotificationCenter.getGlobalInstance().listen(anonymousClass34, NotificationCenter.emojiLoaded, new DialogCell$$ExternalSyntheticLambda6(this, 5));
-        anonymousClass34.setClipToPadding(false);
-        getContext();
-        ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass5 = new ChatAttachAlertPollLayout.AnonymousClass4(this, AndroidUtilities.dp(9.0f), anonymousClass34, 1);
-        this.layoutManager = anonymousClass5;
-        anonymousClass34.setLayoutManager(anonymousClass5);
-        anonymousClass5.bind = false;
-        anonymousClass34.setHorizontalScrollBarEnabled(false);
-        anonymousClass34.setVerticalScrollBarEnabled(false);
-        anonymousClass34.setClipToPadding(false);
-        addView(anonymousClass34, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+        NotificationCenter.getGlobalInstance().listen(anonymousClass6, NotificationCenter.emojiLoaded, new DialogCell$$ExternalSyntheticLambda6(this, 4));
+        anonymousClass6.setClipToPadding(false);
+        ?? r1 = new FillLastLinearLayoutManager(getContext(), AndroidUtilities.dp(9.0f), anonymousClass6) {
+            @Override
+            public final void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i) {
+                LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
+                    @Override
+                    public final int calculateDyToMakeVisible(View view, int i2) {
+                        return super.calculateDyToMakeVisible(view, i2) - ((ChatAttachAlertQuickRepliesLayout.this.listView.getPaddingTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(8.0f));
+                    }
+
+                    @Override
+                    public final int calculateTimeForDeceleration(int i2) {
+                        return super.calculateTimeForDeceleration(i2) * 2;
+                    }
+                };
+                linearSmoothScroller.setTargetPosition(i);
+                startSmoothScroll(linearSmoothScroller);
+            }
+        };
+        this.layoutManager = r1;
+        anonymousClass6.setLayoutManager(r1);
+        r1.setBind(false);
+        anonymousClass6.setHorizontalScrollBarEnabled(false);
+        anonymousClass6.setVerticalScrollBarEnabled(false);
+        anonymousClass6.setClipToPadding(false);
+        addView(anonymousClass6, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         ShareAdapter shareAdapter = new ShareAdapter(context);
         this.listAdapter = shareAdapter;
-        anonymousClass34.setAdapter(shareAdapter);
-        anonymousClass34.setGlowColor(Theme.getColor(Theme.key_dialogScrollGlow, this.resourcesProvider));
-        anonymousClass34.setOnItemClickListener(new ChatLinkActivity$$ExternalSyntheticLambda4(this, 4));
-        anonymousClass34.setOnScrollListener(new ChatActivity.AnonymousClass53(this, 6));
+        anonymousClass6.setAdapter(shareAdapter);
+        anonymousClass6.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
+        anonymousClass6.setOnItemClickListener(new TONIntroActivity$$ExternalSyntheticLambda3(this, 2));
+        anonymousClass6.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public final void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                ChatAttachAlertQuickRepliesLayout chatAttachAlertQuickRepliesLayout = ChatAttachAlertQuickRepliesLayout.this;
+                ((ChatAttachAlert.AttachAlertLayout) chatAttachAlertQuickRepliesLayout).parentAlert.updateLayout(chatAttachAlertQuickRepliesLayout, true, i2);
+                chatAttachAlertQuickRepliesLayout.updateEmptyViewPosition();
+            }
+        });
         FrameLayout.LayoutParams layoutParamsCreateFrame2 = LayoutHelper.createFrame(-1, 60, 51);
         ((ViewGroup.MarginLayoutParams) layoutParamsCreateFrame2).height += AndroidUtilities.statusBarHeight;
         addView(frameLayout, layoutParamsCreateFrame2);
@@ -379,17 +409,17 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
     }
 
     public int getCurrentTop() {
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.listView;
-        if (anonymousClass34.getChildCount() == 0) {
+        StarGiftPreviewSheet.AnonymousClass6 anonymousClass6 = this.listView;
+        if (anonymousClass6.getChildCount() == 0) {
             return -1000;
         }
         int top = 0;
-        View childAt = anonymousClass34.getChildAt(0);
-        RecyclerListView.Holder holder = (RecyclerListView.Holder) anonymousClass34.findContainingViewHolder(childAt);
+        View childAt = anonymousClass6.getChildAt(0);
+        RecyclerListView.Holder holder = (RecyclerListView.Holder) anonymousClass6.findContainingViewHolder(childAt);
         if (holder == null) {
             return -1000;
         }
-        int paddingTop = anonymousClass34.getPaddingTop();
+        int paddingTop = anonymousClass6.getPaddingTop();
         if (holder.getAdapterPosition() == 0 && childAt.getTop() >= 0) {
             top = childAt.getTop();
         }
@@ -402,12 +432,12 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
 
     @Override
     public int getCurrentItemTop() {
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.listView;
-        if (anonymousClass34.getChildCount() <= 0) {
+        StarGiftPreviewSheet.AnonymousClass6 anonymousClass6 = this.listView;
+        if (anonymousClass6.getChildCount() <= 0) {
             return Integer.MAX_VALUE;
         }
-        View childAt = anonymousClass34.getChildAt(0);
-        RecyclerListView.Holder holder = (RecyclerListView.Holder) anonymousClass34.findContainingViewHolder(childAt);
+        View childAt = anonymousClass6.getChildAt(0);
+        RecyclerListView.Holder holder = (RecyclerListView.Holder) anonymousClass6.findContainingViewHolder(childAt);
         int top = (childAt.getTop() - AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(8.0f);
         int i = (top <= 0 || holder == null || holder.getAdapterPosition() != 0) ? 0 : top;
         BoolAnimator boolAnimator = this.animatorFadeVisible;
@@ -438,7 +468,22 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
 
     @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
-        ChatActivity$$ExternalSyntheticLambda94 chatActivity$$ExternalSyntheticLambda94 = new ChatActivity$$ExternalSyntheticLambda94(this, 2);
+        ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
+            @Override
+            public final void didSetColor() {
+                StarGiftPreviewSheet.AnonymousClass6 anonymousClass6 = this.f$0.listView;
+                if (anonymousClass6 != null) {
+                    int childCount = anonymousClass6.getChildCount();
+                    for (int i = 0; i < childCount; i++) {
+                        anonymousClass6.getChildAt(i);
+                    }
+                }
+            }
+
+            @Override
+            public final void onAnimationProgress(float f) {
+            }
+        };
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
         arrayList.add(new ThemeDescription(this.emptyView, 4, null, null, null, null, Theme.key_emptyListPlaceholder));
         arrayList.add(new ThemeDescription(this.emptyView, 2048, null, null, null, null, Theme.key_progressCircle));
@@ -447,16 +492,65 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
         int i = Theme.key_dialogTextGray2;
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"nameTextView"}, null, null, -1, null, i));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"statusTextView"}, null, null, -1, chatActivity$$ExternalSyntheticLambda94, i));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"statusTextView"}, null, null, -1, themeDescriptionDelegate, i));
         arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, null, Theme.avatarDrawables, null, Theme.key_avatar_text));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundRed));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundOrange));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundViolet));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundGreen));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundCyan));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundBlue));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, chatActivity$$ExternalSyntheticLambda94, Theme.key_avatar_backgroundPink));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundRed));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundOrange));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundViolet));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundGreen));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundCyan));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundBlue));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_avatar_backgroundPink));
         return arrayList;
+    }
+
+    public final void lambda$new$2(QuickRepliesController.QuickReply quickReply) {
+        QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(UserConfig.selectedAccount);
+        long dialogId = this.parentAlert.getDialogId();
+        if (quickReply != null) {
+            TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages = new TLRPC.TL_messages_sendQuickReplyMessages();
+            int i = quickRepliesController.currentAccount;
+            TLRPC.InputPeer inputPeer = MessagesController.getInstance(i).getInputPeer(dialogId);
+            tL_messages_sendQuickReplyMessages.peer = inputPeer;
+            if (inputPeer != null) {
+                tL_messages_sendQuickReplyMessages.shortcut_id = quickReply.id;
+                MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
+                messagesStorage.getStorageQueue().postRunnable(new Theme$$ExternalSyntheticLambda17(13, quickRepliesController, messagesStorage, quickReply, tL_messages_sendQuickReplyMessages));
+            }
+        }
+        this.parentAlert.lambda$showGiftOfferSheet$15();
+    }
+
+    public final void lambda$new$3(int i) {
+        Object item;
+        RecyclerView.Adapter adapter = this.listView.getAdapter();
+        ShareSearchAdapter shareSearchAdapter = this.searchAdapter;
+        if (adapter == shareSearchAdapter) {
+            int i2 = i - 1;
+            if (i2 < 0) {
+                shareSearchAdapter.getClass();
+            } else if (i2 < shareSearchAdapter.searchResult.size()) {
+                item = shareSearchAdapter.searchResult.get(i2);
+            }
+            item = null;
+        } else {
+            ShareAdapter shareAdapter = this.listAdapter;
+            int sectionForPosition = shareAdapter.getSectionForPosition(i);
+            int positionInSectionForPosition = shareAdapter.getPositionInSectionForPosition(i);
+            if (positionInSectionForPosition < 0 || sectionForPosition < 0) {
+                return;
+            } else {
+                item = shareAdapter.getItem(sectionForPosition, positionInSectionForPosition);
+            }
+        }
+        if (item instanceof QuickRepliesController.QuickReply) {
+            if (UserConfig.getInstance(this.parentAlert.currentAccount).isPremium()) {
+                ChatAttachAlert chatAttachAlert = this.parentAlert;
+                AlertsCreator.ensurePaidMessageConfirmation(chatAttachAlert.currentAccount, chatAttachAlert.getDialogId(), ((QuickRepliesController.QuickReply) item).getMessagesCount(), new GiftSheet$$ExternalSyntheticLambda4(6, this, (QuickRepliesController.QuickReply) item));
+            } else if (this.parentAlert.baseFragment != null) {
+                new PremiumFeatureBottomSheet(this.parentAlert.baseFragment, getContext(), this.parentAlert.currentAccount, true, 31, false, null).show();
+            }
+        }
     }
 
     @Override
@@ -464,7 +558,7 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
@@ -480,10 +574,9 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
     @Override
     public final void onPreMeasure(int i, int i2) {
         int iDp;
-        ChatAttachAlert chatAttachAlert = this.parentAlert;
-        if (chatAttachAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
+        if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
             iDp = AndroidUtilities.dp(8.0f);
-            chatAttachAlert.setAllowNestedScroll(false);
+            this.parentAlert.setAllowNestedScroll(false);
         } else {
             if (AndroidUtilities.isTablet()) {
                 iDp = (i2 / 5) * 2;
@@ -495,20 +588,24 @@ public final class ChatAttachAlertQuickRepliesLayout extends ChatAttachAlert.Att
                     iDp = (i2 / 5) * 2;
                 }
             }
-            chatAttachAlert.setAllowNestedScroll(true);
+            this.parentAlert.setAllowNestedScroll(true);
         }
         this.listView.setPaddingWithoutRequestLayout(0, iDp + AndroidUtilities.statusBarHeight, 0, this.listPaddingBottom);
     }
 
     @Override
     public final void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
-        ChatAttachAlertPollLayout.AnonymousClass4 anonymousClass4 = this.layoutManager;
-        anonymousClass4.scrollToPositionWithOffset(0, 0, anonymousClass4.mShouldReverseLayout);
+        scrollToPositionWithOffset(0, 0);
     }
 
     @Override
     public final void scrollToTop() {
         this.listView.smoothScrollToPosition(0);
+    }
+
+    @Override
+    public final boolean sendSelectedItems(boolean z, int i, int i2, long j, boolean z2) {
+        return false;
     }
 
     @Override

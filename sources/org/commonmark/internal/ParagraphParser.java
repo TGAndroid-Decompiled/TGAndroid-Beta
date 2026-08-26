@@ -29,7 +29,7 @@ public final class ParagraphParser extends AbstractBlockParser {
         while (iSkipSpaceTab < charSequence.length()) {
             int iOrdinal = PreferencesProto$Value$ValueCase$EnumUnboxingSharedUtility.ordinal(linkReferenceDefinitionParser.state);
             if (iOrdinal == 0) {
-                int iSkipSpaceTab2 = Parsing.skipSpaceTab(iSkipSpaceTab, charSequence.length(), charSequence);
+                int iSkipSpaceTab2 = Parsing.skipSpaceTab(charSequence, iSkipSpaceTab, charSequence.length());
                 if (iSkipSpaceTab2 >= charSequence.length() || charSequence.charAt(iSkipSpaceTab2) != '[') {
                     iSkipSpaceTab = -1;
                 } else {
@@ -60,16 +60,16 @@ public final class ParagraphParser extends AbstractBlockParser {
                         } else {
                             linkReferenceDefinitionParser.normalizedLabel = strReplaceAll;
                             linkReferenceDefinitionParser.state = 3;
-                            iSkipSpaceTab = Parsing.skipSpaceTab(iScanLinkLabelContent + 2, charSequence.length(), charSequence);
+                            iSkipSpaceTab = Parsing.skipSpaceTab(charSequence, iScanLinkLabelContent + 2, charSequence.length());
                         }
                     }
                 }
             } else if (iOrdinal == 2) {
-                int iSkipSpaceTab3 = Parsing.skipSpaceTab(iSkipSpaceTab, charSequence.length(), charSequence);
+                int iSkipSpaceTab3 = Parsing.skipSpaceTab(charSequence, iSkipSpaceTab, charSequence.length());
                 int iScanLinkDestination = LinkScanner.scanLinkDestination(iSkipSpaceTab3, charSequence);
                 if (iScanLinkDestination != -1) {
                     linkReferenceDefinitionParser.destination = charSequence.charAt(iSkipSpaceTab3) == '<' ? charSequence.subSequence(iSkipSpaceTab3 + 1, iScanLinkDestination - 1).toString() : charSequence.subSequence(iSkipSpaceTab3, iScanLinkDestination).toString();
-                    iSkipSpaceTab = Parsing.skipSpaceTab(iScanLinkDestination, charSequence.length(), charSequence);
+                    iSkipSpaceTab = Parsing.skipSpaceTab(charSequence, iScanLinkDestination, charSequence.length());
                     if (iSkipSpaceTab >= charSequence.length()) {
                         linkReferenceDefinitionParser.referenceValid = true;
                         sb.setLength(0);
@@ -81,7 +81,7 @@ public final class ParagraphParser extends AbstractBlockParser {
                     iSkipSpaceTab = -1;
                 }
             } else if (iOrdinal == 3) {
-                iSkipSpaceTab = Parsing.skipSpaceTab(iSkipSpaceTab, charSequence.length(), charSequence);
+                iSkipSpaceTab = Parsing.skipSpaceTab(charSequence, iSkipSpaceTab, charSequence.length());
                 if (iSkipSpaceTab >= charSequence.length()) {
                     linkReferenceDefinitionParser.state = 1;
                 } else {
@@ -114,7 +114,7 @@ public final class ParagraphParser extends AbstractBlockParser {
                         linkReferenceDefinitionParser.title.append('\n');
                         iSkipSpaceTab = iScanLinkLabelContent;
                     } else {
-                        iSkipSpaceTab = Parsing.skipSpaceTab(iScanLinkLabelContent + 1, charSequence.length(), charSequence);
+                        iSkipSpaceTab = Parsing.skipSpaceTab(charSequence, iScanLinkLabelContent + 1, charSequence.length());
                         if (iSkipSpaceTab != charSequence.length()) {
                             iSkipSpaceTab = -1;
                         } else {

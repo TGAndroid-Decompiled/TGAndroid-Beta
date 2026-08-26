@@ -4,7 +4,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesStorage;
-import org.telegram.ui.Stories.StoriesStorage$$ExternalSyntheticLambda13;
+import org.telegram.ui.Stories.StoriesStorage$$ExternalSyntheticLambda2;
 
 public final class FileLoader$$ExternalSyntheticLambda9 implements Runnable {
     public final int $r8$classId = 0;
@@ -50,7 +50,7 @@ public final class FileLoader$$ExternalSyntheticLambda9 implements Runnable {
                         }
                         if (!z) {
                             StoriesStorage storiesStorage = storiesController.storiesStorage;
-                            storiesStorage.storage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda13(storiesStorage, peerStories, 1));
+                            storiesStorage.storage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda2(storiesStorage, peerStories, 1));
                         }
                     }
                     NotificationCenter.getInstance(storiesController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);

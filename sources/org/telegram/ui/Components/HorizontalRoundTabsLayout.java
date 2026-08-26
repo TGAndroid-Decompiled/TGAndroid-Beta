@@ -12,22 +12,80 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.QrActivity;
-import org.telegram.ui.WearAuthSheet$$ExternalSyntheticLambda6;
 
-public final class HorizontalRoundTabsLayout extends HorizontalScrollView {
-    public static final RectF tmpRect = new RectF();
-    public boolean accent;
-    public final Paint bgPaint;
-    public final Path clipPath;
-    public final Path clipPath2;
+public class HorizontalRoundTabsLayout extends HorizontalScrollView {
+    private static final RectF tmpRect = new RectF();
+    private boolean accent;
+    private final Paint bgPaint;
+    private final Path clipPath;
+    private final Path clipPath2;
     public final LinearLayout linearLayout;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public int selectedIndex;
-    public final AnimatedFloat selectorEndX;
-    public final AnimatedFloat selectorStartX;
-    public final TextPaint textPaint;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private int selectedIndex;
+    private final AnimatedFloat selectorEndX;
+    private final AnimatedFloat selectorStartX;
+    private final TextPaint textPaint;
+
+    public static final class Factory extends UItem.UItemFactory<HorizontalRoundTabsLayout> {
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
+
+        public static UItem as(int i, ArrayList<CharSequence> arrayList, Utilities.Callback2<Integer, HorizontalRoundTabsLayout> callback2) {
+            UItem uItemOfFactory = UItem.ofFactory(Factory.class);
+            uItemOfFactory.intValue = i;
+            uItemOfFactory.object = arrayList;
+            uItemOfFactory.object2 = callback2;
+            return uItemOfFactory;
+        }
+
+        public static void lambda$bindView$0(UItem uItem, HorizontalRoundTabsLayout horizontalRoundTabsLayout, int i) {
+            ((Utilities.Callback2) uItem.object2).run(Integer.valueOf(i), horizontalRoundTabsLayout);
+        }
+
+        @Override
+        public void bindView(View view, final UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            final HorizontalRoundTabsLayout horizontalRoundTabsLayout = (HorizontalRoundTabsLayout) view;
+            horizontalRoundTabsLayout.setTabs((ArrayList) uItem.object, new MessagesStorage.IntCallback() {
+                @Override
+                public final void run(int i) {
+                    HorizontalRoundTabsLayout.Factory.lambda$bindView$0(uItem, horizontalRoundTabsLayout, i);
+                }
+            });
+            horizontalRoundTabsLayout.setSelectedIndex(uItem.intValue, false);
+        }
+
+        @Override
+        public HorizontalRoundTabsLayout createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            return new HorizontalRoundTabsLayout(context, resourcesProvider);
+        }
+    }
+
+    public static class RoundTabView extends View {
+        private Text text;
+
+        public RoundTabView(Context context) {
+            super(context);
+            setDrawingCacheEnabled(false);
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            super.draw(canvas);
+            this.text.draw(canvas, (getMeasuredWidth() - this.text.getWidth()) / 2.0f, getMeasuredHeight() / 2.0f);
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + Math.round(this.text.getWidth()), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.max(getPaddingBottom() + getPaddingTop() + Math.round(this.text.getHeight()), AndroidUtilities.dp(26.0f)), 1073741824));
+        }
+
+        public void setText(Text text) {
+            this.text = text;
+        }
+    }
 
     public HorizontalRoundTabsLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -56,28 +114,16 @@ public final class HorizontalRoundTabsLayout extends HorizontalScrollView {
             public final void run() {
                 switch (i) {
                     case 0:
-                        HorizontalRoundTabsLayout horizontalRoundTabsLayout = this.f$0;
-                        horizontalRoundTabsLayout.invalidate();
-                        LinearLayout linearLayout2 = horizontalRoundTabsLayout.linearLayout;
-                        linearLayout2.invalidate();
-                        for (int i2 = 0; i2 < linearLayout2.getChildCount(); i2++) {
-                            linearLayout2.getChildAt(i2).invalidate();
-                        }
+                        this.f$0.lambda$new$0();
                         break;
                     default:
-                        HorizontalRoundTabsLayout horizontalRoundTabsLayout2 = this.f$0;
-                        horizontalRoundTabsLayout2.invalidate();
-                        LinearLayout linearLayout3 = horizontalRoundTabsLayout2.linearLayout;
-                        linearLayout3.invalidate();
-                        for (int i3 = 0; i3 < linearLayout3.getChildCount(); i3++) {
-                            linearLayout3.getChildAt(i3).invalidate();
-                        }
+                        this.f$0.lambda$new$1();
                         break;
                 }
             }
         });
         this.selectorStartX = animatedFloat;
-        animatedFloat.transitionDuration = 180L;
+        animatedFloat.setDuration(180L);
         final int i2 = 1;
         AnimatedFloat animatedFloat2 = new AnimatedFloat(new Runnable(this) {
             public final HorizontalRoundTabsLayout f$0;
@@ -90,66 +136,73 @@ public final class HorizontalRoundTabsLayout extends HorizontalScrollView {
             public final void run() {
                 switch (i2) {
                     case 0:
-                        HorizontalRoundTabsLayout horizontalRoundTabsLayout = this.f$0;
-                        horizontalRoundTabsLayout.invalidate();
-                        LinearLayout linearLayout2 = horizontalRoundTabsLayout.linearLayout;
-                        linearLayout2.invalidate();
-                        for (int i3 = 0; i3 < linearLayout2.getChildCount(); i3++) {
-                            linearLayout2.getChildAt(i3).invalidate();
-                        }
+                        this.f$0.lambda$new$0();
                         break;
                     default:
-                        HorizontalRoundTabsLayout horizontalRoundTabsLayout2 = this.f$0;
-                        horizontalRoundTabsLayout2.invalidate();
-                        LinearLayout linearLayout3 = horizontalRoundTabsLayout2.linearLayout;
-                        linearLayout3.invalidate();
-                        for (int i4 = 0; i4 < linearLayout3.getChildCount(); i4++) {
-                            linearLayout3.getChildAt(i4).invalidate();
-                        }
+                        this.f$0.lambda$new$1();
                         break;
                 }
             }
         });
         this.selectorEndX = animatedFloat2;
-        animatedFloat2.transitionDuration = 180L;
+        animatedFloat2.setDuration(180L);
         setVerticalScrollBarEnabled(false);
         setHorizontalScrollBarEnabled(false);
     }
 
+    public void lambda$new$0() {
+        invalidate();
+        this.linearLayout.invalidate();
+        for (int i = 0; i < this.linearLayout.getChildCount(); i++) {
+            this.linearLayout.getChildAt(i).invalidate();
+        }
+    }
+
+    public void lambda$new$1() {
+        invalidate();
+        this.linearLayout.invalidate();
+        for (int i = 0; i < this.linearLayout.getChildCount(); i++) {
+            this.linearLayout.getChildAt(i).invalidate();
+        }
+    }
+
+    public void lambda$setTabs$2(int i, MessagesStorage.IntCallback intCallback, View view) {
+        this.selectedIndex = i;
+        this.selectorStartX.set(view.getLeft(), false);
+        this.selectorEndX.set(view.getRight(), false);
+        intCallback.run(i);
+        invalidate();
+    }
+
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         RectF rectF = tmpRect;
         rectF.set(this.selectorStartX.getValue(), 0.0f, this.selectorEndX.getValue(), getMeasuredHeight());
+        this.clipPath.rewind();
         Path path = this.clipPath;
-        path.rewind();
         float fDp = AndroidUtilities.dp(13.0f);
         float fDp2 = AndroidUtilities.dp(13.0f);
         Path.Direction direction = Path.Direction.CW;
         path.addRoundRect(rectF, fDp, fDp2, direction);
-        path.close();
-        Path path2 = this.clipPath2;
-        path2.rewind();
-        LinearLayout linearLayout = this.linearLayout;
-        path2.addRect(0.0f, 0.0f, linearLayout.getMeasuredWidth(), getMeasuredHeight(), direction);
-        path2.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CCW);
-        path2.close();
-        Paint paint = this.bgPaint;
-        boolean z = this.accent;
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        paint.setColor(z ? Theme.multAlpha(0.1f, Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)) : Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider) & 520093695);
-        canvas.drawPath(path, paint);
-        TextPaint textPaint = this.textPaint;
-        textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+        this.clipPath.close();
+        this.clipPath2.rewind();
+        this.clipPath2.addRect(0.0f, 0.0f, this.linearLayout.getMeasuredWidth(), getMeasuredHeight(), direction);
+        this.clipPath2.addRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), Path.Direction.CCW);
+        this.clipPath2.close();
+        this.bgPaint.setColor(this.accent ? Theme.multAlpha(0.1f, Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider)) : Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider) & 520093695);
+        canvas.drawPath(this.clipPath, this.bgPaint);
+        this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider));
         canvas.save();
-        canvas.clipPath(path2);
+        canvas.clipPath(this.clipPath2);
         super.dispatchDraw(canvas);
         canvas.restore();
-        textPaint.setColor(this.accent ? Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider) : Theme.getColor(Theme.key_chats_nameArchived, resourcesProvider));
+        this.textPaint.setColor(this.accent ? Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider) : Theme.getColor(Theme.key_chats_nameArchived, this.resourcesProvider));
         canvas.save();
-        canvas.clipPath(path);
-        for (int i = 0; i < linearLayout.getChildCount(); i++) {
-            View childAt = linearLayout.getChildAt(i);
-            if (rectF.right >= childAt.getLeft() && rectF.left <= childAt.getRight()) {
+        canvas.clipPath(this.clipPath);
+        for (int i = 0; i < this.linearLayout.getChildCount(); i++) {
+            View childAt = this.linearLayout.getChildAt(i);
+            RectF rectF2 = tmpRect;
+            if (rectF2.right >= childAt.getLeft() && rectF2.left <= childAt.getRight()) {
                 canvas.save();
                 canvas.translate(childAt.getLeft(), childAt.getTop());
                 childAt.draw(canvas);
@@ -160,7 +213,7 @@ public final class HorizontalRoundTabsLayout extends HorizontalScrollView {
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         setSelectedIndex(this.selectedIndex, false);
     }
@@ -169,29 +222,26 @@ public final class HorizontalRoundTabsLayout extends HorizontalScrollView {
         this.accent = z;
     }
 
-    public final void setSelectedIndex(int i, boolean z) {
+    public void setSelectedIndex(int i, boolean z) {
         this.selectedIndex = i;
-        LinearLayout linearLayout = this.linearLayout;
         boolean z2 = !z;
-        this.selectorStartX.set(linearLayout.getChildAt(i).getLeft(), z2);
-        this.selectorEndX.set(linearLayout.getChildAt(i).getRight(), z2);
+        this.selectorStartX.set(this.linearLayout.getChildAt(i).getLeft(), z2);
+        this.selectorEndX.set(this.linearLayout.getChildAt(i).getRight(), z2);
     }
 
-    public final void setTabs(ArrayList arrayList, MessagesStorage.IntCallback intCallback) {
-        LinearLayout linearLayout = this.linearLayout;
-        linearLayout.removeAllViews();
+    public void setTabs(ArrayList<CharSequence> arrayList, MessagesStorage.IntCallback intCallback) {
+        this.linearLayout.removeAllViews();
         for (int i = 0; i < arrayList.size(); i++) {
-            CharSequence charSequence = (CharSequence) arrayList.get(i);
-            QrActivity.AnonymousClass2 anonymousClass2 = new QrActivity.AnonymousClass2(getContext());
-            anonymousClass2.setDrawingCacheEnabled(false);
-            anonymousClass2.setOnClickListener(new WearAuthSheet$$ExternalSyntheticLambda6(this, i, intCallback, 8));
-            anonymousClass2.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f));
+            CharSequence charSequence = arrayList.get(i);
+            RoundTabView roundTabView = new RoundTabView(getContext());
+            roundTabView.setOnClickListener(new AlertsCreator$$ExternalSyntheticLambda134(this, i, intCallback, 3));
+            roundTabView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(5.0f));
             LinearLayout.LayoutParams layoutParamsCreateLinear = LayoutHelper.createLinear(-2, -2);
             if (i < arrayList.size() - 1) {
                 layoutParamsCreateLinear.rightMargin = AndroidUtilities.dp(4.0f);
             }
-            anonymousClass2.this$0 = new Text(charSequence, this.textPaint);
-            linearLayout.addView(anonymousClass2, layoutParamsCreateLinear);
+            roundTabView.setText(new Text(charSequence, this.textPaint));
+            this.linearLayout.addView(roundTabView, layoutParamsCreateLinear);
         }
     }
 }

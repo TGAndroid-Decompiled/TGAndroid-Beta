@@ -1,6 +1,6 @@
 package io.noties.markwon.html.jsoup.parser;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import io.noties.markwon.html.jsoup.nodes.Attributes;
 import java.util.Locale;
 
@@ -11,7 +11,7 @@ public abstract class Token {
     public final class CData extends Character {
         @Override
         public final String toString() {
-            return SurfaceContainer$$ExternalSyntheticOutline0.m(new StringBuilder("<![CDATA["), this.data, "]]>");
+            return Fragment$$ExternalSyntheticOutline0.m(new StringBuilder("<![CDATA["), this.data, "]]>");
         }
     }
 

@@ -1,7 +1,7 @@
 package org.commonmark.internal;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import com.google.zxing.BinaryBitmap;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
@@ -19,16 +19,19 @@ import org.commonmark.internal.util.Html5Entities;
 import org.commonmark.internal.util.LinkScanner;
 import org.commonmark.internal.util.Parsing;
 import org.commonmark.node.Code;
-import org.commonmark.node.Emphasis;
+import org.commonmark.node.HardLineBreak;
+import org.commonmark.node.HtmlInline;
+import org.commonmark.node.Image;
 import org.commonmark.node.Link;
 import org.commonmark.node.LinkReferenceDefinition;
 import org.commonmark.node.Node;
+import org.commonmark.node.SoftLineBreak;
 import org.commonmark.node.Text;
 import org.commonmark.parser.InlineParser;
 import org.commonmark.parser.delimiter.DelimiterProcessor;
 
 public final class InlineParserImpl implements InlineParser {
-    public final BinaryBitmap context;
+    public final Stripe context;
     public final BitSet delimiterCharacters;
     public final HashMap delimiterProcessors;
     public int index;
@@ -60,23 +63,15 @@ public final class InlineParserImpl implements InlineParser {
             this.canClose = z2;
         }
 
-        public DelimiterData(int i) {
-            switch (i) {
-                case 3:
-                    this.count = 0;
-                    this.canClose = false;
-                    this.canOpen = true;
-                    break;
-                default:
-                    this.count = 100;
-                    this.canClose = false;
-                    break;
-            }
+        public DelimiterData() {
+            this.count = 0;
+            this.canClose = false;
+            this.canOpen = true;
         }
     }
 
-    public InlineParserImpl(BinaryBitmap binaryBitmap) {
-        ArrayList arrayList = (ArrayList) binaryBitmap.binarizer;
+    public InlineParserImpl(Stripe stripe) {
+        ArrayList arrayList = (ArrayList) stripe.tokenCreator;
         HashMap map = new HashMap();
         addDelimiterProcessors(Arrays.asList(new AsteriskDelimiterProcessor(0), new AsteriskDelimiterProcessor(1)), map);
         addDelimiterProcessors(arrayList, map);
@@ -99,7 +94,7 @@ public final class InlineParserImpl implements InlineParser {
         bitSet2.set(60);
         bitSet2.set(38);
         this.specialCharacters = bitSet2;
-        this.context = binaryBitmap;
+        this.context = stripe;
     }
 
     public static void addDelimiterProcessorForChar(char c, DelimiterProcessor delimiterProcessor, HashMap map) {
@@ -144,11 +139,11 @@ public final class InlineParserImpl implements InlineParser {
         }
         StringBuilder sb = new StringBuilder(i);
         sb.append(text.literal);
-        Node node = (Node) text.next;
-        Node node2 = (Node) text2.next;
+        Node node = text.next;
+        Node node2 = text2.next;
         while (node != node2) {
             sb.append(((Text) node).literal);
-            Node node3 = (Node) node.next;
+            Node node3 = node.next;
             node.unlink();
             node = node3;
         }
@@ -175,7 +170,7 @@ public final class InlineParserImpl implements InlineParser {
             if (node == node2) {
                 break;
             } else {
-                node = (Node) node.next;
+                node = node.next;
             }
         }
         mergeIfNeeded(text, text2, length);
@@ -196,23 +191,23 @@ public final class InlineParserImpl implements InlineParser {
 
     @Override
     public final void parse(String str, Node node) {
-        Emphasis emphasis;
-        ?? r11;
-        ?? text;
-        ?? r6;
+        Node softLineBreak;
+        Node node2;
+        Node text;
+        Node node3;
         Node text2;
-        ?? text3;
-        Object text4;
-        Link link;
+        Node text3;
+        Node text4;
+        Node link;
         String strMatch$1;
-        ?? text5;
+        Node text5;
         String strUnescapeString;
         String strUnescapeString2;
         boolean z;
         boolean z2;
-        Node node2;
-        Node node3;
         Node node4;
+        Node node5;
+        Node node6;
         Bracket bracket;
         int i;
         int i2;
@@ -221,20 +216,20 @@ public final class InlineParserImpl implements InlineParser {
         int iScanLinkLabelContent;
         boolean z3;
         boolean z4;
-        ?? delimiterData;
-        Node node5;
-        Node node6;
+        DelimiterData delimiterData;
+        Node node7;
+        Node node8;
         int i3 = 1;
         this.input = str.trim();
         this.index = 0;
         Code code = null;
         this.lastDelimiter = null;
         this.lastBracket = null;
-        ?? r7 = 0;
+        Node node9 = null;
         while (true) {
             char cPeek$1 = peek$1();
             if (cPeek$1 == 0) {
-                r6 = code;
+                node3 = code;
             } else {
                 if (cPeek$1 != '\n') {
                     if (cPeek$1 == '!') {
@@ -260,45 +255,45 @@ public final class InlineParserImpl implements InlineParser {
                             text4 = new Text(Html5Entities.entityToString(strMatch$2));
                             text3 = text4;
                         } else {
-                            text3 = 0;
+                            text3 = null;
                         }
                     } else if (cPeek$1 == '<') {
                         String strMatch$3 = match$1(EMAIL_AUTOLINK);
                         if (strMatch$3 != null) {
-                            String strM = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, strMatch$3);
-                            link = new Link(0, SurfaceContainer$$ExternalSyntheticOutline0.m("mailto:", strM), null);
+                            String strM = Fragment$$ExternalSyntheticOutline0.m(1, 1, strMatch$3);
+                            link = new Link(Fragment$$ExternalSyntheticOutline0.m("mailto:", strM), null);
                             link.appendChild(new Text(strM));
                         } else {
                             String strMatch$4 = match$1(AUTOLINK);
                             if (strMatch$4 != null) {
-                                String strM2 = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, strMatch$4);
-                                link = new Link(0, strM2, null);
+                                String strM2 = Fragment$$ExternalSyntheticOutline0.m(1, 1, strMatch$4);
+                                link = new Link(strM2, null);
                                 link.appendChild(new Text(strM2));
                             } else {
-                                text3 = 0;
+                                text3 = null;
                             }
-                            if (text3 == 0) {
+                            if (text3 == null) {
                                 strMatch$1 = match$1(HTML_TAG);
                                 if (strMatch$1 != null) {
-                                    Code code2 = new Code(1);
-                                    code2.literal = strMatch$1;
-                                    text4 = code2;
+                                    HtmlInline htmlInline = new HtmlInline();
+                                    htmlInline.literal = strMatch$1;
+                                    text4 = htmlInline;
                                     text3 = text4;
                                 } else {
-                                    text3 = 0;
+                                    text3 = null;
                                 }
                             }
                         }
                         text3 = link;
-                        if (text3 == 0) {
+                        if (text3 == null) {
                             strMatch$1 = match$1(HTML_TAG);
                             if (strMatch$1 != null) {
-                                Code code3 = new Code(1);
-                                code3.literal = strMatch$1;
-                                text4 = code3;
+                                HtmlInline htmlInline2 = new HtmlInline();
+                                htmlInline2.literal = strMatch$1;
+                                text4 = htmlInline2;
                                 text3 = text4;
                             } else {
-                                text3 = 0;
+                                text3 = null;
                             }
                         }
                     } else if (cPeek$1 != '`') {
@@ -319,7 +314,7 @@ public final class InlineParserImpl implements InlineParser {
                             case '\\':
                                 this.index++;
                                 if (peek$1() == '\n') {
-                                    text2 = new Emphasis(1);
+                                    text2 = new HardLineBreak();
                                     this.index++;
                                 } else {
                                     if (this.index < this.input.length()) {
@@ -350,106 +345,107 @@ public final class InlineParserImpl implements InlineParser {
                                         match$1(pattern);
                                         int iScanLinkDestination = LinkScanner.scanLinkDestination(this.index, this.input);
                                         if (iScanLinkDestination == -1) {
-                                            strUnescapeString = null;
+                                            strUnescapeString2 = null;
                                         } else {
                                             String strSubstring2 = peek$1() == '<' ? this.input.substring(this.index + i3, iScanLinkDestination - 1) : this.input.substring(this.index, iScanLinkDestination);
                                             this.index = iScanLinkDestination;
-                                            strUnescapeString = Escaping.unescapeString(strSubstring2);
+                                            strUnescapeString2 = Escaping.unescapeString(strSubstring2);
                                         }
-                                        if (strUnescapeString != null) {
+                                        if (strUnescapeString2 != null) {
                                             match$1(pattern);
                                             String str4 = this.input;
                                             int i9 = this.index;
                                             if (WHITESPACE.matcher(str4.substring(i9 - 1, i9)).matches()) {
                                                 int iScanLinkTitle = LinkScanner.scanLinkTitle(this.index, this.input);
                                                 if (iScanLinkTitle == -1) {
-                                                    strUnescapeString2 = null;
+                                                    strUnescapeString = null;
                                                 } else {
                                                     String strSubstring3 = this.input.substring(this.index + i3, iScanLinkTitle - 1);
                                                     this.index = iScanLinkTitle;
-                                                    strUnescapeString2 = Escaping.unescapeString(strSubstring3);
+                                                    strUnescapeString = Escaping.unescapeString(strSubstring3);
                                                 }
                                                 match$1(pattern);
                                             } else {
-                                                strUnescapeString2 = null;
+                                                strUnescapeString = null;
                                             }
                                             if (peek$1() == ')') {
                                                 this.index++;
                                                 z = true;
                                             } else {
                                                 this.index = i8;
-                                                z = false;
                                             }
-                                        }
-                                        if (!z) {
-                                            i = this.index;
-                                            if (i < this.input.length() && this.input.charAt(this.index) == '[') {
-                                                int i10 = this.index + 1;
-                                                iScanLinkLabelContent = LinkScanner.scanLinkLabelContent(i10, this.input);
-                                                int i11 = iScanLinkLabelContent - i10;
-                                                if (iScanLinkLabelContent != -1 && i11 <= 999 && iScanLinkLabelContent < this.input.length() && this.input.charAt(iScanLinkLabelContent) == ']') {
-                                                    this.index = iScanLinkLabelContent + 1;
-                                                }
-                                            }
-                                            i2 = this.index - i;
-                                            if (i2 > 2) {
-                                                strSubstring = this.input.substring(i, i2 + i);
-                                            } else if (bracket6.bracketAfter) {
-                                                strSubstring = null;
-                                            } else {
-                                                strSubstring = this.input.substring(bracket6.index, i8);
-                                            }
-                                            if (strSubstring != null) {
-                                                Pattern pattern2 = Escaping.BACKSLASH_OR_AMP;
-                                                linkReferenceDefinition = (LinkReferenceDefinition) ((Map) this.context.matrix).get(Escaping.WHITESPACE.matcher(strSubstring.substring(1, strSubstring.length() - 1).trim().toLowerCase(Locale.ROOT)).replaceAll(" "));
-                                                if (linkReferenceDefinition != null) {
-                                                    strUnescapeString = linkReferenceDefinition.destination;
-                                                    strUnescapeString2 = linkReferenceDefinition.title;
-                                                    z = true;
-                                                }
-                                            }
-                                        }
-                                        if (z) {
-                                            this.index = i8;
-                                            this.lastBracket = (Bracket) this.lastBracket.previous;
-                                            text2 = new Text("]");
-                                            text3 = text2;
-                                        } else {
-                                            z2 = bracket6.image;
-                                            if (z2) {
-                                                text5 = new Link(1, strUnescapeString, strUnescapeString2);
-                                            } else {
-                                                text5 = new Link(0, strUnescapeString, strUnescapeString2);
-                                            }
-                                            Text text8 = (Text) bracket6.node;
-                                            node2 = (Node) text8.next;
-                                            while (node2 != null) {
-                                                Node node7 = (Node) node2.next;
-                                                text5.appendChild(node2);
-                                                node2 = node7;
-                                            }
-                                            processDelimiters$1((Delimiter) bracket6.previousDelimiter);
-                                            node3 = (Node) text5.firstChild;
-                                            node4 = (Node) text5.lastChild;
-                                            if (node3 != node4) {
-                                                mergeTextNodesInclusive(node3, node4);
-                                            }
-                                            text8.unlink();
-                                            bracket = (Bracket) this.lastBracket.previous;
-                                            this.lastBracket = bracket;
-                                            if (!z2) {
-                                                while (bracket != null) {
-                                                    if (!bracket.image) {
-                                                        bracket.allowed = false;
+                                            if (!z) {
+                                                i = this.index;
+                                                if (i < this.input.length() && this.input.charAt(this.index) == '[') {
+                                                    int i10 = this.index + 1;
+                                                    iScanLinkLabelContent = LinkScanner.scanLinkLabelContent(i10, this.input);
+                                                    int i11 = iScanLinkLabelContent - i10;
+                                                    if (iScanLinkLabelContent != -1 && i11 <= 999 && iScanLinkLabelContent < this.input.length() && this.input.charAt(iScanLinkLabelContent) == ']') {
+                                                        this.index = iScanLinkLabelContent + 1;
                                                     }
-                                                    bracket = (Bracket) bracket.previous;
+                                                }
+                                                i2 = this.index - i;
+                                                if (i2 > 2) {
+                                                    strSubstring = this.input.substring(i, i2 + i);
+                                                } else if (bracket6.bracketAfter) {
+                                                    strSubstring = null;
+                                                } else {
+                                                    strSubstring = this.input.substring(bracket6.index, i8);
+                                                }
+                                                if (strSubstring != null) {
+                                                    Pattern pattern2 = Escaping.BACKSLASH_OR_AMP;
+                                                    linkReferenceDefinition = (LinkReferenceDefinition) ((Map) this.context.defaultPublishableKey).get(Escaping.WHITESPACE.matcher(strSubstring.substring(1, strSubstring.length() - 1).trim().toLowerCase(Locale.ROOT)).replaceAll(" "));
+                                                    if (linkReferenceDefinition != null) {
+                                                        strUnescapeString2 = linkReferenceDefinition.destination;
+                                                        strUnescapeString = linkReferenceDefinition.title;
+                                                        z = true;
+                                                    }
                                                 }
                                             }
+                                            if (z) {
+                                                this.index = i8;
+                                                this.lastBracket = this.lastBracket.previous;
+                                                text2 = new Text("]");
+                                                text3 = text2;
+                                            } else {
+                                                z2 = bracket6.image;
+                                                if (z2) {
+                                                    text5 = new Image(strUnescapeString2, strUnescapeString);
+                                                } else {
+                                                    text5 = new Link(strUnescapeString2, strUnescapeString);
+                                                }
+                                                Text text8 = bracket6.node;
+                                                node4 = text8.next;
+                                                while (node4 != null) {
+                                                    Node node10 = node4.next;
+                                                    text5.appendChild(node4);
+                                                    node4 = node10;
+                                                }
+                                                processDelimiters$1(bracket6.previousDelimiter);
+                                                node5 = text5.firstChild;
+                                                node6 = text5.lastChild;
+                                                if (node5 != node6) {
+                                                    mergeTextNodesInclusive(node5, node6);
+                                                }
+                                                text8.unlink();
+                                                bracket = this.lastBracket.previous;
+                                                this.lastBracket = bracket;
+                                                if (!z2) {
+                                                    while (bracket != null) {
+                                                        if (!bracket.image) {
+                                                            bracket.allowed = false;
+                                                        }
+                                                        bracket = bracket.previous;
+                                                    }
+                                                }
+                                            }
+                                        } else {
+                                            strUnescapeString = null;
                                         }
                                     } else {
                                         strUnescapeString = null;
+                                        strUnescapeString2 = null;
                                     }
-                                    strUnescapeString2 = null;
                                     z = false;
                                     if (!z) {
                                         i = this.index;
@@ -471,53 +467,53 @@ public final class InlineParserImpl implements InlineParser {
                                         }
                                         if (strSubstring != null) {
                                             Pattern pattern3 = Escaping.BACKSLASH_OR_AMP;
-                                            linkReferenceDefinition = (LinkReferenceDefinition) ((Map) this.context.matrix).get(Escaping.WHITESPACE.matcher(strSubstring.substring(1, strSubstring.length() - 1).trim().toLowerCase(Locale.ROOT)).replaceAll(" "));
+                                            linkReferenceDefinition = (LinkReferenceDefinition) ((Map) this.context.defaultPublishableKey).get(Escaping.WHITESPACE.matcher(strSubstring.substring(1, strSubstring.length() - 1).trim().toLowerCase(Locale.ROOT)).replaceAll(" "));
                                             if (linkReferenceDefinition != null) {
-                                                strUnescapeString = linkReferenceDefinition.destination;
-                                                strUnescapeString2 = linkReferenceDefinition.title;
+                                                strUnescapeString2 = linkReferenceDefinition.destination;
+                                                strUnescapeString = linkReferenceDefinition.title;
                                                 z = true;
                                             }
                                         }
                                     }
                                     if (z) {
                                         this.index = i8;
-                                        this.lastBracket = (Bracket) this.lastBracket.previous;
+                                        this.lastBracket = this.lastBracket.previous;
                                         text2 = new Text("]");
                                         text3 = text2;
                                     } else {
                                         z2 = bracket6.image;
                                         if (z2) {
-                                            text5 = new Link(1, strUnescapeString, strUnescapeString2);
+                                            text5 = new Image(strUnescapeString2, strUnescapeString);
                                         } else {
-                                            text5 = new Link(0, strUnescapeString, strUnescapeString2);
+                                            text5 = new Link(strUnescapeString2, strUnescapeString);
                                         }
-                                        Text text9 = (Text) bracket6.node;
-                                        node2 = (Node) text9.next;
-                                        while (node2 != null) {
-                                            Node node8 = (Node) node2.next;
-                                            text5.appendChild(node2);
-                                            node2 = node8;
+                                        Text text9 = bracket6.node;
+                                        node4 = text9.next;
+                                        while (node4 != null) {
+                                            Node node11 = node4.next;
+                                            text5.appendChild(node4);
+                                            node4 = node11;
                                         }
-                                        processDelimiters$1((Delimiter) bracket6.previousDelimiter);
-                                        node3 = (Node) text5.firstChild;
-                                        node4 = (Node) text5.lastChild;
-                                        if (node3 != node4) {
-                                            mergeTextNodesInclusive(node3, node4);
+                                        processDelimiters$1(bracket6.previousDelimiter);
+                                        node5 = text5.firstChild;
+                                        node6 = text5.lastChild;
+                                        if (node5 != node6) {
+                                            mergeTextNodesInclusive(node5, node6);
                                         }
                                         text9.unlink();
-                                        bracket = (Bracket) this.lastBracket.previous;
+                                        bracket = this.lastBracket.previous;
                                         this.lastBracket = bracket;
                                         if (!z2) {
                                             while (bracket != null) {
                                                 if (!bracket.image) {
                                                     bracket.allowed = false;
                                                 }
-                                                bracket = (Bracket) bracket.previous;
+                                                bracket = bracket.previous;
                                             }
                                         }
                                     }
                                 } else {
-                                    this.lastBracket = (Bracket) bracket6.previous;
+                                    this.lastBracket = bracket6.previous;
                                     text5 = new Text("]");
                                 }
                                 text3 = text5;
@@ -596,7 +592,7 @@ public final class InlineParserImpl implements InlineParser {
                     } else {
                         String strMatch$5 = match$1(TICKS_HERE);
                         if (strMatch$5 == null) {
-                            text3 = 0;
+                            text3 = null;
                         } else {
                             int i22 = this.index;
                             while (true) {
@@ -606,12 +602,12 @@ public final class InlineParserImpl implements InlineParser {
                                     text4 = new Text(strMatch$5);
                                     text3 = text4;
                                 } else if (strMatch$6.equals(strMatch$5)) {
-                                    code = new Code(0);
+                                    code = new Code();
                                     String strReplace = this.input.substring(i22, this.index - strMatch$5.length()).replace('\n', ' ');
                                     if (strReplace.length() >= 3 && strReplace.charAt(0) == ' ' && strReplace.charAt(strReplace.length() - 1) == ' ') {
                                         int length2 = strReplace.length();
                                         if (Parsing.skip(' ', strReplace, 0, length2) != length2) {
-                                            strReplace = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, strReplace);
+                                            strReplace = Fragment$$ExternalSyntheticOutline0.m(1, 1, strReplace);
                                         }
                                     }
                                     code.literal = strReplace;
@@ -620,63 +616,63 @@ public final class InlineParserImpl implements InlineParser {
                             }
                         }
                     }
-                    r11 = text3;
+                    node2 = text3;
                 } else {
                     this.index++;
-                    if (r7 instanceof Text) {
-                        Text text11 = (Text) r7;
+                    if (node9 instanceof Text) {
+                        Text text11 = (Text) node9;
                         if (text11.literal.endsWith(" ")) {
                             String str5 = text11.literal;
                             Matcher matcher = FINAL_SPACE.matcher(str5);
                             int iEnd = matcher.find() ? matcher.end() - matcher.start() : 0;
                             if (iEnd > 0) {
-                                text11.literal = SurfaceContainer$$ExternalSyntheticOutline0.m(iEnd, 0, str5);
+                                text11.literal = Fragment$$ExternalSyntheticOutline0.m(iEnd, 0, str5);
                             }
-                            emphasis = iEnd >= 2 ? new Emphasis(1) : new Emphasis(2);
+                            softLineBreak = iEnd >= 2 ? new HardLineBreak() : new SoftLineBreak();
                         } else {
-                            emphasis = new Emphasis(2);
+                            softLineBreak = new SoftLineBreak();
                         }
                     } else {
-                        emphasis = new Emphasis(2);
+                        softLineBreak = new SoftLineBreak();
                     }
-                    r11 = emphasis;
+                    node2 = softLineBreak;
                 }
-                if (r11 != 0) {
-                    r6 = r11;
+                if (node2 != null) {
+                    node3 = node2;
                 } else {
                     this.index++;
                     text = new Text(String.valueOf(cPeek$1));
                 }
-                if (text != 0) {
+                if (text != null) {
                     processDelimiters$1(null);
-                    node5 = (Node) node.firstChild;
-                    node6 = (Node) node.lastChild;
-                    if (node5 == node6) {
+                    node7 = node.firstChild;
+                    node8 = node.lastChild;
+                    if (node7 == node8) {
                         return;
                     }
-                    mergeTextNodesInclusive(node5, node6);
+                    mergeTextNodesInclusive(node7, node8);
                     return;
                 }
                 node.appendChild(text);
                 i3 = 1;
                 code = null;
-                r7 = text;
+                node9 = text;
             }
-            text = r6;
-            if (text != 0) {
+            text = node3;
+            if (text != null) {
                 processDelimiters$1(null);
-                node5 = (Node) node.firstChild;
-                node6 = (Node) node.lastChild;
-                if (node5 == node6) {
+                node7 = node.firstChild;
+                node8 = node.lastChild;
+                if (node7 == node8) {
                     return;
                 }
-                mergeTextNodesInclusive(node5, node6);
+                mergeTextNodesInclusive(node7, node8);
                 return;
             }
             node.appendChild(text);
             i3 = 1;
             code = null;
-            r7 = text;
+            node9 = text;
         }
     }
 
@@ -731,17 +727,17 @@ public final class InlineParserImpl implements InlineParser {
                     Text text = delimiter4.node;
                     delimiter4.length -= delimiterUse;
                     delimiter2.length -= delimiterUse;
-                    text.literal = SurfaceContainer$$ExternalSyntheticOutline0.m(delimiterUse, 0, text.literal);
+                    text.literal = Fragment$$ExternalSyntheticOutline0.m(delimiterUse, 0, text.literal);
                     Text text2 = delimiter2.node;
-                    text2.literal = SurfaceContainer$$ExternalSyntheticOutline0.m(delimiterUse, 0, text2.literal);
+                    text2.literal = Fragment$$ExternalSyntheticOutline0.m(delimiterUse, 0, text2.literal);
                     Delimiter delimiter5 = delimiter2.previous;
                     while (delimiter5 != null && delimiter5 != delimiter4) {
                         Delimiter delimiter6 = delimiter5.previous;
                         removeDelimiter$1(delimiter5);
                         delimiter5 = delimiter6;
                     }
-                    if (text != text2 && (node = (Node) text.next) != text2) {
-                        mergeTextNodesInclusive(node, (Node) text2.prev);
+                    if (text != text2 && (node = text.next) != text2) {
+                        mergeTextNodesInclusive(node, text2.prev);
                     }
                     delimiterProcessor.process(text, text2, delimiterUse);
                     if (delimiter4.length == 0) {

@@ -10,7 +10,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda8;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda66;
 
 public final class StoriesController$$ExternalSyntheticLambda0 implements RequestDelegate {
     public final int $r8$classId;
@@ -30,30 +30,25 @@ public final class StoriesController$$ExternalSyntheticLambda0 implements Reques
                 TLRPC.Updates updates = (TLRPC.Updates) tLObject;
                 if (updates != null) {
                     MessagesController.getInstance(storiesController.currentAccount).processUpdateArray(updates.updates, updates.users, updates.chats, false, updates.date);
-                    AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda9(storiesController, 0));
+                    AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda14(storiesController, 0));
                     break;
                 }
                 break;
             case 1:
-                StoriesController storiesController2 = this.f$0;
+                final StoriesController storiesController2 = this.f$0;
                 storiesController2.getClass();
-                AndroidUtilities.runOnUIThread(new TodoItemMenu$$ExternalSyntheticLambda8(storiesController2, tLObject, tL_error, 4));
-                break;
-            case 2:
-                final StoriesController storiesController3 = this.f$0;
-                storiesController3.getClass();
                 final int i = 0;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (i) {
                             case 0:
-                                StoriesController storiesController4 = storiesController3;
-                                storiesController4.getClass();
+                                StoriesController storiesController3 = storiesController2;
+                                storiesController3.getClass();
                                 TLObject tLObject2 = tLObject;
                                 boolean z = tLObject2 instanceof TLRPC.TL_contacts_blocked;
-                                HashSet hashSet = storiesController4.blocklist;
-                                int i2 = storiesController4.currentAccount;
+                                HashSet hashSet = storiesController3.blocklist;
+                                int i2 = storiesController3.currentAccount;
                                 if (z) {
                                     TLRPC.TL_contacts_blocked tL_contacts_blocked = (TLRPC.TL_contacts_blocked) tLObject2;
                                     MessagesController.getInstance(i2).putUsers(tL_contacts_blocked.users, false);
@@ -67,8 +62,8 @@ public final class StoriesController$$ExternalSyntheticLambda0 implements Reques
                                         i3++;
                                         hashSet.add(Long.valueOf(DialogObject.getPeerDialogId(tL_peerBlocked.peer_id)));
                                     }
-                                    storiesController4.blocklistCount = Math.max(hashSet.size(), tL_contacts_blocked.count);
-                                    storiesController4.blocklistFull = true;
+                                    storiesController3.blocklistCount = Math.max(hashSet.size(), tL_contacts_blocked.count);
+                                    storiesController3.blocklistFull = true;
                                 } else if (tLObject2 instanceof TLRPC.TL_contacts_blockedSlice) {
                                     TLRPC.TL_contacts_blockedSlice tL_contacts_blockedSlice = (TLRPC.TL_contacts_blockedSlice) tLObject2;
                                     MessagesController.getInstance(i2).putUsers(tL_contacts_blockedSlice.users, false);
@@ -81,21 +76,21 @@ public final class StoriesController$$ExternalSyntheticLambda0 implements Reques
                                         i4++;
                                         hashSet.add(Long.valueOf(DialogObject.getPeerDialogId(tL_peerBlocked2.peer_id)));
                                     }
-                                    storiesController4.blocklistCount = tL_contacts_blockedSlice.count;
-                                    storiesController4.blocklistFull = hashSet.size() >= storiesController4.blocklistCount;
+                                    storiesController3.blocklistCount = tL_contacts_blockedSlice.count;
+                                    storiesController3.blocklistFull = hashSet.size() >= storiesController3.blocklistCount;
                                 }
                                 NotificationCenter.getInstance(i2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesBlocklistUpdate, new Object[0]);
-                                storiesController4.blocklistLoading = false;
-                                storiesController4.lastBlocklistRequested = System.currentTimeMillis();
+                                storiesController3.blocklistLoading = false;
+                                storiesController3.lastBlocklistRequested = System.currentTimeMillis();
                                 break;
                             default:
-                                StoriesController storiesController5 = storiesController3;
-                                ArrayList arrayList3 = storiesController5.sendAs;
+                                StoriesController storiesController4 = storiesController2;
+                                ArrayList arrayList3 = storiesController4.sendAs;
                                 arrayList3.clear();
                                 arrayList3.add(new TLRPC.TL_inputPeerSelf());
                                 TLObject tLObject3 = tLObject;
                                 boolean z2 = tLObject3 instanceof TLRPC.TL_messages_chats;
-                                int i5 = storiesController5.currentAccount;
+                                int i5 = storiesController4.currentAccount;
                                 if (z2) {
                                     ArrayList<TLRPC.Chat> arrayList4 = ((TLRPC.TL_messages_chats) tLObject3).chats;
                                     MessagesController.getInstance(i5).putChats(arrayList4, false);
@@ -107,29 +102,29 @@ public final class StoriesController$$ExternalSyntheticLambda0 implements Reques
                                         arrayList3.add(MessagesController.getInputPeer(chat));
                                     }
                                 }
-                                storiesController5.loadingSendAs = false;
-                                storiesController5.loadedSendAs = true;
+                                storiesController4.loadingSendAs = false;
+                                storiesController4.loadedSendAs = true;
                                 NotificationCenter.getInstance(i5).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesSendAsUpdate, new Object[0]);
                                 break;
                         }
                     }
                 });
                 break;
-            case 3:
-                final StoriesController storiesController4 = this.f$0;
-                storiesController4.getClass();
+            case 2:
+                final StoriesController storiesController3 = this.f$0;
+                storiesController3.getClass();
                 final int i2 = 1;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
                         switch (i2) {
                             case 0:
-                                StoriesController storiesController5 = storiesController4;
-                                storiesController5.getClass();
+                                StoriesController storiesController4 = storiesController3;
+                                storiesController4.getClass();
                                 TLObject tLObject2 = tLObject;
                                 boolean z = tLObject2 instanceof TLRPC.TL_contacts_blocked;
-                                HashSet hashSet = storiesController5.blocklist;
-                                int i3 = storiesController5.currentAccount;
+                                HashSet hashSet = storiesController4.blocklist;
+                                int i3 = storiesController4.currentAccount;
                                 if (z) {
                                     TLRPC.TL_contacts_blocked tL_contacts_blocked = (TLRPC.TL_contacts_blocked) tLObject2;
                                     MessagesController.getInstance(i3).putUsers(tL_contacts_blocked.users, false);
@@ -143,8 +138,8 @@ public final class StoriesController$$ExternalSyntheticLambda0 implements Reques
                                         i4++;
                                         hashSet.add(Long.valueOf(DialogObject.getPeerDialogId(tL_peerBlocked.peer_id)));
                                     }
-                                    storiesController5.blocklistCount = Math.max(hashSet.size(), tL_contacts_blocked.count);
-                                    storiesController5.blocklistFull = true;
+                                    storiesController4.blocklistCount = Math.max(hashSet.size(), tL_contacts_blocked.count);
+                                    storiesController4.blocklistFull = true;
                                 } else if (tLObject2 instanceof TLRPC.TL_contacts_blockedSlice) {
                                     TLRPC.TL_contacts_blockedSlice tL_contacts_blockedSlice = (TLRPC.TL_contacts_blockedSlice) tLObject2;
                                     MessagesController.getInstance(i3).putUsers(tL_contacts_blockedSlice.users, false);
@@ -157,21 +152,21 @@ public final class StoriesController$$ExternalSyntheticLambda0 implements Reques
                                         i5++;
                                         hashSet.add(Long.valueOf(DialogObject.getPeerDialogId(tL_peerBlocked2.peer_id)));
                                     }
-                                    storiesController5.blocklistCount = tL_contacts_blockedSlice.count;
-                                    storiesController5.blocklistFull = hashSet.size() >= storiesController5.blocklistCount;
+                                    storiesController4.blocklistCount = tL_contacts_blockedSlice.count;
+                                    storiesController4.blocklistFull = hashSet.size() >= storiesController4.blocklistCount;
                                 }
                                 NotificationCenter.getInstance(i3).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesBlocklistUpdate, new Object[0]);
-                                storiesController5.blocklistLoading = false;
-                                storiesController5.lastBlocklistRequested = System.currentTimeMillis();
+                                storiesController4.blocklistLoading = false;
+                                storiesController4.lastBlocklistRequested = System.currentTimeMillis();
                                 break;
                             default:
-                                StoriesController storiesController6 = storiesController4;
-                                ArrayList arrayList3 = storiesController6.sendAs;
+                                StoriesController storiesController5 = storiesController3;
+                                ArrayList arrayList3 = storiesController5.sendAs;
                                 arrayList3.clear();
                                 arrayList3.add(new TLRPC.TL_inputPeerSelf());
                                 TLObject tLObject3 = tLObject;
                                 boolean z2 = tLObject3 instanceof TLRPC.TL_messages_chats;
-                                int i6 = storiesController6.currentAccount;
+                                int i6 = storiesController5.currentAccount;
                                 if (z2) {
                                     ArrayList<TLRPC.Chat> arrayList4 = ((TLRPC.TL_messages_chats) tLObject3).chats;
                                     MessagesController.getInstance(i6).putChats(arrayList4, false);
@@ -183,25 +178,30 @@ public final class StoriesController$$ExternalSyntheticLambda0 implements Reques
                                         arrayList3.add(MessagesController.getInputPeer(chat));
                                     }
                                 }
-                                storiesController6.loadingSendAs = false;
-                                storiesController6.loadedSendAs = true;
+                                storiesController5.loadingSendAs = false;
+                                storiesController5.loadedSendAs = true;
                                 NotificationCenter.getInstance(i6).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesSendAsUpdate, new Object[0]);
                                 break;
                         }
                     }
                 });
                 break;
+            case 3:
+                StoriesController storiesController4 = this.f$0;
+                storiesController4.getClass();
+                if (tL_error == null) {
+                    AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda14(storiesController4, 1));
+                }
+                break;
             case 4:
                 StoriesController storiesController5 = this.f$0;
                 storiesController5.getClass();
-                AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda9(storiesController5, 1));
+                AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda14(storiesController5, 1));
                 break;
             default:
                 StoriesController storiesController6 = this.f$0;
                 storiesController6.getClass();
-                if (tL_error == null) {
-                    AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda9(storiesController6, 1));
-                }
+                AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda66(storiesController6, tLObject, tL_error, 29));
                 break;
         }
     }

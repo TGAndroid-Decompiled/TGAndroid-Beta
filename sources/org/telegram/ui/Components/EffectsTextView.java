@@ -4,29 +4,46 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.text.Layout;
 import android.text.SpannableString;
-import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 
-public final class EffectsTextView extends SpoilersTextView {
-    public boolean disablePaddingsOffset;
-    public boolean disablePaddingsOffsetX;
-    public boolean disablePaddingsOffsetY;
-    public final LinkSpanDrawable.LinkCollector links;
-    public LinkSpanDrawable pressedLink;
+public class EffectsTextView extends SpoilersTextView {
+    private boolean disablePaddingsOffset;
+    private boolean disablePaddingsOffsetX;
+    private boolean disablePaddingsOffsetY;
+    private boolean isCustomLinkCollector;
+    private LinkSpanDrawable.LinkCollector links;
+    private LinkSpanDrawable.LinksTextView.OnLinkPress onLongPressListener;
+    private LinkSpanDrawable.LinksTextView.OnLinkPress onPressListener;
+    private LinkSpanDrawable<ClickableSpan> pressedLink;
+    private Theme.ResourcesProvider resourcesProvider;
+
+    public interface OnLinkPress {
+        void run(ClickableSpan clickableSpan);
+    }
 
     public EffectsTextView(Context context) {
-        super(context, null, true);
-        this.links = new LinkSpanDrawable.LinkCollector(this);
+        this(context, null);
+    }
+
+    public void lambda$onTouchEvent$0(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onLongPressListener;
+        if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
+            return;
+        }
+        onLinkPress.run(clickableSpan);
+        this.pressedLink = null;
+        this.links.clear();
     }
 
     @Override
-    public final ClickableSpan hit(int i, int i2) {
+    public ClickableSpan hit(int i, int i2) {
         Layout layout = getLayout();
         if (layout == null) {
             return null;
@@ -47,44 +64,47 @@ public final class EffectsTextView extends SpoilersTextView {
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        if (!this.disablePaddingsOffset) {
-            canvas.translate(this.disablePaddingsOffsetX ? 0.0f : getPaddingLeft(), this.disablePaddingsOffsetY ? 0.0f : getPaddingTop());
+    public void onDraw(Canvas canvas) {
+        if (!this.isCustomLinkCollector) {
+            canvas.save();
+            if (!this.disablePaddingsOffset) {
+                canvas.translate(this.disablePaddingsOffsetX ? 0.0f : getPaddingLeft(), this.disablePaddingsOffsetY ? 0.0f : getPaddingTop());
+            }
+            if (this.links.draw(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
         }
-        if (this.links.draw(canvas)) {
-            invalidate();
-        }
-        canvas.restore();
         super.onDraw(canvas);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        CharacterStyle characterStyle;
-        LinkSpanDrawable.LinkCollector linkCollector = this.links;
-        if (linkCollector != null) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.links != null) {
             Layout layout = getLayout();
             ClickableSpan clickableSpanHit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
             if (clickableSpanHit != null && motionEvent.getAction() == 0) {
-                LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanHit, null, motionEvent.getX(), motionEvent.getY());
+                LinkSpanDrawable<ClickableSpan> linkSpanDrawable = new LinkSpanDrawable<>(clickableSpanHit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
                 this.pressedLink = linkSpanDrawable;
-                linkCollector.addLink(linkSpanDrawable, null);
+                this.links.addLink(linkSpanDrawable);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.pressedLink.mSpan);
-                int spanEnd = spannableString.getSpanEnd(this.pressedLink.mSpan);
+                int spanStart = spannableString.getSpanStart(this.pressedLink.getSpan());
+                int spanEnd = spannableString.getSpanEnd(this.pressedLink.getSpan());
                 LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
-                linkPathObtainNewPath.setCurrentLayout(layout, spanStart, 0.0f, getPaddingTop());
+                linkPathObtainNewPath.setCurrentLayout(layout, spanStart, getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, linkPathObtainNewPath);
-                AndroidUtilities.runOnUIThread(new Bulletin$2$$ExternalSyntheticLambda1(this, linkSpanDrawable, clickableSpanHit), ViewConfiguration.getLongPressTimeout());
+                AndroidUtilities.runOnUIThread(new ImageUpdater$$ExternalSyntheticLambda1(this, linkSpanDrawable, clickableSpanHit, 21), ViewConfiguration.getLongPressTimeout());
                 return true;
             }
             if (motionEvent.getAction() == 1) {
-                linkCollector.clear(true);
-                LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
-                if (linkSpanDrawable2 != null && (characterStyle = linkSpanDrawable2.mSpan) == clickableSpanHit) {
-                    if (characterStyle != null) {
-                        ((ClickableSpan) characterStyle).onClick(this);
+                this.links.clear();
+                LinkSpanDrawable<ClickableSpan> linkSpanDrawable2 = this.pressedLink;
+                if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == clickableSpanHit) {
+                    LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onPressListener;
+                    if (onLinkPress != null) {
+                        onLinkPress.run((ClickableSpan) this.pressedLink.getSpan());
+                    } else if (this.pressedLink.getSpan() != null) {
+                        ((ClickableSpan) this.pressedLink.getSpan()).onClick(this);
                     }
                     this.pressedLink = null;
                     return true;
@@ -92,7 +112,7 @@ public final class EffectsTextView extends SpoilersTextView {
                 this.pressedLink = null;
             }
             if (motionEvent.getAction() == 3) {
-                linkCollector.clear(true);
+                this.links.clear();
                 this.pressedLink = null;
             }
         }
@@ -115,7 +135,21 @@ public final class EffectsTextView extends SpoilersTextView {
     }
 
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
         super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    }
+
+    public EffectsTextView(Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(context, true, null);
+        this.isCustomLinkCollector = false;
+        this.links = new LinkSpanDrawable.LinkCollector(this);
+        this.resourcesProvider = resourcesProvider;
+    }
+
+    public EffectsTextView(Context context, LinkSpanDrawable.LinkCollector linkCollector, Theme.ResourcesProvider resourcesProvider) {
+        super(context, true, null);
+        this.isCustomLinkCollector = true;
+        this.links = linkCollector;
+        this.resourcesProvider = resourcesProvider;
     }
 }

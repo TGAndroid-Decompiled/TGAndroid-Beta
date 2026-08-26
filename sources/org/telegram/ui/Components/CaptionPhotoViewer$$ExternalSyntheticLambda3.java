@@ -15,20 +15,13 @@ public final class CaptionPhotoViewer$$ExternalSyntheticLambda3 implements Runna
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                CaptionPhotoViewer captionPhotoViewer = this.f$0;
-                if (!this.f$1) {
-                    captionPhotoViewer.aiButton.setVisibility(8);
-                } else {
-                    captionPhotoViewer.getClass();
-                }
+                this.f$0.lambda$setAddPhotoVisible$6(this.f$1);
+                break;
+            case 1:
+                this.f$0.lambda$setTimerVisible$7(this.f$1);
                 break;
             default:
-                CaptionPhotoViewer captionPhotoViewer2 = this.f$0;
-                if (!this.f$1) {
-                    captionPhotoViewer2.timerButton.setVisibility(8);
-                } else {
-                    captionPhotoViewer2.getClass();
-                }
+                this.f$0.lambda$showAiButton$8(this.f$1);
                 break;
         }
     }

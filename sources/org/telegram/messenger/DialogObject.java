@@ -318,7 +318,7 @@ public class DialogObject {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
             String str = chat.title;
             if (avatarDrawable != null) {
-                avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
+                avatarDrawable.setInfo(chat);
             }
             if (imageReceiver != null) {
                 imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
@@ -348,7 +348,7 @@ public class DialogObject {
         }
         String userName = UserObject.getUserName(user);
         if (avatarDrawable != null) {
-            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+            avatarDrawable.setInfo(user);
         }
         if (imageReceiver != null) {
             imageReceiver.setForUserOrChat(tLObject, avatarDrawable);

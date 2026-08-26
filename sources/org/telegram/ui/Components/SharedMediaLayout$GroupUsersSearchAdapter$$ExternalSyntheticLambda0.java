@@ -2,9 +2,7 @@ package org.telegram.ui.Components;
 
 import androidx.collection.LongSparseArray;
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import java.util.HashMap;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Cells.ManageChatUserCell;
 
@@ -26,64 +24,21 @@ public final class SharedMediaLayout$GroupUsersSearchAdapter$$ExternalSyntheticL
     }
 
     @Override
-    public void getExcludeUsers() {
+    public LongSparseArray getExcludeUsers() {
+        return null;
     }
 
     @Override
     public void onDataSetChanged(int i) {
-        SharedMediaLayout.GroupUsersSearchAdapter groupUsersSearchAdapter = this.f$0;
-        groupUsersSearchAdapter.notifyDataSetChanged();
-        if (i != 1) {
-            return;
-        }
-        int i2 = groupUsersSearchAdapter.searchCount - 1;
-        groupUsersSearchAdapter.searchCount = i2;
-        if (i2 != 0) {
-            return;
-        }
-        int i3 = 0;
-        while (true) {
-            SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;
-            SharedMediaLayout.MediaPage[] mediaPageArr = sharedMediaLayout.mediaPages;
-            if (i3 >= mediaPageArr.length) {
-                return;
-            }
-            SharedMediaLayout.MediaPage mediaPage = mediaPageArr[i3];
-            if (mediaPage.selectedType == 7) {
-                if (groupUsersSearchAdapter.totalCount == 0) {
-                    mediaPage.emptyView.showProgress(false, true);
-                } else {
-                    sharedMediaLayout.animateItemsEnter(mediaPage.listView, 0, null);
-                }
-            }
-            i3++;
-        }
+        this.f$0.lambda$new$0(i);
     }
 
     @Override
     public boolean onOptionsButtonCheck(ManageChatUserCell manageChatUserCell, boolean z) {
-        Object obj;
-        SharedMediaLayout.GroupUsersSearchAdapter groupUsersSearchAdapter = this.f$0;
-        TLObject item = groupUsersSearchAdapter.getItem(((Integer) manageChatUserCell.getTag()).intValue());
-        if (!(item instanceof TLRPC.ChannelParticipant)) {
-            return false;
-        }
-        TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) item;
-        boolean z2 = !z;
-        if (channelParticipant != null) {
-            obj = channelParticipant;
-            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
-            tL_chatChannelParticipant.channelParticipant = channelParticipant;
-            tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
-            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
-            tL_chatChannelParticipant.date = channelParticipant.date;
-            obj = tL_chatChannelParticipant;
-        }
-        obj = channelParticipant;
-        return SharedMediaLayout.this.delegate.onMemberClick((TLRPC.ChatParticipant) obj, true, z2, manageChatUserCell);
+        return this.f$0.lambda$onCreateViewHolder$5(manageChatUserCell, z);
     }
 
     @Override
-    public void onSetHashtags(ArrayList arrayList) {
+    public void onSetHashtags(ArrayList arrayList, HashMap map) {
     }
 }

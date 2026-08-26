@@ -544,7 +544,7 @@ public class TelegramMediaSession {
     }
 
     public Bundle buildRootHints() {
-        Bundle bundleM = TelegramMediaSession$$ExternalSyntheticOutline0.m(2, "android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", true);
+        Bundle bundleM = TelegramMediaSession$$ExternalSyntheticOutline0.m("android.media.browse.CONTENT_STYLE_SUPPORTED", "android.media.browse.CONTENT_STYLE_BROWSABLE_HINT", 2, true);
         bundleM.putInt("android.media.browse.CONTENT_STYLE_PLAYABLE_HINT", 1);
         return bundleM;
     }

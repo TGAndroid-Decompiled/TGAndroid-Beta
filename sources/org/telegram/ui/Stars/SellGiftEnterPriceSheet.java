@@ -5,11 +5,11 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzlp;
+import com.google.android.gms.internal.mlkit_vision_common.zzkg;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AppGlobalConfig;
 import org.telegram.messenger.BillingController;
@@ -18,19 +18,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextCheckbox2Cell;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.OutlineTextContainerView;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda13;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda52;
-import org.telegram.ui.ProfileActivity$9$$ExternalSyntheticLambda1;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda2;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
 import org.telegram.ui.iv.RichTextCell$$ExternalSyntheticLambda3;
 
 public final class SellGiftEnterPriceSheet extends BottomSheet {
@@ -50,8 +51,8 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
     public final OutlineTextContainerView starsCountEditOutline;
     public final AnimatedTextView titleView;
 
-    public SellGiftEnterPriceSheet(Context context, Theme.ResourcesProvider resourcesProvider, int i, AmountUtils$Amount amountUtils$Amount, OAuthSheet$$ExternalSyntheticLambda13 oAuthSheet$$ExternalSyntheticLambda13) {
-        super(context, resourcesProvider, true, false);
+    public SellGiftEnterPriceSheet(Context context, Theme.ResourcesProvider resourcesProvider, int i, AmountUtils$Amount amountUtils$Amount, GiftSheet$$ExternalSyntheticLambda4 giftSheet$$ExternalSyntheticLambda4) {
+        super(context, true, false, resourcesProvider);
         this.currentAccount = i;
         this.smoothKeyboardAnimationEnabled = true;
         this.waitingKeyboard = true;
@@ -67,9 +68,9 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
         fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        LinearLayout linearLayoutM = zzkf.m(context, 0);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context);
         linearLayout.addView(linearLayoutM, LayoutHelper.createLinear(-1, 56, 55, 0, 0, 0, 0));
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
         this.titleView = animatedTextView;
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
         animatedTextView.setTextColor(Theme.getColor(null, i2, false));
@@ -79,8 +80,8 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
         linearLayoutM.addView(animatedTextView, LayoutHelper.createLinear(-1, -1, 1.0f, 119, 22, 0, 22, 0));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
-        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(1.0f, -1, -2));
-        OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context, null);
+        linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 1.0f));
+        OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
         this.starsCountEditOutline = outlineTextContainerView;
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.starsCountEditField = editTextBoldCursor;
@@ -94,13 +95,12 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
         editTextBoldCursor.setTextColor(Theme.getColor(null, i2, false));
         editTextBoldCursor.requestFocus();
         outlineTextContainerView.setLeftPadding(AndroidUtilities.dp(28.0f));
-        outlineTextContainerView.attachedEditText = editTextBoldCursor;
-        outlineTextContainerView.invalidate();
-        outlineTextContainerView.animateSelection(1.0f, (amountUtils$Amount == null || amountUtils$Amount.isZero()) ? 0.0f : 1.0f, false);
+        outlineTextContainerView.attachEditText(editTextBoldCursor);
+        outlineTextContainerView.animateSelection(true, (amountUtils$Amount == null || amountUtils$Amount.isZero()) ? false : true, false);
         outlineTextContainerView.setForceUseCenter2(true);
-        editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 18));
+        editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 7));
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
-        linearLayout2.addView(outlineTextContainerView, LayoutHelper.createLinear(18.0f, 0.0f, 18.0f, 0.0f, -1, 58));
+        linearLayout2.addView(outlineTextContainerView, LayoutHelper.createLinear(-1, 58, 18.0f, 0.0f, 18.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.iconStars = imageView;
         imageView.setImageResource(R.drawable.star_small_inner);
@@ -110,7 +110,7 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
         imageView2.setImageResource(R.drawable.mini_gram_72);
         imageView2.setColorFilter(-13397548);
         outlineTextContainerView.addView(imageView2, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
-        AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, false, false);
+        AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
         this.dollarsEqView = animatedTextView2;
         int i3 = Theme.key_windowBackgroundWhiteGrayText;
         animatedTextView2.setTextColor(Theme.getColor(null, i3, false));
@@ -126,16 +126,16 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
         this.radioButtonCell = textCheckbox2Cell;
         textCheckbox2Cell.checkbox.setLayoutParams(LayoutHelper.createFrame(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 22.0f, 22.0f, 0.0f));
         textCheckbox2Cell.setTextAndValue(LocaleController.getString(R.string.ResellGiftPriceOnlyTON), LocaleController.getString(R.string.ResellGiftPriceHintOnlyTON), true, false);
-        textCheckbox2Cell.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(this, 8));
+        textCheckbox2Cell.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 6));
         linearLayout2.addView(textCheckbox2Cell, LayoutHelper.createLinear(-1, -2, 55, 0, 16, 0, 16));
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(1);
         linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 80));
-        ButtonWithCounterView buttonWithCounterViewM = zzlp.m(context, resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterViewM = zzkg.m(context, resourcesProvider, true);
         this.buttonView = buttonWithCounterViewM;
-        buttonWithCounterViewM.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda52(14, this, oAuthSheet$$ExternalSyntheticLambda13));
-        buttonWithCounterViewM.setText(LocaleController.getString(R.string.ResellGiftButton), false, true);
-        linearLayout3.addView(buttonWithCounterViewM, LayoutHelper.createLinear(18.0f, 0.0f, 18.0f, 8.0f, -1, 48));
+        buttonWithCounterViewM.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(6, this, giftSheet$$ExternalSyntheticLambda4));
+        buttonWithCounterViewM.setText(LocaleController.getString(R.string.ResellGiftButton), false);
+        linearLayout3.addView(buttonWithCounterViewM, LayoutHelper.createLinear(-1, 48, 18.0f, 0.0f, 18.0f, 8.0f));
         if (amountUtils$Amount != null) {
             setAmount$2(AmountUtils$Amount.fromNano(amountUtils$Amount.nanos, amountUtils$Amount.currency), !amountUtils$Amount.isZero(), true, false);
         } else {
@@ -170,7 +170,17 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
         AmountUtils$Amount amountUtils$Amount2;
         char c;
         long j;
-        AmountUtils$Currency amountUtils$Currency;
+        boolean z4;
+        ImageView imageView;
+        ImageView imageView2;
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        float f5;
+        float f6;
+        float f7;
+        float f8;
         AmountUtils$Amount amountUtils$Amount3 = this.inputAmount;
         int i = this.inputAmountError;
         this.inputAmountError = 0;
@@ -181,11 +191,11 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
             this.inputAmountError |= 1;
         }
         AmountUtils$Amount amountUtils$Amount4 = this.inputAmount;
-        AmountUtils$Currency amountUtils$Currency2 = amountUtils$Amount4.currency;
-        AmountUtils$Currency amountUtils$Currency3 = AmountUtils$Currency.TON;
+        AmountUtils$Currency amountUtils$Currency = amountUtils$Amount4.currency;
+        AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.TON;
         AmountUtils$Amount amountUtils$Amount5 = this.inputAmountMaxStars;
         AmountUtils$Amount amountUtils$Amount6 = this.inputAmountMaxTON;
-        if ((amountUtils$Currency2 == amountUtils$Currency3 ? amountUtils$Amount6 : amountUtils$Amount5).nanos < amountUtils$Amount4.nanos) {
+        if ((amountUtils$Currency == amountUtils$Currency2 ? amountUtils$Amount6 : amountUtils$Amount5).nanos < amountUtils$Amount4.nanos) {
             this.inputAmountError |= 4;
         }
         boolean zIsZero = amountUtils$Amount4.isZero();
@@ -198,61 +208,172 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
             AmountUtils$Amount amountUtils$Amount9 = this.inputAmount;
             amountUtils$Amount2 = amountUtils$Amount7;
             c = 0;
-            if ((amountUtils$Amount9.currency == amountUtils$Currency3 ? amountUtils$Amount8 : amountUtils$Amount7).nanos > amountUtils$Amount9.nanos) {
+            if ((amountUtils$Amount9.currency == amountUtils$Currency2 ? amountUtils$Amount8 : amountUtils$Amount7).nanos > amountUtils$Amount9.nanos) {
                 this.inputAmountError |= 2;
             }
         }
-        boolean z4 = z2 || amountUtils$Amount3.currency != this.inputAmount.currency;
-        boolean z5 = z2 || amountUtils$Amount3.nanos != this.inputAmount.nanos;
-        boolean z6 = z2 || i != this.inputAmountError;
+        boolean z5 = z2 || amountUtils$Amount3.currency != this.inputAmount.currency;
+        boolean z6 = z2 || amountUtils$Amount3.nanos != this.inputAmount.nanos;
+        boolean z7 = z2 || i != this.inputAmountError;
         OutlineTextContainerView outlineTextContainerView = this.starsCountEditOutline;
-        if (z6) {
-            OutlineTextContainerView.animateSpring(outlineTextContainerView.errorSpring, (this.inputAmountError & (-9)) == 0 ? 0.0f : 1.0f);
+        if (z7) {
+            outlineTextContainerView.animateError((this.inputAmountError & (-9)) == 0 ? 0.0f : 1.0f);
         }
-        AmountUtils$Currency amountUtils$Currency4 = AmountUtils$Currency.STARS;
+        AmountUtils$Currency amountUtils$Currency3 = AmountUtils$Currency.STARS;
         EditTextBoldCursor editTextBoldCursor = this.starsCountEditField;
-        if (z4) {
-            AmountUtils$Currency amountUtils$Currency5 = this.inputAmount.currency;
+        if (z5) {
+            AmountUtils$Currency amountUtils$Currency4 = this.inputAmount.currency;
             j = 0;
             AnimatedTextView animatedTextView = this.titleView;
-            if (amountUtils$Currency5 == amountUtils$Currency4) {
-                animatedTextView.setText(LocaleController.getString(R.string.ResellGiftTitle), z3, true);
+            if (amountUtils$Currency4 == amountUtils$Currency3) {
+                animatedTextView.setText(LocaleController.getString(R.string.ResellGiftTitle), z3);
                 editTextBoldCursor.setInputType(2);
                 InputFilter[] inputFilterArr = new InputFilter[1];
-                inputFilterArr[c] = new InputFilter.LengthFilter(Long.toString((this.inputAmount.currency == amountUtils$Currency3 ? amountUtils$Amount6 : amountUtils$Amount5).nanos / 1000000000).length());
+                inputFilterArr[c] = new InputFilter.LengthFilter(Long.toString((this.inputAmount.currency == amountUtils$Currency2 ? amountUtils$Amount6 : amountUtils$Amount5).nanos / 1000000000).length());
                 editTextBoldCursor.setFilters(inputFilterArr);
-                amountUtils$Currency = amountUtils$Currency3;
             } else {
-                amountUtils$Currency = amountUtils$Currency3;
-                if (amountUtils$Currency5 == amountUtils$Currency) {
-                    animatedTextView.setText(LocaleController.getString(R.string.ResellGiftTitleTON), z3, true);
+                if (amountUtils$Currency4 == amountUtils$Currency2) {
+                    animatedTextView.setText(LocaleController.getString(R.string.ResellGiftTitleTON), z3);
                     editTextBoldCursor.setInputType(8194);
                     InputFilter[] inputFilterArr2 = new InputFilter[1];
-                    inputFilterArr2[c] = new InputFilter.LengthFilter(Long.toString((this.inputAmount.currency == amountUtils$Currency ? amountUtils$Amount6 : amountUtils$Amount5).nanos / 1000000000).length() + 3);
+                    inputFilterArr2[c] = new InputFilter.LengthFilter(Long.toString((this.inputAmount.currency == amountUtils$Currency2 ? amountUtils$Amount6 : amountUtils$Amount5).nanos / 1000000000).length() + 3);
                     editTextBoldCursor.setFilters(inputFilterArr2);
                 }
+                CheckBox2 checkBox2 = this.radioButtonCell.checkbox;
+                if (this.inputAmount.currency == amountUtils$Currency2) {
+                    z4 = true;
+                } else {
+                    z4 = false;
+                }
+                checkBox2.setChecked(z4, z3);
+                imageView = this.iconTon;
+                imageView2 = this.iconStars;
+                if (z3) {
+                    ViewPropertyAnimator viewPropertyAnimatorAnimate = imageView2.animate();
+                    if (this.inputAmount.currency == amountUtils$Currency3) {
+                        f3 = 1.0f;
+                    } else {
+                        f3 = 0.0f;
+                    }
+                    ViewPropertyAnimator viewPropertyAnimatorAlpha = viewPropertyAnimatorAnimate.alpha(f3);
+                    if (this.inputAmount.currency == amountUtils$Currency3) {
+                        f4 = 1.0f;
+                    } else {
+                        f4 = 0.0f;
+                    }
+                    ViewPropertyAnimator viewPropertyAnimatorScaleX = viewPropertyAnimatorAlpha.scaleX(f4);
+                    if (this.inputAmount.currency == amountUtils$Currency3) {
+                        f5 = 1.0f;
+                    } else {
+                        f5 = 0.0f;
+                    }
+                    viewPropertyAnimatorScaleX.scaleY(f5).setDuration(180L).start();
+                    ViewPropertyAnimator viewPropertyAnimatorAnimate2 = imageView.animate();
+                    if (this.inputAmount.currency == amountUtils$Currency2) {
+                        f6 = 1.0f;
+                    } else {
+                        f6 = 0.0f;
+                    }
+                    ViewPropertyAnimator viewPropertyAnimatorAlpha2 = viewPropertyAnimatorAnimate2.alpha(f6);
+                    if (this.inputAmount.currency == amountUtils$Currency2) {
+                        f7 = 1.0f;
+                    } else {
+                        f7 = 0.0f;
+                    }
+                    ViewPropertyAnimator viewPropertyAnimatorScaleX2 = viewPropertyAnimatorAlpha2.scaleX(f7);
+                    if (this.inputAmount.currency == amountUtils$Currency2) {
+                        f8 = 1.0f;
+                    } else {
+                        f8 = 0.0f;
+                    }
+                    viewPropertyAnimatorScaleX2.scaleY(f8).setDuration(180L).start();
+                } else {
+                    if (this.inputAmount.currency == amountUtils$Currency3) {
+                        f = 1.0f;
+                    } else {
+                        f = 0.0f;
+                    }
+                    imageView2.setAlpha(f);
+                    if (this.inputAmount.currency == amountUtils$Currency2) {
+                        f2 = 1.0f;
+                    } else {
+                        f2 = 0.0f;
+                    }
+                    imageView.setAlpha(f2);
+                }
             }
-            this.radioButtonCell.checkbox.checkBoxBase.setChecked(-1, this.inputAmount.currency == amountUtils$Currency, z3);
-            ImageView imageView = this.iconTon;
-            ImageView imageView2 = this.iconStars;
-            if (z3) {
-                imageView2.animate().alpha(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f).setDuration(180L).start();
-                imageView.animate().alpha(this.inputAmount.currency == amountUtils$Currency ? 1.0f : 0.0f).scaleX(this.inputAmount.currency == amountUtils$Currency ? 1.0f : 0.0f).scaleY(this.inputAmount.currency == amountUtils$Currency ? 1.0f : 0.0f).setDuration(180L).start();
+            CheckBox2 checkBox3 = this.radioButtonCell.checkbox;
+            if (this.inputAmount.currency == amountUtils$Currency2) {
+                z4 = true;
             } else {
-                imageView2.setAlpha(this.inputAmount.currency == amountUtils$Currency4 ? 1.0f : 0.0f);
-                imageView.setAlpha(this.inputAmount.currency == amountUtils$Currency ? 1.0f : 0.0f);
+                z4 = false;
+            }
+            checkBox3.setChecked(z4, z3);
+            imageView = this.iconTon;
+            imageView2 = this.iconStars;
+            if (z3) {
+                ViewPropertyAnimator viewPropertyAnimatorAnimate3 = imageView2.animate();
+                if (this.inputAmount.currency == amountUtils$Currency3) {
+                    f3 = 1.0f;
+                } else {
+                    f3 = 0.0f;
+                }
+                ViewPropertyAnimator viewPropertyAnimatorAlpha3 = viewPropertyAnimatorAnimate3.alpha(f3);
+                if (this.inputAmount.currency == amountUtils$Currency3) {
+                    f4 = 1.0f;
+                } else {
+                    f4 = 0.0f;
+                }
+                ViewPropertyAnimator viewPropertyAnimatorScaleX3 = viewPropertyAnimatorAlpha3.scaleX(f4);
+                if (this.inputAmount.currency == amountUtils$Currency3) {
+                    f5 = 1.0f;
+                } else {
+                    f5 = 0.0f;
+                }
+                viewPropertyAnimatorScaleX3.scaleY(f5).setDuration(180L).start();
+                ViewPropertyAnimator viewPropertyAnimatorAnimate4 = imageView.animate();
+                if (this.inputAmount.currency == amountUtils$Currency2) {
+                    f6 = 1.0f;
+                } else {
+                    f6 = 0.0f;
+                }
+                ViewPropertyAnimator viewPropertyAnimatorAlpha4 = viewPropertyAnimatorAnimate4.alpha(f6);
+                if (this.inputAmount.currency == amountUtils$Currency2) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                ViewPropertyAnimator viewPropertyAnimatorScaleX4 = viewPropertyAnimatorAlpha4.scaleX(f7);
+                if (this.inputAmount.currency == amountUtils$Currency2) {
+                    f8 = 1.0f;
+                } else {
+                    f8 = 0.0f;
+                }
+                viewPropertyAnimatorScaleX4.scaleY(f8).setDuration(180L).start();
+            } else {
+                if (this.inputAmount.currency == amountUtils$Currency3) {
+                    f = 1.0f;
+                } else {
+                    f = 0.0f;
+                }
+                imageView2.setAlpha(f);
+                if (this.inputAmount.currency == amountUtils$Currency2) {
+                    f2 = 1.0f;
+                } else {
+                    f2 = 0.0f;
+                }
+                imageView.setAlpha(f2);
             }
         } else {
-            z5 = z5;
-            j = 0;
-            amountUtils$Currency = amountUtils$Currency3;
             z6 = z6;
+            j = 0;
+            z7 = z7;
         }
-        if (z4 || z6) {
+        if (z5 || z7) {
             int i2 = this.inputAmountError;
             if ((i2 & 4) != 0) {
                 int i3 = R.string.ResellGiftPriceTooMuch;
-                if (this.inputAmount.currency == amountUtils$Currency) {
+                if (this.inputAmount.currency == amountUtils$Currency2) {
                     amountUtils$Amount5 = amountUtils$Amount6;
                 }
                 Object[] objArr = new Object[1];
@@ -260,47 +381,48 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
                 outlineTextContainerView.setText(LocaleController.formatString(i3, objArr));
             } else if ((i2 & 2) != 0) {
                 int i4 = R.string.ResellGiftPriceTooSmall;
-                if (this.inputAmount.currency != amountUtils$Currency) {
+                if (this.inputAmount.currency != amountUtils$Currency2) {
                     amountUtils$Amount8 = amountUtils$Amount2;
                 }
+                String asDecimalSpaced = amountUtils$Amount8.formatAsDecimalSpaced();
                 Object[] objArr2 = new Object[1];
-                objArr2[c] = amountUtils$Amount8.formatAsDecimalSpaced();
+                objArr2[c] = asDecimalSpaced;
                 outlineTextContainerView.setText(LocaleController.formatString(i4, objArr2));
             } else {
-                outlineTextContainerView.setText(LocaleController.getString(this.inputAmount.currency == amountUtils$Currency4 ? R.string.ResellGiftPriceTitle : R.string.ResellGiftPriceTitleTON));
+                outlineTextContainerView.setText(LocaleController.getString(this.inputAmount.currency == amountUtils$Currency3 ? R.string.ResellGiftPriceTitle : R.string.ResellGiftPriceTitleTON));
             }
         }
-        if (z4 || z5 || z6) {
-            boolean z7 = this.inputAmountError == 0 && this.inputAmount.nanos > j;
+        if (z5 || z6 || z7) {
+            boolean z8 = this.inputAmountError == 0 && this.inputAmount.nanos > j;
             ButtonWithCounterView buttonWithCounterView = this.buttonView;
-            if (buttonWithCounterView.enabled != z7) {
-                buttonWithCounterView.setEnabled(z7);
-                buttonWithCounterView.setClickable(z7);
+            if (buttonWithCounterView.isEnabled() != z8) {
+                buttonWithCounterView.setEnabled(z8);
+                buttonWithCounterView.setClickable(z8);
                 if (z3) {
-                    OKLCH.m(buttonWithCounterView.animate(), z7 ? 1.0f : 0.6f, 180L);
+                    OKLCH.m(buttonWithCounterView.animate(), z8 ? 1.0f : 0.6f, 180L);
                 } else {
-                    buttonWithCounterView.setAlpha(z7 ? 1.0f : 0.6f);
+                    buttonWithCounterView.setAlpha(z8 ? 1.0f : 0.6f);
                 }
             }
         }
-        if (z4 || z5) {
+        if (z5 || z6) {
             AppGlobalConfig appGlobalConfig = MessagesController.getInstance(this.currentAccount).config;
             AmountUtils$Amount amountUtils$Amount10 = this.inputAmount;
-            AmountUtils$Currency amountUtils$Currency6 = amountUtils$Amount10.currency;
+            AmountUtils$Currency amountUtils$Currency5 = amountUtils$Amount10.currency;
             TextView textView = this.starsCountEditHint;
-            AmountUtils$Currency amountUtils$Currency7 = amountUtils$Amount10.currency;
+            AmountUtils$Currency amountUtils$Currency6 = amountUtils$Amount10.currency;
             long j2 = amountUtils$Amount10.nanos;
-            if (amountUtils$Currency6 == amountUtils$Currency4) {
-                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("ResellGiftInfo", (int) (AmountUtils$Amount.fromNano((j2 * ((long) appGlobalConfig.starsStarGiftResaleCommissionPermille.get())) / 1000, amountUtils$Currency7).nanos / 1000000000), new Object[0])));
-            } else if (amountUtils$Currency6 == amountUtils$Currency) {
-                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.ResellGiftInfoTON, AmountUtils$Amount.fromNano((j2 * ((long) appGlobalConfig.tonStarGiftResaleCommissionPermille.get())) / 1000, amountUtils$Currency7).asDecimalString())));
+            if (amountUtils$Currency5 == amountUtils$Currency3) {
+                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("ResellGiftInfo", (int) (AmountUtils$Amount.fromNano((j2 * ((long) appGlobalConfig.starsStarGiftResaleCommissionPermille.get())) / 1000, amountUtils$Currency6).nanos / 1000000000), new Object[0])));
+            } else if (amountUtils$Currency5 == amountUtils$Currency2) {
+                textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.ResellGiftInfoTON, AmountUtils$Amount.fromNano((j2 * ((long) appGlobalConfig.tonStarGiftResaleCommissionPermille.get())) / 1000, amountUtils$Currency6).asDecimalString())));
             }
             StringBuilder sb = new StringBuilder(10);
             sb.append('~');
-            sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * (this.inputAmount.currency == amountUtils$Currency ? MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get() : ((double) MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000) * 1.0E-5d) * 100.0d), "USD", 2));
-            this.dollarsEqView.setText(sb, z3, true);
+            sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * (this.inputAmount.currency == amountUtils$Currency2 ? MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get() : ((double) MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000) * 1.0E-5d) * 100.0d), "USD", 2));
+            this.dollarsEqView.setText(sb, z3);
         }
-        if (z && z5) {
+        if (z && z6) {
             String strAsDecimalString = this.inputAmount.asDecimalString();
             editTextBoldCursor.setText(strAsDecimalString);
             editTextBoldCursor.setSelection(strAsDecimalString.length());
@@ -310,6 +432,6 @@ public final class SellGiftEnterPriceSheet extends BottomSheet {
     @Override
     public final void show() {
         super.show();
-        AndroidUtilities.runOnUIThread(new ProfileActivity$9$$ExternalSyntheticLambda1(this, 22), 50L);
+        AndroidUtilities.runOnUIThread(new BalanceCloud$$ExternalSyntheticLambda1(this, 5), 50L);
     }
 }

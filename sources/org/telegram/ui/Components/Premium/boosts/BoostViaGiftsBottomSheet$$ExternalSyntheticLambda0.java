@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts;
 
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 
@@ -18,7 +17,7 @@ public final class BoostViaGiftsBottomSheet$$ExternalSyntheticLambda0 implements
         BoostViaGiftsBottomSheet boostViaGiftsBottomSheet = this.f$0;
         switch (this.$r8$classId) {
             case 0:
-                AndroidUtilities.hideKeyboard(boostViaGiftsBottomSheet.recyclerListView);
+                boostViaGiftsBottomSheet.lambda$new$0$4$1();
                 break;
             case 1:
                 boostViaGiftsBottomSheet.getClass();

@@ -43,8 +43,7 @@ public final class RichEditor$$ExternalSyntheticLambda1 implements Runnable {
                 richEditor4.sendMessage(2147483646, 0, true);
                 MessageSendPreview messageSendPreview = richEditor4.messageSendPreview;
                 if (messageSendPreview != null) {
-                    messageSendPreview.sent = false;
-                    messageSendPreview.dismiss();
+                    messageSendPreview.dismiss(false);
                     richEditor4.messageSendPreview = null;
                 }
                 break;
@@ -53,8 +52,7 @@ public final class RichEditor$$ExternalSyntheticLambda1 implements Runnable {
                 richEditor5.sendMessage(0, 0, false);
                 MessageSendPreview messageSendPreview2 = richEditor5.messageSendPreview;
                 if (messageSendPreview2 != null) {
-                    messageSendPreview2.sent = true;
-                    messageSendPreview2.dismiss();
+                    messageSendPreview2.dismiss(true);
                     richEditor5.messageSendPreview = null;
                 }
                 break;

@@ -33,7 +33,6 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.PhotoViewer;
 
 public final class RichDocumentCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, DownloadController.FileDownloadProgressListener {
     public boolean attached;
@@ -151,7 +150,7 @@ public final class RichDocumentCell extends RichBlockCell implements Theme.Color
         setWillNotDraw(false);
         setMinimumHeight(AndroidUtilities.dp(66.0f));
         this.observerTag = DownloadController.getInstance(i).generateObserverTag();
-        RadialProgress2 radialProgress2 = new RadialProgress2(resourcesProvider, this);
+        RadialProgress2 radialProgress2 = new RadialProgress2(this, resourcesProvider);
         this.radialProgress = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i2 = this.buttonX;
@@ -160,10 +159,10 @@ public final class RichDocumentCell extends RichBlockCell implements Theme.Color
         this.previewImage = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new PhotoViewer.AnonymousClass24(this, 10));
+        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new RichMapCell.AnonymousClass1(this, 15));
         this.caption = richCaptionController;
         addView(richCaptionController.editText, LayoutHelper.createFrame(-2, -2, 51));
-        updateColors$1();
+        updateColors();
     }
 
     public final void bindPreview(TLRPC.Document document) {
@@ -191,7 +190,7 @@ public final class RichDocumentCell extends RichBlockCell implements Theme.Color
         ImageReceiver imageReceiver = this.previewImage;
         if (z) {
             imageReceiver.setImageCoords(this.mediaX, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(86.0f), AndroidUtilities.dp(86.0f));
-            this.previewImage.setImage(ImageLocation.getForPath(str2), "86_86", null, null, document, 1);
+            imageReceiver.setImage(ImageLocation.getForPath(str2), "86_86", null, null, document, 1);
             return;
         }
         if (!zIsDocumentHasThumb) {
@@ -207,7 +206,7 @@ public final class RichDocumentCell extends RichBlockCell implements Theme.Color
         if (messageObject == null) {
             messageObject = this.messageObject;
         }
-        this.previewImage.setImage(forDocument, "86_86", drawableCreateStripedBitmap, null, messageObject, 1);
+        imageReceiver.setImage(forDocument, "86_86", drawableCreateStripedBitmap, null, messageObject, 1);
     }
 
     @Override
@@ -295,6 +294,7 @@ public final class RichDocumentCell extends RichBlockCell implements Theme.Color
         int i;
         float f;
         TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+        int childAdapterPosition;
         if (document() == null) {
             return;
         }
@@ -331,12 +331,7 @@ public final class RichDocumentCell extends RichBlockCell implements Theme.Color
             this.sizeLayout.draw(canvas);
             canvas.restore();
         }
-        if (this.delegate == null || !(getParent() instanceof RecyclerView) || (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) == null || !textSelectionHelper.isInSelectionMode()) {
-            return;
-        }
-        ((RecyclerView) getParent()).getClass();
-        int childAdapterPosition = RecyclerView.getChildAdapterPosition(this);
-        if (childAdapterPosition <= textSelectionHelper.startViewPosition || childAdapterPosition > textSelectionHelper.endViewPosition) {
+        if (this.delegate == null || !(getParent() instanceof RecyclerView) || (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) == null || !textSelectionHelper.isInSelectionMode() || (childAdapterPosition = ((RecyclerView) getParent()).getChildAdapterPosition(this)) <= textSelectionHelper.startViewPosition || childAdapterPosition > textSelectionHelper.endViewPosition) {
             return;
         }
         canvas.drawRoundRect(AndroidUtilities.dp(8.0f) + (this.blockRtl ? 0 : this.blockInset), AndroidUtilities.dp(2.0f), (getWidth() - (this.blockRtl ? this.blockInset : 0)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(this.hasPreview ? 104.0f : 64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectionPaint);
@@ -530,30 +525,16 @@ public final class RichDocumentCell extends RichBlockCell implements Theme.Color
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         RadialProgress2 radialProgress2 = this.radialProgress;
         if (z2) {
-            int i = Theme.key_chat_mediaLoaderPhoto;
-            int i2 = Theme.key_chat_mediaLoaderPhotoSelected;
-            int i3 = Theme.key_chat_mediaLoaderPhotoIcon;
-            int i4 = Theme.key_chat_mediaLoaderPhotoIconSelected;
-            radialProgress2.circleColorKey = i;
-            radialProgress2.circlePressedColorKey = i2;
-            radialProgress2.iconColorKey = i3;
-            radialProgress2.iconPressedColorKey = i4;
-            radialProgress2.progressColor = Theme.getColor(Theme.key_chat_mediaProgress, resourcesProvider);
+            radialProgress2.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
+            radialProgress2.setProgressColor(Theme.getColor(Theme.key_chat_mediaProgress, resourcesProvider));
         } else {
-            int i5 = Theme.key_chat_inLoader;
-            int i6 = Theme.key_chat_inLoaderSelected;
-            int i7 = Theme.key_chat_inMediaIcon;
-            int i8 = Theme.key_chat_inMediaIconSelected;
-            radialProgress2.circleColorKey = i5;
-            radialProgress2.circlePressedColorKey = i6;
-            radialProgress2.iconColorKey = i7;
-            radialProgress2.iconPressedColorKey = i8;
-            radialProgress2.progressColor = Theme.getColor(Theme.key_chat_inFileProgress, resourcesProvider);
+            radialProgress2.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
+            radialProgress2.setProgressColor(Theme.getColor(Theme.key_chat_inFileProgress, resourcesProvider));
         }
         BlockRow blockRow = this.currentRow;
-        int i9 = this.currentAccount;
+        int i = this.currentAccount;
         if (blockRow != null && (mediaUploadState2 = blockRow.media) != null && mediaUploadState2.isPending()) {
-            DownloadController.getInstance(i9).removeLoadingFileObserver(this);
+            DownloadController.getInstance(i).removeLoadingFileObserver(this);
             radialProgress2.setProgress(this.currentRow.media.progress, z);
             radialProgress2.setIcon(3, false, z);
             return;
@@ -566,32 +547,32 @@ public final class RichDocumentCell extends RichBlockCell implements Theme.Color
                 if (document() == null) {
                     pathToAttach = null;
                 } else {
-                    pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), false);
+                    pathToAttach = FileLoader.getInstance(i).getPathToAttach(document(), false);
                     if (pathToAttach != null) {
-                        pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), true);
+                        pathToAttach = FileLoader.getInstance(i).getPathToAttach(document(), true);
                     } else {
-                        pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), true);
+                        pathToAttach = FileLoader.getInstance(i).getPathToAttach(document(), true);
                     }
                 }
             }
         } else if (document() == null) {
             pathToAttach = null;
         } else {
-            pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), false);
+            pathToAttach = FileLoader.getInstance(i).getPathToAttach(document(), false);
             if (pathToAttach != null || !pathToAttach.exists()) {
-                pathToAttach = FileLoader.getInstance(i9).getPathToAttach(document(), true);
+                pathToAttach = FileLoader.getInstance(i).getPathToAttach(document(), true);
             }
         }
         if (pathToAttach != null && pathToAttach.exists()) {
-            DownloadController.getInstance(i9).removeLoadingFileObserver(this);
+            DownloadController.getInstance(i).removeLoadingFileObserver(this);
             this.buttonState = 0;
             radialProgress2.setIcon(this.hasPreview ? 4 : 5, false, z);
         } else {
             if (TextUtils.isEmpty(attachFileName)) {
                 return;
             }
-            DownloadController.getInstance(i9).addLoadingFileObserver(attachFileName, null, this);
-            if (!FileLoader.getInstance(i9).isLoadingFile(attachFileName)) {
+            DownloadController.getInstance(i).addLoadingFileObserver(attachFileName, null, this);
+            if (!FileLoader.getInstance(i).isLoadingFile(attachFileName)) {
                 this.buttonState = 1;
                 radialProgress2.setProgress(0.0f, z);
                 radialProgress2.setIcon(2, false, z);
@@ -605,7 +586,7 @@ public final class RichDocumentCell extends RichBlockCell implements Theme.Color
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         this.selectionPaint.setColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, this.resourcesProvider));
         RichCaptionController richCaptionController = this.caption;
         if (richCaptionController != null) {

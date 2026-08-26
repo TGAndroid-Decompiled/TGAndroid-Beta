@@ -11,24 +11,24 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_vision_common.zzig;
+import com.google.android.gms.internal.mlkit_vision_common.zzid;
 import com.google.firebase.crashlytics.internal.settings.Settings;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.segmentation.subject.SubjectSegmenterOptions;
 import com.google.mlkit.vision.segmentation.subject.internal.zzd;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.utils.WindowVisibilityManager$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.OKLCH;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Cells.PhotoEditToolCell$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.ProfileGooeyView$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Components.Size;
-import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+import org.telegram.ui.TON.TONIntroActivity;
 
 public final class PhotoView extends EntityView {
     public final int anchor;
@@ -37,7 +37,7 @@ public final class PhotoView extends EntityView {
     public final Rect bitmapDst;
     public final Paint bitmapPaint;
     public final Rect bitmapSrc;
-    public final ChatActivity.AnonymousClass60 containerView;
+    public final TONIntroActivity.AnonymousClass2 containerView;
     public MediaController.CropState crop;
     public final AnimatedFloat mirrorT;
     public boolean mirrored;
@@ -64,14 +64,14 @@ public final class PhotoView extends EntityView {
         setScale(1.0f);
         this.path = str;
         this.baseSize = size;
-        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(this, context);
-        this.containerView = anonymousClass60;
-        addView(anonymousClass60, LayoutHelper.createFrame(-1.0f, -1));
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = new TONIntroActivity.AnonymousClass2(this, context);
+        this.containerView = anonymousClass2;
+        addView(anonymousClass2, LayoutHelper.createFrame(-1, -1.0f));
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.mirrorT = new AnimatedFloat(anonymousClass60, 0L, 500L, cubicBezierInterpolator);
-        this.segmentedT = new AnimatedFloat(anonymousClass60, 0L, 350L, cubicBezierInterpolator);
+        this.mirrorT = new AnimatedFloat(anonymousClass2, 0L, 500L, cubicBezierInterpolator);
+        this.segmentedT = new AnimatedFloat(anonymousClass2, 0L, 350L, cubicBezierInterpolator);
         this.orientation = i;
-        Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new ProfileGooeyView$$ExternalSyntheticLambda0(str, 6), 1920, 1920, 0, false);
+        Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new WindowVisibilityManager$$ExternalSyntheticLambda0(str, 26), 1920, 1920, 0, false);
         this.bitmap = scaledBitmap;
         if (scaledBitmap != null) {
             segmentImage(scaledBitmap);
@@ -149,9 +149,9 @@ public final class PhotoView extends EntityView {
         if (!z) {
             this.mirrorT.set(z2, true);
         }
-        ChatActivity.AnonymousClass60 anonymousClass60 = this.containerView;
-        if (anonymousClass60 != null) {
-            anonymousClass60.invalidate();
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = this.containerView;
+        if (anonymousClass2 != null) {
+            anonymousClass2.invalidate();
         }
     }
 
@@ -184,9 +184,9 @@ public final class PhotoView extends EntityView {
         }
         Settings.FeatureFlagData featureFlagData = new Settings.FeatureFlagData();
         featureFlagData.collectReports = true;
-        zzd client = zzig.getClient(new SubjectSegmenterOptions(featureFlagData));
+        zzd client = zzid.getClient(new SubjectSegmenterOptions(featureFlagData));
         this.segmentingLoading = true;
-        client.processBase(InputImage.fromBitmap(bitmap, this.orientation)).addOnSuccessListener(new ProfileGooeyView$$ExternalSyntheticLambda0(this, 7)).addOnFailureListener(new RateCallLayout$$ExternalSyntheticLambda1(8, this, bitmap));
+        client.processBase(InputImage.fromBitmap(this.orientation, bitmap)).addOnSuccessListener(new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 27)).addOnFailureListener(new PhotoEditToolCell$$ExternalSyntheticLambda0(29, this, bitmap));
     }
 
     @Override
@@ -222,12 +222,12 @@ public final class PhotoView extends EntityView {
         setScale(1.0f);
         this.object = tLObject;
         this.baseSize = size;
-        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(this, context);
-        this.containerView = anonymousClass60;
-        addView(anonymousClass60, LayoutHelper.createFrame(-1.0f, -1));
+        TONIntroActivity.AnonymousClass2 anonymousClass2 = new TONIntroActivity.AnonymousClass2(this, context);
+        this.containerView = anonymousClass2;
+        addView(anonymousClass2, LayoutHelper.createFrame(-1, -1.0f));
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.mirrorT = new AnimatedFloat(anonymousClass60, 0L, 500L, cubicBezierInterpolator);
-        this.segmentedT = new AnimatedFloat(anonymousClass60, 0L, 350L, cubicBezierInterpolator);
+        this.mirrorT = new AnimatedFloat(anonymousClass2, 0L, 500L, cubicBezierInterpolator);
+        this.segmentedT = new AnimatedFloat(anonymousClass2, 0L, 350L, cubicBezierInterpolator);
         updatePosition();
     }
 }

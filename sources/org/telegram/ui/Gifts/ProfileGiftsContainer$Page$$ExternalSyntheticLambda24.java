@@ -6,9 +6,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.SharedMediaLayout;
+import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarsController;
@@ -35,22 +34,22 @@ public final class ProfileGiftsContainer$Page$$ExternalSyntheticLambda24 impleme
                 break;
             default:
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                SharedMediaLayout.AnonymousClass13 anonymousClass13 = page.parent;
-                StarsController.GiftsCollections giftsCollections = anonymousClass13.collections;
+                ProfileGiftsContainer profileGiftsContainer = page.parent;
+                StarsController.GiftsCollections giftsCollections = profileGiftsContainer.collections;
                 int i2 = tL_starGiftCollection.collection_id;
                 giftsCollections.getClass();
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(savedStarGift);
                 giftsCollections.addGifts(i2, arrayList);
-                anonymousClass13.fillTabs(true);
+                profileGiftsContainer.fillTabs$1(true);
+                ViewPagerFixed.TabsView tabsView = profileGiftsContainer.tabsView;
                 int i3 = tL_starGiftCollection.collection_id;
-                anonymousClass13.tabsView.scrollToTab(i3, anonymousClass13.collections.indexOf(i3) + 1);
-                BaseFragment baseFragment = anonymousClass13.fragment;
-                if (baseFragment instanceof ProfileActivity) {
-                    ((ProfileActivity) baseFragment).scrollToSharedMedia(true);
+                tabsView.scrollToTab(i3, profileGiftsContainer.collections.indexOf(i3) + 1);
+                if (profileGiftsContainer.fragment instanceof ProfileActivity) {
+                    ((ProfileActivity) profileGiftsContainer.fragment).scrollToSharedMedia(true);
                 }
-                anonymousClass13.updateTabsShown();
-                BulletinFactory.of(baseFragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
+                profileGiftsContainer.updateTabsShown(true);
+                BulletinFactory.of(profileGiftsContainer.fragment).createSimpleMultiBulletin(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, StarGiftSheet.getGiftName(savedStarGift.gift), tL_starGiftCollection.title))).show();
                 break;
         }
     }

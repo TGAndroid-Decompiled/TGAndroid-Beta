@@ -1,58 +1,54 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.QrActivity;
-import org.telegram.ui.iv.RichDetailsCell;
 
-public final class SeekSpeedDrawable extends Drawable {
-    public final AnimatedFloat animatedDirection;
-    public final AnimatedFloat animatedHintShown;
-    public final AnimatedFloat animatedShown;
-    public final AnimatedFloat animatedSpeed;
-    public final Paint arrowPaint;
-    public final Paint backgroundPaint = new Paint(1);
-    public int direction;
-    public final SeekBarView$$ExternalSyntheticLambda1 hideHintRunnable;
-    public boolean hideHintScheduled;
-    public final Path hintArrow;
-    public RLottieDrawable hintDrawable;
-    public final RectF hintRect;
-    public final Text hintText;
-    public final Runnable invalidate;
-    public final boolean isPiP;
-    public long lastFrameTime;
-    public float lastSpeed;
-    public final Path leftArrow;
-    public final Path rightArrow;
-    public boolean showHint;
-    public boolean shown;
-    public final RectF speedRect;
-    public final QrActivity.QrView.AnonymousClass1 speedText;
-    public float t;
+public class SeekSpeedDrawable extends Drawable {
+    private final AnimatedFloat animatedDirection;
+    private final AnimatedFloat animatedHintShown;
+    private final AnimatedFloat animatedShown;
+    private final AnimatedFloat animatedSpeed;
+    private final Paint arrowPaint;
+    private final Paint backgroundPaint = new Paint(1);
+    private int direction;
+    private final Runnable hideHintRunnable;
+    private boolean hideHintScheduled;
+    private final Path hintArrow;
+    private RLottieDrawable hintDrawable;
+    private final RectF hintRect;
+    private final Text hintText;
+    private Runnable invalidate;
+    private final boolean isPiP;
+    private final boolean isRound;
+    private long lastFrameTime;
+    private float lastSpeed;
+    private final Path leftArrow;
+    private final Path rightArrow;
+    private boolean showHint;
+    private boolean shown;
+    private final RectF speedRect;
+    private final AnimatedTextView.AnimatedTextDrawable speedText;
+    private float t;
 
-    public SeekSpeedDrawable(Runnable runnable, boolean z) {
+    public SeekSpeedDrawable(final Runnable runnable, boolean z, boolean z2) {
         Paint paint = new Paint(1);
         this.arrowPaint = paint;
         Path path = new Path();
         this.hintArrow = path;
-        this.hintText = new Text(LocaleController.getString(R.string.SeekSpeedHint), 14.0f, null);
+        this.hintText = new Text(LocaleController.getString(R.string.SeekSpeedHint), 14.0f);
         Path path2 = new Path();
         this.leftArrow = path2;
         Path path3 = new Path();
@@ -60,33 +56,33 @@ public final class SeekSpeedDrawable extends Drawable {
         this.direction = 1;
         this.speedRect = new RectF();
         this.hintRect = new RectF();
-        this.hideHintRunnable = new SeekBarView$$ExternalSyntheticLambda1(this, 12);
+        this.hideHintRunnable = new Tooltip$$ExternalSyntheticLambda0(this, 13);
         this.invalidate = runnable;
         this.isPiP = z;
+        this.isRound = z2;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        AnimatedFloat animatedFloat = new AnimatedFloat(runnable, 360L, cubicBezierInterpolator, 0);
+        AnimatedFloat animatedFloat = new AnimatedFloat(runnable, 0L, 360L, cubicBezierInterpolator);
         this.animatedShown = animatedFloat;
-        animatedFloat.set(0.0f, true);
-        this.animatedDirection = new AnimatedFloat(runnable, 320L, cubicBezierInterpolator, 0);
-        this.animatedSpeed = new AnimatedFloat(runnable, 200L, cubicBezierInterpolator, 0);
-        AnimatedFloat animatedFloat2 = new AnimatedFloat(runnable, 360L, cubicBezierInterpolator, 0);
+        animatedFloat.set(false, true);
+        this.animatedDirection = new AnimatedFloat(runnable, 0L, 320L, cubicBezierInterpolator);
+        this.animatedSpeed = new AnimatedFloat(runnable, 0L, 200L, cubicBezierInterpolator);
+        AnimatedFloat animatedFloat2 = new AnimatedFloat(runnable, 0L, 360L, cubicBezierInterpolator);
         this.animatedHintShown = animatedFloat2;
-        animatedFloat2.set(0.0f, true);
-        QrActivity.QrView.AnonymousClass1 anonymousClass1 = new QrActivity.QrView.AnonymousClass1(runnable);
-        this.speedText = anonymousClass1;
-        anonymousClass1.scaleAmplitude = 0.3f;
-        anonymousClass1.moveAmplitude = 0.4f;
-        anonymousClass1.animateDuration = 650L;
-        anonymousClass1.animateWave = 1.6f;
-        anonymousClass1.animateInterpolator = cubicBezierInterpolator;
-        Typeface typeface = AndroidUtilities.getTypeface("fonts/num.otf");
-        TextPaint textPaint = anonymousClass1.textPaint;
-        textPaint.setTypeface(typeface);
-        anonymousClass1.setTextSize(AndroidUtilities.dp(16.0f));
+        animatedFloat2.set(false, true);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, true) {
+            @Override
+            public void invalidateSelf() {
+                runnable.run();
+            }
+        };
+        this.speedText = animatedTextDrawable;
+        animatedTextDrawable.setScaleProperty(0.3f);
+        animatedTextDrawable.setAnimationProperties(0.4f, 0L, 650L, 1.6f, cubicBezierInterpolator);
+        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
+        animatedTextDrawable.setTextSize(AndroidUtilities.dp(16.0f));
         setSpeed(2.0f, false);
-        textPaint.setColor(-1);
-        anonymousClass1.alpha = Color.alpha(-1);
-        anonymousClass1.gravity = 17;
+        animatedTextDrawable.setTextColor(-1);
+        animatedTextDrawable.setGravity(17);
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.66f)));
         path2.moveTo(AndroidUtilities.dp(8.66f), -AndroidUtilities.dp(6.33f));
         path2.lineTo(0.0f, 0.0f);
@@ -96,23 +92,28 @@ public final class SeekSpeedDrawable extends Drawable {
         path3.lineTo(AndroidUtilities.dp(8.66f), 0.0f);
         path3.lineTo(0.0f, AndroidUtilities.dp(6.33f));
         path3.close();
-        this.showHint = (z || MessagesController.getGlobalMainSettings().getBoolean("seekSpeedHintShowed", false)) ? false : true;
+        this.showHint = (z || z2 || MessagesController.getGlobalMainSettings().getBoolean("seekSpeedHintShowed", false)) ? false : true;
         path.moveTo(-AndroidUtilities.dp(6.5f), 0.0f);
         path.lineTo(0.0f, -AndroidUtilities.dp(6.33f));
         path.lineTo(AndroidUtilities.dp(6.5f), 0.0f);
         path.close();
     }
 
+    public void lambda$new$0() {
+        this.showHint = false;
+        this.invalidate.run();
+    }
+
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         Rect bounds = getBounds();
         float currentWidth = this.speedText.getCurrentWidth() + AndroidUtilities.dp(46.0f);
         float f = this.animatedShown.set(this.shown);
-        float f2 = this.animatedDirection.set(this.direction, false);
+        float f2 = this.animatedDirection.set(this.direction);
         if (f <= 0.0f) {
             return;
         }
-        float f3 = this.animatedSpeed.set(Math.abs(this.lastSpeed), false);
+        float f3 = this.animatedSpeed.set(Math.abs(this.lastSpeed));
         long jCurrentTimeMillis = System.currentTimeMillis();
         float fMin = Math.min(0.016f, (jCurrentTimeMillis - this.lastFrameTime) / 1000.0f);
         this.lastFrameTime = jCurrentTimeMillis;
@@ -147,9 +148,8 @@ public final class SeekSpeedDrawable extends Drawable {
         canvas.restore();
         canvas.save();
         canvas.translate(((-AndroidUtilities.dp(28.0f)) / 2.0f) * f2, 0.0f);
-        QrActivity.QrView.AnonymousClass1 anonymousClass1 = this.speedText;
-        anonymousClass1.alpha = (int) (f * 255.0f);
-        anonymousClass1.draw(canvas);
+        this.speedText.setAlpha((int) (f * 255.0f));
+        this.speedText.draw(canvas);
         canvas.restore();
         canvas.save();
         canvas.translate(((1.0f - Math.max(0.0f, f2)) * AndroidUtilities.dp(30.0f)) + ((this.speedRect.centerX() + f4) - AndroidUtilities.dp(30.0f)), this.speedRect.centerY());
@@ -164,24 +164,36 @@ public final class SeekSpeedDrawable extends Drawable {
         if (f8 > 0.0f) {
             if (this.hintDrawable == null) {
                 int i = R.raw.seek_speed_hint;
-                RLottieDrawable rLottieDrawable = new RLottieDrawable(i, SurfaceContainer$$ExternalSyntheticOutline0.m(i, ""), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
+                RLottieDrawable rLottieDrawable = new RLottieDrawable(i, Fragment$$ExternalSyntheticOutline0.m(i, ""), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
                 this.hintDrawable = rLottieDrawable;
-                rLottieDrawable.decodeSingleFrame = true;
-                rLottieDrawable.scheduleNextGetFrame();
-                this.hintDrawable.setCallback(new RichDetailsCell.AnonymousClass1(this, 8));
+                rLottieDrawable.setAllowDecodeSingleFrame(true);
+                this.hintDrawable.setCallback(new Drawable.Callback() {
+                    @Override
+                    public void invalidateDrawable(Drawable drawable) {
+                        SeekSpeedDrawable.this.invalidate.run();
+                    }
+
+                    @Override
+                    public void scheduleDrawable(Drawable drawable, Runnable runnable, long j) {
+                    }
+
+                    @Override
+                    public void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+                    }
+                });
                 this.hintDrawable.setAutoRepeat(1);
                 this.hintDrawable.start();
             }
-            float fDp = this.hintText.width + AndroidUtilities.dp(54.0f);
-            float fDp2 = AndroidUtilities.dp(32.0f);
+            float currentWidth2 = this.hintText.getCurrentWidth() + AndroidUtilities.dp(54.0f);
+            float fDp = AndroidUtilities.dp(32.0f);
             RectF rectF2 = this.hintRect;
-            float f9 = fDp / 2.0f;
+            float f9 = currentWidth2 / 2.0f;
             float fCenterX = bounds.centerX() - f9;
             RectF rectF3 = this.speedRect;
             float fHeight = (rectF3.height() * f) + rectF3.top + AndroidUtilities.dp(11.0f);
             float fCenterX2 = bounds.centerX() + f9;
             RectF rectF4 = this.speedRect;
-            rectF2.set(fCenterX, fHeight, fCenterX2, (rectF4.height() * f) + rectF4.top + AndroidUtilities.dp(11.0f) + fDp2);
+            rectF2.set(fCenterX, fHeight, fCenterX2, (rectF4.height() * f) + rectF4.top + AndroidUtilities.dp(11.0f) + fDp);
             canvas.save();
             float f10 = (0.25f * f8) + 0.75f;
             canvas.scale(f10, f10, this.hintRect.centerX(), this.hintRect.top);
@@ -193,52 +205,53 @@ public final class SeekSpeedDrawable extends Drawable {
             canvas.drawRoundRect(this.hintRect, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.backgroundPaint);
             this.hintDrawable.setBounds(AndroidUtilities.dp(11.0f) + ((int) this.hintRect.left), ((int) this.hintRect.centerY()) - (AndroidUtilities.dp(24.0f) / 2), AndroidUtilities.dp(35.0f) + ((int) this.hintRect.left), (AndroidUtilities.dp(24.0f) / 2) + ((int) this.hintRect.centerY()));
             this.hintDrawable.setAlpha((int) (255.0f * f8));
-            if (!this.hintDrawable.isRunning) {
+            if (!this.hintDrawable.isRunning()) {
                 this.hintDrawable.restart(true);
             }
             this.hintDrawable.draw(canvas);
-            this.hintText.draw(this.hintRect.left + AndroidUtilities.dp(39.0f), this.hintRect.centerY(), f8, -1, canvas);
+            this.hintText.draw(canvas, this.hintRect.left + AndroidUtilities.dp(39.0f), this.hintRect.centerY(), -1, f8);
             canvas.restore();
         }
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
-    public final boolean isShown() {
-        return this.shown || this.animatedShown.value > 0.0f;
+    public boolean isShown() {
+        return this.shown || this.animatedShown.get() > 0.0f;
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
     }
 
-    public final void setShown(boolean z) {
+    public void setShown(boolean z, boolean z2) {
         this.shown = z;
+        if (!z2) {
+            this.animatedShown.set(z, true);
+        }
         this.invalidate.run();
         RLottieDrawable rLottieDrawable = this.hintDrawable;
         if (rLottieDrawable == null || !this.showHint) {
             return;
         }
         if (z) {
-            rLottieDrawable.restart(false);
+            rLottieDrawable.restart();
         } else {
-            rLottieDrawable.isRunning = false;
-            rLottieDrawable.checkChoreographer$1();
+            rLottieDrawable.stop();
         }
     }
 
-    public final void setSpeed(float f, boolean z) {
+    public void setSpeed(float f, boolean z) {
         if (Math.floor(this.lastSpeed * 10.0f) != Math.floor(10.0f * f)) {
-            QrActivity.QrView.AnonymousClass1 anonymousClass1 = this.speedText;
-            anonymousClass1.cancelAnimation();
-            anonymousClass1.setText(String.format(Locale.US, "%.1fx", Float.valueOf(Math.abs(f))), z, true);
+            this.speedText.cancelAnimation();
+            this.speedText.setText(String.format(Locale.US, "%.1fx", Float.valueOf(Math.abs(f))), z);
             this.lastSpeed = f;
         }
         int i = f > 0.0f ? 1 : -1;

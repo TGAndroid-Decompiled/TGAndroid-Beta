@@ -122,7 +122,7 @@ public final class PollAttachedMediaFile extends PollAttachedMedia {
 
         @Override
         public final void setAlpha(int i) {
-            this.radialProgress.overrideAlpha = i / 255.0f;
+            this.radialProgress.setOverrideAlpha(i / 255.0f);
             this.titlePaint.setAlpha(i);
             this.subtitlePaint.setAlpha(i);
             invalidateSelf();
@@ -173,18 +173,10 @@ public final class PollAttachedMediaFile extends PollAttachedMedia {
         final FileInfoDrawable fileInfoDrawable = new FileInfoDrawable();
         fileInfoDrawable.titlePaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
         fileInfoDrawable.subtitlePaint.setColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText, false));
-        RadialProgress2 radialProgress2 = new RadialProgress2(null, view);
+        RadialProgress2 radialProgress2 = new RadialProgress2(view);
         fileInfoDrawable.radialProgress = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(21.0f));
-        RadialProgress2 radialProgress3 = fileInfoDrawable.radialProgress;
-        int i = Theme.key_chat_inLoader;
-        int i2 = Theme.key_chat_inLoaderSelected;
-        int i3 = Theme.key_chat_inMediaIcon;
-        int i4 = Theme.key_chat_inMediaIconSelected;
-        radialProgress3.circleColorKey = i;
-        radialProgress3.circlePressedColorKey = i2;
-        radialProgress3.iconColorKey = i3;
-        radialProgress3.iconPressedColorKey = i4;
+        fileInfoDrawable.radialProgress.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
         if (MessageObject.isMusicDocument(document)) {
             if (MessageObject.isDocumentHasThumb(document)) {
                 TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(22.0f), true, null, false);
@@ -216,12 +208,12 @@ public final class PollAttachedMediaFile extends PollAttachedMedia {
         view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
             @Override
             public final void onViewAttachedToWindow(View view2) {
-                fileInfoDrawable.radialProgress.overlayImageView.onAttachedToWindow();
+                fileInfoDrawable.radialProgress.onAttachedToWindow();
             }
 
             @Override
             public final void onViewDetachedFromWindow(View view2) {
-                fileInfoDrawable.radialProgress.overlayImageView.onDetachedFromWindow();
+                fileInfoDrawable.radialProgress.onDetachedFromWindow();
             }
         });
         return fileInfoDrawable;

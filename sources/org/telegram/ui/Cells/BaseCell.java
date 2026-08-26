@@ -4,19 +4,57 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
+import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import com.google.android.gms.cast.internal.zzr;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
 public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLayout.IViewWithInvalidateCallback {
-    public boolean checkingForLongPress;
-    public Runnable invalidateCallback;
-    public zzr pendingCheckForLongPress;
-    public BubbleActivity.AnonymousClass1 pendingCheckForTap;
-    public int pressCount;
+    private boolean checkingForLongPress;
+    protected Runnable invalidateCallback;
+    private CheckForLongPress pendingCheckForLongPress;
+    private CheckForTap pendingCheckForTap;
+    private int pressCount;
+
+    public final class CheckForLongPress implements Runnable {
+        public int currentPressCount;
+
+        public CheckForLongPress() {
+        }
+
+        @Override
+        public final void run() {
+            BaseCell baseCell = BaseCell.this;
+            if (baseCell.checkingForLongPress && baseCell.getParent() != null && this.currentPressCount == baseCell.pressCount) {
+                baseCell.checkingForLongPress = false;
+                if (baseCell.onLongPress()) {
+                    try {
+                        baseCell.performHapticFeedback(0);
+                    } catch (Exception unused) {
+                    }
+                    MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                    baseCell.onTouchEvent(motionEventObtain);
+                    motionEventObtain.recycle();
+                }
+            }
+        }
+    }
+
+    public final class CheckForTap implements Runnable {
+        public CheckForTap() {
+        }
+
+        @Override
+        public final void run() {
+            BaseCell baseCell = BaseCell.this;
+            if (baseCell.pendingCheckForLongPress == null) {
+                baseCell.pendingCheckForLongPress = baseCell.new CheckForLongPress();
+            }
+            baseCell.pendingCheckForLongPress.currentPressCount = BaseCell.access$104(baseCell);
+            baseCell.postDelayed(baseCell.pendingCheckForLongPress, ViewConfiguration.getLongPressTimeout() - ViewConfiguration.getTapTimeout());
+        }
+    }
 
     public final class RippleDrawableSafe extends RippleDrawable {
         @Override
@@ -43,19 +81,25 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         setHapticFeedbackEnabled(true);
     }
 
-    public static void setDrawableBounds(int i, int i2, Drawable drawable) {
+    public static int access$104(BaseCell baseCell) {
+        int i = baseCell.pressCount + 1;
+        baseCell.pressCount = i;
+        return i;
+    }
+
+    public static void setDrawableBounds(Drawable drawable, int i, int i2) {
         setDrawableBounds(drawable, i, i2, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
     }
 
-    public final void cancelCheckLongPress() {
+    public void cancelCheckLongPress() {
         this.checkingForLongPress = false;
-        zzr zzrVar = this.pendingCheckForLongPress;
-        if (zzrVar != null) {
-            removeCallbacks(zzrVar);
+        CheckForLongPress checkForLongPress = this.pendingCheckForLongPress;
+        if (checkForLongPress != null) {
+            removeCallbacks(checkForLongPress);
         }
-        BubbleActivity.AnonymousClass1 anonymousClass1 = this.pendingCheckForTap;
-        if (anonymousClass1 != null) {
-            removeCallbacks(anonymousClass1);
+        CheckForTap checkForTap = this.pendingCheckForTap;
+        if (checkForTap != null) {
+            removeCallbacks(checkForTap);
         }
     }
 
@@ -68,7 +112,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
+    public boolean hasOverlappingRendering() {
         return false;
     }
 
@@ -86,7 +130,7 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
     }
 
     @Override
-    public final void listenInvalidate(Runnable runnable) {
+    public void listenInvalidate(Runnable runnable) {
         this.invalidateCallback = runnable;
     }
 
@@ -94,13 +138,13 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
         return true;
     }
 
-    public final void startCheckLongPress$1() {
+    public void startCheckLongPress() {
         if (this.checkingForLongPress) {
             return;
         }
         this.checkingForLongPress = true;
         if (this.pendingCheckForTap == null) {
-            this.pendingCheckForTap = new BubbleActivity.AnonymousClass1(this, 4);
+            this.pendingCheckForTap = new CheckForTap();
         }
         postDelayed(this.pendingCheckForTap, ViewConfiguration.getTapTimeout());
     }
@@ -118,6 +162,14 @@ public abstract class BaseCell extends ViewGroup implements SizeNotifierFrameLay
     public static void setDrawableBounds(Drawable drawable, int i, int i2, int i3, int i4) {
         if (drawable != null) {
             drawable.setBounds(i, i2, i3 + i, i4 + i2);
+        }
+    }
+
+    public static void setDrawableBounds(Drawable drawable, float f, float f2, int i, int i2) {
+        if (drawable != null) {
+            int i3 = (int) f;
+            int i4 = (int) f2;
+            drawable.setBounds(i3, i4, i + i3, i2 + i4);
         }
     }
 }

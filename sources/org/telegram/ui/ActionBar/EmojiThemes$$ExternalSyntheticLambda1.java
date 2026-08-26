@@ -40,7 +40,7 @@ public final class EmojiThemes$$ExternalSyntheticLambda1 implements Utilities.Ca
         int iMin = Math.min(point.x, point.y);
         Point point2 = AndroidUtilities.displaySize;
         imageReceiver.setImage(forDocument, (iMin / AndroidUtilities.density) + "_" + (Math.max(point2.x, point2.y) / AndroidUtilities.density) + "_f", null, ".jpg", wallPaper, 1);
-        imageReceiver.setDelegate(new EmojiThemes$$ExternalSyntheticLambda4(this.f$2, callback, this.f$3, this.f$4));
+        imageReceiver.setDelegate(new EmojiThemes$$ExternalSyntheticLambda5(this.f$2, this.f$4, this.f$3, callback));
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 }

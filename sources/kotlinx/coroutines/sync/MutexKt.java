@@ -1,9 +1,9 @@
 package kotlinx.coroutines.sync;
 
-import kotlinx.coroutines.internal.Symbol;
+import com.google.common.base.Joiner;
 
 public abstract class MutexKt {
-    public static final Symbol NO_OWNER = new Symbol("NO_OWNER", 0);
+    public static final Joiner NO_OWNER = new Joiner("NO_OWNER", 2);
 
     public static MutexImpl Mutex$default() {
         return new MutexImpl(false);

@@ -1,17 +1,16 @@
 package org.telegram.ui.Stories.recorder;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
 
 public final class FlashViews$$ExternalSyntheticLambda2 implements Runnable {
     public final int $r8$classId;
     public final FlashViews f$0;
-    public final VoIPFragment$$ExternalSyntheticLambda7 f$1;
+    public final HintView2$$ExternalSyntheticLambda0 f$1;
 
-    public FlashViews$$ExternalSyntheticLambda2(FlashViews flashViews, VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7, int i) {
+    public FlashViews$$ExternalSyntheticLambda2(FlashViews flashViews, HintView2$$ExternalSyntheticLambda0 hintView2$$ExternalSyntheticLambda0, int i) {
         this.$r8$classId = i;
         this.f$0 = flashViews;
-        this.f$1 = voIPFragment$$ExternalSyntheticLambda7;
+        this.f$1 = hintView2$$ExternalSyntheticLambda0;
     }
 
     @Override
@@ -25,7 +24,7 @@ public final class FlashViews$$ExternalSyntheticLambda2 implements Runnable {
             default:
                 FlashViews flashViews2 = this.f$0;
                 flashViews2.getClass();
-                this.f$1.run(new VoIPFragment$$ExternalSyntheticLambda7(flashViews2, 14));
+                this.f$1.run(new HintView2$$ExternalSyntheticLambda0(flashViews2, 4));
                 break;
         }
     }

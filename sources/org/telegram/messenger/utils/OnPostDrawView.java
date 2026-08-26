@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import org.telegram.ui.Components.LayoutHelper;
 
 public final class OnPostDrawView extends View implements ViewTreeObserver.OnPreDrawListener {
     public final InvalidateCallback callback;
@@ -54,7 +55,7 @@ public final class OnPostDrawView extends View implements ViewTreeObserver.OnPre
 
     @Override
     public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(1, 1073741824), View.MeasureSpec.makeMeasureSpec(1, 1073741824));
+        super.onMeasure(LayoutHelper.measureSpecExactly(1), LayoutHelper.measureSpecExactly(1));
     }
 
     @Override

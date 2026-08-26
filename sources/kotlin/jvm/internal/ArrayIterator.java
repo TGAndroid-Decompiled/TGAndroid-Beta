@@ -1,6 +1,6 @@
 package kotlin.jvm.internal;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.google.android.gms.common.data.DataHolder;
 import com.google.android.gms.common.internal.zzah;
 import com.google.android.gms.wearable.DataEventBuffer;
@@ -56,7 +56,7 @@ public class ArrayIterator implements Iterator {
                 }
             case 1:
                 if (!hasNext()) {
-                    throw new NoSuchElementException(SurfaceContainer$$ExternalSyntheticOutline0.m(this.index, "Cannot advance the iterator beyond "));
+                    throw new NoSuchElementException(Fragment$$ExternalSyntheticOutline0.m(this.index, "Cannot advance the iterator beyond "));
                 }
                 int i2 = this.index;
                 int i3 = i2 + 1;

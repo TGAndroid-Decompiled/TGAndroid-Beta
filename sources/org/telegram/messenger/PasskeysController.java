@@ -23,7 +23,7 @@ import androidx.credentials.exceptions.GetCredentialCustomException;
 import androidx.credentials.exceptions.GetCredentialException;
 import androidx.credentials.exceptions.GetCredentialInterruptedException;
 import androidx.credentials.exceptions.NoCredentialException;
-import com.android.billingclient.api.zzct;
+import com.google.android.play.integrity.internal.az;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.concurrent.Executor;
@@ -39,8 +39,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
-import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda1;
-import org.telegram.ui.WearAuthSheet$$ExternalSyntheticLambda7;
+import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda5;
 
 public class PasskeysController {
 
@@ -141,15 +140,24 @@ public class PasskeysController {
         return sb.toString();
     }
 
-    public static void create(Context context, int i, Utilities.Callback2<TL_account.Passkey, String> callback2) {
+    public static void create(final Context context, final int i, final Utilities.Callback2<TL_account.Passkey, String> callback2) {
         if (BuildVars.SUPPORTS_PASSKEYS) {
             Intrinsics.checkNotNullParameter(context, "context");
-            CredentialManagerImpl credentialManagerImpl = new CredentialManagerImpl(context, 0);
-            AlertDialog alertDialog = new AlertDialog(context, 3, null);
+            final CredentialManagerImpl credentialManagerImpl = new CredentialManagerImpl(context, 0);
+            final AlertDialog alertDialog = new AlertDialog(context, 3, null);
             AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
             AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
             AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 500L);
-            ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.initPasskeyRegistration(), new AiTonesController$$ExternalSyntheticLambda0(), new WearAuthSheet$$ExternalSyntheticLambda7(alertDialog, callback2, credentialManagerImpl, context, i));
+            ConnectionsManager.getInstance(i).sendRequestTyped(new TL_account.initPasskeyRegistration(), new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
+                @Override
+                public final void run(Object obj, Object obj2) {
+                    AlertDialog alertDialog2 = alertDialog;
+                    CredentialManagerImpl credentialManagerImpl2 = credentialManagerImpl;
+                    Context context2 = context;
+                    int i2 = i;
+                    PasskeysController.lambda$create$9(alertDialog2, callback2, credentialManagerImpl2, context2, i2, (TL_account.passkeyRegistrationOptions) obj, (TLRPC.TL_error) obj2);
+                }
+            });
         }
     }
 
@@ -297,7 +305,7 @@ public class PasskeysController {
                 AnonymousClass1 anonymousClass1 = new AnonymousClass1(callback3, context, i);
                 ((CredentialManagerImpl) credentialManager).getClass();
                 Intrinsics.checkNotNullParameter(executor, "executor");
-                CredentialProvider bestAvailableProvider$default = zzct.getBestAvailableProvider$default(new zzct(context), getCredentialRequest);
+                CredentialProvider bestAvailableProvider$default = az.getBestAvailableProvider$default(new az(context), getCredentialRequest);
                 if (bestAvailableProvider$default == null) {
                     anonymousClass1.onError((Object) new GetCredentialCustomException("getCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
                 } else {
@@ -336,7 +344,7 @@ public class PasskeysController {
         TL_account.initPasskeyLogin initpasskeylogin = new TL_account.initPasskeyLogin();
         initpasskeylogin.api_id = BuildVars.APP_ID;
         initpasskeylogin.api_hash = BuildVars.APP_HASH;
-        runnableArr[0] = new GroupCallSheet$$ExternalSyntheticLambda1(i, ConnectionsManager.getInstance(i).sendRequestTyped(initpasskeylogin, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
+        runnableArr[0] = new GroupCallSheet$$ExternalSyntheticLambda5(i, ConnectionsManager.getInstance(i).sendRequestTyped(initpasskeylogin, new AiTonesController$$ExternalSyntheticLambda0(), new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
                 boolean[] zArr2 = zArr;

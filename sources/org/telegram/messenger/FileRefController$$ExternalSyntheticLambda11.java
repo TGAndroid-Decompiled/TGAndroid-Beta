@@ -60,49 +60,49 @@ public final class FileRefController$$ExternalSyntheticLambda11 implements Reque
                 MessagesController.lambda$markPollVotesAsRead$437(tLObject, tL_error);
                 break;
             case 15:
-                MessagesController.lambda$deleteParticipantFromChat$311(tLObject, tL_error);
+                MessagesController.lambda$deleteParticipantFromChat$314(tLObject, tL_error);
                 break;
             case 16:
-                MessagesController.lambda$setContentSettings$504(tLObject, tL_error);
+                MessagesController.lambda$deleteParticipantFromChat$311(tLObject, tL_error);
                 break;
             case 17:
-                MessagesController.lambda$unregistedPush$320(tLObject, tL_error);
+                MessagesController.lambda$setContentSettings$504(tLObject, tL_error);
                 break;
             case 18:
-                MessagesController.lambda$completeReadTask$237(tLObject, tL_error);
+                MessagesController.lambda$unregistedPush$320(tLObject, tL_error);
                 break;
             case 19:
-                MessagesController.lambda$completeReadTask$239(tLObject, tL_error);
+                MessagesController.lambda$completeReadTask$237(tLObject, tL_error);
                 break;
             case 20:
-                MessagesController.lambda$markMentionMessageAsRead$233(tLObject, tL_error);
+                MessagesController.lambda$completeReadTask$239(tLObject, tL_error);
                 break;
             case 21:
-                MessagesController.lambda$hidePeerSettingsBar$75(tLObject, tL_error);
+                MessagesController.lambda$markMentionMessageAsRead$233(tLObject, tL_error);
                 break;
             case 22:
-                MessagesController.lambda$installTheme$117(tLObject, tL_error);
+                MessagesController.lambda$hidePeerSettingsBar$75(tLObject, tL_error);
                 break;
             case 23:
                 MessagesController.lambda$markMessageContentAsRead$231(tLObject, tL_error);
                 break;
             case 24:
-                MessagesController.lambda$reportSpam$76(tLObject, tL_error);
-                break;
-            case 25:
-                MessagesController.lambda$installTheme$118(tLObject, tL_error);
-                break;
-            case 26:
-                MessagesController.lambda$reportSpam$77(tLObject, tL_error);
-                break;
-            case 27:
                 MessagesController.lambda$saveTheme$116(tLObject, tL_error);
                 break;
+            case 25:
+                MessagesController.lambda$reportSpam$76(tLObject, tL_error);
+                break;
+            case 26:
+                MessagesController.lambda$markReactionsAsRead$436(tLObject, tL_error);
+                break;
+            case 27:
+                MessagesController.lambda$reportSpam$77(tLObject, tL_error);
+                break;
             case 28:
-                MessagesController.lambda$reportSpam$78(tLObject, tL_error);
+                MessagesController.lambda$removeSuggestion$40(tLObject, tL_error);
                 break;
             default:
-                MessagesController.lambda$markReactionsAsRead$436(tLObject, tL_error);
+                MessagesController.lambda$reportSpam$78(tLObject, tL_error);
                 break;
         }
     }

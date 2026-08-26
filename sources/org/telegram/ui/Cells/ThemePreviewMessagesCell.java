@@ -1,5 +1,6 @@
 package org.telegram.ui.Cells;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Shader;
@@ -7,25 +8,34 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
+import android.text.style.CharacterStyle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
-import com.stripe.android.Stripe;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotInlineKeyboard;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda174;
 import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.AnimatedColor;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
@@ -34,24 +44,29 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
+import org.telegram.ui.PinchToZoomHelper;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
 public class ThemePreviewMessagesCell extends LinearLayout {
-    public Drawable backgroundDrawable;
-    public BackgroundGradientDrawable.Disposable backgroundGradientDisposable;
-    public final ChatActivity$$ExternalSyntheticLambda174 cancelProgress;
-    public final ChatMessageCell[] cells;
+    public static final int TYPE_GROUP_PEER_COLOR = 4;
+    public static final int TYPE_PEER_COLOR = 3;
+    public static final int TYPE_REACTIONS_DOUBLE_TAP = 2;
+    private Drawable backgroundDrawable;
+    private BackgroundGradientDrawable.Disposable backgroundGradientDisposable;
+    private final Runnable cancelProgress;
+    private ChatMessageCell[] cells;
     public boolean customAnimation;
     public BaseFragment fragment;
-    public Drawable oldBackgroundDrawable;
-    public BackgroundGradientDrawable.Disposable oldBackgroundGradientDisposable;
-    public Drawable overrideDrawable;
-    public final AnimatedFloat overrideDrawableUpdate;
-    public final INavigationLayout parentLayout;
-    public int progress;
-    public final Drawable shadowDrawable;
-    public final int type;
+    private final Runnable invalidateRunnable;
+    private Drawable oldBackgroundDrawable;
+    private BackgroundGradientDrawable.Disposable oldBackgroundGradientDisposable;
+    private Drawable overrideDrawable;
+    private final AnimatedFloat overrideDrawableUpdate;
+    private INavigationLayout parentLayout;
+    private int progress;
+    private Drawable shadowDrawable;
+    private final int type;
 
     public ThemePreviewMessagesCell(Context context, INavigationLayout iNavigationLayout, int i, long j, Theme.ResourcesProvider resourcesProvider) {
         MessageObject messageObject;
@@ -64,12 +79,51 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         super(context);
         Context context2 = context;
         int i4 = i;
+        final int i5 = 0;
+        this.invalidateRunnable = new Runnable(this) {
+            public final ThemePreviewMessagesCell f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (i5) {
+                    case 0:
+                        this.f$0.invalidate();
+                        break;
+                    default:
+                        this.f$0.lambda$new$0();
+                        break;
+                }
+            }
+        };
         this.cells = new ChatMessageCell[2];
         this.progress = -1;
-        this.cancelProgress = new ChatActivity$$ExternalSyntheticLambda174(this, 3);
+        final int i6 = 1;
+        this.cancelProgress = new Runnable(this) {
+            public final ThemePreviewMessagesCell f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (i6) {
+                    case 0:
+                        this.f$0.invalidate();
+                        break;
+                    default:
+                        this.f$0.lambda$new$0();
+                        break;
+                }
+            }
+        };
         this.overrideDrawableUpdate = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.type = i4;
-        int i5 = UserConfig.selectedAccount;
+        int i7 = UserConfig.selectedAccount;
         this.parentLayout = iNavigationLayout;
         setWillNotDraw(false);
         setOrientation(1);
@@ -189,8 +243,8 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     tL_messageEntityCustomEmoji.document_id = 5386654653003864312L;
                     tL_message3.entities.add(tL_messageEntityCustomEmoji);
                 }
-                int i6 = iCurrentTimeMillis - 3540;
-                tL_message3.date = i6;
+                int i8 = iCurrentTimeMillis - 3540;
+                tL_message3.date = i8;
                 tL_message3.dialog_id = 1L;
                 tL_message3.flags = 259;
                 TLRPC.TL_peerUser tL_peerUser5 = new TLRPC.TL_peerUser();
@@ -253,7 +307,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 } else {
                     tL_message5.message = LocaleController.getString(R.string.NewThemePreviewLine1);
                 }
-                tL_message5.date = i6;
+                tL_message5.date = i8;
                 tL_message5.dialog_id = 1L;
                 tL_message5.flags = 265;
                 tL_message5.from_id = new TLRPC.TL_peerUser();
@@ -279,7 +333,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     String string2 = LocaleController.getString(R.string.GroupThemePreviewSenderName);
                     tL_user.first_name = string2;
                     messageObject8.customName = string2;
-                    messageObject8.customAvatarDrawable = new AvatarDrawable(tL_user);
+                    messageObject8.customAvatarDrawable = new AvatarDrawable((TLRPC.User) tL_user, false);
                 }
                 messageObject = messageObject7;
                 messageObject2 = messageObject8;
@@ -291,93 +345,96 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     return;
                 }
                 i3 = i4;
-                chatMessageCellArr[i2] = new ChatMessageCell(context2, i5, resourcesProvider2, context, i3) {
+                chatMessageCellArr[i2] = new ChatMessageCell(context2, i7, resourcesProvider2, context, i3) {
                     public final AnimatedColor color1;
                     public final AnimatedColor color2;
                     public final GestureDetector gestureDetector;
                     public final int val$type;
 
-                    public final class C00061 extends GestureDetector.SimpleOnGestureListener {
-                        public C00061() {
+                    public final class C00081 extends GestureDetector.SimpleOnGestureListener {
+
+                        public final class ViewTreeObserverOnPreDrawListenerC00091 implements ViewTreeObserver.OnPreDrawListener {
+                            public ViewTreeObserverOnPreDrawListenerC00091() {
+                            }
+
+                            @Override
+                            public final boolean onPreDraw() {
+                                AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                                anonymousClass1.getViewTreeObserver().removeOnPreDrawListener(this);
+                                anonymousClass1.getTransitionParams().resetAnimation();
+                                anonymousClass1.getTransitionParams().animateChange();
+                                anonymousClass1.getTransitionParams().animateChange = true;
+                                anonymousClass1.getTransitionParams().animateChangeProgress = 0.0f;
+                                ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                                valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 9));
+                                valueAnimatorOfFloat.addListener(new BotButton.AnonymousClass1(this, 8));
+                                valueAnimatorOfFloat.start();
+                                return false;
+                            }
+                        }
+
+                        public C00081() {
                         }
 
                         @Override
                         public final boolean onDoubleTap(MotionEvent motionEvent) {
                             AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
-                            if (anonymousClass1.val$type == 2) {
-                                int i = anonymousClass1.currentAccount;
-                                if (MediaDataController.getInstance(i).getDoubleTapReaction() != null) {
-                                    boolean zSelectReaction = anonymousClass1.getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(i).getDoubleTapReaction()), false, false);
-                                    anonymousClass1.setMessageObject(anonymousClass1.getMessageObject(), null, false, false, false, false);
-                                    anonymousClass1.requestLayout();
-                                    ReactionsEffectOverlay.removeCurrent(false);
-                                    if (zSelectReaction) {
-                                        ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
-                                        ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(i).getDoubleTapReaction()), anonymousClass1.currentAccount, 0);
-                                        ReactionsEffectOverlay.startAnimation();
-                                    }
-                                    anonymousClass1.getViewTreeObserver().addOnPreDrawListener(new PhotoViewer.AnonymousClass9(this, 1));
-                                    return true;
-                                }
+                            if (anonymousClass1.val$type != 2 || MediaDataController.getInstance(anonymousClass1.currentAccount).getDoubleTapReaction() == null) {
+                                return false;
                             }
-                            return false;
+                            boolean zSelectReaction = anonymousClass1.getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(anonymousClass1.currentAccount).getDoubleTapReaction()), false, false);
+                            anonymousClass1.setMessageObject(anonymousClass1.getMessageObject(), null, false, false, false);
+                            anonymousClass1.requestLayout();
+                            ReactionsEffectOverlay.removeCurrent(false);
+                            if (zSelectReaction) {
+                                ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
+                                ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(anonymousClass1.currentAccount).getDoubleTapReaction()), anonymousClass1.currentAccount, 0);
+                                ReactionsEffectOverlay.startAnimation();
+                            }
+                            anonymousClass1.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserverOnPreDrawListenerC00091());
+                            return true;
                         }
                     }
 
                     {
                         this.val$type = i3;
-                        this.gestureDetector = new GestureDetector(context, new C00061());
+                        this.gestureDetector = new GestureDetector(context, new C00081());
                         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
-                        this.color1 = new AnimatedColor(this, 180L, cubicBezierInterpolator, 0);
-                        this.color2 = new AnimatedColor(this, 180L, cubicBezierInterpolator, 0);
+                        this.color1 = new AnimatedColor(this, 0L, 180L, cubicBezierInterpolator);
+                        this.color2 = new AnimatedColor(this, 0L, 180L, cubicBezierInterpolator);
                     }
 
                     @Override
                     public final void dispatchDraw(Canvas canvas) {
-                        int iChangeColorAccent;
-                        int color;
-                        int color2;
-                        int color3;
-                        int color4;
+                        int themedColor;
+                        int themedColor2;
                         MessageObject messageObject9 = getMessageObject();
                         AnimatedColor animatedColor = this.color2;
                         AnimatedColor animatedColor2 = this.color1;
-                        AvatarDrawable avatarDrawable = this.avatarDrawable;
                         if (messageObject9 == null || getMessageObject().overrideLinkColor < 0) {
-                            animatedColor2.set(avatarDrawable.getColor(), false);
-                            if (avatarDrawable.needApplyColorAccent) {
-                                int i7 = avatarDrawable.color2;
-                                Theme.ThemeAccent accent = Theme.currentTheme.getAccent(false);
-                                iChangeColorAccent = Theme.changeColorAccent(Theme.currentTheme, accent != null ? accent.accentColor : 0, i7);
-                            } else {
-                                iChangeColorAccent = avatarDrawable.color2;
-                            }
-                            animatedColor.set(iChangeColorAccent, false);
+                            animatedColor2.set(this.avatarDrawable.getColor());
+                            animatedColor.set(this.avatarDrawable.getColor2());
                         } else {
-                            int i8 = getMessageObject().overrideLinkColor;
-                            if (i8 >= 14) {
+                            int i9 = getMessageObject().overrideLinkColor;
+                            if (i9 >= 14) {
                                 MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                                 MessagesController.PeerColors peerColors = messagesController != null ? messagesController.peerColors : null;
-                                MessagesController.PeerColor color5 = peerColors != null ? peerColors.getColor(i8) : null;
-                                if (color5 != null) {
-                                    int color1 = color5.getColor1();
-                                    color3 = Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getPeerColorIndex(color1)], this.resourcesProvider);
-                                    color4 = Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getPeerColorIndex(color1)], this.resourcesProvider);
+                                MessagesController.PeerColor color = peerColors != null ? peerColors.getColor(i9) : null;
+                                if (color != null) {
+                                    int color1 = color.getColor1();
+                                    themedColor = getThemedColor(Theme.keys_avatar_background[AvatarDrawable.getPeerColorIndex(color1)]);
+                                    themedColor2 = getThemedColor(Theme.keys_avatar_background2[AvatarDrawable.getPeerColorIndex(color1)]);
                                 } else {
-                                    long j3 = i8;
-                                    color = Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(j3)], this.resourcesProvider);
-                                    color2 = Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(j3)], this.resourcesProvider);
+                                    long j3 = i9;
+                                    themedColor = getThemedColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(j3)]);
+                                    themedColor2 = getThemedColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(j3)]);
                                 }
-                                avatarDrawable.setColor(animatedColor2.set(color3, false), animatedColor.set(color4, false));
                             } else {
-                                long j4 = i8;
-                                color = Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(j4)], this.resourcesProvider);
-                                color2 = Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(j4)], this.resourcesProvider);
+                                long j4 = i9;
+                                themedColor = getThemedColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(j4)]);
+                                themedColor2 = getThemedColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(j4)]);
                             }
-                            int i9 = color2;
-                            color3 = color;
-                            color4 = i9;
-                            avatarDrawable.setColor(animatedColor2.set(color3, false), animatedColor.set(color4, false));
+                            this.avatarDrawable.setColor(animatedColor2.set(themedColor), animatedColor.set(themedColor2));
                         }
                         if (getAvatarImage() != null && getAvatarImage().getImageHeight() != 0.0f) {
                             getAvatarImage().setImageCoords(getAvatarImage().getImageX(), (getMeasuredHeight() - getAvatarImage().getImageHeight()) - AndroidUtilities.dp(4.0f), getAvatarImage().getImageWidth(), getAvatarImage().getImageHeight());
@@ -391,14 +448,452 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
                     @Override
                     public final boolean onTouchEvent(MotionEvent motionEvent) {
-                        if (ThemePreviewMessagesCell.this.allowLoadingOnTouch()) {
+                        if (ThemePreviewMessagesCell.access$100(ThemePreviewMessagesCell.this)) {
                             return super.onTouchEvent(motionEvent);
                         }
                         this.gestureDetector.onTouchEvent(motionEvent);
                         return true;
                     }
                 };
-                this.cells[i2].setDelegate(new Stripe(this, 16));
+                this.cells[i2].setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                    @Override
+                    public final boolean allowAddPollOptions() {
+                        return false;
+                    }
+
+                    @Override
+                    public final boolean canDrawOutboundsContent() {
+                        return true;
+                    }
+
+                    @Override
+                    public final boolean canPerformActions() {
+                        return ThemePreviewMessagesCell.access$100(ThemePreviewMessagesCell.this);
+                    }
+
+                    @Override
+                    public final boolean canPerformReply() {
+                        return canPerformActions();
+                    }
+
+                    @Override
+                    public final boolean canSaveRichDocument(ChatMessageCell chatMessageCell) {
+                        return false;
+                    }
+
+                    @Override
+                    public final boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell) {
+                        return false;
+                    }
+
+                    @Override
+                    public final void didLongPress(ChatMessageCell chatMessageCell, float f, float f2) {
+                    }
+
+                    @Override
+                    public final void didLongPressBotButton(ChatMessageCell chatMessageCell, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    }
+
+                    @Override
+                    public final boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i9, float f, float f2) {
+                        return false;
+                    }
+
+                    @Override
+                    public final void didLongPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                    }
+
+                    @Override
+                    public final boolean didLongPressPollOption(ChatMessageCell chatMessageCell, TLRPC.PollAnswer pollAnswer) {
+                        return false;
+                    }
+
+                    @Override
+                    public final boolean didLongPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem) {
+                        return false;
+                    }
+
+                    @Override
+                    public final boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2) {
+                        return false;
+                    }
+
+                    @Override
+                    public final void didPressAboutRevenueSharingAds() {
+                    }
+
+                    @Override
+                    public final void didPressAddPollOptionButton(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressAdmin(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell, AnimatedEmojiSpan animatedEmojiSpan) {
+                        return false;
+                    }
+
+                    @Override
+                    public final void didPressAppUpdateButton() {
+                    }
+
+                    @Override
+                    public final void didPressBoostCounter(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressBotButton(ChatMessageCell chatMessageCell, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    }
+
+                    @Override
+                    public final void didPressCancelSendButton(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i9, float f, float f2, boolean z3) {
+                    }
+
+                    @Override
+                    public final void didPressChannelRecommendation(ChatMessageCell chatMessageCell, TLObject tLObject, boolean z3) {
+                    }
+
+                    @Override
+                    public final void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressCodeCopy(ChatMessageCell chatMessageCell, MessageObject.TextLayoutBlock textLayoutBlock) {
+                    }
+
+                    @Override
+                    public final void didPressCommentButton(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                    }
+
+                    @Override
+                    public final void didPressEffect(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                    }
+
+                    @Override
+                    public final void didPressFactCheck(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressFactCheckWhat(ChatMessageCell chatMessageCell, int i9, int i10) {
+                    }
+
+                    @Override
+                    public final void didPressGiveawayChatButton(ChatMessageCell chatMessageCell, int i9) {
+                    }
+
+                    @Override
+                    public final void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
+                    }
+
+                    @Override
+                    public final void didPressHiddenForward(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressHint(ChatMessageCell chatMessageCell, int i9) {
+                    }
+
+                    @Override
+                    public final void didPressImage(ChatMessageCell chatMessageCell, float f, float f2, boolean z3) {
+                    }
+
+                    @Override
+                    public final void didPressInstantButton(ChatMessageCell chatMessageCell, int i9) {
+                        ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
+                        if (ThemePreviewMessagesCell.access$100(themePreviewMessagesCell)) {
+                            themePreviewMessagesCell.progress = 2;
+                            chatMessageCell.invalidate();
+                            AndroidUtilities.cancelRunOnUIThread(themePreviewMessagesCell.cancelProgress);
+                            AndroidUtilities.runOnUIThread(themePreviewMessagesCell.cancelProgress, 5000L);
+                        }
+                    }
+
+                    @Override
+                    public final void didPressMoreChannelRecommendations(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressOther(ChatMessageCell chatMessageCell, float f, float f2) {
+                    }
+
+                    @Override
+                    public final void didPressPollMedia(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i9) {
+                    }
+
+                    @Override
+                    public final void didPressReaction(ChatMessageCell chatMessageCell, TLRPC.ReactionCount reactionCount, boolean z3, float f, float f2) {
+                    }
+
+                    @Override
+                    public final void didPressReplyMessage(ChatMessageCell chatMessageCell, int i9, float f, float f2, boolean z3) {
+                        ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
+                        if (ThemePreviewMessagesCell.access$100(themePreviewMessagesCell)) {
+                            themePreviewMessagesCell.progress = 0;
+                            chatMessageCell.invalidate();
+                            AndroidUtilities.cancelRunOnUIThread(themePreviewMessagesCell.cancelProgress);
+                            AndroidUtilities.runOnUIThread(themePreviewMessagesCell.cancelProgress, 5000L);
+                        }
+                    }
+
+                    @Override
+                    public final void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressRichDocumentOptions(ChatMessageCell chatMessageCell, TLRPC.Document document, float f, float f2) {
+                    }
+
+                    @Override
+                    public final void didPressShowMore(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressSideButton(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressSponsoredClose(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didPressSponsoredInfo(ChatMessageCell chatMessageCell, float f, float f2) {
+                    }
+
+                    @Override
+                    public final void didPressSummarize(ChatMessageCell chatMessageCell, boolean z3) {
+                    }
+
+                    @Override
+                    public final void didPressTime(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final boolean didPressToDoButton(ChatMessageCell chatMessageCell, TLRPC.TodoItem todoItem, boolean z3) {
+                        return false;
+                    }
+
+                    @Override
+                    public final void didPressUrl(ChatMessageCell chatMessageCell, CharacterStyle characterStyle, boolean z3) {
+                    }
+
+                    @Override
+                    public final void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2, boolean z3) {
+                    }
+
+                    @Override
+                    public final void didPressUserStatus(ChatMessageCell chatMessageCell, TLRPC.User user, TLRPC.Document document, String str) {
+                    }
+
+                    @Override
+                    public final void didPressViaBot(ChatMessageCell chatMessageCell, String str) {
+                    }
+
+                    @Override
+                    public final void didPressViaBotNotInline(ChatMessageCell chatMessageCell, long j3) {
+                    }
+
+                    @Override
+                    public final void didPressVoteButtons(ChatMessageCell chatMessageCell, ArrayList arrayList, int i9, int i10, int i11) {
+                    }
+
+                    @Override
+                    public final void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC.WebPage webPage4, String str, boolean z3) {
+                        Browser.openUrl(chatMessageCell.getContext(), str);
+                    }
+
+                    @Override
+                    public final void didQuickShareEnd(ChatMessageCell chatMessageCell, float f, float f2) {
+                    }
+
+                    @Override
+                    public final void didQuickShareMove(ChatMessageCell chatMessageCell, float f, float f2) {
+                    }
+
+                    @Override
+                    public final void didQuickShareStart(ChatMessageCell chatMessageCell, float f, float f2) {
+                    }
+
+                    @Override
+                    public final void didStartVideoStream(MessageObject messageObject9) {
+                    }
+
+                    @Override
+                    public final void didTogglePollPreview(ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell, boolean z3, Runnable runnable) {
+                    }
+
+                    @Override
+                    public final boolean doNotShowLoadingReply(MessageObject messageObject9) {
+                        return Theme.ResourcesProvider.CC.$default$doNotShowLoadingReply(messageObject9);
+                    }
+
+                    @Override
+                    public final void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell) {
+                    }
+
+                    @Override
+                    public final void forceUpdate(ChatMessageCell chatMessageCell, boolean z3) {
+                    }
+
+                    @Override
+                    public final void forceUpdateNoAnimation(ChatMessageCell chatMessageCell, boolean z3) {
+                    }
+
+                    @Override
+                    public final int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell) {
+                        return 0;
+                    }
+
+                    @Override
+                    public final String getAdminRank(long j3) {
+                        return null;
+                    }
+
+                    @Override
+                    public final int getChatMode() {
+                        return 0;
+                    }
+
+                    @Override
+                    public final ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                        return null;
+                    }
+
+                    @Override
+                    public final PinchToZoomHelper getPinchToZoomHelper() {
+                        return null;
+                    }
+
+                    @Override
+                    public final String getProgressLoadingBotButtonUrl(ChatMessageCell chatMessageCell) {
+                        return null;
+                    }
+
+                    @Override
+                    public final CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell) {
+                        return null;
+                    }
+
+                    @Override
+                    public final TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
+                        return null;
+                    }
+
+                    @Override
+                    public final boolean hasSelectedMessages() {
+                        return false;
+                    }
+
+                    @Override
+                    public final void invalidateBlur() {
+                    }
+
+                    @Override
+                    public final boolean isAdmin(long j3) {
+                        return false;
+                    }
+
+                    @Override
+                    public final boolean isLandscape() {
+                        return false;
+                    }
+
+                    @Override
+                    public final boolean isOwner(long j3) {
+                        return false;
+                    }
+
+                    @Override
+                    public final boolean isProgressLoading(ChatMessageCell chatMessageCell, int i9) {
+                        return i9 == ThemePreviewMessagesCell.this.progress;
+                    }
+
+                    @Override
+                    public final boolean isReplyOrSelf() {
+                        return false;
+                    }
+
+                    @Override
+                    public final boolean keyboardIsOpened() {
+                        return false;
+                    }
+
+                    @Override
+                    public final void needOpenWebView(MessageObject messageObject9, String str, String str2, String str3, String str4, int i9, int i10) {
+                        ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
+                        if (ThemePreviewMessagesCell.access$100(themePreviewMessagesCell)) {
+                            themePreviewMessagesCell.progress = 2;
+                            AndroidUtilities.cancelRunOnUIThread(themePreviewMessagesCell.cancelProgress);
+                            AndroidUtilities.runOnUIThread(themePreviewMessagesCell.cancelProgress, 5000L);
+                        }
+                    }
+
+                    @Override
+                    public final boolean needPlayMessage(ChatMessageCell chatMessageCell, MessageObject messageObject9, boolean z3) {
+                        return false;
+                    }
+
+                    @Override
+                    public final void needReloadPolls() {
+                    }
+
+                    @Override
+                    public final void needShowPremiumBulletin(int i9) {
+                    }
+
+                    @Override
+                    public final boolean onAccessibilityAction(int i9, Bundle bundle) {
+                        return false;
+                    }
+
+                    @Override
+                    public final void onDiceFinished() {
+                    }
+
+                    @Override
+                    public final boolean openArticlePhoto(ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock) {
+                        return false;
+                    }
+
+                    @Override
+                    public final void setShouldNotRepeatSticker(MessageObject messageObject9) {
+                    }
+
+                    @Override
+                    public final boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell, boolean z3) {
+                        return false;
+                    }
+
+                    @Override
+                    public final boolean shouldRepeatSticker(MessageObject messageObject9) {
+                        return true;
+                    }
+
+                    @Override
+                    public final void videoTimerReached() {
+                    }
+
+                    @Override
+                    public final void forceUpdate(ChatMessageCell chatMessageCell, boolean z3, boolean z4) {
+                    }
+                });
                 ChatMessageCell chatMessageCell = this.cells[i2];
                 if (i3 != 2 || i3 == 4) {
                     z = true;
@@ -413,7 +908,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     messageObject3 = messageObject;
                 }
                 if (messageObject3 == null) {
-                    this.cells[i2].setMessageObject(messageObject3, null, false, false, false, false);
+                    this.cells[i2].setMessageObject(messageObject3, null, false, false, false);
                     addView(this.cells[i2], LayoutHelper.createLinear(-1, -2));
                 }
                 i2++;
@@ -430,93 +925,96 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 return;
             }
             i3 = i4;
-            chatMessageCellArr[i2] = new ChatMessageCell(context2, i5, resourcesProvider2, context, i3) {
+            chatMessageCellArr[i2] = new ChatMessageCell(context2, i7, resourcesProvider2, context, i3) {
                 public final AnimatedColor color1;
                 public final AnimatedColor color2;
                 public final GestureDetector gestureDetector;
                 public final int val$type;
 
-                public final class C00061 extends GestureDetector.SimpleOnGestureListener {
-                    public C00061() {
+                public final class C00081 extends GestureDetector.SimpleOnGestureListener {
+
+                    public final class ViewTreeObserverOnPreDrawListenerC00091 implements ViewTreeObserver.OnPreDrawListener {
+                        public ViewTreeObserverOnPreDrawListenerC00091() {
+                        }
+
+                        @Override
+                        public final boolean onPreDraw() {
+                            AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
+                            anonymousClass1.getViewTreeObserver().removeOnPreDrawListener(this);
+                            anonymousClass1.getTransitionParams().resetAnimation();
+                            anonymousClass1.getTransitionParams().animateChange();
+                            anonymousClass1.getTransitionParams().animateChange = true;
+                            anonymousClass1.getTransitionParams().animateChangeProgress = 0.0f;
+                            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                            valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 9));
+                            valueAnimatorOfFloat.addListener(new BotButton.AnonymousClass1(this, 8));
+                            valueAnimatorOfFloat.start();
+                            return false;
+                        }
+                    }
+
+                    public C00081() {
                     }
 
                     @Override
                     public final boolean onDoubleTap(MotionEvent motionEvent) {
                         AnonymousClass1 anonymousClass1 = AnonymousClass1.this;
-                        if (anonymousClass1.val$type == 2) {
-                            int i = anonymousClass1.currentAccount;
-                            if (MediaDataController.getInstance(i).getDoubleTapReaction() != null) {
-                                boolean zSelectReaction = anonymousClass1.getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(i).getDoubleTapReaction()), false, false);
-                                anonymousClass1.setMessageObject(anonymousClass1.getMessageObject(), null, false, false, false, false);
-                                anonymousClass1.requestLayout();
-                                ReactionsEffectOverlay.removeCurrent(false);
-                                if (zSelectReaction) {
-                                    ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
-                                    ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(i).getDoubleTapReaction()), anonymousClass1.currentAccount, 0);
-                                    ReactionsEffectOverlay.startAnimation();
-                                }
-                                anonymousClass1.getViewTreeObserver().addOnPreDrawListener(new PhotoViewer.AnonymousClass9(this, 1));
-                                return true;
-                            }
+                        if (anonymousClass1.val$type != 2 || MediaDataController.getInstance(anonymousClass1.currentAccount).getDoubleTapReaction() == null) {
+                            return false;
                         }
-                        return false;
+                        boolean zSelectReaction = anonymousClass1.getMessageObject().selectReaction(ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(anonymousClass1.currentAccount).getDoubleTapReaction()), false, false);
+                        anonymousClass1.setMessageObject(anonymousClass1.getMessageObject(), null, false, false, false);
+                        anonymousClass1.requestLayout();
+                        ReactionsEffectOverlay.removeCurrent(false);
+                        if (zSelectReaction) {
+                            ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
+                            ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(anonymousClass1.currentAccount).getDoubleTapReaction()), anonymousClass1.currentAccount, 0);
+                            ReactionsEffectOverlay.startAnimation();
+                        }
+                        anonymousClass1.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserverOnPreDrawListenerC00091());
+                        return true;
                     }
                 }
 
                 {
                     this.val$type = i3;
-                    this.gestureDetector = new GestureDetector(context, new C00061());
+                    this.gestureDetector = new GestureDetector(context, new C00081());
                     CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT;
-                    this.color1 = new AnimatedColor(this, 180L, cubicBezierInterpolator, 0);
-                    this.color2 = new AnimatedColor(this, 180L, cubicBezierInterpolator, 0);
+                    this.color1 = new AnimatedColor(this, 0L, 180L, cubicBezierInterpolator);
+                    this.color2 = new AnimatedColor(this, 0L, 180L, cubicBezierInterpolator);
                 }
 
                 @Override
                 public final void dispatchDraw(Canvas canvas) {
-                    int iChangeColorAccent;
-                    int color;
-                    int color2;
-                    int color3;
-                    int color4;
+                    int themedColor;
+                    int themedColor2;
                     MessageObject messageObject9 = getMessageObject();
                     AnimatedColor animatedColor = this.color2;
                     AnimatedColor animatedColor2 = this.color1;
-                    AvatarDrawable avatarDrawable = this.avatarDrawable;
                     if (messageObject9 == null || getMessageObject().overrideLinkColor < 0) {
-                        animatedColor2.set(avatarDrawable.getColor(), false);
-                        if (avatarDrawable.needApplyColorAccent) {
-                            int i7 = avatarDrawable.color2;
-                            Theme.ThemeAccent accent = Theme.currentTheme.getAccent(false);
-                            iChangeColorAccent = Theme.changeColorAccent(Theme.currentTheme, accent != null ? accent.accentColor : 0, i7);
-                        } else {
-                            iChangeColorAccent = avatarDrawable.color2;
-                        }
-                        animatedColor.set(iChangeColorAccent, false);
+                        animatedColor2.set(this.avatarDrawable.getColor());
+                        animatedColor.set(this.avatarDrawable.getColor2());
                     } else {
-                        int i8 = getMessageObject().overrideLinkColor;
-                        if (i8 >= 14) {
+                        int i9 = getMessageObject().overrideLinkColor;
+                        if (i9 >= 14) {
                             MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
                             MessagesController.PeerColors peerColors = messagesController != null ? messagesController.peerColors : null;
-                            MessagesController.PeerColor color5 = peerColors != null ? peerColors.getColor(i8) : null;
-                            if (color5 != null) {
-                                int color1 = color5.getColor1();
-                                color3 = Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getPeerColorIndex(color1)], this.resourcesProvider);
-                                color4 = Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getPeerColorIndex(color1)], this.resourcesProvider);
+                            MessagesController.PeerColor color = peerColors != null ? peerColors.getColor(i9) : null;
+                            if (color != null) {
+                                int color1 = color.getColor1();
+                                themedColor = getThemedColor(Theme.keys_avatar_background[AvatarDrawable.getPeerColorIndex(color1)]);
+                                themedColor2 = getThemedColor(Theme.keys_avatar_background2[AvatarDrawable.getPeerColorIndex(color1)]);
                             } else {
-                                long j3 = i8;
-                                color = Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(j3)], this.resourcesProvider);
-                                color2 = Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(j3)], this.resourcesProvider);
+                                long j3 = i9;
+                                themedColor = getThemedColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(j3)]);
+                                themedColor2 = getThemedColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(j3)]);
                             }
-                            avatarDrawable.setColor(animatedColor2.set(color3, false), animatedColor.set(color4, false));
                         } else {
-                            long j4 = i8;
-                            color = Theme.getColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(j4)], this.resourcesProvider);
-                            color2 = Theme.getColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(j4)], this.resourcesProvider);
+                            long j4 = i9;
+                            themedColor = getThemedColor(Theme.keys_avatar_background[AvatarDrawable.getColorIndex(j4)]);
+                            themedColor2 = getThemedColor(Theme.keys_avatar_background2[AvatarDrawable.getColorIndex(j4)]);
                         }
-                        int i9 = color2;
-                        color3 = color;
-                        color4 = i9;
-                        avatarDrawable.setColor(animatedColor2.set(color3, false), animatedColor.set(color4, false));
+                        this.avatarDrawable.setColor(animatedColor2.set(themedColor), animatedColor.set(themedColor2));
                     }
                     if (getAvatarImage() != null && getAvatarImage().getImageHeight() != 0.0f) {
                         getAvatarImage().setImageCoords(getAvatarImage().getImageX(), (getMeasuredHeight() - getAvatarImage().getImageHeight()) - AndroidUtilities.dp(4.0f), getAvatarImage().getImageWidth(), getAvatarImage().getImageHeight());
@@ -530,14 +1028,452 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
                 @Override
                 public final boolean onTouchEvent(MotionEvent motionEvent) {
-                    if (ThemePreviewMessagesCell.this.allowLoadingOnTouch()) {
+                    if (ThemePreviewMessagesCell.access$100(ThemePreviewMessagesCell.this)) {
                         return super.onTouchEvent(motionEvent);
                     }
                     this.gestureDetector.onTouchEvent(motionEvent);
                     return true;
                 }
             };
-            this.cells[i2].setDelegate(new Stripe(this, 16));
+            this.cells[i2].setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                @Override
+                public final boolean allowAddPollOptions() {
+                    return false;
+                }
+
+                @Override
+                public final boolean canDrawOutboundsContent() {
+                    return true;
+                }
+
+                @Override
+                public final boolean canPerformActions() {
+                    return ThemePreviewMessagesCell.access$100(ThemePreviewMessagesCell.this);
+                }
+
+                @Override
+                public final boolean canPerformReply() {
+                    return canPerformActions();
+                }
+
+                @Override
+                public final boolean canSaveRichDocument(ChatMessageCell chatMessageCell2) {
+                    return false;
+                }
+
+                @Override
+                public final boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2) {
+                    return false;
+                }
+
+                @Override
+                public final void didLongPress(ChatMessageCell chatMessageCell2, float f, float f2) {
+                }
+
+                @Override
+                public final void didLongPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                }
+
+                @Override
+                public final boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat, int i9, float f, float f2) {
+                    return false;
+                }
+
+                @Override
+                public final void didLongPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                }
+
+                @Override
+                public final boolean didLongPressPollOption(ChatMessageCell chatMessageCell2, TLRPC.PollAnswer pollAnswer) {
+                    return false;
+                }
+
+                @Override
+                public final boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
+                    return false;
+                }
+
+                @Override
+                public final boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2) {
+                    return false;
+                }
+
+                @Override
+                public final void didPressAboutRevenueSharingAds() {
+                }
+
+                @Override
+                public final void didPressAddPollOptionButton(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressAdmin(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
+                    return false;
+                }
+
+                @Override
+                public final void didPressAppUpdateButton() {
+                }
+
+                @Override
+                public final void didPressBoostCounter(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                }
+
+                @Override
+                public final void didPressCancelSendButton(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat, int i9, float f, float f2, boolean z3) {
+                }
+
+                @Override
+                public final void didPressChannelRecommendation(ChatMessageCell chatMessageCell2, TLObject tLObject, boolean z3) {
+                }
+
+                @Override
+                public final void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressCodeCopy(ChatMessageCell chatMessageCell2, MessageObject.TextLayoutBlock textLayoutBlock) {
+                }
+
+                @Override
+                public final void didPressCommentButton(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                }
+
+                @Override
+                public final void didPressEffect(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                }
+
+                @Override
+                public final void didPressFactCheck(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressFactCheckWhat(ChatMessageCell chatMessageCell2, int i9, int i10) {
+                }
+
+                @Override
+                public final void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i9) {
+                }
+
+                @Override
+                public final void didPressGroupImage(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
+                }
+
+                @Override
+                public final void didPressHiddenForward(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressHint(ChatMessageCell chatMessageCell2, int i9) {
+                }
+
+                @Override
+                public final void didPressImage(ChatMessageCell chatMessageCell2, float f, float f2, boolean z3) {
+                }
+
+                @Override
+                public final void didPressInstantButton(ChatMessageCell chatMessageCell2, int i9) {
+                    ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
+                    if (ThemePreviewMessagesCell.access$100(themePreviewMessagesCell)) {
+                        themePreviewMessagesCell.progress = 2;
+                        chatMessageCell2.invalidate();
+                        AndroidUtilities.cancelRunOnUIThread(themePreviewMessagesCell.cancelProgress);
+                        AndroidUtilities.runOnUIThread(themePreviewMessagesCell.cancelProgress, 5000L);
+                    }
+                }
+
+                @Override
+                public final void didPressMoreChannelRecommendations(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressOther(ChatMessageCell chatMessageCell2, float f, float f2) {
+                }
+
+                @Override
+                public final void didPressPollMedia(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i9) {
+                }
+
+                @Override
+                public final void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC.ReactionCount reactionCount, boolean z3, float f, float f2) {
+                }
+
+                @Override
+                public final void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i9, float f, float f2, boolean z3) {
+                    ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
+                    if (ThemePreviewMessagesCell.access$100(themePreviewMessagesCell)) {
+                        themePreviewMessagesCell.progress = 0;
+                        chatMessageCell2.invalidate();
+                        AndroidUtilities.cancelRunOnUIThread(themePreviewMessagesCell.cancelProgress);
+                        AndroidUtilities.runOnUIThread(themePreviewMessagesCell.cancelProgress, 5000L);
+                    }
+                }
+
+                @Override
+                public final void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressRichDocumentOptions(ChatMessageCell chatMessageCell2, TLRPC.Document document, float f, float f2) {
+                }
+
+                @Override
+                public final void didPressShowMore(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressSideButton(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didPressSponsoredInfo(ChatMessageCell chatMessageCell2, float f, float f2) {
+                }
+
+                @Override
+                public final void didPressSummarize(ChatMessageCell chatMessageCell2, boolean z3) {
+                }
+
+                @Override
+                public final void didPressTime(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z3) {
+                    return false;
+                }
+
+                @Override
+                public final void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z3) {
+                }
+
+                @Override
+                public final void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2, boolean z3) {
+                }
+
+                @Override
+                public final void didPressUserStatus(ChatMessageCell chatMessageCell2, TLRPC.User user, TLRPC.Document document, String str) {
+                }
+
+                @Override
+                public final void didPressViaBot(ChatMessageCell chatMessageCell2, String str) {
+                }
+
+                @Override
+                public final void didPressViaBotNotInline(ChatMessageCell chatMessageCell2, long j3) {
+                }
+
+                @Override
+                public final void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i9, int i10, int i11) {
+                }
+
+                @Override
+                public final void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage4, String str, boolean z3) {
+                    Browser.openUrl(chatMessageCell2.getContext(), str);
+                }
+
+                @Override
+                public final void didQuickShareEnd(ChatMessageCell chatMessageCell2, float f, float f2) {
+                }
+
+                @Override
+                public final void didQuickShareMove(ChatMessageCell chatMessageCell2, float f, float f2) {
+                }
+
+                @Override
+                public final void didQuickShareStart(ChatMessageCell chatMessageCell2, float f, float f2) {
+                }
+
+                @Override
+                public final void didStartVideoStream(MessageObject messageObject9) {
+                }
+
+                @Override
+                public final void didTogglePollPreview(ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2, boolean z3, Runnable runnable) {
+                }
+
+                @Override
+                public final boolean doNotShowLoadingReply(MessageObject messageObject9) {
+                    return Theme.ResourcesProvider.CC.$default$doNotShowLoadingReply(messageObject9);
+                }
+
+                @Override
+                public final void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell2) {
+                }
+
+                @Override
+                public final void forceUpdate(ChatMessageCell chatMessageCell2, boolean z3) {
+                }
+
+                @Override
+                public final void forceUpdateNoAnimation(ChatMessageCell chatMessageCell2, boolean z3) {
+                }
+
+                @Override
+                public final int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell2) {
+                    return 0;
+                }
+
+                @Override
+                public final String getAdminRank(long j3) {
+                    return null;
+                }
+
+                @Override
+                public final int getChatMode() {
+                    return 0;
+                }
+
+                @Override
+                public final ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                    return null;
+                }
+
+                @Override
+                public final PinchToZoomHelper getPinchToZoomHelper() {
+                    return null;
+                }
+
+                @Override
+                public final String getProgressLoadingBotButtonUrl(ChatMessageCell chatMessageCell2) {
+                    return null;
+                }
+
+                @Override
+                public final CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell2) {
+                    return null;
+                }
+
+                @Override
+                public final TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
+                    return null;
+                }
+
+                @Override
+                public final boolean hasSelectedMessages() {
+                    return false;
+                }
+
+                @Override
+                public final void invalidateBlur() {
+                }
+
+                @Override
+                public final boolean isAdmin(long j3) {
+                    return false;
+                }
+
+                @Override
+                public final boolean isLandscape() {
+                    return false;
+                }
+
+                @Override
+                public final boolean isOwner(long j3) {
+                    return false;
+                }
+
+                @Override
+                public final boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i9) {
+                    return i9 == ThemePreviewMessagesCell.this.progress;
+                }
+
+                @Override
+                public final boolean isReplyOrSelf() {
+                    return false;
+                }
+
+                @Override
+                public final boolean keyboardIsOpened() {
+                    return false;
+                }
+
+                @Override
+                public final void needOpenWebView(MessageObject messageObject9, String str, String str2, String str3, String str4, int i9, int i10) {
+                    ThemePreviewMessagesCell themePreviewMessagesCell = ThemePreviewMessagesCell.this;
+                    if (ThemePreviewMessagesCell.access$100(themePreviewMessagesCell)) {
+                        themePreviewMessagesCell.progress = 2;
+                        AndroidUtilities.cancelRunOnUIThread(themePreviewMessagesCell.cancelProgress);
+                        AndroidUtilities.runOnUIThread(themePreviewMessagesCell.cancelProgress, 5000L);
+                    }
+                }
+
+                @Override
+                public final boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject9, boolean z3) {
+                    return false;
+                }
+
+                @Override
+                public final void needReloadPolls() {
+                }
+
+                @Override
+                public final void needShowPremiumBulletin(int i9) {
+                }
+
+                @Override
+                public final boolean onAccessibilityAction(int i9, Bundle bundle) {
+                    return false;
+                }
+
+                @Override
+                public final void onDiceFinished() {
+                }
+
+                @Override
+                public final boolean openArticlePhoto(ChatMessageCell chatMessageCell2, TL_iv.PageBlock pageBlock) {
+                    return false;
+                }
+
+                @Override
+                public final void setShouldNotRepeatSticker(MessageObject messageObject9) {
+                }
+
+                @Override
+                public final boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z3) {
+                    return false;
+                }
+
+                @Override
+                public final boolean shouldRepeatSticker(MessageObject messageObject9) {
+                    return true;
+                }
+
+                @Override
+                public final void videoTimerReached() {
+                }
+
+                @Override
+                public final void forceUpdate(ChatMessageCell chatMessageCell2, boolean z3, boolean z4) {
+                }
+            });
             ChatMessageCell chatMessageCell2 = this.cells[i2];
             if (i3 != 2) {
                 z = true;
@@ -552,7 +1488,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 messageObject3 = messageObject;
             }
             if (messageObject3 == null) {
-                this.cells[i2].setMessageObject(messageObject3, null, false, false, false, false);
+                this.cells[i2].setMessageObject(messageObject3, null, false, false, false);
                 addView(this.cells[i2], LayoutHelper.createLinear(-1, -2));
             }
             i2++;
@@ -562,18 +1498,19 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         }
     }
 
-    public final boolean allowLoadingOnTouch() {
-        int i = this.type;
+    public static boolean access$100(ThemePreviewMessagesCell themePreviewMessagesCell) {
+        int i = themePreviewMessagesCell.type;
         return i == 3 || i == 0;
     }
 
     @Override
-    public final void dispatchSetPressed(boolean z) {
+    public void dispatchSetPressed(boolean z) {
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.type == 2 || allowLoadingOnTouch()) {
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        int i = this.type;
+        if (i == 2 || i == 3 || i == 0) {
             return super.dispatchTouchEvent(motionEvent);
         }
         return false;
@@ -584,7 +1521,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     }
 
     @Override
-    public final void invalidate() {
+    public void invalidate() {
         super.invalidate();
         int i = 0;
         while (true) {
@@ -597,8 +1534,24 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         }
     }
 
+    public final void lambda$new$0() {
+        this.progress = -1;
+        int i = 0;
+        while (true) {
+            ChatMessageCell[] chatMessageCellArr = this.cells;
+            if (i >= chatMessageCellArr.length) {
+                return;
+            }
+            ChatMessageCell chatMessageCell = chatMessageCellArr[i];
+            if (chatMessageCell != null) {
+                chatMessageCell.invalidate();
+            }
+            i++;
+        }
+    }
+
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         Drawable drawable = this.overrideDrawable;
         if (drawable instanceof ChatBackgroundDrawable) {
@@ -607,7 +1560,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         BackgroundGradientDrawable.Disposable disposable = this.backgroundGradientDisposable;
         if (disposable != null) {
@@ -626,7 +1579,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         Drawable drawable = this.overrideDrawable;
         if (drawable == null && (drawable = Theme.themedWallpaper) == null) {
             drawable = Theme.wallpaper;
@@ -635,7 +1588,6 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             invalidate();
         }
         Drawable drawable2 = this.backgroundDrawable;
-        AnimatedFloat animatedFloat = this.overrideDrawableUpdate;
         if (drawable != drawable2 && drawable != null) {
             if (Theme.animatingColors == null && !this.customAnimation) {
                 BackgroundGradientDrawable.Disposable disposable = this.backgroundGradientDisposable;
@@ -648,16 +1600,14 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 this.oldBackgroundGradientDisposable = this.backgroundGradientDisposable;
             }
             this.backgroundDrawable = drawable;
-            animatedFloat.set(0.0f, true);
+            this.overrideDrawableUpdate.set(0.0f, true);
         }
-        boolean z = this.customAnimation;
-        INavigationLayout iNavigationLayout = this.parentLayout;
-        float themeAnimationValue = z ? animatedFloat.set(1.0f, false) : ((ActionBarLayout) iNavigationLayout).getThemeAnimationValue();
+        float themeAnimationValue = this.customAnimation ? this.overrideDrawableUpdate.set(1.0f) : ((ActionBarLayout) this.parentLayout).getThemeAnimationValue();
         int i = 0;
         while (i < 2) {
             Drawable drawable3 = i == 0 ? this.oldBackgroundDrawable : this.backgroundDrawable;
             if (drawable3 != null) {
-                int i2 = (i != 1 || this.oldBackgroundDrawable == null || (iNavigationLayout == null && !this.customAnimation)) ? 255 : (int) (255.0f * themeAnimationValue);
+                int i2 = (i != 1 || this.oldBackgroundDrawable == null || (this.parentLayout == null && !this.customAnimation)) ? 255 : (int) (255.0f * themeAnimationValue);
                 if (i2 > 0) {
                     drawable3.setAlpha(i2);
                     if ((drawable3 instanceof ColorDrawable) || (drawable3 instanceof GradientDrawable) || (drawable3 instanceof MotionBackgroundDrawable)) {
@@ -704,24 +1654,23 @@ public class ThemePreviewMessagesCell extends LinearLayout {
             }
             i++;
         }
-        int measuredWidth2 = getMeasuredWidth();
-        int measuredHeight2 = getMeasuredHeight();
-        Drawable drawable4 = this.shadowDrawable;
-        drawable4.setBounds(0, 0, measuredWidth2, measuredHeight2);
-        drawable4.draw(canvas);
+        this.shadowDrawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        this.shadowDrawable.draw(canvas);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.type == 2 || allowLoadingOnTouch()) {
+        int i = this.type;
+        if (i == 2 || i == 3 || i == 0) {
             return super.onInterceptTouchEvent(motionEvent);
         }
         return false;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.type == 2 || allowLoadingOnTouch()) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        int i = this.type;
+        if (i == 2 || i == 3 || i == 0) {
             return super.onTouchEvent(motionEvent);
         }
         return false;
@@ -739,7 +1688,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
+    public boolean verifyDrawable(Drawable drawable) {
         return drawable == this.overrideDrawable || drawable == this.oldBackgroundDrawable || super.verifyDrawable(drawable);
     }
 }

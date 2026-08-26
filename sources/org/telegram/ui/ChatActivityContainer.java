@@ -8,68 +8,80 @@ import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.Components.LayoutHelper;
 
-public abstract class ChatActivityContainer extends FrameLayout {
-    public final AnonymousClass1 chatActivity;
-    public View fragmentView;
-    public boolean isActive;
-    public final INavigationLayout parentLayout;
-    public int topPadding;
+public class ChatActivityContainer extends FrameLayout {
+    public final ChatActivity chatActivity;
+    private View fragmentView;
+    private boolean isActive;
+    private final INavigationLayout parentLayout;
+    private int topPadding;
 
     public ChatActivityContainer(Context context, INavigationLayout iNavigationLayout, Bundle bundle) {
         super(context);
         this.isActive = true;
         this.parentLayout = iNavigationLayout;
-        ?? r2 = new ChatActivity(bundle) {
+        ChatActivity chatActivity = new ChatActivity(bundle) {
             @Override
-            public final void onSearchLoadingUpdate(boolean z) {
+            public void onSearchLoadingUpdate(boolean z) {
                 ChatActivityContainer.this.onSearchLoadingUpdate(z);
             }
 
             @Override
-            public final void setNavigationBarColor(int i) {
+            public void setNavigationBarColor(int i) {
             }
         };
-        this.chatActivity = r2;
-        r2.isInsideContainer = true;
+        this.chatActivity = chatActivity;
+        chatActivity.isInsideContainer = true;
     }
 
     public void initChatActivity() {
-        int i;
-        AnonymousClass1 anonymousClass1 = this.chatActivity;
-        if (anonymousClass1.onFragmentCreate()) {
-            this.fragmentView = anonymousClass1.fragmentView;
-            anonymousClass1.setParentLayout(this.parentLayout);
+        if (this.chatActivity.onFragmentCreate()) {
+            ChatActivity chatActivity = this.chatActivity;
+            this.fragmentView = chatActivity.fragmentView;
+            chatActivity.setParentLayout(this.parentLayout);
             View view = this.fragmentView;
             if (view == null) {
-                this.fragmentView = anonymousClass1.createView(getContext());
+                this.fragmentView = this.chatActivity.createView(getContext());
             } else {
                 ViewGroup viewGroup = (ViewGroup) view.getParent();
                 if (viewGroup != null) {
-                    anonymousClass1.onRemoveFromParent();
+                    this.chatActivity.onRemoveFromParent();
                     viewGroup.removeView(this.fragmentView);
                 }
             }
-            ChatActivity.AnonymousClass21 anonymousClass21 = anonymousClass1.chatListView;
-            if (anonymousClass21 != null && (i = this.topPadding) != 0) {
-                anonymousClass21.setPadding(0, i, 0, 0);
+            if (this.chatActivity.getChatListView() != null && this.topPadding != 0) {
+                this.chatActivity.getChatListView().setPadding(0, this.topPadding, 0, 0);
             }
-            anonymousClass1.openedInstantly();
-            addView(this.fragmentView, LayoutHelper.createFrame(-1.0f, -1));
+            this.chatActivity.openedInstantly();
+            addView(this.fragmentView, LayoutHelper.createFrame(-1, -1.0f));
             if (this.isActive) {
-                anonymousClass1.onResume();
+                this.chatActivity.onResume();
             }
         }
     }
 
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         initChatActivity();
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+    }
+
+    public void onPause() {
+        this.isActive = false;
+        if (this.fragmentView != null) {
+            this.chatActivity.onPause();
+        }
+    }
+
+    public void onResume() {
+        this.isActive = true;
+        if (this.fragmentView != null) {
+            this.chatActivity.onResume();
+        }
     }
 
     public void onSearchLoadingUpdate(boolean z) {

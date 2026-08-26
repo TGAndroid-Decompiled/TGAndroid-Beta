@@ -1,6 +1,5 @@
 package org.telegram.ui.iv;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -12,7 +11,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkv;
+import com.stripe.android.Stripe;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.IdentityHashMap;
@@ -27,16 +26,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.CalendarActivity$$ExternalSyntheticOutline0;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.IArticleViewer;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda19;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
+import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
 
 public final class RichTableCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView {
     public boolean blockRtl;
@@ -55,7 +52,7 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
 
     public final class AnonymousClass2 extends HorizontalScrollView {
         public final int $r8$classId;
-        public final Object this$0;
+        public final FrameLayout this$0;
 
         public AnonymousClass2(FrameLayout frameLayout, Context context, int i) {
             super(context);
@@ -66,7 +63,7 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
         @Override
         public void onMeasure(int i, int i2) {
             switch (this.$r8$classId) {
-                case 2:
+                case 1:
                     int mode = View.MeasureSpec.getMode(i);
                     if (mode != 1073741824) {
                         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 0), i2);
@@ -98,24 +95,10 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
                     }
                     invalidate();
                     break;
-                case 1:
-                    super.onScrollChanged(i, i2, i3, i4);
-                    IArticleViewer iArticleViewer = (IArticleViewer) this.this$0;
-                    if (iArticleViewer.pressedLinkOwnerLayout != null) {
-                        iArticleViewer.pressedLinkOwnerLayout = null;
-                        iArticleViewer.pressedLinkOwnerView = null;
-                    }
-                    break;
                 default:
                     super.onScrollChanged(i, i2, i3, i4);
                     break;
             }
-        }
-
-        public AnonymousClass2(Activity activity, IArticleViewer iArticleViewer) {
-            super(activity);
-            this.$r8$classId = 1;
-            this.this$0 = iArticleViewer;
         }
     }
 
@@ -182,7 +165,7 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
             if (richTableCell.hijackingSelection || i == i2 || (anonymousClass12 = richTableCell.delegate) == null || (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) == null) {
                 return;
             }
-            if (textSelectionHelper.isInSelectionMode() && textSelectionHelper.selectedView == richTableCell) {
+            if (textSelectionHelper.isInSelectionMode() && textSelectionHelper.getSelectedCell() == richTableCell) {
                 return;
             }
             TL_iv.pageTableCell pagetablecell = this.val$host.cell;
@@ -274,7 +257,7 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
                 richTableCellGrid.setModel(tableModel);
                 LinkedHashSet linkedHashSet = richTableCell.selectedCells;
                 Objects.requireNonNull(linkedHashSet);
-                richTableCellGrid.setSelectionProvider(new TodoItemMenu$$ExternalSyntheticLambda3(linkedHashSet, 17));
+                richTableCellGrid.setSelectionProvider(new RichEditor$3$$ExternalSyntheticLambda0(linkedHashSet, 14));
                 richTableCell.wireCellListeners();
                 BlockRow blockRow2 = richTableCell.currentRow;
                 if (blockRow2 != null) {
@@ -289,7 +272,7 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
                         BlockRow blockRow3 = richTableCell.currentRow;
                         if (!blockRow3.titleAutoBoldInitialized) {
                             blockRow3.titleAutoBoldInitialized = true;
-                            if (spannable.length() != 0 && (RichTextStyle.stylesFullyCovering(0, spannable.length(), spannable) & 1) == 0) {
+                            if (spannable.length() != 0 && (RichTextStyle.stylesFullyCovering(spannable, 0, spannable.length()) & 1) == 0) {
                                 z2 = false;
                             }
                             blockRow3.titleAutoBold = z2;
@@ -303,7 +286,7 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
                         }
                     }
                 }
-                richTableCell.updateColors$1();
+                richTableCell.updateColors();
                 richTableCell.scrollContent.requestLayout();
             }
         }
@@ -357,7 +340,7 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
         super(context);
         this.tmpBlocks = new ArrayList();
         this.selectedCells = new LinkedHashSet();
-        this.focusInvalidator = new RichEditor$$ExternalSyntheticLambda14(this, 4);
+        this.focusInvalidator = new RichEditor$$ExternalSyntheticLambda14(this, 3);
         this.resourcesProvider = resourcesProvider;
         setClipChildren(false);
         setClipToPadding(false);
@@ -373,8 +356,8 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
         richEditText.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), 0);
         richEditText.setHint(LocaleController.getString(R.string.ArticleTableTitleHint));
         richEditText.setCenterEmptyHint(true);
-        richEditText.setListener(new PhotoViewer.AnonymousClass49(this, 19));
-        richEditText.setDelegate(new TodoItemMenu$$ExternalSyntheticLambda3(this, 16));
+        richEditText.setListener(new Stripe.AnonymousClass1(this, 17));
+        richEditText.setDelegate(new RichEditor$3$$ExternalSyntheticLambda0(this, 13));
         addView(richEditText);
         AnonymousClass2 anonymousClass2 = new AnonymousClass2(this, context, 0);
         this.scrollView = anonymousClass2;
@@ -1003,10 +986,10 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
         RichEditText richEditText = this.titleEditText;
         int measuredHeight = richEditText.getMeasuredHeight();
         BlockRow blockRow = this.currentRow;
-        int iDp = (blockRow != null && (i5 = blockRow.quoteTopEdge) > 0) ? AndroidUtilities.dp(zzkv.m(i5, 1, 16, 10)) : 0;
+        int iDp = (blockRow != null && (i5 = blockRow.quoteTopEdge) > 0) ? AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(i5, 1, 16, 10)) : 0;
         int i9 = i6 - i7;
         int i10 = measuredHeight + iDp;
-        richEditText.layout(AndroidUtilities.dp(16.0f) + i8, iDp, BotFullscreenButtons$$ExternalSyntheticOutline1.m(i9, 16.0f, AndroidUtilities.dp(16.0f) + i8), i10);
+        richEditText.layout(AndroidUtilities.dp(16.0f) + i8, iDp, BotFullscreenButtons$$ExternalSyntheticOutline1.m(16.0f, i9, AndroidUtilities.dp(16.0f) + i8), i10);
         int iDp2 = AndroidUtilities.dp(9.0f) + i10;
         AnonymousClass2 anonymousClass2 = this.scrollView;
         anonymousClass2.layout(i8, iDp2, i9, anonymousClass2.getMeasuredHeight() + iDp2);
@@ -1029,10 +1012,10 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
         AnonymousClass2 anonymousClass2 = this.scrollView;
         anonymousClass2.measure(iMakeMeasureSpec3, iMakeMeasureSpec4);
         BlockRow blockRow = this.currentRow;
-        int iDp2 = (blockRow != null && (i4 = blockRow.quoteTopEdge) > 0) ? AndroidUtilities.dp(zzkv.m(i4, 1, 16, 10)) : 0;
+        int iDp2 = (blockRow != null && (i4 = blockRow.quoteTopEdge) > 0) ? AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(i4, 1, 16, 10)) : 0;
         BlockRow blockRow2 = this.currentRow;
         if (blockRow2 != null && (i3 = blockRow2.quoteBottomEdge) > 0) {
-            iDp = AndroidUtilities.dp(zzkv.m(i3, 1, 16, 10));
+            iDp = AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(i3, 1, 16, 10));
         }
         setMeasuredDimension(size, anonymousClass2.getMeasuredHeight() + AndroidUtilities.dp(9.0f) + iDp + iDp2 + measuredHeight);
     }
@@ -1174,7 +1157,7 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         RichEditText richEditText = this.titleEditText;
         richEditText.updateColors();
         int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider);
@@ -1206,7 +1189,7 @@ public final class RichTableCell extends RichBlockCell implements Theme.Colorabl
             if (childAt instanceof RichTableCellHost) {
                 RichTableCellHost richTableCellHost = (RichTableCellHost) childAt;
                 richTableCellHost.editText.setListener(new AnonymousClass3(richTableCellHost));
-                richTableCellHost.editText.setDelegate(new TodoItemMenu$$ExternalSyntheticLambda19(12, this, richTableCellHost));
+                richTableCellHost.editText.setDelegate(new RateCallLayout$$ExternalSyntheticLambda1(28, this, richTableCellHost));
             }
             i++;
         }

@@ -1,6 +1,7 @@
 package org.telegram.ui.Charts;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -19,13 +20,17 @@ import android.text.TextPaint;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.animation.LinearInterpolator;
+import android.widget.ImageView;
+import androidx.appcompat.widget.ActionBarOverlayLayout;
+import androidx.core.view.ViewPropertyAnimatorListener;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import java.util.ArrayList;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline1;
 import org.telegram.messenger.MediaController$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Charts.data.ChartData;
 import org.telegram.ui.Charts.view_data.ChartBottomSignatureData;
 import org.telegram.ui.Charts.view_data.ChartHeaderView;
@@ -33,11 +38,37 @@ import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 import org.telegram.ui.Charts.view_data.LegendSignatureView;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.TransitionParams;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda14;
+import org.telegram.ui.Components.Paint.Input;
+import org.telegram.ui.Components.Paint.Views.LPhotoPaintView;
+import org.telegram.ui.Components.Paint.Views.PaintToolsView;
+import org.telegram.ui.Components.Premium.PremiumButtonView;
+import org.telegram.ui.Components.Premium.VideoScreenPreview;
+import org.telegram.ui.Components.Premium.boosts.BoostCounterView;
+import org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay;
+import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
+import org.telegram.ui.Components.spoilers.SpoilerEffect;
+import org.telegram.ui.Gifts.GiftMessageBottomSheet;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda26;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.Stars.SuperRipple$$ExternalSyntheticLambda7;
 import org.telegram.ui.StatisticActivity;
-import org.telegram.ui.Stories.StoriesViewPager$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stories.CommentButton;
+import org.telegram.ui.Stories.DialogStoriesCell;
+import org.telegram.ui.Stories.LiveCommentsView;
+import org.telegram.ui.Stories.PeerStoriesView;
+import org.telegram.ui.Stories.SelfStoriesPreviewView;
+import org.telegram.ui.Stories.SelfStoryViewsPage;
+import org.telegram.ui.Stories.StoriesIntro;
+import org.telegram.ui.Stories.StoryCaptionView;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
+import org.telegram.ui.bots.BotCommandsMenuContainer;
+import org.telegram.ui.bots.BotWebViewSheet;
+import org.telegram.ui.iv.RichEditor;
+import org.telegram.ui.iv.RichMediaCell$$ExternalSyntheticLambda1;
 
 public abstract class BaseChartView extends View implements ChartPickerDelegate.Listener {
     public static final boolean ANIMATE_PICKER_SIZES;
@@ -79,7 +110,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
     public int endXIndex;
     public final Rect exclusionRect;
     public final ArrayList exclusionRects;
-    public final BaseChartView$$ExternalSyntheticLambda1 heightUpdateListener;
+    public final BaseChartView$$ExternalSyntheticLambda3 heightUpdateListener;
     public int hintLinePaintAlpha;
     public final ArrayList horizontalLines;
     public boolean invalidatePickerChart;
@@ -94,7 +125,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
     public final Paint linePaint;
     public final ArrayList lines;
     public AnimatorSet maxValueAnimator;
-    public final BaseChartView$$ExternalSyntheticLambda1 minHeightUpdateListener;
+    public final BaseChartView$$ExternalSyntheticLambda3 minHeightUpdateListener;
     public float minMaxUpdateStep;
     public final Path pathTmp;
     public Animator pickerAnimator;
@@ -116,7 +147,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
     public ValueAnimator selectionAnimator;
     public final AnonymousClass1 selectionAnimatorListener;
     public final Paint selectionBackgroundPaint;
-    public final ArticleViewer.AnonymousClass25 selectorAnimatorEndListener;
+    public final AnonymousClass4 selectorAnimatorEndListener;
     public SharedUiComponents sharedUiComponents;
     public final TextPaint signaturePaint;
     public final TextPaint signaturePaint2;
@@ -154,6 +185,249 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
     public static final int DP_5 = AndroidUtilities.dp(5.0f);
     public static final int DP_2 = AndroidUtilities.dp(2.0f);
     public static final int DP_1 = AndroidUtilities.dp(1.0f);
+
+    public final class AnonymousClass4 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass4(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animator) {
+            switch (this.$r8$classId) {
+                case 1:
+                    ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.this$0;
+                    actionBarOverlayLayout.mCurrentActionBarTopAnimator = null;
+                    actionBarOverlayLayout.mAnimatingForFling = false;
+                    break;
+                case 2:
+                    ((ViewPropertyAnimatorListener) this.this$0).onAnimationCancel();
+                    break;
+                default:
+                    super.onAnimationCancel(animator);
+                    break;
+            }
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            boolean z;
+            Object obj = this.this$0;
+            switch (this.$r8$classId) {
+                case 0:
+                    super.onAnimationEnd(animator);
+                    BaseChartView baseChartView = (BaseChartView) obj;
+                    if (!baseChartView.animateLegentTo) {
+                        baseChartView.legendShowing = false;
+                        baseChartView.legendSignatureView.setVisibility(8);
+                        baseChartView.invalidate();
+                    }
+                    baseChartView.postTransition = false;
+                    break;
+                case 1:
+                    ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) obj;
+                    actionBarOverlayLayout.mCurrentActionBarTopAnimator = null;
+                    actionBarOverlayLayout.mAnimatingForFling = false;
+                    break;
+                case 2:
+                    ((ViewPropertyAnimatorListener) obj).onAnimationEnd();
+                    break;
+                case 3:
+                    ((LegendSignatureView) obj).progressView.setVisibility(8);
+                    break;
+                case 4:
+                    ((CropAreaView) obj).gridAnimator = null;
+                    break;
+                case 5:
+                    Input input = (Input) obj;
+                    input.renderView.getPainting().commitPath(null, input.renderView.getCurrentColor(), true, null);
+                    input.arrowAnimator = null;
+                    break;
+                case 6:
+                    super.onAnimationEnd(animator);
+                    LPhotoPaintView.PopupButton popupButton = (LPhotoPaintView.PopupButton) obj;
+                    ImageView imageView = popupButton.imageView;
+                    popupButton.imageView = popupButton.image2View;
+                    popupButton.image2View = imageView;
+                    imageView.bringToFront();
+                    popupButton.image2View.setVisibility(8);
+                    popupButton.imageSwitchAnimator = null;
+                    break;
+                case 7:
+                    PaintToolsView paintToolsView = (PaintToolsView) obj;
+                    if (animator == paintToolsView.nextSelectedAnimator) {
+                        paintToolsView.selectedIndex = paintToolsView.nextSelectedIndex;
+                        paintToolsView.nextSelectedIndex = -1;
+                        paintToolsView.nextSelectedAnimator = null;
+                    }
+                    break;
+                case 8:
+                    PremiumButtonView premiumButtonView = (PremiumButtonView) obj;
+                    premiumButtonView.overlayProgress = premiumButtonView.showOverlay ? 1.0f : 0.0f;
+                    premiumButtonView.updateOverlayProgress();
+                    break;
+                case 9:
+                    VideoScreenPreview videoScreenPreview = (VideoScreenPreview) ((VideoScreenPreview.AnonymousClass3) obj).this$0;
+                    videoScreenPreview.firstFrameRendered = true;
+                    videoScreenPreview.invalidate();
+                    break;
+                case 10:
+                    BoostCounterView boostCounterView = (BoostCounterView) obj;
+                    boostCounterView.countScale = 1.0f;
+                    boostCounterView.invalidate();
+                    break;
+                case 11:
+                    ((GiftSheet$$ExternalSyntheticLambda26) obj).run();
+                    break;
+                case 12:
+                    ChatSelectionReactionMenuOverlay chatSelectionReactionMenuOverlay = (ChatSelectionReactionMenuOverlay) obj;
+                    chatSelectionReactionMenuOverlay.setVisibility(8);
+                    ChatSelectionReactionMenuOverlay.AnonymousClass2 anonymousClass2 = chatSelectionReactionMenuOverlay.reactionsContainerLayout;
+                    if (anonymousClass2 != null) {
+                        chatSelectionReactionMenuOverlay.removeView(anonymousClass2);
+                        chatSelectionReactionMenuOverlay.reactionsContainerLayout = null;
+                    }
+                    chatSelectionReactionMenuOverlay.currentPrimaryObject = null;
+                    break;
+                case 13:
+                    ReactionsEffectOverlay.this.removeCurrentView();
+                    break;
+                case 14:
+                    SpoilerEffect spoilerEffect = (SpoilerEffect) obj;
+                    Iterator it = spoilerEffect.particles.iterator();
+                    while (it.hasNext()) {
+                        SpoilerEffect.Particle particle = (SpoilerEffect.Particle) it.next();
+                        if (spoilerEffect.particlesPool.size() < spoilerEffect.maxParticles) {
+                            spoilerEffect.particlesPool.push(particle);
+                        }
+                        it.remove();
+                    }
+                    Runnable runnable = spoilerEffect.onRippleEndCallback;
+                    if (runnable != null) {
+                        runnable.run();
+                        spoilerEffect.onRippleEndCallback = null;
+                    }
+                    spoilerEffect.rippleAnimator = null;
+                    spoilerEffect.invalidateSelf();
+                    break;
+                case 15:
+                    ((GiftMessageBottomSheet.AnonymousClass3) obj).this$0.captionLimitView.setVisibility(8);
+                    break;
+                case 16:
+                    StarGiftSheet.CraftTopView.Cube3D cube3D = (StarGiftSheet.CraftTopView.Cube3D) obj;
+                    cube3D.pullingT = 1.0f;
+                    cube3D.pullingIndex = -1;
+                    StarGiftSheet.CraftTopView.Cube3D.AnimSequence animSequence = cube3D.sequence;
+                    if (animSequence != null && (z = animSequence.waitingForPull) && z) {
+                        animSequence.waitingForPull = false;
+                        animSequence.executeNext();
+                    }
+                    cube3D.pulling = null;
+                    break;
+                case 17:
+                    StarsIntroActivity.StarsBalanceView starsBalanceView = (StarsIntroActivity.StarsBalanceView) obj;
+                    starsBalanceView.amountTextView.setScaleX(1.0f);
+                    starsBalanceView.amountTextView.setScaleY(1.0f);
+                    break;
+                case 18:
+                    CommentButton commentButton = (CommentButton) obj;
+                    commentButton.countScale = 1.0f;
+                    commentButton.invalidate();
+                    break;
+                case 19:
+                    super.onAnimationEnd(animator);
+                    ((DialogStoriesCell.StoryCell) obj).params.forceAnimateProgressToSegments = false;
+                    break;
+                case 20:
+                    LiveCommentsView.LiveCommentView liveCommentView = (LiveCommentsView.LiveCommentView) obj;
+                    LiveCommentsView.Message message = liveCommentView.message;
+                    if (message != null && liveCommentView.highlightingMessageId == message.id) {
+                        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        liveCommentView.highlightAnimator = valueAnimatorOfFloat;
+                        valueAnimatorOfFloat.addUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(this, 7));
+                        liveCommentView.highlightAnimator.setStartDelay(3000L);
+                        liveCommentView.highlightAnimator.setDuration(550L);
+                        liveCommentView.highlightAnimator.setInterpolator(new LinearInterpolator());
+                        liveCommentView.highlightAnimator.start();
+                        break;
+                    }
+                    break;
+                case 21:
+                    PeerStoriesView.AnonymousClass19 anonymousClass19 = (PeerStoriesView.AnonymousClass19) obj;
+                    PeerStoriesView peerStoriesView = PeerStoriesView.this;
+                    peerStoriesView.invalidate();
+                    anonymousClass19.setAnimatedTop(0);
+                    peerStoriesView.forceUpdateOffsets = true;
+                    if (((ChatActivityEnterView) anonymousClass19).topView != null && ((ChatActivityEnterView) anonymousClass19).topView.getVisibility() == 0) {
+                        ((ChatActivityEnterView) anonymousClass19).topView.setTranslationY(((1.0f - anonymousClass19.getTopViewEnterProgress()) * ((ChatActivityEnterView) anonymousClass19).topView.getLayoutParams().height) + ((ChatActivityEnterView) anonymousClass19).animatedTop);
+                    }
+                    peerStoriesView.changeBoundAnimator = null;
+                    break;
+                case 22:
+                    PeerStoriesView.PeerHeaderView peerHeaderView = (PeerStoriesView.PeerHeaderView) obj;
+                    peerHeaderView.subtitleView[1].setVisibility(8);
+                    peerHeaderView.subtitleView[0].setAlpha(1.0f);
+                    peerHeaderView.subtitleView[0].setTranslationY(0.0f);
+                    break;
+                case 23:
+                    ((SelfStoriesPreviewView) obj).scrollAnimator = null;
+                    break;
+                case 24:
+                    SelfStoryViewsPage.HeaderView headerView = (SelfStoryViewsPage.HeaderView) obj;
+                    headerView.animator = null;
+                    headerView.animationProgress = 1.0f;
+                    headerView.invalidate();
+                    break;
+                case 25:
+                default:
+                    super.onAnimationEnd(animator);
+                    break;
+                case 26:
+                    StoryCaptionView.StoryCaptionTextView storyCaptionTextView = (StoryCaptionView.StoryCaptionTextView) obj;
+                    storyCaptionTextView.updating = false;
+                    storyCaptionTextView.updateT = 0.0f;
+                    storyCaptionTextView.invalidate();
+                    storyCaptionTextView.requestLayout();
+                    StoryCaptionView.this.requestLayout();
+                    break;
+                case 27:
+                    BotCommandsMenuContainer botCommandsMenuContainer = (BotCommandsMenuContainer) obj;
+                    botCommandsMenuContainer.setVisibility(8);
+                    botCommandsMenuContainer.currentAnimation = null;
+                    break;
+                case 28:
+                    ((BotWebViewSheet) obj).progressView.setVisibility(8);
+                    break;
+            }
+        }
+
+        @Override
+        public void onAnimationStart(Animator animator) {
+            switch (this.$r8$classId) {
+                case 2:
+                    ((ViewPropertyAnimatorListener) this.this$0).onAnimationStart();
+                    break;
+                case 25:
+                    super.onAnimationStart(animator);
+                    StoriesIntro storiesIntro = (StoriesIntro) this.this$0;
+                    StoriesIntro.StoriesIntroItemView storiesIntroItemView = (StoriesIntro.StoriesIntroItemView) storiesIntro.items.get(storiesIntro.current);
+                    storiesIntroItemView.lottieDrawable.setAutoRepeatCount(2);
+                    storiesIntroItemView.lottieDrawable.start();
+                    break;
+                default:
+                    super.onAnimationStart(animator);
+                    break;
+            }
+        }
+
+        public AnonymousClass4(ViewPropertyAnimatorListener viewPropertyAnimatorListener, View view) {
+            this.$r8$classId = 2;
+            this.this$0 = viewPropertyAnimatorListener;
+        }
+    }
 
     public interface DateSelectionListener {
     }
@@ -395,7 +669,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                 }
             }
         };
-        this.selectorAnimatorEndListener = new ArticleViewer.AnonymousClass25(this, 24);
+        this.selectorAnimatorEndListener = new AnonymousClass4(this, 0);
         this.useMinHeight = false;
         this.lastW = 0;
         this.lastH = 0;
@@ -1322,14 +1596,14 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
             float f4 = chartHorizontalLinesData.values[i4];
             float f5 = this.currentMinHeight;
             float f6 = ((int) (measuredHeight2 - (((f4 - f5) / (this.currentMaxHeight - f5)) * i3))) - textSize;
-            int i5 = i4;
             float f7 = HORIZONTAL_PADDING;
+            int i5 = i4;
             Canvas canvas2 = canvas;
             ChartHorizontalLinesData chartHorizontalLinesData2 = chartHorizontalLinesData;
-            chartHorizontalLinesData2.drawText(canvas2, 0, i5, f7, f6, textPaint2);
+            chartHorizontalLinesData2.drawText(canvas2, f7, 0, i5, f6, textPaint2);
             if (chartHorizontalLinesData2.valuesStr2 != null) {
                 textPaint = textPaint3;
-                chartHorizontalLinesData2.drawText(canvas2, 1, i5, getMeasuredWidth() - f7, f6, textPaint);
+                chartHorizontalLinesData2.drawText(canvas2, getMeasuredWidth() - f7, 1, i5, f6, textPaint);
                 i5 = i5;
             } else {
                 textPaint = textPaint3;
@@ -1738,7 +2012,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
             boolean z = this.enabled;
             ChartPickerDelegate chartPickerDelegate = this.pickerDelegate;
             if (!z) {
-                chartPickerDelegate.uncapture(motionEvent.getActionIndex(), motionEvent);
+                chartPickerDelegate.uncapture(motionEvent, motionEvent.getActionIndex());
                 getParent().requestDisallowInterceptTouchEvent(false);
                 this.chartCaptured = false;
                 return false;
@@ -1766,7 +2040,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                 return true;
             }
             if (actionMasked == 1) {
-                if (!chartPickerDelegate.uncapture(motionEvent.getActionIndex(), motionEvent)) {
+                if (!chartPickerDelegate.uncapture(motionEvent, motionEvent.getActionIndex())) {
                     if (rectF.contains(this.capturedX, this.capturedY) && !this.chartCaptured) {
                         animateLegend(false);
                     }
@@ -1800,11 +2074,11 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                         return chartPickerDelegate.capture(x, y, motionEvent.getActionIndex());
                     }
                     if (actionMasked == 6) {
-                        chartPickerDelegate.uncapture(motionEvent.getActionIndex(), motionEvent);
+                        chartPickerDelegate.uncapture(motionEvent, motionEvent.getActionIndex());
                         return true;
                     }
                 }
-                if (!chartPickerDelegate.uncapture(motionEvent.getActionIndex(), motionEvent)) {
+                if (!chartPickerDelegate.uncapture(motionEvent, motionEvent.getActionIndex())) {
                     if (rectF.contains(this.capturedX, this.capturedY)) {
                         animateLegend(false);
                     }
@@ -1921,10 +2195,7 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
             moveLegend(f2);
             DateSelectionListener dateSelectionListener = this.dateSelectionListener;
             if (dateSelectionListener != null) {
-                getSelectedDate();
-                StatisticActivity.BaseChartCell baseChartCell = (StatisticActivity.BaseChartCell) ((StoriesViewPager$$ExternalSyntheticLambda0) dateSelectionListener).f$0;
-                baseChartCell.zoomCanceled();
-                baseChartCell.chartView.legendSignatureView.showProgress(false, false);
+                ((StatisticActivity.BaseChartCell) ((TodoItemMenu$$ExternalSyntheticLambda3) dateSelectionListener).f$0).lambda$new$1(getSelectedDate());
             }
             runSmoothHaptic();
             invalidate();
@@ -2019,7 +2290,6 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
     }
 
     public final void setMaxMinValue(long j, long j2, boolean z, boolean z2, boolean z3) {
-        boolean z4 = false;
         if ((Math.abs((((long) Math.ceil(((j <= 100 || ((float) (j / 5)) % 10.0f == 0.0f) ? j : ((j / 10) + 1) * 10) / 5.0f)) * 5) - this.animateToMaxHeight) < this.thresholdMaxHeight || j == 0) && j == this.animateToMinHeight) {
             return;
         }
@@ -2036,11 +2306,11 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
             }
             double d = f3;
             float f4 = d > 0.7d ? 0.1f : d < 0.1d ? 0.03f : 0.045f;
-            boolean z5 = ((float) j3) != this.animateToMaxHeight;
+            boolean z4 = ((float) j3) != this.animateToMaxHeight;
             if (this.useMinHeight && j4 != this.animateToMinHeight) {
-                z5 = true;
+                z4 = true;
             }
-            if (z5) {
+            if (z4) {
                 AnimatorSet animatorSet = this.maxValueAnimator;
                 if (animatorSet != null) {
                     animatorSet.removeAllListeners();
@@ -2102,9 +2372,9 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                     chartHorizontalLinesData.fixedAlpha = chartHorizontalLinesData.alpha;
                 }
             }
-            ValueAnimator valueAnimatorCreateAnimator = createAnimator(0.0f, 255.0f, new QrActivity$$ExternalSyntheticLambda14(3, this, chartHorizontalLinesDataCreateHorizontalLinesData));
+            ValueAnimator valueAnimatorCreateAnimator = createAnimator(0.0f, 255.0f, new SuperRipple$$ExternalSyntheticLambda7(2, this, chartHorizontalLinesDataCreateHorizontalLinesData));
             this.alphaAnimator = valueAnimatorCreateAnimator;
-            valueAnimatorCreateAnimator.addListener(new ChatActivity.AnonymousClass74(this, chartHorizontalLinesDataCreateHorizontalLinesData, z4, 5));
+            valueAnimatorCreateAnimator.addListener(new RichEditor.AnonymousClass1(5, this, chartHorizontalLinesDataCreateHorizontalLinesData));
             this.alphaAnimator.start();
         }
     }
@@ -2252,9 +2522,9 @@ public abstract class BaseChartView extends View implements ChartPickerDelegate.
                     if (arrayList.size() > 2) {
                         arrayList.remove(0);
                     }
-                    ValueAnimator duration = createAnimator(0.0f, 1.0f, new QrActivity$$ExternalSyntheticLambda14(4, this, chartBottomSignatureData3)).setDuration(200L);
+                    ValueAnimator duration = createAnimator(0.0f, 1.0f, new SuperRipple$$ExternalSyntheticLambda7(3, this, chartBottomSignatureData3)).setDuration(200L);
                     this.alphaBottomAnimator = duration;
-                    duration.addListener(new ChatActivity.AnonymousClass74(this, chartBottomSignatureData3, false, 6));
+                    duration.addListener(new RichEditor.AnonymousClass1(6, this, chartBottomSignatureData3));
                     this.alphaBottomAnimator.start();
                 }
             }

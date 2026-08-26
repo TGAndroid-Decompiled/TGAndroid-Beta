@@ -16,15 +16,15 @@ public final class FoundStickerPackButton extends ButtonWithCounterView implemen
     public final Theme.ResourcesProvider resourcesProvider;
 
     public FoundStickerPackButton(Context context, Theme.ResourcesProvider resourcesProvider) {
-        super(context, resourcesProvider, true);
+        super(context, true, resourcesProvider);
         this.animatorIsPrimary = new BoolAnimator(0, this, CubicBezierInterpolator.EASE_OUT_QUINT, 320L, true);
         this.resourcesProvider = resourcesProvider;
-        setRoundRadius(24);
+        setRound();
         setOutlineProvider(ViewOutlineProviderImpl.BOUNDS_ROUND_RECT);
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override

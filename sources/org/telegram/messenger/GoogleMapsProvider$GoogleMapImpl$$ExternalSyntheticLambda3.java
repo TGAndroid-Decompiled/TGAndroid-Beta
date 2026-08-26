@@ -30,7 +30,7 @@ public final class GoogleMapsProvider$GoogleMapImpl$$ExternalSyntheticLambda3 im
     public void onClick(AlertDialog alertDialog, int i) {
         switch (this.$r8$classId) {
             case 1:
-                AndroidUtilities.lambda$showProxyAlert$20((SharedPreferences) this.f$0, (AndroidUtilities$$ExternalSyntheticLambda42) this.f$1, alertDialog, i);
+                AndroidUtilities.lambda$showProxyAlert$20((SharedPreferences) this.f$0, (AndroidUtilities$$ExternalSyntheticLambda41) this.f$1, alertDialog, i);
                 break;
             default:
                 AndroidUtilities.lambda$isMapsInstalled$11((String) this.f$0, (BaseFragment) this.f$1, alertDialog, i);

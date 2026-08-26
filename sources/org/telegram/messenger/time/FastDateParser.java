@@ -1,6 +1,6 @@
 package org.telegram.messenger.time;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import j$.util.DesugarTimeZone;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.IOException;
@@ -356,7 +356,7 @@ public class FastDateParser implements DateParser, Serializable {
             switch (cCharAt) {
                 case '\'':
                     if (str.length() > 2) {
-                        return new CopyQuotedStrategy(SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, str));
+                        return new CopyQuotedStrategy(Fragment$$ExternalSyntheticOutline0.m(1, 1, str));
                     }
                     break;
                 case 'S':
@@ -505,9 +505,9 @@ public class FastDateParser implements DateParser, Serializable {
             return date;
         }
         if (!this.locale.equals(JAPANESE_IMPERIAL)) {
-            StringBuilder sbM4m = SurfaceContainer$$ExternalSyntheticOutline0.m4m("Unparseable date: \"", str, "\" does not match ");
-            sbM4m.append(this.parsePattern.pattern());
-            throw new ParseException(sbM4m.toString(), 0);
+            StringBuilder sbM80m = Fragment$$ExternalSyntheticOutline0.m80m("Unparseable date: \"", str, "\" does not match ");
+            sbM80m.append(this.parsePattern.pattern());
+            throw new ParseException(sbM80m.toString(), 0);
         }
         throw new ParseException("(The " + this.locale + " locale does not support dates before 1868 AD)\nUnparseable date: \"" + str + "\" does not match " + this.parsePattern.pattern(), 0);
     }

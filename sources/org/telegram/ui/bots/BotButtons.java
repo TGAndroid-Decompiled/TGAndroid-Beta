@@ -2,21 +2,17 @@ package org.telegram.ui.bots;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import com.google.android.gms.internal.mlkit_vision_common.zzkm;
-import com.google.common.base.Splitter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$10$$ExternalSyntheticOutline0;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -34,7 +30,7 @@ public abstract class BotButtons extends FrameLayout {
     public final AnimatedFloat height;
     public Button pressedButton;
     public final Paint separatorPaint;
-    public Splitter state;
+    public ButtonsState state;
     public Utilities.Callback whenClicked;
     public Runnable whenResized;
 
@@ -62,26 +58,25 @@ public abstract class BotButtons extends FrameLayout {
             this.x = new AnimatedFloat(botButtons, 0L, 320L, cubicBezierInterpolator);
             this.y = new AnimatedFloat(botButtons, 0L, 320L, cubicBezierInterpolator);
             this.w = new AnimatedFloat(botButtons, 0L, 320L, cubicBezierInterpolator);
-            this.backgroundColor = new AnimatedColor(botButtons, 320L, cubicBezierInterpolator, 0);
-            this.textColor = new AnimatedColor(botButtons, 320L, cubicBezierInterpolator, 0);
+            this.backgroundColor = new AnimatedColor(botButtons, 0L, 320L, cubicBezierInterpolator);
+            this.textColor = new AnimatedColor(botButtons, 0L, 320L, cubicBezierInterpolator);
             this.progressAlpha = new AnimatedFloat(botButtons, 0L, 320L, cubicBezierInterpolator);
             this.flickerAlpha = new AnimatedFloat(botButtons, 0L, 320L, cubicBezierInterpolator);
-            this.bounce = new ButtonBounce(botButtons, 1.0f, 5.0f);
+            this.bounce = new ButtonBounce(botButtons);
             this.backgroundPaint = new Paint(1);
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, false, true, false);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, false, true);
             this.textDrawable = animatedTextDrawable;
             BaseCell.RippleDrawableSafe rippleDrawableSafeCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(0, 9, 9);
             this.ripple = rippleDrawableSafeCreateRadSelectorDrawable;
-            CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(-1);
+            CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable();
             this.progress = circularProgressDrawable;
             CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(64, 204, 160);
             this.flicker = cellFlickerDrawable;
-            animatedTextDrawable.gravity = 17;
+            animatedTextDrawable.setGravity(17);
             animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
-            animatedTextDrawable.textPaint.setTypeface(AndroidUtilities.bold());
-            animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x * 4;
-            animatedTextDrawable.ellipsizeByGradient = true;
-            animatedTextDrawable.invalidateSelf();
+            animatedTextDrawable.setTypeface(AndroidUtilities.bold());
+            animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x * 4);
+            animatedTextDrawable.setEllipsizeByGradient(true);
             animatedTextDrawable.setCallback(botButtons);
             circularProgressDrawable.setCallback(botButtons);
             rippleDrawableSafeCreateRadSelectorDrawable.setCallback(botButtons);
@@ -102,6 +97,12 @@ public abstract class BotButtons extends FrameLayout {
         public boolean visible;
     }
 
+    public final class ButtonsState {
+        public int backgroundColor;
+        public ButtonState main;
+        public ButtonState secondary;
+    }
+
     public BotButtons(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         Paint paint = new Paint(1);
@@ -110,31 +111,31 @@ public abstract class BotButtons extends FrameLayout {
         this.separatorPaint = paint2;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.height = new AnimatedFloat(this, 0L, 320L, cubicBezierInterpolator);
-        this.background = new AnimatedColor(this, 320L, cubicBezierInterpolator, 0);
-        Splitter splitter = new Splitter((char) 0, 23);
-        splitter.trimmer = new ButtonState();
-        splitter.strategy = new ButtonState();
-        this.state = splitter;
+        this.background = new AnimatedColor(this, 0L, 320L, cubicBezierInterpolator);
+        ButtonsState buttonsState = new ButtonsState();
+        buttonsState.main = new ButtonState();
+        buttonsState.secondary = new ButtonState();
+        this.state = buttonsState;
         this.buttons = new Button[]{new Button(this), new Button(this)};
         setWillNotDraw(false);
         paint2.setColor(Theme.multAlpha(0.1f, -16777216));
-        Splitter splitter2 = this.state;
+        ButtonsState buttonsState2 = this.state;
         int color = Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider);
-        splitter2.limit = color;
+        buttonsState2.backgroundColor = color;
         paint.setColor(color);
     }
 
     public static void setText(AnimatedTextView.AnimatedTextDrawable animatedTextDrawable, ButtonState buttonState, boolean z) {
         animatedTextDrawable.cancelAnimation();
         if (buttonState.emojiId == 0) {
-            animatedTextDrawable.setText(buttonState.text, z, true);
+            animatedTextDrawable.setText(buttonState.text, z);
             return;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
         spannableStringBuilder.append((CharSequence) buttonState.text);
-        spannableStringBuilder.setSpan(new AnimatedEmojiSpan(buttonState.emojiId, 1.4f, animatedTextDrawable.textPaint.getFontMetricsInt()), 0, 1, 33);
-        animatedTextDrawable.setText(spannableStringBuilder, z, true);
+        spannableStringBuilder.setSpan(new AnimatedEmojiSpan(buttonState.emojiId, 1.4f, animatedTextDrawable.getPaint().getFontMetricsInt()), 0, 1, 33);
+        animatedTextDrawable.setText(spannableStringBuilder, z);
     }
 
     @Override
@@ -144,17 +145,16 @@ public abstract class BotButtons extends FrameLayout {
         float f3;
         float f4;
         float f5;
-        boolean z = false;
-        float height = getHeight() - this.height.set(getTotalHeight(), false);
+        float height = getHeight() - this.height.set(getTotalHeight());
         canvas.drawRect(0.0f, height - 1.0f, getWidth(), height, this.separatorPaint);
         Paint paint = this.backgroundPaint;
-        paint.setColor(this.background.set(this.state.limit, false));
+        paint.setColor(this.background.set(this.state.backgroundColor));
         canvas.drawRect(0.0f, height, getWidth(), getHeight(), paint);
         float f6 = height;
-        String str = ((ButtonState) this.state.strategy).position;
+        String str = this.state.secondary.position;
         Button[] buttonArr = this.buttons;
         int i = 1;
-        int i2 = buttonArr[1].alpha.value < buttonArr[0].alpha.value ? 1 : 0;
+        int i2 = buttonArr[1].alpha.get() < buttonArr[0].alpha.get() ? 1 : 0;
         int i3 = i2;
         while (true) {
             if (i2 != 0) {
@@ -165,41 +165,41 @@ public abstract class BotButtons extends FrameLayout {
                 return;
             }
             Button button = buttonArr[i3];
-            ButtonState buttonState = (ButtonState) (i3 == 0 ? this.state.trimmer : this.state.strategy);
+            ButtonState buttonState = i3 == 0 ? this.state.main : this.state.secondary;
             float f7 = button.alpha.set(buttonState.visible);
-            boolean z2 = buttonState.visible;
+            boolean z = buttonState.visible;
             AnimatedFloat animatedFloat = button.x;
-            if (z2) {
-                Splitter splitter = this.state;
-                if (((ButtonState) splitter.strategy).visible && ((ButtonState) splitter.trimmer).visible) {
+            if (z) {
+                ButtonsState buttonsState = this.state;
+                if (buttonsState.secondary.visible && buttonsState.main.visible) {
                     f = (!"left".equalsIgnoreCase(str) ? !(!"right".equalsIgnoreCase(str) || i3 == 0) : i3 == 0) ? 0 : 1;
                 } else {
                     f = 0.0f;
                 }
-                f2 = animatedFloat.set(f, z);
+                f2 = animatedFloat.set(f);
             } else {
-                f2 = animatedFloat.value;
+                f2 = animatedFloat.get();
             }
-            boolean z3 = buttonState.visible;
+            boolean z2 = buttonState.visible;
             AnimatedFloat animatedFloat2 = button.y;
-            if (z3) {
-                Splitter splitter2 = this.state;
-                if (((ButtonState) splitter2.strategy).visible && ((ButtonState) splitter2.trimmer).visible) {
+            if (z2) {
+                ButtonsState buttonsState2 = this.state;
+                if (buttonsState2.secondary.visible && buttonsState2.main.visible) {
                     f3 = (!"top".equalsIgnoreCase(str) ? !(!"bottom".equalsIgnoreCase(str) || i3 == 0) : i3 == 0) ? 0 : 1;
                 } else {
                     f3 = 0.0f;
                 }
-                f4 = animatedFloat2.set(f3, false);
+                f4 = animatedFloat2.set(f3);
             } else {
-                f4 = animatedFloat2.value;
+                f4 = animatedFloat2.get();
             }
-            boolean z4 = buttonState.visible;
+            boolean z3 = buttonState.visible;
             AnimatedFloat animatedFloat3 = button.w;
-            if (z4) {
-                Splitter splitter3 = this.state;
-                f5 = animatedFloat3.set((((ButtonState) splitter3.strategy).visible && ((ButtonState) splitter3.trimmer).visible && ("left".equalsIgnoreCase(str) || "right".equalsIgnoreCase(str))) ? 0.0f : 1.0f, false);
+            if (z3) {
+                ButtonsState buttonsState3 = this.state;
+                f5 = animatedFloat3.set((buttonsState3.secondary.visible && buttonsState3.main.visible && ("left".equalsIgnoreCase(str) || "right".equalsIgnoreCase(str))) ? 0.0f : 1.0f);
             } else {
-                f5 = animatedFloat3.value;
+                f5 = animatedFloat3.get();
             }
             float fLerp = AndroidUtilities.lerp((getWidth() - AndroidUtilities.dp(26.0f)) / 2.0f, getWidth() - AndroidUtilities.dp(16.0f), f5);
             float fDp = AndroidUtilities.dp(44.0f);
@@ -217,31 +217,22 @@ public abstract class BotButtons extends FrameLayout {
             float fLerp4 = AndroidUtilities.lerp(0.7f, 1.0f, f7) * button.bounce.getScale(0.02f);
             canvas.scale(fLerp4, fLerp4, fLerp2, f10);
             Paint paint2 = button.backgroundPaint;
-            float f13 = f6;
-            paint2.setColor(Theme.multAlpha(f7, button.backgroundColor.set(buttonState.color, false)));
+            paint2.setColor(Theme.multAlpha(f7, button.backgroundColor.set(buttonState.color)));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), paint2);
             AnimatedColor animatedColor = button.textColor;
             if (f11 < 1.0f) {
                 canvas.save();
-                float f14 = 1.0f - f11;
-                float fLerp5 = AndroidUtilities.lerp(0.75f, 1.0f, f14);
+                float f13 = 1.0f - f11;
+                float fLerp5 = AndroidUtilities.lerp(0.75f, 1.0f, f13);
                 canvas.scale(fLerp5, fLerp5, fLerp2, f10);
                 canvas.translate(0.0f, AndroidUtilities.dp(-10.0f) * f11);
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = button.textDrawable;
-                float f15 = f14 * f7;
-                int iMultAlpha = Theme.multAlpha(f15, animatedColor.set(buttonState.textColor, false));
-                if (animatedTextDrawable.emojiColor != iMultAlpha) {
-                    animatedTextDrawable.emojiColor = iMultAlpha;
-                    animatedTextDrawable.emojiColorFilter = new PorterDuffColorFilter(iMultAlpha, PorterDuff.Mode.SRC_IN);
-                }
-                int iMultAlpha2 = Theme.multAlpha(f15, animatedColor.set(buttonState.textColor, false));
-                animatedTextDrawable.textPaint.setColor(iMultAlpha2);
-                animatedTextDrawable.alpha = Color.alpha(iMultAlpha2);
+                float f14 = f13 * f7;
+                animatedTextDrawable.setEmojiColor(Theme.multAlpha(f14, animatedColor.set(buttonState.textColor)));
+                animatedTextDrawable.setTextColor(Theme.multAlpha(f14, animatedColor.set(buttonState.textColor)));
                 animatedTextDrawable.setBounds(rectF);
                 animatedTextDrawable.draw(canvas);
                 canvas.restore();
-            } else {
-                f12 = f12;
             }
             if (f11 > 0.0f) {
                 canvas.save();
@@ -249,28 +240,22 @@ public abstract class BotButtons extends FrameLayout {
                 canvas.scale(fLerp6, fLerp6, fLerp2, f10);
                 canvas.translate(0.0f, (1.0f - f11) * AndroidUtilities.dp(10.0f));
                 CircularProgressDrawable circularProgressDrawable = button.progress;
-                circularProgressDrawable.paint.setColor(Theme.multAlpha(f11 * f7, animatedColor.set(buttonState.textColor, false)));
+                circularProgressDrawable.setColor(Theme.multAlpha(f11 * f7, animatedColor.set(buttonState.textColor)));
                 circularProgressDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                 circularProgressDrawable.draw(canvas);
                 canvas.restore();
             }
             if (f12 > 0.0f) {
-                z = false;
-                button.flicker.setColors(Theme.multAlpha(f7 * f12, animatedColor.set(buttonState.textColor, false)), 64);
-                button.flicker.draw(AndroidUtilities.dp(8.0f), canvas, rectF, this);
-            } else {
-                z = false;
+                button.flicker.setColors(Theme.multAlpha(f7 * f12, animatedColor.set(buttonState.textColor)), 64);
+                button.flicker.draw(this, canvas, rectF, AndroidUtilities.dp(8.0f));
             }
             int i4 = button.rippleColor;
-            int iMultAlpha3 = Theme.multAlpha(0.15f, buttonState.textColor);
+            int iMultAlpha = Theme.multAlpha(0.15f, buttonState.textColor);
             BaseCell.RippleDrawableSafe rippleDrawableSafe = button.ripple;
-            if (i4 != iMultAlpha3) {
-                int iMultAlpha4 = Theme.multAlpha(0.15f, buttonState.textColor);
-                button.rippleColor = iMultAlpha4;
-                i = 1;
-                Theme.setSelectorDrawableColor(rippleDrawableSafe, iMultAlpha4, true);
-            } else {
-                i = 1;
+            if (i4 != iMultAlpha) {
+                int iMultAlpha2 = Theme.multAlpha(0.15f, buttonState.textColor);
+                button.rippleColor = iMultAlpha2;
+                Theme.setSelectorDrawableColor(rippleDrawableSafe, iMultAlpha2, true);
             }
             rippleDrawableSafe.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             rippleDrawableSafe.draw(canvas);
@@ -278,13 +263,14 @@ public abstract class BotButtons extends FrameLayout {
             i3 += i2 != 0 ? -1 : 1;
             buttonArr = buttonArr;
             str = str2;
-            f6 = f13;
+            f6 = f6;
             i2 = i2;
+            i = 1;
         }
     }
 
     public float getAnimatedTotalHeight() {
-        return this.height.value;
+        return this.height.get();
     }
 
     public final Button getHitButton(float f, float f2) {
@@ -294,7 +280,7 @@ public abstract class BotButtons extends FrameLayout {
             if (i >= buttonArr.length) {
                 return null;
             }
-            ButtonState buttonState = (ButtonState) (i == 0 ? this.state.trimmer : this.state.strategy);
+            ButtonState buttonState = i == 0 ? this.state.main : this.state.secondary;
             if (buttonArr[i].bounds.contains(f, f2) && buttonState.visible && buttonState.active) {
                 return buttonArr[i];
             }
@@ -303,12 +289,12 @@ public abstract class BotButtons extends FrameLayout {
     }
 
     public int getTotalHeight() {
-        Splitter splitter = this.state;
-        boolean z = ((ButtonState) splitter.trimmer).visible;
-        int i = (z || ((ButtonState) splitter.strategy).visible) ? 1 : 0;
+        ButtonsState buttonsState = this.state;
+        boolean z = buttonsState.main.visible;
+        int i = (z || buttonsState.secondary.visible) ? 1 : 0;
         if (z) {
-            ButtonState buttonState = (ButtonState) splitter.strategy;
-            if (buttonState.visible && ("top".equalsIgnoreCase(buttonState.position) || "bottom".equalsIgnoreCase(((ButtonState) this.state.strategy).position))) {
+            ButtonState buttonState = buttonsState.secondary;
+            if (buttonState.visible && ("top".equalsIgnoreCase(buttonState.position) || "bottom".equalsIgnoreCase(this.state.secondary.position))) {
                 i++;
             }
         }
@@ -320,7 +306,7 @@ public abstract class BotButtons extends FrameLayout {
 
     @Override
     public void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), zzkm.m(109.0f, 1));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), ArticleViewer$10$$ExternalSyntheticOutline0.m(109.0f, 1, 1073741824));
     }
 
     @Override

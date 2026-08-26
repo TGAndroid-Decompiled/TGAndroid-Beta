@@ -15,7 +15,7 @@ public final class PeerStoriesView$22$$ExternalSyntheticLambda0 implements Utili
     public final boolean f$2;
     public final int f$3;
 
-    public PeerStoriesView$22$$ExternalSyntheticLambda0(int i, int i2, Object obj, Object obj2, boolean z) {
+    public PeerStoriesView$22$$ExternalSyntheticLambda0(Object obj, Object obj2, boolean z, int i, int i2) {
         this.$r8$classId = i2;
         this.f$0 = obj;
         this.f$1 = obj2;
@@ -44,7 +44,7 @@ public final class PeerStoriesView$22$$ExternalSyntheticLambda0 implements Utili
                 MediaDataController.getInstance(peerStoriesView.currentAccount).increaseInlineRating(j);
                 break;
             default:
-                ((ChatAttachAlertDocumentLayout) this.f$0).delegate.didSelectPhotos(((Long) obj).longValue(), (ArrayList) this.f$1, this.f$2, this.f$3);
+                ((ChatAttachAlertDocumentLayout) this.f$0).lambda$sendSelectedPhotos$6((ArrayList) this.f$1, this.f$2, this.f$3, (Long) obj);
                 break;
         }
     }

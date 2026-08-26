@@ -1,52 +1,31 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 
 public final class LoginActivity$LoginActivityPhraseView$$ExternalSyntheticLambda1 implements Runnable {
     public final int $r8$classId;
     public final LoginActivity.LoginActivityPhraseView f$0;
+    public final TLRPC.TL_error f$1;
+    public final TLObject f$2;
+    public final TLRPC.TL_auth_signIn f$3;
 
-    public LoginActivity$LoginActivityPhraseView$$ExternalSyntheticLambda1(LoginActivity.LoginActivityPhraseView loginActivityPhraseView, int i) {
+    public LoginActivity$LoginActivityPhraseView$$ExternalSyntheticLambda1(LoginActivity.LoginActivityPhraseView loginActivityPhraseView, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_auth_signIn tL_auth_signIn, int i) {
         this.$r8$classId = i;
         this.f$0 = loginActivityPhraseView;
+        this.f$1 = tL_error;
+        this.f$2 = tLObject;
+        this.f$3 = tL_auth_signIn;
     }
 
     @Override
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.checkPaste(true);
-                break;
-            case 1:
-                LoginActivity.LoginActivityPhraseView loginActivityPhraseView = this.f$0;
-                UsersSelectActivity.AnonymousClass4 anonymousClass4 = loginActivityPhraseView.codeField;
-                anonymousClass4.requestFocus();
-                String str = loginActivityPhraseView.beginning;
-                if (str != null) {
-                    if (str.length() > 1) {
-                        String string = anonymousClass4.getText().toString();
-                        int length = string.length();
-                        int i = 0;
-                        while (i < length && string.charAt(i) <= ' ') {
-                            i++;
-                        }
-                        int length2 = loginActivityPhraseView.beginning.length() + i;
-                        anonymousClass4.setSelection(Utilities.clamp(length2 + ((length2 < 0 || length2 >= string.length() || string.charAt(length2) != ' ') ? 0 : 1), string.length(), 0), anonymousClass4.getText().length());
-                    }
-                }
-                anonymousClass4.setSelection(0, anonymousClass4.getText().length());
-                break;
-            case 2:
-                this.f$0.animateError(false);
+                this.f$0.lambda$onNextPressed$12(this.f$1, this.f$2, this.f$3);
                 break;
             default:
-                UsersSelectActivity.AnonymousClass4 anonymousClass5 = this.f$0.codeField;
-                if (anonymousClass5 != null) {
-                    anonymousClass5.requestFocus();
-                    anonymousClass5.setSelection(anonymousClass5.length());
-                    AndroidUtilities.showKeyboard(anonymousClass5);
-                }
+                this.f$0.lambda$onNextPressed$9(this.f$1, this.f$2, this.f$3);
                 break;
         }
     }

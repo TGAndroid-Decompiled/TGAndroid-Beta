@@ -21,7 +21,7 @@ public final class ImageLoader$$ExternalSyntheticLambda10 implements Runnable {
     public final Object f$2;
     public final Object f$3;
 
-    public ImageLoader$$ExternalSyntheticLambda10(Object obj, Object obj2, Object obj3, Object obj4, int i) {
+    public ImageLoader$$ExternalSyntheticLambda10(int i, Object obj, Object obj2, Object obj3, Object obj4) {
         this.$r8$classId = i;
         this.f$0 = obj;
         this.f$1 = obj2;
@@ -87,7 +87,7 @@ public final class ImageLoader$$ExternalSyntheticLambda10 implements Runnable {
                 ((MediaDataController) this.f$0).lambda$getEmojiNames$218((String[]) this.f$2, (String) this.f$1, (Utilities.Callback) this.f$3);
                 break;
             case 18:
-                ((MediaDataController) this.f$0).lambda$fillWithAnimatedEmoji$227((boolean[]) this.f$1, (ArrayList[]) this.f$2, (MessagesController$$ExternalSyntheticLambda69) this.f$3);
+                ((MediaDataController) this.f$0).lambda$fillWithAnimatedEmoji$227((boolean[]) this.f$1, (ArrayList[]) this.f$2, (MessagesController$$ExternalSyntheticLambda71) this.f$3);
                 break;
             case 19:
                 ((MessagesController) this.f$0).lambda$setUserAdminRole$106((TLRPC.TL_error) this.f$1, (BaseFragment) this.f$2, (TLRPC.TL_messages_editChatAdmin) this.f$3);

@@ -1,6 +1,6 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 import java.util.Calendar;
@@ -12,8 +12,8 @@ public final class VoIpSnowView extends View {
     public boolean isPaused;
     public final SnowflakesEffect snowflakesEffect;
 
-    public VoIpSnowView(Activity activity) {
-        super(activity);
+    public VoIpSnowView(Context context) {
+        super(context);
         if (LiteMode.isEnabled(512)) {
             int i = Theme.default_shadow_color;
             Calendar calendar = Calendar.getInstance();
@@ -35,7 +35,7 @@ public final class VoIpSnowView extends View {
         if (this.isPaused || (snowflakesEffect = this.snowflakesEffect) == null) {
             return;
         }
-        snowflakesEffect.onDraw(canvas, this);
+        snowflakesEffect.onDraw(this, canvas);
     }
 
     public void setState(boolean z) {

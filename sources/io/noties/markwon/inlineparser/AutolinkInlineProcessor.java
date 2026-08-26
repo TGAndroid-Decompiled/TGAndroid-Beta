@@ -1,6 +1,6 @@
 package io.noties.markwon.inlineparser;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.regex.Pattern;
 import org.commonmark.node.Link;
 import org.commonmark.node.Node;
@@ -14,8 +14,8 @@ public final class AutolinkInlineProcessor extends InlineProcessor {
     public final Node parse() {
         String strMatch = match(EMAIL_AUTOLINK);
         if (strMatch != null) {
-            String strM = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, strMatch);
-            Link link = new Link(0, SurfaceContainer$$ExternalSyntheticOutline0.m("mailto:", strM), null);
+            String strM = Fragment$$ExternalSyntheticOutline0.m(1, 1, strMatch);
+            Link link = new Link(Fragment$$ExternalSyntheticOutline0.m("mailto:", strM), null);
             link.appendChild(new Text(strM));
             return link;
         }
@@ -23,8 +23,8 @@ public final class AutolinkInlineProcessor extends InlineProcessor {
         if (strMatch2 == null) {
             return null;
         }
-        String strM2 = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, strMatch2);
-        Link link2 = new Link(0, strM2, null);
+        String strM2 = Fragment$$ExternalSyntheticOutline0.m(1, 1, strMatch2);
+        Link link2 = new Link(strM2, null);
         link2.appendChild(new Text(strM2));
         return link2;
     }

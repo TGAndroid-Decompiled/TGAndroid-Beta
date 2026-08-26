@@ -14,19 +14,19 @@ public final class CastSync$$ExternalSyntheticLambda1 implements PendingResult.S
     public final void onComplete(Status status) {
         switch (this.$r8$classId) {
             case 0:
-                CastSync.pending.decrementAndGet();
+                CastSync.lambda$setPlaying$2(status);
                 break;
             case 1:
-                CastSync.pending.decrementAndGet();
+                CastSync.lambda$setPlaying$3(status);
                 break;
             case 2:
-                CastSync.pending.decrementAndGet();
+                CastSync.lambda$setVolume$1(status);
                 break;
             case 3:
-                CastSync.pending.decrementAndGet();
+                CastSync.lambda$seekTo$0(status);
                 break;
             default:
-                CastSync.pending.decrementAndGet();
+                CastSync.lambda$setSpeed$4(status);
                 break;
         }
     }

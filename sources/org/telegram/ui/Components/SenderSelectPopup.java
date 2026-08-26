@@ -1,5 +1,7 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -8,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,13 +23,12 @@ import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzlt;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -36,33 +38,55 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CameraScanActivity$$ExternalSyntheticLambda14;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda248;
-import org.telegram.ui.ChatUsersActivity$$ExternalSyntheticLambda13;
+import org.telegram.ui.ChatActivity$21$$ExternalSyntheticOutline0;
+import org.telegram.ui.PremiumPreviewFragment;
 
-public abstract class SenderSelectPopup extends ActionBarPopupWindow {
-    public AnonymousClass4 bulletinContainer;
-    public ShareAlert$$ExternalSyntheticLambda29 bulletinHideCallback;
-    public final ArrayList bulletins;
-    public boolean clicked;
-    public final TLRPC.Peer defPeer;
-    public boolean dismissed;
-    public final View headerShadow;
-    public final TextView headerText;
-    public boolean isDismissingByBulletin;
-    public Boolean isHeaderShadowVisible;
-    public final LinearLayoutManager layoutManager;
-    public int popupX;
-    public int popupY;
-    public final AnonymousClass1 recyclerContainer;
-    public final RecyclerListView recyclerView;
-    public boolean runningCustomSprings;
-    public final ChatActivity.AnonymousClass60 scrimPopupContainerLayout;
-    public final TLRPC.TL_channels_sendAsPeers sendAsPeers;
-    public final ArrayList springAnimations;
+public class SenderSelectPopup extends ActionBarPopupWindow {
+    public static final int AVATAR_SIZE_DP = 40;
+    private static final float SCALE_START = 0.25f;
+    private static final int SHADOW_DURATION = 150;
+    public static final float SPRING_STIFFNESS = 750.0f;
+    private FrameLayout bulletinContainer;
+    private Runnable bulletinHideCallback;
+    private List<Bulletin> bulletins;
+    private boolean clicked;
+    private final int currentAccount;
+    private TLRPC.Peer defPeer;
+    private boolean dismissed;
+    private View headerShadow;
+    public TextView headerText;
+    private boolean isDismissingByBulletin;
+    private Boolean isHeaderShadowVisible;
+    private LinearLayoutManager layoutManager;
+    private int popupX;
+    private int popupY;
+    public LinearLayout recyclerContainer;
+    private RecyclerListView recyclerView;
+    protected boolean runningCustomSprings;
+    private FrameLayout scrimPopupContainerLayout;
+    private TLRPC.TL_channels_sendAsPeers sendAsPeers;
+    protected List<SpringAnimation> springAnimations;
 
-    public final class SenderView extends LinearLayout {
+    public class BackButtonFrameLayout extends FrameLayout {
+        public BackButtonFrameLayout(Context context) {
+            super(context);
+        }
+
+        @Override
+        public boolean dispatchKeyEvent(KeyEvent keyEvent) {
+            if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && SenderSelectPopup.this.isShowing()) {
+                SenderSelectPopup.this.dismiss();
+            }
+            return super.dispatchKeyEvent(keyEvent);
+        }
+    }
+
+    public interface OnSelectCallback {
+        void onPeerSelected(RecyclerView recyclerView, SenderView senderView, TLRPC.Peer peer);
+    }
+
+    public static final class SenderView extends LinearLayout {
         public final SimpleAvatarView avatar;
         public final TextView subtitle;
         public final TextView title;
@@ -77,10 +101,10 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
             setPadding(iDp, i, iDp, i);
             SimpleAvatarView simpleAvatarView = new SimpleAvatarView(context);
             this.avatar = simpleAvatarView;
-            addView(simpleAvatarView, LayoutHelper.createFrame(40.0f, 40));
+            addView(simpleAvatarView, LayoutHelper.createFrame(40, 40.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(1);
-            addView(linearLayout, LayoutHelper.createLinear(1.0f, 0, -1, 12, 0, 0));
+            addView(linearLayout, LayoutHelper.createLinear(0, -1, 1.0f, 12, 0, 0, 0));
             TextView textView = new TextView(context);
             this.title = textView;
             int i2 = Theme.key_actionBarDefaultSubmenuItem;
@@ -100,69 +124,69 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         }
     }
 
-    public SenderSelectPopup(final Context context, final ChatActivity chatActivity, final MessagesController messagesController, final boolean z, final TLRPC.Peer peer, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, final ChatActivity$$ExternalSyntheticLambda248 chatActivity$$ExternalSyntheticLambda248, final Theme.ResourcesProvider resourcesProvider) {
+    public SenderSelectPopup(final Context context, final ChatActivity chatActivity, final MessagesController messagesController, final boolean z, final TLRPC.Peer peer, TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers, final OnSelectCallback onSelectCallback, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.springAnimations = new ArrayList();
         this.bulletins = new ArrayList();
         this.defPeer = peer;
         this.sendAsPeers = tL_channels_sendAsPeers;
-        final ChatActivityEnterView.AnonymousClass37 anonymousClass37 = (ChatActivityEnterView.AnonymousClass37) this;
-        ChatActivity.AnonymousClass60 anonymousClass60 = new ChatActivity.AnonymousClass60(anonymousClass37, context, 24);
-        this.scrimPopupContainerLayout = anonymousClass60;
-        anonymousClass60.setLayoutParams(LayoutHelper.createFrame(-2.0f, -2));
-        setContentView(anonymousClass60);
+        this.currentAccount = chatActivity == null ? UserConfig.selectedAccount : chatActivity.getCurrentAccount();
+        BackButtonFrameLayout backButtonFrameLayout = new BackButtonFrameLayout(context);
+        this.scrimPopupContainerLayout = backButtonFrameLayout;
+        backButtonFrameLayout.setLayoutParams(LayoutHelper.createFrame(-2, -2.0f));
+        setContentView(this.scrimPopupContainerLayout);
         setWidth(-2);
         setHeight(-2);
         setBackgroundDrawable(null);
         Drawable drawableMutate = context.getDrawable(R.drawable.popup_fixed_alert4).mutate();
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        anonymousClass60.setBackground(drawableMutate);
+        this.scrimPopupContainerLayout.setBackground(drawableMutate);
         Rect rect = new Rect();
         drawableMutate.getPadding(rect);
-        anonymousClass60.setPadding(rect.left, rect.top, rect.right, rect.bottom);
+        this.scrimPopupContainerLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom);
         final int iDp = AndroidUtilities.dp(450.0f);
         final int width = (int) ((chatActivity == null ? AndroidUtilities.displaySize.x : chatActivity.contentView.getWidth()) * 0.75f);
-        ?? r14 = new LinearLayout(context) {
+        LinearLayout linearLayout = new LinearLayout(context) {
             @Override
-            public final int getSuggestedMinimumWidth() {
+            public int getSuggestedMinimumWidth() {
                 return AndroidUtilities.dp(260.0f);
             }
 
             @Override
-            public final void onMeasure(int i, int i2) {
+            public void onMeasure(int i, int i2) {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), width), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), iDp), View.MeasureSpec.getMode(i2)));
             }
         };
-        this.recyclerContainer = r14;
-        r14.setOrientation(1);
+        this.recyclerContainer = linearLayout;
+        linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
         this.headerText = textView;
-        OKLCH.m(Theme.key_dialogTextBlue, resourcesProvider, textView, 16.0f);
-        textView.setText(LocaleController.getString(R.string.SendMessageAsTitle));
-        textView.setTypeface(AndroidUtilities.bold(), 1);
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue, resourcesProvider));
+        this.headerText.setTextSize(1, 16.0f);
+        this.headerText.setText(LocaleController.getString(R.string.SendMessageAsTitle));
+        this.headerText.setTypeface(AndroidUtilities.bold(), 1);
         int iDp2 = AndroidUtilities.dp(18.0f);
-        textView.setPadding(iDp2, AndroidUtilities.dp(12.0f), iDp2, AndroidUtilities.dp(12.0f));
-        r14.addView(textView);
+        this.headerText.setPadding(iDp2, AndroidUtilities.dp(12.0f), iDp2, AndroidUtilities.dp(12.0f));
+        this.recyclerContainer.addView(this.headerText);
         FrameLayout frameLayout = new FrameLayout(context);
         final ArrayList<TLRPC.TL_sendAsPeer> arrayList = tL_channels_sendAsPeers.peers;
-        RecyclerListView recyclerListView = new RecyclerListView(context, null);
-        this.recyclerView = recyclerListView;
+        this.recyclerView = new RecyclerListView(context);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(1, false);
         this.layoutManager = linearLayoutManager;
-        recyclerListView.setLayoutManager(linearLayoutManager);
-        recyclerListView.setAdapter(new RecyclerListView.SelectionAdapter() {
+        this.recyclerView.setLayoutManager(linearLayoutManager);
+        this.recyclerView.setAdapter(new RecyclerListView.SelectionAdapter() {
             @Override
-            public final int getItemCount() {
+            public int getItemCount() {
                 return arrayList.size();
             }
 
             @Override
-            public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
                 return true;
             }
 
             @Override
-            public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 SenderView senderView = (SenderView) viewHolder.itemView;
                 TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) arrayList.get(i);
                 TLRPC.Peer peer2 = tL_sendAsPeer.peer;
@@ -174,24 +198,23 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
                         j2 = j3;
                     }
                 }
-                MessagesController messagesController2 = messagesController;
-                TLRPC.Peer peer3 = peer;
                 boolean z2 = true;
                 if (j2 >= 0) {
-                    TLRPC.User user = messagesController2.getUser(Long.valueOf(j2));
+                    TLRPC.User user = messagesController.getUser(Long.valueOf(j2));
                     if (user != null) {
                         senderView.title.setText(UserObject.getUserName(user));
                         senderView.subtitle.setText(LocaleController.getString(R.string.VoipGroupPersonalAccount));
                         senderView.avatar.setAvatar(user);
                     }
                     SimpleAvatarView simpleAvatarView = senderView.avatar;
+                    TLRPC.Peer peer3 = peer;
                     if (peer3 == null ? i != 0 : peer3.user_id != peer2.user_id) {
                         z2 = false;
                     }
                     simpleAvatarView.setSelected(z2, false);
                     return;
                 }
-                TLRPC.Chat chat = messagesController2.getChat(Long.valueOf(-j2));
+                TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-j2));
                 if (chat != null) {
                     if (tL_sendAsPeer.premium_required) {
                         SpannableString spannableString = new SpannableString(((Object) TextUtils.ellipsize(chat.title, senderView.title.getPaint(), width - AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END)) + " d");
@@ -200,9 +223,8 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
                         coloredImageSpan.setSize(AndroidUtilities.dp(14.0f));
                         coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteGrayText5);
                         spannableString.setSpan(coloredImageSpan, spannableString.length() - 1, spannableString.length(), 33);
-                        TextView textView2 = senderView.title;
-                        textView2.setEllipsize(null);
-                        textView2.setText(spannableString);
+                        senderView.title.setEllipsize(null);
+                        senderView.title.setText(spannableString);
                     } else {
                         senderView.title.setEllipsize(TextUtils.TruncateAt.END);
                         senderView.title.setText(chat.title);
@@ -211,204 +233,199 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
                     senderView.avatar.setAvatar(chat);
                 }
                 SimpleAvatarView simpleAvatarView2 = senderView.avatar;
-                if (peer3 == null ? i != 0 : peer3.channel_id != peer2.channel_id) {
+                TLRPC.Peer peer4 = peer;
+                if (peer4 == null ? i != 0 : peer4.channel_id != peer2.channel_id) {
                     z2 = false;
                 }
                 simpleAvatarView2.setSelected(z2, false);
             }
 
             @Override
-            public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 return new RecyclerListView.Holder(new SenderView(viewGroup.getContext(), resourcesProvider));
             }
         });
-        recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        this.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public final void onScrolled(RecyclerView recyclerView, int i, int i2) {
-                ChatActivityEnterView.AnonymousClass37 anonymousClass38 = anonymousClass37;
-                boolean z2 = anonymousClass38.layoutManager.findFirstCompletelyVisibleItemPosition() != 0;
-                Boolean bool = anonymousClass38.isHeaderShadowVisible;
-                if (bool == null || z2 != bool.booleanValue()) {
-                    anonymousClass38.headerShadow.animate().cancel();
-                    OKLCH.m(anonymousClass38.headerShadow.animate(), z2 ? 1.0f : 0.0f, 150L);
-                    anonymousClass38.isHeaderShadowVisible = Boolean.valueOf(z2);
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                boolean z2 = SenderSelectPopup.this.layoutManager.findFirstCompletelyVisibleItemPosition() != 0;
+                if (SenderSelectPopup.this.isHeaderShadowVisible == null || z2 != SenderSelectPopup.this.isHeaderShadowVisible.booleanValue()) {
+                    SenderSelectPopup.this.headerShadow.animate().cancel();
+                    OKLCH.m(SenderSelectPopup.this.headerShadow.animate(), z2 ? 1.0f : 0.0f, 150L);
+                    SenderSelectPopup.this.isHeaderShadowVisible = Boolean.valueOf(z2);
                 }
             }
         });
-        final ChatActivityEnterView.AnonymousClass37 anonymousClass38 = (ChatActivityEnterView.AnonymousClass37) this;
-        recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener(arrayList, context, chatActivity, z, chatActivity$$ExternalSyntheticLambda248) {
-            public final List f$1;
-            public final Context f$2;
-            public final ChatActivity f$3;
-            public final ChatActivity$$ExternalSyntheticLambda248 f$5;
-
-            {
-                this.f$5 = chatActivity$$ExternalSyntheticLambda248;
-            }
-
+        this.recyclerView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(int i, View view) {
-                TLRPC.User user;
-                final ChatActivityEnterView.AnonymousClass37 anonymousClass39 = this.f$0;
-                TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) this.f$1.get(i);
-                if (anonymousClass39.clicked) {
-                    return;
-                }
-                if (!tL_sendAsPeer.premium_required || UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
-                    anonymousClass39.clicked = true;
-                    RecyclerListView recyclerListView2 = anonymousClass39.recyclerView;
-                    SenderSelectPopup.SenderView senderView = (SenderSelectPopup.SenderView) view;
-                    TLRPC.Peer peer2 = tL_sendAsPeer.peer;
-                    ChatActivity$$ExternalSyntheticLambda248 chatActivity$$ExternalSyntheticLambda249 = this.f$5;
-                    ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) chatActivity$$ExternalSyntheticLambda249.f$0;
-                    if (chatActivityEnterView.senderSelectPopupWindow == null) {
-                        return;
-                    }
-                    TLRPC.ChatFull chatFull = (TLRPC.ChatFull) chatActivity$$ExternalSyntheticLambda249.f$1;
-                    if (chatFull != null) {
-                        chatFull.default_send_as = peer2;
-                    }
-                    chatActivityEnterView.updateSendAsButton(true);
-                    ChatActivityEnterView.ChatActivityEnterViewDelegate chatActivityEnterViewDelegate = chatActivityEnterView.delegate;
-                    MessagesController messagesController2 = (MessagesController) chatActivity$$ExternalSyntheticLambda249.f$2;
-                    if (chatActivityEnterViewDelegate == null || !chatActivityEnterViewDelegate.setDefaultSendAs(DialogObject.getPeerDialogId(peer2))) {
-                        messagesController2.setDefaultSendAs(chatActivityEnterView.dialog_id, DialogObject.getPeerDialogId(peer2));
-                    }
-                    int[] iArr = new int[2];
-                    boolean zIsSelected = senderView.avatar.isSelected();
-                    SimpleAvatarView simpleAvatarView = senderView.avatar;
-                    simpleAvatarView.getLocationInWindow(iArr);
-                    simpleAvatarView.setSelected(true, true);
-                    SimpleAvatarView simpleAvatarView2 = new SimpleAvatarView(chatActivityEnterView.getContext());
-                    long j = peer2.channel_id;
-                    if (j != 0) {
-                        TLRPC.Chat chat = messagesController2.getChat(Long.valueOf(j));
-                        if (chat != null) {
-                            simpleAvatarView2.setAvatar(chat);
-                        }
-                    } else {
-                        long j2 = peer2.user_id;
-                        if (j2 != 0 && (user = messagesController2.getUser(Long.valueOf(j2))) != null) {
-                            simpleAvatarView2.setAvatar(user);
-                        }
-                    }
-                    for (int i2 = 0; i2 < recyclerListView2.getChildCount(); i2++) {
-                        View childAt = recyclerListView2.getChildAt(i2);
-                        if ((childAt instanceof SenderSelectPopup.SenderView) && childAt != senderView) {
-                            ((SenderSelectPopup.SenderView) childAt).avatar.setSelected(false, true);
-                        }
-                    }
-                    AndroidUtilities.runOnUIThread(new ChatUsersActivity$$ExternalSyntheticLambda13(chatActivityEnterView, simpleAvatarView2, iArr, senderView, 6), zIsSelected ? 0L : 200L);
-                    return;
-                }
-                try {
-                    view.performHapticFeedback(3, 2);
-                } catch (Exception unused) {
-                }
-                Context context2 = this.f$2;
-                WindowManager windowManager = (WindowManager) context2.getSystemService("window");
-                if (anonymousClass39.bulletinContainer == null) {
-                    anonymousClass39.bulletinContainer = new FrameLayout(context2) {
-                        @Override
-                        public final boolean onTouchEvent(MotionEvent motionEvent) {
-                            ChatActivityEnterView.AnonymousClass37 anonymousClass310 = anonymousClass39;
-                            View contentView = anonymousClass310.getContentView();
-                            int[] iArr2 = new int[2];
-                            contentView.getLocationInWindow(iArr2);
-                            iArr2[0] = iArr2[0] + anonymousClass310.popupX;
-                            iArr2[1] = iArr2[1] + anonymousClass310.popupY;
-                            int[] iArr3 = new int[2];
-                            getLocationInWindow(iArr3);
-                            if (motionEvent.getAction() != 0 || motionEvent.getX() > iArr2[0]) {
-                                if (motionEvent.getX() < contentView.getWidth() + iArr2[0] && motionEvent.getY() > iArr2[1]) {
-                                    if (motionEvent.getY() < contentView.getHeight() + iArr2[1]) {
-                                        motionEvent.offsetLocation(iArr3[0] - iArr2[0], (AndroidUtilities.statusBarHeight + iArr3[1]) - iArr2[1]);
-                                        return contentView.dispatchTouchEvent(motionEvent);
-                                    }
-                                }
-                            }
-                            if (!anonymousClass310.dismissed && !anonymousClass310.isDismissingByBulletin) {
-                                anonymousClass310.isDismissingByBulletin = true;
-                                anonymousClass310.startDismissAnimation(new SpringAnimation[0]);
-                            }
-                            return true;
-                        }
-                    };
-                }
-                ShareAlert$$ExternalSyntheticLambda29 shareAlert$$ExternalSyntheticLambda29 = anonymousClass39.bulletinHideCallback;
-                if (shareAlert$$ExternalSyntheticLambda29 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(shareAlert$$ExternalSyntheticLambda29);
-                }
-                if (anonymousClass39.bulletinContainer.getParent() == null) {
-                    WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-                    layoutParams.height = -1;
-                    layoutParams.width = -1;
-                    layoutParams.format = -3;
-                    layoutParams.type = 99;
-                    int i3 = Build.VERSION.SDK_INT;
-                    layoutParams.flags |= Integer.MIN_VALUE;
-                    if (i3 >= 28) {
-                        layoutParams.layoutInDisplayCutoutMode = 1;
-                    }
-                    AndroidUtilities.setPreferredMaxRefreshRate(windowManager, anonymousClass39.bulletinContainer, layoutParams);
-                    windowManager.addView(anonymousClass39.bulletinContainer, layoutParams);
-                }
-                ChatActivity chatActivity2 = this.f$3;
-                if (chatActivity2 != null) {
-                    SenderSelectPopup.AnonymousClass4 anonymousClass4 = anonymousClass39.bulletinContainer;
-                    ChatActivity.ThemeDelegate themeDelegate = chatActivity2.themeDelegate;
-                    ShareAlert$$ExternalSyntheticLambda29 shareAlert$$ExternalSyntheticLambda210 = new ShareAlert$$ExternalSyntheticLambda29(15, anonymousClass39, chatActivity2);
-                    SelectSendAsPremiumHintBulletinLayout selectSendAsPremiumHintBulletinLayout = new SelectSendAsPremiumHintBulletinLayout(context2, themeDelegate);
-                    BackupImageView backupImageView = selectSendAsPremiumHintBulletinLayout.imageView;
-                    backupImageView.setImageDrawable(context2.getDrawable(R.drawable.msg_premium_prolfilestar));
-                    backupImageView.setColorFilter(new PorterDuffColorFilter(selectSendAsPremiumHintBulletinLayout.getThemedColor(Theme.key_undo_infoColor), PorterDuff.Mode.SRC_IN));
-                    selectSendAsPremiumHintBulletinLayout.textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SelectSendAsPeerPremiumHint)));
-                    Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context2, themeDelegate, true, false);
-                    String string = LocaleController.getString(R.string.SelectSendAsPeerPremiumOpen);
-                    TextView textView2 = undoButton.undoTextView;
-                    if (textView2 != null) {
-                        textView2.setText(string);
-                    }
-                    undoButton.undoAction = shareAlert$$ExternalSyntheticLambda210;
-                    selectSendAsPremiumHintBulletinLayout.setButton(undoButton);
-                    final Bulletin bulletinMake = Bulletin.make(anonymousClass4, selectSendAsPremiumHintBulletinLayout, 1500);
-                    bulletinMake.layout.addCallback(new Bulletin.Layout.Callback() {
-                        @Override
-                        public final void onAttach(Bulletin bulletin) {
-                        }
-
-                        @Override
-                        public final void onDetach() {
-                        }
-
-                        @Override
-                        public final void onHide() {
-                            anonymousClass39.bulletins.remove(bulletinMake);
-                        }
-
-                        @Override
-                        public final void onShow() {
-                            anonymousClass39.bulletins.add(bulletinMake);
-                        }
-                    });
-                    bulletinMake.show();
-                }
-                ShareAlert$$ExternalSyntheticLambda29 shareAlert$$ExternalSyntheticLambda211 = new ShareAlert$$ExternalSyntheticLambda29(16, anonymousClass39, windowManager);
-                anonymousClass39.bulletinHideCallback = shareAlert$$ExternalSyntheticLambda211;
-                AndroidUtilities.runOnUIThread(shareAlert$$ExternalSyntheticLambda211, 2500L);
+            public final void onItemClick(View view, int i) {
+                this.f$0.lambda$new$2(arrayList, context, chatActivity, z, onSelectCallback, view, i);
             }
         });
-        recyclerListView.setOverScrollMode(2);
-        frameLayout.addView(recyclerListView);
-        View view = new View(context);
-        this.headerShadow = view;
+        this.recyclerView.setOverScrollMode(2);
+        frameLayout.addView(this.recyclerView);
+        this.headerShadow = new View(context);
         Drawable drawable = context.getDrawable(R.drawable.header_shadow);
         drawable.setAlpha(153);
-        view.setBackground(drawable);
-        view.setAlpha(0.0f);
-        frameLayout.addView(view, LayoutHelper.createFrame(4.0f, -1));
-        r14.addView(frameLayout, LayoutHelper.createFrame(-2.0f, -1));
-        anonymousClass60.addView(r14);
+        this.headerShadow.setBackground(drawable);
+        this.headerShadow.setAlpha(0.0f);
+        frameLayout.addView(this.headerShadow, LayoutHelper.createFrame(-1, 4.0f));
+        this.recyclerContainer.addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f));
+        this.scrimPopupContainerLayout.addView(this.recyclerContainer);
+    }
+
+    public void lambda$new$0(ChatActivity chatActivity) {
+        if (chatActivity != null) {
+            chatActivity.presentFragment(new PremiumPreviewFragment("select_sender"));
+            dismiss();
+        }
+    }
+
+    public void lambda$new$1(WindowManager windowManager) {
+        windowManager.removeView(this.bulletinContainer);
+    }
+
+    public void lambda$new$2(List list, Context context, ChatActivity chatActivity, boolean z, OnSelectCallback onSelectCallback, View view, int i) {
+        TLRPC.TL_sendAsPeer tL_sendAsPeer = (TLRPC.TL_sendAsPeer) list.get(i);
+        if (this.clicked) {
+            return;
+        }
+        if (!tL_sendAsPeer.premium_required || UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+            this.clicked = true;
+            onSelectCallback.onPeerSelected(this.recyclerView, (SenderView) view, tL_sendAsPeer.peer);
+            return;
+        }
+        try {
+            view.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        WindowManager windowManager = (WindowManager) context.getSystemService("window");
+        if (this.bulletinContainer == null) {
+            this.bulletinContainer = new FrameLayout(context) {
+                @Override
+                public boolean onTouchEvent(MotionEvent motionEvent) {
+                    View contentView = SenderSelectPopup.this.getContentView();
+                    int[] iArr = {SenderSelectPopup.this.popupX + i, SenderSelectPopup.this.popupY + i};
+                    contentView.getLocationInWindow(iArr);
+                    int i2 = iArr[0];
+                    int i3 = iArr[1];
+                    int[] iArr2 = new int[2];
+                    getLocationInWindow(iArr2);
+                    if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
+                        motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
+                        return contentView.dispatchTouchEvent(motionEvent);
+                    }
+                    if (!SenderSelectPopup.this.dismissed && !SenderSelectPopup.this.isDismissingByBulletin) {
+                        SenderSelectPopup.this.isDismissingByBulletin = true;
+                        SenderSelectPopup.this.startDismissAnimation(new SpringAnimation[0]);
+                    }
+                    return true;
+                }
+            };
+        }
+        Runnable runnable = this.bulletinHideCallback;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        if (this.bulletinContainer.getParent() == null) {
+            WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+            layoutParams.height = -1;
+            layoutParams.width = -1;
+            layoutParams.format = -3;
+            layoutParams.type = 99;
+            int i2 = Build.VERSION.SDK_INT;
+            layoutParams.flags |= Integer.MIN_VALUE;
+            if (i2 >= 28) {
+                layoutParams.layoutInDisplayCutoutMode = 1;
+            }
+            AndroidUtilities.setPreferredMaxRefreshRate(windowManager, this.bulletinContainer, layoutParams);
+            windowManager.addView(this.bulletinContainer, layoutParams);
+        }
+        if (chatActivity != null) {
+            final Bulletin bulletinMake = Bulletin.make(this.bulletinContainer, new SelectSendAsPremiumHintBulletinLayout(context, chatActivity.themeDelegate, z, new UndoView$$ExternalSyntheticLambda3(12, this, chatActivity)), 1500);
+            bulletinMake.getLayout().addCallback(new Bulletin.Layout.Callback() {
+                @Override
+                public final void onAttach(Bulletin.Layout layout, Bulletin bulletin) {
+                    Bulletin.Layout.Callback.CC.$default$onAttach(this, layout, bulletin);
+                }
+
+                @Override
+                public final void onDetach(Bulletin.Layout layout) {
+                    Bulletin.Layout.Callback.CC.$default$onDetach(this, layout);
+                }
+
+                @Override
+                public final void onEnterTransitionEnd(Bulletin.Layout layout) {
+                    Bulletin.Layout.Callback.CC.$default$onEnterTransitionEnd(this, layout);
+                }
+
+                @Override
+                public final void onEnterTransitionStart(Bulletin.Layout layout) {
+                    Bulletin.Layout.Callback.CC.$default$onEnterTransitionStart(this, layout);
+                }
+
+                @Override
+                public final void onExitTransitionEnd(Bulletin.Layout layout) {
+                    Bulletin.Layout.Callback.CC.$default$onExitTransitionEnd(this, layout);
+                }
+
+                @Override
+                public final void onExitTransitionStart(Bulletin.Layout layout) {
+                    Bulletin.Layout.Callback.CC.$default$onExitTransitionStart(this, layout);
+                }
+
+                @Override
+                public void onHide(Bulletin.Layout layout) {
+                    SenderSelectPopup.this.bulletins.remove(bulletinMake);
+                }
+
+                @Override
+                public void onShow(Bulletin.Layout layout) {
+                    SenderSelectPopup.this.bulletins.add(bulletinMake);
+                }
+            });
+            bulletinMake.show();
+        }
+        UndoView$$ExternalSyntheticLambda3 undoView$$ExternalSyntheticLambda3 = new UndoView$$ExternalSyntheticLambda3(13, this, windowManager);
+        this.bulletinHideCallback = undoView$$ExternalSyntheticLambda3;
+        AndroidUtilities.runOnUIThread(undoView$$ExternalSyntheticLambda3, 2500L);
+    }
+
+    public void lambda$startDismissAnimation$6(DynamicAnimation dynamicAnimation, float f, float f2) {
+        this.recyclerContainer.setScaleX(1.0f / f);
+    }
+
+    public void lambda$startDismissAnimation$7(DynamicAnimation dynamicAnimation, float f, float f2) {
+        this.recyclerContainer.setScaleY(1.0f / f);
+    }
+
+    public void lambda$startDismissAnimation$8(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        this.runningCustomSprings = false;
+        dismiss();
+    }
+
+    public void lambda$startDismissAnimation$9(SpringAnimation springAnimation, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        if (z) {
+            return;
+        }
+        this.springAnimations.remove(springAnimation);
+        dynamicAnimation.cancel();
+    }
+
+    public void lambda$startShowAnimation$3(DynamicAnimation dynamicAnimation, float f, float f2) {
+        this.recyclerContainer.setScaleX(1.0f / f);
+    }
+
+    public void lambda$startShowAnimation$4(DynamicAnimation dynamicAnimation, float f, float f2) {
+        this.recyclerContainer.setScaleY(1.0f / f);
+    }
+
+    public void lambda$startShowAnimation$5(SpringAnimation springAnimation, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        if (z) {
+            return;
+        }
+        this.springAnimations.remove(springAnimation);
+        dynamicAnimation.cancel();
     }
 
     @Override
@@ -416,72 +433,134 @@ public abstract class SenderSelectPopup extends ActionBarPopupWindow {
         if (this.dismissed) {
             return;
         }
-        AnonymousClass4 anonymousClass4 = this.bulletinContainer;
-        if (anonymousClass4 != null && anonymousClass4.getAlpha() == 1.0f) {
-            animate().alpha(0.0f).setDuration(150L).setListener(new ChatActivity.AnonymousClass74(this, (WindowManager) getContext().getSystemService("window"), false, 29));
+        FrameLayout frameLayout = this.bulletinContainer;
+        if (frameLayout != null && frameLayout.getAlpha() == 1.0f) {
+            final WindowManager windowManager = (WindowManager) this.bulletinContainer.getContext().getSystemService("window");
+            this.bulletinContainer.animate().alpha(0.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    try {
+                        windowManager.removeViewImmediate(SenderSelectPopup.this.bulletinContainer);
+                    } catch (Exception unused) {
+                    }
+                    if (SenderSelectPopup.this.bulletinHideCallback != null) {
+                        AndroidUtilities.cancelRunOnUIThread(SenderSelectPopup.this.bulletinHideCallback);
+                    }
+                }
+            });
         }
         this.dismissed = true;
         dismiss(true);
     }
 
     @Override
-    public final void showAtLocation(View view, int i, int i2, int i3) {
+    public void showAtLocation(View view, int i, int i2, int i3) {
         this.popupX = i2;
         this.popupY = i3;
         super.showAtLocation(view, i, i2, i3);
     }
 
-    public final void startDismissAnimation(SpringAnimation... springAnimationArr) {
-        int i = 4;
-        ArrayList arrayList = this.springAnimations;
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        int size = arrayList2.size();
-        int i2 = 0;
-        while (i2 < size) {
-            Object obj = arrayList2.get(i2);
-            i2++;
+    public void startDismissAnimation(SpringAnimation... springAnimationArr) {
+        int i = 3;
+        int i2 = 1;
+        ArrayList arrayList = new ArrayList(this.springAnimations);
+        int size = arrayList.size();
+        int i3 = 0;
+        int i4 = 0;
+        while (i4 < size) {
+            Object obj = arrayList.get(i4);
+            i4++;
             ((SpringAnimation) obj).cancel();
         }
-        arrayList.clear();
-        float fDp = AndroidUtilities.dp(8.0f);
-        ChatActivity.AnonymousClass60 anonymousClass60 = this.scrimPopupContainerLayout;
-        anonymousClass60.setPivotX(fDp);
-        anonymousClass60.setPivotY(anonymousClass60.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
-        AnonymousClass1 anonymousClass1 = this.recyclerContainer;
-        anonymousClass1.setPivotX(0.0f);
-        anonymousClass1.setPivotY(0.0f);
-        anonymousClass60.setScaleX(1.0f);
-        anonymousClass60.setScaleY(1.0f);
-        anonymousClass1.setAlpha(1.0f);
-        ArrayList arrayList3 = new ArrayList();
-        SpringAnimation springAnimation = new SpringAnimation(anonymousClass60, DynamicAnimation.SCALE_X);
-        zzlt.m(0.25f, 750.0f, 1.0f, springAnimation);
-        springAnimation.addUpdateListener(new SenderSelectPopup$$ExternalSyntheticLambda0(this, 0));
-        SpringAnimation springAnimation2 = new SpringAnimation(anonymousClass60, DynamicAnimation.SCALE_Y);
-        zzlt.m(0.25f, 750.0f, 1.0f, springAnimation2);
-        springAnimation2.addUpdateListener(new SenderSelectPopup$$ExternalSyntheticLambda0(this, 1));
-        DynamicAnimation.AnonymousClass1 anonymousClass2 = DynamicAnimation.ALPHA;
-        SpringAnimation springAnimation3 = new SpringAnimation(anonymousClass60, anonymousClass2);
-        zzlt.m(0.0f, 750.0f, 1.0f, springAnimation3);
-        SpringAnimation springAnimation4 = new SpringAnimation(anonymousClass1, anonymousClass2);
-        zzlt.m(0.25f, 750.0f, 1.0f, springAnimation4);
-        arrayList3.addAll(Arrays.asList(springAnimation, springAnimation2, springAnimation3, springAnimation4));
-        for (SpringAnimation springAnimation5 : springAnimationArr) {
-            if (springAnimation5 != null) {
-                arrayList3.add(springAnimation5);
+        this.springAnimations.clear();
+        this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.dp(8.0f));
+        FrameLayout frameLayout = this.scrimPopupContainerLayout;
+        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
+        this.recyclerContainer.setPivotX(0.0f);
+        this.recyclerContainer.setPivotY(0.0f);
+        this.scrimPopupContainerLayout.setScaleX(1.0f);
+        this.scrimPopupContainerLayout.setScaleY(1.0f);
+        this.recyclerContainer.setAlpha(1.0f);
+        ArrayList arrayList2 = new ArrayList();
+        SpringAnimation springAnimationM = ChatActivity$21$$ExternalSyntheticOutline0.m(0.25f, 750.0f, 1.0f, new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_X));
+        springAnimationM.addUpdateListener(new SenderSelectPopup$$ExternalSyntheticLambda0(this, i3));
+        SpringAnimation springAnimationM2 = ChatActivity$21$$ExternalSyntheticOutline0.m(0.25f, 750.0f, 1.0f, new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_Y));
+        springAnimationM2.addUpdateListener(new SenderSelectPopup$$ExternalSyntheticLambda0(this, i2));
+        FrameLayout frameLayout2 = this.scrimPopupContainerLayout;
+        DynamicAnimation.AnonymousClass1 anonymousClass1 = DynamicAnimation.ALPHA;
+        arrayList2.addAll(Arrays.asList(springAnimationM, springAnimationM2, ChatActivity$21$$ExternalSyntheticOutline0.m(0.0f, 750.0f, 1.0f, new SpringAnimation(frameLayout2, anonymousClass1)), ChatActivity$21$$ExternalSyntheticOutline0.m(0.25f, 750.0f, 1.0f, new SpringAnimation(this.recyclerContainer, anonymousClass1))));
+        for (SpringAnimation springAnimation : springAnimationArr) {
+            if (springAnimation != null) {
+                arrayList2.add(springAnimation);
             }
         }
         this.runningCustomSprings = springAnimationArr.length > 0;
-        ((SpringAnimation) arrayList3.get(0)).addEndListener(new CameraScanActivity$$ExternalSyntheticLambda14(this, i));
-        int size2 = arrayList3.size();
-        int i3 = 0;
-        while (i3 < size2) {
-            Object obj2 = arrayList3.get(i3);
-            i3++;
-            SpringAnimation springAnimation6 = (SpringAnimation) obj2;
-            arrayList.add(springAnimation6);
-            springAnimation6.addEndListener(new SenderSelectPopup$$ExternalSyntheticLambda3(this, springAnimation6, 0));
-            springAnimation6.start();
+        ((SpringAnimation) arrayList2.get(0)).addEndListener(new Bulletin$$ExternalSyntheticLambda3(this, i));
+        int size2 = arrayList2.size();
+        int i5 = 0;
+        while (i5 < size2) {
+            Object obj2 = arrayList2.get(i5);
+            i5++;
+            SpringAnimation springAnimation2 = (SpringAnimation) obj2;
+            this.springAnimations.add(springAnimation2);
+            springAnimation2.addEndListener(new SenderSelectPopup$$ExternalSyntheticLambda3(this, springAnimation2, i3));
+            springAnimation2.start();
+        }
+    }
+
+    public void startShowAnimation() {
+        int i = 3;
+        int i2 = 2;
+        int i3 = 1;
+        Iterator<SpringAnimation> it = this.springAnimations.iterator();
+        while (it.hasNext()) {
+            it.next().cancel();
+        }
+        this.springAnimations.clear();
+        this.scrimPopupContainerLayout.setPivotX(AndroidUtilities.dp(8.0f));
+        FrameLayout frameLayout = this.scrimPopupContainerLayout;
+        frameLayout.setPivotY(frameLayout.getMeasuredHeight() - AndroidUtilities.dp(8.0f));
+        this.recyclerContainer.setPivotX(0.0f);
+        this.recyclerContainer.setPivotY(0.0f);
+        ArrayList<TLRPC.TL_sendAsPeer> arrayList = this.sendAsPeers.peers;
+        if (this.defPeer != null) {
+            int iDp = AndroidUtilities.dp(54.0f);
+            int size = arrayList.size() * iDp;
+            int i4 = 0;
+            while (true) {
+                if (i4 < arrayList.size()) {
+                    TLRPC.Peer peer = arrayList.get(i4).peer;
+                    long j = peer.channel_id;
+                    if (j == 0 || j != this.defPeer.channel_id) {
+                        long j2 = peer.user_id;
+                        if (j2 == r13 || j2 != this.defPeer.user_id) {
+                            long j3 = peer.chat_id;
+                            if (j3 == 0 || j3 != this.defPeer.chat_id) {
+                                i4++;
+                            }
+                        }
+                    }
+                    this.layoutManager.scrollToPositionWithOffset(i4, (size - ((arrayList.size() - 2) * iDp)) + AndroidUtilities.dp(7.0f) + ((i4 == arrayList.size() - 1 || this.recyclerView.getMeasuredHeight() >= size) ? 0 : this.recyclerView.getMeasuredHeight() % iDp));
+                    if (this.recyclerView.computeVerticalScrollOffset() > 0) {
+                        this.headerShadow.animate().cancel();
+                        this.headerShadow.animate().alpha(1.0f).setDuration(150L).start();
+                    }
+                }
+            }
+        }
+        this.scrimPopupContainerLayout.setScaleX(0.25f);
+        this.scrimPopupContainerLayout.setScaleY(0.25f);
+        this.recyclerContainer.setAlpha(0.25f);
+        SpringAnimation springAnimationM = ChatActivity$21$$ExternalSyntheticOutline0.m(1.0f, 750.0f, 1.0f, new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_X));
+        springAnimationM.addUpdateListener(new SenderSelectPopup$$ExternalSyntheticLambda0(this, i2));
+        SpringAnimation springAnimationM2 = ChatActivity$21$$ExternalSyntheticOutline0.m(1.0f, 750.0f, 1.0f, new SpringAnimation(this.scrimPopupContainerLayout, DynamicAnimation.SCALE_Y));
+        springAnimationM2.addUpdateListener(new SenderSelectPopup$$ExternalSyntheticLambda0(this, i));
+        FrameLayout frameLayout2 = this.scrimPopupContainerLayout;
+        DynamicAnimation.AnonymousClass1 anonymousClass1 = DynamicAnimation.ALPHA;
+        for (SpringAnimation springAnimation : Arrays.asList(springAnimationM, springAnimationM2, ChatActivity$21$$ExternalSyntheticOutline0.m(1.0f, 750.0f, 1.0f, new SpringAnimation(frameLayout2, anonymousClass1)), ChatActivity$21$$ExternalSyntheticOutline0.m(1.0f, 750.0f, 1.0f, new SpringAnimation(this.recyclerContainer, anonymousClass1)))) {
+            this.springAnimations.add(springAnimation);
+            springAnimation.addEndListener(new SenderSelectPopup$$ExternalSyntheticLambda3(this, springAnimation, i3));
+            springAnimation.start();
         }
     }
 }

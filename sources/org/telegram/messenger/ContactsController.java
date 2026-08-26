@@ -40,15 +40,12 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Adapters.MentionsAdapter$$ExternalSyntheticLambda10;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda482;
 import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda34;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda128;
-import org.telegram.ui.LinkManager$3$$ExternalSyntheticLambda0;
-import org.telegram.ui.LocationActivity$$ExternalSyntheticLambda44;
-import org.telegram.ui.PhotoPickerActivity$$ExternalSyntheticLambda9;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda129;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesStorage;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
+import org.telegram.ui.iv.RichEditorListView$$ExternalSyntheticLambda32;
 
 public class ContactsController extends BaseController {
     public static final int PRIVACY_RULES_TYPE_ADDED_BY_PHONE = 7;
@@ -2196,11 +2193,11 @@ public class ContactsController extends BaseController {
             int i24 = iCeil;
             HashMap map36 = map31;
             HashMap<String, Contact> map37 = map34;
-            LaunchActivity$$ExternalSyntheticLambda128 launchActivity$$ExternalSyntheticLambda128 = new LaunchActivity$$ExternalSyntheticLambda128(contactsController, map33, sparseArray, zArr, map37, tL_contacts_importContacts, i24, map32, z3, map36, arrayList10, map35);
+            LaunchActivity$$ExternalSyntheticLambda129 launchActivity$$ExternalSyntheticLambda129 = new LaunchActivity$$ExternalSyntheticLambda129(contactsController, map33, sparseArray, zArr, map37, tL_contacts_importContacts, i24, map32, z3, map36, arrayList10, map35);
             map31 = map36;
             arrayList9 = arrayList10;
             map30 = map35;
-            connectionsManager.sendRequest(tL_contacts_importContacts, launchActivity$$ExternalSyntheticLambda128, 6);
+            connectionsManager.sendRequest(tL_contacts_importContacts, launchActivity$$ExternalSyntheticLambda129, 6);
             i22++;
             map33 = map33;
             iCeil = i24;
@@ -2438,7 +2435,7 @@ public class ContactsController extends BaseController {
                 longSparseArray.put(user, user.id);
             }
         }
-        Utilities.stageQueue.postRunnable(new PhotoPickerActivity$$ExternalSyntheticLambda9(this, i, arrayList2, arrayList, longSparseArray, zIsEmpty));
+        Utilities.stageQueue.postRunnable(new RichEditorListView$$ExternalSyntheticLambda32(this, i, arrayList2, arrayList, longSparseArray, zIsEmpty));
     }
 
     public void lambda$readContacts$11() {
@@ -2883,7 +2880,7 @@ public class ContactsController extends BaseController {
                 i3++;
             }
             StoriesStorage storiesStorage = storiesController.storiesStorage;
-            storiesStorage.storage.getStorageQueue().postRunnable(new LinkManager$3$$ExternalSyntheticLambda0(storiesStorage, j, 25));
+            storiesStorage.storage.getStorageQueue().postRunnable(new RichEditor$$ExternalSyntheticLambda48(storiesStorage, j, 16));
             int i4 = storiesController.currentAccount;
             MessagesController.getInstance(i4).checkArchiveFolder();
             NotificationCenter.getInstance(i4).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
@@ -2917,9 +2914,9 @@ public class ContactsController extends BaseController {
         Bulletin.SimpleLayout simpleLayout = new Bulletin.SimpleLayout(context, baseFragment.getResourceProvider());
         simpleLayout.setTimer();
         simpleLayout.textView.setText(LocaleController.formatPluralString("ContactsDeletedUndo", map.size(), new Object[0]));
-        Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, baseFragment.getResourceProvider(), true, true);
-        undoButton.undoAction = new ImageLoader$$ExternalSyntheticLambda5(27, this, map);
-        undoButton.delayedAction = new ContactsController$$ExternalSyntheticLambda38(this, arrayList, 2);
+        Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, true, true, baseFragment.getResourceProvider());
+        undoButton.setUndoAction(new ImageLoader$$ExternalSyntheticLambda5(27, this, map));
+        undoButton.setDelayedAction(new ContactsController$$ExternalSyntheticLambda38(this, arrayList, 2));
         simpleLayout.setButton(undoButton);
         Bulletin.make(baseFragment, simpleLayout, 5000).show();
     }
@@ -3076,7 +3073,7 @@ public class ContactsController extends BaseController {
             }
             TLRPC.TL_contacts_getContacts tL_contacts_getContacts = new TLRPC.TL_contacts_getContacts();
             tL_contacts_getContacts.hash = j;
-            getConnectionsManager().sendRequest(tL_contacts_getContacts, new LocationActivity$$ExternalSyntheticLambda44(this, j, 1));
+            getConnectionsManager().sendRequest(tL_contacts_getContacts, new SecretChatHelper$$ExternalSyntheticLambda29(this, j, 1));
         }
     }
 
@@ -3714,12 +3711,17 @@ public class ContactsController extends BaseController {
         reloadContactsStatuses();
     }
 
-    public void syncPhoneBookByAlert(HashMap<String, Contact> map, boolean z, boolean z2, boolean z3) {
-        Utilities.globalQueue.postRunnable(new DialogsActivity$$ExternalSyntheticLambda34(this, map, z, z2, z3));
+    public void syncPhoneBookByAlert(final HashMap<String, Contact> map, final boolean z, final boolean z2, final boolean z3) {
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                this.f$0.lambda$syncPhoneBookByAlert$7(map, z, z2, z3);
+            }
+        });
     }
 
     private void mergePhonebookAndTelegramContacts(HashMap<String, ArrayList<Object>> map, ArrayList<String> arrayList, HashMap<String, Contact> map2, boolean z) {
-        Utilities.globalQueue.postRunnable(new ChatActivity$$ExternalSyntheticLambda482(this, z, new ArrayList(this.contacts), map2, map, arrayList));
+        Utilities.globalQueue.postRunnable(new FileLoadOperation$$ExternalSyntheticLambda15(this, z, new ArrayList(this.contacts), map2, map, arrayList));
     }
 
     public void addContact(TLRPC.User user, TLRPC.TL_textWithEntities tL_textWithEntities, boolean z) {

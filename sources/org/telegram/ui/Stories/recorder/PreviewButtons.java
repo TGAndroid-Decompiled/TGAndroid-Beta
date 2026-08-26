@@ -19,9 +19,9 @@ import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import com.google.android.gms.internal.mlkit_vision_common.zzkk;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -30,13 +30,10 @@ import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyn
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda68;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
-import org.telegram.ui.WebviewActivity;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda29;
 
 public final class PreviewButtons extends FrameLayout {
     public ValueAnimator appearAnimator;
@@ -60,7 +57,7 @@ public final class PreviewButtons extends FrameLayout {
             setScaleType(ImageView.ScaleType.CENTER);
             setImageResource(i2);
             setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-            setOnClickListener(new ChatActivity$$ExternalSyntheticLambda68(this, i, 26));
+            setOnClickListener(new RichEditor$$ExternalSyntheticLambda29(this, i, 9));
         }
 
         @Override
@@ -126,7 +123,7 @@ public final class PreviewButtons extends FrameLayout {
                 this.w = Math.max(AndroidUtilities.dp(80.0f), iDp);
             }
             this.h = AndroidUtilities.dp(40.0f);
-            setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(this, 27));
+            setOnClickListener(new PaintView$$ExternalSyntheticLambda63(this, 5));
         }
 
         @Override
@@ -140,7 +137,7 @@ public final class PreviewButtons extends FrameLayout {
                     invalidate();
                 }
             }
-            float f2 = this.enabledT.set(this.enabled ? 1.0f : 0.5f, false);
+            float f2 = this.enabledT.set(this.enabled ? 1.0f : 0.5f);
             int saveCount = canvas.getSaveCount();
             if (f2 < 1.0f) {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (f2 * 255.0f), 31);
@@ -177,6 +174,7 @@ public final class PreviewButtons extends FrameLayout {
         @Override
         public final void setPressed(boolean z) {
             ValueAnimator valueAnimator;
+            int i = 7;
             if (isPressed() != z) {
                 super.setPressed(z);
                 invalidate();
@@ -191,9 +189,9 @@ public final class PreviewButtons extends FrameLayout {
                 if (f != 0.0f) {
                     ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(f, 0.0f);
                     this.backAnimator = valueAnimatorOfFloat;
-                    valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 12));
-                    this.backAnimator.addListener(new WebviewActivity.AnonymousClass3.AnonymousClass1(this, 3));
-                    this.backAnimator.setInterpolator(new OvershootInterpolator(1.5f));
+                    valueAnimatorOfFloat.addUpdateListener(new HintView2$$ExternalSyntheticLambda1(this, i));
+                    this.backAnimator.addListener(new HintView2.AnonymousClass2(this, i));
+                    zzkk.m(1.5f, this.backAnimator);
                     this.backAnimator.setDuration(350L);
                     this.backAnimator.start();
                 }
@@ -248,7 +246,7 @@ public final class PreviewButtons extends FrameLayout {
         ShareButtonView shareButtonView = new ShareButtonView(activity, string6, true);
         this.shareButton = shareButtonView;
         shareButtonView.setContentDescription(LocaleController.getString(i6));
-        addView(this.shareButton, LayoutHelper.createFrame(-2.0f, -2));
+        addView(this.shareButton, LayoutHelper.createFrame(-2, -2.0f));
         updateAppearT();
     }
 
@@ -268,7 +266,7 @@ public final class PreviewButtons extends FrameLayout {
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.appearT, z ? 1.0f : 0.0f);
         this.appearAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 11));
+        valueAnimatorOfFloat.addUpdateListener(new HintView2$$ExternalSyntheticLambda1(this, 6));
         if (this.appearing) {
             this.appearAnimator.setDuration(450L);
             this.appearAnimator.setInterpolator(new LinearInterpolator());
@@ -343,7 +341,7 @@ public final class PreviewButtons extends FrameLayout {
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             if (((ButtonView) arrayList.get(i11)).getVisibility() == 0) {
                 ((ButtonView) arrayList.get(i11)).layout(iM, iM$2, AndroidUtilities.dp(40.0f) + iM, iDp2);
-                iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(iMin, 40.0f, iM);
+                iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(40.0f, iMin, iM);
             }
         }
     }

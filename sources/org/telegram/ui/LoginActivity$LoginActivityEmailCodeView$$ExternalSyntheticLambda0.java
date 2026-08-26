@@ -1,6 +1,5 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -20,14 +19,10 @@ public final class LoginActivity$LoginActivityEmailCodeView$$ExternalSyntheticLa
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.$r8$classId) {
             case 0:
-                LoginActivity.LoginActivityEmailCodeView loginActivityEmailCodeView = this.f$0;
-                loginActivityEmailCodeView.getClass();
-                AndroidUtilities.runOnUIThread(new LoginActivity$LoginActivityEmailCodeView$$ExternalSyntheticLambda11(loginActivityEmailCodeView, tL_error, this.f$1, tLObject));
+                this.f$0.lambda$onNextPressed$23(this.f$1, tLObject, tL_error);
                 break;
             default:
-                LoginActivity.LoginActivityEmailCodeView loginActivityEmailCodeView2 = this.f$0;
-                loginActivityEmailCodeView2.getClass();
-                AndroidUtilities.runOnUIThread(new LoginActivity$LoginActivityEmailCodeView$$ExternalSyntheticLambda11(loginActivityEmailCodeView2, tL_error, tLObject, this.f$1));
+                this.f$0.lambda$onNextPressed$21(this.f$1, tLObject, tL_error);
                 break;
         }
     }

@@ -3,8 +3,6 @@ package me.vkryl.android.animator;
 import android.view.View;
 import android.view.animation.Interpolator;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.RadialProgress2$$ExternalSyntheticLambda0;
-import org.telegram.ui.GroupCallActivity;
 
 public final class BoolAnimator implements FactorAnimator.Target {
     public FactorAnimator animator;
@@ -15,13 +13,17 @@ public final class BoolAnimator implements FactorAnimator.Target {
     public final FactorAnimator.Target target;
     public boolean value;
 
-    public BoolAnimator(long j, View view, Interpolator interpolator) {
-        this(0, new RadialProgress2$$ExternalSyntheticLambda0(view), interpolator, j, false);
+    public BoolAnimator(View view, Interpolator interpolator, long j) {
+        this(0, new BoolAnimator$$ExternalSyntheticLambda1(view), interpolator, j, false);
+    }
+
+    public final float getFloatValue() {
+        return this.floatValue;
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
-        this.target.onFactorChangeFinished(f, this.id);
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
+        this.target.onFactorChangeFinished(this.id, f, null);
     }
 
     @Override
@@ -61,12 +63,12 @@ public final class BoolAnimator implements FactorAnimator.Target {
                 this.floatValue = f;
                 target.onFactorChanged(i, f, -1.0f, null);
             }
-            target.onFactorChangeFinished(f, i);
+            target.onFactorChangeFinished(i, f, null);
         }
     }
 
-    public BoolAnimator(int i, GroupCallActivity groupCallActivity, CubicBezierInterpolator cubicBezierInterpolator) {
-        this(i, groupCallActivity, cubicBezierInterpolator, 350L, false);
+    public BoolAnimator(int i, FactorAnimator.Target target, CubicBezierInterpolator cubicBezierInterpolator, long j) {
+        this(i, target, cubicBezierInterpolator, j, false);
     }
 
     public BoolAnimator(int i, FactorAnimator.Target target, Interpolator interpolator, long j, boolean z) {

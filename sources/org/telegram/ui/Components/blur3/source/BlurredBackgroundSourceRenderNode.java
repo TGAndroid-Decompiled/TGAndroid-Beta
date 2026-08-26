@@ -6,8 +6,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.RenderNode;
 import android.os.Build;
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import me.vkryl.core.reference.ReferenceList;
 import org.telegram.ui.Components.TranslateAlert2$$ExternalSyntheticApiModelOutline0;
 import org.telegram.ui.Components.blur3.DownscaleScrollableNoiseSuppressor;
@@ -26,7 +26,7 @@ public final class BlurredBackgroundSourceRenderNode implements BlurredBackgroun
     public int scrollableNoiseSuppressorIndex;
     public BlurredBackgroundSource underSource;
     public final ReferenceList drawables = new ReferenceList(true);
-    public final RenderNode renderNode = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$1();
+    public final RenderNode renderNode = TranslateAlert2$$ExternalSyntheticApiModelOutline0.m$2();
 
     public BlurredBackgroundSourceRenderNode(BlurredBackgroundSource blurredBackgroundSource) {
         this.fallbackSource = blurredBackgroundSource;
@@ -134,18 +134,18 @@ public final class BlurredBackgroundSourceRenderNode implements BlurredBackgroun
         this.recordingCanvas = null;
     }
 
-    public final int getVisiblePositions(int i, int i2, ArrayList arrayList) {
+    public final int getVisiblePositions(List list, int i, int i2) {
         RectF rectF;
         int i3 = 0;
         for (BlurredBackgroundDrawableRenderNode blurredBackgroundDrawableRenderNode : this.drawables) {
             if (blurredBackgroundDrawableRenderNode.renderNode.hasDisplayList() && blurredBackgroundDrawableRenderNode.alpha > 0) {
                 BlurredBackgroundDrawable.Props props = blurredBackgroundDrawableRenderNode.boundProps;
                 if (!props.boundsWithPadding.isEmpty()) {
-                    if (i < arrayList.size()) {
-                        rectF = (RectF) arrayList.get(i);
+                    if (i < list.size()) {
+                        rectF = (RectF) list.get(i);
                     } else {
                         rectF = new RectF();
-                        arrayList.add(rectF);
+                        list.add(rectF);
                     }
                     rectF.set(props.boundsWithPadding);
                     rectF.offset(blurredBackgroundDrawableRenderNode.sourceOffsetX, blurredBackgroundDrawableRenderNode.sourceOffsetY);

@@ -22,10 +22,13 @@ public final class EditTextEffects$$ExternalSyntheticLambda0 implements Runnable
                 this.f$0.lambda$onSpoilerClicked$3();
                 break;
             case 3:
-                this.f$0.lambda$onSpoilerClicked$4();
+                this.f$0.lambda$new$2();
+                break;
+            case 4:
+                this.f$0.lambda$dispatchTouchEvent$5();
                 break;
             default:
-                this.f$0.lambda$new$2();
+                this.f$0.lambda$onSpoilerClicked$4();
                 break;
         }
     }

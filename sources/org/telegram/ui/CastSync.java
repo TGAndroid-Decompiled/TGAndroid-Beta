@@ -10,266 +10,174 @@ import android.os.Handler;
 import android.provider.Settings;
 import com.google.android.gms.cast.MediaError;
 import com.google.android.gms.cast.MediaSeekOptions;
+import com.google.android.gms.cast.MediaStatus;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
-import com.google.android.gms.cast.framework.Session;
 import com.google.android.gms.cast.framework.SessionManagerListener;
 import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import com.google.android.gms.cast.framework.media.zzac;
 import com.google.android.gms.cast.framework.media.zzbb;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.internal.BasePendingResult;
 import com.google.android.gms.common.internal.zzah;
-import com.google.android.gms.dynamite.DynamiteModule;
-import com.google.android.gms.internal.clearcut.zzy;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.VideoPlayer;
 
-public abstract class CastSync {
-    public static boolean listened;
+public class CastSync {
+    public static final int TYPE_MUSIC = 1;
+    public static final int TYPE_PHOTOVIEWER = 0;
+    private static boolean listened;
     public static AtomicInteger pending;
-    public static int savedVolume;
-    public static AnonymousClass2 syncingVolume;
+    private static int savedVolume;
+    private static ContentObserver syncingVolume;
     public static int type;
 
-    public final class AnonymousClass1 implements DynamiteModule.VersionPolicy.IVersions, SessionManagerListener {
-        public int val$type;
-
-        public final class C00051 extends RemoteMediaClient.Callback {
-            @Override
-            public final void onMediaError(MediaError mediaError) {
-                FileLog.e("Chromecast Media Error: " + mediaError);
-            }
-
-            @Override
-            public final void onStatusUpdated() {
-                FileLog.d("onStatusUpdated");
-                int i = CastSync.type;
-                if (i == 0) {
-                    PhotoViewer.getInstance().syncCastedPlayer();
-                } else if (i == 1) {
-                    MediaController.getInstance().syncCastedPlayer();
-                }
-            }
-        }
-
-        public AnonymousClass1() {
-            this.val$type = 3;
-        }
-
-        @Override
-        public void onSessionEnded(Session session, int i) {
-            CastSync.doSyncVolume(false);
-            int i2 = CastSync.type;
-            if (i2 == 0) {
-                PhotoViewer.getInstance().syncCastedPlayer();
-            } else if (i2 == 1) {
-                MediaController.getInstance().syncCastedPlayer();
-            }
-        }
-
-        @Override
-        public void onSessionEnding(Session session) {
-            CastSync.doSyncVolume(false);
-            int i = CastSync.type;
-            if (i == 0) {
-                PhotoViewer.getInstance().syncCastedPlayer();
-            } else if (i == 1) {
-                MediaController.getInstance().syncCastedPlayer();
-            }
-        }
-
-        @Override
-        public void onSessionResumeFailed(Session session, int i) {
-        }
-
-        @Override
-        public void onSessionResumed(Session session, boolean z) {
-        }
-
-        @Override
-        public void onSessionResuming(Session session, String str) {
-        }
-
-        @Override
-        public void onSessionStartFailed(Session session, int i) {
-        }
-
-        @Override
-        public void onSessionStarted(Session session, String str) {
-            CastSession castSession = (CastSession) session;
-            if (castSession == null) {
-                return;
-            }
-            zzah.checkMainThread("Must be called from the main thread.");
-            RemoteMediaClient remoteMediaClient = castSession.zzj;
-            if (remoteMediaClient == null) {
-                return;
-            }
-            AtomicInteger atomicInteger = CastSync.pending;
-            if (atomicInteger != null) {
-                atomicInteger.set(0);
-            }
-            remoteMediaClient.registerCallback(new C00051());
-            zzah.checkMainThread("Must be called from the main thread.");
-            if (remoteMediaClient.zzy()) {
-                RemoteMediaClient.zzz(new zzac(remoteMediaClient, 3));
-            } else {
-                RemoteMediaClient.zzf();
-            }
-            long currentPosition = -1;
-            int i = this.val$type;
-            if (i == 0) {
-                VideoPlayer videoPlayer = PhotoViewer.getInstance().videoPlayer;
-                if (videoPlayer != null) {
-                    currentPosition = videoPlayer.getCurrentPosition();
-                }
-            } else if (i == 1) {
-                currentPosition = MediaController.getInstance().getCurrentPosition();
-            }
-            if (currentPosition >= 0) {
-                CastSync.seekTo(currentPosition);
-            }
-            CastSync.doSyncVolume(true);
-        }
-
-        @Override
-        public void onSessionStarting(Session session) {
-        }
-
-        @Override
-        public void onSessionSuspended(Session session, int i) {
-        }
-
-        @Override
-        public int zza(Context context, String str) {
-            return this.val$type;
-        }
-
-        @Override
-        public int zzb(Context context, String str, boolean z) {
-            return 0;
-        }
-
-        public AnonymousClass1(int i) {
-            this.val$type = i;
-        }
-    }
-
-    public final class AnonymousClass2 extends ContentObserver {
-        public final int $r8$classId;
-
-        public AnonymousClass2(Handler handler, int i) {
-            super(handler);
-            this.$r8$classId = i;
-        }
-
-        @Override
-        public final void onChange(boolean z) {
-            switch (this.$r8$classId) {
-                case 0:
-                    CastSync.setVolume(CastSync.getDeviceVolume());
-                    break;
-                default:
-                    zzy.zzct.set(true);
-                    break;
-            }
-        }
-    }
-
-    public static void check(int i) {
+    public static void check(final int i) {
+        CastContext sharedInstance;
         type = i;
         if (listened) {
             return;
         }
         try {
-            Context context = LaunchActivity.instance;
-            if (context == null) {
-                context = ApplicationLoader.applicationContext;
+            if (getContext() != null && (sharedInstance = CastContext.getSharedInstance(getContext())) != null) {
+                sharedInstance.getSessionManager().addSessionManagerListener(new SessionManagerListener() {
+                    @Override
+                    public void onSessionResumeFailed(CastSession castSession, int i2) {
+                    }
+
+                    @Override
+                    public void onSessionResumed(CastSession castSession, boolean z) {
+                    }
+
+                    @Override
+                    public void onSessionResuming(CastSession castSession, String str) {
+                    }
+
+                    @Override
+                    public void onSessionStartFailed(CastSession castSession, int i2) {
+                    }
+
+                    @Override
+                    public void onSessionStarted(CastSession castSession, String str) {
+                        long currentPosition;
+                        if (castSession == null) {
+                            return;
+                        }
+                        zzah.checkMainThread("Must be called from the main thread.");
+                        RemoteMediaClient remoteMediaClient = castSession.zzj;
+                        if (remoteMediaClient == null) {
+                            return;
+                        }
+                        AtomicInteger atomicInteger = CastSync.pending;
+                        if (atomicInteger != null) {
+                            atomicInteger.set(0);
+                        }
+                        remoteMediaClient.registerCallback(new RemoteMediaClient.Callback() {
+                            @Override
+                            public void onMediaError(MediaError mediaError) {
+                                FileLog.e("Chromecast Media Error: " + mediaError);
+                            }
+
+                            @Override
+                            public void onStatusUpdated() {
+                                FileLog.d("onStatusUpdated");
+                                CastSync.syncInterface();
+                            }
+                        });
+                        zzah.checkMainThread("Must be called from the main thread.");
+                        if (remoteMediaClient.zzy()) {
+                            RemoteMediaClient.zzz(new zzac(remoteMediaClient, 3));
+                        } else {
+                            RemoteMediaClient.zzf();
+                        }
+                        int i2 = i;
+                        if (i2 == 0) {
+                            currentPosition = PhotoViewer.getInstance().getCurrentPosition();
+                        } else {
+                            currentPosition = i2 == 1 ? MediaController.getInstance().getCurrentPosition() : -1L;
+                        }
+                        if (currentPosition >= 0) {
+                            CastSync.seekTo(currentPosition);
+                        }
+                        CastSync.doSyncVolume(true);
+                    }
+
+                    @Override
+                    public void onSessionStarting(CastSession castSession) {
+                    }
+
+                    @Override
+                    public void onSessionSuspended(CastSession castSession, int i2) {
+                    }
+
+                    @Override
+                    public void onSessionEnded(CastSession castSession, int i2) {
+                        CastSync.doSyncVolume(false);
+                        CastSync.syncInterface();
+                    }
+
+                    @Override
+                    public void onSessionEnding(CastSession castSession) {
+                        CastSync.doSyncVolume(false);
+                        CastSync.syncInterface();
+                    }
+                });
+                listened = true;
             }
-            if (context == null) {
-                return;
-            }
-            Context context2 = LaunchActivity.instance;
-            if (context2 == null) {
-                context2 = ApplicationLoader.applicationContext;
-            }
-            CastContext sharedInstance = CastContext.getSharedInstance(context2);
-            if (sharedInstance == null) {
-                return;
-            }
-            sharedInstance.getSessionManager().addSessionManagerListener(new AnonymousClass1(i));
-            listened = true;
         } catch (Exception e) {
             FileLog.e(e);
         }
     }
 
     public static void doSyncVolume(boolean z) {
+        Context context;
         AudioManager audioManager;
-        AnonymousClass2 anonymousClass2 = syncingVolume;
-        if ((anonymousClass2 != null) != z) {
-            if (z) {
-                Context context = LaunchActivity.instance;
-                if (context == null) {
-                    context = ApplicationLoader.applicationContext;
-                }
-                if (context == null || (audioManager = (AudioManager) context.getSystemService("audio")) == null) {
+        ContentObserver contentObserver = syncingVolume;
+        if ((contentObserver != null) != z) {
+            if (!z) {
+                if (contentObserver == null || (context = getContext()) == null) {
                     return;
                 }
-                savedVolume = audioManager.getStreamVolume(3);
-                ContentResolver contentResolver = context.getContentResolver();
-                Uri uri = Settings.System.CONTENT_URI;
-                AnonymousClass2 anonymousClass3 = new AnonymousClass2(new Handler(), 0);
-                syncingVolume = anonymousClass3;
-                contentResolver.registerContentObserver(uri, true, anonymousClass3);
-                setVolume(getDeviceVolume());
-                audioManager.adjustStreamVolume(3, 0, 1);
-                return;
-            }
-            if (anonymousClass2 != null) {
-                Context context2 = LaunchActivity.instance;
-                if (context2 == null) {
-                    context2 = ApplicationLoader.applicationContext;
-                }
-                if (context2 == null) {
-                    return;
-                }
-                context2.getContentResolver().unregisterContentObserver(syncingVolume);
+                context.getContentResolver().unregisterContentObserver(syncingVolume);
                 syncingVolume = null;
-                AudioManager audioManager2 = (AudioManager) context2.getSystemService("audio");
+                AudioManager audioManager2 = (AudioManager) context.getSystemService("audio");
                 if (audioManager2 == null) {
                     return;
                 }
                 audioManager2.setStreamVolume(3, savedVolume, 0);
-                int i = type;
-                if (i == 0) {
-                    PhotoViewer.getInstance().syncCastedPlayer();
-                } else if (i == 1) {
-                    MediaController.getInstance().syncCastedPlayer();
-                }
+                syncInterface();
+                return;
             }
+            Context context2 = getContext();
+            if (context2 == null || (audioManager = (AudioManager) context2.getSystemService("audio")) == null) {
+                return;
+            }
+            savedVolume = audioManager.getStreamVolume(3);
+            ContentResolver contentResolver = context2.getContentResolver();
+            Uri uri = Settings.System.CONTENT_URI;
+            ContentObserver contentObserver2 = new ContentObserver(new Handler()) {
+                @Override
+                public void onChange(boolean z2) {
+                    CastSync.setVolume(CastSync.getDeviceVolume());
+                }
+            };
+            syncingVolume = contentObserver2;
+            contentResolver.registerContentObserver(uri, true, contentObserver2);
+            setVolume(getDeviceVolume());
+            audioManager.adjustStreamVolume(3, 0, 1);
         }
     }
 
     public static RemoteMediaClient getClient() {
         CastSession currentCastSession;
-        Context context = LaunchActivity.instance;
-        if (context == null) {
-            context = ApplicationLoader.applicationContext;
-        }
-        if (context == null) {
+        if (getContext() == null) {
             return null;
         }
         try {
-            Context context2 = LaunchActivity.instance;
-            if (context2 == null) {
-                context2 = ApplicationLoader.applicationContext;
-            }
-            CastContext sharedInstance = CastContext.getSharedInstance(context2);
+            CastContext sharedInstance = CastContext.getSharedInstance(getContext());
             if (sharedInstance == null || (currentCastSession = sharedInstance.getSessionManager().getCurrentCastSession()) == null || !currentCastSession.isConnected()) {
                 return null;
             }
@@ -281,12 +189,14 @@ public abstract class CastSync {
         }
     }
 
+    public static Context getContext() {
+        LaunchActivity launchActivity = LaunchActivity.instance;
+        return launchActivity == null ? ApplicationLoader.applicationContext : launchActivity;
+    }
+
     public static float getDeviceVolume() {
         AudioManager audioManager;
-        Context context = LaunchActivity.instance;
-        if (context == null) {
-            context = ApplicationLoader.applicationContext;
-        }
+        Context context = getContext();
         if (context == null || (audioManager = (AudioManager) context.getSystemService("audio")) == null) {
             return 0.0f;
         }
@@ -296,19 +206,37 @@ public abstract class CastSync {
         return Utilities.clamp01((streamVolume - streamMinVolume) / (streamMaxVolume - streamMinVolume));
     }
 
+    public static long getPosition() {
+        RemoteMediaClient client = getClient();
+        if (client == null) {
+            return -1L;
+        }
+        return client.getApproximateStreamPosition();
+    }
+
+    public static float getSpeed() {
+        MediaStatus mediaStatus;
+        RemoteMediaClient client = getClient();
+        if (client == null || (mediaStatus = client.getMediaStatus()) == null) {
+            return 1.0f;
+        }
+        return (float) mediaStatus.zzd;
+    }
+
+    public static float getVolume() {
+        MediaStatus mediaStatus;
+        RemoteMediaClient client = getClient();
+        if (client == null || (mediaStatus = client.getMediaStatus()) == null) {
+            return 0.5f;
+        }
+        return (float) mediaStatus.zzi;
+    }
+
     public static boolean isActive() {
         CastSession currentCastSession;
-        Context context = LaunchActivity.instance;
-        if (context == null) {
-            context = ApplicationLoader.applicationContext;
-        }
-        if (context != null) {
+        if (getContext() != null) {
             try {
-                Context context2 = LaunchActivity.instance;
-                if (context2 == null) {
-                    context2 = ApplicationLoader.applicationContext;
-                }
-                CastContext sharedInstance = CastContext.getSharedInstance(context2);
+                CastContext sharedInstance = CastContext.getSharedInstance(getContext());
                 if (sharedInstance != null && (currentCastSession = sharedInstance.getSessionManager().getCurrentCastSession()) != null && (currentCastSession.isConnecting() || currentCastSession.isConnected())) {
                     return true;
                 }
@@ -318,6 +246,39 @@ public abstract class CastSync {
             }
         }
         return false;
+    }
+
+    public static boolean isPlaying() {
+        RemoteMediaClient client = getClient();
+        if (client == null) {
+            return false;
+        }
+        return type == 0 ? !client.isPaused() : client.isPlaying();
+    }
+
+    public static boolean isUpdatePending() {
+        AtomicInteger atomicInteger = pending;
+        return atomicInteger != null && atomicInteger.get() > 0;
+    }
+
+    public static void lambda$seekTo$0(Status status) {
+        pending.decrementAndGet();
+    }
+
+    public static void lambda$setPlaying$2(Status status) {
+        pending.decrementAndGet();
+    }
+
+    public static void lambda$setPlaying$3(Status status) {
+        pending.decrementAndGet();
+    }
+
+    public static void lambda$setSpeed$4(Status status) {
+        pending.decrementAndGet();
+    }
+
+    public static void lambda$setVolume$1(Status status) {
+        pending.decrementAndGet();
     }
 
     public static void seekTo(long j) {
@@ -410,13 +371,36 @@ public abstract class CastSync {
         basePendingResultZzf.addStatusListener(new CastSync$$ExternalSyntheticLambda1(2));
     }
 
+    public static void stop() {
+        if (getContext() == null) {
+            return;
+        }
+        try {
+            CastContext sharedInstance = CastContext.getSharedInstance(getContext());
+            if (sharedInstance == null) {
+                return;
+            }
+            sharedInstance.getSessionManager().endCurrentSession(true);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public static void syncInterface() {
+        int i = type;
+        if (i == 0) {
+            PhotoViewer.getInstance().syncCastedPlayer();
+        } else if (i == 1) {
+            MediaController.getInstance().syncCastedPlayer();
+        }
+    }
+
     public static void syncPosition(long j) {
         if (j < 0) {
             return;
         }
-        RemoteMediaClient client = getClient();
-        long approximateStreamPosition = client == null ? -1L : client.getApproximateStreamPosition();
-        if (approximateStreamPosition == -1 || Math.abs(approximateStreamPosition - j) > 1500) {
+        long position = getPosition();
+        if (position == -1 || Math.abs(position - j) > 1500) {
             seekTo(j);
         }
     }

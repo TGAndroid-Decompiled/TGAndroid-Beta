@@ -1,5 +1,6 @@
 package kotlinx.coroutines.flow;
 
+import com.google.common.base.Joiner;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.Unit;
@@ -11,7 +12,6 @@ import kotlinx.coroutines.CancellableContinuationImpl;
 import kotlinx.coroutines.Job;
 import kotlinx.coroutines.flow.internal.AbstractSharedFlow;
 import kotlinx.coroutines.flow.internal.NullSurrogateKt;
-import kotlinx.coroutines.internal.Symbol;
 
 public final class StateFlowImpl extends AbstractSharedFlow implements MutableStateFlow, Flow {
     public static final AtomicReferenceFieldUpdater _state$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(StateFlowImpl.class, Object.class, "_state$volatile");
@@ -56,9 +56,9 @@ public final class StateFlowImpl extends AbstractSharedFlow implements MutableSt
     }
 
     public final Object getValue() {
-        Symbol symbol = NullSurrogateKt.NULL;
+        Joiner joiner = NullSurrogateKt.NULL;
         Object obj = _state$volatile$FU.get(this);
-        if (obj == symbol) {
+        if (obj == joiner) {
             return null;
         }
         return obj;
@@ -67,7 +67,7 @@ public final class StateFlowImpl extends AbstractSharedFlow implements MutableSt
     public final void setValue(Object obj) {
         int i;
         StateFlowSlot[] stateFlowSlotArr;
-        Symbol symbol;
+        Joiner joiner;
         if (obj == null) {
             obj = NullSurrogateKt.NULL;
         }
@@ -92,20 +92,20 @@ public final class StateFlowImpl extends AbstractSharedFlow implements MutableSt
                             AtomicReference atomicReference = stateFlowSlot._state;
                             while (true) {
                                 Object obj2 = atomicReference.get();
-                                if (obj2 == null || obj2 == (symbol = FlowKt.PENDING)) {
+                                if (obj2 == null || obj2 == (joiner = FlowKt.PENDING)) {
                                     break;
                                 }
-                                Symbol symbol2 = FlowKt.NONE;
-                                if (obj2 != symbol2) {
+                                Joiner joiner2 = FlowKt.NONE;
+                                if (obj2 != joiner2) {
                                     do {
-                                        if (atomicReference.compareAndSet(obj2, symbol2)) {
+                                        if (atomicReference.compareAndSet(obj2, joiner2)) {
                                             ((CancellableContinuationImpl) obj2).resumeWith(Unit.INSTANCE);
                                             break;
                                         }
                                     } while (atomicReference.get() == obj2);
                                 } else {
                                     do {
-                                        if (atomicReference.compareAndSet(obj2, symbol)) {
+                                        if (atomicReference.compareAndSet(obj2, joiner)) {
                                             break;
                                         }
                                     } while (atomicReference.get() == obj2);

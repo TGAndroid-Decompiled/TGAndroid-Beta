@@ -2,10 +2,7 @@ package org.telegram.ui.iv;
 
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.MessageSendPreview;
-import org.telegram.ui.MessageSendPreview$$ExternalSyntheticLambda11;
 
 public final class RichEditor$$ExternalSyntheticLambda14 implements ViewTreeObserver.OnGlobalFocusChangeListener {
     public final int $r8$classId;
@@ -23,19 +20,11 @@ public final class RichEditor$$ExternalSyntheticLambda14 implements ViewTreeObse
                 ((RichEditor) this.f$0).updateBlockButtons();
                 break;
             case 1:
-                MessageSendPreview messageSendPreview = (MessageSendPreview) this.f$0;
-                if (!messageSendPreview.focusable && (view2 instanceof EditText)) {
-                    AndroidUtilities.hideKeyboard(messageSendPreview.editText);
-                    AndroidUtilities.runOnUIThread(new MessageSendPreview$$ExternalSyntheticLambda11(messageSendPreview, (EditText) view2, 0), 200L);
-                    break;
-                }
-                break;
-            case 2:
                 ((ChatAttachAlertRichLayout) this.f$0).updateToolbarBlockType();
                 break;
-            case 3:
+            case 2:
                 RichEditorListView richEditorListView = (RichEditorListView) this.f$0;
-                richEditorListView.doNotDetachViews = (view2 == null || richEditorListView.findContainingItemView(view2) == null) ? false : true;
+                richEditorListView.doNotDetachViews((view2 == null || richEditorListView.findContainingItemView(view2) == null) ? false : true);
                 if (view2 instanceof RichEditText) {
                     richEditorListView.focusedEditText = (RichEditText) view2;
                 }

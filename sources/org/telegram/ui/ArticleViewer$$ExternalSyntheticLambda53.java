@@ -1,117 +1,129 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileRefController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.app.Activity;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.BirthdayController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_stats;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.Components.DeleteMessagesBottomSheet;
-import org.telegram.ui.Components.SharedMediaLayout;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda73;
-import org.telegram.ui.web.BotWebViewContainer;
+import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.Cells.CheckBoxCell;
+import org.telegram.ui.Charts.view_data.LineViewData;
+import org.telegram.ui.Components.ItemOptions;
+import org.telegram.ui.Storage.CacheModel;
 
-public final class ArticleViewer$$ExternalSyntheticLambda53 implements RequestDelegate {
+public final class ArticleViewer$$ExternalSyntheticLambda53 implements View.OnClickListener {
     public final int $r8$classId;
     public final Object f$0;
     public final Object f$1;
-    public final int f$2;
-    public final Object f$3;
 
-    public ArticleViewer$$ExternalSyntheticLambda53(int i, MessageSendPreview$15$$ExternalSyntheticLambda0 messageSendPreview$15$$ExternalSyntheticLambda0, BaseFragment baseFragment, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
-        this.$r8$classId = 5;
-        this.f$2 = i;
-        this.f$0 = messageSendPreview$15$$ExternalSyntheticLambda0;
-        this.f$1 = baseFragment;
-        this.f$3 = tL_payments_assignPlayMarketTransaction;
+    public ArticleViewer$$ExternalSyntheticLambda53(int i, Object obj, Object obj2) {
+        this.$r8$classId = i;
+        this.f$0 = obj;
+        this.f$1 = obj2;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i = 1;
-        Object obj = this.f$1;
-        Object obj2 = this.f$3;
-        Object obj3 = this.f$0;
+    public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                AndroidUtilities.runOnUIThread(new OAuthSheet$$ExternalSyntheticLambda9((IArticleViewer) obj3, (ArticleViewer.WebpageAdapter) obj, tL_error, tLObject, this.f$2, (ArticleViewer.BlockChannelCell) obj2, 5));
+                ((ArticleViewer) this.f$0).lambda$setParentActivity$24((Activity) this.f$1, view);
                 break;
             case 1:
-                AlertDialog alertDialog = (AlertDialog) obj;
-                if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda73(alertDialog, i));
-                } else {
-                    AndroidUtilities.runOnUIThread(new WearAuthSheet$$ExternalSyntheticLambda3((SharedPreferences) obj3, (TLRPC.TL_help_support) tLObject, alertDialog, this.f$2, (BaseFragment) obj2, 16));
-                }
+                ((AvatarPreviewer.Layout) this.f$0).lambda$setData$3((AvatarPreviewer.MenuItem) this.f$1, view);
                 break;
             case 2:
-                DeleteMessagesBottomSheet deleteMessagesBottomSheet = (DeleteMessagesBottomSheet) obj3;
-                deleteMessagesBottomSheet.getClass();
-                AndroidUtilities.runOnUIThread(new WearAuthSheet$$ExternalSyntheticLambda3((Object) deleteMessagesBottomSheet, (Object) tLObject, obj, this.f$2, (int[]) obj2, 18));
+                ((CacheControlActivity.ListAdapter) this.f$0).lambda$onBindViewHolder$3((CheckBoxCell) this.f$1, view);
                 break;
             case 3:
-                SharedMediaLayout sharedMediaLayout = (SharedMediaLayout) obj3;
-                AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda337((AlertDialog[]) obj, 8));
-                int i2 = this.f$2;
-                if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda71(sharedMediaLayout, i2, tL_error, (TLRPC.TL_messages_editMessage) obj2, 25));
-                } else {
-                    MessagesController.getInstance(i2).processUpdates((TLRPC.Updates) tLObject, false);
-                }
+                ((CachedMediaLayout.AnonymousClass1) this.f$0).lambda$createView$4((CachedMediaLayout.ItemInner) this.f$1, view);
                 break;
             case 4:
-                LaunchActivity launchActivity = (LaunchActivity) obj3;
-                launchActivity.getClass();
-                AndroidUtilities.runOnUIThread(new WearAuthSheet$$ExternalSyntheticLambda3(launchActivity, tLObject, (Uri) obj, this.f$2, (AlertDialog) obj2, 22), 2L);
+                ((CallLogActivity) this.f$0).lambda$onCallClick$8((CallLogActivity.CallLogRow) this.f$1, view);
                 break;
             case 5:
-                boolean z = tLObject instanceof TLRPC.Updates;
-                int i3 = this.f$2;
-                if (z) {
-                    MessagesController.getInstance(i3).processUpdates((TLRPC.Updates) tLObject, false);
-                    AndroidUtilities.runOnUIThread((MessageSendPreview$15$$ExternalSyntheticLambda0) obj3);
-                } else if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new OAuthSheet$$ExternalSyntheticLambda2(i3, tL_error, (BaseFragment) obj, (TLRPC.TL_payments_assignPlayMarketTransaction) obj2, 10));
-                }
+                ((ContentPreviewViewer.AnonymousClass1) this.f$0).lambda$run$10((ArrayList) this.f$1, view);
                 break;
             case 6:
-                GroupCallSheet$$ExternalSyntheticLambda0 groupCallSheet$$ExternalSyntheticLambda0 = (GroupCallSheet$$ExternalSyntheticLambda0) obj2;
-                if (tL_error == null || !FileRefController.isFileRefError(tL_error.text) || obj3 == null) {
-                    groupCallSheet$$ExternalSyntheticLambda0.run(tLObject, tL_error);
-                } else {
-                    FileRefController.getInstance(this.f$2).requestReference(obj3, (TLRPC.TL_messages_getAttachedStickers) obj, groupCallSheet$$ExternalSyntheticLambda0);
-                }
+                ((FiltersSetupActivity.ListAdapter) this.f$0).lambda$onCreateViewHolder$9((FiltersSetupActivity.SuggestedFilterCell) this.f$1, view);
                 break;
             case 7:
-                AndroidUtilities.runOnUIThread(new WearAuthSheet$$ExternalSyntheticLambda3(tLObject, (boolean[]) obj3, (Utilities.Callback) obj, this.f$2, (TL_account.updateEmojiStatus) obj2, 28));
+                ((GroupCallActivity.AnonymousClass20) this.f$0).lambda$createTextView$0((TextView) this.f$1, view);
+                break;
+            case 8:
+                ((MessageStatisticActivity.ListAdapter) this.f$0).lambda$onBindViewHolder$0((MessageObject) this.f$1, view);
+                break;
+            case 9:
+                ((SelectAnimatedEmojiDialog.SelectStatusDurationDialog) this.f$0).lambda$new$6((Context) this.f$1, view);
+                break;
+            case 10:
+                ((StatisticActivity.Adapter) this.f$0).lambda$onBindViewHolder$0((StatisticActivity.RecentPostInfo) this.f$1, view);
+                break;
+            case 11:
+                ((StatisticActivity.BaseChartCell.CheckBoxHolder) this.f$0).lambda$setData$0((LineViewData) this.f$1, view);
+                break;
+            case 12:
+                ((ArticleViewer.BlockChannelCell) this.f$0).lambda$new$0((IArticleViewer) this.f$1, view);
+                break;
+            case 13:
+                ((ChannelMonetizationLayout) this.f$0).lambda$new$6((BaseFragment) this.f$1, view);
+                break;
+            case 14:
+                ChannelMonetizationLayout.lambda$showTransactionSheet$38((Context) this.f$0, (TL_stats.TL_broadcastRevenueTransactionWithdrawal) this.f$1, view);
+                break;
+            case 15:
+                ChatActivity.lambda$openAttachBotLayout$215((CheckBoxCell) this.f$0, (AtomicBoolean) this.f$1, view);
+                break;
+            case 16:
+                ((ChatActivity) this.f$0).lambda$updateTopPanel$228((ItemOptions) this.f$1, view);
+                break;
+            case 17:
+                ((ChatActivity) this.f$0).lambda$createView$78((Context) this.f$1, view);
+                break;
+            case 18:
+                ((ChatActivity) this.f$0).lambda$createMenu$269((MessageObject) this.f$1, view);
+                break;
+            case 19:
+                ((ChatActivity) this.f$0).lambda$updatePinnedMessageView$226((String) this.f$1, view);
+                break;
+            case 20:
+                ((ChatEditActivity) this.f$0).lambda$createView$22((Context) this.f$1, view);
+                break;
+            case 21:
+                ((ChatEditActivity) this.f$0).lambda$createView$27((FrameLayout) this.f$1, view);
+                break;
+            case 22:
+                ((ChatRightsEditActivity) this.f$0).lambda$createView$5((BottomSheet.Builder) this.f$1, view);
+                break;
+            case 23:
+                ((ContactAddActivity) this.f$0).lambda$createView$14((TLRPC.User) this.f$1, view);
+                break;
+            case 24:
+                ((DialogCacheBottomSheet) this.f$0).lambda$new$0((CacheModel) this.f$1, view);
+                break;
+            case 25:
+                DialogsActivity.lambda$showChatPreview$96((ActionBarPopupWindow.ActionBarPopupWindowLayout[]) this.f$0, (int[]) this.f$1, view);
+                break;
+            case 26:
+                ((DialogsActivity) this.f$0).lambda$showChatPreview$102((ArrayList) this.f$1, view);
+                break;
+            case 27:
+                ((DialogsActivity) this.f$0).lambda$updateDialogsHint$44((BirthdayController.BirthdayState) this.f$1, view);
+                break;
+            case 28:
+                ((DialogsActivity) this.f$0).lambda$updateDialogsHint$65((String) this.f$1, view);
                 break;
             default:
-                BotWebViewContainer botWebViewContainer = (BotWebViewContainer) obj3;
-                botWebViewContainer.getClass();
-                AndroidUtilities.runOnUIThread(new OAuthSheet$$ExternalSyntheticLambda9(botWebViewContainer, (String) obj, tLObject, tL_error, this.f$2, (BotWebViewContainer.MyWebView) obj2, 14));
+                ((DialogsActivity) this.f$0).lambda$createView$28((AlertDialog[]) this.f$1, view);
                 break;
         }
-    }
-
-    public ArticleViewer$$ExternalSyntheticLambda53(Object obj, int i, TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers, GroupCallSheet$$ExternalSyntheticLambda0 groupCallSheet$$ExternalSyntheticLambda0) {
-        this.$r8$classId = 6;
-        this.f$0 = obj;
-        this.f$2 = i;
-        this.f$1 = tL_messages_getAttachedStickers;
-        this.f$3 = groupCallSheet$$ExternalSyntheticLambda0;
-    }
-
-    public ArticleViewer$$ExternalSyntheticLambda53(Object obj, Object obj2, int i, Object obj3, int i2) {
-        this.$r8$classId = i2;
-        this.f$0 = obj;
-        this.f$1 = obj2;
-        this.f$2 = i;
-        this.f$3 = obj3;
     }
 }

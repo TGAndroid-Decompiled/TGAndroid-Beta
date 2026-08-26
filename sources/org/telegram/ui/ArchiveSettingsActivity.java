@@ -6,146 +6,144 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RecyclerListView;
 
-public final class ArchiveSettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    public ListAdapter adapter;
-    public boolean changed;
-    public final ArrayList items;
-    public RecyclerListView listView;
-    public final ArrayList oldItems;
-    public TLRPC.GlobalPrivacySettings settings;
-    public int shiftDp;
+public class ArchiveSettingsActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    private static final int VIEW_TYPE_CHECK = 1;
+    private static final int VIEW_TYPE_HEADER = 0;
+    private static final int VIEW_TYPE_SHADOW = 2;
+    private ListAdapter adapter;
+    private boolean changed;
+    private final ArrayList<ItemInner> items;
+    private RecyclerListView listView;
+    private final ArrayList<ItemInner> oldItems;
+    private TLRPC.GlobalPrivacySettings settings;
+    private int shiftDp;
 
-    public final class ItemInner extends AdapterWithDiffUtils.Item {
-        public final int id;
-        public final String text;
+    public static class ItemInner extends AdapterWithDiffUtils.Item {
+        public int id;
+        public CharSequence text;
 
-        public ItemInner(int i, int i2, String str) {
+        public ItemInner(int i, int i2, CharSequence charSequence) {
             super(i, false);
             this.id = i2;
-            this.text = str;
+            this.text = charSequence;
         }
 
-        public final boolean equals(Object obj) {
+        public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
             }
-            if (obj == null || ItemInner.class != obj.getClass()) {
-                return false;
+            if (obj != null && getClass() == obj.getClass()) {
+                ItemInner itemInner = (ItemInner) obj;
+                if (this.id == itemInner.id && Objects.equals(this.text, itemInner.text)) {
+                    return true;
+                }
             }
-            ItemInner itemInner = (ItemInner) obj;
-            return this.id == itemInner.id && Objects.equals(this.text, itemInner.text);
+            return false;
         }
     }
 
-    public final class ListAdapter extends AdapterWithDiffUtils {
-        public ListAdapter() {
+    public class ListAdapter extends AdapterWithDiffUtils {
+        private ListAdapter() {
         }
 
         @Override
-        public final int getItemCount() {
+        public int getItemCount() {
             return ArchiveSettingsActivity.this.items.size();
         }
 
         @Override
-        public final int getItemViewType(int i) {
-            if (i < 0) {
+        public int getItemViewType(int i) {
+            if (i < 0 || i >= ArchiveSettingsActivity.this.items.size()) {
                 return 0;
             }
-            ArchiveSettingsActivity archiveSettingsActivity = ArchiveSettingsActivity.this;
-            if (i >= archiveSettingsActivity.items.size()) {
-                return 0;
-            }
-            return ((ItemInner) archiveSettingsActivity.items.get(i)).viewType;
+            return ((ItemInner) ArchiveSettingsActivity.this.items.get(i)).viewType;
         }
 
         @Override
-        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            int i = viewHolder.mItemViewType;
-            return (i == 2 || i == 0) ? false : true;
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return (viewHolder.getItemViewType() == 2 || viewHolder.getItemViewType() == 0) ? false : true;
         }
 
         @Override
-        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
             boolean z;
-            if (i >= 0) {
-                ArchiveSettingsActivity archiveSettingsActivity = ArchiveSettingsActivity.this;
-                ArrayList arrayList = archiveSettingsActivity.items;
-                if (i >= arrayList.size()) {
+            if (i < 0 || i >= ArchiveSettingsActivity.this.items.size()) {
+                return;
+            }
+            ItemInner itemInner = (ItemInner) ArchiveSettingsActivity.this.items.get(i);
+            int i2 = i + 1;
+            int i3 = 0;
+            boolean z2 = i2 < ArchiveSettingsActivity.this.items.size() && ((ItemInner) ArchiveSettingsActivity.this.items.get(i2)).viewType == itemInner.viewType;
+            if (viewHolder.getItemViewType() == 0) {
+                ((HeaderCell) viewHolder.itemView).setText(itemInner.text);
+                return;
+            }
+            if (viewHolder.getItemViewType() == 2) {
+                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                if (TextUtils.isEmpty(itemInner.text)) {
+                    textInfoPrivacyCell.setFixedSize(12);
+                    textInfoPrivacyCell.setText(null);
+                    return;
+                } else {
+                    textInfoPrivacyCell.setFixedSize(0);
+                    textInfoPrivacyCell.setText(itemInner.text);
                     return;
                 }
-                ItemInner itemInner = (ItemInner) arrayList.get(i);
-                int i2 = i + 1;
-                int i3 = 0;
-                boolean z2 = i2 < arrayList.size() && ((ItemInner) arrayList.get(i2)).viewType == itemInner.viewType;
-                int i4 = viewHolder.mItemViewType;
-                View view = viewHolder.itemView;
-                if (i4 == 0) {
-                    ((HeaderCell) view).setText(itemInner.text);
-                    return;
-                }
-                if (i4 == 2) {
-                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) view;
-                    if (TextUtils.isEmpty(itemInner.text)) {
-                        textInfoPrivacyCell.setFixedSize(12);
-                        textInfoPrivacyCell.setText(null);
-                        return;
-                    } else {
-                        textInfoPrivacyCell.setFixedSize(0);
-                        textInfoPrivacyCell.setText(itemInner.text);
-                        return;
-                    }
-                }
+            }
+            if (viewHolder.getItemViewType() == 1) {
+                TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
+                int i4 = itemInner.id;
                 if (i4 == 1) {
-                    TextCheckCell textCheckCell = (TextCheckCell) view;
-                    int i5 = itemInner.id;
-                    if (i5 == 1) {
-                        z = archiveSettingsActivity.settings.keep_archived_unmuted;
-                        textCheckCell.setCheckBoxIcon(0);
-                    } else if (i5 == 4) {
-                        z = archiveSettingsActivity.settings.keep_archived_folders;
-                        textCheckCell.setCheckBoxIcon(0);
-                    } else {
-                        if (i5 != 7) {
-                            return;
-                        }
-                        boolean z3 = archiveSettingsActivity.settings.archive_and_mute_new_noncontact_peers;
-                        if (!archiveSettingsActivity.getUserConfig().isPremium() && !archiveSettingsActivity.getMessagesController().autoarchiveAvailable) {
-                            i3 = R.drawable.permission_locked;
-                        }
-                        textCheckCell.setCheckBoxIcon(i3);
-                        z = z3;
+                    z = ArchiveSettingsActivity.this.settings.keep_archived_unmuted;
+                    textCheckCell.setCheckBoxIcon(0);
+                } else if (i4 == 4) {
+                    z = ArchiveSettingsActivity.this.settings.keep_archived_folders;
+                    textCheckCell.setCheckBoxIcon(0);
+                } else {
+                    if (i4 != 7) {
+                        return;
                     }
-                    textCheckCell.setTextAndCheck(itemInner.text, z, z2);
+                    z = ArchiveSettingsActivity.this.settings.archive_and_mute_new_noncontact_peers;
+                    if (!ArchiveSettingsActivity.this.getUserConfig().isPremium() && !ArchiveSettingsActivity.this.getMessagesController().autoarchiveAvailable) {
+                        i3 = R.drawable.permission_locked;
+                    }
+                    textCheckCell.setCheckBoxIcon(i3);
                 }
+                textCheckCell.setTextAndCheck(itemInner.text, z, z2);
             }
         }
 
         @Override
-        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             View textCheckCell;
-            ArchiveSettingsActivity archiveSettingsActivity = ArchiveSettingsActivity.this;
             if (i == 0) {
-                textCheckCell = new HeaderCell(archiveSettingsActivity.getParentActivity());
+                textCheckCell = new HeaderCell(ArchiveSettingsActivity.this.getContext());
             } else {
-                textCheckCell = i == 1 ? new TextCheckCell(archiveSettingsActivity.getParentActivity()) : new TextInfoPrivacyCell(archiveSettingsActivity.getParentActivity(), 24, null);
+                textCheckCell = i == 1 ? new TextCheckCell(ArchiveSettingsActivity.this.getContext()) : new TextInfoPrivacyCell(ArchiveSettingsActivity.this.getContext(), 24, null);
             }
             return new RecyclerListView.Holder(textCheckCell);
         }
@@ -155,24 +153,116 @@ public final class ArchiveSettingsActivity extends BaseFragment implements Notif
         super(null);
         this.changed = false;
         this.shiftDp = -3;
-        this.oldItems = new ArrayList();
-        this.items = new ArrayList();
+        this.oldItems = new ArrayList<>();
+        this.items = new ArrayList<>();
+    }
+
+    public void lambda$createView$0() {
+        presentFragment(new PremiumPreviewFragment("settings"));
+    }
+
+    public void lambda$createView$1(View view, int i) {
+        if (i < 0 || i >= this.items.size()) {
+            return;
+        }
+        int i2 = this.items.get(i).id;
+        if (i2 == 1) {
+            TLRPC.GlobalPrivacySettings globalPrivacySettings = this.settings;
+            boolean z = !globalPrivacySettings.keep_archived_unmuted;
+            globalPrivacySettings.keep_archived_unmuted = z;
+            ((TextCheckCell) view).setChecked(z);
+            this.changed = true;
+            return;
+        }
+        if (i2 == 4) {
+            TLRPC.GlobalPrivacySettings globalPrivacySettings2 = this.settings;
+            boolean z2 = !globalPrivacySettings2.keep_archived_folders;
+            globalPrivacySettings2.keep_archived_folders = z2;
+            ((TextCheckCell) view).setChecked(z2);
+            this.changed = true;
+            return;
+        }
+        if (i2 == 7) {
+            if (getUserConfig().isPremium() || getMessagesController().autoarchiveAvailable || this.settings.archive_and_mute_new_noncontact_peers) {
+                TLRPC.GlobalPrivacySettings globalPrivacySettings3 = this.settings;
+                boolean z3 = !globalPrivacySettings3.archive_and_mute_new_noncontact_peers;
+                globalPrivacySettings3.archive_and_mute_new_noncontact_peers = z3;
+                ((TextCheckCell) view).setChecked(z3);
+                this.changed = true;
+                return;
+            }
+            Bulletin.SimpleLayout simpleLayout = new Bulletin.SimpleLayout(getContext(), getResourceProvider());
+            simpleLayout.textView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.UnlockPremium), Theme.key_undo_cancelColor, 0, new VoIPFragment$8$$ExternalSyntheticLambda1(this, 21)));
+            simpleLayout.textView.setSingleLine(false);
+            simpleLayout.textView.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+            simpleLayout.imageView.setImageResource(R.drawable.msg_settings_premium);
+            Bulletin.make(this, simpleLayout, 3500).show();
+            int i3 = -this.shiftDp;
+            this.shiftDp = i3;
+            AndroidUtilities.shakeViewSpring(view, i3);
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
+        }
+    }
+
+    public static void lambda$onFragmentDestroy$2(TLObject tLObject, TLRPC.TL_error tL_error) {
+    }
+
+    private void updateItems(boolean z) {
+        this.oldItems.clear();
+        this.oldItems.addAll(this.items);
+        this.items.clear();
+        this.items.add(new ItemInner(0, 0, LocaleController.getString("ArchiveSettingUnmutedFolders")));
+        this.items.add(new ItemInner(1, 1, LocaleController.getString("ArchiveSettingUnmutedFoldersCheck")));
+        this.items.add(new ItemInner(2, 2, LocaleController.getString("ArchiveSettingUnmutedFoldersInfo")));
+        if (getMessagesController().getDialogFilters().size() > 1) {
+            this.items.add(new ItemInner(0, 3, LocaleController.getString("ArchiveSettingUnmutedChats")));
+            this.items.add(new ItemInner(1, 4, LocaleController.getString("ArchiveSettingUnmutedChatsCheck")));
+            this.items.add(new ItemInner(2, 5, LocaleController.getString("ArchiveSettingUnmutedChatsInfo")));
+        }
+        this.items.add(new ItemInner(0, 6, LocaleController.getString("NewChatsFromNonContacts")));
+        this.items.add(new ItemInner(1, 7, LocaleController.getString("NewChatsFromNonContactsCheck")));
+        this.items.add(new ItemInner(2, 8, LocaleController.getString("ArchiveAndMuteInfo")));
+        ListAdapter listAdapter = this.adapter;
+        if (listAdapter == null) {
+            return;
+        }
+        if (z) {
+            listAdapter.setItems(this.oldItems, this.items);
+        } else {
+            listAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
-    public final View createView(Context context) {
+    public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.ArchiveSettings));
-        this.actionBar.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 2));
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i) {
+                if (i == -1) {
+                    ArchiveSettingsActivity.this.finishFragment();
+                }
+            }
+        });
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
-        RecyclerListView recyclerListView = new RecyclerListView(context, null);
+        RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         recyclerListView.setSections();
         this.actionBar.setAdaptiveBackground(this.listView);
-        this.listView.setLayoutManager(new PhotoViewer.AnonymousClass36(1, 2, false));
+        this.listView.setLayoutManager(new LinearLayoutManager(context, 1, false) {
+            {
+                super(i, z);
+            }
+
+            @Override
+            public boolean supportsPredictiveItemAnimations() {
+                return false;
+            }
+        });
         this.listView.setVerticalScrollBarEnabled(false);
         this.listView.setLayoutAnimation(null);
         RecyclerListView recyclerListView2 = this.listView;
@@ -181,16 +271,12 @@ public final class ArchiveSettingsActivity extends BaseFragment implements Notif
         recyclerListView2.setAdapter(listAdapter);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.delayAnimations = false;
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        this.listView.setItemAnimator(defaultItemAnimator);
-        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1.0f, -1));
-        this.listView.setOnItemClickListener(new ChatLinkActivity$$ExternalSyntheticLambda4(this, 2));
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        this.listView.lambda$onCellEnter$52(defaultItemAnimator);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.listView.setOnItemClickListener(new PhotoViewer$$ExternalSyntheticLambda100(this, 7));
         getContactsController().loadGlobalPrivacySetting();
         TLRPC.GlobalPrivacySettings globalPrivacySettings = getContactsController().getGlobalPrivacySettings();
         this.settings = globalPrivacySettings;
@@ -202,7 +288,7 @@ public final class ArchiveSettingsActivity extends BaseFragment implements Notif
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i != NotificationCenter.privacyRulesUpdated) {
             if (i == NotificationCenter.dialogFiltersUpdated) {
                 updateItems(true);
@@ -218,19 +304,15 @@ public final class ArchiveSettingsActivity extends BaseFragment implements Notif
         if (this.listView != null) {
             for (int i3 = 0; i3 < this.listView.getChildCount(); i3++) {
                 View childAt = this.listView.getChildAt(i3);
-                this.listView.getClass();
-                int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt);
-                if (childAdapterPosition >= 0) {
-                    ArrayList arrayList = this.items;
-                    if (childAdapterPosition < arrayList.size()) {
-                        int i4 = ((ItemInner) arrayList.get(childAdapterPosition)).id;
-                        if (i4 == 1) {
-                            ((TextCheckCell) childAt).setChecked(this.settings.keep_archived_unmuted);
-                        } else if (i4 == 4) {
-                            ((TextCheckCell) childAt).setChecked(this.settings.keep_archived_folders);
-                        } else if (i4 == 7) {
-                            ((TextCheckCell) childAt).setChecked(this.settings.archive_and_mute_new_noncontact_peers);
-                        }
+                int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
+                if (childAdapterPosition >= 0 && childAdapterPosition < this.items.size()) {
+                    int i4 = this.items.get(childAdapterPosition).id;
+                    if (i4 == 1) {
+                        ((TextCheckCell) childAt).setChecked(this.settings.keep_archived_unmuted);
+                    } else if (i4 == 4) {
+                        ((TextCheckCell) childAt).setChecked(this.settings.keep_archived_folders);
+                    } else if (i4 == 7) {
+                        ((TextCheckCell) childAt).setChecked(this.settings.archive_and_mute_new_noncontact_peers);
                     }
                 }
             }
@@ -239,59 +321,31 @@ public final class ArchiveSettingsActivity extends BaseFragment implements Notif
     }
 
     @Override
-    public final boolean isSupportEdgeToEdge() {
+    public boolean isSupportEdgeToEdge() {
         return true;
     }
 
     @Override
-    public final boolean onFragmentCreate() {
+    public boolean onFragmentCreate() {
         getNotificationCenter().addObserver(this, NotificationCenter.privacyRulesUpdated);
         return super.onFragmentCreate();
     }
 
     @Override
-    public final void onFragmentDestroy() {
+    public void onFragmentDestroy() {
         getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
         super.onFragmentDestroy();
         if (this.changed) {
             TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
             setglobalprivacysettings.settings = this.settings;
-            getConnectionsManager().sendRequest(setglobalprivacysettings, new PassportActivity$$ExternalSyntheticLambda1(1));
+            getConnectionsManager().sendRequest(setglobalprivacysettings, new PassportActivity$$ExternalSyntheticLambda3(6));
             this.changed = false;
         }
     }
 
     @Override
-    public final void onInsets(int i, int i2, int i3, int i4) {
+    public void onInsets(int i, int i2, int i3, int i4) {
         this.listView.setPadding(0, 0, 0, i4);
         this.listView.setClipToPadding(false);
-    }
-
-    public final void updateItems(boolean z) {
-        ArrayList arrayList = this.oldItems;
-        arrayList.clear();
-        ArrayList arrayList2 = this.items;
-        arrayList.addAll(arrayList2);
-        arrayList2.clear();
-        arrayList2.add(new ItemInner(0, 0, LocaleController.getString("ArchiveSettingUnmutedFolders")));
-        arrayList2.add(new ItemInner(1, 1, LocaleController.getString("ArchiveSettingUnmutedFoldersCheck")));
-        arrayList2.add(new ItemInner(2, 2, LocaleController.getString("ArchiveSettingUnmutedFoldersInfo")));
-        if (getMessagesController().getDialogFilters().size() > 1) {
-            arrayList2.add(new ItemInner(0, 3, LocaleController.getString("ArchiveSettingUnmutedChats")));
-            arrayList2.add(new ItemInner(1, 4, LocaleController.getString("ArchiveSettingUnmutedChatsCheck")));
-            arrayList2.add(new ItemInner(2, 5, LocaleController.getString("ArchiveSettingUnmutedChatsInfo")));
-        }
-        arrayList2.add(new ItemInner(0, 6, LocaleController.getString("NewChatsFromNonContacts")));
-        arrayList2.add(new ItemInner(1, 7, LocaleController.getString("NewChatsFromNonContactsCheck")));
-        arrayList2.add(new ItemInner(2, 8, LocaleController.getString("ArchiveAndMuteInfo")));
-        ListAdapter listAdapter = this.adapter;
-        if (listAdapter == null) {
-            return;
-        }
-        if (z) {
-            listAdapter.setItems(arrayList, arrayList2);
-        } else {
-            listAdapter.mObservable.notifyChanged();
-        }
     }
 }

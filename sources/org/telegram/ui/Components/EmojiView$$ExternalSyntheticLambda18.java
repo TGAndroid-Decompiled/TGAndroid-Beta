@@ -1,21 +1,11 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import j$.util.Objects;
-import org.telegram.ui.ChannelAdminLogActivity;
-import org.telegram.ui.Components.blur3.Blur3HashImpl;
-import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
-import org.telegram.ui.Components.blur3.capture.IBlur3Capture;
-import org.telegram.ui.Components.blur3.utils.Blur3Utils;
-import org.telegram.ui.Gifts.ProfileGiftsContainer;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.Stories.recorder.SelectAudioAlert;
-import org.telegram.ui.TopicsFragment$$ExternalSyntheticLambda7;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
 
-public final class EmojiView$$ExternalSyntheticLambda18 implements IBlur3Capture {
+public final class EmojiView$$ExternalSyntheticLambda18 implements Utilities.Callback2 {
     public final int $r8$classId;
     public final Object f$0;
 
@@ -25,104 +15,73 @@ public final class EmojiView$$ExternalSyntheticLambda18 implements IBlur3Capture
     }
 
     @Override
-    public final void capture(Canvas canvas, RectF rectF) {
-        ChatAttachAlert.AttachAlertLayout attachAlertLayout;
-        EmojiView$$ExternalSyntheticLambda18 emojiView$$ExternalSyntheticLambda18;
+    public final void run(Object obj, Object obj2) {
         switch (this.$r8$classId) {
             case 0:
-                IBlur3Capture[] iBlur3CaptureArr = (IBlur3Capture[]) this.f$0;
-                for (int i = 0; i < 3; i++) {
-                    IBlur3Capture iBlur3Capture = iBlur3CaptureArr[i];
-                    if (iBlur3Capture != null) {
-                        iBlur3Capture.capture(canvas, rectF);
-                    }
-                }
+                ((EmojiView) this.f$0).lambda$new$15((Integer) obj, (Integer) obj2);
                 break;
             case 1:
-                ((ChannelAdminLogActivity.AnonymousClass5) this.f$0).drawList(canvas, rectF);
+                ((EmojiView.EmojiSearchAdapter) this.f$0).foundPackListFillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 break;
             case 2:
-                int i2 = 0;
-                while (true) {
-                    ChatAttachAlert chatAttachAlert = (ChatAttachAlert) this.f$0;
-                    if (i2 >= 2) {
-                        chatAttachAlert.getClass();
-                    } else {
-                        ChatAttachAlert.AttachAlertLayout attachAlertLayout2 = i2 == 0 ? chatAttachAlert.currentAttachLayout : chatAttachAlert.nextAttachLayout;
-                        if (attachAlertLayout2 != null && attachAlertLayout2.iBlur3Capture != null && attachAlertLayout2.getVisibility() == 0) {
-                            Blur3Utils.captureRelativeParent(attachAlertLayout2.iBlur3Capture, canvas, rectF, attachAlertLayout2.iBlur3CaptureView, chatAttachAlert.getContainerView(), (int) (((i2 == 0 && (attachAlertLayout = chatAttachAlert.nextAttachLayout) != null && attachAlertLayout.getVisibility() == 0) ? (1.0f - chatAttachAlert.nextAttachLayout.getAlpha()) * attachAlertLayout2.getAlpha() : attachAlertLayout2.getAlpha()) * 255.0f));
-                        }
-                        i2++;
-                    }
-                    break;
-                }
+                ((EmojiView.StickersSearchGridAdapter) this.f$0).foundPackListFillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 break;
             case 3:
-                SharedMediaLayout sharedMediaLayout = (SharedMediaLayout) this.f$0;
-                for (SharedMediaLayout.MediaPage mediaPage : sharedMediaLayout.mediaPages) {
-                    ViewGroupPartRenderer viewGroupPartRenderer = mediaPage.iBlur3Capture;
-                    if (viewGroupPartRenderer != null) {
-                        viewGroupPartRenderer.capture(canvas, rectF);
-                    }
-                }
-                SharedMediaLayout.AnonymousClass13 anonymousClass13 = sharedMediaLayout.giftsContainer;
-                if (anonymousClass13 != null && (emojiView$$ExternalSyntheticLambda18 = anonymousClass13.iBlur3Capture) != null) {
-                    emojiView$$ExternalSyntheticLambda18.capture(canvas, rectF);
-                    break;
-                }
+                ((AIEditorAlert) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 break;
             case 4:
-                ProfileGiftsContainer profileGiftsContainer = (ProfileGiftsContainer) this.f$0;
-                for (View view : profileGiftsContainer.viewPager.getViewPages()) {
-                    if (view instanceof ProfileGiftsContainer.Page) {
-                        ProfileGiftsContainer.Page page = (ProfileGiftsContainer.Page) view;
-                        if (page.iBlur3Capture == null) {
-                            ViewGroup viewGroup = profileGiftsContainer.iBlur3CaptureParent;
-                            ProfileGiftsContainer.Page.AnonymousClass1 anonymousClass1 = page.listView;
-                            Objects.requireNonNull(anonymousClass1);
-                            page.iBlur3Capture = new ViewGroupPartRenderer(anonymousClass1, viewGroup, new TopicsFragment$$ExternalSyntheticLambda7(anonymousClass1, 7));
-                        }
-                        page.iBlur3Capture.capture(canvas, rectF);
-                    }
-                }
+                ((AIEditorAlert.AiStyleAlert) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 break;
             case 5:
-                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f$0;
-                RecyclerListView recyclerListView = premiumPreviewFragment.listView;
-                Blur3Utils.captureRelativeParent(recyclerListView, canvas, rectF, recyclerListView, premiumPreviewFragment.contentView, 255);
+                ((AIEditorAlert.CreateAiStyleAlert) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 6:
+                ((AdminLogFilterAlert2) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 7:
+                ((ChatActivityEnterView) this.f$0).drawMessageEditText((Canvas) obj, (Utilities.Callback0Return) obj2);
+                break;
+            case 8:
+                ((ChatAttachAlertAudioLayout) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 9:
+                ((ChatAttachAlertPhotoLayout) this.f$0).lambda$onMenuItemClick$26((Long) obj, (Runnable) obj2);
+                break;
+            case 10:
+                ((CreateRtmpStreamBottomSheet) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 11:
+                ((DialogsBotsAdapter) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 12:
+                ((DialogsChannelsAdapter) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 13:
+                ((FragmentContextView) this.f$0).lambda$createPlaybackSpeedButton$10((Float) obj, (Boolean) obj2);
+                break;
+            case 14:
+                ((GuardBotReplaceSheet) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 15:
+                ((HashtagHistoryView) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 16:
+                ((HashtagsSearchAdapter) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 17:
+                ((ItemOptions.DimView) this.f$0).lambda$new$0((Bitmap) obj, (Bitmap) obj2);
+                break;
+            case 18:
+                ((PostsSearchContainer) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
+                break;
+            case 19:
+                ((StickersAlert) this.f$0).lambda$onSubItemClick$24((CharSequence) obj, (Utilities.Callback) obj2);
+                break;
+            case 20:
+                ((TranslateAlert2) this.f$0).lambda$translateAlt$6((String) obj, (Boolean) obj2);
                 break;
             default:
-                SelectAudioAlert selectAudioAlert = (SelectAudioAlert) this.f$0;
-                ViewGroup containerView = selectAudioAlert.getContainerView();
-                RecyclerListView recyclerListView2 = selectAudioAlert.recyclerListView;
-                Blur3Utils.captureRelativeParent(recyclerListView2, canvas, rectF, recyclerListView2, containerView, 255);
-                break;
-        }
-    }
-
-    @Override
-    public final void captureCalculateHash(Blur3HashImpl blur3HashImpl, RectF rectF) {
-        switch (this.$r8$classId) {
-            case 0:
-                blur3HashImpl.unsupported = true;
-                break;
-            case 1:
-                blur3HashImpl.unsupported = true;
-                break;
-            case 2:
-                blur3HashImpl.unsupported = true;
-                break;
-            case 3:
-                blur3HashImpl.unsupported = true;
-                break;
-            case 4:
-                blur3HashImpl.unsupported = true;
-                break;
-            case 5:
-                blur3HashImpl.unsupported = true;
-                break;
-            default:
-                blur3HashImpl.unsupported = true;
+                ((UniversalFragment) this.f$0).fillItems((ArrayList) obj, (UniversalAdapter) obj2);
                 break;
         }
     }

@@ -1,6 +1,6 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
@@ -13,8 +13,8 @@ public final class HideEmojiTextView extends TextView {
     public final VoIPBackgroundProvider backgroundProvider;
     public final RectF bgRect;
 
-    public HideEmojiTextView(Activity activity, VoIPBackgroundProvider voIPBackgroundProvider) {
-        super(activity);
+    public HideEmojiTextView(Context context, VoIPBackgroundProvider voIPBackgroundProvider) {
+        super(context);
         this.bgRect = new RectF();
         this.backgroundProvider = voIPBackgroundProvider;
         voIPBackgroundProvider.views.add(this);

@@ -29,8 +29,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.MenuDrawable;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Cells.BaseCell;
+import org.telegram.ui.Cells.MentionCell;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -59,22 +59,22 @@ public final class BotCommandsMenuView extends View {
     public final class BotCommandView extends LinearLayout {
         public final TextView command;
         public String commandStr;
-        public final ArticleViewer.AnonymousClass9 description;
+        public final MentionCell.AnonymousClass1 description;
 
         public BotCommandView(Context context) {
             super(context);
             setOrientation(0);
             setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-            ArticleViewer.AnonymousClass9 anonymousClass9 = new ArticleViewer.AnonymousClass9(context, 25);
-            this.description = anonymousClass9;
-            NotificationCenter.listenEmojiLoading(anonymousClass9);
-            anonymousClass9.setTextSize(1, 16.0f);
+            MentionCell.AnonymousClass1 anonymousClass1 = new MentionCell.AnonymousClass1(context, 8);
+            this.description = anonymousClass1;
+            NotificationCenter.listenEmojiLoading(anonymousClass1);
+            anonymousClass1.setTextSize(1, 16.0f);
             int i = Theme.key_windowBackgroundWhiteBlackText;
-            anonymousClass9.setTextColor(Theme.getColor(null, i, false));
-            anonymousClass9.setTag(Integer.valueOf(i));
-            anonymousClass9.setMaxLines(2);
-            anonymousClass9.setEllipsize(TextUtils.TruncateAt.END);
-            addView(anonymousClass9, LayoutHelper.createLinear(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.dp(8.0f), 0));
+            anonymousClass1.setTextColor(Theme.getColor(null, i, false));
+            anonymousClass1.setTag(Integer.valueOf(i));
+            anonymousClass1.setMaxLines(2);
+            anonymousClass1.setEllipsize(TextUtils.TruncateAt.END);
+            addView(anonymousClass1, LayoutHelper.createLinear(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.dp(8.0f), 0));
             TextView textView = new TextView(context);
             this.command = textView;
             textView.setTextSize(1, 14.0f);
@@ -148,7 +148,7 @@ public final class BotCommandsMenuView extends View {
                     }
                 }
             }
-            this.mObservable.notifyChanged();
+            notifyDataSetChanged();
         }
     }
 
@@ -168,7 +168,7 @@ public final class BotCommandsMenuView extends View {
         };
         this.backDrawable = r2;
         int i = R.raw.bot_webview_sheet_to_cross;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, String.valueOf(i) + hashCode(), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, String.valueOf(i) + hashCode(), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
         this.webViewAnimation = rLottieDrawable;
         this.menuText = LocaleController.getString(R.string.BotsMenuTitle);
         this.drawBackgroundDrawable = true;
@@ -191,7 +191,7 @@ public final class BotCommandsMenuView extends View {
         this.backgroundDrawable = rippleDrawableSafeCreateSimpleSelectorRoundRectDrawable;
         rippleDrawableSafeCreateSimpleSelectorRoundRectDrawable.setCallback(this);
         rLottieDrawable.setCallback(this);
-        rLottieDrawable.masterParent = this;
+        rLottieDrawable.setMasterParent(this);
         setContentDescription(LocaleController.getString("AccDescrBotMenu", R.string.AccDescrBotMenu));
     }
 
@@ -249,21 +249,25 @@ public final class BotCommandsMenuView extends View {
                 this.textPaint.setAlpha((int) (255.0f * interpolation));
             }
             if (this.drawBackgroundDrawable) {
-                this.rectTmp.set(0.0f, 0.0f, ((this.menuTextWidth + AndroidUtilities.dp(4.0f)) * interpolation) + AndroidUtilities.dp(40.0f), getMeasuredHeight());
-                canvas.drawRoundRect(this.rectTmp, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.paint);
-                BaseCell.RippleDrawableSafe rippleDrawableSafe = this.backgroundDrawable;
                 RectF rectF = this.rectTmp;
-                rippleDrawableSafe.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-                this.backgroundDrawable.draw(canvas);
+                rectF.set(0.0f, 0.0f, ((this.menuTextWidth + AndroidUtilities.dp(4.0f)) * interpolation) + AndroidUtilities.dp(40.0f), getMeasuredHeight());
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.paint);
+                int i = (int) rectF.left;
+                int i2 = (int) rectF.top;
+                int i3 = (int) rectF.right;
+                int i4 = (int) rectF.bottom;
+                BaseCell.RippleDrawableSafe rippleDrawableSafe = this.backgroundDrawable;
+                rippleDrawableSafe.setBounds(i, i2, i3, i4);
+                rippleDrawableSafe.draw(canvas);
             }
             if (this.isWebView) {
                 canvas.save();
                 canvas.translate(AndroidUtilities.dp(9.5f), AndroidUtilities.dp(6.0f));
                 RLottieDrawable rLottieDrawable = this.webViewAnimation;
-                rLottieDrawable.setBounds(0, 0, rLottieDrawable.width, rLottieDrawable.height);
+                rLottieDrawable.setBounds(0, 0, rLottieDrawable.getMinimumWidth(), rLottieDrawable.getMinimumHeight());
                 rLottieDrawable.draw(canvas);
                 canvas.restore();
-                if (rLottieDrawable.isRunning) {
+                if (rLottieDrawable.isRunning()) {
                     invalidate();
                 }
             } else {
@@ -307,14 +311,14 @@ public final class BotCommandsMenuView extends View {
             this.lastSize = size;
             CharSequence charSequenceReplaceEmoji = Emoji.replaceEmoji(this.menuText, textPaint.getFontMetricsInt(), false);
             int i3 = (int) (AndroidUtilities.displaySize.x * 0.6f);
-            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(charSequenceReplaceEmoji, textPaint, i3, Layout.Alignment.ALIGN_NORMAL, 0.0f, false, TextUtils.TruncateAt.END, i3, 1, true);
+            StaticLayout staticLayoutCreateStaticLayout = StaticLayoutEx.createStaticLayout(charSequenceReplaceEmoji, textPaint, i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i3, 1);
             this.menuTextLayout = staticLayoutCreateStaticLayout;
             this.menuTextWidth = staticLayoutCreateStaticLayout.getLineCount() > 0 ? this.menuTextLayout.getLineWidth(0) : 0.0f;
         }
         AndroidUtilities.dp(4.0f);
         int iDp = AndroidUtilities.dp(40.0f);
         if (this.expanded) {
-            iDp = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m((int) this.menuTextWidth, 4.0f, iDp);
+            iDp = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(4.0f, (int) this.menuTextWidth, iDp);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(iDp, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }
@@ -334,10 +338,9 @@ public final class BotCommandsMenuView extends View {
         }
         if (this.isWebViewOpened != z) {
             RLottieDrawable rLottieDrawable = this.webViewAnimation;
-            rLottieDrawable.isRunning = false;
-            rLottieDrawable.checkChoreographer$1();
-            rLottieDrawable.playInDirectionOfCustomEndFrame = true;
-            rLottieDrawable.setCustomEndFrame(z ? rLottieDrawable.metaData[0] : 1);
+            rLottieDrawable.stop();
+            rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
+            rLottieDrawable.setCustomEndFrame(z ? rLottieDrawable.getFramesCount() : 1);
             rLottieDrawable.start();
             this.isWebViewOpened = z;
         }

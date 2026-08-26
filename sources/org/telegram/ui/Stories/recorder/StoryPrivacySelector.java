@@ -13,7 +13,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda2;
+import org.telegram.ui.iv.RichTextCell$2$$ExternalSyntheticLambda1;
 
 public abstract class StoryPrivacySelector extends View {
     public static final int $r8$clinit = 0;
@@ -42,7 +42,7 @@ public abstract class StoryPrivacySelector extends View {
                     }
                     if (!hashSet.isEmpty()) {
                         MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
-                        messagesStorage.getStorageQueue().postRunnable(new TodoItemMenu$$ExternalSyntheticLambda2(messagesStorage, hashSet, i, 13));
+                        messagesStorage.getStorageQueue().postRunnable(new RichTextCell$2$$ExternalSyntheticLambda1(messagesStorage, hashSet, i, 23));
                     }
                 }
             }

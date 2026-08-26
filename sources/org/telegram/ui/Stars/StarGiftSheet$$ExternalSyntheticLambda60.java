@@ -1,28 +1,28 @@
 package org.telegram.ui.Stars;
 
-import org.telegram.messenger.browser.Browser;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.AlertDialog;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
 
-public final class StarGiftSheet$$ExternalSyntheticLambda60 implements AlertDialog.OnButtonClickListener {
+public final class StarGiftSheet$$ExternalSyntheticLambda60 implements Utilities.Callback3 {
     public final int $r8$classId;
     public final StarGiftSheet f$0;
-    public final TL_stars.TL_starGiftUnique f$1;
 
-    public StarGiftSheet$$ExternalSyntheticLambda60(StarGiftSheet starGiftSheet, TL_stars.TL_starGiftUnique tL_starGiftUnique, int i) {
+    public StarGiftSheet$$ExternalSyntheticLambda60(StarGiftSheet starGiftSheet, int i) {
         this.$r8$classId = i;
         this.f$0 = starGiftSheet;
-        this.f$1 = tL_starGiftUnique;
     }
 
     @Override
-    public final void onClick(AlertDialog alertDialog, int i) {
+    public final void run(Object obj, Object obj2, Object obj3) {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.lambda$onResellPressed$34(this.f$1, alertDialog);
+                this.f$0.lambda$openCrafting$5((ArrayList) obj, (Utilities.Callback2) obj2, (Runnable) obj3);
                 break;
             default:
-                Browser.openUrlInSystemBrowser(this.f$0.getContext(), "https://fragment.com/gift/" + this.f$1.slug);
+                boolean zBooleanValue = ((Boolean) obj3).booleanValue();
+                StarGiftSheet starGiftSheet = this.f$0;
+                starGiftSheet.showHint((View) obj2, zBooleanValue, (CharSequence) obj);
                 break;
         }
     }

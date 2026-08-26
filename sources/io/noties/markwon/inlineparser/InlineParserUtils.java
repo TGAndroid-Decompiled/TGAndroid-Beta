@@ -10,11 +10,11 @@ public abstract class InlineParserUtils {
         }
         StringBuilder sb = new StringBuilder(i);
         sb.append(text.literal);
-        Node node = (Node) text.next;
-        Node node2 = (Node) text2.next;
+        Node node = text.next;
+        Node node2 = text2.next;
         while (node != node2) {
             sb.append(((Text) node).literal);
-            Node node3 = (Node) node.next;
+            Node node3 = node.next;
             node.unlink();
             node = node3;
         }
@@ -41,7 +41,7 @@ public abstract class InlineParserUtils {
             if (node == node2) {
                 break;
             } else {
-                node = (Node) node.next;
+                node = node.next;
             }
         }
         mergeIfNeeded(text, text2, length);

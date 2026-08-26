@@ -26,7 +26,7 @@ public abstract class BaseListPageView extends FrameLayout implements PagerHeade
         this.layoutManager = linearLayoutManager;
         recyclerListView.setLayoutManager(linearLayoutManager);
         recyclerListView.setClipToPadding(false);
-        addView(recyclerListView, LayoutHelper.createFrame(-1.0f, -1));
+        addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
     }
 
     public abstract RecyclerView.Adapter createAdapter();

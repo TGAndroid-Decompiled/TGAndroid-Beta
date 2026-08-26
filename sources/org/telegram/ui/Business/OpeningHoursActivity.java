@@ -7,9 +7,10 @@ import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
-import com.google.android.exoplayer2.util.Log;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import androidx.recyclerview.widget.DiffUtil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
+import com.google.android.gms.internal.mlkit_vision_common.zzke;
 import j$.time.DayOfWeek;
 import j$.time.format.TextStyle;
 import java.util.ArrayList;
@@ -24,13 +25,9 @@ import org.telegram.messenger.utils.WindowVisibilityManager$$ExternalSyntheticLa
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CallLogActivity;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
 import org.telegram.ui.Cells.NotificationsCheckCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Components.BulletinFactory;
@@ -40,6 +37,9 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
+import org.telegram.ui.web.HistoryFragment;
 
 public final class OpeningHoursActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public String currentTimezoneId;
@@ -106,8 +106,8 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
             }
             if (i10 >= i9) {
                 int i12 = (i6 + 6) % 7;
-                if (!arrayListArr[i12].isEmpty() && ((Period) zziq.m(1, arrayListArr[i12])).end >= 1440) {
-                    ((Period) zziq.m(1, arrayListArr[i12])).end = 1439;
+                if (!arrayListArr[i12].isEmpty() && ((Period) zzin.m(1, arrayListArr[i12])).end >= 1440) {
+                    ((Period) zzin.m(1, arrayListArr[i12])).end = 1439;
                 }
                 int iMin = Math.min((i10 - i7) - 1, 2879);
                 ArrayList arrayList2 = arrayListArr[(i6 + 8) % 7];
@@ -119,7 +119,7 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
             } else {
                 int i13 = i8 % 7;
                 if (!arrayListArr[i6].isEmpty() && !arrayListArr[i13].isEmpty()) {
-                    Period period = (Period) zziq.m(1, arrayListArr[i6]);
+                    Period period = (Period) zzin.m(1, arrayListArr[i6]);
                     Period period2 = (Period) arrayListArr[i13].get(0);
                     int i14 = period.end;
                     if (i14 > 1440 && i14 - 1439 == period2.start) {
@@ -144,9 +144,9 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
         for (int i = 0; i < arrayList.size(); i++) {
             Period period = (Period) arrayList.get(i);
             if (i > 0) {
-                string = zzhr.m(string, "\n");
+                string = zzhp.m(string, "\n");
             }
-            StringBuilder sbM = Log.m(string);
+            StringBuilder sbM = DiffUtil.m(string);
             sbM.append(Period.timeToString(period.start));
             sbM.append(" - ");
             sbM.append(Period.timeToString(period.end));
@@ -206,17 +206,17 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
         if (((Calendar.getInstance().getTimeZone().getRawOffset() / 1000) - (tL_timezoneFindTimezone == null ? 0 : tL_timezoneFindTimezone.utc_offset)) / 60 != 0 && tL_timezoneFindTimezone != null) {
             int i4 = R.string.BusinessHoursCopyFooter;
             TimezonesController.getInstance(i);
-            sb.append(LocaleController.formatString(i4, tL_timezoneFindTimezone.name + ", " + TimezonesController.getTimezoneOffsetName(tL_timezoneFindTimezone)));
+            sb.append(LocaleController.formatString(i4, TimezonesController.getTimezoneName(tL_timezoneFindTimezone, true)));
         }
         return sb.toString();
     }
 
     public final void adaptPrevDay(int i) {
-        if ((this.value[i].isEmpty() ? null : (Period) zziq.m(1, this.value[i])) == null) {
+        if ((this.value[i].isEmpty() ? null : (Period) zzin.m(1, this.value[i])) == null) {
             return;
         }
         int i2 = (i + 6) % 7;
-        Period period = this.value[i2].isEmpty() ? null : (Period) zziq.m(1, this.value[i2]);
+        Period period = this.value[i2].isEmpty() ? null : (Period) zzin.m(1, this.value[i2]);
         if (period == null || period.end <= 1439) {
             return;
         }
@@ -252,7 +252,7 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessHours));
-        this.actionBar.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 10));
+        this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 6));
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), PorterDuff.Mode.MULTIPLY));
@@ -260,18 +260,13 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.doneButtonDrawable);
         checkDone$3(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        int i2 = Theme.key_windowBackgroundGray;
-        frameLayout.setBackgroundColor(Theme.getColor(null, i2, false));
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new CallLogActivity$$ExternalSyntheticLambda3(this, 9), new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 21), null, getResourceProvider());
+        frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new GiftSheet$$ExternalSyntheticLambda8(this, 8), new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 12), null);
         this.listView = universalRecyclerView;
         universalRecyclerView.setSections();
-        UniversalRecyclerView universalRecyclerView2 = this.listView;
-        universalRecyclerView2.adapter.applyBackground = false;
-        frameLayout.addView(universalRecyclerView2, LayoutHelper.createFrame(-1.0f, -1));
-        ActionBar actionBar = this.actionBar;
-        UniversalRecyclerView universalRecyclerView3 = this.listView;
-        actionBar.getClass();
-        actionBar.setAdaptiveBackground(universalRecyclerView3, true, i2, Theme.key_actionBarDefault);
+        this.listView.adapter.setApplyBackground(false);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.actionBar.setAdaptiveBackground(this.listView, true);
         setValue$4();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -298,47 +293,28 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
 
     public final void fillItems$4(ArrayList arrayList) {
         int i = R.string.BusinessHours;
-        String string = LocaleController.getString(i);
-        String string2 = LocaleController.getString(R.string.BusinessHoursInfo);
-        int i2 = R.raw.biz_clock;
-        UItem uItem = new UItem(2);
-        uItem.text = string;
-        uItem.animatedText = string2;
-        uItem.iconResId = i2;
-        arrayList.add(uItem);
-        UItem uItemAsCheck = UItem.asCheck(-1, LocaleController.getString(R.string.BusinessHoursShow));
-        uItemAsCheck.setChecked(this.enabled);
-        arrayList.add(uItemAsCheck);
+        arrayList.add(UItem.asTopView(LocaleController.getString(i), LocaleController.getString(R.string.BusinessHoursInfo), R.raw.biz_clock));
+        arrayList.add(UItem.asCheck(-1, LocaleController.getString(R.string.BusinessHoursShow)).setChecked(this.enabled));
         arrayList.add(UItem.asShadow(-100, null));
         if (!this.enabled) {
             return;
         }
-        String string3 = LocaleController.getString(i);
-        UItem uItem2 = new UItem(0);
-        uItem2.text = string3;
-        arrayList.add(uItem2);
-        int i3 = 0;
+        zzke.m(i, arrayList);
+        int i2 = 0;
         while (true) {
             ArrayList[] arrayListArr = this.value;
-            if (i3 >= arrayListArr.length) {
+            if (i2 >= arrayListArr.length) {
                 arrayList.add(UItem.asShadow(-101, null));
-                arrayList.add(UItem.asButton(LocaleController.getString(R.string.BusinessHoursTimezone), TimezonesController.getInstance(this.currentAccount).getTimezoneName(this.timezoneId, false), -2));
+                arrayList.add(UItem.asButton(-2, LocaleController.getString(R.string.BusinessHoursTimezone), TimezonesController.getInstance(this.currentAccount).getTimezoneName(this.timezoneId, false)));
                 arrayList.add(UItem.asShadow(-102, null));
                 return;
             }
-            if (arrayListArr[i3] == null) {
-                arrayListArr[i3] = new ArrayList();
+            if (arrayListArr[i2] == null) {
+                arrayListArr[i2] = new ArrayList();
             }
-            String displayName = DayOfWeek.values()[i3].getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-            String str = displayName.substring(0, 1).toUpperCase() + displayName.substring(1);
-            String periodsValue = getPeriodsValue(this.value[i3]);
-            UItem uItem3 = new UItem(5);
-            uItem3.id = i3;
-            uItem3.text = str;
-            uItem3.subtext = periodsValue;
-            uItem3.setChecked(!this.value[i3].isEmpty());
-            arrayList.add(uItem3);
-            i3++;
+            String displayName = DayOfWeek.values()[i2].getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
+            arrayList.add(UItem.asButtonCheck(i2, displayName.substring(0, 1).toUpperCase() + displayName.substring(1), getPeriodsValue(this.value[i2])).setChecked(!this.value[i2].isEmpty()));
+            i2++;
         }
     }
 
@@ -388,20 +364,20 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
         if (tL_error != null) {
             this.doneButtonDrawable.animateToProgress(0.0f);
             BulletinFactory.showError(tL_error);
-            return;
-        }
-        if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
+        } else {
+            if (tLObject instanceof TLRPC.TL_boolFalse) {
+                if (getContext() == null) {
+                    return;
+                }
+                this.doneButtonDrawable.animateToProgress(0.0f);
+                UserNameResolver$$ExternalSyntheticOutline0.m(BulletinFactory.of(this), R.string.UnknownError);
+                return;
+            }
             if (this.isFinished || this.finishing) {
                 return;
             }
             finishFragment();
-            return;
         }
-        if (getParentActivity() == null) {
-            return;
-        }
-        this.doneButtonDrawable.animateToProgress(0.0f);
-        UserNameResolver$$ExternalSyntheticOutline0.m(R.string.UnknownError, BulletinFactory.of(this), null);
     }
 
     @Override
@@ -426,7 +402,7 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
     }
 
     public final void processDone$4() {
-        if (this.doneButtonDrawable.progress > 0.0f) {
+        if (this.doneButtonDrawable.getProgress() > 0.0f) {
             return;
         }
         if (!hasChanges()) {
@@ -466,7 +442,7 @@ public final class OpeningHoursActivity extends BaseFragment implements Notifica
             userFull.flags2 &= -2;
             userFull.business_work_hours = null;
         }
-        getConnectionsManager().sendRequest(updatebusinessworkhours, new CallLogActivity$$ExternalSyntheticLambda1(this, 10));
+        getConnectionsManager().sendRequest(updatebusinessworkhours, new RichMediaUploader$$ExternalSyntheticLambda0(this, 9));
         getMessagesStorage().updateUserInfo(userFull, false);
     }
 

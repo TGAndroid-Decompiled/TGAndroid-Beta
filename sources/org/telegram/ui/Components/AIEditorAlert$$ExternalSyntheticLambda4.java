@@ -1,8 +1,8 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.view.View;
 
-public final class AIEditorAlert$$ExternalSyntheticLambda4 implements Runnable {
+public final class AIEditorAlert$$ExternalSyntheticLambda4 implements View.OnClickListener {
     public final int $r8$classId;
     public final AIEditorAlert f$0;
 
@@ -12,30 +12,37 @@ public final class AIEditorAlert$$ExternalSyntheticLambda4 implements Runnable {
     }
 
     @Override
-    public final void run() {
+    public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                AIEditorAlert aIEditorAlert = this.f$0;
-                if (!aIEditorAlert.showLimit) {
-                    aIEditorAlert.allButton.setVisibility(8);
-                }
+                this.f$0.collapse(view);
                 break;
             case 1:
-                this.f$0.showStyleHint();
+                this.f$0.lambda$new$0(view);
                 break;
             case 2:
-                AndroidUtilities.showKeyboard(this.f$0.promptCell.editText);
+                this.f$0.lambda$new$9(view);
                 break;
             case 3:
-                AIEditorAlert aIEditorAlert2 = this.f$0;
-                aIEditorAlert2.runSend(0, 0, false);
-                aIEditorAlert2.lambda$showGiftOfferSheet$15();
+                this.f$0.lambda$updateButton$15(view);
+                break;
+            case 4:
+                this.f$0.lambda$updateButton$16(view);
+                break;
+            case 5:
+                this.f$0.lambda$updateButton$18(view);
+                break;
+            case 6:
+                this.f$0.lambda$updateButton$17(view);
+                break;
+            case 7:
+                this.f$0.onToLangMenu(view);
+                break;
+            case 8:
+                this.f$0.toggleEmojify(view);
                 break;
             default:
-                AIEditorAlert aIEditorAlert3 = this.f$0;
-                if (aIEditorAlert3.showLimit) {
-                    aIEditorAlert3.buttonContainer.setVisibility(8);
-                }
+                this.f$0.copyResult(view);
                 break;
         }
     }

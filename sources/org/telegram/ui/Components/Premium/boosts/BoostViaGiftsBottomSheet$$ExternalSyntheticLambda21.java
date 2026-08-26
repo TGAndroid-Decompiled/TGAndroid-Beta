@@ -2,11 +2,11 @@ package org.telegram.ui.Components.Premium.boosts;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.PhotoUtilities$$ExternalSyntheticLambda5;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda103;
-import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda2;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda26;
 import org.telegram.ui.LaunchActivity;
 
 public final class BoostViaGiftsBottomSheet$$ExternalSyntheticLambda21 implements Utilities.Callback {
@@ -29,13 +29,13 @@ public final class BoostViaGiftsBottomSheet$$ExternalSyntheticLambda21 implement
         BoostViaGiftsBottomSheet boostViaGiftsBottomSheet = this.f$0;
         boostViaGiftsBottomSheet.lambda$showGiftOfferSheet$15();
         if (this.f$1 == null) {
-            AndroidUtilities.runOnUIThread(new ImageUpdater$$ExternalSyntheticLambda2(27, boostViaGiftsBottomSheet, this.f$4), 220L);
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda26(7, boostViaGiftsBottomSheet, this.f$4), 220L);
             return;
         }
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null) {
             ChatActivity chatActivityOf = ChatActivity.of(this.f$2);
-            chatActivityOf.whenFullyVisible(new ChatActivity$$ExternalSyntheticLambda103(chatActivityOf, this.f$3, 7));
+            chatActivityOf.whenFullyVisible(new PhotoUtilities$$ExternalSyntheticLambda5(chatActivityOf, this.f$3));
             safeLastFragment.presentFragment(chatActivityOf);
         }
     }

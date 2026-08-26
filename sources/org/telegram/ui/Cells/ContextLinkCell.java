@@ -1,7 +1,10 @@
 package org.telegram.ui.Cells;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -12,11 +15,12 @@ import android.text.StaticLayout;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import com.google.android.exoplayer2.RendererCapabilities;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -36,7 +40,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessageObject$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline2;
+import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline1;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -44,17 +48,17 @@ import org.telegram.messenger.WebFile;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Adapters.MentionsAdapter$$ExternalSyntheticLambda7;
+import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LetterDrawable;
-import org.telegram.ui.Components.MentionsContainerView;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.PhotoViewer;
 
 public final class ContextLinkCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
-    public final PhotoViewer.AnonymousClass5 IMAGE_SCALE;
+    public final AnonymousClass2 IMAGE_SCALE;
     public final int TAG;
     public AnimatorSet animator;
     public final Paint backgroundPaint;
@@ -199,6 +203,111 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
         }
     }
 
+    public final class AnonymousClass3 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final ViewGroup this$0;
+        public final boolean val$checked;
+
+        public AnonymousClass3(ViewGroup viewGroup, boolean z, int i) {
+            this.$r8$classId = i;
+            this.this$0 = viewGroup;
+            this.val$checked = z;
+        }
+
+        @Override
+        public void onAnimationCancel(Animator animator) {
+            switch (this.$r8$classId) {
+                case 0:
+                    ContextLinkCell contextLinkCell = (ContextLinkCell) this.this$0;
+                    AnimatorSet animatorSet = contextLinkCell.animator;
+                    if (animatorSet != null && animatorSet.equals(animator)) {
+                        contextLinkCell.animator = null;
+                        break;
+                    }
+                    break;
+                case 1:
+                case 2:
+                default:
+                    super.onAnimationCancel(animator);
+                    break;
+                case 3:
+                    PhotoAttachPhotoCell photoAttachPhotoCell = (PhotoAttachPhotoCell) this.this$0;
+                    AnimatorSet animatorSet2 = photoAttachPhotoCell.animator;
+                    if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                        photoAttachPhotoCell.animator = null;
+                        break;
+                    }
+                    break;
+                case 4:
+                    WallpaperCell.WallpaperView wallpaperView = (WallpaperCell.WallpaperView) this.this$0;
+                    AnimatorSet animatorSet3 = wallpaperView.animator;
+                    if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                        wallpaperView.animator = null;
+                        break;
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public final void onAnimationEnd(Animator animator) {
+            switch (this.$r8$classId) {
+                case 0:
+                    ContextLinkCell contextLinkCell = (ContextLinkCell) this.this$0;
+                    AnimatorSet animatorSet = contextLinkCell.animator;
+                    if (animatorSet != null && animatorSet.equals(animator)) {
+                        contextLinkCell.animator = null;
+                        if (!this.val$checked) {
+                            contextLinkCell.setBackgroundColor(0);
+                        }
+                        break;
+                    }
+                    break;
+                case 1:
+                    SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) this.this$0;
+                    ValueAnimator valueAnimator = sharedPhotoVideoCell2.animator;
+                    if (valueAnimator != null && valueAnimator.equals(animator)) {
+                        sharedPhotoVideoCell2.checkBoxProgress = this.val$checked ? 1.0f : 0.0f;
+                        sharedPhotoVideoCell2.animator = null;
+                        break;
+                    }
+                    break;
+                case 2:
+                    ChatMessageCell chatMessageCell = (ChatMessageCell) this.this$0;
+                    int iCreateStatusDrawableParams = chatMessageCell.transitionParams.createStatusDrawableParams();
+                    if (chatMessageCell.animateToStatusDrawableParams == iCreateStatusDrawableParams) {
+                        chatMessageCell.statusDrawableAnimationInProgress = false;
+                        chatMessageCell.transitionParams.lastStatusDrawableParams = chatMessageCell.animateToStatusDrawableParams;
+                    } else {
+                        chatMessageCell.createStatusDrawableAnimator(chatMessageCell.animateToStatusDrawableParams, iCreateStatusDrawableParams, this.val$checked);
+                    }
+                    break;
+                case 3:
+                    PhotoAttachPhotoCell photoAttachPhotoCell = (PhotoAttachPhotoCell) this.this$0;
+                    AnimatorSet animatorSet2 = photoAttachPhotoCell.animator;
+                    if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                        photoAttachPhotoCell.animator = null;
+                        if (!this.val$checked) {
+                            photoAttachPhotoCell.setBackgroundColor(0);
+                        }
+                        break;
+                    }
+                    break;
+                default:
+                    WallpaperCell.WallpaperView wallpaperView = (WallpaperCell.WallpaperView) this.this$0;
+                    AnimatorSet animatorSet3 = wallpaperView.animator;
+                    if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                        wallpaperView.animator = null;
+                        if (!this.val$checked) {
+                            wallpaperView.setBackgroundColor(0);
+                        }
+                        break;
+                    }
+                    break;
+            }
+        }
+    }
+
     public interface ContextLinkCellDelegate {
     }
 
@@ -206,22 +315,34 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
         new AccelerateInterpolator(0.5f);
     }
 
-    public ContextLinkCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public ContextLinkCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         int i = UserConfig.selectedAccount;
         this.currentAccount = i;
         this.titleY = AndroidUtilities.dp(7.0f);
         this.descriptionY = AndroidUtilities.dp(27.0f);
         this.imageScale = 1.0f;
-        this.IMAGE_SCALE = new PhotoViewer.AnonymousClass5(this, 1);
+        this.IMAGE_SCALE = new AnimationProperties.FloatProperty() {
+            @Override
+            public final Float get(Object obj) {
+                return Float.valueOf(ContextLinkCell.this.imageScale);
+            }
+
+            @Override
+            public final void setValue(Object obj, float f) {
+                ContextLinkCell contextLinkCell = ContextLinkCell.this;
+                contextLinkCell.imageScale = f;
+                contextLinkCell.invalidate();
+            }
+        };
         this.resourcesProvider = resourcesProvider;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.linkImageView = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.setLayerNum(1);
         imageReceiver.setUseSharedAnimationQueue(true);
-        this.letterDrawable = new LetterDrawable(0, resourcesProvider);
-        this.radialProgress = new RadialProgress2(null, this);
+        this.letterDrawable = new LetterDrawable(resourcesProvider, 0);
+        this.radialProgress = new RadialProgress2(this);
         this.TAG = DownloadController.getInstance(i).generateObserverTag();
         setFocusable(true);
         if (z) {
@@ -232,7 +353,7 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
             CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox2;
             checkBox2.setVisibility(4);
-            checkBox2.checkBoxBase.setColor(-1, i2, Theme.key_checkboxCheck);
+            checkBox2.setColor(-1, i2, Theme.key_checkboxCheck);
             checkBox2.setDrawUnchecked(false);
             checkBox2.setDrawBackgroundAsArc(1);
             addView(checkBox2, LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 1.0f, 1.0f, 0.0f));
@@ -244,35 +365,21 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
         int i = this.documentAttachType;
         RadialProgress2 radialProgress2 = this.radialProgress;
         if (i != 3 && i != 5) {
-            int i2 = Theme.key_chat_mediaLoaderPhoto;
-            int i3 = Theme.key_chat_mediaLoaderPhotoSelected;
-            int i4 = Theme.key_chat_mediaLoaderPhotoIcon;
-            int i5 = Theme.key_chat_mediaLoaderPhotoIconSelected;
-            radialProgress2.circleColorKey = i2;
-            radialProgress2.circlePressedColorKey = i3;
-            radialProgress2.iconColorKey = i4;
-            radialProgress2.iconPressedColorKey = i5;
+            radialProgress2.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
             return this.buttonState == 1 ? 10 : 4;
         }
-        int i6 = Theme.key_chat_inLoader;
-        int i7 = Theme.key_chat_inLoaderSelected;
-        int i8 = Theme.key_chat_inMediaIcon;
-        int i9 = Theme.key_chat_inMediaIconSelected;
-        radialProgress2.circleColorKey = i6;
-        radialProgress2.circlePressedColorKey = i7;
-        radialProgress2.iconColorKey = i8;
-        radialProgress2.iconPressedColorKey = i9;
-        int i10 = this.buttonState;
-        if (i10 == 1) {
+        radialProgress2.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
+        int i2 = this.buttonState;
+        if (i2 == 1) {
             return 1;
         }
-        if (i10 == 2) {
+        if (i2 == 2) {
             return 2;
         }
-        return i10 == 4 ? 3 : 0;
+        return i2 == 4 ? 3 : 0;
     }
 
-    public final void didPressedButton$2() {
+    public final void didPressedButton$1() {
         int i = this.documentAttachType;
         if (i == 3 || i == 5) {
             int i2 = this.buttonState;
@@ -364,147 +471,140 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
         if (this.linkImageView.onAttachedToWindow()) {
             updateButtonState(false, false);
         }
-        this.radialProgress.overlayImageView.onAttachedToWindow();
+        this.radialProgress.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.linkImageView.onDetachedFromWindow();
-        this.radialProgress.overlayImageView.onDetachedFromWindow();
+        this.radialProgress.onDetachedFromWindow();
         DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
         int i;
         CheckBox2 checkBox2 = this.checkBox;
-        if (checkBox2 == null || (!checkBox2.checkBoxBase.isChecked && this.linkImageView.hasBitmapImage() && this.linkImageView.getCurrentAlpha() == 1.0f && !PhotoViewer.isShowingImage((MessageObject) this.parentObject))) {
-            canvas2 = canvas;
-        } else {
+        ImageReceiver imageReceiver = this.linkImageView;
+        if (checkBox2 != null && (checkBox2.isChecked() || !imageReceiver.hasBitmapImage() || imageReceiver.getCurrentAlpha() != 1.0f || PhotoViewer.isShowingImage((MessageObject) this.parentObject))) {
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.backgroundPaint);
-            canvas2 = canvas;
         }
         if (this.titleLayout != null) {
-            canvas2.save();
-            canvas2.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.titleY);
-            this.titleLayout.draw(canvas2);
-            canvas2.restore();
+            canvas.save();
+            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.titleY);
+            this.titleLayout.draw(canvas);
+            canvas.restore();
         }
-        if (this.descriptionLayout != null) {
-            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider));
-            canvas2.save();
-            canvas2.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
-            this.descriptionLayout.draw(canvas2);
-            canvas2.restore();
+        StaticLayout staticLayout = this.descriptionLayout;
+        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+        if (staticLayout != null) {
+            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+            canvas.save();
+            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
+            this.descriptionLayout.draw(canvas);
+            canvas.restore();
         }
         if (this.linkLayout != null) {
-            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
-            canvas2.save();
-            canvas2.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY);
-            this.linkLayout.draw(canvas2);
-            canvas2.restore();
+            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, resourcesProvider));
+            canvas.save();
+            canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY);
+            this.linkLayout.draw(canvas);
+            canvas.restore();
         }
-        if (this.mediaWebpage) {
+        boolean z = this.mediaWebpage;
+        RadialProgress2 radialProgress2 = this.radialProgress;
+        if (z) {
             TLRPC.BotInlineResult botInlineResult = this.inlineResult;
             if (botInlineResult != null) {
                 TLRPC.BotInlineMessage botInlineMessage = botInlineResult.send_message;
                 if ((botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaGeo) || (botInlineMessage instanceof TLRPC.TL_botInlineMessageMediaVenue)) {
                     int intrinsicWidth = Theme.chat_inlineResultLocation.getIntrinsicWidth();
                     int intrinsicHeight = Theme.chat_inlineResultLocation.getIntrinsicHeight();
-                    int iM = (int) ImageReceiver$$ExternalSyntheticOutline0.m(this.linkImageView.getImageWidth(), intrinsicWidth, 2.0f, this.linkImageView.getImageX());
-                    int iM2 = (int) ImageReceiver$$ExternalSyntheticOutline0.m(this.linkImageView.getImageHeight(), intrinsicHeight, 2.0f, this.linkImageView.getImageY());
-                    canvas2.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageWidth() + this.linkImageView.getImageX(), this.linkImageView.getImageHeight() + this.linkImageView.getImageY(), LetterDrawable.paint);
+                    int iM = (int) ImageReceiver$$ExternalSyntheticOutline0.m(imageReceiver.getImageWidth(), intrinsicWidth, 2.0f, imageReceiver.getImageX());
+                    int iM2 = (int) ImageReceiver$$ExternalSyntheticOutline0.m(imageReceiver.getImageHeight(), intrinsicHeight, 2.0f, imageReceiver.getImageY());
+                    canvas.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX() + imageReceiver.getImageWidth(), imageReceiver.getImageY() + imageReceiver.getImageHeight(), LetterDrawable.paint);
                     Theme.chat_inlineResultLocation.setBounds(iM, iM2, intrinsicWidth + iM, intrinsicHeight + iM2);
-                    Theme.chat_inlineResultLocation.draw(canvas2);
+                    Theme.chat_inlineResultLocation.draw(canvas);
                 }
             }
         } else {
-            if (this.drawLinkImageView) {
-                TLRPC.BotInlineResult botInlineResult2 = this.inlineResult;
-                if (PhotoViewer.Instance == null || !PhotoViewer.Instance.isVisible || PhotoViewer.Instance.disableShowCheck || botInlineResult2 == null || PhotoViewer.Instance.currentBotInlineResult == null || botInlineResult2.id != PhotoViewer.Instance.currentBotInlineResult.id) {
-                    LetterDrawable letterDrawable = this.letterDrawable;
-                    int currentAlpha = (int) ((1.0f - this.linkImageView.getCurrentAlpha()) * 255.0f);
-                    letterDrawable.textPaint.setAlpha(currentAlpha);
-                    LetterDrawable.paint.setAlpha(currentAlpha);
-                } else {
-                    this.letterDrawable.textPaint.setAlpha(255);
-                    LetterDrawable.paint.setAlpha(255);
-                }
+            boolean z2 = this.drawLinkImageView;
+            LetterDrawable letterDrawable = this.letterDrawable;
+            if (!z2 || PhotoViewer.isShowingImage(this.inlineResult)) {
+                letterDrawable.setAlpha(255);
             } else {
-                this.letterDrawable.textPaint.setAlpha(255);
-                LetterDrawable.paint.setAlpha(255);
+                letterDrawable.setAlpha((int) ((1.0f - imageReceiver.getCurrentAlpha()) * 255.0f));
             }
             int i2 = this.documentAttachType;
             if (i2 == 3 || i2 == 5) {
-                this.radialProgress.progressColor = Theme.getColor(this.buttonPressed ? Theme.key_chat_inAudioSelectedProgress : Theme.key_chat_inAudioProgress, this.resourcesProvider);
-                this.radialProgress.draw(canvas2);
+                radialProgress2.setProgressColor(Theme.getColor(this.buttonPressed ? Theme.key_chat_inAudioSelectedProgress : Theme.key_chat_inAudioProgress, resourcesProvider));
+                radialProgress2.draw(canvas);
             } else {
-                TLRPC.BotInlineResult botInlineResult3 = this.inlineResult;
-                if (botInlineResult3 == null || !botInlineResult3.type.equals("file")) {
-                    TLRPC.BotInlineResult botInlineResult4 = this.inlineResult;
-                    if (botInlineResult4 == null || !(botInlineResult4.type.equals("audio") || this.inlineResult.type.equals("voice"))) {
-                        TLRPC.BotInlineResult botInlineResult5 = this.inlineResult;
-                        if (botInlineResult5 == null || !(botInlineResult5.type.equals("venue") || this.inlineResult.type.equals("geo"))) {
-                            this.letterDrawable.draw(canvas2);
+                TLRPC.BotInlineResult botInlineResult2 = this.inlineResult;
+                if (botInlineResult2 == null || !botInlineResult2.type.equals("file")) {
+                    TLRPC.BotInlineResult botInlineResult3 = this.inlineResult;
+                    if (botInlineResult3 == null || !(botInlineResult3.type.equals("audio") || this.inlineResult.type.equals("voice"))) {
+                        TLRPC.BotInlineResult botInlineResult4 = this.inlineResult;
+                        if (botInlineResult4 == null || !(botInlineResult4.type.equals("venue") || this.inlineResult.type.equals("geo"))) {
+                            letterDrawable.draw(canvas);
                         } else {
                             int intrinsicWidth2 = Theme.chat_inlineResultLocation.getIntrinsicWidth();
                             int intrinsicHeight2 = Theme.chat_inlineResultLocation.getIntrinsicHeight();
-                            int imageX = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.dp(52.0f) - intrinsicWidth2) / 2));
-                            int imageY = (int) (this.linkImageView.getImageY() + ((AndroidUtilities.dp(52.0f) - intrinsicHeight2) / 2));
-                            canvas2.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageX() + AndroidUtilities.dp(52.0f), this.linkImageView.getImageY() + AndroidUtilities.dp(52.0f), LetterDrawable.paint);
+                            int imageX = (int) (imageReceiver.getImageX() + ((AndroidUtilities.dp(52.0f) - intrinsicWidth2) / 2));
+                            int imageY = (int) (imageReceiver.getImageY() + ((AndroidUtilities.dp(52.0f) - intrinsicHeight2) / 2));
+                            canvas.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX() + AndroidUtilities.dp(52.0f), imageReceiver.getImageY() + AndroidUtilities.dp(52.0f), LetterDrawable.paint);
                             Theme.chat_inlineResultLocation.setBounds(imageX, imageY, intrinsicWidth2 + imageX, intrinsicHeight2 + imageY);
-                            Theme.chat_inlineResultLocation.draw(canvas2);
+                            Theme.chat_inlineResultLocation.draw(canvas);
                         }
                     } else {
                         int intrinsicWidth3 = Theme.chat_inlineResultAudio.getIntrinsicWidth();
                         int intrinsicHeight3 = Theme.chat_inlineResultAudio.getIntrinsicHeight();
-                        int imageX2 = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.dp(52.0f) - intrinsicWidth3) / 2));
-                        int imageY2 = (int) (this.linkImageView.getImageY() + ((AndroidUtilities.dp(52.0f) - intrinsicHeight3) / 2));
-                        canvas2.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageX() + AndroidUtilities.dp(52.0f), this.linkImageView.getImageY() + AndroidUtilities.dp(52.0f), LetterDrawable.paint);
+                        int imageX2 = (int) (imageReceiver.getImageX() + ((AndroidUtilities.dp(52.0f) - intrinsicWidth3) / 2));
+                        int imageY2 = (int) (imageReceiver.getImageY() + ((AndroidUtilities.dp(52.0f) - intrinsicHeight3) / 2));
+                        canvas.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX() + AndroidUtilities.dp(52.0f), imageReceiver.getImageY() + AndroidUtilities.dp(52.0f), LetterDrawable.paint);
                         Theme.chat_inlineResultAudio.setBounds(imageX2, imageY2, intrinsicWidth3 + imageX2, intrinsicHeight3 + imageY2);
-                        Theme.chat_inlineResultAudio.draw(canvas2);
+                        Theme.chat_inlineResultAudio.draw(canvas);
                     }
                 } else {
                     int intrinsicWidth4 = Theme.chat_inlineResultFile.getIntrinsicWidth();
                     int intrinsicHeight4 = Theme.chat_inlineResultFile.getIntrinsicHeight();
-                    int imageX3 = (int) (this.linkImageView.getImageX() + ((AndroidUtilities.dp(52.0f) - intrinsicWidth4) / 2));
-                    int imageY3 = (int) (this.linkImageView.getImageY() + ((AndroidUtilities.dp(52.0f) - intrinsicHeight4) / 2));
-                    canvas2.drawRect(this.linkImageView.getImageX(), this.linkImageView.getImageY(), this.linkImageView.getImageX() + AndroidUtilities.dp(52.0f), this.linkImageView.getImageY() + AndroidUtilities.dp(52.0f), LetterDrawable.paint);
+                    int imageX3 = (int) (imageReceiver.getImageX() + ((AndroidUtilities.dp(52.0f) - intrinsicWidth4) / 2));
+                    int imageY3 = (int) (imageReceiver.getImageY() + ((AndroidUtilities.dp(52.0f) - intrinsicHeight4) / 2));
+                    canvas.drawRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX() + AndroidUtilities.dp(52.0f), imageReceiver.getImageY() + AndroidUtilities.dp(52.0f), LetterDrawable.paint);
                     Theme.chat_inlineResultFile.setBounds(imageX3, imageY3, intrinsicWidth4 + imageX3, intrinsicHeight4 + imageY3);
-                    Theme.chat_inlineResultFile.draw(canvas2);
+                    Theme.chat_inlineResultFile.draw(canvas);
                 }
             }
         }
         if (this.drawLinkImageView) {
-            TLRPC.BotInlineResult botInlineResult6 = this.inlineResult;
-            if (botInlineResult6 != null) {
-                this.linkImageView.setVisible(!((PhotoViewer.Instance == null || !PhotoViewer.Instance.isVisible || PhotoViewer.Instance.disableShowCheck || PhotoViewer.Instance.currentBotInlineResult == null || botInlineResult6.id != PhotoViewer.Instance.currentBotInlineResult.id) ? false : true), false);
+            TLRPC.BotInlineResult botInlineResult5 = this.inlineResult;
+            if (botInlineResult5 != null) {
+                imageReceiver.setVisible(!PhotoViewer.isShowingImage(botInlineResult5), false);
             }
-            canvas2.save();
+            canvas.save();
             float scale = this.imageScale;
             ButtonBounce buttonBounce = this.buttonBounce;
             if (buttonBounce != null) {
                 scale *= buttonBounce.getScale(0.1f);
             }
-            canvas2.scale(scale, scale, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
-            this.linkImageView.draw(canvas2);
-            canvas2.restore();
+            canvas.scale(scale, scale, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
+            imageReceiver.draw(canvas);
+            canvas.restore();
         }
         if (this.mediaWebpage && ((i = this.documentAttachType) == 7 || i == 2)) {
-            this.radialProgress.draw(canvas2);
+            radialProgress2.draw(canvas);
         }
         if (this.needDivider && !this.mediaWebpage) {
             if (LocaleController.isRTL) {
-                canvas2.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, Theme.dividerPaint);
             } else {
-                canvas2.drawLine(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(AndroidUtilities.dp(AndroidUtilities.leftBaseline), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, Theme.dividerPaint);
             }
         }
         if (this.needShadow) {
             Theme.chat_contextResult_shadowUnderSwitchDrawable.setBounds(0, 0, getMeasuredWidth(), AndroidUtilities.dp(3.0f));
-            Theme.chat_contextResult_shadowUnderSwitchDrawable.draw(canvas2);
+            Theme.chat_contextResult_shadowUnderSwitchDrawable.draw(canvas);
         }
     }
 
@@ -564,7 +664,7 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
         }
         accessibilityNodeInfo.setText(sb);
         CheckBox2 checkBox2 = this.checkBox;
-        if (checkBox2 != null && checkBox2.checkBoxBase.isChecked) {
+        if (checkBox2 != null && checkBox2.isChecked()) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }
@@ -1004,11 +1104,11 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
                     StaticLayout staticLayout7 = this.linkLayout;
                     lineBottom += staticLayout7.getLineBottom(staticLayout7.getLineCount() - r6);
                 }
-                setMeasuredDimension(View.MeasureSpec.getSize(i), MessageObject$$ExternalSyntheticOutline0.m(Math.max(AndroidUtilities.dp(52.0f), lineBottom), 16.0f, AndroidUtilities.dp(68.0f)) + (this.needDivider ? 1 : 0));
+                setMeasuredDimension(View.MeasureSpec.getSize(i), MessageObject$$ExternalSyntheticOutline0.m(16.0f, Math.max(AndroidUtilities.dp(52.0f), lineBottom), AndroidUtilities.dp(68.0f)) + (this.needDivider ? 1 : 0));
                 iDp2 = AndroidUtilities.dp(52.0f);
                 if (LocaleController.isRTL) {
                     f2 = 8.0f;
-                    iDp3 = RichMessageLayout$$ExternalSyntheticOutline2.m(View.MeasureSpec.getSize(i), 8.0f, iDp2);
+                    iDp3 = RichMessageLayout$$ExternalSyntheticOutline1.m(8.0f, View.MeasureSpec.getSize(i), iDp2);
                 } else {
                     f2 = 8.0f;
                     iDp3 = AndroidUtilities.dp(8.0f);
@@ -1391,11 +1491,11 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
                 StaticLayout staticLayout10 = this.linkLayout;
                 lineBottom += staticLayout10.getLineBottom(staticLayout10.getLineCount() - r6);
             }
-            setMeasuredDimension(View.MeasureSpec.getSize(i), MessageObject$$ExternalSyntheticOutline0.m(Math.max(AndroidUtilities.dp(52.0f), lineBottom), 16.0f, AndroidUtilities.dp(68.0f)) + (this.needDivider ? 1 : 0));
+            setMeasuredDimension(View.MeasureSpec.getSize(i), MessageObject$$ExternalSyntheticOutline0.m(16.0f, Math.max(AndroidUtilities.dp(52.0f), lineBottom), AndroidUtilities.dp(68.0f)) + (this.needDivider ? 1 : 0));
             iDp2 = AndroidUtilities.dp(52.0f);
             if (LocaleController.isRTL) {
                 f2 = 8.0f;
-                iDp3 = RichMessageLayout$$ExternalSyntheticOutline2.m(View.MeasureSpec.getSize(i), 8.0f, iDp2);
+                iDp3 = RichMessageLayout$$ExternalSyntheticOutline1.m(8.0f, View.MeasureSpec.getSize(i), iDp2);
             } else {
                 f2 = 8.0f;
                 iDp3 = AndroidUtilities.dp(8.0f);
@@ -1468,7 +1568,7 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
                 if (motionEvent.getAction() == 1) {
                     this.buttonPressed = false;
                     playSoundEffect(0);
-                    didPressedButton$2();
+                    didPressedButton$1();
                     invalidate();
                 } else if (motionEvent.getAction() == 3) {
                     this.buttonPressed = false;
@@ -1493,7 +1593,7 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
                     if (motionEvent.getAction() == 1) {
                         this.buttonPressed = false;
                         playSoundEffect(0);
-                        MentionsContainerView.this.onContextClick(getResult());
+                        ((MentionsAdapter$$ExternalSyntheticLambda7) this.delegate).f$0.delegate.onContextClick(getResult());
                     } else if (motionEvent.getAction() == 3) {
                         this.buttonPressed = false;
                     } else if (motionEvent.getAction() == 2 && !letterDrawable.getBounds().contains(x, y)) {
@@ -1512,7 +1612,7 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
         if (i != 16 || ((i2 = this.documentAttachType) != 3 && i2 != 5)) {
             return super.performAccessibilityAction(i, bundle);
         }
-        didPressedButton$2();
+        didPressedButton$1();
         return true;
     }
 
@@ -1572,7 +1672,7 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
                 document3.id = 0L;
                 document3.access_hash = 0L;
                 document3.date = tL_message.date;
-                document3.mime_type = zzil.m("audio/", httpUrlExtension);
+                document3.mime_type = zzii.m("audio/", httpUrlExtension);
                 TLRPC.Document document4 = tL_message.media.document;
                 document4.size = 0L;
                 document4.dc_id = 0;
@@ -1614,6 +1714,7 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
     }
 
     public final void setChecked(boolean z, boolean z2) {
+        int i = 0;
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 == null) {
             return;
@@ -1621,7 +1722,7 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
         if (checkBox2.getVisibility() != 0) {
             checkBox2.setVisibility(0);
         }
-        checkBox2.checkBoxBase.setChecked(-1, z, z2);
+        checkBox2.setChecked(z, z2);
         AnimatorSet animatorSet = this.animator;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -1636,7 +1737,7 @@ public final class ContextLinkCell extends FrameLayout implements DownloadContro
         this.animator = animatorSet2;
         animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.IMAGE_SCALE, z ? 0.81f : 1.0f));
         this.animator.setDuration(200L);
-        this.animator.addListener(new ChatActivity.AnonymousClass77(6, this, z));
+        this.animator.addListener(new AnonymousClass3(this, z, i));
         this.animator.start();
     }
 

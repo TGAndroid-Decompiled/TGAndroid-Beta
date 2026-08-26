@@ -8,13 +8,17 @@ import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
 
 public class URLSpanNoUnderline extends URLSpan {
-    public boolean forceNoUnderline;
+    private boolean forceNoUnderline;
     public String label;
-    public TLObject object;
-    public final TextStyleSpan.TextStyleRun style;
+    private TLObject object;
+    private TextStyleSpan.TextStyleRun style;
 
     public URLSpanNoUnderline(String str) {
-        this(str, null);
+        this(str, (TextStyleSpan.TextStyleRun) null);
+    }
+
+    public TLObject getObject() {
+        return this.object;
     }
 
     @Override
@@ -27,6 +31,10 @@ public class URLSpanNoUnderline extends URLSpan {
         Browser.openUrl(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
     }
 
+    public void setObject(TLObject tLObject) {
+        this.object = tLObject;
+    }
+
     @Override
     public void updateDrawState(TextPaint textPaint) {
         int i = textPaint.linkColor;
@@ -37,6 +45,11 @@ public class URLSpanNoUnderline extends URLSpan {
             textStyleRun.applyStyle(textPaint);
         }
         textPaint.setUnderlineText(i == color && !this.forceNoUnderline);
+    }
+
+    public URLSpanNoUnderline(String str, boolean z) {
+        this(str, (TextStyleSpan.TextStyleRun) null);
+        this.forceNoUnderline = z;
     }
 
     public URLSpanNoUnderline(String str, TextStyleSpan.TextStyleRun textStyleRun) {

@@ -19,10 +19,8 @@ import org.telegram.ui.ActionBar.ActionBarMenuSlider;
 import org.telegram.ui.ActionBar.BottomSheetTabsOverlay;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
-import org.telegram.ui.Components.BatteryDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.PopupSwipeBackLayout;
 import org.telegram.ui.Components.SeekBarView;
 
 public final class SlideIntChooseView extends FrameLayout {
@@ -80,46 +78,11 @@ public final class SlideIntChooseView extends FrameLayout {
                         bottomSheetTabsOverlay.invalidate();
                     }
                     break;
-                case 3:
+                default:
                     float f3 = this.val$value;
                     ReactedUserHolderView reactedUserHolderView = (ReactedUserHolderView) this.this$0;
                     reactedUserHolderView.alphaInternal = f3;
                     reactedUserHolderView.invalidate();
-                    break;
-                case 4:
-                    float f4 = this.val$value;
-                    BatteryDrawable batteryDrawable = (BatteryDrawable) this.this$0;
-                    batteryDrawable.fillValue = f4;
-                    batteryDrawable.invalidateSelf();
-                    break;
-                default:
-                    PopupSwipeBackLayout popupSwipeBackLayout = (PopupSwipeBackLayout) this.this$0;
-                    popupSwipeBackLayout.notificationsLocker.unlock();
-                    float f5 = this.val$value;
-                    popupSwipeBackLayout.transitionProgress = f5;
-                    if (f5 <= 0.0f) {
-                        popupSwipeBackLayout.currentForegroundIndex = -1;
-                    }
-                    popupSwipeBackLayout.invalidateTransforms(true);
-                    popupSwipeBackLayout.isAnimationInProgress = false;
-                    if (popupSwipeBackLayout.onForegroundOpen != null && Math.abs(f5 - 1.0f) < 0.01f) {
-                        popupSwipeBackLayout.onForegroundOpen.run();
-                        break;
-                    }
-                    break;
-            }
-        }
-
-        @Override
-        public void onAnimationStart(Animator animator) {
-            switch (this.$r8$classId) {
-                case 5:
-                    PopupSwipeBackLayout popupSwipeBackLayout = (PopupSwipeBackLayout) this.this$0;
-                    popupSwipeBackLayout.isAnimationInProgress = true;
-                    popupSwipeBackLayout.toProgress = this.val$value;
-                    break;
-                default:
-                    super.onAnimationStart(animator);
                     break;
             }
         }
@@ -151,11 +114,7 @@ public final class SlideIntChooseView extends FrameLayout {
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
         this.minText = animatedTextView;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = animatedTextView.drawable;
-        animatedTextDrawable.moveAmplitude = 0.3f;
-        animatedTextDrawable.animateDuration = 220L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextView.setAnimationProperties(0.3f, 0L, 220L, cubicBezierInterpolator);
         animatedTextView.setTextSize(AndroidUtilities.dp(13.0f));
         int i = Theme.key_windowBackgroundWhiteGrayText;
         animatedTextView.setTextColor(Theme.getColor(i, resourcesProvider));
@@ -166,11 +125,7 @@ public final class SlideIntChooseView extends FrameLayout {
         addView(animatedTextView, LayoutHelper.createFrame(-1, 25.0f, 48, 22.0f, 13.0f, 22.0f, 0.0f));
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, true, true);
         this.valueText = animatedTextView2;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = animatedTextView2.drawable;
-        animatedTextDrawable2.moveAmplitude = 0.3f;
-        animatedTextDrawable2.animateDuration = 220L;
-        animatedTextDrawable2.animateWave = 1.0f;
-        animatedTextDrawable2.animateInterpolator = cubicBezierInterpolator;
+        animatedTextView2.setAnimationProperties(0.3f, 0L, 220L, cubicBezierInterpolator);
         animatedTextView2.setTextSize(AndroidUtilities.dp(13.0f));
         animatedTextView2.setGravity(17);
         animatedTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText, resourcesProvider));
@@ -180,11 +135,7 @@ public final class SlideIntChooseView extends FrameLayout {
         addView(animatedTextView2, LayoutHelper.createFrame(-1, 25.0f, 48, 22.0f, 13.0f, 22.0f, 0.0f));
         AnimatedTextView animatedTextView3 = new AnimatedTextView(context, true, true, true);
         this.maxText = animatedTextView3;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable3 = animatedTextView3.drawable;
-        animatedTextDrawable3.moveAmplitude = 0.3f;
-        animatedTextDrawable3.animateDuration = 220L;
-        animatedTextDrawable3.animateWave = 1.0f;
-        animatedTextDrawable3.animateInterpolator = cubicBezierInterpolator;
+        animatedTextView3.setAnimationProperties(0.3f, 0L, 220L, cubicBezierInterpolator);
         animatedTextView3.setTextSize(AndroidUtilities.dp(13.0f));
         animatedTextView3.setGravity(5);
         animatedTextView3.setTextColor(Theme.getColor(i, resourcesProvider));
@@ -192,7 +143,7 @@ public final class SlideIntChooseView extends FrameLayout {
         animatedTextView3.setEmojiCacheType(19);
         animatedTextView3.setImportantForAccessibility(2);
         addView(animatedTextView3, LayoutHelper.createFrame(-1, 25.0f, 48, 22.0f, 13.0f, 22.0f, 0.0f));
-        MaxFileSizeCell.AnonymousClass1 anonymousClass1 = new MaxFileSizeCell.AnonymousClass1(2, context, resourcesProvider, false);
+        MaxFileSizeCell.AnonymousClass1 anonymousClass1 = new MaxFileSizeCell.AnonymousClass1(context, resourcesProvider);
         this.seekBarView = anonymousClass1;
         anonymousClass1.setReportChanges(true);
         anonymousClass1.setDelegate(new SeekBarView.SeekBarViewDelegate() {
@@ -247,7 +198,12 @@ public final class SlideIntChooseView extends FrameLayout {
             }
 
             @Override
-            public final void onSeekBarDrag(float f, boolean z) {
+            public final boolean needVisuallyDivideSteps() {
+                return false;
+            }
+
+            @Override
+            public final void onSeekBarDrag(boolean z, float f) {
                 int iRound;
                 int i2;
                 SlideIntChooseView slideIntChooseView = SlideIntChooseView.this;
@@ -321,7 +277,8 @@ public final class SlideIntChooseView extends FrameLayout {
             }
 
             @Override
-            public final void onSeekBarPressed() {
+            public final void onSeekBarPressed(boolean z) {
+                SeekBarView.SeekBarViewDelegate.CC.$default$onSeekBarPressed(this, z);
             }
         });
         addView(anonymousClass1, LayoutHelper.createFrame(-1, 38.0f, 55, 6.0f, 30.0f, 6.0f, 0.0f));
@@ -419,16 +376,15 @@ public final class SlideIntChooseView extends FrameLayout {
             return;
         }
         AnimatedTextView animatedTextView = this.minText;
-        animatedTextView.drawable.cancelAnimation();
+        animatedTextView.cancelAnimation();
         AnimatedTextView animatedTextView2 = this.maxText;
-        animatedTextView2.drawable.cancelAnimation();
+        animatedTextView2.cancelAnimation();
         AnimatedTextView animatedTextView3 = this.valueText;
-        animatedTextView3.drawable.cancelAnimation();
-        animatedTextView3.setText((CharSequence) this.options.toString.run(0, Integer.valueOf(i)), z, true);
-        animatedTextView.setText((CharSequence) this.options.toString.run(-1, Integer.valueOf(this.options.getMin())), z, true);
-        animatedTextView2.setText((CharSequence) this.options.toString.run(1, Integer.valueOf(this.options.getMax())), z, true);
-        animatedTextView2.drawable.setTextColor(Theme.getColor(i >= this.options.getMax() ? Theme.key_windowBackgroundWhiteValueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), z);
-        animatedTextView2.invalidate();
+        animatedTextView3.cancelAnimation();
+        animatedTextView3.setText((CharSequence) this.options.toString.run(0, Integer.valueOf(i)), z);
+        animatedTextView.setText((CharSequence) this.options.toString.run(-1, Integer.valueOf(this.options.getMin())), z);
+        animatedTextView2.setText((CharSequence) this.options.toString.run(1, Integer.valueOf(this.options.getMax())), z);
+        animatedTextView2.setTextColor(Theme.getColor(i >= this.options.getMax() ? Theme.key_windowBackgroundWhiteValueText : Theme.key_windowBackgroundWhiteGrayText, this.resourcesProvider), z);
         float f = i >= this.options.getMax() ? 1.0f : 0.0f;
         if (Math.abs(this.toMaxTextEmojiSaturation - f) < 0.01f) {
             return;
@@ -442,7 +398,7 @@ public final class SlideIntChooseView extends FrameLayout {
         if (z) {
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.maxTextEmojiSaturation, f);
             this.maxTextEmojiSaturationAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 11));
+            valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 7));
             this.maxTextEmojiSaturationAnimator.addListener(new AnonymousClass3(this, f, i2));
             this.maxTextEmojiSaturationAnimator.setDuration(240L);
             this.maxTextEmojiSaturationAnimator.start();

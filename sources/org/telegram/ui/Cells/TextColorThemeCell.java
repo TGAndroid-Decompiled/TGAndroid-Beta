@@ -8,7 +8,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.BlurSettingsBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.LayoutHelper;
 
 public final class TextColorThemeCell extends FrameLayout {
@@ -25,7 +25,9 @@ public final class TextColorThemeCell extends FrameLayout {
         }
         TextView textView = new TextView(context);
         this.textView = textView;
-        ArticleViewer.IBlock.CC.m(textView, -14606047, 16.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView, -14606047, 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView.setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
         boolean z = LocaleController.isRTL;

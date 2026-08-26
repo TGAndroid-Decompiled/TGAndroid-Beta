@@ -8,10 +8,7 @@ public abstract class BotStorage$$ExternalSyntheticApiModelOutline0 {
         return new AudioRecord.Builder();
     }
 
-    public static KeyGenParameterSpec.Builder m1100m() {
+    public static KeyGenParameterSpec.Builder m3591m() {
         return new KeyGenParameterSpec.Builder("MiniAppsKey", 3);
-    }
-
-    public static void m1101m() {
     }
 }

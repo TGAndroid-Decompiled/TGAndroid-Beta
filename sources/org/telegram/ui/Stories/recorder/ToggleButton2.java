@@ -19,8 +19,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.MotionPhotoDrawable;
-import org.telegram.ui.Stories.PeerStoriesView$40$$ExternalSyntheticLambda1;
 
 public class ToggleButton2 extends View implements FlashViews.Invertable {
     public Bitmap activeBitmap;
@@ -150,8 +148,8 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
         invalidate();
     }
 
-    public final void setIcon(MotionPhotoDrawable motionPhotoDrawable, boolean z) {
-        if (this.drawable == motionPhotoDrawable) {
+    public final void setIcon(CollageLayoutButton.CollageLayoutDrawable collageLayoutDrawable, boolean z) {
+        if (this.drawable == collageLayoutDrawable) {
             return;
         }
         ValueAnimator valueAnimator = this.animator;
@@ -161,11 +159,11 @@ public class ToggleButton2 extends View implements FlashViews.Invertable {
         }
         if (z) {
             this.animator = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-            this.animator.addUpdateListener(new PeerStoriesView$40$$ExternalSyntheticLambda1(this, new AtomicBoolean(), motionPhotoDrawable, 4));
+            this.animator.addUpdateListener(new PaintView$$ExternalSyntheticLambda37(1, this, new AtomicBoolean(), collageLayoutDrawable));
             this.animator.start();
             return;
         }
-        setDrawable(motionPhotoDrawable);
+        setDrawable(collageLayoutDrawable);
     }
 
     public void setDrawable(Drawable drawable) {

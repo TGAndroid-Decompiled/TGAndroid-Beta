@@ -1,6 +1,6 @@
 package org.telegram.ui.Cells;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
@@ -24,16 +24,16 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline2;
+import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline1;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.DotDividerSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.FilteredSearchView;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda0;
 
 public final class AudioPlayerCell extends FrameLayout implements DownloadController.FileDownloadProgressListener {
     public static final int $r8$clinit = 0;
@@ -59,8 +59,8 @@ public final class AudioPlayerCell extends FrameLayout implements DownloadContro
     public final int titleY;
     public final int viewType;
 
-    public AudioPlayerCell(int i, Activity activity, Theme.ResourcesProvider resourcesProvider) {
-        super(activity);
+    public AudioPlayerCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
         this.titleY = AndroidUtilities.dp(9.0f);
         this.descriptionY = AndroidUtilities.dp(29.0f);
         int i2 = UserConfig.selectedAccount;
@@ -68,24 +68,17 @@ public final class AudioPlayerCell extends FrameLayout implements DownloadContro
         setWillNotDraw(false);
         this.resourcesProvider = resourcesProvider;
         this.viewType = i;
-        ImageView imageView = new ImageView(activity);
+        ImageView imageView = new ImageView(context);
         this.optionsButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setImageResource(R.drawable.ic_ab_other);
         imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 1, -1));
         addView(imageView, LayoutHelper.createFrame(42, 42.0f, (LocaleController.isRTL ? 3 : 5) | 16, 5.0f, 0.0f, 5.0f, 0.0f));
-        imageView.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(1));
-        RadialProgress2 radialProgress2 = new RadialProgress2(resourcesProvider, this);
+        imageView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda0(1));
+        RadialProgress2 radialProgress2 = new RadialProgress2(this, resourcesProvider);
         this.radialProgress = radialProgress2;
-        int i3 = Theme.key_chat_inLoader;
-        int i4 = Theme.key_chat_inLoaderSelected;
-        int i5 = Theme.key_chat_inMediaIcon;
-        int i6 = Theme.key_chat_inMediaIconSelected;
-        radialProgress2.circleColorKey = i3;
-        radialProgress2.circlePressedColorKey = i4;
-        radialProgress2.iconColorKey = i5;
-        radialProgress2.iconPressedColorKey = i6;
+        radialProgress2.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
         this.TAG = DownloadController.getInstance(i2).generateObserverTag();
         setFocusable(true);
         if (i == 1) {
@@ -172,7 +165,7 @@ public final class AudioPlayerCell extends FrameLayout implements DownloadContro
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.radialProgress.overlayImageView.onAttachedToWindow();
+        this.radialProgress.onAttachedToWindow();
         this.titleLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.titleLayoutEmojis, this.titleLayout);
         this.descriptionLayoutEmojis = AnimatedEmojiSpan.update(0, this, this.descriptionLayoutEmojis, this.descriptionLayout);
     }
@@ -180,7 +173,7 @@ public final class AudioPlayerCell extends FrameLayout implements DownloadContro
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.radialProgress.overlayImageView.onDetachedFromWindow();
+        this.radialProgress.onDetachedFromWindow();
         DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
         AnimatedEmojiSpan.release(this, this.titleLayoutEmojis);
         AnimatedEmojiSpan.release(this, this.descriptionLayoutEmojis);
@@ -215,7 +208,7 @@ public final class AudioPlayerCell extends FrameLayout implements DownloadContro
         }
         int color = Theme.getColor(Theme.key_chat_inAudioProgress, resourcesProvider);
         RadialProgress2 radialProgress2 = this.radialProgress;
-        radialProgress2.progressColor = color;
+        radialProgress2.setProgressColor(color);
         radialProgress2.draw(canvas);
         super.onDraw(canvas);
         if (!this.needDivider || (themePaint = Theme.getThemePaint("paintDivider", resourcesProvider)) == null) {
@@ -262,7 +255,7 @@ public final class AudioPlayerCell extends FrameLayout implements DownloadContro
         try {
             CharSequence charSequenceReplace = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
             if (this.viewType == 1) {
-                charSequenceReplace = new SpannableStringBuilder(charSequenceReplace).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, true, 2, null));
+                charSequenceReplace = new SpannableStringBuilder(charSequenceReplace).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, 2));
             }
             CharSequence charSequenceEllipsize2 = TextUtils.ellipsize(charSequenceReplace, Theme.chat_contextResult_descriptionTextPaint, size, TextUtils.TruncateAt.END);
             CharSequence charSequenceHighlightText2 = AndroidUtilities.highlightText(charSequenceEllipsize2, this.currentMessageObject.highlightedWords, resourcesProvider);
@@ -273,7 +266,7 @@ public final class AudioPlayerCell extends FrameLayout implements DownloadContro
             FileLog.e(e2);
         }
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
-        int iM = LocaleController.isRTL ? RichMessageLayout$$ExternalSyntheticOutline2.m(View.MeasureSpec.getSize(i), 8.0f, AndroidUtilities.dp(52.0f)) : AndroidUtilities.dp(8.0f);
+        int iM = LocaleController.isRTL ? RichMessageLayout$$ExternalSyntheticOutline1.m(8.0f, View.MeasureSpec.getSize(i), AndroidUtilities.dp(52.0f)) : AndroidUtilities.dp(8.0f);
         int iDp = AndroidUtilities.dp(4.0f) + iM;
         this.buttonX = iDp;
         int iDp2 = AndroidUtilities.dp(6.0f);
@@ -428,7 +421,7 @@ public final class AudioPlayerCell extends FrameLayout implements DownloadContro
             invalidate();
             return;
         }
-        radialProgress2.miniProgressBackgroundPaint.setColor(Theme.getColor(this.currentMessageObject.isOutOwner() ? Theme.key_chat_outLoader : Theme.key_chat_inLoader, this.resourcesProvider));
+        radialProgress2.setMiniProgressBackgroundColor(Theme.getColor(this.currentMessageObject.isOutOwner() ? Theme.key_chat_outLoader : Theme.key_chat_inLoader, this.resourcesProvider));
         boolean zIsPlayingMessage2 = MediaController.getInstance().isPlayingMessage(this.currentMessageObject);
         if (!zIsPlayingMessage2 || (zIsPlayingMessage2 && MediaController.getInstance().isMessagePaused())) {
             this.buttonState = 0;

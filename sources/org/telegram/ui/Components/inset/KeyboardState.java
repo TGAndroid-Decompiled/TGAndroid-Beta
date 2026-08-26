@@ -1,13 +1,13 @@
 package org.telegram.ui.Components.inset;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
 
 public final class KeyboardState {
-    public final PollItemMenu$$ExternalSyntheticLambda14 onUpdateListener;
+    public final DialogCell$$ExternalSyntheticLambda6 onUpdateListener;
     public State state = State.STATE_FULLY_HIDDEN;
-    public final Tooltip$$ExternalSyntheticLambda0 applyPendingStateR = new Tooltip$$ExternalSyntheticLambda0(this, 19);
+    public final GiftSheet$$ExternalSyntheticLambda9 applyPendingStateR = new GiftSheet$$ExternalSyntheticLambda9(this, 10);
     public final long keyboardDuration = (long) ((AndroidUtilities.getAnimatorDurationScale() * 250.0f) * 1.1f);
 
     public final class State {
@@ -38,20 +38,20 @@ public final class KeyboardState {
         }
     }
 
-    public KeyboardState(PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14) {
-        this.onUpdateListener = pollItemMenu$$ExternalSyntheticLambda14;
+    public KeyboardState(DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda6) {
+        this.onUpdateListener = dialogCell$$ExternalSyntheticLambda6;
     }
 
     public final void setState(State state, boolean z) {
         if (this.state != state) {
-            Tooltip$$ExternalSyntheticLambda0 tooltip$$ExternalSyntheticLambda0 = this.applyPendingStateR;
-            AndroidUtilities.cancelRunOnUIThread(tooltip$$ExternalSyntheticLambda0);
+            GiftSheet$$ExternalSyntheticLambda9 giftSheet$$ExternalSyntheticLambda9 = this.applyPendingStateR;
+            AndroidUtilities.cancelRunOnUIThread(giftSheet$$ExternalSyntheticLambda9);
             this.state = state;
             if (z) {
                 this.onUpdateListener.run(state);
             }
             if (state == State.STATE_ANIMATING_TO_FULLY_HIDDEN || state == State.STATE_ANIMATING_TO_FULLY_VISIBLE) {
-                AndroidUtilities.runOnUIThread(tooltip$$ExternalSyntheticLambda0, this.keyboardDuration);
+                AndroidUtilities.runOnUIThread(giftSheet$$ExternalSyntheticLambda9, this.keyboardDuration);
             }
         }
     }

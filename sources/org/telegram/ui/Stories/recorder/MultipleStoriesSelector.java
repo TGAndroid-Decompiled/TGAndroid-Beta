@@ -6,14 +6,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Size;
 import android.view.MotionEvent;
@@ -29,7 +27,6 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda68;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BlurringShader;
@@ -42,13 +39,9 @@ import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.GroupColorActivity$$ExternalSyntheticLambda0;
-import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
-import org.telegram.ui.Stories.StoriesViewPager$$ExternalSyntheticLambda0;
-import org.telegram.ui.TodoItemMenu;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
-import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stories.StoryViewer;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda29;
 
 public abstract class MultipleStoriesSelector extends FrameLayout {
     public final AnimatedFloat animatedHint;
@@ -60,7 +53,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
     public final Path closePath;
     public Text counter;
     public final Paint darkenBackground;
-    public final VoIPFragment$12$$ExternalSyntheticLambda0 hideHint;
+    public final PreviewView$$ExternalSyntheticLambda12 hideHint;
     public Text hint;
     public final RectF hintArc;
     public final RectF hintBounds;
@@ -78,8 +71,8 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
     public final class AnonymousClass1 extends UniversalRecyclerView {
         public final StoryRecorder.AnonymousClass11 this$0;
 
-        public AnonymousClass1(StoryRecorder.AnonymousClass11 anonymousClass11, Activity activity, int i, MultipleStoriesSelector$$ExternalSyntheticLambda1 multipleStoriesSelector$$ExternalSyntheticLambda1, StoriesViewPager$$ExternalSyntheticLambda0 storiesViewPager$$ExternalSyntheticLambda0, DarkThemeResourceProvider darkThemeResourceProvider) {
-            super(activity, i, 0, false, multipleStoriesSelector$$ExternalSyntheticLambda1, storiesViewPager$$ExternalSyntheticLambda0, null, darkThemeResourceProvider, -1, 0);
+        public AnonymousClass1(StoryRecorder.AnonymousClass11 anonymousClass11, Activity activity, int i, MultipleStoriesSelector$$ExternalSyntheticLambda1 multipleStoriesSelector$$ExternalSyntheticLambda1, Weather$$ExternalSyntheticLambda7 weather$$ExternalSyntheticLambda7, DarkThemeResourceProvider darkThemeResourceProvider) {
+            super(activity, i, 0, false, multipleStoriesSelector$$ExternalSyntheticLambda1, weather$$ExternalSyntheticLambda7, null, darkThemeResourceProvider, -1, 0);
             this.this$0 = anonymousClass11;
         }
 
@@ -91,7 +84,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         @Override
         public final void swappedElements() {
             StoryRecorder.AnonymousClass11 anonymousClass11 = this.this$0;
-            AndroidUtilities.forEachViews((RecyclerView) anonymousClass11.listView, (Consumer) new QrActivity$5$$ExternalSyntheticLambda0(this, 12));
+            AndroidUtilities.forEachViews((RecyclerView) anonymousClass11.listView, (Consumer) new SelectAudioAlert$$ExternalSyntheticLambda5(this, 2));
         }
     }
 
@@ -131,7 +124,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                     entryView.imageReceiver.clearImage();
                     entryView.lastId = i;
                 }
-                entryView.counter.setText(Integer.toString(i2 + 1), false, true);
+                entryView.counter.setText(Integer.toString(i2 + 1), false);
                 File file = storyEntry.draftThumbFile;
                 if (file != null) {
                     if (!TextUtils.equals(entryView.lastEntryPath, file.getPath())) {
@@ -321,31 +314,26 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             this.strokePaint = paint;
             Paint paint2 = new Paint(1);
             this.fillPaint = paint2;
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, false, false);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
             this.counter = animatedTextDrawable;
-            this.checkboxBounce = new ButtonBounce(this, 1.0f, 5.0f);
+            this.checkboxBounce = new ButtonBounce(this);
             this.lastId = -1;
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             this.animatedSelected = new AnimatedFloat(this, 0L, 320L, cubicBezierInterpolator);
             this.animatedChecked = new AnimatedFloat(this, 0L, 320L, cubicBezierInterpolator);
             animatedTextDrawable.setCallback(this);
-            TextPaint textPaint = animatedTextDrawable.textPaint;
-            textPaint.setColor(-1);
-            animatedTextDrawable.alpha = Color.alpha(-1);
-            animatedTextDrawable.gravity = 17;
+            animatedTextDrawable.setTextColor(-1);
+            animatedTextDrawable.setGravity(17);
             animatedTextDrawable.setTextSize(AndroidUtilities.dp(16.0f));
-            textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-            animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
-            animatedTextDrawable.moveAmplitude = 0.65f;
-            animatedTextDrawable.animateDuration = 480L;
-            animatedTextDrawable.animateWave = 1.0f;
-            animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
-            animatedTextDrawable.scaleAmplitude = 0.35f;
+            animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
+            animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+            animatedTextDrawable.setAnimationProperties(0.65f, 0L, 480L, cubicBezierInterpolator);
+            animatedTextDrawable.setScaleProperty(0.35f);
             paint.setStyle(Paint.Style.STROKE);
             paint.setColor(-1);
             paint2.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
             imageReceiver.setRoundRadius(AndroidUtilities.dp(6.0f));
-            ScaleStateListAnimator.apply(this, 0.1f, 1.5f);
+            ScaleStateListAnimator.apply(this);
         }
 
         @Override
@@ -383,7 +371,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                 float f4 = this.r;
                 float f5 = this.cy;
                 animatedTextDrawable.setBounds(f3 - f4, f5, f3 + f4, f5);
-                animatedTextDrawable.alpha = (int) (f2 * 255.0f);
+                animatedTextDrawable.setAlpha((int) (f2 * 255.0f));
                 animatedTextDrawable.draw(canvas);
             }
             canvas.restore();
@@ -415,14 +403,14 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
             if (action == 0) {
                 buttonBounce.setPressed(z);
             } else if (motionEvent.getAction() == 1) {
-                if (buttonBounce.isPressed && z && (onClickListener = this.onCheckboxClick) != null) {
+                if (buttonBounce.isPressed() && z && (onClickListener = this.onCheckboxClick) != null) {
                     onClickListener.onClick(this);
                 }
                 buttonBounce.setPressed(false);
             } else if (motionEvent.getAction() == 3) {
                 buttonBounce.setPressed(false);
             }
-            return buttonBounce.isPressed || super.onTouchEvent(motionEvent);
+            return buttonBounce.isPressed() || super.onTouchEvent(motionEvent);
         }
 
         public void setOnCheckboxClick(View.OnClickListener onClickListener) {
@@ -430,7 +418,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         }
 
         public void setPosition(int i) {
-            this.counter.setText(i < 0 ? "" : Integer.toString(i + 1), true, true);
+            this.counter.setText(i < 0 ? "" : Integer.toString(i + 1), true);
         }
 
         @Override
@@ -445,8 +433,8 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         this.selectedOrder = new ArrayList();
         this.selectedStories = new ArrayList();
         final StoryRecorder.AnonymousClass11 anonymousClass11 = (StoryRecorder.AnonymousClass11) this;
-        this.hideHint = new VoIPFragment$12$$ExternalSyntheticLambda0(anonymousClass11, 12);
-        this.buttonBounce = new ButtonBounce(this, 1.0f, 5.0f);
+        this.hideHint = new PreviewView$$ExternalSyntheticLambda12(anonymousClass11, 15);
+        this.buttonBounce = new ButtonBounce(this);
         this.buttonBounds = new RectF();
         this.buttonTouchBounds = new RectF();
         Paint paint = new Paint(1);
@@ -490,10 +478,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                             uItemOfFactory.id = iIntValue;
                             uItemOfFactory.object = storyEntry;
                             uItemOfFactory.intValue = i3;
-                            uItemOfFactory.setChecked(anonymousClass13.selectedStory == iIntValue);
-                            uItemOfFactory.collapsed = anonymousClass13.selectedStories.contains(num);
-                            uItemOfFactory.clickCallback = new ChatActivity$$ExternalSyntheticLambda68(anonymousClass13, iIntValue, 25);
-                            arrayList.add(uItemOfFactory);
+                            arrayList.add(uItemOfFactory.setChecked(anonymousClass13.selectedStory == iIntValue).setCollapsed(anonymousClass13.selectedStories.contains(num)).setClickCallback(new RichEditor$$ExternalSyntheticLambda29(anonymousClass13, iIntValue, 8)));
                             if (anonymousClass13.selectedStories.contains(num)) {
                                 i3++;
                             }
@@ -510,13 +495,13 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                             i2++;
                             anonymousClass13.selectedOrder.add(Integer.valueOf(((UItem) obj3).id));
                         }
-                        AndroidUtilities.forEachViews((RecyclerView) anonymousClass13.listView, (Consumer) new QrActivity$5$$ExternalSyntheticLambda0(anonymousClass13, 11));
+                        AndroidUtilities.forEachViews((RecyclerView) anonymousClass13.listView, (Consumer) new SelectAudioAlert$$ExternalSyntheticLambda5(anonymousClass13, 1));
                         break;
                 }
             }
-        }, new StoriesViewPager$$ExternalSyntheticLambda0(anonymousClass11, 26), darkThemeResourceProvider);
+        }, new Weather$$ExternalSyntheticLambda7(anonymousClass11, 4), darkThemeResourceProvider);
         this.listView = anonymousClass1;
-        anonymousClass1.adapter.applyBackground = false;
+        anonymousClass1.adapter.setApplyBackground(false);
         anonymousClass1.setClipToPadding(false);
         anonymousClass1.setClipChildren(false);
         anonymousClass1.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
@@ -543,10 +528,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                             uItemOfFactory.id = iIntValue;
                             uItemOfFactory.object = storyEntry;
                             uItemOfFactory.intValue = i4;
-                            uItemOfFactory.setChecked(anonymousClass13.selectedStory == iIntValue);
-                            uItemOfFactory.collapsed = anonymousClass13.selectedStories.contains(num);
-                            uItemOfFactory.clickCallback = new ChatActivity$$ExternalSyntheticLambda68(anonymousClass13, iIntValue, 25);
-                            arrayList.add(uItemOfFactory);
+                            arrayList.add(uItemOfFactory.setChecked(anonymousClass13.selectedStory == iIntValue).setCollapsed(anonymousClass13.selectedStories.contains(num)).setClickCallback(new RichEditor$$ExternalSyntheticLambda29(anonymousClass13, iIntValue, 8)));
                             if (anonymousClass13.selectedStories.contains(num)) {
                                 i4++;
                             }
@@ -563,7 +545,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                             i3++;
                             anonymousClass13.selectedOrder.add(Integer.valueOf(((UItem) obj3).id));
                         }
-                        AndroidUtilities.forEachViews((RecyclerView) anonymousClass13.listView, (Consumer) new QrActivity$5$$ExternalSyntheticLambda0(anonymousClass13, 11));
+                        AndroidUtilities.forEachViews((RecyclerView) anonymousClass13.listView, (Consumer) new SelectAudioAlert$$ExternalSyntheticLambda5(anonymousClass13, 1));
                         break;
                 }
             }
@@ -594,7 +576,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         Text text = this.counter;
         AnonymousClass1 anonymousClass1 = this.listView;
         if (text != null) {
-            text.draw(rectF.centerX() - (this.counter.width / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), 1.0f - anonymousClass1.getAlpha(), -1, canvas);
+            text.draw(canvas, rectF.centerX() - (this.counter.getCurrentWidth() / 2.0f), rectF.centerY() - AndroidUtilities.dp(0.6f), -1, 1.0f - anonymousClass1.getAlpha());
         }
         if (anonymousClass1.getAlpha() > 0.0f) {
             canvas.save();
@@ -645,7 +627,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                 canvas.restore();
                 canvas.save();
                 canvas.scale(fLerp, fLerp, rectF3.right, rectF3.bottom);
-                this.hint.draw((rectF.right - width) + AndroidUtilities.dp(11.0f), (rectF.top - AndroidUtilities.dp(9.66f)) - (fDp / 2.0f), f, -1, canvas);
+                this.hint.draw(canvas, (rectF.right - width) + AndroidUtilities.dp(11.0f), (rectF.top - AndroidUtilities.dp(9.66f)) - (fDp / 2.0f), -1, f);
                 canvas.restore();
             }
         }
@@ -668,14 +650,14 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                 path.addRoundRect(rectF, f, f, Path.Direction.CW);
                 canvas.clipPath(path);
                 canvas.translate(0.0f, 0.0f);
-                storyBlurDrawer.drawRect(canvas, true);
+                storyBlurDrawer.drawRect(canvas, 0.0f, 0.0f, 1.0f);
                 canvas.restore();
             }
             paint.setAlpha(38);
             canvas.drawRoundRect(rectF, f, f, paint);
         } else {
-            Paint[] paints = storyBlurDrawer.getPaints();
-            if (paints[1] == null) {
+            Paint[] paints = storyBlurDrawer.getPaints(1.0f, 0.0f, 0.0f);
+            if (paints == null || paints[1] == null) {
                 paint.setAlpha(128);
                 canvas.drawRoundRect(rectF, f, f, paint);
             } else {
@@ -758,22 +740,43 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
                 buttonBounce.setPressed(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            if (buttonBounce.isPressed) {
+            if (buttonBounce.isPressed()) {
                 showList(!this.listShown, true);
             }
             buttonBounce.setPressed(false);
         } else if (motionEvent.getAction() == 3) {
             buttonBounce.setPressed(false);
         }
-        return buttonBounce.isPressed || super.onTouchEvent(motionEvent);
+        return buttonBounce.isPressed() || super.onTouchEvent(motionEvent);
     }
 
-    public void setSelected(int i) {
+    public void setSelected(final int i) {
         if (this.selectedStory == i) {
             return;
         }
         this.selectedStory = i;
-        AndroidUtilities.forEachViews((RecyclerView) this.listView, (Consumer) new GroupColorActivity$$ExternalSyntheticLambda0(this, i, 1));
+        AndroidUtilities.forEachViews((RecyclerView) this.listView, new Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                MultipleStoriesSelector.AnonymousClass1 anonymousClass1;
+                int childAdapterPosition;
+                UItem item;
+                View view = (View) obj;
+                MultipleStoriesSelector multipleStoriesSelector = this.f$0;
+                multipleStoriesSelector.getClass();
+                if (!(view instanceof MultipleStoriesSelector.EntryView) || (item = anonymousClass1.adapter.getItem((childAdapterPosition = (anonymousClass1 = multipleStoriesSelector.listView).getChildAdapterPosition(view)))) == null) {
+                    return;
+                }
+                MultipleStoriesSelector.EntryView entryView = (MultipleStoriesSelector.EntryView) view;
+                entryView.setPosition(multipleStoriesSelector.getPositionOf(childAdapterPosition));
+                boolean z = i == item.id;
+                if (entryView.selected != z) {
+                    entryView.selected = z;
+                    entryView.invalidate();
+                }
+                view.setPressed(false);
+            }
+        });
     }
 
     public final void showList(boolean z, boolean z2) {
@@ -785,7 +788,7 @@ public abstract class MultipleStoriesSelector extends FrameLayout {
         anonymousClass1.animate().cancel();
         if (z2) {
             anonymousClass1.setVisibility(0);
-            OKLCH.m(anonymousClass1.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.65f).scaleY(z ? 1.0f : 0.65f).setListener(new TodoItemMenu.AnonymousClass15(10, this, z)).setUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 10)), CubicBezierInterpolator.EASE_OUT_QUINT, 360L);
+            OKLCH.m(anonymousClass1.animate().alpha(z ? 1.0f : 0.0f).scaleX(z ? 1.0f : 0.65f).scaleY(z ? 1.0f : 0.65f).setListener(new StoryViewer.AnonymousClass7(this, z, 15)).setUpdateListener(new HintView2$$ExternalSyntheticLambda1(this, 5)), CubicBezierInterpolator.EASE_OUT_QUINT, 360L);
         } else {
             anonymousClass1.setVisibility(z ? 0 : 8);
             anonymousClass1.setAlpha(z ? 1.0f : 0.0f);

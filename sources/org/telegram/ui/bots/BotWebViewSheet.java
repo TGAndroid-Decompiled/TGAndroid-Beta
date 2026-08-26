@@ -29,22 +29,22 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.graphics.Insets;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
-import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkm;
-import com.google.android.gms.internal.mlkit_vision_common.zzko;
-import com.google.zxing.BinaryBitmap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import org.json.JSONObject;
@@ -83,51 +83,41 @@ import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.BottomSheetTabsOverlay;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda54;
+import org.telegram.ui.ArticleViewer$10$$ExternalSyntheticOutline0;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda211;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda326;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.GroupCallFullscreenAdapter;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.OverlayActionBarLayoutDialog;
 import org.telegram.ui.Components.PasscodeView;
-import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.voip.GroupCallMiniTextureView;
 import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
+import org.telegram.ui.Gifts.SendGiftSheet$$ExternalSyntheticLambda12;
+import org.telegram.ui.IntroActivity$$ExternalSyntheticLambda5;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LoginActivity$$ExternalSyntheticLambda10;
 import org.telegram.ui.PaymentFormActivity;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda128;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda133;
-import org.telegram.ui.SecretMediaViewer$$ExternalSyntheticLambda6;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda73;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda67;
 import org.telegram.ui.Stars.StarsController;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda24;
-import org.telegram.ui.TodoItemMenu;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
-import org.telegram.ui.TopicsFragment$$ExternalSyntheticLambda25;
-import org.telegram.ui.UserInfoActivity;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda28;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda31;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda42;
-import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda63;
+import org.telegram.ui.Stories.StoryViewer;
+import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda0;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda13;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda40;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda60;
 import org.telegram.ui.web.BotWebViewContainer;
-import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda3;
+import org.telegram.ui.web.HistoryFragment;
 import org.telegram.ui.web.MHTML;
 
 public final class BotWebViewSheet extends Dialog implements NotificationCenter.NotificationCenterDelegate, BottomSheetTabsOverlay.Sheet {
-    public static final SimpleFloatPropertyCompat ACTION_BAR_TRANSITION_PROGRESS_VALUE;
-    public static final HashSet activeSheets = new HashSet();
-    public static int shownLockedBots;
     public final AnonymousClass5 actionBar;
     public int actionBarColor;
     public int actionBarColorKey;
@@ -180,7 +170,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
     public final Rect navInsets;
     public boolean needCloseConfirmation;
     public boolean needsContext;
-    public ThemeActivity$$ExternalSyntheticLambda24 onVerifiedAge;
+    public ThemeActivity$$ExternalSyntheticLambda0 onVerifiedAge;
     public ValueAnimator openAnimator;
     public float openedProgress;
     public ItemOptions options;
@@ -212,6 +202,9 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
     public Boolean wasLightStatusBar;
     public final AnonymousClass2 webViewContainer;
     public final WindowView windowView;
+    public static final HashSet activeSheets = new HashSet();
+    public static final SimpleFloatPropertyCompat ACTION_BAR_TRANSITION_PROGRESS_VALUE = new SimpleFloatPropertyCompat("actionBarTransitionProgress", new BotWebViewSheet$$ExternalSyntheticLambda2(0), new BotWebViewSheet$$ExternalSyntheticLambda2(10)).setMultiplier(100.0f);
+    public static int shownLockedBots = 0;
 
     public final class AnonymousClass1 extends ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer {
         public AnonymousClass1(Context context) {
@@ -256,7 +249,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             if (anonymousClass4 != null && anonymousClass4.getTotalHeight() > 0) {
                 size2 -= anonymousClass4.getTotalHeight();
             }
-            super.onMeasure(i, zzkm.m(24.0f, size2));
+            super.onMeasure(i, ArticleViewer$10$$ExternalSyntheticOutline0.m(24.0f, size2, 1073741824));
         }
 
         @Override
@@ -297,8 +290,6 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
 
         @Override
         public final void onAnimationEnd(Animator animator) {
-            int i;
-            RecyclerView.Adapter adapter;
             switch (this.$r8$classId) {
                 case 0:
                     int iBlendARGB = ColorUtils.blendARGB(1.0f, this.val$from, this.val$to);
@@ -306,58 +297,14 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                     botWebViewSheet.navBarColor = iBlendARGB;
                     botWebViewSheet.checkNavBarColor();
                     break;
-                case 1:
-                    int i2 = this.val$from;
-                    GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell = (GroupCallFullscreenAdapter.GroupCallUserCell) this.this$0;
-                    groupCallUserCell.lastColor = i2;
-                    groupCallUserCell.lastWavesColor = this.val$to;
-                    groupCallUserCell.muteButton.setColorFilter(new PorterDuffColorFilter(groupCallUserCell.lastColor, PorterDuff.Mode.MULTIPLY));
-                    groupCallUserCell.textPaint.setColor(groupCallUserCell.lastColor);
-                    groupCallUserCell.selectionPaint.setColor(groupCallUserCell.lastWavesColor);
-                    groupCallUserCell.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(groupCallUserCell.lastWavesColor, 38));
-                    break;
-                case 2:
-                    SharedMediaLayout sharedMediaLayout = (SharedMediaLayout) this.this$0;
-                    sharedMediaLayout.notificationsLocker.unlock();
-                    sharedMediaLayout.photoVideoChangeColumnsAnimation = false;
-                    int i3 = this.val$to;
-                    int[] iArr = sharedMediaLayout.mediaColumnsCount;
-                    int i4 = this.val$from;
-                    iArr[i4] = i3;
-                    int i5 = 0;
-                    while (true) {
-                        SharedMediaLayout.MediaPage[] mediaPageArr = sharedMediaLayout.mediaPages;
-                        if (i5 >= mediaPageArr.length) {
-                            sharedMediaLayout.saveScrollPosition();
-                        } else {
-                            SharedMediaLayout.MediaPage mediaPage = mediaPageArr[i5];
-                            if (mediaPage != null && mediaPage.listView != null && (((i = mediaPage.selectedType) == 0 || SharedMediaLayout.isAnyStoryPageType(i)) && (adapter = sharedMediaLayout.mediaPages[i5].listView.getAdapter()) != null)) {
-                                int itemCount = adapter.getItemCount();
-                                if (i5 == 0) {
-                                    sharedMediaLayout.sharedMediaData[0].setListFrozen(false);
-                                }
-                                sharedMediaLayout.mediaPages[i5].layoutManager.setSpanCount(sharedMediaLayout.mediaColumnsCount[i4]);
-                                sharedMediaLayout.mediaPages[i5].listView.invalidateItemDecorations();
-                                if (adapter.getItemCount() == itemCount) {
-                                    AndroidUtilities.updateVisibleRows(sharedMediaLayout.mediaPages[i5].listView);
-                                } else {
-                                    adapter.notifyDataSetChanged();
-                                }
-                                sharedMediaLayout.mediaPages[i5].animationSupportingListView.setVisibility(8);
-                            }
-                            i5++;
-                        }
-                        break;
-                    }
-                    break;
                 default:
                     GroupCallMiniTextureView groupCallMiniTextureView = (GroupCallMiniTextureView) this.this$0;
-                    int i6 = this.val$from;
-                    groupCallMiniTextureView.lastIconColor = i6;
-                    groupCallMiniTextureView.animateToColor = i6;
-                    int i7 = this.val$to;
-                    groupCallMiniTextureView.lastSpeakingFrameColor = i7;
-                    groupCallMiniTextureView.speakingPaint.setColor(i7);
+                    int i = this.val$from;
+                    groupCallMiniTextureView.lastIconColor = i;
+                    groupCallMiniTextureView.animateToColor = i;
+                    int i2 = this.val$to;
+                    groupCallMiniTextureView.lastSpeakingFrameColor = i2;
+                    groupCallMiniTextureView.speakingPaint.setColor(i2);
                     if (groupCallMiniTextureView.progressToSpeaking > 0.0f) {
                         groupCallMiniTextureView.invalidate();
                     }
@@ -394,7 +341,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         }
 
         @Override
-        public final void onCloseRequested() {
+        public final void onCloseRequested(Runnable runnable) {
             BotWebViewSheet.this.dismiss$1(false);
         }
 
@@ -404,20 +351,18 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         }
 
         @Override
-        public final void onEmojiStatusGranted() {
+        public final void onEmojiStatusGranted(boolean z) {
             BotWebViewSheet botWebViewSheet = BotWebViewSheet.this;
             TLRPC.User user = MessagesController.getInstance(botWebViewSheet.currentAccount).getUser(Long.valueOf(botWebViewSheet.botId));
-            BinaryBitmap binaryBitmap = new BinaryBitmap(24);
-            binaryBitmap.binarizer = new BotWebViewSheet$3$$ExternalSyntheticLambda1(this, 0);
-            Bulletin bulletinCreateUsersBulletin = new BulletinFactory(botWebViewSheet.bulletinContainer, botWebViewSheet.resourcesProvider).createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequestGranted, UserObject.getUserName(user))), null, binaryBitmap);
-            bulletinCreateUsersBulletin.duration = 5000;
-            bulletinCreateUsersBulletin.show(true);
+            BulletinFactory.UndoObject undoObject = new BulletinFactory.UndoObject();
+            undoObject.onUndo = new BotWebViewSheet$3$$ExternalSyntheticLambda0(this, 0);
+            BulletinFactory.of(botWebViewSheet.bulletinContainer, botWebViewSheet.resourcesProvider).createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequestGranted, UserObject.getUserName(user))), null, undoObject).setDuration(5000).show(true);
         }
 
         @Override
         public final void onEmojiStatusSet(TLRPC.Document document) {
             BotWebViewSheet botWebViewSheet = BotWebViewSheet.this;
-            new BulletinFactory(botWebViewSheet.bulletinContainer, botWebViewSheet.resourcesProvider).createEmojiBulletin(document, LocaleController.getString(R.string.BotEmojiStatusUpdated)).show(true);
+            BulletinFactory.of(botWebViewSheet.bulletinContainer, botWebViewSheet.resourcesProvider).createEmojiBulletin(document, LocaleController.getString(R.string.BotEmojiStatusUpdated)).show(true);
         }
 
         @Override
@@ -436,7 +381,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
 
         @Override
         public final void onInstantClose() {
-            onCloseRequested();
+            onCloseRequested(null);
         }
 
         @Override
@@ -447,21 +392,17 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             FrameLayout frameLayout = botWebViewSheet.bulletinContainer;
             int i = 1;
             if (z) {
-                BinaryBitmap binaryBitmap = new BinaryBitmap(24);
-                LocaleController.getString(R.string.UndoNoCaps);
-                binaryBitmap.binarizer = new BotWebViewSheet$3$$ExternalSyntheticLambda1(this, i);
-                Bulletin bulletinCreateUsersBulletin = new BulletinFactory(frameLayout, resourcesProvider).createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequestGranted, UserObject.getUserName(user))), null, binaryBitmap);
-                bulletinCreateUsersBulletin.duration = 5000;
-                bulletinCreateUsersBulletin.show(true);
+                BulletinFactory.UndoObject undoObject = new BulletinFactory.UndoObject();
+                undoObject.undoText = LocaleController.getString(R.string.UndoNoCaps);
+                undoObject.onUndo = new BotWebViewSheet$3$$ExternalSyntheticLambda0(this, i);
+                BulletinFactory.of(frameLayout, resourcesProvider).createUsersBulletin(Arrays.asList(user), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequestGranted, UserObject.getUserName(user))), null, undoObject).setDuration(5000).show(true);
                 return;
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequestDeniedApp, UserObject.getUserName(user))));
             spannableStringBuilder.append((CharSequence) " ");
-            spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.BotLocationPermissionRequestDeniedAppSettings), new BotWebViewSheet$3$$ExternalSyntheticLambda1(this, 2)), true));
-            Bulletin bulletinCreateSimpleBulletinDetail = new BulletinFactory(frameLayout, resourcesProvider).createSimpleBulletinDetail(R.raw.error, spannableStringBuilder);
-            bulletinCreateSimpleBulletinDetail.duration = 5000;
-            bulletinCreateSimpleBulletinDetail.show(true);
+            spannableStringBuilder.append(AndroidUtilities.replaceArrows(AndroidUtilities.makeClickable(LocaleController.getString(R.string.BotLocationPermissionRequestDeniedAppSettings), new BotWebViewSheet$3$$ExternalSyntheticLambda0(this, 2)), true));
+            BulletinFactory.of(frameLayout, resourcesProvider).createSimpleBulletinDetail(R.raw.error, spannableStringBuilder).setDuration(5000).show(true);
         }
 
         @Override
@@ -558,17 +499,17 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             buttonState.textColor = i2;
             buttonState.position = null;
             int totalHeight = anonymousClass4.getTotalHeight();
-            anonymousClass4.state.trimmer = buttonState;
+            anonymousClass4.state.main = buttonState;
             BotButtons.Button[] buttonArr = anonymousClass4.buttons;
             buttonArr[0].textDrawable.cancelAnimation();
             if (buttonState.emojiId != 0) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 spannableStringBuilder.append((CharSequence) "* ");
                 spannableStringBuilder.append((CharSequence) buttonState.text);
-                spannableStringBuilder.setSpan(new AnimatedEmojiSpan(buttonState.emojiId, 1.4f, buttonArr[0].textDrawable.textPaint.getFontMetricsInt()), 0, 1, 33);
-                buttonArr[0].textDrawable.setText(spannableStringBuilder, true, true);
+                spannableStringBuilder.setSpan(new AnimatedEmojiSpan(buttonState.emojiId, 1.4f, buttonArr[0].textDrawable.getPaint().getFontMetricsInt()), 0, 1, 33);
+                buttonArr[0].textDrawable.setText(spannableStringBuilder, true);
             } else {
-                buttonArr[0].textDrawable.setText(buttonState.text, true, true);
+                buttonArr[0].textDrawable.setText(buttonState.text, true);
             }
             anonymousClass4.invalidate();
             if (totalHeight != anonymousClass4.getTotalHeight() && anonymousClass4.whenResized != null) {
@@ -599,7 +540,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             buttonState.textColor = i2;
             buttonState.position = str2;
             int totalHeight = anonymousClass4.getTotalHeight();
-            anonymousClass4.state.strategy = buttonState;
+            anonymousClass4.state.secondary = buttonState;
             BotButtons.setText(anonymousClass4.buttons[1].textDrawable, buttonState, true);
             anonymousClass4.invalidate();
             if (totalHeight != anonymousClass4.getTotalHeight() && anonymousClass4.whenResized != null) {
@@ -619,56 +560,62 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         public final void onSharedTo(ArrayList arrayList) {
             int size = arrayList.size();
             BotWebViewSheet botWebViewSheet = BotWebViewSheet.this;
-            new BulletinFactory(botWebViewSheet.bulletinContainer, botWebViewSheet.resourcesProvider).createSimpleBulletinWithIconSize(R.raw.forward, 36, AndroidUtilities.replaceTags(size == 1 ? LocaleController.formatString(R.string.BotSharedToOne, MessagesController.getInstance(botWebViewSheet.currentAccount).getPeerName(((Long) arrayList.get(0)).longValue())) : LocaleController.formatPluralString("BotSharedToMany", arrayList.size(), new Object[0]))).show(true);
+            BulletinFactory.of(botWebViewSheet.bulletinContainer, botWebViewSheet.resourcesProvider).createSimpleBulletin(R.raw.forward, AndroidUtilities.replaceTags(size == 1 ? LocaleController.formatString(R.string.BotSharedToOne, MessagesController.getInstance(botWebViewSheet.currentAccount).getPeerName(((Long) arrayList.get(0)).longValue())) : LocaleController.formatPluralString("BotSharedToMany", arrayList.size(), new Object[0]))).show(true);
         }
 
         @Override
-        public final void onWebAppBackgroundChanged(int i, boolean z) {
+        public final void onWebAppBackgroundChanged(boolean z, int i) {
         }
 
         @Override
         public final void onWebAppExpand() {
             BotWebViewSheet botWebViewSheet = BotWebViewSheet.this;
-            AnonymousClass1 anonymousClass1 = botWebViewSheet.swipeContainer;
-            if (anonymousClass1.isScrolling) {
+            if (botWebViewSheet.swipeContainer.isSwipeInProgress()) {
                 return;
             }
-            anonymousClass1.stickTo(botWebViewSheet.swipeContainer.getTopActionBarOffsetY() + (-anonymousClass1.getOffsetY()), false, null);
+            AnonymousClass1 anonymousClass1 = botWebViewSheet.swipeContainer;
+            anonymousClass1.stickTo(botWebViewSheet.swipeContainer.getTopActionBarOffsetY() + (-anonymousClass1.getOffsetY()));
         }
 
         @Override
-        public final void onWebAppOpenInvoice(TLRPC.TL_inputInvoiceSlug tL_inputInvoiceSlug, String str, TLObject tLObject) {
-            PaymentFormActivity paymentFormActivity;
+        public final void onWebAppOpenInvoice(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject) {
             BotWebViewSheet botWebViewSheet = BotWebViewSheet.this;
             BaseFragment lastFragment = ((ActionBarLayout) ((LaunchActivity) botWebViewSheet.parentActivity).getActionBarLayout()).getLastFragment();
             boolean z = tLObject instanceof TLRPC.TL_payments_paymentFormStars;
             WindowView windowView = botWebViewSheet.windowView;
+            PaymentFormActivity paymentFormActivity = null;
             if (z) {
                 AndroidUtilities.hideKeyboard(windowView);
                 AlertDialog alertDialog = new AlertDialog(botWebViewSheet.getContext(), 3, null);
                 AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
                 AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
                 AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 150L);
-                StarsController.getInstance(botWebViewSheet.currentAccount, false).openPaymentForm(new StarGiftSheet$$ExternalSyntheticLambda73(alertDialog, 3), null, tL_inputInvoiceSlug, (TLRPC.TL_payments_paymentFormStars) tLObject, new ThemeActivity$$ExternalSyntheticLambda19(13, this, str));
+                StarsController.getInstance(botWebViewSheet.currentAccount, false).openPaymentForm(new StarGiftSheet$$ExternalSyntheticLambda67(alertDialog, 1), null, inputInvoice, (TLRPC.TL_payments_paymentFormStars) tLObject, new GiftSheet$$ExternalSyntheticLambda4(27, this, str));
                 return;
             }
             if (tLObject instanceof TLRPC.PaymentForm) {
                 TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) tLObject;
                 MessagesController.getInstance(botWebViewSheet.currentAccount).putUsers(paymentForm.users, false);
-                paymentFormActivity = new PaymentFormActivity(paymentForm, null, str, lastFragment);
-            } else {
-                paymentFormActivity = tLObject instanceof TLRPC.PaymentReceipt ? new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject) : null;
+                paymentFormActivity = new PaymentFormActivity(paymentForm, str, lastFragment);
+            } else if (tLObject instanceof TLRPC.PaymentReceipt) {
+                paymentFormActivity = new PaymentFormActivity((TLRPC.PaymentReceipt) tLObject);
             }
             if (paymentFormActivity != null) {
                 AnonymousClass1 anonymousClass1 = botWebViewSheet.swipeContainer;
-                anonymousClass1.stickTo(anonymousClass1.getTopActionBarOffsetY() + (-anonymousClass1.getOffsetY()), false, null);
+                anonymousClass1.stickTo(anonymousClass1.getTopActionBarOffsetY() + (-anonymousClass1.getOffsetY()));
                 AndroidUtilities.hideKeyboard(windowView);
-                OverlayActionBarLayoutDialog overlayActionBarLayoutDialog = new OverlayActionBarLayoutDialog(this.val$context);
+                Context context = this.val$context;
+                Theme.ResourcesProvider resourcesProvider = this.val$resourcesProvider;
+                OverlayActionBarLayoutDialog overlayActionBarLayoutDialog = new OverlayActionBarLayoutDialog(context, resourcesProvider);
                 overlayActionBarLayoutDialog.show();
-                paymentFormActivity.paymentFormCallback = new VoIPFragment$$ExternalSyntheticLambda42(this, overlayActionBarLayoutDialog, str, 27);
-                paymentFormActivity.resourcesProvider = this.val$resourcesProvider;
+                paymentFormActivity.setPaymentFormCallback(new RichEditor$$ExternalSyntheticLambda60(this, overlayActionBarLayoutDialog, str, 15));
+                paymentFormActivity.setResourcesProvider(resourcesProvider);
                 overlayActionBarLayoutDialog.addFragment(paymentFormActivity);
             }
+        }
+
+        @Override
+        public final void onWebAppReady() {
         }
 
         @Override
@@ -702,7 +649,8 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         }
 
         @Override
-        public final void onWebAppSwitchInlineQuery(TLRPC.User user, String str, ArrayList arrayList) {
+        public final void onWebAppSwitchInlineQuery(TLRPC.User user, String str, List list) {
+            ArrayList arrayList = (ArrayList) list;
             boolean zIsEmpty = arrayList.isEmpty();
             BotWebViewSheet botWebViewSheet = BotWebViewSheet.this;
             if (zIsEmpty) {
@@ -710,7 +658,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 if (activity instanceof LaunchActivity) {
                     BaseFragment lastFragment = ((ActionBarLayout) ((LaunchActivity) activity).getActionBarLayout()).getLastFragment();
                     if (lastFragment instanceof ChatActivity) {
-                        ((ChatActivity) lastFragment).chatActivityEnterView.setFieldText("@" + UserObject.getPublicUsername(user) + " " + str);
+                        ((ChatActivity) lastFragment).getChatActivityEnterView().setFieldText("@" + UserObject.getPublicUsername(user) + " " + str);
                         botWebViewSheet.dismiss$1(false);
                         return;
                     }
@@ -729,8 +677,8 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             bundle.putBoolean("allowBots", arrayList.contains("bots"));
             DialogsActivity dialogsActivity = new DialogsActivity(bundle);
             AndroidUtilities.hideKeyboard(botWebViewSheet.windowView);
-            OverlayActionBarLayoutDialog overlayActionBarLayoutDialog = new OverlayActionBarLayoutDialog(this.val$context);
-            dialogsActivity.delegate = new ArticleViewer$$ExternalSyntheticLambda54((Object) this, (Object) user, str, (Object) overlayActionBarLayoutDialog, 21);
+            OverlayActionBarLayoutDialog overlayActionBarLayoutDialog = new OverlayActionBarLayoutDialog(this.val$context, this.val$resourcesProvider);
+            dialogsActivity.setDelegate(new StarsController$$ExternalSyntheticLambda63(4, this, user, str, overlayActionBarLayoutDialog));
             overlayActionBarLayoutDialog.show();
             overlayActionBarLayoutDialog.addFragment(dialogsActivity);
         }
@@ -764,8 +712,60 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         public final Paint navbarPaint;
         public final RectF rect;
 
+        public final class AnonymousClass1 implements Bulletin.Delegate {
+            @Override
+            public final boolean allowLayoutChanges() {
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public final boolean bottomOffsetAnimated() {
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+            }
+
+            @Override
+            public final boolean clipWithGradient(int i) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+            }
+
+            @Override
+            public final int getBottomOffset(int i) {
+                return Bulletin.Delegate.CC.$default$getBottomOffset(this, i);
+            }
+
+            @Override
+            public final int getLeftPadding() {
+                return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+            }
+
+            @Override
+            public final int getRightPadding() {
+                return Bulletin.Delegate.CC.$default$getRightPadding(this);
+            }
+
+            @Override
+            public final int getTopOffset(int i) {
+                return AndroidUtilities.statusBarHeight;
+            }
+
+            @Override
+            public final void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+            }
+
+            @Override
+            public final void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+            }
+
+            @Override
+            public final void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
+        }
+
         public WindowView(Context context) {
-            super(context, null);
+            super(context);
             setClipChildren(false);
             setClipToPadding(false);
             setWillNotDraw(false);
@@ -910,7 +910,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         }
 
         @Override
-        public final float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2) {
+        public final float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2, boolean z) {
             RectF rectF3 = this.rect;
             BotWebViewSheet botWebViewSheet = BotWebViewSheet.this;
             float left = botWebViewSheet.swipeContainer.getLeft();
@@ -945,7 +945,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         @Override
         public final void onAttachedToWindow() {
             super.onAttachedToWindow();
-            Bulletin.addDelegate(this, new LaunchActivity.AnonymousClass7(15));
+            Bulletin.addDelegate(this, new AnonymousClass1());
         }
 
         @Override
@@ -973,16 +973,14 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 } else {
                     canvas2 = canvas;
                 }
-                boolean z = botWebViewSheet.overrideBackgroundColor;
-                Paint paint = botWebViewSheet.backgroundPaint;
-                if (!z) {
+                if (!botWebViewSheet.overrideBackgroundColor) {
                     int color = Theme.getColor(Theme.key_windowBackgroundWhite, botWebViewSheet.resourcesProvider);
-                    paint.setColor(color);
+                    botWebViewSheet.backgroundPaint.setColor(color);
                     botWebViewSheet.webViewContainer.setFlickerViewColor(color);
                     ArticleViewer.ErrorContainer errorContainer = botWebViewSheet.errorContainer;
                     if (errorContainer != null) {
-                        errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(paint.getColor()) <= 0.721f, false);
-                        botWebViewSheet.errorContainer.setBackgroundColor(paint.getColor());
+                        errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(botWebViewSheet.backgroundPaint.getColor()) <= 0.721f, false);
+                        botWebViewSheet.errorContainer.setBackgroundColor(botWebViewSheet.backgroundPaint.getColor());
                     }
                 }
                 RectF rectF = AndroidUtilities.rectTmp;
@@ -990,14 +988,12 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 canvas2.drawRect(rectF, botWebViewSheet.dimPaint);
                 BottomSheetTabs bottomSheetTabs = botWebViewSheet.bottomTabs;
                 int i = bottomSheetTabs != null ? (int) bottomSheetTabs.bottomTabsProgress : 0;
-                Paint paint2 = botWebViewSheet.actionBarPaint;
-                paint2.setColor(botWebViewSheet.actionBarColor);
+                botWebViewSheet.actionBarPaint.setColor(botWebViewSheet.actionBarColor);
                 float fDp = AndroidUtilities.dp(16.0f) * (AndroidUtilities.isTablet() ? 1.0f : 1.0f - botWebViewSheet.actionBarTransitionProgress);
-                AnonymousClass1 anonymousClass1 = botWebViewSheet.swipeContainer;
-                rectF.set(AndroidUtilities.lerp(anonymousClass1.getLeft(), 0, botWebViewSheet.fullscreenProgress), AndroidUtilities.lerp(anonymousClass1.getTranslationY(), 0.0f, botWebViewSheet.actionBarTransitionProgress), anonymousClass1.getRight(), anonymousClass1.getTranslationY() + AndroidUtilities.dp(24.0f) + fDp);
-                canvas2.drawRoundRect(rectF, fDp, fDp, paint2);
-                rectF.set(AndroidUtilities.lerp(anonymousClass1.getLeft(), 0, botWebViewSheet.fullscreenProgress), anonymousClass1.getTranslationY() + AndroidUtilities.dp(24.0f), AndroidUtilities.lerp(anonymousClass1.getRight(), getWidth(), botWebViewSheet.fullscreenProgress), getHeight() - i);
-                canvas2.drawRect(rectF, paint);
+                rectF.set(AndroidUtilities.lerp(botWebViewSheet.swipeContainer.getLeft(), 0, botWebViewSheet.fullscreenProgress), AndroidUtilities.lerp(botWebViewSheet.swipeContainer.getTranslationY(), 0.0f, botWebViewSheet.actionBarTransitionProgress), botWebViewSheet.swipeContainer.getRight(), botWebViewSheet.swipeContainer.getTranslationY() + AndroidUtilities.dp(24.0f) + fDp);
+                canvas2.drawRoundRect(rectF, fDp, fDp, botWebViewSheet.actionBarPaint);
+                rectF.set(AndroidUtilities.lerp(botWebViewSheet.swipeContainer.getLeft(), 0, botWebViewSheet.fullscreenProgress), botWebViewSheet.swipeContainer.getTranslationY() + AndroidUtilities.dp(24.0f), AndroidUtilities.lerp(botWebViewSheet.swipeContainer.getRight(), getWidth(), botWebViewSheet.fullscreenProgress), getHeight() - i);
+                canvas2.drawRect(rectF, botWebViewSheet.backgroundPaint);
                 canvas2.restore();
             }
         }
@@ -1026,21 +1022,9 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 if (launchActivity == null || !botWebViewSheet.fullscreen) {
                     return;
                 }
-                int i = botWebViewSheet.navBarColor;
-                launchActivity.drawerLayoutContainer.setInternalNavigationBarColor(i);
-                BottomSheetTabs bottomSheetTabs = launchActivity.getBottomSheetTabs();
-                if (bottomSheetTabs != null) {
-                    bottomSheetTabs.setNavigationBarColor(i);
-                }
+                launchActivity.setNavigationBarColor(botWebViewSheet.navBarColor);
             }
         }
-    }
-
-    static {
-        SimpleFloatPropertyCompat simpleFloatPropertyCompat = new SimpleFloatPropertyCompat(new TopicsFragment$$ExternalSyntheticLambda25(3), new TopicsFragment$$ExternalSyntheticLambda25(4));
-        simpleFloatPropertyCompat.multiplier = 100.0f;
-        ACTION_BAR_TRANSITION_PROGRESS_VALUE = simpleFloatPropertyCompat;
-        shownLockedBots = 0;
     }
 
     public BotWebViewSheet(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -1072,24 +1056,20 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         int i = Theme.key_windowBackgroundWhite;
         ?? r11 = new BotWebViewContainer(context, resourcesProvider, Theme.getColor(i, resourcesProvider)) {
             @Override
-            public final void onErrorShown(String str, boolean z) {
+            public final void onErrorShown(boolean z, int i2, String str) {
                 BotWebViewSheet botWebViewSheet = BotWebViewSheet.this;
                 if (z) {
                     botWebViewSheet.createErrorContainer();
+                    botWebViewSheet.errorContainer.set(UserObject.getUserName(MessagesController.getInstance(botWebViewSheet.currentAccount).getUser(Long.valueOf(botWebViewSheet.botId))), str);
                     ArticleViewer.ErrorContainer errorContainer = botWebViewSheet.errorContainer;
-                    String userName = UserObject.getUserName(MessagesController.getInstance(botWebViewSheet.currentAccount).getUser(Long.valueOf(botWebViewSheet.botId)));
-                    errorContainer.titleView.setText(LocaleController.getString(R.string.WebErrorTitle));
-                    zzko.m(R.string.WebErrorInfoBot, new Object[]{userName}, errorContainer.descriptionView);
-                    errorContainer.codeView.setText(str);
-                    ArticleViewer.ErrorContainer errorContainer2 = botWebViewSheet.errorContainer;
                     Paint paint3 = botWebViewSheet.backgroundPaint;
-                    errorContainer2.setDark(AndroidUtilities.computePerceivedBrightness(paint3.getColor()) <= 0.721f, false);
+                    errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(paint3.getColor()) <= 0.721f, false);
                     botWebViewSheet.errorContainer.setBackgroundColor(paint3.getColor());
                     botWebViewSheet.errorCode = str;
                 }
-                ArticleViewer.ErrorContainer errorContainer3 = botWebViewSheet.errorContainer;
+                ArticleViewer.ErrorContainer errorContainer2 = botWebViewSheet.errorContainer;
                 botWebViewSheet.errorShown = z;
-                AndroidUtilities.updateViewVisibilityAnimated(errorContainer3, z, 1.0f, false);
+                AndroidUtilities.updateViewVisibilityAnimated(errorContainer2, z, 1.0f, false);
                 invalidate();
             }
 
@@ -1129,7 +1109,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         AndroidUtilities.setNavigationBarColor((Dialog) this, color, false);
         WindowView windowView = new WindowView(context);
         this.windowView = windowView;
-        windowView.setDelegate(new LoginActivity$$ExternalSyntheticLambda10(this, 2));
+        windowView.setDelegate(new RichEditor$$ExternalSyntheticLambda13(this, 1));
         FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, -1, 49);
         this.swipeContainerLayoutParams = layoutParamsCreateFrame;
         windowView.addView(anonymousClass1, layoutParamsCreateFrame);
@@ -1144,7 +1124,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             }
         };
         this.botButtons = r12;
-        r12.setOnButtonClickListener(new BotWebViewSheet$$ExternalSyntheticLambda4(this, 1));
+        r12.setOnButtonClickListener(new BotWebViewSheet$$ExternalSyntheticLambda5(this, 1));
         r12.setOnResizeListener(new BotWebViewSheet$$ExternalSyntheticLambda0(this, 3));
         windowView.addView((View) r12, LayoutHelper.createFrame(-1, -2, 81));
         BotFullscreenButtons botFullscreenButtons = new BotFullscreenButtons(getContext());
@@ -1169,7 +1149,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         anonymousClass5.setBackgroundColor(0);
         anonymousClass5.setBackButtonImage(R.drawable.ic_close_white);
         updateActionBarColors();
-        anonymousClass5.setActionBarMenuOnItemClick(new UserInfoActivity.AnonymousClass4(this, 5));
+        anonymousClass5.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 16));
         anonymousClass5.setAlpha(0.0f);
         FrameLayout.LayoutParams layoutParamsCreateFrame3 = LayoutHelper.createFrame(-1, -2, 49);
         this.actionBarLayoutParams = layoutParamsCreateFrame3;
@@ -1177,24 +1157,24 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         AnonymousClass7 anonymousClass7 = new AnonymousClass7(context, resourcesProvider);
         this.progressView = anonymousClass7;
         windowView.addView(anonymousClass7, LayoutHelper.createFrame(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 0.0f));
-        r11.setWebViewProgressListener(new ChatActivity$$ExternalSyntheticLambda211(this, 15));
-        anonymousClass1.addView((View) r11, LayoutHelper.createFrame(-1.0f, -1));
+        r11.setWebViewProgressListener(new SendGiftSheet$$ExternalSyntheticLambda12(this, 4));
+        anonymousClass1.addView((View) r11, LayoutHelper.createFrame(-1, -1.0f));
         anonymousClass1.setScrollListener(new BotWebViewSheet$$ExternalSyntheticLambda0(this, 7));
         anonymousClass1.setScrollEndListener(new BotWebViewSheet$$ExternalSyntheticLambda0(this, 8));
-        anonymousClass1.setDelegate(new BotWebViewSheet$$ExternalSyntheticLambda15(this));
-        anonymousClass1.setIsKeyboardVisible(new BotWebViewSheet$$ExternalSyntheticLambda15(this));
+        anonymousClass1.setDelegate(new BotWebViewSheet$$ExternalSyntheticLambda17(this));
+        anonymousClass1.setIsKeyboardVisible(new BotWebViewSheet$$ExternalSyntheticLambda17(this));
         PasscodeView passcodeView = new PasscodeView(context);
         this.passcodeView = passcodeView;
-        windowView.addView(passcodeView, LayoutHelper.createFrame(-1.0f, -1));
+        windowView.addView(passcodeView, LayoutHelper.createFrame(-1, -1.0f));
         setContentView(windowView, new ViewGroup.LayoutParams(-1, -1));
         updateFullscreenLayout();
         LaunchActivity launchActivity = LaunchActivity.instance;
         BottomSheetTabs bottomSheetTabs = launchActivity != null ? launchActivity.getBottomSheetTabs() : null;
         this.bottomTabs = bottomSheetTabs;
         if (bottomSheetTabs != null) {
-            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = new VoIPFragment$8$$ExternalSyntheticLambda1(windowView, 11);
+            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = new BotSensors$1$$ExternalSyntheticLambda0(windowView, 23);
             BotWebViewSheet$$ExternalSyntheticLambda0 botWebViewSheet$$ExternalSyntheticLambda0 = new BotWebViewSheet$$ExternalSyntheticLambda0(this, 2);
-            bottomSheetTabs.invalidateListeners.add(voIPFragment$8$$ExternalSyntheticLambda1);
+            bottomSheetTabs.invalidateListeners.add(botSensors$1$$ExternalSyntheticLambda0);
             bottomSheetTabs.relayoutListeners.add(botWebViewSheet$$ExternalSyntheticLambda0);
             this.bottomTabsClip = new MHTML(bottomSheetTabs);
         }
@@ -1221,14 +1201,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         if (tL_attachMenuBot == null) {
             return;
         }
-        String string = LocaleController.formatString(R.string.BotRemoveFromMenu, tL_attachMenuBot.short_name);
-        AlertDialog.Builder builder = new AlertDialog.Builder(LaunchActivity.getLastFragment().getContext(), 0, null);
-        String string2 = LocaleController.getString(R.string.BotRemoveFromMenuTitle);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string2;
-        alertDialog.message = AndroidUtilities.replaceTags(string);
-        builder.setPositiveButton(LocaleController.getString(R.string.OK), new BotVerifySheet$$ExternalSyntheticLambda0(i, j, tL_attachMenuBot, runnable));
-        ArticleViewer.IBlock.CC.m(R.string.Cancel, builder, (AlertDialog.OnButtonClickListener) null);
+        new AlertDialog.Builder(LaunchActivity.getLastFragment().getContext(), 0, null).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotRemoveFromMenu, tL_attachMenuBot.short_name))).setPositiveButton(LocaleController.getString(R.string.OK), new BotVerifySheet$$ExternalSyntheticLambda0(i, j, tL_attachMenuBot, runnable)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
     }
 
     public static JSONObject makeThemeParams(Theme.ResourcesProvider resourcesProvider, final boolean z) {
@@ -1296,9 +1269,9 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         if (this.errorContainer == null) {
             ArticleViewer.ErrorContainer errorContainer = new ArticleViewer.ErrorContainer(getContext());
             this.errorContainer = errorContainer;
-            this.swipeContainer.addView(errorContainer, LayoutHelper.createFrame(-1.0f, -1));
+            this.swipeContainer.addView(errorContainer, LayoutHelper.createFrame(-1, -1.0f));
             this.errorContainer.setTranslationY(-1.0f);
-            this.errorContainer.buttonView.setOnClickListener(new BotWebViewSheet$$ExternalSyntheticLambda5(this, 1));
+            this.errorContainer.buttonView.setOnClickListener(new BotWebViewSheet$$ExternalSyntheticLambda6(this, 1));
             this.errorContainer.setBackgroundColor(this.backgroundPaint.getColor());
             AndroidUtilities.updateViewVisibilityAnimated(this.errorContainer, this.errorShown, 1.0f, false);
         }
@@ -1319,7 +1292,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             }
         } else {
             this.windowView.invalidate();
-            this.webViewContainer.flickerDrawable.setColors(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), 153);
+            updateFlickerBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
             updateActionBarColors();
             updateLightStatusBar$2();
         }
@@ -1344,7 +1317,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.webViewResultSent);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.botDownloadsUpdate);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
-        if (z && ((launchActivity = LaunchActivity.instance) == null || launchActivity.bottomSheetTabsOverlay == null)) {
+        if (z && ((launchActivity = LaunchActivity.instance) == null || launchActivity.getBottomSheetTabsOverlay() == null)) {
             z = false;
         }
         if (z) {
@@ -1353,7 +1326,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 springAnimation.mSpring.mFinalPosition = 0.0f;
                 springAnimation.start();
             }
-            LaunchActivity.instance.bottomSheetTabsOverlay.dismissSheet(this);
+            LaunchActivity.instance.getBottomSheetTabsOverlay().dismissSheet(this);
         } else {
             AnonymousClass4 anonymousClass4 = this.botButtons;
             if (anonymousClass4 != null) {
@@ -1374,7 +1347,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
     }
 
     @Override
-    public final BottomSheetTabsOverlay.SheetView mo1066getWindowView() {
+    public final BottomSheetTabsOverlay.SheetView mo1107getWindowView() {
         return this.windowView;
     }
 
@@ -1437,9 +1410,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         }
         if (str != null && !this.fromTab) {
             MediaDataController.getInstance(this.currentAccount).increaseWebappRating(this.requestProps.botId);
-            int i = this.currentAccount;
-            anonymousClass2.currentAccount = i;
-            NotificationCenter.getInstance(i).doOnIdle(new BotWebViewContainer$$ExternalSyntheticLambda3(anonymousClass2, str, 0));
+            anonymousClass2.loadUrl(this.currentAccount, str, z);
         }
         AndroidUtilities.runOnUIThread(this.pollRunnable, jMax);
         AnonymousClass1 anonymousClass1 = this.swipeContainer;
@@ -1482,15 +1453,9 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             return true;
         }
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
-        String name = user != null ? ContactsController.formatName(user.first_name, user.last_name) : null;
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, null);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = name;
-        alertDialog.message = LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved);
-        builder.setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new BotWebViewSheet$$ExternalSyntheticLambda15(this));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        alertDialog.show();
-        ((TextView) alertDialog.getButton(-1)).setTextColor(Theme.getColor(Theme.key_text_RedBold, this.resourcesProvider));
+        AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext(), 0, null).setTitle(user != null ? ContactsController.formatName(user.first_name, user.last_name) : null).setMessage(LocaleController.getString(R.string.BotWebViewChangesMayNotBeSaved)).setPositiveButton(LocaleController.getString(R.string.BotWebViewCloseAnyway), new BotWebViewSheet$$ExternalSyntheticLambda17(this)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
+        alertDialogCreate.show();
+        ((TextView) alertDialogCreate.getButton(-1)).setTextColor(Theme.getColor(Theme.key_text_RedBold, this.resourcesProvider));
         return false;
     }
 
@@ -1530,7 +1495,34 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         WindowView windowView = this.windowView;
         windowView.setFitsSystemWindows(true);
         windowView.setSystemUiVisibility(1792);
-        windowView.setOnApplyWindowInsetsListener(new SecretMediaViewer$$ExternalSyntheticLambda6(this, 1));
+        windowView.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+            @Override
+            public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                BotWebViewSheet botWebViewSheet = this.f$0;
+                WindowInsetsCompat.Impl impl = WindowInsetsCompat.toWindowInsetsCompat(view, windowInsets).mImpl;
+                Insets insets = impl.getInsets(2);
+                botWebViewSheet.navInsets.set(insets.left, insets.top, insets.right, insets.bottom);
+                Insets insets2 = impl.getInsets(647);
+                int iMax = Math.max(insets2.left, windowInsets.getStableInsetLeft());
+                int iMax2 = Math.max(insets2.top, windowInsets.getStableInsetTop());
+                int iMax3 = Math.max(insets2.right, windowInsets.getStableInsetRight());
+                int iMax4 = Math.max(insets2.bottom, windowInsets.getStableInsetBottom());
+                Rect rect = botWebViewSheet.insets;
+                rect.set(iMax, iMax2, iMax3, iMax4);
+                int i4 = Build.VERSION.SDK_INT;
+                if (i4 <= 28) {
+                    rect.top = Math.max(rect.top, AndroidUtilities.getStatusBarHeight(botWebViewSheet.getContext()));
+                }
+                int i5 = impl.getInsets(8).bottom;
+                if (i5 <= rect.bottom || i5 <= AndroidUtilities.dp(20.0f)) {
+                    botWebViewSheet.keyboardInset = 0;
+                } else {
+                    botWebViewSheet.keyboardInset = i5;
+                }
+                botWebViewSheet.updateFullscreenLayout();
+                return i4 >= 30 ? WindowInsets.CONSUMED : windowInsets.consumeSystemWindowInsets();
+            }
+        });
         if (!this.fullscreen || ((anonymousClass4 = this.botButtons) != null && anonymousClass4.getTotalHeight() > 0)) {
             windowView.setSystemUiVisibility(windowView.getSystemUiVisibility() & (-3));
         } else {
@@ -1562,7 +1554,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).overlayPasscodeViews.add(this.passcodeView);
+            ((LaunchActivity) context).addOverlayPasscodeView(this.passcodeView);
         }
     }
 
@@ -1574,26 +1566,25 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof LaunchActivity) {
-            ((LaunchActivity) context).overlayPasscodeViews.remove(this.passcodeView);
+            ((LaunchActivity) context).removeOverlayPasscodeView(this.passcodeView);
         }
     }
 
     public final void openOptions() {
         TLRPC.TL_attachMenuBot tL_attachMenuBot;
-        int i = 11;
+        int i = 5;
         int i2 = 1;
         TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
         ArrayList<TLRPC.TL_attachMenuBot> arrayList = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots;
         int size = arrayList.size();
         int i3 = 0;
-        int i4 = 0;
         do {
-            if (i4 >= size) {
+            if (i3 >= size) {
                 tL_attachMenuBot = null;
                 break;
             } else {
-                TLRPC.TL_attachMenuBot tL_attachMenuBot2 = arrayList.get(i4);
-                i4++;
+                TLRPC.TL_attachMenuBot tL_attachMenuBot2 = arrayList.get(i3);
+                i3++;
                 tL_attachMenuBot = tL_attachMenuBot2;
             }
         } while (tL_attachMenuBot.bot_id != this.botId);
@@ -1601,17 +1592,17 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         if (itemOptions != null) {
             itemOptions.dismiss();
         }
-        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.windowView, this.resourcesProvider, this.fullscreen ? this.fullscreenButtons : this.optionsItem, true);
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions((ViewGroup) this.windowView, this.resourcesProvider, this.fullscreen ? this.fullscreenButtons : this.optionsItem, true);
         this.options = itemOptionsMakeOptions;
         Context context = getContext();
-        int i5 = this.currentAccount;
+        int i4 = this.currentAccount;
         long j = this.botId;
         HashMap map = BotDownloads.instances;
-        Pair pair = new Pair(Integer.valueOf(i5), Long.valueOf(j));
+        Pair pair = new Pair(Integer.valueOf(i4), Long.valueOf(j));
         HashMap map2 = BotDownloads.instances;
         BotDownloads botDownloads = (BotDownloads) map2.get(pair);
         if (botDownloads == null) {
-            botDownloads = new BotDownloads(context, i5, j);
+            botDownloads = new BotDownloads(context, i4, j);
             map2.put(pair, botDownloads);
         }
         HashMap map3 = this.fileItems;
@@ -1619,77 +1610,39 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         ArrayList arrayList2 = botDownloads.files;
         if (!arrayList2.isEmpty()) {
             ItemOptions itemOptionsMakeSwipeback = itemOptionsMakeOptions.makeSwipeback();
-            itemOptionsMakeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new ChatActivity$$ExternalSyntheticLambda326(i3, itemOptionsMakeOptions), false);
+            itemOptionsMakeSwipeback.add(R.drawable.msg_arrow_back, LocaleController.getString(R.string.Back), new IntroActivity$$ExternalSyntheticLambda5(itemOptionsMakeOptions, i));
             itemOptionsMakeSwipeback.addGap();
             int size2 = arrayList2.size();
-            int i6 = 0;
-            while (i6 < size2) {
-                Object obj = arrayList2.get(i6);
-                i6 += i2;
+            int i5 = 0;
+            while (i5 < size2) {
+                Object obj = arrayList2.get(i5);
+                i5 += i2;
                 BotDownloads.FileDownload fileDownload = (BotDownloads.FileDownload) obj;
-                String str = fileDownload.file_name;
-                VoIPFragment$$ExternalSyntheticLambda31 voIPFragment$$ExternalSyntheticLambda31 = new VoIPFragment$$ExternalSyntheticLambda31(i);
-                if (itemOptionsMakeSwipeback.context != null) {
-                    ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(0, itemOptionsMakeSwipeback.context, itemOptionsMakeSwipeback.resourcesProvider, false, false);
-                    actionBarMenuSubItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-                    actionBarMenuSubItem.setText(str);
-                    actionBarMenuSubItem.setSubtext("");
-                    Integer num = itemOptionsMakeSwipeback.textColor;
-                    Theme.ResourcesProvider resourcesProvider = itemOptionsMakeSwipeback.resourcesProvider;
-                    int iIntValue = num != null ? num.intValue() : Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider);
-                    Integer num2 = itemOptionsMakeSwipeback.iconColor;
-                    int iIntValue2 = num2 != null ? num2.intValue() : Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider);
-                    actionBarMenuSubItem.setTextColor(iIntValue);
-                    actionBarMenuSubItem.setIconColor(iIntValue2);
-                    Integer num3 = itemOptionsMakeSwipeback.selectorColor;
-                    actionBarMenuSubItem.setSelectorColor(num3 != null ? num3.intValue() : Theme.multAlpha(0.12f, Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider)));
-                    actionBarMenuSubItem.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda128(itemOptionsMakeSwipeback, voIPFragment$$ExternalSyntheticLambda31));
-                    int i7 = itemOptionsMakeSwipeback.minWidthDp;
-                    if (i7 > 0) {
-                        actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.dp(i7));
-                        itemOptionsMakeSwipeback.addView(actionBarMenuSubItem, LayoutHelper.createLinear(itemOptionsMakeSwipeback.minWidthDp, -2));
-                    } else {
-                        itemOptionsMakeSwipeback.addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, -2));
-                    }
-                }
-                map3.put(fileDownload, itemOptionsMakeSwipeback.getLast());
-                i = 11;
+                map3.put(fileDownload, itemOptionsMakeSwipeback.add(fileDownload.file_name, "", new GiftSheet$$ExternalSyntheticLambda2(28)).getLast());
                 i2 = 1;
             }
             updateDownloadBulletin();
-            itemOptionsMakeSwipeback.minWidthDp = AndroidUtilities.dp(180.0f);
-            itemOptionsMakeOptions.add(R.drawable.menu_download_round, LocaleController.getString(R.string.BotDownloads), new PhotoViewer$$ExternalSyntheticLambda133(itemOptionsMakeOptions, itemOptionsMakeSwipeback, 9), false);
+            itemOptionsMakeSwipeback.setMinWidth(AndroidUtilities.dp(180.0f));
+            itemOptionsMakeOptions.add(R.drawable.menu_download_round, LocaleController.getString(R.string.BotDownloads), new RichEditor$$ExternalSyntheticLambda40(itemOptionsMakeOptions, itemOptionsMakeSwipeback, 3));
             itemOptionsMakeOptions.addGap();
         }
-        itemOptionsMakeOptions.addIf(R.drawable.msg_bot, LocaleController.getString(R.string.BotWebViewOpenBot), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 9), this.onVerifiedAge == null);
-        itemOptionsMakeOptions.addIf(R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 10), this.onVerifiedAge == null && this.hasSettings);
-        itemOptionsMakeOptions.add(R.drawable.msg_retry, LocaleController.getString(R.string.BotWebViewReloadPage), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 11), false);
-        itemOptionsMakeOptions.addIf(R.drawable.msg_home, LocaleController.getString(R.string.AddShortcut), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 12), this.onVerifiedAge == null && user != null && user.bot_has_main_app);
-        itemOptionsMakeOptions.addIf(R.drawable.menu_intro, LocaleController.getString(R.string.BotWebViewToS), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 13), this.onVerifiedAge == null);
-        itemOptionsMakeOptions.addIf(R.drawable.msg_report, LocaleController.getString(R.string.BotWebViewReportBot), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 14), this.onVerifiedAge == null);
-        itemOptionsMakeOptions.addIf(R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 15), this.onVerifiedAge == null && tL_attachMenuBot != null && (tL_attachMenuBot.show_in_side_menu || tL_attachMenuBot.show_in_attach_menu));
+        itemOptionsMakeOptions.addIf(this.onVerifiedAge == null, R.drawable.msg_bot, LocaleController.getString(R.string.BotWebViewOpenBot), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 9)).addIf(this.onVerifiedAge == null && this.hasSettings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 10)).add(R.drawable.msg_retry, LocaleController.getString(R.string.BotWebViewReloadPage), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 11)).addIf(this.onVerifiedAge == null && user != null && user.bot_has_main_app, R.drawable.msg_home, LocaleController.getString(R.string.AddShortcut), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 12)).addIf(this.onVerifiedAge == null, R.drawable.menu_intro, LocaleController.getString(R.string.BotWebViewToS), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 13)).addIf(this.onVerifiedAge == null, R.drawable.msg_report, LocaleController.getString(R.string.BotWebViewReportBot), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 14)).addIf(this.onVerifiedAge == null && tL_attachMenuBot != null && (tL_attachMenuBot.show_in_side_menu || tL_attachMenuBot.show_in_attach_menu), R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot), new BotWebViewSheet$$ExternalSyntheticLambda0(this, 15));
         if (this.actionBarColor != Theme.getColor(null, Theme.key_windowBackgroundWhite, false)) {
-            int i8 = AndroidUtilities.computePerceivedBrightness(this.actionBarColor) >= 0.721f ? -1 : -15198183;
-            int i9 = AndroidUtilities.computePerceivedBrightness(i8) >= 0.721f ? -16777216 : -1;
-            int iMultAlpha = Theme.multAlpha(0.85f, i9);
-            int iMultAlpha2 = Theme.multAlpha(0.1f, i9);
-            itemOptionsMakeOptions.setBackgroundColor(i8);
-            for (int i10 = 0; i10 < itemOptionsMakeOptions.getItemsCount(); i10++) {
-                View itemAt = itemOptionsMakeOptions.getItemAt(i10);
+            int i6 = AndroidUtilities.computePerceivedBrightness(this.actionBarColor) >= 0.721f ? -1 : -15198183;
+            int i7 = AndroidUtilities.computePerceivedBrightness(i6) >= 0.721f ? -16777216 : -1;
+            int iMultAlpha = Theme.multAlpha(0.85f, i7);
+            int iMultAlpha2 = Theme.multAlpha(0.1f, i7);
+            itemOptionsMakeOptions.setBackgroundColor(i6);
+            for (int i8 = 0; i8 < itemOptionsMakeOptions.getItemsCount(); i8++) {
+                View itemAt = itemOptionsMakeOptions.getItemAt(i8);
                 if (itemAt instanceof ActionBarMenuSubItem) {
-                    ActionBarMenuSubItem actionBarMenuSubItem2 = (ActionBarMenuSubItem) itemAt;
-                    actionBarMenuSubItem2.setTextColor(i9);
-                    actionBarMenuSubItem2.setIconColor(iMultAlpha);
-                    actionBarMenuSubItem2.setSelectorColor(iMultAlpha2);
+                    ActionBarMenuSubItem actionBarMenuSubItem = (ActionBarMenuSubItem) itemAt;
+                    actionBarMenuSubItem.setColors(i7, iMultAlpha);
+                    actionBarMenuSubItem.setSelectorColor(iMultAlpha2);
                 }
             }
         }
-        itemOptionsMakeOptions.setGravity(5);
-        itemOptionsMakeOptions.translate(-this.insets.right, 0.0f);
-        itemOptionsMakeOptions.forceTop = true;
-        itemOptionsMakeOptions.drawScrim = false;
-        itemOptionsMakeOptions.dimAlpha = 0;
-        itemOptionsMakeOptions.show();
+        itemOptionsMakeOptions.setGravity(5).translate(-this.insets.right, 0.0f).forceTop(true).setDrawScrim(false).setDimAlpha(0).show();
     }
 
     @Override
@@ -1740,13 +1693,13 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 }
                 TLRPC.TL_attachMenuBot tL_attachMenuBot2 = arrayList.get(i);
                 i++;
-                tL_attachMenuBot = tL_attachMenuBot2;
+                TLRPC.TL_attachMenuBot tL_attachMenuBot3 = tL_attachMenuBot2;
                 actionBarMenu = actionBarMenuCreateMenu;
-                if (tL_attachMenuBot.bot_id == this.botId) {
+                if (tL_attachMenuBot3.bot_id == this.botId) {
+                    tL_attachMenuBot = tL_attachMenuBot3;
                     break;
-                } else {
-                    actionBarMenuCreateMenu = actionBarMenu;
                 }
+                actionBarMenuCreateMenu = actionBarMenu;
             }
         } catch (Exception unused) {
         }
@@ -1760,7 +1713,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider), PorterDuff.Mode.SRC_IN));
             this.verifiedDrawable.setAlpha(255);
             anonymousClass5.getTitleTextView().setDrawablePadding(AndroidUtilities.dp(2.0f));
-            anonymousClass5.getTitleTextView().setRightDrawable(new TextCell.AnonymousClass2(this, 7));
+            anonymousClass5.getTitleTextView().setRightDrawable(new TextCell.AnonymousClass2(this, 6));
         }
         BotFullscreenButtons botFullscreenButtons = this.fullscreenButtons;
         if (botFullscreenButtons != null) {
@@ -1780,7 +1733,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 z = true;
             } else {
                 z = true;
-                MessagesController.getInstance(this.currentAccount).loadFullUser(user2, 0, true, new BotWebViewSheet$$ExternalSyntheticLambda4(this, 0));
+                MessagesController.getInstance(this.currentAccount).loadFullUser(user2, 0, true, new BotWebViewSheet$$ExternalSyntheticLambda5(this, 0));
             }
             if (webViewRequestProps.fullscreen) {
                 setFullscreen(z, false, this.fullscreenBlur);
@@ -1796,7 +1749,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         this.optionsIcon = optionsIcon;
         ActionBarMenuItem actionBarMenuItemAddItem = actionBarMenu2.addItem(0, optionsIcon);
         this.optionsItem = actionBarMenuItemAddItem;
-        actionBarMenuItemAddItem.setOnClickListener(new BotWebViewSheet$$ExternalSyntheticLambda5(this, 0));
+        actionBarMenuItemAddItem.setOnClickListener(new BotWebViewSheet$$ExternalSyntheticLambda6(this, 0));
         anonymousClass5.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
             public final void onItemClick(int i3) {
@@ -1816,7 +1769,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
         AnonymousClass2 anonymousClass2 = this.webViewContainer;
         anonymousClass2.setBotUser(user3);
-        anonymousClass2.loadFlickerAndSettingsItem(this.currentAccount, this.botId);
+        anonymousClass2.loadFlickerAndSettingsItem(this.currentAccount, this.botId, null);
         TLRPC.User user4 = webViewRequestProps.botUser;
         if (tL_attachMenuBot != null && tL_attachMenuBot.show_in_side_menu && !MediaDataController.getInstance(this.currentAccount).isShortcutAdded(this.botId, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT)) {
             if (user4 == null) {
@@ -1863,7 +1816,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 tL_dataJSON.data = jSONObjectMakeThemeParams.toString();
                 tL_messages_requestWebView.flags |= 4;
             }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestWebView, new BotWebViewSheet$$ExternalSyntheticLambda7(this, 2));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestWebView, new BotWebViewSheet$$ExternalSyntheticLambda8(this, 3));
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.webViewResultSent);
             return;
         }
@@ -1889,7 +1842,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 tL_messages_requestSimpleWebView.start_param = webViewRequestProps.startParam;
                 tL_messages_requestSimpleWebView.flags |= 16;
             }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestSimpleWebView, new BotWebViewSheet$$ExternalSyntheticLambda7(this, 1));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestSimpleWebView, new BotWebViewSheet$$ExternalSyntheticLambda8(this, 2));
             return;
         }
         if (i3 == 2) {
@@ -1907,7 +1860,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 tL_dataJSON3.data = jSONObjectMakeThemeParams.toString();
                 tL_messages_requestWebView2.flags |= 4;
             }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestWebView2, new BotWebViewSheet$$ExternalSyntheticLambda7(this, 5));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestWebView2, new BotWebViewSheet$$ExternalSyntheticLambda8(this, 1));
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.webViewResultSent);
             return;
         }
@@ -1922,7 +1875,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             tL_messages_requestAppWebView.platform = "android";
             if (baseFragment instanceof ChatActivity) {
                 ChatActivity chatActivity = (ChatActivity) baseFragment;
-                inputPeer = chatActivity.getCurrentUser() != null ? MessagesController.getInputPeer(chatActivity.getCurrentUser()) : MessagesController.getInputPeer(chatActivity.currentChat);
+                inputPeer = chatActivity.getCurrentUser() != null ? MessagesController.getInputPeer(chatActivity.getCurrentUser()) : MessagesController.getInputPeer(chatActivity.getCurrentChat());
             } else {
                 inputPeer = MessagesController.getInputPeer(webViewRequestProps.botUser);
             }
@@ -1939,7 +1892,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 tL_dataJSON4.data = jSONObjectMakeThemeParams.toString();
                 tL_messages_requestAppWebView.flags |= 4;
             }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestAppWebView, new BotWebViewSheet$$ExternalSyntheticLambda7(this, 4), 66);
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestAppWebView, new BotWebViewSheet$$ExternalSyntheticLambda8(this, 5), 66);
             return;
         }
         if (i3 != 4) {
@@ -1954,7 +1907,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 tL_messages_requestChatJoinWebView.theme_params = tL_dataJSON5;
                 tL_dataJSON5.data = jSONObjectMakeThemeParams.toString();
             }
-            ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_requestChatJoinWebView, new AiTonesController$$ExternalSyntheticLambda0(), new TodoItemMenu$$ExternalSyntheticLambda17(this, 12), 66);
+            ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_requestChatJoinWebView, new AiTonesController$$ExternalSyntheticLambda0(), new BotDownloads$$ExternalSyntheticLambda0(this, 11), 66);
             return;
         }
         TLRPC.TL_messages_requestMainWebView tL_messages_requestMainWebView = new TLRPC.TL_messages_requestMainWebView();
@@ -1962,7 +1915,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         tL_messages_requestMainWebView.platform = "android";
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity2 = (ChatActivity) baseFragment;
-            inputPeer2 = chatActivity2.getCurrentUser() != null ? MessagesController.getInputPeer(chatActivity2.getCurrentUser()) : MessagesController.getInputPeer(chatActivity2.currentChat);
+            inputPeer2 = chatActivity2.getCurrentUser() != null ? MessagesController.getInputPeer(chatActivity2.getCurrentUser()) : MessagesController.getInputPeer(chatActivity2.getCurrentChat());
         } else {
             inputPeer2 = MessagesController.getInstance(this.currentAccount).getInputPeer(webViewRequestProps.peerId);
         }
@@ -1979,7 +1932,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             tL_dataJSON6.data = jSONObjectMakeThemeParams.toString();
             tL_messages_requestMainWebView.flags |= 1;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestMainWebView, new BotWebViewSheet$$ExternalSyntheticLambda7(this, 0), 66);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_requestMainWebView, new BotWebViewSheet$$ExternalSyntheticLambda8(this, 0), 66);
     }
 
     @Override
@@ -1992,7 +1945,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         webTabData.backgroundColor = this.backgroundPaint.getColor();
         webTabData.props = this.requestProps;
         AnonymousClass2 anonymousClass2 = this.webViewContainer;
-        webTabData.ready = anonymousClass2 != null && anonymousClass2.isPageLoaded;
+        webTabData.ready = anonymousClass2 != null && anonymousClass2.isPageLoaded();
         webTabData.themeIsDark = Theme.currentTheme.isDark();
         webTabData.lastUrl = anonymousClass2 != null ? anonymousClass2.getUrlLoaded() : null;
         AnonymousClass1 anonymousClass1 = this.swipeContainer;
@@ -2006,7 +1959,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         webTabData.backButton = this.backButtonShown;
         webTabData.confirmDismiss = this.needCloseConfirmation;
         webTabData.settings = this.hasSettings;
-        webTabData.allowSwipes = anonymousClass1 == null || anonymousClass1.allowSwipes;
+        webTabData.allowSwipes = anonymousClass1 == null || anonymousClass1.isAllowedSwipes();
         webTabData.buttons = this.botButtons.state;
         webTabData.navigationBarColor = this.navBarColor;
         BotSensors botSensors = this.sensors;
@@ -2016,11 +1969,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         webTabData.sensors = this.sensors;
         BotWebViewContainer.MyWebView webView = anonymousClass2 != null ? anonymousClass2.getWebView() : null;
         if (webView != null) {
-            anonymousClass2.d("preserveWebView");
-            anonymousClass2.preserving = true;
-            if (anonymousClass2.bot) {
-                anonymousClass2.notifyEvent("visibility_changed", BotWebViewContainer.obj(Boolean.FALSE, "is_visible"));
-            }
+            anonymousClass2.preserveWebView();
             webTabData.webView = webView;
             webTabData.proxy = anonymousClass2.getBotProxy();
             webTabData.viewWidth = webView.getWidth();
@@ -2135,7 +2084,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         AndroidUtilities.unlockOrientation(ownerActivity2);
     }
 
-    public final void setBackgroundColor(int i, boolean z) {
+    public final void setBackgroundColor(final int i, boolean z) {
         int i2 = 0;
         Paint paint = this.backgroundPaint;
         int color = paint.getColor();
@@ -2148,8 +2097,22 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             this.backgroundColorAnimator = duration;
             duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            this.backgroundColorAnimator.addUpdateListener(new BotWebViewSheet$$ExternalSyntheticLambda30(this, color, i, i2));
-            this.backgroundColorAnimator.addListener(new ArticleViewer.AnonymousClass3(this, i, 14));
+            this.backgroundColorAnimator.addUpdateListener(new BotWebViewSheet$$ExternalSyntheticLambda33(this, color, i, i2));
+            this.backgroundColorAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public final void onAnimationEnd(Animator animator) {
+                    BotWebViewSheet botWebViewSheet = BotWebViewSheet.this;
+                    botWebViewSheet.backgroundPaint.setColor(i);
+                    botWebViewSheet.updateActionBarColors();
+                    botWebViewSheet.windowView.invalidate();
+                    ArticleViewer.ErrorContainer errorContainer = botWebViewSheet.errorContainer;
+                    if (errorContainer != null) {
+                        errorContainer.setDark(AndroidUtilities.computePerceivedBrightness(botWebViewSheet.backgroundPaint.getColor()) <= 0.721f, false);
+                        botWebViewSheet.errorContainer.setBackgroundColor(botWebViewSheet.backgroundPaint.getColor());
+                    }
+                    botWebViewSheet.updateWebViewBackgroundColor();
+                }
+            });
             this.backgroundColorAnimator.start();
             return;
         }
@@ -2245,14 +2208,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         }
         final float f3 = currentActionBarHeight;
         final float currentActionBarHeight2 = ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight;
-        SpringAnimation springAnimation = anonymousClass1.offsetYAnimator;
-        if (springAnimation != null) {
-            springAnimation.cancel();
-        }
-        SpringAnimation springAnimation2 = anonymousClass1.scrollAnimator;
-        if (springAnimation2 != null) {
-            springAnimation2.cancel();
-        }
+        anonymousClass1.cancelStickTo();
         anonymousClass1.setSwipeOffsetAnimationDisallowed(true);
         anonymousClass5.setVisibility(0);
         if (z) {
@@ -2356,7 +2312,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         int i4 = this.navBarColor;
         AnonymousClass4 anonymousClass4 = this.botButtons;
         Paint paint = anonymousClass4.backgroundPaint;
-        anonymousClass4.state.limit = i;
+        anonymousClass4.state.backgroundColor = i;
         paint.setColor(i);
         if (!z) {
             anonymousClass4.background.set(i, true);
@@ -2364,7 +2320,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         if (z) {
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            duration.addUpdateListener(new BotWebViewSheet$$ExternalSyntheticLambda30(this, i4, i, i3));
+            duration.addUpdateListener(new BotWebViewSheet$$ExternalSyntheticLambda33(this, i4, i, i3));
             duration.addListener(new AnonymousClass16(this, i4, i, i2));
             duration.start();
         } else {
@@ -2384,8 +2340,8 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openedProgress, z ? 1.0f : 0.0f);
         this.openAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addListener(new TodoItemMenu.AnonymousClass15(15, this, z));
-        this.openAnimator.addUpdateListener(new BotWebViewSheet$$ExternalSyntheticLambda12(this, 0));
+        valueAnimatorOfFloat.addListener(new StoryViewer.AnonymousClass7(this, z, 19));
+        this.openAnimator.addUpdateListener(new BotWebViewSheet$$ExternalSyntheticLambda13(this, 0));
         this.openAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.openAnimator.setDuration(220L);
         this.openAnimator.start();
@@ -2416,11 +2372,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
             anonymousClass5.setPopupBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, resourcesProvider), false);
             anonymousClass5.setPopupItemsColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider), false, false);
             anonymousClass5.setPopupItemsColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), true, false);
-            int color2 = Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider);
-            ActionBarMenu actionBarMenu = anonymousClass5.menu;
-            if (actionBarMenu != null) {
-                actionBarMenu.setPopupItemsSelectorColor(color2);
-            }
+            anonymousClass5.setPopupItemsSelectorColor(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider), false);
         }
         setFlickerViewColor(this.backgroundPaint.getColor());
     }
@@ -2461,7 +2413,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 this.downloadBulletin = null;
             }
             Bulletin bulletin3 = this.downloadBulletin;
-            if (bulletin3 == null || !bulletin3.showing) {
+            if (bulletin3 == null || !bulletin3.isShowing()) {
                 this.lastBulletinFile = fileDownload;
                 BotDownloads.DownloadBulletin downloadBulletin2 = new BotDownloads.DownloadBulletin(getContext(), this.resourcesProvider);
                 this.downloadBulletinLayout = downloadBulletin2;
@@ -2499,7 +2451,7 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
                 actionBarMenuSubItem.setRightIcon(0);
                 actionBarMenuSubItem.subtextView.setPadding(0, 0, 0, 0);
             }
-            actionBarMenuSubItem.setOnClickListener(new VoIPFragment$$ExternalSyntheticLambda28(5, this, fileDownload2));
+            actionBarMenuSubItem.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(21, this, fileDownload2));
         }
         BotFullscreenButtons.OptionsIcon optionsIcon = this.optionsIcon;
         ArrayList arrayList = botDownloads.files;
@@ -2555,14 +2507,10 @@ public final class BotWebViewSheet extends Dialog implements NotificationCenter.
         AnonymousClass4 anonymousClass4 = this.botButtons;
         if (z) {
             int i = (anonymousClass4 == null || anonymousClass4.getTotalHeight() <= 0) ? 0 : rect.bottom;
-            Rect rect2 = new Rect(rect.left, rect.top, rect.right, (this.keyboardInset <= i && (anonymousClass4 == null || anonymousClass4.getTotalHeight() <= 0)) ? rect.bottom : 0);
-            int iDp = AndroidUtilities.dp(46.0f);
-            anonymousClass2.reportSafeInsets(rect2, false);
-            anonymousClass2.reportSafeContentInsets(iDp, false);
+            anonymousClass2.reportSafeInsets(new Rect(rect.left, rect.top, rect.right, (this.keyboardInset <= i && (anonymousClass4 == null || anonymousClass4.getTotalHeight() <= 0)) ? rect.bottom : 0), AndroidUtilities.dp(46.0f));
             windowView.setPadding(0, 0, 0, Math.max(this.keyboardInset, i));
         } else {
-            anonymousClass2.reportSafeInsets(new Rect(0, 0, 0, 0), false);
-            anonymousClass2.reportSafeContentInsets(0, false);
+            anonymousClass2.reportSafeInsets(new Rect(0, 0, 0, 0), 0);
             int i2 = rect.left;
             int i3 = rect.right;
             int i4 = this.keyboardInset;

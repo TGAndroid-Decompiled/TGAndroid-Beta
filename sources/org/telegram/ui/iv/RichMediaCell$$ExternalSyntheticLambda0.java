@@ -35,107 +35,108 @@ public final class RichMediaCell$$ExternalSyntheticLambda0 implements View.OnCli
                     if (iIndexOf >= 0 && iIndexOf < listMedias.size() && iIndexOf < arrayList.size()) {
                         final MediaUploadState mediaUploadState = (MediaUploadState) listMedias.get(iIndexOf);
                         ItemOptions itemOptionsMakeMenu = RichEditorListView.this.delegate.makeMenu((View) arrayList.get(iIndexOf));
-                        boolean z = mediaUploadState.hasSpoiler;
-                        final int i = 0;
-                        itemOptionsMakeMenu.add(z ? R.drawable.msg_spoiler_off : R.drawable.msg_spoiler, LocaleController.getString(z ? R.string.DisablePhotoSpoiler : R.string.EnablePhotoSpoiler), new Runnable() {
-                            @Override
-                            public final void run() {
-                                BlockRow blockRow3;
-                                BlockRow blockRow4;
-                                switch (i) {
-                                    case 0:
-                                        RichMediaCell richMediaCell2 = richMediaCell;
-                                        RichEditorListView.AnonymousClass6 anonymousClass6 = richMediaCell2.delegate;
-                                        if (anonymousClass6 != null && (blockRow3 = richMediaCell2.currentRow) != null) {
-                                            RichEditorListView richEditorListView = RichEditorListView.this;
-                                            richEditorListView.getClass();
-                                            MediaUploadState mediaUploadState2 = mediaUploadState;
-                                            RichEditorHistory richEditorHistory = richEditorListView.history;
-                                            if (richEditorHistory != null) {
-                                                AndroidUtilities.cancelRunOnUIThread(richEditorHistory.commitRunnable);
-                                                richEditorHistory.commit();
+                        if (itemOptionsMakeMenu != null) {
+                            boolean z = mediaUploadState.hasSpoiler;
+                            final int i = 0;
+                            itemOptionsMakeMenu.add(z ? R.drawable.msg_spoiler_off : R.drawable.msg_spoiler, LocaleController.getString(z ? R.string.DisablePhotoSpoiler : R.string.EnablePhotoSpoiler), new Runnable() {
+                                @Override
+                                public final void run() {
+                                    BlockRow blockRow3;
+                                    BlockRow blockRow4;
+                                    switch (i) {
+                                        case 0:
+                                            RichMediaCell richMediaCell2 = richMediaCell;
+                                            RichEditorListView.AnonymousClass6 anonymousClass6 = richMediaCell2.delegate;
+                                            if (anonymousClass6 != null && (blockRow3 = richMediaCell2.currentRow) != null) {
+                                                RichEditorListView richEditorListView = RichEditorListView.this;
+                                                richEditorListView.getClass();
+                                                MediaUploadState mediaUploadState2 = mediaUploadState;
+                                                RichEditorHistory richEditorHistory = richEditorListView.history;
+                                                if (richEditorHistory != null) {
+                                                    AndroidUtilities.cancelRunOnUIThread(richEditorHistory.commitRunnable);
+                                                    richEditorHistory.commit();
+                                                }
+                                                mediaUploadState2.hasSpoiler = !mediaUploadState2.hasSpoiler;
+                                                TL_iv.PageBlock pageBlockItemBlockFor = RichEditorListView.itemBlockFor(blockRow3, mediaUploadState2);
+                                                if (pageBlockItemBlockFor instanceof TL_iv.pageBlockPhoto) {
+                                                    ((TL_iv.pageBlockPhoto) pageBlockItemBlockFor).spoiler = mediaUploadState2.hasSpoiler;
+                                                } else if (pageBlockItemBlockFor instanceof TL_iv.pageBlockVideo) {
+                                                    ((TL_iv.pageBlockVideo) pageBlockItemBlockFor).spoiler = mediaUploadState2.hasSpoiler;
+                                                }
+                                                richEditorListView.refreshMediaCell(blockRow3);
+                                                RichEditorHistory richEditorHistory2 = richEditorListView.history;
+                                                if (richEditorHistory2 != null) {
+                                                    richEditorHistory2.record();
+                                                }
+                                                richEditorListView.delegate.onContentChanged();
+                                                break;
                                             }
-                                            mediaUploadState2.hasSpoiler = !mediaUploadState2.hasSpoiler;
-                                            TL_iv.PageBlock pageBlockItemBlockFor = RichEditorListView.itemBlockFor(blockRow3, mediaUploadState2);
-                                            if (pageBlockItemBlockFor instanceof TL_iv.pageBlockPhoto) {
-                                                ((TL_iv.pageBlockPhoto) pageBlockItemBlockFor).spoiler = mediaUploadState2.hasSpoiler;
-                                            } else if (pageBlockItemBlockFor instanceof TL_iv.pageBlockVideo) {
-                                                ((TL_iv.pageBlockVideo) pageBlockItemBlockFor).spoiler = mediaUploadState2.hasSpoiler;
-                                            }
-                                            richEditorListView.refreshMediaCell(blockRow3);
-                                            RichEditorHistory richEditorHistory2 = richEditorListView.history;
-                                            if (richEditorHistory2 != null) {
-                                                richEditorHistory2.record();
-                                            }
-                                            richEditorListView.delegate.onContentChanged();
                                             break;
-                                        }
-                                        break;
-                                    default:
-                                        RichMediaCell richMediaCell3 = richMediaCell;
-                                        RichEditorListView.AnonymousClass6 anonymousClass7 = richMediaCell3.delegate;
-                                        if (anonymousClass7 != null && (blockRow4 = richMediaCell3.currentRow) != null) {
-                                            RichEditorListView.access$3500(blockRow4, mediaUploadState, RichEditorListView.this);
+                                        default:
+                                            RichMediaCell richMediaCell3 = richMediaCell;
+                                            RichEditorListView.AnonymousClass6 anonymousClass7 = richMediaCell3.delegate;
+                                            if (anonymousClass7 != null && (blockRow4 = richMediaCell3.currentRow) != null) {
+                                                RichEditorListView.access$3500(blockRow4, mediaUploadState, RichEditorListView.this);
+                                                break;
+                                            }
                                             break;
-                                        }
-                                        break;
+                                    }
                                 }
-                            }
-                        }, false);
-                        final int i2 = 1;
-                        itemOptionsMakeMenu.add(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable() {
-                            @Override
-                            public final void run() {
-                                BlockRow blockRow3;
-                                BlockRow blockRow4;
-                                switch (i2) {
-                                    case 0:
-                                        RichMediaCell richMediaCell2 = richMediaCell;
-                                        RichEditorListView.AnonymousClass6 anonymousClass6 = richMediaCell2.delegate;
-                                        if (anonymousClass6 != null && (blockRow3 = richMediaCell2.currentRow) != null) {
-                                            RichEditorListView richEditorListView = RichEditorListView.this;
-                                            richEditorListView.getClass();
-                                            MediaUploadState mediaUploadState2 = mediaUploadState;
-                                            RichEditorHistory richEditorHistory = richEditorListView.history;
-                                            if (richEditorHistory != null) {
-                                                AndroidUtilities.cancelRunOnUIThread(richEditorHistory.commitRunnable);
-                                                richEditorHistory.commit();
+                            });
+                            final int i2 = 1;
+                            itemOptionsMakeMenu.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable() {
+                                @Override
+                                public final void run() {
+                                    BlockRow blockRow3;
+                                    BlockRow blockRow4;
+                                    switch (i2) {
+                                        case 0:
+                                            RichMediaCell richMediaCell2 = richMediaCell;
+                                            RichEditorListView.AnonymousClass6 anonymousClass6 = richMediaCell2.delegate;
+                                            if (anonymousClass6 != null && (blockRow3 = richMediaCell2.currentRow) != null) {
+                                                RichEditorListView richEditorListView = RichEditorListView.this;
+                                                richEditorListView.getClass();
+                                                MediaUploadState mediaUploadState2 = mediaUploadState;
+                                                RichEditorHistory richEditorHistory = richEditorListView.history;
+                                                if (richEditorHistory != null) {
+                                                    AndroidUtilities.cancelRunOnUIThread(richEditorHistory.commitRunnable);
+                                                    richEditorHistory.commit();
+                                                }
+                                                mediaUploadState2.hasSpoiler = !mediaUploadState2.hasSpoiler;
+                                                TL_iv.PageBlock pageBlockItemBlockFor = RichEditorListView.itemBlockFor(blockRow3, mediaUploadState2);
+                                                if (pageBlockItemBlockFor instanceof TL_iv.pageBlockPhoto) {
+                                                    ((TL_iv.pageBlockPhoto) pageBlockItemBlockFor).spoiler = mediaUploadState2.hasSpoiler;
+                                                } else if (pageBlockItemBlockFor instanceof TL_iv.pageBlockVideo) {
+                                                    ((TL_iv.pageBlockVideo) pageBlockItemBlockFor).spoiler = mediaUploadState2.hasSpoiler;
+                                                }
+                                                richEditorListView.refreshMediaCell(blockRow3);
+                                                RichEditorHistory richEditorHistory2 = richEditorListView.history;
+                                                if (richEditorHistory2 != null) {
+                                                    richEditorHistory2.record();
+                                                }
+                                                richEditorListView.delegate.onContentChanged();
+                                                break;
                                             }
-                                            mediaUploadState2.hasSpoiler = !mediaUploadState2.hasSpoiler;
-                                            TL_iv.PageBlock pageBlockItemBlockFor = RichEditorListView.itemBlockFor(blockRow3, mediaUploadState2);
-                                            if (pageBlockItemBlockFor instanceof TL_iv.pageBlockPhoto) {
-                                                ((TL_iv.pageBlockPhoto) pageBlockItemBlockFor).spoiler = mediaUploadState2.hasSpoiler;
-                                            } else if (pageBlockItemBlockFor instanceof TL_iv.pageBlockVideo) {
-                                                ((TL_iv.pageBlockVideo) pageBlockItemBlockFor).spoiler = mediaUploadState2.hasSpoiler;
-                                            }
-                                            richEditorListView.refreshMediaCell(blockRow3);
-                                            RichEditorHistory richEditorHistory2 = richEditorListView.history;
-                                            if (richEditorHistory2 != null) {
-                                                richEditorHistory2.record();
-                                            }
-                                            richEditorListView.delegate.onContentChanged();
                                             break;
-                                        }
-                                        break;
-                                    default:
-                                        RichMediaCell richMediaCell3 = richMediaCell;
-                                        RichEditorListView.AnonymousClass6 anonymousClass7 = richMediaCell3.delegate;
-                                        if (anonymousClass7 != null && (blockRow4 = richMediaCell3.currentRow) != null) {
-                                            RichEditorListView.access$3500(blockRow4, mediaUploadState, RichEditorListView.this);
+                                        default:
+                                            RichMediaCell richMediaCell3 = richMediaCell;
+                                            RichEditorListView.AnonymousClass6 anonymousClass7 = richMediaCell3.delegate;
+                                            if (anonymousClass7 != null && (blockRow4 = richMediaCell3.currentRow) != null) {
+                                                RichEditorListView.access$3500(blockRow4, mediaUploadState, RichEditorListView.this);
+                                                break;
+                                            }
                                             break;
-                                        }
-                                        break;
+                                    }
                                 }
+                            });
+                            itemOptionsMakeMenu.translate(0.0f, -AndroidUtilities.dp(38.0f));
+                            if (richMediaCell.glass) {
+                                itemOptionsMakeMenu.setBlur(false, true);
+                                itemOptionsMakeMenu.setDimAlpha(0);
                             }
-                        }, true);
-                        itemOptionsMakeMenu.translate(0.0f, -AndroidUtilities.dp(38.0f));
-                        if (richMediaCell.glass) {
-                            itemOptionsMakeMenu.blur = false;
-                            itemOptionsMakeMenu.blurForMenu = true;
-                            itemOptionsMakeMenu.dimAlpha = 0;
+                            itemOptionsMakeMenu.show();
+                            break;
                         }
-                        itemOptionsMakeMenu.show();
-                        break;
                     }
                 }
                 break;

@@ -3,7 +3,6 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import com.android.billingclient.api.zzbv;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
@@ -13,181 +12,145 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
 
-public abstract class DrawingInBackgroundThreadDrawable implements NotificationCenter.NotificationCenterDelegate {
-    public static zzbv queuePool;
-    public boolean attachedToWindow;
-    public Bitmap backgroundBitmap;
-    public Canvas backgroundCanvas;
-    public final DispatchQueue backgroundQueue;
-    public Bitmap bitmap;
-    public Canvas bitmapCanvas;
-    public final AnonymousClass1 bitmapCreateTask;
-    public boolean bitmapUpdating;
-    public int currentOpenedLayerFlags;
-    public boolean error;
-    public int frameGuid;
-    public int height;
-    public int lastFrameId;
-    public boolean needSwapBitmaps;
-    public boolean paused;
-    public boolean reset;
+public class DrawingInBackgroundThreadDrawable implements NotificationCenter.NotificationCenterDelegate {
+    public static final int THREAD_COUNT = 2;
+    public static DispatchQueuePool queuePool;
+    boolean attachedToWindow;
+    Bitmap backgroundBitmap;
+    Canvas backgroundCanvas;
+    private final DispatchQueue backgroundQueue;
+    Bitmap bitmap;
+    Canvas bitmapCanvas;
+    private boolean bitmapUpdating;
+    private int currentOpenedLayerFlags;
+    boolean error;
+    int frameGuid;
+    int height;
+    private int lastFrameId;
+    boolean needSwapBitmaps;
+    int padding;
+    protected boolean paused;
+    private boolean reset;
     public final int threadIndex;
-    public final AnonymousClass1 uiFrameRunnable;
-    public int width;
-    public int currentLayerNum = 1;
-    public final Paint paint = new Paint(1);
+    int width;
+    private int currentLayerNum = 1;
+    private Paint paint = new Paint(1);
+    private final Runnable bitmapCreateTask = new Runnable() {
+        @Override
+        public void run() {
+            Bitmap bitmap;
+            try {
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = DrawingInBackgroundThreadDrawable.this;
+                int i = drawingInBackgroundThreadDrawable.height + drawingInBackgroundThreadDrawable.padding;
+                Bitmap bitmap2 = drawingInBackgroundThreadDrawable.backgroundBitmap;
+                if (bitmap2 != null) {
+                    int width = bitmap2.getWidth();
+                    DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable2 = DrawingInBackgroundThreadDrawable.this;
+                    if (width != drawingInBackgroundThreadDrawable2.width || drawingInBackgroundThreadDrawable2.backgroundBitmap.getHeight() != i) {
+                        bitmap = DrawingInBackgroundThreadDrawable.this.backgroundBitmap;
+                        if (bitmap != null) {
+                            bitmap.recycle();
+                        }
+                        DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable3 = DrawingInBackgroundThreadDrawable.this;
+                        drawingInBackgroundThreadDrawable3.backgroundBitmap = Bitmap.createBitmap(drawingInBackgroundThreadDrawable3.width, i, Bitmap.Config.ARGB_8888);
+                        DrawingInBackgroundThreadDrawable.this.backgroundCanvas = new Canvas(DrawingInBackgroundThreadDrawable.this.backgroundBitmap);
+                    }
+                } else {
+                    bitmap = DrawingInBackgroundThreadDrawable.this.backgroundBitmap;
+                    if (bitmap != null) {
+                        bitmap.recycle();
+                    }
+                    DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable4 = DrawingInBackgroundThreadDrawable.this;
+                    drawingInBackgroundThreadDrawable4.backgroundBitmap = Bitmap.createBitmap(drawingInBackgroundThreadDrawable4.width, i, Bitmap.Config.ARGB_8888);
+                    DrawingInBackgroundThreadDrawable.this.backgroundCanvas = new Canvas(DrawingInBackgroundThreadDrawable.this.backgroundBitmap);
+                }
+                DrawingInBackgroundThreadDrawable.this.backgroundBitmap.eraseColor(0);
+                DrawingInBackgroundThreadDrawable.this.backgroundCanvas.save();
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable5 = DrawingInBackgroundThreadDrawable.this;
+                drawingInBackgroundThreadDrawable5.backgroundCanvas.translate(0.0f, drawingInBackgroundThreadDrawable5.padding);
+                DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable6 = DrawingInBackgroundThreadDrawable.this;
+                drawingInBackgroundThreadDrawable6.drawInBackground(drawingInBackgroundThreadDrawable6.backgroundCanvas);
+                DrawingInBackgroundThreadDrawable.this.backgroundCanvas.restore();
+                DrawingInBackgroundThreadDrawable.this.backgroundBitmap.prepareToDraw();
+            } catch (Exception e) {
+                FileLog.e(e);
+                DrawingInBackgroundThreadDrawable.this.error = true;
+            }
+            AndroidUtilities.runOnUIThread(DrawingInBackgroundThreadDrawable.this.uiFrameRunnable);
+        }
+    };
+    Runnable uiFrameRunnable = new Runnable() {
+        @Override
+        public void run() {
+            DrawingInBackgroundThreadDrawable.this.bitmapUpdating = false;
+            DrawingInBackgroundThreadDrawable.this.onFrameReady();
+            DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = DrawingInBackgroundThreadDrawable.this;
+            if (!drawingInBackgroundThreadDrawable.attachedToWindow) {
+                drawingInBackgroundThreadDrawable.recycleBitmaps();
+            } else {
+                if (drawingInBackgroundThreadDrawable.frameGuid != drawingInBackgroundThreadDrawable.lastFrameId) {
+                    return;
+                }
+                DrawingInBackgroundThreadDrawable.this.needSwapBitmaps = true;
+            }
+        }
+    };
+
+    public static class DispatchQueuePool {
+        int pointer;
+        public final DispatchQueue[] pool;
+        final int size;
+
+        public DispatchQueue getNextQueue() {
+            int i = this.pointer + 1;
+            this.pointer = i;
+            if (i > this.size - 1) {
+                this.pointer = 0;
+            }
+            DispatchQueue[] dispatchQueueArr = this.pool;
+            int i2 = this.pointer;
+            DispatchQueue dispatchQueue = dispatchQueueArr[i2];
+            if (dispatchQueue != null) {
+                return dispatchQueue;
+            }
+            DispatchQueue dispatchQueue2 = new DispatchQueue("draw_background_queue_" + this.pointer);
+            dispatchQueueArr[i2] = dispatchQueue2;
+            return dispatchQueue2;
+        }
+
+        private DispatchQueuePool(int i) {
+            this.size = i;
+            this.pool = new DispatchQueue[i];
+        }
+    }
 
     public DrawingInBackgroundThreadDrawable() {
-        final int i = 0;
-        this.bitmapCreateTask = new Runnable(this) {
-            public final DrawingInBackgroundThreadDrawable this$0;
-
-            {
-                this.this$0 = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (i) {
-                    case 0:
-                        DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = this.this$0;
-                        try {
-                            int i2 = drawingInBackgroundThreadDrawable.height;
-                            Bitmap bitmap = drawingInBackgroundThreadDrawable.backgroundBitmap;
-                            if (bitmap == null || bitmap.getWidth() != drawingInBackgroundThreadDrawable.width || drawingInBackgroundThreadDrawable.backgroundBitmap.getHeight() != i2) {
-                                Bitmap bitmap2 = drawingInBackgroundThreadDrawable.backgroundBitmap;
-                                if (bitmap2 != null) {
-                                    bitmap2.recycle();
-                                }
-                                drawingInBackgroundThreadDrawable.backgroundBitmap = Bitmap.createBitmap(drawingInBackgroundThreadDrawable.width, i2, Bitmap.Config.ARGB_8888);
-                                drawingInBackgroundThreadDrawable.backgroundCanvas = new Canvas(drawingInBackgroundThreadDrawable.backgroundBitmap);
-                            }
-                            drawingInBackgroundThreadDrawable.backgroundBitmap.eraseColor(0);
-                            drawingInBackgroundThreadDrawable.backgroundCanvas.save();
-                            drawingInBackgroundThreadDrawable.backgroundCanvas.translate(0.0f, 0);
-                            drawingInBackgroundThreadDrawable.drawInBackground(drawingInBackgroundThreadDrawable.backgroundCanvas);
-                            drawingInBackgroundThreadDrawable.backgroundCanvas.restore();
-                            drawingInBackgroundThreadDrawable.backgroundBitmap.prepareToDraw();
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            drawingInBackgroundThreadDrawable.error = true;
-                        }
-                        AndroidUtilities.runOnUIThread(drawingInBackgroundThreadDrawable.uiFrameRunnable);
-                        break;
-                    default:
-                        DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable2 = this.this$0;
-                        drawingInBackgroundThreadDrawable2.bitmapUpdating = false;
-                        drawingInBackgroundThreadDrawable2.onFrameReady();
-                        if (!drawingInBackgroundThreadDrawable2.attachedToWindow) {
-                            ArrayList arrayList = new ArrayList();
-                            Bitmap bitmap3 = drawingInBackgroundThreadDrawable2.bitmap;
-                            if (bitmap3 != null) {
-                                arrayList.add(bitmap3);
-                            }
-                            Bitmap bitmap4 = drawingInBackgroundThreadDrawable2.backgroundBitmap;
-                            if (bitmap4 != null) {
-                                arrayList.add(bitmap4);
-                            }
-                            drawingInBackgroundThreadDrawable2.bitmap = null;
-                            drawingInBackgroundThreadDrawable2.backgroundBitmap = null;
-                            drawingInBackgroundThreadDrawable2.backgroundCanvas = null;
-                            drawingInBackgroundThreadDrawable2.bitmapCanvas = null;
-                            AndroidUtilities.recycleBitmaps(arrayList);
-                            break;
-                        } else if (drawingInBackgroundThreadDrawable2.frameGuid == drawingInBackgroundThreadDrawable2.lastFrameId) {
-                            drawingInBackgroundThreadDrawable2.needSwapBitmaps = true;
-                            break;
-                        }
-                        break;
-                }
-            }
-        };
-        final int i2 = 1;
-        this.uiFrameRunnable = new Runnable(this) {
-            public final DrawingInBackgroundThreadDrawable this$0;
-
-            {
-                this.this$0 = this;
-            }
-
-            @Override
-            public final void run() {
-                switch (i2) {
-                    case 0:
-                        DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable = this.this$0;
-                        try {
-                            int i3 = drawingInBackgroundThreadDrawable.height;
-                            Bitmap bitmap = drawingInBackgroundThreadDrawable.backgroundBitmap;
-                            if (bitmap == null || bitmap.getWidth() != drawingInBackgroundThreadDrawable.width || drawingInBackgroundThreadDrawable.backgroundBitmap.getHeight() != i3) {
-                                Bitmap bitmap2 = drawingInBackgroundThreadDrawable.backgroundBitmap;
-                                if (bitmap2 != null) {
-                                    bitmap2.recycle();
-                                }
-                                drawingInBackgroundThreadDrawable.backgroundBitmap = Bitmap.createBitmap(drawingInBackgroundThreadDrawable.width, i3, Bitmap.Config.ARGB_8888);
-                                drawingInBackgroundThreadDrawable.backgroundCanvas = new Canvas(drawingInBackgroundThreadDrawable.backgroundBitmap);
-                            }
-                            drawingInBackgroundThreadDrawable.backgroundBitmap.eraseColor(0);
-                            drawingInBackgroundThreadDrawable.backgroundCanvas.save();
-                            drawingInBackgroundThreadDrawable.backgroundCanvas.translate(0.0f, 0);
-                            drawingInBackgroundThreadDrawable.drawInBackground(drawingInBackgroundThreadDrawable.backgroundCanvas);
-                            drawingInBackgroundThreadDrawable.backgroundCanvas.restore();
-                            drawingInBackgroundThreadDrawable.backgroundBitmap.prepareToDraw();
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                            drawingInBackgroundThreadDrawable.error = true;
-                        }
-                        AndroidUtilities.runOnUIThread(drawingInBackgroundThreadDrawable.uiFrameRunnable);
-                        break;
-                    default:
-                        DrawingInBackgroundThreadDrawable drawingInBackgroundThreadDrawable2 = this.this$0;
-                        drawingInBackgroundThreadDrawable2.bitmapUpdating = false;
-                        drawingInBackgroundThreadDrawable2.onFrameReady();
-                        if (!drawingInBackgroundThreadDrawable2.attachedToWindow) {
-                            ArrayList arrayList = new ArrayList();
-                            Bitmap bitmap3 = drawingInBackgroundThreadDrawable2.bitmap;
-                            if (bitmap3 != null) {
-                                arrayList.add(bitmap3);
-                            }
-                            Bitmap bitmap4 = drawingInBackgroundThreadDrawable2.backgroundBitmap;
-                            if (bitmap4 != null) {
-                                arrayList.add(bitmap4);
-                            }
-                            drawingInBackgroundThreadDrawable2.bitmap = null;
-                            drawingInBackgroundThreadDrawable2.backgroundBitmap = null;
-                            drawingInBackgroundThreadDrawable2.backgroundCanvas = null;
-                            drawingInBackgroundThreadDrawable2.bitmapCanvas = null;
-                            AndroidUtilities.recycleBitmaps(arrayList);
-                            break;
-                        } else if (drawingInBackgroundThreadDrawable2.frameGuid == drawingInBackgroundThreadDrawable2.lastFrameId) {
-                            drawingInBackgroundThreadDrawable2.needSwapBitmaps = true;
-                            break;
-                        }
-                        break;
-                }
-            }
-        };
         if (queuePool == null) {
-            queuePool = new zzbv(12, (byte) 0);
+            queuePool = new DispatchQueuePool(2);
         }
-        zzbv zzbvVar = queuePool;
-        int i3 = zzbvVar.zzb + 1;
-        zzbvVar.zzb = i3;
-        if (i3 > 1) {
-            zzbvVar.zzb = 0;
+        this.backgroundQueue = queuePool.getNextQueue();
+        this.threadIndex = queuePool.pointer;
+    }
+
+    public void recycleBitmaps() {
+        ArrayList arrayList = new ArrayList();
+        Bitmap bitmap = this.bitmap;
+        if (bitmap != null) {
+            arrayList.add(bitmap);
         }
-        int i4 = zzbvVar.zzb;
-        DispatchQueue[] dispatchQueueArr = (DispatchQueue[]) zzbvVar.zza;
-        DispatchQueue dispatchQueue = dispatchQueueArr[i4];
-        if (dispatchQueue == null) {
-            dispatchQueue = new DispatchQueue("draw_background_queue_" + zzbvVar.zzb);
-            dispatchQueueArr[i4] = dispatchQueue;
+        Bitmap bitmap2 = this.backgroundBitmap;
+        if (bitmap2 != null) {
+            arrayList.add(bitmap2);
         }
-        this.backgroundQueue = dispatchQueue;
-        this.threadIndex = queuePool.zzb;
+        this.bitmap = null;
+        this.backgroundBitmap = null;
+        this.backgroundCanvas = null;
+        this.bitmapCanvas = null;
+        AndroidUtilities.recycleBitmaps(arrayList);
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         int i3;
         if (i == NotificationCenter.stopAllHeavyOperations) {
             Integer num = (Integer) objArr[0];
@@ -199,6 +162,7 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
                         return;
                     }
                     this.paused = true;
+                    onPaused();
                     return;
                 }
                 return;
@@ -214,6 +178,7 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
             this.currentOpenedLayerFlags = i4;
             if (i4 == 0 && this.paused) {
                 this.paused = false;
+                onResume();
             }
         }
     }
@@ -246,7 +211,7 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
                 AndroidUtilities.recycleBitmaps(arrayList);
                 this.bitmap = null;
             }
-            int i3 = this.height;
+            int i3 = this.height + this.padding;
             Bitmap bitmap3 = this.bitmap;
             if (bitmap3 != null && bitmap3.getHeight() == i3 && this.bitmap.getWidth() == this.width) {
                 this.bitmap.eraseColor(0);
@@ -255,7 +220,7 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
                 this.bitmapCanvas = new Canvas(this.bitmap);
             }
             this.bitmapCanvas.save();
-            this.bitmapCanvas.translate(0.0f, 0);
+            this.bitmapCanvas.translate(0.0f, this.padding);
             drawInUiThread(this.bitmapCanvas, f);
             this.bitmapCanvas.restore();
         }
@@ -267,11 +232,10 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
         }
         Bitmap bitmap4 = this.bitmap;
         if (bitmap4 != null) {
-            Paint paint = this.paint;
-            paint.setAlpha((int) (f * 255.0f));
+            this.paint.setAlpha((int) (f * 255.0f));
             canvas.save();
-            canvas.translate(0.0f, 0);
-            drawBitmap(canvas, bitmap4, paint);
+            canvas.translate(0.0f, -this.padding);
+            drawBitmap(canvas, bitmap4, this.paint);
             canvas.restore();
         }
     }
@@ -280,11 +244,13 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
     }
 
-    public abstract void drawInBackground(Canvas canvas);
+    public void drawInBackground(Canvas canvas) {
+    }
 
-    public abstract void drawInUiThread(Canvas canvas, float f);
+    public void drawInUiThread(Canvas canvas, float f) {
+    }
 
-    public final void onAttachToWindow() {
+    public void onAttachToWindow() {
         if (this.attachedToWindow) {
             return;
         }
@@ -294,28 +260,16 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
         this.currentOpenedLayerFlags = currentHeavyOperationFlags;
         if (currentHeavyOperationFlags == 0 && this.paused) {
             this.paused = false;
+            onResume();
         }
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.stopAllHeavyOperations);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.startAllHeavyOperations);
     }
 
-    public final void onDetachFromWindow() {
+    public void onDetachFromWindow() {
         if (this.attachedToWindow) {
             if (!this.bitmapUpdating) {
-                ArrayList arrayList = new ArrayList();
-                Bitmap bitmap = this.bitmap;
-                if (bitmap != null) {
-                    arrayList.add(bitmap);
-                }
-                Bitmap bitmap2 = this.backgroundBitmap;
-                if (bitmap2 != null) {
-                    arrayList.add(bitmap2);
-                }
-                this.bitmap = null;
-                this.backgroundBitmap = null;
-                this.backgroundCanvas = null;
-                this.bitmapCanvas = null;
-                AndroidUtilities.recycleBitmaps(arrayList);
+                recycleBitmaps();
             }
             this.attachedToWindow = false;
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopAllHeavyOperations);
@@ -323,11 +277,19 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
         }
     }
 
-    public abstract void onFrameReady();
+    public void onFrameReady() {
+    }
 
-    public abstract void prepareDraw(long j);
+    public void onPaused() {
+    }
 
-    public final void reset() {
+    public void onResume() {
+    }
+
+    public void prepareDraw(long j) {
+    }
+
+    public void reset() {
         this.reset = true;
         this.frameGuid++;
         if (this.bitmap != null) {
@@ -335,6 +297,13 @@ public abstract class DrawingInBackgroundThreadDrawable implements NotificationC
             arrayList.add(this.bitmap);
             this.bitmap = null;
             AndroidUtilities.recycleBitmaps(arrayList);
+        }
+    }
+
+    public void setLayerNum(int i) {
+        this.currentLayerNum = i;
+        if (this.attachedToWindow) {
+            this.currentOpenedLayerFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (~this.currentLayerNum);
         }
     }
 }

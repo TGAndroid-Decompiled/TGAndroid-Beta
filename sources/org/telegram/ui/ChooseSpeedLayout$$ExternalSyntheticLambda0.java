@@ -16,16 +16,13 @@ public final class ChooseSpeedLayout$$ExternalSyntheticLambda0 implements View.O
     public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.closeForeground(true);
+                this.f$0.closeForeground();
                 break;
             case 1:
-                this.f$0.closeForeground(true);
-                break;
-            case 2:
-                this.f$0.closeForeground(true);
+                this.f$0.closeForeground();
                 break;
             default:
-                this.f$0.closeForeground(true);
+                this.f$0.closeForeground();
                 break;
         }
     }

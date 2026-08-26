@@ -2,39 +2,45 @@ package org.telegram.ui.bots;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.style.CharacterStyle;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzlp;
+import com.google.android.gms.internal.mlkit_vision_common.zzkg;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotInlineKeyboard;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
@@ -45,11 +51,12 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda147;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda18;
+import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda117;
 import org.telegram.ui.PinchToZoomHelper;
 import org.telegram.ui.Stories.recorder.PreviewView;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
+import org.telegram.ui.TopicsFragment;
 import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda5;
 
 public final class BotShareSheet extends BottomSheetWithRecyclerListView {
@@ -59,7 +66,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
     public final int currentAccount;
     public boolean openedDialogsActivity;
     public boolean sent;
-    public final OAuthSheet$$ExternalSyntheticLambda18 whenDone;
+    public final BotBiometry$$ExternalSyntheticLambda10 whenDone;
 
     public final class AnonymousClass2 implements ChatActionCell.ChatActionCellDelegate {
         @Override
@@ -81,11 +88,11 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didOpenPremiumGift(ChatActionCell chatActionCell, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
+        public final void didOpenPremiumGift(ChatActionCell chatActionCell, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str, boolean z) {
         }
 
         @Override
-        public final void didOpenPremiumGiftChannel(ChatActionCell chatActionCell, String str) {
+        public final void didOpenPremiumGiftChannel(ChatActionCell chatActionCell, String str, boolean z) {
         }
 
         @Override
@@ -101,7 +108,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void forceUpdate(ChatActionCell chatActionCell) {
+        public final void forceUpdate(ChatActionCell chatActionCell, boolean z) {
         }
 
         @Override
@@ -183,8 +190,12 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat) {
+        public final boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell, TLRPC.Chat chat, int i, float f, float f2) {
             return false;
+        }
+
+        @Override
+        public final void didLongPressCustomBotButton(ChatMessageCell chatMessageCell, BotInlineKeyboard.ButtonCustom buttonCustom) {
         }
 
         @Override
@@ -198,7 +209,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user) {
+        public final boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2) {
             return false;
         }
 
@@ -215,7 +226,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final boolean didPressAnimatedEmoji(AnimatedEmojiSpan animatedEmojiSpan) {
+        public final boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell, AnimatedEmojiSpan animatedEmojiSpan) {
             return false;
         }
 
@@ -248,7 +259,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didPressCodeCopy(MessageObject.TextLayoutBlock textLayoutBlock) {
+        public final void didPressCodeCopy(ChatMessageCell chatMessageCell, MessageObject.TextLayoutBlock textLayoutBlock) {
         }
 
         @Override
@@ -276,11 +287,11 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didPressGiveawayChatButton(int i, ChatMessageCell chatMessageCell) {
+        public final void didPressGiveawayChatButton(ChatMessageCell chatMessageCell, int i) {
         }
 
         @Override
-        public final void didPressGroupImage(ChatMessageCell chatMessageCell, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+        public final void didPressGroupImage(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
         }
 
         @Override
@@ -288,7 +299,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didPressHint(ChatMessageCell chatMessageCell) {
+        public final void didPressHint(ChatMessageCell chatMessageCell, int i) {
         }
 
         @Override
@@ -296,11 +307,11 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didPressInstantButton(int i, ChatMessageCell chatMessageCell) {
+        public final void didPressInstantButton(ChatMessageCell chatMessageCell, int i) {
         }
 
         @Override
-        public final void didPressMoreChannelRecommendations() {
+        public final void didPressMoreChannelRecommendations(ChatMessageCell chatMessageCell) {
         }
 
         @Override
@@ -308,7 +319,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didPressPollMedia(ChatMessageCell chatMessageCell, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i) {
+        public final void didPressPollMedia(ChatMessageCell chatMessageCell, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i) {
         }
 
         @Override
@@ -324,7 +335,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didPressRichDocumentOptions(ChatMessageCell chatMessageCell, TLRPC.Document document) {
+        public final void didPressRichDocumentOptions(ChatMessageCell chatMessageCell, TLRPC.Document document, float f, float f2) {
         }
 
         @Override
@@ -344,11 +355,11 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didPressSummarize(ChatMessageCell chatMessageCell) {
+        public final void didPressSummarize(ChatMessageCell chatMessageCell, boolean z) {
         }
 
         @Override
-        public final void didPressTime() {
+        public final void didPressTime(ChatMessageCell chatMessageCell) {
         }
 
         @Override
@@ -361,7 +372,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2) {
+        public final void didPressUserAvatar(ChatMessageCell chatMessageCell, TLRPC.User user, float f, float f2, boolean z) {
         }
 
         @Override
@@ -369,7 +380,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didPressViaBot(String str) {
+        public final void didPressViaBot(ChatMessageCell chatMessageCell, String str) {
         }
 
         @Override
@@ -382,11 +393,11 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
 
         @Override
         public final void didPressWebPage(ChatMessageCell chatMessageCell, TLRPC.WebPage webPage, String str, boolean z) {
-            ArticleViewer.IBlock.CC.$default$didPressWebPage(chatMessageCell, str);
+            Browser.openUrl(chatMessageCell.getContext(), str);
         }
 
         @Override
-        public final void didQuickShareEnd(ChatMessageCell chatMessageCell) {
+        public final void didQuickShareEnd(ChatMessageCell chatMessageCell, float f, float f2) {
         }
 
         @Override
@@ -394,7 +405,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didQuickShareStart(ChatMessageCell chatMessageCell) {
+        public final void didQuickShareStart(ChatMessageCell chatMessageCell, float f, float f2) {
         }
 
         @Override
@@ -406,24 +417,24 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell, FileLoader$$ExternalSyntheticLambda1 fileLoader$$ExternalSyntheticLambda1) {
+        public final void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell, boolean z, Runnable runnable) {
         }
 
         @Override
         public final boolean doNotShowLoadingReply(MessageObject messageObject) {
-            return ArticleViewer.IBlock.CC.$default$doNotShowLoadingReply(messageObject);
+            return Theme.ResourcesProvider.CC.$default$doNotShowLoadingReply(messageObject);
         }
 
         @Override
-        public final void drawPollMode(ChatMessageCell chatMessageCell) {
+        public final void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell) {
         }
 
         @Override
-        public final void forceUpdate(ChatMessageCell chatMessageCell) {
+        public final void forceUpdate(ChatMessageCell chatMessageCell, boolean z) {
         }
 
         @Override
-        public final void forceUpdateNoAnimation(ChatMessageCell chatMessageCell) {
+        public final void forceUpdateNoAnimation(ChatMessageCell chatMessageCell, boolean z) {
         }
 
         @Override
@@ -491,7 +502,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final boolean isProgressLoading(int i, ChatMessageCell chatMessageCell) {
+        public final boolean isProgressLoading(ChatMessageCell chatMessageCell, int i) {
             return false;
         }
 
@@ -510,7 +521,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final boolean needPlayMessage(ChatMessageCell chatMessageCell, MessageObject messageObject) {
+        public final boolean needPlayMessage(ChatMessageCell chatMessageCell, MessageObject messageObject, boolean z) {
             return false;
         }
 
@@ -523,7 +534,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final boolean onAccessibilityAction(int i) {
+        public final boolean onAccessibilityAction(int i, Bundle bundle) {
             return false;
         }
 
@@ -532,7 +543,8 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void openArticlePhoto(ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock) {
+        public final boolean openArticlePhoto(ChatMessageCell chatMessageCell, TL_iv.PageBlock pageBlock) {
+            return false;
         }
 
         @Override
@@ -554,7 +566,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final void forceUpdate(ChatMessageCell chatMessageCell, boolean z) {
+        public final void forceUpdate(ChatMessageCell chatMessageCell, boolean z, boolean z2) {
         }
     }
 
@@ -565,7 +577,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public final boolean isStatusBarVisible$1() {
+        public final boolean isStatusBarVisible() {
             return false;
         }
 
@@ -587,7 +599,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public BotShareSheet(Context context, int i, long j, TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, Theme.ResourcesProvider resourcesProvider, BotWebViewContainer$$ExternalSyntheticLambda5 botWebViewContainer$$ExternalSyntheticLambda5, OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18) {
+    public BotShareSheet(Context context, final int i, final long j, final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage, File file, TLRPC.WebPage webPage, Theme.ResourcesProvider resourcesProvider, final BotWebViewContainer$$ExternalSyntheticLambda5 botWebViewContainer$$ExternalSyntheticLambda5, final BotBiometry$$ExternalSyntheticLambda10 botBiometry$$ExternalSyntheticLambda10) {
         BotShareSheet botShareSheet;
         ?? r13;
         ?? r11;
@@ -604,7 +616,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         this.sent = false;
         this.currentAccount = i;
         this.botName = UserObject.getUserName(MessagesController.getInstance(i).getUser(Long.valueOf(j)));
-        this.whenDone = oAuthSheet$$ExternalSyntheticLambda18;
+        this.whenDone = botBiometry$$ExternalSyntheticLambda10;
         setSlidingActionBar();
         this.headerPaddingTop = AndroidUtilities.dp(4.0f);
         this.headerPaddingBottom = AndroidUtilities.dp(-10.0f);
@@ -805,28 +817,165 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
             anonymousClass7Convert = convert(i, j, botInlineResult, null, null, webPage);
         }
         AnonymousClass7 anonymousClass7 = anonymousClass7Convert;
-        ChatActionCell chatActionCell = new ChatActionCell(context, resourcesProvider, r11);
+        ChatActionCell chatActionCell = new ChatActionCell(context, r11, resourcesProvider);
         chatActionCell.setDelegate(new AnonymousClass2());
         chatActionCell.setCustomText(LocaleController.getString(R.string.BotShareMessagePreview));
         AnonymousClass3 anonymousClass3 = new AnonymousClass3(context, i, false, null, null);
         anonymousClass3.setDelegate(new AnonymousClass4());
-        anonymousClass3.setMessageObject(anonymousClass7, null, false, false, false, false);
-        LinearLayout linearLayoutM = zzkf.m(context, 1);
+        anonymousClass3.setMessageObject(anonymousClass7, null, false, false, false);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
         linearLayoutM.addView(chatActionCell, LayoutHelper.createLinear(i2, -2));
         linearLayoutM.addView(anonymousClass3, LayoutHelper.createLinear(i2, -2));
-        AnonymousClass5 anonymousClass5 = new AnonymousClass5(context, r13);
+        ?? anonymousClass5 = new AnonymousClass5(context);
         botShareSheet.chatView = anonymousClass5;
-        anonymousClass5.setBackgroundImage(PreviewView.getBackgroundDrawable((Drawable) r13, i, j, Theme.currentTheme.isDark()));
+        anonymousClass5.setBackgroundImage(PreviewView.getBackgroundDrawable((Drawable) r13, i, j, Theme.currentTheme.isDark()), r11);
         anonymousClass5.addView(linearLayoutM, LayoutHelper.createFrame(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         ?? frameLayout = new FrameLayout(context);
-        ?? M = zzlp.m(context, resourcesProvider, true);
-        M.setText(LocaleController.getString(R.string.BotShareMessageShare), r11, true);
-        BotShareSheet botShareSheet2 = botShareSheet;
-        M.setOnClickListener(new BotShareSheet$$ExternalSyntheticLambda10(botShareSheet2, tL_messages_preparedInlineMessage, oAuthSheet$$ExternalSyntheticLambda18, i, j, botWebViewContainer$$ExternalSyntheticLambda5));
+        ?? M = zzkg.m(context, resourcesProvider, true);
+        M.setText(LocaleController.getString(R.string.BotShareMessageShare), r11);
+        final BotShareSheet botShareSheet2 = botShareSheet;
+        M.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                final BotShareSheet botShareSheet3 = this.f$0;
+                botShareSheet3.getClass();
+                final BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
+                if (safeLastFragment == null) {
+                    return;
+                }
+                botShareSheet3.openedDialogsActivity = true;
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("onlySelect", true);
+                bundle.putBoolean("canSelectTopics", true);
+                bundle.putInt("dialogsType", 1);
+                final TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage2 = tL_messages_preparedInlineMessage;
+                if (!tL_messages_preparedInlineMessage2.peer_types.isEmpty()) {
+                    int i4 = 0;
+                    bundle.putBoolean("allowGroups", false);
+                    bundle.putBoolean("allowMegagroups", false);
+                    bundle.putBoolean("allowLegacyGroups", false);
+                    bundle.putBoolean("allowUsers", false);
+                    bundle.putBoolean("allowChannels", false);
+                    bundle.putBoolean("allowBots", false);
+                    ArrayList<TLRPC.InlineQueryPeerType> arrayList = tL_messages_preparedInlineMessage2.peer_types;
+                    int size = arrayList.size();
+                    while (i4 < size) {
+                        TLRPC.InlineQueryPeerType inlineQueryPeerType = arrayList.get(i4);
+                        i4++;
+                        TLRPC.InlineQueryPeerType inlineQueryPeerType2 = inlineQueryPeerType;
+                        if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypePM) {
+                            bundle.putBoolean("allowUsers", true);
+                        } else if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypeBotPM) {
+                            bundle.putBoolean("allowBots", true);
+                        } else if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypeBroadcast) {
+                            bundle.putBoolean("allowChannels", true);
+                        } else if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypeChat) {
+                            bundle.putBoolean("allowLegacyGroups", true);
+                        } else if (inlineQueryPeerType2 instanceof TLRPC.TL_inlineQueryPeerTypeMegagroup) {
+                            bundle.putBoolean("allowMegagroups", true);
+                        }
+                    }
+                }
+                final BotBiometry$$ExternalSyntheticLambda10 botBiometry$$ExternalSyntheticLambda11 = botBiometry$$ExternalSyntheticLambda10;
+                DialogsActivity dialogsActivity = new DialogsActivity(bundle) {
+                    @Override
+                    public final boolean clickSelectsDialog() {
+                        return true;
+                    }
+
+                    @Override
+                    public final void onFragmentDestroy() {
+                        super.onFragmentDestroy();
+                        BotShareSheet botShareSheet4 = BotShareSheet.this;
+                        if (botShareSheet4.sent) {
+                            return;
+                        }
+                        botShareSheet4.sent = true;
+                        botBiometry$$ExternalSyntheticLambda11.run("USER_DECLINED", null);
+                    }
+                };
+                final int i5 = i;
+                final long j2 = j;
+                dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
+                    @Override
+                    public final boolean canSelectStories() {
+                        return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
+                    }
+
+                    @Override
+                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList2, CharSequence charSequence, boolean z, boolean z2, int i6, int i7, TopicsFragment topicsFragment) {
+                        MessageObject messageObject;
+                        TLRPC.TL_forumTopic tL_forumTopicFindTopic;
+                        TLRPC.Message message;
+                        BotShareSheet botShareSheet4 = botShareSheet3;
+                        botShareSheet4.getClass();
+                        ArrayList arrayList3 = new ArrayList();
+                        int size2 = arrayList2.size();
+                        boolean z3 = false;
+                        int i8 = 0;
+                        while (i8 < size2) {
+                            Object obj2 = arrayList2.get(i8);
+                            int i9 = i8 + 1;
+                            MessagesStorage.TopicKey topicKey = (MessagesStorage.TopicKey) obj2;
+                            long j3 = topicKey.dialogId;
+                            long j4 = topicKey.topicId;
+                            if (!DialogObject.isEncryptedDialog(j3)) {
+                                int i10 = i5;
+                                if (j4 == 0 || (tL_forumTopicFindTopic = MessagesController.getInstance(i10).getTopicsController().findTopic(-j3, j4)) == null || (message = tL_forumTopicFindTopic.topicStartMessage) == null) {
+                                    messageObject = null;
+                                } else {
+                                    MessageObject messageObject2 = new MessageObject(i10, message, z3, z3);
+                                    messageObject2.isTopicMainMessage = true;
+                                    messageObject = messageObject2;
+                                }
+                                HashMap map = new HashMap();
+                                StringBuilder sb = new StringBuilder("");
+                                TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage3 = tL_messages_preparedInlineMessage2;
+                                sb.append(tL_messages_preparedInlineMessage3.query_id);
+                                map.put("query_id", sb.toString());
+                                map.put("id", "" + tL_messages_preparedInlineMessage3.result.id);
+                                map.put("bot", "" + j2);
+                                long j5 = j3;
+                                MessageObject messageObject3 = messageObject;
+                                SendMessagesHelper.prepareSendingBotContextResult(safeLastFragment, AccountInstance.getInstance(i10), tL_messages_preparedInlineMessage3.result, map, j5, messageObject3, messageObject, null, null, z2, i6, 0, null, 0L, 0L);
+                                if (charSequence != null) {
+                                    SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(i10);
+                                    SendMessagesHelper.SendMessageParams sendMessageParamsOf = SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j5, messageObject3, messageObject3, null, true, null, null, null, true, 0, 0, null, false);
+                                    j5 = j5;
+                                    sendMessagesHelper.sendMessage(sendMessageParamsOf);
+                                }
+                                arrayList3.add(Long.valueOf(j5));
+                            }
+                            i8 = i9;
+                            z3 = false;
+                        }
+                        if (!botShareSheet4.sent) {
+                            botShareSheet4.sent = true;
+                            botBiometry$$ExternalSyntheticLambda11.run(arrayList3.size() > 0 ? null : "USER_DECLINED", arrayList3);
+                        }
+                        if (topicsFragment == null) {
+                            dialogsActivity2.finishFragment();
+                            return true;
+                        }
+                        topicsFragment.finishFragment();
+                        dialogsActivity2.removeSelfFromStack();
+                        return true;
+                    }
+
+                    @Override
+                    public final boolean didSelectStories(DialogsActivity dialogsActivity2) {
+                        return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity2);
+                    }
+                });
+                safeLastFragment.presentFragment(dialogsActivity);
+                botShareSheet3.lambda$showGiftOfferSheet$15();
+                botWebViewContainer$$ExternalSyntheticLambda5.run();
+            }
+        });
         frameLayout.addView(M, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         ?? r0 = botShareSheet2.containerView;
         int i4 = botShareSheet2.backgroundPaddingLeft;
-        r0.addView(frameLayout, LayoutHelper.createFrameMarginPx(-2.0f, 87, i4, 0, i4, 0));
+        r0.addView(frameLayout, LayoutHelper.createFrameMarginPx(-1, -2.0f, 87, i4, 0, i4, 0));
         ?? r1 = botShareSheet2.recyclerListView;
         int i5 = botShareSheet2.backgroundPaddingLeft;
         r1.setPadding(i5, r11, i5, AndroidUtilities.dp(68.0f) + 1);
@@ -959,7 +1108,7 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         return new AnonymousClass7(i, tL_message, true, true);
     }
 
-    public static void share(Context context, int i, long j, String str, Theme.ResourcesProvider resourcesProvider, BotWebViewContainer$$ExternalSyntheticLambda5 botWebViewContainer$$ExternalSyntheticLambda5, OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18) {
+    public static void share(Context context, int i, long j, String str, Theme.ResourcesProvider resourcesProvider, BotWebViewContainer$$ExternalSyntheticLambda5 botWebViewContainer$$ExternalSyntheticLambda5, BotBiometry$$ExternalSyntheticLambda10 botBiometry$$ExternalSyntheticLambda10) {
         AlertDialog alertDialog = new AlertDialog(context, 3, null);
         AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
         AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
@@ -967,12 +1116,12 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i).getInputUser(j);
         tL_messages_getPreparedInlineMessage.id = str;
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_getPreparedInlineMessage, new LaunchActivity$$ExternalSyntheticLambda147(i, alertDialog, context, j, resourcesProvider, botWebViewContainer$$ExternalSyntheticLambda5, oAuthSheet$$ExternalSyntheticLambda18));
+        ConnectionsManager.getInstance(i).sendRequest(tL_messages_getPreparedInlineMessage, new LaunchActivity$$ExternalSyntheticLambda117(i, alertDialog, context, j, resourcesProvider, botWebViewContainer$$ExternalSyntheticLambda5, botBiometry$$ExternalSyntheticLambda10));
     }
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new TodoItemMenu$$ExternalSyntheticLambda17(this, 11), this.resourcesProvider);
+        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, true, new BotDownloads$$ExternalSyntheticLambda0(this, 10), this.resourcesProvider);
         this.adapter = universalAdapter;
         return universalAdapter;
     }
@@ -984,9 +1133,9 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
             return;
         }
         this.sent = true;
-        OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18 = this.whenDone;
-        if (oAuthSheet$$ExternalSyntheticLambda18 != null) {
-            oAuthSheet$$ExternalSyntheticLambda18.run("USER_DECLINED", null);
+        BotBiometry$$ExternalSyntheticLambda10 botBiometry$$ExternalSyntheticLambda10 = this.whenDone;
+        if (botBiometry$$ExternalSyntheticLambda10 != null) {
+            botBiometry$$ExternalSyntheticLambda10.run("USER_DECLINED", null);
         }
     }
 
@@ -998,7 +1147,6 @@ public final class BotShareSheet extends BottomSheetWithRecyclerListView {
     @Override
     public final void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        RecyclerListView recyclerListView = this.recyclerListView;
-        recyclerListView.scrollToPosition(Math.max((recyclerListView.getAdapter() == null ? 0 : recyclerListView.getAdapter().getItemCount()) - 1, 0));
+        this.recyclerListView.scrollToPosition(Math.max((this.recyclerListView.getAdapter() == null ? 0 : this.recyclerListView.getAdapter().getItemCount()) - 1, 0));
     }
 }

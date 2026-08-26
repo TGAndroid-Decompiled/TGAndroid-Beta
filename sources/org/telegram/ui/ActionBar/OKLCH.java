@@ -1,6 +1,5 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewPropertyAnimator;
@@ -8,18 +7,18 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.ThemeActivity;
 
-public abstract class OKLCH implements BottomSheet.BottomSheetDelegateInterface {
+public abstract class OKLCH {
     public static SparseArray colorKeysMap;
     public static HashMap colorKeysStringMap;
     public static final double[] XYZtoLMS_M = {0.819022437996703d, 0.3619062600528904d, -0.1288737815209879d, 0.0329836539323885d, 0.9292868615863434d, 0.0361446663506424d, 0.0481771893596242d, 0.2642395317527308d, 0.6335478284694309d};
+    public static final double[] LMStoXYZ_M = {1.2268798758459243d, -0.5578149944602171d, 0.2813910456659647d, -0.0405757452148008d, 1.112286803280317d, -0.0717110580655164d, -0.0763729366746601d, -0.4214933324022432d, 1.5869240198367816d};
     public static final double[] LMStoLab_M = {0.210454268309314d, 0.7936177747023054d, -0.0040720430116193d, 1.9779985324311684d, -2.42859224204858d, 0.450593709617411d, 0.0259040424655478d, 0.7827717124575296d, -0.8086757549230774d};
+    public static final double[] LabtoLMS_M = {1.0d, 0.3963377773761749d, 0.2158037573099136d, 1.0d, -0.1055613458156586d, -0.0638541728258133d, 1.0d, -0.0894841775298119d, -1.2914855480194092d};
     public static final double[] toXYZ_M = {0.41239079926595934d, 0.357584339383878d, 0.1804807884018343d, 0.21263900587151027d, 0.715168678767756d, 0.07219231536073371d, 0.01933081871559182d, 0.11919477979462598d, 0.9505321522496607d};
+    public static final double[] fromXYZ_M = {3.2409699419045226d, -1.537383177570094d, -0.4986107602930034d, -0.9692436362808796d, 1.8759675015077202d, 0.04155505740717559d, 0.05563007969699366d, -0.20397695888897652d, 1.0569715142428786d};
 
     public static SparseArray createColorKeysMap() {
         SparseArray sparseArray = new SparseArray();
@@ -1681,6 +1680,18 @@ public abstract class OKLCH implements BottomSheet.BottomSheetDelegateInterface 
         return new double[]{(d5 * d6) + (d3 * d4) + (d * d2), (dArr[5] * d6) + (dArr[4] * d4) + (dArr[3] * d2), (dArr[8] * d6) + (dArr[7] * d4) + (dArr[6] * d2)};
     }
 
+    public static double[] rgb2oklch(double[] dArr) {
+        double[] dArrMultiply = multiply(XYZtoLMS_M, multiply(toXYZ_M, dArr));
+        for (int i = 0; i < 3; i++) {
+            dArrMultiply[i] = Math.cbrt(dArrMultiply[i]);
+        }
+        double[] dArrMultiply2 = multiply(LMStoLab_M, dArrMultiply);
+        double d = dArrMultiply2[0];
+        double d2 = dArrMultiply2[1];
+        double d3 = dArrMultiply2[2];
+        return new double[]{d, Math.sqrt(Math.pow(d3, 2.0d) + Math.pow(d2, 2.0d)), (Math.abs(d2) >= 2.0E-4d || Math.abs(d3) >= 2.0E-4d) ? ((((Math.atan2(d3, d2) * 180.0d) / 3.141592653589793d) % 360.0d) + 360.0d) % 360.0d : Double.NaN};
+    }
+
     public static int stringKeyToInt(String str) {
         if (colorKeysStringMap == null) {
             if (colorKeysMap == null) {
@@ -1698,46 +1709,12 @@ public abstract class OKLCH implements BottomSheet.BottomSheetDelegateInterface 
         return ((Integer) colorKeysStringMap.get(str)).intValue();
     }
 
-    public boolean canClearCaption() {
-        return true;
-    }
-
-    public boolean canCollapseSearch() {
-        return true;
-    }
-
-    @Override
-    public boolean canDismiss() {
-        return true;
-    }
-
-    public boolean canToggleSearch() {
-        return true;
-    }
-
-    public boolean forceShowClear() {
-        return false;
-    }
-
-    public Animator getCustomToggleTransition() {
-        return null;
-    }
-
-    public boolean showClearForCaption() {
-        return true;
-    }
-
-    public static int m(int i, float f, int i2) {
+    public static int m(float f, int i, int i2) {
         return View.MeasureSpec.makeMeasureSpec(i - AndroidUtilities.dp(f), i2);
     }
 
     public static int m$1(float f, int i, int i2) {
         return i2 - (AndroidUtilities.dp(f) + i);
-    }
-
-    public static void m(int i, HashMap map, String str, RLottieDrawable rLottieDrawable) {
-        map.put(str, Integer.valueOf(i));
-        rLottieDrawable.requestRedrawColors();
     }
 
     public static void m(int i, BaseFragment baseFragment) {
@@ -1755,30 +1732,5 @@ public abstract class OKLCH implements BottomSheet.BottomSheetDelegateInterface 
 
     public static void m(ViewPropertyAnimator viewPropertyAnimator, CubicBezierInterpolator cubicBezierInterpolator, long j) {
         viewPropertyAnimator.setInterpolator(cubicBezierInterpolator).setDuration(j).start();
-    }
-
-    public void onCaptionCleared() {
-    }
-
-    public void onLayout() {
-    }
-
-    @Override
-    public void onOpenAnimationEnd() {
-    }
-
-    public void onSearchCollapse() {
-    }
-
-    public void onSearchExpand() {
-    }
-
-    public void onSearchFilterCleared(FiltersView.MediaFilterData mediaFilterData) {
-    }
-
-    public void onSearchPressed(EditTextBoldCursor editTextBoldCursor) {
-    }
-
-    public void onTextChanged(EditTextBoldCursor editTextBoldCursor) {
     }
 }

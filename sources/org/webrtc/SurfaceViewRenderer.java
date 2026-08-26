@@ -7,8 +7,7 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda26;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 
 public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Callback, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "SurfaceViewRenderer";
@@ -87,7 +86,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         sb.append(", frame size: ");
         sb.append(this.rotatedFrameWidth);
         sb.append("x");
-        SurfaceContainer$$ExternalSyntheticOutline0.m(sb, this.rotatedFrameHeight, ", requested surface size: ", iMin, "x");
+        Fragment$$ExternalSyntheticOutline0.m(sb, this.rotatedFrameHeight, ", requested surface size: ", iMin, "x");
         sb.append(iMin2);
         sb.append(", old surface size: ");
         sb.append(this.surfaceWidth);
@@ -141,7 +140,7 @@ public class SurfaceViewRenderer extends SurfaceView implements SurfaceHolder.Ca
         if (i3 == 0 || i3 == 180) {
             i = i2;
         }
-        postOrRun(new ArticleViewer$$ExternalSyntheticLambda26(this, i4, i, 13));
+        postOrRun(new SurfaceViewRenderer$$ExternalSyntheticLambda0(this, i4, i, 0));
     }
 
     @Override

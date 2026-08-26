@@ -27,7 +27,7 @@ public final class StoryReactionWidgetBackground extends Drawable {
 
     public StoryReactionWidgetBackground(View view) {
         this.parent = view;
-        this.progressToMirrored = new AnimatedFloat(350L, view, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.progressToMirrored = new AnimatedFloat(view, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         Paint paint = new Paint(1);
         this.shadowPaint = paint;
         paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);
@@ -60,7 +60,7 @@ public final class StoryReactionWidgetBackground extends Drawable {
         fArr[12] = (getBounds().width() * 0.157f) + getBounds().left;
         fArr[13] = (getBounds().height() * 0.812f) + getBounds().top;
         fArr[14] = getBounds().height() * 0.132f;
-        float f = this.progressToMirrored.set(this.mirror ? 1.0f : 0.0f, false);
+        float f = this.progressToMirrored.set(this.mirror ? 1.0f : 0.0f);
         int i6 = this.style;
         Paint paint = this.backgroundPaint;
         if (i6 == 0) {

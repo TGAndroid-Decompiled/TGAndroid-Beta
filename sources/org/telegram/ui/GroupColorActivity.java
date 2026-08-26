@@ -2,12 +2,14 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
 import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.util.Consumer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.ChatObject;
@@ -17,30 +19,33 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
+import org.telegram.ui.Components.RecyclerListView;
 
-public final class GroupColorActivity extends ChannelColorActivity {
-    public boolean isLoading;
-    public ChannelColorActivity.ProfilePreview profilePreview;
-    public float profilePreviewPercent;
+public class GroupColorActivity extends ChannelColorActivity {
+    private boolean isLoading;
+    private ChannelColorActivity.ProfilePreview profilePreview;
+    private float profilePreviewPercent;
 
-    public final class AnonymousClass1 implements ViewTreeObserver.OnGlobalLayoutListener {
-        public final FrameLayout val$view;
+    public class AnonymousClass1 implements ViewTreeObserver.OnGlobalLayoutListener {
+        final View val$view;
 
-        public AnonymousClass1(FrameLayout frameLayout) {
-            this.val$view = frameLayout;
+        public AnonymousClass1(View view) {
+            this.val$view = view;
+        }
+
+        public void lambda$onGlobalLayout$0(View view) {
+            GroupColorActivity.this.openBoostDialog(19);
         }
 
         @Override
-        public final void onGlobalLayout() {
+        public void onGlobalLayout() {
             this.val$view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-            GroupColorActivity groupColorActivity = GroupColorActivity.this;
-            if (groupColorActivity.profilePreview == null) {
-                groupColorActivity.profilePreview = (ChannelColorActivity.ProfilePreview) groupColorActivity.findChildAt(groupColorActivity.profilePreviewRow);
-            }
-            groupColorActivity.profilePreview.infoLayout.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda4(this, 1));
+            GroupColorActivity.this.initProfilePreview();
+            GroupColorActivity.this.profilePreview.infoLayout.setOnClickListener(new PollItemMenu$4$$ExternalSyntheticLambda0(this, 14));
         }
     }
 
@@ -49,143 +54,208 @@ public final class GroupColorActivity extends ChannelColorActivity {
         this.isGroup = true;
     }
 
-    @Override
-    public final void createListView() {
-        ChatActivity.AnonymousClass34 anonymousClass34 = new ChatActivity.AnonymousClass34(this, getParentActivity(), this.resourceProvider, 25);
-        this.listView = anonymousClass34;
-        anonymousClass34.setOnScrollListener(new LocationActivity.AnonymousClass10(this, 21));
-        this.listView.setSections(true);
-    }
-
-    @Override
-    public final View createView(Context context) {
-        View viewCreateView = super.createView(context);
-        updateColors(false);
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setTitle("");
-        ((ViewGroup) viewCreateView).addView(this.actionBar);
-        viewCreateView.getViewTreeObserver().addOnGlobalLayoutListener(new AnonymousClass1((FrameLayout) viewCreateView));
-        return viewCreateView;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        super.didReceivedNotification(i, i2, objArr);
-        if (i == NotificationCenter.chatInfoDidLoad && ((TLRPC.ChatFull) objArr[0]).id == (-this.dialogId)) {
-            updateProfilePreview();
+    public void initProfilePreview() {
+        if (this.profilePreview == null) {
+            this.profilePreview = (ChannelColorActivity.ProfilePreview) findChildAt(this.profilePreviewRow);
         }
     }
 
-    @Override
-    public final int getCustomWallpaperLevelMin() {
-        return getMessagesController().groupCustomWallpaperLevelMin;
-    }
-
-    @Override
-    public final int getEmojiPackInfoStrRes() {
-        return R.string.GroupEmojiPackInfo;
-    }
-
-    @Override
-    public final int getEmojiPackStrRes() {
-        return R.string.GroupEmojiPack;
-    }
-
-    @Override
-    public final int getEmojiStatusInfoStrRes() {
-        return R.string.GroupEmojiStatusInfo;
-    }
-
-    @Override
-    public final int getEmojiStatusLevelMin() {
-        return getMessagesController().groupEmojiStatusLevelMin;
-    }
-
-    @Override
-    public final int getEmojiStatusStrRes() {
-        return R.string.GroupEmojiStatus;
-    }
-
-    @Override
-    public final int getEmojiStickersLevelMin() {
-        return getMessagesController().groupEmojiStickersLevelMin;
-    }
-
-    @Override
-    public final int getMessagePreviewType() {
-        return 4;
-    }
-
-    @Override
-    public final int getProfileIconLevelMin() {
-        return getMessagesController().groupProfileBgIconLevelMin;
-    }
-
-    @Override
-    public final int getProfileInfoStrRes() {
-        return R.string.GroupProfileInfo;
-    }
-
-    @Override
-    public final int getStickerPackInfoStrRes() {
-        return R.string.GroupStickerPackInfo;
-    }
-
-    @Override
-    public final int getStickerPackStrRes() {
-        return R.string.GroupStickerPack;
-    }
-
-    @Override
-    public final int getWallpaper2InfoStrRes() {
-        return R.string.GroupWallpaper2Info;
-    }
-
-    @Override
-    public final int getWallpaperLevelMin() {
-        return getMessagesController().groupWallpaperLevelMin;
-    }
-
-    @Override
-    public final int getWallpaperStrRes() {
-        return R.string.GroupWallpaper;
-    }
-
-    @Override
-    public final boolean isForum() {
-        return ChatObject.isForum(getMessagesController().getChat(Long.valueOf(-this.dialogId)));
-    }
-
-    public final void lambda$openBoostDialog$0(int i, ChannelBoostsController.CanApplyBoost canApplyBoost) {
-        if (canApplyBoost == null || getParentActivity() == null) {
+    public void lambda$openBoostDialog$0(int i, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+        if (canApplyBoost == null || getContext() == null) {
             this.isLoading = false;
             return;
         }
-        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), i, this.currentAccount, this.resourceProvider) {
+        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getContext(), i, this.currentAccount, this.resourceProvider) {
             @Override
-            public final void lambda$showGiftOfferSheet$15() {
+            public void lambda$showGiftOfferSheet$15() {
                 super.lambda$showGiftOfferSheet$15();
                 GroupColorActivity.this.isLoading = false;
             }
 
             @Override
-            public final void onOpenAnimationEnd() {
+            public void onOpenAnimationEnd() {
                 GroupColorActivity.this.isLoading = false;
             }
+
+            @Override
+            public void setLastVisible(boolean z) {
+            }
         };
-        limitReachedBottomSheet.canApplyBoost = canApplyBoost;
-        limitReachedBottomSheet.updateButton$2();
-        limitReachedBottomSheet.updatePremiumButtonText();
-        limitReachedBottomSheet.boostsStatus = this.boostsStatus;
-        limitReachedBottomSheet.isCurrentChat = true;
-        limitReachedBottomSheet.updateRows$7();
-        limitReachedBottomSheet.dialogId = this.dialogId;
-        limitReachedBottomSheet.updateRows$7();
+        limitReachedBottomSheet.setCanApplyBoost(canApplyBoost);
+        limitReachedBottomSheet.setBoostsStats(this.boostsStatus, true);
+        limitReachedBottomSheet.setDialogId(this.dialogId);
         limitReachedBottomSheet.show();
     }
 
     @Override
-    public final void onConfigurationChanged(Configuration configuration) {
+    public void createListView() {
+        RecyclerListView recyclerListView = new RecyclerListView(getContext(), this.resourceProvider) {
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                if (GroupColorActivity.this.profilePreview == null || GroupColorActivity.this.profilePreviewPercent < 1.0f) {
+                    return;
+                }
+                canvas.save();
+                canvas.translate(0.0f, -(GroupColorActivity.this.profilePreview.getMeasuredHeight() - ((BaseFragment) GroupColorActivity.this).actionBar.getMeasuredHeight()));
+                GroupColorActivity.this.profilePreview.draw(canvas);
+                canvas.restore();
+            }
+        };
+        this.listView = recyclerListView;
+        recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int i) {
+                View viewFindViewByPosition;
+                super.onScrollStateChanged(recyclerView, i);
+                if (i == 0) {
+                    if (GroupColorActivity.this.profilePreviewPercent >= 0.5f && GroupColorActivity.this.profilePreviewPercent < 1.0f) {
+                        int bottom = ((BaseFragment) GroupColorActivity.this).actionBar.getBottom();
+                        RecyclerView.LayoutManager layoutManager = GroupColorActivity.this.listView.getLayoutManager();
+                        if (layoutManager == null || (viewFindViewByPosition = layoutManager.findViewByPosition(0)) == null) {
+                            return;
+                        }
+                        GroupColorActivity.this.listView.smoothScrollBy(0, viewFindViewByPosition.getBottom() - bottom);
+                        return;
+                    }
+                    if (GroupColorActivity.this.profilePreviewPercent < 0.5f) {
+                        View viewFindViewByPosition2 = GroupColorActivity.this.listView.getLayoutManager() != null ? GroupColorActivity.this.listView.getLayoutManager().findViewByPosition(0) : null;
+                        if (viewFindViewByPosition2 == null || viewFindViewByPosition2.getTop() >= 0) {
+                            return;
+                        }
+                        GroupColorActivity.this.listView.smoothScrollBy(0, viewFindViewByPosition2.getTop());
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+                GroupColorActivity.this.initProfilePreview();
+                int measuredHeight = GroupColorActivity.this.profilePreview.getMeasuredHeight() - ((BaseFragment) GroupColorActivity.this).actionBar.getMeasuredHeight();
+                float top = GroupColorActivity.this.profilePreview.getTop() * (-1);
+                float f = measuredHeight;
+                GroupColorActivity.this.profilePreviewPercent = Math.max(Math.min(1.0f, top / f), 0.0f);
+                float fMin = Math.min(GroupColorActivity.this.profilePreviewPercent * 2.0f, 1.0f);
+                float fMin2 = Math.min(Math.max(GroupColorActivity.this.profilePreviewPercent - 0.45f, 0.0f) * 2.0f, 1.0f);
+                GroupColorActivity.this.profilePreview.profileView.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, fMin));
+                GroupColorActivity.this.profilePreview.infoLayout.setAlpha(AndroidUtilities.lerp(1.0f, 0.0f, fMin));
+                GroupColorActivity.this.profilePreview.title.setAlpha(AndroidUtilities.lerp(0.0f, 1.0f, fMin2));
+                if (GroupColorActivity.this.profilePreviewPercent >= 1.0f) {
+                    GroupColorActivity.this.profilePreview.setTranslationY(top - f);
+                } else {
+                    GroupColorActivity.this.profilePreview.setTranslationY(0.0f);
+                }
+            }
+        });
+        this.listView.setSections(true);
+    }
+
+    @Override
+    public View createView(Context context) {
+        View viewCreateView = super.createView(context);
+        updateColors(false);
+        this.actionBar.setAddToContainer(false);
+        this.actionBar.setTitle("");
+        ((ViewGroup) viewCreateView).addView(this.actionBar);
+        viewCreateView.getViewTreeObserver().addOnGlobalLayoutListener(new AnonymousClass1(viewCreateView));
+        return viewCreateView;
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        super.didReceivedNotification(i, i2, objArr);
+        if (i == NotificationCenter.chatInfoDidLoad && ((TLRPC.ChatFull) objArr[0]).id == (-this.dialogId)) {
+            updateProfilePreview(true);
+        }
+    }
+
+    @Override
+    public int getCustomWallpaperLevelMin() {
+        return getMessagesController().groupCustomWallpaperLevelMin;
+    }
+
+    @Override
+    public int getEmojiPackInfoStrRes() {
+        return R.string.GroupEmojiPackInfo;
+    }
+
+    @Override
+    public int getEmojiPackStrRes() {
+        return R.string.GroupEmojiPack;
+    }
+
+    @Override
+    public int getEmojiStatusInfoStrRes() {
+        return R.string.GroupEmojiStatusInfo;
+    }
+
+    @Override
+    public int getEmojiStatusLevelMin() {
+        return getMessagesController().groupEmojiStatusLevelMin;
+    }
+
+    @Override
+    public int getEmojiStatusStrRes() {
+        return R.string.GroupEmojiStatus;
+    }
+
+    @Override
+    public int getEmojiStickersLevelMin() {
+        return getMessagesController().groupEmojiStickersLevelMin;
+    }
+
+    @Override
+    public int getMessagePreviewType() {
+        return 4;
+    }
+
+    @Override
+    public int getProfileIconLevelMin() {
+        return getMessagesController().groupProfileBgIconLevelMin;
+    }
+
+    @Override
+    public int getProfileInfoStrRes() {
+        return R.string.GroupProfileInfo;
+    }
+
+    @Override
+    public int getStickerPackInfoStrRes() {
+        return R.string.GroupStickerPackInfo;
+    }
+
+    @Override
+    public int getStickerPackStrRes() {
+        return R.string.GroupStickerPack;
+    }
+
+    @Override
+    public int getWallpaper2InfoStrRes() {
+        return R.string.GroupWallpaper2Info;
+    }
+
+    @Override
+    public int getWallpaperLevelMin() {
+        return getMessagesController().groupWallpaperLevelMin;
+    }
+
+    @Override
+    public int getWallpaperStrRes() {
+        return R.string.GroupWallpaper;
+    }
+
+    @Override
+    public boolean isForum() {
+        return ChatObject.isForum(getMessagesController().getChat(Long.valueOf(-this.dialogId)));
+    }
+
+    @Override
+    public boolean needBoostInfoSection() {
+        return true;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
         ChannelColorActivity.ProfilePreview profilePreview = this.profilePreview;
         if (profilePreview != null) {
@@ -194,28 +264,33 @@ public final class GroupColorActivity extends ChannelColorActivity {
     }
 
     @Override
-    public final boolean onFragmentCreate() {
+    public boolean onFragmentCreate() {
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.chatInfoDidLoad);
         return super.onFragmentCreate();
     }
 
     @Override
-    public final void onFragmentDestroy() {
+    public void onFragmentDestroy() {
         super.onFragmentDestroy();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.chatInfoDidLoad);
     }
 
     @Override
-    public final void openBoostDialog(int i) {
+    public void openBoostDialog(final int i) {
         if (this.boostsStatus == null || this.isLoading) {
             return;
         }
         this.isLoading = true;
-        MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new GroupColorActivity$$ExternalSyntheticLambda0(this, i, 0));
+        MessagesController.getInstance(this.currentAccount).getBoostsController().userCanBoostChannel(this.dialogId, this.boostsStatus, new Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                this.f$0.lambda$openBoostDialog$0(i, (ChannelBoostsController.CanApplyBoost) obj);
+            }
+        });
     }
 
     @Override
-    public final void updateButton(boolean z) {
+    public void updateButton(boolean z) {
         super.updateButton(z);
         ChannelColorActivity.ProfilePreview profilePreview = this.profilePreview;
         if (profilePreview != null) {
@@ -226,11 +301,11 @@ public final class GroupColorActivity extends ChannelColorActivity {
     }
 
     @Override
-    public final void updateColors(boolean z) {
+    public void updateColors(boolean z) {
         super.updateColors(z);
         this.actionBar.setBackgroundColor(0);
-        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourceProvider)), Theme.getThemedDrawableByKey(getParentActivity(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow), 0, 0);
-        combinedDrawable.fullSize = true;
+        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourceProvider)), Theme.getThemedDrawableByKey(getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow), 0, 0);
+        combinedDrawable.setFullsize(true);
         this.buttonContainer.setBackground(combinedDrawable);
         ChannelColorActivity.ProfilePreview profilePreview = this.profilePreview;
         if (profilePreview == null || z) {
@@ -238,11 +313,11 @@ public final class GroupColorActivity extends ChannelColorActivity {
         }
         profilePreview.backgroundView.setColor(this.currentAccount, this.selectedProfileColor, false);
         this.profilePreview.profileView.setColor(this.selectedProfileColor, false);
-        this.profilePreview.updateColors$1();
+        this.profilePreview.updateColors();
     }
 
     @Override
-    public final void updateRows$2() {
+    public void updateRows() {
         ChannelColorActivity.Adapter adapter;
         ChannelColorActivity.Adapter adapter2;
         this.profilePreviewRow = 0;
@@ -255,16 +330,16 @@ public final class GroupColorActivity extends ChannelColorActivity {
             this.rowsCount = 5;
             this.removeProfileColorRow = 4;
             if (!z && (adapter = this.adapter) != null) {
-                adapter.mObservable.notifyItemRangeInserted(4, 1);
-                this.adapter.notifyItemChanged(this.profileEmojiRow);
+                adapter.notifyItemInserted(4);
+                this.adapter.lambda$onBindViewHolder$31(this.profileEmojiRow);
                 this.listView.scrollToPosition(0);
             }
         } else {
             int i = this.removeProfileColorRow;
             this.removeProfileColorRow = -1;
             if (i >= 0 && (adapter2 = this.adapter) != null) {
-                adapter2.mObservable.notifyItemRangeRemoved(i, 1);
-                this.adapter.notifyItemChanged(this.profileEmojiRow);
+                adapter2.notifyItemRemoved(i);
+                this.adapter.lambda$onBindViewHolder$31(this.profileEmojiRow);
             }
         }
         int i2 = this.rowsCount;

@@ -2,9 +2,9 @@ package org.telegram.ui.iv;
 
 import android.content.Context;
 import android.widget.FrameLayout;
-import com.google.android.gms.internal.mlkit_vision_common.zzkv;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.ui.CalendarActivity$$ExternalSyntheticOutline0;
 
 public abstract class RichBlockCell extends FrameLayout implements RichInsetCell {
     public int basePadBottom;
@@ -41,7 +41,7 @@ public abstract class RichBlockCell extends FrameLayout implements RichInsetCell
             iDp = this.basePadTop;
         } else {
             int i2 = blockRow.quoteTopEdge;
-            iDp = i2 <= 0 ? 0 : AndroidUtilities.dp(zzkv.m(i2, 1, 16, 10));
+            iDp = i2 <= 0 ? 0 : AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(i2, 1, 16, 10));
         }
         BlockRow blockRow2 = this.currentRow;
         if (blockRow2 == null || !blockRow2.quoteLast) {
@@ -49,7 +49,7 @@ public abstract class RichBlockCell extends FrameLayout implements RichInsetCell
         } else {
             int i3 = blockRow2.quoteBottomEdge;
             if (i3 > 0) {
-                iDp2 = AndroidUtilities.dp(zzkv.m(i3, 1, 16, 10));
+                iDp2 = AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(i3, 1, 16, 10));
             }
         }
         int i4 = i + iNestedContentMargin;

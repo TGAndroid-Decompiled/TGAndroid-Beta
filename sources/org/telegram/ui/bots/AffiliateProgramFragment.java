@@ -13,12 +13,14 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.RendererCapabilities;
-import com.google.android.gms.internal.mlkit_vision_common.zzkh;
+import com.google.android.gms.internal.mlkit_vision_common.zzke;
+import com.google.android.gms.internal.mlkit_vision_common.zzkf;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -27,13 +29,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline1;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Cells.HeaderCell;
+import org.telegram.ui.Cells.MentionCell;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -49,25 +52,24 @@ import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.GradientHeaderActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stars.BotStarsActivity;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
-import org.telegram.ui.TopicsFragment$$ExternalSyntheticLambda9;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda28;
-import org.telegram.ui.iv.RichDetailsCell;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.TON.TONIntroActivity$$ExternalSyntheticLambda3;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
+import org.telegram.ui.iv.RichEditor$3$$ExternalSyntheticLambda0;
 
 public final class AffiliateProgramFragment extends GradientHeaderActivity implements NotificationCenter.NotificationCenterDelegate {
     public FrameLayout aboveTitleView;
     public AnonymousClass4 adapter;
     public boolean attached;
     public final long bot_id;
-    public BotStarsActivity.AnonymousClass6 button;
+    public ButtonWithCounterView button;
     public LinearLayout buttonLayout;
     public LinkSpanDrawable.LinksTextView buttonSubtext;
     public GLIconTextureView iconTextureView;
     public TL_payments.starRefProgram initialProgram;
     public boolean new_program;
     public TL_payments.starRefProgram program;
-    public final AffiliateProgramFragment$$ExternalSyntheticLambda3 updateTimerRunnable = new AffiliateProgramFragment$$ExternalSyntheticLambda3(this, 0);
+    public final AffiliateProgramFragment$$ExternalSyntheticLambda4 updateTimerRunnable = new AffiliateProgramFragment$$ExternalSyntheticLambda4(this, 0);
     public String[] durationTexts = null;
     public final List durationValues = Arrays.asList(1, 3, 6, 12, 24, 36, 0);
 
@@ -93,6 +95,7 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
         public final ImageView imageView;
         public final FrameLayout.LayoutParams imageViewLayoutParams;
         public final TextView percentView;
+        public final Theme.ResourcesProvider resourcesProvider;
         public final FrameLayout.LayoutParams textLayoutLayoutParams;
         public final TextView textView;
         public final TextView titleView;
@@ -117,6 +120,7 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
 
         public ColorfulTextCell(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.resourcesProvider = resourcesProvider;
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
@@ -133,9 +137,9 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
             addView(linearLayout, layoutParamsCreateFrame2);
             TextView textView = new TextView(context);
             this.titleView = textView;
-            zzkh.m(15.0f, textView);
+            AccountFrozenAlert$$ExternalSyntheticOutline1.m(15.0f, 1, textView);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-            TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 0), context);
+            TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 0), context);
             this.textView = textViewM;
             textViewM.setTextSize(1, 14.0f);
             textViewM.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
@@ -208,6 +212,7 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
 
     public final class FeatureCell extends FrameLayout {
         public final ImageView imageView;
+        public final Theme.ResourcesProvider resourcesProvider;
         public final TextView textView;
         public final TextView titleView;
 
@@ -226,12 +231,12 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
 
             @Override
             public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                ((FeatureCell) view).set(uItem.text, uItem.subtext, uItem.iconResId);
+                ((FeatureCell) view).set(uItem.iconResId, uItem.text, uItem.subtext);
             }
 
             @Override
             public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
-                return new FeatureCell(context, resourcesProvider, false);
+                return new FeatureCell(context, false, resourcesProvider);
             }
 
             @Override
@@ -240,8 +245,9 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
             }
         }
 
-        public FeatureCell(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+        public FeatureCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.resourcesProvider = resourcesProvider;
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -256,13 +262,13 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
             textView.setTextColor(Theme.getColor(i, resourcesProvider));
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 14.0f);
-            TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 1), context);
+            TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 1), context);
             this.textView = textViewM;
             OKLCH.m(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider, textViewM, 14.0f);
             linearLayout.addView(textViewM, LayoutHelper.createLinear(-1, -2, 55, 0, 0, 0, 0));
         }
 
-        public final void set(CharSequence charSequence, CharSequence charSequence2, int i) {
+        public final void set(int i, CharSequence charSequence, CharSequence charSequence2) {
             this.imageView.setImageResource(i);
             this.titleView.setText(charSequence);
             this.textView.setText(charSequence2);
@@ -275,8 +281,8 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
 
     public AffiliateProgramFragment(long j) {
         this.bot_id = j;
-        this.whiteBackground = true;
-        this.minusHeaderHeight = AndroidUtilities.dp(60.0f);
+        setWhiteBackground(true);
+        setMinusHeaderHeight(AndroidUtilities.dp(60.0f));
     }
 
     public static String percents(int i) {
@@ -320,23 +326,23 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
         }
         if (backgroundFragment != null) {
             if (z) {
-                BulletinFactory.of(backgroundFragment).createSimpleBulletin(LocaleController.getString(R.string.AffiliateProgramEndedTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramEndedText)), R.raw.linkbroken).show();
+                BulletinFactory.of(backgroundFragment).createSimpleBulletin(R.raw.linkbroken, LocaleController.getString(R.string.AffiliateProgramEndedTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramEndedText))).show();
             } else {
-                BulletinFactory.of(backgroundFragment).createSimpleBulletin(LocaleController.getString(R.string.AffiliateProgramStartedTitle), LocaleController.getString(R.string.AffiliateProgramStartedText), R.raw.contact_check).show();
+                BulletinFactory.of(backgroundFragment).createSimpleBulletin(R.raw.contact_check, LocaleController.getString(R.string.AffiliateProgramStartedTitle), LocaleController.getString(R.string.AffiliateProgramStartedText)).show();
             }
         }
     }
 
     @Override
     public final RecyclerView.Adapter createAdapter() {
-        ?? r0 = new UniversalAdapter(this.listView, getParentActivity(), this.currentAccount, this.classGuid, new TodoItemMenu$$ExternalSyntheticLambda17(this, 8), getResourceProvider()) {
+        ?? r0 = new UniversalAdapter(this.listView, getContext(), this.currentAccount, this.classGuid, new BotDownloads$$ExternalSyntheticLambda0(this, 8), getResourceProvider()) {
             @Override
             public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 if (i != 42) {
                     return super.onCreateViewHolder(viewGroup, i);
                 }
                 AffiliateProgramFragment affiliateProgramFragment = AffiliateProgramFragment.this;
-                HeaderCell headerCell = new HeaderCell(affiliateProgramFragment.getParentActivity(), Theme.key_windowBackgroundWhiteBlueHeader, 21, 0, 0, false, false, ((BaseFragment) affiliateProgramFragment).resourceProvider);
+                HeaderCell headerCell = new HeaderCell(affiliateProgramFragment.getContext(), Theme.key_windowBackgroundWhiteBlueHeader, 21, 0, 0, false, false, ((BaseFragment) affiliateProgramFragment).resourceProvider);
                 headerCell.setHeight(25);
                 return new RecyclerListView.Holder(headerCell);
             }
@@ -347,7 +353,7 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
 
     @Override
     public final StarParticlesView createParticlesView() {
-        AnonymousClass3 anonymousClass3 = new AnonymousClass3(getParentActivity());
+        AnonymousClass3 anonymousClass3 = new AnonymousClass3(getContext());
         anonymousClass3.setClipWithGradient();
         return anonymousClass3;
     }
@@ -356,7 +362,22 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
     public final View createView(Context context) {
         this.useFillLastLayoutManager = false;
         this.particlesViewHeight = AndroidUtilities.dp(238.0f);
-        new RichDetailsCell.AnonymousClass2(this, context, 4).setBackgroundColor(Theme.getColor(null, Theme.key_dialogBackgroundGray, false));
+        new View(context) {
+            @Override
+            public final void onMeasure(int i, int i2) {
+                int iDp;
+                AffiliateProgramFragment affiliateProgramFragment = AffiliateProgramFragment.this;
+                if (affiliateProgramFragment.isLandscapeMode) {
+                    iDp = (((BaseFragment) affiliateProgramFragment).actionBar.getMeasuredHeight() + affiliateProgramFragment.statusBarHeight) - AndroidUtilities.dp(16.0f);
+                } else {
+                    iDp = affiliateProgramFragment.statusBarHeight + AndroidUtilities.dp(140.0f);
+                    if (AndroidUtilities.dp(24.0f) + affiliateProgramFragment.backgroundView.getMeasuredHeight() > iDp) {
+                        iDp = AndroidUtilities.dp(24.0f) + affiliateProgramFragment.backgroundView.getMeasuredHeight();
+                    }
+                }
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec((int) (iDp - (((GradientHeaderActivity) affiliateProgramFragment).yOffset * 2.5f)), 1073741824));
+            }
+        }.setBackgroundColor(Theme.getColor(null, Theme.key_dialogBackgroundGray, false));
         super.createView(context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.aboveTitleView = frameLayout;
@@ -376,35 +397,30 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
         this.buttonLayout.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
         View view = new View(context);
         view.setBackgroundColor(getThemedColor(Theme.key_divider));
-        this.buttonLayout.addView(view, new LinearLayout.LayoutParams(LayoutHelper.getSize(-1.0f), LayoutHelper.getSize(1.0f / AndroidUtilities.density)));
+        this.buttonLayout.addView(view, LayoutHelper.createLinear(-1.0f, 1.0f / AndroidUtilities.density));
         int i = 2;
-        BotStarsActivity.AnonymousClass6 anonymousClass6 = new BotStarsActivity.AnonymousClass6(i, context, this.resourceProvider, true);
-        anonymousClass6.setRoundRadius(24);
-        this.button = anonymousClass6;
-        anonymousClass6.setText(LocaleController.getString(R.string.AffiliateProgramStart), false, true);
-        this.button.setOnClickListener(new VoIPFragment$$ExternalSyntheticLambda28(4, this, context));
-        this.buttonLayout.addView(this.button, LayoutHelper.createLinear(10.0f, 10.0f, 10.0f, 7.0f, -1, 48));
+        ButtonWithCounterView round = new BotStarsActivity.AnonymousClass6(context, i, this.resourceProvider, true).setRound();
+        this.button = round;
+        round.setText(LocaleController.getString(R.string.AffiliateProgramStart), false);
+        this.button.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(20, this, context));
+        this.buttonLayout.addView(this.button, LayoutHelper.createLinear(-1, 48, 10.0f, 10.0f, 10.0f, 7.0f));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, this.resourceProvider);
         this.buttonSubtext = linksTextView;
         linksTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
         this.buttonSubtext.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkIn));
         this.buttonSubtext.setTextSize(1, 12.0f);
         this.buttonSubtext.setGravity(17);
-        this.buttonLayout.addView(this.buttonSubtext, LayoutHelper.createLinear(32.0f, 1.0f, 32.0f, 8.0f, -1, -2));
+        this.buttonLayout.addView(this.buttonSubtext, LayoutHelper.createLinear(-1, -2, 32.0f, 1.0f, 32.0f, 8.0f));
         update$2(false);
         ((FrameLayout) this.fragmentView).addView(this.buttonLayout, LayoutHelper.createFrame(-1, -2, 87));
         this.listView.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f));
-        this.listView.setOnItemClickListener(new TopicsFragment$$ExternalSyntheticLambda9(this, 27));
+        this.listView.setOnItemClickListener(new TONIntroActivity$$ExternalSyntheticLambda3(this, 17));
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        defaultItemAnimator.delayAnimations = false;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         defaultItemAnimator.setDurations(350L);
-        this.listView.setItemAnimator(defaultItemAnimator);
+        this.listView.lambda$onCellEnter$52(defaultItemAnimator);
         return this.fragmentView;
     }
 
@@ -412,9 +428,83 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
     }
 
+    public final void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        int i = 2;
+        int i2 = 1;
+        if (getContext() == null) {
+            return;
+        }
+        arrayList.add(UItem.asFullyCustom(super.getHeader(getContext())));
+        arrayList.add(FeatureCell.Factory.as(R.drawable.menu_feature_premium, LocaleController.getString(R.string.BotAffiliateProgramFeature1Title), LocaleController.getString(R.string.BotAffiliateProgramFeature1)));
+        arrayList.add(FeatureCell.Factory.as(R.drawable.msg_channel, LocaleController.getString(R.string.BotAffiliateProgramFeature2Title), LocaleController.getString(R.string.BotAffiliateProgramFeature2)));
+        arrayList.add(FeatureCell.Factory.as(R.drawable.menu_feature_links2, LocaleController.getString(R.string.BotAffiliateProgramFeature3Title), LocaleController.getString(R.string.BotAffiliateProgramFeature3)));
+        arrayList.add(UItem.asShadow(1, null));
+        arrayList.add(UItem.asHeader(LocaleController.getString(R.string.AffiliateProgramCommission)));
+        UItem uItemAsIntSlideView = UItem.asIntSlideView(1, getMessagesController().starrefMinCommissionPermille, this.program.commission_permille, getMessagesController().starrefMaxCommissionPermille, new AffiliateProgramFragment$$ExternalSyntheticLambda6(), new AffiliateProgramFragment$$ExternalSyntheticLambda0(this, i2));
+        TL_payments.starRefProgram starrefprogram = this.initialProgram;
+        arrayList.add(uItemAsIntSlideView.setMinSliderValue(starrefprogram == null ? -1 : starrefprogram.commission_permille));
+        zzkf.m(R.string.AffiliateProgramCommissionInfo, arrayList);
+        zzke.m(R.string.AffiliateProgramDuration, arrayList);
+        String[] strArr = this.durationTexts;
+        List list = this.durationValues;
+        if (strArr == null) {
+            this.durationTexts = new String[list.size()];
+            for (int i3 = 0; i3 < list.size(); i3++) {
+                int iIntValue = ((Integer) list.get(i3)).intValue();
+                if (iIntValue == 0) {
+                    this.durationTexts[i3] = LocaleController.getString(R.string.Infinity);
+                } else if (iIntValue < 12 || iIntValue % 12 != 0) {
+                    this.durationTexts[i3] = LocaleController.formatPluralString("MonthsShort", iIntValue, new Object[0]);
+                } else {
+                    this.durationTexts[i3] = LocaleController.formatPluralString("YearsShort", iIntValue / 12, new Object[0]);
+                }
+            }
+        }
+        UItem uItemAsSlideView = UItem.asSlideView(this.durationTexts, list.indexOf(Integer.valueOf(this.program.duration_months)), new AffiliateProgramFragment$$ExternalSyntheticLambda0(this, i));
+        TL_payments.starRefProgram starrefprogram2 = this.initialProgram;
+        if (starrefprogram2 != null) {
+            if (starrefprogram2.duration_months > 0) {
+                for (int size = list.size() - 1; size >= 0; size--) {
+                    if (((Integer) list.get(size)).intValue() > 0 && ((Integer) list.get(size)).intValue() <= this.initialProgram.duration_months) {
+                        uItemAsSlideView.setMinSliderValue(size);
+                        break;
+                    }
+                }
+            } else {
+                uItemAsSlideView.setMinSliderValue(list.size() - 1);
+            }
+        }
+        arrayList.add(uItemAsSlideView);
+        zzkf.m(R.string.AffiliateProgramDurationInfo, arrayList);
+        int themedColor = getThemedColor(Theme.key_color_green);
+        int i4 = R.drawable.filled_earn_stars;
+        String string = LocaleController.getString(R.string.AffiliateProgramExistingProgramsTitle);
+        String string2 = LocaleController.getString(R.string.AffiliateProgramExistingProgramsText);
+        int i5 = ColorfulTextCell.Factory.$r8$clinit;
+        UItem uItemOfFactory = UItem.ofFactory(ColorfulTextCell.Factory.class);
+        uItemOfFactory.id = 2;
+        uItemOfFactory.intValue = themedColor;
+        uItemOfFactory.iconResId = i4;
+        uItemOfFactory.text = string;
+        uItemOfFactory.subtext = string2;
+        arrayList.add(uItemOfFactory);
+        arrayList.add(UItem.asShadow(3, null));
+        if (!this.new_program && this.program.end_date == 0) {
+            arrayList.add(UItem.asButton(4, LocaleController.getString(R.string.AffiliateProgramStop)).red());
+            arrayList.add(UItem.asShadow(5, null));
+        }
+        arrayList.add(UItem.asShadow(6, null));
+        arrayList.add(UItem.asShadow(7, null));
+    }
+
     @Override
     public final int getNavigationBarColor() {
         return getThemedColor(Theme.key_windowBackgroundWhite);
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
     }
 
     public final void lambda$createView$0(AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -438,13 +528,13 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
         closeToProfile(false);
     }
 
-    public final void lambda$createView$4(Context context) {
+    public final void lambda$createView$4$1(Context context) {
         String pluralString;
-        if (this.button.enabled) {
+        if (this.button.isEnabled()) {
             FrameLayout frameLayout = new FrameLayout(context);
             TableView tableView = new TableView(context, this.resourceProvider);
-            AffiliateProgramFragment$$ExternalSyntheticLambda3 affiliateProgramFragment$$ExternalSyntheticLambda3 = new AffiliateProgramFragment$$ExternalSyntheticLambda3(this, 2);
-            tableView.addRow(LocaleController.getString(R.string.AffiliateProgramCommission), percents(this.program.commission_permille), null, null);
+            AffiliateProgramFragment$$ExternalSyntheticLambda4 affiliateProgramFragment$$ExternalSyntheticLambda4 = new AffiliateProgramFragment$$ExternalSyntheticLambda4(this, 2);
+            tableView.addRow(LocaleController.getString(R.string.AffiliateProgramCommission), percents(this.program.commission_permille));
             String string = LocaleController.getString(R.string.AffiliateProgramDuration);
             int i = this.program.duration_months;
             if (i <= 0) {
@@ -452,20 +542,13 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
             } else {
                 pluralString = (i < 12 || i % 12 != 0) ? LocaleController.formatPluralString("Months", i, new Object[0]) : LocaleController.formatPluralString("Years", i / 12, new Object[0]);
             }
-            tableView.addRow(string, pluralString, null, null);
+            tableView.addRow(string, pluralString);
             frameLayout.addView(tableView, LayoutHelper.createFrame(-1, -2.0f, 119, 24.0f, 0.0f, 24.0f, 0.0f));
-            AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, this.resourceProvider);
-            String string2 = LocaleController.getString(R.string.AffiliateProgramAlert);
-            AlertDialog alertDialog = builder.alertDialog;
-            alertDialog.title = string2;
-            alertDialog.message = LocaleController.getString(this.new_program ? R.string.AffiliateProgramStartAlertText : R.string.AffiliateProgramUpdateAlertText);
-            builder.setView(frameLayout);
-            builder.setPositiveButton(LocaleController.getString(this.new_program ? R.string.AffiliateProgramStartAlertButton : R.string.AffiliateProgramUpdateAlertButton), new TodoItemMenu$$ExternalSyntheticLambda3(affiliateProgramFragment$$ExternalSyntheticLambda3, 7));
-            ArticleViewer.IBlock.CC.m(R.string.Cancel, builder, (AlertDialog.OnButtonClickListener) null);
+            new AlertDialog.Builder(context, 0, this.resourceProvider).setTitle(LocaleController.getString(R.string.AffiliateProgramAlert)).setMessage(LocaleController.getString(this.new_program ? R.string.AffiliateProgramStartAlertText : R.string.AffiliateProgramUpdateAlertText)).setView(frameLayout).setPositiveButton(LocaleController.getString(this.new_program ? R.string.AffiliateProgramStartAlertButton : R.string.AffiliateProgramUpdateAlertButton), new RichEditor$3$$ExternalSyntheticLambda0(affiliateProgramFragment$$ExternalSyntheticLambda4, 4)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).show();
         }
     }
 
-    public final void lambda$createView$5$2(int i) {
+    public final void lambda$createView$5(int i) {
         AnonymousClass4 anonymousClass4 = this.adapter;
         if (anonymousClass4 == null) {
             return;
@@ -478,40 +561,34 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
             }
             return;
         }
-        LinearLayout linearLayout = new LinearLayout(getParentActivity());
+        LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
-        TextView textView = new TextView(getParentActivity());
+        TextView textView = new TextView(getContext());
         textView.setTextSize(1, 16.0f);
         int i3 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i3, this.resourceProvider));
-        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(R.string.AffiliateProgramStopText, textView);
-        linearLayout.addView(textView, LayoutHelper.createLinear(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
-        ArticleViewer.AnonymousClass9 anonymousClass9 = new ArticleViewer.AnonymousClass9(getParentActivity(), 24);
-        anonymousClass9.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
-        anonymousClass9.setTextSize(1, 16.0f);
-        anonymousClass9.setTextColor(Theme.getColor(i3, this.resourceProvider));
-        anonymousClass9.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText1)));
-        linearLayout.addView(anonymousClass9, LayoutHelper.createLinear(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
-        ArticleViewer.AnonymousClass9 anonymousClass10 = new ArticleViewer.AnonymousClass9(getParentActivity(), 24);
-        anonymousClass10.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
-        anonymousClass10.setTextSize(1, 16.0f);
-        anonymousClass10.setTextColor(Theme.getColor(i3, this.resourceProvider));
-        anonymousClass10.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText2)));
-        linearLayout.addView(anonymousClass10, LayoutHelper.createLinear(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
-        ArticleViewer.AnonymousClass9 anonymousClass11 = new ArticleViewer.AnonymousClass9(getParentActivity(), 24);
-        anonymousClass11.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
-        anonymousClass11.setTextSize(1, 16.0f);
-        anonymousClass11.setTextColor(Theme.getColor(i3, this.resourceProvider));
-        anonymousClass11.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText3)));
-        linearLayout.addView(anonymousClass11, LayoutHelper.createLinear(0.0f, 0.0f, 0.0f, 10.0f, -1, -2));
-        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, this.resourceProvider);
-        builder.alertDialog.title = LocaleController.getString(R.string.AffiliateProgramAlert);
-        builder.setView(linearLayout);
-        builder.setPositiveButton(LocaleController.getString(R.string.AffiliateProgramStopButton), new TodoItemMenu$$ExternalSyntheticLambda3(this, 8));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        builder.makeRed(-1);
-        builder.show();
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(R.string.AffiliateProgramStopText, textView);
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 17.0f));
+        MentionCell.AnonymousClass1 anonymousClass1 = new MentionCell.AnonymousClass1(getContext(), 7);
+        anonymousClass1.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
+        anonymousClass1.setTextSize(1, 16.0f);
+        anonymousClass1.setTextColor(Theme.getColor(i3, this.resourceProvider));
+        anonymousClass1.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText1)));
+        linearLayout.addView(anonymousClass1, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 17.0f));
+        MentionCell.AnonymousClass1 anonymousClass2 = new MentionCell.AnonymousClass1(getContext(), 7);
+        anonymousClass2.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
+        anonymousClass2.setTextSize(1, 16.0f);
+        anonymousClass2.setTextColor(Theme.getColor(i3, this.resourceProvider));
+        anonymousClass2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText2)));
+        linearLayout.addView(anonymousClass2, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 17.0f));
+        MentionCell.AnonymousClass1 anonymousClass3 = new MentionCell.AnonymousClass1(getContext(), 7);
+        anonymousClass3.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
+        anonymousClass3.setTextSize(1, 16.0f);
+        anonymousClass3.setTextColor(Theme.getColor(i3, this.resourceProvider));
+        anonymousClass3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText3)));
+        linearLayout.addView(anonymousClass3, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 10.0f));
+        new AlertDialog.Builder(getContext(), 0, this.resourceProvider).setTitle(LocaleController.getString(R.string.AffiliateProgramAlert)).setView(linearLayout).setPositiveButton(LocaleController.getString(R.string.AffiliateProgramStopButton), new RichEditor$3$$ExternalSyntheticLambda0(this, 5)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
 
     public final void lambda$end$8(AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -612,11 +689,11 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
     }
 
     public final void update$2(boolean z) {
-        this.button.setText(LocaleController.getString((this.new_program || this.program.end_date != 0) ? R.string.AffiliateProgramStart : R.string.AffiliateProgramUpdate), z, true);
-        AffiliateProgramFragment$$ExternalSyntheticLambda3 affiliateProgramFragment$$ExternalSyntheticLambda3 = this.updateTimerRunnable;
-        AndroidUtilities.cancelRunOnUIThread(affiliateProgramFragment$$ExternalSyntheticLambda3);
-        affiliateProgramFragment$$ExternalSyntheticLambda3.run();
-        this.buttonSubtext.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString((this.new_program || this.program.end_date != 0) ? R.string.AffiliateProgramStartInfo : R.string.AffiliateProgramUpdateInfo), new AffiliateProgramFragment$$ExternalSyntheticLambda3(this, 1)));
+        this.button.setText(LocaleController.getString((this.new_program || this.program.end_date != 0) ? R.string.AffiliateProgramStart : R.string.AffiliateProgramUpdate), z);
+        AffiliateProgramFragment$$ExternalSyntheticLambda4 affiliateProgramFragment$$ExternalSyntheticLambda4 = this.updateTimerRunnable;
+        AndroidUtilities.cancelRunOnUIThread(affiliateProgramFragment$$ExternalSyntheticLambda4);
+        affiliateProgramFragment$$ExternalSyntheticLambda4.run();
+        this.buttonSubtext.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString((this.new_program || this.program.end_date != 0) ? R.string.AffiliateProgramStartInfo : R.string.AffiliateProgramUpdateInfo), new AffiliateProgramFragment$$ExternalSyntheticLambda4(this, 1)));
         updateEnabled();
         AnonymousClass4 anonymousClass4 = this.adapter;
         if (anonymousClass4 != null) {
@@ -626,8 +703,8 @@ public final class AffiliateProgramFragment extends GradientHeaderActivity imple
 
     public final void updateEnabled() {
         TL_payments.starRefProgram starrefprogram;
-        BotStarsActivity.AnonymousClass6 anonymousClass6 = this.button;
+        ButtonWithCounterView buttonWithCounterView = this.button;
         TL_payments.starRefProgram starrefprogram2 = this.program;
-        anonymousClass6.setEnabled(starrefprogram2.end_date == 0 && !((starrefprogram = this.initialProgram) != null && starrefprogram.commission_permille == starrefprogram2.commission_permille && starrefprogram.duration_months == starrefprogram2.duration_months));
+        buttonWithCounterView.setEnabled(starrefprogram2.end_date == 0 && !((starrefprogram = this.initialProgram) != null && starrefprogram.commission_permille == starrefprogram2.commission_permille && starrefprogram.duration_months == starrefprogram2.duration_months));
     }
 }

@@ -5,10 +5,14 @@ import android.view.View;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 
-public abstract class EmptyBaseFragment extends BaseFragment {
+public class EmptyBaseFragment extends BaseFragment {
+    public EmptyBaseFragment() {
+        super(null);
+    }
+
     @Override
-    public final View createView(Context context) {
-        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context, null);
+    public View createView(Context context) {
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context);
         this.fragmentView = sizeNotifierFrameLayout;
         return sizeNotifierFrameLayout;
     }

@@ -14,10 +14,12 @@ import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumButtonView;
 
-public final class UnlockPremiumView extends FrameLayout {
+public class UnlockPremiumView extends FrameLayout {
+    public static final int TYPE_REACTIONS = 1;
+    public static final int TYPE_STICKERS = 0;
     public final PremiumButtonView premiumButtonView;
 
-    public UnlockPremiumView(Context context, Theme.ResourcesProvider resourcesProvider) {
+    public UnlockPremiumView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         LinearLayout linearLayout = new LinearLayout(context);
         addView(linearLayout, LayoutHelper.createFrame(-1, -2, 80));
@@ -26,13 +28,17 @@ public final class UnlockPremiumView extends FrameLayout {
         textView.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), 100));
         textView.setTextSize(1, 13.0f);
         textView.setGravity(17);
-        textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
+        if (i == 0) {
+            textView.setText(LocaleController.getString(R.string.UnlockPremiumStickersDescription));
+        } else if (i == 1) {
+            textView.setText(LocaleController.getString(R.string.UnlockPremiumReactionsDescription));
+        }
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0, 16, 17, 17, 16));
-        PremiumButtonView premiumButtonView = new PremiumButtonView(AndroidUtilities.dp(8.0f), context, resourcesProvider, false);
+        PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(8.0f), false, resourcesProvider);
         this.premiumButtonView = premiumButtonView;
-        String string = LocaleController.getString(R.string.UnlockPremiumStickers);
+        String string = i == 0 ? LocaleController.getString(R.string.UnlockPremiumStickers) : LocaleController.getString(R.string.UnlockPremiumReactions);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        spannableStringBuilder.append((CharSequence) "d ").setSpan(new ColoredImageSpan(0, context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);
+        spannableStringBuilder.append((CharSequence) "d ").setSpan(new ColoredImageSpan(context.getDrawable(R.drawable.msg_premium_normal)), 0, 1, 0);
         spannableStringBuilder.append((CharSequence) string);
         premiumButtonView.buttonTextView.setText(spannableStringBuilder);
         linearLayout.addView(premiumButtonView, LayoutHelper.createLinear(-1, 48, 0, 16, 0, 16, 16));

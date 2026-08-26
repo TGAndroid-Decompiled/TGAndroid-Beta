@@ -23,8 +23,8 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.PhotoViewer;
 
 public final class SpoilerEffect2 {
     public static HashMap instance;
@@ -33,7 +33,7 @@ public final class SpoilerEffect2 {
     public boolean destroyed;
     public final int height;
     public final AnonymousClass2 textureView;
-    public final PhotoViewer.AnonymousClass19 textureViewContainer;
+    public final ActionBar.AnonymousClass8 textureViewContainer;
     public SpoilerThread thread;
     public final int type;
     public final int width;
@@ -342,15 +342,15 @@ public final class SpoilerEffect2 {
         }
     }
 
-    public SpoilerEffect2(int i, PhotoViewer.AnonymousClass19 anonymousClass19, int i2, int i3) {
+    public SpoilerEffect2(int i, ActionBar.AnonymousClass8 anonymousClass8, int i2, int i3) {
         double d = 1.0d / ((double) ((int) AndroidUtilities.screenRefreshRate));
         this.MIN_DELTA = d;
         this.MAX_DELTA = d * 4.0d;
         this.type = i;
         this.width = i2;
         this.height = i3;
-        this.textureViewContainer = anonymousClass19;
-        ?? r6 = new TextureView(anonymousClass19.getContext()) {
+        this.textureViewContainer = anonymousClass8;
+        ?? r6 = new TextureView(anonymousClass8.getContext()) {
             @Override
             public final void onMeasure(int i4, int i5) {
                 SpoilerEffect2 spoilerEffect2 = SpoilerEffect2.this;
@@ -358,9 +358,47 @@ public final class SpoilerEffect2 {
             }
         };
         this.textureView = r6;
-        r6.setSurfaceTextureListener(new PhotoViewer.AnonymousClass8(this, 5));
+        r6.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
+            @Override
+            public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i4, int i5) {
+                SpoilerEffect2 spoilerEffect2 = SpoilerEffect2.this;
+                if (spoilerEffect2.thread == null) {
+                    SpoilerEffect2 spoilerEffect3 = SpoilerEffect2.this;
+                    SpoilerThread spoilerThread = spoilerEffect3.new SpoilerThread(surfaceTexture, i4, i5, new SpoilerEffect2$$ExternalSyntheticLambda0(spoilerEffect3, 1));
+                    spoilerEffect2.thread = spoilerThread;
+                    spoilerThread.start();
+                }
+            }
+
+            @Override
+            public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+                SpoilerThread spoilerThread = SpoilerEffect2.this.thread;
+                if (spoilerThread == null) {
+                    return true;
+                }
+                spoilerThread.running = false;
+                SpoilerEffect2.this.thread = null;
+                return true;
+            }
+
+            @Override
+            public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i4, int i5) {
+                SpoilerThread spoilerThread = SpoilerEffect2.this.thread;
+                if (spoilerThread != null) {
+                    synchronized (spoilerThread.resizeLock) {
+                        spoilerThread.resize = true;
+                        spoilerThread.width = i4;
+                        spoilerThread.height = i5;
+                    }
+                }
+            }
+
+            @Override
+            public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+            }
+        });
         r6.setOpaque(false);
-        anonymousClass19.addView(r6);
+        anonymousClass8.addView(r6);
     }
 
     public static SpoilerEffect2 getInstance(int i, View view, ViewGroup viewGroup) {
@@ -389,9 +427,9 @@ public final class SpoilerEffect2 {
             }
             HashMap map = instance;
             Integer numValueOf = Integer.valueOf(i);
-            PhotoViewer.AnonymousClass19 anonymousClass19 = new PhotoViewer.AnonymousClass19(viewGroup.getContext(), 24);
-            viewGroup.addView(anonymousClass19);
-            SpoilerEffect2 spoilerEffect3 = new SpoilerEffect2(i, anonymousClass19, iMin, iMin);
+            ActionBar.AnonymousClass8 anonymousClass8 = new ActionBar.AnonymousClass8(viewGroup.getContext(), 7);
+            viewGroup.addView(anonymousClass8);
+            SpoilerEffect2 spoilerEffect3 = new SpoilerEffect2(i, anonymousClass8, iMin, iMin);
             map.put(numValueOf, spoilerEffect3);
             spoilerEffect2 = spoilerEffect3;
         }

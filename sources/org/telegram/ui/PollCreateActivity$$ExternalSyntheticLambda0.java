@@ -15,14 +15,10 @@ public final class PollCreateActivity$$ExternalSyntheticLambda0 implements Value
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                PollCreateActivity pollCreateActivity = this.f$0;
-                pollCreateActivity.getClass();
-                pollCreateActivity.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f$0.lambda$showEmojiPopup$4(valueAnimator);
                 break;
             default:
-                PollCreateActivity pollCreateActivity2 = this.f$0;
-                pollCreateActivity2.getClass();
-                pollCreateActivity2.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f$0.lambda$hideEmojiPopup$5(valueAnimator);
                 break;
         }
     }

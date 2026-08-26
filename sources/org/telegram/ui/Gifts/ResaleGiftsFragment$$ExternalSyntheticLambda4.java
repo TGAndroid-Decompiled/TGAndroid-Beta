@@ -27,10 +27,10 @@ public final class ResaleGiftsFragment$$ExternalSyntheticLambda4 implements Star
     }
 
     @Override
-    public void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
-        this.f$0.onItemClick$5((UItem) obj);
+        this.f$0.onItemClick$3((UItem) obj);
     }
 }

@@ -31,9 +31,9 @@ public final class DrawerLayoutContainer extends FrameLayout {
         Insets insets = Insets.NONE;
         this.systemAndCutoutInsets = insets;
         this.systemAndCutoutAndImeInsets = insets;
-        AlertDialog$$ExternalSyntheticLambda11 alertDialog$$ExternalSyntheticLambda11 = new AlertDialog$$ExternalSyntheticLambda11(this, 7);
+        AlertDialog$$ExternalSyntheticLambda13 alertDialog$$ExternalSyntheticLambda13 = new AlertDialog$$ExternalSyntheticLambda13(this, 7);
         WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
-        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(this, alertDialog$$ExternalSyntheticLambda11);
+        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(this, alertDialog$$ExternalSyntheticLambda13);
         setSystemUiVisibility(1280);
     }
 
@@ -52,7 +52,7 @@ public final class DrawerLayoutContainer extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         ActionBarLayout actionBarLayout = this.actionBarLayout;
         if (actionBarLayout != null && actionBarLayout.getParent() == this) {
-            this.actionBarLayout.parentDraw(canvas, this);
+            this.actionBarLayout.parentDraw(this, canvas);
         }
         super.dispatchDraw(canvas);
     }

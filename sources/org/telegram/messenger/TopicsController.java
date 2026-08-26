@@ -6,8 +6,8 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import androidx.collection.LongSparseArray;
 import com.google.android.exoplayer2.audio.AacUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import j$.util.function.Consumer$CC;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,13 +29,13 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_forum;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda39;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda286;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda44;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda155;
 import org.telegram.ui.Components.Forum.ForumUtilities;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda114;
-import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda1;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda132;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda162;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda69;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda150;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda152;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda65;
 
 public class TopicsController extends BaseController {
     public static final int LOAD_TYPE_HASH_CHECK = 3;
@@ -207,7 +207,7 @@ public class TopicsController extends BaseController {
     }
 
     public void lambda$loadTopics$1(long j, boolean z, int i, ArrayList arrayList) {
-        AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda114(this, j, arrayList, z, i, 2));
+        AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda69(this, j, arrayList, z, i, 2));
     }
 
     public void lambda$loadTopics$2(TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs, long j, LongSparseArray longSparseArray, int i) throws Throwable {
@@ -220,7 +220,7 @@ public class TopicsController extends BaseController {
         getMessagesStorage().saveTopics(-j, (List) this.topicsByChatId.get(j), true, true, getConnectionsManager().getCurrentTime());
         getMessagesStorage().putMessages(tL_messages_savedDialogs.messages, false, true, false, 0, false, 0, 0L);
         if (!tL_messages_savedDialogs.dialogs.isEmpty() && i == 1) {
-            TLRPC.TL_monoForumDialog tL_monoForumDialog = (TLRPC.TL_monoForumDialog) zziq.m(1, tL_messages_savedDialogs.dialogs);
+            TLRPC.TL_monoForumDialog tL_monoForumDialog = (TLRPC.TL_monoForumDialog) zzin.m(1, tL_messages_savedDialogs.dialogs);
             TLRPC.Message message = (TLRPC.Message) longSparseArray.get(tL_monoForumDialog.top_message);
             saveLoadOffset(j, tL_monoForumDialog.top_message, message == null ? 0 : message.date, DialogObject.getPeerDialogId(tL_monoForumDialog.peer));
         } else if (getTopics(j) == null || getTopics(j).size() < tL_messages_savedDialogs.dialogs.size()) {
@@ -239,7 +239,7 @@ public class TopicsController extends BaseController {
         getMessagesStorage().saveTopics(-j, (List) this.topicsByChatId.get(j), true, true, getConnectionsManager().getCurrentTime());
         getMessagesStorage().putMessages(tL_messages_savedDialogsSlice.messages, false, true, false, 0, false, 0, 0L);
         if (!tL_messages_savedDialogsSlice.dialogs.isEmpty() && i == 1) {
-            TLRPC.TL_monoForumDialog tL_monoForumDialog = (TLRPC.TL_monoForumDialog) zziq.m(1, tL_messages_savedDialogsSlice.dialogs);
+            TLRPC.TL_monoForumDialog tL_monoForumDialog = (TLRPC.TL_monoForumDialog) zzin.m(1, tL_messages_savedDialogsSlice.dialogs);
             TLRPC.Message message = (TLRPC.Message) longSparseArray.get(tL_monoForumDialog.top_message);
             saveLoadOffset(j, tL_monoForumDialog.top_message, message == null ? 0 : message.date, DialogObject.getPeerDialogId(tL_monoForumDialog.peer));
         } else if (getTopics(j) == null || getTopics(j).size() < tL_messages_savedDialogsSlice.count) {
@@ -269,7 +269,7 @@ public class TopicsController extends BaseController {
         getMessagesStorage().saveTopics(-j, (List) this.topicsByChatId.get(j), true, true, getConnectionsManager().getCurrentTime());
         getMessagesStorage().putMessages(tL_messages_forumTopics.messages, false, true, false, 0, false, 0, 0L);
         if (!tL_messages_forumTopics.topics.isEmpty() && i == 1) {
-            TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) zziq.m(1, tL_messages_forumTopics.topics);
+            TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) zzin.m(1, tL_messages_forumTopics.topics);
             TLRPC.Message message = (TLRPC.Message) longSparseArray.get(tL_forumTopic.top_message);
             saveLoadOffset(j, tL_forumTopic.top_message, message == null ? 0 : message.date, tL_forumTopic.id);
         } else if (getTopics(j) == null || getTopics(j).size() < tL_messages_forumTopics.count) {
@@ -316,7 +316,7 @@ public class TopicsController extends BaseController {
             longSparseArray.put(tL_messages_forumTopics.messages.get(i3), tL_messages_forumTopics.messages.get(i3).id);
             i3++;
         }
-        AndroidUtilities.runOnUIThread(new MessageSeenView$$ExternalSyntheticLambda1(this, (TLRPC.TL_messages_forumTopics) tLObject, j, tL_messages_forumTopics, longSparseArray, i));
+        AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda65(this, (TLRPC.TL_messages_forumTopics) tLObject, j, tL_messages_forumTopics, longSparseArray, i));
     }
 
     public void lambda$onTopicsDeletedServerSide$23(ArrayList arrayList) {
@@ -347,13 +347,7 @@ public class TopicsController extends BaseController {
     }
 
     public void lambda$pinTopic$19(BaseFragment baseFragment) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getContext(), 0, null);
-        String string = LocaleController.getString(R.string.LimitReached);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = LocaleController.formatString(R.string.LimitReachedPinnedTopics, Integer.valueOf(MessagesController.getInstance(this.currentAccount).topicsPinnedLimit));
-        builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
-        baseFragment.showDialog(alertDialog);
+        baseFragment.showDialog(new AlertDialog.Builder(baseFragment.getContext(), 0, null).setTitle(LocaleController.getString(R.string.LimitReached)).setMessage(LocaleController.formatString(R.string.LimitReachedPinnedTopics, Integer.valueOf(MessagesController.getInstance(this.currentAccount).topicsPinnedLimit))).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
     }
 
     public void lambda$pinTopic$20(BaseFragment baseFragment, long j, ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -812,7 +806,7 @@ public class TopicsController extends BaseController {
             tL_messages_getReplies.limit = 1;
             tLObject = tL_messages_getReplies;
         }
-        getConnectionsManager().sendRequest(tLObject, new StarGiftSheet$$ExternalSyntheticLambda132(4, j, j2, this, tL_forumTopicFindTopic));
+        getConnectionsManager().sendRequest(tLObject, new StarGiftSheet$$ExternalSyntheticLambda152(this, tL_forumTopicFindTopic, j, j2, 4));
     }
 
     public ArrayList<TLRPC.TL_forumTopic> getTopics(long j) {
@@ -922,7 +916,7 @@ public class TopicsController extends BaseController {
             arrayList.add(0, Integer.valueOf(i));
         }
         applyPinnedOrder(j, arrayList);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_updatePinnedForumTopic, new StarGiftSheet$$ExternalSyntheticLambda162(this, baseFragment, j, currentPinnedOrder, 4));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_updatePinnedForumTopic, new StarGiftSheet$$ExternalSyntheticLambda150(this, baseFragment, j, currentPinnedOrder, 4));
     }
 
     public void preloadTopics(long j) {
@@ -1429,7 +1423,7 @@ public class TopicsController extends BaseController {
                         sb.append(" offset_id=");
                         sb.append(loadOffset.lastMessageId);
                         sb.append(" offset_topic=");
-                        zzjj.m(sb, loadOffset.lastTopicId);
+                        zzjg.m(sb, loadOffset.lastTopicId);
                     }
                 }
             }
@@ -1456,11 +1450,11 @@ public class TopicsController extends BaseController {
                     sb2.append(" offset_id=");
                     sb2.append(loadOffset2.lastMessageId);
                     sb2.append(" offset_topic=");
-                    zzjj.m(sb2, loadOffset2.lastTopicId);
+                    zzjg.m(sb2, loadOffset2.lastTopicId);
                 }
             }
         }
-        getConnectionsManager().sendRequest(tL_messages_getForumTopics, new ArticleViewer$$ExternalSyntheticLambda39(this, j, i, 2));
+        getConnectionsManager().sendRequest(tL_messages_getForumTopics, new ArticleViewer$$ExternalSyntheticLambda44(this, j, i, 2));
     }
 
     public void sortTopics(long j, boolean z) {
@@ -1510,6 +1504,6 @@ public class TopicsController extends BaseController {
     }
 
     public void reloadTopics(long j, boolean z) {
-        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda286(this, j, z, 3));
+        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda155(this, j, z, 3));
     }
 }

@@ -1,5 +1,7 @@
 package org.telegram.ui.iv;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -12,18 +14,61 @@ import android.graphics.RectF;
 import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
 import android.graphics.Shader;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Parcel;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import androidx.car.app.messaging.model.ConversationCallback;
+import androidx.core.text.PrecomputedTextCompat;
+import androidx.customview.widget.FocusStrategy;
+import androidx.fragment.app.FragmentManagerViewModel;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider$Factory;
+import androidx.lifecycle.viewmodel.MutableCreationExtras;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkv;
+import com.android.billingclient.api.zzcm;
+import com.android.billingclient.api.zzcs;
+import com.android.billingclient.api.zzct;
+import com.google.android.datatransport.Priority;
+import com.google.android.datatransport.runtime.scheduling.jobscheduling.AutoValue_SchedulerConfig;
+import com.google.android.datatransport.runtime.scheduling.jobscheduling.AutoValue_SchedulerConfig_ConfigValue;
+import com.google.android.datatransport.runtime.scheduling.jobscheduling.SchedulerConfig$Flag;
+import com.google.android.exoplayer2.extractor.DefaultExtractorInput;
+import com.google.android.exoplayer2.extractor.SeekMap;
+import com.google.android.exoplayer2.extractor.ogg.OggSeeker;
+import com.google.android.exoplayer2.upstream.DataSourceInputStream;
+import com.google.android.exoplayer2.upstream.ParsingLoadable;
+import com.google.android.exoplayer2.util.Util;
+import com.google.android.gms.common.api.internal.RemoteCall;
+import com.google.android.gms.fido.fido2.zzf;
+import com.google.android.gms.internal.p001authapiphone.zzab;
+import com.google.android.gms.internal.p001authapiphone.zzc;
+import com.google.android.gms.internal.p001authapiphone.zzh;
+import com.google.android.gms.internal.p001authapiphone.zzw;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.firebase.components.ComponentFactory;
+import com.google.firebase.crashlytics.internal.metadata.FileLogStore;
+import com.google.firebase.crashlytics.internal.stacktrace.StackTraceTrimmingStrategy;
+import com.google.gson.internal.ObjectConstructor;
+import com.google.mlkit.common.model.RemoteModelManager$RemoteModelManagerRegistration;
+import j$.util.DesugarCollections;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.ShortBuffer;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticOutline0;
 import org.telegram.messenger.ImageReceiver;
@@ -33,11 +78,13 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.support.fingerprint.FingerprintManagerCompat;
+import org.telegram.messenger.video.remix.AudioRemixer;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.CalendarActivity$$ExternalSyntheticOutline0;
+import org.telegram.ui.Cells.GroupCallUserCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -48,17 +95,20 @@ import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawableRenderNode;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
+import org.telegram.ui.Components.voip.PrivateVideoPreviewDialogNew;
+import org.telegram.ui.bots.ChatAttachAlertBotWebViewLayout;
+import org.telegram.ui.web.MHTML;
 
 public final class RichMediaCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost {
     public static Paint slideDotPaint;
     public final ImageView addButton;
     public boolean attached;
     public final Paint backgroundPaint;
-    public final ChatActivity.AnonymousClass40 blurColors;
+    public final AnonymousClass2 blurColors;
     public final BlurredBackgroundSourceRenderNode blurSource;
     public final RichCaptionController caption;
     public final HashMap circleButtonBg;
@@ -91,6 +141,292 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
     public final ImageView switchModeButton;
     public int touchSlop;
     public VelocityTracker velocityTracker;
+
+    public class AnonymousClass2 implements ConversationCallback, FocusStrategy.CollectionAdapter, ViewModelProvider$Factory, com.google.android.datatransport.runtime.dagger.internal.Factory, OggSeeker, ParsingLoadable.Parser, RemoteCall, FileLogStore, StackTraceTrimmingStrategy, ObjectConstructor, ComponentFactory, FingerprintManagerCompat.FingerprintManagerCompatImpl, AudioRemixer, BlurredBackgroundColorProvider {
+        public final int $r8$classId;
+
+        public AnonymousClass2(int i) {
+            this.$r8$classId = i;
+        }
+
+        @Override
+        public void accept(Object obj, Object obj2) {
+            zzh zzhVar = (zzh) ((zzw) obj).getService();
+            zzf zzfVar = new zzf(1, (TaskCompletionSource) obj2);
+            Parcel parcelObtain = Parcel.obtain();
+            parcelObtain.writeInterfaceToken("com.google.android.gms.auth.api.phone.internal.ISmsRetrieverApiService");
+            int i = zzc.$r8$clinit;
+            parcelObtain.writeStrongBinder(zzfVar);
+            Parcel parcelObtain2 = Parcel.obtain();
+            try {
+                zzhVar.zza.transact(1, parcelObtain, parcelObtain2, 0);
+                parcelObtain2.readException();
+            } finally {
+                parcelObtain.recycle();
+                parcelObtain2.recycle();
+            }
+        }
+
+        @Override
+        public Object construct() {
+            switch (this.$r8$classId) {
+                case 17:
+                    return new ArrayDeque();
+                default:
+                    return new LinkedHashMap();
+            }
+        }
+
+        @Override
+        public Object create(MHTML mhtml) {
+            switch (this.$r8$classId) {
+                case 19:
+                    return new zzct(mhtml.setOf(RemoteModelManager$RemoteModelManagerRegistration.class));
+                default:
+                    return new RemoteModelManager$RemoteModelManagerRegistration(mhtml.getProvider(AnonymousClass2.class));
+            }
+        }
+
+        @Override
+        public SeekMap createSeekMap() {
+            return new SeekMap.Unseekable(-9223372036854775807L, 0L);
+        }
+
+        @Override
+        public Object get() {
+            zzcm zzcmVar = new zzcm();
+            HashMap map = new HashMap();
+            Priority priority = Priority.DEFAULT;
+            Set set = Collections.EMPTY_SET;
+            if (set == null) {
+                throw new NullPointerException("Null flags");
+            }
+            map.put(priority, new AutoValue_SchedulerConfig_ConfigValue(30000L, 86400000L, set));
+            Priority priority2 = Priority.HIGHEST;
+            if (set == null) {
+                throw new NullPointerException("Null flags");
+            }
+            map.put(priority2, new AutoValue_SchedulerConfig_ConfigValue(1000L, 86400000L, set));
+            Priority priority3 = Priority.VERY_LOW;
+            if (set == null) {
+                throw new NullPointerException("Null flags");
+            }
+            Set setUnmodifiableSet = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(SchedulerConfig$Flag.DEVICE_IDLE)));
+            if (setUnmodifiableSet == null) {
+                throw new NullPointerException("Null flags");
+            }
+            map.put(priority3, new AutoValue_SchedulerConfig_ConfigValue(86400000L, 86400000L, setUnmodifiableSet));
+            if (map.keySet().size() < Priority.values().length) {
+                throw new IllegalStateException("Not all priorities have been configured");
+            }
+            new HashMap();
+            return new AutoValue_SchedulerConfig(zzcmVar, map);
+        }
+
+        @Override
+        public int getBackgroundColor() {
+            return 1711276032;
+        }
+
+        @Override
+        public String getLogAsString() {
+            return null;
+        }
+
+        @Override
+        public int getRemixedSize(int i, int i2, int i3) {
+            return (i / i2) * i3;
+        }
+
+        @Override
+        public int getShadowColor() {
+            return 0;
+        }
+
+        @Override
+        public int getStrokeColorBottom() {
+            return 352321535;
+        }
+
+        @Override
+        public int getStrokeColorTop() {
+            return 872415231;
+        }
+
+        @Override
+        public StackTraceElement[] getTrimmedStackTrace(StackTraceElement[] stackTraceElementArr) {
+            int i;
+            HashMap map = new HashMap();
+            StackTraceElement[] stackTraceElementArr2 = new StackTraceElement[stackTraceElementArr.length];
+            int i2 = 0;
+            int i3 = 0;
+            int i4 = 1;
+            while (i2 < stackTraceElementArr.length) {
+                StackTraceElement stackTraceElement = stackTraceElementArr[i2];
+                Integer num = (Integer) map.get(stackTraceElement);
+                if (num == null) {
+                    stackTraceElementArr2[i3] = stackTraceElementArr[i2];
+                    i3++;
+                    i = i2;
+                    i4 = 1;
+                    break;
+                    break;
+                }
+                int iIntValue = num.intValue();
+                int i5 = i2 - iIntValue;
+                if (i2 + i5 <= stackTraceElementArr.length) {
+                    int i6 = 0;
+                    while (true) {
+                        if (i6 >= i5) {
+                            int iIntValue2 = i2 - num.intValue();
+                            if (i4 < 10) {
+                                System.arraycopy(stackTraceElementArr, i2, stackTraceElementArr2, i3, iIntValue2);
+                                i3 += iIntValue2;
+                                i4++;
+                            }
+                            i = (iIntValue2 - 1) + i2;
+                            break;
+                        }
+                        if (!stackTraceElementArr[iIntValue + i6].equals(stackTraceElementArr[i2 + i6])) {
+                            stackTraceElementArr2[i3] = stackTraceElementArr[i2];
+                            i3++;
+                            i = i2;
+                            i4 = 1;
+                            break;
+                            break;
+                        }
+                        i6++;
+                    }
+                } else {
+                    stackTraceElementArr2[i3] = stackTraceElementArr[i2];
+                    i3++;
+                    i = i2;
+                    i4 = 1;
+                    break;
+                }
+                map.put(stackTraceElement, Integer.valueOf(i2));
+                i2 = i + 1;
+            }
+            StackTraceElement[] stackTraceElementArr3 = new StackTraceElement[i3];
+            System.arraycopy(stackTraceElementArr2, 0, stackTraceElementArr3, 0, i3);
+            return i3 < stackTraceElementArr.length ? stackTraceElementArr3 : stackTraceElementArr;
+        }
+
+        @Override
+        public boolean hasEnrolledFingerprints(Context context) {
+            return false;
+        }
+
+        @Override
+        public boolean isHardwareDetected(Context context) {
+            return false;
+        }
+
+        public boolean isPrecomputedText(CharSequence charSequence) {
+            return charSequence instanceof PrecomputedTextCompat;
+        }
+
+        @Override
+        public Object parse(Uri uri, DataSourceInputStream dataSourceInputStream) {
+            return Long.valueOf(Util.parseXsDateTime(new BufferedReader(new InputStreamReader(dataSourceInputStream)).readLine()));
+        }
+
+        @Override
+        public long read(DefaultExtractorInput defaultExtractorInput) {
+            return -1L;
+        }
+
+        @Override
+        public void remix(ShortBuffer shortBuffer, int i, ShortBuffer shortBuffer2, int i2) {
+            if (i2 != 1 && i2 != 2) {
+                throw new IllegalArgumentException("Output must be 2 or 1 channels");
+            }
+            int iMin = Math.min(shortBuffer.remaining() / i, shortBuffer2.remaining() / i2);
+            for (int i3 = 0; i3 < iMin; i3++) {
+                short s = shortBuffer.get();
+                short s2 = shortBuffer.get();
+                shortBuffer.position(shortBuffer.position() + 4);
+                if (i2 == 2) {
+                    shortBuffer2.put(s);
+                    shortBuffer2.put(s2);
+                } else if (i2 == 1) {
+                    shortBuffer2.put(zzcs.mix(s, s2));
+                }
+            }
+        }
+
+        public AnonymousClass2(zzab zzabVar) {
+            this.$r8$classId = 13;
+        }
+
+        @Override
+        public ViewModel create(Class cls) {
+            return new FragmentManagerViewModel(true);
+        }
+
+        @Override
+        public ViewModel create(Class cls, MutableCreationExtras mutableCreationExtras) {
+            return create(cls);
+        }
+
+        @Override
+        public void startSeek(long j) {
+        }
+
+        @Override
+        public void closeLogFile() {
+        }
+    }
+
+    public final class AnonymousClass3 extends AnimatorListenerAdapter {
+        public final int $r8$classId;
+        public final FrameLayout this$0;
+        public final int val$target;
+
+        public AnonymousClass3(FrameLayout frameLayout, int i, int i2) {
+            this.$r8$classId = i2;
+            this.this$0 = frameLayout;
+            this.val$target = i;
+        }
+
+        @Override
+        public final void onAnimationEnd(Animator animator) {
+            switch (this.$r8$classId) {
+                case 0:
+                    int i = this.val$target;
+                    RichMediaCell richMediaCell = (RichMediaCell) this.this$0;
+                    richMediaCell.currentPage = i;
+                    richMediaCell.pageOffset = 0.0f;
+                    richMediaCell.requestLayout();
+                    richMediaCell.invalidate();
+                    break;
+                case 1:
+                    GroupCallUserCell groupCallUserCell = (GroupCallUserCell) this.this$0;
+                    if (!groupCallUserCell.isSelfUser()) {
+                        groupCallUserCell.applyStatus(this.val$target);
+                    }
+                    groupCallUserCell.animatorSet = null;
+                    break;
+                case 2:
+                    PrivateVideoPreviewDialogNew privateVideoPreviewDialogNew = (PrivateVideoPreviewDialogNew) this.this$0;
+                    privateVideoPreviewDialogNew.previousPage = -1;
+                    privateVideoPreviewDialogNew.strangeCurrentPage = this.val$target;
+                    privateVideoPreviewDialogNew.pageOffset = 0.0f;
+                    privateVideoPreviewDialogNew.scrollAnimator = null;
+                    privateVideoPreviewDialogNew.updateTitlesLayout$1();
+                    break;
+                default:
+                    ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout = (ChatAttachAlertBotWebViewLayout) this.this$0;
+                    if (chatAttachAlertBotWebViewLayout.webViewContainer.getWebView() != null) {
+                        chatAttachAlertBotWebViewLayout.webViewContainer.getWebView().setScrollY(this.val$target);
+                    }
+                    if (animator == chatAttachAlertBotWebViewLayout.webViewScrollAnimator) {
+                        chatAttachAlertBotWebViewLayout.webViewScrollAnimator = null;
+                    }
+                    break;
+            }
+        }
+    }
 
     public final class Factory extends UItem.UItemFactory {
         public static final int $r8$clinit = 0;
@@ -177,7 +513,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
         setBlockPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(4.0f));
-        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new RichEditor.AnonymousClass3(this, 3));
+        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new RichEditor.AnonymousClass3(this));
         this.caption = richCaptionController;
         addView(richCaptionController.editText, LayoutHelper.createFrame(-2, -2, 51));
         setClipChildren(false);
@@ -194,7 +530,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
                 renderEffectCreateBlurEffect = null;
             }
             renderNode.setRenderEffect(renderEffectCreateBlurEffect);
-            this.blurColors = new ChatActivity.AnonymousClass40(27);
+            this.blurColors = new AnonymousClass2(0);
         }
         ImageView imageViewCreateCircleButton = createCircleButton();
         this.addButton = imageViewCreateCircleButton;
@@ -206,7 +542,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
         imageViewCreateCircleButton2.setVisibility(8);
         addView(imageViewCreateCircleButton2, LayoutHelper.createFrame(32, 32.0f, 53, 12.0f, 12.0f, 66.0f, 12.0f));
         imageViewCreateCircleButton2.setOnClickListener(new RichMediaCell$$ExternalSyntheticLambda0(this, 2));
-        updateColors$1();
+        updateColors();
     }
 
     private SpoilerEffect2 getSpoilerEffect() {
@@ -225,6 +561,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
 
     private void settle(float f) {
         int i;
+        int i2 = 0;
         int size = this.items.size();
         if (f < 0.0f && this.currentPage < size - 1) {
             i = 1;
@@ -240,14 +577,14 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
         } else {
             i = -1;
         }
-        int i2 = this.currentPage;
-        int i3 = i + i2;
-        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.pageOffset, i3 - i2);
+        int i3 = this.currentPage;
+        int i4 = i + i3;
+        ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.pageOffset, i4 - i3);
         this.settleAnimator = valueAnimatorOfFloat;
         valueAnimatorOfFloat.setDuration(220L);
         this.settleAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.settleAnimator.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 24));
-        this.settleAnimator.addListener(new ArticleViewer.AnonymousClass3(this, i3, 16));
+        this.settleAnimator.addUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(this, i2));
+        this.settleAnimator.addListener(new AnonymousClass3(this, i4, i2));
         this.settleAnimator.start();
     }
 
@@ -270,7 +607,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
             blurredBackgroundDrawableRenderNode.setRadius(AndroidUtilities.dp(16.0f));
             this.circleButtonBg.put(imageView, blurredBackgroundDrawableRenderNode);
         }
-        ScaleStateListAnimator.apply(imageView, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(imageView);
         this.circleButtons.add(imageView);
         return imageView;
     }
@@ -548,6 +885,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
         ImageView imageView;
         ImageView imageView2;
         TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+        int childAdapterPosition;
         float f;
         float f2;
         float f3;
@@ -555,7 +893,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
         int paddingTop = getPaddingTop();
         drawMedia(canvas);
         AnimatedFloat animatedFloat = this.modeProgress;
-        float f4 = animatedFloat.value;
+        float f4 = animatedFloat.get();
         ArrayList arrayList = this.items;
         if (arrayList.size() >= 2 && f4 > 0.001f) {
             if (slideDotPaint == null) {
@@ -566,7 +904,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
             }
             int size = arrayList.size();
             float fDp = AndroidUtilities.dp(5.0f) + ((getPaddingTop() + this.imageH) - AndroidUtilities.dp(23.0f));
-            int iDp = AndroidUtilities.dp(4.0f) + RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(size - 1, 6.0f, AndroidUtilities.dp(7.0f) * size);
+            int iDp = AndroidUtilities.dp(4.0f) + RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(6.0f, size - 1, AndroidUtilities.dp(7.0f) * size);
             int paddingLeft = getPaddingLeft();
             int iMax = Math.max(0, (getWidth() - paddingLeft) - getPaddingRight());
             float f5 = this.currentPage + this.pageOffset;
@@ -595,12 +933,8 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
             canvas.restore();
         }
         RichEditorListView.AnonymousClass6 anonymousClass6 = this.delegate;
-        if (anonymousClass6 != null && (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) != null && textSelectionHelper.isInSelectionMode() && (getParent() instanceof RecyclerView)) {
-            ((RecyclerView) getParent()).getClass();
-            int childAdapterPosition = RecyclerView.getChildAdapterPosition(this);
-            if (childAdapterPosition >= 0 && childAdapterPosition > textSelectionHelper.startViewPosition && childAdapterPosition <= textSelectionHelper.endViewPosition) {
-                canvas.drawRect(getPaddingLeft(), paddingTop, getWidth() - getPaddingRight(), paddingTop + this.imageH, this.selectionPaint);
-            }
+        if (anonymousClass6 != null && (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) != null && textSelectionHelper.isInSelectionMode() && (getParent() instanceof RecyclerView) && (childAdapterPosition = ((RecyclerView) getParent()).getChildAdapterPosition(this)) >= 0 && childAdapterPosition > textSelectionHelper.startViewPosition && childAdapterPosition <= textSelectionHelper.endViewPosition) {
+            canvas.drawRect(getPaddingLeft(), paddingTop, getWidth() - getPaddingRight(), paddingTop + this.imageH, this.selectionPaint);
         }
         if (this.glass && (blurredBackgroundSourceRenderNode = this.blurSource) != null && Build.VERSION.SDK_INT >= 31) {
             int width = getWidth();
@@ -634,7 +968,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
                 drawGlassButton(canvas, imageView2);
             }
         }
-        if (animatedFloat.transition) {
+        if (animatedFloat.isInProgress()) {
             requestLayout();
         }
     }
@@ -652,9 +986,9 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
             iDp = 0;
         } else {
             int size = blockRow.quoteIds.size();
-            int iDp2 = size <= 0 ? 0 : AndroidUtilities.dp(zzkv.m(size, 1, 16, 12));
+            int iDp2 = size <= 0 ? 0 : AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(size, 1, 16, 12));
             int iMax2 = Math.max(0, blockRow.level);
-            iDp = iDp2 + (iMax2 <= 0 ? 0 : AndroidUtilities.dp(zzkv.m(iMax2, 1, 24, 28)));
+            iDp = iDp2 + (iMax2 <= 0 ? 0 : AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(iMax2, 1, 24, 28)));
         }
         int iDp3 = iDp > 0 ? AndroidUtilities.dp(16.0f) : 0;
         this.caption.layout(paddingLeft - iDp3, paddingRight - iDp3, i5, getPaddingTop() + this.imageH);
@@ -748,7 +1082,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
         int iMax3 = Math.max(0, (size3 - paddingLeft) - paddingRight);
         float f2 = isSlideshow() ? 1.0f : 0.0f;
         AnimatedFloat animatedFloat = this.modeProgress;
-        float f3 = animatedFloat.set(f2, false);
+        float f3 = animatedFloat.set(f2);
         ArrayList arrayList3 = this.collageRects;
         arrayList3.clear();
         int paddingTop2 = getPaddingTop();
@@ -999,14 +1333,14 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
                     i16 = 1;
                 } else {
                     i16 = 1;
-                    iDp2 = AndroidUtilities.dp(zzkv.m(size2, 1, 16, 12));
+                    iDp2 = AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(size2, 1, 16, 12));
                 }
                 i17 = 0;
                 iMax2 = Math.max(0, blockRow.level);
                 if (iMax2 <= 0) {
                     iDp3 = 0;
                 } else {
-                    iDp3 = AndroidUtilities.dp(zzkv.m(iMax2, i16, 24, 28));
+                    iDp3 = AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(iMax2, i16, 24, 28));
                 }
                 i18 = iDp2 + iDp3;
             }
@@ -1026,7 +1360,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
                 ((ImageView) arrayList2.get(i17)).measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
                 i17++;
             }
-            if (animatedFloat.transition) {
+            if (animatedFloat.isInProgress()) {
                 requestLayout();
             }
         }
@@ -1067,14 +1401,14 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
                 i16 = 1;
             } else {
                 i16 = 1;
-                iDp2 = AndroidUtilities.dp(zzkv.m(size2, 1, 16, 12));
+                iDp2 = AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(size2, 1, 16, 12));
             }
             i17 = 0;
             iMax2 = Math.max(0, blockRow.level);
             if (iMax2 <= 0) {
                 iDp3 = 0;
             } else {
-                iDp3 = AndroidUtilities.dp(zzkv.m(iMax2, i16, 24, 28));
+                iDp3 = AndroidUtilities.dp(CalendarActivity$$ExternalSyntheticOutline0.m(iMax2, i16, 24, 28));
             }
             i18 = iDp2 + iDp3;
         }
@@ -1096,7 +1430,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
                 i17++;
             }
         }
-        if (animatedFloat.transition) {
+        if (animatedFloat.isInProgress()) {
             requestLayout();
         }
     }
@@ -1113,7 +1447,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
         int actionMasked = motionEvent.getActionMasked();
         boolean z2 = y >= ((float) getPaddingTop()) && y < ((float) (getPaddingTop() + this.imageH));
         int i3 = -1;
-        if (!isSlideshow() || this.modeProgress.transition) {
+        if (!isSlideshow() || this.modeProgress.isInProgress()) {
             arrayList = this.itemRects;
             if (actionMasked == 0) {
                 if (!z2) {
@@ -1368,7 +1702,7 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         int i = Theme.key_chat_inFileBackground;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         this.backgroundPaint.setColor(Theme.getColor(i, resourcesProvider));
@@ -1381,19 +1715,18 @@ public final class RichMediaCell extends RichBlockCell implements Theme.Colorabl
 
     public final void updateSwitchButton(boolean z) {
         boolean z2 = this.items.size() >= 2;
-        int i = z2 ? 0 : 8;
         ImageView imageView = this.switchModeButton;
-        imageView.setVisibility(i);
+        imageView.setVisibility(z2 ? 0 : 8);
         if (z2) {
-            int i2 = isSlideshow() ? R.drawable.iv_media_slideshow : R.drawable.iv_media_collage;
-            if (i2 == this.lastSwitchIconRes) {
+            int i = isSlideshow() ? R.drawable.iv_media_slideshow : R.drawable.iv_media_collage;
+            if (i == this.lastSwitchIconRes) {
                 return;
             }
-            this.lastSwitchIconRes = i2;
+            this.lastSwitchIconRes = i;
             if (z) {
-                AndroidUtilities.updateImageViewImageAnimated(imageView, i2);
+                AndroidUtilities.updateImageViewImageAnimated(imageView, i);
             } else {
-                imageView.setImageResource(i2);
+                imageView.setImageResource(i);
             }
         }
     }

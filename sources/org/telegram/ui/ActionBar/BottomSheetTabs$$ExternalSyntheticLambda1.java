@@ -22,7 +22,7 @@ public final class BottomSheetTabs$$ExternalSyntheticLambda1 implements Runnable
     }
 
     @Override
-    public final void run() {
+    public final void run() throws Throwable {
         ViewGroup viewGroup;
         switch (this.$r8$classId) {
             case 0:

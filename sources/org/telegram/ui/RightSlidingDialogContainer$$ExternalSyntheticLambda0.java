@@ -15,22 +15,13 @@ public final class RightSlidingDialogContainer$$ExternalSyntheticLambda0 impleme
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                RightSlidingDialogContainer rightSlidingDialogContainer = this.f$0;
-                rightSlidingDialogContainer.getClass();
-                rightSlidingDialogContainer.openedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rightSlidingDialogContainer.updateOpenAnimationProgress();
+                this.f$0.lambda$finishPreviewInernal$4(valueAnimator);
                 break;
             case 1:
-                RightSlidingDialogContainer rightSlidingDialogContainer2 = this.f$0;
-                rightSlidingDialogContainer2.getClass();
-                rightSlidingDialogContainer2.openedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rightSlidingDialogContainer2.updateOpenAnimationProgress();
+                this.f$0.lambda$presentFragment$0(valueAnimator);
                 break;
             default:
-                RightSlidingDialogContainer rightSlidingDialogContainer3 = this.f$0;
-                rightSlidingDialogContainer3.getClass();
-                rightSlidingDialogContainer3.openedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rightSlidingDialogContainer3.updateOpenAnimationProgress();
+                this.f$0.lambda$onTouchEvent$5(valueAnimator);
                 break;
         }
     }

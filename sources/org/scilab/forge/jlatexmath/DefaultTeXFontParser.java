@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -148,7 +148,7 @@ public class DefaultTeXFontParser {
                     String attrValueAndCheckIfNotNull4 = getAttrValueAndCheckIfNotNull("code", element3);
                     Integer num = rangeTypeMappings.get(attrValueAndCheckIfNotNull4);
                     if (num == null) {
-                        throw new XMLResourceParseException("DefaultTeXFont.xml", "MapRange", "code", SurfaceContainer$$ExternalSyntheticOutline0.m("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull4, "'!"));
+                        throw new XMLResourceParseException("DefaultTeXFont.xml", "MapRange", "code", Fragment$$ExternalSyntheticOutline0.m("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull4, "'!"));
                     }
                     if (attrValueAndCheckIfNotNull == null) {
                         charFontArr[num.intValue()] = new CharFont((char) intAndCheck, Font_ID.indexOf(attrValueAndCheckIfNotNull3));
@@ -207,16 +207,16 @@ public class DefaultTeXFontParser {
                 String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("code", element2);
                 Integer num = rangeTypeMappings.get(attrValueAndCheckIfNotNull);
                 if (num == null) {
-                    throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "code", SurfaceContainer$$ExternalSyntheticOutline0.m("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull, "'!"));
+                    throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "code", Fragment$$ExternalSyntheticOutline0.m("contains an unknown \"range name\" '", attrValueAndCheckIfNotNull, "'!"));
                 }
                 String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("textStyle", element2);
                 if (this.parsedTextStyles.get(attrValueAndCheckIfNotNull2) == null) {
-                    throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "textStyle", SurfaceContainer$$ExternalSyntheticOutline0.m("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));
+                    throw new XMLResourceParseException("DefaultTeXFont.xml", "MapStyle", "textStyle", Fragment$$ExternalSyntheticOutline0.m("contains an unknown text style '", attrValueAndCheckIfNotNull2, "'!"));
                 }
                 CharFont[] charFontArr = this.parsedTextStyles.get(attrValueAndCheckIfNotNull2);
                 int iIntValue = num.intValue();
                 if (charFontArr[iIntValue] == null) {
-                    throw new XMLResourceParseException(SurfaceContainer$$ExternalSyntheticOutline0.m("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
+                    throw new XMLResourceParseException(Fragment$$ExternalSyntheticOutline0.m("DefaultTeXFont.xml: the default text style mapping '", attrValueAndCheckIfNotNull2, "' for the range '", attrValueAndCheckIfNotNull, "' contains no mapping for that range!"));
                 }
                 strArr[iIntValue] = attrValueAndCheckIfNotNull2;
             }
@@ -251,7 +251,7 @@ public class DefaultTeXFontParser {
             String attrValueAndCheckIfNotNull5 = getAttrValueAndCheckIfNotNull("name", documentElement);
             String attrValueAndCheckIfNotNull6 = getAttrValueAndCheckIfNotNull("id", documentElement);
             if (Font_ID.indexOf(attrValueAndCheckIfNotNull6) >= 0) {
-                throw new FontAlreadyLoadedException(SurfaceContainer$$ExternalSyntheticOutline0.m("Font ", attrValueAndCheckIfNotNull6, " is already loaded !"));
+                throw new FontAlreadyLoadedException(Fragment$$ExternalSyntheticOutline0.m("Font ", attrValueAndCheckIfNotNull6, " is already loaded !"));
             }
             Font_ID.add(attrValueAndCheckIfNotNull6);
             float floatAndCheck = getFloatAndCheck("space", documentElement);
@@ -304,9 +304,9 @@ public class DefaultTeXFontParser {
             this.parsedTextStyles = parseStyleMappings();
             return (FontInfo[]) arrayList.toArray(fontInfoArr);
         } catch (Exception e) {
-            StringBuilder sbM4m = SurfaceContainer$$ExternalSyntheticOutline0.m4m("Cannot find the file ", str, "!");
-            sbM4m.append(e.toString());
-            throw new XMLResourceParseException(sbM4m.toString());
+            StringBuilder sbM80m = Fragment$$ExternalSyntheticOutline0.m80m("Cannot find the file ", str, "!");
+            sbM80m.append(e.toString());
+            throw new XMLResourceParseException(sbM80m.toString());
         }
     }
 
@@ -366,7 +366,7 @@ public class DefaultTeXFontParser {
                     }
                 }
             } catch (Exception unused2) {
-                throw new XMLResourceParseException(SurfaceContainer$$ExternalSyntheticOutline0.m("Cannot find the file ", attrValueAndCheckIfNotNull2, "!"));
+                throw new XMLResourceParseException(Fragment$$ExternalSyntheticOutline0.m("Cannot find the file ", attrValueAndCheckIfNotNull2, "!"));
             }
         }
         return map;

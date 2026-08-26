@@ -19,7 +19,6 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
 
 public abstract class StoryModeTabs extends FrameLayout implements FlashViews.Invertable {
     public ValueAnimator animator;
@@ -50,10 +49,10 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
                 StoryRecorder.AnonymousClass12 anonymousClass13 = anonymousClass12;
                 int iFloor = (int) Math.floor(anonymousClass13.mode);
                 RectF rectF = this.a;
-                setRect(rectF, iFloor);
+                setRect(iFloor, rectF);
                 int iCeil = (int) Math.ceil(anonymousClass13.mode);
                 RectF rectF2 = this.b;
-                setRect(rectF2, iCeil);
+                setRect(iCeil, rectF2);
                 float f = anonymousClass13.mode;
                 float fFloor = f - ((float) Math.floor(f));
                 RectF rectF3 = this.c;
@@ -64,7 +63,7 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
                 super.dispatchDraw(canvas);
             }
 
-            public final void setRect(RectF rectF, int i) {
+            public final void setRect(int i, RectF rectF) {
                 FrameLayout frameLayout;
                 StoryRecorder.AnonymousClass12 anonymousClass13 = anonymousClass12;
                 if (i <= -1) {
@@ -129,7 +128,7 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
                 }
             }
         });
-        ScaleStateListAnimator.apply(frameLayout, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(frameLayout);
         FrameLayout frameLayout2 = new FrameLayout(activity);
         this.photoLayout = frameLayout2;
         TextView textView2 = new TextView(activity);
@@ -181,7 +180,7 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
                 }
             }
         });
-        ScaleStateListAnimator.apply(frameLayout2, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(frameLayout2);
         FrameLayout frameLayout3 = new FrameLayout(activity);
         this.videoLayout = frameLayout3;
         TextView textView3 = new TextView(activity);
@@ -233,7 +232,7 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
                 }
             }
         });
-        ScaleStateListAnimator.apply(frameLayout3, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(frameLayout3);
         addView((View) r2, LayoutHelper.createFrame(-2, -1, 113));
     }
 
@@ -278,7 +277,7 @@ public abstract class StoryModeTabs extends FrameLayout implements FlashViews.In
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.mode, i);
         this.animator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 14));
+        valueAnimatorOfFloat.addUpdateListener(new HintView2$$ExternalSyntheticLambda1(this, 9));
         this.animator.setDuration(320L);
         this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.animator.start();

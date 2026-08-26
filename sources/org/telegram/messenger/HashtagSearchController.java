@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import androidx.recyclerview.widget.DiffUtil;
 import com.google.android.exoplayer2.util.Consumer;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -181,7 +181,7 @@ public class HashtagSearchController {
                 message.id = numValueOf.intValue();
             }
             if (!messages_messages.messages.isEmpty()) {
-                TLRPC.Message message2 = (TLRPC.Message) zziq.m(1, messages_messages.messages);
+                TLRPC.Message message2 = (TLRPC.Message) zzin.m(1, messages_messages.messages);
                 searchResult.lastOffsetId = message2.realId;
                 searchResult.lastOffsetPeer = message2.peer_id;
             }

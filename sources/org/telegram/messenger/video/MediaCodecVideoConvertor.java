@@ -5,7 +5,7 @@ import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
 import java.io.File;
 import java.io.IOException;
@@ -236,7 +236,7 @@ public class MediaCodecVideoConvertor {
             f8 += 0.01f;
         }
         StringBuilder sbM = DiffUtil.m("source size ", i, "x", i2, "    dest size ");
-        SurfaceContainer$$ExternalSyntheticOutline0.m(sbM, i3, "x", i4, "   rotated ");
+        Fragment$$ExternalSyntheticOutline0.m(sbM, i3, "x", i4, "   rotated ");
         sbM.append(z2);
         sbM.append("   ratio ");
         sbM.append(f2);
@@ -265,8 +265,8 @@ public class MediaCodecVideoConvertor {
         sb.append(strGlslFloat);
         sb.append(";\nconst float offsetY = ");
         sb.append(strGlslFloat2);
-        SurfaceContainer$$ExternalSyntheticOutline0.m(sb, ";\nconst float kernelScaleX = ", strGlslFloat3, ";\nconst float kernelScaleY = ", strGlslFloat4);
-        SurfaceContainer$$ExternalSyntheticOutline0.m(sb, ";\nconst float weightsum = ", strGlslFloat5, ";\nconst float pixelSizeX = ", strGlslFloat6);
+        Fragment$$ExternalSyntheticOutline0.m(sb, ";\nconst float kernelScaleX = ", strGlslFloat3, ";\nconst float kernelScaleY = ", strGlslFloat4);
+        Fragment$$ExternalSyntheticOutline0.m(sb, ";\nconst float weightsum = ", strGlslFloat5, ";\nconst float pixelSizeX = ", strGlslFloat6);
         sb.append(";\nconst float pixelSizeY = ");
         sb.append(strGlslFloat7);
         sb.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");
@@ -369,7 +369,7 @@ public class MediaCodecVideoConvertor {
             f8 += 0.01f;
         }
         StringBuilder sbM = DiffUtil.m("HDR source size ", i, "x", i2, "    dest size ");
-        SurfaceContainer$$ExternalSyntheticOutline0.m(sbM, i3, "x", i4, "   rotated ");
+        Fragment$$ExternalSyntheticOutline0.m(sbM, i3, "x", i4, "   rotated ");
         sbM.append(z2);
         sbM.append("   ratio ");
         sbM.append(f2);
@@ -398,8 +398,8 @@ public class MediaCodecVideoConvertor {
         sb.append(strGlslFloat);
         sb.append(";\nconst float offsetY = ");
         sb.append(strGlslFloat2);
-        SurfaceContainer$$ExternalSyntheticOutline0.m(sb, ";\nconst float kernelScaleX = ", strGlslFloat3, ";\nconst float kernelScaleY = ", strGlslFloat4);
-        SurfaceContainer$$ExternalSyntheticOutline0.m(sb, ";\nconst float weightsum = ", strGlslFloat5, ";\nconst float pixelSizeX = ", strGlslFloat6);
+        Fragment$$ExternalSyntheticOutline0.m(sb, ";\nconst float kernelScaleX = ", strGlslFloat3, ";\nconst float kernelScaleY = ", strGlslFloat4);
+        Fragment$$ExternalSyntheticOutline0.m(sb, ";\nconst float weightsum = ", strGlslFloat5, ";\nconst float pixelSizeX = ", strGlslFloat6);
         sb.append(";\nconst float pixelSizeY = ");
         sb.append(strGlslFloat7);
         sb.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");

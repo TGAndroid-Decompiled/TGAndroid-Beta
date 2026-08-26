@@ -15,7 +15,7 @@ public final class StoryLinkSheet$$ExternalSyntheticLambda5 implements View.OnCl
     public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.processDone$10();
+                this.f$0.processDone$5();
                 break;
             default:
                 this.f$0.closePreview();

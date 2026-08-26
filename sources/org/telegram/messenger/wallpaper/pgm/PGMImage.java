@@ -1,10 +1,10 @@
 package org.telegram.messenger.wallpaper.pgm;
 
 import android.graphics.Bitmap;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzij;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzig;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -75,7 +75,7 @@ public abstract class PGMImage {
             }
             throw new IOException("Invalid " + str2 + ": " + i);
         } catch (NumberFormatException e) {
-            throw new IOException(SurfaceContainer$$ExternalSyntheticOutline0.m("Invalid ", str2, ": ", str), e);
+            throw new IOException(Fragment$$ExternalSyntheticOutline0.m("Invalid ", str2, ": ", str), e);
         }
     }
 
@@ -86,7 +86,7 @@ public abstract class PGMImage {
         BufferedInputStream bufferedInputStream = new BufferedInputStream(gZIPInputStream);
         String strNextToken4 = nextToken(bufferedInputStream, arrayList);
         if (!"P5".equals(strNextToken4)) {
-            throw new IOException(zzil.m("Not a binary PGM (P5), got: ", strNextToken4));
+            throw new IOException(zzii.m("Not a binary PGM (P5), got: ", strNextToken4));
         }
         do {
             strNextToken = nextToken(bufferedInputStream, arrayList);
@@ -145,7 +145,7 @@ public abstract class PGMImage {
             Iterator it = list.iterator();
             while (it.hasNext()) {
                 String str = (String) it.next();
-                gZIPOutputStream.write(zzij.m("#", str == null ? "" : str.replace('\r', ' ').replace('\n', ' '), "\n").getBytes(StandardCharsets.US_ASCII));
+                gZIPOutputStream.write(zzig.m("#", str == null ? "" : str.replace('\r', ' ').replace('\n', ' '), "\n").getBytes(StandardCharsets.US_ASCII));
             }
         }
         Charset charset = StandardCharsets.US_ASCII;

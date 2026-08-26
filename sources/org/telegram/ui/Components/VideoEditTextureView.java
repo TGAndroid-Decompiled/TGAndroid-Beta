@@ -4,20 +4,21 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
+import android.view.Surface;
 import android.view.TextureView;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 
-public final class VideoEditTextureView extends TextureView implements TextureView.SurfaceTextureListener {
-    public VideoPlayer currentVideoPlayer;
-    public VideoEditTextureViewDelegate delegate;
-    public FilterGLThread eglThread;
-    public int gradientBottom;
-    public int gradientTop;
+public class VideoEditTextureView extends TextureView implements TextureView.SurfaceTextureListener {
+    private VideoPlayer currentVideoPlayer;
+    private VideoEditTextureViewDelegate delegate;
+    private FilterGLThread eglThread;
+    private int gradientBottom;
+    private int gradientTop;
     public StoryEntry.HDRInfo hdrInfo;
-    public BlurringShader.BlurManager uiBlurManager;
-    public int videoHeight;
-    public int videoWidth;
-    public final RectOld viewRect;
+    private BlurringShader.BlurManager uiBlurManager;
+    private int videoHeight;
+    private int videoWidth;
+    private RectOld viewRect;
 
     public interface VideoEditTextureViewDelegate {
         void onEGLThreadAvailable(FilterGLThread filterGLThread);
@@ -30,22 +31,36 @@ public final class VideoEditTextureView extends TextureView implements TextureVi
         setSurfaceTextureListener(this);
     }
 
-    public Bitmap getUiBlurBitmap() {
-        BlurringShader blurringShader;
+    public void lambda$onSurfaceTextureAvailable$0(SurfaceTexture surfaceTexture) {
+        if (this.currentVideoPlayer == null) {
+            return;
+        }
+        this.currentVideoPlayer.setSurface(new Surface(surfaceTexture));
+    }
+
+    public void lambda$onSurfaceTextureSizeChanged$1() {
         FilterGLThread filterGLThread = this.eglThread;
-        if (filterGLThread == null || (blurringShader = filterGLThread.uiBlur) == null) {
+        if (filterGLThread != null) {
+            filterGLThread.requestRender(false, true, false);
+        }
+    }
+
+    public boolean containsPoint(float f, float f2) {
+        RectOld rectOld = this.viewRect;
+        float f3 = rectOld.x;
+        if (f < f3 || f > f3 + rectOld.width) {
+            return false;
+        }
+        float f4 = rectOld.y;
+        return f2 >= f4 && f2 <= f4 + rectOld.height;
+    }
+
+    public Bitmap getUiBlurBitmap() {
+        FilterGLThread filterGLThread = this.eglThread;
+        if (filterGLThread == null) {
             return null;
         }
-        synchronized (blurringShader.bitmapLock) {
-            try {
-                if (blurringShader.bitmapAvailable) {
-                    return blurringShader.bitmap;
-                }
-                return null;
-            } catch (Throwable th) {
-                throw th;
-            }
-        }
+        return filterGLThread.getUiBlurBitmap();
     }
 
     public int getVideoHeight() {
@@ -57,25 +72,18 @@ public final class VideoEditTextureView extends TextureView implements TextureVi
     }
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+    public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
         int i3;
         if (this.eglThread != null || surfaceTexture == null || this.currentVideoPlayer == null) {
             return;
         }
-        FilterGLThread filterGLThread = new FilterGLThread(surfaceTexture, new VideoEditTextureView$$ExternalSyntheticLambda1(this, 0), this.hdrInfo, this.uiBlurManager, i, i2);
+        FilterGLThread filterGLThread = new FilterGLThread(surfaceTexture, new ColorPicker$$ExternalSyntheticLambda5(this, 24), this.hdrInfo, this.uiBlurManager, i, i2);
         this.eglThread = filterGLThread;
         filterGLThread.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
-        FilterGLThread filterGLThread2 = this.eglThread;
-        BlurringShader.BlurManager blurManager = this.uiBlurManager;
-        BlurringShader blurringShader = filterGLThread2.uiBlur;
-        if (blurringShader != null) {
-            blurringShader.setBlurManager(blurManager);
-        }
+        this.eglThread.updateUiBlurManager(this.uiBlurManager);
         int i4 = this.videoWidth;
         if (i4 != 0 && (i3 = this.videoHeight) != 0) {
-            FilterGLThread filterGLThread3 = this.eglThread;
-            filterGLThread3.getClass();
-            filterGLThread3.postRunnable(new FilterGLThread$$ExternalSyntheticLambda0(filterGLThread3, i4, i3, 0));
+            this.eglThread.setVideoSize(i4, i3);
         }
         this.eglThread.requestRender(true, true, false);
         VideoEditTextureViewDelegate videoEditTextureViewDelegate = this.delegate;
@@ -85,7 +93,7 @@ public final class VideoEditTextureView extends TextureView implements TextureVi
     }
 
     @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+    public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
         FilterGLThread filterGLThread = this.eglThread;
         if (filterGLThread == null) {
             return true;
@@ -96,17 +104,25 @@ public final class VideoEditTextureView extends TextureView implements TextureVi
     }
 
     @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+    public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
         FilterGLThread filterGLThread = this.eglThread;
         if (filterGLThread != null) {
-            filterGLThread.postRunnable(new FilterGLThread$$ExternalSyntheticLambda0(filterGLThread, i, i2, 1));
+            filterGLThread.setSurfaceTextureSize(i, i2);
             this.eglThread.requestRender(false, true, false);
-            this.eglThread.postRunnable(new Tooltip$$ExternalSyntheticLambda0(this, 10));
+            this.eglThread.postRunnable(new VideoPlayer$$ExternalSyntheticLambda1(this, 2));
         }
     }
 
     @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    public void release() {
+        FilterGLThread filterGLThread = this.eglThread;
+        if (filterGLThread != null) {
+            filterGLThread.shutdown();
+        }
+        this.currentVideoPlayer = null;
     }
 
     public void setDelegate(VideoEditTextureViewDelegate videoEditTextureViewDelegate) {
@@ -125,7 +141,7 @@ public final class VideoEditTextureView extends TextureView implements TextureVi
         this.hdrInfo = hDRInfo;
         FilterGLThread filterGLThread = this.eglThread;
         if (filterGLThread != null) {
-            filterGLThread.postRunnable(new EmojiView$2$$ExternalSyntheticLambda1(26, filterGLThread, hDRInfo));
+            filterGLThread.updateHDRInfo(hDRInfo);
         }
     }
 
@@ -134,28 +150,43 @@ public final class VideoEditTextureView extends TextureView implements TextureVi
         super.setTransform(matrix);
         FilterGLThread filterGLThread = this.eglThread;
         if (filterGLThread != null) {
-            int width = getWidth();
-            int height = getHeight();
-            BlurringShader blurringShader = filterGLThread.uiBlur;
-            if (blurringShader == null) {
-                return;
-            }
-            Matrix matrix2 = blurringShader.iMatrix;
-            matrix.invert(matrix2);
-            float f = width;
-            float f2 = height;
-            matrix2.preScale(f, f2);
-            matrix2.postScale(1.0f / f, 1.0f / f2);
-            blurringShader.updateTransform(matrix2);
-            filterGLThread.requestRender(false, false, false);
+            filterGLThread.updateUiBlurTransform(matrix, getWidth(), getHeight());
         }
     }
 
-    public final void setViewRect(float f, float f2, float f3, float f4) {
+    public void setVideoSize(int i, int i2) {
+        this.videoWidth = i;
+        this.videoHeight = i2;
+        FilterGLThread filterGLThread = this.eglThread;
+        if (filterGLThread == null) {
+            return;
+        }
+        filterGLThread.setVideoSize(i, i2);
+    }
+
+    public void setViewRect(float f, float f2, float f3, float f4) {
         RectOld rectOld = this.viewRect;
         rectOld.x = f;
         rectOld.y = f2;
         rectOld.width = f3;
         rectOld.height = f4;
+    }
+
+    public void updateUiBlurGradient(int i, int i2) {
+        FilterGLThread filterGLThread = this.eglThread;
+        if (filterGLThread != null) {
+            filterGLThread.updateUiBlurGradient(i, i2);
+        } else {
+            this.gradientTop = i;
+            this.gradientBottom = i2;
+        }
+    }
+
+    public void updateUiBlurManager(BlurringShader.BlurManager blurManager) {
+        this.uiBlurManager = blurManager;
+        FilterGLThread filterGLThread = this.eglThread;
+        if (filterGLThread != null) {
+            filterGLThread.updateUiBlurManager(blurManager);
+        }
     }
 }

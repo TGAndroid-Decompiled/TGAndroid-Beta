@@ -19,35 +19,35 @@ public final class ChatbotsActivity$$ExternalSyntheticLambda5 implements Runnabl
             case 0:
                 ChatbotsActivity chatbotsActivity = this.f$0;
                 chatbotsActivity.listView.adapter.update(true);
-                chatbotsActivity.checkDone$6(true);
+                chatbotsActivity.checkDone$5(true);
                 break;
             case 1:
                 ChatbotsActivity chatbotsActivity2 = this.f$0;
                 TL_account.TL_businessBotRights tL_businessBotRights = chatbotsActivity2.rights;
                 tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
                 chatbotsActivity2.listView.adapter.update(true);
-                chatbotsActivity2.checkDone$6(true);
+                chatbotsActivity2.checkDone$5(true);
                 break;
             case 2:
                 ChatbotsActivity chatbotsActivity3 = this.f$0;
                 TL_account.TL_businessBotRights tL_businessBotRights2 = chatbotsActivity3.rights;
-                tL_businessBotRights2.edit_username = true;
-                tL_businessBotRights2.edit_profile_photo = true;
-                tL_businessBotRights2.edit_bio = true;
-                tL_businessBotRights2.edit_name = true;
+                tL_businessBotRights2.transfer_stars = true;
+                tL_businessBotRights2.transfer_and_upgrade_gifts = true;
+                tL_businessBotRights2.change_gift_settings = true;
+                tL_businessBotRights2.sell_gifts = true;
+                tL_businessBotRights2.view_gifts = true;
                 chatbotsActivity3.listView.adapter.update(true);
-                chatbotsActivity3.checkDone$6(true);
+                chatbotsActivity3.checkDone$5(true);
                 break;
             case 3:
                 ChatbotsActivity chatbotsActivity4 = this.f$0;
                 TL_account.TL_businessBotRights tL_businessBotRights3 = chatbotsActivity4.rights;
-                tL_businessBotRights3.transfer_stars = true;
-                tL_businessBotRights3.transfer_and_upgrade_gifts = true;
-                tL_businessBotRights3.change_gift_settings = true;
-                tL_businessBotRights3.sell_gifts = true;
-                tL_businessBotRights3.view_gifts = true;
+                tL_businessBotRights3.edit_username = true;
+                tL_businessBotRights3.edit_profile_photo = true;
+                tL_businessBotRights3.edit_bio = true;
+                tL_businessBotRights3.edit_name = true;
                 chatbotsActivity4.listView.adapter.update(true);
-                chatbotsActivity4.checkDone$6(true);
+                chatbotsActivity4.checkDone$5(true);
                 break;
             default:
                 ChatbotsActivity chatbotsActivity5 = this.f$0;
@@ -60,7 +60,7 @@ public final class ChatbotsActivity$$ExternalSyntheticLambda5 implements Runnabl
                         chatbotsActivity5.lastQuery = string;
                         int i = chatbotsActivity5.searchId;
                         chatbotsActivity5.searchId = i + 1;
-                        searchAdapterHelper.queryServerSearch(string, true, false, true, false, false, 0L, false, 0, i, 0L, null);
+                        searchAdapterHelper.queryServerSearch(string, true, false, true, false, false, 0L, false, 0, i, 0L);
                     } else {
                         chatbotsActivity5.lastQuery = null;
                         chatbotsActivity5.searchHelper.clear();

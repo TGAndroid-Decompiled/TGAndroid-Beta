@@ -35,17 +35,15 @@ import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.OKLCH;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
-import org.telegram.ui.GroupCallActivity;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
+import org.telegram.ui.Stories.recorder.StoryRecorder;
 
 public final class GroupCallMessageCell extends ViewGroup implements ClickHelper.Delegate, NotificationCenter.NotificationCenterDelegate, FactorAnimator.Target {
     public static final Rect tmpRect = new Rect();
@@ -65,13 +63,16 @@ public final class GroupCallMessageCell extends ViewGroup implements ClickHelper
     public boolean layoutInvalidated;
     public ReactionsLayoutInBubble.VisibleReaction messageReaction;
     public final SpoilersTextView messageTextView;
-    public final Tooltip$$ExternalSyntheticLambda0 onMessageStateUpdateListener;
+    public final GiftSheet$$ExternalSyntheticLambda9 onMessageStateUpdateListener;
     public RenderNode renderNode;
     public float renderNodeScale;
-    public final ChatActivity.AnonymousClass102 senderNameSpan;
+    public final StoryRecorder.AnonymousClass8.AnonymousClass1 senderNameSpan;
     public final RectF tmpRectF;
 
     public interface Delegate {
+        void didClickAvatar(GroupCallMessageCell groupCallMessageCell, GroupCallMessage groupCallMessage, float f, float f2);
+
+        void didClickSenderName(GroupCallMessageCell groupCallMessageCell, GroupCallMessage groupCallMessage);
     }
 
     public final class VH extends RecyclerView.ViewHolder {
@@ -95,10 +96,10 @@ public final class GroupCallMessageCell extends ViewGroup implements ClickHelper
         this.errPaint = paint2;
         CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(64, 204, 160);
         this.flickerDrawable = cellFlickerDrawable;
-        this.onMessageStateUpdateListener = new Tooltip$$ExternalSyntheticLambda0(this, 18);
-        this.senderNameSpan = new ChatActivity.AnonymousClass102(this, 6);
+        this.onMessageStateUpdateListener = new GiftSheet$$ExternalSyntheticLambda9(this, 9);
+        this.senderNameSpan = new StoryRecorder.AnonymousClass8.AnonymousClass1(this, 3);
         this.tmpRectF = new RectF();
-        SpoilersTextView spoilersTextView = new SpoilersTextView(context, null, true);
+        SpoilersTextView spoilersTextView = new SpoilersTextView(context, true, null);
         this.messageTextView = spoilersTextView;
         spoilersTextView.setDisablePaddingsOffset(true);
         spoilersTextView.setTextSize(14.0f);
@@ -159,7 +160,7 @@ public final class GroupCallMessageCell extends ViewGroup implements ClickHelper
             RectF rectF = this.tmpRectF;
             rectF.set((RectF) this.layout.name);
             rectF.inset(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-            this.flickerDrawable.draw(AndroidUtilities.dp(14.0f), canvas, rectF, null);
+            this.flickerDrawable.draw(null, canvas, rectF, AndroidUtilities.dp(14.0f));
             invalidate();
         }
         super.dispatchDraw(canvas);
@@ -250,7 +251,7 @@ public final class GroupCallMessageCell extends ViewGroup implements ClickHelper
         if (getClickTarget(f, f2) != 1 || (delegate = this.delegate) == null || (groupCallMessage = this.groupCallMessage) == null) {
             return;
         }
-        ((GroupCallActivity.AnonymousClass35) delegate).openSenderProfile(groupCallMessage);
+        delegate.didClickAvatar(this, groupCallMessage, f, f2);
     }
 
     @Override
@@ -282,7 +283,7 @@ public final class GroupCallMessageCell extends ViewGroup implements ClickHelper
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
@@ -334,14 +335,14 @@ public final class GroupCallMessageCell extends ViewGroup implements ClickHelper
             int paddingRight = getPaddingRight();
             SpoilersTextView spoilersTextView = this.messageTextView;
             ReactionsLayoutInBubble.VisibleReaction visibleReaction = this.messageReaction;
-            spoilersTextView.measure(OKLCH.m((size - paddingLeft) - paddingRight, 44.0f, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
+            spoilersTextView.measure(OKLCH.m(44.0f, (size - paddingLeft) - paddingRight, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
             float measuredWidth = spoilersTextView.getMeasuredWidth();
             if (visibleReaction == null) {
                 iCeil = AndroidUtilities.dp(44.0f) + ((int) Math.ceil(measuredWidth));
             } else {
                 iCeil = ((int) Math.ceil(measuredWidth)) + AndroidUtilities.dp(70.0f);
             }
-            int iM = MessageObject$$ExternalSyntheticOutline0.m(spoilersTextView.getMeasuredHeight(), 8.0f, AndroidUtilities.dp(28.0f));
+            int iM = MessageObject$$ExternalSyntheticOutline0.m(8.0f, spoilersTextView.getMeasuredHeight(), AndroidUtilities.dp(28.0f));
             Component.Builder builder2 = new Component.Builder();
             builder2.instantiation = size;
             builder2.type = iM;
@@ -390,7 +391,7 @@ public final class GroupCallMessageCell extends ViewGroup implements ClickHelper
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.clickHelper.onTouchEvent(motionEvent, this);
+        return this.clickHelper.onTouchEvent(this, motionEvent);
     }
 
     public void set(GroupCallMessage groupCallMessage) {
@@ -402,13 +403,13 @@ public final class GroupCallMessageCell extends ViewGroup implements ClickHelper
         GroupCallMessage groupCallMessage2;
         GroupCallMessage groupCallMessage3;
         boolean zIsAttachedToWindow = isAttachedToWindow();
-        Tooltip$$ExternalSyntheticLambda0 tooltip$$ExternalSyntheticLambda0 = this.onMessageStateUpdateListener;
+        GiftSheet$$ExternalSyntheticLambda9 giftSheet$$ExternalSyntheticLambda9 = this.onMessageStateUpdateListener;
         if (zIsAttachedToWindow && (groupCallMessage3 = this.groupCallMessage) != null) {
-            groupCallMessage3.unsubscribeFromStateUpdates(tooltip$$ExternalSyntheticLambda0);
+            groupCallMessage3.unsubscribeFromStateUpdates(giftSheet$$ExternalSyntheticLambda9);
         }
         this.groupCallMessage = groupCallMessage;
         if (isAttachedToWindow() && (groupCallMessage2 = this.groupCallMessage) != null) {
-            groupCallMessage2.subscribeToStateUpdates(tooltip$$ExternalSyntheticLambda0);
+            groupCallMessage2.subscribeToStateUpdates(giftSheet$$ExternalSyntheticLambda9);
         }
         GroupCallMessage groupCallMessage4 = this.groupCallMessage;
         boolean z2 = false;
@@ -418,7 +419,7 @@ public final class GroupCallMessageCell extends ViewGroup implements ClickHelper
         }
         TLObject userOrChat = MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(groupCallMessage.fromId);
         String name = DialogObject.getName(userOrChat);
-        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
         avatarDrawable.setInfo(groupCallMessage.currentAccount, userOrChat);
         this.avatarReceiver.setForUserOrChat(userOrChat, avatarDrawable);
         ImageReceiver imageReceiver = this.animatedReactionReceiver;

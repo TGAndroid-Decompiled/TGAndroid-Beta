@@ -40,8 +40,8 @@ public class ColoredImageSpan extends ReplacementSpan {
     boolean usePaintColor;
     private final int verticalAlignment;
 
-    public ColoredImageSpan(Drawable drawable) {
-        this(0, drawable);
+    public ColoredImageSpan(int i) {
+        this(i, 0);
     }
 
     @Override
@@ -256,8 +256,8 @@ public class ColoredImageSpan extends ReplacementSpan {
         this.translateY = f2;
     }
 
-    public ColoredImageSpan(int i) {
-        this(0, ApplicationLoader.applicationContext.getDrawable(i).mutate());
+    public ColoredImageSpan(Drawable drawable) {
+        this(drawable, 0);
     }
 
     public void setScale(float f, float f2) {
@@ -266,10 +266,10 @@ public class ColoredImageSpan extends ReplacementSpan {
     }
 
     public ColoredImageSpan(int i, int i2) {
-        this(0, ApplicationLoader.applicationContext.getDrawable(i).mutate());
+        this(ApplicationLoader.applicationContext.getDrawable(i).mutate(), i2);
     }
 
-    public ColoredImageSpan(int i, Drawable drawable) {
+    public ColoredImageSpan(Drawable drawable, int i) {
         this.draw = true;
         this.recolorDrawable = true;
         this.usePaintColor = true;

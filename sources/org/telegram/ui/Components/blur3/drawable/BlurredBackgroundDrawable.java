@@ -17,23 +17,24 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
-import com.google.android.gms.internal.mlkit_vision_label.zzdq;
+import com.google.android.exoplayer2.analytics.DefaultAnalyticsCollector$$ExternalSyntheticLambda1;
 import java.lang.ref.WeakReference;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.utils.FBool;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.Blur3HashImpl;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProvider;
+import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProvider;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundProviderBuilder;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceBitmap;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceRenderNode;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceWrapped;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.PrivacyControlActivity$$ExternalSyntheticLambda9;
+import org.telegram.ui.Components.blur3.utils.NinePatchBuilder;
 
 public abstract class BlurredBackgroundDrawable extends Drawable {
     public int alpha;
@@ -63,7 +64,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     public float sourceOffsetY;
     public int strokeColorBottom;
     public int strokeColorTop;
-    public PremiumPreviewFragment.AnonymousClass3 viewOutlineProvider;
+    public ActionBarLayout.AnonymousClass4 viewOutlineProvider;
     public static final float[] tmpRadii = new float[8];
     public static Path tmpPath = new Path();
 
@@ -307,7 +308,7 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
         long j = blur3HashImpl.unsupported ? -1L : blur3HashImpl.hash;
         if (this.ninePatchDrawable == null || this.ninePatchDrawableHash != j) {
             this.ninePatchDrawableHash = j;
-            NinePatchDrawable ninePatchDrawableCreateNinePatch = zzdq.createNinePatch(null, props.radii, this.shadowLayerRadius, this.shadowLayerDy, Color.alpha(i) == 255 ? i : 1, new PrivacyControlActivity$$ExternalSyntheticLambda9(i, this, z));
+            NinePatchDrawable ninePatchDrawableCreateNinePatch = NinePatchBuilder.createNinePatch(null, props.radii, this.shadowLayerRadius, this.shadowLayerDy, Color.alpha(i) == 255 ? i : 1, new DefaultAnalyticsCollector$$ExternalSyntheticLambda1(this, z, i, 3));
             this.ninePatchDrawable = ninePatchDrawableCreateNinePatch;
             ninePatchDrawableCreateNinePatch.getPadding(this.ninePatchDrawablePadding);
         }
@@ -531,8 +532,8 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
     public final void setColorProvider(BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         this.colorProvider = blurredBackgroundColorProvider;
         updateColors();
-        if (blurredBackgroundColorProvider instanceof BlurredBackgroundProviderBuilder) {
-            BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = (BlurredBackgroundProviderBuilder) blurredBackgroundColorProvider;
+        if (blurredBackgroundColorProvider instanceof BlurredBackgroundProvider) {
+            BlurredBackgroundProviderBuilder blurredBackgroundProviderBuilder = (BlurredBackgroundProviderBuilder) ((BlurredBackgroundProvider) blurredBackgroundColorProvider);
             float f = blurredBackgroundProviderBuilder.strokeWidthTop;
             float f2 = blurredBackgroundProviderBuilder.strokeWidthBottom;
             Props props = this.boundProps;
@@ -543,6 +544,10 @@ public abstract class BlurredBackgroundDrawable extends Drawable {
             this.shadowLayerRadius = f3;
             this.shadowLayerDy = f4;
         }
+    }
+
+    public final void setHasPadding() {
+        this.boundProps.hasPadding = true;
     }
 
     public final void setPadding(int i) {

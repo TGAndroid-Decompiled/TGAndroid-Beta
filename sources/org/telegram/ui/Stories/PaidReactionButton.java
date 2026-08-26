@@ -4,16 +4,13 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import androidx.core.graphics.ColorUtils;
@@ -28,7 +25,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.AvatarSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -39,9 +35,10 @@ import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.blur3.StrokeDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.BlurredBackgroundColorProviderThemed;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stars.StarReactionsOverlay;
 import org.telegram.ui.Stars.StarsReactionsSheet;
+import org.telegram.ui.iv.RichMediaCell$$ExternalSyntheticLambda1;
 
 public final class PaidReactionButton extends View {
     public float accumulatedRippleIntensity;
@@ -95,23 +92,22 @@ public final class PaidReactionButton extends View {
                 if (z) {
                     int[] iArr = paidReactionButtonEffectsView.effectAssets;
                     int i3 = iArr[Utilities.fastRandom.nextInt(iArr.length)];
-                    RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, DiffUtil.m(i3, ""), AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f), true, null);
+                    RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, DiffUtil.m(i3, ""), AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
                     this.effect = rLottieDrawable;
-                    rLottieDrawable.masterParent = view;
-                    rLottieDrawable.decodeSingleFrame = true;
-                    rLottieDrawable.scheduleNextGetFrame();
+                    rLottieDrawable.setMasterParent(view);
+                    rLottieDrawable.setAllowDecodeSingleFrame(true);
                     rLottieDrawable.setAutoRepeat(0);
                     rLottieDrawable.start();
                 }
                 TLObject userOrChat = MessagesController.getInstance(i).getUserOrChat(j);
-                AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+                AvatarDrawable avatarDrawable = new AvatarDrawable();
                 avatarDrawable.setInfo(userOrChat);
                 ImageReceiver imageReceiver = new ImageReceiver(view);
                 this.imageReceiver = imageReceiver;
                 imageReceiver.setImageCoords(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
                 imageReceiver.setRoundRadius(AndroidUtilities.dp(7.0f));
                 imageReceiver.setForUserOrChat(userOrChat, avatarDrawable);
-                view.addOnAttachStateChangeListener(new AvatarSpan.AnonymousClass1(this, 18));
+                view.addOnAttachStateChangeListener(new StarGiftSheet.Roller.AnonymousClass1(this, 7));
                 if (view.isAttachedToWindow()) {
                     imageReceiver.onAttachedToWindow();
                 }
@@ -123,10 +119,10 @@ public final class PaidReactionButton extends View {
                 spannableStringBuilder.append((CharSequence) " ");
                 spannableStringBuilder.append((CharSequence) LocaleController.formatNumber(i2, ','));
                 this.text = new Text(spannableStringBuilder, 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
-                AnimatedFloat animatedFloat = new AnimatedFloat(2000L, view, new LinearInterpolator());
+                AnimatedFloat animatedFloat = new AnimatedFloat(view, 2000L, new LinearInterpolator());
                 this.progress = animatedFloat;
-                animatedFloat.set(0.0f, true);
-                animatedFloat.set(1.0f, false);
+                animatedFloat.force(0.0f);
+                animatedFloat.set(1.0f);
                 this.killProgress = new AnimatedFloat(view, 350L, 240L, CubicBezierInterpolator.EASE_OUT_QUINT);
             }
         }
@@ -134,8 +130,8 @@ public final class PaidReactionButton extends View {
         public PaidReactionButtonEffectsView(Context context, int i) {
             super(context);
             this.reactionBounds = new RectF();
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, false, false);
+            new AnimatedFloat(this, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
             this.counter = animatedTextDrawable;
             this.effects = new ArrayList();
             this.effectAssets = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
@@ -143,16 +139,13 @@ public final class PaidReactionButton extends View {
             this.hidden = true;
             this.currentAccount = i;
             animatedTextDrawable.setCallback(this);
-            animatedTextDrawable.setHacks(false, true);
+            animatedTextDrawable.setHacks(false, true, true);
             animatedTextDrawable.setTextSize(AndroidUtilities.dp(40.0f));
-            Typeface typeface = AndroidUtilities.getTypeface("fonts/num.otf");
-            TextPaint textPaint = animatedTextDrawable.textPaint;
-            textPaint.setTypeface(typeface);
-            animatedTextDrawable.setShadowLayer(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
-            animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
-            textPaint.setColor(-1);
-            animatedTextDrawable.alpha = Color.alpha(-1);
-            animatedTextDrawable.gravity = 17;
+            animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
+            animatedTextDrawable.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(3.5f), 0);
+            animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+            animatedTextDrawable.setTextColor(-1);
+            animatedTextDrawable.setGravity(17);
             this.hideCounterRunnable = new PaidReactionButton$PaidReactionButtonEffectsView$$ExternalSyntheticLambda0(this, 0);
         }
 
@@ -166,7 +159,6 @@ public final class PaidReactionButton extends View {
             float f2 = 1.0f;
             float fLerp = AndroidUtilities.lerp(1.0f, 1.8f, paidReactionButtonEffectsView.focus);
             int iDp = (int) (AndroidUtilities.dp(90.0f) * fLerp);
-            boolean z = false;
             int i2 = 0;
             while (true) {
                 ArrayList arrayList = paidReactionButtonEffectsView.effects;
@@ -177,7 +169,7 @@ public final class PaidReactionButton extends View {
                     break;
                 }
                 RLottieDrawable rLottieDrawable = (RLottieDrawable) arrayList.get(i2);
-                if (rLottieDrawable.currentFrame >= rLottieDrawable.metaData[0]) {
+                if (rLottieDrawable.getCurrentFrame() >= rLottieDrawable.getFramesCount()) {
                     arrayList.remove(i2);
                     i2--;
                 } else {
@@ -200,9 +192,9 @@ public final class PaidReactionButton extends View {
                     return;
                 }
                 Chip chip = (Chip) arrayList2.get(i3);
-                float f4 = chip.progress.set(f2, z);
+                float f4 = chip.progress.set(f2);
                 float f5 = chip.killProgress.set(chip.isKilled);
-                float fDp2 = AndroidUtilities.dp(23.0f) + chip.text.width;
+                float fDp2 = AndroidUtilities.dp(23.0f) + chip.text.getCurrentWidth();
                 float fDp3 = AndroidUtilities.dp(18.0f);
                 float fLerp2 = AndroidUtilities.lerp(0.0f, AndroidUtilities.lerp(f2, 0.0f, f5), Utilities.clamp01(Math.min(AndroidUtilities.ilerp(f4, f2, 0.85f), AndroidUtilities.ilerp(f4, 0.0f, 0.12f))));
                 Paint paint = chip.backgroundPaint;
@@ -233,7 +225,7 @@ public final class PaidReactionButton extends View {
                 canvas2.drawRoundRect(0.0f, 0.0f, fDp2, fDp3, f8, f8, paint);
                 imageReceiver.draw(canvas2);
                 Canvas canvas3 = canvas2;
-                chip.text.draw(AndroidUtilities.dp(18.0f), f8, fLerp2, -1, canvas3);
+                chip.text.draw(canvas3, AndroidUtilities.dp(18.0f), f8, -1, fLerp2);
                 canvas2 = canvas3;
                 canvas2.restore();
                 if (rLottieDrawable2 != null) {
@@ -241,7 +233,7 @@ public final class PaidReactionButton extends View {
                     canvas2.translate(AndroidUtilities.dp(4.0f) * f6, 0.0f);
                     canvas2.rotate(f7);
                     canvas2.translate(0.0f, (-AndroidUtilities.dp(200.0f)) * ((float) Math.pow(d, 0.800000011920929d)));
-                    canvas2.translate(AndroidUtilities.dp(5.0f) * fSin * ((float) Math.pow(d, 0.5d)), 0.0f);
+                    canvas2.translate(fSin * AndroidUtilities.dp(5.0f) * ((float) Math.pow(d, 0.5d)), 0.0f);
                     int iDp2 = AndroidUtilities.dp(90.0f);
                     int i6 = (-iDp2) / 2;
                     int i7 = iDp2 / 2;
@@ -259,13 +251,12 @@ public final class PaidReactionButton extends View {
                 i3 = i + 1;
                 paidReactionButtonEffectsView = this;
                 f2 = 1.0f;
-                z = false;
                 f = 255.0f;
             }
         }
 
         public final void focusTo(float f, PaidReactionButton$PaidReactionButtonEffectsView$$ExternalSyntheticLambda0 paidReactionButton$PaidReactionButtonEffectsView$$ExternalSyntheticLambda0) {
-            int i = 2;
+            int i = 1;
             ValueAnimator valueAnimator = this.focusAnimator;
             if (valueAnimator != null) {
                 this.focusAnimator = null;
@@ -273,7 +264,7 @@ public final class PaidReactionButton extends View {
             }
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.focus, f);
             this.focusAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda18(this, 26));
+            valueAnimatorOfFloat.addUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(this, 9));
             this.focusAnimator.addListener(new StarReactionsOverlay.AnonymousClass1(this, f, paidReactionButton$PaidReactionButtonEffectsView$$ExternalSyntheticLambda0, i));
             this.focusAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             this.focusAnimator.setDuration(320L);
@@ -283,7 +274,7 @@ public final class PaidReactionButton extends View {
         public final void hide() {
             this.hidden = true;
             AndroidUtilities.cancelRunOnUIThread(this.hideCounterRunnable);
-            this.counter.setText("", true, true);
+            this.counter.setText("");
             invalidate();
             focusTo(0.0f, new PaidReactionButton$PaidReactionButtonEffectsView$$ExternalSyntheticLambda0(this, 1));
         }
@@ -303,8 +294,8 @@ public final class PaidReactionButton extends View {
         this.rect = new RectF();
         this.clipPath = new Path();
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.animatedFilled = new AnimatedFloat(320L, this, cubicBezierInterpolator);
-        this.animatedShowCounter = new AnimatedFloat(320L, this, cubicBezierInterpolator);
+        this.animatedFilled = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
+        this.animatedShowCounter = new AnimatedFloat(this, 320L, cubicBezierInterpolator);
         Paint paint = new Paint(1);
         this.backgroundPaint = paint;
         Paint paint2 = new Paint(1);
@@ -312,7 +303,7 @@ public final class PaidReactionButton extends View {
         this.pos = new int[2];
         this.countScale = 1.0f;
         this.effectsView = paidReactionButtonEffectsView;
-        ScaleStateListAnimator.apply(this, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this);
         Resources resources = context.getResources();
         int i = R.drawable.star;
         this.iconDrawable = resources.getDrawable(i).mutate();
@@ -333,15 +324,13 @@ public final class PaidReactionButton extends View {
             paint4.setColor(strokeDrawable.strokeColorBottom);
             paint4.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
         }
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
         this.countText = animatedTextDrawable;
-        TextPaint textPaint = animatedTextDrawable.textPaint;
-        textPaint.setColor(-9866632);
-        animatedTextDrawable.alpha = Color.alpha(-9866632);
+        animatedTextDrawable.setTextColor(-9866632);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(9.0f));
         animatedTextDrawable.setCallback(this);
-        textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        animatedTextDrawable.allowCancel = true;
+        animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
+        animatedTextDrawable.setAllowCancel(true);
         paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         new ColoredImageSpan(i).setScale(1.8f, 1.8f);
@@ -405,9 +394,7 @@ public final class PaidReactionButton extends View {
             rectF2.set(getWidth() - fMax, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
             canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, paint);
             canvas.translate(((fMax - animatedTextDrawable.getCurrentWidth()) / 2.0f) + rectF2.left, AndroidUtilities.dp(6.33f));
-            int iBlendARGB2 = ColorUtils.blendARGB(f, -9866632, -1);
-            animatedTextDrawable.textPaint.setColor(iBlendARGB2);
-            animatedTextDrawable.alpha = Color.alpha(iBlendARGB2);
+            animatedTextDrawable.setTextColor(ColorUtils.blendARGB(f, -9866632, -1));
             animatedTextDrawable.draw(canvas);
             canvas.restore();
         }
@@ -423,9 +410,9 @@ public final class PaidReactionButton extends View {
         this.stars = i;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
         if (i > 50000) {
-            animatedTextDrawable.setText(AndroidUtilities.formatWholeNumber(i, 0), true, true);
+            animatedTextDrawable.setText(AndroidUtilities.formatWholeNumber(i, 0));
         } else {
-            animatedTextDrawable.setText(LocaleController.formatNumber(i, ','), true, true);
+            animatedTextDrawable.setText(LocaleController.formatNumber(i, ','));
         }
         invalidate();
         requestLayout();

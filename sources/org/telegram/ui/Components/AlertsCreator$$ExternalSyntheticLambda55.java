@@ -1,45 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda422;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BaseFragment;
 
-public final class AlertsCreator$$ExternalSyntheticLambda55 implements DialogInterface.OnShowListener {
+public final class AlertsCreator$$ExternalSyntheticLambda55 implements RequestDelegate {
     public final int $r8$classId;
-    public final EditTextBoldCursor f$0;
+    public final Object f$0;
+    public final Object f$1;
+    public final int f$2;
+    public final Object f$3;
 
-    public AlertsCreator$$ExternalSyntheticLambda55(int i, EditTextBoldCursor editTextBoldCursor) {
-        this.$r8$classId = i;
-        this.f$0 = editTextBoldCursor;
+    public AlertsCreator$$ExternalSyntheticLambda55(Object obj, Object obj2, int i, Object obj3, int i2) {
+        this.$r8$classId = i2;
+        this.f$0 = obj;
+        this.f$1 = obj2;
+        this.f$2 = i;
+        this.f$3 = obj3;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.$r8$classId) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda422(1, this.f$0));
+                BaseFragment baseFragment = (BaseFragment) this.f$3;
+                AlertsCreator.lambda$performAskAQuestion$50((SharedPreferences) this.f$0, (AlertDialog) this.f$1, this.f$2, baseFragment, tLObject, tL_error);
                 break;
             case 1:
-                EditTextBoldCursor editTextBoldCursor = this.f$0;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
-                break;
-            case 2:
-                EditTextBoldCursor editTextBoldCursor2 = this.f$0;
-                editTextBoldCursor2.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor2);
-                break;
-            case 3:
-                AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda422(3, this.f$0));
-                break;
-            case 4:
-                AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda422(5, this.f$0));
+                ((DeleteMessagesBottomSheet) this.f$0).lambda$updateParticipantMessageCounts$7((TLRPC.InputPeer) this.f$1, this.f$2, (int[]) this.f$3, tLObject, tL_error);
                 break;
             default:
-                EditTextBoldCursor editTextBoldCursor3 = this.f$0;
-                editTextBoldCursor3.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor3);
-                editTextBoldCursor3.setSelection(0, editTextBoldCursor3.length());
+                ((SharedMediaLayout) this.f$0).lambda$new$23((AlertDialog[]) this.f$1, this.f$2, (TLRPC.TL_messages_editMessage) this.f$3, tLObject, tL_error);
                 break;
         }
     }

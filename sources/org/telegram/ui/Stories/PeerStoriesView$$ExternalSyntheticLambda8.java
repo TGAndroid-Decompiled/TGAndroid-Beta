@@ -10,24 +10,23 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda52;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
 
 public final class PeerStoriesView$$ExternalSyntheticLambda8 implements View.OnClickListener {
     public final int $r8$classId;
@@ -45,7 +44,6 @@ public final class PeerStoriesView$$ExternalSyntheticLambda8 implements View.OnC
         CharSequence charSequenceReplaceEmoji;
         HintView2 hintView2;
         int measuredWidth;
-        ActionBarPopupWindow actionBarPopupWindow;
         int i = 3;
         StoriesViewPager.AnonymousClass2.AnonymousClass1 anonymousClass1 = this.f$0;
         switch (this.$r8$classId) {
@@ -59,12 +57,9 @@ public final class PeerStoriesView$$ExternalSyntheticLambda8 implements View.OnC
                         HintView2 hintView3 = anonymousClass1.privacyHint;
                         PeerStoriesView.AnonymousClass4 anonymousClass4 = anonymousClass1.storyContainer;
                         if (hintView3 == null) {
-                            HintView2 hintView4 = new HintView2(anonymousClass1.getContext(), 1);
-                            hintView4.setMultilineText(true);
-                            hintView4.textLayoutAlignment = Layout.Alignment.ALIGN_CENTER;
-                            hintView4.onHidden = new PeerStoriesView$$ExternalSyntheticLambda7(anonymousClass1, 2);
-                            anonymousClass1.privacyHint = hintView4;
-                            hintView4.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+                            HintView2 onHiddenListener = new HintView2(anonymousClass1.getContext(), 1).setMultilineText(true).setTextAlign(Layout.Alignment.ALIGN_CENTER).setOnHiddenListener(new PeerStoriesView$$ExternalSyntheticLambda7(anonymousClass1, 2));
+                            anonymousClass1.privacyHint = onHiddenListener;
+                            onHiddenListener.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
                             anonymousClass4.addView(anonymousClass1.privacyHint, LayoutHelper.createFrame(-1, 60.0f, 55, 0.0f, 52.0f, 0.0f, 0.0f));
                         }
                         TLRPC.User user = MessagesController.getInstance(anonymousClass1.currentAccount).getUser(Long.valueOf(anonymousClass1.dialogId));
@@ -90,13 +85,13 @@ public final class PeerStoriesView$$ExternalSyntheticLambda8 implements View.OnC
                                 } else {
                                     measuredWidth = anonymousClass4.getMeasuredWidth();
                                 }
-                                hintView2.textMaxWidth = measuredWidth;
+                                hintView2.setMaxWidthPx(measuredWidth);
                                 anonymousClass1.privacyHint.setText(charSequenceReplaceEmoji);
                                 anonymousClass1.privacyHint.setJoint(1.0f, (-(anonymousClass4.getWidth() - anonymousClass1.privacyButton.getCenterX())) / AndroidUtilities.density);
                                 StoryViewer storyViewer = StoryViewer.this;
                                 storyViewer.isHintVisible = true;
                                 storyViewer.updatePlayingMode();
-                                if (anonymousClass1.privacyHint.shown) {
+                                if (anonymousClass1.privacyHint.shown()) {
                                     BotWebViewVibrationEffect.IMPACT_LIGHT.vibrate();
                                 }
                                 anonymousClass1.privacyHint.show();
@@ -112,13 +107,13 @@ public final class PeerStoriesView$$ExternalSyntheticLambda8 implements View.OnC
                             } else {
                                 measuredWidth = anonymousClass4.getMeasuredWidth();
                             }
-                            hintView2.textMaxWidth = measuredWidth;
+                            hintView2.setMaxWidthPx(measuredWidth);
                             anonymousClass1.privacyHint.setText(charSequenceReplaceEmoji);
                             anonymousClass1.privacyHint.setJoint(1.0f, (-(anonymousClass4.getWidth() - anonymousClass1.privacyButton.getCenterX())) / AndroidUtilities.density);
                             StoryViewer storyViewer2 = StoryViewer.this;
                             storyViewer2.isHintVisible = true;
                             storyViewer2.updatePlayingMode();
-                            if (anonymousClass1.privacyHint.shown) {
+                            if (anonymousClass1.privacyHint.shown()) {
                                 BotWebViewVibrationEffect.IMPACT_LIGHT.vibrate();
                             }
                             anonymousClass1.privacyHint.show();
@@ -136,17 +131,11 @@ public final class PeerStoriesView$$ExternalSyntheticLambda8 implements View.OnC
                 } else {
                     TextSelectionHelper.SimpleTextSelectionHelper simpleTextSelectionHelper = anonymousClass5.textSelectionHelper;
                     if (!simpleTextSelectionHelper.isInSelectionMode()) {
-                        anonymousClass5.collapse$1();
+                        anonymousClass5.collapse();
                         break;
                     } else if (simpleTextSelectionHelper.isInSelectionMode() && Math.abs(anonymousClass5.startMotionX - anonymousClass5.lastMotionX) < AndroidUtilities.touchSlop && Math.abs(anonymousClass5.startMotionY - anonymousClass5.lastMotionY) < AndroidUtilities.touchSlop) {
-                        TextSelectionHelper.TextSelectionOverlay overlayView = simpleTextSelectionHelper.getOverlayView(anonymousClass5.getContext());
-                        TextSelectionHelper.this.getCoordsInParent();
-                        TextSelectionHelper textSelectionHelper = TextSelectionHelper.this;
-                        int i2 = textSelectionHelper.textY;
-                        if (!textSelectionHelper.movingHandle && textSelectionHelper.allowDiscard) {
-                            textSelectionHelper.clear(false);
-                            break;
-                        }
+                        simpleTextSelectionHelper.getOverlayView(anonymousClass5.getContext()).checkCancel(false);
+                        break;
                     }
                 }
                 break;
@@ -167,7 +156,7 @@ public final class PeerStoriesView$$ExternalSyntheticLambda8 implements View.OnC
             default:
                 Context context = anonymousClass1.getContext();
                 DarkThemeResourceProvider darkThemeResourceProvider = anonymousClass1.resourcesProvider;
-                BottomSheet bottomSheet = new BottomSheet(context, darkThemeResourceProvider, false, false);
+                BottomSheet bottomSheet = new BottomSheet(context, false, false, darkThemeResourceProvider);
                 bottomSheet.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, darkThemeResourceProvider));
                 LinearLayout linearLayout = new LinearLayout(anonymousClass1.getContext());
                 linearLayout.setOrientation(1);
@@ -187,23 +176,22 @@ public final class PeerStoriesView$$ExternalSyntheticLambda8 implements View.OnC
                 textView2.setGravity(17);
                 textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, darkThemeResourceProvider));
                 textView2.setTextSize(1, 14.0f);
-                FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(R.string.StoryQualityPremiumText, textView2);
+                FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(R.string.StoryQualityPremiumText, textView2);
                 linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
-                ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(anonymousClass1.getContext(), darkThemeResourceProvider, true);
-                buttonWithCounterView.setText(LocaleController.getString(R.string.StoryQualityIncrease), false, true);
+                ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(anonymousClass1.getContext(), true, darkThemeResourceProvider);
+                buttonWithCounterView.setText(LocaleController.getString(R.string.StoryQualityIncrease), false);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("l");
                 ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_switch_lock);
                 coloredImageSpan.setTopOffset(1);
                 spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
                 buttonWithCounterView.setSubText(new SpannableStringBuilder().append((CharSequence) spannableStringBuilder).append((CharSequence) LocaleController.getString(R.string.OptionPremiumRequiredTitle)), false);
                 linearLayout.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 1));
-                buttonWithCounterView.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda52(25, anonymousClass1, bottomSheet));
+                buttonWithCounterView.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(15, anonymousClass1, bottomSheet));
                 bottomSheet.setCustomView(linearLayout);
                 StoryViewer.this.showDialog(bottomSheet);
                 PeerStoriesView.AnonymousClass8 anonymousClass8 = anonymousClass1.popupMenu;
-                if (anonymousClass8 != null && (actionBarPopupWindow = anonymousClass8.popupWindow) != null) {
-                    actionBarPopupWindow.dismiss(true);
-                    break;
+                if (anonymousClass8 != null) {
+                    anonymousClass8.dismiss();
                 }
                 break;
         }

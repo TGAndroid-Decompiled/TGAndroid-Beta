@@ -29,6 +29,7 @@ public final class StarGiveawayOptionCell extends FrameLayout {
     public final SpannableString loading2;
     public final TextView priceView;
     public final RadioButton radioButton;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final Drawable starDrawable;
     public final Drawable starDrawableOutline;
     public int starsCount;
@@ -38,12 +39,13 @@ public final class StarGiveawayOptionCell extends FrameLayout {
     public StarGiveawayOptionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.animatedStarsCount = new AnimatedFloat(this, 0L, 500L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.resourcesProvider = resourcesProvider;
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.star_small_outline).mutate();
         this.starDrawableOutline = drawableMutate;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), PorterDuff.Mode.SRC_IN));
         this.starDrawable = context.getResources().getDrawable(R.drawable.star_small_inner).mutate();
         setWillNotDraw(false);
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
         this.titleView = animatedTextView;
         animatedTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         animatedTextView.setTypeface(AndroidUtilities.bold());
@@ -51,7 +53,7 @@ public final class StarGiveawayOptionCell extends FrameLayout {
         addView(animatedTextView, LayoutHelper.createFrame(-1, 20.0f, 51, 64.0f, 8.0f, 80.0f, 0.0f));
         SpannableString spannableString = new SpannableString("x");
         this.loading1 = spannableString;
-        spannableString.setSpan(new LoadingSpan(AndroidUtilities.dp(90.0f), animatedTextView), 0, 1, 33);
+        spannableString.setSpan(new LoadingSpan(animatedTextView, AndroidUtilities.dp(90.0f)), 0, 1, 33);
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, true, true);
         this.subtitleView = animatedTextView2;
         int i = Theme.key_windowBackgroundWhiteGrayText2;
@@ -60,7 +62,7 @@ public final class StarGiveawayOptionCell extends FrameLayout {
         addView(animatedTextView2, LayoutHelper.createFrame(-1, 14.0f, 51, 64.0f, 31.0f, 80.0f, 0.0f));
         SpannableString spannableString2 = new SpannableString("x");
         this.loading2 = spannableString2;
-        spannableString2.setSpan(new LoadingSpan(AndroidUtilities.dp(70.0f), animatedTextView2), 0, 1, 33);
+        spannableString2.setSpan(new LoadingSpan(animatedTextView2, AndroidUtilities.dp(70.0f)), 0, 1, 33);
         TextView textView = new TextView(context);
         this.priceView = textView;
         OKLCH.m(i, resourcesProvider, textView, 16.0f);
@@ -69,11 +71,7 @@ public final class StarGiveawayOptionCell extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        int color = Theme.getColor(Theme.key_checkboxDisabled, resourcesProvider);
-        int color2 = Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider);
-        radioButton.color = color;
-        radioButton.checkedColor = color2;
-        radioButton.invalidate();
+        radioButton.setColor(Theme.getColor(Theme.key_checkboxDisabled, resourcesProvider), Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider));
         addView(radioButton, LayoutHelper.createFrame(20, 20.0f, 19, 22.0f, 0.0f, 0.0f, 0.0f));
     }
 
@@ -84,7 +82,7 @@ public final class StarGiveawayOptionCell extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float f = this.animatedStarsCount.set(this.starsCount, false);
+        float f = this.animatedStarsCount.set(this.starsCount);
         float fDp = AndroidUtilities.dp(24.0f);
         float fDp2 = AndroidUtilities.dp(24.0f);
         float fDp3 = AndroidUtilities.dp(2.5f);

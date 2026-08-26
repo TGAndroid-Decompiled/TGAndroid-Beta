@@ -13,7 +13,6 @@ import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -39,16 +38,15 @@ public final class ChatActivityBlurredRoundButton extends FrameLayout implements
         this.buttonScaleY = 1.0f;
     }
 
-    public static ChatActivityBlurredRoundButton create(Context context, Theme.ResourcesProvider resourcesProvider, ChatActivity.AnonymousClass14 anonymousClass14, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory) {
+    public static ChatActivityBlurredRoundButton create(Context context, Theme.ResourcesProvider resourcesProvider, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, BlurredBackgroundColorProvider blurredBackgroundColorProvider) {
         int color = Theme.getColor(Theme.key_glass_defaultIcon, resourcesProvider);
         ChatActivityBlurredRoundButton chatActivityBlurredRoundButton = new ChatActivityBlurredRoundButton(context);
         chatActivityBlurredRoundButton.resourcesProvider = resourcesProvider;
-        chatActivityBlurredRoundButton.setBlurredBackgroundDrawable(blurredBackgroundDrawableViewFactory.create(chatActivityBlurredRoundButton, anonymousClass14, false));
+        chatActivityBlurredRoundButton.setBlurredBackgroundDrawable(blurredBackgroundDrawableViewFactory.create(chatActivityBlurredRoundButton, blurredBackgroundColorProvider, false));
         chatActivityBlurredRoundButton.setIconColor(color);
         int iDp = AndroidUtilities.dp(22.0f);
-        int iMultAlpha = Theme.multAlpha(0.15f, color);
         int iDp2 = AndroidUtilities.dp(6.0f);
-        chatActivityBlurredRoundButton.setBackground(Theme.createInsetRoundRectDrawable(iDp, iMultAlpha, iDp2, iDp2, iDp2, iDp2));
+        chatActivityBlurredRoundButton.setBackground(Theme.createInsetRoundRectDrawable(Theme.multAlpha(0.15f, color), iDp, iDp2, iDp2, iDp2, iDp2));
         return chatActivityBlurredRoundButton;
     }
 
@@ -75,7 +73,7 @@ public final class ChatActivityBlurredRoundButton extends FrameLayout implements
             int i = f > 0.0f ? 0 : 8;
             if (this.loadingIndicatorView.getVisibility() != i) {
                 this.loadingIndicatorView.setVisibility(i);
-                this.loadingIndicatorDrawable.start = -1L;
+                this.loadingIndicatorDrawable.reset();
             }
         }
     }
@@ -92,7 +90,7 @@ public final class ChatActivityBlurredRoundButton extends FrameLayout implements
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
@@ -165,7 +163,7 @@ public final class ChatActivityBlurredRoundButton extends FrameLayout implements
             }
             CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(1.7f), -9079435);
             this.loadingIndicatorDrawable = circularProgressDrawable;
-            circularProgressDrawable.angleOffset = 90.0f;
+            circularProgressDrawable.setAngleOffset(90.0f);
             ImageView imageView = new ImageView(getContext());
             this.loadingIndicatorView = imageView;
             imageView.setBackground(this.loadingIndicatorDrawable);
@@ -174,12 +172,12 @@ public final class ChatActivityBlurredRoundButton extends FrameLayout implements
         }
         BoolAnimator boolAnimator = this.animatorLoadingVisibility;
         if (!boolAnimator.value && boolAnimator.floatValue == 0.0f) {
-            this.loadingIndicatorDrawable.start = -1L;
+            this.loadingIndicatorDrawable.reset();
         }
         boolAnimator.setValue(z, z2);
     }
 
-    public final void updateColors$1() {
+    public final void updateColors() {
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.backgroundDrawable;
         if (blurredBackgroundDrawable != null) {
             blurredBackgroundDrawable.updateColors();
@@ -189,9 +187,8 @@ public final class ChatActivityBlurredRoundButton extends FrameLayout implements
         int color = Theme.getColor(i, this.resourcesProvider);
         setIconColor(Theme.getColor(i, this.resourcesProvider));
         int iDp = AndroidUtilities.dp(22.0f);
-        int iMultAlpha = Theme.multAlpha(0.15f, color);
         int iDp2 = AndroidUtilities.dp(6.0f);
-        setBackground(Theme.createInsetRoundRectDrawable(iDp, iMultAlpha, iDp2, iDp2, iDp2, iDp2));
+        setBackground(Theme.createInsetRoundRectDrawable(Theme.multAlpha(0.15f, color), iDp, iDp2, iDp2, iDp2, iDp2));
     }
 
     public final void setEnabled(boolean z, boolean z2) {
@@ -216,9 +213,8 @@ public final class ChatActivityBlurredRoundButton extends FrameLayout implements
         }
         chatActivityBlurredRoundButton.setIconColor(color);
         int iDp = AndroidUtilities.dp(22.0f);
-        int iMultAlpha = Theme.multAlpha(0.15f, color);
         int iDp2 = AndroidUtilities.dp(6.0f);
-        chatActivityBlurredRoundButton.setBackground(Theme.createInsetRoundRectDrawable(iDp, iMultAlpha, iDp2, iDp2, iDp2, iDp2));
+        chatActivityBlurredRoundButton.setBackground(Theme.createInsetRoundRectDrawable(Theme.multAlpha(0.15f, color), iDp, iDp2, iDp2, iDp2, iDp2));
         return chatActivityBlurredRoundButton;
     }
 }

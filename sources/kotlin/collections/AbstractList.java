@@ -1,6 +1,6 @@
 package kotlin.collections;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -16,7 +16,7 @@ public abstract class AbstractList implements List, Collection {
         public static void checkRangeIndexes$kotlin_stdlib(int i, int i2, int i3) {
             if (i >= 0 && i2 <= i3) {
                 if (i > i2) {
-                    throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "fromIndex: ", " > toIndex: "));
+                    throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(i, i2, "fromIndex: ", " > toIndex: "));
                 }
                 return;
             }
@@ -29,7 +29,7 @@ public abstract class AbstractList implements List, Collection {
             super(AbstractList.this);
             int size = AbstractList.this.getSize();
             if (i < 0 || i > size) {
-                throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, size, "index: ", ", size: "));
+                throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, size, "index: ", ", size: "));
             }
             this.index = i;
         }
@@ -86,7 +86,7 @@ public abstract class AbstractList implements List, Collection {
         public final Object get(int i) {
             int i2 = this._size;
             if (i < 0 || i >= i2) {
-                throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
+                throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, i2, "index: ", ", size: "));
             }
             return this.list.get(this.fromIndex + i);
         }

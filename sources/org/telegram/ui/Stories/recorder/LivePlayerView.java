@@ -14,11 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import com.google.android.exoplayer2.RendererCapabilities;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
 import java.io.File;
 import java.io.FileOutputStream;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -29,19 +29,16 @@ import org.telegram.messenger.SvgHelper$SvgDrawable$$ExternalSyntheticOutline0;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.OKLCH;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
-import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda51;
 import org.telegram.ui.Stories.LivePlayer;
-import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda13;
 import org.telegram.ui.Stories.PeerStoriesView;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda5;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda0;
 import org.webrtc.RendererCommon;
 import org.webrtc.TextureViewRenderer;
 import org.webrtc.VideoSink;
@@ -69,7 +66,7 @@ public final class LivePlayerView extends FrameLayout implements RendererCommon.
 
         public EmptyView(Context context) {
             super(context);
-            LinearLayout linearLayoutM = zzkf.m(context, 1);
+            LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
             addView(linearLayoutM, LayoutHelper.createFrame(-2, -2, 17));
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
@@ -80,12 +77,11 @@ public final class LivePlayerView extends FrameLayout implements RendererCommon.
             textView.setTextSize(1, 20.0f);
             textView.setTypeface(AndroidUtilities.bold());
             linearLayoutM.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, null, true);
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, null);
             this.buttonView = buttonWithCounterView;
-            buttonWithCounterView.setText(LocaleController.getString(R.string.LiveStoryDisconnectedContinue), false, true);
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = buttonWithCounterView.text;
-            linearLayoutM.addView(buttonWithCounterView, LayoutHelper.createLinear((int) ((Math.max(animatedTextDrawable.currentWidth, animatedTextDrawable.oldWidth) + AndroidUtilities.dp(24.0f)) / AndroidUtilities.density), 38, 1, 0, 18, 0, 0));
-            buttonWithCounterView.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(23));
+            buttonWithCounterView.setText(LocaleController.getString(R.string.LiveStoryDisconnectedContinue), false);
+            linearLayoutM.addView(buttonWithCounterView, LayoutHelper.createLinear((int) ((buttonWithCounterView.text.getWidth() + AndroidUtilities.dp(24.0f)) / AndroidUtilities.density), 38, 1, 0, 18, 0, 0));
+            buttonWithCounterView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda0(14));
             setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{-16777216, -11184811}));
         }
 
@@ -95,7 +91,7 @@ public final class LivePlayerView extends FrameLayout implements RendererCommon.
             if (i != 0 || this.hasSetImage) {
                 return;
             }
-            this.imageView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty2, "utyan_empty2", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f), true, null));
+            this.imageView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty2, "utyan_empty2", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
             this.hasSetImage = true;
         }
     }
@@ -142,7 +138,7 @@ public final class LivePlayerView extends FrameLayout implements RendererCommon.
             if (!z2 && livePlayer2.emptyStream) {
                 z = true;
             }
-            setIsEmpty((z2 || livePlayer2.outgoing || !livePlayer2.emptyStream || LivePlayer.recording != null || (groupCall = livePlayer2.call) == null || groupCall.rtmp_stream || !groupCall.creator) ? null : new LivePlayer$$ExternalSyntheticLambda13(livePlayer2, 12), z);
+            setIsEmpty(z, (z2 || livePlayer2.outgoing || !livePlayer2.emptyStream || LivePlayer.recording != null || (groupCall = livePlayer2.call) == null || groupCall.rtmp_stream || !groupCall.creator) ? null : new PreviewView$$ExternalSyntheticLambda12(livePlayer2, 14));
         }
     }
 
@@ -212,7 +208,7 @@ public final class LivePlayerView extends FrameLayout implements RendererCommon.
         if (this.placeholderView == null) {
             View view = new View(getContext());
             this.placeholderView = view;
-            addView(view, LayoutHelper.createFrame(-1.0f, -1));
+            addView(view, LayoutHelper.createFrameMatchParent());
         }
         return this.placeholderView;
     }
@@ -346,17 +342,17 @@ public final class LivePlayerView extends FrameLayout implements RendererCommon.
         NotificationCenter.getInstance(i).addObserver(this, i2);
     }
 
-    public final void setIsEmpty(Runnable runnable, boolean z) {
+    public final void setIsEmpty(boolean z, Runnable runnable) {
         if (this.isEmptyViewVisible == z) {
             return;
         }
         this.isEmptyViewVisible = z;
         EmptyView emptyView = this.emptyView;
         emptyView.setVisibility(0);
-        emptyView.animate().alpha(this.isEmptyViewVisible ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).withEndAction(new TodoItemMenu$$ExternalSyntheticLambda5(12, this, z)).start();
+        emptyView.animate().alpha(this.isEmptyViewVisible ? 1.0f : 0.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(320L).withEndAction(new FileLoader$$ExternalSyntheticLambda1(this, z, 18)).start();
         ButtonWithCounterView buttonWithCounterView = emptyView.buttonView;
         buttonWithCounterView.setVisibility((!z || runnable == null) ? 8 : 0);
-        buttonWithCounterView.setOnClickListener(runnable == null ? null : new ProfileActivity$$ExternalSyntheticLambda51(10, runnable));
+        buttonWithCounterView.setOnClickListener(runnable == null ? null : new PaintView$$ExternalSyntheticLambda63(runnable, 4));
     }
 
     public void setKeyboardOffset(float f) {
@@ -406,7 +402,7 @@ public final class LivePlayerView extends FrameLayout implements RendererCommon.
         if (this.dialogId != j) {
             BackupImageView backupImageView = this.thumb;
             if (j == 0) {
-                backupImageView.imageReceiver.clearImage();
+                backupImageView.clearImage();
             } else {
                 String absolutePath = new File(FileLoader.getDirectory(4), RendererCapabilities.CC.m(j, "live", ".jpg")).getAbsolutePath();
                 if (j > 0) {
@@ -428,7 +424,7 @@ public final class LivePlayerView extends FrameLayout implements RendererCommon.
             videoPlayerSharedScope.firstFrameRendered = true;
             videoPlayerSharedScope.invalidate();
         }
-        setIsEmpty((videoPlayerSharedScope == null || (livePlayer = videoPlayerSharedScope.livePlayer) == null || livePlayer.destroyed || livePlayer.outgoing || !livePlayer.emptyStream || LivePlayer.recording != null || (groupCall = livePlayer.call) == null || groupCall.rtmp_stream || !groupCall.creator) ? null : new LivePlayer$$ExternalSyntheticLambda13(livePlayer, 12), (videoPlayerSharedScope == null || (livePlayer2 = videoPlayerSharedScope.livePlayer) == null || livePlayer2.destroyed || !livePlayer2.emptyStream) ? false : true);
+        setIsEmpty((videoPlayerSharedScope == null || (livePlayer2 = videoPlayerSharedScope.livePlayer) == null || livePlayer2.destroyed || !livePlayer2.emptyStream) ? false : true, (videoPlayerSharedScope == null || (livePlayer = videoPlayerSharedScope.livePlayer) == null || livePlayer.destroyed || livePlayer.outgoing || !livePlayer.emptyStream || LivePlayer.recording != null || (groupCall = livePlayer.call) == null || groupCall.rtmp_stream || !groupCall.creator) ? null : new PreviewView$$ExternalSyntheticLambda12(livePlayer, 14));
     }
 
     public void setSecure(boolean z) {

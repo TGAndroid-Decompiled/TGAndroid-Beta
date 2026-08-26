@@ -8,8 +8,8 @@ import android.util.SparseArray;
 import androidx.collection.LongSparseArray;
 import com.google.android.exoplayer2.audio.AacUtil;
 import com.google.android.exoplayer2.util.Log;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
-import com.google.android.gms.internal.mlkit_language_id_common.zzir;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
+import com.google.android.gms.internal.mlkit_language_id_common.zzio;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
@@ -28,10 +28,9 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.ArticleViewer;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.GroupCallActivity;
-import org.telegram.ui.GroupCallSheet$$ExternalSyntheticLambda0;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda9;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda16;
 
 public class ChatObject {
     public static final int ACTION_ADD_ADMINS = 4;
@@ -352,7 +351,7 @@ public class ChatObject {
         }
 
         public void lambda$loadUnknownParticipants$6(int i, OnParticipantsLoad onParticipantsLoad, ArrayList arrayList, HashSet hashSet, TLObject tLObject, TLRPC.TL_error tL_error) {
-            AndroidUtilities.runOnUIThread(new OAuthSheet$$ExternalSyntheticLambda9(this, i, tLObject, onParticipantsLoad, arrayList, hashSet, 1));
+            AndroidUtilities.runOnUIThread(new OAuthSheet$$ExternalSyntheticLambda16(this, i, tLObject, onParticipantsLoad, arrayList, hashSet, 1));
         }
 
         public void lambda$new$0() {
@@ -487,7 +486,7 @@ public class ChatObject {
             }
             getgroupparticipants.offset = "";
             getgroupparticipants.limit = 100;
-            this.currentAccount.getConnectionsManager().sendRequest(getgroupparticipants, new GroupCallSheet$$ExternalSyntheticLambda0(this, i2, onParticipantsLoad, arrayList, hashSet, 1));
+            this.currentAccount.getConnectionsManager().sendRequest(getgroupparticipants, new ChatObject$Call$$ExternalSyntheticLambda12(this, i2, onParticipantsLoad, arrayList, hashSet, 0));
         }
 
         private void onParticipantsLoad(ArrayList<TLRPC.GroupCallParticipant> arrayList, boolean z, String str, String str2, int i, int i2) {
@@ -905,7 +904,7 @@ public class ChatObject {
             }
             long selfId = getSelfId();
             long jElapsedRealtime = SystemClock.elapsedRealtime();
-            int i3 = !this.sortedParticipants.isEmpty() ? ((TLRPC.GroupCallParticipant) zziq.m(1, this.sortedParticipants)).date : 0;
+            int i3 = !this.sortedParticipants.isEmpty() ? ((TLRPC.GroupCallParticipant) zzin.m(1, this.sortedParticipants)).date : 0;
             this.currentAccount.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.applyGroupCallVisibleParticipants, Long.valueOf(jElapsedRealtime));
             int size2 = tL_updateGroupCallParticipants.participants.size();
             long j2 = 0;
@@ -1409,7 +1408,7 @@ public class ChatObject {
                 });
             } catch (Exception unused) {
             }
-            TLRPC.GroupCallParticipant groupCallParticipant2 = this.sortedParticipants.isEmpty() ? null : (TLRPC.GroupCallParticipant) zziq.m(1, this.sortedParticipants);
+            TLRPC.GroupCallParticipant groupCallParticipant2 = this.sortedParticipants.isEmpty() ? null : (TLRPC.GroupCallParticipant) zzin.m(1, this.sortedParticipants);
             if ((videoIsActive(groupCallParticipant2, false, this) || videoIsActive(groupCallParticipant2, true, this)) && (i = this.call.unmuted_video_count) > this.activeVideos) {
                 this.activeVideos = i;
                 VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -1563,7 +1562,7 @@ public class ChatObject {
                     return null;
                 }
                 TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
-                tL_inputGroupCallSlug.slug = (String) zzir.m(1, Uri.parse(this.call.invite_link).getPathSegments());
+                tL_inputGroupCallSlug.slug = (String) zzio.m(1, Uri.parse(this.call.invite_link).getPathSegments());
                 return tL_inputGroupCallSlug;
             }
             TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
@@ -2014,12 +2013,12 @@ public class ChatObject {
     }
 
     public static String getBannedRightsString(TLRPC.TL_chatBannedRights tL_chatBannedRights) {
-        StringBuilder sbM = ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_roundvideos ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_videos ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_photos ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.manage_topics ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.pin_messages ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.change_info ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.invite_users ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_polls ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.embed_links ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_inline ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_games ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_gifs ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_stickers ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_media ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_messages ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.view_messages ? 1 : 0, new StringBuilder("")))))))))))))))));
+        StringBuilder sbM = Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_roundvideos ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_videos ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_photos ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.manage_topics ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.pin_messages ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.change_info ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.invite_users ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_polls ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.embed_links ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_inline ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_games ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_gifs ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_stickers ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_media ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_messages ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.view_messages ? 1 : 0, new StringBuilder("")))))))))))))))));
         sbM.append(tL_chatBannedRights.send_voices ? 1 : 0);
         String string = sbM.toString();
         StringBuilder sb = new StringBuilder();
         sb.append(string);
-        StringBuilder sbM2 = ArticleViewer.IBlock.CC.m(tL_chatBannedRights.manage_linked_peers ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_reactions ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.edit_rank ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_plain ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_docs ? 1 : 0, ArticleViewer.IBlock.CC.m(tL_chatBannedRights.send_audios ? 1 : 0, sb))))));
+        StringBuilder sbM2 = Theme.ResourcesProvider.CC.m(tL_chatBannedRights.manage_linked_peers ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_reactions ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.edit_rank ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_plain ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_docs ? 1 : 0, Theme.ResourcesProvider.CC.m(tL_chatBannedRights.send_audios ? 1 : 0, sb))))));
         sbM2.append(tL_chatBannedRights.until_date);
         return sbM2.toString();
     }

@@ -11,7 +11,8 @@ import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkc;
+import com.google.android.gms.internal.mlkit_vision_common.zzjx;
+import com.stripe.android.Stripe;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -34,7 +35,6 @@ import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.PollItemMenu;
 
 public final class RichAudioCell extends RichBlockCell implements Theme.Colorable, TextSelectionHelper.ArticleSelectableView, RichCaptionHost, NotificationCenter.NotificationCenterDelegate, DownloadController.FileDownloadProgressListener {
     public boolean attached;
@@ -100,19 +100,59 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
         this.observerTag = DownloadController.getInstance(i).generateObserverTag();
-        RadialProgress2 radialProgress2 = new RadialProgress2(resourcesProvider, this);
+        RadialProgress2 radialProgress2 = new RadialProgress2(this, resourcesProvider);
         this.radialProgress = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(24.0f));
         int i2 = this.buttonX;
         radialProgress2.setProgressRect(i2, iDp, i2 + iDp2, iDp2 + iDp);
         SeekBar seekBar = new SeekBar(this);
         this.seekBar = seekBar;
-        seekBar.delegate = new PollItemMenu.AnonymousClass6(this, 11);
+        seekBar.setDelegate(new SeekBar.SeekBarDelegate() {
+            @Override
+            public final boolean isSeekBarDragAllowed() {
+                return SeekBar.SeekBarDelegate.CC.$default$isSeekBarDragAllowed(this);
+            }
+
+            @Override
+            public final void onSeekBarContinuousDrag(float f) {
+                MessageObject messageObject = RichAudioCell.this.messageObject;
+                if (messageObject == null) {
+                    return;
+                }
+                messageObject.audioProgress = f;
+            }
+
+            @Override
+            public final void onSeekBarDrag(float f) {
+                RichAudioCell richAudioCell = RichAudioCell.this;
+                MessageObject messageObject = richAudioCell.messageObject;
+                if (messageObject == null) {
+                    return;
+                }
+                messageObject.audioProgress = f;
+                MediaController.getInstance().seekToProgress(richAudioCell.messageObject, f);
+            }
+
+            @Override
+            public final void onSeekBarPressed() {
+                SeekBar.SeekBarDelegate.CC.$default$onSeekBarPressed(this);
+            }
+
+            @Override
+            public final void onSeekBarReleased() {
+                SeekBar.SeekBarDelegate.CC.$default$onSeekBarReleased(this);
+            }
+
+            @Override
+            public final boolean reverseWaveform() {
+                return SeekBar.SeekBarDelegate.CC.$default$reverseWaveform(this);
+            }
+        });
         setMinimumHeight(AndroidUtilities.dp(66.0f));
-        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new RichEditor.AnonymousClass3(this, 2));
+        RichCaptionController richCaptionController = new RichCaptionController(context, resourcesProvider, new Stripe.AnonymousClass1(this, 15));
         this.caption = richCaptionController;
         addView(richCaptionController.editText, LayoutHelper.createFrame(-2, -2, 51));
-        updateColors$1();
+        updateColors();
     }
 
     private TLRPC.Document getDisplayDocument() {
@@ -297,15 +337,14 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
             if (TextUtils.isEmpty(musicTitle) || TextUtils.isEmpty(musicAuthor)) {
                 spannableStringBuilder = !TextUtils.isEmpty(musicTitle) ? new SpannableStringBuilder(musicTitle) : new SpannableStringBuilder(musicAuthor);
             } else {
-                spannableStringBuilder = new SpannableStringBuilder(zzkc.m(musicAuthor, " - ", musicTitle));
+                spannableStringBuilder = new SpannableStringBuilder(zzjx.m(musicAuthor, " - ", musicTitle));
             }
             if (!TextUtils.isEmpty(musicAuthor)) {
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, musicAuthor.length(), 18);
             }
-            float fDp = AndroidUtilities.dp(16.0f);
             TextPaint textPaint = this.audioTimePaint;
-            textPaint.setTextSize(fDp);
-            this.titleLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint, this.seekBarWidth, TextUtils.TruncateAt.END), this.audioTimePaint, AndroidUtilities.dp(50.0f) + this.seekBarWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            textPaint.setTextSize(AndroidUtilities.dp(16.0f));
+            this.titleLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint, this.seekBarWidth, TextUtils.TruncateAt.END), textPaint, AndroidUtilities.dp(50.0f) + this.seekBarWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.seekBarY = AndroidUtilities.dp(11.0f) + ((i - AndroidUtilities.dp(30.0f)) / 2) + i2;
         }
         this.seekBar.setSize(this.seekBarWidth, AndroidUtilities.dp(30.0f));
@@ -316,7 +355,7 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
         super.onAttachedToWindow();
         this.attached = true;
         this.radialProgress.setParent(this);
-        this.seekBar.parentView = this;
+        this.seekBar.setParent(this);
         updateButtonState(false);
         int i = this.currentAccount;
         NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.messagePlayingDidStart);
@@ -355,6 +394,7 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
     @Override
     public final void onDraw(Canvas canvas) {
         TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+        int childAdapterPosition;
         if (getDisplayDocument() == null) {
             return;
         }
@@ -388,12 +428,8 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
             canvas.restore();
         }
         RichEditorListView.AnonymousClass7 anonymousClass7 = this.delegate;
-        if (anonymousClass7 != null && (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) != null && textSelectionHelper.isInSelectionMode() && (getParent() instanceof RecyclerView)) {
-            ((RecyclerView) getParent()).getClass();
-            int childAdapterPosition = RecyclerView.getChildAdapterPosition(this);
-            if (childAdapterPosition >= 0 && childAdapterPosition > textSelectionHelper.startViewPosition && childAdapterPosition <= textSelectionHelper.endViewPosition) {
-                canvas.drawRoundRect(AndroidUtilities.dp(8.0f) + (this.blockRtl ? 0 : this.blockInset), AndroidUtilities.dp(2.0f), (getWidth() - (this.blockRtl ? this.blockInset : 0)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectionPaint);
-            }
+        if (anonymousClass7 != null && (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) != null && textSelectionHelper.isInSelectionMode() && (getParent() instanceof RecyclerView) && (childAdapterPosition = ((RecyclerView) getParent()).getChildAdapterPosition(this)) >= 0 && childAdapterPosition > textSelectionHelper.startViewPosition && childAdapterPosition <= textSelectionHelper.endViewPosition) {
+            canvas.drawRoundRect(AndroidUtilities.dp(8.0f) + (this.blockRtl ? 0 : this.blockInset), AndroidUtilities.dp(2.0f), (getWidth() - (this.blockRtl ? this.blockInset : 0)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(64.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectionPaint);
         }
     }
 
@@ -440,7 +476,7 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
         int actionMasked = motionEvent.getActionMasked();
         float x = motionEvent.getX();
         float y = motionEvent.getY();
-        if (!isUploading() && this.seekBar.onTouch(x - this.seekBarX, y - this.seekBarY, actionMasked)) {
+        if (!isUploading() && this.seekBar.onTouch(actionMasked, x - this.seekBarX, y - this.seekBarY)) {
             if (actionMasked == 0) {
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
@@ -545,11 +581,8 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
         int i3 = Theme.key_chat_inMediaIcon;
         int i4 = Theme.key_chat_inMediaIconSelected;
         RadialProgress2 radialProgress2 = this.radialProgress;
-        radialProgress2.circleColorKey = i;
-        radialProgress2.circlePressedColorKey = i2;
-        radialProgress2.iconColorKey = i3;
-        radialProgress2.iconPressedColorKey = i4;
-        radialProgress2.progressColor = Theme.getColor(Theme.key_chat_inFileProgress, this.resourcesProvider);
+        radialProgress2.setColorKeys(i, i2, i3, i4);
+        radialProgress2.setProgressColor(Theme.getColor(Theme.key_chat_inFileProgress, this.resourcesProvider));
         boolean zIsUploading = isUploading();
         int i5 = this.currentAccount;
         if (zIsUploading) {
@@ -591,7 +624,7 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         this.selectionPaint.setColor(Theme.getColor(Theme.key_chat_inTextSelectionHighlight, this.resourcesProvider));
         RichCaptionController richCaptionController = this.caption;
         if (richCaptionController != null) {
@@ -602,11 +635,10 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
     public final void updatePlayingMessageProgress() {
         double d;
         int i;
-        MessageObject messageObject;
-        if (!isUploading() && (messageObject = this.messageObject) != null) {
+        if (!isUploading() && this.messageObject != null) {
             SeekBar seekBar = this.seekBar;
-            if (!seekBar.pressed) {
-                seekBar.setProgress(messageObject.audioProgress);
+            if (!seekBar.isDragging()) {
+                seekBar.setProgress(this.messageObject.audioProgress);
             }
         }
         if (isUploading()) {
@@ -631,9 +663,8 @@ public final class RichAudioCell extends RichBlockCell implements Theme.Colorabl
         String str = this.lastTimeString;
         if (str == null || !str.equals(shortDuration)) {
             this.lastTimeString = shortDuration;
-            float fDp = AndroidUtilities.dp(16.0f);
             TextPaint textPaint = this.audioTimePaint;
-            textPaint.setTextSize(fDp);
+            textPaint.setTextSize(AndroidUtilities.dp(16.0f));
             this.durationLayout = new StaticLayout(shortDuration, textPaint, (int) Math.ceil(textPaint.measureText(shortDuration)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
         invalidate();

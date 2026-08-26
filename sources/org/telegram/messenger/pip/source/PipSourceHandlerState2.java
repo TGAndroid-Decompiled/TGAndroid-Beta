@@ -7,20 +7,19 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
 import android.view.View;
-import androidx.appcompat.widget.TooltipPopup;
-import com.google.android.exoplayer2.ExoPlayerImpl;
+import com.google.android.exoplayer2.BasePlayer;
 import j$.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.pip.PipActivityContentLayout;
+import org.telegram.messenger.pip.PipActivityController;
 import org.telegram.messenger.pip.PipSource;
 import org.telegram.messenger.pip.PipSourceContentView;
 import org.telegram.messenger.pip.activity.IPipActivityAnimationListener;
 import org.telegram.messenger.pip.activity.IPipActivityListener;
 import org.telegram.messenger.pip.utils.Trigger;
-import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.web.MHTML;
 
 public final class PipSourceHandlerState2 implements IPipActivityListener, IPipActivityAnimationListener {
@@ -49,29 +48,29 @@ public final class PipSourceHandlerState2 implements IPipActivityListener, IPipA
     }
 
     @Override
-    public final void onCompleteExitFromPip() {
+    public final void onCompleteExitFromPip(boolean z) {
         this.shouldBeAttached = false;
         performPreDetach1();
     }
 
     @Override
     public final void onPipStashEnd() {
-        ExoPlayerImpl exoPlayerImpl;
+        Object obj;
         PipSource pipSource = this.source;
-        if (pipSource == null || (exoPlayerImpl = pipSource.player) == null) {
+        if (pipSource == null || (obj = pipSource.player) == null) {
             return;
         }
-        exoPlayerImpl.setPlayWhenReady(true);
+        ((BasePlayer) obj).setPlayWhenReady(true);
     }
 
     @Override
     public final void onPipStashStart() {
-        ExoPlayerImpl exoPlayerImpl;
+        Object obj;
         PipSource pipSource = this.source;
-        if (pipSource == null || (exoPlayerImpl = pipSource.player) == null) {
+        if (pipSource == null || (obj = pipSource.player) == null) {
             return;
         }
-        exoPlayerImpl.setPlayWhenReady(false);
+        ((BasePlayer) obj).setPlayWhenReady(false);
     }
 
     @Override
@@ -81,7 +80,7 @@ public final class PipSourceHandlerState2 implements IPipActivityListener, IPipA
     }
 
     @Override
-    public final void onStartExitFromPip() {
+    public final void onStartExitFromPip(boolean z) {
     }
 
     public final void performPreAttach() {
@@ -89,10 +88,10 @@ public final class PipSourceHandlerState2 implements IPipActivityListener, IPipA
             FileLog.e("[PIP_DEBUG] wrong pip state STATE_DETACHED: " + this.state);
             return;
         }
-        this.positionSource.set((Rect) this.source.params.binarizer);
+        this.positionSource.set((Rect) this.source.params.tokenCreator);
         Log.i("PIP_DEBUG", "[HANDLER] pre attach start " + this.positionSource);
-        int measuredWidth = ((LaunchActivity) this.source.controller.mLayoutParams).getWindow().getDecorView().getMeasuredWidth();
-        int measuredHeight = ((LaunchActivity) this.source.controller.mLayoutParams).getWindow().getDecorView().getMeasuredHeight();
+        int measuredWidth = this.source.controller.activity.getWindow().getDecorView().getMeasuredWidth();
+        int measuredHeight = this.source.controller.activity.getWindow().getDecorView().getMeasuredHeight();
         Bitmap bitmapPipCreatePrimaryWindowViewBitmap = this.source.delegate.pipCreatePrimaryWindowViewBitmap();
         final IPipSourceDelegate iPipSourceDelegate = this.source.delegate;
         Objects.requireNonNull(iPipSourceDelegate);
@@ -127,8 +126,8 @@ public final class PipSourceHandlerState2 implements IPipActivityListener, IPipA
             }
         });
         this.pictureInPictureView = this.source.delegate.pipCreatePictureInPictureView();
-        this.pictureInPicturePlaceholderView = new View((LaunchActivity) this.source.controller.mLayoutParams);
-        PipSourceContentView pipSourceContentView = new PipSourceContentView((LaunchActivity) this.source.controller.mLayoutParams, this);
+        this.pictureInPicturePlaceholderView = new View(this.source.controller.activity);
+        PipSourceContentView pipSourceContentView = new PipSourceContentView(this.source.controller.activity, this);
         this.pictureInPictureWrapperView = pipSourceContentView;
         pipSourceContentView.addView(this.pictureInPicturePlaceholderView);
         this.pictureInPictureWrapperView.addView(this.pictureInPictureView);
@@ -139,11 +138,11 @@ public final class PipSourceHandlerState2 implements IPipActivityListener, IPipA
         mhtml.boundary = view2;
         this.pipSourcePlaceholder = mhtml;
         mhtml.setPlaceholder(bitmapPipCreatePrimaryWindowViewBitmap);
-        TooltipPopup tooltipPopup = this.source.controller;
-        if (((PipActivityContentLayout) tooltipPopup.mMessageView) == null) {
-            tooltipPopup.mMessageView = new PipActivityContentLayout((LaunchActivity) tooltipPopup.mLayoutParams);
+        PipActivityController pipActivityController = this.source.controller;
+        if (pipActivityController.pipContentView == null) {
+            pipActivityController.pipContentView = new PipActivityContentLayout(pipActivityController.activity);
         }
-        ((PipActivityContentLayout) tooltipPopup.mMessageView).addView(this.pictureInPictureWrapperView);
+        pipActivityController.pipContentView.addView(this.pictureInPictureWrapperView);
         this.state = 1;
         this.pictureInPictureWrapperView.invalidate();
         AndroidUtilities.doOnPreDraw(this.pictureInPictureView, new Trigger(ApplicationLoader.applicationHandler, new PipSourceHandlerState2$$ExternalSyntheticLambda0(this, 1), 300L));

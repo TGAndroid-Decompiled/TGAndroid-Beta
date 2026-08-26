@@ -12,6 +12,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DocumentObject;
@@ -33,20 +34,18 @@ import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CacheControlActivity$$ExternalSyntheticLambda23;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda171;
-import org.telegram.ui.ChatActivity$106$$ExternalSyntheticLambda2;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda153;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AttachableDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
-import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Text;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda7;
-import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda12;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda1;
+import org.telegram.ui.community.CommunityUtils$$ExternalSyntheticLambda2;
+import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda22;
 
 public abstract class SetupEmojiStatusSheet {
 
@@ -86,32 +85,32 @@ public abstract class SetupEmojiStatusSheet {
         }
     }
 
-    public static void askPermission(int i, long j, BotWebViewContainer$$ExternalSyntheticLambda12 botWebViewContainer$$ExternalSyntheticLambda12) {
+    public static void askPermission(int i, long j, BotWebViewContainer$$ExternalSyntheticLambda22 botWebViewContainer$$ExternalSyntheticLambda22) {
         TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
         TLRPC.UserFull userFull = MessagesController.getInstance(i).getUserFull(j);
         if (userFull == null) {
-            MessagesController.getInstance(i).loadFullUser(user, 0, true, new CacheControlActivity$$ExternalSyntheticLambda23(botWebViewContainer$$ExternalSyntheticLambda12, i, user, 4));
+            MessagesController.getInstance(i).loadFullUser(user, 0, true, new CommunityUtils$$ExternalSyntheticLambda2(botWebViewContainer$$ExternalSyntheticLambda22, i, user, 3));
         } else {
-            askPermission(botWebViewContainer$$ExternalSyntheticLambda12, i, user, userFull);
+            askPermission(botWebViewContainer$$ExternalSyntheticLambda22, i, user, userFull);
         }
     }
 
-    public static boolean getAccessRequested(Activity activity, int i, long j) {
-        if (activity == null) {
+    public static boolean getAccessRequested(Context context, int i, long j) {
+        if (context == null) {
             return false;
         }
-        return NotificationsController$$ExternalSyntheticOutline0.m("requested_", j, activity.getSharedPreferences("botemojistatus_" + i, 0), false);
+        return NotificationsController$$ExternalSyntheticOutline0.m("requested_", j, context.getSharedPreferences("botemojistatus_" + i, 0), false);
     }
 
-    public static void show(final int i, final TLRPC.User user, long j, final int i2, final BotWebViewContainer$$ExternalSyntheticLambda12 botWebViewContainer$$ExternalSyntheticLambda12) {
+    public static void show(final int i, final TLRPC.User user, long j, final int i2, final BotWebViewContainer$$ExternalSyntheticLambda22 botWebViewContainer$$ExternalSyntheticLambda22) {
         TLRPC.Document documentFindDocument = AnimatedEmojiDrawable.findDocument(i, j);
         if (documentFindDocument != null) {
-            show(i, user, documentFindDocument, i2, new SetupEmojiStatusSheet$$ExternalSyntheticLambda1(botWebViewContainer$$ExternalSyntheticLambda12, documentFindDocument, 0));
+            show(i, user, documentFindDocument, i2, new SetupEmojiStatusSheet$$ExternalSyntheticLambda1(botWebViewContainer$$ExternalSyntheticLambda22, documentFindDocument, 0));
         } else {
             AnimatedEmojiDrawable.getDocumentFetcher(i).fetchDocument(j, new AnimatedEmojiDrawable.ReceivedDocument() {
                 @Override
                 public final void run(TLRPC.Document document) {
-                    AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda171(i, user, document, i2, botWebViewContainer$$ExternalSyntheticLambda12));
+                    AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda153(i, user, document, i2, botWebViewContainer$$ExternalSyntheticLambda22));
                 }
             });
         }
@@ -119,63 +118,54 @@ public abstract class SetupEmojiStatusSheet {
 
     public static void show(int i, TLRPC.User user, TLRPC.Document document, int i2, Utilities.Callback callback) {
         SpannableStringBuilder spannableStringBuilderReplaceTags;
-        if (document instanceof TLRPC.TL_documentEmpty) {
-            callback.run("SUGGESTED_EMOJI_INVALID");
+        if (document != null && !(document instanceof TLRPC.TL_documentEmpty)) {
+            Context contextFindActivity = AndroidUtilities.findActivity(LaunchActivity.instance);
+            if (contextFindActivity == null) {
+                contextFindActivity = ApplicationLoader.applicationContext;
+            }
+            ConnectionsManager.getInstance(i).getCurrentTime();
+            TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
+            boolean[] zArr = new boolean[1];
+            boolean[] zArr2 = new boolean[1];
+            if (i2 > 0) {
+                int i3 = i2 / 86400;
+                int i4 = i2 - (86400 * i3);
+                int i5 = i4 / 3600;
+                int iRound = Math.round((i4 - (i5 * 3600)) / 60.0f);
+                StringBuilder sb = new StringBuilder();
+                if (i3 > 0) {
+                    if (sb.length() > 0) {
+                        sb.append(" ");
+                    }
+                    sb.append(LocaleController.formatPluralString("BotEmojiStatusSetRequestForDay", i3, new Object[0]));
+                }
+                if (i5 > 0) {
+                    if (sb.length() > 0) {
+                        sb.append(" ");
+                    }
+                    sb.append(LocaleController.formatPluralString("BotEmojiStatusSetRequestForHour", i5, new Object[0]));
+                }
+                if (iRound > 0) {
+                    if (sb.length() > 0) {
+                        sb.append(" ");
+                    }
+                    sb.append(LocaleController.formatPluralString("BotEmojiStatusSetRequestForMinute", iRound, new Object[0]));
+                }
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusSetRequestFor, UserObject.getUserName(user), sb));
+            } else {
+                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusSetRequest, UserObject.getUserName(user)));
+            }
+            AlertDialog alertDialogCreate = new AlertDialog.Builder(contextFindActivity, 0, null).setTopImage(new UserEmojiStatusDrawable(currentUser, document), Theme.getColor(null, Theme.key_dialogTopBackground, false)).setMessage(spannableStringBuilderReplaceTags).setPositiveButton(LocaleController.getString(R.string.BotEmojiStatusConfirm), new SetupEmojiStatusSheet$$ExternalSyntheticLambda3(i, zArr2, document, i2, zArr, callback)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
+            alertDialogCreate.show();
+            alertDialogCreate.setOnDismissListener(new BotLocation$$ExternalSyntheticLambda13(zArr2, zArr, callback));
             return;
         }
-        Context contextFindActivity = AndroidUtilities.findActivity(LaunchActivity.instance);
-        if (contextFindActivity == null) {
-            contextFindActivity = ApplicationLoader.applicationContext;
-        }
-        ConnectionsManager.getInstance(i).getCurrentTime();
-        TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
-        boolean[] zArr = new boolean[1];
-        boolean[] zArr2 = new boolean[1];
-        if (i2 > 0) {
-            int i3 = i2 / 86400;
-            int i4 = i2 - (86400 * i3);
-            int i5 = i4 / 3600;
-            int iRound = Math.round((i4 - (i5 * 3600)) / 60.0f);
-            StringBuilder sb = new StringBuilder();
-            if (i3 > 0) {
-                if (sb.length() > 0) {
-                    sb.append(" ");
-                }
-                sb.append(LocaleController.formatPluralString("BotEmojiStatusSetRequestForDay", i3, new Object[0]));
-            }
-            if (i5 > 0) {
-                if (sb.length() > 0) {
-                    sb.append(" ");
-                }
-                sb.append(LocaleController.formatPluralString("BotEmojiStatusSetRequestForHour", i5, new Object[0]));
-            }
-            if (iRound > 0) {
-                if (sb.length() > 0) {
-                    sb.append(" ");
-                }
-                sb.append(LocaleController.formatPluralString("BotEmojiStatusSetRequestForMinute", iRound, new Object[0]));
-            }
-            spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusSetRequestFor, UserObject.getUserName(user), sb));
-        } else {
-            spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusSetRequest, UserObject.getUserName(user)));
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(contextFindActivity, 0, null);
-        UserEmojiStatusDrawable userEmojiStatusDrawable = new UserEmojiStatusDrawable(currentUser, document);
-        int color = Theme.getColor(null, Theme.key_dialogTopBackground, false);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.topDrawable = userEmojiStatusDrawable;
-        alertDialog.topBackgroundColor = color;
-        alertDialog.message = spannableStringBuilderReplaceTags;
-        builder.setPositiveButton(LocaleController.getString(R.string.BotEmojiStatusConfirm), new ChatActivity$106$$ExternalSyntheticLambda2(i, zArr2, document, i2, zArr, callback));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        AlertDialog alertDialog2 = builder.alertDialog;
-        alertDialog2.show();
-        alertDialog2.setOnDismissListener(new BotLocation$$ExternalSyntheticLambda14(zArr2, zArr, callback));
+        callback.run("SUGGESTED_EMOJI_INVALID");
     }
 
-    public static void askPermission(final BotWebViewContainer$$ExternalSyntheticLambda12 botWebViewContainer$$ExternalSyntheticLambda12, final int i, final TLRPC.User user, final TLRPC.UserFull userFull) {
+    public static void askPermission(final BotWebViewContainer$$ExternalSyntheticLambda22 botWebViewContainer$$ExternalSyntheticLambda22, final int i, final TLRPC.User user, final TLRPC.UserFull userFull) {
         if (userFull.bot_can_manage_emoji_status) {
-            botWebViewContainer$$ExternalSyntheticLambda12.run(Boolean.FALSE, "allowed");
+            botWebViewContainer$$ExternalSyntheticLambda22.run(Boolean.FALSE, "allowed");
             return;
         }
         Context contextFindActivity = AndroidUtilities.findActivity(LaunchActivity.instance);
@@ -183,24 +173,16 @@ public abstract class SetupEmojiStatusSheet {
             contextFindActivity = ApplicationLoader.applicationContext;
         }
         final Context context = contextFindActivity;
-        TLRPC.User currentUser = UserConfig.getInstance(i).getCurrentUser();
         final boolean[] zArr = new boolean[1];
         final boolean[] zArr2 = new boolean[1];
-        AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, null);
-        UserEmojiStatusDrawable userEmojiStatusDrawable = new UserEmojiStatusDrawable(currentUser);
-        int color = Theme.getColor(null, Theme.key_dialogTopBackground, false);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.topDrawable = userEmojiStatusDrawable;
-        alertDialog.topBackgroundColor = color;
-        builder.alertDialog.message = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-        builder.setPositiveButton(LocaleController.getString(R.string.BotEmojiStatusPermissionAllow), new AlertDialog.OnButtonClickListener() {
+        AlertDialog alertDialogCreate = new AlertDialog.Builder(context, 0, null).setTopImage(new UserEmojiStatusDrawable(UserConfig.getInstance(i).getCurrentUser()), Theme.getColor(null, Theme.key_dialogTopBackground, false)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotEmojiStatusPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)))).setPositiveButton(LocaleController.getString(R.string.BotEmojiStatusPermissionAllow), new AlertDialog.OnButtonClickListener() {
             @Override
-            public final void onClick(AlertDialog alertDialog2, int i2) {
+            public final void onClick(AlertDialog alertDialog, int i2) {
                 int i3 = i;
                 boolean zIsPremium = UserConfig.getInstance(i3).isPremium();
                 boolean[] zArr3 = zArr2;
                 boolean[] zArr4 = zArr;
-                BotWebViewContainer$$ExternalSyntheticLambda12 botWebViewContainer$$ExternalSyntheticLambda13 = botWebViewContainer$$ExternalSyntheticLambda12;
+                BotWebViewContainer$$ExternalSyntheticLambda22 botWebViewContainer$$ExternalSyntheticLambda23 = botWebViewContainer$$ExternalSyntheticLambda22;
                 if (!zIsPremium) {
                     SetupEmojiStatusSheet.AnonymousClass2 anonymousClass2 = new SetupEmojiStatusSheet.AnonymousClass2(null);
                     new PremiumFeatureBottomSheet(anonymousClass2, AndroidUtilities.findActivity(LaunchActivity.instance), anonymousClass2.getCurrentAccount(), false, 12, false, null).show();
@@ -208,7 +190,7 @@ public abstract class SetupEmojiStatusSheet {
                         return;
                     }
                     zArr4[0] = true;
-                    botWebViewContainer$$ExternalSyntheticLambda13.run(Boolean.TRUE, "cancelled");
+                    botWebViewContainer$$ExternalSyntheticLambda23.run(Boolean.TRUE, "cancelled");
                     return;
                 }
                 zArr3[0] = true;
@@ -221,13 +203,11 @@ public abstract class SetupEmojiStatusSheet {
                 TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
                 toggleuseremojistatuspermission.bot = MessagesController.getInstance(i3).getInputUser(user2);
                 toggleuseremojistatuspermission.enabled = true;
-                ConnectionsManager.getInstance(i3).sendRequest(toggleuseremojistatuspermission, new StarGiftSheet$$ExternalSyntheticLambda7(zArr4, botWebViewContainer$$ExternalSyntheticLambda13, userFull, 10));
+                ConnectionsManager.getInstance(i3).sendRequest(toggleuseremojistatuspermission, new StarGiftSheet$$ExternalSyntheticLambda1(zArr4, botWebViewContainer$$ExternalSyntheticLambda23, userFull, 16));
             }
-        });
-        builder.setNegativeButton(LocaleController.getString(R.string.BotEmojiStatusPermissionDecline), null);
-        AlertDialog alertDialog2 = builder.alertDialog;
-        alertDialog2.show();
-        alertDialog2.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        }).setNegativeButton(LocaleController.getString(R.string.BotEmojiStatusPermissionDecline), null).create();
+        alertDialogCreate.show();
+        alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 if (zArr2[0]) {
@@ -243,7 +223,7 @@ public abstract class SetupEmojiStatusSheet {
                 if (context2 != null) {
                     context2.getSharedPreferences("botemojistatus_" + i, 0).edit().putBoolean("requested_" + j, true).apply();
                 }
-                botWebViewContainer$$ExternalSyntheticLambda12.run(Boolean.TRUE, "cancelled");
+                botWebViewContainer$$ExternalSyntheticLambda22.run(Boolean.TRUE, "cancelled");
             }
         });
     }
@@ -260,7 +240,7 @@ public abstract class SetupEmojiStatusSheet {
         public final ImageReceiver statusImageReceiver;
         public final Text text;
         public final ImageReceiver userImageReceiver;
-        public RLottieImageView view;
+        public View view;
         public boolean waitingForStatuses;
 
         public UserEmojiStatusDrawable(TLRPC.User user) {
@@ -274,18 +254,18 @@ public abstract class SetupEmojiStatusSheet {
             this.currentStatus = 1;
             this.emojis = new AnimatedEmojiDrawable[2];
             this.rect = new RectF();
-            this.animatedSwap = new AnimatedFloat(new SetupEmojiStatusSheet$UserEmojiStatusDrawable$$ExternalSyntheticLambda0(this, 1), 320L, CubicBezierInterpolator.EASE_OUT_QUINT, 0);
+            this.animatedSwap = new AnimatedFloat(new SetupEmojiStatusSheet$UserEmojiStatusDrawable$$ExternalSyntheticLambda0(this, 1), 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.highlight = false;
             int i = Theme.key_windowBackgroundWhite;
             paint.setColor(Theme.getColor(null, i, false));
             paint2.setColor(Theme.getColor(null, i, false));
             paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), Theme.multAlpha(0.18f, -16777216));
-            AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
+            avatarDrawable.setInfo(user);
             imageReceiver.setForUserOrChat(user, avatarDrawable);
             imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
             setRandomStatus();
-            this.text = new Text(UserObject.getUserName(user), 14.0f, null);
+            this.text = new Text(UserObject.getUserName(user), 14.0f);
         }
 
         @Override
@@ -306,11 +286,11 @@ public abstract class SetupEmojiStatusSheet {
             AnimatedEmojiDrawable animatedEmojiDrawable2;
             Rect bounds = getBounds();
             boolean z = this.highlight;
-            float fDp = AndroidUtilities.dp((z ? 48 : 28) + 38 + 6.66f) + this.text.width;
-            float fDp2 = AndroidUtilities.dp(32.0f);
-            float f5 = fDp / 2.0f;
+            float currentWidth = this.text.getCurrentWidth() + AndroidUtilities.dp((z ? 48 : 28) + 38 + 6.66f);
+            float fDp = AndroidUtilities.dp(32.0f);
+            float f5 = currentWidth / 2.0f;
             float fCenterX = bounds.centerX() - f5;
-            float f6 = fDp2 / 2.0f;
+            float f6 = fDp / 2.0f;
             float fCenterY = bounds.centerY() - f6;
             float fCenterX2 = bounds.centerX() + f5;
             float fCenterY2 = bounds.centerY() + f6;
@@ -319,25 +299,25 @@ public abstract class SetupEmojiStatusSheet {
             canvas.drawRoundRect(rectF, f6, f6, this.backgroundPaint);
             float f7 = rectF.left;
             float f8 = rectF.top;
+            float fDp2 = AndroidUtilities.dp(32.0f);
             float fDp3 = AndroidUtilities.dp(32.0f);
-            float fDp4 = AndroidUtilities.dp(32.0f);
             ImageReceiver imageReceiver = this.userImageReceiver;
-            imageReceiver.setImageCoords(f7, f8, fDp3, fDp4);
+            imageReceiver.setImageCoords(f7, f8, fDp2, fDp3);
             imageReceiver.draw(canvas);
-            this.text.draw(AndroidUtilities.dp(36.0f) + rectF.left, rectF.centerY(), 1.0f, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), canvas);
+            this.text.draw(canvas, AndroidUtilities.dp(36.0f) + rectF.left, rectF.centerY(), Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 1.0f);
             if (z) {
-                float fDp5 = rectF.right - AndroidUtilities.dp(22.66f);
-                canvas.drawCircle(fDp5, rectF.centerY(), AndroidUtilities.dp(24.0f), this.backgroundPaint2);
-                float fDp6 = fDp5 - AndroidUtilities.dp(16.0f);
+                float fDp4 = rectF.right - AndroidUtilities.dp(22.66f);
+                canvas.drawCircle(fDp4, rectF.centerY(), AndroidUtilities.dp(24.0f), this.backgroundPaint2);
+                float fDp5 = fDp4 - AndroidUtilities.dp(16.0f);
                 float fCenterY3 = rectF.centerY() - AndroidUtilities.dp(16.0f);
+                float fDp6 = AndroidUtilities.dp(32.0f);
                 float fDp7 = AndroidUtilities.dp(32.0f);
-                float fDp8 = AndroidUtilities.dp(32.0f);
                 ImageReceiver imageReceiver2 = this.statusImageReceiver;
-                imageReceiver2.setImageCoords(fDp6, fCenterY3, fDp7, fDp8);
+                imageReceiver2.setImageCoords(fDp5, fCenterY3, fDp6, fDp7);
                 imageReceiver2.draw(canvas);
                 return;
             }
-            float f9 = this.animatedSwap.set(this.currentStatus, false);
+            float f9 = this.animatedSwap.set(this.currentStatus);
             canvas.save();
             canvas.translate((int) (rectF.right - AndroidUtilities.dp(30.66f)), (int) (rectF.centerY() - AndroidUtilities.dp(12.0f)));
             AnimatedEmojiDrawable[] animatedEmojiDrawableArr = this.emojis;
@@ -422,10 +402,10 @@ public abstract class SetupEmojiStatusSheet {
         }
 
         @Override
-        public final void setParent(RLottieImageView rLottieImageView) {
-            this.view = rLottieImageView;
-            this.statusImageReceiver.setParentView(rLottieImageView);
-            this.userImageReceiver.setParentView(rLottieImageView);
+        public final void setParent(View view) {
+            this.view = view;
+            this.statusImageReceiver.setParentView(view);
+            this.userImageReceiver.setParentView(view);
         }
 
         public final void setRandomStatus() {
@@ -463,18 +443,18 @@ public abstract class SetupEmojiStatusSheet {
             this.currentStatus = 1;
             this.emojis = new AnimatedEmojiDrawable[2];
             this.rect = new RectF();
-            this.animatedSwap = new AnimatedFloat(new SetupEmojiStatusSheet$UserEmojiStatusDrawable$$ExternalSyntheticLambda0(this, 1), 320L, CubicBezierInterpolator.EASE_OUT_QUINT, 0);
+            this.animatedSwap = new AnimatedFloat(new SetupEmojiStatusSheet$UserEmojiStatusDrawable$$ExternalSyntheticLambda0(this, 1), 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.highlight = true;
             int i = Theme.key_windowBackgroundWhite;
             paint.setColor(Theme.getColor(null, i, false));
             paint2.setColor(Theme.getColor(null, i, false));
             paint2.setShadowLayer(AndroidUtilities.dp(2.33f), 0.0f, AndroidUtilities.dp(2.0f), Theme.multAlpha(0.18f, -16777216));
-            AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
+            avatarDrawable.setInfo(user);
             imageReceiver.setForUserOrChat(user, avatarDrawable);
             imageReceiver.setRoundRadius(AndroidUtilities.dp(16.0f));
             imageReceiver2.setImage(ImageLocation.getForDocument(document), "120_120", ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 120), document), "120_120", DocumentObject.getSvgThumb(document.thumbs, Theme.key_windowBackgroundGray, 0.35f), 0L, null, null, 0);
-            this.text = new Text(UserObject.getUserName(user), 14.0f, null);
+            this.text = new Text(UserObject.getUserName(user), 14.0f);
         }
     }
 }

@@ -2,9 +2,9 @@ package kotlinx.coroutines.android;
 
 import android.os.Handler;
 import android.os.Looper;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.datastore.core.SimpleActor$1;
-import com.google.android.gms.wearable.zzy;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.google.mlkit.common.sdkinternal.zzb;
 import java.util.concurrent.CancellationException;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
@@ -79,14 +79,14 @@ public final class HandlerContext extends CoroutineDispatcher implements Delay {
 
     @Override
     public final void scheduleResumeAfterDelay(long j, CancellableContinuationImpl cancellableContinuationImpl) {
-        zzy zzyVar = new zzy(cancellableContinuationImpl, this, false, 8);
+        zzb zzbVar = new zzb(cancellableContinuationImpl, this, false, 7);
         if (j > 4611686018427387903L) {
             j = 4611686018427387903L;
         }
-        if (this.handler.postDelayed(zzyVar, j)) {
-            cancellableContinuationImpl.invokeOnCancellation(new SimpleActor$1(1, this, zzyVar));
+        if (this.handler.postDelayed(zzbVar, j)) {
+            cancellableContinuationImpl.invokeOnCancellation(new SimpleActor$1(1, this, zzbVar));
         } else {
-            cancelOnRejection(cancellableContinuationImpl.context, zzyVar);
+            cancelOnRejection(cancellableContinuationImpl.context, zzbVar);
         }
     }
 
@@ -110,6 +110,6 @@ public final class HandlerContext extends CoroutineDispatcher implements Delay {
             return str;
         }
         String string = this.handler.toString();
-        return this.invokeImmediately ? SurfaceContainer$$ExternalSyntheticOutline0.m$1(string, ".immediate") : string;
+        return this.invokeImmediately ? Fragment$$ExternalSyntheticOutline0.m$1(string, ".immediate") : string;
     }
 }

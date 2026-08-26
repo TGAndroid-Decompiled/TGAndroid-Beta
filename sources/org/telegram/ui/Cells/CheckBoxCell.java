@@ -7,9 +7,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
 import android.text.TextUtils;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -17,7 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzlb;
+import com.google.android.gms.internal.mlkit_vision_common.zzkl;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
@@ -29,27 +27,20 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
-import org.telegram.ui.ChangeUsernameActivity;
-import org.telegram.ui.ChannelCreateActivity;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda77;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda53;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CheckBoxSquare;
+import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
-import org.telegram.ui.Components.PollVotesAlert;
-import org.telegram.ui.Components.TypefaceSpan;
-import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.LiteModeSettingsActivity;
+import org.telegram.ui.Components.Premium.PremiumButtonView;
+import org.telegram.ui.PollItemMenu$4$$ExternalSyntheticLambda0;
 
 public final class CheckBoxCell extends FrameLayout {
     public final AnonymousClass1 animatedTextView;
@@ -75,208 +66,78 @@ public final class CheckBoxCell extends FrameLayout {
 
     public final class AnonymousClass1 extends AnimatedTextView {
         public final int $r8$classId;
-        public final Object this$0;
+        public final FrameLayout this$0;
 
-        public AnonymousClass1(FrameLayout frameLayout, Context context, int i) {
-            super(context, false, false, false);
+        public AnonymousClass1(PremiumButtonView premiumButtonView, Context context, int i) {
+            super(context, true, true, true);
             this.$r8$classId = i;
-            this.this$0 = frameLayout;
+            this.this$0 = premiumButtonView;
         }
 
         @Override
-        public void invalidate() {
-            switch (this.$r8$classId) {
-                case 1:
-                    super.invalidate();
-                    PollVotesAlert.Adapter.AnonymousClass1 anonymousClass1 = (PollVotesAlert.Adapter.AnonymousClass1) this.this$0;
-                    if (anonymousClass1 == PollVotesAlert.this.listView.getPinnedHeader()) {
-                        PollVotesAlert.this.listView.invalidate();
-                    }
-                    break;
-                default:
-                    super.invalidate();
-                    break;
-            }
-        }
-
-        @Override
-        public void onDraw(Canvas canvas) {
+        public final void onDraw(Canvas canvas) {
             switch (this.$r8$classId) {
                 case 0:
                     super.onDraw(canvas);
                     ((CheckBoxCell) this.this$0).updateCollapseArrowTranslation();
                     break;
                 case 1:
-                default:
-                    super.onDraw(canvas);
-                    break;
-                case 2:
-                    ShapeDrawable shapeDrawable = (ShapeDrawable) this.this$0;
-                    shapeDrawable.setBounds(0, 0, (int) (getDrawable().getCurrentWidth() + getPaddingLeft() + getPaddingRight()), getMeasuredHeight());
-                    shapeDrawable.draw(canvas);
-                    super.onDraw(canvas);
-                    break;
-            }
-        }
-
-        @Override
-        public void onMeasure(int i, int i2) {
-            switch (this.$r8$classId) {
-                case 3:
-                    int size = View.MeasureSpec.getSize(i);
-                    if (size <= 0) {
-                        size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
-                    }
-                    LiteModeSettingsActivity.PowerSaverSlider powerSaverSlider = (LiteModeSettingsActivity.PowerSaverSlider) this.this$0;
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - powerSaverSlider.leftTextView.getPaint().measureText(powerSaverSlider.leftTextView.getText().toString())) - powerSaverSlider.rightTextView.getPaint().measureText(powerSaverSlider.rightTextView.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
-                    break;
-                default:
-                    super.onMeasure(i, i2);
-                    break;
-            }
-        }
-
-        @Override
-        public boolean post(Runnable runnable) {
-            switch (this.$r8$classId) {
-                case 1:
-                    return ((BottomSheet) PollVotesAlert.this).containerView.post(runnable);
-                default:
-                    return super.post(runnable);
-            }
-        }
-
-        @Override
-        public boolean postDelayed(Runnable runnable, long j) {
-            switch (this.$r8$classId) {
-                case 1:
-                    return ((BottomSheet) PollVotesAlert.this).containerView.postDelayed(runnable, j);
-                default:
-                    return super.postDelayed(runnable, j);
-            }
-        }
-
-        public AnonymousClass1(Context context) {
-            super(context, true, false, false);
-            this.$r8$classId = 2;
-            this.this$0 = Theme.createRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.multAlpha(0.15f, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueHeader, false)));
-        }
-
-        public AnonymousClass1(LiteModeSettingsActivity.PowerSaverSlider powerSaverSlider, Context context) {
-            super(context, false, true, true);
-            this.$r8$classId = 3;
-            this.this$0 = powerSaverSlider;
-        }
-    }
-
-    public final class AnonymousClass2 extends LinkSpanDrawable.LinksTextView {
-        public final int $r8$classId;
-        public final Object this$0;
-
-        public AnonymousClass2(Object obj, Context context, int i) {
-            super(context, null);
-            this.$r8$classId = i;
-            this.this$0 = obj;
-        }
-
-        @Override
-        public int emojiCacheType() {
-            switch (this.$r8$classId) {
-                case 4:
-                    return ((UndoView) this.this$0).infoTextViewEmojiCacheType;
-                default:
-                    return super.emojiCacheType();
-            }
-        }
-
-        @Override
-        public void onDraw(Canvas canvas) {
-            switch (this.$r8$classId) {
-                case 0:
-                    super.onDraw(canvas);
-                    ((CheckBoxCell) this.this$0).updateCollapseArrowTranslation();
-                    break;
-                case 1:
-                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) this.this$0;
-                    textInfoPrivacyCell.onTextDraw();
-                    super.onDraw(canvas);
-                    textInfoPrivacyCell.afterTextDraw();
-                    break;
-                default:
-                    super.onDraw(canvas);
-                    break;
-            }
-        }
-
-        @Override
-        public int overrideColor() {
-            switch (this.$r8$classId) {
-                case 1:
-                    Integer num = ((TextInfoPrivacyCell) this.this$0).linkTextRippleColor;
-                    return num != null ? num.intValue() : Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider);
-                default:
-                    return super.overrideColor();
-            }
-        }
-
-        @Override
-        public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-            switch (this.$r8$classId) {
-                case 0:
-                    super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
-                    break;
-                case 1:
-                default:
-                    super.setText(charSequence, bufferType);
-                    break;
-                case 2:
-                    if (charSequence != 0) {
-                        charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-                        int iIndexOf = charSequence.toString().indexOf(10);
-                        if (iIndexOf >= 0) {
-                            charSequence.replace(iIndexOf, iIndexOf + 1, " ");
-                            charSequence.setSpan(new ForegroundColorSpan(ChangeUsernameActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, iIndexOf, 33);
+                    PremiumButtonView premiumButtonView = (PremiumButtonView) this.this$0;
+                    if (premiumButtonView.loadingT > 0.0f) {
+                        if (premiumButtonView.loadingDrawable == null) {
+                            premiumButtonView.loadingDrawable = new CircularProgressDrawable(premiumButtonView.buttonTextView.getTextColor());
                         }
-                        TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
-                        for (int i = 0; i < typefaceSpanArr.length; i++) {
-                            charSequence.setSpan(new ChatActivity.AnonymousClass102(this, 1), charSequence.getSpanStart(typefaceSpanArr[i]), charSequence.getSpanEnd(typefaceSpanArr[i]), 33);
-                            charSequence.removeSpan(typefaceSpanArr[i]);
+                        int iDp = (int) ((1.0f - premiumButtonView.loadingT) * AndroidUtilities.dp(24.0f));
+                        premiumButtonView.loadingDrawable.setBounds(0, iDp, getWidth(), getHeight() + iDp);
+                        premiumButtonView.loadingDrawable.setAlpha((int) (premiumButtonView.loadingT * 255.0f));
+                        premiumButtonView.loadingDrawable.draw(canvas);
+                        invalidate();
+                    }
+                    float f = premiumButtonView.loadingT;
+                    if (f < 1.0f) {
+                        if (f == 0.0f) {
+                            super.onDraw(canvas);
+                        } else {
+                            canvas.save();
+                            canvas.translate(0.0f, (int) (premiumButtonView.loadingT * AndroidUtilities.dp(-24.0f)));
+                            canvas.scale(1.0f, 1.0f - (premiumButtonView.loadingT * 0.4f));
+                            super.onDraw(canvas);
+                            canvas.restore();
                         }
                     }
-                    super.setText(charSequence, bufferType);
                     break;
-                case 3:
-                    if (charSequence != 0) {
-                        charSequence = AndroidUtilities.replaceTags(charSequence.toString());
-                        int iIndexOf2 = charSequence.toString().indexOf(10);
-                        ChannelCreateActivity channelCreateActivity = (ChannelCreateActivity) this.this$0;
-                        if (iIndexOf2 >= 0) {
-                            charSequence.replace(iIndexOf2, iIndexOf2 + 1, " ");
-                            charSequence.setSpan(new ForegroundColorSpan(channelCreateActivity.getThemedColor(Theme.key_text_RedRegular)), 0, iIndexOf2, 33);
+                default:
+                    PremiumButtonView premiumButtonView2 = (PremiumButtonView) this.this$0;
+                    if (premiumButtonView2.loadingT > 0.0f) {
+                        if (premiumButtonView2.loadingDrawable == null) {
+                            premiumButtonView2.loadingDrawable = new CircularProgressDrawable(premiumButtonView2.buttonTextView.getTextColor());
                         }
-                        TypefaceSpan[] typefaceSpanArr2 = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
-                        EditTextBoldCursor editTextBoldCursor = channelCreateActivity.descriptionTextView;
-                        String string = (editTextBoldCursor == null || editTextBoldCursor.getText() == null) ? "" : channelCreateActivity.descriptionTextView.getText().toString();
-                        for (int i2 = 0; i2 < typefaceSpanArr2.length; i2++) {
-                            charSequence.setSpan(new AboutLinkCell.AnonymousClass5(4, (Object) this, string), charSequence.getSpanStart(typefaceSpanArr2[i2]), charSequence.getSpanEnd(typefaceSpanArr2[i2]), 33);
-                            charSequence.removeSpan(typefaceSpanArr2[i2]);
+                        int iDp2 = (int) ((1.0f - premiumButtonView2.loadingT) * AndroidUtilities.dp(24.0f));
+                        premiumButtonView2.loadingDrawable.setBounds(0, iDp2, getWidth(), getHeight() + iDp2);
+                        premiumButtonView2.loadingDrawable.setAlpha((int) (premiumButtonView2.loadingT * 255.0f));
+                        premiumButtonView2.loadingDrawable.draw(canvas);
+                        invalidate();
+                    }
+                    float f2 = premiumButtonView2.loadingT;
+                    if (f2 < 1.0f) {
+                        if (f2 == 0.0f) {
+                            super.onDraw(canvas);
+                        } else {
+                            canvas.save();
+                            canvas.translate(0.0f, (int) (premiumButtonView2.loadingT * AndroidUtilities.dp(-24.0f)));
+                            canvas.scale(1.0f, 1.0f - (premiumButtonView2.loadingT * 0.4f));
+                            super.onDraw(canvas);
+                            canvas.restore();
                         }
                     }
-                    super.setText(charSequence, bufferType);
                     break;
             }
         }
 
-        public AnonymousClass2(TextInfoPrivacyCell textInfoPrivacyCell, Context context, LinkSpanDrawable.LinkCollector linkCollector, Theme.ResourcesProvider resourcesProvider) {
-            super(context, linkCollector, resourcesProvider);
-            this.$r8$classId = 1;
-            this.this$0 = textInfoPrivacyCell;
-        }
-
-        public AnonymousClass2(UndoView undoView, Context context, Theme.ResourcesProvider resourcesProvider) {
-            super(context, resourcesProvider);
-            this.$r8$classId = 4;
-            this.this$0 = undoView;
+        public AnonymousClass1(CheckBoxCell checkBoxCell, Context context) {
+            super(context);
+            this.$r8$classId = 0;
+            this.this$0 = checkBoxCell;
         }
     }
 
@@ -361,7 +222,7 @@ public final class CheckBoxCell extends FrameLayout {
 
     public final boolean isChecked() {
         CheckBox2 checkBox2 = this.checkBoxRound;
-        return checkBox2 != null ? checkBox2.checkBoxBase.isChecked : this.checkBoxSquare.isChecked;
+        return checkBox2 != null ? checkBox2.isChecked() : this.checkBoxSquare.isChecked();
     }
 
     @Override
@@ -414,7 +275,7 @@ public final class CheckBoxCell extends FrameLayout {
         int i4 = this.currentType;
         if (i4 == 3) {
             textView.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(10.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-            view2.measure(OKLCH.m(size, 34.0f, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), Integer.MIN_VALUE));
+            view2.measure(OKLCH.m(34.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), Integer.MIN_VALUE));
             float f = i3;
             view.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f), 1073741824));
             setMeasuredDimension(AndroidUtilities.dp(29.0f) + view2.getMeasuredWidth(), AndroidUtilities.dp(50.0f));
@@ -438,12 +299,12 @@ public final class CheckBoxCell extends FrameLayout {
             CollapseButton collapseButton = this.collapseButton;
             if (collapseButton != null) {
                 collapseButton.measure(View.MeasureSpec.makeMeasureSpec(i5, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-                measuredWidth2 = zzlb.m(collapseButton.getMeasuredWidth(), 11.0f, measuredWidth2);
+                measuredWidth2 = zzkl.m(11.0f, collapseButton.getMeasuredWidth(), measuredWidth2);
             }
             if (view2.getLayoutParams().width == -1) {
-                view2.measure(OKLCH.m((measuredWidth - ((int) Math.abs(view2.getTranslationX()))) - measuredWidth2, 8.0f, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
+                view2.measure(OKLCH.m(8.0f, (measuredWidth - ((int) Math.abs(view2.getTranslationX()))) - measuredWidth2, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
             } else {
-                view2.measure(OKLCH.m((measuredWidth - ((int) Math.abs(view2.getTranslationX()))) - measuredWidth2, 8.0f, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
+                view2.measure(OKLCH.m(8.0f, (measuredWidth - ((int) Math.abs(view2.getTranslationX()))) - measuredWidth2, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
             }
             BackupImageView backupImageView = this.avatarImageView;
             if (backupImageView != null) {
@@ -470,7 +331,7 @@ public final class CheckBoxCell extends FrameLayout {
     public final void setChecked(boolean z, boolean z2) {
         CheckBox2 checkBox2 = this.checkBoxRound;
         if (checkBox2 != null) {
-            checkBox2.checkBoxBase.setChecked(-1, z, z2);
+            checkBox2.setChecked(z, z2);
         } else {
             this.checkBoxSquare.setChecked(z, z2);
         }
@@ -547,8 +408,8 @@ public final class CheckBoxCell extends FrameLayout {
         this.needDivider = z;
     }
 
-    public final void setOnSectionsClickListener(CallLogActivity$$ExternalSyntheticLambda38 callLogActivity$$ExternalSyntheticLambda38, ChatActivity$$ExternalSyntheticLambda77 chatActivity$$ExternalSyntheticLambda77) {
-        if (callLogActivity$$ExternalSyntheticLambda38 == null) {
+    public final void setOnSectionsClickListener(PollItemMenu$4$$ExternalSyntheticLambda0 pollItemMenu$4$$ExternalSyntheticLambda0, ArticleViewer$$ExternalSyntheticLambda53 articleViewer$$ExternalSyntheticLambda53) {
+        if (pollItemMenu$4$$ExternalSyntheticLambda0 == null) {
             View view = this.click1Container;
             if (view != null) {
                 removeView(view);
@@ -561,9 +422,9 @@ public final class CheckBoxCell extends FrameLayout {
                 view2.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 2, -1));
                 addView(this.click1Container, LayoutHelper.createFrame(-1, -1, 119));
             }
-            this.click1Container.setOnClickListener(callLogActivity$$ExternalSyntheticLambda38);
+            this.click1Container.setOnClickListener(pollItemMenu$4$$ExternalSyntheticLambda0);
         }
-        if (chatActivity$$ExternalSyntheticLambda77 == null) {
+        if (articleViewer$$ExternalSyntheticLambda53 == null) {
             View view3 = this.click2Container;
             if (view3 != null) {
                 removeView(view3);
@@ -577,7 +438,7 @@ public final class CheckBoxCell extends FrameLayout {
             this.click2Container = view4;
             addView(view4, LayoutHelper.createFrame(56, -1, LocaleController.isRTL ? 5 : 3));
         }
-        this.click2Container.setOnClickListener(chatActivity$$ExternalSyntheticLambda77);
+        this.click2Container.setOnClickListener(articleViewer$$ExternalSyntheticLambda53);
     }
 
     public void setPad(int i) {
@@ -605,13 +466,13 @@ public final class CheckBoxCell extends FrameLayout {
     public final void setText(CharSequence charSequence, String str, boolean z, boolean z2, boolean z3) {
         if (this.textAnimated) {
             AnonymousClass1 anonymousClass1 = this.animatedTextView;
-            anonymousClass1.setText(Emoji.replaceEmoji(charSequence, anonymousClass1.getPaint().getFontMetricsInt(), false), z3, true);
+            anonymousClass1.setText(Emoji.replaceEmoji(charSequence, anonymousClass1.getPaint().getFontMetricsInt(), false), z3);
         } else {
-            this.linksTextView.setText(charSequence);
+            setText(charSequence);
         }
         CheckBox2 checkBox2 = this.checkBoxRound;
         if (checkBox2 != null) {
-            checkBox2.checkBoxBase.setChecked(-1, z, z3);
+            checkBox2.setChecked(z, z3);
         } else {
             this.checkBoxSquare.setChecked(z, z3);
         }
@@ -624,23 +485,21 @@ public final class CheckBoxCell extends FrameLayout {
         if (this.textAnimated) {
             this.animatedTextView.setTextColor(i);
         } else {
-            this.linksTextView.setTextColor(i);
+            setTextColor(i);
         }
     }
 
     public void setUserOrChat(TLObject tLObject) {
         AvatarDrawable avatarDrawable = this.avatarDrawable;
         avatarDrawable.setInfo(tLObject);
-        BackupImageView backupImageView = this.avatarImageView;
-        backupImageView.imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
-        backupImageView.onNewImageSet();
+        this.avatarImageView.setForUserOrChat(tLObject, avatarDrawable);
         boolean z = tLObject instanceof TLRPC.User;
         String userName = z ? UserObject.getUserName((TLRPC.User) tLObject) : ContactsController.formatName(tLObject);
         if (z && ((TLRPC.User) tLObject).id == MessagesController.getInstance(UserConfig.selectedAccount).telegramAntispamUserId) {
             userName = LocaleController.getString(R.string.ChannelAntiSpamUser);
         }
         if (!this.textAnimated) {
-            this.linksTextView.setText(userName);
+            setText(userName);
         } else {
             AnonymousClass1 anonymousClass1 = this.animatedTextView;
             anonymousClass1.setText(Emoji.replaceEmoji(userName, anonymousClass1.getPaint().getFontMetricsInt(), false));
@@ -687,12 +546,12 @@ public final class CheckBoxCell extends FrameLayout {
         this.textAnimated = z;
         boolean z2 = true;
         if (z) {
-            AnonymousClass1 anonymousClass1 = new AnonymousClass1(this, context, 0);
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(this, context);
             this.animatedTextView = anonymousClass1;
             NotificationCenter.listenEmojiLoading(anonymousClass1);
             anonymousClass1.setEllipsizeByGradient(true);
             anonymousClass1.setRightPadding(AndroidUtilities.dp(8.0f));
-            anonymousClass1.getDrawable().setHacks(true, false);
+            anonymousClass1.getDrawable().setHacks(true, true, false);
             anonymousClass1.setTag(Integer.valueOf(Theme.getColor((i == 1 || i == 5) ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText, resourcesProvider)));
             anonymousClass1.setTextSize(AndroidUtilities.dp(16.0f));
             if (i == 7) {
@@ -717,36 +576,47 @@ public final class CheckBoxCell extends FrameLayout {
             }
             this.textView = anonymousClass1;
         } else {
-            AnonymousClass2 anonymousClass2 = new AnonymousClass2(this, context, 0);
-            this.linksTextView = anonymousClass2;
-            NotificationCenter.listenEmojiLoading(anonymousClass2);
-            anonymousClass2.setTag(Integer.valueOf(Theme.getColor((i == 1 || i == 5) ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText, resourcesProvider)));
-            anonymousClass2.setTextSize(1, 16.0f);
-            anonymousClass2.setLines(1);
-            anonymousClass2.setMaxLines(1);
-            anonymousClass2.setSingleLine(true);
-            anonymousClass2.setEllipsize(TextUtils.TruncateAt.END);
+            ?? r4 = new LinkSpanDrawable.LinksTextView(context) {
+                @Override
+                public final void onDraw(Canvas canvas) {
+                    super.onDraw(canvas);
+                    CheckBoxCell.this.updateCollapseArrowTranslation();
+                }
+
+                @Override
+                public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+                    super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+                }
+            };
+            this.linksTextView = r4;
+            NotificationCenter.listenEmojiLoading(r4);
+            r4.setTag(Integer.valueOf(Theme.getColor((i == 1 || i == 5) ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText, resourcesProvider)));
+            r4.setTextSize(1, 16.0f);
+            r4.setLines(1);
+            r4.setMaxLines(1);
+            r4.setSingleLine(true);
+            r4.setEllipsize(TextUtils.TruncateAt.END);
             if (i == 7) {
-                anonymousClass2.setTypeface(AndroidUtilities.bold());
+                r4.setTypeface(AndroidUtilities.bold());
             }
             if (i == 3) {
-                anonymousClass2.setGravity(19);
-                addView(anonymousClass2, LayoutHelper.createFrame(-1, -2.0f, 19, 29.0f, 0.0f, 0.0f, 0.0f));
-                anonymousClass2.setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
+                r4.setGravity(19);
+                addView((View) r4, LayoutHelper.createFrame(-1, -2.0f, 19, 29.0f, 0.0f, 0.0f, 0.0f));
+                r4.setPadding(0, 0, 0, AndroidUtilities.dp(3.0f));
             } else {
-                anonymousClass2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+                r4.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
                 if (i == 2) {
                     boolean z5 = LocaleController.isRTL;
-                    addView(anonymousClass2, LayoutHelper.createFrame(-1, -2.0f, (z5 ? 5 : 3) | 16, z5 ? 8 : 29, 0.0f, z5 ? 29 : 8, 0.0f));
+                    addView((View) r4, LayoutHelper.createFrame(-1, -2.0f, (z5 ? 5 : 3) | 16, z5 ? 8 : 29, 0.0f, z5 ? 29 : 8, 0.0f));
                 } else {
                     int i4 = isCheckboxRound() ? 56 : 46;
                     i4 = i == 7 ? i4 + 39 : i4;
                     int i5 = isCheckboxRound() ? -2 : -1;
                     boolean z6 = LocaleController.isRTL;
-                    addView(anonymousClass2, LayoutHelper.createFrame(i5, -2.0f, (z6 ? 5 : 3) | 16, z6 ? i2 : (i2 - 17) + i4, 0.0f, z6 ? (i2 - 17) + i4 : i2, 0.0f));
+                    addView((View) r4, LayoutHelper.createFrame(i5, -2.0f, (z6 ? 5 : 3) | 16, z6 ? i2 : (i2 - 17) + i4, 0.0f, z6 ? (i2 - 17) + i4 : i2, 0.0f));
                 }
             }
-            this.textView = anonymousClass2;
+            this.textView = r4;
         }
         TextView textView = new TextView(context);
         this.valueTextView = textView;
@@ -764,7 +634,7 @@ public final class CheckBoxCell extends FrameLayout {
             this.checkBoxRound = checkBox2;
             this.checkBox = checkBox2;
             checkBox2.setDrawUnchecked(true);
-            checkBox2.checkBoxBase.setChecked(-1, true, false);
+            checkBox2.setChecked(true, false);
             checkBox2.setDrawBackgroundAsArc(10);
             this.checkBoxSize = 21;
             float f2 = 21;
@@ -774,7 +644,7 @@ public final class CheckBoxCell extends FrameLayout {
             if (i != 1 && i != 5) {
                 z2 = false;
             }
-            CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, resourcesProvider, z2);
+            CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, z2, resourcesProvider);
             this.checkBoxSquare = checkBoxSquare;
             this.checkBox = checkBoxSquare;
             this.checkBoxSize = 18;
@@ -801,7 +671,7 @@ public final class CheckBoxCell extends FrameLayout {
             this.collapseButton = collapseButton2;
             addView(collapseButton2, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388629, f, 0.0f, i2 - 11, 0.0f));
         } else if (i == 7) {
-            this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+            this.avatarDrawable = new AvatarDrawable();
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarImageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(17.0f));

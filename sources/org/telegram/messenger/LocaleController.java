@@ -16,13 +16,13 @@ import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.format.DateUtils;
 import android.util.Xml;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.google.android.exoplayer2.RendererCapabilities;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
 import com.google.android.exoplayer2.util.Log;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzit;
-import com.google.android.gms.internal.mlkit_vision_common.zzkc;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
+import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import com.google.android.gms.internal.mlkit_vision_common.zzjx;
 import j$.util.DesugarTimeZone;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -46,7 +46,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.Components.TypefaceSpan;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda9;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda16;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -1257,9 +1257,9 @@ public class LocaleController {
 
     public static CharSequence formatPluralSpannable(String str, int i, CharSequence... charSequenceArr) {
         if (str == null || str.length() == 0 || getInstance().currentPluralRules == null) {
-            return zzil.m("LOC_ERR:", str);
+            return zzii.m("LOC_ERR:", str);
         }
-        String strM = zzit.m(str, "_", getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i)));
+        String strM = zziq.m(str, "_", getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i)));
         int identifier = ApplicationLoader.applicationContext.getResources().getIdentifier(strM, "string", ApplicationLoader.applicationContext.getPackageName());
         int identifier2 = ApplicationLoader.applicationContext.getResources().getIdentifier(str.concat("_other"), "string", ApplicationLoader.applicationContext.getPackageName());
         Object[] objArr = new Object[charSequenceArr.length + 1];
@@ -1270,9 +1270,9 @@ public class LocaleController {
 
     public static String formatPluralString(String str, int i, Object... objArr) {
         if (str == null || str.length() == 0 || getInstance().currentPluralRules == null) {
-            return zzil.m("LOC_ERR:", str);
+            return zzii.m("LOC_ERR:", str);
         }
-        String strM = zzit.m(str, "_", getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i)));
+        String strM = zziq.m(str, "_", getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i)));
         int identifier = ApplicationLoader.applicationContext.getResources().getIdentifier(strM, "string", ApplicationLoader.applicationContext.getPackageName());
         int identifier2 = ApplicationLoader.applicationContext.getResources().getIdentifier(str.concat("_other"), "string", ApplicationLoader.applicationContext.getPackageName());
         Object[] objArr2 = new Object[objArr.length + 1];
@@ -1656,7 +1656,7 @@ public class LocaleController {
             return formatPluralString("Months", (((i / 60) / 60) / 24) / 30, new Object[0]);
         }
         int i2 = ((i / 60) / 60) / 24;
-        return i % 7 == 0 ? formatPluralString("Weeks", i2 / 7, new Object[0]) : zzkc.m(formatPluralString("Weeks", i2 / 7, new Object[0]), " ", formatPluralString("Days", i2 % 7, new Object[0]));
+        return i % 7 == 0 ? formatPluralString("Weeks", i2 / 7, new Object[0]) : zzjx.m(formatPluralString("Weeks", i2 / 7, new Object[0]), " ", formatPluralString("Days", i2 % 7, new Object[0]));
     }
 
     public static String formatTodoCompletedDate(long j) {
@@ -1906,9 +1906,9 @@ public class LocaleController {
 
     public static String getPluralString(String str, int i) {
         if (str == null || str.length() == 0 || getInstance().currentPluralRules == null) {
-            return zzil.m("LOC_ERR:", str);
+            return zzii.m("LOC_ERR:", str);
         }
-        String strM = zzit.m(str, "_", getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i)));
+        String strM = zziq.m(str, "_", getInstance().stringForQuantity(getInstance().currentPluralRules.quantityForNumber(i)));
         return getString(strM, str.concat("_other"), ApplicationLoader.applicationContext.getResources().getIdentifier(strM, "string", ApplicationLoader.applicationContext.getPackageName()), ApplicationLoader.applicationContext.getResources().getIdentifier(str.concat("_other"), "string", ApplicationLoader.applicationContext.getPackageName()));
     }
 
@@ -1975,7 +1975,7 @@ public class LocaleController {
         if (z) {
             String displayName2 = timeZone.getDisplayName(true, 1, getInstance().getCurrentLocale());
             if (!TextUtils.equals(displayName2, displayName)) {
-                return zzit.m(displayName2, ", ", displayName);
+                return zziq.m(displayName2, ", ", displayName);
             }
         }
         return displayName;
@@ -2130,7 +2130,7 @@ public class LocaleController {
 
     public void lambda$loadRemoteLanguages$12(boolean z, int i, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof Vector) {
-            AndroidUtilities.runOnUIThread(new ImageLoader$5$$ExternalSyntheticLambda2(i, 1, this, (Vector) tLObject, z));
+            AndroidUtilities.runOnUIThread(new ImageLoader$5$$ExternalSyntheticLambda2(this, (Vector) tLObject, z, i, 1));
         }
     }
 
@@ -2181,7 +2181,7 @@ public class LocaleController {
                 configuration.locale = this.currentLocale;
                 ApplicationLoader.applicationContext.getResources().updateConfiguration(configuration, ApplicationLoader.applicationContext.getResources().getDisplayMetrics());
                 this.changingConfiguration = false;
-                RestrictedLanguagesSelectActivity.gotRestrictedLanguages = false;
+                RestrictedLanguagesSelectActivity.invalidateRestrictedLanguages();
             } else {
                 FileLog.d("saveRemoteLocaleStrings: currentLocaleInfo != localeInfo, do nothing");
             }
@@ -2385,11 +2385,11 @@ public class LocaleController {
         for (String str : map.keySet()) {
             if (str != null) {
                 if (str.endsWith("_other")) {
-                    strM = SurfaceContainer$$ExternalSyntheticOutline0.m(6, 0, str);
+                    strM = Fragment$$ExternalSyntheticOutline0.m(6, 0, str);
                 } else if (str.endsWith("_zero") || str.endsWith("_many")) {
-                    strM = SurfaceContainer$$ExternalSyntheticOutline0.m(5, 0, str);
+                    strM = Fragment$$ExternalSyntheticOutline0.m(5, 0, str);
                 } else {
-                    strM = (str.endsWith("_one") || str.endsWith("_two") || str.endsWith("_few")) ? SurfaceContainer$$ExternalSyntheticOutline0.m(4, 0, str) : null;
+                    strM = (str.endsWith("_one") || str.endsWith("_two") || str.endsWith("_few")) ? Fragment$$ExternalSyntheticOutline0.m(4, 0, str) : null;
                 }
                 if (strM != null) {
                     if (!hashSet.contains(strM)) {
@@ -3274,12 +3274,12 @@ public class LocaleController {
         String lowerCase = tL_langPackDifference.lang_code.replace('-', '_').toLowerCase();
         int i2 = lowerCase.equals(localeInfo.shortName) ? 0 : lowerCase.equals(localeInfo.baseLangCode) ? 1 : -1;
         if (i2 == -1) {
-            StringBuilder sbM4m = SurfaceContainer$$ExternalSyntheticOutline0.m4m("saveRemoteLocaleStrings: unknown language ", lowerCase, " (locale short=");
-            sbM4m.append(localeInfo.shortName);
-            sbM4m.append(", base=");
-            sbM4m.append(localeInfo.baseLangCode);
-            sbM4m.append(")");
-            FileLog.d(sbM4m.toString());
+            StringBuilder sbM80m = Fragment$$ExternalSyntheticOutline0.m80m("saveRemoteLocaleStrings: unknown language ", lowerCase, " (locale short=");
+            sbM80m.append(localeInfo.shortName);
+            sbM80m.append(", base=");
+            sbM80m.append(localeInfo.baseLangCode);
+            sbM80m.append(")");
+            FileLog.d(sbM80m.toString());
             return;
         }
         File pathToFile = i2 == 0 ? localeInfo.getPathToFile() : localeInfo.getPathToBaseFile();
@@ -3333,7 +3333,7 @@ public class LocaleController {
                 localeFileStrings2.putAll(getLocaleFileStrings(localeInfo.getPathToFile()));
             }
             FileLog.d("saved locale file to " + pathToFile);
-            AndroidUtilities.runOnUIThread(new OAuthSheet$$ExternalSyntheticLambda9(this, i2, localeInfo, tL_langPackDifference, localeFileStrings2, runnable, 2));
+            AndroidUtilities.runOnUIThread(new OAuthSheet$$ExternalSyntheticLambda16(this, i2, localeInfo, tL_langPackDifference, localeFileStrings2, runnable, 2));
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -3619,7 +3619,7 @@ public class LocaleController {
                 }
             }
         }
-        return string == null ? zzil.m("LOC_ERR:", str) : string;
+        return string == null ? zzii.m("LOC_ERR:", str) : string;
     }
 
     public int applyLanguage(LocaleInfo localeInfo, boolean z, boolean z2, boolean z3, boolean z4, int i, Runnable runnable) {
@@ -3632,7 +3632,6 @@ public class LocaleController {
         String[] strArrSplit;
         Locale locale;
         String[] strArr;
-        boolean z7;
         LocaleController localeController = this;
         LocaleInfo localeInfo2 = localeInfo;
         if (localeInfo2 == null) {
@@ -3750,12 +3749,10 @@ public class LocaleController {
                 if (!z5) {
                     if (z2) {
                         AndroidUtilities.runOnUIThread(new Emoji$$ExternalSyntheticLambda1(11));
-                        z7 = false;
                     } else {
-                        z7 = false;
                         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadInterface, new Object[0]);
                     }
-                    RestrictedLanguagesSelectActivity.gotRestrictedLanguages = z7;
+                    RestrictedLanguagesSelectActivity.invalidateRestrictedLanguages();
                     if (runnable != null) {
                         runnable.run();
                     }
@@ -4755,7 +4752,7 @@ public class LocaleController {
     @Deprecated
     public static String getString(String str) {
         if (TextUtils.isEmpty(str)) {
-            return zzil.m("LOC_ERR:", str);
+            return zzii.m("LOC_ERR:", str);
         }
         int stringResId = getStringResId(str);
         if (stringResId != 0) {

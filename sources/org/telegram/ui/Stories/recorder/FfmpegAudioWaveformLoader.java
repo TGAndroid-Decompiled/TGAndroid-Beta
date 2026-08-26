@@ -2,8 +2,7 @@ package org.telegram.ui.Stories.recorder;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda2;
-import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
+import org.telegram.ui.iv.RichTextCell$2$$ExternalSyntheticLambda1;
 
 public class FfmpegAudioWaveformLoader {
     private Utilities.Callback2<short[], Integer> onChunkReceived;
@@ -11,7 +10,7 @@ public class FfmpegAudioWaveformLoader {
 
     public FfmpegAudioWaveformLoader(String str, int i, Utilities.Callback2<short[], Integer> callback2) {
         this.onChunkReceived = callback2;
-        Utilities.phoneBookQueue.postRunnable(new TodoItemMenu$$ExternalSyntheticLambda2(this, str, i, 10));
+        Utilities.phoneBookQueue.postRunnable(new RichTextCell$2$$ExternalSyntheticLambda1(this, str, i, 20));
     }
 
     public native void lambda$new$0(String str, int i);
@@ -25,10 +24,10 @@ public class FfmpegAudioWaveformLoader {
     }
 
     private void receiveChunk(short[] sArr, int i) {
-        AndroidUtilities.runOnUIThread(new TodoItemMenu$$ExternalSyntheticLambda2(this, sArr, i, 11));
+        AndroidUtilities.runOnUIThread(new RichTextCell$2$$ExternalSyntheticLambda1(this, sArr, i, 21));
     }
 
     public void destroy() {
-        Utilities.phoneBookQueue.postRunnable(new VoIPFragment$12$$ExternalSyntheticLambda0(this, 9));
+        Utilities.phoneBookQueue.postRunnable(new PreviewView$$ExternalSyntheticLambda12(this, 11));
     }
 }

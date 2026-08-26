@@ -3,7 +3,7 @@ package org.telegram.ui.Components.Premium;
 import android.content.Context;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
@@ -20,7 +20,7 @@ public final class DoubledLimitsBottomSheet$LimitCell extends LinearLayout {
         setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
         TextView textView = new TextView(context);
         this.title = textView;
-        zzkk.m(15.0f, 1, textView);
+        zzkb.m(15.0f, 1, textView);
         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 16, 0, 16, 0));
         TextView textView2 = new TextView(context);

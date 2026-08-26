@@ -16,15 +16,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable21;
-import androidx.recyclerview.widget.AdapterHelper;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.gms.internal.mlkit_vision_label.zzcw;
 import com.google.android.gms.internal.play_billing.zzdw;
 import java.io.File;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import org.aspectj.runtime.reflect.MethodSignatureImpl;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticOutline0;
 import org.telegram.messenger.ApplicationLoader;
@@ -41,16 +40,16 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Cells.ChatActionCell;
+import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda8;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.CombinedDrawable;
-import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda2;
-import org.telegram.ui.Components.ItemOptions;
-import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.FlickerLoadingView$$ExternalSyntheticOutline0;
+import org.telegram.ui.Components.Premium.HelloParticles.Drawable.Particle;
 import org.telegram.ui.Components.Premium.SpeedLineParticles$Drawable.Particle;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 import org.telegram.ui.Components.voip.CellFlickerDrawable.DrawableInterface;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stories.recorder.CollageLayoutView2;
 import org.telegram.ui.iv.RichEditorListView$$ExternalSyntheticLambda53;
 
@@ -67,11 +66,11 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
     public File file;
     public boolean firstFrameRendered;
     public final boolean fromTop;
-    public ChatActionCell.TextLayout helloParticlesDrawable;
+    public HelloParticles.Drawable helloParticlesDrawable;
     public final ImageReceiver imageReceiver;
     public long lastFrameTime;
-    public final AdapterHelper matrixParticlesDrawable;
-    public PasscodeView$9$$ExternalSyntheticLambda0 nextCheck;
+    public final MethodSignatureImpl matrixParticlesDrawable;
+    public PremiumButtonView$$ExternalSyntheticLambda1 nextCheck;
     public final Paint phoneFrame1;
     public final Paint phoneFrame2;
     public boolean play;
@@ -114,7 +113,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                     TextureView textureView = videoScreenPreview.textureView;
                     if (textureView != null && !videoScreenPreview.firstFrameRendered) {
                         textureView.setAlpha(0.0f);
-                        videoScreenPreview.textureView.animate().alpha(1.0f).setListener(new ItemOptions.AnonymousClass3(this, 19)).setDuration(200L);
+                        videoScreenPreview.textureView.animate().alpha(1.0f).setListener(new BaseChartView.AnonymousClass4(this, 9)).setDuration(200L);
                     }
                     break;
                 default:
@@ -214,7 +213,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                 }
                             }
                         };
-                        combinedDrawable.fullSize = true;
+                        combinedDrawable.setFullsize(true);
                     }
                 }
                 this.attachFileName = FileLoader.getAttachFileName(document);
@@ -222,7 +221,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                 this.imageReceiver.setImage(null, null, combinedDrawable, null, premiumPromo, 1);
                 FileLoader.getInstance(this.currentAccount).loadFile(document, premiumPromo, 3, 0);
                 this.document = document;
-                Utilities.globalQueue.postRunnable(new ImageUpdater$$ExternalSyntheticLambda2(20, this, document));
+                Utilities.globalQueue.postRunnable(new ChatActionCell$$ExternalSyntheticLambda8(28, this, document));
             } else {
                 i3 = 3;
             }
@@ -230,23 +229,23 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
             i3 = 3;
         }
         if (i2 == 1) {
-            AdapterHelper adapterHelper = new AdapterHelper();
-            this.matrixParticlesDrawable = adapterHelper;
-            adapterHelper.mExistingUpdateTypes = AndroidUtilities.dp(16.0f);
+            MethodSignatureImpl methodSignatureImpl = new MethodSignatureImpl();
+            this.matrixParticlesDrawable = methodSignatureImpl;
+            methodSignatureImpl.modifiers = AndroidUtilities.dp(16.0f);
             TextPaint textPaint = new TextPaint(65);
             textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
-            textPaint.setTextSize(adapterHelper.mExistingUpdateTypes);
+            textPaint.setTextSize(methodSignatureImpl.modifiers);
             textPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(null, Theme.key_premiumStartSmallStarsColor2, false), 30));
             textPaint.setTextAlign(Paint.Align.CENTER);
             int i6 = 0;
             while (i6 < 16) {
                 int i7 = i6 < 10 ? i6 + 48 : i6 + 55;
-                Bitmap[] bitmapArr = (Bitmap[]) adapterHelper.mPendingUpdates;
-                int i8 = adapterHelper.mExistingUpdateTypes;
+                Bitmap[] bitmapArr = (Bitmap[]) methodSignatureImpl.declaringTypeName;
+                int i8 = methodSignatureImpl.modifiers;
                 bitmapArr[i6] = Bitmap.createBitmap(i8, i8, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(((Bitmap[]) adapterHelper.mPendingUpdates)[i6]);
+                Canvas canvas = new Canvas(((Bitmap[]) methodSignatureImpl.declaringTypeName)[i6]);
                 String string = Character.toString((char) i7);
-                int i9 = adapterHelper.mExistingUpdateTypes;
+                int i9 = methodSignatureImpl.modifiers;
                 canvas.drawText(string, i9 >> 1, i9, textPaint);
                 i6++;
             }
@@ -288,29 +287,29 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                 speedLineParticles$Drawable.paint.setColor(alphaComponent);
             }
         } else if (i2 == 13) {
-            ChatActionCell.TextLayout textLayout = new ChatActionCell.TextLayout();
-            this.helloParticlesDrawable = textLayout;
-            if (textLayout.spoilers.isEmpty()) {
-                for (int i11 = 0; i11 < textLayout.width; i11++) {
-                    textLayout.spoilers.add(new HelloParticles$Drawable$Particle(textLayout));
+            HelloParticles.Drawable drawable2 = new HelloParticles.Drawable();
+            this.helloParticlesDrawable = drawable2;
+            if (drawable2.particles.isEmpty()) {
+                for (int i11 = 0; i11 < drawable2.count; i11++) {
+                    drawable2.particles.add(drawable2.new Particle());
                 }
             }
         } else {
-            StarParticlesView.Drawable drawable2 = new StarParticlesView.Drawable(SharedConfig.getDevicePerformanceClass() == 2 ? 800 : SharedConfig.getDevicePerformanceClass() == 1 ? 400 : 100);
-            this.starDrawable = drawable2;
-            drawable2.resourcesProvider = resourcesProvider;
-            drawable2.colorKey = Theme.key_premiumStartSmallStarsColor2;
-            drawable2.size1 = 4;
-            drawable2.k3 = 0.98f;
-            drawable2.k2 = 0.98f;
-            drawable2.k1 = 0.98f;
-            drawable2.useRotate = true;
-            drawable2.speedScale = 4.0f;
-            drawable2.checkBounds = true;
-            drawable2.checkTime = true;
-            drawable2.useBlur = true;
-            drawable2.roundEffect = false;
-            drawable2.init();
+            StarParticlesView.Drawable drawable3 = new StarParticlesView.Drawable(SharedConfig.getDevicePerformanceClass() == 2 ? 800 : SharedConfig.getDevicePerformanceClass() == 1 ? 400 : 100);
+            this.starDrawable = drawable3;
+            drawable3.resourcesProvider = resourcesProvider;
+            drawable3.colorKey = Theme.key_premiumStartSmallStarsColor2;
+            drawable3.size1 = 4;
+            drawable3.k3 = 0.98f;
+            drawable3.k2 = 0.98f;
+            drawable3.k1 = 0.98f;
+            drawable3.useRotate = true;
+            drawable3.speedScale = 4.0f;
+            drawable3.checkBounds = true;
+            drawable3.checkTime = true;
+            drawable3.useBlur = true;
+            drawable3.roundEffect = false;
+            drawable3.init();
         }
         if (i2 == 1 || i2 == i3 || i2 == 11) {
             this.fromTop = true;
@@ -358,13 +357,13 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                 this.aspectRatio = 0.671f;
             } else {
                 if ((NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & 512) != 0) {
-                    PasscodeView$9$$ExternalSyntheticLambda0 passcodeView$9$$ExternalSyntheticLambda0 = this.nextCheck;
-                    if (passcodeView$9$$ExternalSyntheticLambda0 != null) {
-                        AndroidUtilities.cancelRunOnUIThread(passcodeView$9$$ExternalSyntheticLambda0);
+                    PremiumButtonView$$ExternalSyntheticLambda1 premiumButtonView$$ExternalSyntheticLambda1 = this.nextCheck;
+                    if (premiumButtonView$$ExternalSyntheticLambda1 != null) {
+                        AndroidUtilities.cancelRunOnUIThread(premiumButtonView$$ExternalSyntheticLambda1);
                     }
-                    PasscodeView$9$$ExternalSyntheticLambda0 passcodeView$9$$ExternalSyntheticLambda1 = new PasscodeView$9$$ExternalSyntheticLambda0(this, 18);
-                    this.nextCheck = passcodeView$9$$ExternalSyntheticLambda1;
-                    AndroidUtilities.runOnUIThread(passcodeView$9$$ExternalSyntheticLambda1, 300L);
+                    PremiumButtonView$$ExternalSyntheticLambda1 premiumButtonView$$ExternalSyntheticLambda2 = new PremiumButtonView$$ExternalSyntheticLambda1(this, 5);
+                    this.nextCheck = premiumButtonView$$ExternalSyntheticLambda2;
+                    AndroidUtilities.runOnUIThread(premiumButtonView$$ExternalSyntheticLambda2, 300L);
                     return;
                 }
                 try {
@@ -422,21 +421,21 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
         int i7;
         int i8;
         int i9;
-        AdapterHelper adapterHelper;
+        MethodSignatureImpl methodSignatureImpl;
         int i10;
         long j;
         float fClamp;
         zzdw zzdwVar;
         long j2;
-        AdapterHelper adapterHelper2;
+        MethodSignatureImpl methodSignatureImpl2;
         float fClamp2;
         int i11;
         StarParticlesView.Drawable drawable = this.starDrawable;
         int i12 = 1;
-        AdapterHelper adapterHelper3 = this.matrixParticlesDrawable;
+        MethodSignatureImpl methodSignatureImpl3 = this.matrixParticlesDrawable;
         SpeedLineParticles$Drawable speedLineParticles$Drawable = this.speedLinesDrawable;
         int i13 = 0;
-        if (drawable == null && speedLineParticles$Drawable == null && this.helloParticlesDrawable == null && adapterHelper3 == null) {
+        if (drawable == null && speedLineParticles$Drawable == null && this.helloParticlesDrawable == null && methodSignatureImpl3 == null) {
             f = 0.9f;
             f2 = 2.0f;
             z = true;
@@ -447,46 +446,46 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                 canvas.save();
                 f = 0.9f;
                 canvas.scale(fPow, fPow, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-                if (adapterHelper3 == null) {
+                if (methodSignatureImpl3 == null) {
                     f2 = 2.0f;
                     z = true;
                     if (drawable != null) {
-                        drawable.onDraw(canvas, 1.0f);
+                        drawable.onDraw(canvas);
                     } else if (speedLineParticles$Drawable == null) {
-                        ChatActionCell.TextLayout textLayout = this.helloParticlesDrawable;
-                        if (textLayout != null) {
+                        HelloParticles.Drawable drawable2 = this.helloParticlesDrawable;
+                        if (drawable2 != null) {
                             System.currentTimeMillis();
                             int i14 = 0;
                             while (true) {
-                                ArrayList arrayList2 = textLayout.spoilers;
+                                ArrayList arrayList2 = drawable2.particles;
                                 if (i14 >= arrayList2.size()) {
                                     break;
                                 }
-                                HelloParticles$Drawable$Particle helloParticles$Drawable$Particle = (HelloParticles$Drawable$Particle) arrayList2.get(i14);
-                                ChatActionCell.TextLayout textLayout2 = helloParticles$Drawable$Particle.this$0;
-                                float f9 = helloParticles$Drawable$Particle.inProgress;
+                                HelloParticles.Drawable.Particle particle = (HelloParticles.Drawable.Particle) arrayList2.get(i14);
+                                HelloParticles.Drawable drawable3 = HelloParticles.Drawable.this;
+                                float f9 = particle.inProgress;
                                 if (f9 != 1.0f) {
-                                    float f10 = (textLayout2.y / helloParticles$Drawable$Particle.duration) + f9;
-                                    helloParticles$Drawable$Particle.inProgress = f10;
+                                    float f10 = (drawable3.dt / particle.duration) + f9;
+                                    particle.inProgress = f10;
                                     if (f10 > 1.0f) {
-                                        helloParticles$Drawable$Particle.inProgress = 1.0f;
+                                        particle.inProgress = 1.0f;
                                     }
                                 }
-                                if (helloParticles$Drawable$Particle.bitmap != null) {
+                                if (particle.bitmap != null) {
                                     canvas.save();
-                                    float fPow2 = 1.0f - (((float) Math.pow(helloParticles$Drawable$Particle.inProgress - 0.5f, 2.0d)) * 4.0f);
-                                    float f11 = helloParticles$Drawable$Particle.scale;
-                                    ChatActionCell.TextLayout textLayout3 = helloParticles$Drawable$Particle.this$0;
-                                    float fM = AndroidUtilities$$ExternalSyntheticOutline0.m(fPow2, 0.4f, 0.7f, f11 / textLayout3.x);
-                                    canvas.translate(helloParticles$Drawable$Particle.x - (helloParticles$Drawable$Particle.w / 2.0f), helloParticles$Drawable$Particle.y - (helloParticles$Drawable$Particle.h / 2.0f));
-                                    canvas.scale(fM, fM, helloParticles$Drawable$Particle.w / 2.0f, helloParticles$Drawable$Particle.h / 2.0f);
-                                    Paint paint = (Paint) textLayout3.this$0;
-                                    paint.setAlpha((int) (helloParticles$Drawable$Particle.alpha * fPow2));
-                                    canvas.drawBitmap(helloParticles$Drawable$Particle.bitmap, 0.0f, 0.0f, paint);
+                                    float fPow2 = 1.0f - (((float) Math.pow(particle.inProgress - 0.5f, 2.0d)) * 4.0f);
+                                    float f11 = particle.scale;
+                                    HelloParticles.Drawable drawable4 = HelloParticles.Drawable.this;
+                                    float fM = AndroidUtilities$$ExternalSyntheticOutline0.m(fPow2, 0.4f, 0.7f, f11 / drawable4.bitmapScale);
+                                    canvas.translate(particle.x - (particle.w / 2.0f), particle.y - (particle.h / 2.0f));
+                                    canvas.scale(fM, fM, particle.w / 2.0f, particle.h / 2.0f);
+                                    Paint paint = drawable4.paint;
+                                    paint.setAlpha((int) (particle.alpha * fPow2));
+                                    canvas.drawBitmap(particle.bitmap, 0.0f, 0.0f, paint);
                                     canvas.restore();
                                 }
-                                if (helloParticles$Drawable$Particle.inProgress >= 1.0f) {
-                                    helloParticles$Drawable$Particle.genPosition(i14, false);
+                                if (particle.inProgress >= 1.0f) {
+                                    particle.genPosition(i14, false);
                                 }
                                 i14++;
                             }
@@ -512,52 +511,52 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                             if (i17 >= arrayList3.size()) {
                                 break;
                             }
-                            SpeedLineParticles$Drawable.Particle particle = (SpeedLineParticles$Drawable.Particle) arrayList3.get(i17);
+                            SpeedLineParticles$Drawable.Particle particle2 = (SpeedLineParticles$Drawable.Particle) arrayList3.get(i17);
                             SpeedLineParticles$Drawable speedLineParticles$Drawable2 = SpeedLineParticles$Drawable.this;
                             int i18 = i17 * 4;
-                            float f13 = particle.x;
+                            float f13 = particle2.x;
                             float[] fArr2 = speedLineParticles$Drawable2.lines;
                             fArr2[i18] = f13;
-                            fArr2[i18 + 1] = particle.y;
-                            fArr2[i18 + 2] = (AndroidUtilities.dp(30.0f) * particle.vecX) + f13;
+                            fArr2[i18 + 1] = particle2.y;
+                            fArr2[i18 + 2] = (AndroidUtilities.dp(30.0f) * particle2.vecX) + f13;
                             SpeedLineParticles$Drawable speedLineParticles$Drawable3 = SpeedLineParticles$Drawable.this;
-                            speedLineParticles$Drawable3.lines[i18 + 3] = (AndroidUtilities.dp(30.0f) * particle.vecY) + particle.y;
+                            speedLineParticles$Drawable3.lines[i18 + 3] = (AndroidUtilities.dp(30.0f) * particle2.vecY) + particle2.y;
                             float fDp = AndroidUtilities.dp(4.0f);
                             float f14 = speedLineParticles$Drawable3.dt;
                             float f15 = (f14 / 660.0f) * fDp * speedLineParticles$Drawable3.speedScale;
-                            float f16 = (particle.vecX * f15) + particle.x;
-                            particle.x = f16;
-                            float f17 = (particle.vecY * f15) + particle.y;
-                            particle.y = f17;
-                            float f18 = particle.inProgress;
+                            float f16 = (particle2.vecX * f15) + particle2.x;
+                            particle2.x = f16;
+                            float f17 = (particle2.vecY * f15) + particle2.y;
+                            particle2.y = f17;
+                            float f18 = particle2.inProgress;
                             if (f18 != 1.0f) {
                                 float f19 = (f14 / 200.0f) + f18;
-                                particle.inProgress = f19;
+                                particle2.inProgress = f19;
                                 if (f19 > 1.0f) {
-                                    particle.inProgress = 1.0f;
+                                    particle2.inProgress = 1.0f;
                                 }
                             }
-                            if (jCurrentTimeMillis > particle.lifeTime || !speedLineParticles$Drawable.screenRect.contains(f16, f17)) {
-                                particle.genPosition(jCurrentTimeMillis, false);
+                            if (jCurrentTimeMillis > particle2.lifeTime || !speedLineParticles$Drawable.screenRect.contains(f16, f17)) {
+                                particle2.genPosition(jCurrentTimeMillis, false);
                             }
                             i17++;
                         }
                         canvas.drawLines(speedLineParticles$Drawable.lines, speedLineParticles$Drawable.paint);
                     }
                 } else {
-                    Rect rect = (Rect) adapterHelper3.mPostponedList;
-                    int iWidth = rect.width() / adapterHelper3.mExistingUpdateTypes;
-                    int iHeight = rect.height() / adapterHelper3.mExistingUpdateTypes;
+                    Rect rect = (Rect) methodSignatureImpl3.declaringType;
+                    int iWidth = rect.width() / methodSignatureImpl3.modifiers;
+                    int iHeight = rect.height() / methodSignatureImpl3.modifiers;
                     if (iWidth == 0 || iHeight == 0) {
                         f2 = 2.0f;
                     } else {
                         long jCurrentTimeMillis2 = System.currentTimeMillis();
-                        ArrayList[] arrayListArr = (ArrayList[]) adapterHelper3.lastNotifies;
+                        ArrayList[] arrayListArr = (ArrayList[]) methodSignatureImpl3.returnType;
                         if (arrayListArr != null) {
                             f4 = 150.0f;
                             if (arrayListArr.length != iWidth + 1) {
                             }
-                            zzdwVarArr = (zzdw[][]) adapterHelper3.mCallback;
+                            zzdwVarArr = (zzdw[][]) methodSignatureImpl3.stringCache;
                             i = 300;
                             i2 = 16;
                             if (zzdwVarArr != null) {
@@ -567,7 +566,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                 f5 = 1.0f;
                                 i5 = 0;
                                 while (i5 <= iWidth) {
-                                    arrayList = ((ArrayList[]) adapterHelper3.lastNotifies)[i5];
+                                    arrayList = ((ArrayList[]) methodSignatureImpl3.returnType)[i5];
                                     i6 = 0;
                                     while (i6 < arrayList.size()) {
                                         matrixParticlesDrawable$Particle = (MatrixParticlesDrawable$Particle) arrayList.get(i6);
@@ -597,53 +596,53 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                         iMin = Math.min(matrixParticlesDrawable$Particle.y, iHeight + 1);
                                         iMax = Math.max(i13, matrixParticlesDrawable$Particle.y - matrixParticlesDrawable$Particle.len);
                                         while (iMax < iMin) {
-                                            int i20 = adapterHelper3.mExistingUpdateTypes;
+                                            int i20 = methodSignatureImpl3.modifiers;
                                             f6 = i20 * i5;
                                             f7 = i20 * iMax;
-                                            if (((RectF) adapterHelper3.mUpdateOpPool).contains(f6, f7)) {
+                                            if (((RectF) methodSignatureImpl3.name).contains(f6, f7)) {
                                                 i7 = iHeight;
                                                 i8 = i5;
                                                 i9 = iMax;
-                                                adapterHelper = adapterHelper3;
+                                                methodSignatureImpl = methodSignatureImpl3;
                                                 i10 = iWidth;
                                                 j = jCurrentTimeMillis2;
                                             } else {
                                                 i7 = iHeight;
                                                 i8 = i5;
                                                 fClamp = Utilities.clamp(((f5 - ((matrixParticlesDrawable$Particle.y - iMax) / (matrixParticlesDrawable$Particle.len - 1))) * 0.8f) + 0.2f, 1.0f, 0.0f);
-                                                zzdwVar = ((zzdw[][]) adapterHelper3.mCallback)[i8][iMax];
+                                                zzdwVar = ((zzdw[][]) methodSignatureImpl3.stringCache)[i8][iMax];
                                                 i9 = iMax;
                                                 j2 = zzdwVar.zzb - jCurrentTimeMillis2;
-                                                adapterHelper = adapterHelper3;
-                                                adapterHelper2 = (AdapterHelper) zzdwVar.zzc;
+                                                methodSignatureImpl = methodSignatureImpl3;
+                                                methodSignatureImpl2 = (MethodSignatureImpl) zzdwVar.zzc;
                                                 if (j2 < 150) {
                                                     i10 = iWidth;
                                                     fClamp2 = Utilities.clamp(1.0f - (j2 / f4), 1.0f, 0.0f);
                                                     j = jCurrentTimeMillis2;
-                                                    ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
+                                                    ((Paint) methodSignatureImpl2.parameterTypes).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
                                                     int i21 = zzdwVar.zza;
-                                                    Bitmap[] bitmapArr = (Bitmap[]) adapterHelper2.mPendingUpdates;
+                                                    Bitmap[] bitmapArr = (Bitmap[]) methodSignatureImpl2.declaringTypeName;
                                                     Bitmap bitmap = bitmapArr[i21];
-                                                    Paint paint2 = (Paint) adapterHelper2.mOpReorderer;
+                                                    Paint paint2 = (Paint) methodSignatureImpl2.parameterTypes;
                                                     canvas.drawBitmap(bitmap, f6, f7, paint2);
                                                     paint2.setAlpha((int) (fClamp * fClamp2 * 255.0f));
                                                     canvas.drawBitmap(bitmapArr[zzdwVar.zze], f6, f7, paint2);
                                                     paint2.setAlpha(255);
                                                     if (fClamp2 >= 1.0f) {
                                                         zzdwVar.zza = zzdwVar.zze;
-                                                        zzdwVar.zze = zzcw.m(Utilities.fastRandom, 16);
-                                                        zzdwVar.zzb = j + ((long) zzcw.m(Utilities.fastRandom, 300)) + 150;
+                                                        zzdwVar.zze = FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 16);
+                                                        zzdwVar.zzb = j + ((long) FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 300)) + 150;
                                                     }
                                                 } else {
                                                     i10 = iWidth;
                                                     j = jCurrentTimeMillis2;
-                                                    ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) (fClamp * 255.0f));
-                                                    canvas.drawBitmap(((Bitmap[]) adapterHelper2.mPendingUpdates)[zzdwVar.zza], f6, f7, (Paint) adapterHelper2.mOpReorderer);
+                                                    ((Paint) methodSignatureImpl2.parameterTypes).setAlpha((int) (fClamp * 255.0f));
+                                                    canvas.drawBitmap(((Bitmap[]) methodSignatureImpl2.declaringTypeName)[zzdwVar.zza], f6, f7, (Paint) methodSignatureImpl2.parameterTypes);
                                                 }
                                                 iMax = i9 + 1;
                                                 i5 = i8;
                                                 iHeight = i7;
-                                                adapterHelper3 = adapterHelper;
+                                                methodSignatureImpl3 = methodSignatureImpl;
                                                 iWidth = i10;
                                                 jCurrentTimeMillis2 = j;
                                                 f5 = 1.0f;
@@ -651,7 +650,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                             iMax = i9 + 1;
                                             i5 = i8;
                                             iHeight = i7;
-                                            adapterHelper3 = adapterHelper;
+                                            methodSignatureImpl3 = methodSignatureImpl;
                                             iWidth = i10;
                                             jCurrentTimeMillis2 = j;
                                             f5 = 1.0f;
@@ -671,22 +670,22 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                             } else {
                                 f2 = 2.0f;
                             }
-                            adapterHelper3.mCallback = new zzdw[iWidth + 1][];
+                            methodSignatureImpl3.stringCache = new zzdw[iWidth + 1][];
                             i3 = 0;
                             while (i3 <= iWidth) {
-                                ((zzdw[][]) adapterHelper3.mCallback)[i3] = new zzdw[iHeight + 1];
+                                ((zzdw[][]) methodSignatureImpl3.stringCache)[i3] = new zzdw[iHeight + 1];
                                 i4 = 0;
                                 while (i4 <= iHeight) {
-                                    zzdw[][] zzdwVarArr2 = (zzdw[][]) adapterHelper3.mCallback;
+                                    zzdw[][] zzdwVarArr2 = (zzdw[][]) methodSignatureImpl3.stringCache;
                                     zzdw[] zzdwVarArr3 = zzdwVarArr2[i3];
                                     zzdw zzdwVar2 = new zzdw();
-                                    zzdwVar2.zzc = adapterHelper3;
+                                    zzdwVar2.zzc = methodSignatureImpl3;
                                     zzdwVarArr3[i4] = zzdwVar2;
                                     zzdw zzdwVar3 = zzdwVarArr2[i3][i4];
                                     zzdwVar3.getClass();
-                                    zzdwVar3.zza = zzcw.m(Utilities.fastRandom, i2);
-                                    zzdwVar3.zze = zzcw.m(Utilities.fastRandom, i2);
-                                    zzdwVar3.zzb = ((long) zzcw.m(Utilities.fastRandom, i)) + jCurrentTimeMillis2 + 150;
+                                    zzdwVar3.zza = FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, i2);
+                                    zzdwVar3.zze = FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, i2);
+                                    zzdwVar3.zzb = ((long) FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, i)) + jCurrentTimeMillis2 + 150;
                                     i4++;
                                     i2 = 16;
                                     i = 300;
@@ -698,7 +697,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                             f5 = 1.0f;
                             i5 = 0;
                             while (i5 <= iWidth) {
-                                arrayList = ((ArrayList[]) adapterHelper3.lastNotifies)[i5];
+                                arrayList = ((ArrayList[]) methodSignatureImpl3.returnType)[i5];
                                 i6 = 0;
                                 while (i6 < arrayList.size()) {
                                     matrixParticlesDrawable$Particle = (MatrixParticlesDrawable$Particle) arrayList.get(i6);
@@ -728,46 +727,46 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                     iMin = Math.min(matrixParticlesDrawable$Particle.y, iHeight + 1);
                                     iMax = Math.max(i13, matrixParticlesDrawable$Particle.y - matrixParticlesDrawable$Particle.len);
                                     while (iMax < iMin) {
-                                        int i22 = adapterHelper3.mExistingUpdateTypes;
+                                        int i22 = methodSignatureImpl3.modifiers;
                                         f6 = i22 * i5;
                                         f7 = i22 * iMax;
-                                        if (((RectF) adapterHelper3.mUpdateOpPool).contains(f6, f7)) {
+                                        if (((RectF) methodSignatureImpl3.name).contains(f6, f7)) {
                                             i7 = iHeight;
                                             i8 = i5;
                                             fClamp = Utilities.clamp(((f5 - ((matrixParticlesDrawable$Particle.y - iMax) / (matrixParticlesDrawable$Particle.len - 1))) * 0.8f) + 0.2f, 1.0f, 0.0f);
-                                            zzdwVar = ((zzdw[][]) adapterHelper3.mCallback)[i8][iMax];
+                                            zzdwVar = ((zzdw[][]) methodSignatureImpl3.stringCache)[i8][iMax];
                                             i9 = iMax;
                                             j2 = zzdwVar.zzb - jCurrentTimeMillis2;
-                                            adapterHelper = adapterHelper3;
-                                            adapterHelper2 = (AdapterHelper) zzdwVar.zzc;
+                                            methodSignatureImpl = methodSignatureImpl3;
+                                            methodSignatureImpl2 = (MethodSignatureImpl) zzdwVar.zzc;
                                             if (j2 < 150) {
                                                 i10 = iWidth;
                                                 fClamp2 = Utilities.clamp(1.0f - (j2 / f4), 1.0f, 0.0f);
                                                 j = jCurrentTimeMillis2;
-                                                ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
+                                                ((Paint) methodSignatureImpl2.parameterTypes).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
                                                 int i23 = zzdwVar.zza;
-                                                Bitmap[] bitmapArr2 = (Bitmap[]) adapterHelper2.mPendingUpdates;
+                                                Bitmap[] bitmapArr2 = (Bitmap[]) methodSignatureImpl2.declaringTypeName;
                                                 Bitmap bitmap2 = bitmapArr2[i23];
-                                                Paint paint3 = (Paint) adapterHelper2.mOpReorderer;
+                                                Paint paint3 = (Paint) methodSignatureImpl2.parameterTypes;
                                                 canvas.drawBitmap(bitmap2, f6, f7, paint3);
                                                 paint3.setAlpha((int) (fClamp * fClamp2 * 255.0f));
                                                 canvas.drawBitmap(bitmapArr2[zzdwVar.zze], f6, f7, paint3);
                                                 paint3.setAlpha(255);
                                                 if (fClamp2 >= 1.0f) {
                                                     zzdwVar.zza = zzdwVar.zze;
-                                                    zzdwVar.zze = zzcw.m(Utilities.fastRandom, 16);
-                                                    zzdwVar.zzb = j + ((long) zzcw.m(Utilities.fastRandom, 300)) + 150;
+                                                    zzdwVar.zze = FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 16);
+                                                    zzdwVar.zzb = j + ((long) FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 300)) + 150;
                                                 }
                                             } else {
                                                 i10 = iWidth;
                                                 j = jCurrentTimeMillis2;
-                                                ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) (fClamp * 255.0f));
-                                                canvas.drawBitmap(((Bitmap[]) adapterHelper2.mPendingUpdates)[zzdwVar.zza], f6, f7, (Paint) adapterHelper2.mOpReorderer);
+                                                ((Paint) methodSignatureImpl2.parameterTypes).setAlpha((int) (fClamp * 255.0f));
+                                                canvas.drawBitmap(((Bitmap[]) methodSignatureImpl2.declaringTypeName)[zzdwVar.zza], f6, f7, (Paint) methodSignatureImpl2.parameterTypes);
                                             }
                                             iMax = i9 + 1;
                                             i5 = i8;
                                             iHeight = i7;
-                                            adapterHelper3 = adapterHelper;
+                                            methodSignatureImpl3 = methodSignatureImpl;
                                             iWidth = i10;
                                             jCurrentTimeMillis2 = j;
                                             f5 = 1.0f;
@@ -775,14 +774,14 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                             i7 = iHeight;
                                             i8 = i5;
                                             i9 = iMax;
-                                            adapterHelper = adapterHelper3;
+                                            methodSignatureImpl = methodSignatureImpl3;
                                             i10 = iWidth;
                                             j = jCurrentTimeMillis2;
                                         }
                                         iMax = i9 + 1;
                                         i5 = i8;
                                         iHeight = i7;
-                                        adapterHelper3 = adapterHelper;
+                                        methodSignatureImpl3 = methodSignatureImpl;
                                         iWidth = i10;
                                         jCurrentTimeMillis2 = j;
                                         f5 = 1.0f;
@@ -802,16 +801,16 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                         } else {
                             f4 = 150.0f;
                         }
-                        adapterHelper3.lastNotifies = new ArrayList[iWidth + 1];
+                        methodSignatureImpl3.returnType = new ArrayList[iWidth + 1];
                         for (int i24 = 0; i24 <= iWidth; i24++) {
-                            ((ArrayList[]) adapterHelper3.lastNotifies)[i24] = new ArrayList();
+                            ((ArrayList[]) methodSignatureImpl3.returnType)[i24] = new ArrayList();
                             MatrixParticlesDrawable$Particle matrixParticlesDrawable$Particle4 = new MatrixParticlesDrawable$Particle();
-                            matrixParticlesDrawable$Particle4.y = zzcw.m(Utilities.fastRandom, iHeight);
+                            matrixParticlesDrawable$Particle4.y = FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, iHeight);
                             matrixParticlesDrawable$Particle4.time = jCurrentTimeMillis2;
                             matrixParticlesDrawable$Particle4.len = Math.abs(Utilities.fastRandom.nextInt() % 6) + 4;
-                            ((ArrayList[]) adapterHelper3.lastNotifies)[i24].add(matrixParticlesDrawable$Particle4);
+                            ((ArrayList[]) methodSignatureImpl3.returnType)[i24].add(matrixParticlesDrawable$Particle4);
                         }
-                        zzdwVarArr = (zzdw[][]) adapterHelper3.mCallback;
+                        zzdwVarArr = (zzdw[][]) methodSignatureImpl3.stringCache;
                         i = 300;
                         i2 = 16;
                         if (zzdwVarArr != null) {
@@ -821,7 +820,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                             f5 = 1.0f;
                             i5 = 0;
                             while (i5 <= iWidth) {
-                                arrayList = ((ArrayList[]) adapterHelper3.lastNotifies)[i5];
+                                arrayList = ((ArrayList[]) methodSignatureImpl3.returnType)[i5];
                                 i6 = 0;
                                 while (i6 < arrayList.size()) {
                                     matrixParticlesDrawable$Particle = (MatrixParticlesDrawable$Particle) arrayList.get(i6);
@@ -851,46 +850,46 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                     iMin = Math.min(matrixParticlesDrawable$Particle.y, iHeight + 1);
                                     iMax = Math.max(i13, matrixParticlesDrawable$Particle.y - matrixParticlesDrawable$Particle.len);
                                     while (iMax < iMin) {
-                                        int i25 = adapterHelper3.mExistingUpdateTypes;
+                                        int i25 = methodSignatureImpl3.modifiers;
                                         f6 = i25 * i5;
                                         f7 = i25 * iMax;
-                                        if (((RectF) adapterHelper3.mUpdateOpPool).contains(f6, f7)) {
+                                        if (((RectF) methodSignatureImpl3.name).contains(f6, f7)) {
                                             i7 = iHeight;
                                             i8 = i5;
                                             fClamp = Utilities.clamp(((f5 - ((matrixParticlesDrawable$Particle.y - iMax) / (matrixParticlesDrawable$Particle.len - 1))) * 0.8f) + 0.2f, 1.0f, 0.0f);
-                                            zzdwVar = ((zzdw[][]) adapterHelper3.mCallback)[i8][iMax];
+                                            zzdwVar = ((zzdw[][]) methodSignatureImpl3.stringCache)[i8][iMax];
                                             i9 = iMax;
                                             j2 = zzdwVar.zzb - jCurrentTimeMillis2;
-                                            adapterHelper = adapterHelper3;
-                                            adapterHelper2 = (AdapterHelper) zzdwVar.zzc;
+                                            methodSignatureImpl = methodSignatureImpl3;
+                                            methodSignatureImpl2 = (MethodSignatureImpl) zzdwVar.zzc;
                                             if (j2 < 150) {
                                                 i10 = iWidth;
                                                 fClamp2 = Utilities.clamp(1.0f - (j2 / f4), 1.0f, 0.0f);
                                                 j = jCurrentTimeMillis2;
-                                                ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
+                                                ((Paint) methodSignatureImpl2.parameterTypes).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
                                                 int i26 = zzdwVar.zza;
-                                                Bitmap[] bitmapArr3 = (Bitmap[]) adapterHelper2.mPendingUpdates;
+                                                Bitmap[] bitmapArr3 = (Bitmap[]) methodSignatureImpl2.declaringTypeName;
                                                 Bitmap bitmap3 = bitmapArr3[i26];
-                                                Paint paint4 = (Paint) adapterHelper2.mOpReorderer;
+                                                Paint paint4 = (Paint) methodSignatureImpl2.parameterTypes;
                                                 canvas.drawBitmap(bitmap3, f6, f7, paint4);
                                                 paint4.setAlpha((int) (fClamp * fClamp2 * 255.0f));
                                                 canvas.drawBitmap(bitmapArr3[zzdwVar.zze], f6, f7, paint4);
                                                 paint4.setAlpha(255);
                                                 if (fClamp2 >= 1.0f) {
                                                     zzdwVar.zza = zzdwVar.zze;
-                                                    zzdwVar.zze = zzcw.m(Utilities.fastRandom, 16);
-                                                    zzdwVar.zzb = j + ((long) zzcw.m(Utilities.fastRandom, 300)) + 150;
+                                                    zzdwVar.zze = FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 16);
+                                                    zzdwVar.zzb = j + ((long) FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 300)) + 150;
                                                 }
                                             } else {
                                                 i10 = iWidth;
                                                 j = jCurrentTimeMillis2;
-                                                ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) (fClamp * 255.0f));
-                                                canvas.drawBitmap(((Bitmap[]) adapterHelper2.mPendingUpdates)[zzdwVar.zza], f6, f7, (Paint) adapterHelper2.mOpReorderer);
+                                                ((Paint) methodSignatureImpl2.parameterTypes).setAlpha((int) (fClamp * 255.0f));
+                                                canvas.drawBitmap(((Bitmap[]) methodSignatureImpl2.declaringTypeName)[zzdwVar.zza], f6, f7, (Paint) methodSignatureImpl2.parameterTypes);
                                             }
                                             iMax = i9 + 1;
                                             i5 = i8;
                                             iHeight = i7;
-                                            adapterHelper3 = adapterHelper;
+                                            methodSignatureImpl3 = methodSignatureImpl;
                                             iWidth = i10;
                                             jCurrentTimeMillis2 = j;
                                             f5 = 1.0f;
@@ -898,14 +897,14 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                             i7 = iHeight;
                                             i8 = i5;
                                             i9 = iMax;
-                                            adapterHelper = adapterHelper3;
+                                            methodSignatureImpl = methodSignatureImpl3;
                                             i10 = iWidth;
                                             j = jCurrentTimeMillis2;
                                         }
                                         iMax = i9 + 1;
                                         i5 = i8;
                                         iHeight = i7;
-                                        adapterHelper3 = adapterHelper;
+                                        methodSignatureImpl3 = methodSignatureImpl;
                                         iWidth = i10;
                                         jCurrentTimeMillis2 = j;
                                         f5 = 1.0f;
@@ -925,22 +924,22 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                         } else {
                             f2 = 2.0f;
                         }
-                        adapterHelper3.mCallback = new zzdw[iWidth + 1][];
+                        methodSignatureImpl3.stringCache = new zzdw[iWidth + 1][];
                         i3 = 0;
                         while (i3 <= iWidth) {
-                            ((zzdw[][]) adapterHelper3.mCallback)[i3] = new zzdw[iHeight + 1];
+                            ((zzdw[][]) methodSignatureImpl3.stringCache)[i3] = new zzdw[iHeight + 1];
                             i4 = 0;
                             while (i4 <= iHeight) {
-                                zzdw[][] zzdwVarArr4 = (zzdw[][]) adapterHelper3.mCallback;
+                                zzdw[][] zzdwVarArr4 = (zzdw[][]) methodSignatureImpl3.stringCache;
                                 zzdw[] zzdwVarArr5 = zzdwVarArr4[i3];
                                 zzdw zzdwVar4 = new zzdw();
-                                zzdwVar4.zzc = adapterHelper3;
+                                zzdwVar4.zzc = methodSignatureImpl3;
                                 zzdwVarArr5[i4] = zzdwVar4;
                                 zzdw zzdwVar5 = zzdwVarArr4[i3][i4];
                                 zzdwVar5.getClass();
-                                zzdwVar5.zza = zzcw.m(Utilities.fastRandom, i2);
-                                zzdwVar5.zze = zzcw.m(Utilities.fastRandom, i2);
-                                zzdwVar5.zzb = ((long) zzcw.m(Utilities.fastRandom, i)) + jCurrentTimeMillis2 + 150;
+                                zzdwVar5.zza = FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, i2);
+                                zzdwVar5.zze = FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, i2);
+                                zzdwVar5.zzb = ((long) FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, i)) + jCurrentTimeMillis2 + 150;
                                 i4++;
                                 i2 = 16;
                                 i = 300;
@@ -952,7 +951,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                         f5 = 1.0f;
                         i5 = 0;
                         while (i5 <= iWidth) {
-                            arrayList = ((ArrayList[]) adapterHelper3.lastNotifies)[i5];
+                            arrayList = ((ArrayList[]) methodSignatureImpl3.returnType)[i5];
                             i6 = 0;
                             while (i6 < arrayList.size()) {
                                 matrixParticlesDrawable$Particle = (MatrixParticlesDrawable$Particle) arrayList.get(i6);
@@ -982,46 +981,46 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                 iMin = Math.min(matrixParticlesDrawable$Particle.y, iHeight + 1);
                                 iMax = Math.max(i13, matrixParticlesDrawable$Particle.y - matrixParticlesDrawable$Particle.len);
                                 while (iMax < iMin) {
-                                    int i27 = adapterHelper3.mExistingUpdateTypes;
+                                    int i27 = methodSignatureImpl3.modifiers;
                                     f6 = i27 * i5;
                                     f7 = i27 * iMax;
-                                    if (((RectF) adapterHelper3.mUpdateOpPool).contains(f6, f7)) {
+                                    if (((RectF) methodSignatureImpl3.name).contains(f6, f7)) {
                                         i7 = iHeight;
                                         i8 = i5;
                                         fClamp = Utilities.clamp(((f5 - ((matrixParticlesDrawable$Particle.y - iMax) / (matrixParticlesDrawable$Particle.len - 1))) * 0.8f) + 0.2f, 1.0f, 0.0f);
-                                        zzdwVar = ((zzdw[][]) adapterHelper3.mCallback)[i8][iMax];
+                                        zzdwVar = ((zzdw[][]) methodSignatureImpl3.stringCache)[i8][iMax];
                                         i9 = iMax;
                                         j2 = zzdwVar.zzb - jCurrentTimeMillis2;
-                                        adapterHelper = adapterHelper3;
-                                        adapterHelper2 = (AdapterHelper) zzdwVar.zzc;
+                                        methodSignatureImpl = methodSignatureImpl3;
+                                        methodSignatureImpl2 = (MethodSignatureImpl) zzdwVar.zzc;
                                         if (j2 < 150) {
                                             i10 = iWidth;
                                             fClamp2 = Utilities.clamp(1.0f - (j2 / f4), 1.0f, 0.0f);
                                             j = jCurrentTimeMillis2;
-                                            ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
+                                            ((Paint) methodSignatureImpl2.parameterTypes).setAlpha((int) ImageReceiver$$ExternalSyntheticOutline2.m(1.0f, fClamp2, fClamp, 255.0f));
                                             int i28 = zzdwVar.zza;
-                                            Bitmap[] bitmapArr4 = (Bitmap[]) adapterHelper2.mPendingUpdates;
+                                            Bitmap[] bitmapArr4 = (Bitmap[]) methodSignatureImpl2.declaringTypeName;
                                             Bitmap bitmap4 = bitmapArr4[i28];
-                                            Paint paint5 = (Paint) adapterHelper2.mOpReorderer;
+                                            Paint paint5 = (Paint) methodSignatureImpl2.parameterTypes;
                                             canvas.drawBitmap(bitmap4, f6, f7, paint5);
                                             paint5.setAlpha((int) (fClamp * fClamp2 * 255.0f));
                                             canvas.drawBitmap(bitmapArr4[zzdwVar.zze], f6, f7, paint5);
                                             paint5.setAlpha(255);
                                             if (fClamp2 >= 1.0f) {
                                                 zzdwVar.zza = zzdwVar.zze;
-                                                zzdwVar.zze = zzcw.m(Utilities.fastRandom, 16);
-                                                zzdwVar.zzb = j + ((long) zzcw.m(Utilities.fastRandom, 300)) + 150;
+                                                zzdwVar.zze = FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 16);
+                                                zzdwVar.zzb = j + ((long) FlickerLoadingView$$ExternalSyntheticOutline0.m(Utilities.fastRandom, 300)) + 150;
                                             }
                                         } else {
                                             i10 = iWidth;
                                             j = jCurrentTimeMillis2;
-                                            ((Paint) adapterHelper2.mOpReorderer).setAlpha((int) (fClamp * 255.0f));
-                                            canvas.drawBitmap(((Bitmap[]) adapterHelper2.mPendingUpdates)[zzdwVar.zza], f6, f7, (Paint) adapterHelper2.mOpReorderer);
+                                            ((Paint) methodSignatureImpl2.parameterTypes).setAlpha((int) (fClamp * 255.0f));
+                                            canvas.drawBitmap(((Bitmap[]) methodSignatureImpl2.declaringTypeName)[zzdwVar.zza], f6, f7, (Paint) methodSignatureImpl2.parameterTypes);
                                         }
                                         iMax = i9 + 1;
                                         i5 = i8;
                                         iHeight = i7;
-                                        adapterHelper3 = adapterHelper;
+                                        methodSignatureImpl3 = methodSignatureImpl;
                                         iWidth = i10;
                                         jCurrentTimeMillis2 = j;
                                         f5 = 1.0f;
@@ -1029,14 +1028,14 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                                         i7 = iHeight;
                                         i8 = i5;
                                         i9 = iMax;
-                                        adapterHelper = adapterHelper3;
+                                        methodSignatureImpl = methodSignatureImpl3;
                                         i10 = iWidth;
                                         j = jCurrentTimeMillis2;
                                     }
                                     iMax = i9 + 1;
                                     i5 = i8;
                                     iHeight = i7;
-                                    adapterHelper3 = adapterHelper;
+                                    methodSignatureImpl3 = methodSignatureImpl;
                                     iWidth = i10;
                                     jCurrentTimeMillis2 = j;
                                     f5 = 1.0f;
@@ -1143,9 +1142,9 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
         this.attached = false;
         updateAttachState();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
-        ChatActionCell.TextLayout textLayout = this.helloParticlesDrawable;
-        if (textLayout != null) {
-            HashMap map = (HashMap) textLayout.layout;
+        HelloParticles.Drawable drawable = this.helloParticlesDrawable;
+        if (drawable != null) {
+            HashMap map = drawable.bitmaps;
             Iterator it = map.values().iterator();
             while (it.hasNext()) {
                 ((Bitmap) it.next()).recycle();
@@ -1156,7 +1155,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
         AnonymousClass3 anonymousClass3 = this.videoPlayerBase;
         if (anonymousClass3 != null) {
             this.lastFrameTime = anonymousClass3.getCurrentPosition();
-            this.videoPlayerBase.release(new QrActivity$5$$ExternalSyntheticLambda1(1));
+            this.videoPlayerBase.release(new GiftSheet$$ExternalSyntheticLambda2(12));
             this.videoPlayerBase = null;
         }
     }
@@ -1176,39 +1175,37 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
             return;
         }
         this.size = measuredWidth;
-        AdapterHelper adapterHelper = this.matrixParticlesDrawable;
+        MethodSignatureImpl methodSignatureImpl = this.matrixParticlesDrawable;
         int i5 = 0;
-        if (adapterHelper != null) {
-            ((Rect) adapterHelper.mPostponedList).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            RectF rectF = (RectF) adapterHelper.mUpdateOpPool;
+        if (methodSignatureImpl != null) {
+            ((Rect) methodSignatureImpl.declaringType).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            RectF rectF = (RectF) methodSignatureImpl.name;
             rectF.set(AndroidUtilities.rectTmp);
             rectF.inset(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
         }
         StarParticlesView.Drawable drawable = this.starDrawable;
         if (drawable != null) {
-            RectF rectF2 = drawable.rect;
             int i6 = this.type;
             if (i6 == 6 || i6 == 9 || i6 == 3 || i6 == 7 || i6 == 24 || i6 == 43 || i6 == 11 || i6 == 4) {
-                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                rectF2.inset(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
+                drawable.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                drawable.rect.inset(AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
             } else {
-                RectF rectF3 = AndroidUtilities.rectTmp;
-                float fWidth = (int) (rectF3.width() * 0.4f);
-                rectF2.set(rectF3.centerX() - fWidth, rectF3.centerY() - fWidth, rectF3.centerX() + fWidth, rectF3.centerY() + fWidth);
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                float fWidth = (int) (rectF2.width() * 0.4f);
+                drawable.rect.set(rectF2.centerX() - fWidth, rectF2.centerY() - fWidth, rectF2.centerX() + fWidth, rectF2.centerY() + fWidth);
                 drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             }
             drawable.resetPositions();
-            RectF rectF4 = drawable.excludeRect;
-            rectF4.set(AndroidUtilities.rectTmp);
-            rectF4.inset(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+            drawable.excludeRect.set(AndroidUtilities.rectTmp);
+            drawable.excludeRect.inset(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
         }
         SpeedLineParticles$Drawable speedLineParticles$Drawable = this.speedLinesDrawable;
         if (speedLineParticles$Drawable != null) {
-            RectF rectF5 = speedLineParticles$Drawable.rect;
-            rectF5.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            RectF rectF3 = speedLineParticles$Drawable.rect;
+            rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             speedLineParticles$Drawable.screenRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-            rectF5.inset(AndroidUtilities.dp(100.0f), AndroidUtilities.dp(100.0f));
-            rectF5.offset(0.0f, getMeasuredHeight() * 0.1f);
+            rectF3.inset(AndroidUtilities.dp(100.0f), AndroidUtilities.dp(100.0f));
+            rectF3.offset(0.0f, getMeasuredHeight() * 0.1f);
             long jCurrentTimeMillis = System.currentTimeMillis();
             int i7 = 0;
             while (true) {
@@ -1220,22 +1217,22 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
                 i7++;
             }
         }
-        ChatActionCell.TextLayout textLayout = this.helloParticlesDrawable;
-        if (textLayout == null) {
+        HelloParticles.Drawable drawable2 = this.helloParticlesDrawable;
+        if (drawable2 == null) {
             return;
         }
-        ((RectF) textLayout.patchedLayout).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        ((RectF) this.helloParticlesDrawable.emoji).set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        ((RectF) this.helloParticlesDrawable.patchedLayout).inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
-        ChatActionCell.TextLayout textLayout2 = this.helloParticlesDrawable;
-        textLayout2.getClass();
+        drawable2.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        this.helloParticlesDrawable.screenRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        this.helloParticlesDrawable.rect.inset(AndroidUtilities.dp(0.0f), getMeasuredHeight() * 0.1f);
+        HelloParticles.Drawable drawable3 = this.helloParticlesDrawable;
+        drawable3.getClass();
         System.currentTimeMillis();
         while (true) {
-            ArrayList arrayList2 = textLayout2.spoilers;
+            ArrayList arrayList2 = drawable3.particles;
             if (i5 >= arrayList2.size()) {
                 return;
             }
-            ((HelloParticles$Drawable$Particle) arrayList2.get(i5)).genPosition(i5, true);
+            ((HelloParticles.Drawable.Particle) arrayList2.get(i5)).genPosition(i5, true);
             i5++;
         }
     }
@@ -1368,7 +1365,7 @@ public final class VideoScreenPreview extends FrameLayout implements PagerHeader
             AnonymousClass3 anonymousClass3 = this.videoPlayerBase;
             if (anonymousClass3 != null) {
                 this.lastFrameTime = anonymousClass3.getCurrentPosition();
-                this.videoPlayerBase.release(new QrActivity$5$$ExternalSyntheticLambda1(1));
+                this.videoPlayerBase.release(new GiftSheet$$ExternalSyntheticLambda2(12));
                 this.videoPlayerBase = null;
             }
             imageReceiver.stopAnimation();

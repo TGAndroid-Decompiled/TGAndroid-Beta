@@ -16,7 +16,6 @@ import android.view.WindowManager;
 import android.widget.PopupMenu;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.BlurSettingsBottomSheet;
 
 public final class FloatingActionMode extends ActionMode {
     public final int mBottomAllowance;
@@ -103,9 +102,9 @@ public final class FloatingActionMode extends ActionMode {
                     return;
                 }
                 View view = floatingToolbar.mWindowView;
-                BlurSettingsBottomSheet.AnonymousClass4 anonymousClass4 = floatingToolbar.mOrientationChangeHandler;
-                view.removeOnLayoutChangeListener(anonymousClass4);
-                view.addOnLayoutChangeListener(anonymousClass4);
+                FloatingToolbar.AnonymousClass1 anonymousClass1 = floatingToolbar.mOrientationChangeHandler;
+                view.removeOnLayoutChangeListener(anonymousClass1);
+                view.addOnLayoutChangeListener(anonymousClass1);
                 floatingToolbar.doShow();
                 this.mLastShowTime = System.currentTimeMillis();
             }

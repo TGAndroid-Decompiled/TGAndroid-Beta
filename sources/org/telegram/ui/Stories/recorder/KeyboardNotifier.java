@@ -7,8 +7,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ItemOptions$$ExternalSyntheticLambda13;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda28;
 
 public class KeyboardNotifier {
     public boolean awaitingKeyboard;
@@ -18,23 +16,33 @@ public class KeyboardNotifier {
     public final Utilities.Callback listener;
     public boolean mMinusNavBar;
     public boolean mUseInsets;
-    public final LaunchActivity$$ExternalSyntheticLambda28 onGlobalLayoutListener;
-    public final ItemOptions$$ExternalSyntheticLambda13 onLayoutChangeListener;
+    public final KeyboardNotifier$$ExternalSyntheticLambda1 onGlobalLayoutListener;
+    public final KeyboardNotifier$$ExternalSyntheticLambda0 onLayoutChangeListener;
     public View realRootView;
     public final Rect rect = new Rect();
     public final View rootView;
 
     public KeyboardNotifier(final View view, final boolean z, Utilities.Callback callback) {
-        ItemOptions$$ExternalSyntheticLambda13 itemOptions$$ExternalSyntheticLambda13 = new ItemOptions$$ExternalSyntheticLambda13(this, 3);
-        this.onLayoutChangeListener = itemOptions$$ExternalSyntheticLambda13;
-        LaunchActivity$$ExternalSyntheticLambda28 launchActivity$$ExternalSyntheticLambda28 = new LaunchActivity$$ExternalSyntheticLambda28(this, 2);
-        this.onGlobalLayoutListener = launchActivity$$ExternalSyntheticLambda28;
+        ?? r0 = new View.OnLayoutChangeListener() {
+            @Override
+            public final void onLayoutChange(View view2, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+                this.f$0.update();
+            }
+        };
+        this.onLayoutChangeListener = r0;
+        ?? r1 = new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public final void onGlobalLayout() {
+                this.f$0.update();
+            }
+        };
+        this.onGlobalLayoutListener = r1;
         this.rootView = view;
         this.listener = callback;
         this.realRootView = view;
         if (view.isAttachedToWindow()) {
-            view.getViewTreeObserver().addOnGlobalLayoutListener(launchActivity$$ExternalSyntheticLambda28);
-            view.addOnLayoutChangeListener(itemOptions$$ExternalSyntheticLambda13);
+            view.getViewTreeObserver().addOnGlobalLayoutListener(r1);
+            view.addOnLayoutChangeListener(r0);
         }
         view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
             @Override
@@ -72,6 +80,11 @@ public class KeyboardNotifier {
         if (callback != null) {
             callback.run(Integer.valueOf(this.keyboardHeight));
         }
+    }
+
+    public void ignore(boolean z) {
+        this.ignoring = z;
+        update();
     }
 
     public final boolean keyboardVisible() {

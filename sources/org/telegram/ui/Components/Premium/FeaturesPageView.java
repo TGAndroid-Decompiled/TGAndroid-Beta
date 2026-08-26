@@ -5,39 +5,40 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.SparseIntArray;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkg;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
+import com.google.android.gms.internal.mlkit_vision_common.zzkd;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.FixedHeightEmptyCell;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.GradientTools;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
-import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
-import org.telegram.ui.LoginActivity;
-import org.telegram.ui.MessageSeenView;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stars.StarsReactionsSheet;
-import org.telegram.ui.iv.TableModel$$ExternalSyntheticLambda0;
 
 public final class FeaturesPageView extends BaseListPageView {
     public final Bitmap bitmap;
@@ -49,11 +50,66 @@ public final class FeaturesPageView extends BaseListPageView {
         public final int height;
         public final BackupImageView imageView;
 
+        public final class AnonymousClass1 extends StarParticlesView {
+            public final int $r8$classId;
+
+            public AnonymousClass1(Context context, int i) {
+                super(context);
+                this.$r8$classId = i;
+            }
+
+            @Override
+            public final void configure() {
+                switch (this.$r8$classId) {
+                    case 0:
+                        StarParticlesView.Drawable drawable = this.drawable;
+                        drawable.useGradient = true;
+                        drawable.useBlur = false;
+                        drawable.checkBounds = true;
+                        drawable.isCircle = true;
+                        drawable.centerOffsetY = AndroidUtilities.dp(-14.0f);
+                        StarParticlesView.Drawable drawable2 = this.drawable;
+                        drawable2.minLifeTime = 2000L;
+                        drawable2.randLifeTime = 3000;
+                        drawable2.size1 = 16;
+                        drawable2.useRotate = false;
+                        drawable2.type = 28;
+                        drawable2.colorKey = Theme.key_premiumGradient2;
+                        drawable2.init();
+                        break;
+                    default:
+                        super.configure();
+                        StarParticlesView.Drawable drawable3 = this.drawable;
+                        drawable3.useGradient = true;
+                        drawable3.useBlur = false;
+                        drawable3.forceMaxAlpha = true;
+                        drawable3.checkBounds = true;
+                        drawable3.init();
+                        break;
+                }
+            }
+
+            @Override
+            public final void onMeasure(int i, int i2) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        super.onMeasure(i, i2);
+                        this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                        break;
+                    default:
+                        super.onMeasure(i, i2);
+                        this.drawable.rect2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                        break;
+                }
+            }
+        }
+
         public HeaderView(Context context) {
             super(context);
             GradientTools gradientTools = new GradientTools();
             this.gradientTools = gradientTools;
             int i = FeaturesPageView.this.type;
+            int i2 = 1;
             Theme.ResourcesProvider resourcesProvider = FeaturesPageView.this.resourcesProvider;
             if (i == 0) {
                 this.height = AndroidUtilities.dp(150.0f);
@@ -62,53 +118,50 @@ public final class FeaturesPageView extends BaseListPageView {
                 backupImageView.setRoundRadius((int) (AndroidUtilities.dp(65.0f) / 2.0f));
                 addView(backupImageView, LayoutHelper.createFrame(65, 65.0f, 1, 0.0f, 32.0f, 0.0f, 0.0f));
                 TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
-                AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-                avatarDrawable.setInfo(UserConfig.selectedAccount, currentUser);
+                AvatarDrawable avatarDrawable = new AvatarDrawable();
+                avatarDrawable.setInfo(currentUser);
                 backupImageView.getImageReceiver().setForUserOrChat(currentUser, avatarDrawable);
                 TextView textView = new TextView(context);
-                zzkk.m(20.0f, 1, textView);
+                zzkb.m(20.0f, 1, textView);
                 textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
                 textView.setText(LocaleController.getString(R.string.UpgradedStories));
                 addView(textView, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
                 gradientTools.isLinear = true;
                 gradientTools.isDiagonal = true;
-                gradientTools.setColors(Theme.getColor(null, Theme.key_premiumGradient2, false), Theme.getColor(null, Theme.key_premiumGradient1, false), 0, 0);
-                Paint paint = gradientTools.paint;
-                paint.setStyle(Paint.Style.STROKE);
-                paint.setStrokeCap(Paint.Cap.ROUND);
-                paint.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
+                gradientTools.setColors(Theme.getColor(null, Theme.key_premiumGradient2, false), Theme.getColor(null, Theme.key_premiumGradient1, false));
+                gradientTools.paint.setStyle(Paint.Style.STROKE);
+                gradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
+                gradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(3.3f));
                 return;
             }
             if (i == 1) {
-                LoginActivity.LoginPayView.AnonymousClass1 anonymousClass1 = new LoginActivity.LoginPayView.AnonymousClass1(context, 1);
+                AnonymousClass1 anonymousClass1 = new AnonymousClass1(context, 0);
                 addView(anonymousClass1, LayoutHelper.createFrame(-1, 190, 55));
-                StarsReactionsSheet.AnonymousClass6 anonymousClass6 = new StarsReactionsSheet.AnonymousClass6(context, 1, 1, 1);
+                StarsReactionsSheet.AnonymousClass6 anonymousClass6 = new StarsReactionsSheet.AnonymousClass6(context, i2, i2, 1);
                 anonymousClass6.setStarParticlesView(anonymousClass1);
                 Bitmap bitmapCreateBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(bitmapCreateBitmap);
-                int i2 = Theme.key_premiumGradient2;
-                canvas.drawColor(ColorUtils.blendARGB(0.5f, Theme.getColor(i2, resourcesProvider), Theme.getColor(Theme.key_dialogBackground, resourcesProvider)));
+                int i3 = Theme.key_premiumGradient2;
+                canvas.drawColor(ColorUtils.blendARGB(0.5f, Theme.getColor(i3, resourcesProvider), Theme.getColor(Theme.key_dialogBackground, resourcesProvider)));
                 anonymousClass6.setBackgroundBitmap(bitmapCreateBitmap);
                 GLIconRenderer gLIconRenderer = anonymousClass6.mRenderer;
-                gLIconRenderer.colorKey1 = i2;
+                gLIconRenderer.colorKey1 = i3;
                 gLIconRenderer.colorKey2 = Theme.key_premiumGradient1;
                 gLIconRenderer.updateColors();
                 addView(anonymousClass6, LayoutHelper.createFrame(160, 160, 1));
-                GLIconRenderer gLIconRenderer2 = anonymousClass6.mRenderer;
-                if (gLIconRenderer2 != null) {
-                    gLIconRenderer2.angleX = -180.0f;
-                    AndroidUtilities.runOnUIThread(new GLIconTextureView.AnonymousClass2(anonymousClass6, 1), 100L);
-                }
-                TextView textViewM = RichMessageLayout$$ExternalSyntheticOutline0.m(context, 1, 20.0f);
-                textViewM.setTypeface(AndroidUtilities.bold());
-                textViewM.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
-                zzkg.m(R.string.TelegramBusiness, textViewM, 17);
-                addView(textViewM, LayoutHelper.createFrame(-2, -2.0f, 1, 33.0f, 150.0f, 33.0f, 0.0f));
+                anonymousClass6.startEnterAnimation(-360, 100L);
                 TextView textView2 = new TextView(context);
-                textView2.setTextSize(1, 14.0f);
-                textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-                zzkg.m(R.string.TelegramBusinessSubtitle2, textView2, 17);
-                addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 1, 33.0f, 183.0f, 33.0f, 20.0f));
+                zzkb.m(20.0f, 1, textView2);
+                textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+                textView2.setText(LocaleController.getString(R.string.TelegramBusiness));
+                textView2.setGravity(17);
+                addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 1, 33.0f, 150.0f, 33.0f, 0.0f));
+                TextView textView3 = new TextView(context);
+                textView3.setTextSize(1, 14.0f);
+                textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+                textView3.setText(LocaleController.getString(R.string.TelegramBusinessSubtitle2));
+                textView3.setGravity(17);
+                addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 1, 33.0f, 183.0f, 33.0f, 20.0f));
             }
         }
 
@@ -168,7 +221,7 @@ public final class FeaturesPageView extends BaseListPageView {
     }
 
     public FeaturesPageView(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        SparseIntArray sparseIntArray;
+        final SparseIntArray sparseIntArray;
         super(context, resourcesProvider);
         ArrayList arrayList = new ArrayList();
         this.items = arrayList;
@@ -188,7 +241,14 @@ public final class FeaturesPageView extends BaseListPageView {
                 arrayList2.add(new Item(R.drawable.menu_premium_chatlink, 37, LocaleController.getString(R.string.PremiumBusinessChatLinks), LocaleController.getString(R.string.PremiumBusinessChatLinksDescription)));
             }
             if (sparseIntArray != null) {
-                Collections.sort(arrayList2, new TableModel$$ExternalSyntheticLambda0(sparseIntArray, 5));
+                Collections.sort(arrayList2, new Comparator() {
+                    @Override
+                    public final int compare(Object obj, Object obj2) {
+                        int i2 = ((FeaturesPageView.Item) obj).order;
+                        SparseIntArray sparseIntArray2 = sparseIntArray;
+                        return sparseIntArray2.get(i2, Integer.MAX_VALUE) - sparseIntArray2.get(((FeaturesPageView.Item) obj2).order, Integer.MAX_VALUE);
+                    }
+                });
             }
             arrayList.add(new Item(0));
             arrayList.addAll(arrayList2);
@@ -210,7 +270,14 @@ public final class FeaturesPageView extends BaseListPageView {
         arrayList2.add(new Item(R.drawable.msg_stories_link, 19, LocaleController.getString(R.string.PremiumStoriesFormatting), LocaleController.getString(R.string.PremiumStoriesFormattingDescription)));
         sparseIntArray = null;
         if (sparseIntArray != null) {
-            Collections.sort(arrayList2, new TableModel$$ExternalSyntheticLambda0(sparseIntArray, 5));
+            Collections.sort(arrayList2, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int i2 = ((FeaturesPageView.Item) obj).order;
+                    SparseIntArray sparseIntArray2 = sparseIntArray;
+                    return sparseIntArray2.get(i2, Integer.MAX_VALUE) - sparseIntArray2.get(((FeaturesPageView.Item) obj2).order, Integer.MAX_VALUE);
+                }
+            });
         }
         arrayList.add(new Item(0));
         arrayList.addAll(arrayList2);
@@ -225,7 +292,49 @@ public final class FeaturesPageView extends BaseListPageView {
 
     @Override
     public final RecyclerView.Adapter createAdapter() {
-        return new MessageSeenView.AnonymousClass3(this, 3);
+        return new RecyclerListView.SelectionAdapter() {
+            @Override
+            public final int getItemCount() {
+                return FeaturesPageView.this.items.size();
+            }
+
+            @Override
+            public final int getItemViewType(int i) {
+                return ((Item) FeaturesPageView.this.items.get(i)).viewType;
+            }
+
+            @Override
+            public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+                return false;
+            }
+
+            @Override
+            public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                FeaturesPageView featuresPageView = FeaturesPageView.this;
+                if (((Item) featuresPageView.items.get(i)).viewType == 1) {
+                    ItemCell itemCell = (ItemCell) viewHolder.itemView;
+                    itemCell.imageView.setColorFilter(new PorterDuffColorFilter(featuresPageView.bitmap.getPixel(i, 0), PorterDuff.Mode.MULTIPLY));
+                    ImageView imageView = itemCell.imageView;
+                    Context context = featuresPageView.getContext();
+                    ArrayList arrayList = featuresPageView.items;
+                    imageView.setImageDrawable(context.getDrawable(((Item) arrayList.get(i)).iconRes));
+                    itemCell.textView.setText(((Item) arrayList.get(i)).text);
+                    itemCell.description.setText(((Item) arrayList.get(i)).description);
+                }
+            }
+
+            @Override
+            public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                View fixedHeightEmptyCell;
+                FeaturesPageView featuresPageView = FeaturesPageView.this;
+                if (i == 0) {
+                    fixedHeightEmptyCell = featuresPageView.new HeaderView(featuresPageView.getContext());
+                } else {
+                    fixedHeightEmptyCell = i == 2 ? new FixedHeightEmptyCell(featuresPageView.getContext(), 16, 0) : new ItemCell(featuresPageView, featuresPageView.getContext());
+                }
+                return zzkd.m(fixedHeightEmptyCell, fixedHeightEmptyCell, -2);
+            }
+        };
     }
 
     public final class Item {

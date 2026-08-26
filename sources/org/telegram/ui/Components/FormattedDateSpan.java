@@ -5,11 +5,11 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.style.URLSpan;
 import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 
-public final class FormattedDateSpan extends URLSpan {
-    public static final int $r8$clinit = 0;
+public class FormattedDateSpan extends URLSpan {
     public final boolean applied;
     public final TLRPC.TL_messageEntityFormattedDate entity;
     public final String originalText;
@@ -23,7 +23,28 @@ public final class FormattedDateSpan extends URLSpan {
         this.applied = false;
     }
 
-    public static CharSequence rebuildFormatedDateEntities(CharSequence charSequence, boolean z) {
+    public static CharSequence applyFormatedDateEntities(CharSequence charSequence) {
+        return rebuildFormatedDateEntities(charSequence, true);
+    }
+
+    public static ArrayList<Integer> getAllRelativeDates(CharSequence charSequence) {
+        ArrayList<Integer> arrayList = null;
+        if (charSequence instanceof Spanned) {
+            Spanned spanned = (Spanned) charSequence;
+            FormattedDateSpan[] formattedDateSpanArr = (FormattedDateSpan[]) spanned.getSpans(0, spanned.length(), FormattedDateSpan.class);
+            for (FormattedDateSpan formattedDateSpan : formattedDateSpanArr) {
+                if (formattedDateSpan.entity.relative) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList<>(formattedDateSpanArr.length);
+                    }
+                    arrayList.add(Integer.valueOf(formattedDateSpan.entity.date));
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    private static CharSequence rebuildFormatedDateEntities(CharSequence charSequence, boolean z) {
         if (charSequence instanceof Spanned) {
             Spanned spanned = (Spanned) charSequence;
             int i = 0;
@@ -32,8 +53,7 @@ public final class FormattedDateSpan extends URLSpan {
             ?? r4 = 0;
             while (i < length) {
                 FormattedDateSpan formattedDateSpan = formattedDateSpanArr[i];
-                TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = formattedDateSpan.entity;
-                if (tL_messageEntityFormattedDate.flags != 0 && (formattedDateSpan.applied != z || (z && tL_messageEntityFormattedDate.relative))) {
+                if (formattedDateSpan.needReplaceText() && (formattedDateSpan.applied != z || (z && formattedDateSpan.entity.relative))) {
                     if (r4 == 0) {
                         charSequence = new SpannableStringBuilder(spanned);
                         r4 = charSequence;
@@ -52,16 +72,20 @@ public final class FormattedDateSpan extends URLSpan {
         return charSequence;
     }
 
-    public static CharSequence restoreFormatedDateEntities(SpannableStringBuilder spannableStringBuilder) {
-        return rebuildFormatedDateEntities(spannableStringBuilder, false);
+    public static CharSequence restoreFormatedDateEntities(CharSequence charSequence) {
+        return rebuildFormatedDateEntities(charSequence, false);
+    }
+
+    public boolean needReplaceText() {
+        return this.entity.flags != 0;
     }
 
     @Override
-    public final void onClick(View view) {
+    public void onClick(View view) {
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public void updateDrawState(TextPaint textPaint) {
         int i = textPaint.linkColor;
         int color = textPaint.getColor();
         super.updateDrawState(textPaint);
@@ -72,7 +96,7 @@ public final class FormattedDateSpan extends URLSpan {
         textPaint.setUnderlineText(i == color);
     }
 
-    public FormattedDateSpan(FormattedDateSpan formattedDateSpan, boolean z) {
+    private FormattedDateSpan(FormattedDateSpan formattedDateSpan, boolean z) {
         super(formattedDateSpan.originalText);
         this.originalText = formattedDateSpan.originalText;
         this.entity = formattedDateSpan.entity;

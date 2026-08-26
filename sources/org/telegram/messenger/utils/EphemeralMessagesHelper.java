@@ -2,7 +2,7 @@ package org.telegram.messenger.utils;
 
 import android.util.SparseIntArray;
 import androidx.collection.LongSparseArray;
-import com.google.firebase.crashlytics.internal.common.CrashlyticsCore$$ExternalSyntheticLambda0;
+import com.google.firebase.messaging.FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -87,7 +87,7 @@ public final class EphemeralMessagesHelper extends BaseController {
         }
         TLRPC.MessageReplyHeader messageReplyHeader = ephemeralMessage.reply_to;
         if (messageReplyHeader != null) {
-            TLRPC.MessageReplyHeader messageReplyHeader2 = (TLRPC.MessageReplyHeader) TLObject.deepCopy(messageReplyHeader, new CrashlyticsCore$$ExternalSyntheticLambda0(27));
+            TLRPC.MessageReplyHeader messageReplyHeader2 = (TLRPC.MessageReplyHeader) TLObject.deepCopy(messageReplyHeader, new FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0(15));
             tL_message.reply_to = messageReplyHeader2;
             if (ephemeralMessage.reply_to.reply_to_ephemeral && (i2 = messageReplyHeader2.reply_to_msg_id) != 0) {
                 messageReplyHeader2.reply_to_msg_id = MessageObject.ephemeralMessageIdPack(i2);
@@ -112,7 +112,7 @@ public final class EphemeralMessagesHelper extends BaseController {
         return tL_message;
     }
 
-    public static TL_ephemeral.TL_ephemeralMessage convertFakeDefaultToEphemeral(int i, TLRPC.Message message) {
+    public static TL_ephemeral.TL_ephemeralMessage convertFakeDefaultToEphemeral(TLRPC.Message message, int i) {
         TL_ephemeral.TL_ephemeralMessage tL_ephemeralMessage = new TL_ephemeral.TL_ephemeralMessage();
         tL_ephemeralMessage.out = message.out;
         tL_ephemeralMessage.invert_media = message.invert_media;

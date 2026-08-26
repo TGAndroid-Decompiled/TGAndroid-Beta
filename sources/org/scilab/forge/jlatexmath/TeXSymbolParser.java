@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -50,7 +50,7 @@ public class TeXSymbolParser {
             boolean z = attribute != null && attribute.equals("true");
             Integer num = typeMappings.get(attrValueAndCheckIfNotNull2);
             if (num == null) {
-                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", SurfaceContainer$$ExternalSyntheticOutline0.m("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", Fragment$$ExternalSyntheticOutline0.m("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
             }
             map.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z));
         }

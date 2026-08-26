@@ -14,7 +14,7 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda10;
 import org.telegram.ui.Gifts.SendGiftSheet;
-import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda0;
+import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda4;
 import org.telegram.ui.Stars.BotStarsController;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
@@ -71,21 +71,7 @@ public final class BotForumHelper$$ExternalSyntheticLambda2 implements Runnable 
                 ((TopicsController) obj3).lambda$loadTopics$3((TLRPC.TL_messages_savedDialogsSlice) obj2, this.f$2, (LongSparseArray) obj, this.f$3);
                 break;
             case 8:
-                ChatMessageCell chatMessageCell = (ChatMessageCell) obj3;
-                int i2 = chatMessageCell.currentAccount;
-                TLRPC.User user = (TLRPC.User) obj2;
-                if (user != null) {
-                    chatMessageCell.commentAvatarDrawables[i].setInfo(i2, user);
-                    chatMessageCell.commentAvatarImages[i].setForUserOrChat(user, chatMessageCell.commentAvatarDrawables[i]);
-                } else {
-                    TLRPC.Chat chat = (TLRPC.Chat) obj;
-                    if (chat != null) {
-                        chatMessageCell.commentAvatarDrawables[i].setInfo(i2, chat);
-                        chatMessageCell.commentAvatarImages[i].setForUserOrChat(chat, chatMessageCell.commentAvatarDrawables[i]);
-                    } else {
-                        chatMessageCell.commentAvatarDrawables[i].setInfo(this.f$2, "", "", null, null);
-                    }
-                }
+                ((ChatMessageCell) obj3).lambda$setMessageContent$8((TLRPC.User) obj2, this.f$3, (TLRPC.Chat) obj, this.f$2);
                 break;
             case 9:
                 new SendGiftSheet((Context) obj3, this.f$3, ((GiftAuctionController.Auction) obj2).gift, null, this.f$2, (GiftSheet$$ExternalSyntheticLambda10) obj, false, false).show();
@@ -98,9 +84,9 @@ public final class BotForumHelper$$ExternalSyntheticLambda2 implements Runnable 
                 TLObject tLObject = (TLObject) obj;
                 if (tLObject instanceof TL_stars.StarsStatus) {
                     TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
-                    int i3 = botStarsController.currentAccount;
-                    MessagesController.getInstance(i3).putUsers(starsStatus.users, false);
-                    MessagesController.getInstance(i3).putChats(starsStatus.chats, false);
+                    int i2 = botStarsController.currentAccount;
+                    MessagesController.getInstance(i2).putUsers(starsStatus.users, false);
+                    MessagesController.getInstance(i2).putChats(starsStatus.chats, false);
                     ArrayList[] arrayListArr = transactionsState.transactions;
                     arrayListArr[i].addAll(starsStatus.history);
                     boolean zIsEmpty = arrayListArr[i].isEmpty();
@@ -109,7 +95,7 @@ public final class BotForumHelper$$ExternalSyntheticLambda2 implements Runnable 
                     boolean z = (starsStatus.flags & 1) == 0;
                     transactionsState.endReached[i] = z;
                     transactionsState.offset[i] = z ? null : starsStatus.next_offset;
-                    NotificationCenter.getInstance(i3).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsTransactionsLoaded, Long.valueOf(j));
+                    NotificationCenter.getInstance(i2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsTransactionsLoaded, Long.valueOf(j));
                 }
                 break;
             case 11:
@@ -118,20 +104,20 @@ public final class BotForumHelper$$ExternalSyntheticLambda2 implements Runnable 
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
                 tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
-                int i4 = this.f$3;
-                ConnectionsManager.getInstance(i4).sendRequest(tL_fulfillStarsSubscription, new MessageSeenView$$ExternalSyntheticLambda0(buttonWithCounterView, (BottomSheet[]) obj, i4, this.f$2, 6));
+                int i3 = this.f$3;
+                ConnectionsManager.getInstance(i3).sendRequest(tL_fulfillStarsSubscription, new MessageSeenView$$ExternalSyntheticLambda4(buttonWithCounterView, (BottomSheet[]) obj, i3, this.f$2, 5));
                 break;
             default:
                 StoriesController storiesController = (StoriesController) obj3;
-                int i5 = storiesController.currentAccount;
+                int i4 = storiesController.currentAccount;
                 TLObject tLObject2 = (TLObject) obj2;
                 if (tLObject2 != null) {
                     TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject2;
-                    MessagesController.getInstance(i5).putUsers(tL_stories_stories.users, false);
-                    MessagesController.getInstance(i5).putChats(tL_stories_stories.chats, false);
-                    for (int i6 = 0; i6 < tL_stories_stories.stories.size(); i6++) {
-                        if (tL_stories_stories.stories.get(i6).id == i) {
-                            storyItem = tL_stories_stories.stories.get(i6);
+                    MessagesController.getInstance(i4).putUsers(tL_stories_stories.users, false);
+                    MessagesController.getInstance(i4).putChats(tL_stories_stories.chats, false);
+                    for (int i5 = 0; i5 < tL_stories_stories.stories.size(); i5++) {
+                        if (tL_stories_stories.stories.get(i5).id == i) {
+                            storyItem = tL_stories_stories.stories.get(i5);
                         }
                     }
                 }
@@ -140,7 +126,7 @@ public final class BotForumHelper$$ExternalSyntheticLambda2 implements Runnable 
                 if (storyItem != null) {
                     storyItem.dialogId = j;
                     TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
-                    tL_updateStory.peer = MessagesController.getInstance(i5).getPeer(j);
+                    tL_updateStory.peer = MessagesController.getInstance(i4).getPeer(j);
                     tL_updateStory.story = storyItem;
                     storiesController.processUpdate(tL_updateStory);
                 } else {

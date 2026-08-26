@@ -16,8 +16,7 @@ import android.widget.TextView;
 import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
-import com.google.android.gms.internal.mlkit_vision_common.zzlm;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -38,6 +37,8 @@ import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EditTextCaption;
+import org.telegram.ui.Components.EditTextCaption$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingSpan;
 import org.telegram.ui.Components.MessagePreviewView;
@@ -48,13 +49,9 @@ import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda52;
-import org.telegram.ui.Stories.LiveCommentsView$$ExternalSyntheticLambda6;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda9;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
-import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
+import org.telegram.ui.iv.RichTableCell$$ExternalSyntheticLambda3;
 
 public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     public AnonymousClass3 adapter;
@@ -74,7 +71,7 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
     public Pattern urlPattern;
     public TLRPC.WebPage webpage;
     public long webpageId;
-    public ThemeActivity$$ExternalSyntheticLambda19 whenDone;
+    public GiftSheet$$ExternalSyntheticLambda4 whenDone;
 
     public final class AnonymousClass3 extends UniversalAdapter {
         @Override
@@ -82,7 +79,7 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
             if (i == Theme.key_dialogBackgroundGray) {
                 return -15921907;
             }
-            return Theme.getColor(i, this.resourcesProvider);
+            return super.getThemedColor(i);
         }
     }
 
@@ -131,11 +128,11 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
                 AnimatedTextView animatedTextView = webpagePreviewView.messageView;
                 AnimatedTextView animatedTextView2 = webpagePreviewView.titleView;
                 if (z2) {
-                    animatedTextView2.setText(TextUtils.isEmpty(webPage.site_name) ? webPage.title : webPage.site_name, false, true);
-                    animatedTextView.setText(webPage.description, false, true);
+                    animatedTextView2.setText(TextUtils.isEmpty(webPage.site_name) ? webPage.title : webPage.site_name, false);
+                    animatedTextView.setText(webPage.description, false);
                 } else {
-                    animatedTextView2.setText(webpagePreviewView.titleLoading, false, true);
-                    animatedTextView.setText(webpagePreviewView.messageLoading, false, true);
+                    animatedTextView2.setText(webpagePreviewView.titleLoading, false);
+                    animatedTextView.setText(webpagePreviewView.messageLoading, false);
                 }
                 webpagePreviewView.closeView.setOnClickListener(onClickListener);
             }
@@ -163,33 +160,33 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
             this.loadingView = imageView2;
             imageView2.setBackground(new ChatbotsActivity.AnonymousClass4(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(2.4f), -15033089));
             addView(imageView2, LayoutHelper.createFrame(48, 48.0f, 19, 9.0f, 0.0f, 0.0f, 0.0f));
-            AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+            AnimatedTextView animatedTextView = new AnimatedTextView(context);
             this.titleView = animatedTextView;
             animatedTextView.setTextColor(-15033089);
             animatedTextView.setTextSize(AndroidUtilities.dp(14.21f));
             animatedTextView.setTypeface(AndroidUtilities.bold());
             animatedTextView.setEllipsizeByGradient(true);
-            animatedTextView.getDrawable().overrideFullWidth = AndroidUtilities.displaySize.x;
+            animatedTextView.getDrawable().setOverrideFullWidth(AndroidUtilities.displaySize.x);
             addView(animatedTextView, LayoutHelper.createFrame(-1, 24.0f, 55, 57.0f, 2.33f, 48.0f, 0.0f));
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, false, false);
+            AnimatedTextView animatedTextView2 = new AnimatedTextView(context);
             this.messageView = animatedTextView2;
             animatedTextView2.setTextColor(-8355712);
             animatedTextView2.setTextSize(AndroidUtilities.dp(14.21f));
             animatedTextView2.setEllipsizeByGradient(true);
-            animatedTextView2.getDrawable().overrideFullWidth = AndroidUtilities.displaySize.x;
+            animatedTextView2.getDrawable().setOverrideFullWidth(AndroidUtilities.displaySize.x);
             addView(animatedTextView2, LayoutHelper.createFrame(-1, 24.0f, 55, 57.0f, 20.66f, 48.0f, 0.0f));
             int textColor = animatedTextView.getTextColor();
             SpannableString spannableString = new SpannableString("x");
             this.titleLoading = spannableString;
-            LoadingSpan loadingSpan = new LoadingSpan(AndroidUtilities.dp(200.0f), animatedTextView);
-            loadingSpan.scaleY = 0.8f;
+            LoadingSpan loadingSpan = new LoadingSpan(animatedTextView, AndroidUtilities.dp(200.0f));
+            loadingSpan.setScaleY(0.8f);
             loadingSpan.setColors(Theme.multAlpha(0.4f, textColor), Theme.multAlpha(0.08f, textColor));
             spannableString.setSpan(loadingSpan, 0, spannableString.length(), 33);
             int textColor2 = animatedTextView2.getTextColor();
             SpannableString spannableString2 = new SpannableString("x");
             this.messageLoading = spannableString2;
-            LoadingSpan loadingSpan2 = new LoadingSpan(AndroidUtilities.dp(140.0f), animatedTextView2);
-            loadingSpan2.scaleY = 0.8f;
+            LoadingSpan loadingSpan2 = new LoadingSpan(animatedTextView2, AndroidUtilities.dp(140.0f));
+            loadingSpan2.setScaleY(0.8f);
             loadingSpan2.setColors(Theme.multAlpha(0.4f, textColor2), Theme.multAlpha(0.08f, textColor2));
             spannableString2.setSpan(loadingSpan2, 0, spannableString2.length(), 33);
             ImageView imageView3 = new ImageView(context);
@@ -217,28 +214,25 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
         }
     }
 
-    public StoryLinkSheet(Context context, PaintView.AnonymousClass2 anonymousClass2, StoryRecorder.AnonymousClass7 anonymousClass7, ThemeActivity$$ExternalSyntheticLambda19 themeActivity$$ExternalSyntheticLambda19) {
+    public StoryLinkSheet(Context context, PaintView.AnonymousClass2 anonymousClass2, StoryRecorder.AnonymousClass7 anonymousClass7, GiftSheet$$ExternalSyntheticLambda4 giftSheet$$ExternalSyntheticLambda4) {
         boolean zFind;
-        super(context, null, true, false, false, false, true, 2, anonymousClass2);
+        super(context, null, true, false, false, true, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, anonymousClass2);
         this.requestPreview = new StoryLinkSheet$$ExternalSyntheticLambda1(this, 0);
-        this.whenDone = themeActivity$$ExternalSyntheticLambda19;
+        this.whenDone = giftSheet$$ExternalSyntheticLambda4;
         fixNavigationBar();
         setSlidingActionBar();
         this.headerPaddingTop = AndroidUtilities.dp(4.0f);
         this.headerPaddingBottom = AndroidUtilities.dp(-15.0f);
         EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkURLPlaceholder), true, false, -1, anonymousClass2);
         this.urlEditText = editTextCell;
-        StoryLinkSheet$$ExternalSyntheticLambda1 storyLinkSheet$$ExternalSyntheticLambda1 = new StoryLinkSheet$$ExternalSyntheticLambda1(this, 1);
-        EditTextCell.AnonymousClass2 anonymousClass3 = editTextCell.editText;
-        anonymousClass3.setImeOptions(6);
-        anonymousClass3.setOnEditorActionListener(new EditTextCell.AnonymousClass1(storyLinkSheet$$ExternalSyntheticLambda1, 0));
-        anonymousClass3.setHandlesColor(-12476440);
-        anonymousClass3.setCursorColor(-11230757);
-        anonymousClass3.setText("https://");
-        anonymousClass3.setSelection(8);
+        editTextCell.whenHitEnter(new StoryLinkSheet$$ExternalSyntheticLambda1(this, 1));
+        editTextCell.editText.setHandlesColor(-12476440);
+        editTextCell.editText.setCursorColor(-11230757);
+        editTextCell.editText.setText("https://");
+        editTextCell.editText.setSelection(8);
         TextView textView = new TextView(getContext());
-        zzkk.m(12.0f, 1, textView);
-        textView.setPadding(zzlm.m(10.0f, R.string.Paste, textView), 0, AndroidUtilities.dp(10.0f), 0);
+        zzkb.m(12.0f, 1, textView);
+        textView.setPadding(EditTextCaption$$ExternalSyntheticOutline0.m(10.0f, R.string.Paste, textView), 0, AndroidUtilities.dp(10.0f), 0);
         textView.setGravity(17);
         int themedColor = getThemedColor(Theme.key_windowBackgroundWhiteBlueText2);
         textView.setTextColor(themedColor);
@@ -248,13 +242,13 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
         textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, iMultAlpha, iMultAlpha2, iMultAlpha2));
         ScaleStateListAnimator.apply(textView, 0.1f, 1.5f);
         editTextCell.addView(textView, LayoutHelper.createFrame(-2, 26.0f, 21, 0.0f, 4.0f, 24.0f, 3.0f));
-        final TodoItemMenu$$ExternalSyntheticLambda9 todoItemMenu$$ExternalSyntheticLambda9 = new TodoItemMenu$$ExternalSyntheticLambda9(1, this, textView);
-        textView.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda52(28, this, todoItemMenu$$ExternalSyntheticLambda9));
-        todoItemMenu$$ExternalSyntheticLambda9.run();
-        anonymousClass3.addTextChangedListener(new TextWatcher() {
+        final RichTableCell$$ExternalSyntheticLambda3 richTableCell$$ExternalSyntheticLambda3 = new RichTableCell$$ExternalSyntheticLambda3(4, this, textView);
+        textView.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(18, this, richTableCell$$ExternalSyntheticLambda3));
+        richTableCell$$ExternalSyntheticLambda3.run();
+        editTextCell.editText.addTextChangedListener(new TextWatcher() {
             @Override
             public final void afterTextChanged(Editable editable) {
-                todoItemMenu$$ExternalSyntheticLambda9.run();
+                richTableCell$$ExternalSyntheticLambda3.run();
                 StoryLinkSheet storyLinkSheet = StoryLinkSheet.this;
                 if (storyLinkSheet.ignoreUrlEdit) {
                     return;
@@ -267,8 +261,8 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
                 storyLinkSheet.ignoreUrlEdit = true;
                 EditTextCell editTextCell2 = storyLinkSheet.urlEditText;
                 editTextCell2.editText.setText(strSubstring);
-                EditTextCell.AnonymousClass2 anonymousClass4 = editTextCell2.editText;
-                anonymousClass4.setSelection(0, anonymousClass4.getText().length());
+                EditTextCaption editTextCaption = editTextCell2.editText;
+                editTextCaption.setSelection(0, editTextCaption.getText().length());
                 storyLinkSheet.ignoreUrlEdit = false;
                 storyLinkSheet.needRemoveDefPrefix = false;
                 StoryLinkSheet.access$300(storyLinkSheet, strSubstring);
@@ -294,15 +288,12 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
         });
         EditTextCell editTextCell2 = new EditTextCell(context, LocaleController.getString(R.string.StoryLinkNamePlaceholder), true, false, -1, anonymousClass2);
         this.nameEditText = editTextCell2;
-        StoryLinkSheet$$ExternalSyntheticLambda1 storyLinkSheet$$ExternalSyntheticLambda2 = new StoryLinkSheet$$ExternalSyntheticLambda1(this, 1);
-        EditTextCell.AnonymousClass2 anonymousClass4 = editTextCell2.editText;
-        anonymousClass4.setImeOptions(6);
-        anonymousClass4.setOnEditorActionListener(new EditTextCell.AnonymousClass1(storyLinkSheet$$ExternalSyntheticLambda2, 0));
+        editTextCell2.whenHitEnter(new StoryLinkSheet$$ExternalSyntheticLambda1(this, 1));
         FrameLayout frameLayout = new FrameLayout(context);
         this.buttonContainer = frameLayout;
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, anonymousClass2, true);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, anonymousClass2);
         this.button = buttonWithCounterView;
-        buttonWithCounterView.setText(LocaleController.getString(R.string.StoryLinkAdd), false, true);
+        buttonWithCounterView.setText(LocaleController.getString(R.string.StoryLinkAdd), false);
         buttonWithCounterView.setOnClickListener(new StoryLinkSheet$$ExternalSyntheticLambda5(this, 0));
         String string = editTextCell.getText().toString();
         if (TextUtils.isEmpty(string)) {
@@ -322,25 +313,22 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
             public final void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                super.onMoveAnimationUpdate(viewHolder);
                 ((BottomSheet) StoryLinkSheet.this).containerView.invalidate();
             }
         };
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        defaultItemAnimator.delayAnimations = false;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         defaultItemAnimator.setDurations(350L);
-        this.recyclerListView.setItemAnimator(defaultItemAnimator);
+        this.recyclerListView.lambda$onCellEnter$52(defaultItemAnimator);
         RecyclerListView recyclerListView = this.recyclerListView;
         int i = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i, 0, i, 0);
-        this.recyclerListView.setOnItemClickListener(new LiveCommentsView$$ExternalSyntheticLambda6(this, context, anonymousClass7, 4));
-        AnonymousClass3 anonymousClass5 = this.adapter;
-        if (anonymousClass5 != null) {
-            anonymousClass5.update(false);
+        this.recyclerListView.setOnItemClickListener(new StoryLinkSheet$$ExternalSyntheticLambda6(this, context, anonymousClass7, 0));
+        AnonymousClass3 anonymousClass3 = this.adapter;
+        if (anonymousClass3 != null) {
+            anonymousClass3.update(false);
         }
     }
 
@@ -404,7 +392,7 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
 
     @Override
     public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        AnonymousClass3 anonymousClass3 = new AnonymousClass3(this.recyclerListView, getContext(), this.currentAccount, 0, true, new TodoItemMenu$$ExternalSyntheticLambda17(this, 3), this.resourcesProvider);
+        AnonymousClass3 anonymousClass3 = new AnonymousClass3(this.recyclerListView, getContext(), this.currentAccount, 0, true, new PaintView$$ExternalSyntheticLambda4(this, 6), this.resourcesProvider);
         this.adapter = anonymousClass3;
         return anonymousClass3;
     }
@@ -480,7 +468,7 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
         webPagePreview.webpage = webPage2;
         webPagePreview.largePhoto = this.photoLarge;
         webPagePreview.captionAbove = this.captionAbove;
-        VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7 = new VoIPFragment$$ExternalSyntheticLambda7(this, 18);
+        HintView2$$ExternalSyntheticLambda0 hintView2$$ExternalSyntheticLambda0 = new HintView2$$ExternalSyntheticLambda0(this, 8);
         storyLinkPreviewDialog.link = webPagePreview;
         int i2 = (webPage2 == null || (webPage2.photo == null && !MessageObject.isVideoDocument(webPage2.document))) ? 8 : 0;
         MessagePreviewView.ToggleButton toggleButton = storyLinkPreviewDialog.photoButton;
@@ -488,8 +476,8 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
         storyLinkPreviewDialog.linkView.set(storyLinkPreviewDialog.currentAccount, webPagePreview, false);
         storyLinkPreviewDialog.captionButton.setState(!webPagePreview.captionAbove, false);
         toggleButton.setState(!webPagePreview.largePhoto, false);
-        storyLinkPreviewDialog.whenDone = voIPFragment$$ExternalSyntheticLambda7;
-        storyLinkPreviewDialog.backgroundView.setImageDrawable(new TextCell.AnonymousClass2(anonymousClass7, 4));
+        storyLinkPreviewDialog.whenDone = hintView2$$ExternalSyntheticLambda0;
+        storyLinkPreviewDialog.backgroundView.setImageDrawable(new TextCell.AnonymousClass2(anonymousClass7, 5));
         storyLinkPreviewDialog.show();
     }
 
@@ -529,14 +517,14 @@ public final class StoryLinkSheet extends BottomSheetWithRecyclerListView implem
         }
     }
 
-    public final void lambda$new$7$2$3() {
+    public final void lambda$new$7$1$2() {
         TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
         getwebpagepreview.message = this.urlEditText.editText.getText().toString();
-        this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getwebpagepreview, new RichMediaUploader$$ExternalSyntheticLambda0(this, 8));
+        this.reqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(getwebpagepreview, new StoryEntry$$ExternalSyntheticLambda12(this, 3));
     }
 
-    public final void processDone$10() {
-        if (this.button.enabled) {
+    public final void processDone$5() {
+        if (this.button.isEnabled()) {
             if (this.whenDone != null) {
                 LinkPreview.WebPagePreview webPagePreview = new LinkPreview.WebPagePreview();
                 webPagePreview.url = this.urlEditText.editText.getText().toString();

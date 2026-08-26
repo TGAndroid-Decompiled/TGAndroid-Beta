@@ -15,13 +15,13 @@ public final class DialogCell$$ExternalSyntheticLambda0 implements ValueAnimator
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.lambda$update$0(valueAnimator);
+                this.f$0.lambda$createStatusDrawableAnimator$4(valueAnimator);
                 break;
             case 1:
-                this.f$0.lambda$update$1(valueAnimator);
+                this.f$0.lambda$update$0(valueAnimator);
                 break;
             default:
-                this.f$0.lambda$createStatusDrawableAnimator$4(valueAnimator);
+                this.f$0.lambda$update$1(valueAnimator);
                 break;
         }
     }

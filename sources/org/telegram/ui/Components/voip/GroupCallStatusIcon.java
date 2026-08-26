@@ -2,7 +2,7 @@ package org.telegram.ui.Components.voip;
 
 import android.os.SystemClock;
 import android.widget.FrameLayout;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -45,9 +45,9 @@ public final class GroupCallStatusIcon {
                 switch (i) {
                     case 0:
                         GroupCallStatusIcon groupCallStatusIcon = this.f$0;
-                        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(0, null);
+                        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(null, 0);
                         RLottieDrawable rLottieDrawable = groupCallStatusIcon.micDrawable;
-                        rLottieDrawable.setOnFinishCallback(0, null);
+                        rLottieDrawable.setOnFinishCallback(null, 0);
                         RLottieImageView rLottieImageView = groupCallStatusIcon.iconView;
                         if (rLottieImageView != null) {
                             rLottieImageView.setAnimation(rLottieDrawable);
@@ -80,8 +80,8 @@ public final class GroupCallStatusIcon {
                         }
                         RLottieDrawable rLottieDrawable2 = groupCallStatusIcon2.shakeHandDrawable;
                         rLottieDrawable2.setCustomEndFrame(i3);
-                        rLottieDrawable2.setOnFinishCallback(i3 - 1, groupCallStatusIcon2.shakeHandCallback);
-                        rLottieDrawable2.setCurrentFrame(i2, true, false);
+                        rLottieDrawable2.setOnFinishCallback(groupCallStatusIcon2.shakeHandCallback, i3 - 1);
+                        rLottieDrawable2.setCurrentFrame(i2);
                         RLottieImageView rLottieImageView2 = groupCallStatusIcon2.iconView;
                         if (rLottieImageView2 != null) {
                             rLottieImageView2.setAnimation(rLottieDrawable2);
@@ -117,9 +117,9 @@ public final class GroupCallStatusIcon {
                 switch (i2) {
                     case 0:
                         GroupCallStatusIcon groupCallStatusIcon = this.f$0;
-                        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(0, null);
+                        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(null, 0);
                         RLottieDrawable rLottieDrawable = groupCallStatusIcon.micDrawable;
-                        rLottieDrawable.setOnFinishCallback(0, null);
+                        rLottieDrawable.setOnFinishCallback(null, 0);
                         RLottieImageView rLottieImageView = groupCallStatusIcon.iconView;
                         if (rLottieImageView != null) {
                             rLottieImageView.setAnimation(rLottieDrawable);
@@ -152,8 +152,8 @@ public final class GroupCallStatusIcon {
                         }
                         RLottieDrawable rLottieDrawable2 = groupCallStatusIcon2.shakeHandDrawable;
                         rLottieDrawable2.setCustomEndFrame(i4);
-                        rLottieDrawable2.setOnFinishCallback(i4 - 1, groupCallStatusIcon2.shakeHandCallback);
-                        rLottieDrawable2.setCurrentFrame(i3, true, false);
+                        rLottieDrawable2.setOnFinishCallback(groupCallStatusIcon2.shakeHandCallback, i4 - 1);
+                        rLottieDrawable2.setCurrentFrame(i3);
                         RLottieImageView rLottieImageView2 = groupCallStatusIcon2.iconView;
                         if (rLottieImageView2 != null) {
                             rLottieImageView2.setAnimation(rLottieDrawable2);
@@ -189,9 +189,9 @@ public final class GroupCallStatusIcon {
                 switch (i3) {
                     case 0:
                         GroupCallStatusIcon groupCallStatusIcon = this.f$0;
-                        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(0, null);
+                        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(null, 0);
                         RLottieDrawable rLottieDrawable = groupCallStatusIcon.micDrawable;
-                        rLottieDrawable.setOnFinishCallback(0, null);
+                        rLottieDrawable.setOnFinishCallback(null, 0);
                         RLottieImageView rLottieImageView = groupCallStatusIcon.iconView;
                         if (rLottieImageView != null) {
                             rLottieImageView.setAnimation(rLottieDrawable);
@@ -224,8 +224,8 @@ public final class GroupCallStatusIcon {
                         }
                         RLottieDrawable rLottieDrawable2 = groupCallStatusIcon2.shakeHandDrawable;
                         rLottieDrawable2.setCustomEndFrame(i5);
-                        rLottieDrawable2.setOnFinishCallback(i5 - 1, groupCallStatusIcon2.shakeHandCallback);
-                        rLottieDrawable2.setCurrentFrame(i4, true, false);
+                        rLottieDrawable2.setOnFinishCallback(groupCallStatusIcon2.shakeHandCallback, i5 - 1);
+                        rLottieDrawable2.setCurrentFrame(i4);
                         RLottieImageView rLottieImageView2 = groupCallStatusIcon2.iconView;
                         if (rLottieImageView2 != null) {
                             rLottieImageView2.setAnimation(rLottieDrawable2);
@@ -261,9 +261,9 @@ public final class GroupCallStatusIcon {
                 switch (i4) {
                     case 0:
                         GroupCallStatusIcon groupCallStatusIcon = this.f$0;
-                        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(0, null);
+                        groupCallStatusIcon.shakeHandDrawable.setOnFinishCallback(null, 0);
                         RLottieDrawable rLottieDrawable = groupCallStatusIcon.micDrawable;
-                        rLottieDrawable.setOnFinishCallback(0, null);
+                        rLottieDrawable.setOnFinishCallback(null, 0);
                         RLottieImageView rLottieImageView = groupCallStatusIcon.iconView;
                         if (rLottieImageView != null) {
                             rLottieImageView.setAnimation(rLottieDrawable);
@@ -296,8 +296,8 @@ public final class GroupCallStatusIcon {
                         }
                         RLottieDrawable rLottieDrawable2 = groupCallStatusIcon2.shakeHandDrawable;
                         rLottieDrawable2.setCustomEndFrame(i6);
-                        rLottieDrawable2.setOnFinishCallback(i6 - 1, groupCallStatusIcon2.shakeHandCallback);
-                        rLottieDrawable2.setCurrentFrame(i5, true, false);
+                        rLottieDrawable2.setOnFinishCallback(groupCallStatusIcon2.shakeHandCallback, i6 - 1);
+                        rLottieDrawable2.setCurrentFrame(i5);
                         RLottieImageView rLottieImageView2 = groupCallStatusIcon2.iconView;
                         if (rLottieImageView2 != null) {
                             rLottieImageView2.setAnimation(rLottieDrawable2);
@@ -320,9 +320,9 @@ public final class GroupCallStatusIcon {
             }
         };
         int i5 = R.raw.voice_mini;
-        this.micDrawable = new RLottieDrawable(i5, SurfaceContainer$$ExternalSyntheticOutline0.m(i5, ""), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
+        this.micDrawable = new RLottieDrawable(i5, Fragment$$ExternalSyntheticOutline0.m(i5, ""), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), true, null);
         int i6 = R.raw.hand_2;
-        this.shakeHandDrawable = new RLottieDrawable(i6, SurfaceContainer$$ExternalSyntheticOutline0.m(i6, ""), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), true, null);
+        this.shakeHandDrawable = new RLottieDrawable(i6, Fragment$$ExternalSyntheticOutline0.m(i6, ""), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), true, null);
     }
 
     public final void updateIcon(boolean z) {
@@ -350,7 +350,7 @@ public final class GroupCallStatusIcon {
             customEndFrame = rLottieDrawable.setCustomEndFrame(136);
         } else {
             this.iconView.setAnimation(rLottieDrawable);
-            rLottieDrawable.setOnFinishCallback(0, null);
+            rLottieDrawable.setOnFinishCallback(null, 0);
             if (z5 && this.lastRaisedHand) {
                 customEndFrame = rLottieDrawable.setCustomEndFrame(36);
             } else {
@@ -358,20 +358,20 @@ public final class GroupCallStatusIcon {
             }
         }
         if (!z) {
-            rLottieDrawable.setCurrentFrame(rLottieDrawable.customEndFrame - 1, false, true);
+            rLottieDrawable.setCurrentFrame(rLottieDrawable.getCustomEndFrame() - 1, false, true);
             this.iconView.invalidate();
         } else if (customEndFrame) {
             if (z6) {
-                rLottieDrawable.setCurrentFrame(99, true, false);
+                rLottieDrawable.setCurrentFrame(99);
                 rLottieDrawable.setCustomEndFrame(136);
             } else if (z5 && this.lastRaisedHand && !z6) {
-                rLottieDrawable.setCurrentFrame(0, true, false);
+                rLottieDrawable.setCurrentFrame(0);
                 rLottieDrawable.setCustomEndFrame(36);
             } else if (z5) {
-                rLottieDrawable.setCurrentFrame(69, true, false);
+                rLottieDrawable.setCurrentFrame(69);
                 rLottieDrawable.setCustomEndFrame(99);
             } else {
-                rLottieDrawable.setCurrentFrame(36, true, false);
+                rLottieDrawable.setCurrentFrame(36);
                 rLottieDrawable.setCustomEndFrame(69);
             }
             this.iconView.playAnimation();

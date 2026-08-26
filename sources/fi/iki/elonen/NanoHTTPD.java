@@ -1,7 +1,25 @@
 package fi.iki.elonen;
 
+import androidx.core.util.AtomicFile;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import com.google.android.gms.dynamite.zzf;
+import com.android.billingclient.api.zzcs;
+import com.google.android.exoplayer2.extractor.ChunkIndex;
+import com.google.android.exoplayer2.extractor.DefaultExtractorInput;
+import com.google.android.exoplayer2.extractor.ExtractorInput;
+import com.google.android.exoplayer2.extractor.ExtractorOutput;
+import com.google.android.exoplayer2.extractor.SeekMap;
+import com.google.android.exoplayer2.extractor.SeekPoint;
+import com.google.android.exoplayer2.extractor.TrackOutput;
+import com.google.android.exoplayer2.source.dash.DashSegmentIndex;
+import com.google.android.exoplayer2.source.dash.manifest.RangedUri;
+import com.google.android.exoplayer2.util.Util;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
+import com.google.android.gms.cast.internal.zzau;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.flags.FlagRegistry;
+import com.google.android.gms.internal.mlkit_vision_label.zznr;
+import com.google.android.gms.tasks.OnFailureListener;
+import j$.util.DesugarCollections;
 import j$.util.DesugarTimeZone;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -40,22 +58,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPOutputStream;
 import javax.net.ssl.SSLException;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
-import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.recyclerview.ChatListItemAnimator;
 
 public abstract class NanoHTTPD {
     public static final Logger LOG;
-    public ProfileActivity.AnonymousClass33 asyncRunner;
+    public DefaultAsyncRunner asyncRunner;
     public volatile ServerSocket myServerSocket;
     public Thread myThread;
-    public zzf tempFileManagerFactory;
+    public zzcs tempFileManagerFactory;
 
     public final class ClientHandler implements Runnable {
         public final Socket acceptSocket;
@@ -76,15 +89,15 @@ public abstract class NanoHTTPD {
                 try {
                     OutputStream outputStream2 = socket.getOutputStream();
                     try {
-                        zzf zzfVar = nanoHTTPD.tempFileManagerFactory;
-                        HTTPSession hTTPSession = NanoHTTPD.this.new HTTPSession(new ChatActivity.AnonymousClass1(14), this.inputStream, outputStream2, socket.getInetAddress());
+                        zzcs zzcsVar = nanoHTTPD.tempFileManagerFactory;
+                        HTTPSession hTTPSession = NanoHTTPD.this.new HTTPSession(new FlagRegistry(1), this.inputStream, outputStream2, socket.getInetAddress());
                         while (!socket.isClosed()) {
                             hTTPSession.execute();
                         }
                         NanoHTTPD.safeClose(outputStream2);
                         NanoHTTPD.safeClose(inputStream);
                         NanoHTTPD.safeClose(socket);
-                        ((List) nanoHTTPD.asyncRunner.this$0).remove(this);
+                        ((List) nanoHTTPD.asyncRunner.running).remove(this);
                     } catch (Exception e) {
                         e = e;
                         outputStream = outputStream2;
@@ -94,14 +107,14 @@ public abstract class NanoHTTPD {
                         NanoHTTPD.safeClose(outputStream);
                         NanoHTTPD.safeClose(inputStream);
                         NanoHTTPD.safeClose(socket);
-                        ((List) nanoHTTPD.asyncRunner.this$0).remove(this);
+                        ((List) nanoHTTPD.asyncRunner.running).remove(this);
                     } catch (Throwable th) {
                         th = th;
                         outputStream = outputStream2;
                         NanoHTTPD.safeClose(outputStream);
                         NanoHTTPD.safeClose(inputStream);
                         NanoHTTPD.safeClose(socket);
-                        ((List) nanoHTTPD.asyncRunner.this$0).remove(this);
+                        ((List) nanoHTTPD.asyncRunner.running).remove(this);
                         throw th;
                     }
                 } catch (Throwable th2) {
@@ -171,6 +184,335 @@ public abstract class NanoHTTPD {
         }
     }
 
+    public final class DefaultAsyncRunner implements ExtractorInput, ExtractorOutput, DashSegmentIndex, OnFailureListener {
+        public final int $r8$classId;
+        public long requestCount;
+        public Object running;
+
+        public DefaultAsyncRunner(Object obj, long j, int i) {
+            this.$r8$classId = i;
+            this.running = obj;
+            this.requestCount = j;
+        }
+
+        @Override
+        public void advancePeekPosition(int i) {
+            ((DefaultExtractorInput) this.running).advancePeekPosition(i, false);
+        }
+
+        public void clear(int i) {
+            if (i < 64) {
+                this.requestCount &= ~(1 << i);
+                return;
+            }
+            DefaultAsyncRunner defaultAsyncRunner = (DefaultAsyncRunner) this.running;
+            if (defaultAsyncRunner != null) {
+                defaultAsyncRunner.clear(i - 64);
+            }
+        }
+
+        public int countOnesBefore(int i) {
+            DefaultAsyncRunner defaultAsyncRunner = (DefaultAsyncRunner) this.running;
+            if (defaultAsyncRunner == null) {
+                return i >= 64 ? Long.bitCount(this.requestCount) : Long.bitCount(this.requestCount & ((1 << i) - 1));
+            }
+            if (i < 64) {
+                return Long.bitCount(this.requestCount & ((1 << i) - 1));
+            }
+            return Long.bitCount(this.requestCount) + defaultAsyncRunner.countOnesBefore(i - 64);
+        }
+
+        @Override
+        public void endTracks() {
+            ((ExtractorOutput) this.running).endTracks();
+        }
+
+        public void exec(ClientHandler clientHandler) {
+            this.requestCount++;
+            Thread thread = new Thread(clientHandler);
+            thread.setDaemon(true);
+            thread.setName("NanoHttpd Request Processor (#" + this.requestCount + ")");
+            ((List) this.running).add(clientHandler);
+            thread.start();
+        }
+
+        public boolean get(int i) {
+            if (i < 64) {
+                return (this.requestCount & (1 << i)) != 0;
+            }
+            if (((DefaultAsyncRunner) this.running) == null) {
+                this.running = new DefaultAsyncRunner(1);
+            }
+            return ((DefaultAsyncRunner) this.running).get(i - 64);
+        }
+
+        @Override
+        public long getAvailableSegmentCount(long j, long j2) {
+            return ((ChunkIndex) this.running).length;
+        }
+
+        @Override
+        public long getDurationUs(long j, long j2) {
+            return ((ChunkIndex) this.running).durationsUs[(int) j];
+        }
+
+        @Override
+        public long getFirstAvailableSegmentNum(long j, long j2) {
+            return 0L;
+        }
+
+        @Override
+        public long getFirstSegmentNum() {
+            return 0L;
+        }
+
+        @Override
+        public long getLength() {
+            return ((DefaultExtractorInput) this.running).streamLength - this.requestCount;
+        }
+
+        @Override
+        public long getNextSegmentAvailableTimeUs(long j, long j2) {
+            return -9223372036854775807L;
+        }
+
+        @Override
+        public long getPeekPosition() {
+            DefaultExtractorInput defaultExtractorInput = (DefaultExtractorInput) this.running;
+            return (defaultExtractorInput.position + ((long) defaultExtractorInput.peekBufferPosition)) - this.requestCount;
+        }
+
+        @Override
+        public long getPosition() {
+            return ((DefaultExtractorInput) this.running).position - this.requestCount;
+        }
+
+        @Override
+        public long getSegmentCount(long j) {
+            return ((ChunkIndex) this.running).length;
+        }
+
+        @Override
+        public long getSegmentNum(long j, long j2) {
+            return Util.binarySearchFloor(((ChunkIndex) this.running).timesUs, j + this.requestCount, true);
+        }
+
+        @Override
+        public RangedUri getSegmentUrl(long j) {
+            ChunkIndex chunkIndex = (ChunkIndex) this.running;
+            int i = (int) j;
+            return new RangedUri(chunkIndex.offsets[i], chunkIndex.sizes[i], null);
+        }
+
+        @Override
+        public long getTimeUs(long j) {
+            return ((ChunkIndex) this.running).timesUs[(int) j] - this.requestCount;
+        }
+
+        public void insert(int i, boolean z) {
+            if (i >= 64) {
+                if (((DefaultAsyncRunner) this.running) == null) {
+                    this.running = new DefaultAsyncRunner(1);
+                }
+                ((DefaultAsyncRunner) this.running).insert(i - 64, z);
+                return;
+            }
+            long j = this.requestCount;
+            boolean z2 = (Long.MIN_VALUE & j) != 0;
+            long j2 = (1 << i) - 1;
+            this.requestCount = ((j & (~j2)) << 1) | (j & j2);
+            if (z) {
+                set(i);
+            } else {
+                clear(i);
+            }
+            if (z2 || ((DefaultAsyncRunner) this.running) != null) {
+                if (((DefaultAsyncRunner) this.running) == null) {
+                    this.running = new DefaultAsyncRunner(1);
+                }
+                ((DefaultAsyncRunner) this.running).insert(0, z2);
+            }
+        }
+
+        @Override
+        public boolean isExplicit() {
+            return true;
+        }
+
+        @Override
+        public void onFailure(Exception exc) {
+            switch (this.$r8$classId) {
+                case 6:
+                    int statusCode = exc instanceof ApiException ? ((ApiException) exc).getStatusCode() : 13;
+                    Iterator it = ((RemoteMediaClient) ((AtomicFile) this.running).mLegacyBackupName).zzd.zzb.iterator();
+                    while (it.hasNext()) {
+                        ((zzau) it.next()).zzd(this.requestCount, statusCode, null);
+                    }
+                    break;
+                case 7:
+                    ((zznr) this.running).zzb.set(this.requestCount);
+                    break;
+                case 8:
+                    ((zznr) this.running).zzb.set(this.requestCount);
+                    break;
+                default:
+                    ((zznr) this.running).zzb.set(this.requestCount);
+                    break;
+            }
+        }
+
+        @Override
+        public boolean peekFully(byte[] bArr, int i, int i2, boolean z) {
+            return ((DefaultExtractorInput) this.running).peekFully(bArr, 0, 8, true);
+        }
+
+        @Override
+        public int read(byte[] bArr, int i, int i2) {
+            return ((DefaultExtractorInput) this.running).read(bArr, i, i2);
+        }
+
+        @Override
+        public boolean readFully(byte[] bArr, int i, int i2, boolean z) {
+            return ((DefaultExtractorInput) this.running).readFully(bArr, 0, 8, true);
+        }
+
+        public boolean remove(int i) {
+            if (i >= 64) {
+                if (((DefaultAsyncRunner) this.running) == null) {
+                    this.running = new DefaultAsyncRunner(1);
+                }
+                return ((DefaultAsyncRunner) this.running).remove(i - 64);
+            }
+            long j = 1 << i;
+            long j2 = this.requestCount;
+            boolean z = (j2 & j) != 0;
+            long j3 = j2 & (~j);
+            this.requestCount = j3;
+            long j4 = j - 1;
+            this.requestCount = (j3 & j4) | Long.rotateRight((~j4) & j3, 1);
+            DefaultAsyncRunner defaultAsyncRunner = (DefaultAsyncRunner) this.running;
+            if (defaultAsyncRunner != null) {
+                if (defaultAsyncRunner.get(0)) {
+                    set(63);
+                }
+                ((DefaultAsyncRunner) this.running).remove(0);
+            }
+            return z;
+        }
+
+        public void reset() {
+            this.requestCount = 0L;
+            DefaultAsyncRunner defaultAsyncRunner = (DefaultAsyncRunner) this.running;
+            if (defaultAsyncRunner != null) {
+                defaultAsyncRunner.reset();
+            }
+        }
+
+        @Override
+        public void resetPeekPosition() {
+            ((DefaultExtractorInput) this.running).peekBufferPosition = 0;
+        }
+
+        @Override
+        public void seekMap(final SeekMap seekMap) {
+            ((ExtractorOutput) this.running).seekMap(new SeekMap() {
+                @Override
+                public final long getDurationUs() {
+                    return seekMap.getDurationUs();
+                }
+
+                @Override
+                public final SeekMap.SeekPoints getSeekPoints(long j) {
+                    SeekMap.SeekPoints seekPoints = seekMap.getSeekPoints(j);
+                    SeekPoint seekPoint = seekPoints.first;
+                    long j2 = seekPoint.timeUs;
+                    long j3 = this.this$0.requestCount;
+                    SeekPoint seekPoint2 = new SeekPoint(j2, seekPoint.position + j3);
+                    SeekPoint seekPoint3 = seekPoints.second;
+                    return new SeekMap.SeekPoints(seekPoint2, new SeekPoint(seekPoint3.timeUs, seekPoint3.position + j3));
+                }
+
+                @Override
+                public final boolean isSeekable() {
+                    return seekMap.isSeekable();
+                }
+            });
+        }
+
+        public void set(int i) {
+            if (i < 64) {
+                this.requestCount |= 1 << i;
+                return;
+            }
+            if (((DefaultAsyncRunner) this.running) == null) {
+                this.running = new DefaultAsyncRunner(1);
+            }
+            ((DefaultAsyncRunner) this.running).set(i - 64);
+        }
+
+        @Override
+        public void skipFully(int i) {
+            ((DefaultExtractorInput) this.running).skipFully(i);
+        }
+
+        public String toString() {
+            switch (this.$r8$classId) {
+                case 1:
+                    if (((DefaultAsyncRunner) this.running) == null) {
+                        return Long.toBinaryString(this.requestCount);
+                    }
+                    return ((DefaultAsyncRunner) this.running).toString() + "xx" + Long.toBinaryString(this.requestCount);
+                default:
+                    return super.toString();
+            }
+        }
+
+        @Override
+        public TrackOutput track(int i, int i2) {
+            return ((ExtractorOutput) this.running).track(i, i2);
+        }
+
+        public DefaultAsyncRunner(long j, ExtractorOutput extractorOutput) {
+            this.$r8$classId = 4;
+            this.requestCount = j;
+            this.running = extractorOutput;
+        }
+
+        @Override
+        public void peekFully(int i, int i2, byte[] bArr) {
+            ((DefaultExtractorInput) this.running).peekFully(bArr, i, i2, false);
+        }
+
+        @Override
+        public void readFully(byte[] bArr, int i, int i2) {
+            ((DefaultExtractorInput) this.running).readFully(bArr, i, i2, false);
+        }
+
+        public DefaultAsyncRunner(DefaultExtractorInput defaultExtractorInput, long j) {
+            this.$r8$classId = 3;
+            this.running = defaultExtractorInput;
+            if (defaultExtractorInput.position >= j) {
+                this.requestCount = j;
+                return;
+            }
+            throw new IllegalArgumentException();
+        }
+
+        public DefaultAsyncRunner(int i) {
+            this.$r8$classId = i;
+            switch (i) {
+                case 1:
+                    this.requestCount = 0L;
+                    break;
+                case 2:
+                    break;
+                default:
+                    this.running = DesugarCollections.synchronizedList(new ArrayList());
+                    break;
+            }
+        }
+    }
+
     public final class HTTPSession {
         public CookieHandler cookies;
         public HashMap headers;
@@ -182,11 +524,11 @@ public abstract class NanoHTTPD {
         public final String remoteIp;
         public int rlen;
         public int splitbyte;
-        public final ChatActivity.AnonymousClass1 tempFileManager;
+        public final FlagRegistry tempFileManager;
         public String uri;
 
-        public HTTPSession(ChatActivity.AnonymousClass1 anonymousClass1, InputStream inputStream, OutputStream outputStream, InetAddress inetAddress) {
-            this.tempFileManager = anonymousClass1;
+        public HTTPSession(FlagRegistry flagRegistry, InputStream inputStream, OutputStream outputStream, InetAddress inetAddress) {
+            this.tempFileManager = flagRegistry;
             this.inputStream = new BufferedInputStream(inputStream, 8192);
             this.outputStream = outputStream;
             this.remoteIp = (inetAddress.isLoopbackAddress() || inetAddress.isAnyLocalAddress()) ? "127.0.0.1" : inetAddress.getHostAddress().toString();
@@ -196,7 +538,7 @@ public abstract class NanoHTTPD {
             this.headers = new HashMap();
         }
 
-        public static void decodeParms(String str, HashMap map) {
+        public static void decodeParms(HashMap map, String str) {
             String strTrim;
             String strDecodePercent;
             if (str == null) {
@@ -259,7 +601,7 @@ public abstract class NanoHTTPD {
                 String strNextToken = stringTokenizer.nextToken();
                 int iIndexOf = strNextToken.indexOf(63);
                 if (iIndexOf >= 0) {
-                    decodeParms(strNextToken.substring(iIndexOf + 1), map2);
+                    decodeParms(map2, strNextToken.substring(iIndexOf + 1));
                     strDecodePercent = NanoHTTPD.decodePercent(strNextToken.substring(0, iIndexOf));
                 } else {
                     strDecodePercent = NanoHTTPD.decodePercent(strNextToken);
@@ -287,7 +629,7 @@ public abstract class NanoHTTPD {
         public final void execute() {
             Response.Status status = Response.Status.INTERNAL_ERROR;
             NanoHTTPD nanoHTTPD = NanoHTTPD.this;
-            ChatActivity.AnonymousClass1 anonymousClass1 = this.tempFileManager;
+            FlagRegistry flagRegistry = this.tempFileManager;
             OutputStream outputStream = this.outputStream;
             try {
                 try {
@@ -336,7 +678,7 @@ public abstract class NanoHTTPD {
                                     this.headers.put("remote-addr", str);
                                     this.headers.put("http-client-ip", str);
                                 }
-                                int i_lookup = ArticleViewer.IBlock.CC._lookup((String) map2.get("method"));
+                                int i_lookup = Theme.ResourcesProvider.CC._lookup((String) map2.get("method"));
                                 this.method = i_lookup;
                                 if (i_lookup == 0) {
                                     throw new ResponseException("BAD REQUEST: Syntax error. HTTP verb " + ((String) map2.get("method")) + " unhandled.");
@@ -359,7 +701,7 @@ public abstract class NanoHTTPD {
                                     throw new SocketException("NanoHttpd Shutdown");
                                 }
                                 NanoHTTPD.safeClose(responseServe);
-                                anonymousClass1.clear();
+                                flagRegistry.clear();
                             } catch (SSLException e) {
                                 throw e;
                             } catch (IOException unused) {
@@ -371,18 +713,18 @@ public abstract class NanoHTTPD {
                             NanoHTTPD.newFixedLengthResponse(e2.getStatus(), "text/plain", e2.getMessage()).send(outputStream);
                             NanoHTTPD.safeClose(outputStream);
                             NanoHTTPD.safeClose(null);
-                            anonymousClass1.clear();
+                            flagRegistry.clear();
                         }
                     } catch (SSLException e3) {
                         NanoHTTPD.newFixedLengthResponse(status, "text/plain", "SSL PROTOCOL FAILURE: " + e3.getMessage()).send(outputStream);
                         NanoHTTPD.safeClose(outputStream);
                         NanoHTTPD.safeClose(null);
-                        anonymousClass1.clear();
+                        flagRegistry.clear();
                     } catch (IOException e4) {
                         NanoHTTPD.newFixedLengthResponse(status, "text/plain", "SERVER INTERNAL ERROR: IOException: " + e4.getMessage()).send(outputStream);
                         NanoHTTPD.safeClose(outputStream);
                         NanoHTTPD.safeClose(null);
-                        anonymousClass1.clear();
+                        flagRegistry.clear();
                     }
                 } catch (SocketException e5) {
                     throw e5;
@@ -391,7 +733,7 @@ public abstract class NanoHTTPD {
                 }
             } catch (Throwable th) {
                 NanoHTTPD.safeClose(null);
-                anonymousClass1.clear();
+                flagRegistry.clear();
                 throw th;
             }
         }
@@ -406,49 +748,19 @@ public abstract class NanoHTTPD {
         public final String mimeType;
         public int requestMethod;
         public final Status status;
-        public final AnonymousClass1 header = new AnonymousClass1(this, 0);
+        public final AnonymousClass1 header = new AnonymousClass1();
         public final HashMap lowerCaseHeader = new HashMap();
 
         public final class AnonymousClass1 extends HashMap {
-            public final int $r8$classId;
-            public final Object this$0;
-
-            public AnonymousClass1(Object obj, int i) {
-                this.$r8$classId = i;
-                this.this$0 = obj;
+            public AnonymousClass1() {
             }
 
             @Override
-            public Object get(Object obj) {
-                switch (this.$r8$classId) {
-                    case 1:
-                        RLottieDrawable rLottieDrawable = (RLottieDrawable) super.get(obj);
-                        if (rLottieDrawable != null) {
-                            return rLottieDrawable;
-                        }
-                        ChatActivityEnterViewAnimatedIconView.TransitState transitState = (ChatActivityEnterViewAnimatedIconView.TransitState) obj;
-                        int i = transitState.resource;
-                        String strValueOf = String.valueOf(i);
-                        ChatActivityEnterViewAnimatedIconView chatActivityEnterViewAnimatedIconView = (ChatActivityEnterViewAnimatedIconView) this.this$0;
-                        RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i, strValueOf, AndroidUtilities.dp(chatActivityEnterViewAnimatedIconView.sizeDp), AndroidUtilities.dp(chatActivityEnterViewAnimatedIconView.sizeDp), true, null);
-                        put(transitState, rLottieDrawable2);
-                        return rLottieDrawable2;
-                    default:
-                        return super.get(obj);
-                }
-            }
-
-            @Override
-            public Object put(Object obj, Object obj2) {
-                switch (this.$r8$classId) {
-                    case 0:
-                        String str = (String) obj;
-                        String str2 = (String) obj2;
-                        ((Response) this.this$0).lowerCaseHeader.put(str == null ? str : str.toLowerCase(), str2);
-                        return (String) super.put(str, str2);
-                    default:
-                        return super.put(obj, obj2);
-                }
+            public final Object put(Object obj, Object obj2) {
+                String str = (String) obj;
+                String str2 = (String) obj2;
+                Response.this.lowerCaseHeader.put(str == null ? str : str.toLowerCase(), str2);
+                return (String) super.put(str, str2);
             }
         }
 
@@ -721,7 +1033,7 @@ public abstract class NanoHTTPD {
                         ChatListItemAnimator chatListItemAnimator = (ChatListItemAnimator) this.this$0;
                         if (i >= size) {
                             arrayList.clear();
-                            chatListItemAnimator.mMovesList.remove(arrayList);
+                            ((DefaultItemAnimator) chatListItemAnimator).mMovesList.remove(arrayList);
                         } else {
                             Object obj = arrayList.get(i);
                             i++;

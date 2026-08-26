@@ -13,10 +13,10 @@ import android.view.View;
 import androidx.core.util.Consumer;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.ItemOptions$$ExternalSyntheticLambda4;
 import org.telegram.ui.Components.Paint.ColorPickerBottomSheet;
-import org.telegram.ui.LoginActivity;
+import org.telegram.ui.Stories.StoryViewer;
 
 public abstract class PipettePickerView extends View {
     public float appearProgress;
@@ -65,8 +65,8 @@ public abstract class PipettePickerView extends View {
         this.isDisappeared = true;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
         duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        duration.addUpdateListener(new ItemOptions$$ExternalSyntheticLambda4(this, 21));
-        duration.addListener(new LoginActivity.AnonymousClass9(1, this, z));
+        duration.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 13));
+        duration.addListener(new StoryViewer.AnonymousClass7(this, z, 4));
         duration.start();
     }
 

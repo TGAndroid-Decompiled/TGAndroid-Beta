@@ -9,8 +9,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.widget.FrameLayout;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda51;
 
 public final class WebInstantView {
     public static final HashMap instants = new HashMap();
@@ -70,7 +70,7 @@ public final class WebInstantView {
     }
 
     public final class Loader {
-        public WebInstantView$$ExternalSyntheticLambda1 cancelLocal;
+        public AddressBarList$$ExternalSyntheticLambda4 cancelLocal;
         public boolean cancelled;
         public final int currentAccount;
         public boolean currentIsLoaded;
@@ -89,7 +89,7 @@ public final class WebInstantView {
         }
 
         public final void cancel() {
-            WebInstantView$$ExternalSyntheticLambda1 webInstantView$$ExternalSyntheticLambda1;
+            AddressBarList$$ExternalSyntheticLambda4 addressBarList$$ExternalSyntheticLambda4;
             if (this.cancelled) {
                 return;
             }
@@ -97,10 +97,10 @@ public final class WebInstantView {
             if (!this.gotRemote) {
                 ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.reqId, true);
             }
-            if (this.gotLocal || (webInstantView$$ExternalSyntheticLambda1 = this.cancelLocal) == null) {
+            if (this.gotLocal || (addressBarList$$ExternalSyntheticLambda4 = this.cancelLocal) == null) {
                 return;
             }
-            webInstantView$$ExternalSyntheticLambda1.run();
+            addressBarList$$ExternalSyntheticLambda4.run();
         }
 
         public final TLRPC.WebPage getWebPage() {
@@ -128,9 +128,9 @@ public final class WebInstantView {
             this.currentUrl = myWebView.getUrl();
             this.currentProgress = myWebView.getProgress();
             this.currentIsLoaded = myWebView.isPageLoaded;
-            WebInstantView$$ExternalSyntheticLambda1 webInstantView$$ExternalSyntheticLambda1 = this.cancelLocal;
-            if (webInstantView$$ExternalSyntheticLambda1 != null) {
-                webInstantView$$ExternalSyntheticLambda1.run();
+            AddressBarList$$ExternalSyntheticLambda4 addressBarList$$ExternalSyntheticLambda4 = this.cancelLocal;
+            if (addressBarList$$ExternalSyntheticLambda4 != null) {
+                addressBarList$$ExternalSyntheticLambda4.run();
             }
             this.cancelLocal = WebInstantView.generate(myWebView, new WebInstantView$Loader$$ExternalSyntheticLambda0(this, 1));
         }
@@ -156,7 +156,7 @@ public final class WebInstantView {
             return;
         }
         if (!richText.texts.isEmpty()) {
-            addLastSpace((TL_iv.RichText) zziq.m(1, richText.texts));
+            addLastSpace((TL_iv.RichText) zzin.m(1, richText.texts));
             return;
         }
         if (!(richText instanceof TL_iv.textPlain) || (str = (textplain = (TL_iv.textPlain) richText).text) == null || str.endsWith(" ")) {
@@ -175,7 +175,7 @@ public final class WebInstantView {
             return;
         }
         if (!richText.texts.isEmpty()) {
-            addNewLine((TL_iv.RichText) zziq.m(1, richText.texts));
+            addNewLine((TL_iv.RichText) zzin.m(1, richText.texts));
             return;
         }
         if (richText instanceof TL_iv.textPlain) {
@@ -215,8 +215,7 @@ public final class WebInstantView {
         return null;
     }
 
-    public static WebInstantView$$ExternalSyntheticLambda1 generate(BotWebViewContainer.MyWebView myWebView, Utilities.Callback callback) {
-        int i = 0;
+    public static AddressBarList$$ExternalSyntheticLambda4 generate(BotWebViewContainer.MyWebView myWebView, Utilities.Callback callback) {
         if (myWebView == null) {
             callback.run(null);
             return null;
@@ -228,7 +227,7 @@ public final class WebInstantView {
         WebInstantView$$ExternalSyntheticLambda0 webInstantView$$ExternalSyntheticLambda0 = new WebInstantView$$ExternalSyntheticLambda0(Timer.start(timerCreate, "getHTML"), zArr, timerCreate, webInstantView, callback, 0);
         System.currentTimeMillis();
         myWebView.evaluateJavascript(AndroidUtilities.readRes(R.raw.open_collapsed).replace("$OPEN$", "true"), new WebInstantView$$ExternalSyntheticLambda3(webInstantView, myWebView, new File(AndroidUtilities.getCacheDir(), "archive.mht"), webInstantView$$ExternalSyntheticLambda0, 0));
-        return new WebInstantView$$ExternalSyntheticLambda1(i, zArr);
+        return new AddressBarList$$ExternalSyntheticLambda4(zArr, 9);
     }
 
     public static boolean isInline(JSONArray jSONArray) throws JSONException {
@@ -302,7 +301,7 @@ public final class WebInstantView {
         }
         if (!richText.texts.isEmpty()) {
             trimStart(richText.texts.get(0));
-            trimEnd((TL_iv.RichText) zziq.m(1, richText.texts));
+            trimEnd((TL_iv.RichText) zzin.m(1, richText.texts));
             return richText;
         }
         if ((richText instanceof TL_iv.textPlain) && (str = (textplain = (TL_iv.textPlain) richText).text) != null) {
@@ -323,7 +322,7 @@ public final class WebInstantView {
             return;
         }
         if (!richText.texts.isEmpty()) {
-            trimEnd((TL_iv.RichText) zziq.m(1, richText.texts));
+            trimEnd((TL_iv.RichText) zzin.m(1, richText.texts));
         } else {
             if (!(richText instanceof TL_iv.textPlain) || (str = (textplain = (TL_iv.textPlain) richText).text) == null) {
                 return;
@@ -381,7 +380,7 @@ public final class WebInstantView {
                 ArrayList arrayList = (ArrayList) loadingPhotos.get(webPhoto.url);
                 if (arrayList == null) {
                     loadingPhotos.put(webPhoto.url, new ArrayList());
-                    new HttpGetBitmapTask(new ThemeActivity$$ExternalSyntheticLambda19(23, this, webPhoto)).execute(webPhoto.url);
+                    new HttpGetBitmapTask(new RichEditor$$ExternalSyntheticLambda51(7, this, webPhoto)).execute(webPhoto.url);
                     return;
                 }
                 for (int i = 0; i < arrayList.size(); i++) {
@@ -1125,7 +1124,7 @@ public final class WebInstantView {
                     case "p":
                         i = i2;
                         if (!arrayList.isEmpty()) {
-                            addNewLine((TL_iv.RichText) SurfaceContainer$$ExternalSyntheticOutline0.m(1, (ArrayList) arrayList));
+                            addNewLine((TL_iv.RichText) Fragment$$ExternalSyntheticOutline0.m(1, (ArrayList) arrayList));
                         }
                         richText3 = parseRichText(jSONObject, tL_page);
                         break;
@@ -1138,13 +1137,13 @@ public final class WebInstantView {
                     case "br":
                         i = i2;
                         if (!arrayList.isEmpty()) {
-                            addNewLine((TL_iv.RichText) SurfaceContainer$$ExternalSyntheticOutline0.m(1, (ArrayList) arrayList));
+                            addNewLine((TL_iv.RichText) Fragment$$ExternalSyntheticOutline0.m(1, (ArrayList) arrayList));
                             break;
                         }
                         break;
                     case "img":
                         if (!arrayList.isEmpty()) {
-                            addLastSpace((TL_iv.RichText) SurfaceContainer$$ExternalSyntheticOutline0.m(1, (ArrayList) arrayList));
+                            addLastSpace((TL_iv.RichText) Fragment$$ExternalSyntheticOutline0.m(1, (ArrayList) arrayList));
                         }
                         TL_iv.textImage textimage = new TL_iv.textImage();
                         String strOptString3 = jSONObject.optString("src");

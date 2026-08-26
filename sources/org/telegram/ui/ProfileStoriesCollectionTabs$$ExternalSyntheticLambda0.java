@@ -15,16 +15,10 @@ public final class ProfileStoriesCollectionTabs$$ExternalSyntheticLambda0 implem
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                ProfileStoriesCollectionTabs profileStoriesCollectionTabs = this.f$0;
-                ProfileStoriesCollectionTabs.Adapter adapter = profileStoriesCollectionTabs.adapter;
-                int i = this.f$1;
-                profileStoriesCollectionTabs.tabsView.scrollToTab(i, adapter.getItemPosition(i));
+                this.f$0.lambda$setInitialTabId$2(this.f$1);
                 break;
             default:
-                ProfileStoriesCollectionTabs profileStoriesCollectionTabs2 = this.f$0;
-                ProfileStoriesCollectionTabs.Adapter adapter2 = profileStoriesCollectionTabs2.adapter;
-                int i2 = this.f$1;
-                profileStoriesCollectionTabs2.tabsView.scrollToTab(i2, adapter2.getItemPosition(i2));
+                this.f$0.lambda$didReceivedNotification$3(this.f$1);
                 break;
         }
     }

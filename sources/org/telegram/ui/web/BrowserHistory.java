@@ -7,7 +7,6 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda31;
 
 public abstract class BrowserHistory {
     public static ArrayList callbacks;
@@ -70,7 +69,7 @@ public abstract class BrowserHistory {
         historyLoading = true;
         history = new ArrayList();
         historyById = new LongSparseArray();
-        Utilities.globalQueue.postRunnable(new VoIPFragment$$ExternalSyntheticLambda31(14));
+        Utilities.globalQueue.postRunnable(new BrowserHistory$$ExternalSyntheticLambda0(1));
     }
 
     public static void pushHistory(Entry entry) {
@@ -85,7 +84,7 @@ public abstract class BrowserHistory {
             history.add(entry);
             historyById.put(entry.id, entry);
         }
-        AndroidUtilities.cancelRunOnUIThread(new VoIPFragment$$ExternalSyntheticLambda31(13));
-        AndroidUtilities.runOnUIThread(new VoIPFragment$$ExternalSyntheticLambda31(13), 1000L);
+        AndroidUtilities.cancelRunOnUIThread(new BrowserHistory$$ExternalSyntheticLambda0(0));
+        AndroidUtilities.runOnUIThread(new BrowserHistory$$ExternalSyntheticLambda0(0), 1000L);
     }
 }

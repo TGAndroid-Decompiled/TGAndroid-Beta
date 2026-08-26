@@ -1,12 +1,12 @@
 package kotlinx.coroutines.channels;
 
 import androidx.datastore.core.SingleProcessDataStore;
+import com.google.common.base.Joiner;
 import java.util.concurrent.atomic.AtomicReferenceArray;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.Waiter;
 import kotlinx.coroutines.internal.Segment;
-import kotlinx.coroutines.internal.Symbol;
 
 public final class ChannelSegment extends Segment {
     public final BufferedChannel _channel;
@@ -92,7 +92,7 @@ public final class ChannelSegment extends Segment {
         this.data.set(i * 2, message);
     }
 
-    public final void setState$kotlinx_coroutines_core(int i, Symbol symbol) {
-        this.data.set((i * 2) + 1, symbol);
+    public final void setState$kotlinx_coroutines_core(int i, Joiner joiner) {
+        this.data.set((i * 2) + 1, joiner);
     }
 }

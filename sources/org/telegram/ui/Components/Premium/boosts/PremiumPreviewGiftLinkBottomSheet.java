@@ -11,14 +11,14 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.AboutLinkCell$$ExternalSyntheticLambda1;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.GiftPremiumBottomSheet$GiftTier;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.cells.ActionBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.LinkCell;
-import org.telegram.ui.Components.SearchField$$ExternalSyntheticLambda0;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
 public final class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBottomSheet {
@@ -26,21 +26,74 @@ public final class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBotto
     public final ActionBtnCell actionBtn;
     public final String slug;
 
+    public final class AnonymousClass1 implements Bulletin.Delegate {
+        @Override
+        public final boolean allowLayoutChanges() {
+            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+        }
+
+        @Override
+        public final boolean bottomOffsetAnimated() {
+            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+        }
+
+        @Override
+        public final boolean clipWithGradient(int i) {
+            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+        }
+
+        @Override
+        public final int getBottomOffset(int i) {
+            return AndroidUtilities.dp(68.0f);
+        }
+
+        @Override
+        public final int getLeftPadding() {
+            return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+        }
+
+        @Override
+        public final int getRightPadding() {
+            return Bulletin.Delegate.CC.$default$getRightPadding(this);
+        }
+
+        @Override
+        public final int getTopOffset(int i) {
+            return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
+        }
+
+        @Override
+        public final void onBottomOffsetChange(float f) {
+            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+        }
+
+        @Override
+        public final void onHide(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+        }
+
+        @Override
+        public final void onShow(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+        }
+    }
+
     public PremiumPreviewGiftLinkBottomSheet(BaseFragment baseFragment, int i, TLRPC.User user, GiftPremiumBottomSheet$GiftTier giftPremiumBottomSheet$GiftTier, String str, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(baseFragment, i, user, giftPremiumBottomSheet$GiftTier, null, resourcesProvider);
         this.slug = str;
-        Bulletin.addDelegate((FrameLayout) this.containerView, new LaunchActivity.AnonymousClass7(7));
+        Bulletin.addDelegate((FrameLayout) this.containerView, new AnonymousClass1());
         if (!z) {
+            RecyclerListView recyclerListView = this.recyclerListView;
             int i2 = this.backgroundPaddingLeft;
-            this.recyclerListView.setPadding(i2, 0, i2, AndroidUtilities.dp(68.0f));
+            recyclerListView.setPadding(i2, 0, i2, AndroidUtilities.dp(68.0f));
             ActionBtnCell actionBtnCell = new ActionBtnCell(getContext(), this.resourcesProvider);
             this.actionBtn = actionBtnCell;
-            actionBtnCell.setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 18));
+            actionBtnCell.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 20));
             ActionBtnCell actionBtnCell2 = this.actionBtn;
             actionBtnCell2.drawDivider = true;
             ButtonWithCounterView buttonWithCounterView = actionBtnCell2.button;
             buttonWithCounterView.setEnabled(true);
-            buttonWithCounterView.setText(LocaleController.getString(R.string.GiftPremiumActivateForFree), false, true);
+            buttonWithCounterView.setText(LocaleController.getString(R.string.GiftPremiumActivateForFree), false);
             actionBtnCell2.backgroundView.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, actionBtnCell2.resourcesProvider));
             this.containerView.addView(this.actionBtn, LayoutHelper.createFrame(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
@@ -59,11 +112,11 @@ public final class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBotto
     }
 
     public final void lambda$init$1() {
-        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(this.baseFragment, UserConfig.selectedAccount, null, null, null, this.resourcesProvider);
+        PremiumPreviewBottomSheet premiumPreviewBottomSheet = new PremiumPreviewBottomSheet(getBaseFragment(), UserConfig.selectedAccount, null, null, null, this.resourcesProvider);
         premiumPreviewBottomSheet.animateConfetti = true;
         premiumPreviewBottomSheet.animateConfettiWithStars = true;
         premiumPreviewBottomSheet.isOutboundGift = true;
-        this.baseFragment.showDialog(premiumPreviewBottomSheet);
+        getBaseFragment().showDialog(premiumPreviewBottomSheet);
     }
 
     public final void lambda$init$3(TLRPC.TL_error tL_error) {
@@ -77,10 +130,11 @@ public final class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBotto
     }
 
     @Override
-    public final View onCreateAdditionCell(Context context, int i) {
+    public final View onCreateAdditionCell(int i, Context context) {
         if (i != 6) {
             return null;
         }
+        getBaseFragment();
         LinkCell linkCell = new LinkCell(context, this.resourcesProvider);
         linkCell.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
         return linkCell;
@@ -96,7 +150,7 @@ public final class PremiumPreviewGiftLinkBottomSheet extends PremiumPreviewBotto
     }
 
     @Override
-    public final void updateRows$2() {
+    public final void updateRows() {
         int i = this.rowCount;
         this.paddingRow = i;
         this.additionStartRow = i + 1;

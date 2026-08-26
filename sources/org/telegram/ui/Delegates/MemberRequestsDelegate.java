@@ -1,8 +1,11 @@
 package org.telegram.ui.Delegates;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -16,6 +19,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.LongSparseArray;
 import android.view.GestureDetector;
@@ -27,8 +31,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.mlkit_language_id_common.zzio;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,17 +44,20 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController$$ExternalSyntheticLambda37;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MemberRequestsController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.SendMessagesHelper$$ExternalSyntheticLambda27;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -57,54 +67,68 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.AvatarPreviewPagerIndicator;
 import org.telegram.ui.Cells.MemberRequestCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda9;
+import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FlickerLoadingView;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ProfileGalleryView;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.ScrollSlidingTabStrip;
 import org.telegram.ui.Components.StickerEmptyView;
-import org.telegram.ui.Components.spoilers.SpoilersTextView;
-import org.telegram.ui.ComposeDrawable$$ExternalSyntheticLambda0;
-import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda8;
+import org.telegram.ui.Components.TypefaceSpan;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda26;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LocationActivity;
-import org.telegram.ui.PaymentFormActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda71;
+import org.telegram.ui.TON.TONIntroActivity$$ExternalSyntheticLambda3;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda46;
+import org.telegram.ui.iv.RichEditorListView;
 
 public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClickListener {
-    public final long chatId;
-    public final MemberRequestsController controller;
-    public final int currentAccount;
-    public StickerEmptyView emptyView;
-    public final BaseFragment fragment;
-    public TLRPC.TL_chatInviteImporter importer;
+    private final long chatId;
+    private final MemberRequestsController controller;
+    private final int currentAccount;
+    private StickerEmptyView emptyView;
+    private final BaseFragment fragment;
+    private TLRPC.TL_chatInviteImporter importer;
     public final boolean isChannel;
-    public boolean isDataLoaded;
-    public boolean isLoading;
+    private boolean isDataLoaded;
+    private boolean isLoading;
     public boolean isNeedRestoreList;
-    public boolean isSearchExpanded;
-    public final FrameLayout layoutContainer;
-    public FlickerLoadingView loadingView;
-    public PreviewDialog previewDialog;
-    public String query;
-    public RecyclerListView recyclerView;
-    public FrameLayout rootLayout;
-    public StickerEmptyView searchEmptyView;
-    public int searchRequestId;
-    public MemberRequestsDelegate$$ExternalSyntheticLambda2 searchRunnable;
-    public final boolean showSearchMenu;
-    public final ArrayList currentImporters = new ArrayList();
-    public final LongSparseArray users = new LongSparseArray();
-    public final ArrayList allImporters = new ArrayList();
-    public final Adapter adapter = new Adapter();
-    public boolean hasMore = true;
-    public boolean isFirstLoading = true;
-    public boolean isShowLastItemDivider = true;
-    public final MemberRequestsDelegate$$ExternalSyntheticLambda2 loadMembersRunnable = new MemberRequestsDelegate$$ExternalSyntheticLambda2(this, 0);
-    public final LocationActivity.AnonymousClass10 listScrollListener = new LocationActivity.AnonymousClass10(this, 15);
+    private boolean isSearchExpanded;
+    private final FrameLayout layoutContainer;
+    private FlickerLoadingView loadingView;
+    private PreviewDialog previewDialog;
+    private String query;
+    private RecyclerListView recyclerView;
+    private FrameLayout rootLayout;
+    private StickerEmptyView searchEmptyView;
+    private int searchRequestId;
+    private Runnable searchRunnable;
+    private final boolean showSearchMenu;
+    private final List<TLRPC.TL_chatInviteImporter> currentImporters = new ArrayList();
+    private final LongSparseArray<TLRPC.User> users = new LongSparseArray<>();
+    private final ArrayList<TLRPC.TL_chatInviteImporter> allImporters = new ArrayList<>();
+    private final Adapter adapter = new Adapter();
+    private boolean hasMore = true;
+    private boolean isFirstLoading = true;
+    private boolean isShowLastItemDivider = true;
+    private final Runnable loadMembersRunnable = new MemberRequestsDelegate$$ExternalSyntheticLambda1(this, 2);
+    private final RecyclerView.OnScrollListener listScrollListener = new StarGiftSheet.AnonymousClass8(this, 9);
 
     public final class Adapter extends RecyclerListView.SelectionAdapter {
+
+        public final class AnonymousClass1 extends View {
+            @Override
+            public final void onMeasure(int i, int i2) {
+                super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(52.0f), 1073741824));
+            }
+        }
 
         public final class AnonymousClass2 extends FlickerLoadingView {
             @Override
@@ -119,9 +143,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         @Override
         public final int getItemCount() {
             MemberRequestsDelegate memberRequestsDelegate = MemberRequestsDelegate.this;
-            int i = !memberRequestsDelegate.isShowLastItemDivider ? 1 : 0;
-            ArrayList arrayList = memberRequestsDelegate.currentImporters;
-            return ((arrayList.isEmpty() || !memberRequestsDelegate.hasMore) ? 0 : 1) + arrayList.size() + i;
+            return ((memberRequestsDelegate.currentImporters.isEmpty() || !memberRequestsDelegate.hasMore) ? 0 : 1) + memberRequestsDelegate.currentImporters.size() + (!memberRequestsDelegate.isShowLastItemDivider ? 1 : 0);
         }
 
         @Override
@@ -135,54 +157,49 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
 
         @Override
         public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.mItemViewType == 0;
+            return viewHolder.getItemViewType() == 0;
         }
 
         @Override
         public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            int i2 = viewHolder.mItemViewType;
-            View view = viewHolder.itemView;
-            if (i2 != 0) {
-                if (i2 == 2) {
-                    view.requestLayout();
+            if (viewHolder.getItemViewType() != 0) {
+                if (viewHolder.getItemViewType() == 2) {
+                    viewHolder.itemView.requestLayout();
                     return;
                 }
                 return;
             }
-            MemberRequestCell memberRequestCell = (MemberRequestCell) view;
+            MemberRequestCell memberRequestCell = (MemberRequestCell) viewHolder.itemView;
             MemberRequestsDelegate memberRequestsDelegate = MemberRequestsDelegate.this;
-            int i3 = i - (!memberRequestsDelegate.isShowLastItemDivider ? 1 : 0);
+            int i2 = i - (!memberRequestsDelegate.isShowLastItemDivider ? 1 : 0);
             LongSparseArray longSparseArray = memberRequestsDelegate.users;
-            ArrayList arrayList = memberRequestsDelegate.currentImporters;
-            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i3);
-            boolean z = i3 != arrayList.size() - 1 || memberRequestsDelegate.hasMore;
+            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) memberRequestsDelegate.currentImporters.get(i2);
+            boolean z = i2 != memberRequestsDelegate.currentImporters.size() - 1 || memberRequestsDelegate.hasMore;
             memberRequestCell.importer = tL_chatInviteImporter;
             memberRequestCell.isNeedDivider = z;
             memberRequestCell.setWillNotDraw(!z);
             TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
             AvatarDrawable avatarDrawable = memberRequestCell.avatarDrawable;
-            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
-            BackupImageView backupImageView = memberRequestCell.avatarImageView;
-            backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-            backupImageView.onNewImageSet();
-            memberRequestCell.nameTextView.setText(UserObject.getUserName(user), false);
+            avatarDrawable.setInfo(user);
+            memberRequestCell.avatarImageView.setForUserOrChat(user, avatarDrawable);
+            memberRequestCell.nameTextView.setText(UserObject.getUserName(user));
             String dateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
             boolean z2 = tL_chatInviteImporter.via_chatlist;
             SimpleTextView simpleTextView = memberRequestCell.statusTextView;
             if (z2) {
-                simpleTextView.setText(LocaleController.getString(R.string.JoinedViaFolder), false);
+                simpleTextView.setText(LocaleController.getString(R.string.JoinedViaFolder));
                 return;
             }
             long j = tL_chatInviteImporter.approved_by;
             if (j == 0) {
-                simpleTextView.setText(LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, dateAudio), false);
+                simpleTextView.setText(LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, dateAudio));
                 return;
             }
             TLRPC.User user2 = (TLRPC.User) longSparseArray.get(j);
             if (user2 != null) {
-                simpleTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(user2), dateAudio), false);
+                simpleTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(user2), dateAudio));
             } else {
-                simpleTextView.setText("", false);
+                simpleTextView.setText("");
             }
         }
 
@@ -192,32 +209,25 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             if (i == 1) {
                 view = new View(viewGroup.getContext());
             } else if (i == 2) {
-                PaymentFormActivity.AnonymousClass2 anonymousClass2 = new PaymentFormActivity.AnonymousClass2(viewGroup.getContext(), 15);
-                anonymousClass2.setTag(-33024);
-                view = anonymousClass2;
+                AnonymousClass1 anonymousClass1 = new AnonymousClass1(viewGroup.getContext());
+                anonymousClass1.setTag(-33024);
+                view = anonymousClass1;
             } else if (i != 3) {
                 MemberRequestsDelegate memberRequestsDelegate = MemberRequestsDelegate.this;
                 if (i != 4) {
                     view = new MemberRequestCell(viewGroup.getContext(), memberRequestsDelegate, memberRequestsDelegate.isChannel);
                 } else {
-                    Activity parentActivity = memberRequestsDelegate.fragment.getParentActivity();
-                    BaseFragment baseFragment = memberRequestsDelegate.fragment;
-                    AnonymousClass2 anonymousClass3 = new AnonymousClass2(parentActivity, baseFragment.getResourceProvider());
+                    AnonymousClass2 anonymousClass2 = new AnonymousClass2(memberRequestsDelegate.fragment.getParentActivity(), memberRequestsDelegate.fragment.getResourceProvider());
                     if (memberRequestsDelegate.isShowLastItemDivider) {
-                        anonymousClass3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, baseFragment.getResourceProvider()));
+                        anonymousClass2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, memberRequestsDelegate.fragment.getResourceProvider()));
                     }
-                    int i2 = Theme.key_windowBackgroundWhite;
-                    int i3 = Theme.key_windowBackgroundGray;
-                    anonymousClass3.colorKey1 = i2;
-                    anonymousClass3.colorKey2 = i3;
-                    anonymousClass3.colorKey3 = -1;
-                    anonymousClass3.invalidate();
-                    anonymousClass3.setViewType(15);
-                    anonymousClass3.setMemberRequestButton(memberRequestsDelegate.isChannel);
-                    anonymousClass3.setIsSingleCell(true);
-                    anonymousClass3.setItemsCount(1);
-                    anonymousClass3.setTag(-33024);
-                    view = anonymousClass3;
+                    anonymousClass2.setColors(Theme.key_windowBackgroundWhite, Theme.key_windowBackgroundGray, -1);
+                    anonymousClass2.setViewType(15);
+                    anonymousClass2.setMemberRequestButton(memberRequestsDelegate.isChannel);
+                    anonymousClass2.setIsSingleCell(true);
+                    anonymousClass2.setItemsCount(1);
+                    anonymousClass2.setTag(-33024);
+                    view = anonymousClass2;
                 }
             } else {
                 view = new View(viewGroup.getContext());
@@ -240,14 +250,12 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                 }
                 i++;
             }
-            ArrayList arrayList = memberRequestsDelegate.currentImporters;
-            arrayList.clear();
-            arrayList.addAll(list);
-            RecyclerView.AdapterDataObservable adapterDataObservable = this.mObservable;
+            memberRequestsDelegate.currentImporters.clear();
+            memberRequestsDelegate.currentImporters.addAll(list);
             if (zIsEmpty) {
-                adapterDataObservable.notifyItemRangeInserted(!memberRequestsDelegate.isShowLastItemDivider ? 1 : 0, arrayList.size());
+                notifyItemRangeInserted(!memberRequestsDelegate.isShowLastItemDivider ? 1 : 0, memberRequestsDelegate.currentImporters.size());
             } else {
-                adapterDataObservable.notifyChanged();
+                notifyDataSetChanged();
             }
         }
     }
@@ -335,7 +343,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                     ProfileGalleryView profileGalleryView = previewDialog.viewPager;
                     profileGalleryView.layout(width, measuredHeight2, profileGalleryView.getMeasuredWidth() + width, previewDialog.viewPager.getMeasuredHeight() + measuredHeight2);
                     previewDialog.pagerIndicator.layout(previewDialog.viewPager.getLeft(), previewDialog.viewPager.getTop(), previewDialog.viewPager.getRight(), previewDialog.pagerIndicator.getMeasuredHeight() + previewDialog.viewPager.getTop());
-                    int iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(previewDialog.viewPager.getMeasuredHeight(), 12.0f, measuredHeight2);
+                    int iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(12.0f, previewDialog.viewPager.getMeasuredHeight(), measuredHeight2);
                     previewDialog.nameText.layout(AndroidUtilities.dp(16.0f) + previewDialog.viewPager.getLeft(), iM, previewDialog.viewPager.getRight() - AndroidUtilities.dp(16.0f), previewDialog.nameText.getMeasuredHeight() + iM);
                     int measuredHeight3 = previewDialog.nameText.getMeasuredHeight() + iM;
                     if (previewDialog.bioText.getVisibility() != 8) {
@@ -414,37 +422,34 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             drawableMutate.getPadding(rect);
             this.shadowPaddingTop = rect.top;
             this.shadowPaddingLeft = rect.left;
-            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(i, 0, activity, resourcesProvider);
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(activity, i, resourcesProvider, 0);
             this.popupLayout = actionBarPopupWindowLayout;
             actionBarPopupWindowLayout.setBackgroundColor(color);
             r7.addView(actionBarPopupWindowLayout);
             AnonymousClass1 anonymousClass1 = new AnonymousClass1(getContext());
             this.pagerIndicator = anonymousClass1;
-            BaseFragment baseFragment = MemberRequestsDelegate.this.fragment;
-            ProfileGalleryView profileGalleryView = new ProfileGalleryView(activity, baseFragment.getActionBar(), recyclerListView, anonymousClass1);
+            ProfileGalleryView profileGalleryView = new ProfileGalleryView(activity, MemberRequestsDelegate.this.fragment.getActionBar(), recyclerListView, anonymousClass1);
             this.viewPager = profileGalleryView;
             profileGalleryView.setCreateThumbFromParent(true);
             r7.addView(profileGalleryView);
             anonymousClass1.setProfileGalleryView(profileGalleryView);
             r7.addView(anonymousClass1);
             textView.setMaxLines(1);
-            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, baseFragment.getResourceProvider()));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, MemberRequestsDelegate.this.fragment.getResourceProvider()));
             textView.setTextSize(16.0f);
             textView.setTypeface(AndroidUtilities.bold());
             r7.addView(textView);
-            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, baseFragment.getResourceProvider()));
+            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, MemberRequestsDelegate.this.fragment.getResourceProvider()));
             textView2.setTextSize(14.0f);
             r7.addView(textView2);
             ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(0, activity, null, true, false);
             int i2 = Theme.key_actionBarDefaultSubmenuItem;
             int color2 = Theme.getColor(i2, resourcesProvider);
             int i3 = Theme.key_actionBarDefaultSubmenuItemIcon;
-            int color3 = Theme.getColor(i3, resourcesProvider);
-            actionBarMenuSubItem.setTextColor(color2);
-            actionBarMenuSubItem.setIconColor(color3);
+            actionBarMenuSubItem.setColors(color2, Theme.getColor(i3, resourcesProvider));
             int i4 = Theme.key_dialogButtonSelector;
             actionBarMenuSubItem.setSelectorColor(Theme.getColor(i4, resourcesProvider));
-            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(z ? R.string.AddToChannel : R.string.AddToGroup), R.drawable.msg_requests, null);
+            actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(z ? R.string.AddToChannel : R.string.AddToGroup), R.drawable.msg_requests);
             final int i5 = 0;
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener(this) {
                 public final MemberRequestsDelegate.PreviewDialog f$0;
@@ -461,10 +466,9 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = previewDialog.importer;
                             MemberRequestsDelegate memberRequestsDelegate = MemberRequestsDelegate.this;
                             if (tL_chatInviteImporter != null) {
-                                memberRequestsDelegate.hideChatJoinRequest(tL_chatInviteImporter, true);
+                                memberRequestsDelegate.onAddClicked(tL_chatInviteImporter);
                             }
-                            memberRequestsDelegate.previewDialog.runAnimation(false);
-                            memberRequestsDelegate.importer = null;
+                            MemberRequestsDelegate.access$2500(memberRequestsDelegate);
                             break;
                         case 1:
                             this.f$0.lambda$new$1();
@@ -474,23 +478,18 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = previewDialog2.importer;
                             MemberRequestsDelegate memberRequestsDelegate2 = MemberRequestsDelegate.this;
                             if (tL_chatInviteImporter2 != null) {
-                                memberRequestsDelegate2.hideChatJoinRequest(tL_chatInviteImporter2, false);
+                                memberRequestsDelegate2.onDismissClicked(tL_chatInviteImporter2);
                             }
-                            memberRequestsDelegate2.previewDialog.runAnimation(false);
-                            memberRequestsDelegate2.importer = null;
+                            MemberRequestsDelegate.access$2500(memberRequestsDelegate2);
                             break;
                     }
                 }
             });
-            ActionBarPopupWindow.ActionBarPopupWindowLayout.AnonymousClass2 anonymousClass2 = actionBarPopupWindowLayout.linearLayout;
-            anonymousClass2.addView(actionBarMenuSubItem);
+            actionBarPopupWindowLayout.addView(actionBarMenuSubItem);
             ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(0, activity, null, false, false);
-            int color4 = Theme.getColor(i2, resourcesProvider);
-            int color5 = Theme.getColor(i3, resourcesProvider);
-            actionBarMenuSubItem2.setTextColor(color4);
-            actionBarMenuSubItem2.setIconColor(color5);
+            actionBarMenuSubItem2.setColors(Theme.getColor(i2, resourcesProvider), Theme.getColor(i3, resourcesProvider));
             actionBarMenuSubItem2.setSelectorColor(Theme.getColor(i4, resourcesProvider));
-            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.SendMessage), R.drawable.msg_msgbubble3, null);
+            actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.SendMessage), R.drawable.msg_msgbubble3);
             final int i6 = 1;
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener(this) {
                 public final MemberRequestsDelegate.PreviewDialog f$0;
@@ -507,10 +506,9 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = previewDialog.importer;
                             MemberRequestsDelegate memberRequestsDelegate = MemberRequestsDelegate.this;
                             if (tL_chatInviteImporter != null) {
-                                memberRequestsDelegate.hideChatJoinRequest(tL_chatInviteImporter, true);
+                                memberRequestsDelegate.onAddClicked(tL_chatInviteImporter);
                             }
-                            memberRequestsDelegate.previewDialog.runAnimation(false);
-                            memberRequestsDelegate.importer = null;
+                            MemberRequestsDelegate.access$2500(memberRequestsDelegate);
                             break;
                         case 1:
                             this.f$0.lambda$new$1();
@@ -520,22 +518,18 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = previewDialog2.importer;
                             MemberRequestsDelegate memberRequestsDelegate2 = MemberRequestsDelegate.this;
                             if (tL_chatInviteImporter2 != null) {
-                                memberRequestsDelegate2.hideChatJoinRequest(tL_chatInviteImporter2, false);
+                                memberRequestsDelegate2.onDismissClicked(tL_chatInviteImporter2);
                             }
-                            memberRequestsDelegate2.previewDialog.runAnimation(false);
-                            memberRequestsDelegate2.importer = null;
+                            MemberRequestsDelegate.access$2500(memberRequestsDelegate2);
                             break;
                     }
                 }
             });
-            anonymousClass2.addView(actionBarMenuSubItem2);
+            actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(0, activity, null, false, true);
-            int color6 = Theme.getColor(Theme.key_text_RedBold, resourcesProvider);
-            int color7 = Theme.getColor(Theme.key_text_RedRegular, resourcesProvider);
-            actionBarMenuSubItem3.setTextColor(color6);
-            actionBarMenuSubItem3.setIconColor(color7);
+            actionBarMenuSubItem3.setColors(Theme.getColor(Theme.key_text_RedBold, resourcesProvider), Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
             actionBarMenuSubItem3.setSelectorColor(Theme.getColor(i4, resourcesProvider));
-            actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString(R.string.DismissRequest), R.drawable.msg_remove, null);
+            actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString(R.string.DismissRequest), R.drawable.msg_remove);
             final int i7 = 2;
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener(this) {
                 public final MemberRequestsDelegate.PreviewDialog f$0;
@@ -552,10 +546,9 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = previewDialog.importer;
                             MemberRequestsDelegate memberRequestsDelegate = MemberRequestsDelegate.this;
                             if (tL_chatInviteImporter != null) {
-                                memberRequestsDelegate.hideChatJoinRequest(tL_chatInviteImporter, true);
+                                memberRequestsDelegate.onAddClicked(tL_chatInviteImporter);
                             }
-                            memberRequestsDelegate.previewDialog.runAnimation(false);
-                            memberRequestsDelegate.importer = null;
+                            MemberRequestsDelegate.access$2500(memberRequestsDelegate);
                             break;
                         case 1:
                             this.f$0.lambda$new$1();
@@ -565,15 +558,14 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                             TLRPC.TL_chatInviteImporter tL_chatInviteImporter2 = previewDialog2.importer;
                             MemberRequestsDelegate memberRequestsDelegate2 = MemberRequestsDelegate.this;
                             if (tL_chatInviteImporter2 != null) {
-                                memberRequestsDelegate2.hideChatJoinRequest(tL_chatInviteImporter2, false);
+                                memberRequestsDelegate2.onDismissClicked(tL_chatInviteImporter2);
                             }
-                            memberRequestsDelegate2.previewDialog.runAnimation(false);
-                            memberRequestsDelegate2.importer = null;
+                            MemberRequestsDelegate.access$2500(memberRequestsDelegate2);
                             break;
                     }
                 }
             });
-            anonymousClass2.addView(actionBarMenuSubItem3);
+            actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
         }
 
         @Override
@@ -586,11 +578,10 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                 MemberRequestsDelegate memberRequestsDelegate = MemberRequestsDelegate.this;
                 memberRequestsDelegate.isNeedRestoreList = true;
                 super.dismiss();
-                BaseFragment baseFragment = memberRequestsDelegate.fragment;
-                baseFragment.dismissCurrentDialog();
+                memberRequestsDelegate.fragment.dismissCurrentDialog();
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", this.importer.user_id);
-                baseFragment.presentFragment(new ChatActivity(bundle));
+                memberRequestsDelegate.fragment.presentFragment(new ChatActivity(bundle));
             }
         }
 
@@ -614,8 +605,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             getWindow().setAttributes(attributes);
         }
 
-        public final void runAnimation(boolean z) {
-            int i = 1;
+        public final void runAnimation(final boolean z) {
             ValueAnimator valueAnimator = this.animator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -628,7 +618,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             final float width2 = (this.imageView.getWidth() / 2.0f) / measuredWidth;
             float f = 1.0f - measuredWidth;
             final float left = iArr[0] - (profileGalleryView.getLeft() + ((int) ((profileGalleryView.getMeasuredWidth() * f) / 2.0f)));
-            int i2 = iArr[1];
+            int i = iArr[1];
             int top = profileGalleryView.getTop();
             int measuredHeight = this.nameText.getMeasuredHeight() + AndroidUtilities.dp(12.0f) + profileGalleryView.getMeasuredHeight();
             TextView textView = this.bioText;
@@ -637,8 +627,8 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             }
             int iDp = AndroidUtilities.dp(12.0f);
             ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.popupLayout;
-            final float measuredHeight2 = i2 - (top + ((int) ((((actionBarPopupWindowLayout.getMeasuredHeight() + iDp) + measuredHeight) * f) / 2.0f)));
-            final int i3 = (-actionBarPopupWindowLayout.getTop()) / 2;
+            final float measuredHeight2 = i - (top + ((int) ((((actionBarPopupWindowLayout.getMeasuredHeight() + iDp) + measuredHeight) * f) / 2.0f)));
+            final int i2 = (-actionBarPopupWindowLayout.getTop()) / 2;
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f);
             this.animator = valueAnimatorOfFloat;
             valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -655,14 +645,14 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                     anonymousClass3.setScaleY(fM);
                     anonymousClass3.setTranslationX((1.0f - previewDialog.animationProgress) * left);
                     anonymousClass3.setTranslationY((1.0f - previewDialog.animationProgress) * measuredHeight2);
-                    int i4 = (int) ((1.0f - previewDialog.animationProgress) * width2);
-                    previewDialog.viewPager.setRoundRadius(i4, i4);
+                    int i3 = (int) ((1.0f - previewDialog.animationProgress) * width2);
+                    previewDialog.viewPager.setRoundRadius(i3, i3);
                     float fClamp = MathUtils.clamp((previewDialog.animationProgress * 2.0f) - 1.0f, 0.0f, 1.0f);
                     previewDialog.pagerShadowDrawable.setAlpha((int) (fClamp * 255.0f));
                     previewDialog.nameText.setAlpha(fClamp);
                     previewDialog.bioText.setAlpha(fClamp);
                     ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = previewDialog.popupLayout;
-                    actionBarPopupWindowLayout2.setTranslationY((1.0f - previewDialog.animationProgress) * i3);
+                    actionBarPopupWindowLayout2.setTranslationY((1.0f - previewDialog.animationProgress) * i2);
                     actionBarPopupWindowLayout2.setAlpha(fClamp);
                     BitmapDrawable bitmapDrawable = previewDialog.backgroundDrawable;
                     if (bitmapDrawable != null) {
@@ -671,7 +661,29 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                     previewDialog.pagerIndicator.setAlpha(fClamp);
                 }
             });
-            this.animator.addListener(new ScrollSlidingTabStrip.AnonymousClass4(this, z, measuredWidth, i));
+            this.animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public final void onAnimationEnd(Animator animator) {
+                    super.onAnimationEnd(animator);
+                    if (z) {
+                        return;
+                    }
+                    PreviewDialog.super.dismiss();
+                }
+
+                @Override
+                public final void onAnimationStart(Animator animator) {
+                    super.onAnimationStart(animator);
+                    PreviewDialog previewDialog = PreviewDialog.this;
+                    previewDialog.contentView.setVisibility(0);
+                    if (z) {
+                        AnonymousClass3 anonymousClass3 = previewDialog.contentView;
+                        float f2 = measuredWidth;
+                        anonymousClass3.setScaleX(f2);
+                        anonymousClass3.setScaleY(f2);
+                    }
+                }
+            });
             this.animator.setDuration(220L);
             this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.animator.start();
@@ -680,7 +692,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         @Override
         public final void show() {
             super.show();
-            AndroidUtilities.runOnUIThread(new ComposeDrawable$$ExternalSyntheticLambda0(this, 7), 80L);
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda9(this, 25), 80L);
         }
 
         public final void updateBackgroundBitmap() {
@@ -720,6 +732,11 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         this.controller = MemberRequestsController.getInstance(currentAccount);
     }
 
+    public static void access$2500(MemberRequestsDelegate memberRequestsDelegate) {
+        memberRequestsDelegate.previewDialog.runAnimation(false);
+        memberRequestsDelegate.importer = null;
+    }
+
     public static void setViewVisible(View view, boolean z, boolean z2) {
         if (view == null) {
             return;
@@ -740,50 +757,82 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         view.animate().alpha(f).setDuration(150L).start();
     }
 
-    public final StickerEmptyView getEmptyView() {
+    public Adapter getAdapter() {
+        return this.adapter;
+    }
+
+    public StickerEmptyView getEmptyView() {
         if (this.emptyView == null) {
-            BaseFragment baseFragment = this.fragment;
-            StickerEmptyView stickerEmptyView = new StickerEmptyView(16, baseFragment.getResourceProvider(), baseFragment.getParentActivity(), null);
+            StickerEmptyView stickerEmptyView = new StickerEmptyView(this.fragment.getParentActivity(), null, 16, this.fragment.getResourceProvider());
             this.emptyView = stickerEmptyView;
-            SpoilersTextView spoilersTextView = stickerEmptyView.title;
-            boolean z = this.isChannel;
-            spoilersTextView.setText(LocaleController.getString(z ? R.string.NoSubscribeRequests : R.string.NoMemberRequests));
-            this.emptyView.subtitle.setText(LocaleController.getString(z ? R.string.NoSubscribeRequestsDescription : R.string.NoMemberRequestsDescription));
+            stickerEmptyView.title.setText(LocaleController.getString(this.isChannel ? R.string.NoSubscribeRequests : R.string.NoMemberRequests));
+            this.emptyView.subtitle.setText(LocaleController.getString(this.isChannel ? R.string.NoSubscribeRequestsDescription : R.string.NoMemberRequestsDescription));
             this.emptyView.setAnimateLayoutChange(true);
             this.emptyView.setVisibility(8);
         }
         return this.emptyView;
     }
 
-    public final FlickerLoadingView getLoadingView() {
+    public FlickerLoadingView getLoadingView() {
         if (this.loadingView == null) {
-            BaseFragment baseFragment = this.fragment;
-            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
+            FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this.fragment.getParentActivity(), this.fragment.getResourceProvider());
             this.loadingView = flickerLoadingView;
             flickerLoadingView.setAlpha(0.0f);
             if (this.isShowLastItemDivider) {
-                this.loadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, baseFragment.getResourceProvider()));
+                this.loadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.fragment.getResourceProvider()));
             }
-            FlickerLoadingView flickerLoadingView2 = this.loadingView;
-            int i = Theme.key_windowBackgroundWhite;
-            int i2 = Theme.key_windowBackgroundGray;
-            flickerLoadingView2.colorKey1 = i;
-            flickerLoadingView2.colorKey2 = i2;
-            flickerLoadingView2.colorKey3 = -1;
-            flickerLoadingView2.invalidate();
+            this.loadingView.setColors(Theme.key_windowBackgroundWhite, Theme.key_windowBackgroundGray, -1);
             this.loadingView.setViewType(15);
             this.loadingView.setMemberRequestButton(this.isChannel);
         }
         return this.loadingView;
     }
 
-    public final StickerEmptyView getSearchEmptyView() {
+    public RecyclerListView getRecyclerView() {
+        return this.recyclerView;
+    }
+
+    public FrameLayout getRootLayout() {
+        if (this.rootLayout == null) {
+            FrameLayout frameLayout = new FrameLayout(this.fragment.getParentActivity());
+            this.rootLayout = frameLayout;
+            frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.fragment.getResourceProvider()));
+            FlickerLoadingView loadingView = getLoadingView();
+            this.loadingView = loadingView;
+            this.rootLayout.addView(loadingView, -1, -1);
+            StickerEmptyView searchEmptyView = getSearchEmptyView();
+            this.searchEmptyView = searchEmptyView;
+            this.rootLayout.addView(searchEmptyView, -1, -1);
+            StickerEmptyView emptyView = getEmptyView();
+            this.emptyView = emptyView;
+            this.rootLayout.addView(emptyView, LayoutHelper.createFrame(-1, -1.0f));
+            this.fragment.getParentActivity();
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(1, false);
+            RecyclerListView recyclerListView = new RecyclerListView(this.fragment.getParentActivity());
+            this.recyclerView = recyclerListView;
+            recyclerListView.setAdapter(this.adapter);
+            this.recyclerView.setSections();
+            this.recyclerView.setLayoutManager(linearLayoutManager);
+            this.recyclerView.setOnItemClickListener(new TONIntroActivity$$ExternalSyntheticLambda3(this, 8));
+            this.recyclerView.setOnScrollListener(this.listScrollListener);
+            this.recyclerView.setSelectorDrawableColor(Theme.getColor(Theme.key_listSelector, this.fragment.getResourceProvider()));
+            this.rootLayout.addView(this.recyclerView, -1, -1);
+            DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
+            defaultItemAnimator.setDurations(350L);
+            defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            defaultItemAnimator.setDelayAnimations(false);
+            defaultItemAnimator.setSupportsChangeAnimations(false);
+            this.recyclerView.lambda$onCellEnter$52(defaultItemAnimator);
+        }
+        return this.rootLayout;
+    }
+
+    public StickerEmptyView getSearchEmptyView() {
         if (this.searchEmptyView == null) {
-            BaseFragment baseFragment = this.fragment;
-            StickerEmptyView stickerEmptyView = new StickerEmptyView(1, baseFragment.getResourceProvider(), baseFragment.getParentActivity(), null);
+            StickerEmptyView stickerEmptyView = new StickerEmptyView(this.fragment.getParentActivity(), null, 1, this.fragment.getResourceProvider());
             this.searchEmptyView = stickerEmptyView;
             if (this.isShowLastItemDivider) {
-                stickerEmptyView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, baseFragment.getResourceProvider()));
+                stickerEmptyView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.fragment.getResourceProvider()));
             }
             this.searchEmptyView.title.setText(LocaleController.getString(R.string.NoResult));
             this.searchEmptyView.subtitle.setText(LocaleController.getString(R.string.SearchEmptyViewFilteredSubtitle2));
@@ -793,20 +842,183 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
         return this.searchEmptyView;
     }
 
+    public boolean hasAllImporters() {
+        return !this.allImporters.isEmpty();
+    }
+
     public final void hideChatJoinRequest(TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z) {
-        TLRPC.User user = (TLRPC.User) this.users.get(tL_chatInviteImporter.user_id);
+        TLRPC.User user = this.users.get(tL_chatInviteImporter.user_id);
         if (user == null) {
             return;
         }
         TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = new TLRPC.TL_messages_hideChatJoinRequest();
         tL_messages_hideChatJoinRequest.approved = z;
-        int i = this.currentAccount;
-        tL_messages_hideChatJoinRequest.peer = MessagesController.getInstance(i).getInputPeer(-this.chatId);
-        tL_messages_hideChatJoinRequest.user_id = MessagesController.getInstance(i).getInputUser(user);
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_hideChatJoinRequest, new ContactsController$$ExternalSyntheticLambda37(this, tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest));
+        tL_messages_hideChatJoinRequest.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(-this.chatId);
+        tL_messages_hideChatJoinRequest.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(user);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_hideChatJoinRequest, new ContactsController$$ExternalSyntheticLambda37(this, tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest));
     }
 
-    public final void loadMembers() {
+    public final void lambda$hideChatJoinRequest$6(TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest) {
+        MemberRequestsDelegate memberRequestsDelegate;
+        BaseFragment baseFragment = this.fragment;
+        if (baseFragment == null || baseFragment.getParentActivity() == null) {
+            return;
+        }
+        if (tL_error != null) {
+            AlertsCreator.processError(this.currentAccount, tL_error, this.fragment, tL_messages_hideChatJoinRequest, new Object[0]);
+            return;
+        }
+        TLRPC.TL_updates tL_updates = (TLRPC.TL_updates) tLObject;
+        if (!tL_updates.chats.isEmpty()) {
+            MessagesController.getInstance(this.currentAccount).loadFullChat(tL_updates.chats.get(0).id, 0, true);
+        }
+        for (int i = 0; i < this.allImporters.size(); i++) {
+            if (this.allImporters.get(i).user_id == tL_chatInviteImporter.user_id) {
+                this.allImporters.remove(i);
+                break;
+            }
+        }
+        Adapter adapter = this.adapter;
+        int i2 = 0;
+        while (true) {
+            int size = MemberRequestsDelegate.this.currentImporters.size();
+            memberRequestsDelegate = MemberRequestsDelegate.this;
+            if (i2 >= size) {
+                i2 = -1;
+                break;
+            } else if (((TLRPC.TL_chatInviteImporter) memberRequestsDelegate.currentImporters.get(i2)).user_id == tL_chatInviteImporter.user_id) {
+                break;
+            } else {
+                i2++;
+            }
+        }
+        if (i2 >= 0) {
+            memberRequestsDelegate.currentImporters.remove(i2);
+            adapter.notifyItemRemoved((!memberRequestsDelegate.isShowLastItemDivider ? 1 : 0) + i2);
+            if (memberRequestsDelegate.currentImporters.isEmpty()) {
+                adapter.notifyItemRemoved(1);
+            }
+        }
+        onImportersChanged(this.query, false, true);
+        if (z) {
+            Bulletin.MultiLineLayout multiLineLayout = new Bulletin.MultiLineLayout(this.fragment.getParentActivity(), this.fragment.getResourceProvider());
+            multiLineLayout.imageView.setRoundRadius(AndroidUtilities.dp(15.0f));
+            multiLineLayout.imageView.setForUserOrChat(user, new AvatarDrawable(user));
+            String firstName = UserObject.getFirstName(user);
+            String string = this.isChannel ? LocaleController.formatString("HasBeenAddedToChannel", R.string.HasBeenAddedToChannel, firstName) : LocaleController.formatString("HasBeenAddedToGroup", R.string.HasBeenAddedToGroup, firstName);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
+            int iIndexOf = string.indexOf(firstName);
+            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), iIndexOf, firstName.length() + iIndexOf, 18);
+            multiLineLayout.textView.setText(spannableStringBuilder);
+            if (this.allImporters.isEmpty()) {
+                Bulletin.make(this.fragment, multiLineLayout, 2750).show();
+            } else {
+                Bulletin.make(this.layoutContainer, multiLineLayout, 2750).show();
+            }
+        }
+        ActionBarMenu actionBarMenuCreateMenu = this.fragment.getActionBar().createMenu();
+        if (TextUtils.isEmpty(this.query) && this.showSearchMenu) {
+            actionBarMenuCreateMenu.getItem(0).setVisibility(this.allImporters.isEmpty() ? 8 : 0);
+        }
+    }
+
+    public final void lambda$hideChatJoinRequest$7(TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z, TLRPC.User user, TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC.TL_updates) tLObject, false);
+        }
+        AndroidUtilities.runOnUIThread(new SendMessagesHelper$$ExternalSyntheticLambda27(this, tL_error, tLObject, tL_chatInviteImporter, z, user, tL_messages_hideChatJoinRequest));
+    }
+
+    public final void lambda$loadMembers$2() {
+        setViewVisible(this.loadingView, true, true);
+    }
+
+    public final void lambda$loadMembers$3(boolean z, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z2) {
+        this.isLoading = false;
+        this.isDataLoaded = true;
+        if (z) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
+        }
+        setViewVisible(this.loadingView, false, false);
+        if (TextUtils.equals(str, this.query) && tL_error == null) {
+            this.isDataLoaded = true;
+            onImportersLoaded((TLRPC.TL_messages_chatInviteImporters) tLObject, str, z2, false);
+        }
+    }
+
+    public final void lambda$loadMembers$4(boolean z, Runnable runnable, String str, boolean z2, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda9(this, z, runnable, str, tL_error, tLObject, z2));
+    }
+
+    public final void lambda$loadMembers$5(boolean z) {
+        boolean zIsEmpty = TextUtils.isEmpty(this.query);
+        String str = this.query;
+        this.isLoading = true;
+        this.isFirstLoading = false;
+        MemberRequestsDelegate$$ExternalSyntheticLambda1 memberRequestsDelegate$$ExternalSyntheticLambda1 = null;
+        TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (!zIsEmpty || this.currentImporters.isEmpty()) ? null : (TLRPC.TL_chatInviteImporter) zzio.m(1, this.currentImporters);
+        boolean z2 = tL_chatInviteImporter == null;
+        if (zIsEmpty && z2 && z) {
+            memberRequestsDelegate$$ExternalSyntheticLambda1 = new MemberRequestsDelegate$$ExternalSyntheticLambda1(this, 0);
+        }
+        MemberRequestsDelegate$$ExternalSyntheticLambda1 memberRequestsDelegate$$ExternalSyntheticLambda2 = memberRequestsDelegate$$ExternalSyntheticLambda1;
+        if (zIsEmpty) {
+            AndroidUtilities.runOnUIThread(memberRequestsDelegate$$ExternalSyntheticLambda2, 300L);
+        }
+        this.searchRequestId = this.controller.getImporters(this.chatId, str, tL_chatInviteImporter, this.users, new StarGiftSheet$$ExternalSyntheticLambda71(this, zIsEmpty, memberRequestsDelegate$$ExternalSyntheticLambda2, str, z2));
+    }
+
+    public final void lambda$onItemClick$0(DialogInterface dialogInterface) {
+        this.previewDialog = null;
+    }
+
+    public final void lambda$onItemClick$1(MemberRequestCell memberRequestCell) {
+        TLRPC.TL_chatInviteImporter importer = memberRequestCell.getImporter();
+        this.importer = importer;
+        TLRPC.User user = this.users.get(importer.user_id);
+        if (user != null) {
+            this.fragment.getMessagesController().putUser(user, false);
+            Point point = AndroidUtilities.displaySize;
+            boolean z = point.x > point.y;
+            if (user.photo == null || z) {
+                this.isNeedRestoreList = true;
+                this.fragment.dismissCurrentDialog();
+                Bundle bundle = new Bundle();
+                ProfileActivity profileActivity = new ProfileActivity(bundle);
+                bundle.putLong("user_id", user.id);
+                bundle.putBoolean("removeFragmentOnChatOpen", false);
+                this.fragment.presentFragment(profileActivity);
+                return;
+            }
+            if (this.previewDialog == null) {
+                PreviewDialog previewDialog = new PreviewDialog(this.fragment.getParentActivity(), (RecyclerListView) memberRequestCell.getParent(), this.fragment.getResourceProvider(), this.isChannel);
+                this.previewDialog = previewDialog;
+                TLRPC.TL_chatInviteImporter tL_chatInviteImporter = this.importer;
+                BackupImageView avatarImageView = memberRequestCell.getAvatarImageView();
+                previewDialog.importer = tL_chatInviteImporter;
+                previewDialog.imageView = avatarImageView;
+                TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_chatInviteImporter.user_id));
+                ImageLocation forUserOrChat = ImageLocation.getForUserOrChat(this.currentAccount, user2, 0);
+                ImageLocation forUserOrChat2 = ImageLocation.getForUserOrChat(this.currentAccount, user2, 1);
+                if (MessagesController.getInstance(this.currentAccount).getUserFull(tL_chatInviteImporter.user_id) == null) {
+                    MessagesController.getInstance(this.currentAccount).loadUserInfo(user2, false, 0);
+                }
+                ProfileGalleryView profileGalleryView = previewDialog.viewPager;
+                profileGalleryView.setParentAvatarImage(avatarImageView);
+                profileGalleryView.setData(tL_chatInviteImporter.user_id, true);
+                profileGalleryView.initIfEmpty(null, forUserOrChat, forUserOrChat2, true);
+                previewDialog.nameText.setText(UserObject.getUserName((TLRPC.User) this.users.get(tL_chatInviteImporter.user_id)));
+                TextView textView = previewDialog.bioText;
+                textView.setText(tL_chatInviteImporter.about);
+                textView.setVisibility(TextUtils.isEmpty(tL_chatInviteImporter.about) ? 8 : 0);
+                previewDialog.contentView.requestLayout();
+                this.previewDialog.setOnDismissListener(new RichEditor$$ExternalSyntheticLambda46(this, 6));
+                this.previewDialog.show();
+            }
+        }
+    }
+
+    public void lambda$new$8() {
         TLRPC.TL_messages_chatInviteImporters cachedImporters;
         boolean z = true;
         if (this.isFirstLoading && (cachedImporters = this.controller.getCachedImporters(this.chatId)) != null) {
@@ -814,15 +1026,34 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             onImportersLoaded(cachedImporters, null, true, true);
             z = false;
         }
-        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda1(29, this, z));
+        AndroidUtilities.runOnUIThread(new FileLoader$$ExternalSyntheticLambda1(this, z, 12));
+    }
+
+    @Override
+    public void onAddClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
+        hideChatJoinRequest(tL_chatInviteImporter, true);
+    }
+
+    public boolean onBackPressed(boolean z) {
+        PreviewDialog previewDialog = this.previewDialog;
+        if (previewDialog == null) {
+            return true;
+        }
+        if (z) {
+            previewDialog.runAnimation(false);
+        }
+        return false;
+    }
+
+    @Override
+    public void onDismissClicked(TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
+        hideChatJoinRequest(tL_chatInviteImporter, false);
     }
 
     public void onImportersChanged(String str, boolean z, boolean z2) {
         boolean z3;
-        boolean zIsEmpty = TextUtils.isEmpty(str);
-        ArrayList arrayList = this.allImporters;
-        if (zIsEmpty) {
-            z3 = !arrayList.isEmpty() || z;
+        if (TextUtils.isEmpty(str)) {
+            z3 = !this.allImporters.isEmpty() || z;
             StickerEmptyView stickerEmptyView = this.emptyView;
             if (stickerEmptyView != null) {
                 stickerEmptyView.setVisibility(z3 ? 4 : 0);
@@ -843,7 +1074,7 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             }
         }
         setViewVisible(this.recyclerView, z3, true);
-        if (arrayList.isEmpty()) {
+        if (this.allImporters.isEmpty()) {
             StickerEmptyView stickerEmptyView5 = this.emptyView;
             if (stickerEmptyView5 != null) {
                 stickerEmptyView5.setVisibility(0);
@@ -862,89 +1093,94 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
     public final void onImportersLoaded(TLRPC.TL_messages_chatInviteImporters tL_messages_chatInviteImporters, String str, boolean z, boolean z2) {
         boolean z3;
         MemberRequestsDelegate memberRequestsDelegate;
-        ArrayList arrayList = this.currentImporters;
         boolean z4 = false;
-        boolean z5 = !arrayList.isEmpty() && this.hasMore;
+        boolean z5 = !this.currentImporters.isEmpty() && this.hasMore;
         for (int i = 0; i < tL_messages_chatInviteImporters.users.size(); i++) {
             TLRPC.User user = tL_messages_chatInviteImporters.users.get(i);
             this.users.put(user.id, user);
         }
-        Adapter adapter = this.adapter;
         if (z) {
-            adapter.setItems(tL_messages_chatInviteImporters.importers);
+            this.adapter.setItems(tL_messages_chatInviteImporters.importers);
         } else {
             if (tL_messages_chatInviteImporters.importers.size() <= 0) {
                 z3 = false;
-            } else if (tL_messages_chatInviteImporters.importers.size() + arrayList.size() < tL_messages_chatInviteImporters.count) {
+            } else if (tL_messages_chatInviteImporters.importers.size() + this.currentImporters.size() < tL_messages_chatInviteImporters.count) {
                 z3 = true;
             } else {
                 z3 = false;
             }
             if (z3) {
-                adapter.mObservable.notifyItemRangeRemoved(arrayList.size() + (!this.isShowLastItemDivider ? 1 : 0), 1);
+                this.adapter.notifyItemRemoved(this.currentImporters.size() + (!this.isShowLastItemDivider ? 1 : 0));
             }
-            ArrayList<TLRPC.TL_chatInviteImporter> arrayList2 = tL_messages_chatInviteImporters.importers;
+            Adapter adapter = this.adapter;
+            ArrayList<TLRPC.TL_chatInviteImporter> arrayList = tL_messages_chatInviteImporters.importers;
             adapter.getClass();
             int i2 = 0;
             while (true) {
-                int size = arrayList2.size();
+                int size = arrayList.size();
                 memberRequestsDelegate = MemberRequestsDelegate.this;
                 if (i2 >= size) {
                     break;
                 }
-                long j = arrayList2.get(i2).user_id;
+                long j = arrayList.get(i2).user_id;
                 for (int i3 = 0; i3 < memberRequestsDelegate.currentImporters.size(); i3++) {
                     if (((TLRPC.TL_chatInviteImporter) memberRequestsDelegate.currentImporters.get(i3)).user_id == j) {
-                        arrayList2.remove(i2);
+                        arrayList.remove(i2);
                         i2--;
                         break;
                     }
                 }
                 i2++;
             }
-            memberRequestsDelegate.currentImporters.addAll(arrayList2);
-            int size2 = (memberRequestsDelegate.currentImporters.size() + (!memberRequestsDelegate.isShowLastItemDivider ? 1 : 0)) - arrayList2.size();
-            int size3 = arrayList2.size();
-            RecyclerView.AdapterDataObservable adapterDataObservable = adapter.mObservable;
-            adapterDataObservable.notifyItemRangeInserted(size2, size3);
+            memberRequestsDelegate.currentImporters.addAll(arrayList);
+            adapter.notifyItemRangeInserted((memberRequestsDelegate.currentImporters.size() + (!memberRequestsDelegate.isShowLastItemDivider ? 1 : 0)) - arrayList.size(), arrayList.size());
             if (z3) {
-                adapterDataObservable.notifyItemRangeInserted(arrayList.size() + (!this.isShowLastItemDivider ? 1 : 0), 1);
+                this.adapter.notifyItemInserted(this.currentImporters.size() + (!this.isShowLastItemDivider ? 1 : 0));
             }
         }
         if (TextUtils.isEmpty(str)) {
-            ArrayList arrayList3 = this.allImporters;
             if (z) {
-                arrayList3.clear();
+                this.allImporters.clear();
             }
-            arrayList3.addAll(tL_messages_chatInviteImporters.importers);
+            this.allImporters.addAll(tL_messages_chatInviteImporters.importers);
             if (this.showSearchMenu) {
-                this.fragment.getActionBar().createMenu().getItem(0).setVisibility(arrayList3.isEmpty() ? 8 : 0);
+                this.fragment.getActionBar().createMenu().getItem(0).setVisibility(this.allImporters.isEmpty() ? 8 : 0);
             }
         }
         onImportersChanged(str, z2, false);
-        this.hasMore = arrayList.size() < tL_messages_chatInviteImporters.count;
-        if (!arrayList.isEmpty() && this.hasMore) {
+        this.hasMore = this.currentImporters.size() < tL_messages_chatInviteImporters.count;
+        if (!this.currentImporters.isEmpty() && this.hasMore) {
             z4 = true;
         }
         if (z5 != z4) {
             if (this.hasMore) {
-                adapter.mObservable.notifyItemRangeInserted(adapter.getItemCount() - 1, 1);
+                Adapter adapter2 = this.adapter;
+                adapter2.notifyItemInserted(adapter2.getItemCount() - 1);
             } else {
-                adapter.mObservable.notifyItemRangeRemoved(adapter.getItemCount(), 1);
+                Adapter adapter3 = this.adapter;
+                adapter3.notifyItemRemoved(adapter3.getItemCount());
             }
         }
     }
 
-    public final void onItemClick(View view) {
+    public void onItemClick(View view, int i) {
         if (view instanceof MemberRequestCell) {
             if (this.isSearchExpanded) {
                 AndroidUtilities.hideKeyboard(this.fragment.getParentActivity().getCurrentFocus());
             }
-            AndroidUtilities.runOnUIThread(new DialogsActivity$$ExternalSyntheticLambda8(17, this, (MemberRequestCell) view), this.isSearchExpanded ? 100L : 0L);
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda26(20, this, (MemberRequestCell) view), this.isSearchExpanded ? 100L : 0L);
         }
     }
 
-    public final void setQuery(String str) {
+    public void setAdapterItemsEnabled(boolean z) {
+        int i;
+        if (this.recyclerView == null || (i = !MemberRequestsDelegate.this.isShowLastItemDivider ? 1 : 0) < 0 || i >= this.recyclerView.getChildCount()) {
+            return;
+        }
+        this.recyclerView.getChildAt(i).setEnabled(z);
+    }
+
+    public void setQuery(String str) {
         if (this.searchRunnable != null) {
             Utilities.searchQueue.cancelRunnable(this.searchRunnable);
             this.searchRunnable = null;
@@ -974,9 +1210,9 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
             setViewVisible(this.recyclerView, false, false);
             setViewVisible(this.loadingView, true, true);
             DispatchQueue dispatchQueue = Utilities.searchQueue;
-            MemberRequestsDelegate$$ExternalSyntheticLambda2 memberRequestsDelegate$$ExternalSyntheticLambda2 = new MemberRequestsDelegate$$ExternalSyntheticLambda2(this, 2);
-            this.searchRunnable = memberRequestsDelegate$$ExternalSyntheticLambda2;
-            dispatchQueue.postRunnable(memberRequestsDelegate$$ExternalSyntheticLambda2, 300L);
+            MemberRequestsDelegate$$ExternalSyntheticLambda1 memberRequestsDelegate$$ExternalSyntheticLambda1 = new MemberRequestsDelegate$$ExternalSyntheticLambda1(this, 1);
+            this.searchRunnable = memberRequestsDelegate$$ExternalSyntheticLambda1;
+            dispatchQueue.postRunnable(memberRequestsDelegate$$ExternalSyntheticLambda1, 300L);
         }
         if (str != null) {
             StickerEmptyView stickerEmptyView2 = this.emptyView;
@@ -988,5 +1224,24 @@ public abstract class MemberRequestsDelegate implements MemberRequestCell.OnClic
                 stickerEmptyView3.setVisibility(4);
             }
         }
+    }
+
+    public void setRecyclerView(RecyclerListView recyclerListView) {
+        this.recyclerView = recyclerListView;
+        recyclerListView.setOnItemClickListener(new TONIntroActivity$$ExternalSyntheticLambda3(this, 8));
+        RecyclerView.OnScrollListener onScrollListener = recyclerListView.getOnScrollListener();
+        if (onScrollListener == null) {
+            recyclerListView.setOnScrollListener(this.listScrollListener);
+        } else {
+            recyclerListView.setOnScrollListener(new RichEditorListView.AnonymousClass3(1, this, onScrollListener));
+        }
+    }
+
+    public void setSearchExpanded(boolean z) {
+        this.isSearchExpanded = z;
+    }
+
+    public void setShowLastItemDivider(boolean z) {
+        this.isShowLastItemDivider = z;
     }
 }

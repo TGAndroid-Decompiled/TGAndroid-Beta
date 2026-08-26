@@ -1,12 +1,10 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.DialogsBotsAdapter;
 import org.telegram.ui.Components.DialogsChannelsAdapter;
-import org.telegram.ui.Components.Paint.Painting$$ExternalSyntheticLambda7;
 import org.telegram.ui.Components.UniversalAdapter;
 
 public final class VoIPService$$ExternalSyntheticLambda89 implements RequestDelegate {
@@ -31,14 +29,10 @@ public final class VoIPService$$ExternalSyntheticLambda89 implements RequestDele
                 ((VoIPService) this.f$0).lambda$startConferenceGroupCall$54(this.f$1, this.f$2, (String) this.f$3, tLObject, tL_error);
                 break;
             case 1:
-                DialogsBotsAdapter dialogsBotsAdapter = (DialogsBotsAdapter) this.f$0;
-                dialogsBotsAdapter.getClass();
-                AndroidUtilities.runOnUIThread(new Painting$$ExternalSyntheticLambda7(dialogsBotsAdapter, this.f$1, (TLRPC.TL_messages_searchGlobal) this.f$3, this.f$2, tLObject, 2));
+                ((DialogsBotsAdapter) this.f$0).lambda$searchMessages$4(this.f$1, (TLRPC.TL_messages_searchGlobal) this.f$3, this.f$2, tLObject, tL_error);
                 break;
             default:
-                DialogsChannelsAdapter dialogsChannelsAdapter = (DialogsChannelsAdapter) this.f$0;
-                dialogsChannelsAdapter.getClass();
-                AndroidUtilities.runOnUIThread(new Painting$$ExternalSyntheticLambda7(dialogsChannelsAdapter, this.f$1, (TLRPC.TL_messages_searchGlobal) this.f$3, this.f$2, tLObject, 3));
+                ((DialogsChannelsAdapter) this.f$0).lambda$searchMessages$1(this.f$1, (TLRPC.TL_messages_searchGlobal) this.f$3, this.f$2, tLObject, tL_error);
                 break;
         }
     }

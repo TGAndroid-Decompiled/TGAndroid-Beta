@@ -18,27 +18,26 @@ public final class BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda13 im
 
     @Override
     public final void accept(Object obj) {
-        int i = 1;
-        String str = this.f$2;
-        GeolocationPermissions.Callback callback = this.f$1;
-        BotWebViewContainer.MyWebView.AnonymousClass3 anonymousClass3 = this.f$0;
         Boolean bool = (Boolean) obj;
         switch (this.$r8$classId) {
             case 0:
+                BotWebViewContainer.MyWebView.AnonymousClass3 anonymousClass3 = this.f$0;
                 if (anonymousClass3.lastPermissionsDialog != null) {
                     anonymousClass3.lastPermissionsDialog = null;
-                    if (!bool.booleanValue()) {
+                    boolean zBooleanValue = bool.booleanValue();
+                    GeolocationPermissions.Callback callback = this.f$1;
+                    String str = this.f$2;
+                    if (!zBooleanValue) {
                         callback.invoke(str, false, false);
                     } else {
-                        BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda13 botWebViewContainer$MyWebView$3$$ExternalSyntheticLambda13 = new BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda13(anonymousClass3, callback, str, i);
-                        int i2 = BotWebViewContainer.tags;
-                        BotWebViewContainer.MyWebView.this.botWebViewContainer.runWithPermissions(botWebViewContainer$MyWebView$3$$ExternalSyntheticLambda13, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"});
+                        BotWebViewContainer.MyWebView.this.botWebViewContainer.runWithPermissions(new BotWebViewContainer$MyWebView$3$$ExternalSyntheticLambda13(anonymousClass3, callback, str, 1), new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"});
                     }
                 }
                 break;
             default:
-                anonymousClass3.getClass();
-                callback.invoke(str, bool.booleanValue(), false);
+                BotWebViewContainer.MyWebView.AnonymousClass3 anonymousClass4 = this.f$0;
+                anonymousClass4.getClass();
+                this.f$1.invoke(this.f$2, bool.booleanValue(), false);
                 if (bool.booleanValue()) {
                     BotWebViewContainer.MyWebView.this.botWebViewContainer.hasUserPermissions = true;
                 }

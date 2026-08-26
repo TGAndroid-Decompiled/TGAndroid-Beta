@@ -10,11 +10,17 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.FrameLayout;
+import androidx.core.view.ViewCompat;
+import androidx.dynamicanimation.animation.DynamicAnimation;
+import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
+import androidx.dynamicanimation.animation.SpringForce;
+import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarLayout;
@@ -24,90 +30,135 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
 public abstract class RightSlidingDialogContainer extends FrameLayout {
-    public static final int $r8$clinit = 0;
     public static long fragmentDialogId;
-    public Paint actionModePaint;
-    public ActionBar currentActionBarView;
-    public DialogsActivity.AnonymousClass33 currentFragment;
-    public LoginActivity.AnonymousClass4 currentFragmentFullscreenView;
-    public View currentFragmentView;
-    public float currentTop;
+    private Paint actionModePaint;
+    private int currentAccount;
+    ActionBar currentActionBarView;
+    BaseFragment currentFragment;
+    View currentFragmentFullscreenView;
+    View currentFragmentView;
+    float currentTop;
     public boolean enabled;
     public int fragmentViewPadding;
-    public boolean isOpenned;
-    public boolean isPaused;
-    public int lastSize;
-    public boolean maybeStartTracking;
-    public INavigationLayout navigationLayout;
-    public final AnimationNotificationsLocker notificationsLocker;
-    public ValueAnimator openAnimator;
-    public float openedProgress;
-    public SpringAnimation replaceAnimation;
-    public boolean replaceAnimationInProgress;
-    public float replaceProgress;
-    public DialogsActivity.AnonymousClass33 replacingFragment;
-    public boolean startedTracking;
-    public int startedTrackingPointerId;
-    public int startedTrackingX;
-    public int startedTrackingY;
-    public float swipeBackX;
-    public VelocityTracker velocityTracker;
+    boolean isOpenned;
+    boolean isPaused;
+    int lastSize;
+    private boolean maybeStartTracking;
+    INavigationLayout navigationLayout;
+    private AnimationNotificationsLocker notificationsLocker;
+    ValueAnimator openAnimator;
+    float openedProgress;
+    SpringAnimation replaceAnimation;
+    private boolean replaceAnimationInProgress;
+    float replaceProgress;
+    BaseFragment replacingFragment;
+    protected boolean startedTracking;
+    private int startedTrackingPointerId;
+    private int startedTrackingX;
+    private int startedTrackingY;
+    float swipeBackX;
+    private VelocityTracker velocityTracker;
 
-    public final class AnonymousClass2 extends AnimatorListenerAdapter {
-        public final int $r8$classId;
-        public final RightSlidingDialogContainer this$0;
-
-        public AnonymousClass2(RightSlidingDialogContainer rightSlidingDialogContainer, int i) {
-            this.$r8$classId = i;
-            this.this$0 = rightSlidingDialogContainer;
-        }
-
-        @Override
-        public final void onAnimationEnd(Animator animator) {
-            switch (this.$r8$classId) {
-                case 0:
-                    RightSlidingDialogContainer rightSlidingDialogContainer = this.this$0;
-                    if (rightSlidingDialogContainer.openAnimator != null) {
-                        rightSlidingDialogContainer.openAnimator = null;
-                        rightSlidingDialogContainer.openedProgress = 0.0f;
-                        rightSlidingDialogContainer.updateOpenAnimationProgress();
-                        rightSlidingDialogContainer.notificationsLocker.unlock();
-                        DialogsActivity.AnonymousClass33 anonymousClass33 = rightSlidingDialogContainer.currentFragment;
-                        if (anonymousClass33 != null) {
-                            anonymousClass33.onPause();
-                            rightSlidingDialogContainer.currentFragment.onFragmentDestroy();
-                            rightSlidingDialogContainer.removeAllViews();
-                            rightSlidingDialogContainer.currentFragment = null;
-                            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-                        }
-                        rightSlidingDialogContainer.openAnimationFinished(false);
-                        break;
-                    }
-                    break;
-                default:
-                    RightSlidingDialogContainer rightSlidingDialogContainer2 = this.this$0;
-                    if (rightSlidingDialogContainer2.openAnimator != null) {
-                        rightSlidingDialogContainer2.openAnimator = null;
-                        rightSlidingDialogContainer2.openAnimationFinished(true);
-                        break;
-                    }
-                    break;
-            }
-        }
+    public interface BaseFragmentWithFullscreen {
+        View getFullscreenView();
     }
 
     public RightSlidingDialogContainer(Context context) {
         super(context);
         this.openedProgress = 0.0f;
         this.notificationsLocker = new AnimationNotificationsLocker();
+        this.currentAccount = UserConfig.selectedAccount;
         this.enabled = true;
+    }
+
+    private void animateReplace(final BaseFragment baseFragment) {
+        final BaseFragment baseFragment2 = this.currentFragment;
+        if (!SharedConfig.animationsEnabled()) {
+            baseFragment2.onTransitionAnimationStart(true, false);
+            baseFragment2.onTransitionAnimationEnd(true, false);
+            setReplaceProgress(baseFragment, baseFragment2, 1.0f);
+            this.replaceAnimationInProgress = false;
+            this.replacingFragment = null;
+            baseFragment.onPause();
+            baseFragment.onFragmentDestroy();
+            removeView(baseFragment.getFragmentView());
+            removeView(baseFragment.getActionBar());
+            this.notificationsLocker.unlock();
+            return;
+        }
+        SpringAnimation springAnimation = this.replaceAnimation;
+        if (springAnimation != null) {
+            springAnimation.cancel();
+        }
+        baseFragment2.onTransitionAnimationStart(true, false);
+        this.replacingFragment = baseFragment;
+        this.replaceAnimationInProgress = true;
+        this.notificationsLocker.lock();
+        SpringAnimation springAnimation2 = new SpringAnimation(new FloatValueHolder(0.0f));
+        this.replaceAnimation = springAnimation2;
+        SpringForce springForce = new SpringForce(1000.0f);
+        springForce.setStiffness(400.0f);
+        springForce.setDampingRatio(1.0f);
+        springAnimation2.mSpring = springForce;
+        setReplaceProgress(baseFragment, baseFragment2, 0.0f);
+        this.replaceAnimation.addUpdateListener(new LoginActivity$$ExternalSyntheticLambda12(this, 5));
+        this.replaceAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
+            @Override
+            public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+                this.f$0.lambda$animateReplace$3(baseFragment2, baseFragment, dynamicAnimation, z, f, f2);
+            }
+        });
+        this.replaceAnimation.start();
     }
 
     public static int getRightPaddingSize() {
         return SharedConfig.useThreeLinesLayout ? 74 : 76;
     }
 
-    public static void setReplaceProgress(BaseFragment baseFragment, BaseFragment baseFragment2, float f) {
+    public void lambda$animateReplace$2(DynamicAnimation dynamicAnimation, float f, float f2) {
+        this.replaceProgress = f / 1000.0f;
+        invalidate();
+    }
+
+    public void lambda$animateReplace$3(BaseFragment baseFragment, BaseFragment baseFragment2, DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+        if (this.replaceAnimation == null) {
+            return;
+        }
+        this.replaceAnimation = null;
+        baseFragment.onTransitionAnimationEnd(true, false);
+        setReplaceProgress(baseFragment2, baseFragment, 1.0f);
+        this.replaceAnimationInProgress = false;
+        this.replacingFragment = null;
+        baseFragment2.onPause();
+        baseFragment2.onFragmentDestroy();
+        removeView(baseFragment2.getFragmentView());
+        removeView(baseFragment2.getActionBar());
+        this.notificationsLocker.unlock();
+    }
+
+    public void lambda$finishPreviewInernal$4(ValueAnimator valueAnimator) {
+        this.openedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        updateOpenAnimationProgress();
+    }
+
+    public void lambda$onTouchEvent$5(ValueAnimator valueAnimator) {
+        this.openedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        updateOpenAnimationProgress();
+    }
+
+    public void lambda$presentFragment$0(ValueAnimator valueAnimator) {
+        this.openedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        updateOpenAnimationProgress();
+    }
+
+    private void prepareForMoving(MotionEvent motionEvent) {
+        this.maybeStartTracking = false;
+        this.startedTracking = true;
+        this.startedTrackingX = (int) motionEvent.getX();
+        openAnimationStarted(false);
+    }
+
+    private void setReplaceProgress(BaseFragment baseFragment, BaseFragment baseFragment2, float f) {
         if (baseFragment == null && baseFragment2 == null) {
             return;
         }
@@ -129,7 +180,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         if (this.replaceAnimationInProgress) {
             setReplaceProgress(this.replacingFragment, this.currentFragment, this.replaceProgress);
             invalidate();
@@ -175,7 +226,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j) {
+    public boolean drawChild(Canvas canvas, View view, long j) {
         ActionBar actionBar = this.currentActionBarView;
         if (view == actionBar && actionBar.getActionMode() != null && this.currentActionBarView.getActionMode().getAlpha() == 1.0f) {
             return true;
@@ -183,22 +234,43 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         return super.drawChild(canvas, view, j);
     }
 
-    public final void finishPreview() {
+    public void lambda$presentFragment$1() {
         if (this.isOpenned) {
             openAnimationStarted(false);
             finishPreviewInernal();
         }
     }
 
-    public final void finishPreviewInernal() {
+    public void finishPreviewInernal() {
         int i = 0;
         this.isOpenned = false;
         if (SharedConfig.animationsEnabled()) {
             this.notificationsLocker.lock();
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openedProgress, 0.0f);
             this.openAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new RightSlidingDialogContainer$$ExternalSyntheticLambda0(this, 0));
-            this.openAnimator.addListener(new AnonymousClass2(this, i));
+            valueAnimatorOfFloat.addUpdateListener(new RightSlidingDialogContainer$$ExternalSyntheticLambda0(this, i));
+            this.openAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    RightSlidingDialogContainer rightSlidingDialogContainer = RightSlidingDialogContainer.this;
+                    if (rightSlidingDialogContainer.openAnimator == null) {
+                        return;
+                    }
+                    rightSlidingDialogContainer.openAnimator = null;
+                    rightSlidingDialogContainer.openedProgress = 0.0f;
+                    rightSlidingDialogContainer.updateOpenAnimationProgress();
+                    RightSlidingDialogContainer.this.notificationsLocker.unlock();
+                    BaseFragment baseFragment = RightSlidingDialogContainer.this.currentFragment;
+                    if (baseFragment != null) {
+                        baseFragment.onPause();
+                        RightSlidingDialogContainer.this.currentFragment.onFragmentDestroy();
+                        RightSlidingDialogContainer.this.removeAllViews();
+                        RightSlidingDialogContainer.this.currentFragment = null;
+                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                    }
+                    RightSlidingDialogContainer.this.openAnimationFinished(false);
+                }
+            });
             this.openAnimator.setDuration(250L);
             this.openAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.openAnimator.start();
@@ -206,9 +278,9 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         }
         this.openedProgress = 0.0f;
         updateOpenAnimationProgress();
-        DialogsActivity.AnonymousClass33 anonymousClass33 = this.currentFragment;
-        if (anonymousClass33 != null) {
-            anonymousClass33.onPause();
+        BaseFragment baseFragment = this.currentFragment;
+        if (baseFragment != null) {
+            baseFragment.onPause();
             this.currentFragment.onFragmentDestroy();
             removeAllViews();
             this.currentFragment = null;
@@ -231,17 +303,22 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
 
     public abstract boolean getOccupyStatusbar();
 
-    public final boolean hasFragment() {
+    public boolean hasFragment() {
         return this.currentFragment != null;
     }
 
+    public boolean isActionModeShowed() {
+        ActionBar actionBar;
+        return (this.currentFragment == null || (actionBar = this.currentActionBarView) == null || !actionBar.isActionModeShowed()) ? false : true;
+    }
+
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         return onTouchEvent(motionEvent);
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         int i3 = getOccupyStatusbar() ? AndroidUtilities.statusBarHeight : 0;
         View view = this.currentFragmentView;
         if (view != null) {
@@ -261,9 +338,25 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         }
     }
 
+    public void onPause() {
+        this.isPaused = true;
+        BaseFragment baseFragment = this.currentFragment;
+        if (baseFragment != null) {
+            baseFragment.onPause();
+        }
+    }
+
+    public void onResume() {
+        this.isPaused = false;
+        BaseFragment baseFragment = this.currentFragment;
+        if (baseFragment != null) {
+            baseFragment.onResume();
+        }
+    }
+
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i = 1;
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        int i = 2;
         INavigationLayout iNavigationLayout = this.navigationLayout;
         if ((iNavigationLayout != null && ((ActionBarLayout) iNavigationLayout).isInPreviewMode()) || !hasFragment() || !this.enabled) {
             return false;
@@ -291,11 +384,8 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
                     this.openedProgress = Utilities.clamp(1.0f - (f / getMeasuredWidth()), 1.0f, 0.0f);
                     updateOpenAnimationProgress();
                 }
-            } else if (ActionBarLayout.findScrollingChild$1(this, motionEvent.getX(), motionEvent.getY()) == null) {
-                this.maybeStartTracking = false;
-                this.startedTracking = true;
-                this.startedTrackingX = (int) motionEvent.getX();
-                openAnimationStarted(false);
+            } else if (ActionBarLayout.findScrollingChild(this, motionEvent.getX(), motionEvent.getY()) == null) {
+                prepareForMoving(motionEvent);
             } else {
                 this.maybeStartTracking = false;
             }
@@ -313,8 +403,18 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
                 } else {
                     ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openedProgress, 1.0f);
                     this.openAnimator = valueAnimatorOfFloat;
-                    valueAnimatorOfFloat.addUpdateListener(new RightSlidingDialogContainer$$ExternalSyntheticLambda0(this, 2));
-                    this.openAnimator.addListener(new AnonymousClass2(this, i));
+                    valueAnimatorOfFloat.addUpdateListener(new RightSlidingDialogContainer$$ExternalSyntheticLambda0(this, i));
+                    this.openAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            RightSlidingDialogContainer rightSlidingDialogContainer = RightSlidingDialogContainer.this;
+                            if (rightSlidingDialogContainer.openAnimator == null) {
+                                return;
+                            }
+                            rightSlidingDialogContainer.openAnimator = null;
+                            rightSlidingDialogContainer.openAnimationFinished(true);
+                        }
+                    });
                     this.openAnimator.setDuration(250L);
                     this.openAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
                     this.openAnimator.start();
@@ -339,23 +439,102 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         return this.startedTracking;
     }
 
-    public abstract void openAnimationFinished(boolean z);
+    public void openAnimationFinished(boolean z) {
+    }
 
-    public abstract void openAnimationStarted(boolean z);
+    public void openAnimationStarted(boolean z) {
+    }
 
-    @Override
-    public final void removeView(View view) {
-        super.removeView(view);
-        if (view == this.currentFragmentView) {
-            finishPreview();
+    public void presentFragment(INavigationLayout iNavigationLayout, final BaseFragment baseFragment) {
+        int i = 1;
+        if (this.isPaused) {
+            return;
+        }
+        this.navigationLayout = iNavigationLayout;
+        if (baseFragment.onFragmentCreate()) {
+            baseFragment.setInPreviewMode(true);
+            baseFragment.setParentLayout(iNavigationLayout);
+            View viewPerformCreateView = baseFragment.performCreateView(getContext());
+            baseFragment.onResume();
+            this.currentFragmentView = viewPerformCreateView;
+            addView(viewPerformCreateView);
+            BaseFragment baseFragment2 = this.currentFragment;
+            if (baseFragment instanceof BaseFragmentWithFullscreen) {
+                View fullscreenView = ((BaseFragmentWithFullscreen) baseFragment).getFullscreenView();
+                this.currentFragmentFullscreenView = fullscreenView;
+                addView(fullscreenView);
+            }
+            this.currentFragment = baseFragment;
+            fragmentDialogId = 0L;
+            if (baseFragment instanceof TopicsFragment) {
+                fragmentDialogId = -((TopicsFragment) baseFragment).chatId;
+            }
+            if (baseFragment.getActionBar() != null) {
+                ActionBar actionBar = baseFragment.getActionBar();
+                this.currentActionBarView = actionBar;
+                addView(actionBar);
+                this.currentActionBarView.listenToBackgroundUpdate(new MainTabsLayout$$ExternalSyntheticLambda0(this, 21));
+            }
+            if (baseFragment2 != null) {
+                animateReplace(baseFragment2);
+            } else if (!this.isOpenned) {
+                this.isOpenned = true;
+                if (!SharedConfig.animationsEnabled()) {
+                    openAnimationStarted(true);
+                    baseFragment.onTransitionAnimationStart(true, false);
+                    baseFragment.onTransitionAnimationEnd(true, false);
+                    this.openedProgress = 1.0f;
+                    updateOpenAnimationProgress();
+                    openAnimationFinished(false);
+                    return;
+                }
+                this.notificationsLocker.lock();
+                this.openAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
+                this.openedProgress = 0.0f;
+                openAnimationStarted(true);
+                updateOpenAnimationProgress();
+                baseFragment.onTransitionAnimationStart(true, false);
+                this.openAnimator.addUpdateListener(new RightSlidingDialogContainer$$ExternalSyntheticLambda0(this, i));
+                this.openAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        RightSlidingDialogContainer rightSlidingDialogContainer = RightSlidingDialogContainer.this;
+                        if (rightSlidingDialogContainer.openAnimator == null) {
+                            return;
+                        }
+                        rightSlidingDialogContainer.openAnimator = null;
+                        rightSlidingDialogContainer.notificationsLocker.unlock();
+                        baseFragment.onTransitionAnimationEnd(true, false);
+                        RightSlidingDialogContainer rightSlidingDialogContainer2 = RightSlidingDialogContainer.this;
+                        rightSlidingDialogContainer2.openedProgress = 1.0f;
+                        rightSlidingDialogContainer2.updateOpenAnimationProgress();
+                        RightSlidingDialogContainer.this.openAnimationFinished(false);
+                    }
+                });
+                this.openAnimator.setDuration(250L);
+                this.openAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+                this.openAnimator.setStartDelay(SharedConfig.getDevicePerformanceClass() >= 2 ? 50L : 150L);
+                this.openAnimator.start();
+            }
+            baseFragment.setPreviewDelegate(new TodoItemMenu$$ExternalSyntheticLambda3(this, 18));
+            WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
+            ViewCompat.Api20Impl.requestApplyInsets(this);
         }
     }
 
     @Override
-    public final void removeViewInLayout(View view) {
+    public void removeView(View view) {
+        super.removeView(view);
+        if (view == this.currentFragmentView) {
+            lambda$presentFragment$1();
+        }
+    }
+
+    @Override
+    public void removeViewInLayout(View view) {
         super.removeViewInLayout(view);
         if (view == this.currentFragmentView) {
-            finishPreview();
+            lambda$presentFragment$1();
         }
     }
 
@@ -365,9 +544,9 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         if (view != null) {
             view.setTranslationY((i - view.getTop()) + this.fragmentViewPadding);
         }
-        LoginActivity.AnonymousClass4 anonymousClass4 = this.currentFragmentFullscreenView;
-        if (anonymousClass4 != null) {
-            anonymousClass4.setTranslationY(i - anonymousClass4.getTop());
+        View view2 = this.currentFragmentFullscreenView;
+        if (view2 != null) {
+            view2.setTranslationY(i - view2.getTop());
         }
     }
 
@@ -379,15 +558,13 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
     }
 
     public void setTransitionPaddingBottom(int i) {
-        DialogsActivity.AnonymousClass33 anonymousClass33 = this.currentFragment;
-        if (anonymousClass33 != null) {
-            float f = i;
-            anonymousClass33.transitionPadding = f;
-            anonymousClass33.floatingButton.setTranslationY(((-f) - anonymousClass33.navigationBarHeight) - anonymousClass33.additionFloatingButtonOffset);
+        BaseFragment baseFragment = this.currentFragment;
+        if (baseFragment instanceof TopicsFragment) {
+            ((TopicsFragment) baseFragment).setTransitionPadding(i);
         }
     }
 
-    public final void updateOpenAnimationProgress() {
+    public void updateOpenAnimationProgress() {
         if (this.replaceAnimationInProgress || !hasFragment()) {
             return;
         }
@@ -400,9 +577,9 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
         if (actionBar != null) {
             actionBar.setTranslationX((1.0f - this.openedProgress) * AndroidUtilities.dp(48.0f));
         }
-        DialogsActivity.AnonymousClass33 anonymousClass33 = this.currentFragment;
-        if (anonymousClass33 != null) {
-            anonymousClass33.setPreviewOpenedProgress(this.openedProgress);
+        BaseFragment baseFragment = this.currentFragment;
+        if (baseFragment != null) {
+            baseFragment.setPreviewOpenedProgress(this.openedProgress);
         }
         invalidate();
     }

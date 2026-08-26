@@ -11,16 +11,15 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
 
-public final class FilledTabsView extends View {
-    public final Paint backgroundPaint;
-    public RectF[] bounds;
-    public int lastPressedIndex;
-    public PollItemMenu$$ExternalSyntheticLambda14 onTabClick;
-    public final Paint selectedPaint;
-    public float selectedTabIndex;
-    public Text[] tabs;
+public class FilledTabsView extends View {
+    private final Paint backgroundPaint;
+    private RectF[] bounds;
+    private int lastPressedIndex;
+    private Utilities.Callback<Integer> onTabClick;
+    private final Paint selectedPaint;
+    private float selectedTabIndex;
+    private Text[] tabs;
 
     public FilledTabsView(Context context) {
         super(context);
@@ -33,13 +32,13 @@ public final class FilledTabsView extends View {
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         if (this.tabs == null) {
             return;
         }
         int width = getWidth();
         int height = getHeight();
-        int iDp = AndroidUtilities.dp(2.0f) + RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(this.tabs.length, 24.0f, AndroidUtilities.dp(2.0f));
+        int iDp = AndroidUtilities.dp(2.0f) + RichMessageLayout$RichMathBlock$$ExternalSyntheticOutline0.m(24.0f, this.tabs.length, AndroidUtilities.dp(2.0f));
         int i = 0;
         while (true) {
             Text[] textArr = this.tabs;
@@ -80,15 +79,20 @@ public final class FilledTabsView extends View {
                 canvas.restore();
                 return;
             }
-            textArr2[i2].draw(fDp3, height / 2.0f, 1.0f, -1, canvas);
+            textArr2[i2].draw(canvas, fDp3, height / 2.0f, -1, 1.0f);
             this.bounds[i2].set(fDp3 - AndroidUtilities.dp(14.0f), fDp, this.tabs[i2].getWidth() + fDp3 + AndroidUtilities.dp(14.0f), fDp2);
             fDp3 += this.tabs[i2].getWidth() + AndroidUtilities.dp(24.0f);
             i2++;
         }
     }
 
+    public FilledTabsView onTabSelected(Utilities.Callback<Integer> callback) {
+        this.onTabClick = callback;
+        return this;
+    }
+
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         int i = 0;
         if (this.tabs == null || this.bounds == null) {
             return false;
@@ -106,9 +110,9 @@ public final class FilledTabsView extends View {
         }
         if (i >= 0 && i != this.lastPressedIndex) {
             this.lastPressedIndex = i;
-            PollItemMenu$$ExternalSyntheticLambda14 pollItemMenu$$ExternalSyntheticLambda14 = this.onTabClick;
-            if (pollItemMenu$$ExternalSyntheticLambda14 != null) {
-                pollItemMenu$$ExternalSyntheticLambda14.run(Integer.valueOf(i));
+            Utilities.Callback<Integer> callback = this.onTabClick;
+            if (callback != null) {
+                callback.run(Integer.valueOf(i));
             }
         }
         if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {

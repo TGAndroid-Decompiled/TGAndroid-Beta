@@ -44,7 +44,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda356;
+import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda4;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.ClipRoundedDrawable;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -52,27 +53,28 @@ import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.URLSpanNoUnderline;
 
 public abstract class BotHelpCell extends View {
-    public boolean animating;
-    public final int currentAccount;
-    public String currentPhotoKey;
-    public BotHelpCellDelegate delegate;
-    public int height;
-    public final int imagePadding;
-    public final ImageReceiver imageReceiver;
-    public boolean isPhotoVisible;
-    public boolean isTextVisible;
-    public final LinkSpanDrawable.LinkCollector links;
-    public String oldManagerBotName;
-    public String oldText;
-    public int photoHeight;
-    public LinkSpanDrawable pressedLink;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public final BaseCell.RippleDrawableSafe selectorDrawable;
-    public int selectorDrawableRadius;
-    public StaticLayout textLayout;
-    public int textX;
-    public int textY;
-    public int width;
+    private boolean animating;
+    private final int currentAccount;
+    private String currentPhotoKey;
+    private BotHelpCellDelegate delegate;
+    private int height;
+    private int imagePadding;
+    private ImageReceiver imageReceiver;
+    private boolean isPhotoVisible;
+    private boolean isTextVisible;
+    private LinkSpanDrawable.LinkCollector links;
+    private String oldManagerBotName;
+    private String oldText;
+    private int photoHeight;
+    private LinkSpanDrawable<ClickableSpan> pressedLink;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private Drawable selectorDrawable;
+    private int selectorDrawableRadius;
+    private StaticLayout textLayout;
+    private int textX;
+    private int textY;
+    public boolean wasDraw;
+    private int width;
 
     public interface BotHelpCellDelegate {
     }
@@ -229,14 +231,18 @@ public abstract class BotHelpCell extends View {
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.imageReceiver = imageReceiver;
         imageReceiver.setInvalidateAll(true);
-        imageReceiver.setCrossfadeWithOldImage(true);
-        imageReceiver.setCrossfadeDuration(300);
+        this.imageReceiver.setCrossfadeWithOldImage(true);
+        this.imageReceiver.setCrossfadeDuration(300);
         int color = Theme.getColor(Theme.key_listSelector, resourcesProvider);
         int i2 = SharedConfig.bubbleRadius;
         this.selectorDrawableRadius = i2;
         BaseCell.RippleDrawableSafe rippleDrawableSafeCreateRadSelectorDrawable = Theme.createRadSelectorDrawable(color, i2, i2);
         this.selectorDrawable = rippleDrawableSafeCreateRadSelectorDrawable;
         rippleDrawableSafeCreateRadSelectorDrawable.setCallback(this);
+    }
+
+    public boolean animating() {
+        return this.animating;
     }
 
     public int getSideMenuWidth() {
@@ -252,19 +258,20 @@ public abstract class BotHelpCell extends View {
     }
 
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.imageReceiver.onAttachedToWindow();
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.imageReceiver.onDetachedFromWindow();
+        this.wasDraw = false;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         canvas.save();
         canvas.translate(getSideMenuWidth() / 2.0f, 0.0f);
         int width = (getWidth() - this.width) / 2;
@@ -282,32 +289,34 @@ public abstract class BotHelpCell extends View {
             measuredWidth = view.getMeasuredWidth();
             measuredHeight = view.getMeasuredHeight();
         }
+        int i = measuredHeight;
+        int i2 = measuredWidth;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         Drawable drawable = resourcesProvider != null ? resourcesProvider.getDrawable("drawableMsgInMedia") : null;
         if (drawable == null) {
             drawable = (Drawable) Theme.defaultChatDrawables.get("drawableMsgInMedia");
         }
         MessageDrawable messageDrawable = (MessageDrawable) drawable;
-        messageDrawable.setTop((int) getY(), measuredWidth, measuredHeight);
+        messageDrawable.setTop((int) getY(), i2, i, false, false);
         messageDrawable.setBounds(width, 0, this.width + width, this.height);
         messageDrawable.draw(canvas);
-        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.selectorDrawable;
-        if (rippleDrawableSafe != null) {
-            int i = this.selectorDrawableRadius;
-            int i2 = SharedConfig.bubbleRadius;
-            if (i != i2) {
-                this.selectorDrawableRadius = i2;
-                Theme.setMaskDrawableRad(rippleDrawableSafe, i2, i2);
+        Drawable drawable2 = this.selectorDrawable;
+        if (drawable2 != null) {
+            int i3 = this.selectorDrawableRadius;
+            int i4 = SharedConfig.bubbleRadius;
+            if (i3 != i4) {
+                this.selectorDrawableRadius = i4;
+                Theme.setMaskDrawableRad(drawable2, i4, i4);
             }
-            rippleDrawableSafe.setBounds(AndroidUtilities.dp(2.0f) + width, AndroidUtilities.dp(2.0f), (this.width + width) - AndroidUtilities.dp(2.0f), this.height - AndroidUtilities.dp(2.0f));
-            rippleDrawableSafe.draw(canvas);
+            this.selectorDrawable.setBounds(AndroidUtilities.dp(2.0f) + width, AndroidUtilities.dp(2.0f), (this.width + width) - AndroidUtilities.dp(2.0f), this.height - AndroidUtilities.dp(2.0f));
+            this.selectorDrawable.draw(canvas);
         }
         ImageReceiver imageReceiver = this.imageReceiver;
-        int i3 = this.imagePadding;
-        imageReceiver.setImageCoords(width + i3, i3, this.width - (i3 * 2), this.photoHeight - i3);
-        imageReceiver.draw(canvas);
-        Theme.chat_msgTextPaint.setColor(Theme.getColor(Theme.key_chat_messageTextIn, resourcesProvider));
-        Theme.chat_msgTextPaint.linkColor = Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider);
+        int i5 = this.imagePadding;
+        imageReceiver.setImageCoords(width + i5, i5, this.width - (i5 * 2), this.photoHeight - i5);
+        this.imageReceiver.draw(canvas);
+        Theme.chat_msgTextPaint.setColor(Theme.getColor(Theme.key_chat_messageTextIn, this.resourcesProvider));
+        Theme.chat_msgTextPaint.linkColor = Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider);
         canvas.save();
         int iDp2 = AndroidUtilities.dp(this.isPhotoVisible ? 14.0f : 11.0f) + width;
         this.textX = iDp2;
@@ -324,10 +333,11 @@ public abstract class BotHelpCell extends View {
         }
         canvas.restore();
         canvas.restore();
+        this.wasDraw = true;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         StaticLayout staticLayout = this.textLayout;
         if (staticLayout != null) {
@@ -336,12 +346,12 @@ public abstract class BotHelpCell extends View {
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         setMeasuredDimension(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), AndroidUtilities.dp(8.0f) + this.height);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z;
         float x = motionEvent.getX();
         float y = motionEvent.getY();
@@ -365,17 +375,17 @@ public abstract class BotHelpCell extends View {
                             ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
                             if (clickableSpanArr.length != 0) {
                                 resetPressedLink();
-                                this.pressedLink = new LinkSpanDrawable(clickableSpanArr[0], this.resourcesProvider, f, i2);
+                                this.pressedLink = new LinkSpanDrawable<>(clickableSpanArr[0], this.resourcesProvider, f, i2);
                                 try {
                                     try {
                                         int spanStart = spannable.getSpanStart(clickableSpanArr[0]);
                                         LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
-                                        linkPathObtainNewPath.setCurrentLayout(this.textLayout, spanStart, 0.0f, 0.0f);
+                                        linkPathObtainNewPath.setCurrentLayout(this.textLayout, spanStart, 0.0f);
                                         this.textLayout.getSelectionPath(spanStart, spannable.getSpanEnd(clickableSpanArr[0]), linkPathObtainNewPath);
                                     } catch (Exception e) {
                                         FileLog.e(e);
                                     }
-                                    this.links.addLink(this.pressedLink, null);
+                                    this.links.addLink(this.pressedLink);
                                     invalidate();
                                     z = true;
                                 } catch (Exception e2) {
@@ -393,22 +403,22 @@ public abstract class BotHelpCell extends View {
                         z = false;
                     }
                 } else {
-                    LinkSpanDrawable linkSpanDrawable = this.pressedLink;
+                    LinkSpanDrawable<ClickableSpan> linkSpanDrawable = this.pressedLink;
                     if (linkSpanDrawable != null) {
                         try {
-                            ClickableSpan clickableSpan = (ClickableSpan) linkSpanDrawable.mSpan;
+                            ClickableSpan clickableSpan = (ClickableSpan) linkSpanDrawable.getSpan();
                             if (clickableSpan instanceof URLSpanNoUnderline) {
                                 String url = ((URLSpanNoUnderline) clickableSpan).getURL();
                                 if (url.startsWith("@") || url.startsWith("#") || url.startsWith("/") || url.startsWith("$")) {
                                     BotHelpCellDelegate botHelpCellDelegate = this.delegate;
                                     if (botHelpCellDelegate != null) {
-                                        ((ChatActivity$$ExternalSyntheticLambda356) botHelpCellDelegate).didPressUrl(url);
+                                        ((ChatActivity.ChatActivityAdapter) ((BoostsActivity$$ExternalSyntheticLambda4) botHelpCellDelegate).f$0).lambda$onCreateViewHolder$0(url);
                                     }
                                 }
                             } else if (clickableSpan instanceof URLSpan) {
                                 BotHelpCellDelegate botHelpCellDelegate2 = this.delegate;
                                 if (botHelpCellDelegate2 != null) {
-                                    ((ChatActivity$$ExternalSyntheticLambda356) botHelpCellDelegate2).didPressUrl(((URLSpan) clickableSpan).getURL());
+                                    ((ChatActivity.ChatActivityAdapter) ((BoostsActivity$$ExternalSyntheticLambda4) botHelpCellDelegate2).f$0).lambda$onCreateViewHolder$0(((URLSpan) clickableSpan).getURL());
                                 }
                             } else if (clickableSpan != null) {
                                 clickableSpan.onClick(this);
@@ -425,14 +435,13 @@ public abstract class BotHelpCell extends View {
             }
             z = false;
         }
-        BaseCell.RippleDrawableSafe rippleDrawableSafe = this.selectorDrawable;
-        if (rippleDrawableSafe != null) {
+        if (this.selectorDrawable != null) {
             if (!z && y > 0.0f && motionEvent.getAction() == 0 && isClickable()) {
-                rippleDrawableSafe.setState(new int[]{16842919, 16842910});
-                rippleDrawableSafe.setHotspot(motionEvent.getX(), motionEvent.getY());
+                this.selectorDrawable.setState(new int[]{16842919, 16842910});
+                this.selectorDrawable.setHotspot(motionEvent.getX(), motionEvent.getY());
                 invalidate();
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                rippleDrawableSafe.setState(new int[0]);
+                this.selectorDrawable.setState(new int[0]);
                 invalidate();
                 if (!z && motionEvent.getAction() == 1) {
                     performClick();
@@ -447,7 +456,7 @@ public abstract class BotHelpCell extends View {
         if (this.pressedLink != null) {
             this.pressedLink = null;
         }
-        this.links.clear(true);
+        this.links.clear();
         invalidate();
     }
 
@@ -459,10 +468,19 @@ public abstract class BotHelpCell extends View {
         this.delegate = botHelpCellDelegate;
     }
 
-    public final void setText(boolean z, long j, String str, TLObject tLObject, TL_bots.BotInfo botInfo, String str2) {
-        char c;
+    public void setText(boolean z, String str) {
+        setText(z, 0L, str, null, null, null);
+    }
+
+    @Override
+    public boolean verifyDrawable(Drawable drawable) {
+        return drawable == this.selectorDrawable || super.verifyDrawable(drawable);
+    }
+
+    public void setText(boolean z, long j, String str, TLObject tLObject, TL_bots.BotInfo botInfo, String str2) {
         float f;
         float f2;
+        char c;
         int iDp;
         int iDp2;
         int iMin;
@@ -472,33 +490,31 @@ public abstract class BotHelpCell extends View {
         SpannableStringBuilder spannableStringBuilder;
         String string;
         int i2;
-        boolean z2;
         int iDp4;
-        int i3;
         int lineCount;
-        boolean z3 = tLObject != null;
+        int i3 = 1;
+        boolean z2 = tLObject != null;
         boolean zIsEmpty = TextUtils.isEmpty(str);
-        if ((str == null || str.length() == 0) && TextUtils.isEmpty(str2) && !z3) {
+        if ((str == null || str.length() == 0) && TextUtils.isEmpty(str2) && !z2) {
             setVisibility(8);
             return;
         }
         String str3 = str == null ? "" : str;
-        if (str3.equals(this.oldText) && TextUtils.equals(this.oldManagerBotName, str2) && this.isPhotoVisible == z3) {
+        if (str3.equals(this.oldText) && TextUtils.equals(this.oldManagerBotName, str2) && this.isPhotoVisible == z2) {
             return;
         }
-        boolean z4 = TextUtils.isEmpty(str3) && tLObject == null && !TextUtils.isEmpty(str2) && j != 0;
-        boolean z5 = z3 || z4;
-        this.isPhotoVisible = z5;
-        this.isTextVisible = !zIsEmpty || z4;
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (!z4) {
-            if (z5) {
+        boolean z3 = TextUtils.isEmpty(str3) && tLObject == null && !TextUtils.isEmpty(str2) && j != 0;
+        boolean z4 = z2 || z3;
+        this.isPhotoVisible = z4;
+        this.isTextVisible = !zIsEmpty || z3;
+        if (!z3) {
+            if (z4) {
                 String keyForParentObject = FileRefController.getKeyForParentObject(botInfo);
                 if (!Objects.equals(this.currentPhotoKey, keyForParentObject)) {
                     this.currentPhotoKey = keyForParentObject;
                     if (tLObject instanceof TLRPC.TL_photo) {
                         TLRPC.Photo photo = (TLRPC.Photo) tLObject;
-                        imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 400), photo), "400_400", null, "jpg", botInfo, 0);
+                        this.imageReceiver.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 400), photo), "400_400", null, "jpg", botInfo, 0);
                     } else {
                         if (tLObject instanceof TLRPC.Document) {
                             TLRPC.Document document = (TLRPC.Document) tLObject;
@@ -508,38 +524,39 @@ public abstract class BotHelpCell extends View {
                                 ArrayList<TLRPC.PhotoSize> arrayList = document.thumbs;
                                 int size = arrayList.size();
                                 int i4 = 0;
-                                c = 1;
                                 while (i4 < size) {
                                     TLRPC.PhotoSize photoSize = arrayList.get(i4);
-                                    i4++;
+                                    i4 += i3;
                                     TLRPC.PhotoSize photoSize2 = photoSize;
                                     if (photoSize2 instanceof TLRPC.TL_photoStrippedSize) {
                                         bitmapDrawable = new BitmapDrawable(getResources(), ImageLoader.getStrippedPhotoBitmap(photoSize2.bytes, "b"));
+                                        i3 = 1;
+                                    } else {
+                                        i3 = 1;
                                     }
                                 }
-                            } else {
-                                c = 1;
                             }
                             f = 2.0f;
                             f2 = 4.0f;
-                            imageReceiver.setImage(ImageLocation.getForDocument(document), "g", ImageLocation.getForDocument(MessageObject.getDocumentVideoThumb(document), document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "86_86_b", bitmapDrawable, document.size, "mp4", botInfo, 0);
+                            c = 1;
+                            this.imageReceiver.setImage(ImageLocation.getForDocument(document), "g", ImageLocation.getForDocument(MessageObject.getDocumentVideoThumb(document), document), null, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "86_86_b", bitmapDrawable, document.size, "mp4", botInfo, 0);
                         }
                         iDp = AndroidUtilities.dp(SharedConfig.bubbleRadius) - AndroidUtilities.dp(f);
                         iDp2 = AndroidUtilities.dp(f2);
                         if (!this.isTextVisible) {
                             iDp2 = iDp;
                         }
-                        imageReceiver.setRoundRadius(iDp, iDp, iDp2, iDp2);
+                        this.imageReceiver.setRoundRadius(iDp, iDp, iDp2, iDp2);
                     }
                     f = 2.0f;
-                    c = 1;
                     f2 = 4.0f;
+                    c = 1;
                     iDp = AndroidUtilities.dp(SharedConfig.bubbleRadius) - AndroidUtilities.dp(f);
                     iDp2 = AndroidUtilities.dp(f2);
                     if (!this.isTextVisible) {
                         iDp2 = iDp;
                     }
-                    imageReceiver.setRoundRadius(iDp, iDp, iDp2, iDp2);
+                    this.imageReceiver.setRoundRadius(iDp, iDp, iDp2, iDp2);
                 }
             }
             this.oldText = AndroidUtilities.getSafeString(str3);
@@ -555,13 +572,12 @@ public abstract class BotHelpCell extends View {
             if (this.isTextVisible) {
                 strArrSplit = str3.split("\n");
                 spannableStringBuilder = new SpannableStringBuilder();
-                if (z4) {
+                if (z3) {
                     int i5 = R.string.ManagedBotChatInfo;
                     Object[] objArr = new Object[2];
                     objArr[0] = DialogObject.getName(this.currentAccount, j);
                     objArr[c] = str2;
                     spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(i5, objArr)));
-                    z2 = false;
                 } else {
                     string = LocaleController.getString(R.string.BotInfoTitle);
                     if (z) {
@@ -574,13 +590,12 @@ public abstract class BotHelpCell extends View {
                             spannableStringBuilder.append((CharSequence) "\n");
                         }
                     }
-                    z2 = false;
                     MessageObject.addLinks(false, spannableStringBuilder);
                     if (z) {
                         spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, string.length(), 33);
                     }
                 }
-                Emoji.replaceEmoji(spannableStringBuilder, Theme.chat_msgTextPaint.getFontMetricsInt(), z2);
+                Emoji.replaceEmoji(spannableStringBuilder, Theme.chat_msgTextPaint.getFontMetricsInt(), false);
                 try {
                     TextPaint textPaint = Theme.chat_msgTextPaint;
                     if (this.isPhotoVisible) {
@@ -593,8 +608,8 @@ public abstract class BotHelpCell extends View {
                     this.width = 0;
                     this.height = staticLayout.getHeight() + AndroidUtilities.dp(22.0f);
                     lineCount = this.textLayout.getLineCount();
-                    for (i3 = 0; i3 < lineCount; i3++) {
-                        this.width = (int) Math.ceil(Math.max(this.width, this.textLayout.getLineWidth(i3) + this.textLayout.getLineLeft(i3)));
+                    for (int i6 = 0; i6 < lineCount; i6++) {
+                        this.width = (int) Math.ceil(Math.max(this.width, this.textLayout.getLineWidth(i6) + this.textLayout.getLineLeft(i6)));
                     }
                     if (this.width <= i || this.isPhotoVisible) {
                         this.width = i;
@@ -608,21 +623,21 @@ public abstract class BotHelpCell extends View {
             iDp3 = AndroidUtilities.dp(22.0f) + this.width;
             this.width = iDp3;
             if (this.isPhotoVisible) {
-                int i6 = this.height;
-                int i7 = (int) (((double) iDp3) * 0.5625d);
-                this.photoHeight = i7;
-                this.height = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(i7, 4.0f, i6);
+                int i7 = this.height;
+                int i8 = (int) (((double) iDp3) * 0.5625d);
+                this.photoHeight = i8;
+                this.height = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(4.0f, i8, i7);
             }
         }
         if (!Objects.equals(this.currentPhotoKey, "setup")) {
             this.currentPhotoKey = "setup";
-            imageReceiver.setImageBitmap(new ClipRoundedDrawable(new BotIntroDrawable(getContext())));
+            this.imageReceiver.setImageBitmap(new ClipRoundedDrawable(new BotIntroDrawable(getContext())));
             int iDp5 = AndroidUtilities.dp(SharedConfig.bubbleRadius) - AndroidUtilities.dp(2.0f);
             int iDp6 = AndroidUtilities.dp(4.0f);
             if (!this.isTextVisible) {
                 iDp6 = iDp5;
             }
-            imageReceiver.setRoundRadius(iDp5, iDp5, iDp6, iDp6);
+            this.imageReceiver.setRoundRadius(iDp5, iDp5, iDp6, iDp6);
         }
         c = 1;
         this.oldText = AndroidUtilities.getSafeString(str3);
@@ -638,13 +653,12 @@ public abstract class BotHelpCell extends View {
         if (this.isTextVisible) {
             strArrSplit = str3.split("\n");
             spannableStringBuilder = new SpannableStringBuilder();
-            if (z4) {
-                int i8 = R.string.ManagedBotChatInfo;
+            if (z3) {
+                int i9 = R.string.ManagedBotChatInfo;
                 Object[] objArr2 = new Object[2];
                 objArr2[0] = DialogObject.getName(this.currentAccount, j);
                 objArr2[c] = str2;
-                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(i8, objArr2)));
-                z2 = false;
+                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString(i9, objArr2)));
             } else {
                 string = LocaleController.getString(R.string.BotInfoTitle);
                 if (z) {
@@ -657,13 +671,12 @@ public abstract class BotHelpCell extends View {
                         spannableStringBuilder.append((CharSequence) "\n");
                     }
                 }
-                z2 = false;
                 MessageObject.addLinks(false, spannableStringBuilder);
                 if (z) {
                     spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, string.length(), 33);
                 }
             }
-            Emoji.replaceEmoji(spannableStringBuilder, Theme.chat_msgTextPaint.getFontMetricsInt(), z2);
+            Emoji.replaceEmoji(spannableStringBuilder, Theme.chat_msgTextPaint.getFontMetricsInt(), false);
             TextPaint textPaint2 = Theme.chat_msgTextPaint;
             if (this.isPhotoVisible) {
                 iDp4 = AndroidUtilities.dp(5.0f);
@@ -675,8 +688,8 @@ public abstract class BotHelpCell extends View {
             this.width = 0;
             this.height = staticLayout2.getHeight() + AndroidUtilities.dp(22.0f);
             lineCount = this.textLayout.getLineCount();
-            while (i3 < lineCount) {
-                this.width = (int) Math.ceil(Math.max(this.width, this.textLayout.getLineWidth(i3) + this.textLayout.getLineLeft(i3)));
+            while (i6 < lineCount) {
+                this.width = (int) Math.ceil(Math.max(this.width, this.textLayout.getLineWidth(i6) + this.textLayout.getLineLeft(i6)));
             }
             if (this.width <= i) {
                 this.width = i;
@@ -689,15 +702,10 @@ public abstract class BotHelpCell extends View {
         iDp3 = AndroidUtilities.dp(22.0f) + this.width;
         this.width = iDp3;
         if (this.isPhotoVisible) {
-            int i9 = this.height;
-            int i10 = (int) (((double) iDp3) * 0.5625d);
-            this.photoHeight = i10;
-            this.height = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(i10, 4.0f, i9);
+            int i10 = this.height;
+            int i11 = (int) (((double) iDp3) * 0.5625d);
+            this.photoHeight = i11;
+            this.height = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(4.0f, i11, i10);
         }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.selectorDrawable || super.verifyDrawable(drawable);
     }
 }

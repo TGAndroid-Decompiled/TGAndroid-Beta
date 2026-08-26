@@ -35,6 +35,7 @@ public final class UserCell2 extends FrameLayout {
     public final ImageView imageView;
     public String lastName;
     public final AnonymousClass1 nameTextView;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final int statusColor;
     public final int statusOnlineColor;
     public final SimpleTextView statusTextView;
@@ -42,9 +43,10 @@ public final class UserCell2 extends FrameLayout {
     public UserCell2(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
+        this.resourcesProvider = resourcesProvider;
         this.statusColor = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider);
         this.statusOnlineColor = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider);
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(24.0f));
@@ -99,7 +101,7 @@ public final class UserCell2 extends FrameLayout {
             this.currentStatus = null;
             this.currentObject = null;
             this.nameTextView.setText("");
-            this.statusTextView.setText("", false);
+            this.statusTextView.setText("");
             this.avatarImageView.setImageDrawable(null);
         }
     }
@@ -109,19 +111,21 @@ public final class UserCell2 extends FrameLayout {
     }
 
     public final void update() {
+        TLRPC.User user;
         TLRPC.Chat chat;
         TLRPC.UserStatus userStatus;
         TLObject tLObject = this.currentObject;
-        TLRPC.User user = null;
         if (tLObject instanceof TLRPC.User) {
-            TLRPC.User user2 = (TLRPC.User) tLObject;
-            TLRPC.UserProfilePhoto userProfilePhoto = user2.photo;
-            user = user2;
+            user = (TLRPC.User) tLObject;
+            TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
             chat = null;
         } else if (tLObject instanceof TLRPC.Chat) {
-            chat = (TLRPC.Chat) tLObject;
-            TLRPC.ChatPhoto chatPhoto = chat.photo;
+            TLRPC.Chat chat2 = (TLRPC.Chat) tLObject;
+            TLRPC.ChatPhoto chatPhoto = chat2.photo;
+            chat = chat2;
+            user = null;
         } else {
+            user = null;
             chat = null;
         }
         int i = this.currentAccount;
@@ -131,7 +135,7 @@ public final class UserCell2 extends FrameLayout {
         } else if (chat != null) {
             avatarDrawable.setInfo(i, chat);
         } else {
-            avatarDrawable.setInfo(this.currentId, "#", null, null, null);
+            avatarDrawable.setInfo(this.currentId, "#", null);
         }
         if (user != null) {
             this.lastName = UserObject.getUserName(user);
@@ -145,53 +149,50 @@ public final class UserCell2 extends FrameLayout {
         SimpleTextView simpleTextView = this.statusTextView;
         if (str != null) {
             simpleTextView.setTextColor(i2);
-            simpleTextView.setText(this.currentStatus, false);
+            simpleTextView.setText(this.currentStatus);
             if (backupImageView != null) {
-                backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-                backupImageView.onNewImageSet();
+                backupImageView.setForUserOrChat(user, avatarDrawable);
             }
         } else if (user != null) {
             if (user.bot) {
                 simpleTextView.setTextColor(i2);
                 if (user.bot_chat_history) {
-                    simpleTextView.setText(LocaleController.getString(R.string.BotStatusRead), false);
+                    simpleTextView.setText(LocaleController.getString(R.string.BotStatusRead));
                 } else {
-                    simpleTextView.setText(LocaleController.getString(R.string.BotStatusCantRead), false);
+                    simpleTextView.setText(LocaleController.getString(R.string.BotStatusCantRead));
                 }
             } else if (user.id == UserConfig.getInstance(i).getClientUserId() || (((userStatus = user.status) != null && userStatus.expires > ConnectionsManager.getInstance(i).getCurrentTime()) || MessagesController.getInstance(i).onlinePrivacy.containsKey(Long.valueOf(user.id)))) {
                 simpleTextView.setTextColor(this.statusOnlineColor);
-                simpleTextView.setText(LocaleController.getString(R.string.Online), false);
+                simpleTextView.setText(LocaleController.getString(R.string.Online));
             } else {
                 simpleTextView.setTextColor(i2);
-                simpleTextView.setText(LocaleController.formatUserStatus(i, user), false);
+                simpleTextView.setText(LocaleController.formatUserStatus(i, user));
             }
-            backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(user, avatarDrawable);
         } else if (chat != null) {
             simpleTextView.setTextColor(i2);
             if (!ChatObject.isChannel(chat) || chat.megagroup) {
                 int i3 = chat.participants_count;
                 if (i3 != 0) {
-                    simpleTextView.setText(LocaleController.formatPluralString("Members", i3, new Object[0]), false);
+                    simpleTextView.setText(LocaleController.formatPluralString("Members", i3, new Object[0]));
                 } else if (chat.has_geo) {
-                    simpleTextView.setText(LocaleController.getString(R.string.MegaLocation), false);
+                    simpleTextView.setText(LocaleController.getString(R.string.MegaLocation));
                 } else if (ChatObject.isPublic(chat)) {
-                    simpleTextView.setText(LocaleController.getString(R.string.MegaPublic), false);
+                    simpleTextView.setText(LocaleController.getString(R.string.MegaPublic));
                 } else {
-                    simpleTextView.setText(LocaleController.getString(R.string.MegaPrivate), false);
+                    simpleTextView.setText(LocaleController.getString(R.string.MegaPrivate));
                 }
             } else {
                 int i4 = chat.participants_count;
                 if (i4 != 0) {
-                    simpleTextView.setText(LocaleController.formatPluralString("Subscribers", i4, new Object[0]), false);
+                    simpleTextView.setText(LocaleController.formatPluralString("Subscribers", i4, new Object[0]));
                 } else if (ChatObject.isPublic(chat)) {
-                    simpleTextView.setText(LocaleController.getString(R.string.ChannelPublic), false);
+                    simpleTextView.setText(LocaleController.getString(R.string.ChannelPublic));
                 } else {
-                    simpleTextView.setText(LocaleController.getString(R.string.ChannelPrivate), false);
+                    simpleTextView.setText(LocaleController.getString(R.string.ChannelPrivate));
                 }
             }
-            backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(chat, avatarDrawable);
         } else {
             backupImageView.setImageDrawable(avatarDrawable);
         }
@@ -216,7 +217,7 @@ public final class UserCell2 extends FrameLayout {
         @Override
         public void onMeasure(int i, int i2) {
             switch (this.$r8$classId) {
-                case 5:
+                case 4:
                     super.onMeasure(i, i2);
                     setPivotY(getMeasuredHeight() / 2.0f);
                     break;
@@ -230,15 +231,14 @@ public final class UserCell2 extends FrameLayout {
         public boolean setText(CharSequence charSequence) {
             switch (this.$r8$classId) {
                 case 0:
-                    return setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
+                    return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false));
                 case 1:
-                case 3:
                 default:
                     return super.setText(charSequence);
                 case 2:
-                    return setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
-                case 4:
-                    return setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
+                    return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false));
+                case 3:
+                    return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false));
             }
         }
 
@@ -247,11 +247,8 @@ public final class UserCell2 extends FrameLayout {
             switch (this.$r8$classId) {
                 case 1:
                     return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), z);
-                case 2:
                 default:
                     return super.setText(charSequence, z);
-                case 3:
-                    return super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), false);
             }
         }
     }

@@ -1,8 +1,8 @@
 package org.telegram.ui;
 
-import androidx.dynamicanimation.animation.DynamicAnimation;
+import android.animation.ValueAnimator;
 
-public final class CameraScanActivity$$ExternalSyntheticLambda13 implements DynamicAnimation.OnAnimationUpdateListener {
+public final class CameraScanActivity$$ExternalSyntheticLambda13 implements ValueAnimator.AnimatorUpdateListener {
     public final int $r8$classId;
     public final CameraScanActivity f$0;
 
@@ -12,21 +12,13 @@ public final class CameraScanActivity$$ExternalSyntheticLambda13 implements Dyna
     }
 
     @Override
-    public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                CameraScanActivity cameraScanActivity = this.f$0;
-                cameraScanActivity.qrAppearingValue = f / 500.0f;
-                cameraScanActivity.fragmentView.invalidate();
+                this.f$0.lambda$createView$3(valueAnimator);
                 break;
             default:
-                CameraScanActivity cameraScanActivity2 = this.f$0;
-                float f3 = f / 500.0f;
-                if (!cameraScanActivity2.recognized) {
-                    f3 = 1.0f - f3;
-                }
-                cameraScanActivity2.useRecognizedBounds = f3;
-                cameraScanActivity2.fragmentView.invalidate();
+                this.f$0.lambda$updateRecognized$5(valueAnimator);
                 break;
         }
     }

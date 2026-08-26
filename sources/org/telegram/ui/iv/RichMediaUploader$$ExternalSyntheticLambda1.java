@@ -153,7 +153,7 @@ public final class RichMediaUploader$$ExternalSyntheticLambda1 implements Runnab
                     }
                 } catch (Throwable unused3) {
                 }
-                AndroidUtilities.runOnUIThread(new RichTableCell$$ExternalSyntheticLambda3(17, richMediaUploader2, absolutePath2));
+                AndroidUtilities.runOnUIThread(new RichTableCell$$ExternalSyntheticLambda3(28, richMediaUploader2, absolutePath2));
                 return;
             default:
                 RichMediaUploader richMediaUploader3 = this.f$0;

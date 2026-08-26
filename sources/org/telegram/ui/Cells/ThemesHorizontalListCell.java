@@ -23,9 +23,12 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.utils.WindowVisibilityManager$$ExternalSyntheticLambda0;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
@@ -45,31 +49,29 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda102;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda356;
-import org.telegram.ui.ChatLinkActivity$$ExternalSyntheticLambda4;
-import org.telegram.ui.Components.FloatingDebug.FloatingDebugView;
+import org.telegram.ui.Adapters.DialogsSearchAdapter;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda66;
+import org.telegram.ui.TON.TONIntroActivity$$ExternalSyntheticLambda3;
 import org.telegram.ui.ThemeSetUrlActivity;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
 
 public abstract class ThemesHorizontalListCell extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate {
-    public static final byte[] bytes = new byte[1024];
-    public final FloatingDebugView.AnonymousClass3 adapter;
-    public final int currentType;
-    public final ArrayList customThemes;
-    public final ArrayList defaultThemes;
-    public boolean drawDivider;
-    public final BaseFragment fragment;
-    public final PhotoViewer.AnonymousClass36 horizontalLayoutManager;
-    public final HashMap loadingThemes;
-    public final HashMap loadingWallpapers;
-    public int prevCount;
-    public Theme.ThemeInfo prevThemeInfo;
+    public static byte[] bytes = new byte[1024];
+    private ThemesListAdapter adapter;
+    private int currentType;
+    private ArrayList<Theme.ThemeInfo> customThemes;
+    private ArrayList<Theme.ThemeInfo> defaultThemes;
+    private boolean drawDivider;
+    private BaseFragment fragment;
+    private LinearLayoutManager horizontalLayoutManager;
+    private HashMap<String, Theme.ThemeInfo> loadingThemes;
+    private HashMap<Theme.ThemeInfo, String> loadingWallpapers;
+    private int prevCount;
+    private Theme.ThemeInfo prevThemeInfo;
 
     public final class InnerThemeView extends FrameLayout {
         public ObjectAnimator accentAnimator;
@@ -149,7 +151,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
             if (i2 != 0 && themeInfo3.previewBackgroundGradientColor2 != 0) {
                 int previewBackgroundColor2 = this.themeInfo.getPreviewBackgroundColor();
                 Theme.ThemeInfo themeInfo4 = this.themeInfo;
-                MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable(previewBackgroundColor2, themeInfo4.previewBackgroundGradientColor1, themeInfo4.previewBackgroundGradientColor2, themeInfo4.previewBackgroundGradientColor3, true, 0, false);
+                MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable(previewBackgroundColor2, themeInfo4.previewBackgroundGradientColor1, themeInfo4.previewBackgroundGradientColor2, themeInfo4.previewBackgroundGradientColor3, true);
                 motionBackgroundDrawable.setRoundRadius(AndroidUtilities.dp(6.0f));
                 this.backgroundDrawable = motionBackgroundDrawable;
                 dArrRgbToHsv = AndroidUtilities.rgbToHsv(Color.red(this.themeInfo.getPreviewBackgroundColor()), Color.green(this.themeInfo.getPreviewBackgroundColor()), Color.blue(this.themeInfo.getPreviewBackgroundColor()));
@@ -302,9 +304,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                     drawable3.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
                     this.backgroundDrawable.draw(canvas);
                 }
-                radioButton.color = 1728053247;
-                radioButton.checkedColor = -1;
-                radioButton.invalidate();
+                radioButton.setColor(1728053247, -1);
                 Theme.ThemeInfo themeInfo2 = this.themeInfo;
                 if (themeInfo2.accentBaseColor != 0) {
                     if ("Day".equals(themeInfo2.name) || "Arctic Blue".equals(this.themeInfo.name)) {
@@ -314,17 +314,12 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                         if (f9 != f2) {
                             iIntValue4 = ((Integer) argbEvaluator.evaluate(f9, Integer.valueOf(i4), Integer.valueOf(iIntValue4))).intValue();
                         }
-                        radioButton.color = -5000269;
-                        radioButton.checkedColor = iIntValue4;
-                        radioButton.invalidate();
+                        radioButton.setColor(-5000269, iIntValue4);
                         Theme.chat_instantViewRectPaint.setColor(733001146);
                         canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Theme.chat_instantViewRectPaint);
                     }
                 } else if (this.hasWhiteBackground) {
-                    int i5 = (themeInfo2.firstAccentIsDefault && themeInfo2.currentAccentId == Theme.DEFALT_THEME_ACCENT_ID) ? -983328 : themeInfo2.previewOutColor;
-                    radioButton.color = -5000269;
-                    radioButton.checkedColor = i5;
-                    radioButton.invalidate();
+                    radioButton.setColor(-5000269, (themeInfo2.firstAccentIsDefault && themeInfo2.currentAccentId == Theme.DEFALT_THEME_ACCENT_ID) ? -983328 : themeInfo2.previewOutColor);
                     Theme.chat_instantViewRectPaint.setColor(733001146);
                     canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Theme.chat_instantViewRectPaint);
                 }
@@ -412,7 +407,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
             }
             accessibilityNodeInfo.setText(name);
             accessibilityNodeInfo.setClassName(Button.class.getName());
-            accessibilityNodeInfo.setChecked(this.button.isChecked);
+            accessibilityNodeInfo.setChecked(this.button.isChecked());
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setEnabled(true);
             accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK);
@@ -521,10 +516,11 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                                         this.themeInfo.previewParsed = true;
                                         return true;
                                     }
-                                    HashMap map = ThemesHorizontalListCell.this.loadingWallpapers;
-                                    if (map.containsKey(this.themeInfo)) {
+                                    ThemesHorizontalListCell themesHorizontalListCell = ThemesHorizontalListCell.this;
+                                    if (themesHorizontalListCell.loadingWallpapers.containsKey(this.themeInfo)) {
                                         return false;
                                     }
+                                    HashMap map = themesHorizontalListCell.loadingWallpapers;
                                     Theme.ThemeInfo themeInfo3 = this.themeInfo;
                                     map.put(themeInfo3, themeInfo3.slug);
                                     TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
@@ -532,7 +528,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                                     Theme.ThemeInfo themeInfo4 = this.themeInfo;
                                     tL_inputWallPaperSlug.slug = themeInfo4.slug;
                                     getwallpaper.wallpaper = tL_inputWallPaperSlug;
-                                    ConnectionsManager.getInstance(themeInfo4.account).sendRequest(getwallpaper, new CallLogActivity$$ExternalSyntheticLambda1(this, 12));
+                                    ConnectionsManager.getInstance(themeInfo4.account).sendRequest(getwallpaper, new RichMediaUploader$$ExternalSyntheticLambda0(this, 11));
                                     return false;
                                 }
                                 String strSubstring2 = str.substring(4);
@@ -660,10 +656,98 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         }
     }
 
+    public final class ThemesListAdapter extends RecyclerListView.SelectionAdapter {
+        public final Context mContext;
+
+        public ThemesListAdapter(Context context) {
+            this.mContext = context;
+        }
+
+        @Override
+        public final int getItemCount() {
+            ThemesHorizontalListCell themesHorizontalListCell = ThemesHorizontalListCell.this;
+            return themesHorizontalListCell.prevCount = themesHorizontalListCell.customThemes.size() + themesHorizontalListCell.defaultThemes.size();
+        }
+
+        @Override
+        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return false;
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            int size;
+            ArrayList arrayList;
+            Theme.ThemeInfo themeInfo;
+            TLRPC.TL_theme tL_theme;
+            InnerThemeView innerThemeView = (InnerThemeView) viewHolder.itemView;
+            ThemesHorizontalListCell themesHorizontalListCell = ThemesHorizontalListCell.this;
+            if (i < themesHorizontalListCell.defaultThemes.size()) {
+                arrayList = themesHorizontalListCell.defaultThemes;
+                size = i;
+            } else {
+                ArrayList arrayList2 = themesHorizontalListCell.customThemes;
+                size = i - themesHorizontalListCell.defaultThemes.size();
+                arrayList = arrayList2;
+            }
+            Theme.ThemeInfo themeInfo2 = (Theme.ThemeInfo) arrayList.get(size);
+            boolean z = i == getItemCount() - 1;
+            boolean z2 = i == 0;
+            innerThemeView.themeInfo = themeInfo2;
+            innerThemeView.isFirst = z2;
+            innerThemeView.isLast = z;
+            innerThemeView.accentId = themeInfo2.currentAccentId;
+            RadioButton radioButton = innerThemeView.button;
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) radioButton.getLayoutParams();
+            layoutParams.leftMargin = AndroidUtilities.dp(innerThemeView.isFirst ? 49.0f : 27.0f);
+            radioButton.setLayoutParams(layoutParams);
+            innerThemeView.placeholderAlpha = 0.0f;
+            Theme.ThemeInfo themeInfo3 = innerThemeView.themeInfo;
+            if (themeInfo3.pathToFile != null && !themeInfo3.previewParsed) {
+                themeInfo3.previewInColor = Theme.getDefaultColor(Theme.key_chat_inBubble);
+                innerThemeView.themeInfo.previewOutColor = Theme.getDefaultColor(Theme.key_chat_outBubble);
+                boolean zExists = new File(innerThemeView.themeInfo.pathToFile).exists();
+                if ((!zExists || !innerThemeView.parseTheme() || !zExists) && (tL_theme = (themeInfo = innerThemeView.themeInfo).info) != null) {
+                    if (tL_theme.document != null) {
+                        themeInfo.themeLoaded = false;
+                        innerThemeView.placeholderAlpha = 1.0f;
+                        Drawable drawableMutate = innerThemeView.getResources().getDrawable(R.drawable.msg_theme).mutate();
+                        innerThemeView.loadingDrawable = drawableMutate;
+                        int color = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText7, false);
+                        innerThemeView.loadingColor = color;
+                        Theme.setDrawableColor(color, drawableMutate);
+                        if (!zExists) {
+                            String attachFileName = FileLoader.getAttachFileName(innerThemeView.themeInfo.info.document);
+                            ThemesHorizontalListCell themesHorizontalListCell2 = ThemesHorizontalListCell.this;
+                            if (!themesHorizontalListCell2.loadingThemes.containsKey(attachFileName)) {
+                                themesHorizontalListCell2.loadingThemes.put(attachFileName, innerThemeView.themeInfo);
+                                FileLoader fileLoader = FileLoader.getInstance(innerThemeView.themeInfo.account);
+                                TLRPC.TL_theme tL_theme2 = innerThemeView.themeInfo.info;
+                                fileLoader.loadFile(tL_theme2.document, tL_theme2, 1, 1);
+                            }
+                        }
+                    } else {
+                        Drawable drawableMutate2 = innerThemeView.getResources().getDrawable(R.drawable.preview_custom).mutate();
+                        innerThemeView.loadingDrawable = drawableMutate2;
+                        int color2 = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText7, false);
+                        innerThemeView.loadingColor = color2;
+                        Theme.setDrawableColor(color2, drawableMutate2);
+                    }
+                }
+            }
+            innerThemeView.applyTheme();
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            return new RecyclerListView.Holder(ThemesHorizontalListCell.this.new InnerThemeView(this.mContext));
+        }
+    }
+
     public ThemesHorizontalListCell(Context context, BaseFragment baseFragment, int i, ArrayList arrayList, ArrayList arrayList2) {
-        super(context, null);
-        this.loadingThemes = new HashMap();
-        this.loadingWallpapers = new HashMap();
+        super(context);
+        this.loadingThemes = new HashMap<>();
+        this.loadingWallpapers = new HashMap<>();
         this.customThemes = arrayList2;
         this.defaultThemes = arrayList;
         this.currentType = i;
@@ -674,22 +758,21 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         } else {
             setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
         }
-        setItemAnimator(null);
+        lambda$onCellEnter$52(null);
         setLayoutAnimation(null);
-        PhotoViewer.AnonymousClass36 anonymousClass36 = new PhotoViewer.AnonymousClass36(1, 3, z);
-        this.horizontalLayoutManager = anonymousClass36;
+        this.horizontalLayoutManager = new DialogsSearchAdapter.AnonymousClass5(1, 1, z);
         setPadding(0, 0, 0, 0);
         setClipToPadding(false);
-        anonymousClass36.setOrientation(0);
-        setLayoutManager(anonymousClass36);
-        FloatingDebugView.AnonymousClass3 anonymousClass3 = new FloatingDebugView.AnonymousClass3(1, context, this);
-        this.adapter = anonymousClass3;
-        setAdapter(anonymousClass3);
-        setOnItemClickListener(new ChatLinkActivity$$ExternalSyntheticLambda4(this, 6));
-        setOnItemLongClickListener(new ChatActivity$$ExternalSyntheticLambda356(this, 8));
+        this.horizontalLayoutManager.setOrientation(0);
+        setLayoutManager(this.horizontalLayoutManager);
+        ThemesListAdapter themesListAdapter = new ThemesListAdapter(context);
+        this.adapter = themesListAdapter;
+        setAdapter(themesListAdapter);
+        setOnItemClickListener(new TONIntroActivity$$ExternalSyntheticLambda3(this, 4));
+        setOnItemLongClickListener(new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 23));
     }
 
-    public final void checkVisibleTheme(Theme.ThemeInfo themeInfo) {
+    public final void lambda$didReceivedNotification$2(Theme.ThemeInfo themeInfo) {
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
@@ -704,7 +787,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i != NotificationCenter.fileLoaded) {
             if (i == NotificationCenter.fileLoadFailed) {
                 this.loadingThemes.remove((String) objArr[0]);
@@ -714,19 +797,59 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
         }
         String str = (String) objArr[0];
         File file = (File) objArr[1];
-        Theme.ThemeInfo themeInfo = (Theme.ThemeInfo) this.loadingThemes.get(str);
+        Theme.ThemeInfo themeInfo = this.loadingThemes.get(str);
         if (themeInfo != null) {
             this.loadingThemes.remove(str);
             if (this.loadingWallpapers.remove(themeInfo) != null) {
-                Utilities.globalQueue.postRunnable(new ChatActivity$$ExternalSyntheticLambda102(this, themeInfo, file, 6));
+                Utilities.globalQueue.postRunnable(new StarGiftSheet$$ExternalSyntheticLambda66(this, themeInfo, file, 3));
             } else {
-                checkVisibleTheme(themeInfo);
+                lambda$didReceivedNotification$2(themeInfo);
             }
         }
     }
 
+    public final void lambda$didReceivedNotification$3(Theme.ThemeInfo themeInfo, File file) {
+        themeInfo.badWallpaper = !themeInfo.createBackground(file, themeInfo.pathToWallpaper);
+        AndroidUtilities.runOnUIThread(new ChatActionCell$$ExternalSyntheticLambda8(19, this, themeInfo));
+    }
+
+    public final void lambda$new$0(View view, int i) {
+        selectTheme(((InnerThemeView) view).themeInfo);
+        int left = view.getLeft();
+        int right = view.getRight();
+        if (left < 0) {
+            smoothScrollBy(left - AndroidUtilities.dp(8.0f), 0);
+        } else if (right > getMeasuredWidth()) {
+            smoothScrollBy(right - getMeasuredWidth(), 0);
+        }
+    }
+
+    public final boolean lambda$new$1(View view, int i) {
+        showOptionsForTheme(((InnerThemeView) view).themeInfo);
+        return true;
+    }
+
+    public void notifyDataSetChanged(int i) {
+        Theme.ThemeInfo themeInfo;
+        if (this.prevCount == this.adapter.getItemCount()) {
+            return;
+        }
+        this.adapter.notifyDataSetChanged();
+        if (this.currentType == 1) {
+            themeInfo = Theme.currentNightTheme;
+        } else {
+            themeInfo = Theme.currentDayTheme;
+            if (themeInfo == null) {
+                themeInfo = Theme.defaultTheme;
+            }
+        }
+        if (this.prevThemeInfo != themeInfo) {
+            scrollToCurrentTheme(i, false);
+        }
+    }
+
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.fileLoaded);
@@ -735,7 +858,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.fileLoaded);
@@ -744,7 +867,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.drawDivider) {
             canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
@@ -752,14 +875,14 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (getParent() != null && getParent().getParent() != null) {
             getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
         }
         return super.onInterceptTouchEvent(motionEvent);
     }
 
-    public final void scrollToCurrentTheme(int i) {
+    public void scrollToCurrentTheme(int i, boolean z) {
         Theme.ThemeInfo themeInfo;
         View view;
         if (i == 0 && (view = (View) getParent()) != null) {
@@ -777,16 +900,17 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
             }
         }
         this.prevThemeInfo = themeInfo;
-        ArrayList arrayList = this.defaultThemes;
-        int iIndexOf = arrayList.indexOf(themeInfo);
-        if (iIndexOf >= 0 || (iIndexOf = this.customThemes.indexOf(this.prevThemeInfo) + arrayList.size()) >= 0) {
-            int iM$2 = OKLCH.m$2(76.0f, i, 2);
-            PhotoViewer.AnonymousClass36 anonymousClass36 = this.horizontalLayoutManager;
-            anonymousClass36.scrollToPositionWithOffset(iIndexOf, iM$2, anonymousClass36.mShouldReverseLayout);
+        int iIndexOf = this.defaultThemes.indexOf(themeInfo);
+        if (iIndexOf >= 0 || (iIndexOf = this.customThemes.indexOf(this.prevThemeInfo) + this.defaultThemes.size()) >= 0) {
+            if (z) {
+                smoothScrollToPosition(iIndexOf);
+            } else {
+                this.horizontalLayoutManager.scrollToPositionWithOffset(iIndexOf, (i - AndroidUtilities.dp(76.0f)) / 2);
+            }
         }
     }
 
-    public final void selectTheme(Theme.ThemeInfo themeInfo) {
+    public void selectTheme(Theme.ThemeInfo themeInfo) {
         Theme.ThemeInfo themeInfo2;
         TLRPC.TL_theme tL_theme = themeInfo.info;
         if (tL_theme != null) {
@@ -828,7 +952,7 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
                 Theme.applyDayNightThemeMaybe(true);
             }
         }
-        updateRows$2();
+        updateRows();
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             View childAt = getChildAt(i);
@@ -864,5 +988,5 @@ public abstract class ThemesHorizontalListCell extends RecyclerListView implemen
     public void showOptionsForTheme(Theme.ThemeInfo themeInfo) {
     }
 
-    public abstract void updateRows$2();
+    public abstract void updateRows();
 }

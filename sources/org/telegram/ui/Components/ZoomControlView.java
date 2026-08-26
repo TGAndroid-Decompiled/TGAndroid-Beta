@@ -1,41 +1,43 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.PhotoViewer;
 
-public final class ZoomControlView extends View {
-    public final PhotoViewer.AnonymousClass5 ZOOM_PROPERTY;
-    public float animatingToZoom;
-    public AnimatorSet animatorSet;
-    public ZoomControlViewDelegate delegate;
+public class ZoomControlView extends View {
+    public final Property<ZoomControlView, Float> ZOOM_PROPERTY;
+    private float animatingToZoom;
+    private AnimatorSet animatorSet;
+    private ZoomControlViewDelegate delegate;
     public boolean enabledTouch;
-    public final Drawable filledProgressDrawable;
-    public final Drawable knobDrawable;
-    public boolean knobPressed;
-    public float knobStartX;
-    public float knobStartY;
-    public int minusCx;
-    public int minusCy;
-    public final Drawable minusDrawable;
-    public int plusCx;
-    public int plusCy;
-    public final Drawable plusDrawable;
-    public boolean pressed;
-    public final Drawable pressedKnobDrawable;
-    public final Drawable progressDrawable;
-    public int progressEndX;
-    public int progressEndY;
-    public int progressStartX;
-    public int progressStartY;
-    public float zoom;
+    private Drawable filledProgressDrawable;
+    private Drawable knobDrawable;
+    private boolean knobPressed;
+    private float knobStartX;
+    private float knobStartY;
+    private int minusCx;
+    private int minusCy;
+    private Drawable minusDrawable;
+    private int plusCx;
+    private int plusCy;
+    private Drawable plusDrawable;
+    private boolean pressed;
+    private Drawable pressedKnobDrawable;
+    private Drawable progressDrawable;
+    private int progressEndX;
+    private int progressEndY;
+    private int progressStartX;
+    private int progressStartY;
+    private float zoom;
 
     public interface ZoomControlViewDelegate {
         void didSetZoom(float f);
@@ -44,7 +46,21 @@ public final class ZoomControlView extends View {
     public ZoomControlView(Context context) {
         super(context);
         this.enabledTouch = true;
-        this.ZOOM_PROPERTY = new PhotoViewer.AnonymousClass5(this);
+        this.ZOOM_PROPERTY = new AnimationProperties.FloatProperty<ZoomControlView>("clipProgress") {
+            @Override
+            public Float get(ZoomControlView zoomControlView) {
+                return Float.valueOf(ZoomControlView.this.zoom);
+            }
+
+            @Override
+            public void setValue(ZoomControlView zoomControlView, float f) {
+                ZoomControlView.this.zoom = f;
+                if (ZoomControlView.this.delegate != null) {
+                    ZoomControlView.this.delegate.didSetZoom(ZoomControlView.this.zoom);
+                }
+                ZoomControlView.this.invalidate();
+            }
+        };
         this.minusDrawable = context.getResources().getDrawable(R.drawable.zoom_minus);
         this.plusDrawable = context.getResources().getDrawable(R.drawable.zoom_plus);
         this.progressDrawable = context.getResources().getDrawable(R.drawable.zoom_slide);
@@ -53,7 +69,7 @@ public final class ZoomControlView extends View {
         this.pressedKnobDrawable = context.getResources().getDrawable(R.drawable.zoom_round_b);
     }
 
-    public final boolean animateToZoom(float f) {
+    private boolean animateToZoom(float f) {
         if (f < 0.0f || f > 1.0f) {
             return false;
         }
@@ -66,7 +82,12 @@ public final class ZoomControlView extends View {
         this.animatorSet = animatorSet2;
         animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.ZOOM_PROPERTY, f));
         this.animatorSet.setDuration(180L);
-        this.animatorSet.addListener(new Tooltip.AnonymousClass1(this, 21));
+        this.animatorSet.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                ZoomControlView.this.animatorSet = null;
+            }
+        });
         this.animatorSet.start();
         return true;
     }
@@ -75,8 +96,12 @@ public final class ZoomControlView extends View {
         return this.animatorSet != null ? this.animatingToZoom : this.zoom;
     }
 
+    public boolean isTouch() {
+        return this.pressed || this.knobPressed;
+    }
+
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         int measuredWidth = getMeasuredWidth() / 2;
         int measuredHeight = getMeasuredHeight() / 2;
         boolean z = getMeasuredWidth() > getMeasuredHeight();
@@ -99,20 +124,10 @@ public final class ZoomControlView extends View {
             this.progressEndX = measuredWidth;
             this.progressEndY = this.plusCy - AndroidUtilities.dp(18.0f);
         }
-        int iDp = this.minusCx - AndroidUtilities.dp(7.0f);
-        int iDp2 = this.minusCy - AndroidUtilities.dp(7.0f);
-        int iDp3 = AndroidUtilities.dp(7.0f) + this.minusCx;
-        int iDp4 = AndroidUtilities.dp(7.0f) + this.minusCy;
-        Drawable drawable = this.minusDrawable;
-        drawable.setBounds(iDp, iDp2, iDp3, iDp4);
-        drawable.draw(canvas);
-        int iDp5 = this.plusCx - AndroidUtilities.dp(7.0f);
-        int iDp6 = this.plusCy - AndroidUtilities.dp(7.0f);
-        int iDp7 = AndroidUtilities.dp(7.0f) + this.plusCx;
-        int iDp8 = AndroidUtilities.dp(7.0f) + this.plusCy;
-        Drawable drawable2 = this.plusDrawable;
-        drawable2.setBounds(iDp5, iDp6, iDp7, iDp8);
-        drawable2.draw(canvas);
+        this.minusDrawable.setBounds(this.minusCx - AndroidUtilities.dp(7.0f), this.minusCy - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f) + this.minusCx, AndroidUtilities.dp(7.0f) + this.minusCy);
+        this.minusDrawable.draw(canvas);
+        this.plusDrawable.setBounds(this.plusCx - AndroidUtilities.dp(7.0f), this.plusCy - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f) + this.plusCx, AndroidUtilities.dp(7.0f) + this.plusCy);
+        this.plusDrawable.draw(canvas);
         int i = this.progressEndX;
         int i2 = this.progressStartX;
         int i3 = this.progressEndY;
@@ -120,31 +135,29 @@ public final class ZoomControlView extends View {
         float f = this.zoom;
         int i5 = (int) (((i - i2) * f) + i2);
         int i6 = (int) (((i3 - i4) * f) + i4);
-        Drawable drawable3 = this.filledProgressDrawable;
-        Drawable drawable4 = this.progressDrawable;
         if (z) {
-            drawable4.setBounds(i2, i4 - AndroidUtilities.dp(3.0f), this.progressEndX, AndroidUtilities.dp(3.0f) + this.progressStartY);
-            drawable3.setBounds(this.progressStartX, this.progressStartY - AndroidUtilities.dp(3.0f), i5, AndroidUtilities.dp(3.0f) + this.progressStartY);
+            this.progressDrawable.setBounds(i2, i4 - AndroidUtilities.dp(3.0f), this.progressEndX, AndroidUtilities.dp(3.0f) + this.progressStartY);
+            this.filledProgressDrawable.setBounds(this.progressStartX, this.progressStartY - AndroidUtilities.dp(3.0f), i5, AndroidUtilities.dp(3.0f) + this.progressStartY);
         } else {
-            drawable4.setBounds(i4, 0, i3, AndroidUtilities.dp(6.0f));
-            drawable3.setBounds(this.progressStartY, 0, i6, AndroidUtilities.dp(6.0f));
+            this.progressDrawable.setBounds(i4, 0, i3, AndroidUtilities.dp(6.0f));
+            this.filledProgressDrawable.setBounds(this.progressStartY, 0, i6, AndroidUtilities.dp(6.0f));
             canvas.save();
             canvas.rotate(90.0f);
             canvas.translate(0.0f, (-this.progressStartX) - AndroidUtilities.dp(3.0f));
         }
-        drawable4.draw(canvas);
-        drawable3.draw(canvas);
+        this.progressDrawable.draw(canvas);
+        this.filledProgressDrawable.draw(canvas);
         if (!z) {
             canvas.restore();
         }
-        Drawable drawable5 = this.knobPressed ? this.pressedKnobDrawable : this.knobDrawable;
-        int intrinsicWidth = drawable5.getIntrinsicWidth() / 2;
-        drawable5.setBounds(i5 - intrinsicWidth, i6 - intrinsicWidth, i5 + intrinsicWidth, i6 + intrinsicWidth);
-        drawable5.draw(canvas);
+        Drawable drawable = this.knobPressed ? this.pressedKnobDrawable : this.knobDrawable;
+        int intrinsicWidth = drawable.getIntrinsicWidth() / 2;
+        drawable.setBounds(i5 - intrinsicWidth, i6 - intrinsicWidth, i5 + intrinsicWidth, i6 + intrinsicWidth);
+        drawable.draw(canvas);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z;
         if (!this.enabledTouch) {
             return false;
@@ -312,7 +325,7 @@ public final class ZoomControlView extends View {
         this.delegate = zoomControlViewDelegate;
     }
 
-    public final void setZoom(float f, boolean z) {
+    public void setZoom(float f, boolean z) {
         ZoomControlViewDelegate zoomControlViewDelegate;
         if (f == this.zoom) {
             return;

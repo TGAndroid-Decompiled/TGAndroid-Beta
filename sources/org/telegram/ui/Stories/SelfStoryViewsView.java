@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.core.view.NestedScrollingParent3;
+import androidx.core.view.NestedScrollingParentHelper;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import com.google.zxing.qrcode.decoder.Version;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
@@ -27,9 +27,7 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.IntroActivity;
-import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda0;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
+import org.telegram.ui.iv.RichMediaCell$$ExternalSyntheticLambda1;
 
 public final class SelfStoryViewsView extends FrameLayout {
     public float bottomPadding;
@@ -151,8 +149,8 @@ public final class SelfStoryViewsView extends FrameLayout {
         public final StoryViewer val$storyViewer;
 
         public final class AnonymousClass1 extends SelfStoryViewsPage {
-            public AnonymousClass1(StoryViewer storyViewer, Context context, SelfStoryViewsPage.FiltersState filtersState, QrActivity$5$$ExternalSyntheticLambda0 qrActivity$5$$ExternalSyntheticLambda0) {
-                super(storyViewer, context, filtersState, qrActivity$5$$ExternalSyntheticLambda0);
+            public AnonymousClass1(StoryViewer storyViewer, Context context, SelfStoryViewsPage.FiltersState filtersState, PeerStoriesView$$ExternalSyntheticLambda27 peerStoriesView$$ExternalSyntheticLambda27) {
+                super(storyViewer, context, filtersState, peerStoriesView$$ExternalSyntheticLambda27);
             }
         }
 
@@ -163,8 +161,8 @@ public final class SelfStoryViewsView extends FrameLayout {
         }
 
         @Override
-        public final void destroyItem(ViewPager viewPager, Object obj) {
-            viewPager.removeView((View) obj);
+        public final void destroyItem(ViewGroup viewGroup, int i, Object obj) {
+            viewGroup.removeView((View) obj);
             this.this$0.itemViews.remove(obj);
         }
 
@@ -174,9 +172,9 @@ public final class SelfStoryViewsView extends FrameLayout {
         }
 
         @Override
-        public final Object instantiateItem(ViewPager viewPager, int i) {
+        public final Object instantiateItem(ViewGroup viewGroup, int i) {
             SelfStoryViewsView selfStoryViewsView = this.this$0;
-            AnonymousClass1 anonymousClass1 = new AnonymousClass1(this.val$storyViewer, this.val$context, selfStoryViewsView.sharedFilterState, new QrActivity$5$$ExternalSyntheticLambda0(this, 9));
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(this.val$storyViewer, this.val$context, selfStoryViewsView.sharedFilterState, new PeerStoriesView$$ExternalSyntheticLambda27(this, 2));
             anonymousClass1.setTag(Integer.valueOf(i));
             anonymousClass1.setShadowDrawable(selfStoryViewsView.shadowDrawable);
             anonymousClass1.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
@@ -190,7 +188,7 @@ public final class SelfStoryViewsView extends FrameLayout {
                 NotificationsController.getInstance(anonymousClass1.currentAccount).processSeenStoryReactions(j, storyItemInternal.storyItem.id);
             }
             anonymousClass1.setListBottomPadding(selfStoryViewsView.bottomPadding);
-            viewPager.addView(anonymousClass1);
+            viewGroup.addView(anonymousClass1);
             selfStoryViewsView.itemViews.add(anonymousClass1);
             return anonymousClass1;
         }
@@ -202,15 +200,15 @@ public final class SelfStoryViewsView extends FrameLayout {
     }
 
     public final class ContainerView extends FrameLayout implements NestedScrollingParent3 {
-        public final Version.ECB nestedScrollingParentHelper;
+        public final NestedScrollingParentHelper nestedScrollingParentHelper;
 
         public ContainerView(Context context) {
             super(context);
-            this.nestedScrollingParentHelper = new Version.ECB();
+            this.nestedScrollingParentHelper = new NestedScrollingParentHelper();
         }
 
         @Override
-        public final void onNestedPreScroll(ViewGroup viewGroup, int i, int i2, int[] iArr, int i3) {
+        public final void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
             SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.this;
             if (selfStoryViewsView.keyboardHeight > 0) {
                 return;
@@ -239,12 +237,12 @@ public final class SelfStoryViewsView extends FrameLayout {
         }
 
         @Override
-        public final void onNestedScroll(ViewGroup viewGroup, int i, int i2, int i3, int i4, int i5) {
+        public final void onNestedScroll(View view, int i, int i2, int i3, int i4, int i5) {
         }
 
         @Override
         public final void onNestedScrollAccepted(View view, View view2, int i, int i2) {
-            this.nestedScrollingParentHelper.count = i;
+            this.nestedScrollingParentHelper.mNestedScrollAxesTouch = i;
         }
 
         @Override
@@ -253,12 +251,12 @@ public final class SelfStoryViewsView extends FrameLayout {
         }
 
         @Override
-        public final void onStopNestedScroll(int i, View view) {
-            this.nestedScrollingParentHelper.count = 0;
+        public final void onStopNestedScroll(View view, int i) {
+            this.nestedScrollingParentHelper.mNestedScrollAxesTouch = 0;
         }
 
         @Override
-        public final void onNestedScroll(ViewGroup viewGroup, int i, int i2, int i3, int i4, int i5, int[] iArr) {
+        public final void onNestedScroll(View view, int i, int i2, int i3, int i4, int i5, int[] iArr) {
             SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.this;
             if (selfStoryViewsView.keyboardHeight <= 0 && i4 != 0 && i2 == 0) {
                 StoryViewer storyViewer = selfStoryViewsView.storyViewer;
@@ -302,12 +300,63 @@ public final class SelfStoryViewsView extends FrameLayout {
         this.viewPagerContainer = containerView;
         AnonymousClass2 anonymousClass2 = new AnonymousClass2(context);
         this.viewPager = anonymousClass2;
-        anonymousClass2.addOnPageChangeListener(new IntroActivity.AnonymousClass3(this, 4));
+        anonymousClass2.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public final void onPageScrollStateChanged(int i) {
+                SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.this;
+                selfStoryViewsView.getClass();
+                if (i == 1) {
+                    selfStoryViewsView.listenPager = true;
+                }
+            }
+
+            @Override
+            public final void onPageScrolled(int i, float f, int i2) {
+                float f2;
+                SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.this;
+                if (selfStoryViewsView.listenPager) {
+                    AnonymousClass1 anonymousClass3 = selfStoryViewsView.selfStoriesPreviewView;
+                    anonymousClass3.scroller.abortAnimation();
+                    if (Math.abs(f) > 1.0f) {
+                        return;
+                    }
+                    ValueAnimator valueAnimator = anonymousClass3.scrollAnimator;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                        anonymousClass3.scrollAnimator = null;
+                    }
+                    float f3 = (-anonymousClass3.getMeasuredWidth()) / 2.0f;
+                    int i3 = anonymousClass3.viewW;
+                    float f4 = (i3 / 2.0f) + f3 + ((i3 + anonymousClass3.childPadding) * i);
+                    if (f > 0.0f) {
+                        float f5 = (-anonymousClass3.getMeasuredWidth()) / 2.0f;
+                        int i4 = anonymousClass3.viewW;
+                        f2 = (i4 / 2.0f) + f5 + ((i + 1) * (i4 + anonymousClass3.childPadding));
+                    } else {
+                        float f6 = (-anonymousClass3.getMeasuredWidth()) / 2.0f;
+                        int i5 = anonymousClass3.viewW;
+                        f2 = (i5 / 2.0f) + f6 + ((i - 1) * (i5 + anonymousClass3.childPadding));
+                        f = -f;
+                    }
+                    if (f == 0.0f) {
+                        anonymousClass3.scrollX = f4;
+                    } else {
+                        anonymousClass3.scrollX = AndroidUtilities.lerp(f4, f2, f);
+                    }
+                    anonymousClass3.checkScroll = false;
+                    anonymousClass3.invalidate();
+                }
+            }
+
+            @Override
+            public final void onPageSelected(int i) {
+            }
+        });
         AnonymousClass4 anonymousClass4 = new AnonymousClass4(context, this, storyViewer);
         this.pagerAdapter = anonymousClass4;
         anonymousClass2.setAdapter(anonymousClass4);
         containerView.addView(anonymousClass2, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
-        addView(anonymousClass1, LayoutHelper.createFrame(-1.0f, -1));
+        addView(anonymousClass1, LayoutHelper.createFrame(-1, -1.0f));
         addView(containerView);
         setVisibility(4);
     }
@@ -424,12 +473,11 @@ public final class SelfStoryViewsView extends FrameLayout {
 
     public void setKeyboardHeight(int i) {
         SelfStoryViewsPage currentPage;
-        int i2 = 1;
         boolean z = this.keyboardHeight >= AndroidUtilities.dp(20.0f);
         boolean z2 = i >= AndroidUtilities.dp(20.0f);
         if (z2 != z) {
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.progressToKeyboard, z2 ? 1.0f : 0.0f);
-            valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, i2));
+            valueAnimatorOfFloat.addUpdateListener(new RichMediaCell$$ExternalSyntheticLambda1(this, 13));
             valueAnimatorOfFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
             valueAnimatorOfFloat.setDuration(250L);
             valueAnimatorOfFloat.start();
@@ -524,7 +572,7 @@ public final class SelfStoryViewsView extends FrameLayout {
                             hwStoriesViewPager.storyViewer.allowScreenshots(z);
                         }
                         if (anonymousClass4.days == null) {
-                            pageLayout.peerStoryView.setDialogId(i3, pageLayout.dialogId);
+                            pageLayout.peerStoryView.setDialogId(pageLayout.dialogId, i3);
                             break;
                         }
                         PeerStoriesView peerStoriesView = pageLayout.peerStoryView;

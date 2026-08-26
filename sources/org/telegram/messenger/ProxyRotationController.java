@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.ProxyListActivity$$ExternalSyntheticLambda6;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
 
 public class ProxyRotationController implements NotificationCenter.NotificationCenterDelegate {
     public static final int DEFAULT_TIMEOUT_INDEX = 1;
@@ -42,7 +42,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j) {
-        AndroidUtilities.runOnUIThread(new ProxyListActivity$$ExternalSyntheticLambda6(proxyInfo, j, 1));
+        AndroidUtilities.runOnUIThread(new RichEditor$$ExternalSyntheticLambda48(proxyInfo, j, 5));
     }
 
     public void lambda$new$2() {

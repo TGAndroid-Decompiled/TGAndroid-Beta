@@ -1,6 +1,5 @@
 package org.telegram.ui.bots;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -48,10 +47,8 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda18;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda2;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticApiModelOutline2;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticApiModelOutline0;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda51;
 
 public final class BotBiometry {
     public static final WeakHashMap instances = new WeakHashMap();
@@ -59,7 +56,7 @@ public final class BotBiometry {
     public boolean access_granted;
     public boolean access_requested;
     public final long botId;
-    public OAuthSheet$$ExternalSyntheticLambda18 callback;
+    public BotBiometry$$ExternalSyntheticLambda10 callback;
     public final Context context;
     public final int currentAccount;
     public boolean disabled;
@@ -96,9 +93,9 @@ public final class BotBiometry {
         return botBiometry2;
     }
 
-    public static void getBots(Activity activity, int i, Utilities.Callback callback) {
+    public static void getBots(Context context, int i, Utilities.Callback callback) {
         int i2 = 0;
-        SharedPreferences sharedPreferences = activity.getSharedPreferences("2botbiometry_" + i, 0);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("2botbiometry_" + i, 0);
         ArrayList arrayList = new ArrayList();
         Iterator<Map.Entry<String, ?>> it = sharedPreferences.getAll().entrySet().iterator();
         while (it.hasNext()) {
@@ -117,7 +114,7 @@ public final class BotBiometry {
             Object obj = arrayList.get(i2);
             i2++;
             Long l = (Long) obj;
-            BotBiometry botBiometry = get(activity, i, l.longValue());
+            BotBiometry botBiometry = get(context, i, l.longValue());
             if (botBiometry.access_granted && botBiometry.access_requested) {
                 map.put(l, Boolean.valueOf(!botBiometry.disabled));
             }
@@ -125,7 +122,7 @@ public final class BotBiometry {
         if (arrayList.isEmpty()) {
             callback.run(new ArrayList());
         } else {
-            MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new OAuthSheet$$ExternalSyntheticLambda2(i, arrayList, map, callback, 15));
+            MessagesStorage.getInstance(i).getStorageQueue().postRunnable(new BotBiometry$$ExternalSyntheticLambda8(i, arrayList, map, callback, 0));
         }
     }
 
@@ -146,8 +143,8 @@ public final class BotBiometry {
         if (keyStore3.containsAlias(sb.toString())) {
             return (SecretKey) keyStore.getKey("9bot_" + j, null);
         }
-        SharedConfig$$ExternalSyntheticApiModelOutline0.m880m();
-        KeyGenParameterSpec.Builder builderM = PhotoViewer$$ExternalSyntheticApiModelOutline2.m("9bot_" + j);
+        SharedConfig$$ExternalSyntheticApiModelOutline0.m882m();
+        KeyGenParameterSpec.Builder builderM = PhotoViewer$$ExternalSyntheticApiModelOutline0.m("9bot_" + j);
         builderM.setBlockModes("CBC");
         builderM.setEncryptionPaddings("PKCS7Padding");
         builderM.setUserAuthenticationRequired(true);
@@ -249,10 +246,10 @@ public final class BotBiometry {
                     public final void onAuthenticationError(int i3, CharSequence charSequence) {
                         FileLog.d("BotBiometry onAuthenticationError " + i3 + " \"" + ((Object) charSequence) + "\"");
                         BotBiometry botBiometry = BotBiometry.this;
-                        OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18 = botBiometry.callback;
-                        if (oAuthSheet$$ExternalSyntheticLambda18 != null) {
+                        BotBiometry$$ExternalSyntheticLambda10 botBiometry$$ExternalSyntheticLambda10 = botBiometry.callback;
+                        if (botBiometry$$ExternalSyntheticLambda10 != null) {
                             botBiometry.callback = null;
-                            oAuthSheet$$ExternalSyntheticLambda18.run(Boolean.FALSE, null);
+                            botBiometry$$ExternalSyntheticLambda10.run(Boolean.FALSE, null);
                         }
                     }
 
@@ -265,10 +262,10 @@ public final class BotBiometry {
                     public final void onAuthenticationSucceeded(BiometricPrompt$AuthenticationResult biometricPrompt$AuthenticationResult) {
                         FileLog.d("BotBiometry onAuthenticationSucceeded");
                         BotBiometry botBiometry = BotBiometry.this;
-                        OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18 = botBiometry.callback;
-                        if (oAuthSheet$$ExternalSyntheticLambda18 != null) {
+                        BotBiometry$$ExternalSyntheticLambda10 botBiometry$$ExternalSyntheticLambda10 = botBiometry.callback;
+                        if (botBiometry$$ExternalSyntheticLambda10 != null) {
                             botBiometry.callback = null;
-                            oAuthSheet$$ExternalSyntheticLambda18.run(Boolean.TRUE, biometricPrompt$AuthenticationResult);
+                            botBiometry$$ExternalSyntheticLambda10.run(Boolean.TRUE, biometricPrompt$AuthenticationResult);
                         }
                     }
                 });
@@ -304,7 +301,7 @@ public final class BotBiometry {
                     }
                 }
             }
-            this.callback = new OAuthSheet$$ExternalSyntheticLambda18(27, callback3, (biometricPrompt$CryptoObjectMakeCryptoObject == null || Build.VERSION.SDK_INT >= 30) ? null : biometricPrompt$CryptoObjectMakeCryptoObject);
+            this.callback = new BotBiometry$$ExternalSyntheticLambda10(0, callback3, (biometricPrompt$CryptoObjectMakeCryptoObject == null || Build.VERSION.SDK_INT >= 30) ? null : biometricPrompt$CryptoObjectMakeCryptoObject);
             if (biometricPrompt$CryptoObjectMakeCryptoObject == null || (i = Build.VERSION.SDK_INT) >= 30) {
                 this.prompt.authenticateInternal(zzcaVarBuild, null);
                 return;
@@ -357,7 +354,7 @@ public final class BotBiometry {
         editorEdit.apply();
     }
 
-    public final void updateToken(String str, final String str2, final ThemeActivity$$ExternalSyntheticLambda19 themeActivity$$ExternalSyntheticLambda19) {
+    public final void updateToken(String str, final String str2, final RichEditor$$ExternalSyntheticLambda51 richEditor$$ExternalSyntheticLambda51) {
         prompt(str, false, str2, new Utilities.Callback3() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3) {
@@ -395,7 +392,7 @@ public final class BotBiometry {
                         bool = Boolean.FALSE;
                     }
                 }
-                themeActivity$$ExternalSyntheticLambda19.run(bool);
+                richEditor$$ExternalSyntheticLambda51.run(bool);
             }
         });
     }

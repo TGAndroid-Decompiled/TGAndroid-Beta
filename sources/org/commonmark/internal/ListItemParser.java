@@ -3,7 +3,6 @@ package org.commonmark.internal;
 import org.commonmark.node.Block;
 import org.commonmark.node.ListBlock;
 import org.commonmark.node.ListItem;
-import org.commonmark.node.Node;
 import org.commonmark.node.Paragraph;
 import org.commonmark.parser.block.AbstractBlockParser;
 
@@ -21,7 +20,7 @@ public final class ListItemParser extends AbstractBlockParser {
         if (!this.hadBlankLine) {
             return true;
         }
-        Block block2 = (Block) ((Node) this.block.parent);
+        Block block2 = (Block) this.block.parent;
         if (!(block2 instanceof ListBlock)) {
             return true;
         }
@@ -42,7 +41,7 @@ public final class ListItemParser extends AbstractBlockParser {
     @Override
     public final BlockContinueImpl tryContinue(DocumentParser documentParser) {
         if (documentParser.blank) {
-            if (((Node) this.block.firstChild) == null) {
+            if (this.block.firstChild == null) {
                 return null;
             }
             Block block = documentParser.getActiveBlockParser().getBlock();

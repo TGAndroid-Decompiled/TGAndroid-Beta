@@ -59,27 +59,28 @@ public class FilesMigrationService extends Service {
         BaseFragment fragment;
 
         public FilesMigrationBottomSheet(BaseFragment baseFragment) {
-            super(baseFragment.getParentActivity(), null, false, false);
+            super(baseFragment.getParentActivity(), false, false, null);
             this.fragment = baseFragment;
             setCanceledOnTouchOutside(false);
             Activity parentActivity = baseFragment.getParentActivity();
-            LinearLayout linearLayoutM = FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(parentActivity, 1);
+            LinearLayout linearLayout = new LinearLayout(parentActivity);
+            linearLayout.setOrientation(1);
             StickerImageView stickerImageView = new StickerImageView(parentActivity, this.currentAccount);
             stickerImageView.setStickerNum(7);
             stickerImageView.getImageReceiver().setAutoRepeat(1);
-            linearLayoutM.addView(stickerImageView, LayoutHelper.createLinear(144, 144, 1, 0, 16, 0, 0));
+            linearLayout.addView(stickerImageView, LayoutHelper.createLinear(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
             int i = Theme.key_dialogTextBlack;
-            FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(20.0f, Theme.getColor(null, i, false), 1, textView);
+            FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView, Theme.getColor(null, i, false), 1, 20.0f);
             textView.setText(LocaleController.getString(R.string.MigrateOldFolderTitle));
-            linearLayoutM.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
+            linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
             TextView textView2 = new TextView(parentActivity);
             textView2.setGravity(8388611);
             textView2.setTextSize(1, 15.0f);
             textView2.setTextColor(Theme.getColor(null, i, false));
-            FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(R.string.MigrateOldFolderDescription, textView2);
-            linearLayoutM.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
+            FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(R.string.MigrateOldFolderDescription, textView2);
+            linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
             TextView textView3 = new TextView(parentActivity);
             textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             textView3.setGravity(17);
@@ -88,10 +89,10 @@ public class FilesMigrationService extends Service {
             textView3.setText(LocaleController.getString(R.string.MigrateOldFolderButton));
             textView3.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
             textView3.setBackground(Theme.AdaptiveRipple.filledRectByKey(new float[]{6.0f}, Theme.key_featuredStickers_addButton));
-            linearLayoutM.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-            textView3.setOnClickListener(new MessagesController$$ExternalSyntheticLambda350(this, 1));
+            linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
+            textView3.setOnClickListener(new MessagesController$$ExternalSyntheticLambda352(this, 1));
             ScrollView scrollView = new ScrollView(parentActivity);
-            scrollView.addView(linearLayoutM);
+            scrollView.addView(linearLayout);
             setCustomView(scrollView);
         }
 

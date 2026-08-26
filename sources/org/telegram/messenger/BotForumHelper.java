@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import android.content.SharedPreferences;
-import android.graphics.Paint;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -131,7 +130,7 @@ public class BotForumHelper extends BaseController {
 
     public static class TypingBotSpan extends ColoredImageSpan {
         public TypingBotSpan(TypingDotsDrawable typingDotsDrawable, int i) {
-            super(i, typingDotsDrawable);
+            super(typingDotsDrawable, i);
         }
     }
 
@@ -150,10 +149,7 @@ public class BotForumHelper extends BaseController {
         }
         SpannableStringBuilder spannableStringBuilder = charSequence instanceof SpannableStringBuilder ? (SpannableStringBuilder) charSequence : new SpannableStringBuilder(charSequence);
         TypingDotsDrawable typingDotsDrawable = new TypingDotsDrawable(true);
-        Paint paint = typingDotsDrawable.currentPaint;
-        if (paint != null) {
-            paint.setColor(-1);
-        }
+        typingDotsDrawable.setColor(-1);
         typingDotsDrawable.start();
         TypingBotSpan typingBotSpan = new TypingBotSpan(typingDotsDrawable, 1);
         typingBotSpan.setColorKey(Theme.key_chat_messageTextIn);

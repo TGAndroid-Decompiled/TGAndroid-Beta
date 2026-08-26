@@ -6,7 +6,7 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjd;
+import com.google.android.gms.internal.mlkit_language_id_common.zzir;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -17,7 +17,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AvatarDrawable;
 
@@ -43,7 +42,7 @@ public final class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateL
         ImageReceiver imageReceiver;
         String name;
         String string;
-        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
         int i = UserConfig.selectedAccount;
         this.alphaFactor = 1.0f;
         this.alphaValue = true;
@@ -55,14 +54,14 @@ public final class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateL
         ChatMessageCell chatMessageCell = quickShareSelectorDrawable.cell;
         this.cell = chatMessageCell;
         this.dialogId = j;
-        avatarDrawable.scaleSize = 1.0f;
+        avatarDrawable.setScaleSize(1.0f);
         if (DialogObject.isUserDialog(j)) {
             TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
             avatarDrawable.setInfo(i, user);
             if (UserObject.isUserSelf(user)) {
                 string = LocaleController.getString(R.string.SavedMessages);
                 avatarDrawable.setAvatarType(1);
-                avatarDrawable.scaleSize = 0.75f;
+                avatarDrawable.setScaleSize(0.75f);
                 imageReceiver = imageReceiver2;
                 imageReceiver.setImage(null, null, null, null, avatarDrawable, 0L, null, user, 0);
             } else {
@@ -112,7 +111,7 @@ public final class QuickShareAvatarCell implements ValueAnimator.AnimatorUpdateL
         float fMax = Math.max(0.0f, f3 - f6);
         float fMax2 = Math.max(0.0f, f7 - f4);
         float f11 = fMax + fMax2;
-        return f11 < 0.1f ? f9 : zzjd.m(f10, 2.0f, (fMax - fMax2) / f11, f9);
+        return f11 < 0.1f ? f9 : zzir.m(f10, 2.0f, (fMax - fMax2) / f11, f9);
     }
 
     @Override

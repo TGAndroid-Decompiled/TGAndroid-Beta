@@ -1,45 +1,38 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.BaseFragment;
+import android.view.ViewGroup;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.PurchasesResponseListener;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
 
-public final class LoginActivity$LoginPayView$$ExternalSyntheticLambda4 implements Runnable {
-    public final int $r8$classId;
-    public final LoginActivity.LoginPayView f$0;
+public final class LoginActivity$LoginPayView$$ExternalSyntheticLambda4 implements PurchasesResponseListener, MediaDataController.KeywordResultCallback {
+    public final ViewGroup f$0;
+    public final Serializable f$1;
+    public final Object f$2;
+    public final Object f$3;
+    public final Runnable f$4;
 
-    public LoginActivity$LoginPayView$$ExternalSyntheticLambda4(LoginActivity.LoginPayView loginPayView, int i) {
-        this.$r8$classId = i;
-        this.f$0 = loginPayView;
+    public LoginActivity$LoginPayView$$ExternalSyntheticLambda4(ViewGroup viewGroup, Serializable serializable, Object obj, Object obj2, Runnable runnable) {
+        this.f$0 = viewGroup;
+        this.f$1 = serializable;
+        this.f$2 = obj;
+        this.f$3 = obj2;
+        this.f$4 = runnable;
     }
 
     @Override
-    public final void run() {
-        switch (this.$r8$classId) {
-            case 0:
-                this.f$0.button.setLoading(false);
-                break;
-            case 1:
-                LoginActivity loginActivity = LoginActivity.this;
-                loginActivity.setPage(0, true, null, true);
-                loginActivity.needShowAlert(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
-                break;
-            case 2:
-                LoginActivity loginActivity2 = LoginActivity.this;
-                loginActivity2.setPage(0, true, null, true);
-                loginActivity2.needShowAlert(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), LocaleController.getString(R.string.CodeExpired));
-                break;
-            case 3:
-                this.f$0.poll$1();
-                break;
-            default:
-                LoginActivity.LoginPayView loginPayView = this.f$0;
-                loginPayView.getClass();
-                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "sms");
-                LoginActivity loginActivity3 = LoginActivity.this;
-                premiumPreviewFragment.setCurrentAccount(((BaseFragment) loginActivity3).currentAccount);
-                loginActivity3.presentFragment(premiumPreviewFragment);
-                break;
-        }
+    public void onQueryPurchasesResponse(BillingResult billingResult, List list) {
+        ((LoginActivity.LoginPayView) this.f$0).lambda$setParams$24((String) this.f$1, (TLRPC.TL_inputStorePaymentAuthCode) this.f$2, (TLRPC.TL_payments_canPurchaseStore) this.f$3, (LinkManager$$ExternalSyntheticLambda23) this.f$4, billingResult, list);
+    }
+
+    @Override
+    public void run(ArrayList arrayList, String str) {
+        ((SelectAnimatedEmojiDialog) this.f$0).lambda$search$26((LinkedHashSet) this.f$1, (HashMap) this.f$2, (ArrayList) this.f$3, this.f$4, arrayList, str);
     }
 }

@@ -9,14 +9,10 @@ import android.text.style.CharacterStyle;
 import android.text.style.URLSpan;
 import android.util.LongSparseArray;
 import android.util.SparseBooleanArray;
-import android.view.View;
-import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.MessagePreviewView;
 
@@ -369,6 +365,7 @@ public class MessagePreviewParams {
         Messages messagesCheckEdits2;
         Messages messagesCheckEdits3;
         Messages messages = this.forwardMessages;
+        boolean z2 = true;
         if (messages == null || (messagesCheckEdits3 = messages.checkEdits(arrayList)) == null) {
             z = false;
         } else {
@@ -381,62 +378,15 @@ public class MessagePreviewParams {
             z = true;
         }
         Messages messages3 = this.linkMessage;
-        if (messages3 != null && (messagesCheckEdits = messages3.checkEdits(arrayList)) != null) {
+        if (messages3 == null || (messagesCheckEdits = messages3.checkEdits(arrayList)) == null) {
+            z2 = z;
+        } else {
             this.linkMessage = messagesCheckEdits;
-            z = true;
         }
-        if (!z || (messagePreviewView = this.previewView) == null) {
+        if (!z2 || (messagePreviewView = this.previewView) == null) {
             return;
         }
-        int i = 0;
-        while (true) {
-            View[] viewArr = messagePreviewView.viewPager.viewPages;
-            if (i >= viewArr.length) {
-                return;
-            }
-            View view = viewArr[i];
-            if (view instanceof MessagePreviewView.Page) {
-                MessagePreviewView.Page page = (MessagePreviewView.Page) view;
-                int i2 = page.currentTab;
-                MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
-                if (i2 == 1) {
-                    page.messages = messagePreviewParams.forwardMessages;
-                } else if (i2 == 0) {
-                    page.messages = messagePreviewParams.replyMessage;
-                } else if (i2 == 2) {
-                    page.messages = messagePreviewParams.linkMessage;
-                }
-                page.updateMessages();
-                if (page.currentTab == 0) {
-                    boolean z2 = messagePreviewView.showOutdatedQuote;
-                    MessagePreviewView.Page.AnonymousClass4 anonymousClass4 = page.textSelectionHelper;
-                    if (!z2 || messagePreviewParams.isSecret) {
-                        messagePreviewParams.quote = null;
-                        anonymousClass4.clear(false);
-                        page.switchToQuote(false, true);
-                    } else {
-                        TextSelectionHelper.SelectableView selectableView = anonymousClass4.selectedView;
-                        MessageObject replyMessage = page.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                        if (replyMessage != null) {
-                            messagePreviewParams.quoteStart = 0;
-                            int iMin = Math.min(MessagesController.getInstance(messagePreviewView.currentAccount).quoteLengthMax, replyMessage.messageOwner.message.length());
-                            messagePreviewParams.quoteEnd = iMin;
-                            messagePreviewParams.quote = ChatActivity.ReplyQuote.from(messagePreviewParams.quoteStart, iMin, replyMessage);
-                            View replyMessageCell = page.getReplyMessageCell();
-                            if (replyMessageCell instanceof ChatMessageCell) {
-                                anonymousClass4.select((ChatMessageCell) replyMessageCell, messagePreviewParams.quoteStart, messagePreviewParams.quoteEnd);
-                            }
-                        }
-                    }
-                    page.updateSubtitle(true);
-                }
-                MessagePreviewView.ToggleButton toggleButton = page.changeSizeBtn;
-                if (toggleButton != null) {
-                    toggleButton.animate().alpha(messagePreviewParams.hasMedia ? 1.0f : 0.5f).start();
-                }
-            }
-            i++;
-        }
+        messagePreviewView.updateAll();
     }
 
     public int getForwardedMessagesCount() {
@@ -535,10 +485,11 @@ public class MessagePreviewParams {
         TLRPC.Message message;
         TLRPC.MessageMedia messageMedia2;
         TLRPC.Message message2;
+        boolean z = false;
         this.hasMedia = false;
         this.isVideo = false;
         this.singleLink = true;
-        boolean z = this.webpage != webPage;
+        boolean z2 = this.webpage != webPage;
         this.webpage = webPage;
         if (TextUtils.isEmpty(charSequence) && this.webpage == null) {
             this.linkMessage = null;
@@ -547,7 +498,7 @@ public class MessagePreviewParams {
                 charSequence = "";
             }
             Messages messages = this.linkMessage;
-            boolean z2 = messages == null || z;
+            boolean z3 = messages == null || z2;
             if (messages == null && messageObject2 != null && (message2 = messageObject2.messageOwner) != null) {
                 this.webpageTop = message2.invert_media;
                 TLRPC.MessageMedia messageMedia3 = message2.media;
@@ -571,9 +522,9 @@ public class MessagePreviewParams {
                 TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
                 tL_message.media = tL_messageMediaWebPage;
                 tL_messageMediaWebPage.webpage = webPage;
-                boolean z3 = this.webpageSmall;
-                tL_messageMediaWebPage.force_large_media = !z3;
-                tL_messageMediaWebPage.force_small_media = z3;
+                boolean z4 = this.webpageSmall;
+                tL_messageMediaWebPage.force_large_media = !z4;
+                tL_messageMediaWebPage.force_small_media = z4;
                 this.hasMedia = webPage.photo != null;
                 this.isVideo = MessageObject.isVideoDocument(webPage.document);
             } else {
@@ -586,13 +537,13 @@ public class MessagePreviewParams {
                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                 tL_message.reply_to = tL_messageReplyHeader;
                 if (replyQuote != null) {
-                    tL_messageReplyHeader.quote_text = replyQuote.text;
-                    int i2 = tL_messageReplyHeader.flags;
-                    tL_messageReplyHeader.flags = i2 | 64;
-                    ArrayList<TLRPC.MessageEntity> arrayList = replyQuote.entities;
-                    tL_messageReplyHeader.quote_entities = arrayList;
-                    if (arrayList != null) {
-                        tL_messageReplyHeader.flags = i2 | 192;
+                    tL_messageReplyHeader.quote_text = replyQuote.getText();
+                    TLRPC.MessageReplyHeader messageReplyHeader = tL_message.reply_to;
+                    messageReplyHeader.flags |= 64;
+                    messageReplyHeader.quote_entities = replyQuote.getEntities();
+                    TLRPC.MessageReplyHeader messageReplyHeader2 = tL_message.reply_to;
+                    if (messageReplyHeader2.quote_entities != null) {
+                        messageReplyHeader2.flags |= 128;
                     }
                 }
             }
@@ -615,50 +566,25 @@ public class MessagePreviewParams {
                     this.singleLink = uRLSpanArr2 == null || uRLSpanArr2.length <= 1;
                 }
                 this.hasMedia = messageObject3.hasLinkMediaToMakeSmall();
-                if (z2 && messageObject2 != null && (message = messageObject2.messageOwner) != null && (messageMedia2 = message.media) != null) {
-                    this.webpageSmall = messageMedia2.force_small_media || (messageObject3.isLinkMediaSmall() && !messageObject2.messageOwner.media.force_large_media);
-                } else if (z2) {
+                if (z3 && messageObject2 != null && (message = messageObject2.messageOwner) != null && (messageMedia2 = message.media) != null) {
+                    if (messageMedia2.force_small_media || (messageObject3.isLinkMediaSmall() && !messageObject2.messageOwner.media.force_large_media)) {
+                        z = true;
+                    }
+                    this.webpageSmall = z;
+                } else if (z3) {
                     this.webpageSmall = messageObject3.isLinkMediaSmall();
                 }
                 TLRPC.Message message3 = messageObject3.messageOwner;
                 if (message3 != null && (messageMedia = message3.media) != null) {
-                    boolean z4 = this.webpageSmall;
-                    messageMedia.force_large_media = !z4;
-                    messageMedia.force_small_media = z4;
+                    boolean z5 = this.webpageSmall;
+                    messageMedia.force_large_media = !z5;
+                    messageMedia.force_small_media = z5;
                 }
             }
         }
         MessagePreviewView messagePreviewView = this.previewView;
-        if (messagePreviewView == null) {
-            return;
-        }
-        int i3 = 0;
-        while (true) {
-            View[] viewArr = messagePreviewView.viewPager.viewPages;
-            if (i3 >= viewArr.length) {
-                return;
-            }
-            View view = viewArr[i3];
-            if (view != null) {
-                MessagePreviewView.Page page = (MessagePreviewView.Page) view;
-                if (page.currentTab == 2) {
-                    FrameLayout frameLayout = page.changeSizeBtnContainer;
-                    MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
-                    frameLayout.setVisibility((!messagePreviewParams.singleLink || messagePreviewParams.hasMedia) ? 0 : 8);
-                    int i4 = messagePreviewParams.isVideo ? 4 : 0;
-                    MessagePreviewView.ToggleButton toggleButton = page.changeSizeBtn;
-                    toggleButton.setVisibility(i4);
-                    int i5 = messagePreviewParams.isVideo ? 0 : 4;
-                    MessagePreviewView.ToggleButton toggleButton2 = page.videoChangeSizeBtn;
-                    toggleButton2.setVisibility(i5);
-                    frameLayout.animate().alpha(messagePreviewParams.hasMedia ? 1.0f : 0.5f).start();
-                    toggleButton.setState(messagePreviewParams.webpageSmall, true);
-                    toggleButton2.setState(messagePreviewParams.webpageSmall, true);
-                    page.changePositionBtn.setState(!messagePreviewParams.webpageTop, true);
-                    page.updateMessages();
-                }
-            }
-            i3++;
+        if (messagePreviewView != null) {
+            messagePreviewView.updateLink();
         }
     }
 

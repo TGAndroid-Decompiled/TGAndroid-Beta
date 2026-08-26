@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -17,14 +16,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.app.ActivityCompat$$ExternalSyntheticLambda0;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
 import com.google.android.exoplayer2.util.Log;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
-import com.google.firebase.crashlytics.internal.common.CrashlyticsCore$$ExternalSyntheticLambda0;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
+import com.google.firebase.messaging.FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
@@ -33,23 +32,22 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticLambda120;
 import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticLambda137;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.DarkAlertDialog;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda16;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda21;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
+import org.telegram.ui.Cells.AboutLinkCell$$ExternalSyntheticLambda1;
+import org.telegram.ui.Cells.PhotoEditToolCell$$ExternalSyntheticLambda0;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Components.AlertsCreator$$ExternalSyntheticLambda201;
+import org.telegram.ui.Components.AlertsCreator$$ExternalSyntheticLambda249;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.Bulletin;
@@ -57,17 +55,17 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.SearchTagsList$$ExternalSyntheticLambda10;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.URLSpanCopyToClipboard;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
+import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
 import org.telegram.ui.Gifts.AuctionBidSheet$$ExternalSyntheticLambda15;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda11;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda52;
-import org.telegram.ui.StickersActivity;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda46;
 
 public final class BusinessLinksActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
     public static AlertDialog currentDialog;
@@ -90,7 +88,7 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
             imageView.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f));
             imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(36.0f), Theme.getColor(null, Theme.key_featuredStickers_addButton, false)));
-            imageView.setOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 11));
+            imageView.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 7));
             addView(imageView, LayoutHelper.createFrameRelatively(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.titleTextView = simpleTextView;
@@ -105,7 +103,7 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
             simpleTextView2.setTextColor(Theme.getColor(null, i, false));
             simpleTextView2.setGravity(LocaleController.isRTL ? 3 : 5);
             addView(simpleTextView2, LayoutHelper.createFrameRelatively(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
-            SpoilersTextView spoilersTextView = new SpoilersTextView(context, null, true);
+            SpoilersTextView spoilersTextView = new SpoilersTextView(context, true, null);
             this.messagePreviewTextView = spoilersTextView;
             spoilersTextView.setTextSize(1, 13.0f);
             spoilersTextView.setMaxLines(1);
@@ -195,54 +193,47 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
         return b == 2 ? 2 : 1;
     }
 
-    public static void openRenameAlert(Activity activity, int i, TL_account.TL_businessChatLink tL_businessChatLink, final Theme.ResourcesProvider resourcesProvider) {
+    public static void openRenameAlert(Context context, int i, TL_account.TL_businessChatLink tL_businessChatLink, final Theme.ResourcesProvider resourcesProvider) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        Activity activityFindActivity = AndroidUtilities.findActivity(activity);
+        Activity activityFindActivity = AndroidUtilities.findActivity(context);
         View currentFocus = activityFindActivity != null ? activityFindActivity.getCurrentFocus() : null;
+        int i2 = 0;
         boolean z = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f);
         View view = currentFocus;
         AlertDialog[] alertDialogArr = new AlertDialog[1];
-        AlertDialog.Builder builder = z ? new AlertDialogDecor.Builder(activity, 0, resourcesProvider) : new AlertDialog.Builder(activity, 0, resourcesProvider);
-        String string = LocaleController.getString(R.string.BusinessLinksRenameTitle);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(activity) {
+        AlertDialog.Builder builder = z ? new DarkAlertDialog.Builder(context, i2, resourcesProvider) : new AlertDialog.Builder(context, 0, resourcesProvider);
+        builder.setTitle(LocaleController.getString(R.string.BusinessLinksRenameTitle));
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
             public final AnimatedTextView.AnimatedTextDrawable limit;
             public final AnimatedColor limitColor = new AnimatedColor(this);
             public int limitCount;
 
             {
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
                 this.limit = animatedTextDrawable;
-                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                animatedTextDrawable.moveAmplitude = 0.2f;
-                animatedTextDrawable.animateDuration = 160L;
-                animatedTextDrawable.animateWave = 1.0f;
-                animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+                animatedTextDrawable.setAnimationProperties(0.2f, 0L, 160L, CubicBezierInterpolator.EASE_OUT_QUINT);
                 animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.33f));
                 animatedTextDrawable.setCallback(this);
-                animatedTextDrawable.gravity = 5;
+                animatedTextDrawable.setGravity(5);
             }
 
             @Override
             public final void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-                int i2 = this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider), false);
-                animatedTextDrawable.textPaint.setColor(i2);
-                animatedTextDrawable.alpha = Color.alpha(i2);
+                animatedTextDrawable.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
                 animatedTextDrawable.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
                 animatedTextDrawable.draw(canvas);
             }
 
             @Override
-            public final void onMeasure(int i2, int i3) {
-                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+            public final void onMeasure(int i3, int i4) {
+                super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
             }
 
             @Override
-            public final void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                super.onTextChanged(charSequence, i2, i3, i4);
+            public final void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+                super.onTextChanged(charSequence, i3, i4, i5);
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
                 if (animatedTextDrawable != null) {
                     this.limitCount = 32 - charSequence.length();
@@ -251,7 +242,7 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
                     if (this.limitCount <= 4) {
                         str = "" + this.limitCount;
                     }
-                    animatedTextDrawable.setText(str, true, true);
+                    animatedTextDrawable.setText(str);
                 }
             }
 
@@ -264,8 +255,8 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
         editTextBoldCursor.setInputType(49153);
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setText(tL_businessChatLink.title);
-        int i2 = Theme.key_dialogTextBlack;
-        editTextBoldCursor.setTextColor(Theme.getColor(i2, resourcesProvider));
+        int i3 = Theme.key_dialogTextBlack;
+        editTextBoldCursor.setTextColor(Theme.getColor(i3, resourcesProvider));
         editTextBoldCursor.setHintColor(Theme.getColor(Theme.key_groupcreate_hintText, resourcesProvider));
         editTextBoldCursor.setCursorColor(Theme.getColor(null, Theme.key_chat_messagePanelCursor, false));
         editTextBoldCursor.setHintText(LocaleController.getString(R.string.BusinessLinksNamePlaceholder));
@@ -275,28 +266,31 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
         editTextBoldCursor.setImeOptions(6);
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setPadding(0, 0, AndroidUtilities.dp(42.0f), 0);
-        LinearLayout linearLayoutM = FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(activity, 1);
-        TextView textView = new TextView(activity);
-        OKLCH.m(i2, resourcesProvider, textView, 16.0f);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
+        TextView textView = new TextView(context);
+        OKLCH.m(i3, resourcesProvider, textView, 16.0f);
         textView.setText(LocaleController.getString(R.string.BusinessLinksRenameMessage));
-        linearLayoutM.addView(textView, LayoutHelper.createLinear(24.0f, 5.0f, 24.0f, 12.0f, -1, -2));
-        linearLayoutM.addView(editTextBoldCursor, LayoutHelper.createLinear(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
+        linearLayoutM.addView(textView, LayoutHelper.createLinear(-1, -2, 24.0f, 5.0f, 24.0f, 12.0f));
+        linearLayoutM.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
         builder.setView(linearLayoutM);
-        alertDialog.customWidth = AndroidUtilities.dp(292.0f);
-        editTextBoldCursor.setOnEditorActionListener(new AlertsCreator$$ExternalSyntheticLambda201(editTextBoldCursor, i, tL_businessChatLink, alertDialogArr, view, 1));
-        builder.setPositiveButton(LocaleController.getString(R.string.Done), new PassportActivity$$ExternalSyntheticLambda52(editTextBoldCursor, i, tL_businessChatLink, 5));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new CrashlyticsCore$$ExternalSyntheticLambda0(29));
+        builder.setWidth(AndroidUtilities.dp(292.0f));
+        editTextBoldCursor.setOnEditorActionListener(new AlertsCreator$$ExternalSyntheticLambda249(editTextBoldCursor, i, tL_businessChatLink, alertDialogArr, view, 1));
+        builder.setPositiveButton(LocaleController.getString(R.string.Done), new VoIPService$$ExternalSyntheticLambda120(editTextBoldCursor, i, tL_businessChatLink, 5));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), new FirebaseMessaging$AutoInit$$ExternalSyntheticLambda0(16));
         if (z) {
-            currentDialog = alertDialog;
-            alertDialogArr[0] = alertDialog;
-            alertDialog.setOnDismissListener(new SearchTagsList$$ExternalSyntheticLambda10(1, view));
+            AlertDialog alertDialogCreate = builder.create();
+            currentDialog = alertDialogCreate;
+            alertDialogArr[0] = alertDialogCreate;
+            alertDialogCreate.setOnDismissListener(new QuickRepliesActivity$$ExternalSyntheticLambda9(view, 1));
             currentDialog.setOnShowListener(new AuctionBidSheet$$ExternalSyntheticLambda15(1, editTextBoldCursor));
             currentDialog.showDelayed(250L);
         } else {
-            alertDialog.overridenDissmissListener = new ArticleViewer$$ExternalSyntheticLambda21(6, view, editTextBoldCursor);
-            alertDialogArr[0] = alertDialog;
-            alertDialog.setOnDismissListener(new OAuthSheet$$ExternalSyntheticLambda11(editTextBoldCursor, 2));
-            alertDialogArr[0].setOnShowListener(new VoIPService$$ExternalSyntheticLambda137(view, editTextBoldCursor, 1));
+            builder.overrideDismissListener(new GiftSheet$$ExternalSyntheticLambda4(5, view, editTextBoldCursor));
+            AlertDialog alertDialogCreate2 = builder.create();
+            alertDialogArr[0] = alertDialogCreate2;
+            int i4 = 1;
+            alertDialogCreate2.setOnDismissListener(new RichEditor$$ExternalSyntheticLambda46(editTextBoldCursor, i4));
+            alertDialogArr[0].setOnShowListener(new VoIPService$$ExternalSyntheticLambda137(view, editTextBoldCursor, i4));
             alertDialogArr[0].show();
         }
         alertDialogArr[0].dismissDialogByButtons = false;
@@ -307,11 +301,8 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
     public final View createView(Context context) {
         super.createView(context);
         this.listView.setSections();
-        UniversalFragment.AnonymousClass3 anonymousClass3 = this.listView;
-        anonymousClass3.adapter.applyBackground = false;
-        ActionBar actionBar = this.actionBar;
-        actionBar.getClass();
-        actionBar.setAdaptiveBackground(anonymousClass3, true, Theme.key_windowBackgroundGray, Theme.key_actionBarDefault);
+        this.listView.adapter.setApplyBackground(false);
+        this.actionBar.setAdaptiveBackground(this.listView, true);
         return this.fragmentView;
     }
 
@@ -319,8 +310,8 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
     public final void didReceivedNotification(int i, int i2, Object... objArr) {
         UniversalAdapter universalAdapter;
         if (i == NotificationCenter.businessLinksUpdated || i == NotificationCenter.privacyRulesUpdated) {
-            UniversalFragment.AnonymousClass3 anonymousClass3 = this.listView;
-            if (anonymousClass3 == null || (universalAdapter = anonymousClass3.adapter) == null) {
+            UniversalRecyclerView universalRecyclerView = this.listView;
+            if (universalRecyclerView == null || (universalAdapter = universalRecyclerView.adapter) == null) {
                 return;
             }
             universalAdapter.update(true);
@@ -328,7 +319,7 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
         }
         if (i != NotificationCenter.businessLinkCreated) {
             if (i == NotificationCenter.needDeleteBusinessLink) {
-                BusinessLinksController.getInstance(this.currentAccount).deleteLinkUndoable(((TL_account.TL_businessChatLink) objArr[0]).link, this);
+                BusinessLinksController.getInstance(this.currentAccount).deleteLinkUndoable(this, ((TL_account.TL_businessChatLink) objArr[0]).link);
             }
         } else {
             TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) objArr[0];
@@ -339,33 +330,21 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
     }
 
     @Override
-    public final void fillItems$1(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    public final void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         int i = 0;
-        String string = LocaleController.getString(R.string.BusinessLinks);
-        String string2 = LocaleController.getString(R.string.BusinessLinksInfo);
-        int i2 = R.raw.biz_links;
-        UItem uItem = new UItem(2);
-        uItem.text = string;
-        uItem.animatedText = string2;
-        uItem.iconResId = i2;
-        arrayList.add(uItem);
+        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessLinks), LocaleController.getString(R.string.BusinessLinksInfo), R.raw.biz_links));
         universalAdapter.whiteSectionStart();
         BusinessLinksController businessLinksController = BusinessLinksController.getInstance(this.currentAccount);
         if (businessLinksController.links.size() < MessagesController.getInstance(businessLinksController.currentAccount).businessChatLinksLimit) {
-            UItem uItemAsButton = UItem.asButton(1, R.drawable.menu_link_create, LocaleController.getString(R.string.BusinessLinksAdd));
-            uItemAsButton.accent = true;
-            arrayList.add(uItemAsButton);
+            arrayList.add(UItem.asButton(1, R.drawable.menu_link_create, LocaleController.getString(R.string.BusinessLinksAdd)).accent());
         }
         ArrayList arrayList2 = BusinessLinksController.getInstance(this.currentAccount).links;
         int size = arrayList2.size();
-        int i3 = 0;
-        while (i3 < size) {
-            Object obj = arrayList2.get(i3);
-            i3++;
-            BusinessLinkWrapper businessLinkWrapper = new BusinessLinkWrapper((TL_account.TL_businessChatLink) obj);
-            UItem uItem2 = new UItem(29);
-            uItem2.object = businessLinkWrapper;
-            arrayList.add(uItem2);
+        int i2 = 0;
+        while (i2 < size) {
+            Object obj = arrayList2.get(i2);
+            i2++;
+            arrayList.add(UItem.asBusinessChatLink(new BusinessLinkWrapper((TL_account.TL_businessChatLink) obj)));
         }
         universalAdapter.whiteSectionEnd();
         TLRPC.User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
@@ -385,21 +364,19 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
         if (arrayList3.isEmpty()) {
             return;
         }
-        String string3 = arrayList3.size() == 2 ? LocaleController.formatString(R.string.BusinessLinksFooterTwoLinks, arrayList3.get(0), arrayList3.get(1)) : LocaleController.formatString(R.string.BusinessLinksFooterOneLink, arrayList3.get(0));
-        SpannableString spannableString = new SpannableString(string3);
+        String string = arrayList3.size() == 2 ? LocaleController.formatString(R.string.BusinessLinksFooterTwoLinks, arrayList3.get(0), arrayList3.get(1)) : LocaleController.formatString(R.string.BusinessLinksFooterOneLink, arrayList3.get(0));
+        SpannableString spannableString = new SpannableString(string);
         int size2 = arrayList3.size();
         while (i < size2) {
             Object obj2 = arrayList3.get(i);
             i++;
             String str = (String) obj2;
-            int iIndexOf = string3.indexOf(str);
+            int iIndexOf = string.indexOf(str);
             if (iIndexOf > -1) {
-                spannableString.setSpan(new StickersActivity.AnonymousClass4(zzil.m("https://", str), this), iIndexOf, str.length() + iIndexOf, 33);
+                spannableString.setSpan(new URLSpanCopyToClipboard(zzii.m("https://", str), this), iIndexOf, str.length() + iIndexOf, 33);
             }
         }
-        UItem uItem3 = new UItem(7);
-        uItem3.text = spannableString;
-        arrayList.add(uItem3);
+        arrayList.add(UItem.asShadow(spannableString));
     }
 
     @Override
@@ -408,11 +385,11 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
     }
 
     public final void lambda$onLongClick$10(TL_account.TL_businessChatLink tL_businessChatLink) {
-        openRenameAlert(getParentActivity(), this.currentAccount, tL_businessChatLink, this.resourceProvider);
+        openRenameAlert(getContext(), this.currentAccount, tL_businessChatLink, this.resourceProvider);
     }
 
     public final void lambda$onLongClick$11(TL_account.TL_businessChatLink tL_businessChatLink) {
-        BusinessLinksController.getInstance(this.currentAccount).deleteLinkUndoable(tL_businessChatLink.link, this);
+        BusinessLinksController.getInstance(this.currentAccount).deleteLinkUndoable(this, tL_businessChatLink.link);
     }
 
     @Override
@@ -429,14 +406,14 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
     }
 
     @Override
-    public final void onClick$1(UItem uItem, View view) {
+    public final void onClick(UItem uItem, View view, int i, float f, float f2) {
         if (uItem.id == 1) {
             BusinessLinksController businessLinksController = BusinessLinksController.getInstance(this.currentAccount);
             TL_account.createBusinessChatLink createbusinesschatlink = new TL_account.createBusinessChatLink();
             TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
             createbusinesschatlink.link = tL_inputBusinessChatLink;
             tL_inputBusinessChatLink.message = "";
-            ConnectionsManager.getInstance(businessLinksController.currentAccount).sendRequest(createbusinesschatlink, new BusinessLinksController$$ExternalSyntheticLambda1(businessLinksController, 1));
+            ConnectionsManager.getInstance(businessLinksController.currentAccount).sendRequest(createbusinesschatlink, new BusinessLinksController$$ExternalSyntheticLambda0(businessLinksController, 0));
             return;
         }
         if (uItem.viewType == 29) {
@@ -471,149 +448,129 @@ public final class BusinessLinksActivity extends UniversalFragment implements No
         getNotificationCenter().removeObserver(this, NotificationCenter.businessLinkCreated);
         getNotificationCenter().removeObserver(this, NotificationCenter.needDeleteBusinessLink);
         getNotificationCenter().removeObserver(this, NotificationCenter.privacyRulesUpdated);
-        Bulletin bulletin = Bulletin.visibleBulletin;
-        if (bulletin != null) {
-            bulletin.hide();
-        }
+        Bulletin.hideVisible();
         super.onFragmentDestroy();
     }
 
     @Override
-    public final boolean onLongClick(UItem uItem, View view) {
-        if (uItem.viewType == 29) {
-            Object obj = uItem.object;
-            if (obj instanceof BusinessLinkWrapper) {
-                final TL_account.TL_businessChatLink tL_businessChatLink = ((BusinessLinkWrapper) obj).link;
-                ItemOptions itemOptions = new ItemOptions(this, view, false, true);
-                itemOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new ArticleViewer$$ExternalSyntheticLambda3(tL_businessChatLink, 13), false);
-                final int i = 0;
-                itemOptions.add(R.drawable.msg_share, LocaleController.getString(R.string.LinkActionShare), new Runnable(this) {
-                    public final BusinessLinksActivity f$0;
-
-                    {
-                        this.f$0 = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        switch (i) {
-                            case 0:
-                                BusinessLinksActivity businessLinksActivity = this.f$0;
-                                businessLinksActivity.getClass();
-                                Intent intent = new Intent(businessLinksActivity.getParentActivity(), (Class<?>) LaunchActivity.class);
-                                intent.setAction("android.intent.action.SEND");
-                                intent.setType("text/plain");
-                                intent.putExtra("android.intent.extra.TEXT", tL_businessChatLink.link);
-                                businessLinksActivity.startActivityForResult(intent, 500);
-                                break;
-                            case 1:
-                                this.f$0.lambda$onLongClick$10(tL_businessChatLink);
-                                break;
-                            default:
-                                BusinessLinksActivity businessLinksActivity2 = this.f$0;
-                                AlertDialog.Builder builder = new AlertDialog.Builder(businessLinksActivity2.getParentActivity(), 0, businessLinksActivity2.getResourceProvider());
-                                String string = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
-                                AlertDialog alertDialog = builder.alertDialog;
-                                alertDialog.title = string;
-                                alertDialog.message = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
-                                builder.setPositiveButton(LocaleController.getString(R.string.Remove), new ArticleViewer$$ExternalSyntheticLambda16(21, businessLinksActivity2, tL_businessChatLink));
-                                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                                businessLinksActivity2.showDialog(alertDialog);
-                                TextView textView = (TextView) alertDialog.getButton(-1);
-                                if (textView != null) {
-                                    textView.setTextColor(businessLinksActivity2.getThemedColor(Theme.key_text_RedBold));
-                                }
-                                break;
-                        }
-                    }
-                }, false);
-                final int i2 = 1;
-                itemOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.Rename), new Runnable(this) {
-                    public final BusinessLinksActivity f$0;
-
-                    {
-                        this.f$0 = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        switch (i2) {
-                            case 0:
-                                BusinessLinksActivity businessLinksActivity = this.f$0;
-                                businessLinksActivity.getClass();
-                                Intent intent = new Intent(businessLinksActivity.getParentActivity(), (Class<?>) LaunchActivity.class);
-                                intent.setAction("android.intent.action.SEND");
-                                intent.setType("text/plain");
-                                intent.putExtra("android.intent.extra.TEXT", tL_businessChatLink.link);
-                                businessLinksActivity.startActivityForResult(intent, 500);
-                                break;
-                            case 1:
-                                this.f$0.lambda$onLongClick$10(tL_businessChatLink);
-                                break;
-                            default:
-                                BusinessLinksActivity businessLinksActivity2 = this.f$0;
-                                AlertDialog.Builder builder = new AlertDialog.Builder(businessLinksActivity2.getParentActivity(), 0, businessLinksActivity2.getResourceProvider());
-                                String string = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
-                                AlertDialog alertDialog = builder.alertDialog;
-                                alertDialog.title = string;
-                                alertDialog.message = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
-                                builder.setPositiveButton(LocaleController.getString(R.string.Remove), new ArticleViewer$$ExternalSyntheticLambda16(21, businessLinksActivity2, tL_businessChatLink));
-                                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                                businessLinksActivity2.showDialog(alertDialog);
-                                TextView textView = (TextView) alertDialog.getButton(-1);
-                                if (textView != null) {
-                                    textView.setTextColor(businessLinksActivity2.getThemedColor(Theme.key_text_RedBold));
-                                }
-                                break;
-                        }
-                    }
-                }, false);
-                final int i3 = 2;
-                itemOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new Runnable(this) {
-                    public final BusinessLinksActivity f$0;
-
-                    {
-                        this.f$0 = this;
-                    }
-
-                    @Override
-                    public final void run() {
-                        switch (i3) {
-                            case 0:
-                                BusinessLinksActivity businessLinksActivity = this.f$0;
-                                businessLinksActivity.getClass();
-                                Intent intent = new Intent(businessLinksActivity.getParentActivity(), (Class<?>) LaunchActivity.class);
-                                intent.setAction("android.intent.action.SEND");
-                                intent.setType("text/plain");
-                                intent.putExtra("android.intent.extra.TEXT", tL_businessChatLink.link);
-                                businessLinksActivity.startActivityForResult(intent, 500);
-                                break;
-                            case 1:
-                                this.f$0.lambda$onLongClick$10(tL_businessChatLink);
-                                break;
-                            default:
-                                BusinessLinksActivity businessLinksActivity2 = this.f$0;
-                                AlertDialog.Builder builder = new AlertDialog.Builder(businessLinksActivity2.getParentActivity(), 0, businessLinksActivity2.getResourceProvider());
-                                String string = LocaleController.getString(R.string.BusinessLinksDeleteTitle);
-                                AlertDialog alertDialog = builder.alertDialog;
-                                alertDialog.title = string;
-                                alertDialog.message = LocaleController.getString(R.string.BusinessLinksDeleteMessage);
-                                builder.setPositiveButton(LocaleController.getString(R.string.Remove), new ArticleViewer$$ExternalSyntheticLambda16(21, businessLinksActivity2, tL_businessChatLink));
-                                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                                businessLinksActivity2.showDialog(alertDialog);
-                                TextView textView = (TextView) alertDialog.getButton(-1);
-                                if (textView != null) {
-                                    textView.setTextColor(businessLinksActivity2.getThemedColor(Theme.key_text_RedBold));
-                                }
-                                break;
-                        }
-                    }
-                }, true);
-                itemOptions.setScrimViewBackground(this.listView.getClipBackground(view, false));
-                itemOptions.show();
-                return true;
-            }
+    public final boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
+        if (uItem.viewType != 29) {
+            return false;
         }
-        return false;
+        Object obj = uItem.object;
+        if (!(obj instanceof BusinessLinkWrapper)) {
+            return false;
+        }
+        final TL_account.TL_businessChatLink tL_businessChatLink = ((BusinessLinkWrapper) obj).link;
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, view);
+        itemOptionsMakeOptions.add(R.drawable.msg_copy, LocaleController.getString(R.string.Copy), new ActivityCompat$$ExternalSyntheticLambda0(tL_businessChatLink, 29));
+        final int i2 = 0;
+        itemOptionsMakeOptions.add(R.drawable.msg_share, LocaleController.getString(R.string.LinkActionShare), new Runnable(this) {
+            public final BusinessLinksActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (i2) {
+                    case 0:
+                        BusinessLinksActivity businessLinksActivity = this.f$0;
+                        businessLinksActivity.getClass();
+                        Intent intent = new Intent(businessLinksActivity.getContext(), (Class<?>) LaunchActivity.class);
+                        intent.setAction("android.intent.action.SEND");
+                        intent.setType("text/plain");
+                        intent.putExtra("android.intent.extra.TEXT", tL_businessChatLink.link);
+                        businessLinksActivity.startActivityForResult(intent, 500);
+                        break;
+                    case 1:
+                        this.f$0.lambda$onLongClick$10(tL_businessChatLink);
+                        break;
+                    default:
+                        BusinessLinksActivity businessLinksActivity2 = this.f$0;
+                        AlertDialog alertDialogCreate = new AlertDialog.Builder(businessLinksActivity2.getContext(), 0, businessLinksActivity2.getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessLinksDeleteTitle)).setMessage(LocaleController.getString(R.string.BusinessLinksDeleteMessage)).setPositiveButton(LocaleController.getString(R.string.Remove), new PhotoEditToolCell$$ExternalSyntheticLambda0(27, businessLinksActivity2, tL_businessChatLink)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
+                        businessLinksActivity2.showDialog(alertDialogCreate);
+                        TextView textView = (TextView) alertDialogCreate.getButton(-1);
+                        if (textView != null) {
+                            textView.setTextColor(businessLinksActivity2.getThemedColor(Theme.key_text_RedBold));
+                        }
+                        break;
+                }
+            }
+        });
+        final int i3 = 1;
+        itemOptionsMakeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.Rename), new Runnable(this) {
+            public final BusinessLinksActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (i3) {
+                    case 0:
+                        BusinessLinksActivity businessLinksActivity = this.f$0;
+                        businessLinksActivity.getClass();
+                        Intent intent = new Intent(businessLinksActivity.getContext(), (Class<?>) LaunchActivity.class);
+                        intent.setAction("android.intent.action.SEND");
+                        intent.setType("text/plain");
+                        intent.putExtra("android.intent.extra.TEXT", tL_businessChatLink.link);
+                        businessLinksActivity.startActivityForResult(intent, 500);
+                        break;
+                    case 1:
+                        this.f$0.lambda$onLongClick$10(tL_businessChatLink);
+                        break;
+                    default:
+                        BusinessLinksActivity businessLinksActivity2 = this.f$0;
+                        AlertDialog alertDialogCreate = new AlertDialog.Builder(businessLinksActivity2.getContext(), 0, businessLinksActivity2.getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessLinksDeleteTitle)).setMessage(LocaleController.getString(R.string.BusinessLinksDeleteMessage)).setPositiveButton(LocaleController.getString(R.string.Remove), new PhotoEditToolCell$$ExternalSyntheticLambda0(27, businessLinksActivity2, tL_businessChatLink)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
+                        businessLinksActivity2.showDialog(alertDialogCreate);
+                        TextView textView = (TextView) alertDialogCreate.getButton(-1);
+                        if (textView != null) {
+                            textView.setTextColor(businessLinksActivity2.getThemedColor(Theme.key_text_RedBold));
+                        }
+                        break;
+                }
+            }
+        });
+        final int i4 = 2;
+        itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, new Runnable(this) {
+            public final BusinessLinksActivity f$0;
+
+            {
+                this.f$0 = this;
+            }
+
+            @Override
+            public final void run() {
+                switch (i4) {
+                    case 0:
+                        BusinessLinksActivity businessLinksActivity = this.f$0;
+                        businessLinksActivity.getClass();
+                        Intent intent = new Intent(businessLinksActivity.getContext(), (Class<?>) LaunchActivity.class);
+                        intent.setAction("android.intent.action.SEND");
+                        intent.setType("text/plain");
+                        intent.putExtra("android.intent.extra.TEXT", tL_businessChatLink.link);
+                        businessLinksActivity.startActivityForResult(intent, 500);
+                        break;
+                    case 1:
+                        this.f$0.lambda$onLongClick$10(tL_businessChatLink);
+                        break;
+                    default:
+                        BusinessLinksActivity businessLinksActivity2 = this.f$0;
+                        AlertDialog alertDialogCreate = new AlertDialog.Builder(businessLinksActivity2.getContext(), 0, businessLinksActivity2.getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessLinksDeleteTitle)).setMessage(LocaleController.getString(R.string.BusinessLinksDeleteMessage)).setPositiveButton(LocaleController.getString(R.string.Remove), new PhotoEditToolCell$$ExternalSyntheticLambda0(27, businessLinksActivity2, tL_businessChatLink)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
+                        businessLinksActivity2.showDialog(alertDialogCreate);
+                        TextView textView = (TextView) alertDialogCreate.getButton(-1);
+                        if (textView != null) {
+                            textView.setTextColor(businessLinksActivity2.getThemedColor(Theme.key_text_RedBold));
+                        }
+                        break;
+                }
+            }
+        });
+        itemOptionsMakeOptions.setScrimViewBackground(this.listView.getClipBackground(view));
+        itemOptionsMakeOptions.show();
+        return true;
     }
 }

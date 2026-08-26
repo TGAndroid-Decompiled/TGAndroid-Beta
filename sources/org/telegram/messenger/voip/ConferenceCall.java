@@ -2,10 +2,10 @@ package org.telegram.messenger.voip;
 
 import android.text.TextUtils;
 import android.util.LongSparseArray;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import j$.util.DesugarArrays;
 import j$.util.stream.Collectors;
 import java.util.ArrayList;
@@ -29,9 +29,9 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda51;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda177;
-import org.telegram.ui.ReportBottomSheet$$ExternalSyntheticLambda15;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda22;
+import org.telegram.ui.ReportBottomSheet$$ExternalSyntheticLambda25;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda15;
 
 public class ConferenceCall {
     public static final int PERMISSION_ADD = 1;
@@ -67,7 +67,7 @@ public class ConferenceCall {
             StringBuilder sb = new StringBuilder("CallParticipant{user_id=");
             sb.append(this.user_id);
             sb.append(", public_key_id=");
-            return SurfaceContainer$$ExternalSyntheticOutline0.m(sb, this.public_key_id, "}");
+            return Fragment$$ExternalSyntheticOutline0.m(sb, this.public_key_id, "}");
         }
     }
 
@@ -91,7 +91,7 @@ public class ConferenceCall {
         }
 
         public String toString() {
-            StringBuilder sb = new StringBuilder(SurfaceContainer$$ExternalSyntheticOutline0.m(this.height, ", participants=[", new StringBuilder("CallState{height=")));
+            StringBuilder sb = new StringBuilder(Fragment$$ExternalSyntheticOutline0.m(this.height, ", participants=[", new StringBuilder("CallState{height=")));
             for (int i = 0; i < this.participants.length; i++) {
                 if (i > 0) {
                     sb.append(", ");
@@ -131,7 +131,7 @@ public class ConferenceCall {
         String[] words;
 
         public String toString() {
-            StringBuilder sb = new StringBuilder(SurfaceContainer$$ExternalSyntheticOutline0.m(this.height, ", words=[", new StringBuilder("CallVerificationWords{height=")));
+            StringBuilder sb = new StringBuilder(Fragment$$ExternalSyntheticOutline0.m(this.height, ", words=[", new StringBuilder("CallVerificationWords{height=")));
             for (int i = 0; i < this.words.length; i++) {
                 if (i > 0) {
                     sb.append(", ");
@@ -360,7 +360,7 @@ public class ConferenceCall {
     }
 
     public void lambda$poll$8(TL_phone.getGroupCallChainBlocks getgroupcallchainblocks, long j, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new ReportBottomSheet$$ExternalSyntheticLambda15(j, atomicBoolean, atomicInteger, this, tLObject, tL_error, getgroupcallchainblocks));
+        AndroidUtilities.runOnUIThread(new ReportBottomSheet$$ExternalSyntheticLambda25(j, atomicBoolean, atomicInteger, this, tLObject, tL_error, getgroupcallchainblocks));
     }
 
     public static String lambda$poll$9(CallParticipant callParticipant) {
@@ -387,7 +387,7 @@ public class ConferenceCall {
     }
 
     public void lambda$requestLastBlock$3(long j, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new PhotoViewer$$ExternalSyntheticLambda177(this, j, tLObject, tL_error, runnable, 1));
+        AndroidUtilities.runOnUIThread(new PhotoViewer$$ExternalSyntheticLambda22(this, j, tLObject, tL_error, runnable, 1));
     }
 
     public void lambda$updateParticipants$10(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -454,7 +454,7 @@ public class ConferenceCall {
                 z = true;
             }
         }
-        Utilities.stageQueue.postRunnable(new ClickHelper$$ExternalSyntheticLambda0(15, this, (TLRPC.Updates) tLObject));
+        Utilities.stageQueue.postRunnable(new ClickHelper$$ExternalSyntheticLambda0(14, this, (TLRPC.Updates) tLObject));
         return z;
     }
 
@@ -531,7 +531,7 @@ public class ConferenceCall {
             byte[] bArr = this.blocksQueue[i].get(j);
             if (bArr == null) {
                 StringBuilder sbM = DiffUtil.m("[tde2e] {subchain: ", i, "} got into hole (might be the end) in ", i, " subchain at #");
-                SurfaceContainer$$ExternalSyntheticOutline0.m(sbM, iMax, ", when our last_offset[", i, "] = ");
+                Fragment$$ExternalSyntheticOutline0.m(sbM, iMax, ", when our last_offset[", i, "] = ");
                 ChatObject$Call$$ExternalSyntheticOutline0.m(sbM, this.last_offset[i]);
                 this.last_offset[i] = iMax;
                 return;
@@ -585,7 +585,7 @@ public class ConferenceCall {
             StringBuilder sb = new StringBuilder("[tde2e] received updateGroupCallChainBlocks for ");
             sb.append(tL_updateGroupCallChainBlocks.call.id);
             sb.append(" but we have ");
-            zzjj.m(sb, this.groupCall.id);
+            zzjg.m(sb, this.groupCall.id);
             return false;
         }
         StringBuilder sb2 = new StringBuilder("[tde2e] received update with ");
@@ -899,7 +899,7 @@ public class ConferenceCall {
         getgroupcallchainblocks.sub_chain_id = 0;
         getgroupcallchainblocks.offset = -1;
         getgroupcallchainblocks.limit = 1;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new LaunchActivity$$ExternalSyntheticLambda51(this, jCurrentTimeMillis, runnable, 1));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getgroupcallchainblocks, new LivePlayer$$ExternalSyntheticLambda15(this, jCurrentTimeMillis, runnable, 1));
     }
 
     public void reset() {

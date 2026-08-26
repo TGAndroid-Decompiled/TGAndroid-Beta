@@ -7,23 +7,22 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
 import org.telegram.ui.web.BotWebViewContainer;
 
 public final class BotSensors {
     public long absoluteOrientationDesiredRefreshRate;
-    public VoIPFragment$8$$ExternalSyntheticLambda1 absoluteOrientationListenerPostponed;
+    public BotSensors$1$$ExternalSyntheticLambda0 absoluteOrientationListenerPostponed;
     public Sensor accelerometer;
     public long accelerometerDesiredRefreshRate;
-    public VoIPFragment$8$$ExternalSyntheticLambda1 accelerometerListenerPostponed;
+    public BotSensors$1$$ExternalSyntheticLambda0 accelerometerListenerPostponed;
     public Sensor gyroscope;
     public long gyroscopeDesiredRefreshRate;
-    public VoIPFragment$8$$ExternalSyntheticLambda1 gyroscopeListenerPostponed;
+    public BotSensors$1$$ExternalSyntheticLambda0 gyroscopeListenerPostponed;
     public Sensor orientationAccelerometer;
     public Sensor orientationMagnetometer;
     public boolean paused;
     public long relativeOrientationDesiredRefreshRate;
-    public VoIPFragment$8$$ExternalSyntheticLambda1 relativeOrientationListenerPostponed;
+    public BotSensors$1$$ExternalSyntheticLambda0 relativeOrientationListenerPostponed;
     public Sensor rotation;
     public final SensorManager sensorManager;
     public BotWebViewContainer.MyWebView webView;
@@ -47,9 +46,9 @@ public final class BotSensors {
         @Override
         public final void onSensorChanged(SensorEvent sensorEvent) {
             BotSensors botSensors = BotSensors.this;
-            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = botSensors.absoluteOrientationListenerPostponed;
-            if (voIPFragment$8$$ExternalSyntheticLambda1 != null) {
-                AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
+            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = botSensors.absoluteOrientationListenerPostponed;
+            if (botSensors$1$$ExternalSyntheticLambda0 != null) {
+                AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda0);
                 botSensors.absoluteOrientationListenerPostponed = null;
             }
             if (botSensors.paused || botSensors.webView == null) {
@@ -67,9 +66,9 @@ public final class BotSensors {
                 post();
                 return;
             }
-            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda2 = new VoIPFragment$8$$ExternalSyntheticLambda1(this, 9);
-            botSensors.absoluteOrientationListenerPostponed = voIPFragment$8$$ExternalSyntheticLambda2;
-            AndroidUtilities.runOnUIThread(voIPFragment$8$$ExternalSyntheticLambda2, j - jCurrentTimeMillis);
+            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda1 = new BotSensors$1$$ExternalSyntheticLambda0(this, 21);
+            botSensors.absoluteOrientationListenerPostponed = botSensors$1$$ExternalSyntheticLambda1;
+            AndroidUtilities.runOnUIThread(botSensors$1$$ExternalSyntheticLambda1, j - jCurrentTimeMillis);
         }
 
         public final void post() {
@@ -114,9 +113,9 @@ public final class BotSensors {
         @Override
         public final void onSensorChanged(SensorEvent sensorEvent) {
             BotSensors botSensors = BotSensors.this;
-            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = botSensors.relativeOrientationListenerPostponed;
-            if (voIPFragment$8$$ExternalSyntheticLambda1 != null) {
-                AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
+            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = botSensors.relativeOrientationListenerPostponed;
+            if (botSensors$1$$ExternalSyntheticLambda0 != null) {
+                AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda0);
                 botSensors.relativeOrientationListenerPostponed = null;
             }
             if (botSensors.paused || botSensors.webView == null) {
@@ -125,9 +124,9 @@ public final class BotSensors {
             long jCurrentTimeMillis = System.currentTimeMillis() - this.lastTime;
             long j = botSensors.relativeOrientationDesiredRefreshRate;
             if (jCurrentTimeMillis < j) {
-                VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda2 = new VoIPFragment$8$$ExternalSyntheticLambda1(this, 10);
-                botSensors.relativeOrientationListenerPostponed = voIPFragment$8$$ExternalSyntheticLambda2;
-                AndroidUtilities.runOnUIThread(voIPFragment$8$$ExternalSyntheticLambda2, j - jCurrentTimeMillis);
+                BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda1 = new BotSensors$1$$ExternalSyntheticLambda0(this, 22);
+                botSensors.relativeOrientationListenerPostponed = botSensors$1$$ExternalSyntheticLambda1;
+                AndroidUtilities.runOnUIThread(botSensors$1$$ExternalSyntheticLambda1, j - jCurrentTimeMillis);
             } else {
                 if (sensorEvent.sensor.getType() == 15) {
                     this.values = sensorEvent.values;
@@ -194,18 +193,18 @@ public final class BotSensors {
             if (sensor != null) {
                 sensorManager.unregisterListener(this.accelerometerListener, sensor);
             }
-            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = this.accelerometerListenerPostponed;
-            if (voIPFragment$8$$ExternalSyntheticLambda1 != null) {
-                AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
+            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = this.accelerometerListenerPostponed;
+            if (botSensors$1$$ExternalSyntheticLambda0 != null) {
+                AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda0);
                 this.accelerometerListenerPostponed = null;
             }
             Sensor sensor2 = this.gyroscope;
             if (sensor2 != null) {
                 sensorManager.unregisterListener(this.gyroscopeListener, sensor2);
             }
-            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda2 = this.gyroscopeListenerPostponed;
-            if (voIPFragment$8$$ExternalSyntheticLambda2 != null) {
-                AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda2);
+            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda1 = this.gyroscopeListenerPostponed;
+            if (botSensors$1$$ExternalSyntheticLambda1 != null) {
+                AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda1);
                 this.gyroscopeListenerPostponed = null;
             }
             Sensor sensor3 = this.orientationAccelerometer;
@@ -217,18 +216,18 @@ public final class BotSensors {
             if (sensor4 != null) {
                 sensorManager.unregisterListener(anonymousClass3, sensor4);
             }
-            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda3 = this.absoluteOrientationListenerPostponed;
-            if (voIPFragment$8$$ExternalSyntheticLambda3 != null) {
-                AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda3);
+            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda2 = this.absoluteOrientationListenerPostponed;
+            if (botSensors$1$$ExternalSyntheticLambda2 != null) {
+                AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda2);
                 this.absoluteOrientationListenerPostponed = null;
             }
             Sensor sensor5 = this.rotation;
             if (sensor5 != null) {
                 sensorManager.unregisterListener(this.relativeOrientationListener, sensor5);
             }
-            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda4 = this.relativeOrientationListenerPostponed;
-            if (voIPFragment$8$$ExternalSyntheticLambda4 != null) {
-                AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda4);
+            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda3 = this.relativeOrientationListenerPostponed;
+            if (botSensors$1$$ExternalSyntheticLambda3 != null) {
+                AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda3);
                 this.relativeOrientationListenerPostponed = null;
             }
         }
@@ -282,9 +281,9 @@ public final class BotSensors {
         AnonymousClass3 anonymousClass3 = this.absoluteOrientationListener;
         if (z) {
             if (this.rotation != null) {
-                VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = this.relativeOrientationListenerPostponed;
-                if (voIPFragment$8$$ExternalSyntheticLambda1 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
+                BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = this.relativeOrientationListenerPostponed;
+                if (botSensors$1$$ExternalSyntheticLambda0 != null) {
+                    AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda0);
                     this.relativeOrientationListenerPostponed = null;
                 }
                 if (!this.paused && (sensor = this.rotation) != null) {
@@ -309,9 +308,9 @@ public final class BotSensors {
             }
         } else {
             if (this.orientationMagnetometer != null || this.orientationAccelerometer != null) {
-                VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda2 = this.absoluteOrientationListenerPostponed;
-                if (voIPFragment$8$$ExternalSyntheticLambda2 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda2);
+                BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda1 = this.absoluteOrientationListenerPostponed;
+                if (botSensors$1$$ExternalSyntheticLambda1 != null) {
+                    AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda1);
                     this.absoluteOrientationListenerPostponed = null;
                 }
                 if (!this.paused) {
@@ -354,9 +353,9 @@ public final class BotSensors {
         if (!this.paused) {
             sensorManager.unregisterListener(this.accelerometerListener, sensor);
         }
-        VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = this.accelerometerListenerPostponed;
-        if (voIPFragment$8$$ExternalSyntheticLambda1 != null) {
-            AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
+        BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = this.accelerometerListenerPostponed;
+        if (botSensors$1$$ExternalSyntheticLambda0 != null) {
+            AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda0);
             this.accelerometerListenerPostponed = null;
         }
         this.accelerometer = null;
@@ -375,9 +374,9 @@ public final class BotSensors {
         if (!this.paused) {
             sensorManager.unregisterListener(this.gyroscopeListener, sensor);
         }
-        VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = this.gyroscopeListenerPostponed;
-        if (voIPFragment$8$$ExternalSyntheticLambda1 != null) {
-            AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
+        BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = this.gyroscopeListenerPostponed;
+        if (botSensors$1$$ExternalSyntheticLambda0 != null) {
+            AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda0);
             this.gyroscopeListenerPostponed = null;
         }
         this.gyroscope = null;
@@ -407,14 +406,14 @@ public final class BotSensors {
                 sensorManager.unregisterListener(this.relativeOrientationListener, sensor3);
             }
         }
-        VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = this.absoluteOrientationListenerPostponed;
-        if (voIPFragment$8$$ExternalSyntheticLambda1 != null) {
-            AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
+        BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = this.absoluteOrientationListenerPostponed;
+        if (botSensors$1$$ExternalSyntheticLambda0 != null) {
+            AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda0);
             this.absoluteOrientationListenerPostponed = null;
         }
-        VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda2 = this.relativeOrientationListenerPostponed;
-        if (voIPFragment$8$$ExternalSyntheticLambda2 != null) {
-            AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda2);
+        BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda1 = this.relativeOrientationListenerPostponed;
+        if (botSensors$1$$ExternalSyntheticLambda1 != null) {
+            AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda1);
             this.relativeOrientationListenerPostponed = null;
         }
         this.orientationAccelerometer = null;
@@ -452,9 +451,9 @@ public final class BotSensors {
             switch (this.$r8$classId) {
                 case 0:
                     BotSensors botSensors = this.this$0;
-                    VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = botSensors.accelerometerListenerPostponed;
-                    if (voIPFragment$8$$ExternalSyntheticLambda1 != null) {
-                        AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
+                    BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda0 = botSensors.accelerometerListenerPostponed;
+                    if (botSensors$1$$ExternalSyntheticLambda0 != null) {
+                        AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda0);
                         botSensors.accelerometerListenerPostponed = null;
                     }
                     if (!botSensors.paused && botSensors.webView != null) {
@@ -464,18 +463,18 @@ public final class BotSensors {
                         if (jCurrentTimeMillis >= j) {
                             post();
                         } else {
-                            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda2 = new VoIPFragment$8$$ExternalSyntheticLambda1(this, 7);
-                            botSensors.accelerometerListenerPostponed = voIPFragment$8$$ExternalSyntheticLambda2;
-                            AndroidUtilities.runOnUIThread(voIPFragment$8$$ExternalSyntheticLambda2, j - jCurrentTimeMillis);
+                            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda1 = new BotSensors$1$$ExternalSyntheticLambda0(this, 0);
+                            botSensors.accelerometerListenerPostponed = botSensors$1$$ExternalSyntheticLambda1;
+                            AndroidUtilities.runOnUIThread(botSensors$1$$ExternalSyntheticLambda1, j - jCurrentTimeMillis);
                         }
                         break;
                     }
                     break;
                 default:
                     BotSensors botSensors2 = this.this$0;
-                    VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda3 = botSensors2.gyroscopeListenerPostponed;
-                    if (voIPFragment$8$$ExternalSyntheticLambda3 != null) {
-                        AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda3);
+                    BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda2 = botSensors2.gyroscopeListenerPostponed;
+                    if (botSensors$1$$ExternalSyntheticLambda2 != null) {
+                        AndroidUtilities.cancelRunOnUIThread(botSensors$1$$ExternalSyntheticLambda2);
                         botSensors2.gyroscopeListenerPostponed = null;
                     }
                     if (!botSensors2.paused && botSensors2.webView != null) {
@@ -490,9 +489,9 @@ public final class BotSensors {
                         if (jCurrentTimeMillis2 >= j2) {
                             post();
                         } else {
-                            VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda4 = new VoIPFragment$8$$ExternalSyntheticLambda1(this, 8);
-                            botSensors2.gyroscopeListenerPostponed = voIPFragment$8$$ExternalSyntheticLambda4;
-                            AndroidUtilities.runOnUIThread(voIPFragment$8$$ExternalSyntheticLambda4, j2 - jCurrentTimeMillis2);
+                            BotSensors$1$$ExternalSyntheticLambda0 botSensors$1$$ExternalSyntheticLambda3 = new BotSensors$1$$ExternalSyntheticLambda0(this, 20);
+                            botSensors2.gyroscopeListenerPostponed = botSensors$1$$ExternalSyntheticLambda3;
+                            AndroidUtilities.runOnUIThread(botSensors$1$$ExternalSyntheticLambda3, j2 - jCurrentTimeMillis2);
                         }
                         break;
                     }

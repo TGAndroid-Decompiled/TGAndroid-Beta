@@ -13,13 +13,13 @@ public final class LanguageSelectActivity$$ExternalSyntheticLambda0 implements R
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.lambda$onBecomeFullyVisible$9();
+                this.f$0.lambda$createView$0();
                 break;
             case 1:
-                this.f$0.lambda$createView$0$4$2();
+                this.f$0.lambda$didReceivedNotification$7();
                 break;
             default:
-                this.f$0.listAdapter.mObservable.notifyChanged();
+                this.f$0.lambda$onBecomeFullyVisible$9();
                 break;
         }
     }

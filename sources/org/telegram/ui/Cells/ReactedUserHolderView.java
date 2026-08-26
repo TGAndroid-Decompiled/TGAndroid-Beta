@@ -70,10 +70,7 @@ public class ReactedUserHolderView extends FrameLayout {
         int i = R.drawable.msg_mini_checks;
         int i2 = Theme.key_windowBackgroundWhiteGrayText;
         seenDrawable = new MessageSeenCheckDrawable(i, i2);
-        MessageSeenCheckDrawable messageSeenCheckDrawable = new MessageSeenCheckDrawable(R.drawable.msg_reactions, i2);
-        messageSeenCheckDrawable.w = 16;
-        messageSeenCheckDrawable.h = 16;
-        reactDrawable = messageSeenCheckDrawable;
+        reactDrawable = new MessageSeenCheckDrawable(R.drawable.msg_reactions, i2, 16, 16, 5.66f);
         int i3 = R.drawable.mini_repost_story;
         int i4 = Theme.key_stories_circle1;
         repostDrawable = new MessageSeenCheckDrawable(i3, i4);
@@ -82,7 +79,7 @@ public class ReactedUserHolderView extends FrameLayout {
 
     public ReactedUserHolderView(final int i, int i2, Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
         super(context);
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         this.alphaInternal = 1.0f;
         this.style = i;
         this.currentAccount = i2;
@@ -128,10 +125,10 @@ public class ReactedUserHolderView extends FrameLayout {
         float f2 = i == 1 ? 7.66f : 5.33f;
         float f3 = i == 1 ? 73.0f : 55.0f;
         addView(anonymousClass1, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 55, f3, f2, 12.0f, 0.0f));
-        StatusBadgeComponent statusBadgeComponent = new StatusBadgeComponent(18, this);
+        StatusBadgeComponent statusBadgeComponent = new StatusBadgeComponent(this);
         this.statusBadgeComponent = statusBadgeComponent;
         anonymousClass1.setDrawablePadding(AndroidUtilities.dp(3.0f));
-        anonymousClass1.setRightDrawable(statusBadgeComponent.statusDrawable);
+        anonymousClass1.setRightDrawable(statusBadgeComponent.getDrawable());
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.subtitleView = simpleTextView;
         simpleTextView.setTextSize(13);
@@ -151,7 +148,7 @@ public class ReactedUserHolderView extends FrameLayout {
         if (z) {
             View view = new View(context);
             view.setBackground(Theme.getSelectorDrawable(false));
-            addView(view, LayoutHelper.createFrame(-1.0f, -1));
+            addView(view, LayoutHelper.createFrame(-1, -1.0f));
         }
     }
 
@@ -168,7 +165,7 @@ public class ReactedUserHolderView extends FrameLayout {
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.alphaInternal, f);
         this.alphaAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 9));
+        valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 5));
         this.alphaAnimator.addListener(new SlideIntChooseView.AnonymousClass3(this, f, 3));
         this.alphaAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.alphaAnimator.setDuration(420L);
@@ -211,14 +208,14 @@ public class ReactedUserHolderView extends FrameLayout {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.statusBadgeComponent.statusDrawable.attach();
+        this.statusBadgeComponent.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.statusBadgeComponent.statusDrawable.detach();
-        this.params.reset();
+        this.statusBadgeComponent.onDetachedFromWindow();
+        this.params.onDetachFromWindow();
     }
 
     @Override
@@ -243,14 +240,16 @@ public class ReactedUserHolderView extends FrameLayout {
         boolean z5;
         boolean z6;
         long j2;
+        float f;
+        long j3;
         SimpleTextView simpleTextView;
         float fDp;
-        float f;
-        float fDp2;
         float f2;
+        float fDp2;
+        float f3;
         MessageSeenCheckDrawable messageSeenCheckDrawable;
         SpannableStringBuilder spannableStringBuilder;
-        float f3;
+        float f4;
         TL_stories.StoryFwdHeader storyFwdHeader;
         float fDp3;
         TLRPC.Document document;
@@ -307,7 +306,7 @@ public class ReactedUserHolderView extends FrameLayout {
                 TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(i2).getReactionsMap().get(visibleReactionFromTL.emojicon);
                 if (backupImageView != null) {
                     if (tL_availableReaction != null) {
-                        backupImageView.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, null, DocumentObject.getSvgThumb(tL_availableReaction.static_icon.thumbs, Theme.key_windowBackgroundGray, 1.0f), "webp", 0, tL_availableReaction);
+                        backupImageView.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tL_availableReaction.static_icon.thumbs, Theme.key_windowBackgroundGray, 1.0f), tL_availableReaction);
                         z6 = true;
                     } else {
                         backupImageView.setImageDrawable(null);
@@ -346,25 +345,34 @@ public class ReactedUserHolderView extends FrameLayout {
             this.storyId = storyItem.id;
             if (backupImageView2 != null) {
                 TLRPC.MessageMedia messageMedia = storyItem.media;
-                if (messageMedia != null && (photo = messageMedia.photo) != null) {
-                    backupImageView2.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 35, false, null, true), storyItem.media.photo), "22_35", null, null, null, null, -1, storyItem);
-                } else if (messageMedia != null && (document = messageMedia.document) != null) {
-                    backupImageView2.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 35, false, null, true), storyItem.media.document), "22_35", null, null, null, null, -1, storyItem);
+                if (messageMedia == null || (photo = messageMedia.photo) == null) {
+                    j2 = 0;
+                    f = 1.0f;
+                    if (messageMedia != null && (document = messageMedia.document) != null) {
+                        backupImageView2.setImage(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 35, false, null, true), storyItem.media.document), "22_35", (ImageLocation) null, (String) null, -1, storyItem);
+                    }
+                } else {
+                    j2 = 0;
+                    f = 1.0f;
+                    backupImageView2.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 35, false, null, true), storyItem.media.photo), "22_35", (ImageLocation) null, (String) null, -1, storyItem);
                 }
                 backupImageView2.setRoundRadius(AndroidUtilities.dp(3.33f));
+            } else {
+                j2 = 0;
+                f = 1.0f;
             }
-            if (j <= 0) {
-                j2 = storyItem.date;
+            if (j <= j2) {
+                j3 = storyItem.date;
             }
-            if (j2 != 0) {
+            if (j3 != j2) {
                 StringBuilder sbM = Log.m(string, " ");
-                sbM.append(LocaleController.formatSeenDate(j2));
+                sbM.append(LocaleController.formatSeenDate(j3));
                 string = sbM.toString();
             }
             setContentDescription(string);
             simpleTextView = this.subtitleView;
             fDp = 0.0f;
-            if (j2 != 0) {
+            if (j3 != j2) {
                 simpleTextView.setVisibility(0);
                 if (storyItem != null) {
                     if (z2) {
@@ -378,25 +386,25 @@ public class ReactedUserHolderView extends FrameLayout {
                     messageSeenCheckDrawable = reactDrawable;
                 }
                 spannableStringBuilder = new SpannableStringBuilder();
-                spannableStringBuilder.append((CharSequence) messageSeenCheckDrawable.getSpanned(getContext(), resourcesProvider));
-                spannableStringBuilder.append((CharSequence) LocaleController.formatSeenDate(j2));
+                spannableStringBuilder.append(messageSeenCheckDrawable.getSpanned(getContext(), resourcesProvider));
+                spannableStringBuilder.append((CharSequence) LocaleController.formatSeenDate(j3));
                 if (!z2 || storyItem == null) {
-                    f3 = 5.0f;
+                    f4 = 5.0f;
                 } else {
-                    f3 = 5.0f;
+                    f4 = 5.0f;
                     if (!TextUtils.isEmpty(storyItem.caption)) {
                         spannableStringBuilder.append((CharSequence) "\u2004");
                         spannableStringBuilder.append((CharSequence) ".");
                         DotDividerSpan dotDividerSpan = new DotDividerSpan();
-                        dotDividerSpan.size = 2.33333f;
-                        dotDividerSpan.topPadding = AndroidUtilities.dp(5.0f);
+                        dotDividerSpan.setSize(2.33333f);
+                        dotDividerSpan.setTopPadding(AndroidUtilities.dp(5.0f));
                         spannableStringBuilder.setSpan(dotDividerSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
                         spannableStringBuilder.append((CharSequence) "\u2004");
                         int length = spannableStringBuilder.length();
                         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.StoryRepostCommented));
                         spannableStringBuilder.setSpan(new RelativeSizeSpan(0.95f), length, spannableStringBuilder.length(), 33);
                     }
-                    simpleTextView.setText(spannableStringBuilder, false);
+                    simpleTextView.setText(spannableStringBuilder);
                     if (z3) {
                         fDp3 = 0.0f;
                     } else {
@@ -408,22 +416,22 @@ public class ReactedUserHolderView extends FrameLayout {
                         anonymousClass1.setTranslationY(AndroidUtilities.dp(9.0f));
                         anonymousClass1.animate().translationY(0.0f);
                         simpleTextView.setAlpha(0.0f);
-                        simpleTextView.animate().alpha(1.0f);
+                        simpleTextView.animate().alpha(f);
                     }
                 }
                 if (!z2 && storyItem != null && (storyFwdHeader = storyItem.fwd_from) != null && storyFwdHeader.modified) {
                     spannableStringBuilder.append((CharSequence) "\u2004");
                     spannableStringBuilder.append((CharSequence) ".");
                     DotDividerSpan dotDividerSpan2 = new DotDividerSpan();
-                    dotDividerSpan2.size = 2.33333f;
-                    dotDividerSpan2.topPadding = AndroidUtilities.dp(f3);
+                    dotDividerSpan2.setSize(2.33333f);
+                    dotDividerSpan2.setTopPadding(AndroidUtilities.dp(f4));
                     spannableStringBuilder.setSpan(dotDividerSpan2, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
                     spannableStringBuilder.append((CharSequence) "\u2004");
                     int length2 = spannableStringBuilder.length();
                     spannableStringBuilder.append((CharSequence) "edited");
                     spannableStringBuilder.setSpan(new RelativeSizeSpan(0.95f), length2, spannableStringBuilder.length(), 33);
                 }
-                simpleTextView.setText(spannableStringBuilder, false);
+                simpleTextView.setText(spannableStringBuilder);
                 if (z3) {
                     fDp3 = AndroidUtilities.dp(-1.0f);
                 } else {
@@ -435,18 +443,18 @@ public class ReactedUserHolderView extends FrameLayout {
                     anonymousClass1.setTranslationY(AndroidUtilities.dp(9.0f));
                     anonymousClass1.animate().translationY(0.0f);
                     simpleTextView.setAlpha(0.0f);
-                    simpleTextView.animate().alpha(1.0f);
+                    simpleTextView.animate().alpha(f);
                 }
             } else {
                 simpleTextView.setVisibility(8);
                 anonymousClass1.setTranslationY(AndroidUtilities.dp(9.0f));
             }
             if (z5) {
-                f = 30.0f;
+                f2 = 30.0f;
             } else {
-                f = 0.0f;
+                f2 = 0.0f;
             }
-            anonymousClass1.setRightPadding(AndroidUtilities.dp(f));
+            anonymousClass1.setRightPadding(AndroidUtilities.dp(f2));
             if (z5 || !LocaleController.isRTL) {
                 fDp2 = 0.0f;
             } else {
@@ -455,30 +463,32 @@ public class ReactedUserHolderView extends FrameLayout {
             anonymousClass1.setTranslationX(fDp2);
             ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) simpleTextView.getLayoutParams();
             if (z5 || LocaleController.isRTL) {
-                f2 = 12.0f;
+                f3 = 12.0f;
             } else {
-                f2 = 36.0f;
+                f3 = 36.0f;
             }
-            marginLayoutParams.rightMargin = AndroidUtilities.dp(f2);
+            marginLayoutParams.rightMargin = AndroidUtilities.dp(f3);
             if (z5 && LocaleController.isRTL) {
                 fDp = AndroidUtilities.dp(30.0f);
             }
             simpleTextView.setTranslationX(fDp);
         }
+        j2 = 0;
+        f = 1.0f;
         this.storyId = -1;
         if (backupImageView2 != null) {
             backupImageView2.setImageDrawable(null);
         }
-        j2 = j;
-        if (j2 != 0) {
+        j3 = j;
+        if (j3 != j2) {
             StringBuilder sbM2 = Log.m(string, " ");
-            sbM2.append(LocaleController.formatSeenDate(j2));
+            sbM2.append(LocaleController.formatSeenDate(j3));
             string = sbM2.toString();
         }
         setContentDescription(string);
         simpleTextView = this.subtitleView;
         fDp = 0.0f;
-        if (j2 != 0) {
+        if (j3 != j2) {
             simpleTextView.setVisibility(0);
             if (storyItem != null) {
                 if (z2) {
@@ -492,16 +502,16 @@ public class ReactedUserHolderView extends FrameLayout {
                 messageSeenCheckDrawable = reactDrawable;
             }
             spannableStringBuilder = new SpannableStringBuilder();
-            spannableStringBuilder.append((CharSequence) messageSeenCheckDrawable.getSpanned(getContext(), resourcesProvider));
-            spannableStringBuilder.append((CharSequence) LocaleController.formatSeenDate(j2));
+            spannableStringBuilder.append(messageSeenCheckDrawable.getSpanned(getContext(), resourcesProvider));
+            spannableStringBuilder.append((CharSequence) LocaleController.formatSeenDate(j3));
             if (z2) {
-                f3 = 5.0f;
+                f4 = 5.0f;
                 if (!z2) {
                     spannableStringBuilder.append((CharSequence) "\u2004");
                     spannableStringBuilder.append((CharSequence) ".");
                     DotDividerSpan dotDividerSpan3 = new DotDividerSpan();
-                    dotDividerSpan3.size = 2.33333f;
-                    dotDividerSpan3.topPadding = AndroidUtilities.dp(f3);
+                    dotDividerSpan3.setSize(2.33333f);
+                    dotDividerSpan3.setTopPadding(AndroidUtilities.dp(f4));
                     spannableStringBuilder.setSpan(dotDividerSpan3, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
                     spannableStringBuilder.append((CharSequence) "\u2004");
                     int length3 = spannableStringBuilder.length();
@@ -509,13 +519,13 @@ public class ReactedUserHolderView extends FrameLayout {
                     spannableStringBuilder.setSpan(new RelativeSizeSpan(0.95f), length3, spannableStringBuilder.length(), 33);
                 }
             } else {
-                f3 = 5.0f;
+                f4 = 5.0f;
                 if (!z2) {
                     spannableStringBuilder.append((CharSequence) "\u2004");
                     spannableStringBuilder.append((CharSequence) ".");
                     DotDividerSpan dotDividerSpan4 = new DotDividerSpan();
-                    dotDividerSpan4.size = 2.33333f;
-                    dotDividerSpan4.topPadding = AndroidUtilities.dp(f3);
+                    dotDividerSpan4.setSize(2.33333f);
+                    dotDividerSpan4.setTopPadding(AndroidUtilities.dp(f4));
                     spannableStringBuilder.setSpan(dotDividerSpan4, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
                     spannableStringBuilder.append((CharSequence) "\u2004");
                     int length4 = spannableStringBuilder.length();
@@ -523,7 +533,7 @@ public class ReactedUserHolderView extends FrameLayout {
                     spannableStringBuilder.setSpan(new RelativeSizeSpan(0.95f), length4, spannableStringBuilder.length(), 33);
                 }
             }
-            simpleTextView.setText(spannableStringBuilder, false);
+            simpleTextView.setText(spannableStringBuilder);
             if (z3) {
                 fDp3 = AndroidUtilities.dp(-1.0f);
             } else {
@@ -535,18 +545,18 @@ public class ReactedUserHolderView extends FrameLayout {
                 anonymousClass1.setTranslationY(AndroidUtilities.dp(9.0f));
                 anonymousClass1.animate().translationY(0.0f);
                 simpleTextView.setAlpha(0.0f);
-                simpleTextView.animate().alpha(1.0f);
+                simpleTextView.animate().alpha(f);
             }
         } else {
             simpleTextView.setVisibility(8);
             anonymousClass1.setTranslationY(AndroidUtilities.dp(9.0f));
         }
         if (z5) {
-            f = 30.0f;
+            f2 = 30.0f;
         } else {
-            f = 0.0f;
+            f2 = 0.0f;
         }
-        anonymousClass1.setRightPadding(AndroidUtilities.dp(f));
+        anonymousClass1.setRightPadding(AndroidUtilities.dp(f2));
         if (z5) {
             fDp2 = 0.0f;
         } else {
@@ -555,11 +565,11 @@ public class ReactedUserHolderView extends FrameLayout {
         anonymousClass1.setTranslationX(fDp2);
         ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) simpleTextView.getLayoutParams();
         if (z5) {
-            f2 = 12.0f;
+            f3 = 12.0f;
         } else {
-            f2 = 12.0f;
+            f3 = 12.0f;
         }
-        marginLayoutParams2.rightMargin = AndroidUtilities.dp(f2);
+        marginLayoutParams2.rightMargin = AndroidUtilities.dp(f3);
         if (z5) {
             fDp = AndroidUtilities.dp(30.0f);
         }

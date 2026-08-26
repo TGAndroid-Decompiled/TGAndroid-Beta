@@ -19,9 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.android.billingclient.api.AccountIdentifiers;
 import com.android.billingclient.api.QueryProductDetailsParams$Product;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzkg;
-import com.google.android.gms.internal.mlkit_vision_common.zzks;
+import com.google.android.gms.internal.mlkit_vision_common.zzkh;
 import j$.util.Objects;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.lang.reflect.Array;
@@ -35,7 +33,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import org.json.JSONObject;
-import org.telegram.messenger.AiTonesController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AppGlobalConfig;
 import org.telegram.messenger.ApplicationLoader;
@@ -71,16 +68,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda54;
+import org.telegram.ui.Adapters.SearchAdapterHelper$$ExternalSyntheticLambda0;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda206;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda375;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline1;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -91,34 +87,29 @@ import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.spoilers.SpoilerEffect2;
-import org.telegram.ui.DialogsActivity$50$$ExternalSyntheticLambda2;
-import org.telegram.ui.FilterCreateActivity$$ExternalSyntheticLambda27;
+import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda46;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda16;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda18;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda24;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
 import org.telegram.ui.Gifts.SendGiftSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.Gifts.SendGiftSheet$$ExternalSyntheticLambda16;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda51;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda63;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda20;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda3;
-import org.telegram.ui.LoginActivity$$ExternalSyntheticLambda42;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda0;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda12;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda3;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda126;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda177;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda8;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda22;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda65;
-import org.telegram.ui.ProfileActivity$6$$ExternalSyntheticLambda7;
-import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda1;
-import org.telegram.ui.ShareActivity$$ExternalSyntheticLambda0;
-import org.telegram.ui.Stories.StoriesViewPager$$ExternalSyntheticLambda0;
+import org.telegram.ui.Storage.CacheModel$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda15;
+import org.telegram.ui.Stories.StealthModeAlert$$ExternalSyntheticLambda3;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.Stories.recorder.HintView2;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda16;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.bots.BotStorage$$ExternalSyntheticLambda5;
 import org.telegram.ui.bots.BotWebViewSheet;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda46;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
+import org.telegram.ui.web.AddressBarList$$ExternalSyntheticLambda1;
 
 public final class StarsController {
     public static volatile StarsController[][] Instance = (StarsController[][]) Array.newInstance((Class<?>) StarsController.class, 2, 4);
@@ -233,7 +224,7 @@ public final class StarsController {
                     FileLog.w("can't convert gift to inputgift to add into the collection");
                 }
             }
-            ConnectionsManager.getInstance(i4).sendRequest(updatestargiftcollection, new StarsController$GiftsCollections$$ExternalSyntheticLambda0(this, i3));
+            ConnectionsManager.getInstance(i4).sendRequest(updatestargiftcollection, new StarsController$GiftsCollections$$ExternalSyntheticLambda1(this, i3));
         }
 
         public final void createCollection(String str, Utilities.Callback callback) {
@@ -257,7 +248,7 @@ public final class StarsController {
             TL_stars.createStarGiftCollection createstargiftcollection = new TL_stars.createStarGiftCollection();
             createstargiftcollection.peer = MessagesController.getInstance(i).getInputPeer(j);
             createstargiftcollection.title = str;
-            ConnectionsManager.getInstance(i).sendRequest(createstargiftcollection, new LoginActivity$$ExternalSyntheticLambda42(this, tL_starGiftCollection, giftsList, callback, 16));
+            ConnectionsManager.getInstance(i).sendRequest(createstargiftcollection, new GiftSheet$$ExternalSyntheticLambda16(7, this, tL_starGiftCollection, giftsList, callback));
         }
 
         public final TL_stars.TL_starGiftCollection findById(int i) {
@@ -320,7 +311,7 @@ public final class StarsController {
                 jCalcHash = MediaDataController.calcHash(jCalcHash, ((TL_stars.TL_starGiftCollection) obj).hash);
             }
             getstargiftcollections.hash = jCalcHash;
-            this.currentRequestId = ConnectionsManager.getInstance(i).sendRequest(getstargiftcollections, new StarsController$GiftsCollections$$ExternalSyntheticLambda0(this, 0));
+            this.currentRequestId = ConnectionsManager.getInstance(i).sendRequest(getstargiftcollections, new StarsController$GiftsCollections$$ExternalSyntheticLambda1(this, 0));
         }
 
         public final void refilterCollections() {
@@ -405,7 +396,7 @@ public final class StarsController {
                 i2 = 1;
             }
             updatestargiftcollection.delete_stargift.size();
-            ConnectionsManager.getInstance(i5).sendRequest(updatestargiftcollection, new StarsController$GiftsCollections$$ExternalSyntheticLambda0(this, 2));
+            ConnectionsManager.getInstance(i5).sendRequest(updatestargiftcollection, new StarsController$GiftsCollections$$ExternalSyntheticLambda1(this, 2));
             NotificationCenter.getInstance(i5).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(j), giftsList);
         }
 
@@ -602,9 +593,9 @@ public final class StarsController {
                     tLObject = getsavedstargifts;
                 }
             }
-            int iSendRequest = ConnectionsManager.getInstance(i).sendRequest(tLObject, new DialogsActivity$50$$ExternalSyntheticLambda2(this, iArr, z, 7));
+            int iSendRequest = ConnectionsManager.getInstance(i).sendRequest(tLObject, new SearchAdapterHelper$$ExternalSyntheticLambda0(this, , z, 1));
             this.currentRequestId = iSendRequest;
-            int[] iArr = {iSendRequest};
+            ?? r2 = {iSendRequest};
         }
 
         @Override
@@ -648,7 +639,7 @@ public final class StarsController {
                 TL_stars.TL_inputSavedStarGiftSlug tL_inputSavedStarGiftSlug = new TL_stars.TL_inputSavedStarGiftSlug();
                 tL_inputSavedStarGiftSlug.slug = starGift.slug;
                 getsavedstargift.stargift.add(tL_inputSavedStarGiftSlug);
-                ConnectionsManager.getInstance(i).sendRequest(getsavedstargift, new LinkManager$$ExternalSyntheticLambda3(this, 27));
+                ConnectionsManager.getInstance(i).sendRequest(getsavedstargift, new RichMediaUploader$$ExternalSyntheticLambda0(this, 20));
             }
         }
 
@@ -681,7 +672,7 @@ public final class StarsController {
                     i++;
                     togglestargiftspinnedtotop.stargift.add(getInput((TL_stars.SavedStarGift) obj));
                 }
-                ConnectionsManager.getInstance(i2).sendRequest(togglestargiftspinnedtotop, new PassportActivity$$ExternalSyntheticLambda1(1), 64);
+                ConnectionsManager.getInstance(i2).sendRequest(togglestargiftspinnedtotop, new StealthModeAlert$$ExternalSyntheticLambda3(4), 64);
                 return;
             }
             TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
@@ -713,7 +704,7 @@ public final class StarsController {
                         arrayList = this.gifts;
                         arrayList.removeAll(pinned);
                         if (this.sort_by_date && !this.isCollection) {
-                            Collections.sort(arrayList, new OAuthSheet$$ExternalSyntheticLambda3(6));
+                            Collections.sort(arrayList, new CacheModel$$ExternalSyntheticLambda0(6));
                         }
                         arrayList.addAll(0, pinned);
                         NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), this);
@@ -737,7 +728,7 @@ public final class StarsController {
                     arrayList = this.gifts;
                     arrayList.removeAll(pinned);
                     if (this.sort_by_date) {
-                        Collections.sort(arrayList, new OAuthSheet$$ExternalSyntheticLambda3(6));
+                        Collections.sort(arrayList, new CacheModel$$ExternalSyntheticLambda0(6));
                     }
                     arrayList.addAll(0, pinned);
                     NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.starUserGiftsLoaded, Long.valueOf(this.dialogId), this);
@@ -849,7 +840,7 @@ public final class StarsController {
         public final Bulletin.TimerView timerView;
         public int totalMessagesCount;
         public long totalStars;
-        public ProfileActivity$6$$ExternalSyntheticLambda7 undoListener;
+        public AddressBarList$$ExternalSyntheticLambda1 undoListener;
         public boolean undone;
         public final ArrayList totalSendListeners = new ArrayList();
         public final HashSet messages = new HashSet();
@@ -875,9 +866,9 @@ public final class StarsController {
                             StarsController.PaidMessagesToast paidMessagesToast = this.f$0;
                             if (!paidMessagesToast.undone && !paidMessagesToast.sent && paidMessagesToast.undoRunning) {
                                 paidMessagesToast.undone = true;
-                                ProfileActivity$6$$ExternalSyntheticLambda7 profileActivity$6$$ExternalSyntheticLambda7 = paidMessagesToast.undoListener;
-                                if (profileActivity$6$$ExternalSyntheticLambda7 != null) {
-                                    profileActivity$6$$ExternalSyntheticLambda7.run(paidMessagesToast.messages);
+                                AddressBarList$$ExternalSyntheticLambda1 addressBarList$$ExternalSyntheticLambda1 = paidMessagesToast.undoListener;
+                                if (addressBarList$$ExternalSyntheticLambda1 != null) {
+                                    addressBarList$$ExternalSyntheticLambda1.run(paidMessagesToast.messages);
                                 }
                                 if (paidMessagesToast.bulletinButton != null) {
                                     paidMessagesToast.bulletin.hide();
@@ -900,15 +891,11 @@ public final class StarsController {
             this.timerView = timerView;
             timerView.timeLeft = 3000L;
             timerView.setColor(Theme.getColor(Theme.key_undo_cancelColor, baseFragment.getResourceProvider()));
-            Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, baseFragment.getResourceProvider(), true, false);
+            Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, true, false, baseFragment.getResourceProvider());
             this.bulletinButton = undoButton;
-            String string = LocaleController.getString(R.string.StarsSentUndo);
-            TextView textView = undoButton.undoTextView;
-            if (textView != null) {
-                textView.setText(string);
-            }
+            undoButton.setText(LocaleController.getString(R.string.StarsSentUndo));
             final int i2 = 1;
-            undoButton.undoAction = new Runnable(this) {
+            undoButton.setUndoAction(new Runnable(this) {
                 public final StarsController.PaidMessagesToast f$0;
 
                 {
@@ -925,9 +912,9 @@ public final class StarsController {
                             StarsController.PaidMessagesToast paidMessagesToast = this.f$0;
                             if (!paidMessagesToast.undone && !paidMessagesToast.sent && paidMessagesToast.undoRunning) {
                                 paidMessagesToast.undone = true;
-                                ProfileActivity$6$$ExternalSyntheticLambda7 profileActivity$6$$ExternalSyntheticLambda7 = paidMessagesToast.undoListener;
-                                if (profileActivity$6$$ExternalSyntheticLambda7 != null) {
-                                    profileActivity$6$$ExternalSyntheticLambda7.run(paidMessagesToast.messages);
+                                AddressBarList$$ExternalSyntheticLambda1 addressBarList$$ExternalSyntheticLambda1 = paidMessagesToast.undoListener;
+                                if (addressBarList$$ExternalSyntheticLambda1 != null) {
+                                    addressBarList$$ExternalSyntheticLambda1.run(paidMessagesToast.messages);
                                 }
                                 if (paidMessagesToast.bulletinButton != null) {
                                     paidMessagesToast.bulletin.hide();
@@ -937,16 +924,16 @@ public final class StarsController {
                             break;
                     }
                 }
-            };
+            });
             undoButton.addView(timerView, LayoutHelper.createFrame(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-            textView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
+            undoButton.undoTextView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
             twoLineAnimatedLottieLayout.setButton(undoButton);
             Bulletin bulletinCreate = BulletinFactory.of(baseFragment).create(twoLineAnimatedLottieLayout, -1);
             this.bulletin = bulletinCreate;
             bulletinCreate.hideAfterBottomSheet = false;
             bulletinCreate.show(true);
             final int i3 = 0;
-            bulletinCreate.onHideListener = new Runnable(this) {
+            bulletinCreate.setOnHideListener(new Runnable(this) {
                 public final StarsController.PaidMessagesToast f$0;
 
                 {
@@ -963,9 +950,9 @@ public final class StarsController {
                             StarsController.PaidMessagesToast paidMessagesToast = this.f$0;
                             if (!paidMessagesToast.undone && !paidMessagesToast.sent && paidMessagesToast.undoRunning) {
                                 paidMessagesToast.undone = true;
-                                ProfileActivity$6$$ExternalSyntheticLambda7 profileActivity$6$$ExternalSyntheticLambda7 = paidMessagesToast.undoListener;
-                                if (profileActivity$6$$ExternalSyntheticLambda7 != null) {
-                                    profileActivity$6$$ExternalSyntheticLambda7.run(paidMessagesToast.messages);
+                                AddressBarList$$ExternalSyntheticLambda1 addressBarList$$ExternalSyntheticLambda1 = paidMessagesToast.undoListener;
+                                if (addressBarList$$ExternalSyntheticLambda1 != null) {
+                                    addressBarList$$ExternalSyntheticLambda1.run(paidMessagesToast.messages);
                                 }
                                 if (paidMessagesToast.bulletinButton != null) {
                                     paidMessagesToast.bulletin.hide();
@@ -975,7 +962,7 @@ public final class StarsController {
                             break;
                     }
                 }
-            };
+            });
             AndroidUtilities.cancelRunOnUIThread(r2);
             AndroidUtilities.runOnUIThread(r2, 3000L);
         }
@@ -1029,19 +1016,15 @@ public final class StarsController {
             this.bulletinLayout = twoLineAnimatedLottieLayout;
             twoLineAnimatedLottieLayout.setAnimation(R.raw.stars_topup, new String[0]);
             twoLineAnimatedLottieLayout.titleTextView.setText(getToastTitle());
-            Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, chatActivity.themeDelegate, true, false);
-            String string = LocaleController.getString(R.string.StarsSentUndo);
-            TextView textView = undoButton.undoTextView;
-            if (textView != null) {
-                textView.setText(string);
-            }
-            undoButton.undoAction = new StarsReactionsSheet$$ExternalSyntheticLambda13(this, 2);
+            Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, true, false, chatActivity.themeDelegate);
+            undoButton.setText(LocaleController.getString(R.string.StarsSentUndo));
+            undoButton.setUndoAction(new StarsReactionsSheet$$ExternalSyntheticLambda13(this, 2));
             Bulletin.TimerView timerView = new Bulletin.TimerView(context, chatActivity.themeDelegate);
             this.timerView = timerView;
             timerView.timeLeft = 5000L;
             timerView.setColor(Theme.getColor(Theme.key_undo_cancelColor, chatActivity.themeDelegate));
             undoButton.addView(timerView, LayoutHelper.createFrame(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-            textView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
+            undoButton.undoTextView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
             twoLineAnimatedLottieLayout.setButton(undoButton);
             Bulletin bulletinCreate = BulletinFactory.of(chatActivity).create(twoLineAnimatedLottieLayout, -1);
             this.bulletin = bulletinCreate;
@@ -1050,7 +1033,7 @@ public final class StarsController {
                 bulletinCreate.show(true);
                 this.shownBulletin = true;
             }
-            bulletinCreate.onHideListener = starsReactionsSheet$$ExternalSyntheticLambda13;
+            bulletinCreate.setOnHideListener(starsReactionsSheet$$ExternalSyntheticLambda13);
             this.amount = 0L;
             System.currentTimeMillis();
             this.wasChosen = messageObject.isPaidReactionChosen();
@@ -1094,14 +1077,14 @@ public final class StarsController {
                 MessagesController messagesController = MessagesController.getInstance(StarsController.this.currentAccount);
                 ConnectionsManager connectionsManager = ConnectionsManager.getInstance(StarsController.this.currentAccount);
                 long j = this.amount;
-                if (!starsController2.balanceLoaded || starsController2.getBalance(false, false, null).amount >= j) {
+                if (!starsController2.balanceLoaded || starsController2.getBalance(null, false, false).amount >= j) {
                     this.committed = true;
                     TLRPC.TL_messages_sendPaidReaction tL_messages_sendPaidReaction = new TLRPC.TL_messages_sendPaidReaction();
                     tL_messages_sendPaidReaction.peer = messagesController.getInputPeer(this.message.did);
                     tL_messages_sendPaidReaction.msg_id = this.message.mid;
-                    tL_messages_sendPaidReaction.random_id = (Utilities.random.nextLong() & 4294967295L) | (((long) connectionsManager.getCurrentTime()) << 32);
+                    tL_messages_sendPaidReaction.random_id = (((long) connectionsManager.getCurrentTime()) << 32) | (Utilities.random.nextLong() & 4294967295L);
                     tL_messages_sendPaidReaction.count = (int) this.amount;
-                    tL_messages_sendPaidReaction.flags = 1 | tL_messages_sendPaidReaction.flags;
+                    tL_messages_sendPaidReaction.flags |= 1;
                     long peerId = getPeerId();
                     if (peerId == 0 || peerId == UserConfig.getInstance(StarsController.this.currentAccount).getClientUserId()) {
                         tL_messages_sendPaidReaction.privacy = new TL_stars.paidReactionPrivacyDefault();
@@ -1113,7 +1096,7 @@ public final class StarsController {
                         paidreactionprivacypeer.peer = messagesController.getInputPeer(peerId);
                     }
                     StarsController.this.invalidateBalance();
-                    connectionsManager.sendRequest(tL_messages_sendPaidReaction, new LaunchActivity$$ExternalSyntheticLambda51(this, messagesController, j));
+                    connectionsManager.sendRequest(tL_messages_sendPaidReaction, new LivePlayer$$ExternalSyntheticLambda15(this, messagesController, j, 4));
                 } else {
                     this.cancelled = true;
                     this.messageObject.addPaidReactions((int) (-this.amount), this.wasChosen, getPeerId());
@@ -1128,14 +1111,14 @@ public final class StarsController {
                         forcedFirstName = chat == null ? "" : chat.title;
                     }
                     String str = forcedFirstName;
-                    Context parentActivity = this.chatActivity.getParentActivity();
-                    if (parentActivity == null) {
-                        parentActivity = LaunchActivity.instance;
+                    Context context = this.chatActivity.getContext();
+                    if (context == null) {
+                        context = LaunchActivity.instance;
                     }
-                    if (parentActivity == null) {
-                        parentActivity = ApplicationLoader.applicationContext;
+                    if (context == null) {
+                        context = ApplicationLoader.applicationContext;
                     }
-                    new StarsIntroActivity.StarsNeededSheet(parentActivity, this.chatActivity.getResourceProvider(), j, 5, str, new StarsController$PendingPaidReactions$$ExternalSyntheticLambda0(this, j, i), 0L).show();
+                    new StarsIntroActivity.StarsNeededSheet(context, this.chatActivity.getResourceProvider(), j, 5, str, new StarsController$PendingPaidReactions$$ExternalSyntheticLambda0(this, j, i), 0L).show();
                 }
             }
             this.bulletin.hide();
@@ -1177,7 +1160,7 @@ public final class StarsController {
 
     public static void bulletinError(String str) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
-        zzks.m(R.string.UnknownErrorCode, new Object[]{str}, (lastFragment == null || lastFragment.visibleDialog != null) ? BulletinFactory.global() : BulletinFactory.of(lastFragment), R.raw.error);
+        zzkh.m(R.string.UnknownErrorCode, new Object[]{str}, (lastFragment == null || lastFragment.visibleDialog != null) ? BulletinFactory.global() : BulletinFactory.of(lastFragment), R.raw.error);
     }
 
     public static boolean eq(TL_stars.SavedStarGift savedStarGift, TL_stars.SavedStarGift savedStarGift2) {
@@ -1275,12 +1258,7 @@ public final class StarsController {
     }
 
     public static void showNoSupportDialog(Context context, Theme.ResourcesProvider resourcesProvider) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, resourcesProvider);
-        String string = LocaleController.getString(R.string.StarsNotAvailableTitle);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = LocaleController.getString(R.string.StarsNotAvailableText);
-        ChatActivity$$ExternalSyntheticOutline1.m(R.string.OK, builder);
+        ChatActivity$$ExternalSyntheticOutline0.m(R.string.OK, new AlertDialog.Builder(context, 0, resourcesProvider).setTitle(LocaleController.getString(R.string.StarsNotAvailableTitle)).setMessage(LocaleController.getString(R.string.StarsNotAvailableText)), null);
     }
 
     public final boolean beforeSendingFinalRequest(TLObject tLObject, ArrayList arrayList, Runnable runnable) {
@@ -1297,7 +1275,7 @@ public final class StarsController {
             int id = ((MessageObject) obj).getId();
             hashSet.add(Integer.valueOf(id));
             if (this.sendingPaidMessagesIds.remove(Integer.valueOf(id))) {
-                this.postponedPaidMessages.put(Integer.valueOf(id), new PollItemMenu$$ExternalSyntheticLambda8(this, hashSet, runnable, 26));
+                this.postponedPaidMessages.put(Integer.valueOf(id), new StarGiftSheet$$ExternalSyntheticLambda66(this, hashSet, runnable, 24));
                 z = true;
             }
         }
@@ -1322,8 +1300,8 @@ public final class StarsController {
             this.sendingPaidMessagesIds.add(Integer.valueOf(id));
         }
         long dialogId = messageObject.getDialogId();
-        ProfileActivity$6$$ExternalSyntheticLambda7 profileActivity$6$$ExternalSyntheticLambda7 = new ProfileActivity$6$$ExternalSyntheticLambda7(1, this, z);
-        FilterCreateActivity$$ExternalSyntheticLambda27 filterCreateActivity$$ExternalSyntheticLambda27 = new FilterCreateActivity$$ExternalSyntheticLambda27(this, z, id, 3);
+        AddressBarList$$ExternalSyntheticLambda1 addressBarList$$ExternalSyntheticLambda1 = new AddressBarList$$ExternalSyntheticLambda1(this, z, 1);
+        StarsController$$ExternalSyntheticLambda31 starsController$$ExternalSyntheticLambda31 = new StarsController$$ExternalSyntheticLambda31(this, z, id);
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         PaidMessagesToast paidMessagesToast2 = this.currentPaidMessagesToast;
         if (paidMessagesToast2 != null && (paidMessagesToast2.sent || paidMessagesToast2.undone)) {
@@ -1342,7 +1320,7 @@ public final class StarsController {
             }
         }
         if (safeLastFragment == null || safeLastFragment.isRemovingFromStack()) {
-            filterCreateActivity$$ExternalSyntheticLambda27.run();
+            starsController$$ExternalSyntheticLambda31.run();
             return;
         }
         if (this.currentPaidMessagesToast == null) {
@@ -1350,21 +1328,21 @@ public final class StarsController {
         }
         PaidMessagesToast paidMessagesToast4 = this.currentPaidMessagesToast;
         if (paidMessagesToast4.undone || paidMessagesToast4.sent) {
-            filterCreateActivity$$ExternalSyntheticLambda27.run();
+            starsController$$ExternalSyntheticLambda31.run();
             return;
         }
         paidMessagesToast4.totalMessagesCount++;
         paidMessagesToast4.messages.add(messageObject);
         paidMessagesToast4.totalStars += j;
-        paidMessagesToast4.undoListener = profileActivity$6$$ExternalSyntheticLambda7;
-        paidMessagesToast4.totalSendListeners.add(filterCreateActivity$$ExternalSyntheticLambda27);
+        paidMessagesToast4.undoListener = addressBarList$$ExternalSyntheticLambda1;
+        paidMessagesToast4.totalSendListeners.add(starsController$$ExternalSyntheticLambda31);
         boolean z2 = paidMessagesToast4.undoRunning;
         StarsController$PaidMessagesToast$$ExternalSyntheticLambda0 starsController$PaidMessagesToast$$ExternalSyntheticLambda0 = paidMessagesToast4.sendRunnable;
         if (z2 && !z) {
             paidMessagesToast4.undoRunning = false;
             AndroidUtilities.cancelRunOnUIThread(starsController$PaidMessagesToast$$ExternalSyntheticLambda0);
             Bulletin bulletin = paidMessagesToast4.bulletin;
-            bulletin.duration = 5000;
+            bulletin.setDuration(5000);
             bulletin.setCanHide(true);
             long jCurrentTimeMillis = System.currentTimeMillis() - paidMessagesToast4.startTime;
             Bulletin.UndoButton undoButton = paidMessagesToast4.bulletinButton;
@@ -1419,7 +1397,7 @@ public final class StarsController {
             accountIdentifiers.zza = tL_starsTopupOption.store_product;
             QueryProductDetailsParams$Product queryProductDetailsParams$ProductBuild = accountIdentifiers.build();
             FileLog.d("StarsController.buy starts queryProductDetails");
-            BillingController.getInstance().queryProductDetails(Arrays.asList(queryProductDetailsParams$ProductBuild), new ArticleViewer$$ExternalSyntheticLambda54(callback2, tL_inputStorePaymentStarsTopup, tL_starsTopupOption, activity, 18));
+            BillingController.getInstance().queryProductDetails(Arrays.asList(queryProductDetailsParams$ProductBuild), new StarsController$$ExternalSyntheticLambda63(0, callback2, tL_inputStorePaymentStarsTopup, tL_starsTopupOption, activity));
             return;
         }
         TLRPC.TL_inputStorePaymentStarsTopup tL_inputStorePaymentStarsTopup2 = new TLRPC.TL_inputStorePaymentStarsTopup();
@@ -1438,7 +1416,7 @@ public final class StarsController {
             tL_payments_getPaymentForm.flags |= 1;
         }
         tL_payments_getPaymentForm.invoice = tL_inputInvoiceStars;
-        ConnectionsManager.getInstance(i).sendRequest(tL_payments_getPaymentForm, new StarGiftSheet$$ExternalSyntheticLambda7(this, callback2, tL_inputInvoiceStars, 2));
+        ConnectionsManager.getInstance(i).sendRequest(tL_payments_getPaymentForm, new StarGiftSheet$$ExternalSyntheticLambda1(this, callback2, tL_inputInvoiceStars, 12));
     }
 
     public final void buyPremiumGift(final Utilities.Callback2 callback2, final long j, final TLObject tLObject, final TLRPC.TL_textWithEntities tL_textWithEntities) {
@@ -1452,7 +1430,7 @@ public final class StarsController {
         boolean z = tLObject instanceof TLRPC.TL_premiumGiftOption;
         if ((z || (tLObject instanceof TLRPC.TL_premiumGiftCodeOption)) && context2 != null) {
             if (!this.balanceLoaded) {
-                getBalance(true, false, new PhotoViewer$$ExternalSyntheticLambda177(this, callback2, j, tLObject, tL_textWithEntities, 11));
+                getBalance(new PhotoViewer$$ExternalSyntheticLambda22(this, callback2, j, tLObject, tL_textWithEntities, 10), true, false);
                 return;
             }
             if (z) {
@@ -1519,7 +1497,7 @@ public final class StarsController {
                                 i2++;
                                 j3 += tL_labeledPrice.amount;
                             }
-                            ConnectionsManager.getInstance(starsController2.currentAccount).sendRequest(tL_payments_sendStarsForm, new StarsController$$ExternalSyntheticLambda143(starsController2, callback4, context3, resourcesProvider, j3, str, j2, tLObject3, tL_textWithEntities2));
+                            ConnectionsManager.getInstance(starsController2.currentAccount).sendRequest(tL_payments_sendStarsForm, new StarsController$$ExternalSyntheticLambda44(starsController2, callback4, context3, resourcesProvider, j3, str, j2, tLObject3, tL_textWithEntities2));
                         }
                     });
                 }
@@ -1539,7 +1517,7 @@ public final class StarsController {
         }
         int i = 0;
         if (!this.balanceLoaded) {
-            getBalance(true, false, new PhotoViewer$$ExternalSyntheticLambda177(this, callback2, tL_payments_paymentFormStarGift, tL_starGiftUnique, j, 12));
+            getBalance(new PhotoViewer$$ExternalSyntheticLambda22(this, callback2, tL_payments_paymentFormStarGift, tL_starGiftUnique, j, 12), true, false);
             return;
         }
         String name = DialogObject.getName(this.currentAccount, j);
@@ -1571,7 +1549,7 @@ public final class StarsController {
             arrayList = arrayList;
             context2 = context2;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_sendStarsForm, new StarsController$$ExternalSyntheticLambda143(this, callback2, context2, resourceProvider, j2, name, tL_payments_paymentFormStarGift, tL_starGiftUnique, j));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_sendStarsForm, new StarsController$$ExternalSyntheticLambda44(this, callback2, context2, resourceProvider, j2, name, tL_payments_paymentFormStarGift, tL_starGiftUnique, j));
     }
 
     public final void buyStarGift(final SendGiftSheet$$ExternalSyntheticLambda0 sendGiftSheet$$ExternalSyntheticLambda0, final TL_stars.StarGift starGift, final boolean z, final boolean z2, final long j, final TLRPC.TL_textWithEntities tL_textWithEntities) {
@@ -1585,7 +1563,7 @@ public final class StarsController {
             return;
         }
         if (!this.balanceLoaded) {
-            getBalance(true, false, new Runnable() {
+            getBalance(new Runnable() {
                 @Override
                 public final void run() {
                     StarsController starsController = this.f$0;
@@ -1598,7 +1576,7 @@ public final class StarsController {
                         starsController.buyStarGift(sendGiftSheet$$ExternalSyntheticLambda1, starGift, z, z2, j, tL_textWithEntities);
                     }
                 }
-            });
+            }, true, false);
             return;
         }
         final String name = DialogObject.getName(this.currentAccount, j);
@@ -1690,9 +1668,7 @@ public final class StarsController {
                                     @Override
                                     public final void run() {
                                         int i2;
-                                        SpannableStringBuilder spannableStringBuilderReplaceTags;
-                                        LaunchActivity.AnonymousClass5 anonymousClass5;
-                                        ?? r12;
+                                        boolean z10;
                                         StarsController starsController4 = starsController3;
                                         TLObject tLObject4 = tLObject3;
                                         TLRPC.TL_error tL_error4 = tL_error3;
@@ -1702,13 +1678,14 @@ public final class StarsController {
                                         long j7 = j6;
                                         String str4 = str3;
                                         TL_stars.StarGift starGift5 = starGift4;
-                                        boolean z10 = z8;
-                                        boolean z11 = z9;
+                                        boolean z11 = z8;
+                                        boolean z12 = z9;
                                         long j8 = j5;
                                         TLRPC.TL_textWithEntities tL_textWithEntities5 = tL_textWithEntities4;
                                         starsController4.getClass();
                                         BaseFragment lastFragment = LaunchActivity.getLastFragment();
                                         BulletinFactory bulletinFactoryGlobal = (lastFragment == null || lastFragment.visibleDialog != null) ? BulletinFactory.global() : BulletinFactory.of(lastFragment);
+                                        SpannableStringBuilder spannableStringBuilderReplaceTags = null;
                                         if (!(tLObject4 instanceof TLRPC.TL_payments_paymentResult)) {
                                             if (tL_error4 != null && "BALANCE_TOO_LOW".equals(tL_error4.text)) {
                                                 if (!MessagesController.getInstance(starsController4.currentAccount).starsPurchaseAvailable()) {
@@ -1717,8 +1694,8 @@ public final class StarsController {
                                                     return;
                                                 } else {
                                                     boolean[] zArr = {false};
-                                                    StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(context6, resourcesProvider4, j7, 6, str4, new StarsController$$ExternalSyntheticLambda14(starsController4, zArr, starGift5, z10, z11, j8, tL_textWithEntities5, sendGiftSheet$$ExternalSyntheticLambda4), 0L);
-                                                    starsNeededSheet.setOnDismissListener(new VoIPFragment$$ExternalSyntheticLambda16(12, sendGiftSheet$$ExternalSyntheticLambda4, zArr));
+                                                    StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(context6, resourcesProvider4, j7, 6, str4, new StarsController$$ExternalSyntheticLambda10(starsController4, zArr, starGift5, z11, z12, j8, tL_textWithEntities5, sendGiftSheet$$ExternalSyntheticLambda4), 0L);
+                                                    starsNeededSheet.setOnDismissListener(new BotStorage$$ExternalSyntheticLambda5(5, (Object) sendGiftSheet$$ExternalSyntheticLambda4, zArr));
                                                     starsNeededSheet.show();
                                                     return;
                                                 }
@@ -1732,10 +1709,10 @@ public final class StarsController {
                                                 return;
                                             }
                                             sendGiftSheet$$ExternalSyntheticLambda4.run(Boolean.FALSE, null);
-                                            zzks.m(R.string.UnknownErrorCode, new Object[]{tL_error4 != null ? tL_error4.text : "FAILED_SEND_STARS"}, bulletinFactoryGlobal, R.raw.error);
+                                            zzkh.m(R.string.UnknownErrorCode, new Object[]{tL_error4 != null ? tL_error4.text : "FAILED_SEND_STARS"}, bulletinFactoryGlobal, R.raw.error);
                                             return;
                                         }
-                                        Utilities.stageQueue.postRunnable(new StarsController$$ExternalSyntheticLambda6(starsController4, (TLRPC.TL_payments_paymentResult) tLObject4, 2));
+                                        Utilities.stageQueue.postRunnable(new StarsController$$ExternalSyntheticLambda12(starsController4, (TLRPC.TL_payments_paymentResult) tLObject4, 0));
                                         starsController4.giftsLoaded = false;
                                         starsController4.giftsCacheLoaded = true;
                                         starsController4.giftsRemoteTime = 0L;
@@ -1745,17 +1722,16 @@ public final class StarsController {
                                         sendGiftSheet$$ExternalSyntheticLambda4.run(Boolean.TRUE, null);
                                         if (BirthdayController.getInstance(starsController4.currentAccount).contains(j8)) {
                                             i2 = 0;
-                                            AiTonesController$$ExternalSyntheticOutline0.m(starsController4.currentAccount).putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j8, false).apply();
+                                            MessagesController.getInstance(starsController4.currentAccount).getMainSettings().edit().putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j8, false).apply();
                                         } else {
                                             i2 = 0;
                                         }
-                                        if (starGift5 == null || !starGift5.limited_per_user) {
-                                            spannableStringBuilderReplaceTags = null;
-                                        } else {
+                                        if (starGift5 != null && starGift5.limited_per_user) {
                                             int i3 = starGift5.per_user_remains - 1;
                                             starGift5.per_user_remains = i3;
                                             spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("Gift2SentRemainsLimit", Math.max(i2, i3)));
                                         }
+                                        SpannableStringBuilder spannableStringBuilderReplaceTags2 = spannableStringBuilderReplaceTags;
                                         if (j8 < 0) {
                                             long j9 = -j8;
                                             TLRPC.ChatFull chatFull = MessagesController.getInstance(starsController4.currentAccount).getChatFull(j9);
@@ -1767,48 +1743,46 @@ public final class StarsController {
                                             if (lastFragment instanceof ProfileActivity) {
                                                 ProfileActivity profileActivity = (ProfileActivity) lastFragment;
                                                 if (profileActivity.getDialogId() == j8) {
-                                                    ProfileActivity.AnonymousClass9 anonymousClass9 = profileActivity.sharedMediaLayout;
-                                                    if (anonymousClass9 != null) {
-                                                        anonymousClass9.updateTabs(true);
+                                                    SharedMediaLayout sharedMediaLayout = profileActivity.sharedMediaLayout;
+                                                    if (sharedMediaLayout != null) {
+                                                        sharedMediaLayout.updateTabs(true);
                                                         profileActivity.sharedMediaLayout.scrollToPage(14);
-                                                        r12 = 0;
-                                                        profileActivity.scrollToSharedMedia(false);
-                                                    } else {
-                                                        r12 = 0;
+                                                        profileActivity.scrollToSharedMedia();
                                                     }
                                                     BulletinFactory bulletinFactoryOf = BulletinFactory.of(lastFragment);
                                                     TLRPC.Document document = starGift5.sticker;
                                                     String string = LocaleController.getString(R.string.StarsGiftCompleted);
-                                                    if (spannableStringBuilderReplaceTags == null) {
-                                                        Object[] objArr = new Object[1];
-                                                        objArr[r12] = str4;
-                                                        spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedChannelText", (int) j7, objArr));
+                                                    if (spannableStringBuilderReplaceTags2 != null) {
+                                                        z10 = false;
+                                                    } else {
+                                                        z10 = false;
+                                                        spannableStringBuilderReplaceTags2 = AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedChannelText", (int) j7, str4));
                                                     }
-                                                    bulletinFactoryOf.createEmojiBulletin(document, string, spannableStringBuilderReplaceTags).show(r12);
+                                                    bulletinFactoryOf.createEmojiBulletin(document, string, spannableStringBuilderReplaceTags2).show(z10);
                                                 } else {
                                                     Bundle bundle = new Bundle();
                                                     bundle.putLong("chat_id", j9);
                                                     bundle.putBoolean("open_gifts", true);
-                                                    ProfileActivity profileActivity2 = new ProfileActivity(bundle, null);
-                                                    profileActivity2.whenFullyVisible(new PhotoViewer$$ExternalSyntheticLambda177((Object) profileActivity2, (Object) starGift5, (Object) spannableStringBuilderReplaceTags, j7, str4, 13));
+                                                    ProfileActivity profileActivity2 = new ProfileActivity(bundle);
+                                                    profileActivity2.whenFullyVisible(new PhotoViewer$$ExternalSyntheticLambda22((Object) profileActivity2, (Object) starGift5, (Object) spannableStringBuilderReplaceTags2, j7, str4, 11));
                                                     lastFragment.presentFragment(profileActivity2);
                                                 }
                                             } else {
                                                 Bundle bundle2 = new Bundle();
                                                 bundle2.putLong("chat_id", j9);
                                                 bundle2.putBoolean("open_gifts", true);
-                                                ProfileActivity profileActivity3 = new ProfileActivity(bundle2, null);
-                                                profileActivity3.whenFullyVisible(new PhotoViewer$$ExternalSyntheticLambda177((Object) profileActivity3, (Object) starGift5, (Object) spannableStringBuilderReplaceTags, j7, str4, 13));
+                                                ProfileActivity profileActivity3 = new ProfileActivity(bundle2);
+                                                profileActivity3.whenFullyVisible(new PhotoViewer$$ExternalSyntheticLambda22((Object) profileActivity3, (Object) starGift5, (Object) spannableStringBuilderReplaceTags2, j7, str4, 11));
                                                 lastFragment.presentFragment(profileActivity3);
                                             }
                                         } else if ((lastFragment instanceof ChatActivity) && ((ChatActivity) lastFragment).getDialogId() == j8) {
                                             BulletinFactory bulletinFactoryOf2 = BulletinFactory.of(lastFragment);
                                             TLRPC.Document document2 = starGift5.sticker;
                                             String string2 = LocaleController.getString(R.string.StarsGiftCompleted);
-                                            if (spannableStringBuilderReplaceTags == null) {
-                                                spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedText", (int) j7, new Object[0]));
+                                            if (spannableStringBuilderReplaceTags2 == null) {
+                                                spannableStringBuilderReplaceTags2 = AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsGiftCompletedText", (int) j7, new Object[0]));
                                             }
-                                            bulletinFactoryOf2.createEmojiBulletin(document2, string2, spannableStringBuilderReplaceTags).show(true);
+                                            bulletinFactoryOf2.createEmojiBulletin(document2, string2, spannableStringBuilderReplaceTags2).show(true);
                                         } else {
                                             NotificationCenter notificationCenter = NotificationCenter.getInstance(starsController4.currentAccount);
                                             int i4 = NotificationCenter.closeProfileActivity;
@@ -1817,15 +1791,15 @@ public final class StarsController {
                                             notificationCenter.lambda$postNotificationNameOnUIThread$1(i4, lValueOf, bool);
                                             NotificationCenter.getInstance(starsController4.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChatActivity, Long.valueOf(j8), bool);
                                             ChatActivity chatActivityOf = ChatActivity.of(j8);
-                                            chatActivityOf.whenFullyVisible(new PhotoViewer$$ExternalSyntheticLambda126(chatActivityOf, starGift5, spannableStringBuilderReplaceTags, j7, 8));
+                                            chatActivityOf.whenFullyVisible(new StarGiftSheet$$ExternalSyntheticLambda139(chatActivityOf, starGift5, spannableStringBuilderReplaceTags2, j7, 27));
                                             lastFragment.presentFragment(chatActivityOf);
                                         }
-                                        AiTonesController$$ExternalSyntheticOutline0.m(starsController4.currentAccount).putBoolean("show_gift_for_" + j8, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j8, true).apply();
+                                        MessagesController.getInstance(starsController4.currentAccount).getMainSettings().edit().putBoolean("show_gift_for_" + j8, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j8, true).apply();
                                         LaunchActivity launchActivity = LaunchActivity.instance;
-                                        if (launchActivity == null || (anonymousClass5 = launchActivity.fireworksOverlay) == null) {
+                                        if (launchActivity == null || launchActivity.getFireworksOverlay() == null) {
                                             return;
                                         }
-                                        anonymousClass5.start(true);
+                                        LaunchActivity.instance.getFireworksOverlay().start(true);
                                     }
                                 });
                             }
@@ -1869,7 +1843,7 @@ public final class StarsController {
     }
 
     public final TL_stars.StarsAmount getBalance() {
-        return getBalance(true, false, null);
+        return getBalance(null, true, false);
     }
 
     public final AmountUtils$Amount getBalanceAmount() {
@@ -1885,7 +1859,7 @@ public final class StarsController {
             return this.giftOptions;
         }
         this.giftOptionsLoading = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_stars.TL_payments_getStarsGiftOptions(), new StarsController$$ExternalSyntheticLambda23(this, 3));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_stars.TL_payments_getStarsGiftOptions(), new StarsController$$ExternalSyntheticLambda1(this, 4));
         return this.giftOptions;
     }
 
@@ -1894,7 +1868,7 @@ public final class StarsController {
             return this.giveawayOptions;
         }
         this.giveawayOptionsLoading = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_stars.TL_payments_getStarsGiveawayOptions(), new StarsController$$ExternalSyntheticLambda23(this, 4));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_stars.TL_payments_getStarsGiveawayOptions(), new StarsController$$ExternalSyntheticLambda1(this, 1));
         return this.giveawayOptions;
     }
 
@@ -1903,7 +1877,7 @@ public final class StarsController {
             return this.options;
         }
         this.optionsLoading = true;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_stars.TL_payments_getStarsTopupOptions(), new StarsController$$ExternalSyntheticLambda23(this, 2));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TL_stars.TL_payments_getStarsTopupOptions(), new StarsController$$ExternalSyntheticLambda1(this, 3));
         return this.options;
     }
 
@@ -1931,7 +1905,7 @@ public final class StarsController {
         if (j2 != 0) {
             getpaidmessagesrevenue.parent_peer = MessagesController.getInstance(i).getInputPeer(j2);
         }
-        ConnectionsManager.getInstance(i).sendRequest(getpaidmessagesrevenue, new StarsController$$ExternalSyntheticLambda54(0, callback));
+        ConnectionsManager.getInstance(i).sendRequest(getpaidmessagesrevenue, new RichMediaUploader$$ExternalSyntheticLambda0(callback, 19));
     }
 
     public final long getPendingPaidReactions(int i, long j) {
@@ -1978,7 +1952,7 @@ public final class StarsController {
             return;
         }
         if (!this.balanceLoaded) {
-            getBalance(true, false, new PhotoViewer$$ExternalSyntheticLambda126(this, callback, starGift, j, 7));
+            getBalance(new StarGiftSheet$$ExternalSyntheticLambda139(this, callback, starGift, j, 28), true, false);
             return;
         }
         TLRPC.TL_inputInvoiceStarGiftResale tL_inputInvoiceStarGiftResale = new TLRPC.TL_inputInvoiceStarGiftResale();
@@ -1996,7 +1970,7 @@ public final class StarsController {
             tL_payments_getPaymentForm.flags |= 1;
         }
         tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftResale;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getPaymentForm, new ProfileActivity$$ExternalSyntheticLambda65(23, this, callback));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getPaymentForm, new StarGiftSheet$$ExternalSyntheticLambda0(22, this, callback));
     }
 
     public final void getStarGiftPreview(long j, Utilities.Callback callback) {
@@ -2007,7 +1981,7 @@ public final class StarsController {
         }
         TL_stars.getStarGiftUpgradePreview getstargiftupgradepreview = new TL_stars.getStarGiftUpgradePreview();
         getstargiftupgradepreview.gift_id = j;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getstargiftupgradepreview, new LaunchActivity$$ExternalSyntheticLambda51(this, j, callback, 4));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getstargiftupgradepreview, new LivePlayer$$ExternalSyntheticLambda15(this, j, callback, 3));
     }
 
     public final void getUserStarGift(TL_stars.InputSavedStarGift inputSavedStarGift, Utilities.Callback callback) {
@@ -2016,7 +1990,7 @@ public final class StarsController {
         AndroidUtilities.runOnUIThread(alertDialog.showRunnable, 200L);
         TL_stars.getSavedStarGift getsavedstargift = new TL_stars.getSavedStarGift();
         getsavedstargift.stargift.add(inputSavedStarGift);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsavedstargift, new LoginActivity$$ExternalSyntheticLambda42(this, alertDialog, inputSavedStarGift, callback, 14));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(getsavedstargift, new GiftSheet$$ExternalSyntheticLambda16(6, this, alertDialog, inputSavedStarGift, callback));
     }
 
     public final boolean hasTransactions(int i) {
@@ -2084,18 +2058,18 @@ public final class StarsController {
             int i = this.currentAccount;
             if (z) {
                 int i2 = this.giftsHash;
-                VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7 = new VoIPFragment$$ExternalSyntheticLambda7(this, 2);
+                DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda6 = new DialogCell$$ExternalSyntheticLambda6(this, 29);
                 TL_stars.getStarGifts getstargifts = new TL_stars.getStarGifts();
                 getstargifts.hash = i2;
-                ConnectionsManager.getInstance(i).sendRequest(getstargifts, new LinkManager$$ExternalSyntheticLambda3(voIPFragment$$ExternalSyntheticLambda7, 26));
+                ConnectionsManager.getInstance(i).sendRequest(getstargifts, new RichMediaUploader$$ExternalSyntheticLambda0(dialogCell$$ExternalSyntheticLambda6, 18));
                 return;
             }
-            StoriesViewPager$$ExternalSyntheticLambda0 storiesViewPager$$ExternalSyntheticLambda0 = new StoriesViewPager$$ExternalSyntheticLambda0(this, 9);
+            GiftSheet$$ExternalSyntheticLambda6 giftSheet$$ExternalSyntheticLambda6 = new GiftSheet$$ExternalSyntheticLambda6(this, 23);
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
             ArrayList arrayList3 = new ArrayList();
             MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
-            messagesStorage.getStorageQueue().postRunnable(new LinkManager$$ExternalSyntheticLambda20(messagesStorage, arrayList3, arrayList2, arrayList, storiesViewPager$$ExternalSyntheticLambda0, 27));
+            messagesStorage.getStorageQueue().postRunnable(new SendGiftSheet$$ExternalSyntheticLambda16(messagesStorage, arrayList3, arrayList2, arrayList, giftSheet$$ExternalSyntheticLambda6, 13));
         }
     }
 
@@ -2111,7 +2085,7 @@ public final class StarsController {
         if (str == null) {
             tL_getStarsSubscriptions.offset = "";
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getStarsSubscriptions, new StarsController$$ExternalSyntheticLambda23(this, 1));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getStarsSubscriptions, new StarsController$$ExternalSyntheticLambda1(this, 2));
     }
 
     public final void loadTransactions(int i) {
@@ -2130,44 +2104,42 @@ public final class StarsController {
         if (str == null) {
             tL_payments_getStarsTransactions.offset = "";
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new LaunchActivity$$ExternalSyntheticLambda63(this, i, 5));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsTransactions, new StarGiftSheet$$ExternalSyntheticLambda100(this, i, 2));
     }
 
     public final void openPaymentForm(Runnable runnable, MessageObject messageObject, TLRPC.InputInvoice inputInvoice, TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, Utilities.Callback callback) {
         long dialogId;
-        String userName;
+        String str;
         boolean z;
         int i;
-        BottomSheet bottomSheet;
         TLRPC.User user;
         MessageObject messageObject2;
-        Theme.ResourcesProvider resourcesProvider;
         ?? r6;
-        int i2;
         ViewGroup viewGroup;
         TextView textViewM;
         String string;
-        int i3;
+        int i2;
         TextView textViewM2;
-        long j;
         ButtonWithCounterView buttonWithCounterView;
-        int i4;
+        int i3;
         TLRPC.Message message;
         boolean z2;
         TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia;
+        int i4;
         int i5;
         int i6;
+        String str2;
         int i7;
-        boolean z3;
-        String str;
         String pluralString;
         String pluralString2;
         String pluralString3;
-        String str2;
+        String str3;
+        char c;
         String pluralString4;
+        char c2;
         String pluralString5;
         TLRPC.MessageExtendedMedia messageExtendedMedia;
-        boolean z4;
+        boolean z3;
         TLRPC.User user2;
         TLRPC.MessageFwdHeader messageFwdHeader;
         TLRPC.Peer peer;
@@ -2179,7 +2151,6 @@ public final class StarsController {
         int i9;
         ImageLocation forDocument;
         TLRPC.Peer peer2;
-        int i10 = 1;
         if (tL_payments_paymentFormStars == null || tL_payments_paymentFormStars.invoice == null) {
             return;
         }
@@ -2188,24 +2159,24 @@ public final class StarsController {
         if (context == null) {
             context = ApplicationLoader.applicationContext;
         }
-        Context context2 = context;
+        final Context context2 = context;
         Theme.ResourcesProvider resourceProvider = getResourceProvider();
         if (context2 == null) {
             return;
         }
         if (!this.balanceLoaded) {
-            getBalance(true, false, new ChatActivity$$ExternalSyntheticLambda375(this, runnable, messageObject, inputInvoice, tL_payments_paymentFormStars, callback, 15));
+            getBalance(new GiftSheet$$ExternalSyntheticLambda24(this, (Object) runnable, messageObject, inputInvoice, tL_payments_paymentFormStars, callback, 8), true, false);
             return;
         }
         ArrayList<TLRPC.TL_labeledPrice> arrayList = tL_payments_paymentFormStars.invoice.prices;
         int size = arrayList.size();
-        long j2 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            TLRPC.TL_labeledPrice tL_labeledPrice = arrayList.get(i11);
-            i11 += i10;
-            j2 += tL_labeledPrice.amount;
-            i10 = 1;
+        long j = 0;
+        int i10 = 0;
+        while (i10 < size) {
+            TLRPC.TL_labeledPrice tL_labeledPrice = arrayList.get(i10);
+            i10++;
+            j += tL_labeledPrice.amount;
+            arrayList = arrayList;
         }
         if (messageObject == null || messageObject.type != 29) {
             dialogId = tL_payments_paymentFormStars.bot_id;
@@ -2213,62 +2184,60 @@ public final class StarsController {
             TLRPC.MessageFwdHeader messageFwdHeader2 = messageObject.messageOwner.fwd_from;
             dialogId = (messageFwdHeader2 == null || (peer2 = messageFwdHeader2.from_id) == null) ? messageObject.getDialogId() : DialogObject.getPeerDialogId(peer2);
         }
-        String userName2 = "";
+        String userName = "";
         if (dialogId >= 0) {
             TLRPC.User user3 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId));
-            userName = UserObject.getUserName(user3);
+            String userName2 = UserObject.getUserName(user3);
             UserObject.isBot(user3);
             z = !UserObject.isBot(user3);
+            str = userName2;
         } else {
             TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialogId));
-            userName = chat == null ? "" : chat.title;
+            str = chat == null ? "" : chat.title;
             z = false;
         }
-        String str3 = userName;
         String str4 = tL_payments_paymentFormStars.title;
         runnable.run();
-        int i12 = tL_payments_paymentFormStars.invoice.subscription_period;
+        int i11 = tL_payments_paymentFormStars.invoice.subscription_period;
+        boolean z4 = z;
         boolean[] zArr = {false};
-        int i13 = this.currentAccount;
+        String str5 = str;
+        int i12 = this.currentAccount;
         TLRPC.WebDocument webDocument = tL_payments_paymentFormStars.photo;
-        long j3 = j2;
-        long j4 = dialogId;
-        StarsController$$ExternalSyntheticLambda42 starsController$$ExternalSyntheticLambda42 = new StarsController$$ExternalSyntheticLambda42(this, j3, zArr, callback, context2, resourceProvider, z, str3, messageObject, inputInvoice, tL_payments_paymentFormStars, i12, j4);
-        long j5 = j3;
-        PollItemMenu$$ExternalSyntheticLambda8 pollItemMenu$$ExternalSyntheticLambda8 = new PollItemMenu$$ExternalSyntheticLambda8(this, zArr, callback, 25);
-        BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context2, resourceProvider, false, false);
-        TLRPC.User user4 = MessagesController.getInstance(i13).getUser(Long.valueOf(j4));
-        ViewGroup viewGroupM = zzkf.m(context2, 1);
+        long j2 = j;
+        long j3 = dialogId;
+        StarsController$$ExternalSyntheticLambda48 starsController$$ExternalSyntheticLambda48 = new StarsController$$ExternalSyntheticLambda48(this, j2, zArr, callback, context2, resourceProvider, z4, str5, messageObject, inputInvoice, tL_payments_paymentFormStars, i11, j3);
+        StarGiftSheet$$ExternalSyntheticLambda66 starGiftSheet$$ExternalSyntheticLambda66 = new StarGiftSheet$$ExternalSyntheticLambda66(this, zArr, callback, 23);
+        BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context2, false, false, resourceProvider);
+        TLRPC.User user4 = MessagesController.getInstance(i12).getUser(Long.valueOf(j3));
+        ViewGroup viewGroupM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context2);
         viewGroupM.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         FrameLayout frameLayout = new FrameLayout(context2);
         ViewGroup viewGroup3 = viewGroupM;
-        frameLayout.addView(new StarsIntroActivity.AnonymousClass4(context2, 40, 0), LayoutHelper.createFrame(-1.0f, -1));
+        frameLayout.addView(new StarsIntroActivity.AnonymousClass4(context2, 40, 0), LayoutHelper.createFrame(-1, -1.0f));
         ViewGroup viewGroup4 = frameLayout;
         if (messageObject == null || (message2 = messageObject.messageOwner) == null || !(message2.media instanceof TLRPC.TL_messageMediaPaidMedia)) {
             ViewGroup viewGroup5 = viewGroup3;
-            i = i12;
-            bottomSheet = bottomSheetM;
+            i = i11;
+            bottomSheetM = bottomSheetM;
             user = user4;
             messageObject2 = messageObject;
-            starsController$$ExternalSyntheticLambda42 = starsController$$ExternalSyntheticLambda42;
-            pollItemMenu$$ExternalSyntheticLambda8 = pollItemMenu$$ExternalSyntheticLambda8;
+            starsController$$ExternalSyntheticLambda48 = starsController$$ExternalSyntheticLambda48;
+            starGiftSheet$$ExternalSyntheticLambda66 = starGiftSheet$$ExternalSyntheticLambda66;
             viewGroup4 = viewGroup4;
             if (webDocument == null) {
                 BackupImageView backupImageView2 = new BackupImageView(context2);
                 backupImageView2.setRoundRadius(AndroidUtilities.dp(80.0f));
-                resourcesProvider = null;
-                AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-                avatarDrawable.setInfo(UserConfig.selectedAccount, user);
-                backupImageView2.imageReceiver.setForUserOrChat(user, avatarDrawable);
-                backupImageView2.onNewImageSet();
+                AvatarDrawable avatarDrawable = new AvatarDrawable();
+                avatarDrawable.setInfo(user);
+                backupImageView2.setForUserOrChat(user, avatarDrawable);
                 viewGroup4.addView(backupImageView2, LayoutHelper.createFrame(80, 80, 17));
                 viewGroup2 = viewGroup5;
             } else {
-                resourcesProvider = null;
                 FrameLayout frameLayout2 = new FrameLayout(context2);
                 BackupImageView backupImageView3 = new BackupImageView(context2);
                 backupImageView3.setRoundRadius(AndroidUtilities.dp(18.0f));
-                backupImageView3.setImage$1(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), "80_80", null, null);
+                backupImageView3.setImage(ImageLocation.getForWebFile(WebFile.createWithWebDocument(webDocument)), "80_80", (Drawable) null, 0, (Object) null);
                 frameLayout2.addView(backupImageView3, LayoutHelper.createFrame(80, 80, 48));
                 viewGroup4.addView(frameLayout2, LayoutHelper.createFrame(80, 87, 17));
                 TextView textView = new TextView(context2);
@@ -2276,288 +2245,281 @@ public final class StarsController {
                 r6 = 1;
                 textView.setTextSize(1, 13.0f);
                 textView.setTextColor(-1);
-                j5 = j5;
-                textView.setText(StarsIntroActivity.replaceStars(BillingController$$ExternalSyntheticOutline0.m((int) j5, ',', new StringBuilder("XTR ")), 0.85f, (ColoredImageSpan[]) null));
-                i2 = 0;
+                textView.setText(StarsIntroActivity.replaceStars(BillingController$$ExternalSyntheticOutline0.m((int) j2, ',', new StringBuilder("XTR ")), 0.85f, (ColoredImageSpan[]) null));
                 textView.setPadding(AndroidUtilities.dp(5.33f), 0, AndroidUtilities.dp(5.33f), 0);
                 textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(16.0f), -1133566));
                 FrameLayout frameLayout3 = new FrameLayout(context2);
                 frameLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(20.0f), Theme.getColor(Theme.key_dialogBackground, resourceProvider)));
                 frameLayout3.setPadding(AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f));
                 frameLayout3.addView(textView, LayoutHelper.createLinear(-2, 16, 119));
-                frameLayout2.addView(frameLayout3, new FrameLayout.LayoutParams(LayoutHelper.getSize(-2.0f), LayoutHelper.getSize(18.66f), 81));
+                frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(-2.0f, 18.66f, 81));
                 viewGroup = viewGroup5;
             }
-            StarsIntroActivity.StarsBalanceView starsBalanceView = new StarsIntroActivity.StarsBalanceView(context2, i13, resourceProvider);
-            ScaleStateListAnimator.apply(starsBalanceView, 0.1f, 1.5f);
-            starsBalanceView.setOnClickListener(new StarsIntroActivity$$ExternalSyntheticLambda50(starsBalanceView, i2));
+            StarsIntroActivity.StarsBalanceView starsBalanceView = new StarsIntroActivity.StarsBalanceView(context2, i12, resourceProvider);
+            ScaleStateListAnimator.apply(starsBalanceView);
+            starsBalanceView.setOnClickListener(new StarsIntroActivity$$ExternalSyntheticLambda66(starsBalanceView, r6));
             viewGroup4.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 0.0f, -8.0f, 0.0f));
             viewGroup.addView(viewGroup4, LayoutHelper.createLinear(-1, 117, 7));
             textViewM = RichMessageLayout$$ExternalSyntheticOutline0.m(context2, r6, 20.0f);
             textViewM.setTypeface(AndroidUtilities.bold());
-            int i14 = Theme.key_dialogTextBlack;
-            textViewM.setTextColor(Theme.getColor(i14, resourceProvider));
+            int i13 = Theme.key_dialogTextBlack;
+            textViewM.setTextColor(Theme.getColor(i13, resourceProvider));
             if (i > 0) {
                 if (webDocument != null) {
                     string2 = str4;
                 } else {
                     string2 = LocaleController.getString(R.string.StarsConfirmSubscriptionTitle);
                 }
-                textViewM.setText(Emoji.replaceEmoji(string2, textViewM.getPaint().getFontMetricsInt(), i2));
+                textViewM.setText(Emoji.replaceEmoji(string2, textViewM.getPaint().getFontMetricsInt(), false));
             } else {
                 if (webDocument != null) {
                     string = str4;
                 } else {
                     string = LocaleController.getString(R.string.StarsConfirmPurchaseTitle);
                 }
-                textViewM.setText(Emoji.replaceEmoji(string, textViewM.getPaint().getFontMetricsInt(), i2));
+                textViewM.setText(Emoji.replaceEmoji(string, textViewM.getPaint().getFontMetricsInt(), false));
             }
             NotificationCenter.listenEmojiLoading(textViewM);
             textViewM.setGravity(17);
             if (webDocument != null) {
-                i3 = -8;
+                i2 = -8;
             } else {
-                i3 = 8;
+                i2 = 8;
             }
-            viewGroup.addView(textViewM, LayoutHelper.createLinear(-2, -2, 1, 0, i3, 0, 0));
+            viewGroup.addView(textViewM, LayoutHelper.createLinear(-2, -2, 1, 0, i2, 0, 0));
             if (webDocument != null) {
-                LinearLayout linearLayoutM = zzkf.m(context2, i2);
+                LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context2);
                 linearLayoutM.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(Theme.key_windowBackgroundGray, resourceProvider)));
                 BackupImageView backupImageView4 = new BackupImageView(context2);
                 backupImageView4.setRoundRadius(AndroidUtilities.dp(14.0f));
-                AvatarDrawable avatarDrawable2 = new AvatarDrawable(resourcesProvider);
-                avatarDrawable2.setInfo(UserConfig.selectedAccount, user);
-                backupImageView4.imageReceiver.setForUserOrChat(user, avatarDrawable2);
-                backupImageView4.onNewImageSet();
+                AvatarDrawable avatarDrawable2 = new AvatarDrawable();
+                avatarDrawable2.setInfo(user);
+                backupImageView4.setForUserOrChat(user, avatarDrawable2);
                 linearLayoutM.addView(backupImageView4, LayoutHelper.createLinear(28, 28));
-                TextView textViewM3 = RichMessageLayout$$ExternalSyntheticOutline0.m(context2, r6, 13.0f);
-                textViewM3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourceProvider));
-                textViewM3.setText(UserObject.getUserName(user));
-                linearLayoutM.addView(textViewM3, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 10, 0));
+                TextView textView2 = new TextView(context2);
+                textView2.setTextSize(r6, 13.0f);
+                textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourceProvider));
+                textView2.setText(UserObject.getUserName(user));
+                linearLayoutM.addView(textView2, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 10, 0));
                 viewGroup.addView(linearLayoutM, LayoutHelper.createLinear(-2, 28, 1, 0, 8, 0, 2));
             }
             textViewM2 = RichMessageLayout$$ExternalSyntheticOutline0.m(context2, r6, 14.0f);
-            textViewM2.setTextColor(Theme.getColor(i14, resourceProvider));
+            textViewM2.setTextColor(Theme.getColor(i13, resourceProvider));
             if (messageObject2 == null && (message = messageObject2.messageOwner) != null && (message.media instanceof TLRPC.TL_messageMediaPaidMedia)) {
                 long dialogId2 = messageObject2.getDialogId();
                 TLRPC.Message message3 = messageObject2.messageOwner;
                 if (message3 != null && (messageFwdHeader = message3.fwd_from) != null && (peer = messageFwdHeader.from_id) != null) {
                     dialogId2 = DialogObject.getPeerDialogId(peer);
                 }
-                if (dialogId2 < 0 && messageObject2.getFromChatId() > 0 && (user2 = MessagesController.getInstance(i13).getUser(Long.valueOf(messageObject2.getFromChatId()))) != null && user2.bot) {
-                    dialogId2 = user2.id;
-                }
-                if (dialogId2 >= 0) {
-                    TLRPC.User user5 = MessagesController.getInstance(i13).getUser(Long.valueOf(dialogId2));
-                    userName2 = UserObject.getUserName(user5);
+                long j4 = (dialogId2 >= 0 || messageObject2.getFromChatId() <= 0 || (user2 = MessagesController.getInstance(i12).getUser(Long.valueOf(messageObject2.getFromChatId()))) == null || !user2.bot) ? dialogId2 : user2.id;
+                if (j4 >= 0) {
+                    TLRPC.User user5 = MessagesController.getInstance(i12).getUser(Long.valueOf(j4));
+                    userName = UserObject.getUserName(user5);
                     if (user5 != null && user5.bot) {
                         z2 = true;
                     }
                     tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) messageObject2.messageOwner.media;
+                    i5 = 0;
                     i6 = 0;
-                    i7 = 0;
-                    for (i5 = 0; i5 < tL_messageMediaPaidMedia.extended_media.size(); i5 += r6) {
-                        messageExtendedMedia = tL_messageMediaPaidMedia.extended_media.get(i5);
+                    for (i4 = 0; i4 < tL_messageMediaPaidMedia.extended_media.size(); i4 += r6) {
+                        messageExtendedMedia = tL_messageMediaPaidMedia.extended_media.get(i4);
                         if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
                             if ((((TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia).flags & 4) != 0) {
-                                z4 = true;
+                                z3 = true;
                             } else {
-                                z4 = false;
+                                z3 = false;
                             }
                         } else if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
-                            z4 = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media instanceof TLRPC.TL_messageMediaDocument;
+                            z3 = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media instanceof TLRPC.TL_messageMediaDocument;
                         } else {
-                            z4 = false;
+                            z3 = false;
                         }
-                        if (z4) {
-                            i6 += r6;
+                        if (z3) {
+                            i5 += r6;
                         } else {
-                            i7 += r6;
+                            i6 += r6;
                         }
                     }
-                    if (i6 == 0) {
-                        str2 = z2 ? "StarsConfirmPurchaseMediaBotOne2" : "StarsConfirmPurchaseMediaOne2";
-                        long j6 = j5;
-                        int i15 = (int) j6;
-                        if (i7 == r6) {
+                    if (i5 == 0) {
+                        str3 = z2 ? "StarsConfirmPurchaseMediaBotOne2" : "StarsConfirmPurchaseMediaOne2";
+                        int i14 = (int) j2;
+                        if (i6 == r6) {
                             pluralString5 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto);
+                            c2 = 0;
                         } else {
-                            pluralString5 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i7, new Object[i2]);
+                            c2 = 0;
+                            pluralString5 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
                         }
                         Object[] objArr = new Object[2];
-                        objArr[i2] = pluralString5;
-                        objArr[r6] = userName2;
-                        pluralString3 = LocaleController.formatPluralString(str2, i15, objArr);
-                        j = j6;
-                    } else {
-                        z3 = z2;
-                        j = j5;
-                        if (i7 == 0) {
-                            str2 = z3 ? "StarsConfirmPurchaseMediaBotOne2" : "StarsConfirmPurchaseMediaOne2";
-                            int i16 = (int) j;
-                            if (i6 == r6) {
-                                pluralString4 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
-                            } else {
-                                pluralString4 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i6, new Object[i2]);
-                            }
-                            Object[] objArr2 = new Object[2];
-                            objArr2[i2] = pluralString4;
-                            objArr2[r6] = userName2;
-                            pluralString3 = LocaleController.formatPluralString(str2, i16, objArr2);
+                        objArr[c2] = pluralString5;
+                        objArr[r6] = userName;
+                        pluralString3 = LocaleController.formatPluralString(str3, i14, objArr);
+                    } else if (i6 == 0) {
+                        str3 = z2 ? "StarsConfirmPurchaseMediaBotOne2" : "StarsConfirmPurchaseMediaOne2";
+                        int i15 = (int) j2;
+                        if (i5 == r6) {
+                            pluralString4 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
+                            c = 0;
                         } else {
-                            if (z3) {
-                                str = "StarsConfirmPurchaseMediaBotTwo2";
-                            } else {
-                                str = "StarsConfirmPurchaseMediaTwo2";
-                            }
-                            int i17 = (int) j;
-                            if (i7 == r6) {
-                                pluralString = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto);
-                            } else {
-                                pluralString = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i7, new Object[i2]);
-                            }
-                            if (i6 == r6) {
-                                pluralString2 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
-                            } else {
-                                pluralString2 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i6, new Object[i2]);
-                            }
-                            Object[] objArr3 = new Object[3];
-                            objArr3[i2] = pluralString;
-                            objArr3[r6] = pluralString2;
-                            objArr3[2] = userName2;
-                            pluralString3 = LocaleController.formatPluralString(str, i17, objArr3);
+                            c = 0;
+                            pluralString4 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[0]);
                         }
+                        Object[] objArr2 = new Object[2];
+                        objArr2[c] = pluralString4;
+                        objArr2[r6] = userName;
+                        pluralString3 = LocaleController.formatPluralString(str3, i15, objArr2);
+                    } else {
+                        if (z2) {
+                            str2 = "StarsConfirmPurchaseMediaBotTwo2";
+                        } else {
+                            str2 = "StarsConfirmPurchaseMediaTwo2";
+                        }
+                        int i16 = (int) j2;
+                        if (i6 == r6) {
+                            pluralString = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto);
+                            i7 = 0;
+                        } else {
+                            i7 = 0;
+                            pluralString = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
+                        }
+                        if (i5 == r6) {
+                            pluralString2 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
+                        } else {
+                            pluralString2 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[i7]);
+                        }
+                        Object[] objArr3 = new Object[3];
+                        objArr3[i7] = pluralString;
+                        objArr3[r6] = pluralString2;
+                        objArr3[2] = userName;
+                        pluralString3 = LocaleController.formatPluralString(str2, i16, objArr3);
                     }
                     textViewM2.setText(AndroidUtilities.replaceTags(pluralString3));
                 } else {
-                    TLRPC.Chat chat2 = MessagesController.getInstance(i13).getChat(Long.valueOf(-dialogId2));
+                    TLRPC.Chat chat2 = MessagesController.getInstance(r1).getChat(Long.valueOf(-j4));
                     if (chat2 != null) {
-                        userName2 = chat2.title;
+                        userName = chat2.title;
                     }
                 }
                 z2 = false;
                 tL_messageMediaPaidMedia = (TLRPC.TL_messageMediaPaidMedia) messageObject2.messageOwner.media;
+                i5 = 0;
                 i6 = 0;
-                i7 = 0;
-                while (i5 < tL_messageMediaPaidMedia.extended_media.size()) {
-                    messageExtendedMedia = tL_messageMediaPaidMedia.extended_media.get(i5);
+                while (i4 < tL_messageMediaPaidMedia.extended_media.size()) {
+                    messageExtendedMedia = tL_messageMediaPaidMedia.extended_media.get(i4);
                     if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMediaPreview) {
                         if ((((TLRPC.TL_messageExtendedMediaPreview) messageExtendedMedia).flags & 4) != 0) {
-                            z4 = true;
+                            z3 = true;
                         } else {
-                            z4 = false;
+                            z3 = false;
                         }
                     } else if (messageExtendedMedia instanceof TLRPC.TL_messageExtendedMedia) {
-                        z4 = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media instanceof TLRPC.TL_messageMediaDocument;
+                        z3 = ((TLRPC.TL_messageExtendedMedia) messageExtendedMedia).media instanceof TLRPC.TL_messageMediaDocument;
                     } else {
-                        z4 = false;
+                        z3 = false;
                     }
-                    if (z4) {
-                        i6 += r6;
+                    if (z3) {
+                        i5 += r6;
                     } else {
-                        i7 += r6;
+                        i6 += r6;
                     }
                 }
-                if (i6 == 0) {
+                if (i5 == 0) {
                     if (z2) {
                     }
-                    long j7 = j5;
-                    int i18 = (int) j7;
-                    if (i7 == r6) {
+                    int i17 = (int) j2;
+                    if (i6 == r6) {
                         pluralString5 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto);
+                        c2 = 0;
                     } else {
-                        pluralString5 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i7, new Object[i2]);
+                        c2 = 0;
+                        pluralString5 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
                     }
                     Object[] objArr4 = new Object[2];
-                    objArr4[i2] = pluralString5;
-                    objArr4[r6] = userName2;
-                    pluralString3 = LocaleController.formatPluralString(str2, i18, objArr4);
-                    j = j7;
-                } else {
-                    z3 = z2;
-                    j = j5;
-                    if (i7 == 0) {
-                        if (z3) {
-                        }
-                        int i19 = (int) j;
-                        if (i6 == r6) {
-                            pluralString4 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
-                        } else {
-                            pluralString4 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i6, new Object[i2]);
-                        }
-                        Object[] objArr5 = new Object[2];
-                        objArr5[i2] = pluralString4;
-                        objArr5[r6] = userName2;
-                        pluralString3 = LocaleController.formatPluralString(str2, i19, objArr5);
-                    } else {
-                        if (z3) {
-                            str = "StarsConfirmPurchaseMediaBotTwo2";
-                        } else {
-                            str = "StarsConfirmPurchaseMediaTwo2";
-                        }
-                        int i110 = (int) j;
-                        if (i7 == r6) {
-                            pluralString = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto);
-                        } else {
-                            pluralString = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i7, new Object[i2]);
-                        }
-                        if (i6 == r6) {
-                            pluralString2 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
-                        } else {
-                            pluralString2 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i6, new Object[i2]);
-                        }
-                        Object[] objArr6 = new Object[3];
-                        objArr6[i2] = pluralString;
-                        objArr6[r6] = pluralString2;
-                        objArr6[2] = userName2;
-                        pluralString3 = LocaleController.formatPluralString(str, i110, objArr6);
+                    objArr4[c2] = pluralString5;
+                    objArr4[r6] = userName;
+                    pluralString3 = LocaleController.formatPluralString(str3, i17, objArr4);
+                } else if (i6 == 0) {
+                    if (z2) {
                     }
+                    int i18 = (int) j2;
+                    if (i5 == r6) {
+                        pluralString4 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
+                        c = 0;
+                    } else {
+                        c = 0;
+                        pluralString4 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[0]);
+                    }
+                    Object[] objArr5 = new Object[2];
+                    objArr5[c] = pluralString4;
+                    objArr5[r6] = userName;
+                    pluralString3 = LocaleController.formatPluralString(str3, i18, objArr5);
+                } else {
+                    if (z2) {
+                        str2 = "StarsConfirmPurchaseMediaBotTwo2";
+                    } else {
+                        str2 = "StarsConfirmPurchaseMediaTwo2";
+                    }
+                    int i19 = (int) j2;
+                    if (i6 == r6) {
+                        pluralString = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SinglePhoto);
+                        i7 = 0;
+                    } else {
+                        i7 = 0;
+                        pluralString = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Photos", i6, new Object[0]);
+                    }
+                    if (i5 == r6) {
+                        pluralString2 = LocaleController.getString(R.string.StarsConfirmPurchaseMedia_SingleVideo);
+                    } else {
+                        pluralString2 = LocaleController.formatPluralString("StarsConfirmPurchaseMedia_Videos", i5, new Object[i7]);
+                    }
+                    Object[] objArr6 = new Object[3];
+                    objArr6[i7] = pluralString;
+                    objArr6[r6] = pluralString2;
+                    objArr6[2] = userName;
+                    pluralString3 = LocaleController.formatPluralString(str2, i19, objArr6);
                 }
                 textViewM2.setText(AndroidUtilities.replaceTags(pluralString3));
+            } else if (i > 0) {
+                String userName3 = UserObject.getUserName(user);
+                Object[] objArr7 = new Object[2];
+                objArr7[0] = str4;
+                objArr7[r6] = userName3;
+                textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionText2", (int) j2, objArr7)));
             } else {
-                j = j5;
-                if (i > 0) {
-                    String userName3 = UserObject.getUserName(user);
-                    Object[] objArr7 = new Object[2];
-                    objArr7[i2] = str4;
-                    objArr7[r6] = userName3;
-                    textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionText2", (int) j, objArr7)));
-                } else {
-                    String userName4 = UserObject.getUserName(user);
-                    Object[] objArr8 = new Object[2];
-                    objArr8[i2] = str4;
-                    objArr8[r6] = userName4;
-                    textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText2", (int) j, objArr8)));
-                }
+                String userName4 = UserObject.getUserName(user);
+                Object[] objArr8 = new Object[2];
+                objArr8[0] = str4;
+                objArr8[r6] = userName4;
+                textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText2", (int) j2, objArr8)));
             }
             textViewM2.setMaxWidth(HintView2.cutInFancyHalf(textViewM2.getText(), textViewM2.getPaint()));
             textViewM2.setGravity(17);
             viewGroup.addView(textViewM2, LayoutHelper.createLinear(-2, -2, 1, 0, 6, 0, 18));
-            buttonWithCounterView = new ButtonWithCounterView(context2, resourceProvider, r6);
+            buttonWithCounterView = new ButtonWithCounterView(context2, r6, resourceProvider);
             if (i > 0) {
-                buttonWithCounterView.setText(StarsIntroActivity.replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionButton", (int) j)), 1.13f, (ColoredImageSpan[]) null), i2, r6);
+                buttonWithCounterView.setText(StarsIntroActivity.replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionButton", (int) j2)), 1.13f, (ColoredImageSpan[]) null), false);
             } else {
-                buttonWithCounterView.setText(StarsIntroActivity.replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseButton", (int) j)), 1.13f, (ColoredImageSpan[]) null), i2, r6);
+                buttonWithCounterView.setText(StarsIntroActivity.replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseButton", (int) j2)), 1.13f, (ColoredImageSpan[]) null), false);
             }
-            viewGroup.addView(buttonWithCounterView, LayoutHelper.createFrame(48.0f, -1));
+            viewGroup.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f));
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context2, resourceProvider);
             linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourceProvider));
             linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourceProvider));
             linksTextView.setTextSize(r6, 14.0f);
             if (i > 0) {
-                i4 = R.string.StarsConfirmSubscriptionTOS;
+                i3 = R.string.StarsConfirmSubscriptionTOS;
             } else {
-                i4 = R.string.StarsConfirmPurchaseTOS;
+                i3 = R.string.StarsConfirmPurchaseTOS;
             }
-            linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(i4), new OAuthSheet$$ExternalSyntheticLambda0(context2, 14)));
+            linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(i3), new GiftSheet$$ExternalSyntheticLambda18(context2, 8)));
             linksTextView.setGravity(17);
-            viewGroup.addView(linksTextView, LayoutHelper.createLinear(0.0f, 12.0f, 0.0f, 2.0f, -1, -2));
-            BottomSheet bottomSheet2 = bottomSheet;
-            bottomSheet2.customView = viewGroup;
-            buttonWithCounterView.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(starsController$$ExternalSyntheticLambda42, bottomSheet2, buttonWithCounterView, 13));
-            bottomSheet2.setOnDismissListener(new ShareActivity$$ExternalSyntheticLambda0(pollItemMenu$$ExternalSyntheticLambda8, r6));
-            bottomSheet2.fixNavigationBar();
-            bottomSheet2.show();
+            viewGroup.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 12.0f, 0.0f, 2.0f));
+            BottomSheet bottomSheet = bottomSheetM;
+            bottomSheet.customView = viewGroup;
+            buttonWithCounterView.setOnClickListener(new GiftOfferSheet$$ExternalSyntheticLambda2(starsController$$ExternalSyntheticLambda48, bottomSheet, buttonWithCounterView, 11));
+            bottomSheet.setOnDismissListener(new RichEditor$$ExternalSyntheticLambda46(starGiftSheet$$ExternalSyntheticLambda66, 9));
+            bottomSheet.fixNavigationBar();
+            bottomSheet.show();
         }
         BackupImageView backupImageView5 = new BackupImageView(context2, context2) {
             public final Path clipPath = new Path();
@@ -2620,8 +2582,7 @@ public final class StarsController {
         backupImageView5.setRoundRadius(AndroidUtilities.dp(24.0f));
         TLRPC.TL_messageMediaPaidMedia tL_messageMediaPaidMedia2 = (TLRPC.TL_messageMediaPaidMedia) messageObject.messageOwner.media;
         if (tL_messageMediaPaidMedia2.extended_media.isEmpty()) {
-            i = i12;
-            bottomSheet = bottomSheetM;
+            i = i11;
             user = user4;
             backupImageView = backupImageView5;
             messageObject2 = messageObject;
@@ -2643,129 +2604,122 @@ public final class StarsController {
                 forDocument = null;
             }
             backupImageView = backupImageView5;
-            i = i12;
+            i = i11;
             user = user4;
-            bottomSheet = bottomSheetM;
             i8 = 80;
             i9 = 17;
-            backupImageView.setImage(forDocument, "80_80_b2", null, null, null, messageObject);
+            backupImageView.setImage(forDocument, "80_80_b2", (ImageLocation) null, (String) null, (Drawable) null, messageObject);
             messageObject2 = messageObject;
         }
         viewGroup4.addView(backupImageView, LayoutHelper.createFrame(i8, i8, i9));
-        resourcesProvider = null;
         viewGroup2 = viewGroup3;
         r6 = 1;
-        i2 = 0;
         viewGroup = viewGroup2;
-        StarsIntroActivity.StarsBalanceView starsBalanceView2 = new StarsIntroActivity.StarsBalanceView(context2, i13, resourceProvider);
-        ScaleStateListAnimator.apply(starsBalanceView2, 0.1f, 1.5f);
-        starsBalanceView2.setOnClickListener(new StarsIntroActivity$$ExternalSyntheticLambda50(starsBalanceView2, i2));
+        StarsIntroActivity.StarsBalanceView starsBalanceView2 = new StarsIntroActivity.StarsBalanceView(context2, i12, resourceProvider);
+        ScaleStateListAnimator.apply(starsBalanceView2);
+        starsBalanceView2.setOnClickListener(new StarsIntroActivity$$ExternalSyntheticLambda66(starsBalanceView2, r6));
         viewGroup4.addView(starsBalanceView2, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 0.0f, -8.0f, 0.0f));
         viewGroup.addView(viewGroup4, LayoutHelper.createLinear(-1, 117, 7));
         textViewM = RichMessageLayout$$ExternalSyntheticOutline0.m(context2, r6, 20.0f);
         textViewM.setTypeface(AndroidUtilities.bold());
-        int i111 = Theme.key_dialogTextBlack;
-        textViewM.setTextColor(Theme.getColor(i111, resourceProvider));
+        int i110 = Theme.key_dialogTextBlack;
+        textViewM.setTextColor(Theme.getColor(i110, resourceProvider));
         if (i > 0) {
             if (webDocument != null) {
                 string2 = str4;
             } else {
                 string2 = LocaleController.getString(R.string.StarsConfirmSubscriptionTitle);
             }
-            textViewM.setText(Emoji.replaceEmoji(string2, textViewM.getPaint().getFontMetricsInt(), i2));
+            textViewM.setText(Emoji.replaceEmoji(string2, textViewM.getPaint().getFontMetricsInt(), false));
         } else {
             if (webDocument != null) {
                 string = str4;
             } else {
                 string = LocaleController.getString(R.string.StarsConfirmPurchaseTitle);
             }
-            textViewM.setText(Emoji.replaceEmoji(string, textViewM.getPaint().getFontMetricsInt(), i2));
+            textViewM.setText(Emoji.replaceEmoji(string, textViewM.getPaint().getFontMetricsInt(), false));
         }
         NotificationCenter.listenEmojiLoading(textViewM);
         textViewM.setGravity(17);
         if (webDocument != null) {
-            i3 = -8;
+            i2 = -8;
         } else {
-            i3 = 8;
+            i2 = 8;
         }
-        viewGroup.addView(textViewM, LayoutHelper.createLinear(-2, -2, 1, 0, i3, 0, 0));
+        viewGroup.addView(textViewM, LayoutHelper.createLinear(-2, -2, 1, 0, i2, 0, 0));
         if (webDocument != null) {
-            LinearLayout linearLayoutM2 = zzkf.m(context2, i2);
+            LinearLayout linearLayoutM2 = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context2);
             linearLayoutM2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(Theme.key_windowBackgroundGray, resourceProvider)));
             BackupImageView backupImageView6 = new BackupImageView(context2);
             backupImageView6.setRoundRadius(AndroidUtilities.dp(14.0f));
-            AvatarDrawable avatarDrawable3 = new AvatarDrawable(resourcesProvider);
-            avatarDrawable3.setInfo(UserConfig.selectedAccount, user);
-            backupImageView6.imageReceiver.setForUserOrChat(user, avatarDrawable3);
-            backupImageView6.onNewImageSet();
+            AvatarDrawable avatarDrawable3 = new AvatarDrawable();
+            avatarDrawable3.setInfo(user);
+            backupImageView6.setForUserOrChat(user, avatarDrawable3);
             linearLayoutM2.addView(backupImageView6, LayoutHelper.createLinear(28, 28));
-            TextView textViewM4 = RichMessageLayout$$ExternalSyntheticOutline0.m(context2, r6, 13.0f);
-            textViewM4.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourceProvider));
-            textViewM4.setText(UserObject.getUserName(user));
-            linearLayoutM2.addView(textViewM4, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 10, 0));
+            TextView textView3 = new TextView(context2);
+            textView3.setTextSize(r6, 13.0f);
+            textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourceProvider));
+            textView3.setText(UserObject.getUserName(user));
+            linearLayoutM2.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 10, 0));
             viewGroup.addView(linearLayoutM2, LayoutHelper.createLinear(-2, 28, 1, 0, 8, 0, 2));
         }
         textViewM2 = RichMessageLayout$$ExternalSyntheticOutline0.m(context2, r6, 14.0f);
-        textViewM2.setTextColor(Theme.getColor(i111, resourceProvider));
+        textViewM2.setTextColor(Theme.getColor(i110, resourceProvider));
         if (messageObject2 == null) {
-            j = j5;
             if (i > 0) {
                 String userName5 = UserObject.getUserName(user);
                 Object[] objArr9 = new Object[2];
-                objArr9[i2] = str4;
+                objArr9[0] = str4;
                 objArr9[r6] = userName5;
-                textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionText2", (int) j, objArr9)));
+                textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionText2", (int) j2, objArr9)));
             } else {
                 String userName6 = UserObject.getUserName(user);
                 Object[] objArr10 = new Object[2];
-                objArr10[i2] = str4;
+                objArr10[0] = str4;
                 objArr10[r6] = userName6;
-                textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText2", (int) j, objArr10)));
+                textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText2", (int) j2, objArr10)));
             }
+        } else if (i > 0) {
+            String userName7 = UserObject.getUserName(user);
+            Object[] objArr11 = new Object[2];
+            objArr11[0] = str4;
+            objArr11[r6] = userName7;
+            textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionText2", (int) j2, objArr11)));
         } else {
-            j = j5;
-            if (i > 0) {
-                String userName7 = UserObject.getUserName(user);
-                Object[] objArr11 = new Object[2];
-                objArr11[i2] = str4;
-                objArr11[r6] = userName7;
-                textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionText2", (int) j, objArr11)));
-            } else {
-                String userName8 = UserObject.getUserName(user);
-                Object[] objArr12 = new Object[2];
-                objArr12[i2] = str4;
-                objArr12[r6] = userName8;
-                textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText2", (int) j, objArr12)));
-            }
+            String userName8 = UserObject.getUserName(user);
+            Object[] objArr12 = new Object[2];
+            objArr12[0] = str4;
+            objArr12[r6] = userName8;
+            textViewM2.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseText2", (int) j2, objArr12)));
         }
         textViewM2.setMaxWidth(HintView2.cutInFancyHalf(textViewM2.getText(), textViewM2.getPaint()));
         textViewM2.setGravity(17);
         viewGroup.addView(textViewM2, LayoutHelper.createLinear(-2, -2, 1, 0, 6, 0, 18));
-        buttonWithCounterView = new ButtonWithCounterView(context2, resourceProvider, r6);
+        buttonWithCounterView = new ButtonWithCounterView(context2, r6, resourceProvider);
         if (i > 0) {
-            buttonWithCounterView.setText(StarsIntroActivity.replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionButton", (int) j)), 1.13f, (ColoredImageSpan[]) null), i2, r6);
+            buttonWithCounterView.setText(StarsIntroActivity.replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmSubscriptionButton", (int) j2)), 1.13f, (ColoredImageSpan[]) null), false);
         } else {
-            buttonWithCounterView.setText(StarsIntroActivity.replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseButton", (int) j)), 1.13f, (ColoredImageSpan[]) null), i2, r6);
+            buttonWithCounterView.setText(StarsIntroActivity.replaceStars(AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsConfirmPurchaseButton", (int) j2)), 1.13f, (ColoredImageSpan[]) null), false);
         }
-        viewGroup.addView(buttonWithCounterView, LayoutHelper.createFrame(48.0f, -1));
+        viewGroup.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f));
         LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context2, resourceProvider);
         linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourceProvider));
         linksTextView2.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourceProvider));
         linksTextView2.setTextSize(r6, 14.0f);
         if (i > 0) {
-            i4 = R.string.StarsConfirmSubscriptionTOS;
+            i3 = R.string.StarsConfirmSubscriptionTOS;
         } else {
-            i4 = R.string.StarsConfirmPurchaseTOS;
+            i3 = R.string.StarsConfirmPurchaseTOS;
         }
-        linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(i4), new OAuthSheet$$ExternalSyntheticLambda0(context2, 14)));
+        linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(i3), new GiftSheet$$ExternalSyntheticLambda18(context2, 8)));
         linksTextView2.setGravity(17);
-        viewGroup.addView(linksTextView2, LayoutHelper.createLinear(0.0f, 12.0f, 0.0f, 2.0f, -1, -2));
-        BottomSheet bottomSheet3 = bottomSheet;
-        bottomSheet3.customView = viewGroup;
-        buttonWithCounterView.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(starsController$$ExternalSyntheticLambda42, bottomSheet3, buttonWithCounterView, 13));
-        bottomSheet3.setOnDismissListener(new ShareActivity$$ExternalSyntheticLambda0(pollItemMenu$$ExternalSyntheticLambda8, r6));
-        bottomSheet3.fixNavigationBar();
-        bottomSheet3.show();
+        viewGroup.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 0.0f, 12.0f, 0.0f, 2.0f));
+        BottomSheet bottomSheet2 = bottomSheetM;
+        bottomSheet2.customView = viewGroup;
+        buttonWithCounterView.setOnClickListener(new GiftOfferSheet$$ExternalSyntheticLambda2(starsController$$ExternalSyntheticLambda48, bottomSheet2, buttonWithCounterView, 11));
+        bottomSheet2.setOnDismissListener(new RichEditor$$ExternalSyntheticLambda46(starGiftSheet$$ExternalSyntheticLambda66, 9));
+        bottomSheet2.fixNavigationBar();
+        bottomSheet2.show();
     }
 
     public final void payAfterConfirmed(final MessageObject messageObject, final TLRPC.InputInvoice inputInvoice, final TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars, final Utilities.Callback callback) {
@@ -2832,9 +2786,6 @@ public final class StarsController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        boolean z;
-                        LaunchActivity launchActivity;
-                        LaunchActivity.AnonymousClass5 anonymousClass5;
                         TLRPC.Message message2;
                         StarsController starsController2 = starsController;
                         TLObject tLObject2 = tLObject;
@@ -2853,92 +2804,67 @@ public final class StarsController {
                         starsController2.getClass();
                         BaseFragment lastFragment = LaunchActivity.getLastFragment();
                         BulletinFactory bulletinFactoryGlobal = (lastFragment == null || lastFragment.visibleDialog != null) ? BulletinFactory.global() : BulletinFactory.of(lastFragment);
-                        if (!(tLObject2 instanceof TLRPC.TL_payments_paymentResult)) {
-                            if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
-                                if (!MessagesController.getInstance(starsController2.currentAccount).starsPurchaseAvailable()) {
-                                    callback3.run(Boolean.FALSE);
-                                    StarsController.showNoSupportDialog(context3, resourcesProvider2);
-                                    return;
-                                } else {
-                                    boolean[] zArr = {false};
-                                    StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(context3, resourcesProvider2, j5, 0, str5, new ChatActivity$$ExternalSyntheticLambda375(starsController2, zArr, messageObject3, inputInvoice3, tL_payments_paymentFormStars3, callback3, 17), j6);
-                                    starsNeededSheet.setOnDismissListener(new StarsController$$ExternalSyntheticLambda94(callback3, zArr));
-                                    starsNeededSheet.show();
-                                    return;
-                                }
-                            }
-                            if (tL_error2 == null || !"FORM_EXPIRED".equals(tL_error2.text)) {
-                                callback3.run(Boolean.FALSE);
-                                zzks.m(R.string.UnknownErrorCode, new Object[]{tL_error2 != null ? tL_error2.text : "FAILED_SEND_STARS"}, bulletinFactoryGlobal, R.raw.error);
-                                if (messageObject3 != null) {
-                                    TLRPC.TL_messages_getExtendedMedia tL_messages_getExtendedMedia = new TLRPC.TL_messages_getExtendedMedia();
-                                    tL_messages_getExtendedMedia.peer = MessagesController.getInstance(starsController2.currentAccount).getInputPeer(j6);
-                                    tL_messages_getExtendedMedia.id.add(Integer.valueOf(messageObject3.getId()));
-                                    ConnectionsManager.getInstance(starsController2.currentAccount).sendRequest(tL_messages_getExtendedMedia, null);
-                                    return;
-                                }
-                                return;
-                            }
-                            TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
-                            JSONObject jSONObjectMakeThemeParams = BotWebViewSheet.makeThemeParams(resourcesProvider2, false);
-                            if (jSONObjectMakeThemeParams != null) {
-                                TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
-                                tL_payments_getPaymentForm.theme_params = tL_dataJSON;
-                                tL_dataJSON.data = jSONObjectMakeThemeParams.toString();
-                                tL_payments_getPaymentForm.flags |= 1;
-                            }
-                            tL_payments_getPaymentForm.invoice = inputInvoice3;
-                            ConnectionsManager.getInstance(starsController2.currentAccount).sendRequest(tL_payments_getPaymentForm, new ChatActivity$$ExternalSyntheticLambda206(starsController2, messageObject3, inputInvoice3, callback3, bulletinFactoryGlobal, 13));
-                            return;
-                        }
-                        callback3.run(Boolean.TRUE);
-                        Utilities.stageQueue.postRunnable(new StarsController$$ExternalSyntheticLambda6(starsController2, (TLRPC.TL_payments_paymentResult) tLObject2, 4));
-                        if (messageObject3 == null || (message2 = messageObject3.messageOwner) == null || !(message2.media instanceof TLRPC.TL_messageMediaPaidMedia)) {
-                            if (i4 > 0) {
-                                bulletinFactoryGlobal.createSimpleBulletin(LocaleController.getString(R.string.StarsBotSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsBotSubscriptionCompletedInfo", (int) j5, str6, str5)), R.raw.stars_send).show();
+                        if (tLObject2 instanceof TLRPC.TL_payments_paymentResult) {
+                            callback3.run(Boolean.TRUE);
+                            Utilities.stageQueue.postRunnable(new StarsController$$ExternalSyntheticLambda12(starsController2, (TLRPC.TL_payments_paymentResult) tLObject2, 1));
+                            if (messageObject3 != null && (message2 = messageObject3.messageOwner) != null && (message2.media instanceof TLRPC.TL_messageMediaPaidMedia)) {
+                                bulletinFactoryGlobal.createSimpleBulletin(context3.getResources().getDrawable(R.drawable.star_small_inner).mutate(), LocaleController.getString(R.string.StarsMediaPurchaseCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsMediaPurchaseCompletedInfo", (int) j5, str5))).show();
+                            } else if (i4 > 0) {
+                                bulletinFactoryGlobal.createSimpleBulletin(R.raw.stars_send, LocaleController.getString(R.string.StarsBotSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsBotSubscriptionCompletedInfo", (int) j5, str6, str5))).show();
                             } else {
-                                z = true;
-                                bulletinFactoryGlobal.createSimpleBulletin(LocaleController.getString(R.string.StarsPurchaseCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsPurchaseCompletedInfo", (int) j5, str6, str5)), R.raw.stars_send).show();
+                                bulletinFactoryGlobal.createSimpleBulletin(R.raw.stars_send, LocaleController.getString(R.string.StarsPurchaseCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsPurchaseCompletedInfo", (int) j5, str6, str5))).show();
                             }
-                            launchActivity = LaunchActivity.instance;
-                            if (launchActivity != null && (anonymousClass5 = launchActivity.fireworksOverlay) != null) {
-                                anonymousClass5.start(z);
+                            LaunchActivity launchActivity = LaunchActivity.instance;
+                            if (launchActivity != null && launchActivity.getFireworksOverlay() != null) {
+                                LaunchActivity.instance.getFireworksOverlay().start(true);
                             }
-                            if ((inputInvoice3 instanceof TLRPC.TL_inputInvoiceStars) || !(((TLRPC.TL_inputInvoiceStars) inputInvoice3).purpose instanceof TLRPC.TL_inputStorePaymentStarsGift)) {
+                            if (!(inputInvoice3 instanceof TLRPC.TL_inputInvoiceStars) || !(((TLRPC.TL_inputInvoiceStars) inputInvoice3).purpose instanceof TLRPC.TL_inputStorePaymentStarsGift)) {
                                 starsController2.invalidateTransactions(true);
                             }
+                            if (messageObject3 != null) {
+                                TLRPC.TL_messages_getExtendedMedia tL_messages_getExtendedMedia = new TLRPC.TL_messages_getExtendedMedia();
+                                tL_messages_getExtendedMedia.peer = MessagesController.getInstance(starsController2.currentAccount).getInputPeer(j6);
+                                tL_messages_getExtendedMedia.id.add(Integer.valueOf(messageObject3.getId()));
+                                ConnectionsManager.getInstance(starsController2.currentAccount).sendRequest(tL_messages_getExtendedMedia, null);
+                                return;
+                            }
+                            return;
+                        }
+                        if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
+                            if (!MessagesController.getInstance(starsController2.currentAccount).starsPurchaseAvailable()) {
+                                callback3.run(Boolean.FALSE);
+                                StarsController.showNoSupportDialog(context3, resourcesProvider2);
+                                return;
+                            } else {
+                                boolean[] zArr = {false};
+                                StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(context3, resourcesProvider2, j5, 0, str5, new GiftSheet$$ExternalSyntheticLambda24(starsController2, (Object) zArr, messageObject3, inputInvoice3, tL_payments_paymentFormStars3, callback3, 7), j6);
+                                starsNeededSheet.setOnDismissListener(new StarsController$$ExternalSyntheticLambda118(callback3, zArr));
+                                starsNeededSheet.show();
+                                return;
+                            }
+                        }
+                        if (tL_error2 == null || !"FORM_EXPIRED".equals(tL_error2.text)) {
+                            callback3.run(Boolean.FALSE);
+                            zzkh.m(R.string.UnknownErrorCode, new Object[]{tL_error2 != null ? tL_error2.text : "FAILED_SEND_STARS"}, bulletinFactoryGlobal, R.raw.error);
                             if (messageObject3 != null) {
                                 TLRPC.TL_messages_getExtendedMedia tL_messages_getExtendedMedia2 = new TLRPC.TL_messages_getExtendedMedia();
                                 tL_messages_getExtendedMedia2.peer = MessagesController.getInstance(starsController2.currentAccount).getInputPeer(j6);
                                 tL_messages_getExtendedMedia2.id.add(Integer.valueOf(messageObject3.getId()));
                                 ConnectionsManager.getInstance(starsController2.currentAccount).sendRequest(tL_messages_getExtendedMedia2, null);
+                                return;
                             }
+                            return;
                         }
-                        Drawable drawableMutate = context3.getResources().getDrawable(R.drawable.star_small_inner).mutate();
-                        String string = LocaleController.getString(R.string.StarsMediaPurchaseCompleted);
-                        SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsMediaPurchaseCompletedInfo", (int) j5, str5));
-                        bulletinFactoryGlobal.getClass();
-                        Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(bulletinFactoryGlobal.getContext(), bulletinFactoryGlobal.resourcesProvider);
-                        twoLineLottieLayout.imageView.setImageDrawable(drawableMutate);
-                        twoLineLottieLayout.titleTextView.setText(string);
-                        twoLineLottieLayout.subtitleTextView.setText(spannableStringBuilderReplaceTags);
-                        bulletinFactoryGlobal.create(twoLineLottieLayout, 2750).show();
-                        z = true;
-                        launchActivity = LaunchActivity.instance;
-                        if (launchActivity != null) {
-                            anonymousClass5.start(z);
+                        TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = new TLRPC.TL_payments_getPaymentForm();
+                        JSONObject jSONObjectMakeThemeParams = BotWebViewSheet.makeThemeParams(resourcesProvider2, false);
+                        if (jSONObjectMakeThemeParams != null) {
+                            TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
+                            tL_payments_getPaymentForm.theme_params = tL_dataJSON;
+                            tL_dataJSON.data = jSONObjectMakeThemeParams.toString();
+                            tL_payments_getPaymentForm.flags |= 1;
                         }
-                        if (inputInvoice3 instanceof TLRPC.TL_inputInvoiceStars) {
-                            starsController2.invalidateTransactions(true);
-                        } else {
-                            starsController2.invalidateTransactions(true);
-                        }
-                        if (messageObject3 != null) {
-                            TLRPC.TL_messages_getExtendedMedia tL_messages_getExtendedMedia3 = new TLRPC.TL_messages_getExtendedMedia();
-                            tL_messages_getExtendedMedia3.peer = MessagesController.getInstance(starsController2.currentAccount).getInputPeer(j6);
-                            tL_messages_getExtendedMedia3.id.add(Integer.valueOf(messageObject3.getId()));
-                            ConnectionsManager.getInstance(starsController2.currentAccount).sendRequest(tL_messages_getExtendedMedia3, null);
-                        }
+                        tL_payments_getPaymentForm.invoice = inputInvoice3;
+                        ConnectionsManager.getInstance(starsController2.currentAccount).sendRequest(tL_payments_getPaymentForm, new StarsController$$ExternalSyntheticLambda119(starsController2, messageObject3, inputInvoice3, callback3, bulletinFactoryGlobal, 0));
                     }
                 });
             }
@@ -2947,7 +2873,7 @@ public final class StarsController {
 
     public final void saveStarGiftsCached(int i, long j, ArrayList arrayList) {
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new StarsController$$ExternalSyntheticLambda56(messagesStorage, j, arrayList, i));
+        messagesStorage.getStorageQueue().postRunnable(new StarsController$$ExternalSyntheticLambda73(messagesStorage, j, arrayList, i));
     }
 
     public final PendingPaidReactions sendPaidReaction(final MessageObject messageObject, final ChatActivity chatActivity, final long j, boolean z, boolean z2, final Long l) {
@@ -2959,7 +2885,7 @@ public final class StarsController {
             return null;
         }
         String forcedFirstName = "";
-        if (z2 && starsController.balanceLoaded && starsController.getBalance(false, false, null).amount <= 0) {
+        if (z2 && starsController.balanceLoaded && starsController.getBalance(null, false, false).amount <= 0) {
             long dialogId = chatActivity.getDialogId();
             if (dialogId >= 0) {
                 forcedFirstName = UserObject.getForcedFirstName(chatActivity.getMessagesController().getUser(Long.valueOf(dialogId)));
@@ -3008,7 +2934,7 @@ public final class StarsController {
             this.currentPendingReactions = new PendingPaidReactions(messageIdFrom, messageObject, chatActivity, z);
         }
         final long j2 = this.currentPendingReactions.amount + j;
-        if (z2 && starsController.balanceLoaded && starsController.getBalance(false, false, null).amount < j2) {
+        if (z2 && starsController.balanceLoaded && starsController.getBalance(null, false, false).amount < j2) {
             this.currentPendingReactions.cancel();
             long dialogId2 = chatActivity.getDialogId();
             if (dialogId2 >= 0) {
@@ -3047,8 +2973,8 @@ public final class StarsController {
             pendingPaidReactions4.amount += j;
             System.currentTimeMillis();
             Bulletin.TwoLineAnimatedLottieLayout twoLineAnimatedLottieLayout = pendingPaidReactions4.bulletinLayout;
-            twoLineAnimatedLottieLayout.subtitleTextView.drawable.cancelAnimation();
-            twoLineAnimatedLottieLayout.subtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSentText", (int) pendingPaidReactions4.amount, new Object[0])), true, true);
+            twoLineAnimatedLottieLayout.subtitleTextView.cancelAnimation();
+            twoLineAnimatedLottieLayout.subtitleTextView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSentText", (int) pendingPaidReactions4.amount, new Object[0])), true);
             if (pendingPaidReactions4.shownBulletin) {
                 pendingPaidReactions4.timerView.timeLeft = 5000L;
                 StarsReactionsSheet$$ExternalSyntheticLambda13 starsReactionsSheet$$ExternalSyntheticLambda13 = pendingPaidReactions4.closeRunnable;
@@ -3093,29 +3019,27 @@ public final class StarsController {
         } else {
             MessagesController.getInstance(i).loadFullChat(-dialogId, 0, true);
         }
-        BulletinFactory.of(LaunchActivity.getSafeLastFragment()).createSimpleBulletinWithIconSize(R.raw.error, 36, StarsIntroActivity.replaceStars(TextUtils.concat(LocaleController.formatPluralString("PaidMessagesSendErrorToast1", (int) messageObject.messageOwner.errorAllowedPriceStars, new Object[0]), " ", LocaleController.formatPluralString("PaidMessagesSendErrorToast2", (int) messageObject.messageOwner.errorNewPriceStars, new Object[0])), 1.13f, (ColoredImageSpan[]) null)).show();
+        BulletinFactory.of(LaunchActivity.getSafeLastFragment()).createSimpleBulletin(R.raw.error, StarsIntroActivity.replaceStars(TextUtils.concat(LocaleController.formatPluralString("PaidMessagesSendErrorToast1", (int) messageObject.messageOwner.errorAllowedPriceStars, new Object[0]), " ", LocaleController.formatPluralString("PaidMessagesSendErrorToast2", (int) messageObject.messageOwner.errorNewPriceStars, new Object[0])), 1.13f, (ColoredImageSpan[]) null)).show();
     }
 
     public final void showStarsTopup(LaunchActivity launchActivity, long j, String str) {
         if (this.balanceLoaded) {
             showStarsTopupInternal(launchActivity, j, str);
         } else {
-            getBalance(true, false, new PhotoViewer$$ExternalSyntheticLambda126(this, launchActivity, j, str));
+            getBalance(new StarGiftSheet$$ExternalSyntheticLambda139(this, launchActivity, j, str, 29), true, false);
         }
     }
 
     public final void showStarsTopupInternal(LaunchActivity launchActivity, long j, String str) {
         if (getBalance().amount < j && j > 0) {
-            new StarsIntroActivity.StarsNeededSheet(launchActivity, null, j, 4, str, new QrActivity$5$$ExternalSyntheticLambda1(28), 0L).show();
+            new StarsIntroActivity.StarsNeededSheet(launchActivity, null, j, 4, str, new GiftSheet$$ExternalSyntheticLambda2(18), 0L).show();
             return;
         }
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment == null) {
             return;
         }
-        Bulletin bulletinCreateSimpleBulletin = BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.stars_topup, LocaleController.getString(R.string.StarsTopupLinkEnough), new QrActivity$5$$ExternalSyntheticLambda1(29), LocaleController.getString(R.string.StarsTopupLinkTopupAnyway));
-        bulletinCreateSimpleBulletin.duration = 5000;
-        bulletinCreateSimpleBulletin.show(true);
+        BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.stars_topup, LocaleController.getString(R.string.StarsTopupLinkEnough), LocaleController.getString(R.string.StarsTopupLinkTopupAnyway), new GiftSheet$$ExternalSyntheticLambda2(19)).setDuration(5000).show(true);
     }
 
     public final void stopPaidMessages(final long j, final long j2, boolean z, final boolean z2) {
@@ -3132,7 +3056,7 @@ public final class StarsController {
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 StarsController starsController = this.f$0;
                 starsController.getClass();
-                AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda64(starsController, tLObject, j2, j, z2));
+                AndroidUtilities.runOnUIThread(new DialogsActivity$$ExternalSyntheticLambda46(starsController, tLObject, j2, j, z2));
             }
         });
     }
@@ -3149,22 +3073,18 @@ public final class StarsController {
             if (context2 != null) {
                 int i = UserConfig.selectedAccount;
                 boolean[] zArr = {false};
-                StarsController$$ExternalSyntheticLambda79 starsController$$ExternalSyntheticLambda79 = new StarsController$$ExternalSyntheticLambda79(this, j, i, zArr, callback2, context2, resourceProvider, chatInvite, str);
-                PollItemMenu$$ExternalSyntheticLambda8 pollItemMenu$$ExternalSyntheticLambda8 = new PollItemMenu$$ExternalSyntheticLambda8(this, zArr, callback2, 28);
-                BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context2, resourceProvider, false, false);
-                LinearLayout linearLayoutM = zzkf.m(context2, 1);
+                StarsController$$ExternalSyntheticLambda34 starsController$$ExternalSyntheticLambda34 = new StarsController$$ExternalSyntheticLambda34(this, j, i, zArr, callback2, context2, resourceProvider, chatInvite, str);
+                StarGiftSheet$$ExternalSyntheticLambda66 starGiftSheet$$ExternalSyntheticLambda66 = new StarGiftSheet$$ExternalSyntheticLambda66(this, zArr, callback2, 21);
+                BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context2, false, false, resourceProvider);
+                LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context2);
                 linearLayoutM.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
                 FrameLayout frameLayout = new FrameLayout(context2);
-                frameLayout.addView(new StarsIntroActivity.AnonymousClass4(context2, 40, 0), LayoutHelper.createFrame(-1.0f, -1));
+                frameLayout.addView(new StarsIntroActivity.AnonymousClass4(context2, 40, 0), LayoutHelper.createFrame(-1, -1.0f));
                 BackupImageView backupImageView = new BackupImageView(context2);
                 backupImageView.setRoundRadius(AndroidUtilities.dp(80.0f));
-                AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+                AvatarDrawable avatarDrawable = new AvatarDrawable();
                 avatarDrawable.setPeerColor(chatInvite.color);
-                String str2 = chatInvite.title;
-                avatarDrawable.invalidateTextLayout = true;
-                avatarDrawable.avatarType = 0;
-                avatarDrawable.drawDeleted = false;
-                AvatarDrawable.getAvatarSymbols(str2, null, null, avatarDrawable.stringBuilder);
+                avatarDrawable.setText(chatInvite.title);
                 TLRPC.Photo photo = chatInvite.photo;
                 if (photo != null) {
                     backupImageView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.dp(80.0f)), chatInvite.photo), "80_80", avatarDrawable, chatInvite);
@@ -3189,16 +3109,17 @@ public final class StarsController {
                 imageView2.setTranslationX(AndroidUtilities.dp(26.0f));
                 imageView2.setTranslationY(AndroidUtilities.dp(26.0f));
                 StarsIntroActivity.StarsBalanceView starsBalanceView = new StarsIntroActivity.StarsBalanceView(context2, i, resourceProvider);
-                ScaleStateListAnimator.apply(starsBalanceView, 0.1f, 1.5f);
-                starsBalanceView.setOnClickListener(new StarsIntroActivity$$ExternalSyntheticLambda50(starsBalanceView, 1));
+                ScaleStateListAnimator.apply(starsBalanceView);
+                starsBalanceView.setOnClickListener(new StarsIntroActivity$$ExternalSyntheticLambda66(starsBalanceView, 0));
                 frameLayout.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 0.0f, -8.0f, 0.0f));
                 linearLayoutM.addView(frameLayout, LayoutHelper.createLinear(-1, 117, 7));
                 TextView textViewM = RichMessageLayout$$ExternalSyntheticOutline0.m(context2, 1, 20.0f);
                 textViewM.setTypeface(AndroidUtilities.bold());
                 int i3 = Theme.key_dialogTextBlack;
                 textViewM.setTextColor(Theme.getColor(i3, resourceProvider));
-                zzkg.m(R.string.StarsSubscribeTitle, textViewM, 17);
-                TextView textViewM2 = ArticleViewer.IBlock.CC.m(linearLayoutM, textViewM, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0), context2);
+                textViewM.setText(LocaleController.getString(R.string.StarsSubscribeTitle));
+                textViewM.setGravity(17);
+                TextView textViewM2 = Theme.ResourcesProvider.CC.m(linearLayoutM, textViewM, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0), context2);
                 textViewM2.setTextSize(1, 14.0f);
                 textViewM2.setTextColor(Theme.getColor(i3, resourceProvider));
                 TL_stars.TL_starsSubscriptionPricing tL_starsSubscriptionPricing = chatInvite.subscription_pricing;
@@ -3218,19 +3139,19 @@ public final class StarsController {
                     textViewM3.setGravity(17);
                     linearLayoutM.addView(textViewM3, LayoutHelper.createLinear(-2, -2, 1, 0, 6, 0, 22));
                 }
-                ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context2, resourceProvider, true);
-                buttonWithCounterView.setText(LocaleController.getString(R.string.StarsSubscribeButton), false, true);
+                ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context2, true, resourceProvider);
+                buttonWithCounterView.setText(LocaleController.getString(R.string.StarsSubscribeButton), false);
                 linearLayoutM.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
                 LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context2, resourceProvider);
-                linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsSubscribeInfo), new OAuthSheet$$ExternalSyntheticLambda0(context2, 17)));
+                linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.StarsSubscribeInfo), new GiftSheet$$ExternalSyntheticLambda18(context2, 7)));
                 linksTextView.setGravity(17);
                 linksTextView.setTextSize(1, 13.0f);
                 linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourceProvider));
                 linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourceProvider));
                 linearLayoutM.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 14, 14, 6));
                 bottomSheetM.customView = linearLayoutM;
-                buttonWithCounterView.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda12(starsController$$ExternalSyntheticLambda79, bottomSheetM, buttonWithCounterView, 14));
-                bottomSheetM.setOnDismissListener(new ShareActivity$$ExternalSyntheticLambda0(pollItemMenu$$ExternalSyntheticLambda8, 2));
+                buttonWithCounterView.setOnClickListener(new GiftOfferSheet$$ExternalSyntheticLambda2(starsController$$ExternalSyntheticLambda34, bottomSheetM, buttonWithCounterView, 10));
+                bottomSheetM.setOnDismissListener(new RichEditor$$ExternalSyntheticLambda46(starGiftSheet$$ExternalSyntheticLambda66, 8));
                 bottomSheetM.fixNavigationBar(Theme.getColor(i2, resourceProvider));
                 BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
                 if (!AndroidUtilities.isTablet() && safeLastFragment != null && !AndroidUtilities.hasDialogOnTop(safeLastFragment)) {
@@ -3313,7 +3234,7 @@ public final class StarsController {
             public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                 StarsController starsController = this.f$0;
                 starsController.getClass();
-                AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda88(starsController, tLObject, runnable, tL_error, z, dialogId, id, messageObject, j));
+                AndroidUtilities.runOnUIThread(new StarsController$$ExternalSyntheticLambda52(starsController, tLObject, runnable, tL_error, z, dialogId, id, messageObject, j));
             }
         });
     }
@@ -3322,13 +3243,13 @@ public final class StarsController {
         return getInstance(i, amountUtils$Currency == AmountUtils$Currency.TON);
     }
 
-    public final TL_stars.StarsAmount getBalance(boolean z, boolean z2, Runnable runnable) {
+    public final TL_stars.StarsAmount getBalance(Runnable runnable, boolean z, boolean z2) {
         if (((!this.balanceLoaded || System.currentTimeMillis() - this.lastBalanceLoaded > 60000) && !this.balanceLoading) || z2) {
             this.balanceLoading = true;
             TL_stars.TL_payments_getStarsStatus tL_payments_getStarsStatus = new TL_stars.TL_payments_getStarsStatus();
             tL_payments_getStarsStatus.ton = this.ton;
             tL_payments_getStarsStatus.peer = new TLRPC.TL_inputPeerSelf();
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsStatus, new ProfileActivity$$ExternalSyntheticLambda65(24, this, runnable));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_payments_getStarsStatus, new StarGiftSheet$$ExternalSyntheticLambda0(21, this, runnable));
         }
         if (!z || this.minus <= 0) {
             return this.balance;
@@ -3431,8 +3352,6 @@ public final class StarsController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        LaunchActivity.AnonymousClass5 anonymousClass5;
-                        int i = 1;
                         StarsController starsController2 = starsController;
                         TLObject tLObject2 = tLObject;
                         Utilities.Callback2 callback4 = callback3;
@@ -3449,7 +3368,7 @@ public final class StarsController {
                         if (!(tLObject2 instanceof TLRPC.TL_payments_paymentResult)) {
                             if (tL_error2 == null || !"BALANCE_TOO_LOW".equals(tL_error2.text)) {
                                 callback4.run(0L, Boolean.FALSE);
-                                zzks.m(R.string.UnknownErrorCode, new Object[]{tL_error2 != null ? tL_error2.text : "FAILED_SEND_STARS"}, bulletinFactoryOf, R.raw.error);
+                                zzkh.m(R.string.UnknownErrorCode, new Object[]{tL_error2 != null ? tL_error2.text : "FAILED_SEND_STARS"}, bulletinFactoryOf, R.raw.error);
                                 return;
                             } else if (!MessagesController.getInstance(starsController2.currentAccount).starsPurchaseAvailable()) {
                                 callback4.run(0L, Boolean.FALSE);
@@ -3457,31 +3376,31 @@ public final class StarsController {
                                 return;
                             } else {
                                 boolean[] zArr = {false};
-                                StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(context3, resourcesProvider2, j3, 1, chatInvite3.title, new LinkManager$$ExternalSyntheticLambda20((Object) starsController2, (Object) zArr, str6, (Object) chatInvite3, (Object) callback4, 26), 0L);
-                                starsNeededSheet.setOnDismissListener(new StarsController$$ExternalSyntheticLambda5(callback4, zArr, 1));
+                                StarsIntroActivity.StarsNeededSheet starsNeededSheet = new StarsIntroActivity.StarsNeededSheet(context3, resourcesProvider2, j3, 1, chatInvite3.title, new SendGiftSheet$$ExternalSyntheticLambda16(starsController2, zArr, str6, chatInvite3, callback4, 11), 0L);
+                                starsNeededSheet.setOnDismissListener(new StarsController$$ExternalSyntheticLambda16(callback4, zArr, 1));
                                 starsNeededSheet.show();
                                 return;
                             }
                         }
                         TLRPC.TL_payments_paymentResult tL_payments_paymentResult = (TLRPC.TL_payments_paymentResult) tLObject2;
-                        Utilities.stageQueue.postRunnable(new StarsController$$ExternalSyntheticLambda6(starsController2, tL_payments_paymentResult, i));
+                        Utilities.stageQueue.postRunnable(new StarsController$$ExternalSyntheticLambda12(starsController2, tL_payments_paymentResult, 2));
                         TLRPC.Updates updates = tL_payments_paymentResult.updates;
                         TLRPC.Update update = updates.update;
                         long j4 = update instanceof TL_update.TL_updateChannel ? -((TL_update.TL_updateChannel) update).channel_id : 0L;
                         if (updates.updates != null) {
-                            for (int i2 = 0; i2 < tL_payments_paymentResult.updates.updates.size(); i2++) {
-                                if (tL_payments_paymentResult.updates.updates.get(i2) instanceof TL_update.TL_updateChannel) {
-                                    j4 = -((TL_update.TL_updateChannel) tL_payments_paymentResult.updates.updates.get(i2)).channel_id;
+                            for (int i = 0; i < tL_payments_paymentResult.updates.updates.size(); i++) {
+                                if (tL_payments_paymentResult.updates.updates.get(i) instanceof TL_update.TL_updateChannel) {
+                                    j4 = -((TL_update.TL_updateChannel) tL_payments_paymentResult.updates.updates.get(i)).channel_id;
                                 }
                             }
                         }
                         callback4.run(Long.valueOf(j4), Boolean.TRUE);
                         if (j4 == 0) {
-                            bulletinFactoryOf.createSimpleBulletin(LocaleController.getString(R.string.StarsSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSubscriptionCompletedText", (int) j3, str5)), R.raw.stars_send).show();
+                            bulletinFactoryOf.createSimpleBulletin(R.raw.stars_send, LocaleController.getString(R.string.StarsSubscriptionCompleted), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsSubscriptionCompletedText", (int) j3, str5))).show();
                         }
                         LaunchActivity launchActivity = LaunchActivity.instance;
-                        if (launchActivity != null && (anonymousClass5 = launchActivity.fireworksOverlay) != null) {
-                            anonymousClass5.start(true);
+                        if (launchActivity != null && launchActivity.getFireworksOverlay() != null) {
+                            LaunchActivity.instance.getFireworksOverlay().start(true);
                         }
                         starsController2.invalidateTransactions(true);
                         starsController2.invalidateSubscriptions();

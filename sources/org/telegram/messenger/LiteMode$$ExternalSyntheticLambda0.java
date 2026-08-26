@@ -4,7 +4,7 @@ public final class LiteMode$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
     public final boolean f$0;
 
-    public LiteMode$$ExternalSyntheticLambda0(int i, boolean z) {
+    public LiteMode$$ExternalSyntheticLambda0(boolean z, int i) {
         this.$r8$classId = i;
         this.f$0 = z;
     }

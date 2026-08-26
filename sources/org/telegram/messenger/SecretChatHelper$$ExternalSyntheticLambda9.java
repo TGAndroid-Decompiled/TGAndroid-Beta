@@ -16,7 +16,7 @@ public final class SecretChatHelper$$ExternalSyntheticLambda9 implements Request
     public final Object f$2;
     public final Object f$3;
 
-    public SecretChatHelper$$ExternalSyntheticLambda9(Object obj, Object obj2, Object obj3, Object obj4, int i) {
+    public SecretChatHelper$$ExternalSyntheticLambda9(int i, Object obj, Object obj2, Object obj3, Object obj4) {
         this.$r8$classId = i;
         this.f$0 = obj;
         this.f$1 = obj2;

@@ -12,7 +12,7 @@ import org.telegram.ui.Components.voip.VoIPHelper;
 
 public class VoIPPermissionActivity extends Activity {
     @Override
-    public final void onCreate(Bundle bundle) {
+    public void onCreate(Bundle bundle) {
         boolean zIsVideo;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
@@ -40,7 +40,7 @@ public class VoIPPermissionActivity extends Activity {
     }
 
     @Override
-    public final void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
+    public void onRequestPermissionsResult(int i, String[] strArr, int[] iArr) {
         if (i == 101 || i == 102) {
             boolean z = false;
             int i2 = 0;
@@ -73,7 +73,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            VoIPHelper.permissionDenied(i, this, new VoIPFragment$8$$ExternalSyntheticLambda1(this, 2));
+            VoIPHelper.permissionDenied(this, i, new MainTabsLayout$$ExternalSyntheticLambda0(this, 29));
         }
     }
 }

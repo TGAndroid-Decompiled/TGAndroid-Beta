@@ -8,13 +8,13 @@ import android.widget.Button;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 
-public final class ProgressButton extends Button {
-    public int angle;
-    public boolean drawProgress;
-    public long lastUpdateTime;
-    public float progressAlpha;
-    public final Paint progressPaint;
-    public final RectF progressRect;
+public class ProgressButton extends Button {
+    private int angle;
+    private boolean drawProgress;
+    private long lastUpdateTime;
+    private float progressAlpha;
+    private final Paint progressPaint;
+    private final RectF progressRect;
 
     public ProgressButton(Context context) {
         super(context);
@@ -35,15 +35,13 @@ public final class ProgressButton extends Button {
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.drawProgress || this.progressAlpha != 0.0f) {
             int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(11.0f);
-            RectF rectF = this.progressRect;
-            rectF.set(measuredWidth, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(8.0f) + measuredWidth, AndroidUtilities.dp(11.0f));
-            Paint paint = this.progressPaint;
-            paint.setAlpha(Math.min(255, (int) (this.progressAlpha * 255.0f)));
-            canvas.drawArc(rectF, this.angle, 220.0f, false, paint);
+            this.progressRect.set(measuredWidth, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(8.0f) + measuredWidth, AndroidUtilities.dp(11.0f));
+            this.progressPaint.setAlpha(Math.min(255, (int) (this.progressAlpha * 255.0f)));
+            canvas.drawArc(this.progressRect, this.angle, 220.0f, false, this.progressPaint);
             long jCurrentTimeMillis = System.currentTimeMillis();
             if (Math.abs(this.lastUpdateTime - System.currentTimeMillis()) < 1000) {
                 long j = jCurrentTimeMillis - this.lastUpdateTime;
@@ -74,11 +72,11 @@ public final class ProgressButton extends Button {
         }
     }
 
-    public final void setBackgroundRoundRect(float f, int i) {
-        setBackground(Theme.AdaptiveRipple.createRect(new float[]{f}, i, Theme.AdaptiveRipple.calcRippleColor(i)));
+    public void setBackgroundRoundRect(int i, int i2) {
+        setBackgroundRoundRect(i, i2, 14.0f);
     }
 
-    public final void setDrawProgress(boolean z, boolean z2) {
+    public void setDrawProgress(boolean z, boolean z2) {
         if (this.drawProgress != z) {
             this.drawProgress = z;
             if (!z2) {
@@ -91,5 +89,9 @@ public final class ProgressButton extends Button {
 
     public void setProgressColor(int i) {
         this.progressPaint.setColor(i);
+    }
+
+    public void setBackgroundRoundRect(int i, int i2, float f) {
+        setBackground(Theme.AdaptiveRipple.createRect(new float[]{f}, i, Theme.AdaptiveRipple.calcRippleColor(i)));
     }
 }

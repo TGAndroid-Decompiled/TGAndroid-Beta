@@ -1,11 +1,9 @@
 package org.telegram.ui.bots;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -14,45 +12,42 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzlm;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticOutline0;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda9;
-import org.telegram.ui.Cells.EditTextCell;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda11;
+import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ChatThemeBottomSheet;
 import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.EditTextCaption$$ExternalSyntheticOutline0;
+import org.telegram.ui.Components.EditTextSuggestionsFix;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.ThemeSmallPreviewView;
 import org.telegram.ui.DialogsActivity;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.StakedDiceSheet$$ExternalSyntheticLambda5;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda7;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 import org.telegram.ui.TopicsFragment;
 
@@ -72,12 +67,12 @@ public final class BotVerifySheet$$ExternalSyntheticLambda0 implements AlertDial
 
     @Override
     public boolean canSelectStories() {
-        return false;
+        return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
     }
 
     @Override
     public boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
-        Activity activity;
+        Context context;
         String forcedFirstName;
         TLObject tLObject;
         TLObject tLObject2;
@@ -88,10 +83,10 @@ public final class BotVerifySheet$$ExternalSyntheticLambda0 implements AlertDial
         }
         final long j = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         DialogsActivity dialogsActivity2 = (DialogsActivity) this.f$0;
-        Activity parentActivity = dialogsActivity2.getParentActivity();
+        Context context2 = dialogsActivity2.getContext();
         final int i4 = this.f$1;
         final BotVerifySheet$$ExternalSyntheticLambda1 botVerifySheet$$ExternalSyntheticLambda1 = new BotVerifySheet$$ExternalSyntheticLambda1(topicsFragment, dialogsActivity2, j, i4);
-        if (parentActivity == null) {
+        if (context2 == null) {
             return true;
         }
         MessagesController messagesController = MessagesController.getInstance(i4);
@@ -102,55 +97,53 @@ public final class BotVerifySheet$$ExternalSyntheticLambda0 implements AlertDial
             user = MessagesController.getInstance(i4).getUser(Long.valueOf(j));
             forcedFirstName = UserObject.getForcedFirstName(user);
             if (user.bot_verification_icon == botverifiersettings.icon) {
-                BotVerifySheet.openRemoveVerify(parentActivity, i4, j2, j, botverifiersettings, botVerifySheet$$ExternalSyntheticLambda1);
+                BotVerifySheet.openRemoveVerify(context2, i4, j2, j, botverifiersettings, botVerifySheet$$ExternalSyntheticLambda1);
                 return true;
             }
             i4 = i4;
-            activity = parentActivity;
+            context = context2;
             tLObject = user;
             tLObject2 = null;
         } else {
-            activity = parentActivity;
+            context = context2;
             TLRPC.Chat chat = MessagesController.getInstance(i4).getChat(Long.valueOf(-j));
             forcedFirstName = chat == null ? "" : chat.title;
             if (chat.bot_verification_icon == botverifiersettings.icon) {
-                BotVerifySheet.openRemoveVerify(activity, i4, j2, j, botverifiersettings, botVerifySheet$$ExternalSyntheticLambda1);
+                BotVerifySheet.openRemoveVerify(context, i4, j2, j, botverifiersettings, botVerifySheet$$ExternalSyntheticLambda1);
                 return true;
             }
             tLObject = chat;
             tLObject2 = tLObject;
             user = null;
         }
-        final BottomSheet bottomSheet = new BottomSheet(activity, null, true, false);
-        bottomSheet.fixNavigationBar();
-        ?? M = FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(activity, 1);
+        final BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context, true, false, null);
+        ?? M = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
         ?? r29 = tLObject2;
         M.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         M.setClipChildren(false);
         M.setClipToPadding(false);
-        FrameLayout frameLayout = new FrameLayout(activity);
+        FrameLayout frameLayout = new FrameLayout(context);
         TLRPC.User user2 = user;
         frameLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), Theme.getColor(null, Theme.key_groupcreate_spanBackground, false)));
-        BackupImageView backupImageView = new BackupImageView(activity);
+        BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(28.0f));
-        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
         avatarDrawable.setInfo(tLObject);
-        backupImageView.imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
-        backupImageView.onNewImageSet();
+        backupImageView.setForUserOrChat(tLObject, avatarDrawable);
         frameLayout.addView(backupImageView, LayoutHelper.createFrame(28, 28, 51));
-        BackupImageView backupImageView2 = new BackupImageView(activity);
+        BackupImageView backupImageView2 = new BackupImageView(context);
         backupImageView2.setEmojiColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_chats_verifiedBackground, false), PorterDuff.Mode.SRC_IN));
-        backupImageView2.setAnimatedEmojiDrawable(AnimatedEmojiDrawable.make(i4, botverifiersettings.icon, null, 3));
+        backupImageView2.setAnimatedEmojiDrawable(AnimatedEmojiDrawable.make(i4, 3, botverifiersettings.icon));
         frameLayout.addView(backupImageView2, LayoutHelper.createFrame(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
-        SimpleTextView simpleTextView = new SimpleTextView(activity);
+        SimpleTextView simpleTextView = new SimpleTextView(context);
         simpleTextView.setTextColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
         simpleTextView.setTextSize(13);
         simpleTextView.setEllipsizeByGradient(true);
-        simpleTextView.setText(forcedFirstName, false);
+        simpleTextView.setText(forcedFirstName);
         simpleTextView.setWidthWrapContent(true);
         frameLayout.addView(simpleTextView, LayoutHelper.createFrame(-2, -2.0f, 19, 57.0f, 0.0f, 10.0f, 0.0f));
         M.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 1, 16, 0, 16, 0));
-        TextView textView = new TextView(activity);
+        TextView textView = new TextView(context);
         int i5 = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(null, i5, false));
         textView.setTextSize(1, 20.0f);
@@ -165,17 +158,16 @@ public final class BotVerifySheet$$ExternalSyntheticLambda0 implements AlertDial
             textView.setText(LocaleController.getString(R.string.BotVerifyGroupTitle));
         }
         textView.setTypeface(AndroidUtilities.bold());
-        M.addView(textView, LayoutHelper.createLinear(24.0f, 21.0f, 24.0f, 8.33f, -1, -2));
-        TextView textView2 = new TextView(activity);
-        textView2.setTextColor(Theme.getColor(null, i5, false));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(17);
-        NotificationCenter.listenEmojiLoading(textView2);
-        textView2.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotVerifyText, forcedFirstName)), textView2.getPaint().getFontMetricsInt(), false));
-        M.addView(textView2, LayoutHelper.createLinear(24.0f, 0.0f, 24.0f, 22.0f, -1, -2));
+        TextView textViewM = Theme.ResourcesProvider.CC.m(M, textView, LayoutHelper.createLinear(-1, -2, 24.0f, 21.0f, 24.0f, 8.33f), context);
+        textViewM.setTextColor(Theme.getColor(null, i5, false));
+        textViewM.setTextSize(1, 14.0f);
+        textViewM.setGravity(17);
+        NotificationCenter.listenEmojiLoading(textViewM);
+        textViewM.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotVerifyText, forcedFirstName)), textViewM.getPaint().getFontMetricsInt(), false));
+        M.addView(textViewM, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 22.0f));
         final int i6 = MessagesController.getInstance(i4).botVerificationDescriptionLengthLimit;
-        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(activity);
-        final OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(activity, null);
+        final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
+        final OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
         outlineTextContainerView.setForceForceUseCenter(true);
         outlineTextContainerView.setText(LocaleController.getString(R.string.BotVerifyDescription));
         outlineTextContainerView.setLeftPadding(AndroidUtilities.dp(2.0f));
@@ -191,12 +183,11 @@ public final class BotVerifySheet$$ExternalSyntheticLambda0 implements AlertDial
         editTextBoldCursor.setHighlightColor(Theme.getColor(null, Theme.key_chat_inTextSelectionHighlight, false));
         editTextBoldCursor.setHandlesColor(Theme.getColor(null, Theme.key_chat_TextSelectionCursor, false));
         editTextBoldCursor.setGravity(LocaleController.isRTL ? 5 : 3);
-        editTextBoldCursor.setOnFocusChangeListener(new StakedDiceSheet$$ExternalSyntheticLambda5(outlineTextContainerView, editTextBoldCursor, 2));
-        outlineTextContainerView.attachedEditText = editTextBoldCursor;
-        outlineTextContainerView.invalidate();
+        editTextBoldCursor.setOnFocusChangeListener(new BotVerifySheet$$ExternalSyntheticLambda2(0, editTextBoldCursor, outlineTextContainerView));
+        outlineTextContainerView.attachEditText(editTextBoldCursor);
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2.0f, 48, 12.0f, 4.0f, 12.0f, 4.0f));
         M.addView(outlineTextContainerView, LayoutHelper.createLinear(-1, -2));
-        editTextBoldCursor.addTextChangedListener(new EditTextCell.AnonymousClass3());
+        editTextBoldCursor.addTextChangedListener(new EditTextSuggestionsFix());
         editTextBoldCursor.addTextChangedListener(new TextWatcher() {
             public boolean ignoreEditText;
 
@@ -237,25 +228,25 @@ public final class BotVerifySheet$$ExternalSyntheticLambda0 implements AlertDial
             outlineTextContainerView.setVisibility(8);
         }
         if (botverifiersettings.can_modify_custom_description) {
-            TextView textView3 = new TextView(activity);
-            textView3.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText4, false));
-            textView3.setTextSize(1, 12.0f);
-            textView3.setPadding(zzlm.m(14.0f, j >= 0 ? R.string.BotVerifyDescriptionInfo : R.string.BotVerifyDescriptionInfoChat, textView3), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(27.0f));
+            TextView textView2 = new TextView(context);
+            textView2.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText4, false));
+            textView2.setTextSize(1, 12.0f);
+            textView2.setPadding(EditTextCaption$$ExternalSyntheticOutline0.m(14.0f, j >= 0 ? R.string.BotVerifyDescriptionInfo : R.string.BotVerifyDescriptionInfoChat, textView2), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(27.0f));
             i3 = -1;
-            M.addView(textView3, LayoutHelper.createFrame(-2.0f, -1));
+            M.addView(textView2, LayoutHelper.createFrame(-1, -2.0f));
         } else {
             i3 = -1;
-            M.addView(new View(activity), LayoutHelper.createFrame(12.0f, -1));
+            M.addView(new View(context), LayoutHelper.createFrame(-1, 12.0f));
         }
-        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(activity, null, true);
-        buttonWithCounterView.setText(textView.getText(), false, true);
+        final ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, null);
+        buttonWithCounterView.setText(textView.getText(), false);
         M.addView(buttonWithCounterView, LayoutHelper.createLinear(i3, 48));
-        bottomSheet.customView = M;
+        bottomSheetM.customView = M;
         buttonWithCounterView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
                 ButtonWithCounterView buttonWithCounterView2 = buttonWithCounterView;
-                if (buttonWithCounterView2.loading) {
+                if (buttonWithCounterView2.isLoading()) {
                     return;
                 }
                 TL_bots.botVerifierSettings botverifiersettings2 = botverifiersettings;
@@ -263,7 +254,7 @@ public final class BotVerifySheet$$ExternalSyntheticLambda0 implements AlertDial
                 EditTextBoldCursor editTextBoldCursor2 = editTextBoldCursor;
                 if (z3 && editTextBoldCursor2.getText().length() > i6) {
                     OutlineTextContainerView outlineTextContainerView2 = outlineTextContainerView;
-                    OutlineTextContainerView.animateSpring(outlineTextContainerView2.errorSpring, 1.0f);
+                    outlineTextContainerView2.animateError(1.0f);
                     AndroidUtilities.shakeViewSpring(outlineTextContainerView2, -6.0f);
                     return;
                 }
@@ -282,89 +273,38 @@ public final class BotVerifySheet$$ExternalSyntheticLambda0 implements AlertDial
                 if (!TextUtils.isEmpty(setcustomverification.custom_description)) {
                     setcustomverification.flags |= 4;
                 }
-                ConnectionsManager.getInstance(i7).sendRequest(setcustomverification, new StarGiftSheet$$ExternalSyntheticLambda7(buttonWithCounterView2, bottomSheet, botVerifySheet$$ExternalSyntheticLambda1, 9));
+                ConnectionsManager.getInstance(i7).sendRequest(setcustomverification, new StarGiftSheet$$ExternalSyntheticLambda1(buttonWithCounterView2, bottomSheetM, botVerifySheet$$ExternalSyntheticLambda1, 15));
             }
         });
-        bottomSheet.smoothKeyboardAnimationEnabled = true;
-        bottomSheet.smoothKeyboardByBottom = true;
-        bottomSheet.show();
+        bottomSheetM.smoothKeyboardAnimationEnabled = true;
+        bottomSheetM.smoothKeyboardByBottom = true;
+        bottomSheetM.show();
         return true;
     }
 
     @Override
     public boolean didSelectStories(DialogsActivity dialogsActivity) {
-        return false;
+        return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity);
     }
 
     @Override
     public void onClick(AlertDialog alertDialog, int i) {
-        Object obj = this.f$3;
-        Object obj2 = this.f$0;
-        long j = this.f$2;
-        int i2 = this.f$1;
         switch (this.$r8$classId) {
             case 1:
-                EditText editText = (EditText) obj2;
-                if (editText.getText() != null) {
-                    if (j <= 0) {
-                        long j2 = -j;
-                        TLRPC.Chat chat = MessagesController.getInstance(i2).getChat(Long.valueOf(j2));
-                        String string = editText.getText().toString();
-                        String str = chat.title;
-                        if (str != null && str.equals(string)) {
-                            alertDialog.dismiss();
-                        } else {
-                            chat.title = string;
-                            NotificationCenter.getInstance(i2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_CHAT_NAME));
-                            MessagesController.getInstance(i2).changeChatTitle(j2, string);
-                            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 3, Long.valueOf(j));
-                        }
-                    } else {
-                        TLRPC.User user = MessagesController.getInstance(i2).getUser(Long.valueOf(j));
-                        String string2 = editText.getText().toString();
-                        String string3 = ((EditText) obj).getText().toString();
-                        String str2 = user.first_name;
-                        String str3 = user.last_name;
-                        if (str2 == null) {
-                            str2 = "";
-                        }
-                        if (str3 == null) {
-                            str3 = "";
-                        }
-                        if (str2.equals(string2) && str3.equals(string3)) {
-                            alertDialog.dismiss();
-                        } else {
-                            TL_account.updateProfile updateprofile = new TL_account.updateProfile();
-                            updateprofile.flags = 3;
-                            updateprofile.first_name = string2;
-                            user.first_name = string2;
-                            updateprofile.last_name = string3;
-                            user.last_name = string3;
-                            TLRPC.User user2 = MessagesController.getInstance(i2).getUser(Long.valueOf(UserConfig.getInstance(i2).getClientUserId()));
-                            if (user2 != null) {
-                                user2.first_name = updateprofile.first_name;
-                                user2.last_name = updateprofile.last_name;
-                            }
-                            UserConfig.getInstance(i2).saveConfig(true);
-                            NotificationCenter.getInstance(i2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
-                            NotificationCenter.getInstance(i2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
-                            ConnectionsManager.getInstance(i2).sendRequest(updateprofile, new PassportActivity$$ExternalSyntheticLambda1(8));
-                            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 3, Long.valueOf(j));
-                        }
-                    }
-                    alertDialog.dismiss();
-                    break;
-                }
+                AlertsCreator.lambda$createChangeNameAlert$91((EditText) this.f$0, this.f$2, this.f$1, (EditText) this.f$3, alertDialog, i);
                 break;
             default:
                 TLRPC.TL_messages_toggleBotInAttachMenu tL_messages_toggleBotInAttachMenu = new TLRPC.TL_messages_toggleBotInAttachMenu();
-                tL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i2).getInputUser(j);
+                int i2 = this.f$1;
+                MessagesController messagesController = MessagesController.getInstance(i2);
+                long j = this.f$2;
+                tL_messages_toggleBotInAttachMenu.bot = messagesController.getInputUser(j);
                 tL_messages_toggleBotInAttachMenu.enabled = false;
-                ConnectionsManager.getInstance(i2).sendRequest(tL_messages_toggleBotInAttachMenu, new Theme$$ExternalSyntheticLambda9(i2, 6), 66);
-                ((TLRPC.TL_attachMenuBot) obj2).show_in_side_menu = false;
+                ConnectionsManager.getInstance(i2).sendRequest(tL_messages_toggleBotInAttachMenu, new Theme$$ExternalSyntheticLambda11(i2, 4), 66);
+                ((TLRPC.TL_attachMenuBot) this.f$0).show_in_side_menu = false;
                 NotificationCenter.getInstance(i2).lambda$postNotificationNameOnUIThread$1(NotificationCenter.attachMenuBotsDidLoad, new Object[0]);
                 MediaDataController.getInstance(i2).uninstallShortcut(j, MediaDataController.SHORTCUT_TYPE_ATTACHED_BOT);
-                Runnable runnable = (Runnable) obj;
+                Runnable runnable = (Runnable) this.f$3;
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -374,19 +314,9 @@ public final class BotVerifySheet$$ExternalSyntheticLambda0 implements AlertDial
 
     @Override
     public void onComplete(Object obj) {
-        Pair pair = (Pair) obj;
         ThemeSmallPreviewView themeSmallPreviewView = (ThemeSmallPreviewView) this.f$0;
-        themeSmallPreviewView.getClass();
-        if (pair == null || ((Long) pair.first).longValue() != this.f$2) {
-            return;
-        }
-        Drawable drawable = ((ChatThemeBottomSheet.ChatThemeItem) this.f$3).previewDrawable;
-        if (drawable instanceof MotionBackgroundDrawable) {
-            MotionBackgroundDrawable motionBackgroundDrawable = (MotionBackgroundDrawable) drawable;
-            motionBackgroundDrawable.setPatternBitmap(ThemeSmallPreviewView.prescaleBitmap((Bitmap) pair.second), this.f$1 >= 0 ? 100 : -100);
-            motionBackgroundDrawable.setPatternColorFilter(themeSmallPreviewView.patternColor);
-        }
-        themeSmallPreviewView.invalidate();
+        ChatThemeBottomSheet.ChatThemeItem chatThemeItem = (ChatThemeBottomSheet.ChatThemeItem) this.f$3;
+        themeSmallPreviewView.lambda$setItem$0(this.f$2, chatThemeItem, this.f$1, (Pair) obj);
     }
 
     @Override

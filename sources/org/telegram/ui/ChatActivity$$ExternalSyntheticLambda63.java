@@ -1,12 +1,10 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Components.Bulletin;
-import org.telegram.ui.Components.BulletinFactory;
+import org.telegram.messenger.MessageSuggestionParams;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 
-public final class ChatActivity$$ExternalSyntheticLambda63 implements View.OnLongClickListener {
+public final class ChatActivity$$ExternalSyntheticLambda63 implements Utilities.Callback {
     public final int $r8$classId;
     public final ChatActivity f$0;
 
@@ -16,34 +14,32 @@ public final class ChatActivity$$ExternalSyntheticLambda63 implements View.OnLon
     }
 
     @Override
-    public final boolean onLongClick(View view) {
-        MessageObject messageObject;
-        MessageObject messageObject2;
+    public final void run(Object obj) {
         switch (this.$r8$classId) {
             case 0:
-                ChatActivity chatActivity = this.f$0;
-                int i = chatActivity.fieldPanelShown;
-                if (i == 1 && (messageObject2 = chatActivity.editingMessageObject) != null) {
-                    chatActivity.scrollToMessageId(messageObject2.getId(), 0, true, 0, true, 0);
-                    return true;
-                }
-                if (chatActivity.messagePreviewParams == null || i != 2 || (messageObject = chatActivity.replyingMessageObject) == null) {
-                    return false;
-                }
-                chatActivity.scrollToMessageId(messageObject.getId(), 0, true, 0, true, 0);
-                return true;
+                this.f$0.lambda$showSuggestionOfferForEditMessage$357((MessageSuggestionParams) obj);
+                break;
             case 1:
-                ChatActivity chatActivity2 = this.f$0;
-                MessageObject messageObject3 = chatActivity2.selectedObject;
-                if (messageObject3 == null) {
-                    return false;
-                }
-                if (AndroidUtilities.addToClipboard(messageObject3.sponsoredUrl)) {
-                    new BulletinFactory(new Bulletin.BulletinWindow(chatActivity2.getParentActivity(), null).container, chatActivity2.themeDelegate).createCopyLinkBulletin(false).show();
-                }
-                return true;
+                ChatActivity.access$12100(this.f$0, ((Integer) obj).intValue());
+                break;
+            case 2:
+                ChatActivity.access$12100(this.f$0, ((Integer) obj).intValue());
+                break;
+            case 3:
+                this.f$0.lambda$createView$72((Boolean) obj);
+                break;
+            case 4:
+                this.f$0.lambda$openHashtagSearch$368((String) obj);
+                break;
+            case 5:
+                this.f$0.lambda$createView$31((Long) obj);
+                break;
+            case 6:
+                this.f$0.lambda$createView$29((ActionBarMenuItem) obj);
+                break;
             default:
-                return this.f$0.lambda$updateTopPanel$229();
+                this.f$0.showFieldPanelForSuggestionParams((MessageSuggestionParams) obj);
+                break;
         }
     }
 }

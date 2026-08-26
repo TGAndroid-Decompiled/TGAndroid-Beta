@@ -15,10 +15,12 @@ import android.graphics.Path;
 import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.RenderNode;
 import android.graphics.Shader;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.MotionEvent;
@@ -37,19 +39,21 @@ import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticApiModelOutline5;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.pip.PipSource$$ExternalSyntheticApiModelOutline0;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda21;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Cells.SlideIntChooseView;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
 import org.telegram.ui.GradientClip;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bots.BotWebViewSheet;
@@ -131,27 +135,28 @@ public final class BottomSheetTabsOverlay extends View {
         }
 
         @Override
-        public final void getVisibleVirtualViews(ArrayList arrayList) {
+        public final void getVisibleVirtualViews(List list) {
             BottomSheetTabsOverlay bottomSheetTabsOverlay = BottomSheetTabsOverlay.this;
             if (bottomSheetTabsOverlay.openProgress < 0.5f) {
                 return;
             }
             BaseCell.RippleDrawableSafe rippleDrawableSafe = bottomSheetTabsOverlay.closeAllButtonBackground;
             if (rippleDrawableSafe != null && !rippleDrawableSafe.getBounds().isEmpty()) {
-                arrayList.add(1);
+                ((ArrayList) list).add(1);
             }
             int i = 0;
             while (true) {
-                ArrayList arrayList2 = bottomSheetTabsOverlay.tabs;
-                if (i >= arrayList2.size()) {
+                ArrayList arrayList = bottomSheetTabsOverlay.tabs;
+                if (i >= arrayList.size()) {
                     return;
                 }
-                TabPreview tabPreview = (TabPreview) arrayList2.get(i);
+                TabPreview tabPreview = (TabPreview) arrayList.get(i);
                 if (Math.abs(tabPreview.dismissProgress) < 0.4f && !tabPreview.clickBounds.isEmpty()) {
-                    arrayList.add(Integer.valueOf(i + 1000));
+                    ArrayList arrayList2 = (ArrayList) list;
+                    arrayList2.add(Integer.valueOf(i + 1000));
                     BottomSheetTabs.TabDrawable tabDrawable = tabPreview.tabDrawable;
                     if (tabDrawable != null && !tabDrawable.closeRipple.getBounds().isEmpty()) {
-                        arrayList.add(Integer.valueOf(i + 2000));
+                        arrayList2.add(Integer.valueOf(i + 2000));
                     }
                 }
                 i++;
@@ -159,7 +164,7 @@ public final class BottomSheetTabsOverlay extends View {
         }
 
         @Override
-        public final boolean onPerformActionForVirtualView(int i, int i2) {
+        public final boolean onPerformActionForVirtualView(int i, int i2, Bundle bundle) {
             int i3;
             boolean z;
             if (i2 == 16) {
@@ -184,7 +189,7 @@ public final class BottomSheetTabsOverlay extends View {
                     if (z) {
                         BottomSheetTabs bottomSheetTabs2 = bottomSheetTabsOverlay.tabsView;
                         if (bottomSheetTabs2 != null) {
-                            bottomSheetTabs2.removeTab(tabPreview.tabData, new ArticleViewer$$ExternalSyntheticLambda21(4, this, tabPreview));
+                            bottomSheetTabs2.removeTab(tabPreview.tabData, new GiftSheet$$ExternalSyntheticLambda4(4, this, tabPreview));
                             return true;
                         }
                     } else if (bottomSheetTabsOverlay.tabsView != null) {
@@ -271,7 +276,7 @@ public final class BottomSheetTabsOverlay extends View {
 
         int getNavigationBarColor(int i);
 
-        SheetView mo1066getWindowView();
+        SheetView mo1107getWindowView();
 
         boolean hadDialog();
 
@@ -285,7 +290,7 @@ public final class BottomSheetTabsOverlay extends View {
     }
 
     public interface SheetView {
-        float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2);
+        float drawInto(Canvas canvas, RectF rectF, float f, RectF rectF2, float f2, boolean z);
 
         Context getContext();
 
@@ -331,7 +336,7 @@ public final class BottomSheetTabsOverlay extends View {
             this.parentView = bottomSheetTabsOverlay;
             this.tabData = webTabData;
             this.tabDrawable = tabDrawable;
-            this.bounce = new ButtonBounce(bottomSheetTabsOverlay, 1.0f, 5.0f);
+            this.bounce = new ButtonBounce(bottomSheetTabsOverlay);
             paint.setColor(webTabData.backgroundColor);
         }
 
@@ -343,7 +348,7 @@ public final class BottomSheetTabsOverlay extends View {
             }
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.dismissProgress, f);
             this.dismissAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new BottomSheetTabs$$ExternalSyntheticLambda2(this, 5));
+            valueAnimatorOfFloat.addUpdateListener(new BottomSheetTabs$$ExternalSyntheticLambda2(this, 4));
             this.dismissAnimator.addListener(new SlideIntChooseView.AnonymousClass3(this, f, i));
             if (Math.abs(f) < 0.1f) {
                 AndroidUtilities.applySpring(this.dismissAnimator, 285.0d, 20.0d);
@@ -374,7 +379,7 @@ public final class BottomSheetTabsOverlay extends View {
         this.accessibilityHelper = overlayAccessibilityHelper;
         ViewCompat.setAccessibilityDelegate(this, overlayAccessibilityHelper);
         setImportantForAccessibility(2);
-        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(this, new AlertDialog$$ExternalSyntheticLambda11(this, 6));
+        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(this, new AlertDialog$$ExternalSyntheticLambda13(this, 6));
     }
 
     private float getScrollStep() {
@@ -497,9 +502,9 @@ public final class BottomSheetTabsOverlay extends View {
                 if (view != null && webTabData.previewBitmap == null && (i2 = webTabData.viewWidth) > 0 && (i3 = webTabData.viewHeight) > 0) {
                     if (Build.VERSION.SDK_INT >= 26) {
                         float f = -webTabData.viewScroll;
-                        final ArticleViewer$$ExternalSyntheticLambda21 articleViewer$$ExternalSyntheticLambda21 = new ArticleViewer$$ExternalSyntheticLambda21(3, webTabData, sheet2);
+                        final GiftSheet$$ExternalSyntheticLambda4 giftSheet$$ExternalSyntheticLambda4 = new GiftSheet$$ExternalSyntheticLambda4(3, webTabData, sheet2);
                         if (view.getWidth() <= 0 || view.getHeight() <= 0) {
-                            articleViewer$$ExternalSyntheticLambda21.run(null);
+                            giftSheet$$ExternalSyntheticLambda4.run(null);
                         } else {
                             final SurfaceTexture surfaceTextureM = PipSource$$ExternalSyntheticApiModelOutline0.m();
                             surfaceTextureM.setDefaultBufferSize(view.getWidth(), view.getHeight());
@@ -512,15 +517,15 @@ public final class BottomSheetTabsOverlay extends View {
                             PixelCopy.request(surface, bitmapCreateBitmap, (PixelCopy.OnPixelCopyFinishedListener) new PixelCopy.OnPixelCopyFinishedListener() {
                                 @Override
                                 public final void onPixelCopyFinished(int i4) {
-                                    ArticleViewer$$ExternalSyntheticLambda21 articleViewer$$ExternalSyntheticLambda22 = articleViewer$$ExternalSyntheticLambda21;
+                                    GiftSheet$$ExternalSyntheticLambda4 giftSheet$$ExternalSyntheticLambda5 = giftSheet$$ExternalSyntheticLambda4;
                                     Bitmap bitmap = bitmapCreateBitmap;
                                     Surface surface2 = surface;
                                     SurfaceTexture surfaceTexture = surfaceTextureM;
                                     if (i4 == 0) {
-                                        articleViewer$$ExternalSyntheticLambda22.run(bitmap);
+                                        giftSheet$$ExternalSyntheticLambda5.run(bitmap);
                                     } else {
                                         bitmap.recycle();
-                                        articleViewer$$ExternalSyntheticLambda22.run(null);
+                                        giftSheet$$ExternalSyntheticLambda5.run(null);
                                     }
                                     surface2.release();
                                     surfaceTexture.release();
@@ -536,7 +541,7 @@ public final class BottomSheetTabsOverlay extends View {
                     canvas.translate(0.0f, -webTabData.viewScroll);
                     view.draw(canvas);
                 }
-                sheet2.mo1066getWindowView().setDrawingFromOverlay(false);
+                sheet2.mo1107getWindowView().setDrawingFromOverlay(false);
                 sheet2.release();
                 bottomSheetTabsOverlay.dismissingSheet = null;
                 bottomSheetTabsOverlay.invalidate();
@@ -551,10 +556,10 @@ public final class BottomSheetTabsOverlay extends View {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         ArrayList arrayList;
-        float fMax;
         float f;
         int i;
         int i2;
+        Object obj;
         BottomSheetTabsOverlay bottomSheetTabsOverlay = this;
         super.dispatchDraw(canvas);
         Sheet sheet = bottomSheetTabsOverlay.dismissingSheet;
@@ -562,7 +567,7 @@ public final class BottomSheetTabsOverlay extends View {
         int[] iArr = bottomSheetTabsOverlay.pos2;
         int[] iArr2 = bottomSheetTabsOverlay.pos;
         float f2 = 1.0f;
-        float f3 = 0.0f;
+        float fMax = 0.0f;
         if (sheet != null) {
             bottomSheetTabsOverlay.getLocationOnScreen(iArr);
             bottomSheetTabsOverlay.tabsView.getLocationOnScreen(iArr2);
@@ -570,10 +575,10 @@ public final class BottomSheetTabsOverlay extends View {
             rectF.offset(iArr2[0] - iArr[0], iArr2[1] - iArr[1]);
             canvas.save();
             canvas.clipRect(0, 0, bottomSheetTabsOverlay.getMeasuredWidth(), bottomSheetTabsOverlay.getMeasuredHeight() - bottomSheetTabsOverlay.navigationBarInset);
-            SheetView sheetViewMo1066getWindowView = bottomSheetTabsOverlay.dismissingSheet.mo1066getWindowView();
-            float f4 = bottomSheetTabsOverlay.dismissProgress;
+            SheetView sheetViewMo1107getWindowView = bottomSheetTabsOverlay.dismissingSheet.mo1107getWindowView();
+            float f3 = bottomSheetTabsOverlay.dismissProgress;
             RectF rectF2 = bottomSheetTabsOverlay.clipRect;
-            float fDrawInto = sheetViewMo1066getWindowView.drawInto(canvas, rectF, f4, rectF2, f4);
+            float fDrawInto = sheetViewMo1107getWindowView.drawInto(canvas, rectF, f3, rectF2, f3, false);
             if (bottomSheetTabsOverlay.dismissingTab != null) {
                 Path path = bottomSheetTabsOverlay.clipPath;
                 path.rewind();
@@ -619,23 +624,23 @@ public final class BottomSheetTabsOverlay extends View {
             canvas.drawRect(0.0f, 0.0f, fWidth, fHeight, bottomSheetTabsOverlay.blurBitmapPaint);
         }
         canvas.saveLayerAlpha(0.0f, 0.0f, fWidth, fHeight, 255, 31);
-        float f5 = fWidth;
+        float f4 = fWidth;
         float fDp = AndroidUtilities.dp(55.0f) + AndroidUtilities.dp(40.0f) + AndroidUtilities.statusBarHeight;
         float fDp2 = AndroidUtilities.dp(68.0f);
-        int iMin = (int) Math.min(AndroidUtilities.dp(340.0f), 0.95f * f5);
+        int iMin = (int) Math.min(AndroidUtilities.dp(340.0f), 0.95f * f4);
         int iHeight = (int) (AndroidUtilities.isTablet() ? rectF3.height() * 0.5f : 0.75f * fHeight);
-        float f6 = f5 / 2.0f;
+        float f5 = f4 / 2.0f;
         int i4 = 0;
-        float f7 = 0.0f;
+        float f6 = 0.0f;
         while (true) {
             arrayList = bottomSheetTabsOverlay.tabs;
             if (i4 >= arrayList.size()) {
                 break;
             }
-            f7 += ((TabPreview) arrayList.get(i4)).tabDrawable.index >= 0 ? 1.0f : 0.0f;
+            f6 += ((TabPreview) arrayList.get(i4)).tabDrawable.index >= 0 ? 1.0f : 0.0f;
             i4++;
         }
-        float f8 = bottomSheetTabsOverlay.animatedCount.set(f7, false);
+        float f7 = bottomSheetTabsOverlay.animatedCount.set(f6);
         float fLerp = AndroidUtilities.lerp(0.0f, 1.0f - Utilities.clamp(bottomSheetTabsOverlay.getScrollWindow() <= 0.0f ? 0.0f : ((bottomSheetTabsOverlay.getScrollMin() - bottomSheetTabsOverlay.getScrollOffset()) / (bottomSheetTabsOverlay.getScrollWindow() * 0.15f)) * 0.2f, 1.0f, 0.0f), bottomSheetTabsOverlay.openProgress);
         int i5 = 0;
         while (i5 < arrayList.size() + 1) {
@@ -649,28 +654,24 @@ public final class BottomSheetTabsOverlay extends View {
                     BottomSheetTabs.TabDrawable tabDrawable = tabPreview.tabDrawable;
                 }
                 BottomSheetTabs.TabDrawable tabDrawable2 = tabPreview.tabDrawable;
-                float f9 = tabDrawable2 == null ? 1.0f : fLerp;
-                float position = (f8 - f2) - tabDrawable2.getPosition();
+                float f8 = tabDrawable2 == null ? 1.0f : fLerp;
+                float position = (f7 - f2) - tabDrawable2.getPosition();
                 BottomSheetTabs.TabDrawable tabDrawable3 = tabPreview.tabDrawable;
-                if (tabDrawable3 == null) {
-                    fMax = 0.0f;
-                } else {
+                if (tabDrawable3 != null) {
                     fMax = (position - Math.max(bottomSheetTabsOverlay.getScrollMin(), bottomSheetTabsOverlay.getScrollOffset())) / bottomSheetTabsOverlay.getScrollWindow();
-                    f3 = 0.0f;
                 }
-                Math.max(fMax, f3);
+                Math.max(fMax, 0.0f);
                 f = fDp2;
                 Math.max(Math.min(fMax, 1.0f), -4.0f);
                 float fMin = (Math.min(5.0f, position) * AndroidUtilities.dp(6.0f)) + fDp;
-                float f10 = fMax;
-                float f11 = iHeight;
-                float f12 = ((((fHeight - f) - (0.26f * f11)) - fMin) * f10) + fMin;
+                float f9 = iHeight;
+                float f10 = ((((fHeight - f) - (0.26f * f9)) - fMin) * fMax) + fMin;
                 RectF rectF4 = bottomSheetTabsOverlay.rect2;
-                float f13 = iMin / 2.0f;
+                float f11 = iMin / 2.0f;
                 i = iMin;
                 i2 = i5;
-                rectF4.set(f6 - f13, f12, f6 + f13, f12 + f11);
-                boolean z = tabDrawable3 != null && (rectF4.top > fHeight || rectF4.bottom < 0.0f || fLerp < 0.1f) && position < f8 - 3.0f;
+                rectF4.set(f5 - f11, f10, f5 + f11, f10 + f9);
+                boolean z = tabDrawable3 != null && (rectF4.top > fHeight || rectF4.bottom < 0.0f || fLerp < 0.1f) && position < f7 - 3.0f;
                 bottomSheetTabsOverlay.tabsView.getTabBounds(rectF, Utilities.clamp(tabDrawable3.getPosition(), 1.0f, 0.0f));
                 rectF.offset(bottomSheetTabsOverlay.tabsView.getX(), bottomSheetTabsOverlay.tabsView.getY());
                 AndroidUtilities.lerpCentered(rectF, rectF4, fLerp, rectF4);
@@ -683,55 +684,57 @@ public final class BottomSheetTabsOverlay extends View {
                     tabPreview.clickBounds.set(rectF4);
                     Matrix matrix = tabPreview.matrix;
                     matrix.reset();
-                    float f14 = rectF4.left;
+                    float f12 = rectF4.left;
                     float[] fArr = tabPreview.src;
-                    fArr[0] = f14;
-                    float f15 = rectF4.top;
-                    fArr[1] = f15;
-                    float f16 = rectF4.right;
-                    fArr[2] = f16;
-                    fArr[3] = f15;
-                    fArr[4] = f16;
-                    fArr[5] = (rectF4.height() * 1.0f) + f15;
+                    fArr[0] = f12;
+                    float f13 = rectF4.top;
+                    fArr[1] = f13;
+                    float f14 = rectF4.right;
+                    fArr[2] = f14;
+                    fArr[3] = f13;
+                    fArr[4] = f14;
+                    fArr[5] = (rectF4.height() * 1.0f) + f13;
                     fArr[6] = rectF4.left;
                     fArr[7] = (rectF4.height() * 1.0f) + rectF4.top;
-                    float f17 = rectF4.left;
+                    float f15 = rectF4.left;
                     float[] fArr2 = tabPreview.dst;
-                    fArr2[0] = f17;
+                    fArr2[0] = f15;
                     fArr2[1] = rectF4.top - AndroidUtilities.dp(0.0f);
                     fArr2[2] = rectF4.right;
                     fArr2[3] = rectF4.top - AndroidUtilities.dp(0.0f);
-                    float f18 = f9 * 1.0f;
-                    fArr2[4] = (AndroidUtilities.lerp(1.0f, 0.83f, f18) * (rectF4.width() / 2.0f)) + rectF4.centerX();
-                    fArr2[5] = (AndroidUtilities.lerp(1.0f, 0.6f, f18) * ((rectF4.height() * 1.0f) + AndroidUtilities.dp(0.0f))) + (rectF4.top - AndroidUtilities.dp(0.0f));
-                    fArr2[6] = rectF4.centerX() - (AndroidUtilities.lerp(1.0f, 0.83f, f18) * (rectF4.width() / 2.0f));
-                    fArr2[7] = (AndroidUtilities.lerp(1.0f, 0.6f, f18) * ((rectF4.height() * 1.0f) + AndroidUtilities.dp(0.0f))) + (rectF4.top - AndroidUtilities.dp(0.0f));
+                    float f16 = f8 * 1.0f;
+                    fArr2[4] = (AndroidUtilities.lerp(1.0f, 0.83f, f16) * (rectF4.width() / 2.0f)) + rectF4.centerX();
+                    fArr2[5] = (AndroidUtilities.lerp(1.0f, 0.6f, f16) * ((rectF4.height() * 1.0f) + AndroidUtilities.dp(0.0f))) + (rectF4.top - AndroidUtilities.dp(0.0f));
+                    fArr2[6] = rectF4.centerX() - (AndroidUtilities.lerp(1.0f, 0.83f, f16) * (rectF4.width() / 2.0f));
+                    fArr2[7] = (AndroidUtilities.lerp(1.0f, 0.6f, f16) * ((rectF4.height() * 1.0f) + AndroidUtilities.dp(0.0f))) + (rectF4.top - AndroidUtilities.dp(0.0f));
                     matrix.setPolyToPoly(tabPreview.src, 0, tabPreview.dst, 0, 4);
                     canvas.concat(matrix);
                     float fLerp2 = AndroidUtilities.lerp(tabDrawable3.getAlpha(), 1.0f, bottomSheetTabsOverlay.openProgress);
-                    float fLerp3 = AndroidUtilities.lerp(Utilities.clamp01((position - f8) + 2.0f), 1.0f, Utilities.clamp01((f9 - 0.1f) / 0.8f));
+                    float fLerp3 = AndroidUtilities.lerp(Utilities.clamp01((position - f7) + 2.0f), 1.0f, Utilities.clamp01((f8 - 0.1f) / 0.8f));
                     float fClamp = Utilities.clamp(1.0f - ((Math.abs(tabPreview.dismissProgress) - 0.3f) / 0.7f), 1.0f, 0.0f) * fLerp2;
                     if (fClamp <= 0.0f) {
                         fLerp = fLerp;
                         arrayList = arrayList;
-                        f8 = f8;
+                        f7 = f7;
+                        iHeight = iHeight;
                     } else {
-                        float f19 = f18 * 1.0f;
-                        float fLerp4 = AndroidUtilities.lerp(1.0f, 1.3f, f19);
+                        float f17 = f16 * 1.0f;
+                        float fLerp4 = AndroidUtilities.lerp(1.0f, 1.3f, f17);
                         float currentActionBarHeight = ((ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight) - AndroidUtilities.dp(50.0f)) * 0.0f;
                         canvas.save();
                         fLerp = fLerp;
                         arrayList = arrayList;
-                        f8 = f8;
+                        f7 = f7;
                         canvas.rotate(tabPreview.dismissProgress * 20.0f, (tabPreview.dismissProgress * AndroidUtilities.dp(50.0f)) + rectF4.centerX(), rectF4.bottom + AndroidUtilities.dp(350.0f));
                         float scale = tabPreview.bounce.getScale(0.01f);
                         canvas.scale(scale, scale, rectF4.centerX(), rectF4.centerY());
-                        float fLerp5 = AndroidUtilities.lerp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), f18);
+                        float fLerp5 = AndroidUtilities.lerp(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), f16);
                         Paint paint = tabPreview.backgroundPaint;
                         Paint paint2 = tabPreview.shadowPaint;
+                        iHeight = iHeight;
                         if (z) {
                             paint2.setColor(0);
-                            paint2.setShadowLayer(AndroidUtilities.dp(30.0f), 0.0f, AndroidUtilities.dp(10.0f), Theme.multAlpha(fClamp * f18 * 1.0f, 536870912));
+                            paint2.setShadowLayer(AndroidUtilities.dp(30.0f), 0.0f, AndroidUtilities.dp(10.0f), Theme.multAlpha(f16 * fClamp * 1.0f, 536870912));
                             canvas.drawRoundRect(rectF4, fLerp5, fLerp5, paint2);
                             paint.setAlpha((int) (fClamp * 255.0f));
                             canvas.drawRoundRect(rectF4, fLerp5, fLerp5, paint);
@@ -742,21 +745,28 @@ public final class BottomSheetTabsOverlay extends View {
                             path2.addRoundRect(rectF4, fLerp5, fLerp5, Path.Direction.CW);
                             canvas.save();
                             paint2.setColor(0);
-                            f5 = f5;
-                            paint2.setShadowLayer(AndroidUtilities.dp(30.0f), 0.0f, AndroidUtilities.dp(10.0f), Theme.multAlpha(fClamp * f18 * 1.0f, 536870912));
+                            f4 = f4;
+                            float f18 = fClamp * f16;
+                            paint2.setShadowLayer(AndroidUtilities.dp(30.0f), 0.0f, AndroidUtilities.dp(10.0f), Theme.multAlpha(f18 * 1.0f, 536870912));
                             canvas.drawPath(path2, paint2);
                             canvas.clipPath(path2);
-                            float f20 = fClamp * 255.0f * f18;
-                            int i6 = (int) f20;
+                            float f19 = fClamp * 255.0f * f16;
+                            int i6 = (int) f19;
                             paint.setAlpha(i6);
                             canvas.drawRoundRect(rectF4, fLerp5, fLerp5, paint);
                             canvas.save();
                             canvas.translate(rectF4.left, OKLCH.m(AndroidUtilities.dp(50.0f), fLerp4, rectF4.top, currentActionBarHeight));
-                            canvas.scale(1.0f, AndroidUtilities.lerp(1.0f, 1.25f, f19));
+                            canvas.scale(1.0f, AndroidUtilities.lerp(1.0f, 1.25f, f17));
                             BottomSheetTabs.WebTabData webTabData = tabPreview.tabData;
-                            if (webTabData != null && webTabData.previewBitmap != null) {
-                                float fWidth3 = rectF4.width() / webTabData.previewBitmap.getWidth();
+                            if (webTabData != null && (obj = webTabData.previewNode) != null && Build.VERSION.SDK_INT >= 29 && AndroidUtilities$$ExternalSyntheticApiModelOutline5.m(obj).hasDisplayList()) {
+                                RenderNode renderNodeM = AndroidUtilities$$ExternalSyntheticApiModelOutline5.m(webTabData.previewNode);
+                                float fWidth3 = rectF4.width() / renderNodeM.getWidth();
                                 canvas.scale(fWidth3, fWidth3);
+                                renderNodeM.setAlpha(f18);
+                                canvas.drawRenderNode(renderNodeM);
+                            } else if (webTabData != null && webTabData.previewBitmap != null) {
+                                float fWidth4 = rectF4.width() / webTabData.previewBitmap.getWidth();
+                                canvas.scale(fWidth4, fWidth4);
                                 Paint paint3 = tabPreview.bitmapPaint;
                                 paint3.setAlpha(i6);
                                 canvas.drawBitmap(webTabData.previewBitmap, 0.0f, 0.0f, paint3);
@@ -764,7 +774,7 @@ public final class BottomSheetTabsOverlay extends View {
                             canvas.restore();
                             canvas.save();
                             Paint paint4 = tabPreview.gradientPaint;
-                            paint4.setAlpha((int) (f20 * 1.0f));
+                            paint4.setAlpha((int) (f19 * 1.0f));
                             Matrix matrix2 = tabPreview.gradientMatrix;
                             matrix2.reset();
                             float fHeight2 = rectF4.height() / 255.0f;
@@ -779,7 +789,7 @@ public final class BottomSheetTabsOverlay extends View {
                             rectF5.set(rectF4);
                             rectF5.bottom = Math.min(rectF4.height(), AndroidUtilities.dp(50.0f)) + rectF5.top;
                             rectF5.offset(0.0f, currentActionBarHeight);
-                            tabDrawable3.expandProgress = f18;
+                            tabDrawable3.expandProgress = f16;
                             canvas.scale(1.0f, fLerp4, rectF5.centerX(), rectF5.top);
                             tabPreview.tabDrawable.draw(canvas, rectF5, fLerp5, fClamp * fClamp, fLerp3);
                             canvas.restore();
@@ -794,13 +804,13 @@ public final class BottomSheetTabsOverlay extends View {
                 fDp2 = f;
                 fLerp = fLerp;
                 iMin = i;
-                f8 = f8;
+                f7 = f7;
                 arrayList = arrayList;
                 iHeight = iHeight;
+                f4 = f4;
                 rectF = rectF;
-                f5 = f5;
                 f2 = 1.0f;
-                f3 = 0.0f;
+                fMax = 0.0f;
                 bottomSheetTabsOverlay = this;
             }
             i5 = i2 + 1;
@@ -808,24 +818,24 @@ public final class BottomSheetTabsOverlay extends View {
             fDp2 = f;
             fLerp = fLerp;
             iMin = i;
-            f8 = f8;
+            f7 = f7;
             arrayList = arrayList;
             iHeight = iHeight;
+            f4 = f4;
             rectF = rectF;
-            f5 = f5;
             f2 = 1.0f;
-            f3 = 0.0f;
+            fMax = 0.0f;
             bottomSheetTabsOverlay = this;
         }
-        float f21 = fDp;
-        float f22 = f5;
+        float f20 = fDp;
+        float f21 = f4;
         canvas.save();
         if (this.gradientClip == null) {
             this.gradientClip = new GradientClip();
         }
         RectF rectF6 = AndroidUtilities.rectTmp;
-        rectF6.set(0.0f, 0.0f, f22, f21);
-        this.gradientClip.draw(canvas, rectF6, 1, this.openProgress);
+        rectF6.set(0.0f, 0.0f, f21, f20);
+        this.gradientClip.draw(canvas, rectF6, true, this.openProgress);
         canvas.restore();
         canvas.restore();
         if (this.closeAllButtonText == null) {
@@ -841,12 +851,12 @@ public final class BottomSheetTabsOverlay extends View {
             }
             this.closeAllButtonBackground.setCallback(this);
         }
-        float fDp3 = this.closeAllButtonText.width + AndroidUtilities.dp(24.0f);
-        float f23 = (f22 - fDp3) / 2.0f;
-        this.closeAllButtonBackground.setBounds((int) f23, (int) ((f21 - (AndroidUtilities.dp(95.0f) / 2.0f)) - AndroidUtilities.dp(14.0f)), (int) ((f22 + fDp3) / 2.0f), (int) ((f21 - (AndroidUtilities.dp(95.0f) / 2.0f)) + AndroidUtilities.dp(14.0f)));
+        float currentWidth = this.closeAllButtonText.getCurrentWidth() + AndroidUtilities.dp(24.0f);
+        float f22 = (f21 - currentWidth) / 2.0f;
+        this.closeAllButtonBackground.setBounds((int) f22, (int) ((f20 - (AndroidUtilities.dp(95.0f) / 2.0f)) - AndroidUtilities.dp(14.0f)), (int) ((f21 + currentWidth) / 2.0f), (int) ((f20 - (AndroidUtilities.dp(95.0f) / 2.0f)) + AndroidUtilities.dp(14.0f)));
         this.closeAllButtonBackground.setAlpha((int) (this.openProgress * 255.0f));
         this.closeAllButtonBackground.draw(canvas);
-        this.closeAllButtonText.draw(f23 + AndroidUtilities.dp(12.0f), f21 - (AndroidUtilities.dp(95.0f) / 2.0f), this.openProgress, -1, canvas);
+        this.closeAllButtonText.draw(canvas, AndroidUtilities.dp(12.0f) + f22, f20 - (AndroidUtilities.dp(95.0f) / 2.0f), -1, this.openProgress);
         canvas.restore();
     }
 
@@ -947,7 +957,7 @@ public final class BottomSheetTabsOverlay extends View {
         if (motionEvent.getAction() == 2) {
             TabPreview tabPreview3 = this.pressTab;
             if (tabPreview3 != null) {
-                if (tabPreview3.bounce.isPressed) {
+                if (tabPreview3.bounce.isPressed()) {
                     if (!this.horizontallySwiping && !this.verticallyScrolling && MathUtils.distance(this.startX, motionEvent.getY(), motionEvent.getX(), motionEvent.getY()) > AndroidUtilities.touchSlop) {
                         this.horizontallySwiping = true;
                     }
@@ -992,10 +1002,9 @@ public final class BottomSheetTabsOverlay extends View {
                         }
                     }
                 }
-                TabPreview tabPreview4 = this.pressTab;
-                if (!tabPreview4.bounce.isPressed) {
+                if (!this.pressTab.bounce.isPressed()) {
                     if (this.horizontallySwiping) {
-                        tabPreview4.dismissProgress = (motionEvent.getX() - this.startX) / AndroidUtilities.dp(300.0f);
+                        this.pressTab.dismissProgress = (motionEvent.getX() - this.startX) / AndroidUtilities.dp(300.0f);
                     } else if (this.verticallyScrolling) {
                         float y2 = motionEvent.getY() - this.lastY;
                         if (this.offset < getScrollMin()) {
@@ -1022,9 +1031,9 @@ public final class BottomSheetTabsOverlay extends View {
             if (motionEvent.getAction() != 3) {
                 return true;
             }
-            TabPreview tabPreview5 = this.pressTab;
-            if (tabPreview5 != null) {
-                tabPreview5.animateDismiss(0.0f);
+            TabPreview tabPreview4 = this.pressTab;
+            if (tabPreview4 != null) {
+                tabPreview4.animateDismiss(0.0f);
                 this.pressTab.bounce.setPressed(false);
                 this.pressTab.tabDrawable.closeRipple.setState(new int[0]);
             }
@@ -1043,11 +1052,11 @@ public final class BottomSheetTabsOverlay extends View {
             rippleDrawableSafe5.setState(new int[0]);
             return true;
         }
-        TabPreview tabPreview6 = this.pressTab;
-        if (tabPreview6 != null) {
-            if (this.tabsView == null || Math.abs(tabPreview6.dismissProgress) <= 0.4f) {
+        TabPreview tabPreview5 = this.pressTab;
+        if (tabPreview5 != null) {
+            if (this.tabsView == null || Math.abs(tabPreview5.dismissProgress) <= 0.4f) {
                 this.pressTab.animateDismiss(0.0f);
-                if (this.tabsView == null || !this.pressTab.bounce.isPressed) {
+                if (this.tabsView == null || !this.pressTab.bounce.isPressed()) {
                     if (this.verticallyScrolling) {
                         if (this.offset < getScrollMin() - (getScrollWindow() * 0.15f)) {
                             animateOpen(false);
@@ -1084,9 +1093,9 @@ public final class BottomSheetTabsOverlay extends View {
                         this.pressTabClose = this.pressTab.tabDrawable.closeRipple.getBounds().contains((int) (motionEvent.getX() - this.pressTab.clickBounds.left), (int) ((motionEvent.getY() - this.pressTab.clickBounds.top) - AndroidUtilities.dp(24.0f)));
                     }
                     if (this.pressTabClose) {
-                        final TabPreview tabPreview7 = this.pressTab;
+                        final TabPreview tabPreview6 = this.pressTab;
                         final int i = 1;
-                        this.tabsView.removeTab(tabPreview7.tabData, new Utilities.Callback(this) {
+                        this.tabsView.removeTab(tabPreview6.tabData, new Utilities.Callback(this) {
                             public final BottomSheetTabsOverlay f$0;
 
                             {
@@ -1101,11 +1110,11 @@ public final class BottomSheetTabsOverlay extends View {
                                         BottomSheetTabsOverlay bottomSheetTabsOverlay = this.f$0;
                                         bottomSheetTabsOverlay.getClass();
                                         boolean zBooleanValue = bool.booleanValue();
-                                        BottomSheetTabsOverlay.TabPreview tabPreview8 = tabPreview7;
+                                        BottomSheetTabsOverlay.TabPreview tabPreview7 = tabPreview6;
                                         if (!zBooleanValue) {
-                                            tabPreview8.animateDismiss(0.0f);
+                                            tabPreview7.animateDismiss(0.0f);
                                         } else {
-                                            tabPreview8.animateDismiss(tabPreview8.dismissProgress < 0.0f ? -1.0f : 1.0f);
+                                            tabPreview7.animateDismiss(tabPreview7.dismissProgress < 0.0f ? -1.0f : 1.0f);
                                             bottomSheetTabsOverlay.scrollTo(Utilities.clamp(bottomSheetTabsOverlay.offset, bottomSheetTabsOverlay.getScrollMax(false), Utilities.clamp(bottomSheetTabsOverlay.getScrollRange(false), 1.0f, 0.0f) * ((-bottomSheetTabsOverlay.getScrollWindow()) / 3.0f)));
                                             if (bottomSheetTabsOverlay.tabsView.getTabs().isEmpty()) {
                                                 bottomSheetTabsOverlay.animateOpen(false);
@@ -1116,11 +1125,11 @@ public final class BottomSheetTabsOverlay extends View {
                                         BottomSheetTabsOverlay bottomSheetTabsOverlay2 = this.f$0;
                                         bottomSheetTabsOverlay2.getClass();
                                         boolean zBooleanValue2 = bool.booleanValue();
-                                        BottomSheetTabsOverlay.TabPreview tabPreview9 = tabPreview7;
+                                        BottomSheetTabsOverlay.TabPreview tabPreview8 = tabPreview6;
                                         if (!zBooleanValue2) {
-                                            tabPreview9.animateDismiss(0.0f);
+                                            tabPreview8.animateDismiss(0.0f);
                                         } else {
-                                            tabPreview9.animateDismiss(1.0f);
+                                            tabPreview8.animateDismiss(1.0f);
                                             bottomSheetTabsOverlay2.scrollTo(Utilities.clamp(bottomSheetTabsOverlay2.offset, bottomSheetTabsOverlay2.getScrollMax(false), Utilities.clamp(bottomSheetTabsOverlay2.getScrollRange(false), 1.0f, 0.0f) * ((-bottomSheetTabsOverlay2.getScrollWindow()) / 3.0f)));
                                             if (bottomSheetTabsOverlay2.tabsView.getTabs().isEmpty()) {
                                                 bottomSheetTabsOverlay2.animateOpen(false);
@@ -1135,14 +1144,14 @@ public final class BottomSheetTabsOverlay extends View {
                     r1 = velocityTracker2;
                 } else {
                     animateOpen(false);
-                    TabPreview tabPreview8 = this.pressTab;
-                    tabPreview8.getClass();
-                    this.tabsView.openTab(tabPreview8.tabData);
+                    TabPreview tabPreview7 = this.pressTab;
+                    tabPreview7.getClass();
+                    this.tabsView.openTab(tabPreview7.tabData);
                 }
             } else {
-                final TabPreview tabPreview9 = this.pressTab;
+                final TabPreview tabPreview8 = this.pressTab;
                 final int i2 = 0;
-                this.tabsView.removeTab(tabPreview9.tabData, new Utilities.Callback(this) {
+                this.tabsView.removeTab(tabPreview8.tabData, new Utilities.Callback(this) {
                     public final BottomSheetTabsOverlay f$0;
 
                     {
@@ -1153,6 +1162,60 @@ public final class BottomSheetTabsOverlay extends View {
                     public final void run(Object obj2) {
                         Boolean bool = (Boolean) obj2;
                         switch (i2) {
+                            case 0:
+                                BottomSheetTabsOverlay bottomSheetTabsOverlay = this.f$0;
+                                bottomSheetTabsOverlay.getClass();
+                                boolean zBooleanValue = bool.booleanValue();
+                                BottomSheetTabsOverlay.TabPreview tabPreview9 = tabPreview8;
+                                if (!zBooleanValue) {
+                                    tabPreview9.animateDismiss(0.0f);
+                                } else {
+                                    tabPreview9.animateDismiss(tabPreview9.dismissProgress < 0.0f ? -1.0f : 1.0f);
+                                    bottomSheetTabsOverlay.scrollTo(Utilities.clamp(bottomSheetTabsOverlay.offset, bottomSheetTabsOverlay.getScrollMax(false), Utilities.clamp(bottomSheetTabsOverlay.getScrollRange(false), 1.0f, 0.0f) * ((-bottomSheetTabsOverlay.getScrollWindow()) / 3.0f)));
+                                    if (bottomSheetTabsOverlay.tabsView.getTabs().isEmpty()) {
+                                        bottomSheetTabsOverlay.animateOpen(false);
+                                    }
+                                }
+                                break;
+                            default:
+                                BottomSheetTabsOverlay bottomSheetTabsOverlay2 = this.f$0;
+                                bottomSheetTabsOverlay2.getClass();
+                                boolean zBooleanValue2 = bool.booleanValue();
+                                BottomSheetTabsOverlay.TabPreview tabPreview10 = tabPreview8;
+                                if (!zBooleanValue2) {
+                                    tabPreview10.animateDismiss(0.0f);
+                                } else {
+                                    tabPreview10.animateDismiss(1.0f);
+                                    bottomSheetTabsOverlay2.scrollTo(Utilities.clamp(bottomSheetTabsOverlay2.offset, bottomSheetTabsOverlay2.getScrollMax(false), Utilities.clamp(bottomSheetTabsOverlay2.getScrollRange(false), 1.0f, 0.0f) * ((-bottomSheetTabsOverlay2.getScrollWindow()) / 3.0f)));
+                                    if (bottomSheetTabsOverlay2.tabsView.getTabs().isEmpty()) {
+                                        bottomSheetTabsOverlay2.animateOpen(false);
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                });
+            }
+            velocityTracker2 = null;
+            z = true;
+            this.pressTab.bounce.setPressed(false);
+            if (this.pressTabClose) {
+                this.pressTabClose = this.pressTab.tabDrawable.closeRipple.getBounds().contains((int) (motionEvent.getX() - this.pressTab.clickBounds.left), (int) ((motionEvent.getY() - this.pressTab.clickBounds.top) - AndroidUtilities.dp(24.0f)));
+            }
+            if (this.pressTabClose) {
+                final TabPreview tabPreview9 = this.pressTab;
+                final int i3 = 1;
+                this.tabsView.removeTab(tabPreview9.tabData, new Utilities.Callback(this) {
+                    public final BottomSheetTabsOverlay f$0;
+
+                    {
+                        this.f$0 = this;
+                    }
+
+                    @Override
+                    public final void run(Object obj2) {
+                        Boolean bool = (Boolean) obj2;
+                        switch (i3) {
                             case 0:
                                 BottomSheetTabsOverlay bottomSheetTabsOverlay = this.f$0;
                                 bottomSheetTabsOverlay.getClass();
@@ -1177,60 +1240,6 @@ public final class BottomSheetTabsOverlay extends View {
                                     tabPreview11.animateDismiss(0.0f);
                                 } else {
                                     tabPreview11.animateDismiss(1.0f);
-                                    bottomSheetTabsOverlay2.scrollTo(Utilities.clamp(bottomSheetTabsOverlay2.offset, bottomSheetTabsOverlay2.getScrollMax(false), Utilities.clamp(bottomSheetTabsOverlay2.getScrollRange(false), 1.0f, 0.0f) * ((-bottomSheetTabsOverlay2.getScrollWindow()) / 3.0f)));
-                                    if (bottomSheetTabsOverlay2.tabsView.getTabs().isEmpty()) {
-                                        bottomSheetTabsOverlay2.animateOpen(false);
-                                    }
-                                }
-                                break;
-                        }
-                    }
-                });
-            }
-            velocityTracker2 = null;
-            z = true;
-            this.pressTab.bounce.setPressed(false);
-            if (this.pressTabClose) {
-                this.pressTabClose = this.pressTab.tabDrawable.closeRipple.getBounds().contains((int) (motionEvent.getX() - this.pressTab.clickBounds.left), (int) ((motionEvent.getY() - this.pressTab.clickBounds.top) - AndroidUtilities.dp(24.0f)));
-            }
-            if (this.pressTabClose) {
-                final TabPreview tabPreview10 = this.pressTab;
-                final int i3 = 1;
-                this.tabsView.removeTab(tabPreview10.tabData, new Utilities.Callback(this) {
-                    public final BottomSheetTabsOverlay f$0;
-
-                    {
-                        this.f$0 = this;
-                    }
-
-                    @Override
-                    public final void run(Object obj2) {
-                        Boolean bool = (Boolean) obj2;
-                        switch (i3) {
-                            case 0:
-                                BottomSheetTabsOverlay bottomSheetTabsOverlay = this.f$0;
-                                bottomSheetTabsOverlay.getClass();
-                                boolean zBooleanValue = bool.booleanValue();
-                                BottomSheetTabsOverlay.TabPreview tabPreview11 = tabPreview10;
-                                if (!zBooleanValue) {
-                                    tabPreview11.animateDismiss(0.0f);
-                                } else {
-                                    tabPreview11.animateDismiss(tabPreview11.dismissProgress < 0.0f ? -1.0f : 1.0f);
-                                    bottomSheetTabsOverlay.scrollTo(Utilities.clamp(bottomSheetTabsOverlay.offset, bottomSheetTabsOverlay.getScrollMax(false), Utilities.clamp(bottomSheetTabsOverlay.getScrollRange(false), 1.0f, 0.0f) * ((-bottomSheetTabsOverlay.getScrollWindow()) / 3.0f)));
-                                    if (bottomSheetTabsOverlay.tabsView.getTabs().isEmpty()) {
-                                        bottomSheetTabsOverlay.animateOpen(false);
-                                    }
-                                }
-                                break;
-                            default:
-                                BottomSheetTabsOverlay bottomSheetTabsOverlay2 = this.f$0;
-                                bottomSheetTabsOverlay2.getClass();
-                                boolean zBooleanValue2 = bool.booleanValue();
-                                BottomSheetTabsOverlay.TabPreview tabPreview12 = tabPreview10;
-                                if (!zBooleanValue2) {
-                                    tabPreview12.animateDismiss(0.0f);
-                                } else {
-                                    tabPreview12.animateDismiss(1.0f);
                                     bottomSheetTabsOverlay2.scrollTo(Utilities.clamp(bottomSheetTabsOverlay2.offset, bottomSheetTabsOverlay2.getScrollMax(false), Utilities.clamp(bottomSheetTabsOverlay2.getScrollRange(false), 1.0f, 0.0f) * ((-bottomSheetTabsOverlay2.getScrollWindow()) / 3.0f)));
                                     if (bottomSheetTabsOverlay2.tabsView.getTabs().isEmpty()) {
                                         bottomSheetTabsOverlay2.animateOpen(false);
@@ -1427,6 +1436,6 @@ public final class BottomSheetTabsOverlay extends View {
             f += ((TabPreview) arrayList.get(i)).tabDrawable.index >= 0 ? 1.0f : 0.0f;
             i++;
         }
-        return z ? this.animatedCount.set(f, false) : f;
+        return z ? this.animatedCount.set(f) : f;
     }
 }

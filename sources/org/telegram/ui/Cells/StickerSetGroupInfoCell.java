@@ -5,10 +5,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.LayoutHelper;
 
 public final class StickerSetGroupInfoCell extends LinearLayout {
@@ -27,9 +28,9 @@ public final class StickerSetGroupInfoCell extends LinearLayout {
         this.addButton = textView2;
         textView2.setPadding(AndroidUtilities.dp(17.0f), 0, AndroidUtilities.dp(17.0f), 0);
         textView2.setGravity(17);
-        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline2.m(14.0f, Theme.getColor(null, Theme.key_featuredStickers_buttonText, false), 1, textView2);
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView2, Theme.getColor(null, Theme.key_featuredStickers_buttonText, false), 1, 14.0f);
         textView2.setBackground(Theme.AdaptiveRipple.filledRectByKey(new float[]{4.0f}, Theme.key_featuredStickers_addButton));
-        textView2.setText(LocaleController.getString(R.string.ChooseStickerSet).toUpperCase());
+        ArticleViewer$$ExternalSyntheticOutline0.m(R.string.ChooseStickerSet, textView2);
         addView(textView2, LayoutHelper.createLinear(-2, 28, 51, 17, 10, 14, 8));
     }
 

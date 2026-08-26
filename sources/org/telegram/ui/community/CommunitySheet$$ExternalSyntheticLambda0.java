@@ -20,6 +20,7 @@ public final class CommunitySheet$$ExternalSyntheticLambda0 implements Utilities
 
     @Override
     public final void run(Object obj, Object obj2) {
+        int i = 1;
         CommunitySheet communitySheet = this.f$0;
         switch (this.$r8$classId) {
             case 0:
@@ -32,7 +33,7 @@ public final class CommunitySheet$$ExternalSyntheticLambda0 implements Utilities
                 communitySheet.lambda$loadChatsToAddToCommunity$8((ArrayList) obj, (TLRPC.TL_error) obj2);
                 break;
             case 3:
-                int i = CommunitySheet.$r8$clinit;
+                int i2 = CommunitySheet.$r8$clinit;
                 communitySheet.fillItemsChatsToAddImpl((ArrayList) obj, false);
                 break;
             case 4:
@@ -40,12 +41,12 @@ public final class CommunitySheet$$ExternalSyntheticLambda0 implements Utilities
                 break;
             default:
                 ArrayList arrayList = (ArrayList) obj;
-                int i2 = CommunitySheet.$r8$clinit;
+                int i3 = CommunitySheet.$r8$clinit;
                 communitySheet.getClass();
                 arrayList.add(UItem.asSpace(99, (int) (AndroidUtilities.displaySize.y * 0.35f)));
                 arrayList.add(UItem.asSpace(0, AndroidUtilities.dp(48.0f)));
                 if (ChatObject.canBlockUsers(communitySheet.currentCommunity)) {
-                    arrayList.add(UItem.asShadow(1, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CommunityPendingRequestsInfo), new CommunitySheet$$ExternalSyntheticLambda2(communitySheet, 1)), true)));
+                    arrayList.add(UItem.asShadow(1, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CommunityPendingRequestsInfo), new CommunitySheet$$ExternalSyntheticLambda2(communitySheet, i)), true)));
                 } else {
                     arrayList.add(UItem.asShadow(1, LocaleController.getString(R.string.CommunityPendingRequestsInfoNoChange)));
                 }

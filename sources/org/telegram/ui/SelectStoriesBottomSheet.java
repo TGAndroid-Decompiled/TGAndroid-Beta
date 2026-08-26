@@ -2,8 +2,10 @@ package org.telegram.ui;
 
 import android.view.View;
 import android.widget.FrameLayout;
-import androidx.appcompat.view.menu.BaseMenuWrapper;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.mlkit_vision_common.zzlb;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
@@ -12,32 +14,36 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
-import org.telegram.ui.Components.BulletinFactory$$ExternalSyntheticLambda4;
 import org.telegram.ui.Components.ExtendedGridLayoutManager;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Stories.StoriesController;
-import org.telegram.ui.Stories.StoriesViewPager$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stories.StoryViewer$5$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-public final class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
-    public UniversalAdapter adapter;
-    public final ButtonWithCounterView button;
-    public final int columnsCount;
-    public int id;
-    public final ExtendedGridLayoutManager layoutManager;
-    public final HashMap selectedStoriesIds;
-    public final StoriesController.StoriesList storiesList;
+public class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListView implements NotificationCenter.NotificationCenterDelegate {
+    private UniversalAdapter adapter;
+    private final ButtonWithCounterView button;
+    private final FrameLayout buttonContainer;
+    private final int columnsCount;
+    private final long dialogId;
+    private int id;
+    private final ExtendedGridLayoutManager layoutManager;
+    private final HashMap<Integer, TL_stories.StoryItem> selectedStoriesIds;
+    private final StoriesController.StoriesList storiesList;
 
-    public SelectStoriesBottomSheet(BaseFragment baseFragment, long j, int i, BulletinFactory$$ExternalSyntheticLambda4 bulletinFactory$$ExternalSyntheticLambda4) {
-        super(baseFragment);
-        this.selectedStoriesIds = new HashMap();
+    public SelectStoriesBottomSheet(BaseFragment baseFragment, long j, int i, Utilities.Callback<ArrayList<TL_stories.StoryItem>> callback) {
+        super(baseFragment, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING);
+        this.selectedStoriesIds = new HashMap<>();
+        this.dialogId = j;
         this.columnsCount = i;
         StoriesController.StoriesList storiesList = MessagesController.getInstance(baseFragment.getCurrentAccount()).getStoriesController().getStoriesList(j, 1, -1, true);
         this.storiesList = storiesList;
@@ -47,121 +53,110 @@ public final class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListV
         fixNavigationBar();
         setSlidingActionBar();
         FrameLayout frameLayout = new FrameLayout(getContext());
+        this.buttonContainer = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider));
         int i2 = this.backgroundPaddingLeft;
         frameLayout.setPadding(i2, 0, i2, 0);
         this.containerView.addView(frameLayout, LayoutHelper.createFrame(-1, -2.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         View view = new View(getContext());
         view.setBackgroundColor(Theme.getColor(Theme.key_divider, this.resourcesProvider));
-        frameLayout.addView(view, new FrameLayout.LayoutParams(LayoutHelper.getSize(-1.0f), LayoutHelper.getSize(1.0f / AndroidUtilities.density), 55));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), this.resourcesProvider, true);
+        frameLayout.addView(view, LayoutHelper.createFrame(-1.0f, 1.0f / AndroidUtilities.density, 55));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(getContext(), true, this.resourcesProvider);
         this.button = buttonWithCounterView;
-        buttonWithCounterView.setText(LocaleController.getString(R.string.StoriesAlbumMenuAddStories), false, true);
+        buttonWithCounterView.setText(LocaleController.getString(R.string.StoriesAlbumMenuAddStories), false);
         buttonWithCounterView.setEnabled(false);
-        buttonWithCounterView.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda52(9, this, bulletinFactory$$ExternalSyntheticLambda4));
+        buttonWithCounterView.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda91(24, this, callback));
         frameLayout.addView(buttonWithCounterView, LayoutHelper.createFrame(-1, 48.0f, 119, 10.0f, (1.0f / AndroidUtilities.density) + 10.0f, 10.0f, 10.0f));
-        getContext();
-        ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(i, false);
+        ExtendedGridLayoutManager extendedGridLayoutManager = new ExtendedGridLayoutManager(getContext(), i);
         this.layoutManager = extendedGridLayoutManager;
-        extendedGridLayoutManager.mSpanSizeLookup = new BaseMenuWrapper() {
+        extendedGridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
-            public final int getSpanSize(int i3) {
+            public int getSpanSize(int i3) {
                 int i4;
-                SelectStoriesBottomSheet selectStoriesBottomSheet = SelectStoriesBottomSheet.this;
-                UniversalAdapter universalAdapter = selectStoriesBottomSheet.adapter;
-                ExtendedGridLayoutManager extendedGridLayoutManager2 = selectStoriesBottomSheet.layoutManager;
-                if (universalAdapter == null) {
-                    return extendedGridLayoutManager2.mSpanCount;
+                if (SelectStoriesBottomSheet.this.adapter == null) {
+                    return SelectStoriesBottomSheet.this.layoutManager.getSpanCount();
                 }
-                UItem item = universalAdapter.getItem(i3 - 1);
-                return (item == null || (i4 = item.spanCount) == -1) ? extendedGridLayoutManager2.mSpanCount : i4;
+                UItem item = SelectStoriesBottomSheet.this.adapter.getItem(i3 - 1);
+                return (item == null || (i4 = item.spanCount) == -1) ? SelectStoriesBottomSheet.this.layoutManager.getSpanCount() : i4;
             }
-        };
+        });
         RecyclerListView recyclerListView = this.recyclerListView;
         int i3 = this.backgroundPaddingLeft;
         recyclerListView.setPadding(i3, 0, i3, 0);
         this.recyclerListView.setSelectorType(9);
         this.recyclerListView.setSelectorDrawableColor(0);
         this.recyclerListView.setLayoutManager(extendedGridLayoutManager);
-        this.recyclerListView.setOnItemClickListener(new TopicsFragment$$ExternalSyntheticLambda9(this, 6));
-        this.recyclerListView.setOnItemLongClickListener(new StoriesViewPager$$ExternalSyntheticLambda0(this, 4));
+        this.recyclerListView.setOnItemClickListener(new TopicsFragment$$ExternalSyntheticLambda11(this, 7));
+        this.recyclerListView.setOnItemLongClickListener(new TodoItemMenu$$ExternalSyntheticLambda3(this, 19));
         this.recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public final void onScrolled(RecyclerView recyclerView, int i4, int i5) {
+            public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
                 SelectStoriesBottomSheet.this.checkLoadMoreScroll();
             }
         });
         this.adapter.update(true);
     }
 
-    public final void checkLoadMoreScroll() {
-        ExtendedGridLayoutManager extendedGridLayoutManager = this.layoutManager;
-        int iFindFirstVisibleItemPosition = extendedGridLayoutManager.findFirstVisibleItemPosition();
-        int iAbs = iFindFirstVisibleItemPosition == -1 ? 0 : Math.abs(extendedGridLayoutManager.findLastVisibleItemPosition() - iFindFirstVisibleItemPosition) + 1;
+    public void checkLoadMoreScroll() {
+        int iFindFirstVisibleItemPosition = this.layoutManager.findFirstVisibleItemPosition();
+        int iAbs = iFindFirstVisibleItemPosition == -1 ? 0 : Math.abs(this.layoutManager.findLastVisibleItemPosition() - iFindFirstVisibleItemPosition) + 1;
         StoriesController.StoriesList storiesList = this.storiesList;
         if (storiesList != null) {
             int i = iFindFirstVisibleItemPosition + iAbs;
             int loadedCount = storiesList.getLoadedCount();
             int i2 = this.columnsCount;
             if (i > loadedCount - i2) {
-                int iMin = Math.min(100, Math.max(1, i2 / 2) * i2 * i2);
-                storiesList.getClass();
-                storiesList.load(iMin, Collections.EMPTY_LIST, false);
+                int iMax = Math.max(1, i2 / 2);
+                int i3 = this.columnsCount;
+                int iMin = Math.min(100, iMax * i3 * i3);
+                StoriesController.StoriesList storiesList2 = this.storiesList;
+                storiesList2.getClass();
+                storiesList2.load(iMin, Collections.EMPTY_LIST, false);
             }
         }
     }
 
-    @Override
-    public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, false, new LinkManager$$ExternalSyntheticLambda1(this, 12), this.resourcesProvider);
-        this.adapter = universalAdapter;
-        universalAdapter.applyBackground = false;
-        return universalAdapter;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.storiesListUpdated && ((StoriesController.StoriesList) objArr[0]) == this.storiesList) {
-            this.adapter.update(false);
-            checkLoadMoreScroll();
+    public void fillItems(ArrayList<UItem> arrayList, UniversalAdapter universalAdapter) {
+        if (this.storiesList == null) {
+            return;
         }
-    }
-
-    @Override
-    public final CharSequence getTitle() {
-        return LocaleController.getString(R.string.StoriesAlbumMenuAddStories);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        StoriesController.StoriesList storiesList = this.storiesList;
-        int i = storiesList.maxLinkId;
-        storiesList.maxLinkId = i + 1;
-        storiesList.links.add(Integer.valueOf(i));
-        StickersActivity$$ExternalSyntheticLambda18 stickersActivity$$ExternalSyntheticLambda18 = storiesList.destroyRunnable;
-        if (stickersActivity$$ExternalSyntheticLambda18 != null) {
-            AndroidUtilities.cancelRunOnUIThread(stickersActivity$$ExternalSyntheticLambda18);
+        arrayList.add(UItem.asSpace(AndroidUtilities.dp(16.0f)));
+        int i = this.columnsCount;
+        ArrayList arrayList2 = this.storiesList.messageObjects;
+        int size = arrayList2.size();
+        int i2 = 0;
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList2.get(i3);
+            i3++;
+            MessageObject messageObject = (MessageObject) obj;
+            arrayList.add(StoryCellFactory.asStory(0, messageObject, this.columnsCount, true).setChecked(this.selectedStoriesIds.containsKey(Integer.valueOf(messageObject.getId()))).setSpanCount(1));
+            i--;
+            if (i == 0) {
+                i = this.columnsCount;
+            }
         }
-        this.id = i;
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        StickersActivity$$ExternalSyntheticLambda18 stickersActivity$$ExternalSyntheticLambda18;
-        super.onDetachedFromWindow();
-        int i = this.id;
-        StoriesController.StoriesList storiesList = this.storiesList;
-        storiesList.links.remove(Integer.valueOf(i));
-        if (storiesList.links.isEmpty() && (stickersActivity$$ExternalSyntheticLambda18 = storiesList.destroyRunnable) != null) {
-            AndroidUtilities.cancelRunOnUIThread(stickersActivity$$ExternalSyntheticLambda18);
-            AndroidUtilities.runOnUIThread(stickersActivity$$ExternalSyntheticLambda18, 300000L);
+        if (this.storiesList.isLoading() || !this.storiesList.done) {
+            while (true) {
+                if (i2 >= (i <= 0 ? this.columnsCount : i)) {
+                    break;
+                }
+                i2++;
+                zzlb.m(i2, 34, arrayList);
+            }
         }
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+        arrayList.add(UItem.asSpace(AndroidUtilities.dp(68.0f)));
     }
 
-    public final boolean onItemClick(int i, View view) {
+    public void lambda$new$0(Utilities.Callback callback, View view) {
+        if (this.storiesList.getCount() == 0) {
+            return;
+        }
+        callback.run(new ArrayList(this.selectedStoriesIds.values()));
+        lambda$showGiftOfferSheet$15();
+    }
+
+    public boolean onItemClick(View view, int i) {
         UItem item;
         UniversalAdapter universalAdapter = this.adapter;
         if (universalAdapter == null || i == 0 || (item = universalAdapter.getItem(i - 1)) == null) {
@@ -171,20 +166,71 @@ public final class SelectStoriesBottomSheet extends BottomSheetWithRecyclerListV
         if (obj instanceof MessageObject) {
             MessageObject messageObject = (MessageObject) obj;
             int id = messageObject.getId();
-            HashMap map = this.selectedStoriesIds;
-            if (map.containsKey(Integer.valueOf(id))) {
-                map.remove(Integer.valueOf(id));
+            if (this.selectedStoriesIds.containsKey(Integer.valueOf(id))) {
+                this.selectedStoriesIds.remove(Integer.valueOf(id));
                 item.checked = false;
                 ((SharedPhotoVideoCell2) view).setChecked(false, true);
             } else {
-                map.put(Integer.valueOf(id), messageObject.storyItem);
+                this.selectedStoriesIds.put(Integer.valueOf(id), messageObject.storyItem);
                 item.checked = true;
                 ((SharedPhotoVideoCell2) view).setChecked(true, true);
             }
-            ButtonWithCounterView buttonWithCounterView = this.button;
-            buttonWithCounterView.setEnabled(!map.isEmpty());
-            buttonWithCounterView.setCount(map.size(), true);
+            this.button.setEnabled(!this.selectedStoriesIds.isEmpty());
+            this.button.setCount(this.selectedStoriesIds.size(), true);
         }
         return true;
+    }
+
+    @Override
+    public RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
+        UniversalAdapter universalAdapter = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, 0, new LinkManager$$ExternalSyntheticLambda6(this, 25), this.resourcesProvider);
+        this.adapter = universalAdapter;
+        universalAdapter.setApplyBackground(false);
+        return this.adapter;
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.storiesListUpdated && ((StoriesController.StoriesList) objArr[0]) == this.storiesList) {
+            this.adapter.update(false);
+            checkLoadMoreScroll();
+        }
+    }
+
+    @Override
+    public CharSequence getTitle() {
+        return LocaleController.getString(R.string.StoriesAlbumMenuAddStories);
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        StoriesController.StoriesList storiesList = this.storiesList;
+        int i = storiesList.maxLinkId;
+        storiesList.maxLinkId = i + 1;
+        storiesList.links.add(Integer.valueOf(i));
+        StoryViewer$5$$ExternalSyntheticLambda0 storyViewer$5$$ExternalSyntheticLambda0 = storiesList.destroyRunnable;
+        if (storyViewer$5$$ExternalSyntheticLambda0 != null) {
+            AndroidUtilities.cancelRunOnUIThread(storyViewer$5$$ExternalSyntheticLambda0);
+        }
+        this.id = i;
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        StoryViewer$5$$ExternalSyntheticLambda0 storyViewer$5$$ExternalSyntheticLambda0;
+        super.onDetachedFromWindow();
+        StoriesController.StoriesList storiesList = this.storiesList;
+        storiesList.links.remove(Integer.valueOf(this.id));
+        if (storiesList.links.isEmpty() && (storyViewer$5$$ExternalSyntheticLambda0 = storiesList.destroyRunnable) != null) {
+            AndroidUtilities.cancelRunOnUIThread(storyViewer$5$$ExternalSyntheticLambda0);
+            AndroidUtilities.runOnUIThread(storyViewer$5$$ExternalSyntheticLambda0, 300000L);
+        }
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+    }
+
+    @Override
+    public void setLastVisible(boolean z) {
     }
 }

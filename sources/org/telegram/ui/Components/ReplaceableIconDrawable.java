@@ -10,23 +10,64 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
 
-public final class ReplaceableIconDrawable extends Drawable implements Animator.AnimatorListener {
-    public ValueAnimator animation;
-    public ColorFilter colorFilter;
-    public final Context context;
-    public Drawable currentDrawable;
+public class ReplaceableIconDrawable extends Drawable implements Animator.AnimatorListener {
+    private ValueAnimator animation;
+    private ColorFilter colorFilter;
+    private Context context;
+    private Drawable currentDrawable;
     public boolean exactlyBounds;
-    public Drawable outDrawable;
-    public int currentResId = 0;
-    public float progress = 1.0f;
-    public final ArrayList parentViews = new ArrayList();
+    private Drawable outDrawable;
+    private int currentResId = 0;
+    private float progress = 1.0f;
+    ArrayList<View> parentViews = new ArrayList<>();
 
     public ReplaceableIconDrawable(Context context) {
         this.context = context;
     }
 
+    public void lambda$setIcon$0(ValueAnimator valueAnimator) {
+        this.progress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidateSelf();
+    }
+
+    private void updateBounds(Drawable drawable, Rect rect) {
+        int iHeight;
+        int intrinsicHeight;
+        int iWidth;
+        int intrinsicWidth;
+        if (drawable == null) {
+            return;
+        }
+        if (this.exactlyBounds) {
+            drawable.setBounds(rect);
+            return;
+        }
+        if (drawable.getIntrinsicHeight() < 0) {
+            iHeight = rect.top;
+            intrinsicHeight = rect.bottom;
+        } else {
+            iHeight = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
+            intrinsicHeight = drawable.getIntrinsicHeight() + iHeight;
+        }
+        if (drawable.getIntrinsicWidth() < 0) {
+            iWidth = rect.left;
+            intrinsicWidth = rect.right;
+        } else {
+            iWidth = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
+            intrinsicWidth = drawable.getIntrinsicWidth() + iWidth;
+        }
+        drawable.setBounds(iWidth, iHeight, intrinsicWidth, intrinsicHeight);
+    }
+
+    public void addView(View view) {
+        if (this.parentViews.contains(view)) {
+            return;
+        }
+        this.parentViews.add(view);
+    }
+
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         int iCenterX = getBounds().centerX();
         int iCenterY = getBounds().centerY();
         if (this.progress == 1.0f || this.currentDrawable == null) {
@@ -61,53 +102,60 @@ public final class ReplaceableIconDrawable extends Drawable implements Animator.
         canvas.restore();
     }
 
+    public Drawable getIcon() {
+        return this.currentDrawable;
+    }
+
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
     @Override
-    public final void invalidateSelf() {
+    public void invalidateSelf() {
         super.invalidateSelf();
-        ArrayList arrayList = this.parentViews;
-        if (arrayList != null) {
-            for (int i = 0; i < arrayList.size(); i++) {
-                ((View) arrayList.get(i)).invalidate();
+        if (this.parentViews != null) {
+            for (int i = 0; i < this.parentViews.size(); i++) {
+                this.parentViews.get(i).invalidate();
             }
         }
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
+    public void onAnimationCancel(Animator animator) {
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
+    public void onAnimationEnd(Animator animator) {
         this.outDrawable = null;
         invalidateSelf();
     }
 
     @Override
-    public final void onAnimationRepeat(Animator animator) {
+    public void onAnimationRepeat(Animator animator) {
     }
 
     @Override
-    public final void onAnimationStart(Animator animator) {
+    public void onAnimationStart(Animator animator) {
     }
 
     @Override
-    public final void onBoundsChange(Rect rect) {
+    public void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
         updateBounds(this.currentDrawable, rect);
         updateBounds(this.outDrawable, rect);
     }
 
-    @Override
-    public final void setAlpha(int i) {
+    public void removeView(View view) {
+        this.parentViews.remove(view);
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
         this.colorFilter = colorFilter;
         Drawable drawable = this.currentDrawable;
         if (drawable != null) {
@@ -120,7 +168,7 @@ public final class ReplaceableIconDrawable extends Drawable implements Animator.
         invalidateSelf();
     }
 
-    public final void setIcon(int i, boolean z) {
+    public void setIcon(int i, boolean z) {
         if (this.currentResId == i) {
             return;
         }
@@ -128,36 +176,7 @@ public final class ReplaceableIconDrawable extends Drawable implements Animator.
         this.currentResId = i;
     }
 
-    public final void updateBounds(Drawable drawable, Rect rect) {
-        int iHeight;
-        int intrinsicHeight;
-        int iWidth;
-        int intrinsicWidth;
-        if (drawable == null) {
-            return;
-        }
-        if (this.exactlyBounds) {
-            drawable.setBounds(rect);
-            return;
-        }
-        if (drawable.getIntrinsicHeight() < 0) {
-            iHeight = rect.top;
-            intrinsicHeight = rect.bottom;
-        } else {
-            iHeight = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
-            intrinsicHeight = drawable.getIntrinsicHeight() + iHeight;
-        }
-        if (drawable.getIntrinsicWidth() < 0) {
-            iWidth = rect.left;
-            intrinsicWidth = rect.right;
-        } else {
-            iWidth = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
-            intrinsicWidth = drawable.getIntrinsicWidth() + iWidth;
-        }
-        drawable.setBounds(iWidth, iHeight, intrinsicWidth, intrinsicHeight);
-    }
-
-    public final void setIcon(Drawable drawable, boolean z) {
+    public void setIcon(Drawable drawable, boolean z) {
         if (drawable == null) {
             this.currentDrawable = null;
             this.outDrawable = null;
@@ -190,7 +209,7 @@ public final class ReplaceableIconDrawable extends Drawable implements Animator.
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.animation = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 10));
+        valueAnimatorOfFloat.addUpdateListener(new ItemOptions$$ExternalSyntheticLambda6(this, 20));
         this.animation.addListener(this);
         this.animation.setDuration(150L);
         this.animation.start();

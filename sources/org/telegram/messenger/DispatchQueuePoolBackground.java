@@ -102,7 +102,7 @@ public class DispatchQueuePoolBackground {
         if (backgroundQueue == null) {
             backgroundQueue = new DispatchQueuePoolBackground(Math.max(1, Runtime.getRuntime().availableProcessors()));
         }
-        Utilities.globalQueue.postRunnable(new AndroidUtilities$$ExternalSyntheticLambda45(arrayList2, 2));
+        Utilities.globalQueue.postRunnable(new AndroidUtilities$$ExternalSyntheticLambda44(arrayList2, 2));
     }
 
     public void lambda$execute$0(DispatchQueue dispatchQueue) {
@@ -129,7 +129,7 @@ public class DispatchQueuePoolBackground {
     public static void lambda$finishCollectUpdateRunnables$3(ArrayList arrayList) {
         backgroundQueue.execute((ArrayList<Runnable>) arrayList);
         arrayList.clear();
-        AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda45(arrayList, 3));
+        AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda44(arrayList, 3));
     }
 
     public static void execute(Runnable runnable) {
@@ -147,7 +147,7 @@ public class DispatchQueuePoolBackground {
         if (updateTaskCollection == null) {
             ArrayList<ArrayList<Runnable>> arrayList = freeCollections;
             if (!arrayList.isEmpty()) {
-                updateTaskCollection = (ArrayList) arrayList.remove(arrayList.size() - 1);
+                updateTaskCollection = arrayList.remove(arrayList.size() - 1);
             } else {
                 updateTaskCollection = new ArrayList<>(100);
             }

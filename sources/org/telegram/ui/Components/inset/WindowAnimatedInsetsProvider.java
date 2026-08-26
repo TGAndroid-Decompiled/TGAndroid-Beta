@@ -28,7 +28,7 @@ public final class WindowAnimatedInsetsProvider extends Credential {
     public interface Listener {
         View getAnimatedInsetsTargetView();
 
-        void onAnimatedInsetsChanged(WindowInsetsCompat windowInsetsCompat);
+        void onAnimatedInsetsChanged(View view, WindowInsetsCompat windowInsetsCompat);
 
         void onAnimatedInsetsFinished();
 
@@ -97,9 +97,10 @@ public final class WindowAnimatedInsetsProvider extends Credential {
         }
         if (BitwiseUtils.hasFlag(typeMask, 8)) {
             for (Listener listener : this.listeners) {
-                WindowInsetsCompat windowInsetsCompatCalculateWindowInsets = calculateWindowInsets(windowInsetsCompat, listener.getAnimatedInsetsTargetView(), this.root);
+                View animatedInsetsTargetView = listener.getAnimatedInsetsTargetView();
+                WindowInsetsCompat windowInsetsCompatCalculateWindowInsets = calculateWindowInsets(windowInsetsCompat, animatedInsetsTargetView, this.root);
                 if (windowInsetsCompatCalculateWindowInsets != null) {
-                    listener.onAnimatedInsetsChanged(windowInsetsCompatCalculateWindowInsets);
+                    listener.onAnimatedInsetsChanged(animatedInsetsTargetView, windowInsetsCompatCalculateWindowInsets);
                 }
             }
         }

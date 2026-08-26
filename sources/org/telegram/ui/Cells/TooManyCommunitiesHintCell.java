@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.GroupCreateActivity;
+import org.telegram.ui.Stories.StealthModeAlert;
 
 public final class TooManyCommunitiesHintCell extends FrameLayout {
     public final TextView messageTextView;
@@ -39,10 +39,10 @@ public final class TooManyCommunitiesHintCell extends FrameLayout {
         textPaint.setColor(-1);
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setTypeface(AndroidUtilities.bold());
-        GroupCreateActivity.AnonymousClass7 anonymousClass7 = new GroupCreateActivity.AnonymousClass7(context, new Paint(1), textPaint);
-        anonymousClass7.setWillNotDraw(false);
-        anonymousClass7.addView(imageView, LayoutHelper.createFrame(-2, -2, 1));
-        addView(anonymousClass7, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 12.0f, 0.0f, 6.0f));
+        StealthModeAlert.ItemCell itemCell = new StealthModeAlert.ItemCell(context, new Paint(1), textPaint);
+        itemCell.setWillNotDraw(false);
+        itemCell.addView(imageView, LayoutHelper.createFrame(-2, -2, 1));
+        addView(itemCell, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 12.0f, 0.0f, 6.0f));
         textView.setText(LocaleController.getString(R.string.TooManyCommunities));
         imageView.setImageResource(R.drawable.groups_limit1);
     }

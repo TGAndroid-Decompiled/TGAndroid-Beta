@@ -1,5 +1,7 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.text.TextUtils;
@@ -7,57 +9,36 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
 
-public final class StickerTabView extends FrameLayout {
-    public static int indexPointer;
+public class StickerTabView extends FrameLayout {
+    public static final int EMOJI_TYPE = 2;
+    public static final int ICON_TYPE = 1;
+    public static final int IMAGE_ICON_SMALL_SIZE = 24;
+    public static final int IMAGE_SMALL_SIZE = 26;
+    public static final int SMALL_HEIGHT = 36;
+    public static final int SMALL_WIDTH = 33;
+    public static final int STICKER_TYPE = 0;
+    private static int indexPointer;
     public float dragOffset;
-    public ValueAnimator dragOffsetAnimator;
-    public boolean expanded;
-    public boolean hasSavedLeft;
-    public final ImageView iconView;
-    public final BackupImageView imageView;
+    ValueAnimator dragOffsetAnimator;
+    boolean expanded;
+    boolean hasSavedLeft;
+    ImageView iconView;
+    BackupImageView imageView;
     public final int index;
     public boolean inited;
     public boolean isChatSticker;
-    public float lastLeft;
-    public boolean roundImage;
+    float lastLeft;
+    boolean roundImage;
     public SvgHelper.SvgDrawable svgThumb;
-    public final ArticleViewer.AnonymousClass9 textView;
-    public float textWidth;
-    public final int type;
-    public final View visibleView;
-
-    public final class AnonymousClass2 implements ValueAnimator.AnimatorUpdateListener {
-        public final int $r8$classId;
-        public final FrameLayout this$0;
-        public final View val$parent;
-
-        public AnonymousClass2(FrameLayout frameLayout, View view, int i) {
-            this.$r8$classId = i;
-            this.this$0 = frameLayout;
-            this.val$parent = view;
-        }
-
-        @Override
-        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-            switch (this.$r8$classId) {
-                case 0:
-                    float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                    StickerTabView stickerTabView = (StickerTabView) this.this$0;
-                    stickerTabView.dragOffset = fFloatValue;
-                    stickerTabView.invalidate();
-                    ((ScrollSlidingTabStrip) this.val$parent).invalidate();
-                    break;
-                default:
-                    ((ViewPagerFixed) this.this$0).setTranslationX(this.val$parent, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                    break;
-            }
-        }
-    }
+    TextView textView;
+    private float textWidth;
+    public int type;
+    View visibleView;
 
     public StickerTabView(Context context, int i) {
         super(context);
@@ -69,39 +50,92 @@ public final class StickerTabView extends FrameLayout {
             BackupImageView backupImageView = new BackupImageView(getContext());
             this.imageView = backupImageView;
             backupImageView.setLayerNum(1);
-            backupImageView.setAspectFit(false);
-            backupImageView.setRoundRadius(AndroidUtilities.dp(6.0f));
-            addView(backupImageView, LayoutHelper.createFrame(26, 26, 17));
-            this.visibleView = backupImageView;
+            this.imageView.setAspectFit(false);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(6.0f));
+            addView(this.imageView, LayoutHelper.createFrame(26, 26, 17));
+            this.visibleView = this.imageView;
         } else if (i == 1) {
             ImageView imageView = new ImageView(context);
             this.iconView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            addView(imageView, LayoutHelper.createFrame(24, 24, 17));
-            this.visibleView = imageView;
+            addView(this.iconView, LayoutHelper.createFrame(24, 24, 17));
+            this.visibleView = this.iconView;
         } else {
             BackupImageView backupImageView2 = new BackupImageView(getContext());
             this.imageView = backupImageView2;
             backupImageView2.setLayerNum(1);
-            backupImageView2.setAspectFit(true);
-            backupImageView2.setRoundRadius(AndroidUtilities.dp(6.0f));
-            addView(backupImageView2, LayoutHelper.createFrame(26, 26, 17));
-            this.visibleView = backupImageView2;
+            this.imageView.setAspectFit(true);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(6.0f));
+            addView(this.imageView, LayoutHelper.createFrame(26, 26, 17));
+            this.visibleView = this.imageView;
         }
-        ArticleViewer.AnonymousClass9 anonymousClass9 = new ArticleViewer.AnonymousClass9(context, 13);
-        this.textView = anonymousClass9;
-        anonymousClass9.addOnLayoutChangeListener(new ItemOptions$$ExternalSyntheticLambda13(this, 2));
-        anonymousClass9.setLines(1);
-        anonymousClass9.setEllipsize(TextUtils.TruncateAt.END);
-        anonymousClass9.setTextSize(1, 11.0f);
-        anonymousClass9.setGravity(1);
-        anonymousClass9.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
-        addView(anonymousClass9, LayoutHelper.createFrame(-1, -2.0f, 81, 8.0f, 0.0f, 8.0f, 10.0f));
-        anonymousClass9.setVisibility(8);
+        TextView textView = new TextView(context) {
+            @Override
+            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+                super.setText(charSequence, bufferType);
+            }
+        };
+        this.textView = textView;
+        textView.addOnLayoutChangeListener(new ItemOptions$$ExternalSyntheticLambda19(this, 1));
+        this.textView.setLines(1);
+        this.textView.setEllipsize(TextUtils.TruncateAt.END);
+        this.textView.setTextSize(1, 11.0f);
+        this.textView.setGravity(1);
+        this.textView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+        addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 81, 8.0f, 0.0f, 8.0f, 10.0f));
+        this.textView.setVisibility(8);
+    }
+
+    public void lambda$new$0(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
+        TextView textView = this.textView;
+        if (textView == null || textView.getLayout() == null) {
+            return;
+        }
+        this.textWidth = this.textView.getLayout().getLineWidth(0);
+    }
+
+    public void animateIfPositionChanged(final ViewGroup viewGroup) {
+        float left = getLeft();
+        float f = this.lastLeft;
+        if (left != f && this.hasSavedLeft) {
+            this.dragOffset = f - getLeft();
+            ValueAnimator valueAnimator = this.dragOffsetAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.dragOffsetAnimator.cancel();
+            }
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.dragOffset, 0.0f);
+            this.dragOffsetAnimator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    StickerTabView.this.dragOffset = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
+                    StickerTabView.this.invalidate();
+                    viewGroup.invalidate();
+                }
+            });
+            this.dragOffsetAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    StickerTabView stickerTabView = StickerTabView.this;
+                    stickerTabView.dragOffset = 0.0f;
+                    stickerTabView.invalidate();
+                    viewGroup.invalidate();
+                }
+            });
+            this.dragOffsetAnimator.start();
+        }
+        this.hasSavedLeft = false;
     }
 
     public float getTextWidth() {
         return this.textWidth;
+    }
+
+    public void saveXPosition() {
+        this.lastLeft = getLeft();
+        this.hasSavedLeft = true;
+        invalidate();
     }
 
     public void setExpanded(boolean z) {
@@ -112,52 +146,50 @@ public final class StickerTabView extends FrameLayout {
         this.expanded = z;
         float f = i == 1 ? 24.0f : 26.0f;
         float f2 = i == 1 ? 38.0f : 44.0f;
-        View view = this.visibleView;
-        view.getLayoutParams().width = AndroidUtilities.dp(z ? f2 : f);
-        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        this.visibleView.getLayoutParams().width = AndroidUtilities.dp(z ? f2 : f);
+        ViewGroup.LayoutParams layoutParams = this.visibleView.getLayoutParams();
         if (z) {
             f = f2;
         }
         layoutParams.height = AndroidUtilities.dp(f);
         this.textView.setVisibility(z ? 0 : 8);
-        if (i == 1 || !this.roundImage) {
+        if (this.type == 1 || !this.roundImage) {
             return;
         }
-        this.imageView.setRoundRadius(AndroidUtilities.dp(view.getLayoutParams().width / 2.0f));
+        this.imageView.setRoundRadius(AndroidUtilities.dp(this.visibleView.getLayoutParams().width / 2.0f));
     }
 
-    public final void updateExpandProgress(float f) {
+    public void setRoundImage() {
+        this.roundImage = true;
+    }
+
+    public void updateExpandProgress(float f) {
         int i = this.type;
         if (i == 2) {
             return;
         }
-        boolean z = this.expanded;
-        View view = this.visibleView;
-        if (!z) {
-            view.setTranslationX(0.0f);
-            view.setTranslationY(0.0f);
-            view.setScaleX(1.0f);
-            view.setScaleY(1.0f);
+        if (!this.expanded) {
+            this.visibleView.setTranslationX(0.0f);
+            this.visibleView.setTranslationY(0.0f);
+            this.visibleView.setScaleX(1.0f);
+            this.visibleView.setScaleY(1.0f);
             return;
         }
         float f2 = i == 1 ? 24.0f : 26.0f;
         float f3 = i == 1 ? 38.0f : 44.0f;
         float fDp = AndroidUtilities.dp(33.0f - f2) / 2.0f;
         float fDp2 = AndroidUtilities.dp(36.0f - f2) / 2.0f;
-        int i2 = ScrollSlidingTabStrip.$r8$clinit;
-        float fDp3 = AndroidUtilities.dp(64.0f - f3) / 2.0f;
+        float fDp3 = AndroidUtilities.dp(ScrollSlidingTabStrip.EXPANDED_WIDTH - f3) / 2.0f;
         float f4 = 1.0f - f;
-        view.setTranslationY(((fDp2 - (AndroidUtilities.dp(86.0f - f3) / 2.0f)) * f4) - (AndroidUtilities.dp(8.0f) * f));
-        view.setTranslationX((fDp - fDp3) * f4);
-        float fMax = Math.max(0.0f, (f - 0.5f) / 0.5f);
-        ArticleViewer.AnonymousClass9 anonymousClass9 = this.textView;
-        anonymousClass9.setAlpha(fMax);
-        anonymousClass9.setTranslationY((-AndroidUtilities.dp(40.0f)) * f4);
-        anonymousClass9.setTranslationX((-AndroidUtilities.dp(12.0f)) * f4);
-        view.setPivotX(0.0f);
-        view.setPivotY(0.0f);
+        this.visibleView.setTranslationY(((fDp2 - (AndroidUtilities.dp(86.0f - f3) / 2.0f)) * f4) - (AndroidUtilities.dp(8.0f) * f));
+        this.visibleView.setTranslationX((fDp - fDp3) * f4);
+        this.textView.setAlpha(Math.max(0.0f, (f - 0.5f) / 0.5f));
+        this.textView.setTranslationY((-AndroidUtilities.dp(40.0f)) * f4);
+        this.textView.setTranslationX((-AndroidUtilities.dp(12.0f)) * f4);
+        this.visibleView.setPivotX(0.0f);
+        this.visibleView.setPivotY(0.0f);
         float f5 = ((f2 / f3) * f4) + f;
-        view.setScaleX(f5);
-        view.setScaleY(f5);
+        this.visibleView.setScaleX(f5);
+        this.visibleView.setScaleY(f5);
     }
 }

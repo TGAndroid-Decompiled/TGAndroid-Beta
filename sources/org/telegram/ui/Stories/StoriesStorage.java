@@ -21,7 +21,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda12;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda17;
 
 public final class StoriesStorage {
     public final int currentAccount;
@@ -163,7 +163,7 @@ public final class StoriesStorage {
             }
             StringBuilder sbM = AacUtil.m(jKeyAt2, "fillMessagesWithStories: getStoriesByID did=", " ids=");
             sbM.append(TextUtils.join(",", tL_stories_getStoriesByID.id));
-            int iSendRequest = ConnectionsManager.getInstance(i2).sendRequest(tL_stories_getStoriesByID, new StoriesStorage$$ExternalSyntheticLambda1(storiesStorage, Timer.start(timer2, sbM.toString()), arrayList3, jKeyAt2, z, timer2, iArr, runnable));
+            int iSendRequest = ConnectionsManager.getInstance(i2).sendRequest(tL_stories_getStoriesByID, new StoriesStorage$$ExternalSyntheticLambda3(storiesStorage, Timer.start(timer2, sbM.toString()), arrayList3, jKeyAt2, z, timer2, iArr, runnable));
             if (i != 0) {
                 ConnectionsManager.getInstance(i2).bindRequestToGuid(iSendRequest, i);
             }
@@ -286,7 +286,7 @@ public final class StoriesStorage {
                 messagesStorage.updateChatInfo(chatFull, false);
             }
         }
-        messagesStorage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda6(this, j, i, 0));
+        messagesStorage.getStorageQueue().postRunnable(new StoriesStorage$$ExternalSyntheticLambda9(this, j, i, 0));
     }
 
     public final void updateMessagesWithStories(ArrayList arrayList) {
@@ -343,7 +343,7 @@ public final class StoriesStorage {
         if (j == 0) {
             return;
         }
-        this.storage.getStorageQueue().postRunnable(new PollItemMenu$$ExternalSyntheticLambda12(this, j, storyItem, 29));
+        this.storage.getStorageQueue().postRunnable(new GiftSheet$$ExternalSyntheticLambda17(this, j, storyItem, 14));
     }
 
     public final void updateStoryItemInternal(long j, TL_stories.StoryItem storyItem) {

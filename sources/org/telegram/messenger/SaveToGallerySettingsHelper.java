@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.util.LongSparseArray;
 import com.google.android.exoplayer2.RendererCapabilities;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
 
 public class SaveToGallerySettingsHelper {
     public static String CHANNELS_PREF_NAME = "channels_save_gallery_exceptions";
@@ -102,7 +102,7 @@ public class SaveToGallerySettingsHelper {
         }
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            sharedPreferences.edit().putBoolean(zzhr.m(str, "_save_gallery_photo"), this.savePhoto).putBoolean(zzhr.m(str, "_save_gallery_video"), this.saveVideo).putLong(zzhr.m(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
+            sharedPreferences.edit().putBoolean(zzhp.m(str, "_save_gallery_photo"), this.savePhoto).putBoolean(zzhp.m(str, "_save_gallery_video"), this.saveVideo).putLong(zzhp.m(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
         }
 
         @Override

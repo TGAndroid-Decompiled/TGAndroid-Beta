@@ -6,17 +6,19 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.utils.ViewOutlineProviderImpl;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.BadWayToMakeButtonRound;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 
 public final class LocationDirectionCell extends FrameLayout {
     public final FrameLayout frameLayout;
+    public final Theme.ResourcesProvider resourcesProvider;
 
     public LocationDirectionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         FrameLayout frameLayout = new FrameLayout(context);
         this.frameLayout = frameLayout;
         int color = Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider);
@@ -28,12 +30,11 @@ public final class LocationDirectionCell extends FrameLayout {
         simpleTextView.setDrawablePadding(AndroidUtilities.dp(8.0f));
         simpleTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
         simpleTextView.setTextSize(14);
-        simpleTextView.setText(LocaleController.getString(R.string.Directions), false);
+        simpleTextView.setText(LocaleController.getString(R.string.Directions));
         simpleTextView.setLeftDrawable(R.drawable.filled_directions);
         simpleTextView.setTypeface(AndroidUtilities.bold());
-        frameLayout.addView(simpleTextView, LayoutHelper.createFrame(-1.0f, -1));
-        frameLayout.setOutlineProvider(ViewOutlineProviderImpl.BOUNDS_ROUND_RECT);
-        frameLayout.setClipToOutline(true);
+        frameLayout.addView(simpleTextView, LayoutHelper.createFrame(-1, -1.0f));
+        BadWayToMakeButtonRound.round(frameLayout);
         ScaleStateListAnimator.apply(frameLayout, 0.02f, 1.2f);
     }
 

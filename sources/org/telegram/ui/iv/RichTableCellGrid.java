@@ -19,7 +19,6 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
 
 public final class RichTableCellGrid extends ViewGroup {
     public final RectF arcRect;
@@ -117,7 +116,7 @@ public final class RichTableCellGrid extends ViewGroup {
                 Object obj = arrayList.get(i3);
                 i3++;
                 TL_iv.pageTableCell pagetablecell3 = (TL_iv.pageTableCell) obj;
-                if (((LinkedHashSet) ((TodoItemMenu$$ExternalSyntheticLambda3) this.selectionProvider).f$0).contains(pagetablecell3)) {
+                if (((LinkedHashSet) ((RichEditor$3$$ExternalSyntheticLambda0) this.selectionProvider).f$0).contains(pagetablecell3)) {
                     int iAnchorRowOf = this.model.anchorRowOf(pagetablecell3);
                     int iAnchorColOf = this.model.anchorColOf(pagetablecell3);
                     if (iAnchorRowOf < i || (iAnchorRowOf == i && iAnchorColOf < i2)) {
@@ -432,7 +431,7 @@ public final class RichTableCellGrid extends ViewGroup {
             }
         }
         if (this.model != null) {
-            float f12 = this.selectionFade.set(hasAnySelection() ? 1.0f : 0.0f, false);
+            float f12 = this.selectionFade.set(hasAnySelection() ? 1.0f : 0.0f);
             if (f12 <= 0.001f) {
                 canvas2 = canvas;
             } else {
@@ -781,7 +780,7 @@ public final class RichTableCellGrid extends ViewGroup {
             while (i < size) {
                 Object obj = arrayList.get(i);
                 i++;
-                if (((LinkedHashSet) ((TodoItemMenu$$ExternalSyntheticLambda3) this.selectionProvider).f$0).contains((TL_iv.pageTableCell) obj)) {
+                if (((LinkedHashSet) ((RichEditor$3$$ExternalSyntheticLambda0) this.selectionProvider).f$0).contains((TL_iv.pageTableCell) obj)) {
                     return true;
                 }
             }
@@ -808,7 +807,7 @@ public final class RichTableCellGrid extends ViewGroup {
         if (tableModel == null || (cellSelectionProvider = this.selectionProvider) == null || i < 0 || i >= tableModel.rowCount || i2 < 0 || i2 >= tableModel.colCount) {
             return false;
         }
-        return ((LinkedHashSet) ((TodoItemMenu$$ExternalSyntheticLambda3) cellSelectionProvider).f$0).contains(tableModel.grid[i][i2]);
+        return ((LinkedHashSet) ((RichEditor$3$$ExternalSyntheticLambda0) cellSelectionProvider).f$0).contains(tableModel.grid[i][i2]);
     }
 
     public final int lastSelectedCol() {
@@ -884,9 +883,9 @@ public final class RichTableCellGrid extends ViewGroup {
         this.rowHeights = new int[i6];
         int iDp5 = AndroidUtilities.dp(tableModel2.block.compact ? 20.0f : 50.0f);
         int i8 = this.model.block.compact ? 5 : 12;
-        int iM = i7 == 2 ? BotFullscreenButtons$$ExternalSyntheticOutline1.m(size / 2, i8 * 4, 0) : Math.max(0, Math.round(size / 1.5f));
+        int iM = i7 == 2 ? BotFullscreenButtons$$ExternalSyntheticOutline1.m(i8 * 4, size / 2, 0) : Math.max(0, Math.round(size / 1.5f));
         float f = i8 * 2;
-        int iM2 = MessageObject$$ExternalSyntheticOutline0.m(iM, f, iDp5);
+        int iM2 = MessageObject$$ExternalSyntheticOutline0.m(f, iM, iDp5);
         for (int i9 = 0; i9 < i7; i9++) {
             this.colWidths[i9] = iDp5;
         }

@@ -1,117 +1,278 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RadialGradient;
 import android.graphics.RectF;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
-import android.os.Build;
+import android.graphics.Shader;
+import android.graphics.SurfaceTexture;
+import android.net.Uri;
 import android.os.Bundle;
-import android.os.PowerManager;
-import android.view.Choreographer;
+import android.text.Layout;
+import android.text.style.CharacterStyle;
+import android.view.KeyEvent;
 import android.view.TextureView;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.LinearInterpolator;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import com.google.android.exoplayer2.analytics.AnalyticsListener;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.WeakHashMap;
+import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BotInlineKeyboard;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.Cells.TextSelectionHelper;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AudioVisualizerDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EarListener;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SeekBarWaveform;
 import org.telegram.ui.Components.ThanosEffect;
+import org.telegram.ui.Components.TimerParticles;
 import org.telegram.ui.Components.VideoPlayer;
+import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
 import org.telegram.ui.Stories.recorder.HintView2;
 
-public final class SecretVoicePlayer extends Dialog {
-    public AudioVisualizerDrawable audioVisualizerDrawable;
-    public AlertDialog backDialog;
-    public Bitmap blurBitmap;
-    public Paint blurBitmapPaint;
-    public BitmapShader blurBitmapShader;
-    public Matrix blurMatrix;
-    public ChatMessageCell cell;
-    public final SecretVoicePlayer$$ExternalSyntheticLambda6 checkTimeRunnable;
-    public float clipBottom;
-    public float clipTop;
-    public PollItemMenu$$ExternalSyntheticLambda12 closeAction;
-    public TextView closeButton;
-    public final IntroActivity.AnonymousClass1 containerView;
-    public final Activity context;
-    public boolean dismissing;
-    public float dty;
-    public final EarListener earListener;
-    public boolean hasDestTranslation;
-    public boolean hasTranslation;
-    public float heightdiff;
-    public HintView2 hintView;
-    public Insets insets;
-    public boolean isRound;
-    public MessageObject messageObject;
-    public AnonymousClass3 myCell;
-    public ValueAnimator open2Animator;
-    public ChatActivity$$ExternalSyntheticLambda6 openAction;
-    public ValueAnimator openAnimator;
-    public float openProgress;
-    public float openProgress2;
-    public VideoPlayer player;
-    public float progress;
-    public final RectF rect;
-    public boolean renderedFirstFrame;
-    public Theme.ResourcesProvider resourcesProvider;
-    public boolean setCellInvisible;
-    public TextureView textureView;
-    public ThanosEffect thanosEffect;
-    public float tx;
-    public float ty;
-    public final LoginActivity.AnonymousClass4 windowView;
+public class SecretVoicePlayer extends Dialog {
+    private AudioVisualizerDrawable audioVisualizerDrawable;
+    private AlertDialog backDialog;
+    private Bitmap blurBitmap;
+    private Paint blurBitmapPaint;
+    private BitmapShader blurBitmapShader;
+    private Matrix blurMatrix;
+    private ChatMessageCell cell;
+    private Runnable checkTimeRunnable;
+    private float clipBottom;
+    private float clipTop;
+    private Runnable closeAction;
+    private TextView closeButton;
+    private FrameLayout containerView;
+    public final Context context;
+    private boolean dismissing;
+    private float dtx;
+    private float dty;
+    private EarListener earListener;
+    private boolean hasDestTranslation;
+    private boolean hasTranslation;
+    private float heightdiff;
+    private HintView2 hintView;
+    private Insets insets;
+    private boolean isRound;
+    private MessageObject messageObject;
+    private ChatMessageCell myCell;
+    private boolean open;
+    private ValueAnimator open2Animator;
+    private Runnable openAction;
+    private ValueAnimator openAnimator;
+    private float openProgress;
+    private float openProgress2;
+    private VideoPlayer player;
+    private float progress;
+    private final RectF rect;
+    private boolean renderedFirstFrame;
+    private Theme.ResourcesProvider resourcesProvider;
+    private boolean setCellInvisible;
+    private TextureView textureView;
+    private ThanosEffect thanosEffect;
+    private float tx;
+    private float ty;
+    private FrameLayout windowView;
 
-    public SecretVoicePlayer(Activity activity) {
-        super(activity, R.style.TransparentDialog);
+    public class AnonymousClass5 implements VideoPlayer.VideoPlayerDelegate {
+        public AnonymousClass5() {
+        }
+
+        public void lambda$onRenderedFirstFrame$0() {
+            SecretVoicePlayer.this.renderedFirstFrame = true;
+            SecretVoicePlayer.this.myCell.invalidate();
+        }
+
+        @Override
+        public void onError(VideoPlayer videoPlayer, Exception exc) {
+        }
+
+        @Override
+        public final void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
+        }
+
+        @Override
+        public final void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
+        }
+
+        @Override
+        public final void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
+        }
+
+        @Override
+        public void onStateChanged(boolean z, int i) {
+            if (i == 4) {
+                SecretVoicePlayer.this.dismiss();
+            } else {
+                AndroidUtilities.cancelRunOnUIThread(SecretVoicePlayer.this.checkTimeRunnable);
+                AndroidUtilities.runOnUIThread(SecretVoicePlayer.this.checkTimeRunnable, 16L);
+            }
+        }
+
+        @Override
+        public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+            return VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceDestroyed(this, surfaceTexture);
+        }
+
+        @Override
+        public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceTextureUpdated(this, surfaceTexture);
+        }
+
+        @Override
+        public void onVideoSizeChanged(int i, int i2, int i3, float f) {
+        }
+
+        @Override
+        public void onRenderedFirstFrame() {
+            AndroidUtilities.runOnUIThread(new VoIPFragment$8$$ExternalSyntheticLambda1(this, 13));
+        }
+    }
+
+    public SecretVoicePlayer(Context context) {
+        super(context, R.style.TransparentDialog);
         this.insets = Insets.NONE;
         this.rect = new RectF();
         this.clipTop = 0.0f;
         this.clipBottom = 0.0f;
-        this.checkTimeRunnable = new SecretVoicePlayer$$ExternalSyntheticLambda6(this, 3);
+        int i = 0;
+        this.checkTimeRunnable = new SecretVoicePlayer$$ExternalSyntheticLambda0(this, i);
         this.progress = 0.0f;
         this.dismissing = false;
-        this.context = activity;
+        this.context = context;
         AndroidUtilities.enableEdgeToEdge(getWindow());
-        LoginActivity.AnonymousClass4 anonymousClass4 = new LoginActivity.AnonymousClass4(this, activity, 18);
-        this.windowView = anonymousClass4;
-        anonymousClass4.setOnClickListener(new SecretVoicePlayer$$ExternalSyntheticLambda5(this, 1));
-        IntroActivity.AnonymousClass1 anonymousClass1 = new IntroActivity.AnonymousClass1(this, activity);
-        this.containerView = anonymousClass1;
-        anonymousClass1.setClipToPadding(false);
-        anonymousClass4.addView(anonymousClass1, LayoutHelper.createFrame(-1, -1, 119));
-        SecretVoicePlayer$$ExternalSyntheticLambda3 secretVoicePlayer$$ExternalSyntheticLambda3 = new SecretVoicePlayer$$ExternalSyntheticLambda3(this, 1);
+        FrameLayout frameLayout = new FrameLayout(context) {
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                Canvas canvas2;
+                if (SecretVoicePlayer.this.openProgress <= 0.0f || SecretVoicePlayer.this.blurBitmapPaint == null) {
+                    canvas2 = canvas;
+                } else {
+                    SecretVoicePlayer.this.blurMatrix.reset();
+                    float width = getWidth() / SecretVoicePlayer.this.blurBitmap.getWidth();
+                    SecretVoicePlayer.this.blurMatrix.postScale(width, width);
+                    SecretVoicePlayer.this.blurBitmapShader.setLocalMatrix(SecretVoicePlayer.this.blurMatrix);
+                    SecretVoicePlayer.this.blurBitmapPaint.setAlpha((int) (SecretVoicePlayer.this.openProgress * 255.0f));
+                    canvas2 = canvas;
+                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), SecretVoicePlayer.this.blurBitmapPaint);
+                }
+                if (SecretVoicePlayer.this.setCellInvisible && SecretVoicePlayer.this.cell != null) {
+                    SecretVoicePlayer.this.cell.setVisibility(4);
+                    SecretVoicePlayer.this.setCellInvisible = false;
+                }
+                super.dispatchDraw(canvas2);
+            }
+
+            @Override
+            public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
+                if (keyEvent == null || keyEvent.getKeyCode() != 4 || keyEvent.getAction() != 1) {
+                    return super.dispatchKeyEventPreIme(keyEvent);
+                }
+                SecretVoicePlayer.this.dismiss();
+                return true;
+            }
+
+            @Override
+            public void onLayout(boolean z, int i2, int i3, int i4, int i5) {
+                super.onLayout(z, i2, i3, i4, i5);
+                SecretVoicePlayer.this.setupTranslation();
+            }
+        };
+        this.windowView = frameLayout;
+        frameLayout.setOnClickListener(new SecretVoicePlayer$$ExternalSyntheticLambda1(this, i));
+        FrameLayout frameLayout2 = new FrameLayout(context) {
+            private final Path clipPath = new Path();
+
+            @Override
+            public boolean drawChild(Canvas canvas, View view, long j) {
+                if (view == SecretVoicePlayer.this.myCell || view == SecretVoicePlayer.this.hintView) {
+                    canvas.save();
+                    canvas.clipRect(0.0f, AndroidUtilities.lerp(SecretVoicePlayer.this.clipTop, 0.0f, SecretVoicePlayer.this.openProgress), getWidth(), AndroidUtilities.lerp(SecretVoicePlayer.this.clipBottom, getHeight(), SecretVoicePlayer.this.openProgress));
+                    boolean zDrawChild = super.drawChild(canvas, view, j);
+                    canvas.restore();
+                    return zDrawChild;
+                }
+                if (view != SecretVoicePlayer.this.textureView) {
+                    return super.drawChild(canvas, view, j);
+                }
+                canvas.save();
+                this.clipPath.rewind();
+                this.clipPath.addCircle(SecretVoicePlayer.this.rect.centerX() + SecretVoicePlayer.this.myCell.getX(), SecretVoicePlayer.this.rect.centerY() + SecretVoicePlayer.this.myCell.getY(), SecretVoicePlayer.this.rect.width() / 2.0f, Path.Direction.CW);
+                canvas.clipPath(this.clipPath);
+                canvas.clipRect(0.0f, AndroidUtilities.lerp(SecretVoicePlayer.this.clipTop, 0.0f, SecretVoicePlayer.this.openProgress), getWidth(), AndroidUtilities.lerp(SecretVoicePlayer.this.clipBottom, getHeight(), SecretVoicePlayer.this.openProgress));
+                canvas.translate(-SecretVoicePlayer.this.textureView.getX(), -SecretVoicePlayer.this.textureView.getY());
+                canvas.translate(SecretVoicePlayer.this.myCell.getX() + SecretVoicePlayer.this.rect.left, SecretVoicePlayer.this.myCell.getY() + SecretVoicePlayer.this.rect.top);
+                canvas.scale(SecretVoicePlayer.this.rect.width() / SecretVoicePlayer.this.textureView.getMeasuredWidth(), SecretVoicePlayer.this.rect.height() / SecretVoicePlayer.this.textureView.getMeasuredHeight(), SecretVoicePlayer.this.textureView.getX(), SecretVoicePlayer.this.textureView.getY());
+                boolean zDrawChild2 = super.drawChild(canvas, view, j);
+                canvas.restore();
+                return zDrawChild2;
+            }
+        };
+        this.containerView = frameLayout2;
+        frameLayout2.setClipToPadding(false);
+        this.windowView.addView(this.containerView, LayoutHelper.createFrame(-1, -1, 119));
+        FrameLayout frameLayout3 = this.windowView;
+        SecretVoicePlayer$$ExternalSyntheticLambda2 secretVoicePlayer$$ExternalSyntheticLambda2 = new SecretVoicePlayer$$ExternalSyntheticLambda2(this, i);
         WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
-        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(anonymousClass4, secretVoicePlayer$$ExternalSyntheticLambda3);
+        ViewCompat.Api21Impl.setOnApplyWindowInsetsListener(frameLayout3, secretVoicePlayer$$ExternalSyntheticLambda2);
         if (SharedConfig.raiseToListen) {
-            this.earListener = new EarListener();
+            this.earListener = new EarListener(context);
         }
     }
 
-    public final void animateOpenTo(SecretVoicePlayer$$ExternalSyntheticLambda6 secretVoicePlayer$$ExternalSyntheticLambda6, boolean z) {
+    private void animateOpenTo(final boolean z, final Runnable runnable) {
         int i = 0;
         ValueAnimator valueAnimator = this.openAnimator;
         if (valueAnimator != null) {
@@ -124,8 +285,29 @@ public final class SecretVoicePlayer extends Dialog {
         setupTranslation();
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.openProgress, z ? 1.0f : 0.0f);
         this.openAnimator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new SecretVoicePlayer$$ExternalSyntheticLambda1(i, this, z));
-        this.openAnimator.addListener(new ChatActivity.AnonymousClass63(this, z, secretVoicePlayer$$ExternalSyntheticLambda6, 11));
+        valueAnimatorOfFloat.addUpdateListener(new SecretVoicePlayer$$ExternalSyntheticLambda3(this, i, z));
+        this.openAnimator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                SecretVoicePlayer.this.openProgress = z ? 1.0f : 0.0f;
+                SecretVoicePlayer.this.windowView.invalidate();
+                SecretVoicePlayer.this.containerView.invalidate();
+                SecretVoicePlayer.this.updateTranslation();
+                if (SecretVoicePlayer.this.closeButton != null) {
+                    SecretVoicePlayer.this.closeButton.setAlpha(SecretVoicePlayer.this.openProgress);
+                }
+                if (SecretVoicePlayer.this.isRound) {
+                    SecretVoicePlayer.this.myCell.invalidate();
+                }
+                if (!SecretVoicePlayer.this.isRound && SecretVoicePlayer.this.myCell != null && SecretVoicePlayer.this.myCell.getSeekBarWaveform() != null) {
+                    SecretVoicePlayer.this.myCell.getSeekBarWaveform().setExplosionRate(SecretVoicePlayer.this.openProgress);
+                }
+                Runnable runnable2 = runnable;
+                if (runnable2 != null) {
+                    runnable2.run();
+                }
+            }
+        });
         long j = (z || this.closeAction != null) ? 520L : 330L;
         ValueAnimator valueAnimator3 = this.openAnimator;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -134,168 +316,150 @@ public final class SecretVoicePlayer extends Dialog {
         this.openAnimator.start();
         ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(this.openProgress2, z ? 1.0f : 0.0f);
         this.open2Animator = valueAnimatorOfFloat2;
-        valueAnimatorOfFloat2.addUpdateListener(new QrActivity$$ExternalSyntheticLambda18(this, 6));
-        this.open2Animator.addListener(new LoginActivity.AnonymousClass9(26, this, z));
+        valueAnimatorOfFloat2.addUpdateListener(new QrActivity$$ExternalSyntheticLambda8(this, 15));
+        this.open2Animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                SecretVoicePlayer.this.openProgress2 = z ? 1.0f : 0.0f;
+                if (SecretVoicePlayer.this.isRound) {
+                    SecretVoicePlayer.this.myCell.invalidate();
+                }
+            }
+        });
         this.open2Animator.setDuration((long) (j * 1.5f));
         this.open2Animator.setInterpolator(cubicBezierInterpolator);
         this.open2Animator.start();
     }
 
-    @Override
-    public final void dismiss() {
-        AnonymousClass3 anonymousClass3;
-        if (this.dismissing) {
-            return;
-        }
-        AlertDialog alertDialog = this.backDialog;
-        if (alertDialog != null) {
-            alertDialog.dismiss();
-            this.backDialog = null;
-        }
-        this.dismissing = true;
-        HintView2 hintView2 = this.hintView;
-        if (hintView2 != null) {
-            hintView2.hide(true);
-        }
+    public void checkTime() {
         VideoPlayer videoPlayer = this.player;
-        if (videoPlayer != null) {
-            videoPlayer.pause();
-            this.player.releasePlayer();
-            this.player = null;
-        }
-        if (!this.isRound && (anonymousClass3 = this.myCell) != null && anonymousClass3.getSeekBarWaveform() != null) {
-            SeekBarWaveform seekBarWaveform = getSeekBarWaveform();
-            seekBarWaveform.explosionRate = this.openProgress;
-            ChatMessageCell chatMessageCell = seekBarWaveform.parentView;
-            if (chatMessageCell != null) {
-                chatMessageCell.invalidate();
-            }
-        }
-        this.hasTranslation = false;
-        setupTranslation();
-        animateOpenTo(new SecretVoicePlayer$$ExternalSyntheticLambda6(this, 0), false);
-        LoginActivity.AnonymousClass4 anonymousClass4 = this.windowView;
-        anonymousClass4.invalidate();
-        PollItemMenu$$ExternalSyntheticLambda12 pollItemMenu$$ExternalSyntheticLambda12 = this.closeAction;
-        if (pollItemMenu$$ExternalSyntheticLambda12 != null) {
-            ChatMessageCell chatMessageCell2 = this.cell;
-            if (chatMessageCell2 != null) {
-                chatMessageCell2.makeVisibleAfterChange = true;
-            }
-            AndroidUtilities.runOnUIThread(pollItemMenu$$ExternalSyntheticLambda12);
-            this.closeAction = null;
-            ThanosEffect thanosEffect = new ThanosEffect(this.context, null);
-            this.thanosEffect = thanosEffect;
-            anonymousClass4.addView(thanosEffect, LayoutHelper.createFrame(-1, -1, 119));
-            ThanosEffect thanosEffect2 = this.thanosEffect;
-            AnonymousClass3 anonymousClass5 = this.myCell;
-            SecretVoicePlayer$$ExternalSyntheticLambda6 secretVoicePlayer$$ExternalSyntheticLambda6 = new SecretVoicePlayer$$ExternalSyntheticLambda6(this, 2);
-            ThanosEffect.DrawingThread drawingThread = thanosEffect2.drawThread;
-            if (drawingThread != null) {
-                drawingThread.animate(anonymousClass5, 1.5f, secretVoicePlayer$$ExternalSyntheticLambda6);
-                Choreographer.getInstance().postFrameCallback(thanosEffect2.frameCallback);
-            } else {
-                ThanosEffect.ToSet toSet = new ThanosEffect.ToSet(anonymousClass5, secretVoicePlayer$$ExternalSyntheticLambda6);
-                toSet.durationMultiplier = 1.5f;
-                thanosEffect2.toSet.add(toSet);
-            }
-            WindowManager.LayoutParams attributes = getWindow().getAttributes();
-            attributes.flags |= 16;
-            getWindow().setAttributes(attributes);
-        }
-        EarListener earListener = this.earListener;
-        if (earListener == null || !earListener.attached) {
+        if (videoPlayer == null) {
             return;
         }
-        SensorManager sensorManager = earListener.sensorManager;
-        Sensor sensor = earListener.gravitySensor;
-        if (sensor != null) {
-            sensorManager.unregisterListener(earListener, sensor);
+        this.progress = videoPlayer.getCurrentPosition() / this.player.getDuration();
+        ChatMessageCell chatMessageCell = this.myCell;
+        if (chatMessageCell != null) {
+            chatMessageCell.overrideDuration((this.player.getDuration() - this.player.getCurrentPosition()) / 1000);
+            this.myCell.updatePlayingMessageProgress();
+            SeekBarWaveform seekBarWaveform = this.myCell.getSeekBarWaveform();
+            if (seekBarWaveform != null) {
+                seekBarWaveform.explodeAt(this.progress);
+            }
         }
-        Sensor sensor2 = earListener.linearSensor;
-        if (sensor2 != null) {
-            sensorManager.unregisterListener(earListener, sensor2);
+        if (this.player.isPlaying()) {
+            AndroidUtilities.cancelRunOnUIThread(this.checkTimeRunnable);
+            AndroidUtilities.runOnUIThread(this.checkTimeRunnable, 16L);
         }
-        Sensor sensor3 = earListener.accelerometerSensor;
-        if (sensor3 != null) {
-            sensorManager.unregisterListener(earListener, sensor3);
-        }
-        sensorManager.unregisterListener(earListener, earListener.proximitySensor);
-        PowerManager.WakeLock wakeLock = earListener.proximityWakeLock;
-        if (wakeLock != null && wakeLock.isHeld()) {
-            wakeLock.release();
-        }
-        earListener.attached = false;
     }
 
-    public final void lambda$dismiss$6() {
-        super.dismiss();
+    public void lambda$animateOpenTo$10(ValueAnimator valueAnimator) {
+        this.openProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (this.isRound) {
+            this.myCell.invalidate();
+        }
     }
 
-    public final void lambda$dismiss$8() {
-        super.dismiss();
-    }
-
-    @Override
-    public final void onBackPressed() {
-        MessageObject messageObject;
-        AlertDialog alertDialog = this.backDialog;
-        if (alertDialog != null) {
-            alertDialog.dismiss();
-            this.backDialog = null;
-            return;
+    public void lambda$animateOpenTo$9(boolean z, ValueAnimator valueAnimator) {
+        ChatMessageCell chatMessageCell;
+        this.openProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.windowView.invalidate();
+        this.containerView.invalidate();
+        if (this.isRound) {
+            this.myCell.invalidate();
         }
-        if (this.dismissing || (messageObject = this.messageObject) == null || messageObject.isOutOwner()) {
-            super.onBackPressed();
-            return;
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider);
-        String string = LocaleController.getString(this.isRound ? R.string.VideoOnceCloseTitle : R.string.VoiceOnceCloseTitle);
-        AlertDialog alertDialog2 = builder.alertDialog;
-        alertDialog2.title = string;
-        alertDialog2.message = LocaleController.getString(this.isRound ? R.string.VideoOnceCloseMessage : R.string.VoiceOnceCloseMessage);
-        builder.setPositiveButton(LocaleController.getString(R.string.Continue), new SecretVoicePlayer$$ExternalSyntheticLambda3(this, 0));
-        builder.setNegativeButton(LocaleController.getString(R.string.Delete), new SecretVoicePlayer$$ExternalSyntheticLambda3(this, 2));
-        this.backDialog = alertDialog2;
-        alertDialog2.show();
-        TextView textView = (TextView) this.backDialog.getButton(-2);
+        updateTranslation();
+        TextView textView = this.closeButton;
         if (textView != null) {
-            textView.setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
+            textView.setAlpha(this.openProgress);
         }
-    }
-
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(R.style.DialogNoAnimation);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        LoginActivity.AnonymousClass4 anonymousClass4 = this.windowView;
-        setContentView(anonymousClass4, layoutParams);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        int i = attributes.flags & (-3);
-        attributes.softInputMode = 48;
-        attributes.flags = (-2013069056) | i;
-        if (!BuildVars.DEBUG_PRIVATE_VERSION) {
-            attributes.flags = i | (-2013060864);
-            AndroidUtilities.logFlagSecure();
-        }
-        attributes.flags |= 1152;
-        window.setAttributes(attributes);
-        anonymousClass4.setSystemUiVisibility(1284);
-        AndroidUtilities.setLightNavigationBar(anonymousClass4, !Theme.currentTheme.isDark());
-    }
-
-    public final void setupTranslation() {
-        if (this.hasTranslation) {
+        if (this.isRound || (chatMessageCell = this.myCell) == null || chatMessageCell.getSeekBarWaveform() == null) {
             return;
         }
-        LoginActivity.AnonymousClass4 anonymousClass4 = this.windowView;
-        if (anonymousClass4.getWidth() <= 0) {
+        this.myCell.getSeekBarWaveform().setExplosionRate((z ? CubicBezierInterpolator.EASE_OUT : CubicBezierInterpolator.EASE_IN).getInterpolation(Utilities.clamp(this.openProgress * 1.25f, 1.0f, 0.0f)));
+    }
+
+    public void lambda$dismiss$6() {
+        super.dismiss();
+    }
+
+    public void lambda$dismiss$7() {
+        if (this.thanosEffect == null) {
+            AndroidUtilities.runOnUIThread(new SecretVoicePlayer$$ExternalSyntheticLambda0(this, 3));
+            ChatMessageCell chatMessageCell = this.cell;
+            if (chatMessageCell != null) {
+                chatMessageCell.setVisibility(0);
+                this.cell.invalidate();
+            }
+        }
+        MediaController.getInstance().tryResumePausedAudio();
+    }
+
+    public void lambda$dismiss$8() {
+        super.dismiss();
+    }
+
+    public void lambda$new$0(View view) {
+        if (this.closeAction == null) {
+            dismiss();
+        }
+    }
+
+    public WindowInsetsCompat lambda$new$1(View view, WindowInsetsCompat windowInsetsCompat) {
+        Insets defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(windowInsetsCompat, false);
+        this.insets = defaultWindowInsets;
+        this.containerView.setPadding(defaultWindowInsets.left, defaultWindowInsets.top, defaultWindowInsets.right, defaultWindowInsets.bottom);
+        this.windowView.requestLayout();
+        return WindowInsetsCompat.CONSUMED;
+    }
+
+    public void lambda$onBackPressed$4(AlertDialog alertDialog, int i) {
+        AlertDialog alertDialog2 = this.backDialog;
+        if (alertDialog2 != null) {
+            alertDialog2.dismiss();
+        }
+    }
+
+    public void lambda$onBackPressed$5(AlertDialog alertDialog, int i) {
+        AlertDialog alertDialog2 = this.backDialog;
+        if (alertDialog2 != null) {
+            alertDialog2.dismiss();
+            this.backDialog = null;
+        }
+        dismiss();
+    }
+
+    public void lambda$prepareBlur$2(View view, Bitmap bitmap) {
+        if (view != null) {
+            view.setVisibility(0);
+        }
+        this.blurBitmap = bitmap;
+        Paint paint = new Paint(1);
+        this.blurBitmapPaint = paint;
+        Bitmap bitmap2 = this.blurBitmap;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+        this.blurBitmapShader = bitmapShader;
+        paint.setShader(bitmapShader);
+        ColorMatrix colorMatrix = new ColorMatrix();
+        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, Theme.currentTheme.isDark() ? 0.05f : 0.25f);
+        AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, Theme.currentTheme.isDark() ? -0.02f : -0.04f);
+        this.blurBitmapPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
+        this.blurMatrix = new Matrix();
+    }
+
+    public void lambda$setCell$3(View view) {
+        dismiss();
+    }
+
+    private void prepareBlur(View view) {
+        if (view != null) {
+            view.setVisibility(4);
+        }
+        AndroidUtilities.makeGlobalBlurBitmap(new ThemeActivity$$ExternalSyntheticLambda1(1, this, view), 14.0f);
+    }
+
+    public void setupTranslation() {
+        if (this.hasTranslation || this.windowView.getWidth() <= 0) {
             return;
         }
         ChatMessageCell chatMessageCell = this.cell;
@@ -303,16 +467,17 @@ public final class SecretVoicePlayer extends Dialog {
             int[] iArr = new int[2];
             chatMessageCell.getLocationOnScreen(iArr);
             float f = iArr[0] - this.insets.left;
-            int width = anonymousClass4.getWidth();
+            int width = this.windowView.getWidth();
             Insets insets = this.insets;
             this.tx = f - ((((width - insets.left) - insets.right) - this.cell.getWidth()) / 2.0f);
             float f2 = iArr[1] - this.insets.top;
-            int height = anonymousClass4.getHeight();
+            int height = this.windowView.getHeight();
             Insets insets2 = this.insets;
             this.ty = ImageReceiver$$ExternalSyntheticOutline1.m(((height - insets2.top) - insets2.bottom) - this.cell.getHeight(), this.heightdiff, 2.0f, f2);
             if (!this.hasDestTranslation) {
                 this.hasDestTranslation = true;
-                float fClamp = (Utilities.clamp((this.cell.getHeight() / 2.0f) + iArr[1], anonymousClass4.getHeight() * 0.7f, anonymousClass4.getHeight() * 0.3f) - (this.cell.getHeight() / 2.0f)) - ((anonymousClass4.getHeight() - this.cell.getHeight()) / 2.0f);
+                this.dtx = 0.0f;
+                float fClamp = (Utilities.clamp((this.cell.getHeight() / 2.0f) + iArr[1], this.windowView.getHeight() * 0.7f, this.windowView.getHeight() * 0.3f) - (this.cell.getHeight() / 2.0f)) - ((this.windowView.getHeight() - this.cell.getHeight()) / 2.0f);
                 this.dty = fClamp;
                 if (this.isRound) {
                     this.dty = 0.0f;
@@ -328,58 +493,961 @@ public final class SecretVoicePlayer extends Dialog {
         this.hasTranslation = true;
     }
 
-    @Override
-    public final void show() {
-        if (AndroidUtilities.isSafeToShow(getContext())) {
-            super.show();
-            ChatMessageCell chatMessageCell = this.cell;
-            if (chatMessageCell != null) {
-                chatMessageCell.setVisibility(4);
-            }
-            AndroidUtilities.makeGlobalBlurBitmap(new OAuthSheet$$ExternalSyntheticLambda13(24, this, chatMessageCell), 14.0f);
-            this.setCellInvisible = true;
-            animateOpenTo(null, true);
-            ChatActivity$$ExternalSyntheticLambda6 chatActivity$$ExternalSyntheticLambda6 = this.openAction;
-            if (chatActivity$$ExternalSyntheticLambda6 != null) {
-                AndroidUtilities.runOnUIThread(chatActivity$$ExternalSyntheticLambda6);
-                this.openAction = null;
-            }
-            EarListener earListener = this.earListener;
-            if (earListener == null || earListener.attached) {
-                return;
-            }
-            SensorManager sensorManager = earListener.sensorManager;
-            Sensor sensor = earListener.gravitySensor;
-            if (sensor != null) {
-                sensorManager.registerListener(earListener, sensor, 30000);
-            }
-            Sensor sensor2 = earListener.linearSensor;
-            if (sensor2 != null) {
-                sensorManager.registerListener(earListener, sensor2, 30000);
-            }
-            Sensor sensor3 = earListener.accelerometerSensor;
-            if (sensor3 != null) {
-                sensorManager.registerListener(earListener, sensor3, 30000);
-            }
-            sensorManager.registerListener(earListener, earListener.proximitySensor, 3);
-            PowerManager.WakeLock wakeLock = earListener.proximityWakeLock;
-            if (wakeLock != null && Build.MANUFACTURER.equalsIgnoreCase("samsung")) {
-                wakeLock.acquire();
-            }
-            earListener.attached = true;
-        }
-    }
-
-    public final void updateTranslation() {
+    public void updateTranslation() {
         if (this.thanosEffect != null) {
             return;
         }
-        setTranslationX(AndroidUtilities.lerp(this.tx, 0.0f, this.openProgress));
-        setTranslationY(AndroidUtilities.lerp(this.ty, this.dty, this.openProgress));
+        this.myCell.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx, this.openProgress));
+        this.myCell.setTranslationY(AndroidUtilities.lerp(this.ty, this.dty, this.openProgress));
         HintView2 hintView2 = this.hintView;
         if (hintView2 != null) {
-            hintView2.setTranslationX(AndroidUtilities.lerp(this.tx, 0.0f, this.openProgress));
+            hintView2.setTranslationX(AndroidUtilities.lerp(this.tx, this.dtx, this.openProgress));
             this.hintView.setTranslationY(AndroidUtilities.lerp(this.ty, this.dty, this.openProgress));
+        }
+    }
+
+    @Override
+    public void dismiss() {
+        ChatMessageCell chatMessageCell;
+        if (this.dismissing) {
+            return;
+        }
+        AlertDialog alertDialog = this.backDialog;
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+            this.backDialog = null;
+        }
+        this.dismissing = true;
+        HintView2 hintView2 = this.hintView;
+        if (hintView2 != null) {
+            hintView2.hide();
+        }
+        VideoPlayer videoPlayer = this.player;
+        if (videoPlayer != null) {
+            videoPlayer.pause();
+            this.player.releasePlayer(true);
+            this.player = null;
+        }
+        if (!this.isRound && (chatMessageCell = this.myCell) != null && chatMessageCell.getSeekBarWaveform() != null) {
+            this.myCell.getSeekBarWaveform().setExplosionRate(this.openProgress);
+        }
+        this.hasTranslation = false;
+        setupTranslation();
+        this.open = false;
+        animateOpenTo(false, new SecretVoicePlayer$$ExternalSyntheticLambda0(this, 1));
+        this.windowView.invalidate();
+        Runnable runnable = this.closeAction;
+        if (runnable != null) {
+            ChatMessageCell chatMessageCell2 = this.cell;
+            if (chatMessageCell2 != null) {
+                chatMessageCell2.makeVisibleAfterChange = true;
+            }
+            AndroidUtilities.runOnUIThread(runnable);
+            this.closeAction = null;
+            ThanosEffect thanosEffect = new ThanosEffect(this.context, null);
+            this.thanosEffect = thanosEffect;
+            this.windowView.addView(thanosEffect, LayoutHelper.createFrame(-1, -1, 119));
+            this.thanosEffect.animate(this.myCell, 1.5f, new SecretVoicePlayer$$ExternalSyntheticLambda0(this, 2));
+            WindowManager.LayoutParams attributes = getWindow().getAttributes();
+            attributes.flags |= 16;
+            getWindow().setAttributes(attributes);
+        }
+        EarListener earListener = this.earListener;
+        if (earListener != null) {
+            earListener.detach();
+        }
+    }
+
+    public boolean isShown() {
+        return !this.dismissing;
+    }
+
+    @Override
+    public void onBackPressed() {
+        MessageObject messageObject;
+        AlertDialog alertDialog = this.backDialog;
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+            this.backDialog = null;
+            return;
+        }
+        if (this.dismissing || (messageObject = this.messageObject) == null || messageObject.isOutOwner()) {
+            super.onBackPressed();
+            return;
+        }
+        AlertDialog alertDialogCreate = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider).setTitle(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseTitle : R.string.VoiceOnceCloseTitle)).setMessage(LocaleController.getString(this.isRound ? R.string.VideoOnceCloseMessage : R.string.VoiceOnceCloseMessage)).setPositiveButton(LocaleController.getString(R.string.Continue), new SecretVoicePlayer$$ExternalSyntheticLambda2(this, 1)).setNegativeButton(LocaleController.getString(R.string.Delete), new SecretVoicePlayer$$ExternalSyntheticLambda2(this, 2)).create();
+        this.backDialog = alertDialogCreate;
+        alertDialogCreate.show();
+        TextView textView = (TextView) this.backDialog.getButton(-2);
+        if (textView != null) {
+            textView.setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        window.setWindowAnimations(R.style.DialogNoAnimation);
+        setContentView(this.windowView, new ViewGroup.LayoutParams(-1, -1));
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.height = -1;
+        attributes.gravity = 119;
+        attributes.dimAmount = 0.0f;
+        int i = attributes.flags & (-3);
+        attributes.softInputMode = 48;
+        attributes.flags = (-2013069056) | i;
+        if (!BuildVars.DEBUG_PRIVATE_VERSION) {
+            attributes.flags = i | (-2013060864);
+            AndroidUtilities.logFlagSecure();
+        }
+        attributes.flags |= 1152;
+        window.setAttributes(attributes);
+        this.windowView.setSystemUiVisibility(1284);
+        AndroidUtilities.setLightNavigationBar(this.windowView, !Theme.currentTheme.isDark());
+    }
+
+    public void setCell(ChatMessageCell chatMessageCell, Runnable runnable, Runnable runnable2) {
+        int iCeil;
+        ChatMessageCell chatMessageCell2;
+        String firstName;
+        int i = 1;
+        this.openAction = runnable;
+        this.closeAction = runnable2;
+        ChatMessageCell chatMessageCell3 = this.myCell;
+        if (chatMessageCell3 != null) {
+            this.containerView.removeView(chatMessageCell3);
+            this.myCell = null;
+        }
+        this.cell = chatMessageCell;
+        MessageObject messageObject = chatMessageCell != null ? chatMessageCell.getMessageObject() : null;
+        this.messageObject = messageObject;
+        this.isRound = messageObject != null && messageObject.isRoundVideo();
+        ChatMessageCell chatMessageCell4 = this.cell;
+        this.resourcesProvider = chatMessageCell4 != null ? chatMessageCell4.getResourcesProvider() : null;
+        if (this.cell != null) {
+            this.clipTop = chatMessageCell.parentBoundsTop;
+            this.clipBottom = chatMessageCell.parentBoundsBottom;
+            if (chatMessageCell.getParent() instanceof View) {
+                View view = (View) chatMessageCell.getParent();
+                this.clipTop = view.getY() + this.clipTop;
+                this.clipBottom = view.getY() + this.clipBottom;
+            }
+            final int width = this.cell.getWidth();
+            int height = this.cell.getHeight();
+            if (this.isRound) {
+                height = Math.min(AndroidUtilities.dp(360.0f), Math.min(width, AndroidUtilities.displaySize.y));
+            }
+            final int i2 = height;
+            this.heightdiff = i2 - this.cell.getHeight();
+            iCeil = (int) Math.ceil((Math.min(width, i2) * 0.92f) / AndroidUtilities.density);
+            ChatMessageCell chatMessageCell5 = new ChatMessageCell(getContext(), UserConfig.selectedAccount, false, null, this.cell.getResourcesProvider()) {
+                private Paint clipPaint;
+                private RadialGradient radialGradient;
+                private Matrix radialMatrix;
+                private Paint radialPaint;
+                private TimerParticles timerParticles;
+                private boolean setRect = false;
+                final RectF fromRect = new RectF();
+                final RectF toRect = new RectF();
+                private Path clipPath = new Path();
+                private Paint progressPaint = new Paint(1);
+                private AnimatedFloat renderedFirstFrameT = new AnimatedFloat(0.0f, this, 0, 120, new LinearInterpolator());
+
+                private Paint getClipPaint() {
+                    if (this.clipPaint == null) {
+                        Paint paint = new Paint(1);
+                        this.clipPaint = paint;
+                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+                    }
+                    return this.clipPaint;
+                }
+
+                @Override
+                public void drawBlurredPhoto(Canvas canvas) {
+                    if (this.radialPaint != null) {
+                        if (SecretVoicePlayer.this.openProgress > 0.0f) {
+                            if (SecretVoicePlayer.this.renderedFirstFrame) {
+                                if (this.drawingToBitmap) {
+                                    Bitmap bitmap = SecretVoicePlayer.this.textureView.getBitmap();
+                                    if (bitmap != null) {
+                                        canvas.save();
+                                        this.clipPath.rewind();
+                                        this.clipPath.addCircle(SecretVoicePlayer.this.rect.centerX(), SecretVoicePlayer.this.rect.centerY(), SecretVoicePlayer.this.rect.width() / 2.0f, Path.Direction.CW);
+                                        canvas.clipPath(this.clipPath);
+                                        canvas.scale(SecretVoicePlayer.this.rect.width() / bitmap.getWidth(), SecretVoicePlayer.this.rect.height() / bitmap.getHeight());
+                                        canvas.translate(SecretVoicePlayer.this.rect.left, SecretVoicePlayer.this.rect.top);
+                                        canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
+                                        canvas.restore();
+                                        bitmap.recycle();
+                                    }
+                                } else {
+                                    canvas.drawCircle(SecretVoicePlayer.this.rect.centerX(), SecretVoicePlayer.this.rect.centerY(), SecretVoicePlayer.this.rect.width() / 2.0f, getClipPaint());
+                                }
+                                getPhotoImage().setAlpha(Math.max(1.0f - this.renderedFirstFrameT.set(SecretVoicePlayer.this.renderedFirstFrame), 1.0f - SecretVoicePlayer.this.openProgress));
+                                getPhotoImage().draw(canvas);
+                            } else {
+                                getPhotoImage().draw(canvas);
+                            }
+                        }
+                        this.radialMatrix.reset();
+                        float fWidth = SecretVoicePlayer.this.openProgress2 * (SecretVoicePlayer.this.rect.width() / 76.8f);
+                        this.radialMatrix.postScale(fWidth, fWidth);
+                        this.radialMatrix.postTranslate(SecretVoicePlayer.this.rect.centerX(), SecretVoicePlayer.this.rect.centerY());
+                        this.radialGradient.setLocalMatrix(this.radialMatrix);
+                        canvas.saveLayerAlpha(SecretVoicePlayer.this.rect, 255, 31);
+                        super.drawBlurredPhoto(canvas);
+                        canvas.save();
+                        canvas.drawRect(SecretVoicePlayer.this.rect, this.radialPaint);
+                        canvas.restore();
+                        canvas.restore();
+                    } else {
+                        super.drawBlurredPhoto(canvas);
+                    }
+                    canvas.saveLayerAlpha(SecretVoicePlayer.this.rect, (int) (SecretVoicePlayer.this.openProgress2 * 178.0f), 31);
+                    this.progressPaint.setStyle(Paint.Style.STROKE);
+                    this.progressPaint.setStrokeWidth(AndroidUtilities.dp(3.33f));
+                    this.progressPaint.setColor(-1);
+                    this.progressPaint.setStrokeCap(Paint.Cap.ROUND);
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(SecretVoicePlayer.this.rect);
+                    rectF.inset(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
+                    canvas.drawArc(rectF, -90.0f, (1.0f - SecretVoicePlayer.this.progress) * (-360.0f), false, this.progressPaint);
+                    if (this.timerParticles == null) {
+                        TimerParticles timerParticles = new TimerParticles(120);
+                        this.timerParticles = timerParticles;
+                        timerParticles.big = true;
+                    }
+                    this.progressPaint.setStrokeWidth(AndroidUtilities.dp(2.8f));
+                    this.timerParticles.draw(canvas, this.progressPaint, rectF, (1.0f - SecretVoicePlayer.this.progress) * (-360.0f), 1.0f);
+                    canvas.restore();
+                }
+
+                @Override
+                public void drawBlurredPhotoParticles(Canvas canvas) {
+                    AndroidUtilities.lerp(1.0f, 1.5f, SecretVoicePlayer.this.openProgress2);
+                    super.drawBlurredPhotoParticles(canvas);
+                }
+
+                @Override
+                public void drawRadialProgress(Canvas canvas) {
+                    super.drawRadialProgress(canvas);
+                }
+
+                @Override
+                public void drawReactionsLayout(Canvas canvas, float f, Integer num) {
+                    canvas.save();
+                    canvas.translate(AndroidUtilities.lerp(0, -this.reactionsLayoutInBubble.x, SecretVoicePlayer.this.openProgress), AndroidUtilities.lerp(SecretVoicePlayer.this.cell.getBackgroundDrawableBottom() - getBackgroundDrawableBottom(), this.reactionsLayoutInBubble.totalHeight, SecretVoicePlayer.this.openProgress));
+                    super.drawReactionsLayout(canvas, (1.0f - SecretVoicePlayer.this.openProgress) * f, num);
+                    canvas.restore();
+                }
+
+                @Override
+                public void drawTime(Canvas canvas, float f, boolean z) {
+                    canvas.save();
+                    if (SecretVoicePlayer.this.isRound) {
+                        int i3 = this.timeWidth;
+                        int i4 = 0;
+                        if (SecretVoicePlayer.this.messageObject != null && SecretVoicePlayer.this.messageObject.isOutOwner()) {
+                            if (SecretVoicePlayer.this.messageObject != null && SecretVoicePlayer.this.messageObject.type == 19) {
+                                i4 = 4;
+                            }
+                            i4 += 20;
+                        }
+                        canvas.translate(SecretVoicePlayer.this.openProgress * ((this.toRect.right - (AndroidUtilities.dp(8 + i4) + i3)) - this.timeX), 0.0f);
+                    }
+                    super.drawTime(canvas, f, z);
+                    canvas.restore();
+                }
+
+                @Override
+                public int getBoundsLeft() {
+                    return 0;
+                }
+
+                @Override
+                public int getBoundsRight() {
+                    return getWidth();
+                }
+
+                @Override
+                public void onDraw(Canvas canvas) {
+                    Canvas canvas2;
+                    if (SecretVoicePlayer.this.isRound) {
+                        if (!this.setRect) {
+                            this.fromRect.set(getPhotoImage().getImageX(), getPhotoImage().getImageY(), getPhotoImage().getImageX2(), getPhotoImage().getImageY2());
+                            float fMin = Math.min(getMeasuredWidth(), getMeasuredHeight()) * 0.92f;
+                            this.toRect.set((getMeasuredWidth() - fMin) / 2.0f, (getMeasuredHeight() - fMin) / 2.0f, (getMeasuredWidth() + fMin) / 2.0f, (getMeasuredHeight() + fMin) / 2.0f);
+                            this.setRect = true;
+                            this.radialGradient = new RadialGradient(0.0f, 0.0f, 48.0f, new int[]{-1, -1, 0}, new float[]{0.0f, 0.8f, 1.0f}, Shader.TileMode.CLAMP);
+                            Paint paint = new Paint(1);
+                            this.radialPaint = paint;
+                            paint.setShader(this.radialGradient);
+                            this.radialPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                            this.radialMatrix = new Matrix();
+                        }
+                        AndroidUtilities.lerp(this.fromRect, this.toRect, SecretVoicePlayer.this.openProgress, SecretVoicePlayer.this.rect);
+                        setImageCoords(SecretVoicePlayer.this.rect.left, SecretVoicePlayer.this.rect.top, SecretVoicePlayer.this.rect.width(), SecretVoicePlayer.this.rect.height());
+                        getPhotoImage().setRoundRadius((int) SecretVoicePlayer.this.rect.width());
+                        if (SecretVoicePlayer.this.openProgress <= 0.0f || !SecretVoicePlayer.this.renderedFirstFrame) {
+                            canvas2 = canvas;
+                        } else {
+                            canvas2 = canvas;
+                            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                        }
+                        this.radialProgressAlpha = 1.0f - SecretVoicePlayer.this.openProgress;
+                    } else {
+                        canvas2 = canvas;
+                    }
+                    super.onDraw(canvas2);
+                    if (SecretVoicePlayer.this.isRound && SecretVoicePlayer.this.openProgress > 0.0f && SecretVoicePlayer.this.renderedFirstFrame) {
+                        canvas2.restore();
+                    }
+                }
+
+                @Override
+                public void onFactorChangeFinished(int i3, float f, FactorAnimator factorAnimator) {
+                }
+
+                @Override
+                public void onMeasure(int i3, int i4) {
+                    setMeasuredDimension(width, i2);
+                }
+
+                @Override
+                public void setPressed(boolean z) {
+                }
+
+                @Override
+                public void setVisibility(int i3) {
+                    super.setVisibility(i3);
+                    if (SecretVoicePlayer.this.textureView == null || i3 != 8) {
+                        return;
+                    }
+                    SecretVoicePlayer.this.textureView.setVisibility(i3);
+                }
+            };
+            this.myCell = chatMessageCell5;
+            this.cell.copyVisiblePartTo(chatMessageCell5);
+            this.myCell.copySpoilerEffect2AttachIndexFrom(this.cell);
+            this.myCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                @Override
+                public boolean allowAddPollOptions() {
+                    return false;
+                }
+
+                @Override
+                public boolean canDrawOutboundsContent() {
+                    return true;
+                }
+
+                @Override
+                public boolean canPerformActions() {
+                    return false;
+                }
+
+                @Override
+                public boolean canPerformReply() {
+                    return canPerformActions();
+                }
+
+                @Override
+                public boolean canSaveRichDocument(ChatMessageCell chatMessageCell6) {
+                    return false;
+                }
+
+                @Override
+                public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell6) {
+                    return false;
+                }
+
+                @Override
+                public void didLongPress(ChatMessageCell chatMessageCell6, float f, float f2) {
+                }
+
+                @Override
+                public void didLongPressBotButton(ChatMessageCell chatMessageCell6, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                }
+
+                @Override
+                public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC.Chat chat, int i3, float f, float f2) {
+                    return false;
+                }
+
+                @Override
+                public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell6, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                }
+
+                @Override
+                public boolean didLongPressPollOption(ChatMessageCell chatMessageCell6, TLRPC.PollAnswer pollAnswer) {
+                    return false;
+                }
+
+                @Override
+                public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell6, TLRPC.TodoItem todoItem) {
+                    return false;
+                }
+
+                @Override
+                public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell6, TLRPC.User user, float f, float f2) {
+                    return false;
+                }
+
+                @Override
+                public void didPressAboutRevenueSharingAds() {
+                }
+
+                @Override
+                public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressAdmin(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell6, AnimatedEmojiSpan animatedEmojiSpan) {
+                    return false;
+                }
+
+                @Override
+                public void didPressAppUpdateButton() {
+                }
+
+                @Override
+                public void didPressBoostCounter(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressBotButton(ChatMessageCell chatMessageCell6, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                }
+
+                @Override
+                public void didPressCancelSendButton(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressChannelAvatar(ChatMessageCell chatMessageCell6, TLRPC.Chat chat, int i3, float f, float f2, boolean z) {
+                }
+
+                @Override
+                public void didPressChannelRecommendation(ChatMessageCell chatMessageCell6, TLObject tLObject, boolean z) {
+                }
+
+                @Override
+                public void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressCodeCopy(ChatMessageCell chatMessageCell6, MessageObject.TextLayoutBlock textLayoutBlock) {
+                }
+
+                @Override
+                public void didPressCommentButton(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressCustomBotButton(ChatMessageCell chatMessageCell6, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                }
+
+                public void didPressDialogButton(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressEffect(ChatMessageCell chatMessageCell6) {
+                }
+
+                public void didPressEmojiStatus() {
+                }
+
+                @Override
+                public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell6, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                }
+
+                @Override
+                public void didPressFactCheck(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressFactCheckWhat(ChatMessageCell chatMessageCell6, int i3, int i4) {
+                }
+
+                @Override
+                public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell6, int i3) {
+                }
+
+                @Override
+                public void didPressGroupImage(ChatMessageCell chatMessageCell6, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
+                }
+
+                @Override
+                public void didPressHiddenForward(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressHint(ChatMessageCell chatMessageCell6, int i3) {
+                }
+
+                @Override
+                public void didPressImage(ChatMessageCell chatMessageCell6, float f, float f2, boolean z) {
+                }
+
+                @Override
+                public void didPressInstantButton(ChatMessageCell chatMessageCell6, int i3) {
+                }
+
+                @Override
+                public void didPressMoreChannelRecommendations(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressOther(ChatMessageCell chatMessageCell6, float f, float f2) {
+                }
+
+                @Override
+                public void didPressPollMedia(ChatMessageCell chatMessageCell6, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i3) {
+                }
+
+                @Override
+                public void didPressReaction(ChatMessageCell chatMessageCell6, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
+                }
+
+                @Override
+                public void didPressReplyMessage(ChatMessageCell chatMessageCell6, int i3, float f, float f2, boolean z) {
+                }
+
+                @Override
+                public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell6, TLRPC.Document document, float f, float f2) {
+                }
+
+                @Override
+                public void didPressShowMore(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressSideButton(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressSponsoredClose(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressSponsoredInfo(ChatMessageCell chatMessageCell6, float f, float f2) {
+                }
+
+                @Override
+                public void didPressSummarize(ChatMessageCell chatMessageCell6, boolean z) {
+                }
+
+                @Override
+                public void didPressTime(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public boolean didPressToDoButton(ChatMessageCell chatMessageCell6, TLRPC.TodoItem todoItem, boolean z) {
+                    return false;
+                }
+
+                public void didPressTopicButton(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didPressUrl(ChatMessageCell chatMessageCell6, CharacterStyle characterStyle, boolean z) {
+                }
+
+                @Override
+                public void didPressUserAvatar(ChatMessageCell chatMessageCell6, TLRPC.User user, float f, float f2, boolean z) {
+                }
+
+                @Override
+                public void didPressUserStatus(ChatMessageCell chatMessageCell6, TLRPC.User user, TLRPC.Document document, String str) {
+                }
+
+                @Override
+                public void didPressViaBot(ChatMessageCell chatMessageCell6, String str) {
+                }
+
+                @Override
+                public void didPressViaBotNotInline(ChatMessageCell chatMessageCell6, long j) {
+                }
+
+                @Override
+                public void didPressVoteButtons(ChatMessageCell chatMessageCell6, ArrayList arrayList, int i3, int i4, int i5) {
+                }
+
+                @Override
+                public void didPressWebPage(ChatMessageCell chatMessageCell6, TLRPC.WebPage webPage, String str, boolean z) {
+                    Browser.openUrl(chatMessageCell6.getContext(), str);
+                }
+
+                @Override
+                public void didQuickShareEnd(ChatMessageCell chatMessageCell6, float f, float f2) {
+                }
+
+                @Override
+                public void didQuickShareMove(ChatMessageCell chatMessageCell6, float f, float f2) {
+                }
+
+                @Override
+                public void didQuickShareStart(ChatMessageCell chatMessageCell6, float f, float f2) {
+                }
+
+                @Override
+                public void didStartVideoStream(MessageObject messageObject2) {
+                }
+
+                @Override
+                public void didTogglePollPreview(ChatMessageCell chatMessageCell6) {
+                }
+
+                @Override
+                public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell6, boolean z, Runnable runnable3) {
+                }
+
+                @Override
+                public boolean doNotShowLoadingReply(MessageObject messageObject2) {
+                    return Theme.ResourcesProvider.CC.$default$doNotShowLoadingReply(messageObject2);
+                }
+
+                @Override
+                public void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell6) {
+                }
+
+                public boolean drawingVideoPlayerContainer() {
+                    return false;
+                }
+
+                @Override
+                public void forceUpdate(ChatMessageCell chatMessageCell6, boolean z) {
+                }
+
+                @Override
+                public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell6, boolean z) {
+                }
+
+                @Override
+                public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell6) {
+                    return 0;
+                }
+
+                @Override
+                public String getAdminRank(long j) {
+                    return null;
+                }
+
+                @Override
+                public int getChatMode() {
+                    return 0;
+                }
+
+                @Override
+                public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                    return null;
+                }
+
+                @Override
+                public PinchToZoomHelper getPinchToZoomHelper() {
+                    return null;
+                }
+
+                @Override
+                public String getProgressLoadingBotButtonUrl(ChatMessageCell chatMessageCell6) {
+                    return null;
+                }
+
+                @Override
+                public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell6) {
+                    return null;
+                }
+
+                @Override
+                public TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
+                    return null;
+                }
+
+                @Override
+                public boolean hasSelectedMessages() {
+                    return false;
+                }
+
+                @Override
+                public void invalidateBlur() {
+                }
+
+                @Override
+                public boolean isAdmin(long j) {
+                    return false;
+                }
+
+                @Override
+                public boolean isLandscape() {
+                    return false;
+                }
+
+                @Override
+                public boolean isOwner(long j) {
+                    return false;
+                }
+
+                @Override
+                public boolean isProgressLoading(ChatMessageCell chatMessageCell6, int i3) {
+                    return false;
+                }
+
+                @Override
+                public boolean isReplyOrSelf() {
+                    return false;
+                }
+
+                @Override
+                public boolean keyboardIsOpened() {
+                    return false;
+                }
+
+                @Override
+                public void needOpenWebView(MessageObject messageObject2, String str, String str2, String str3, String str4, int i3, int i4) {
+                }
+
+                @Override
+                public boolean needPlayMessage(ChatMessageCell chatMessageCell6, MessageObject messageObject2, boolean z) {
+                    return false;
+                }
+
+                @Override
+                public void needReloadPolls() {
+                }
+
+                @Override
+                public void needShowPremiumBulletin(int i3) {
+                }
+
+                public void needShowPremiumFeatures(String str) {
+                }
+
+                @Override
+                public boolean onAccessibilityAction(int i3, Bundle bundle) {
+                    return false;
+                }
+
+                @Override
+                public void onDiceFinished() {
+                }
+
+                @Override
+                public boolean openArticlePhoto(ChatMessageCell chatMessageCell6, TL_iv.PageBlock pageBlock) {
+                    return false;
+                }
+
+                @Override
+                public void setShouldNotRepeatSticker(MessageObject messageObject2) {
+                }
+
+                @Override
+                public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell6, boolean z) {
+                    return false;
+                }
+
+                @Override
+                public boolean shouldRepeatSticker(MessageObject messageObject2) {
+                    return true;
+                }
+
+                public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell6) {
+                    return false;
+                }
+
+                public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell6) {
+                    return false;
+                }
+
+                @Override
+                public void videoTimerReached() {
+                }
+
+                @Override
+                public void forceUpdate(ChatMessageCell chatMessageCell6, boolean z, boolean z2) {
+                    forceUpdate(chatMessageCell6, z);
+                }
+            });
+            ChatMessageCell chatMessageCell6 = this.myCell;
+            MessageObject messageObject2 = this.messageObject;
+            MessageObject.GroupedMessages currentMessagesGroup = this.cell.getCurrentMessagesGroup();
+            ChatMessageCell chatMessageCell7 = this.cell;
+            chatMessageCell6.setMessageObject(messageObject2, currentMessagesGroup, chatMessageCell7.pinnedBottom, chatMessageCell7.pinnedTop, false);
+            if (!this.isRound) {
+                AudioVisualizerDrawable audioVisualizerDrawable = new AudioVisualizerDrawable();
+                this.audioVisualizerDrawable = audioVisualizerDrawable;
+                audioVisualizerDrawable.setParentView(this.myCell);
+                this.myCell.overrideAudioVisualizer(this.audioVisualizerDrawable);
+                if (this.myCell.getSeekBarWaveform() != null) {
+                    this.myCell.getSeekBarWaveform().setExplosionRate(this.openProgress);
+                }
+            }
+            this.hasTranslation = false;
+            this.containerView.addView(this.myCell, new FrameLayout.LayoutParams(this.cell.getWidth(), i2, 17));
+        } else {
+            iCeil = 360;
+        }
+        TextureView textureView = this.textureView;
+        if (textureView != null) {
+            this.containerView.removeView(textureView);
+            this.textureView = null;
+        }
+        if (this.isRound) {
+            this.renderedFirstFrame = false;
+            TextureView textureView2 = new TextureView(this.context);
+            this.textureView = textureView2;
+            this.containerView.addView(textureView2, 0, LayoutHelper.createFrame(iCeil, iCeil));
+        }
+        MediaController.getInstance().pauseByRewind();
+        VideoPlayer videoPlayer = this.player;
+        if (videoPlayer != null) {
+            videoPlayer.pause();
+            this.player.releasePlayer(true);
+            this.player = null;
+        }
+        ChatMessageCell chatMessageCell8 = this.cell;
+        if (chatMessageCell8 != null && chatMessageCell8.getMessageObject() != null) {
+            File pathToAttach = FileLoader.getInstance(this.cell.getMessageObject().currentAccount).getPathToAttach(this.cell.getMessageObject().getDocument());
+            if (pathToAttach != null && !pathToAttach.exists()) {
+                pathToAttach = new File(pathToAttach.getPath() + ".enc");
+            }
+            if ((pathToAttach == null || !pathToAttach.exists()) && (pathToAttach = FileLoader.getInstance(this.cell.getMessageObject().currentAccount).getPathToMessage(this.cell.getMessageObject().messageOwner)) != null && !pathToAttach.exists()) {
+                pathToAttach = new File(pathToAttach.getPath() + ".enc");
+            }
+            if ((pathToAttach == null || !pathToAttach.exists()) && this.cell.getMessageObject().messageOwner.attachPath != null) {
+                pathToAttach = new File(this.cell.getMessageObject().messageOwner.attachPath);
+            }
+            if (pathToAttach == null || !pathToAttach.exists()) {
+                return;
+            }
+            VideoPlayer videoPlayer2 = new VideoPlayer();
+            this.player = videoPlayer2;
+            videoPlayer2.setDelegate(new AnonymousClass5());
+            if (this.audioVisualizerDrawable != null) {
+                this.player.setAudioVisualizerDelegate(new VideoPlayer.AudioVisualizerDelegate() {
+                    @Override
+                    public boolean needUpdate() {
+                        return SecretVoicePlayer.this.audioVisualizerDrawable.getParentView() != null;
+                    }
+
+                    @Override
+                    public void onVisualizerUpdate(boolean z, boolean z2, float[] fArr) {
+                        SecretVoicePlayer.this.audioVisualizerDrawable.setWaveform(z, z2, fArr);
+                    }
+                });
+            }
+            if (this.isRound) {
+                this.player.setTextureView(this.textureView);
+            }
+            this.player.preparePlayer(Uri.fromFile(pathToAttach), "other");
+            this.player.play();
+            EarListener earListener = this.earListener;
+            if (earListener != null) {
+                earListener.attachPlayer(this.player);
+            }
+        }
+        HintView2 hintView2 = this.hintView;
+        if (hintView2 != null) {
+            this.containerView.removeView(hintView2);
+            this.hintView = null;
+        }
+        MessageObject messageObject3 = this.messageObject;
+        boolean z = messageObject3 != null && messageObject3.isOutOwner();
+        MessageObject messageObject4 = this.messageObject;
+        if (messageObject4 != null && messageObject4.getDialogId() != UserConfig.getInstance(this.messageObject.currentAccount).getClientUserId()) {
+            HintView2 hintView3 = new HintView2(this.context, 3);
+            this.hintView = hintView3;
+            hintView3.setMultilineText(true);
+            if (z) {
+                long dialogId = this.messageObject.getDialogId();
+                if (dialogId > 0) {
+                    TLRPC.User user = MessagesController.getInstance(this.messageObject.currentAccount).getUser(Long.valueOf(dialogId));
+                    if (user != null) {
+                        firstName = UserObject.getFirstName(user);
+                    } else {
+                        firstName = "";
+                    }
+                } else {
+                    TLRPC.Chat chat = MessagesController.getInstance(this.messageObject.currentAccount).getChat(Long.valueOf(-dialogId));
+                    if (chat != null) {
+                        firstName = chat.title;
+                    } else {
+                        firstName = "";
+                    }
+                }
+                this.hintView.setText(AndroidUtilities.replaceTags(LocaleController.formatString(this.isRound ? R.string.VideoOnceOutHint : R.string.VoiceOnceOutHint, firstName)));
+            } else {
+                this.hintView.setText(AndroidUtilities.replaceTags(LocaleController.getString(this.isRound ? R.string.VideoOnceHint : R.string.VoiceOnceHint)));
+            }
+            this.hintView.setRounding(12.0f);
+            this.hintView.setPadding(AndroidUtilities.dp((z || this.cell.pinnedBottom) ? 0.0f : 6.0f), 0, 0, 0);
+            if (this.isRound) {
+                this.hintView.setJointPx(0.5f, 0.0f);
+                this.hintView.setTextAlign(Layout.Alignment.ALIGN_CENTER);
+            } else {
+                this.hintView.setJointPx(0.0f, AndroidUtilities.dp(34.0f));
+                this.hintView.setTextAlign(Layout.Alignment.ALIGN_NORMAL);
+            }
+            this.hintView.setTextSize(14.0f);
+            HintView2 hintView4 = this.hintView;
+            hintView4.setMaxWidthPx(HintView2.cutInFancyHalf(hintView4.getText(), this.hintView.getTextPaint()));
+            if (this.isRound) {
+                this.containerView.addView(this.hintView, LayoutHelper.createFrame((int) ((this.cell.getWidth() / AndroidUtilities.density) * 0.6f), 150.0f, 17, 0.0f, (-75.0f) - (((this.cell.getHeight() + this.heightdiff) / AndroidUtilities.density) / 2.0f), 0.0f, 0.0f));
+            } else {
+                this.containerView.addView(this.hintView, LayoutHelper.createFrame((int) ((this.cell.getWidth() / AndroidUtilities.density) * 0.6f), 150.0f, 17, ((((this.cell.getWidth() * (-0.39999998f)) / 2.0f) + this.cell.getBoundsLeft()) / AndroidUtilities.density) + 1.0f, ((-75.0f) - ((this.cell.getHeight() / AndroidUtilities.density) / 2.0f)) - 8.0f, 0.0f, 0.0f));
+            }
+            this.hintView.show();
+        }
+        TextView textView = this.closeButton;
+        if (textView != null) {
+            this.containerView.removeView(textView);
+            this.closeButton = null;
+        }
+        TextView textView2 = new TextView(this.context);
+        this.closeButton = textView2;
+        textView2.setTextColor(-1);
+        this.closeButton.setTypeface(AndroidUtilities.bold());
+        if (Theme.currentTheme.isDark()) {
+            this.closeButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(64, 64, 64, 64, 553648127, 872415231, 872415231));
+        } else {
+            this.closeButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(64, 64, 64, 64, 771751936, 1140850688, 1140850688));
+        }
+        this.closeButton.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
+        ScaleStateListAnimator.apply(this.closeButton);
+        this.closeButton.setText(LocaleController.getString(z ? R.string.VoiceOnceClose : R.string.VoiceOnceDeleteClose));
+        this.closeButton.setOnClickListener(new SecretVoicePlayer$$ExternalSyntheticLambda1(this, i));
+        this.containerView.addView(this.closeButton, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, 18.0f));
+        if (z || (chatMessageCell2 = this.myCell) == null || chatMessageCell2.getMessageObject() == null || this.myCell.getMessageObject().messageOwner == null) {
+            return;
+        }
+        this.myCell.getMessageObject().messageOwner.media_unread = false;
+        this.myCell.invalidate();
+    }
+
+    @Override
+    public void show() {
+        if (AndroidUtilities.isSafeToShow(getContext())) {
+            super.show();
+            prepareBlur(this.cell);
+            this.setCellInvisible = true;
+            this.open = true;
+            animateOpenTo(true, null);
+            Runnable runnable = this.openAction;
+            if (runnable != null) {
+                AndroidUtilities.runOnUIThread(runnable);
+                this.openAction = null;
+            }
+            EarListener earListener = this.earListener;
+            if (earListener != null) {
+                earListener.attach();
+            }
         }
     }
 }

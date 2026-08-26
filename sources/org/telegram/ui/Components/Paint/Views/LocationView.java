@@ -3,8 +3,8 @@ package org.telegram.ui.Components.Paint.Views;
 import android.content.Context;
 import android.graphics.PointF;
 import android.view.ViewGroup;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import com.google.android.exoplayer2.util.Log;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
@@ -36,17 +36,17 @@ public final class LocationView extends EntityView {
     public static String deg(double d) {
         double dAbs = Math.abs(d);
         double dFloor = Math.floor(dAbs);
-        String strM = SurfaceContainer$$ExternalSyntheticOutline0.m((int) dFloor, "°", new StringBuilder(""));
+        String strM = Fragment$$ExternalSyntheticOutline0.m((int) dFloor, "°", new StringBuilder(""));
         double dFloor2 = Math.floor((dAbs - dFloor) * 60.0d);
-        StringBuilder sbM = Log.m(strM);
+        StringBuilder sbM = DiffUtil.m(strM);
         sbM.append(dFloor2 <= 0.0d ? "0" : "");
         sbM.append(dFloor2 < 10.0d ? "0" : "");
-        String strM2 = SurfaceContainer$$ExternalSyntheticOutline0.m((int) dFloor2, "'", sbM);
+        String strM2 = Fragment$$ExternalSyntheticOutline0.m((int) dFloor2, "'", sbM);
         double dFloor3 = Math.floor(Math.floor(dFloor2) * 60.0d);
-        StringBuilder sbM2 = Log.m(strM2);
+        StringBuilder sbM2 = DiffUtil.m(strM2);
         sbM2.append(dFloor3 <= 0.0d ? "0" : "");
         sbM2.append(dFloor3 < 10.0d ? "0" : "");
-        return SurfaceContainer$$ExternalSyntheticOutline0.m((int) dFloor3, "\"", sbM2);
+        return Fragment$$ExternalSyntheticOutline0.m((int) dFloor3, "\"", sbM2);
     }
 
     @Override

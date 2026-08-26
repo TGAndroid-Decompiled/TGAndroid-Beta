@@ -25,13 +25,13 @@ public final class BottomSheet$$ExternalSyntheticLambda7 implements View.OnClick
                 boolean zHasSubMenu = actionBarMenuItem.hasSubMenu();
                 ActionBar actionBar = actionBarMenu.parentActionBar;
                 if (!zHasSubMenu) {
-                    if (!actionBarMenuItem.isSearchField) {
+                    if (!actionBarMenuItem.isSearchField()) {
                         actionBarMenu.onItemClick(((Integer) view.getTag()).intValue());
                     } else {
                         actionBar.onSearchFieldVisibilityChanged(actionBarMenuItem.toggleSearch(true));
                     }
                 } else if (actionBar.actionBarMenuOnItemClick.canOpenMenu()) {
-                    actionBarMenuItem.toggleSubMenu(null, null);
+                    actionBarMenuItem.toggleSubMenu();
                 }
                 break;
             default:

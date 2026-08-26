@@ -166,7 +166,7 @@ public class OldVideoPlayerRewinder {
     private boolean isPlaying() {
         PhotoViewerWebView photoViewerWebView = this.webView;
         if (photoViewerWebView != null) {
-            return photoViewerWebView.isPlaying;
+            return photoViewerWebView.isPlaying();
         }
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null) {

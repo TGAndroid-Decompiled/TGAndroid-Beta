@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
@@ -13,85 +14,33 @@ import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.Theme;
 
-public final class Text {
-    public Layout.Alignment align;
-    public AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojis;
-    public int animatedEmojisCacheType;
-    public PorterDuffColorFilter animatedEmojisColorFilter;
-    public int animatedEmojisColorFilterColor;
-    public boolean drawAnimatedEmojis;
-    public LinearGradient ellipsizeGradient;
-    public Matrix ellipsizeMatrix;
-    public Paint ellipsizePaint;
-    public float ellipsizeWidth;
-    public boolean hackClipBounds;
-    public StaticLayout layout;
-    public float left;
-    public float lineSpacingAdd;
-    public int maxLines;
-    public float maxWidth;
+public class Text {
+    private Layout.Alignment align;
+    private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojis;
+    private int animatedEmojisCacheType;
+    private ColorFilter animatedEmojisColorFilter;
+    private int animatedEmojisColorFilterColor;
+    private boolean doNotSave;
+    private boolean drawAnimatedEmojis;
+    private LinearGradient ellipsizeGradient;
+    private Matrix ellipsizeMatrix;
+    private Paint ellipsizePaint;
+    private float ellipsizeWidth;
+    private boolean hackClipBounds;
+    private StaticLayout layout;
+    private float left;
+    private float lineSpacingAdd;
+    private int maxLines;
+    private float maxWidth;
     public final TextPaint paint;
-    public View parentView;
-    public int vertPad;
-    public float width;
-
-    public final class AnonymousClass1 implements View.OnAttachStateChangeListener {
-        public final int $r8$classId;
-        public final Object this$0;
-        public final Object val$view;
-
-        public AnonymousClass1(int i, Object obj, Object obj2) {
-            this.$r8$classId = i;
-            this.this$0 = obj;
-            this.val$view = obj2;
-        }
-
-        @Override
-        public final void onViewAttachedToWindow(View view) {
-            Object obj = this.this$0;
-            Object obj2 = this.val$view;
-            switch (this.$r8$classId) {
-                case 0:
-                    Text text = (Text) obj;
-                    text.animatedEmojis = AnimatedEmojiSpan.update(text.animatedEmojisCacheType, (View) obj2, text.animatedEmojis, text.layout);
-                    break;
-                default:
-                    BlurringShader.BlurManager blurManager = (BlurringShader.BlurManager) obj2;
-                    if (blurManager != null) {
-                        blurManager.holders.add((BlurringShader.StoryBlurDrawer) obj);
-                    }
-                    break;
-            }
-        }
-
-        @Override
-        public final void onViewDetachedFromWindow(View view) {
-            switch (this.$r8$classId) {
-                case 0:
-                    AnimatedEmojiSpan.release((View) this.val$view, ((Text) this.this$0).animatedEmojis);
-                    break;
-                default:
-                    BlurringShader.StoryBlurDrawer storyBlurDrawer = (BlurringShader.StoryBlurDrawer) this.this$0;
-                    BlurringShader.BlurManager blurManager = (BlurringShader.BlurManager) this.val$view;
-                    if (blurManager != null) {
-                        ArrayList arrayList = blurManager.holders;
-                        arrayList.remove(storyBlurDrawer);
-                        if (blurManager.invalidateHolders.isEmpty() && arrayList.isEmpty()) {
-                            blurManager.thumbBlurer.destroy();
-                        }
-                    }
-                    storyBlurDrawer.lastBitmap = null;
-                    Paint paint = storyBlurDrawer.paint;
-                    storyBlurDrawer.bitmapShader = null;
-                    paint.setShader(null);
-                    break;
-            }
-        }
-    }
+    private View parentView;
+    private int vertPad;
+    private float width;
 
     public Text(CharSequence charSequence, TextPaint textPaint) {
         this.maxWidth = 9999.0f;
@@ -103,59 +52,139 @@ public final class Text {
         setText(charSequence);
     }
 
-    public final void align() {
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
+    public Text align(Layout.Alignment alignment) {
         if (this.align != alignment) {
             this.align = alignment;
             setText(this.layout.getText());
         }
+        return this;
     }
 
-    public final void draw(float f, float f2, float f3, int i, Canvas canvas) {
-        if (this.layout == null) {
+    public float calculateRealWidth() {
+        float fMax = 0.0f;
+        for (int i = 0; i < this.layout.getLineCount(); i++) {
+            fMax = Math.max(fMax, this.layout.getLineWidth(i));
+        }
+        return fMax;
+    }
+
+    public void detach() {
+        AnimatedEmojiSpan.release(this.parentView, this.animatedEmojis);
+    }
+
+    public Text doNotSave() {
+        this.doNotSave = true;
+        return this;
+    }
+
+    public void draw(Canvas canvas, int i) {
+        StaticLayout staticLayout = this.layout;
+        if (staticLayout == null) {
             return;
         }
-        TextPaint textPaint = this.paint;
-        textPaint.setColor(i);
-        textPaint.linkColor = i;
-        int alpha = textPaint.getAlpha();
-        if (f3 != 1.0f) {
-            textPaint.setAlpha((int) (alpha * f3));
-        }
-        canvas.save();
-        canvas.translate(f, f2 - (this.maxLines > 1 ? 0.0f : this.layout.getHeight() / 2.0f));
-        draw(canvas);
-        canvas.restore();
-        textPaint.setAlpha(alpha);
+        draw(canvas, 0.0f, this.maxLines > 1 ? 0.0f : staticLayout.getHeight() / 2.0f, i, 1.0f);
     }
 
-    public final void ellipsize(float f) {
+    public Text ellipsize(float f) {
         this.ellipsizeWidth = f;
+        return this;
     }
 
-    public final float getCurrentWidth() {
+    public float getCurrentWidth() {
         return this.width;
     }
 
-    public final Paint.FontMetricsInt getFontMetricsInt() {
+    public Paint.FontMetricsInt getFontMetricsInt() {
         return this.paint.getFontMetricsInt();
     }
 
-    public final float getHeight() {
+    public float getHeight() {
         return this.layout.getHeight();
     }
 
-    public final CharSequence getText() {
+    public Layout getLayout() {
+        return this.layout;
+    }
+
+    public int getLineCount() {
+        return this.layout.getLineCount();
+    }
+
+    public CharSequence getText() {
         StaticLayout staticLayout = this.layout;
         return (staticLayout == null || staticLayout.getText() == null) ? "" : this.layout.getText();
     }
 
-    public final float getWidth() {
+    public float getTextSize() {
+        return this.paint.getTextSize();
+    }
+
+    public float getWidth() {
         float f = this.ellipsizeWidth;
         return f >= 0.0f ? Math.min(f, this.width) : this.width;
     }
 
-    public final void setText(CharSequence charSequence) {
+    public Text hackClipBounds() {
+        this.hackClipBounds = true;
+        return this;
+    }
+
+    public boolean isEmpty() {
+        StaticLayout staticLayout = this.layout;
+        return staticLayout == null || TextUtils.isEmpty(staticLayout.getText());
+    }
+
+    public boolean isMultiline() {
+        return this.maxLines > 1;
+    }
+
+    public Text lineSpacing(float f) {
+        if (this.lineSpacingAdd != f) {
+            this.lineSpacingAdd = f;
+            setText(this.layout.getText());
+        }
+        return this;
+    }
+
+    public Text multiline(int i) {
+        this.maxLines = i;
+        setText(this.layout.getText());
+        return this;
+    }
+
+    public Text setAlpha(int i) {
+        this.paint.setAlpha(i);
+        return this;
+    }
+
+    public Text setColor(int i) {
+        this.paint.setColor(i);
+        return this;
+    }
+
+    public Text setEmojiCacheType(int i) {
+        if (this.animatedEmojisCacheType != i) {
+            this.animatedEmojisCacheType = i;
+            if (this.drawAnimatedEmojis) {
+                AnimatedEmojiSpan.release(this.parentView, this.animatedEmojis);
+                this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, this.parentView, this.animatedEmojis, this.layout);
+            }
+        }
+        return this;
+    }
+
+    public Text setMaxWidth(float f) {
+        this.maxWidth = f;
+        setText(this.layout.getText());
+        return this;
+    }
+
+    public Text setShadow(float f) {
+        this.paint.setShadowLayer(AndroidUtilities.dp(1.0f), 0.0f, AndroidUtilities.dp(0.66f), Theme.multAlpha(f, -16777216));
+        return this;
+    }
+
+    public void setText(CharSequence charSequence) {
         if (this.maxLines <= 1 || Build.VERSION.SDK_INT < 23) {
             this.layout = new StaticLayout(AndroidUtilities.replaceNewLines(charSequence), this.paint, (int) Math.max(this.maxWidth, 1.0f), this.align, 1.0f, this.lineSpacingAdd, false);
         } else {
@@ -179,18 +208,61 @@ public final class Text {
         this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, this.parentView, this.animatedEmojis, this.layout);
     }
 
-    public final void supportAnimatedEmojis(View view) {
-        int i = 0;
+    public Text setTextSizePx(float f) {
+        this.paint.setTextSize(f);
+        return this;
+    }
+
+    public Text setVerticalClipPadding(int i) {
+        this.vertPad = i;
+        return this;
+    }
+
+    public Text supportAnimatedEmojis(final View view) {
         this.drawAnimatedEmojis = true;
         this.parentView = view;
         if (view.isAttachedToWindow()) {
             this.animatedEmojis = AnimatedEmojiSpan.update(this.animatedEmojisCacheType, view, this.animatedEmojis, this.layout);
         }
-        view.addOnAttachStateChangeListener(new AnonymousClass1(i, this, view));
+        view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+            @Override
+            public void onViewAttachedToWindow(View view2) {
+                Text text = Text.this;
+                text.animatedEmojis = AnimatedEmojiSpan.update(text.animatedEmojisCacheType, view, Text.this.animatedEmojis, Text.this.layout);
+            }
+
+            @Override
+            public void onViewDetachedFromWindow(View view2) {
+                AnimatedEmojiSpan.release(view, Text.this.animatedEmojis);
+            }
+        });
+        return this;
     }
 
-    public Text(String str, float f) {
-        this(str, f, null);
+    public void draw(Canvas canvas, float f, float f2, int i, float f3) {
+        if (this.layout == null) {
+            return;
+        }
+        this.paint.setColor(i);
+        TextPaint textPaint = this.paint;
+        textPaint.linkColor = i;
+        int alpha = textPaint.getAlpha();
+        if (f3 != 1.0f) {
+            this.paint.setAlpha((int) (alpha * f3));
+        }
+        if (!this.doNotSave) {
+            canvas.save();
+        }
+        canvas.translate(f, f2 - (isMultiline() ? 0.0f : this.layout.getHeight() / 2.0f));
+        draw(canvas);
+        if (!this.doNotSave) {
+            canvas.restore();
+        }
+        this.paint.setAlpha(alpha);
+    }
+
+    public Text(CharSequence charSequence, float f) {
+        this(charSequence, f, null);
     }
 
     public Text(CharSequence charSequence, float f, Typeface typeface) {
@@ -206,47 +278,58 @@ public final class Text {
         setText(charSequence);
     }
 
-    public final void draw(Canvas canvas, float f, float f2, float f3) {
+    public void draw(Canvas canvas, float f, float f2) {
+        draw(canvas, f, f2, 1.0f);
+    }
+
+    public void draw(Canvas canvas, float f, float f2, float f3) {
         if (this.layout == null) {
             return;
         }
-        canvas.save();
+        if (!this.doNotSave) {
+            canvas.save();
+        }
         canvas.translate(f, f2 - (this.maxLines > 1 ? 0.0f : this.layout.getHeight() / 2.0f));
-        TextPaint textPaint = this.paint;
-        int alpha = textPaint.getAlpha();
-        textPaint.setAlpha((int) (alpha * f3));
+        int alpha = this.paint.getAlpha();
+        this.paint.setAlpha((int) (alpha * f3));
         draw(canvas);
-        textPaint.setAlpha(alpha);
+        this.paint.setAlpha(alpha);
+        if (this.doNotSave) {
+            return;
+        }
         canvas.restore();
     }
 
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         StaticLayout staticLayout = this.layout;
         if (staticLayout == null) {
             return;
         }
-        float f = this.ellipsizeWidth;
-        if (f >= 0.0f && this.width > f) {
-            canvas.saveLayerAlpha(0.0f, -this.vertPad, f - 1.0f, staticLayout.getHeight() + this.vertPad, 255, 31);
+        if (!this.doNotSave) {
+            float f = this.ellipsizeWidth;
+            if (f >= 0.0f && this.width > f) {
+                canvas.saveLayerAlpha(0.0f, -this.vertPad, f - 1.0f, staticLayout.getHeight() + this.vertPad, 255, 31);
+            }
         }
         canvas.save();
         canvas.translate(-this.left, 0.0f);
-        boolean z = this.hackClipBounds;
-        TextPaint textPaint = this.paint;
-        if (z) {
-            canvas.drawText(this.layout.getText().toString(), 0.0f, -textPaint.getFontMetricsInt().ascent, textPaint);
+        if (this.hackClipBounds) {
+            canvas.drawText(this.layout.getText().toString(), 0.0f, -this.paint.getFontMetricsInt().ascent, this.paint);
         } else {
             this.layout.draw(canvas);
         }
         if (this.drawAnimatedEmojis) {
-            if (this.animatedEmojisColorFilter == null || textPaint.getColor() != this.animatedEmojisColorFilterColor) {
-                int color = textPaint.getColor();
+            if (this.animatedEmojisColorFilter == null || this.paint.getColor() != this.animatedEmojisColorFilterColor) {
+                int color = this.paint.getColor();
                 this.animatedEmojisColorFilterColor = color;
                 this.animatedEmojisColorFilter = new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN);
             }
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.layout, this.animatedEmojis, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.animatedEmojisColorFilter);
         }
         canvas.restore();
+        if (this.doNotSave) {
+            return;
+        }
         float f2 = this.ellipsizeWidth;
         if (f2 < 0.0f || this.width <= f2) {
             return;

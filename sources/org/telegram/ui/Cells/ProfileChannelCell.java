@@ -1,6 +1,5 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
@@ -9,9 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzkh;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -23,6 +20,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline1;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -31,19 +30,18 @@ import org.telegram.ui.Components.ClickableAnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingDrawable;
-import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 
 public abstract class ProfileChannelCell extends FrameLayout implements Theme.Colorable {
     public final DialogCell dialogCell;
-    public final TextView headerView;
-    public boolean loading;
-    public final AnimatedFloat loadingAlpha;
-    public final LoadingDrawable loadingDrawable;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public boolean set;
-    public final ClickableAnimatedTextView subscribersView;
+    private final TextView headerView;
+    private boolean loading;
+    private AnimatedFloat loadingAlpha;
+    private final LoadingDrawable loadingDrawable;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private boolean set;
+    private final AnimatedTextView subscribersView;
 
     public final class ChannelMessageFetcher {
         public long channel_id;
@@ -111,21 +109,17 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
         final Context context = baseFragment.getContext();
         Theme.ResourcesProvider resourceProvider = baseFragment.getResourceProvider();
         this.resourcesProvider = resourceProvider;
-        LinearLayout linearLayoutM = zzkf.m(context, 0);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context);
         addView(linearLayoutM, LayoutHelper.createFrame(-1, -2.0f, 55, 16.66f, 11.6f, 16.66f, 0.0f));
         TextView textView = new TextView(context);
         this.headerView = textView;
-        zzkh.m(14.0f, textView);
+        AccountFrozenAlert$$ExternalSyntheticOutline1.m(14.0f, 1, textView);
         textView.setText(LocaleController.getString(R.string.ProfileChannel));
         linearLayoutM.addView(textView, LayoutHelper.createLinear(-2, -2, 51));
         ClickableAnimatedTextView clickableAnimatedTextView = new ClickableAnimatedTextView(context);
         this.subscribersView = clickableAnimatedTextView;
-        clickableAnimatedTextView.getDrawable().setHacks(true, true);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = clickableAnimatedTextView.drawable;
-        animatedTextDrawable.moveAmplitude = 0.3f;
-        animatedTextDrawable.animateDuration = 165L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        clickableAnimatedTextView.getDrawable().setHacks(true, true, true);
+        clickableAnimatedTextView.setAnimationProperties(0.3f, 0L, 165L, cubicBezierInterpolator);
         clickableAnimatedTextView.setTypeface(AndroidUtilities.bold());
         clickableAnimatedTextView.setTextSize(AndroidUtilities.dp(11.0f));
         clickableAnimatedTextView.setPadding(AndroidUtilities.dp(4.33f), 0, AndroidUtilities.dp(4.33f), 0);
@@ -134,7 +128,6 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
         DialogCell dialogCell = new DialogCell(null, context, true, UserConfig.selectedAccount, resourceProvider);
         this.dialogCell = dialogCell;
         dialogCell.setBackgroundColor(0);
-        final ProfileActivity.ListAdapter.AnonymousClass10 anonymousClass10 = (ProfileActivity.ListAdapter.AnonymousClass10) this;
         dialogCell.setDialogCellDelegate(new DialogCell.DialogCellDelegate() {
             @Override
             public final boolean canClickButtonInside() {
@@ -165,15 +158,15 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
                         arrayList2.add(Long.valueOf(peerDialogId));
                     }
                 }
-                baseFragment2.getOrCreateStoryViewer().open(UserConfig.selectedAccount, context, null, arrayList2, 0, null, null, new StoriesListPlaceProvider(anonymousClass10), false);
+                baseFragment2.getOrCreateStoryViewer().open(UserConfig.selectedAccount, context, null, arrayList2, 0, null, null, new StoriesListPlaceProvider(ProfileChannelCell.this), false);
             }
 
             @Override
-            public final void openStory(DialogCell dialogCell2) {
+            public final void openStory(DialogCell dialogCell2, Runnable runnable) {
                 BaseFragment baseFragment2 = baseFragment;
                 if (baseFragment2.getMessagesController().getStoriesController().hasStories(dialogCell2.getDialogId())) {
                     baseFragment2.getOrCreateStoryViewer().getClass();
-                    baseFragment2.getOrCreateStoryViewer().open(baseFragment2.getContext(), dialogCell2.getDialogId(), new StoriesListPlaceProvider(anonymousClass10));
+                    baseFragment2.getOrCreateStoryViewer().open(baseFragment2.getContext(), dialogCell2.getDialogId(), new StoriesListPlaceProvider(ProfileChannelCell.this));
                 }
             }
 
@@ -184,33 +177,31 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
         dialogCell.avatarStart = 15;
         dialogCell.messagePaddingStart = 83;
         addView(dialogCell, LayoutHelper.createFrame(-1, -2, 87));
-        updateColors$1();
+        updateColors();
         setWillNotDraw(false);
         LoadingDrawable loadingDrawable = new LoadingDrawable();
         this.loadingDrawable = loadingDrawable;
         int i = Theme.key_listSelector;
         loadingDrawable.setColors(Theme.multAlpha(1.25f, Theme.getColor(i, resourceProvider)), Theme.multAlpha(0.8f, Theme.getColor(i, resourceProvider)));
-        loadingDrawable.setRadii(AndroidUtilities.dp(8.0f));
+        loadingDrawable.setRadiiDp(8.0f);
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         float f = this.loadingAlpha.set(this.loading);
         if (f > 0.0f) {
-            LoadingDrawable loadingDrawable = this.loadingDrawable;
-            loadingDrawable.setAlpha((int) (f * 255.0f));
+            this.loadingDrawable.setAlpha((int) (f * 255.0f));
             RectF rectF = AndroidUtilities.rectTmp;
-            DialogCell dialogCell = this.dialogCell;
-            rectF.set(dialogCell.getX() + AndroidUtilities.dp(dialogCell.messagePaddingStart + 6), dialogCell.getY() + AndroidUtilities.dp(38.0f), (getWidth() * 0.5f) + dialogCell.getX() + AndroidUtilities.dp(dialogCell.messagePaddingStart + 6), dialogCell.getY() + AndroidUtilities.dp(46.33f));
-            loadingDrawable.setBounds(rectF);
-            loadingDrawable.draw(canvas);
-            rectF.set(dialogCell.getX() + AndroidUtilities.dp(dialogCell.messagePaddingStart + 6), dialogCell.getY() + AndroidUtilities.dp(56.0f), (getWidth() * 0.36f) + dialogCell.getX() + AndroidUtilities.dp(dialogCell.messagePaddingStart + 6), dialogCell.getY() + AndroidUtilities.dp(64.33f));
-            loadingDrawable.setBounds(rectF);
-            loadingDrawable.draw(canvas);
-            rectF.set(((dialogCell.getX() + dialogCell.getWidth()) - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(43.0f), dialogCell.getY() + AndroidUtilities.dp(12.0f), (dialogCell.getX() + dialogCell.getWidth()) - AndroidUtilities.dp(16.0f), dialogCell.getY() + AndroidUtilities.dp(20.33f));
-            loadingDrawable.setBounds(rectF);
-            loadingDrawable.draw(canvas);
+            rectF.set(this.dialogCell.getX() + AndroidUtilities.dp(this.dialogCell.messagePaddingStart + 6), this.dialogCell.getY() + AndroidUtilities.dp(38.0f), (getWidth() * 0.5f) + this.dialogCell.getX() + AndroidUtilities.dp(this.dialogCell.messagePaddingStart + 6), this.dialogCell.getY() + AndroidUtilities.dp(46.33f));
+            this.loadingDrawable.setBounds(rectF);
+            this.loadingDrawable.draw(canvas);
+            rectF.set(this.dialogCell.getX() + AndroidUtilities.dp(this.dialogCell.messagePaddingStart + 6), this.dialogCell.getY() + AndroidUtilities.dp(56.0f), (getWidth() * 0.36f) + this.dialogCell.getX() + AndroidUtilities.dp(this.dialogCell.messagePaddingStart + 6), this.dialogCell.getY() + AndroidUtilities.dp(64.33f));
+            this.loadingDrawable.setBounds(rectF);
+            this.loadingDrawable.draw(canvas);
+            rectF.set(((this.dialogCell.getX() + this.dialogCell.getWidth()) - AndroidUtilities.dp(16.0f)) - AndroidUtilities.dp(43.0f), this.dialogCell.getY() + AndroidUtilities.dp(12.0f), (this.dialogCell.getX() + this.dialogCell.getWidth()) - AndroidUtilities.dp(16.0f), this.dialogCell.getY() + AndroidUtilities.dp(20.33f));
+            this.loadingDrawable.setBounds(rectF);
+            this.loadingDrawable.draw(canvas);
             invalidate();
         }
     }
@@ -220,26 +211,24 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(102.0f), 1073741824));
     }
 
-    public final void set(ArrayList arrayList, TLRPC.Chat chat) {
+    public abstract int processColor(int i);
+
+    public void set(TLRPC.Chat chat, ArrayList<MessageObject> arrayList) {
         String shortNumber;
         boolean z = this.set;
         boolean z2 = chat == null || chat.participants_count > 0;
-        ClickableAnimatedTextView clickableAnimatedTextView = this.subscribersView;
-        ValueAnimator valueAnimator = clickableAnimatedTextView.drawable.animator;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        clickableAnimatedTextView.setPivotX(0.0f);
+        this.subscribersView.cancelAnimation();
+        this.subscribersView.setPivotX(0.0f);
         if (z) {
-            clickableAnimatedTextView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.8f).scaleY(z2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
+            this.subscribersView.animate().alpha(z2 ? 1.0f : 0.0f).scaleX(z2 ? 1.0f : 0.8f).scaleY(z2 ? 1.0f : 0.8f).setDuration(420L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).start();
         } else {
-            clickableAnimatedTextView.setAlpha(z2 ? 1.0f : 0.0f);
-            clickableAnimatedTextView.setScaleX(z2 ? 1.0f : 0.0f);
-            clickableAnimatedTextView.setScaleY(z2 ? 1.0f : 0.0f);
+            this.subscribersView.setAlpha(z2 ? 1.0f : 0.0f);
+            this.subscribersView.setScaleX(z2 ? 1.0f : 0.0f);
+            this.subscribersView.setScaleY(z2 ? 1.0f : 0.0f);
         }
         if (chat != null) {
             int[] iArr = new int[1];
@@ -250,59 +239,35 @@ public abstract class ProfileChannelCell extends FrameLayout implements Theme.Co
             } else {
                 shortNumber = LocaleController.formatShortNumber(chat.participants_count, iArr);
             }
-            clickableAnimatedTextView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), shortNumber), true, true);
+            this.subscribersView.setText(LocaleController.formatPluralString("Subscribers", iArr[0], new Object[0]).replace(String.format("%d", Integer.valueOf(iArr[0])), shortNumber), true);
             boolean z3 = arrayList == null || arrayList.isEmpty();
             this.loading = z3;
-            DialogCell dialogCell = this.dialogCell;
             if (z3) {
-                dialogCell.setDialog(-chat.id, null, 0, false, z);
+                this.dialogCell.setDialog(-chat.id, null, 0, false, z);
             } else {
-                MessageObject messageObject = (MessageObject) zziq.m(1, arrayList);
-                long j = -chat.id;
-                int i2 = messageObject.messageOwner.date;
-                if (dialogCell.currentDialogId != j) {
-                    dialogCell.lastStatusDrawableParams = -1;
-                }
-                dialogCell.currentDialogId = j;
-                dialogCell.lastDialogChangedTime = System.currentTimeMillis();
-                dialogCell.message = messageObject;
-                dialogCell.useMeForMyMessages = false;
-                dialogCell.isDialogCell = false;
-                dialogCell.lastMessageDate = i2;
-                int i3 = messageObject.messageOwner.edit_date;
-                dialogCell.unreadCount = 0;
-                dialogCell.markUnread = false;
-                dialogCell.messageId = messageObject.getId();
-                dialogCell.mentionCount = 0;
-                dialogCell.reactionMentionCount = 0;
-                dialogCell.pollVotesMentionCount = 0;
-                dialogCell.lastUnreadState = messageObject.isUnread();
-                dialogCell.groupMessages = arrayList;
-                MessageObject messageObject2 = dialogCell.message;
-                if (messageObject2 != null) {
-                    dialogCell.lastSendState = messageObject2.messageOwner.send_state;
-                }
-                dialogCell.update(0, z);
+                MessageObject messageObject = (MessageObject) zzin.m(1, arrayList);
+                this.dialogCell.setDialog(-chat.id, messageObject, arrayList, messageObject.messageOwner.date, false, z);
             }
         }
         if (!z) {
+            z = z;
             this.loadingAlpha.set(this.loading, true);
         }
+        z = z;
         invalidate();
         this.set = true;
     }
 
     @Override
-    public final void updateColors$1() {
-        int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, this.resourcesProvider);
-        ClickableAnimatedTextView clickableAnimatedTextView = this.subscribersView;
-        clickableAnimatedTextView.setTextColor(color);
-        clickableAnimatedTextView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), Theme.multAlpha(0.1f, color)));
-        this.headerView.setTextColor(color);
+    public void updateColors() {
+        int iProcessColor = processColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, this.resourcesProvider));
+        this.subscribersView.setTextColor(iProcessColor);
+        this.subscribersView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), Theme.multAlpha(0.1f, iProcessColor)));
+        this.headerView.setTextColor(iProcessColor);
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
+    public boolean verifyDrawable(Drawable drawable) {
         return this.loadingDrawable == drawable || super.verifyDrawable(drawable);
     }
 }

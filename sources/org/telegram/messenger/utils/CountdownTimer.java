@@ -1,11 +1,11 @@
 package org.telegram.messenger.utils;
 
-import androidx.activity.ComponentDialog$$ExternalSyntheticLambda1;
+import androidx.core.app.ActivityCompat$$ExternalSyntheticLambda0;
 import org.telegram.messenger.AndroidUtilities;
 
 public final class CountdownTimer {
     public final Callback callback;
-    public final ComponentDialog$$ExternalSyntheticLambda1 doUpdate = new ComponentDialog$$ExternalSyntheticLambda1(this, 25);
+    public final ActivityCompat$$ExternalSyntheticLambda0 doUpdate = new ActivityCompat$$ExternalSyntheticLambda0(this, 24);
     public boolean isRunning;
     public long seconds;
 
@@ -22,14 +22,14 @@ public final class CountdownTimer {
             return;
         }
         this.seconds = j;
-        ComponentDialog$$ExternalSyntheticLambda1 componentDialog$$ExternalSyntheticLambda1 = this.doUpdate;
+        ActivityCompat$$ExternalSyntheticLambda0 activityCompat$$ExternalSyntheticLambda0 = this.doUpdate;
         if (j <= 0) {
             this.isRunning = false;
-            AndroidUtilities.cancelRunOnUIThread(componentDialog$$ExternalSyntheticLambda1);
+            AndroidUtilities.cancelRunOnUIThread(activityCompat$$ExternalSyntheticLambda0);
         } else {
             this.isRunning = true;
-            AndroidUtilities.cancelRunOnUIThread(componentDialog$$ExternalSyntheticLambda1);
-            AndroidUtilities.runOnUIThread(componentDialog$$ExternalSyntheticLambda1, 1000L);
+            AndroidUtilities.cancelRunOnUIThread(activityCompat$$ExternalSyntheticLambda0);
+            AndroidUtilities.runOnUIThread(activityCompat$$ExternalSyntheticLambda0, 1000L);
         }
     }
 }

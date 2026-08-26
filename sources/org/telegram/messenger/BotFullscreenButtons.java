@@ -81,7 +81,7 @@ public class BotFullscreenButtons extends View {
             Path path = new Path();
             this.downloadPath = path;
             this.downloading = false;
-            this.animatedDownloading = new AnimatedFloat(new ANRDetector$$ExternalSyntheticLambda0(this, 14), 420L, CubicBezierInterpolator.EASE_OUT_QUINT, 0);
+            this.animatedDownloading = new AnimatedFloat(new ANRDetector$$ExternalSyntheticLambda0(this, 14), 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.start = System.currentTimeMillis();
             this.drawable = context.getResources().getDrawable(R.drawable.ic_ab_other).mutate();
             paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(1.0f)));
@@ -176,17 +176,17 @@ public class BotFullscreenButtons extends View {
         this.downloadPath = path;
         this.insets = new RectF();
         this.leftMenu = new RectF();
-        this.nullBounce = new ButtonBounce(null, 1.0f, 5.0f);
+        this.nullBounce = new ButtonBounce(null);
         this.closeRect = new RectF();
         this.closeRectArea = new RectF();
-        this.closeBounce = new ButtonBounce(this, 1.0f, 5.0f);
+        this.closeBounce = new ButtonBounce(this);
         this.rightMenu = new RectF();
         this.collapseRect = new RectF();
         this.collapseClickRect = new RectF();
-        this.collapseBounce = new ButtonBounce(this, 1.0f, 5.0f);
+        this.collapseBounce = new ButtonBounce(this);
         this.menuRect = new RectF();
         this.menuClickRect = new RectF();
-        this.menuBounce = new ButtonBounce(this, 1.0f, 5.0f);
+        this.menuBounce = new ButtonBounce(this);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatedBack = new AnimatedFloat(this, 0L, 320L, cubicBezierInterpolator);
         this.preview = true;
@@ -240,7 +240,7 @@ public class BotFullscreenButtons extends View {
     @Override
     public void onDraw(Canvas canvas) {
         float f;
-        float fDp;
+        float currentWidth;
         float f2;
         float f3;
         float f4;
@@ -255,10 +255,10 @@ public class BotFullscreenButtons extends View {
         RectF rectF2 = this.rightMenu;
         rectF.set(rectF2.left, rectF2.top, rectF2.centerX(), this.rightMenu.bottom);
         RectF rectF3 = this.collapseClickRect;
-        float fDp2 = this.collapseRect.left - AndroidUtilities.dp(8.0f);
-        float fDp3 = this.collapseRect.top - AndroidUtilities.dp(8.0f);
+        float fDp = this.collapseRect.left - AndroidUtilities.dp(8.0f);
+        float fDp2 = this.collapseRect.top - AndroidUtilities.dp(8.0f);
         RectF rectF4 = this.collapseRect;
-        rectF3.set(fDp2, fDp3, rectF4.right, rectF4.bottom + AndroidUtilities.dp(8.0f));
+        rectF3.set(fDp, fDp2, rectF4.right, rectF4.bottom + AndroidUtilities.dp(8.0f));
         RectF rectF5 = this.menuRect;
         float fCenterX = this.rightMenu.centerX();
         RectF rectF6 = this.rightMenu;
@@ -268,23 +268,23 @@ public class BotFullscreenButtons extends View {
         rectF7.set(rectF8.left, rectF8.top - AndroidUtilities.dp(8.0f), this.menuRect.right + AndroidUtilities.dp(8.0f), this.menuRect.bottom + AndroidUtilities.dp(8.0f));
         Path path = this.backgroundPath;
         RectF rectF9 = this.rightMenu;
+        float fDp3 = AndroidUtilities.dp(15.0f);
         float fDp4 = AndroidUtilities.dp(15.0f);
-        float fDp5 = AndroidUtilities.dp(15.0f);
         Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF9, fDp4, fDp5, direction);
+        path.addRoundRect(rectF9, fDp3, fDp4, direction);
         float f5 = this.animatedBack.set(this.back);
         float f6 = this.animatedPreview.set(this.preview);
-        float fDp6 = (this.rightMenu.left - AndroidUtilities.dp(18.0f)) - (this.insets.left + AndroidUtilities.dp(38.0f));
+        float fDp5 = (this.rightMenu.left - AndroidUtilities.dp(18.0f)) - (this.insets.left + AndroidUtilities.dp(38.0f));
         Text text = this.previewText;
         if (text == null) {
-            fDp = 0.0f;
+            currentWidth = 0.0f;
             f = 18.0f;
         } else {
             f = 18.0f;
-            fDp = text.width + AndroidUtilities.dp(this.verifiedBackground != null ? 30.0f : 12.0f);
+            currentWidth = text.getCurrentWidth() + AndroidUtilities.dp(this.verifiedBackground != null ? 30.0f : 12.0f);
         }
-        float fMin = Math.min(fDp6, fDp);
-        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.width, this.backText.width, f5) + AndroidUtilities.dp(12.0f), fMin, f6), this.insets.top + AndroidUtilities.dp(38.0f));
+        float fMin = Math.min(fDp5, currentWidth);
+        this.leftMenu.set(this.insets.left + AndroidUtilities.dp(8.0f), this.insets.top + AndroidUtilities.dp(8.0f), this.insets.left + AndroidUtilities.dp(38.0f) + AndroidUtilities.lerp(AndroidUtilities.lerp(this.closeText.getCurrentWidth(), this.backText.getCurrentWidth(), f5) + AndroidUtilities.dp(12.0f), fMin, f6), this.insets.top + AndroidUtilities.dp(38.0f));
         RectF rectF10 = this.closeRect;
         RectF rectF11 = this.leftMenu;
         float f7 = rectF11.left;
@@ -299,16 +299,16 @@ public class BotFullscreenButtons extends View {
             canvas.drawPath(this.backgroundPath, this.backgroundPaint);
         } else {
             if (this.blurNode == null) {
-                RenderNode renderNodeM1059m = Theme$$ExternalSyntheticApiModelOutline3.m1059m();
-                this.blurNode = renderNodeM1059m;
+                RenderNode renderNodeM1065m = Theme$$ExternalSyntheticApiModelOutline3.m1065m();
+                this.blurNode = renderNodeM1065m;
+                float fDp6 = AndroidUtilities.dp(f);
                 float fDp7 = AndroidUtilities.dp(f);
-                float fDp8 = AndroidUtilities.dp(f);
                 Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                renderNodeM1059m.setRenderEffect(RenderEffect.createBlurEffect(fDp7, fDp8, Shader.TileMode.CLAMP));
+                renderNodeM1065m.setRenderEffect(RenderEffect.createBlurEffect(fDp6, fDp7, Shader.TileMode.CLAMP));
             }
             RenderNode renderNodeM = AndroidUtilities$$ExternalSyntheticApiModelOutline5.m(this.parentRenderNode);
             f2 = 16.0f;
-            this.blurNode.setPosition(0, 0, BotFullscreenButtons$$ExternalSyntheticOutline1.m(renderNodeM.getWidth(), 16.0f, 1), Math.max(1, (int) Math.min(this.insets.top + AndroidUtilities.dp(46.0f), renderNodeM.getHeight())));
+            this.blurNode.setPosition(0, 0, BotFullscreenButtons$$ExternalSyntheticOutline1.m(16.0f, renderNodeM.getWidth(), 1), Math.max(1, (int) Math.min(this.insets.top + AndroidUtilities.dp(46.0f), renderNodeM.getHeight())));
             RecordingCanvas recordingCanvasBeginRecording = this.blurNode.beginRecording();
             recordingCanvasBeginRecording.translate(-AndroidUtilities.dp(8.0f), 0.0f);
             recordingCanvasBeginRecording.drawRenderNode(renderNodeM);
@@ -336,25 +336,23 @@ public class BotFullscreenButtons extends View {
             canvas.drawLine(0.0f, 0.0f, AndroidUtilities.dp(11.6f) * f5, 0.0f, this.iconStrokePaint);
         }
         canvas.restore();
-        float fDp9 = (this.leftMenu.left + AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(10.0f);
+        float fDp8 = (this.leftMenu.left + AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(10.0f);
         RectF rectF12 = this.leftMenu;
         float f9 = rectF12.top;
         float f10 = rectF12.right;
         float f11 = rectF12.bottom;
         Canvas canvas2 = canvas;
-        canvas2.saveLayerAlpha(fDp9, f9, f10, f11, 255, 31);
+        canvas2.saveLayerAlpha(fDp8, f9, f10, f11, 255, 31);
         if (f6 <= 0.0f || this.previewText == null) {
             f3 = f6;
             f4 = 1.0f;
         } else {
             canvas2.save();
             canvas2.translate(BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, f6, fMin, this.leftMenu.left + AndroidUtilities.dp(30.0f)), this.leftMenu.centerY());
-            Text text2 = this.previewText;
-            text2.ellipsizeWidth = ((this.leftMenu.right - AndroidUtilities.dp(this.verifiedBackground != null ? 30.0f : 12.0f)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f;
             f4 = 1.0f;
-            text2.draw(0.0f, 0.0f, f6, -1, canvas);
-            f3 = f6;
+            this.previewText.ellipsize(((this.leftMenu.right - AndroidUtilities.dp(this.verifiedBackground != null ? 30.0f : 12.0f)) - (this.leftMenu.left + AndroidUtilities.dp(30.0f))) + 2.0f).draw(canvas, 0.0f, 0.0f, -1, f6);
             canvas2 = canvas;
+            f3 = f6;
             canvas2.translate(this.previewText.getWidth() + AndroidUtilities.dp(5.0f), 0.0f);
             int iDp = AndroidUtilities.dp(f2);
             Drawable drawable = this.verifiedBackground;
@@ -370,9 +368,9 @@ public class BotFullscreenButtons extends View {
                 this.verifiedForeground.draw(canvas2);
             }
             RectF rectF13 = AndroidUtilities.rectTmp;
-            float fDp10 = (this.leftMenu.left + AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(10.0f);
+            float fDp9 = (this.leftMenu.left + AndroidUtilities.dp(30.0f)) - AndroidUtilities.dp(10.0f);
             RectF rectF14 = this.leftMenu;
-            rectF13.set(fDp10, rectF14.top, rectF14.left + AndroidUtilities.dp(30.0f), this.leftMenu.bottom);
+            rectF13.set(fDp9, rectF14.top, rectF14.left + AndroidUtilities.dp(30.0f), this.leftMenu.bottom);
             this.previewClip.draw(canvas2, rectF13, 2, 1.0f);
             canvas2.restore();
         }
@@ -382,10 +380,10 @@ public class BotFullscreenButtons extends View {
             canvas2.scale(scale2, scale2, this.closeRect.centerX(), this.closeRect.centerY());
             float f12 = f4 - f5;
             if (f12 > 0.0f) {
-                this.closeText.draw(((this.closeRect.left + AndroidUtilities.dp(30.0f)) - (AndroidUtilities.dp(12.0f) * f5)) + (AndroidUtilities.dp(32.0f) * f3), this.closeRect.centerY(), (f4 - f3) * f12, -1, canvas);
+                this.closeText.draw(canvas, (AndroidUtilities.dp(32.0f) * f3) + ((this.closeRect.left + AndroidUtilities.dp(30.0f)) - (AndroidUtilities.dp(12.0f) * f5)), this.closeRect.centerY(), -1, (f4 - f3) * f12);
             }
             if (f5 > 0.0f) {
-                this.backText.draw((AndroidUtilities.dp(32.0f) * f3) + (AndroidUtilities.dp(12.0f) * f12) + this.closeRect.left + AndroidUtilities.dp(30.0f), this.closeRect.centerY(), (f4 - f3) * f5, -1, canvas);
+                this.backText.draw(canvas, (AndroidUtilities.dp(12.0f) * f12) + this.closeRect.left + AndroidUtilities.dp(30.0f) + (AndroidUtilities.dp(32.0f) * f3), this.closeRect.centerY(), -1, (f4 - f3) * f5);
                 canvas2 = canvas;
             } else {
                 canvas2 = canvas;
@@ -397,11 +395,11 @@ public class BotFullscreenButtons extends View {
         canvas2.translate(this.collapseRect.centerX() + AndroidUtilities.dp(2.0f), this.collapseRect.centerY());
         float scale3 = this.collapseBounce.getScale(0.1f);
         canvas2.scale(scale3, scale3);
-        float fDp11 = AndroidUtilities.dp(6.0f);
-        float fDp12 = AndroidUtilities.dp(3.0f);
-        float f13 = -fDp12;
-        canvas2.drawLine(-fDp11, f13, 0.0f, fDp12, this.iconStrokePaint);
-        canvas.drawLine(0.0f, fDp12, fDp11, f13, this.iconStrokePaint);
+        float fDp10 = AndroidUtilities.dp(6.0f);
+        float fDp11 = AndroidUtilities.dp(3.0f);
+        float f13 = -fDp11;
+        canvas2.drawLine(-fDp10, f13, 0.0f, fDp11, this.iconStrokePaint);
+        canvas.drawLine(0.0f, fDp11, fDp10, f13, this.iconStrokePaint);
         canvas.restore();
         canvas.save();
         canvas.translate(this.menuRect.centerX() + AndroidUtilities.dp(f4), this.menuRect.centerY());

@@ -15,15 +15,15 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Reactions.ReactionImageHolder;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RectOld;
 import org.telegram.ui.Components.Size;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda14;
+import org.telegram.ui.Stars.SuperRipple$$ExternalSyntheticLambda7;
 import org.telegram.ui.Stories.StoryReactionWidgetBackground;
+import org.telegram.ui.iv.RichEditor;
 
 public final class ReactionWidgetEntityView extends EntityView {
     public final Size baseSize;
@@ -104,7 +104,7 @@ public final class ReactionWidgetEntityView extends EntityView {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int padding = getPadding();
-        float f = this.crossfadeBackgrounds.set(1.0f, false);
+        float f = this.crossfadeBackgrounds.set(1.0f);
         if (f == 1.0f) {
             this.outBackground = null;
         }
@@ -126,7 +126,7 @@ public final class ReactionWidgetEntityView extends EntityView {
         Rect rect = AndroidUtilities.rectTmp2;
         float f3 = fWidth / 2.0f;
         rect.set((int) (this.storyReactionWidgetBackground.getBounds().centerX() - f3), (int) (this.storyReactionWidgetBackground.getBounds().centerY() - f3), (int) (this.storyReactionWidgetBackground.getBounds().centerX() + f3), (int) (this.storyReactionWidgetBackground.getBounds().centerY() + f3));
-        float f4 = this.progressToNext.set(1.0f, false);
+        float f4 = this.progressToNext.set(1.0f);
         this.reactionHolder.bounds.set(rect);
         this.nextReactionHolder.bounds.set(rect);
         ReactionImageHolder reactionImageHolder = this.reactionHolder;
@@ -199,17 +199,16 @@ public final class ReactionWidgetEntityView extends EntityView {
     }
 
     public final void mirror(boolean z) {
-        boolean z2 = false;
-        boolean z3 = !this.mirror;
-        this.mirror = z3;
+        boolean z2 = !this.mirror;
+        this.mirror = z2;
         if (!z) {
-            this.storyReactionWidgetBackground.setMirror(z3, z);
+            this.storyReactionWidgetBackground.setMirror(z2, z);
             return;
         }
         boolean[] zArr = {false};
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda14(14, this, zArr));
-        valueAnimatorOfFloat.addListener(new ChatActivity.AnonymousClass74(this, zArr, z2, 22));
+        valueAnimatorOfFloat.addUpdateListener(new SuperRipple$$ExternalSyntheticLambda7(6, this, zArr));
+        valueAnimatorOfFloat.addListener(new RichEditor.AnonymousClass1(8, this, zArr));
         valueAnimatorOfFloat.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         valueAnimatorOfFloat.setDuration(350L);
         valueAnimatorOfFloat.start();

@@ -1,33 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-
-public final class ChatAttachAlert$$ExternalSyntheticLambda8 implements ValueAnimator.AnimatorUpdateListener {
+public final class ChatAttachAlert$$ExternalSyntheticLambda8 implements Runnable {
     public final int $r8$classId;
     public final ChatAttachAlert f$0;
+    public final boolean f$1;
 
-    public ChatAttachAlert$$ExternalSyntheticLambda8(ChatAttachAlert chatAttachAlert, int i) {
+    public ChatAttachAlert$$ExternalSyntheticLambda8(ChatAttachAlert chatAttachAlert, boolean z, int i) {
         this.$r8$classId = i;
         this.f$0 = chatAttachAlert;
+        this.f$1 = z;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+    public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.updatedTopCaptionHeight();
+                this.f$0.lambda$updateMotionItem$63(this.f$1);
                 break;
             case 1:
-                this.f$0.updatedTopCaptionHeight();
+                this.f$0.lambda$setTypeButtonsHidden$66(this.f$1);
                 break;
             case 2:
-                this.f$0.frameLayout2.invalidate();
-                break;
-            case 3:
-                this.f$0.lambda$onCustomOpenAnimation$57(valueAnimator);
+                this.f$0.lambda$showAiButton$67(this.f$1);
                 break;
             default:
-                this.f$0.lambda$onCustomOpenAnimation$60(valueAnimator);
+                this.f$0.lambda$showAiButton$68(this.f$1);
                 break;
         }
     }

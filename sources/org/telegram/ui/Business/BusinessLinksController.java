@@ -9,11 +9,11 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda7;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda17;
 import org.telegram.ui.Components.BulletinFactory;
-import org.telegram.ui.Components.ChatActivityEnterView$$ExternalSyntheticLambda4;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda89;
+import org.telegram.ui.Components.ChatActivityEnterView$$ExternalSyntheticLambda3;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda1;
+import org.telegram.ui.iv.RichTextCell$2$$ExternalSyntheticLambda1;
+import org.webrtc.EglRenderer$$ExternalSyntheticLambda8;
 
 public final class BusinessLinksController {
     public static volatile BusinessLinksController[] Instance = new BusinessLinksController[4];
@@ -55,18 +55,18 @@ public final class BusinessLinksController {
         return businessLinksController;
     }
 
-    public final void deleteLinkUndoable(String str, BusinessLinksActivity businessLinksActivity) {
+    public final void deleteLinkUndoable(BusinessLinksActivity businessLinksActivity, String str) {
         TL_account.TL_businessChatLink tL_businessChatLinkFindLink = findLink(str);
         if (tL_businessChatLinkFindLink != null) {
             ArrayList arrayList = this.links;
             int iIndexOf = arrayList.indexOf(tL_businessChatLinkFindLink);
             arrayList.remove(tL_businessChatLinkFindLink);
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
-            BulletinFactory.of(businessLinksActivity).createUndoBulletin(LocaleController.getString(R.string.BusinessLinkDeleted), true, new ChatActivity$$ExternalSyntheticLambda17(this, iIndexOf, tL_businessChatLinkFindLink, 12), new RemoteUtils$$ExternalSyntheticLambda2((Object) this, str, (Object) tL_businessChatLinkFindLink, 24)).show();
+            BulletinFactory.of(businessLinksActivity).createUndoBulletin((CharSequence) LocaleController.getString(R.string.BusinessLinkDeleted), true, (Runnable) new RichTextCell$2$$ExternalSyntheticLambda1(this, iIndexOf, tL_businessChatLinkFindLink, 7), (Runnable) new RemoteUtils$$ExternalSyntheticLambda2((Object) this, str, (Object) tL_businessChatLinkFindLink, 26)).show();
         }
     }
 
-    public final void editLink(TL_account.TL_businessChatLink tL_businessChatLink, TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink, ChatActivityEnterView$$ExternalSyntheticLambda4 chatActivityEnterView$$ExternalSyntheticLambda4) {
+    public final void editLink(TL_account.TL_businessChatLink tL_businessChatLink, TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink, ChatActivityEnterView$$ExternalSyntheticLambda3 chatActivityEnterView$$ExternalSyntheticLambda3) {
         TL_account.editBusinessChatLink editbusinesschatlink = new TL_account.editBusinessChatLink();
         editbusinesschatlink.slug = tL_businessChatLink.link;
         if (!tL_inputBusinessChatLink.entities.isEmpty()) {
@@ -76,7 +76,7 @@ public final class BusinessLinksController {
             tL_inputBusinessChatLink.flags |= 2;
         }
         editbusinesschatlink.link = tL_inputBusinessChatLink;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(editbusinesschatlink, new BoostsActivity$$ExternalSyntheticLambda7(this, tL_businessChatLink, chatActivityEnterView$$ExternalSyntheticLambda4, 2));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(editbusinesschatlink, new StarGiftSheet$$ExternalSyntheticLambda1(this, tL_businessChatLink, chatActivityEnterView$$ExternalSyntheticLambda3, 1));
     }
 
     public final TL_account.TL_businessChatLink findLink(String str) {
@@ -109,9 +109,9 @@ public final class BusinessLinksController {
             int i = this.currentAccount;
             if (z) {
                 MessagesStorage messagesStorage = MessagesStorage.getInstance(i);
-                messagesStorage.getStorageQueue().postRunnable(new PhotoViewer$$ExternalSyntheticLambda89(this, messagesStorage, z2, 6));
+                messagesStorage.getStorageQueue().postRunnable(new EglRenderer$$ExternalSyntheticLambda8(this, messagesStorage, z2, 6));
             } else {
-                ConnectionsManager.getInstance(i).sendRequest(new TL_account.getBusinessChatLinks(), new BusinessLinksController$$ExternalSyntheticLambda1(this, 0));
+                ConnectionsManager.getInstance(i).sendRequest(new TL_account.getBusinessChatLinks(), new BusinessLinksController$$ExternalSyntheticLambda0(this, 1));
             }
         }
     }
@@ -119,6 +119,6 @@ public final class BusinessLinksController {
     public final void saveToCache() {
         ArrayList arrayList = new ArrayList(this.links);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new BusinessLinksController$$ExternalSyntheticLambda8(0, arrayList, messagesStorage));
+        messagesStorage.getStorageQueue().postRunnable(new QuickRepliesController$$ExternalSyntheticLambda22(1, arrayList, messagesStorage));
     }
 }

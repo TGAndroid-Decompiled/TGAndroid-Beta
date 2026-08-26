@@ -5,19 +5,32 @@ import android.content.Context;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.View;
+import android.view.WindowManager;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 
-public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayout {
-    public Activity activity;
-    public int keyboardHeight;
-    public final Rect rect;
-    public boolean withoutWindow;
+public class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayout {
+    private Activity activity;
+    private int keyboardHeight;
+    private Rect rect;
+    private boolean useSmoothKeyboard;
+    private WindowManager windowManager;
+    private boolean withoutWindow;
 
-    public SizeNotifierFrameLayoutPhoto(Context context, Activity activity) {
-        super(context, null);
+    public SizeNotifierFrameLayoutPhoto(Context context, Activity activity, boolean z) {
+        super(context);
         this.rect = new Rect();
         setActivity(activity);
+        this.useSmoothKeyboard = z;
+    }
+
+    public void lambda$notifyHeightChanged$0(boolean z) {
+        SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = this.delegate;
+        if (sizeNotifierFrameLayoutDelegate != null) {
+            sizeNotifierFrameLayoutDelegate.onSizeChanged(this.keyboardHeight, z);
+        }
+        for (int i = 0; i < this.delegates.size(); i++) {
+            this.delegates.get(i).onSizeChanged(this.keyboardHeight, z);
+        }
     }
 
     @Override
@@ -28,16 +41,17 @@ public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayo
     @Override
     public int measureKeyboardHeight() {
         View rootView = getRootView();
-        Rect rect = this.rect;
-        getWindowVisibleDisplayFrame(rect);
+        getWindowVisibleDisplayFrame(this.rect);
         if (this.withoutWindow) {
-            return ((rootView.getHeight() - (rect.top != 0 ? AndroidUtilities.statusBarHeight : 0)) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
+            int height = (rootView.getHeight() - (this.rect.top != 0 ? AndroidUtilities.statusBarHeight : 0)) - AndroidUtilities.getViewInset(rootView);
+            Rect rect = this.rect;
+            return height - (rect.bottom - rect.top);
         }
-        int height = (this.activity.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
-        if (height <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
+        int height2 = (this.activity.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
+        if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
             return 0;
         }
-        return height;
+        return height2;
     }
 
     @Override
@@ -47,7 +61,7 @@ public abstract class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayo
         }
         this.keyboardHeight = measureKeyboardHeight();
         Point point = AndroidUtilities.displaySize;
-        post(new FileLoader$$ExternalSyntheticLambda1(26, this, point.x > point.y));
+        post(new MediaActivity$$ExternalSyntheticLambda5(this, point.x > point.y, 11));
     }
 
     @Override

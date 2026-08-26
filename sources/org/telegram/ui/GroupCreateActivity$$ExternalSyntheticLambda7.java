@@ -13,21 +13,16 @@ public final class GroupCreateActivity$$ExternalSyntheticLambda7 implements Runn
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                GroupCreateActivity groupCreateActivity = this.f$0;
-                groupCreateActivity.listView.postOnAnimation(new GroupCreateActivity$$ExternalSyntheticLambda7(groupCreateActivity, 2));
+                this.f$0.lambda$createView$9();
                 break;
             case 1:
                 this.f$0.finishFragment();
                 break;
             case 2:
-                GroupCreateActivity groupCreateActivity2 = this.f$0;
-                groupCreateActivity2.checkUi_listClip$1();
-                groupCreateActivity2.blur3_InvalidateBlur$5();
+                this.f$0.lambda$showPremiumBlockedToast$10();
                 break;
             default:
-                GroupCreateActivity groupCreateActivity3 = this.f$0;
-                groupCreateActivity3.getClass();
-                groupCreateActivity3.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                this.f$0.lambda$createView$8();
                 break;
         }
     }

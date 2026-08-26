@@ -13,17 +13,13 @@ public final class ChatThemeBottomSheet$14$$ExternalSyntheticLambda0 implements 
     }
 
     @Override
-    public final void didSetNewBackground(TLRPC.TL_wallPaper tL_wallPaper) {
+    public final void didSetNewBackground(TLRPC.WallPaper wallPaper) {
         switch (this.$r8$classId) {
             case 0:
-                ChatThemeBottomSheet chatThemeBottomSheet = ChatThemeBottomSheet.this;
-                chatThemeBottomSheet.chatAttachAlert.dismissInternal();
-                chatThemeBottomSheet.lambda$showGiftOfferSheet$15();
+                this.f$0.lambda$onWallpaperSelected$1(wallPaper);
                 break;
             default:
-                ChatThemeBottomSheet chatThemeBottomSheet2 = ChatThemeBottomSheet.this;
-                chatThemeBottomSheet2.chatAttachAlert.dismissInternal();
-                chatThemeBottomSheet2.lambda$showGiftOfferSheet$15();
+                this.f$0.lambda$didPressedButton$0(wallPaper);
                 break;
         }
     }

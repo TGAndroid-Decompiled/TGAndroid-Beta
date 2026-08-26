@@ -9,7 +9,6 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
@@ -27,7 +26,7 @@ public final class InviteUserCell extends FrameLayout {
 
     public InviteUserCell(Context context, boolean z) {
         super(context);
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(23.0f));
@@ -37,7 +36,7 @@ public final class InviteUserCell extends FrameLayout {
         boolean z2 = LocaleController.isRTL;
         addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 119, z2 ? 0 : 72, 0.0f, z2 ? 72 : 0, 0.0f));
         FrameLayout frameLayout = new FrameLayout(context);
-        linearLayout.addView(frameLayout, LayoutHelper.createLinear(1.0f, 0, 58));
+        linearLayout.addView(frameLayout, LayoutHelper.createLinear(0, 58, 1.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
@@ -53,7 +52,7 @@ public final class InviteUserCell extends FrameLayout {
         if (z) {
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
             this.checkBox = checkBox2;
-            checkBox2.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+            checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             checkBox2.setDrawUnchecked(false);
             checkBox2.setDrawBackgroundAsArc(3);
             boolean z3 = LocaleController.isRTL;
@@ -66,12 +65,10 @@ public final class InviteUserCell extends FrameLayout {
         progressButton.setTextSize(1, 14.0f);
         progressButton.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
         progressButton.setProgressColor(Theme.getColor(null, Theme.key_featuredStickers_buttonProgress, false));
-        int color = Theme.getColor(null, Theme.key_telegram_color, false);
-        Theme.getColor(null, Theme.key_featuredStickers_addButtonPressed, false);
-        progressButton.setBackgroundRoundRect(16.0f, color);
+        progressButton.setBackgroundRoundRect(Theme.getColor(null, Theme.key_telegram_color, false), Theme.getColor(null, Theme.key_featuredStickers_addButtonPressed, false), 16.0f);
         progressButton.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         linearLayout.addView(progressButton, LayoutHelper.createLinear(-2, 28, 0.0f, 16, 18, 0, 18, 0));
-        progressButton.setOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 24));
+        progressButton.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 13));
     }
 
     public ContactsController.Contact getContact() {
@@ -89,14 +86,14 @@ public final class InviteUserCell extends FrameLayout {
             return;
         }
         AvatarDrawable avatarDrawable = this.avatarDrawable;
-        avatarDrawable.setInfo(contact.contact_id, contact.first_name, contact.last_name, null, null);
+        avatarDrawable.setInfo(contact.contact_id, contact.first_name, contact.last_name, null, null, null, false);
         CharSequence charSequence = this.currentName;
         SimpleTextView simpleTextView = this.nameTextView;
         if (charSequence != null) {
             simpleTextView.setText(charSequence, true);
         } else {
             ContactsController.Contact contact2 = this.currentContact;
-            simpleTextView.setText(ContactsController.formatName(contact2.first_name, contact2.last_name), false);
+            simpleTextView.setText(ContactsController.formatName(contact2.first_name, contact2.last_name));
         }
         SimpleTextView simpleTextView2 = this.statusTextView;
         int i = Theme.key_windowBackgroundWhiteGrayText;
@@ -105,9 +102,9 @@ public final class InviteUserCell extends FrameLayout {
         ContactsController.Contact contact3 = this.currentContact;
         int i2 = contact3.imported;
         if (i2 > 0) {
-            simpleTextView2.setText(LocaleController.formatPluralString("TelegramContacts", i2, new Object[0]), false);
+            simpleTextView2.setText(LocaleController.formatPluralString("TelegramContacts", i2, new Object[0]));
         } else {
-            simpleTextView2.setText(contact3.phones.get(0), false);
+            simpleTextView2.setText(contact3.phones.get(0));
         }
         this.avatarImageView.setImageDrawable(avatarDrawable);
     }

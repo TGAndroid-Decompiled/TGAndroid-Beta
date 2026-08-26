@@ -1,8 +1,7 @@
 package org.telegram.ui.Components;
 
-import java.util.HashMap;
+import java.io.FileNotFoundException;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.PhotoViewer;
 
 public final class ChatAttachAlertPhotoLayout$1$$ExternalSyntheticLambda0 implements Utilities.Callback {
     public final int $r8$classId = 1;
@@ -19,50 +18,14 @@ public final class ChatAttachAlertPhotoLayout$1$$ExternalSyntheticLambda0 implem
     }
 
     @Override
-    public final void run(Object obj) throws Throwable {
+    public final void run(Object obj) throws FileNotFoundException {
+        Long l = (Long) obj;
         switch (this.$r8$classId) {
             case 0:
-                Long l = (Long) obj;
-                ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
-                if (chatAttachAlert != null) {
-                    chatAttachAlert.buttonPressed = true;
-                }
-                chatAttachAlert.delegate.didPressedButton(7, true, this.f$1, this.f$2, 0, 0L, chatAttachAlert.isCaptionAbove(), this.f$3, l.longValue());
-                HashMap map = ChatAttachAlertPhotoLayout.selectedPhotos;
-                map.clear();
-                ChatAttachAlertPhotoLayout.cameraPhotos.clear();
-                ChatAttachAlertPhotoLayout.selectedPhotosOrder.clear();
-                map.clear();
-                PhotoViewer.getInstance();
-                PhotoViewer.getInstance().closePhoto(PhotoViewer.getInstance().closePhotoAfterSelectWithAnimation, false);
-                PhotoViewer.getInstance().doneButtonPressed = true;
+                ((ChatAttachAlertPhotoLayout.AnonymousClass1) this.f$0).lambda$sendButtonPressed$1(this.f$1, this.f$2, this.f$3, l);
                 break;
             default:
-                Long l2 = (Long) obj;
-                ChatAttachAlertPhotoLayout.AnonymousClass15 anonymousClass15 = (ChatAttachAlertPhotoLayout.AnonymousClass15) this.f$0;
-                anonymousClass15.getClass();
-                PhotoViewer.getInstance();
-                PhotoViewer.getInstance().closePhotoAfterSelect = false;
-                PhotoViewer.getInstance().doneButtonPressed = false;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ChatAttachAlertPhotoLayout.this;
-                ChatAttachAlert chatAttachAlert2 = chatAttachAlertPhotoLayout.parentAlert;
-                chatAttachAlert2.sent = true;
-                chatAttachAlert2.buttonPressed = true;
-                chatAttachAlertPhotoLayout.closeCamera(false);
-                ChatAttachAlert chatAttachAlert3 = chatAttachAlertPhotoLayout.parentAlert;
-                ChatAttachAlert.ChatAttachViewDelegate chatAttachViewDelegate = chatAttachAlert3.delegate;
-                boolean z = this.f$1;
-                int i = z ? 4 : 8;
-                chatAttachViewDelegate.didPressedButton(i, true, this.f$3, this.f$2, 0, 0L, chatAttachAlert3.isCaptionAbove(), z, l2.longValue());
-                ChatAttachAlertPhotoLayout.cameraPhotos.clear();
-                ChatAttachAlertPhotoLayout.selectedPhotosOrder.clear();
-                ChatAttachAlertPhotoLayout.selectedPhotos.clear();
-                chatAttachAlertPhotoLayout.adapter.notifyDataSetChanged();
-                chatAttachAlertPhotoLayout.cameraAttachAdapter.notifyDataSetChanged();
-                chatAttachAlert3.dismiss(true);
-                PhotoViewer.getInstance();
-                PhotoViewer.getInstance().closePhoto(PhotoViewer.getInstance().closePhotoAfterSelectWithAnimation, false);
-                PhotoViewer.getInstance().doneButtonPressed = true;
+                ((ChatAttachAlertPhotoLayout.AnonymousClass15) this.f$0).lambda$sendButtonPressed$1(this.f$1, this.f$3, this.f$2, l);
                 break;
         }
     }

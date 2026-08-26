@@ -23,9 +23,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
-import com.android.billingclient.api.zzcv;
+import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -43,29 +44,27 @@ import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ActionIntroActivity;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda26;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
+import org.telegram.ui.Cells.AboutLinkCell$$ExternalSyntheticLambda1;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
+import org.telegram.ui.Cells.ChatLoadingCell;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.PipVideoOverlay;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
-import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
-import org.telegram.ui.ContactsActivity$$ExternalSyntheticLambda18;
-import org.telegram.ui.IntroActivity;
-import org.telegram.ui.PasscodeActivity$$ExternalSyntheticLambda3;
-import org.telegram.ui.PhotoViewer$73$$ExternalSyntheticLambda0;
-import org.telegram.ui.QrActivity;
-import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda1;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stories.LiveStoryPipOverlay;
+import org.telegram.ui.Stories.MuteButton;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda0;
 import org.telegram.ui.iv.RichEditor;
 import org.webrtc.RendererCommon;
+import org.webrtc.SurfaceViewRenderer$$ExternalSyntheticLambda0;
 
 public final class RTMPStreamPipOverlay implements NotificationCenter.NotificationCenterDelegate, IPipSourceDelegate {
-    public static final SimpleFloatPropertyCompat PIP_X_PROPERTY = new SimpleFloatPropertyCompat(new ContactsActivity$$ExternalSyntheticLambda18(26), new ContactsActivity$$ExternalSyntheticLambda18(27));
-    public static final SimpleFloatPropertyCompat PIP_Y_PROPERTY = new SimpleFloatPropertyCompat(new ContactsActivity$$ExternalSyntheticLambda18(28), new ContactsActivity$$ExternalSyntheticLambda18(29));
+    public static final SimpleFloatPropertyCompat PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", new LivePlayer$$ExternalSyntheticLambda1(21), new LivePlayer$$ExternalSyntheticLambda1(22));
+    public static final SimpleFloatPropertyCompat PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", new LivePlayer$$ExternalSyntheticLambda1(23), new LivePlayer$$ExternalSyntheticLambda1(24));
     public static final RTMPStreamPipOverlay instance = new RTMPStreamPipOverlay();
     public AccountInstance accountInstance;
     public Float aspectRatio;
@@ -73,13 +72,13 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
     public TLRPC.GroupCallParticipant boundParticipant;
     public boolean boundPresentation;
     public View consumingChild;
-    public IntroActivity.AnonymousClass1 contentFrameLayout;
-    public ActionIntroActivity.AnonymousClass2 contentView;
+    public ChatLoadingCell.AnonymousClass1 contentFrameLayout;
+    public LiveStoryPipOverlay.AnonymousClass6 contentView;
     public FrameLayout controlsView;
     public Trigger firstFrameCallback;
     public boolean firstFrameRendered;
-    public QrActivity.AnonymousClass2 flickerView;
-    public zzcv gestureDetector;
+    public MuteButton.AnonymousClass1 flickerView;
+    public GestureDetectorCompat gestureDetector;
     public boolean isScrollDisallowed;
     public boolean isScrolling;
     public boolean isShowingControls;
@@ -103,7 +102,90 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
     public final CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable(64, 204, 160);
     public boolean placeholderShown = true;
     public float scaleFactor = 1.0f;
-    public final Tooltip$$ExternalSyntheticLambda0 dismissControlsCallback = new Tooltip$$ExternalSyntheticLambda0(this, 26);
+    public final GiftSheet$$ExternalSyntheticLambda9 dismissControlsCallback = new GiftSheet$$ExternalSyntheticLambda9(this, 17);
+
+    public final class AnonymousClass3 implements ScaleGestureDetector.OnScaleGestureListener {
+        public AnonymousClass3() {
+        }
+
+        @Override
+        public final boolean onScale(ScaleGestureDetector scaleGestureDetector) {
+            RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
+            rTMPStreamPipOverlay.scaleFactor = MathUtils.clamp(scaleGestureDetector.getScaleFactor() * rTMPStreamPipOverlay.scaleFactor, 0.6f, rTMPStreamPipOverlay.maxScaleFactor);
+            rTMPStreamPipOverlay.pipWidth = (int) (rTMPStreamPipOverlay.getSuggestedWidth() * rTMPStreamPipOverlay.scaleFactor);
+            rTMPStreamPipOverlay.pipHeight = (int) (rTMPStreamPipOverlay.getSuggestedHeight() * rTMPStreamPipOverlay.scaleFactor);
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda9(this, 18));
+            SpringAnimation springAnimation = rTMPStreamPipOverlay.pipXSpring;
+            springAnimation.mValue = rTMPStreamPipOverlay.pipX;
+            springAnimation.mStartValueIsSet = true;
+            SpringForce springForce = springAnimation.mSpring;
+            float focusX = scaleGestureDetector.getFocusX();
+            int i = AndroidUtilities.displaySize.x;
+            springForce.mFinalPosition = focusX >= ((float) i) / 2.0f ? (i - rTMPStreamPipOverlay.pipWidth) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+            SpringAnimation springAnimation2 = rTMPStreamPipOverlay.pipXSpring;
+            if (!springAnimation2.mRunning) {
+                springAnimation2.start();
+            }
+            SpringAnimation springAnimation3 = rTMPStreamPipOverlay.pipYSpring;
+            springAnimation3.mValue = rTMPStreamPipOverlay.pipY;
+            springAnimation3.mStartValueIsSet = true;
+            springAnimation3.mSpring.mFinalPosition = MathUtils.clamp(scaleGestureDetector.getFocusY() - (rTMPStreamPipOverlay.pipHeight / 2.0f), AndroidUtilities.dp(16.0f), (AndroidUtilities.displaySize.y - rTMPStreamPipOverlay.pipHeight) - AndroidUtilities.dp(16.0f));
+            SpringAnimation springAnimation4 = rTMPStreamPipOverlay.pipYSpring;
+            if (!springAnimation4.mRunning) {
+                springAnimation4.start();
+            }
+            return true;
+        }
+
+        @Override
+        public final boolean onScaleBegin(ScaleGestureDetector scaleGestureDetector) {
+            RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
+            if (rTMPStreamPipOverlay.isScrolling) {
+                rTMPStreamPipOverlay.isScrolling = false;
+            }
+            rTMPStreamPipOverlay.isScrollDisallowed = true;
+            rTMPStreamPipOverlay.windowLayoutParams.width = (int) (rTMPStreamPipOverlay.getSuggestedWidth() * rTMPStreamPipOverlay.maxScaleFactor);
+            rTMPStreamPipOverlay.windowLayoutParams.height = (int) (rTMPStreamPipOverlay.getSuggestedHeight() * rTMPStreamPipOverlay.maxScaleFactor);
+            AndroidUtilities.updateViewLayout(rTMPStreamPipOverlay.windowManager, rTMPStreamPipOverlay.contentView, rTMPStreamPipOverlay.windowLayoutParams);
+            return true;
+        }
+
+        @Override
+        public final void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
+            RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
+            if (!rTMPStreamPipOverlay.pipXSpring.mRunning && !rTMPStreamPipOverlay.pipYSpring.mRunning) {
+                updateLayout();
+                return;
+            }
+            ArrayList arrayList = new ArrayList();
+            LiveStoryPipOverlay.AnonymousClass3.AnonymousClass1 anonymousClass1 = new LiveStoryPipOverlay.AnonymousClass3.AnonymousClass1(this, arrayList, 1);
+            SpringAnimation springAnimation = rTMPStreamPipOverlay.pipXSpring;
+            if (springAnimation.mRunning) {
+                springAnimation.addEndListener(anonymousClass1);
+            } else {
+                arrayList.add(springAnimation);
+            }
+            SpringAnimation springAnimation2 = rTMPStreamPipOverlay.pipYSpring;
+            if (springAnimation2.mRunning) {
+                springAnimation2.addEndListener(anonymousClass1);
+            } else {
+                arrayList.add(springAnimation2);
+            }
+        }
+
+        public final void updateLayout() {
+            RTMPStreamPipOverlay rTMPStreamPipOverlay = RTMPStreamPipOverlay.this;
+            WindowManager.LayoutParams layoutParams = rTMPStreamPipOverlay.windowLayoutParams;
+            int suggestedWidth = (int) (rTMPStreamPipOverlay.getSuggestedWidth() * rTMPStreamPipOverlay.scaleFactor);
+            layoutParams.width = suggestedWidth;
+            rTMPStreamPipOverlay.pipWidth = suggestedWidth;
+            WindowManager.LayoutParams layoutParams2 = rTMPStreamPipOverlay.windowLayoutParams;
+            int suggestedHeight = (int) (rTMPStreamPipOverlay.getSuggestedHeight() * rTMPStreamPipOverlay.scaleFactor);
+            layoutParams2.height = suggestedHeight;
+            rTMPStreamPipOverlay.pipHeight = suggestedHeight;
+            AndroidUtilities.updateViewLayout(rTMPStreamPipOverlay.windowManager, rTMPStreamPipOverlay.contentView, rTMPStreamPipOverlay.windowLayoutParams);
+        }
+    }
 
     public final class AnonymousClass8 implements RendererCommon.RendererEvents {
         public AnonymousClass8() {
@@ -118,7 +200,7 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
                 trigger.run();
                 rTMPStreamPipOverlay.firstFrameCallback = null;
             }
-            AndroidUtilities.runOnUIThread(new Tooltip$$ExternalSyntheticLambda0(this, 28));
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda9(this, 19));
         }
 
         @Override
@@ -130,7 +212,7 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
             } else {
                 rTMPStreamPipOverlay.aspectRatio = Float.valueOf(i / i2);
             }
-            AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda26(this, i, i2, 11));
+            AndroidUtilities.runOnUIThread(new SurfaceViewRenderer$$ExternalSyntheticLambda0(this, i, i2, 7));
         }
     }
 
@@ -233,7 +315,7 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
     public final void dismissInternal$1() {
         if (this.isVisible) {
             this.isVisible = false;
-            AndroidUtilities.runOnUIThread(new QrActivity$5$$ExternalSyntheticLambda1(10), 100L);
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda2(15), 100L);
             this.accountInstance.getNotificationCenter().removeObserver(this, NotificationCenter.groupCallUpdated);
             this.accountInstance.getNotificationCenter().removeObserver(this, NotificationCenter.applyGroupCallVisibleParticipants);
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didEndCall);
@@ -248,7 +330,7 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
             animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_Y, 0.1f));
+            animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<LiveStoryPipOverlay.AnonymousClass6, Float>) View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.contentView, (Property<LiveStoryPipOverlay.AnonymousClass6, Float>) View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(this.contentView, (Property<LiveStoryPipOverlay.AnonymousClass6, Float>) View.SCALE_Y, 0.1f));
             animatorSet.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public final void onAnimationEnd(Animator animator) {
@@ -360,8 +442,8 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
     }
 
     @Override
-    public final void pipHidePrimaryWindowView(Trigger trigger) {
-        this.firstFrameCallback = trigger;
+    public final void pipHidePrimaryWindowView(Runnable runnable) {
+        this.firstFrameCallback = (Trigger) runnable;
         VoIPTextureView voIPTextureView = this.textureView;
         if (voIPTextureView != null) {
             voIPTextureView.renderer.clearFirstFrame();
@@ -386,16 +468,16 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
     }
 
     @Override
-    public final void pipShowPrimaryWindowView(Trigger trigger) {
-        this.firstFrameCallback = trigger;
+    public final void pipShowPrimaryWindowView(Runnable runnable) {
+        this.firstFrameCallback = (Trigger) runnable;
         PipSource pipSource = this.pipSource;
         if (pipSource != null && pipSource.params.isValid()) {
             WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-            int iWidth = ((Rect) this.pipSource.params.binarizer).width();
+            int iWidth = ((Rect) this.pipSource.params.tokenCreator).width();
             this.pipWidth = iWidth;
             layoutParams.width = iWidth;
             WindowManager.LayoutParams layoutParams2 = this.windowLayoutParams;
-            int iHeight = ((Rect) this.pipSource.params.binarizer).height();
+            int iHeight = ((Rect) this.pipSource.params.tokenCreator).height();
             this.pipHeight = iHeight;
             layoutParams2.height = iHeight;
         }
@@ -411,8 +493,9 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
     }
 
     public final void showInternal(Activity activity) {
-        int i = 2;
-        int i2 = 1;
+        int i = 4;
+        int i2 = 6;
+        int i3 = 1;
         if (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().groupCall == null || this.isVisible) {
             return;
         }
@@ -440,24 +523,24 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
         this.pipYSpring = springAnimation2;
         Context context = activity != null ? activity : ApplicationLoader.applicationContext;
         int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new PipVideoOverlay.AnonymousClass3(this, 2));
+        ScaleGestureDetector scaleGestureDetector = new ScaleGestureDetector(context, new AnonymousClass3());
         this.scaleGestureDetector = scaleGestureDetector;
-        int i3 = Build.VERSION.SDK_INT;
+        int i4 = Build.VERSION.SDK_INT;
         scaleGestureDetector.setQuickScaleEnabled(false);
-        if (i3 >= 23) {
+        if (i4 >= 23) {
             this.scaleGestureDetector.setStylusScaleEnabled(false);
         }
-        this.gestureDetector = new zzcv(context, new LiveStoryPipOverlay.AnonymousClass4(this, scaledTouchSlop, i2));
-        this.contentFrameLayout = new IntroActivity.AnonymousClass1(this, context);
-        ActionIntroActivity.AnonymousClass2 anonymousClass2 = new ActionIntroActivity.AnonymousClass2(this, context, i);
-        this.contentView = anonymousClass2;
-        anonymousClass2.addView(this.contentFrameLayout, LayoutHelper.createFrame(-1.0f, -1));
-        this.contentFrameLayout.setOutlineProvider(new RichEditor.AnonymousClass5(13));
+        this.gestureDetector = new GestureDetectorCompat(context, new LiveStoryPipOverlay.AnonymousClass4(this, scaledTouchSlop, i3));
+        this.contentFrameLayout = new ChatLoadingCell.AnonymousClass1(this, context);
+        LiveStoryPipOverlay.AnonymousClass6 anonymousClass6 = new LiveStoryPipOverlay.AnonymousClass6(this, context, i3);
+        this.contentView = anonymousClass6;
+        anonymousClass6.addView(this.contentFrameLayout, LayoutHelper.createFrame(-1, -1.0f));
+        this.contentFrameLayout.setOutlineProvider(new RichEditor.AnonymousClass5(i2));
         this.contentFrameLayout.setClipToOutline(true);
         this.contentFrameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_voipgroup_actionBar, false));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
-        this.contentFrameLayout.addView(backupImageView, LayoutHelper.createFrame(-1.0f, -1));
+        this.contentFrameLayout.addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f));
         VoIPTextureView voIPTextureView = new VoIPTextureView(context, false, false, false, false);
         this.textureView = voIPTextureView;
         voIPTextureView.setAlpha(0.0f);
@@ -466,10 +549,10 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
         voIPTextureView2.scaleType = 0;
         voIPTextureView2.renderer.setRotateTextureWithScreen(true);
         this.textureView.renderer.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new AnonymousClass8());
-        this.contentFrameLayout.addView(this.textureView, LayoutHelper.createFrame(-1.0f, -1));
-        QrActivity.AnonymousClass2 anonymousClass3 = new QrActivity.AnonymousClass2(this, context, 20);
-        this.flickerView = anonymousClass3;
-        this.contentFrameLayout.addView(anonymousClass3, LayoutHelper.createFrame(-1.0f, -1));
+        this.contentFrameLayout.addView(this.textureView, LayoutHelper.createFrame(-1, -1.0f));
+        MuteButton.AnonymousClass1 anonymousClass1 = new MuteButton.AnonymousClass1(this, context, i);
+        this.flickerView = anonymousClass1;
+        this.contentFrameLayout.addView(anonymousClass1, LayoutHelper.createFrame(-1, -1.0f));
         FrameLayout frameLayout = new FrameLayout(context);
         this.controlsView = frameLayout;
         frameLayout.setAlpha(0.0f);
@@ -478,34 +561,34 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
         gradientDrawable.setColors(new int[]{1140850688, 0});
         gradientDrawable.setOrientation(GradientDrawable.Orientation.TOP_BOTTOM);
         view.setBackground(gradientDrawable);
-        this.controlsView.addView(view, LayoutHelper.createFrame(-1.0f, -1));
+        this.controlsView.addView(view, LayoutHelper.createFrame(-1, -1.0f));
         int iDp = AndroidUtilities.dp(8.0f);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.pip_video_close);
-        int i4 = Theme.key_voipgroup_actionBarItems;
-        imageView.setColorFilter(Theme.getColor(null, i4, false));
-        int i5 = Theme.key_listSelector;
-        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, i5, false), 1, -1));
+        int i5 = Theme.key_voipgroup_actionBarItems;
+        imageView.setColorFilter(Theme.getColor(null, i5, false));
+        int i6 = Theme.key_listSelector;
+        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, i6, false), 1, -1));
         imageView.setPadding(iDp, iDp, iDp, iDp);
-        imageView.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda267(11));
+        imageView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda0(i2));
         float f = 38;
         float f2 = 4;
         this.controlsView.addView(imageView, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, f2, 0.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.pip_video_expand);
-        imageView2.setColorFilter(Theme.getColor(null, i4, false));
-        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, i5, false), 1, -1));
+        imageView2.setColorFilter(Theme.getColor(null, i5, false));
+        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(null, i6, false), 1, -1));
         imageView2.setPadding(iDp, iDp, iDp, iDp);
-        imageView2.setOnClickListener(new PasscodeActivity$$ExternalSyntheticLambda3(context, i2));
+        imageView2.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(context, 29));
         this.controlsView.addView(imageView2, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, 48, 0.0f));
-        this.contentFrameLayout.addView(this.controlsView, LayoutHelper.createFrame(-1.0f, -1));
+        this.contentFrameLayout.addView(this.controlsView, LayoutHelper.createFrame(-1, -1.0f));
         this.windowManager = (WindowManager) context.getSystemService("window");
         WindowManager.LayoutParams layoutParamsCreateWindowLayoutParams = PipUtils.createWindowLayoutParams(context, false);
         this.windowLayoutParams = layoutParamsCreateWindowLayoutParams;
-        int i6 = this.pipWidth;
-        layoutParamsCreateWindowLayoutParams.width = i6;
+        int i7 = this.pipWidth;
+        layoutParamsCreateWindowLayoutParams.width = i7;
         layoutParamsCreateWindowLayoutParams.height = this.pipHeight;
-        float fDp = (AndroidUtilities.displaySize.x - i6) - AndroidUtilities.dp(16.0f);
+        float fDp = (AndroidUtilities.displaySize.x - i7) - AndroidUtilities.dp(16.0f);
         this.pipX = fDp;
         layoutParamsCreateWindowLayoutParams.x = (int) fDp;
         WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
@@ -523,8 +606,8 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(250L);
         animatorSet.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.contentView, (Property<ActionIntroActivity.AnonymousClass2, Float>) View.SCALE_Y, 1.0f));
-        animatorSet.addListener(new AnonymousClass1(this, i2));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, (Property<LiveStoryPipOverlay.AnonymousClass6, Float>) View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.contentView, (Property<LiveStoryPipOverlay.AnonymousClass6, Float>) View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.contentView, (Property<LiveStoryPipOverlay.AnonymousClass6, Float>) View.SCALE_Y, 1.0f));
+        animatorSet.addListener(new AnonymousClass1(this, i3));
         animatorSet.start();
         bindTextureView(false);
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
@@ -550,7 +633,7 @@ public final class RTMPStreamPipOverlay implements NotificationCenter.Notificati
         ValueAnimator duration = ValueAnimator.ofFloat(z ? 0.0f : 1.0f, z ? 1.0f : 0.0f).setDuration(200L);
         this.scaleAnimator = duration;
         duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        this.scaleAnimator.addUpdateListener(new PhotoViewer$73$$ExternalSyntheticLambda0(this, 7));
+        this.scaleAnimator.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 21));
         this.scaleAnimator.addListener(new AnonymousClass1(this, i));
         this.scaleAnimator.start();
     }

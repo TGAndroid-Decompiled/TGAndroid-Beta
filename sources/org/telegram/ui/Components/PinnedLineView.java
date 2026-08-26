@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -14,108 +14,65 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
-import com.google.android.gms.internal.mlkit_vision_common.zzkv;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.CalendarActivity$$ExternalSyntheticOutline0;
 
-public final class PinnedLineView extends View {
-    public float animateFromPosition;
-    public int animateFromTotal;
-    public int animateToPosition;
-    public int animateToTotal;
-    public boolean animationInProgress;
-    public float animationProgress;
-    public ValueAnimator animator;
-    public int color;
-    public final Paint fadePaint;
-    public final Paint fadePaint2;
-    public int lineHFrom;
-    public int lineHTo;
-    public boolean needDrawFade;
-    public int nextPosition;
-    public final Paint paint;
-    public final RectF rectF;
-    public boolean replaceInProgress;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public final Paint selectedPaint;
-    public int selectedPosition;
-    public float startOffsetFrom;
-    public float startOffsetTo;
-    public int totalCount;
+public class PinnedLineView extends View {
+    float animateFromPosition;
+    int animateFromTotal;
+    int animateToPosition;
+    int animateToTotal;
+    boolean animationInProgress;
+    float animationProgress;
+    ValueAnimator animator;
+    private int color;
+    Paint fadePaint;
+    Paint fadePaint2;
+    private int lineHFrom;
+    private int lineHTo;
+    private boolean needDrawFade;
+    private int nextPosition;
+    Paint paint;
+    RectF rectF;
+    boolean replaceInProgress;
+    private final Theme.ResourcesProvider resourcesProvider;
+    Paint selectedPaint;
+    int selectedPosition;
+    private float startOffsetFrom;
+    private float startOffsetTo;
+    int totalCount;
 
-    public final class AnonymousClass1 extends AnimatorListenerAdapter {
-        public final int $r8$classId;
-        public final PinnedLineView this$0;
-
-        public AnonymousClass1(PinnedLineView pinnedLineView, int i) {
-            this.$r8$classId = i;
-            this.this$0 = pinnedLineView;
-        }
-
-        @Override
-        public final void onAnimationEnd(Animator animator) {
-            switch (this.$r8$classId) {
-                case 0:
-                    PinnedLineView pinnedLineView = this.this$0;
-                    pinnedLineView.animationInProgress = false;
-                    pinnedLineView.selectedPosition = pinnedLineView.animateToPosition;
-                    pinnedLineView.invalidate();
-                    int i = pinnedLineView.nextPosition;
-                    if (i >= 0) {
-                        pinnedLineView.selectPosition(i);
-                        pinnedLineView.nextPosition = -1;
-                    }
-                    break;
-                default:
-                    PinnedLineView pinnedLineView2 = this.this$0;
-                    pinnedLineView2.replaceInProgress = false;
-                    pinnedLineView2.animationInProgress = false;
-                    pinnedLineView2.invalidate();
-                    int i2 = pinnedLineView2.nextPosition;
-                    if (i2 >= 0) {
-                        pinnedLineView2.selectPosition(i2);
-                        pinnedLineView2.nextPosition = -1;
-                    }
-                    pinnedLineView2.checkLayerType();
-                    break;
-            }
-        }
-    }
-
-    public PinnedLineView(Activity activity, Theme.ResourcesProvider resourcesProvider) {
-        super(activity);
+    public PinnedLineView(Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(context);
         this.selectedPosition = -1;
         this.totalCount = 0;
         this.rectF = new RectF();
-        Paint paint = new Paint(1);
-        this.paint = paint;
-        Paint paint2 = new Paint(1);
-        this.selectedPaint = paint2;
+        this.paint = new Paint(1);
+        this.selectedPaint = new Paint(1);
         this.nextPosition = -1;
         this.resourcesProvider = resourcesProvider;
+        Paint paint = this.paint;
         Paint.Style style = Paint.Style.FILL;
         paint.setStyle(style);
+        Paint paint2 = this.paint;
         Paint.Cap cap = Paint.Cap.ROUND;
-        paint.setStrokeCap(cap);
-        paint2.setStyle(style);
         paint2.setStrokeCap(cap);
-        Paint paint3 = new Paint();
-        this.fadePaint = paint3;
+        this.selectedPaint.setStyle(style);
+        this.selectedPaint.setStrokeCap(cap);
+        this.fadePaint = new Paint();
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        paint3.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(6.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, tileMode));
+        this.fadePaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(6.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, tileMode));
+        Paint paint3 = this.fadePaint;
         PorterDuff.Mode mode = PorterDuff.Mode.DST_OUT;
         paint3.setXfermode(new PorterDuffXfermode(mode));
-        Paint paint4 = new Paint();
-        this.fadePaint2 = paint4;
-        paint4.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(6.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
-        paint4.setXfermode(new PorterDuffXfermode(mode));
-        int color = Theme.getColor(Theme.key_chat_topPanelLine, resourcesProvider);
-        this.color = color;
-        paint.setColor(ColorUtils.setAlphaComponent(color, (int) ((Color.alpha(color) / 255.0f) * 112.0f)));
-        paint2.setColor(this.color);
+        this.fadePaint2 = new Paint();
+        this.fadePaint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(6.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, tileMode));
+        this.fadePaint2.setXfermode(new PorterDuffXfermode(mode));
+        updateColors();
     }
 
-    public final void checkLayerType() {
+    public void checkLayerType() {
         boolean z = (this.replaceInProgress ? Math.max(this.animateFromTotal, this.animateToTotal) : this.totalCount) > 3;
         int i = z ? 2 : 0;
         if (getLayerType() != i) {
@@ -125,11 +82,71 @@ public final class PinnedLineView extends View {
         this.needDrawFade = z;
     }
 
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public void lambda$selectPosition$0(ValueAnimator valueAnimator) {
+        this.animationProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void lambda$set$1(ValueAnimator valueAnimator) {
+        this.animationProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public void selectPosition(int i) {
+        if (this.replaceInProgress) {
+            this.nextPosition = i;
+            return;
+        }
+        if (!this.animationInProgress) {
+            this.animateFromPosition = this.selectedPosition;
+        } else {
+            if (this.animateToPosition == i) {
+                return;
+            }
+            ValueAnimator valueAnimator = this.animator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            float f = this.animateFromPosition;
+            float f2 = this.animationProgress;
+            this.animateFromPosition = (this.animateToPosition * f2) + ((1.0f - f2) * f);
+        }
+        if (i != this.selectedPosition) {
+            this.animateToPosition = i;
+            this.animationInProgress = true;
+            this.animationProgress = 0.0f;
+            invalidate();
+            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.animator = valueAnimatorOfFloat;
+            valueAnimatorOfFloat.addUpdateListener(new PinnedLineView$$ExternalSyntheticLambda0(this, 0));
+            this.animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    PinnedLineView pinnedLineView = PinnedLineView.this;
+                    pinnedLineView.animationInProgress = false;
+                    pinnedLineView.selectedPosition = pinnedLineView.animateToPosition;
+                    pinnedLineView.invalidate();
+                    if (PinnedLineView.this.nextPosition >= 0) {
+                        PinnedLineView pinnedLineView2 = PinnedLineView.this;
+                        pinnedLineView2.selectPosition(pinnedLineView2.nextPosition);
+                        PinnedLineView.this.nextPosition = -1;
+                    }
+                }
+            });
+            this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            this.animator.setDuration(220L);
+            this.animator.start();
+        }
+    }
+
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         float measuredHeight;
         float measuredHeight2;
-        RectF rectF;
         super.onDraw(canvas);
         if (this.selectedPosition < 0 || this.totalCount == 0) {
             return;
@@ -174,94 +191,54 @@ public final class PinnedLineView extends View {
         float f9 = iDp;
         int iMax = Math.max(0, (int) (((f9 + measuredHeight2) / measuredHeight) - 1.0f));
         int iMin = Math.min(iMax + 6, this.replaceInProgress ? Math.max(this.animateFromTotal, this.animateToTotal) : this.totalCount);
-        while (true) {
-            rectF = this.rectF;
-            if (iMax >= iMin) {
-                break;
-            }
+        while (iMax < iMin) {
             float f10 = ((iMax * measuredHeight) + f9) - measuredHeight2;
             float f11 = f10 + measuredHeight;
             if (f11 >= 0.0f && f10 <= getMeasuredHeight()) {
-                rectF.set(0.0f, f10 + fDpf2, getMeasuredWidth(), f11 - fDpf2);
+                this.rectF.set(0.0f, f10 + fDpf2, getMeasuredWidth(), f11 - fDpf2);
                 boolean z = this.replaceInProgress;
-                Paint paint = this.paint;
                 if (z && iMax >= this.animateToTotal) {
+                    Paint paint = this.paint;
                     int i = this.color;
                     paint.setColor(ColorUtils.setAlphaComponent(i, (int) ((1.0f - this.animationProgress) * (Color.alpha(i) / 255.0f) * 76.0f)));
-                    canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint);
+                    canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.paint);
+                    Paint paint2 = this.paint;
                     int i2 = this.color;
-                    paint.setColor(ColorUtils.setAlphaComponent(i2, (int) ((Color.alpha(i2) / 255.0f) * 76.0f)));
+                    paint2.setColor(ColorUtils.setAlphaComponent(i2, (int) ((Color.alpha(i2) / 255.0f) * 76.0f)));
                 } else if (!z || iMax < this.animateFromTotal) {
-                    canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint);
+                    canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.paint);
                 } else {
+                    Paint paint3 = this.paint;
                     int i3 = this.color;
-                    paint.setColor(ColorUtils.setAlphaComponent(i3, (int) ((Color.alpha(i3) / 255.0f) * 76.0f * this.animationProgress)));
-                    canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint);
+                    paint3.setColor(ColorUtils.setAlphaComponent(i3, (int) ((Color.alpha(i3) / 255.0f) * 76.0f * this.animationProgress)));
+                    canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.paint);
+                    Paint paint4 = this.paint;
                     int i4 = this.color;
-                    paint.setColor(ColorUtils.setAlphaComponent(i4, (int) ((Color.alpha(i4) / 255.0f) * 76.0f)));
+                    paint4.setColor(ColorUtils.setAlphaComponent(i4, (int) ((Color.alpha(i4) / 255.0f) * 76.0f)));
                 }
             }
             iMax++;
         }
-        boolean z2 = this.animationInProgress;
-        Paint paint2 = this.selectedPaint;
-        if (z2) {
+        if (this.animationInProgress) {
             float f12 = this.animateFromPosition;
             float f13 = this.animationProgress;
             float f14 = ((((this.animateToPosition * f13) + ((1.0f - f13) * f12)) * measuredHeight) + f9) - measuredHeight2;
-            rectF.set(0.0f, f14 + fDpf2, getMeasuredWidth(), (f14 + measuredHeight) - fDpf2);
-            canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint2);
+            this.rectF.set(0.0f, f14 + fDpf2, getMeasuredWidth(), (f14 + measuredHeight) - fDpf2);
+            canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.selectedPaint);
         } else {
             float f15 = ((this.selectedPosition * measuredHeight) + f9) - measuredHeight2;
-            rectF.set(0.0f, f15 + fDpf2, getMeasuredWidth(), (f15 + measuredHeight) - fDpf2);
-            canvas.drawRoundRect(rectF, measuredWidth, measuredWidth, paint2);
+            this.rectF.set(0.0f, f15 + fDpf2, getMeasuredWidth(), (f15 + measuredHeight) - fDpf2);
+            canvas.drawRoundRect(this.rectF, measuredWidth, measuredWidth, this.selectedPaint);
         }
         if (this.needDrawFade) {
-            float measuredWidth2 = getMeasuredWidth();
-            float fDp = AndroidUtilities.dp(6.0f);
-            Paint paint3 = this.fadePaint;
-            canvas.drawRect(0.0f, 0.0f, measuredWidth2, fDp, paint3);
-            canvas.drawRect(0.0f, getMeasuredHeight() - AndroidUtilities.dp(6.0f), getMeasuredWidth(), getMeasuredHeight(), paint3);
+            canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(6.0f), this.fadePaint);
+            canvas.drawRect(0.0f, getMeasuredHeight() - AndroidUtilities.dp(6.0f), getMeasuredWidth(), getMeasuredHeight(), this.fadePaint);
             canvas.translate(0.0f, getMeasuredHeight() - AndroidUtilities.dp(6.0f));
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), AndroidUtilities.dp(6.0f), this.fadePaint2);
         }
     }
 
-    public final void selectPosition(int i) {
-        if (this.replaceInProgress) {
-            this.nextPosition = i;
-            return;
-        }
-        if (!this.animationInProgress) {
-            this.animateFromPosition = this.selectedPosition;
-        } else {
-            if (this.animateToPosition == i) {
-                return;
-            }
-            ValueAnimator valueAnimator = this.animator;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            float f = this.animateFromPosition;
-            float f2 = this.animationProgress;
-            this.animateFromPosition = (this.animateToPosition * f2) + ((1.0f - f2) * f);
-        }
-        if (i != this.selectedPosition) {
-            this.animateToPosition = i;
-            this.animationInProgress = true;
-            this.animationProgress = 0.0f;
-            invalidate();
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.animator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new PinnedLineView$$ExternalSyntheticLambda0(this, 1));
-            this.animator.addListener(new AnonymousClass1(this, 0));
-            this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
-            this.animator.setDuration(220L);
-            this.animator.start();
-        }
-    }
-
-    public final void set(int i, int i2, boolean z) {
+    public void set(int i, int i2, boolean z) {
         int i3 = 1;
         int i4 = this.selectedPosition;
         if (i4 < 0 || i2 == 0 || this.totalCount == 0) {
@@ -294,11 +271,11 @@ public final class PinnedLineView extends View {
             if (f < 0.0f) {
                 this.startOffsetFrom = 0.0f;
             } else {
-                float fM = zzkv.m(this.totalCount, 1, i7, iDp) - f;
+                float fM = CalendarActivity$$ExternalSyntheticOutline0.m(this.totalCount, 1, i7, iDp) - f;
                 int measuredHeight = getMeasuredHeight() - iDp;
                 int i8 = this.lineHFrom;
                 if (fM < measuredHeight - i8) {
-                    this.startOffsetFrom = zzkv.m(this.totalCount, 1, i8, iDp) - ((getMeasuredHeight() - iDp) - this.lineHFrom);
+                    this.startOffsetFrom = CalendarActivity$$ExternalSyntheticOutline0.m(this.totalCount, 1, i8, iDp) - ((getMeasuredHeight() - iDp) - this.lineHFrom);
                 }
             }
             int i9 = this.lineHTo;
@@ -327,12 +304,33 @@ public final class PinnedLineView extends View {
             invalidate();
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.animator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new PinnedLineView$$ExternalSyntheticLambda0(this, 0));
-            this.animator.addListener(new AnonymousClass1(this, i3));
+            valueAnimatorOfFloat.addUpdateListener(new PinnedLineView$$ExternalSyntheticLambda0(this, i3));
+            this.animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    PinnedLineView pinnedLineView = PinnedLineView.this;
+                    pinnedLineView.replaceInProgress = false;
+                    pinnedLineView.animationInProgress = false;
+                    pinnedLineView.invalidate();
+                    if (PinnedLineView.this.nextPosition >= 0) {
+                        PinnedLineView pinnedLineView2 = PinnedLineView.this;
+                        pinnedLineView2.selectPosition(pinnedLineView2.nextPosition);
+                        PinnedLineView.this.nextPosition = -1;
+                    }
+                    PinnedLineView.this.checkLayerType();
+                }
+            });
             this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
             this.animator.setDuration(220L);
             this.animator.start();
         }
         checkLayerType();
+    }
+
+    public void updateColors() {
+        int themedColor = getThemedColor(Theme.key_chat_topPanelLine);
+        this.color = themedColor;
+        this.paint.setColor(ColorUtils.setAlphaComponent(themedColor, (int) ((Color.alpha(themedColor) / 255.0f) * 112.0f)));
+        this.selectedPaint.setColor(this.color);
     }
 }

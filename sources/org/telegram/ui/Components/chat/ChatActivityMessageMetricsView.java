@@ -23,8 +23,6 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda36;
 
 public final class ChatActivityMessageMetricsView extends View implements ViewTreeObserver.OnPreDrawListener, ViewTreeObserver.OnScrollChangedListener, ViewTreeObserver.OnGlobalLayoutListener {
     public static final RectF tmpRect = new RectF();
@@ -34,7 +32,7 @@ public final class ChatActivityMessageMetricsView extends View implements ViewTr
     public final LongSparseArray groupedPositions;
     public long lastTime;
     public long lastUserActivityTime;
-    public ChatActivity.AnonymousClass21 list;
+    public ViewGroup list;
     public ViewTreeObserver observer;
     public ChatActivityMessageMetricsView$$ExternalSyntheticLambda1 pendingFlush;
     public final ArrayList pendingMetrics;
@@ -116,15 +114,15 @@ public final class ChatActivityMessageMetricsView extends View implements ViewTr
         TLRPC.TL_messages_reportReadMetrics tL_messages_reportReadMetrics = new TLRPC.TL_messages_reportReadMetrics();
         tL_messages_reportReadMetrics.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
         tL_messages_reportReadMetrics.metrics = new ArrayList<>(arrayList);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_reportReadMetrics, null, new VoIPFragment$$ExternalSyntheticLambda36(2));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequestTyped(tL_messages_reportReadMetrics, null, new ChatActivityMessageMetricsView$$ExternalSyntheticLambda0());
         arrayList.clear();
     }
 
-    public final void init(int i, long j, ViewGroup viewGroup, ChatActivity.AnonymousClass21 anonymousClass21) {
+    public final void init(int i, long j, ViewGroup viewGroup, ViewGroup viewGroup2) {
         this.dialogId = j;
         this.currentAccount = i;
         this.root = viewGroup;
-        this.list = anonymousClass21;
+        this.list = viewGroup2;
     }
 
     @Override

@@ -7,13 +7,13 @@ import android.graphics.drawable.Drawable;
 import android.util.StateSet;
 import android.view.MotionEvent;
 
-public final class ClickableAnimatedTextView extends AnimatedTextView {
-    public Drawable backgroundDrawable;
-    public final Rect bounds;
-    public boolean pressed;
+public class ClickableAnimatedTextView extends AnimatedTextView {
+    private Drawable backgroundDrawable;
+    private final Rect bounds;
+    private boolean pressed;
 
     public ClickableAnimatedTextView(Context context) {
-        super(context, false, false, false);
+        super(context);
         this.bounds = new Rect();
     }
 
@@ -22,34 +22,37 @@ public final class ClickableAnimatedTextView extends AnimatedTextView {
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         if (this.backgroundDrawable != null) {
-            Rect bounds = getDrawable().getBounds();
-            Rect rect = this.bounds;
-            rect.set(bounds);
+            this.bounds.set(getDrawable().getBounds());
             int iCeil = (int) Math.ceil(getDrawable().getCurrentWidth());
-            if (getDrawable().gravity == 3) {
+            if (getDrawable().getGravity() == 3) {
+                Rect rect = this.bounds;
                 rect.right = rect.left + iCeil;
-            } else if (getDrawable().gravity == 5) {
-                rect.left = rect.right - iCeil;
-            } else if (getDrawable().gravity == 17) {
-                int i = (rect.left + rect.right) / 2;
+            } else if (getDrawable().getGravity() == 5) {
+                Rect rect2 = this.bounds;
+                rect2.left = rect2.right - iCeil;
+            } else if (getDrawable().getGravity() == 17) {
+                Rect rect3 = this.bounds;
+                int i = (rect3.left + rect3.right) / 2;
                 int i2 = iCeil / 2;
-                rect.left = i - i2;
-                rect.right = i + i2;
+                rect3.left = i - i2;
+                rect3.right = i + i2;
             }
-            rect.left -= getPaddingLeft();
-            rect.top -= getPaddingTop();
-            rect.right = getPaddingRight() + rect.right;
-            rect.bottom = getPaddingBottom() + rect.bottom;
-            this.backgroundDrawable.setBounds(rect);
+            this.bounds.left -= getPaddingLeft();
+            this.bounds.top -= getPaddingTop();
+            Rect rect4 = this.bounds;
+            rect4.right = getPaddingRight() + rect4.right;
+            Rect rect5 = this.bounds;
+            rect5.bottom = getPaddingBottom() + rect5.bottom;
+            this.backgroundDrawable.setBounds(this.bounds);
             this.backgroundDrawable.draw(canvas);
         }
         super.onDraw(canvas);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
+    public boolean onTouchEvent(MotionEvent motionEvent) {
         boolean zContains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
         if (motionEvent.getAction() == 0 && zContains) {
             this.pressed = true;
@@ -108,7 +111,7 @@ public final class ClickableAnimatedTextView extends AnimatedTextView {
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
+    public boolean verifyDrawable(Drawable drawable) {
         return drawable == this.backgroundDrawable || super.verifyDrawable(drawable);
     }
 }

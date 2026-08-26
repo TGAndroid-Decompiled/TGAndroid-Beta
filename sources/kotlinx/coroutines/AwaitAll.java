@@ -1,10 +1,10 @@
 package kotlinx.coroutines;
 
+import com.google.common.base.Joiner;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.jvm.internal.Intrinsics;
-import kotlinx.coroutines.internal.Symbol;
 
 public final class AwaitAll {
     public static final AtomicIntegerFieldUpdater notCompletedCount$volatile$FU = AtomicIntegerFieldUpdater.newUpdater(AwaitAll.class, "notCompletedCount$volatile");
@@ -26,9 +26,9 @@ public final class AwaitAll {
             CancellableContinuationImpl cancellableContinuationImpl = this.continuation;
             if (th != null) {
                 cancellableContinuationImpl.getClass();
-                Symbol symbolTryResumeImpl = cancellableContinuationImpl.tryResumeImpl(null, new CompletedExceptionally(th, false));
-                if (symbolTryResumeImpl != null) {
-                    cancellableContinuationImpl.completeResume(symbolTryResumeImpl);
+                Joiner joinerTryResumeImpl = cancellableContinuationImpl.tryResumeImpl(null, new CompletedExceptionally(th, false));
+                if (joinerTryResumeImpl != null) {
+                    cancellableContinuationImpl.completeResume(joinerTryResumeImpl);
                     DisposeHandlersOnCancel disposeHandlersOnCancel = (DisposeHandlersOnCancel) _disposer$volatile$FU.get(this);
                     if (disposeHandlersOnCancel != null) {
                         disposeHandlersOnCancel.disposeAll();

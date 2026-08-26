@@ -11,12 +11,12 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 
-public final class LivePhotoButton extends View {
-    public final AnimatedFloat animatedValue;
-    public final Paint cutPaint;
-    public final Drawable icon;
-    public boolean value;
-    public final Paint whitePaint;
+public class LivePhotoButton extends View {
+    private final AnimatedFloat animatedValue;
+    private final Paint cutPaint;
+    private final Drawable icon;
+    private boolean value;
+    private final Paint whitePaint;
 
     public LivePhotoButton(Context context) {
         super(context);
@@ -25,7 +25,7 @@ public final class LivePhotoButton extends View {
         Paint paint2 = new Paint(1);
         this.cutPaint = paint2;
         this.animatedValue = new AnimatedFloat(this, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-        ScaleStateListAnimator.apply(this, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this);
         this.icon = context.getResources().getDrawable(R.drawable.media_live_on).mutate();
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
@@ -36,47 +36,54 @@ public final class LivePhotoButton extends View {
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         Canvas canvas2;
         float f = this.animatedValue.set(!this.value);
-        int width = getWidth();
-        Drawable drawable = this.icon;
-        drawable.setBounds((width - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
-        Rect bounds = drawable.getBounds();
+        this.icon.setBounds((getWidth() - this.icon.getIntrinsicWidth()) / 2, (getHeight() - this.icon.getIntrinsicHeight()) / 2, (this.icon.getIntrinsicWidth() + getWidth()) / 2, (this.icon.getIntrinsicHeight() + getHeight()) / 2);
+        Rect bounds = this.icon.getBounds();
         float fWidth = (bounds.width() * 0.325f) + bounds.left;
         float fHeight = (bounds.height() * 0.152f) + bounds.top;
         float fHeight2 = bounds.bottom - (bounds.height() * 0.152f);
         float fWidth2 = bounds.right - (bounds.width() * 0.101f);
         if (f > 0.0f) {
-            Paint paint = this.cutPaint;
-            paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
+            this.cutPaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
             canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-            drawable.draw(canvas);
+            this.icon.draw(canvas);
             if (this.value) {
-                canvas.drawLine(fWidth2 - AndroidUtilities.dp(4.0f), fHeight2 - AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(fWidth2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + fWidth, f), AndroidUtilities.lerp(fHeight2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + fHeight, f), paint);
+                canvas.drawLine(fWidth2 - AndroidUtilities.dp(4.0f), fHeight2 - AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(fWidth2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + fWidth, f), AndroidUtilities.lerp(fHeight2 - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + fHeight, f), this.cutPaint);
                 canvas2 = canvas;
             } else {
                 canvas2 = canvas;
-                canvas2.drawLine(fWidth + AndroidUtilities.dp(4.0f), fHeight + AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + fWidth, fWidth2 - AndroidUtilities.dp(4.0f), f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + fHeight, fHeight2 - AndroidUtilities.dp(4.0f), f), paint);
+                canvas2.drawLine(fWidth + AndroidUtilities.dp(4.0f), fHeight + AndroidUtilities.dp(4.0f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + fWidth, fWidth2 - AndroidUtilities.dp(4.0f), f), AndroidUtilities.lerp(AndroidUtilities.dp(4.0f) + fHeight, fHeight2 - AndroidUtilities.dp(4.0f), f), this.cutPaint);
             }
-            canvas2.restore();
+            canvas.restore();
         } else {
             canvas2 = canvas;
-            drawable.draw(canvas2);
+            this.icon.draw(canvas);
         }
         if (f > 0.0f) {
-            Paint paint2 = this.whitePaint;
-            paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            this.whitePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             if (this.value) {
-                canvas2.drawLine(fWidth2, fHeight2, AndroidUtilities.lerp(fWidth2, fWidth, f), AndroidUtilities.lerp(fHeight2, fHeight, f), paint2);
+                canvas2.drawLine(fWidth2, fHeight2, AndroidUtilities.lerp(fWidth2, fWidth, f), AndroidUtilities.lerp(fHeight2, fHeight, f), this.whitePaint);
             } else {
-                canvas.drawLine(fWidth, fHeight, AndroidUtilities.lerp(fWidth, fWidth2, f), AndroidUtilities.lerp(fHeight, fHeight2, f), paint2);
+                canvas.drawLine(fWidth, fHeight, AndroidUtilities.lerp(fWidth, fWidth2, f), AndroidUtilities.lerp(fHeight, fHeight2, f), this.whitePaint);
             }
         }
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
+    public void onMeasure(int i, int i2) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(45.0f), 1073741824));
+    }
+
+    public void setValue(boolean z, boolean z2) {
+        if (this.value == z) {
+            return;
+        }
+        this.value = z;
+        if (!z2) {
+            this.animatedValue.force(z);
+        }
+        invalidate();
     }
 }

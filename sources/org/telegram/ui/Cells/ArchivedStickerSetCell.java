@@ -4,6 +4,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.Property;
 import android.view.View;
@@ -11,30 +12,24 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.Checkable;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import androidx.collection.LongSparseArray;
-import com.google.android.gms.internal.mlkit_vision_common.zzkp;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArchivedStickersActivity;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda16;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
+import org.telegram.ui.BlurSettingsBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ProgressButton;
 import org.telegram.ui.Components.ViewHelper;
+import org.telegram.ui.WearAuthSheet$$ExternalSyntheticLambda3;
 
 public final class ArchivedStickerSetCell extends FrameLayout implements Checkable {
     public final ProgressButton addButton;
@@ -63,9 +58,7 @@ public final class ArchivedStickerSetCell extends FrameLayout implements Checkab
             progressButton.setText(LocaleController.getString(R.string.Add));
             progressButton.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
             progressButton.setProgressColor(Theme.getColor(null, Theme.key_featuredStickers_buttonProgress, false));
-            int color = Theme.getColor(null, Theme.key_featuredStickers_addButton, false);
-            Theme.getColor(null, Theme.key_featuredStickers_addButtonPressed, false);
-            progressButton.setBackgroundRoundRect(14.0f, color);
+            progressButton.setBackgroundRoundRect(Theme.getColor(null, Theme.key_featuredStickers_addButton, false), Theme.getColor(null, Theme.key_featuredStickers_addButtonPressed, false));
             addView(progressButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
             int iDp = AndroidUtilities.dp(60.0f);
             ProgressButton progressButton2 = new ProgressButton(context);
@@ -82,9 +75,9 @@ public final class ArchivedStickerSetCell extends FrameLayout implements Checkab
             ViewHelper.setPadding(progressButton2, 8.0f, 0.0f, 8.0f, 0.0f);
             progressButton2.setOutlineProvider(null);
             addView(progressButton2, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
-            CallLogActivity$$ExternalSyntheticLambda38 callLogActivity$$ExternalSyntheticLambda38 = new CallLogActivity$$ExternalSyntheticLambda38(this, 20);
-            progressButton.setOnClickListener(callLogActivity$$ExternalSyntheticLambda38);
-            progressButton2.setOnClickListener(callLogActivity$$ExternalSyntheticLambda38);
+            AboutLinkCell$$ExternalSyntheticLambda1 aboutLinkCell$$ExternalSyntheticLambda1 = new AboutLinkCell$$ExternalSyntheticLambda1(this, 9);
+            progressButton.setOnClickListener(aboutLinkCell$$ExternalSyntheticLambda1);
+            progressButton2.setOnClickListener(aboutLinkCell$$ExternalSyntheticLambda1);
             syncButtons(false);
         } else {
             this.addButton = null;
@@ -92,13 +85,15 @@ public final class ArchivedStickerSetCell extends FrameLayout implements Checkab
         }
         TextView textView = new TextView(context);
         this.textView = textView;
-        ArticleViewer.IBlock.CC.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 16.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setGravity(LayoutHelper.getAbsoluteGravityStart());
         addView(textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388611, 71.0f, 10.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        zzkp.m(13.0f, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), textView2);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView2, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), 1, 13.0f, 1);
         textView2.setMaxLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(LayoutHelper.getAbsoluteGravityStart());
@@ -188,7 +183,7 @@ public final class ArchivedStickerSetCell extends FrameLayout implements Checkab
         }
         BackupImageView backupImageView = this.imageView;
         if (document == null) {
-            backupImageView.setImage(null, null, null, null, null, "webp", 0, stickerSetCovered);
+            backupImageView.setImage((ImageLocation) null, (String) null, "webp", (Drawable) null, stickerSetCovered);
             return;
         }
         TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerSetCovered.set.thumbs, 90);
@@ -200,17 +195,17 @@ public final class ArchivedStickerSetCell extends FrameLayout implements Checkab
         ImageLocation forDocument = z3 ? ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document) : ImageLocation.getForSticker((TLRPC.PhotoSize) closestPhotoSizeWithSize, document, stickerSetCovered.set.thumb_version);
         if (z3 && (MessageObject.isAnimatedStickerDocument(document, true) || MessageObject.isVideoSticker(document))) {
             if (svgThumb != null) {
-                backupImageView.setImage$1(ImageLocation.getForDocument(document), "50_50", svgThumb, stickerSetCovered);
+                backupImageView.setImage(ImageLocation.getForDocument(document), "50_50", svgThumb, 0, stickerSetCovered);
                 return;
             } else {
-                backupImageView.setImage(ImageLocation.getForDocument(document), "50_50", forDocument, null, null, null, 0, stickerSetCovered);
+                backupImageView.setImage(ImageLocation.getForDocument(document), "50_50", forDocument, (String) null, 0, stickerSetCovered);
                 return;
             }
         }
         if (forDocument == null || forDocument.imageType != 1) {
-            backupImageView.setImage(forDocument, "50_50", null, null, svgThumb, "webp", 0, stickerSetCovered);
+            backupImageView.setImage(forDocument, "50_50", "webp", svgThumb, stickerSetCovered);
         } else {
-            backupImageView.setImage(forDocument, "50_50", null, null, svgThumb, "tgs", 0, stickerSetCovered);
+            backupImageView.setImage(forDocument, "50_50", "tgs", svgThumb, stickerSetCovered);
         }
     }
 
@@ -250,7 +245,7 @@ public final class ArchivedStickerSetCell extends FrameLayout implements Checkab
             float[] fArr = {f};
             Property property3 = View.SCALE_Y;
             animatorSet3.playTogether(objectAnimatorOfFloat, objectAnimatorOfFloat2, ObjectAnimator.ofFloat(progressButton2, (Property<ProgressButton, Float>) property3, fArr), ObjectAnimator.ofFloat(progressButton, (Property<ProgressButton, Float>) property, f2), ObjectAnimator.ofFloat(progressButton, (Property<ProgressButton, Float>) property2, f2), ObjectAnimator.ofFloat(progressButton, (Property<ProgressButton, Float>) property3, f2));
-            this.animatorSet.addListener(new ArticleViewer.AnonymousClass25(this, 11));
+            this.animatorSet.addListener(new BotButton.AnonymousClass1(this, 3));
             this.animatorSet.setInterpolator(new OvershootInterpolator(1.02f));
             this.animatorSet.start();
         }
@@ -273,22 +268,6 @@ public final class ArchivedStickerSetCell extends FrameLayout implements Checkab
         if (!z3 || (onCheckedChangeListener = this.onCheckedChangeListener) == null) {
             return;
         }
-        ArticleViewer$$ExternalSyntheticLambda16 articleViewer$$ExternalSyntheticLambda16 = (ArticleViewer$$ExternalSyntheticLambda16) onCheckedChangeListener;
-        ArchivedStickersActivity archivedStickersActivity = ArchivedStickersActivity.this;
-        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) articleViewer$$ExternalSyntheticLambda16.f$1;
-        if (z) {
-            setChecked(false, false, false);
-            long j = stickerSetCovered.set.id;
-            LongSparseArray longSparseArray = archivedStickersActivity.installingStickerSets;
-            if (longSparseArray.indexOfKey(j) >= 0) {
-                return;
-            }
-            ProgressButton progressButton = this.addButton;
-            if (progressButton != null) {
-                progressButton.setDrawProgress(true, true);
-            }
-            longSparseArray.put(stickerSetCovered, stickerSetCovered.set.id);
-        }
-        MediaDataController.getInstance(((BaseFragment) archivedStickersActivity).currentAccount).toggleStickerSet(archivedStickersActivity.getParentActivity(), stickerSetCovered, !z ? 1 : 2, archivedStickersActivity, false, false);
+        ((WearAuthSheet$$ExternalSyntheticLambda3) onCheckedChangeListener).onCheckedChanged(this, z);
     }
 }

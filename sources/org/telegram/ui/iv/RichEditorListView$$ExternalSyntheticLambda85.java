@@ -17,10 +17,10 @@ public final class RichEditorListView$$ExternalSyntheticLambda85 implements Runn
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.setItemAnimator(this.f$1);
+                this.f$0.lambda$onCellEnter$52(this.f$1);
                 break;
             default:
-                this.f$0.setItemAnimator(this.f$1);
+                this.f$0.lambda$onCellBackspaceAtStart$59(this.f$1);
                 break;
         }
     }

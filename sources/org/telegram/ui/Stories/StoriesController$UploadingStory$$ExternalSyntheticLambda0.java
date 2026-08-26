@@ -14,9 +14,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda33;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda12;
-import org.telegram.ui.StickersActivity$$ExternalSyntheticLambda18;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda17;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda140;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 
@@ -31,7 +30,7 @@ public final class StoriesController$UploadingStory$$ExternalSyntheticLambda0 im
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        ArticleViewer$$ExternalSyntheticLambda33 articleViewer$$ExternalSyntheticLambda33;
+        StarGiftSheet$$ExternalSyntheticLambda140 starGiftSheet$$ExternalSyntheticLambda140;
         int i;
         boolean z;
         int i2;
@@ -51,11 +50,11 @@ public final class StoriesController$UploadingStory$$ExternalSyntheticLambda0 im
                 if (!z3) {
                     if (tLObject instanceof TL_bots.botPreviewMedia) {
                         uploadingStory.previewMedia = (TL_bots.botPreviewMedia) tLObject;
-                    } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && storyEntry.editingCoverDocument != null && (articleViewer$$ExternalSyntheticLambda33 = storyEntry.updateDocumentRef) != null) {
-                        articleViewer$$ExternalSyntheticLambda33.run(new StoriesController$UploadingStory$$ExternalSyntheticLambda5(uploadingStory, 0));
+                    } else if (tL_error != null && FileRefController.isFileRefError(tL_error.text) && storyEntry.editingCoverDocument != null && (starGiftSheet$$ExternalSyntheticLambda140 = storyEntry.updateDocumentRef) != null) {
+                        starGiftSheet$$ExternalSyntheticLambda140.run(new StoriesController$UploadingStory$$ExternalSyntheticLambda5(uploadingStory, 0));
                         storyEntry.updateDocumentRef = null;
                     } else if (tL_error != null && !z4) {
-                        AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(1, uploadingStory, tL_error));
+                        AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(4, uploadingStory, tL_error));
                     }
                     break;
                 } else {
@@ -209,7 +208,7 @@ public final class StoriesController$UploadingStory$$ExternalSyntheticLambda0 im
                                 TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
                                 tL_updateStory.peer = MessagesController.getInstance(i12).getPeer(j);
                                 tL_updateStory.story = tL_storyItem;
-                                AndroidUtilities.runOnUIThread(new StickersActivity$$ExternalSyntheticLambda18(29, uploadingStory, tL_updateStory));
+                                AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(3, uploadingStory, tL_updateStory));
                             }
                             TLRPC.MessageMedia messageMedia = tL_storyItem.media;
                             if (messageMedia != null && tL_storyItem.attachPath != null) {
@@ -222,7 +221,7 @@ public final class StoriesController$UploadingStory$$ExternalSyntheticLambda0 im
                                     }
                                 }
                             }
-                            AndroidUtilities.runOnUIThread(new PollItemMenu$$ExternalSyntheticLambda12(uploadingStory, j, tL_storyItem, 27));
+                            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda17(uploadingStory, j, tL_storyItem, 12));
                             MessagesController.getInstance(i12).processUpdateArray(updates.updates, updates.users, updates.chats, false, updates.date);
                         }
                     }
@@ -230,7 +229,7 @@ public final class StoriesController$UploadingStory$$ExternalSyntheticLambda0 im
                 AndroidUtilities.runOnUIThread(new StoriesController$UploadingStory$$ExternalSyntheticLambda1(uploadingStory, 0));
                 break;
             default:
-                AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda9(StoriesController.this, 2));
+                AndroidUtilities.runOnUIThread(new StoriesController$$ExternalSyntheticLambda14(StoriesController.this, 2));
                 break;
         }
     }

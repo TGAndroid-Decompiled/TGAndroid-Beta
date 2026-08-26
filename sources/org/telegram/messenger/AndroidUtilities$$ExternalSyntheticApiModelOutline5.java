@@ -12,10 +12,10 @@ public abstract class AndroidUtilities$$ExternalSyntheticApiModelOutline5 {
         return new MediaCodecInfo.VideoCapabilities.PerformancePoint(i, i2, i3);
     }
 
-    public static MediaCodecInfo.VideoCapabilities.PerformancePoint m171m(Object obj) {
+    public static MediaCodecInfo.VideoCapabilities.PerformancePoint m173m(Object obj) {
         return (MediaCodecInfo.VideoCapabilities.PerformancePoint) obj;
     }
 
-    public static void m172m() {
+    public static void m174m() {
     }
 }

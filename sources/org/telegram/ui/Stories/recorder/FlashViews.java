@@ -24,9 +24,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticApiModelOutline3;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticApiModelOutline1;
 import org.telegram.ui.Stars.StarReactionsOverlay;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda4;
 
 public final class FlashViews {
     public ValueAnimator animator;
@@ -164,6 +163,7 @@ public final class FlashViews {
     }
 
     public final void flashTo(float f, long j, Runnable runnable) {
+        int i = 2;
         ValueAnimator valueAnimator = this.animator;
         if (valueAnimator != null) {
             valueAnimator.cancel();
@@ -180,8 +180,8 @@ public final class FlashViews {
         }
         ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.invert, f);
         this.animator = valueAnimatorOfFloat;
-        valueAnimatorOfFloat.addUpdateListener(new VoIPFragment$$ExternalSyntheticLambda4(this, 7));
-        this.animator.addListener(new StarReactionsOverlay.AnonymousClass1(this, f, runnable, 3));
+        valueAnimatorOfFloat.addUpdateListener(new HintView2$$ExternalSyntheticLambda1(this, 3));
+        this.animator.addListener(new StarReactionsOverlay.AnonymousClass1(this, f, runnable, i));
         this.animator.setDuration(j);
         this.animator.setInterpolator(CubicBezierInterpolator.EASE_IN);
         this.animator.start();
@@ -215,7 +215,7 @@ public final class FlashViews {
             long[] jArr = {Color.valueOf(fRed, fGreen, fBlue, 0.0f, ColorSpace.get(named)).pack(), Color.valueOf(Color.red(this.color) / 255.0f, Color.green(this.color) / 255.0f, Color.blue(this.color) / 255.0f, 1.0f, ColorSpace.get(named)).pack()};
             float[] fArr = {AndroidUtilities.lerp(0.9f, 0.22f, this.invert), 1.0f};
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            this.gradient = PhotoViewer$$ExternalSyntheticApiModelOutline3.m(f, f2, fMin, jArr, fArr);
+            this.gradient = PhotoViewer$$ExternalSyntheticApiModelOutline1.m(f, f2, fMin, jArr, fArr);
         } else {
             int i5 = this.lastWidth;
             int i6 = this.lastHeight;

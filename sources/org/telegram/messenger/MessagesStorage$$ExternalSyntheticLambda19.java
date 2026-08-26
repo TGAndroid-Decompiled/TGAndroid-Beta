@@ -7,11 +7,11 @@ import java.util.Collections;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda417;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.ProfileChannelCell;
+import org.telegram.ui.Components.AlertsCreator$$ExternalSyntheticLambda16;
 import org.telegram.ui.iv.TableModel$$ExternalSyntheticLambda1;
 
 public final class MessagesStorage$$ExternalSyntheticLambda19 implements Runnable {
@@ -146,7 +146,7 @@ public final class MessagesStorage$$ExternalSyntheticLambda19 implements Runnabl
                                         tL_channels_getMessages.id.add(Integer.valueOf(i8));
                                     }
                                 }
-                                ConnectionsManager.getInstance(i5).sendRequest(tL_channels_getMessages, new MessagesController$$ExternalSyntheticLambda417(channelMessageFetcher2, messagesStorage, j5, i4, arrayList9));
+                                ConnectionsManager.getInstance(i5).sendRequest(tL_channels_getMessages, new AlertsCreator$$ExternalSyntheticLambda16(channelMessageFetcher2, messagesStorage, j5, i4, arrayList9));
                             }
                         });
                         return;
@@ -241,7 +241,7 @@ public final class MessagesStorage$$ExternalSyntheticLambda19 implements Runnabl
                                                                     tL_channels_getMessages.id.add(Integer.valueOf(i9));
                                                                 }
                                                             }
-                                                            ConnectionsManager.getInstance(i6).sendRequest(tL_channels_getMessages, new MessagesController$$ExternalSyntheticLambda417(channelMessageFetcher2, messagesStorage, j6, i5, arrayList10));
+                                                            ConnectionsManager.getInstance(i6).sendRequest(tL_channels_getMessages, new AlertsCreator$$ExternalSyntheticLambda16(channelMessageFetcher2, messagesStorage, j6, i5, arrayList10));
                                                         }
                                                     });
                                                     return;
@@ -327,7 +327,7 @@ public final class MessagesStorage$$ExternalSyntheticLambda19 implements Runnabl
                                                 tL_channels_getMessages.id.add(Integer.valueOf(i10));
                                             }
                                         }
-                                        ConnectionsManager.getInstance(i7).sendRequest(tL_channels_getMessages, new MessagesController$$ExternalSyntheticLambda417(channelMessageFetcher2, messagesStorage, j6, i6, arrayList11));
+                                        ConnectionsManager.getInstance(i7).sendRequest(tL_channels_getMessages, new AlertsCreator$$ExternalSyntheticLambda16(channelMessageFetcher2, messagesStorage, j6, i6, arrayList11));
                                     }
                                 });
                                 return;
@@ -395,7 +395,7 @@ public final class MessagesStorage$$ExternalSyntheticLambda19 implements Runnabl
                                 tL_channels_getMessages.id.add(Integer.valueOf(i11));
                             }
                         }
-                        ConnectionsManager.getInstance(i8).sendRequest(tL_channels_getMessages, new MessagesController$$ExternalSyntheticLambda417(channelMessageFetcher2, messagesStorage, j6, i7, arrayList12));
+                        ConnectionsManager.getInstance(i8).sendRequest(tL_channels_getMessages, new AlertsCreator$$ExternalSyntheticLambda16(channelMessageFetcher2, messagesStorage, j6, i7, arrayList12));
                     }
                 });
                 return;

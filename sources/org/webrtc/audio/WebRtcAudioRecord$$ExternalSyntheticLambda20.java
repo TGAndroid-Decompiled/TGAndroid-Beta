@@ -7,10 +7,10 @@ import android.content.pm.ResolveInfo;
 import android.content.pm.ServiceInfo;
 import android.media.AudioRecord;
 import android.util.Log;
+import androidx.emoji2.text.MetadataRepo;
 import com.google.firebase.messaging.WakeLockHolder;
 import java.util.ArrayDeque;
 import java.util.concurrent.Callable;
-import org.commonmark.parser.Parser;
 
 public final class WebRtcAudioRecord$$ExternalSyntheticLambda20 implements Callable {
     public final int $r8$classId;
@@ -36,17 +36,17 @@ public final class WebRtcAudioRecord$$ExternalSyntheticLambda20 implements Calla
             default:
                 Context context = (Context) this.f$0;
                 Intent intent = (Intent) this.f$1;
-                Parser parser = Parser.getInstance();
-                parser.getClass();
+                MetadataRepo metadataRepo = MetadataRepo.getInstance();
+                metadataRepo.getClass();
                 if (Log.isLoggable("FirebaseMessaging", 3)) {
                     Log.d("FirebaseMessaging", "Starting service");
                 }
-                ((ArrayDeque) parser.inlineParserFactory).offer(intent);
+                ((ArrayDeque) metadataRepo.mTypeface).offer(intent);
                 Intent intent2 = new Intent("com.google.firebase.MESSAGING_EVENT");
                 intent2.setPackage(context.getPackageName());
-                synchronized (parser) {
+                synchronized (metadataRepo) {
                     try {
-                        str = (String) parser.blockParserFactories;
+                        str = (String) metadataRepo.mMetadataList;
                         if (str == null) {
                             ResolveInfo resolveInfoResolveService = context.getPackageManager().resolveService(intent2, 0);
                             if (resolveInfoResolveService == null || (serviceInfo = resolveInfoResolveService.serviceInfo) == null) {
@@ -55,11 +55,11 @@ public final class WebRtcAudioRecord$$ExternalSyntheticLambda20 implements Calla
                                 Log.e("FirebaseMessaging", "Error resolving target intent service, skipping classname enforcement. Resolved service was: " + serviceInfo.packageName + "/" + serviceInfo.name);
                             } else {
                                 if (str2.startsWith(".")) {
-                                    parser.blockParserFactories = context.getPackageName() + serviceInfo.name;
+                                    metadataRepo.mMetadataList = context.getPackageName() + serviceInfo.name;
                                 } else {
-                                    parser.blockParserFactories = serviceInfo.name;
+                                    metadataRepo.mMetadataList = serviceInfo.name;
                                 }
-                                str = (String) parser.blockParserFactories;
+                                str = (String) metadataRepo.mMetadataList;
                             }
                             str = null;
                         }
@@ -74,7 +74,7 @@ public final class WebRtcAudioRecord$$ExternalSyntheticLambda20 implements Calla
                     intent2.setClassName(context.getPackageName(), str);
                 }
                 try {
-                    if (parser.hasWakeLockPermission(context)) {
+                    if (metadataRepo.hasWakeLockPermission(context)) {
                         componentNameStartService = WakeLockHolder.startWakefulService(context, intent2);
                     } else {
                         componentNameStartService = context.startService(intent2);

@@ -1,6 +1,6 @@
 package kotlin.collections;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -16,7 +16,7 @@ public final class RingBuffer extends AbstractList implements RandomAccess {
     public RingBuffer(int i, Object[] objArr) {
         this.buffer = objArr;
         if (i < 0) {
-            throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, "ring buffer filled size should not be negative but it is ").toString());
+            throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(i, "ring buffer filled size should not be negative but it is ").toString());
         }
         if (i <= objArr.length) {
             this.capacity = objArr.length;
@@ -30,7 +30,7 @@ public final class RingBuffer extends AbstractList implements RandomAccess {
     public final Object get(int i) {
         int size = getSize();
         if (i < 0 || i >= size) {
-            throw new IndexOutOfBoundsException(SurfaceContainer$$ExternalSyntheticOutline0.m(i, size, "index: ", ", size: "));
+            throw new IndexOutOfBoundsException(Fragment$$ExternalSyntheticOutline0.m(i, size, "index: ", ", size: "));
         }
         return this.buffer[(this.startIndex + i) % this.capacity];
     }

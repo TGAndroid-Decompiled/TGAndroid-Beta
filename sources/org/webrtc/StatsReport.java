@@ -1,6 +1,6 @@
 package org.webrtc;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 
 public class StatsReport {
     public final String id;
@@ -21,7 +21,7 @@ public class StatsReport {
             StringBuilder sb = new StringBuilder("[");
             sb.append(this.name);
             sb.append(": ");
-            return SurfaceContainer$$ExternalSyntheticOutline0.m(sb, this.value, "]");
+            return Fragment$$ExternalSyntheticOutline0.m(sb, this.value, "]");
         }
     }
 

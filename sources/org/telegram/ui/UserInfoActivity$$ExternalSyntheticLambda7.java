@@ -27,12 +27,16 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ButtonSpan;
-import org.telegram.ui.Components.JoinGroupAlert$$ExternalSyntheticLambda3;
-import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda45;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda47;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda49;
 import org.telegram.ui.Components.Premium.boosts.BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13;
-import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda11;
-import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda7;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda111;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda140;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda9;
+import org.telegram.ui.Stars.StarsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda10;
+import org.telegram.ui.bots.BotDownloads$$ExternalSyntheticLambda0;
 
 public final class UserInfoActivity$$ExternalSyntheticLambda7 implements Runnable {
     public final int $r8$classId;
@@ -45,16 +49,16 @@ public final class UserInfoActivity$$ExternalSyntheticLambda7 implements Runnabl
     public final Object f$6;
     public final Object f$7;
 
-    public UserInfoActivity$$ExternalSyntheticLambda7(MessagesStorage messagesStorage, LongSparseArray longSparseArray, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, HashMap map) {
-        this.$r8$classId = 2;
-        this.f$0 = messagesStorage;
-        this.f$1 = longSparseArray;
+    public UserInfoActivity$$ExternalSyntheticLambda7(ArrayList arrayList, TLObject tLObject, TLObject tLObject2, TLRPC.TL_error tL_error, TLRPC.UserFull userFull, TL_account.TL_birthday tL_birthday, UserInfoActivity userInfoActivity, int[] iArr) {
+        this.$r8$classId = 0;
+        this.f$0 = userInfoActivity;
+        this.f$1 = tL_error;
+        this.f$2 = tLObject;
+        this.f$3 = tL_birthday;
+        this.f$4 = userFull;
+        this.f$5 = tLObject2;
+        this.f$6 = iArr;
         this.f$7 = arrayList;
-        this.f$2 = arrayList2;
-        this.f$5 = arrayList3;
-        this.f$3 = arrayList4;
-        this.f$4 = arrayList5;
-        this.f$6 = map;
     }
 
     @Override
@@ -77,12 +81,12 @@ public final class UserInfoActivity$$ExternalSyntheticLambda7 implements Runnabl
                 } else if (((TLObject) this.f$2) != null) {
                     BillingController billingController = BillingController.getInstance();
                     List list = (List) this.f$5;
-                    billingController.addResultListener(((ProductDetails) list.get(0)).zzc, new AvatarPreviewer$Layout$$ExternalSyntheticLambda2(2, (BillingResult) this.f$3, (BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13) this.f$4));
-                    BillingController.getInstance().setOnCanceled(new BoostRepository$$ExternalSyntheticLambda45(boostViaGiftsBottomSheet$$ExternalSyntheticLambda13, 0));
+                    billingController.addResultListener(((ProductDetails) list.get(0)).zzc, new StarsController$$ExternalSyntheticLambda140(2, (BillingResult) this.f$3, (BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13) this.f$4));
+                    BillingController.getInstance().setOnCanceled(new BoostRepository$$ExternalSyntheticLambda49(boostViaGiftsBottomSheet$$ExternalSyntheticLambda13, 0));
                     BillingController billingController2 = BillingController.getInstance();
                     Activity parentActivity = ((BaseFragment) this.f$6).getParentActivity();
                     AccountInstance accountInstance = AccountInstance.getInstance(UserConfig.selectedAccount);
-                    zzcl zzclVar = new zzcl((char) 0, 16);
+                    zzcl zzclVar = new zzcl(11, false);
                     zzclVar.setProductDetails((ProductDetails) list.get(0));
                     billingController2.launchBillingFlow(parentActivity, accountInstance, (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f$7, Collections.singletonList(zzclVar.build()));
                 }
@@ -95,12 +99,12 @@ public final class UserInfoActivity$$ExternalSyntheticLambda7 implements Runnabl
                 } else if (((TLObject) this.f$2) != null) {
                     BillingController billingController3 = BillingController.getInstance();
                     List list2 = (List) this.f$5;
-                    billingController3.addResultListener(((ProductDetails) list2.get(0)).zzc, new AvatarPreviewer$Layout$$ExternalSyntheticLambda2(1, (BillingResult) this.f$3, (Utilities.Callback) this.f$4));
-                    BillingController.getInstance().setOnCanceled(new CacheControlActivity$$ExternalSyntheticLambda3(1, callback));
+                    billingController3.addResultListener(((ProductDetails) list2.get(0)).zzc, new StarsController$$ExternalSyntheticLambda140(1, (BillingResult) this.f$3, (Utilities.Callback) this.f$4));
+                    BillingController.getInstance().setOnCanceled(new BoostRepository$$ExternalSyntheticLambda47(0, callback));
                     BillingController billingController4 = BillingController.getInstance();
                     Activity parentActivity2 = ((BaseFragment) this.f$6).getParentActivity();
                     AccountInstance accountInstance2 = AccountInstance.getInstance(UserConfig.selectedAccount);
-                    zzcl zzclVar2 = new zzcl((char) 0, 16);
+                    zzcl zzclVar2 = new zzcl(11, false);
                     zzclVar2.setProductDetails((ProductDetails) list2.get(0));
                     billingController4.launchBillingFlow(parentActivity2, accountInstance2, (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f$7, Collections.singletonList(zzclVar2.build()));
                 }
@@ -108,41 +112,41 @@ public final class UserInfoActivity$$ExternalSyntheticLambda7 implements Runnabl
             case 5:
                 TLObject tLObject = (TLObject) this.f$2;
                 boolean z = tLObject instanceof TLRPC.TL_boolTrue;
-                OAuthSheet$$ExternalSyntheticLambda18 oAuthSheet$$ExternalSyntheticLambda18 = (OAuthSheet$$ExternalSyntheticLambda18) this.f$3;
+                BotBiometry$$ExternalSyntheticLambda10 botBiometry$$ExternalSyntheticLambda10 = (BotBiometry$$ExternalSyntheticLambda10) this.f$3;
                 if (z) {
-                    BillingController.getInstance().addResultListener(((ProductDetails) this.f$0).zzc, new AvatarPreviewer$Layout$$ExternalSyntheticLambda2(4, (BillingResult) this.f$5, oAuthSheet$$ExternalSyntheticLambda18));
-                    BillingController.getInstance().setOnCanceled(new StarsController$$ExternalSyntheticLambda7(oAuthSheet$$ExternalSyntheticLambda18, 3));
+                    BillingController.getInstance().addResultListener(((ProductDetails) this.f$0).zzc, new StarsController$$ExternalSyntheticLambda140(0, (BillingResult) this.f$5, botBiometry$$ExternalSyntheticLambda10));
+                    BillingController.getInstance().setOnCanceled(new StarsController$$ExternalSyntheticLambda111(botBiometry$$ExternalSyntheticLambda10, 2));
                     BillingController billingController5 = BillingController.getInstance();
                     AccountInstance accountInstance3 = AccountInstance.getInstance(UserConfig.selectedAccount);
-                    zzcl zzclVar3 = new zzcl((char) 0, 16);
+                    zzcl zzclVar3 = new zzcl(11, false);
                     zzclVar3.setProductDetails((ProductDetails) ((List) this.f$7).get(0));
                     billingController5.launchBillingFlow((Activity) this.f$4, accountInstance3, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f$6, Collections.singletonList(zzclVar3.build()));
                 } else if (!(tLObject instanceof TLRPC.TL_boolFalse)) {
                     Boolean bool = Boolean.FALSE;
                     TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f$1;
-                    oAuthSheet$$ExternalSyntheticLambda18.run(bool, tL_error3 != null ? tL_error3.text : "SERVER_ERROR");
+                    botBiometry$$ExternalSyntheticLambda10.run(bool, tL_error3 != null ? tL_error3.text : "SERVER_ERROR");
                 } else {
-                    oAuthSheet$$ExternalSyntheticLambda18.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
+                    botBiometry$$ExternalSyntheticLambda10.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
                 }
                 break;
             case 6:
                 TLObject tLObject2 = (TLObject) this.f$2;
                 boolean z2 = tLObject2 instanceof TLRPC.TL_boolTrue;
-                JoinGroupAlert$$ExternalSyntheticLambda3 joinGroupAlert$$ExternalSyntheticLambda3 = (JoinGroupAlert$$ExternalSyntheticLambda3) this.f$3;
+                StarsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4 starsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4 = (StarsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4) this.f$3;
                 if (z2) {
-                    BillingController.getInstance().addResultListener(((ProductDetails) this.f$0).zzc, new AvatarPreviewer$Layout$$ExternalSyntheticLambda2(3, (BillingResult) this.f$5, joinGroupAlert$$ExternalSyntheticLambda3));
-                    BillingController.getInstance().setOnCanceled(new StarsController$$ExternalSyntheticLambda11(joinGroupAlert$$ExternalSyntheticLambda3, 0));
+                    BillingController.getInstance().addResultListener(((ProductDetails) this.f$0).zzc, new StarsController$$ExternalSyntheticLambda140(3, (BillingResult) this.f$5, starsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4));
+                    BillingController.getInstance().setOnCanceled(new StarsController$$ExternalSyntheticLambda9(starsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4, 3));
                     BillingController billingController6 = BillingController.getInstance();
                     AccountInstance accountInstance4 = AccountInstance.getInstance(UserConfig.selectedAccount);
-                    zzcl zzclVar4 = new zzcl((char) 0, 16);
+                    zzcl zzclVar4 = new zzcl(11, false);
                     zzclVar4.setProductDetails((ProductDetails) ((List) this.f$7).get(0));
                     billingController6.launchBillingFlow((Activity) this.f$4, accountInstance4, (TLRPC.TL_inputStorePaymentStarsGift) this.f$6, Collections.singletonList(zzclVar4.build()));
                 } else if (!(tLObject2 instanceof TLRPC.TL_boolFalse)) {
                     Boolean bool2 = Boolean.FALSE;
                     TLRPC.TL_error tL_error4 = (TLRPC.TL_error) this.f$1;
-                    joinGroupAlert$$ExternalSyntheticLambda3.run(bool2, tL_error4 != null ? tL_error4.text : "SERVER_ERROR");
+                    starsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4.run(bool2, tL_error4 != null ? tL_error4.text : "SERVER_ERROR");
                 } else {
-                    joinGroupAlert$$ExternalSyntheticLambda3.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
+                    starsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4.run(Boolean.FALSE, "PURCHASE_FORBIDDEN");
                 }
                 break;
             default:
@@ -157,7 +161,7 @@ public final class UserInfoActivity$$ExternalSyntheticLambda7 implements Runnabl
                     final ImageView imageView = (ImageView) this.f$4;
                     final int[] iArr = (int[]) this.f$6;
                     final Theme.ResourcesProvider resourcesProvider = (Theme.ResourcesProvider) this.f$7;
-                    ((TodoItemMenu$$ExternalSyntheticLambda17) this.f$3).run(str, new Utilities.Callback2() {
+                    ((BotDownloads$$ExternalSyntheticLambda0) this.f$3).run(str, new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj, Object obj2) {
                             Bitmap bitmap = (Bitmap) obj;
@@ -194,6 +198,18 @@ public final class UserInfoActivity$$ExternalSyntheticLambda7 implements Runnabl
         }
     }
 
+    public UserInfoActivity$$ExternalSyntheticLambda7(MessagesStorage messagesStorage, LongSparseArray longSparseArray, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, HashMap map) {
+        this.$r8$classId = 2;
+        this.f$0 = messagesStorage;
+        this.f$1 = longSparseArray;
+        this.f$7 = arrayList;
+        this.f$2 = arrayList2;
+        this.f$5 = arrayList3;
+        this.f$3 = arrayList4;
+        this.f$4 = arrayList5;
+        this.f$6 = map;
+    }
+
     public UserInfoActivity$$ExternalSyntheticLambda7(TLObject tLObject, ProductDetails productDetails, BillingResult billingResult, Utilities.Callback2 callback2, Activity activity, TLRPC.InputStorePaymentPurpose inputStorePaymentPurpose, List list, TLRPC.TL_error tL_error, int i) {
         this.$r8$classId = i;
         this.f$2 = tLObject;
@@ -218,25 +234,13 @@ public final class UserInfoActivity$$ExternalSyntheticLambda7 implements Runnabl
         this.f$7 = inputStorePaymentPurpose;
     }
 
-    public UserInfoActivity$$ExternalSyntheticLambda7(UserInfoActivity userInfoActivity, TLRPC.TL_error tL_error, TLObject tLObject, TL_account.TL_birthday tL_birthday, TLRPC.UserFull userFull, TLObject tLObject2, int[] iArr, ArrayList arrayList) {
-        this.$r8$classId = 0;
-        this.f$0 = userInfoActivity;
-        this.f$1 = tL_error;
-        this.f$2 = tLObject;
-        this.f$3 = tL_birthday;
-        this.f$4 = userFull;
-        this.f$5 = tLObject2;
-        this.f$6 = iArr;
-        this.f$7 = arrayList;
-    }
-
-    public UserInfoActivity$$ExternalSyntheticLambda7(String[] strArr, HorizontalScrollView horizontalScrollView, ButtonWithCounterView buttonWithCounterView, boolean[] zArr, TodoItemMenu$$ExternalSyntheticLambda17 todoItemMenu$$ExternalSyntheticLambda17, ImageView imageView, Theme.ResourcesProvider resourcesProvider, int[] iArr) {
+    public UserInfoActivity$$ExternalSyntheticLambda7(String[] strArr, HorizontalScrollView horizontalScrollView, ButtonWithCounterView buttonWithCounterView, boolean[] zArr, BotDownloads$$ExternalSyntheticLambda0 botDownloads$$ExternalSyntheticLambda0, ImageView imageView, Theme.ResourcesProvider resourcesProvider, int[] iArr) {
         this.$r8$classId = 7;
         this.f$0 = strArr;
         this.f$1 = horizontalScrollView;
         this.f$2 = buttonWithCounterView;
         this.f$5 = zArr;
-        this.f$3 = todoItemMenu$$ExternalSyntheticLambda17;
+        this.f$3 = botDownloads$$ExternalSyntheticLambda0;
         this.f$4 = imageView;
         this.f$7 = resourcesProvider;
         this.f$6 = iArr;

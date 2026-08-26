@@ -7,7 +7,6 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkq;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -18,6 +17,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LoadingDrawable;
+import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.UItem;
+import org.telegram.ui.Components.UniversalAdapter;
+import org.telegram.ui.Components.UniversalRecyclerView;
 
 public final class ProfileLocationCell extends LinearLayout {
     public final ImageReceiver imageReceiver;
@@ -25,6 +28,25 @@ public final class ProfileLocationCell extends LinearLayout {
     public final Theme.ResourcesProvider resourcesProvider;
     public final TextView textView1;
     public final LoadingDrawable thumbDrawable;
+
+    public final class Factory extends UItem.UItemFactory {
+        public static final int $r8$clinit = 0;
+
+        static {
+            UItem.UItemFactory.setup(new Factory());
+        }
+
+        @Override
+        public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
+            view.setId(uItem.id);
+            ((ProfileLocationCell) view).set((TLRPC.TL_businessLocation) uItem.object, z);
+        }
+
+        @Override
+        public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+            return new ProfileLocationCell(context, resourcesProvider);
+        }
+    }
 
     public ProfileLocationCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -37,7 +59,7 @@ public final class ProfileLocationCell extends LinearLayout {
         int i = Theme.key_windowBackgroundWhiteBlackText;
         int color = Theme.getColor(i, resourcesProvider);
         loadingDrawable.setColors(Theme.multAlpha(0.05f, color), Theme.multAlpha(0.15f, color), Theme.multAlpha(0.1f, color), Theme.multAlpha(0.3f, color));
-        loadingDrawable.setRadii(AndroidUtilities.dp(4.0f));
+        loadingDrawable.setRadiiDp(4.0f);
         loadingDrawable.strokePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
@@ -50,7 +72,8 @@ public final class ProfileLocationCell extends LinearLayout {
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
         textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-        zzkq.m(13.0f, R.string.BusinessProfileLocation, textView2);
+        textView2.setText(LocaleController.getString(R.string.BusinessProfileLocation));
+        textView2.setTextSize(1, 13.0f);
         boolean z2 = LocaleController.isRTL;
         addView(textView2, LayoutHelper.createLinear(-1, -2, 55, z2 ? 70 : 18, 0, z2 ? 18 : 70, 8));
         setWillNotDraw(false);
@@ -79,10 +102,12 @@ public final class ProfileLocationCell extends LinearLayout {
     public final void set(TLRPC.TL_businessLocation tL_businessLocation, boolean z) {
         if (tL_businessLocation != null) {
             this.textView1.setText(tL_businessLocation.address);
-            if (tL_businessLocation.geo_point != null) {
-                this.imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.thumbDrawable, 0L, (String) null, (Object) null, 0);
+            TLRPC.GeoPoint geoPoint = tL_businessLocation.geo_point;
+            ImageReceiver imageReceiver = this.imageReceiver;
+            if (geoPoint != null) {
+                imageReceiver.setImage(ImageLocation.getForWebFile(WebFile.createWithGeoPoint(tL_businessLocation.geo_point, AndroidUtilities.dp(44.0f), AndroidUtilities.dp(44.0f), 15, Math.min(2, (int) Math.ceil(AndroidUtilities.density)))), "44_44", this.thumbDrawable, 0L, (String) null, (Object) null, 0);
             } else {
-                this.imageReceiver.setImageBitmap((Drawable) null);
+                imageReceiver.setImageBitmap((Drawable) null);
             }
         }
         this.needDivider = z;

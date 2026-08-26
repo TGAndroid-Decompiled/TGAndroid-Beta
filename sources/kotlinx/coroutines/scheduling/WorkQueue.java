@@ -25,7 +25,7 @@ public final class WorkQueue {
             }
             int i2 = i & 127;
             if (atomicIntegerFieldUpdater.compareAndSet(this, i, i + 1) && (task = (Task) this.buffer.getAndSet(i2, null)) != null) {
-                if (task.taskContext.val$type == 1) {
+                if (task.taskContext.zza == 1) {
                     blockingTasksInBuffer$volatile$FU.decrementAndGet(this);
                 }
                 return task;
@@ -38,7 +38,7 @@ public final class WorkQueue {
         AtomicReferenceArray atomicReferenceArray = this.buffer;
         Task task = (Task) atomicReferenceArray.get(i2);
         if (task != null) {
-            if ((task.taskContext.val$type == 1) == z) {
+            if ((task.taskContext.zza == 1) == z) {
                 while (!atomicReferenceArray.compareAndSet(i2, task, null)) {
                     if (atomicReferenceArray.get(i2) != task) {
                     }

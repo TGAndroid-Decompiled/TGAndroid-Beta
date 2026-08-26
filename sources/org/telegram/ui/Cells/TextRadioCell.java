@@ -13,8 +13,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.BlurSettingsBottomSheet$$ExternalSyntheticOutline0;
+import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadioButton;
 
@@ -29,8 +29,22 @@ public final class TextRadioCell extends FrameLayout {
     public final TextView textView;
     public final TextView valueTextView;
 
+    public final class AnonymousClass1 extends AnimationProperties.FloatProperty {
+        @Override
+        public final Float get(Object obj) {
+            return Float.valueOf(((TextRadioCell) obj).animationProgress);
+        }
+
+        @Override
+        public final void setValue(Object obj, float f) {
+            TextRadioCell textRadioCell = (TextRadioCell) obj;
+            textRadioCell.setAnimationProgress(f);
+            textRadioCell.invalidate();
+        }
+    }
+
     static {
-        new ChatActivity.AnonymousClass5("animationProgress", 4);
+        new AnonymousClass1("animationProgress");
     }
 
     public TextRadioCell(Context context) {
@@ -39,7 +53,9 @@ public final class TextRadioCell extends FrameLayout {
         this.padding = 21;
         TextView textView = new TextView(context);
         this.textView = textView;
-        ArticleViewer.IBlock.CC.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 16.0f, 1, true);
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -60,11 +76,7 @@ public final class TextRadioCell extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        int color = Theme.getColor(null, Theme.key_radioBackground, false);
-        int color2 = Theme.getColor(null, Theme.key_radioBackgroundChecked, false);
-        radioButton.color = color;
-        radioButton.checkedColor = color2;
-        radioButton.invalidate();
+        radioButton.setColor(Theme.getColor(null, Theme.key_radioBackground, false), Theme.getColor(null, Theme.key_radioBackgroundChecked, false));
         addView(radioButton, LayoutHelper.createFrame(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         this.isRTL = LocaleController.isRTL;
         setClipChildren(false);
@@ -89,8 +101,8 @@ public final class TextRadioCell extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setCheckable(true);
         RadioButton radioButton = this.radioButton;
-        accessibilityNodeInfo.setChecked(radioButton.isChecked);
-        accessibilityNodeInfo.setContentDescription(LocaleController.getString(radioButton.isChecked ? R.string.NotificationsOn : R.string.NotificationsOff));
+        accessibilityNodeInfo.setChecked(radioButton.isChecked());
+        accessibilityNodeInfo.setContentDescription(LocaleController.getString(radioButton.isChecked() ? R.string.NotificationsOn : R.string.NotificationsOff));
         StringBuilder sb = new StringBuilder();
         sb.append(this.textView.getText());
         TextView textView = this.valueTextView;
@@ -163,24 +175,22 @@ public final class TextRadioCell extends FrameLayout {
             return;
         }
         this.isRTL = z2;
-        int i = z2 ? 5 : 3;
         TextView textView = this.textView;
-        textView.setGravity(i | 16);
+        textView.setGravity((z2 ? 5 : 3) | 16);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textView.getLayoutParams();
         boolean z3 = LocaleController.isRTL;
         layoutParams.gravity = (z3 ? 5 : 3) | 48;
-        int i2 = this.padding;
-        layoutParams.leftMargin = AndroidUtilities.dp(z3 ? i2 : 64.0f);
-        layoutParams.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : i2);
+        int i = this.padding;
+        layoutParams.leftMargin = AndroidUtilities.dp(z3 ? i : 64.0f);
+        layoutParams.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : i);
         textView.setLayoutParams(layoutParams);
-        int i3 = LocaleController.isRTL ? 5 : 3;
         TextView textView2 = this.valueTextView;
-        textView2.setGravity(i3);
+        textView2.setGravity(LocaleController.isRTL ? 5 : 3);
         FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) textView2.getLayoutParams();
         boolean z4 = LocaleController.isRTL;
         layoutParams2.gravity = (z4 ? 5 : 3) | 48;
-        layoutParams2.leftMargin = AndroidUtilities.dp(z4 ? i2 : 64.0f);
-        layoutParams2.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : i2);
+        layoutParams2.leftMargin = AndroidUtilities.dp(z4 ? i : 64.0f);
+        layoutParams2.rightMargin = AndroidUtilities.dp(LocaleController.isRTL ? 64.0f : i);
         textView2.setLayoutParams(layoutParams2);
         RadioButton radioButton = this.radioButton;
         FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) radioButton.getLayoutParams();

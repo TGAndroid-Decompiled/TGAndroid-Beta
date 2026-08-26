@@ -4,8 +4,8 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
 
-public abstract class BubbleCounterPath {
-    public static RectF tmpRect;
+public class BubbleCounterPath {
+    private static RectF tmpRect;
 
     public static void addBubbleRect(Path path, RectF rectF, float f) {
         if (path == null) {

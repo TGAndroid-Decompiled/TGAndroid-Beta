@@ -7,22 +7,24 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkm;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer$10$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.LayoutHelper;
 
 public final class PhotoAttachPermissionCell extends FrameLayout {
     public final ImageView imageView;
     public final ImageView imageView2;
     public int itemSize;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final TextView textView;
 
     public PhotoAttachPermissionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
@@ -46,7 +48,7 @@ public final class PhotoAttachPermissionCell extends FrameLayout {
 
     @Override
     public final void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), zzkm.m(2.0f, this.itemSize));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.itemSize, 1073741824), ArticleViewer$10$$ExternalSyntheticOutline0.m(2.0f, this.itemSize, 1073741824));
     }
 
     public void setItemSize(int i) {

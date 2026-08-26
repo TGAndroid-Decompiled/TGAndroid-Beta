@@ -1,7 +1,6 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 
@@ -13,38 +12,17 @@ public final class ChatAttachAlertContactsLayout$$ExternalSyntheticLambda1 imple
     }
 
     @Override
-    public void didSelectContact(TLRPC.TL_userContact_old2 tL_userContact_old2, boolean z, int i, long j) {
-        ChatAttachAlertContactsLayout chatAttachAlertContactsLayout = this.f$0;
-        chatAttachAlertContactsLayout.parentAlert.dismiss(true);
-        chatAttachAlertContactsLayout.delegate.didSelectContact(tL_userContact_old2, z, i, j);
+    public void didSelectContact(TLRPC.User user, boolean z, int i, long j, boolean z2, long j2) {
+        this.f$0.lambda$new$0(user, z, i, j, z2, j2);
     }
 
     @Override
-    public void didSelectContacts(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2) {
+    public void didSelectContacts(ArrayList arrayList, String str, boolean z, int i, long j, boolean z2, long j2) {
+        ChatAttachAlertContactsLayout.PhonebookShareAlertDelegate.CC.$default$didSelectContacts(this, arrayList, str, z, i, j, z2, j2);
     }
 
     @Override
-    public boolean onItemClick(int i, View view) {
-        Object item;
-        ChatAttachAlertContactsLayout chatAttachAlertContactsLayout = this.f$0;
-        RecyclerView.Adapter adapter = chatAttachAlertContactsLayout.listView.getAdapter();
-        ChatAttachAlertContactsLayout.ShareSearchAdapter shareSearchAdapter = chatAttachAlertContactsLayout.searchAdapter;
-        if (adapter == shareSearchAdapter) {
-            int i2 = i - 1;
-            if (i2 < 0) {
-                shareSearchAdapter.getClass();
-            } else if (i2 < shareSearchAdapter.searchResult.size()) {
-                item = shareSearchAdapter.searchResult.get(i2);
-            }
-            item = null;
-        } else {
-            ChatAttachAlertContactsLayout.ShareAdapter shareAdapter = chatAttachAlertContactsLayout.listAdapter;
-            item = shareAdapter.getItem(shareAdapter.getSectionForPosition(i), shareAdapter.getPositionInSectionForPosition(i));
-        }
-        if (item == null) {
-            return false;
-        }
-        chatAttachAlertContactsLayout.addOrRemoveSelectedContact((ChatAttachAlertContactsLayout.UserCell) view, item);
-        return true;
+    public boolean onItemClick(View view, int i) {
+        return this.f$0.lambda$new$2(view, i);
     }
 }

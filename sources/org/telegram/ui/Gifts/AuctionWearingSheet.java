@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import com.google.android.gms.internal.mlkit_vision_common.zzkh;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -26,8 +25,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline1;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda267;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
@@ -37,9 +36,9 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
-import org.telegram.ui.ComposeDrawable$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stars.StarGiftSheet;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda0;
 
 public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView implements GiftAuctionController.OnAuctionUpdateListener {
     public static final int $r8$clinit = 0;
@@ -76,7 +75,7 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
         GiftAuctionController.Auction auction2;
         GiftAuctionController.Auction auction3;
         TLRPC.User user;
-        super(context, null, false, false, false, false, false, 1, resourcesProvider);
+        super(context, null, false, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.FADING, resourcesProvider);
         long j2 = starGift.id;
         this.giftId = j2;
         this.headerMoveTop = AndroidUtilities.dp(6.0f);
@@ -89,7 +88,7 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
         linearLayout2.setClipChildren(false);
         linearLayout2.setClipToPadding(false);
         linearLayout2.setClickable(true);
-        ?? r8 = new FrameLayout(context) {
+        ?? r10 = new FrameLayout(context) {
             public final RectF rectF = new RectF();
             public final RectF rectF2 = new RectF();
 
@@ -117,10 +116,10 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
                 }
             }
         };
-        this.headerContainer = r8;
-        linearLayout2.addView(r8);
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
-        buttonWithCounterView.setRoundRadius(24);
+        this.headerContainer = r10;
+        linearLayout2.addView(r10);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
+        buttonWithCounterView.setRound();
         FrameLayout.LayoutParams layoutParamsCreateFrame = LayoutHelper.createFrame(-1, 48.0f, 80, 16.0f, 16.0f, 16.0f, 16.0f);
         int i2 = layoutParamsCreateFrame.leftMargin;
         int i3 = this.backgroundPaddingLeft;
@@ -134,7 +133,7 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
         int i5 = z ? 220 : 208;
         this.auction = GiftAuctionController.getInstance(this.currentAccount).subscribeToGiftAuction(j2, this);
         final int i6 = i5;
-        ?? r0 = new StarGiftSheet.TopView(context, resourcesProvider, new ComposeDrawable$$ExternalSyntheticLambda0(this, 27), new ChatActivity$$ExternalSyntheticLambda267(17), new ChatActivity$$ExternalSyntheticLambda267(17), new ChatActivity$$ExternalSyntheticLambda267(17), new ChatActivity$$ExternalSyntheticLambda267(17), new ChatActivity$$ExternalSyntheticLambda267(17), new ChatActivity$$ExternalSyntheticLambda267(17)) {
+        ?? r0 = new StarGiftSheet.TopView(context, resourcesProvider, new GiftSheet$$ExternalSyntheticLambda9(this, 27), new BotAdView$$ExternalSyntheticLambda0(10), new BotAdView$$ExternalSyntheticLambda0(10), new BotAdView$$ExternalSyntheticLambda0(10), new BotAdView$$ExternalSyntheticLambda0(10), new BotAdView$$ExternalSyntheticLambda0(10), new BotAdView$$ExternalSyntheticLambda0(10)) {
             public final Path path = new Path();
             public final float[] r = new float[8];
 
@@ -196,10 +195,10 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
         r0.onSwitchPage(new StarGiftSheet.PageTransition(1, 1));
         r0.setPreviewingAttributes(arrayList);
         r0.removeView(r0.closeView);
-        r8.addView(r0, 0, LayoutHelper.createFrame(-1, i6, 48));
+        r10.addView(r0, 0, LayoutHelper.createFrame(-1, i6, 48));
         BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(45.0f));
-        r8.addView(backupImageView, LayoutHelper.createFrame(90, 90.0f, 49, 0.0f, 42.0f, 0.0f, 0.0f));
+        r10.addView(backupImageView, LayoutHelper.createFrame(90, 90.0f, 49, 0.0f, 42.0f, 0.0f, 0.0f));
         if (j != 0) {
             if (j > 0) {
                 TLRPC.User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
@@ -210,11 +209,10 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
                 avatarDrawable = new AvatarDrawable(chat);
                 tLObject = chat;
             }
-            backupImageView.imageReceiver.setForUserOrChat(tLObject, avatarDrawable);
-            backupImageView.onNewImageSet();
+            backupImageView.setForUserOrChat(tLObject, avatarDrawable);
             TextView textView3 = new TextView(context);
             this.giftNameTextView = textView3;
-            zzkh.m(21.0f, textView3);
+            AccountFrozenAlert$$ExternalSyntheticOutline1.m(21.0f, 1, textView3);
             if (j != 0) {
                 clientUserId = j;
             } else {
@@ -227,7 +225,7 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
             textView3.setSingleLine();
             textView3.setEllipsize(TextUtils.TruncateAt.END);
             textView3.setMaxLines(1);
-            r8.addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 81, 16.0f, 0.0f, 16.0f, 40.0f));
+            r10.addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 81, 16.0f, 0.0f, 16.0f, 40.0f));
             textView = new TextView(context);
             textView.setTextSize(1, 13.0f);
             textView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -242,7 +240,7 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
                 textView.setOnClickListener(new SendGiftSheet$$ExternalSyntheticLambda1(context, resourcesProvider, j, starGift, arrayList));
                 ScaleStateListAnimator.apply(textView, 0.02f, 1.5f);
             }
-            r8.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 87, 16.0f, 0.0f, 16.0f, 12.0f));
+            r10.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 87, 16.0f, 0.0f, 16.0f, 12.0f));
             linearLayout = new LinearLayout(r1);
             linearLayout.setOrientation(0);
             linearLayout.setGravity(17);
@@ -256,7 +254,7 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
             anonymousClass3.priceLayout.setVisibility(8);
             anonymousClass3.cardBackground.setStrokeColors(null);
             anonymousClass3.setRibbonTextOneOf(this.auction.gift.availability_total);
-            linearLayout.addView(anonymousClass3, LayoutHelper.createLinear(0.0f, 116, 116));
+            linearLayout.addView(anonymousClass3, LayoutHelper.createLinear(116, 116, 0.0f));
             ImageView imageView = new ImageView(r1);
             imageView.setImageResource(R.drawable.ic_ab_back);
             imageView.setScaleX(-1.0f);
@@ -268,10 +266,10 @@ public final class AuctionWearingSheet extends BottomSheetWithRecyclerListView i
 
         @Override
         public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-            UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 26), this.resourcesProvider);
+            UniversalAdapter universalAdapter = new UniversalAdapter(this.recyclerListView, getContext(), this.currentAccount, 0, true, new GiftSheet$$ExternalSyntheticLambda8(this, 19), this.resourcesProvider);
             this.adapter = universalAdapter;
-            universalAdapter.applyBackground = false;
-            return universalAdapter;
+            universalAdapter.setApplyBackground(false);
+            return this.adapter;
         }
 
         @Override

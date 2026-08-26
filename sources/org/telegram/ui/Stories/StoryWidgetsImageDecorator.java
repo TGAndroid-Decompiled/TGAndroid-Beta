@@ -62,7 +62,7 @@ public final class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
         public final void draw(Canvas canvas, float f) {
             ReactionImageHolder reactionImageHolder = this.imageHolder;
             AnimatedEmojiDrawable animatedEmojiDrawable = reactionImageHolder.animatedEmojiDrawable;
-            ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.imageReceiver : reactionImageHolder.imageReceiver;
+            ImageReceiver imageReceiver = animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : reactionImageHolder.imageReceiver;
             if (imageReceiver != null && imageReceiver.hasImageSet() && imageReceiver.hasImageLoaded()) {
                 RLottieDrawable lottieAnimation = imageReceiver.getLottieAnimation();
                 if (lottieAnimation == null || !lottieAnimation.isGeneratingCache()) {

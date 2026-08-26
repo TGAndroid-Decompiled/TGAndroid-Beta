@@ -15,23 +15,10 @@ public final class ProfileActivity$ListAdapter$$ExternalSyntheticLambda0 impleme
     public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                ProfileActivity profileActivity = ProfileActivity.this;
-                profileActivity.getMessagesController().openApp(profileActivity, profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.userId)), null, profileActivity.getClassGuid(), null);
+                this.f$0.lambda$onCreateViewHolder$0(view);
                 break;
             default:
-                ProfileActivity profileActivity2 = ProfileActivity.this;
-                profileActivity2.hoursShownMine = !profileActivity2.hoursShownMine;
-                if (!profileActivity2.hoursExpanded) {
-                    profileActivity2.hoursExpanded = true;
-                }
-                profileActivity2.saveScrollPosition$1();
-                view.requestLayout();
-                profileActivity2.listAdapter.notifyItemChanged(profileActivity2.bizHoursRow);
-                int i = profileActivity2.savedScrollPosition;
-                if (i >= 0) {
-                    ProfileActivity.AnonymousClass14 anonymousClass14 = profileActivity2.layoutManager;
-                    anonymousClass14.scrollToPositionWithOffset(i, profileActivity2.savedScrollOffset - profileActivity2.listView.getPaddingTop(), anonymousClass14.mShouldReverseLayout);
-                }
+                this.f$0.lambda$onBindViewHolder$7(view);
                 break;
         }
     }

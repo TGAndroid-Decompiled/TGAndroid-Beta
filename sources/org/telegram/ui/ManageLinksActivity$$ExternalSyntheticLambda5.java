@@ -1,34 +1,26 @@
 package org.telegram.ui;
 
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 
-public final class ManageLinksActivity$$ExternalSyntheticLambda5 implements Runnable {
+public final class ManageLinksActivity$$ExternalSyntheticLambda5 implements RequestDelegate {
     public final int $r8$classId;
     public final ManageLinksActivity f$0;
-    public final TLRPC.TL_chatInviteExported f$1;
-    public final TLRPC.TL_error f$2;
-    public final TLObject f$3;
-    public final boolean f$4;
 
-    public ManageLinksActivity$$ExternalSyntheticLambda5(ManageLinksActivity manageLinksActivity, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_error tL_error, TLObject tLObject, boolean z, int i) {
+    public ManageLinksActivity$$ExternalSyntheticLambda5(ManageLinksActivity manageLinksActivity, int i) {
         this.$r8$classId = i;
         this.f$0 = manageLinksActivity;
-        this.f$1 = tL_chatInviteExported;
-        this.f$2 = tL_error;
-        this.f$3 = tLObject;
-        this.f$4 = z;
     }
 
     @Override
-    public final void run() {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.$r8$classId) {
             case 0:
-                ManageLinksActivity manageLinksActivity = this.f$0;
-                manageLinksActivity.getNotificationCenter().doOnIdle(new ManageLinksActivity$$ExternalSyntheticLambda5(manageLinksActivity, this.f$1, this.f$2, this.f$3, this.f$4, 1));
+                this.f$0.lambda$loadLinks$2(tLObject, tL_error);
                 break;
             default:
-                this.f$0.lambda$loadLinks$3(this.f$1, this.f$2, this.f$3, this.f$4);
+                this.f$0.lambda$createView$7(tLObject, tL_error);
                 break;
         }
     }

@@ -14,10 +14,8 @@ import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AppGlobalConfig;
 import org.telegram.messenger.BillingController;
@@ -29,6 +27,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
 import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
@@ -41,11 +40,9 @@ import org.telegram.ui.Components.HorizontalRoundTabsLayout;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda156;
-import org.telegram.ui.ProfileActivity$9$$ExternalSyntheticLambda1;
-import org.telegram.ui.Stories.StoriesViewPager$$ExternalSyntheticLambda0;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda13;
+import org.telegram.ui.bots.BotAdView$$ExternalSyntheticLambda2;
 import org.telegram.ui.iv.RichTextCell$$ExternalSyntheticLambda3;
 
 public final class MessageSuggestionOfferSheet extends BottomSheet {
@@ -82,7 +79,7 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
 
     public MessageSuggestionOfferSheet(final Context context, int i, long j, MessageSuggestionParams messageSuggestionParams, ChatActivity chatActivity, final Theme.ResourcesProvider resourcesProvider, int i2, Utilities.Callback callback) {
         boolean z;
-        super(context, resourcesProvider, true, false);
+        super(context, true, false, resourcesProvider);
         final int i3 = 0;
         this.selectedTime = -1L;
         this.spanRefStars = new ColoredImageSpan[1];
@@ -113,7 +110,7 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
             balanceCloud.setEnabled(false);
             balanceCloud.setClickable(false);
             this.container.addView(balanceCloud, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 48.0f, 0.0f, 0.0f));
-            ScaleStateListAnimator.apply(balanceCloud, 0.1f, 1.5f);
+            ScaleStateListAnimator.apply(balanceCloud);
             balanceCloud.setOnClickListener(new View.OnClickListener(this) {
                 public final MessageSuggestionOfferSheet f$0;
 
@@ -123,18 +120,15 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
 
                 @Override
                 public final void onClick(View view) {
-                    MessageSuggestionOfferSheet messageSuggestionOfferSheet = this.f$0;
                     switch (i3) {
                         case 0:
-                            if (messageSuggestionOfferSheet.inputAmount.currency == AmountUtils$Currency.STARS) {
+                            if (this.f$0.inputAmount.currency == AmountUtils$Currency.STARS) {
                                 new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
                             }
                             break;
                         default:
-                            long j4 = messageSuggestionOfferSheet.selectedTime;
-                            StoriesViewPager$$ExternalSyntheticLambda0 storiesViewPager$$ExternalSyntheticLambda0 = new StoriesViewPager$$ExternalSyntheticLambda0(messageSuggestionOfferSheet, 5);
-                            Pattern pattern = AlertsCreator.URL_PATTERN;
-                            AlertsCreator.createSuggestedMessageDatePickerDialog(context, j4, storiesViewPager$$ExternalSyntheticLambda0, new AlertsCreator.ScheduleDatePickerColors(null), resourcesProvider, 0).bottomSheet.show();
+                            MessageSuggestionOfferSheet messageSuggestionOfferSheet = this.f$0;
+                            AlertsCreator.createSuggestedMessageDatePickerDialog(context, messageSuggestionOfferSheet.selectedTime, new GiftSheet$$ExternalSyntheticLambda6(messageSuggestionOfferSheet, 15), resourcesProvider, 0).bottomSheet.show();
                             break;
                     }
                 }
@@ -143,7 +137,7 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
         fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        LinearLayout linearLayoutM = zzkf.m(context, 0);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(0, context);
         linearLayout.addView(linearLayoutM, LayoutHelper.createLinear(-1, 56, 55, 0, 0, 0, 0));
         TextView textView = new TextView(context);
         int i4 = Theme.key_windowBackgroundWhiteBlackText;
@@ -161,25 +155,25 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
         int color = Theme.getColor(i5, resourcesProvider);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(color, mode));
-        ScaleStateListAnimator.apply(imageView, 0.1f, 1.5f);
-        imageView.setOnClickListener(new TodoItemMenu$$ExternalSyntheticLambda13(this, 7));
+        ScaleStateListAnimator.apply(imageView);
+        imageView.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(this, 5));
         linearLayoutM.addView(imageView, LayoutHelper.createLinear(48, 48, 0.0f, 21, 0, 0, 6, 0));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.starsCountEditField = editTextBoldCursor;
         if (z2) {
             HorizontalRoundTabsLayout horizontalRoundTabsLayout = new HorizontalRoundTabsLayout(context, resourcesProvider);
             this.currencyTabsView = horizontalRoundTabsLayout;
-            ArrayList arrayList = new ArrayList();
+            ArrayList<CharSequence> arrayList = new ArrayList<>();
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferStars));
             arrayList.add(LocaleController.getString(R.string.SuggestedOfferTON));
-            horizontalRoundTabsLayout.setTabs(arrayList, new PhotoViewer$$ExternalSyntheticLambda156(this, 7));
-            linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(18.0f, 0.0f, 18.0f, 12.0f, -1, -2));
+            horizontalRoundTabsLayout.setTabs(arrayList, new GiftOfferSheet$$ExternalSyntheticLambda3(this, 1));
+            linearLayout.addView(horizontalRoundTabsLayout, LayoutHelper.createLinear(-1, -2, 18.0f, 0.0f, 18.0f, 12.0f));
         } else {
             this.currencyTabsView = null;
         }
-        LinearLayout linearLayoutM2 = zzkf.m(context, 1);
-        linearLayout.addView(linearLayoutM2, LayoutHelper.createLinear(1.0f, -1, -2));
-        OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context, null);
+        LinearLayout linearLayoutM2 = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
+        linearLayout.addView(linearLayoutM2, LayoutHelper.createLinear(-1, -2, 1.0f));
+        OutlineTextContainerView outlineTextContainerView = new OutlineTextContainerView(context);
         this.starsCountEditOutline = outlineTextContainerView;
         editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
@@ -191,14 +185,13 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
         editTextBoldCursor.setTextColor(Theme.getColor(null, i4, false));
         editTextBoldCursor.requestFocus();
         outlineTextContainerView.setLeftPadding(AndroidUtilities.dp(28.0f));
-        outlineTextContainerView.attachedEditText = editTextBoldCursor;
-        outlineTextContainerView.invalidate();
+        outlineTextContainerView.attachEditText(editTextBoldCursor);
         AmountUtils$Amount amountUtils$Amount = messageSuggestionParams.amount;
-        outlineTextContainerView.animateSelection(1.0f, (amountUtils$Amount == null || amountUtils$Amount.isZero()) ? 0.0f : 1.0f, false);
+        outlineTextContainerView.animateSelection(true, (amountUtils$Amount == null || amountUtils$Amount.isZero()) ? false : true, false);
         outlineTextContainerView.setForceUseCenter2(true);
-        editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 17));
+        editTextBoldCursor.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 6));
         outlineTextContainerView.addView(editTextBoldCursor, LayoutHelper.createFrame(-1, -2, 48));
-        linearLayoutM2.addView(outlineTextContainerView, LayoutHelper.createLinear(18.0f, 0.0f, 18.0f, 0.0f, -1, 58));
+        linearLayoutM2.addView(outlineTextContainerView, LayoutHelper.createLinear(-1, 58, 18.0f, 0.0f, 18.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.iconStars = imageView2;
         imageView2.setImageResource(R.drawable.star_small_inner);
@@ -208,7 +201,7 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
         imageView3.setImageResource(R.drawable.mini_gram_72);
         imageView3.setColorFilter(-13397548);
         outlineTextContainerView.addView(imageView3, LayoutHelper.createFrame(22, 22.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
-        AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, false);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context);
         this.dollarsEqView = animatedTextView;
         int i6 = Theme.key_windowBackgroundWhiteGrayText;
         animatedTextView.setTextColor(Theme.getColor(null, i6, false));
@@ -232,10 +225,9 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
         anonymousClass1.setFocusable(false);
         anonymousClass1.setClickable(false);
         anonymousClass1.setEnabled(false);
-        OutlineTextContainerView outlineTextContainerView2 = new OutlineTextContainerView(context, null);
+        OutlineTextContainerView outlineTextContainerView2 = new OutlineTextContainerView(context);
         outlineTextContainerView2.setText(LocaleController.getString(R.string.PostSuggestionsOfferTitleTime));
-        outlineTextContainerView2.attachedEditText = anonymousClass1;
-        outlineTextContainerView2.invalidate();
+        outlineTextContainerView2.attachEditText(anonymousClass1);
         outlineTextContainerView2.addView(anonymousClass1, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, 0.0f, 48.0f, 0.0f));
         ScaleStateListAnimator.apply(outlineTextContainerView2, 0.02f, 1.2f);
         final int i7 = 1;
@@ -248,23 +240,20 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
 
             @Override
             public final void onClick(View view) {
-                MessageSuggestionOfferSheet messageSuggestionOfferSheet = this.f$0;
                 switch (i7) {
                     case 0:
-                        if (messageSuggestionOfferSheet.inputAmount.currency == AmountUtils$Currency.STARS) {
+                        if (this.f$0.inputAmount.currency == AmountUtils$Currency.STARS) {
                             new StarsIntroActivity.StarsOptionsSheet(context, resourcesProvider).show();
                         }
                         break;
                     default:
-                        long j4 = messageSuggestionOfferSheet.selectedTime;
-                        StoriesViewPager$$ExternalSyntheticLambda0 storiesViewPager$$ExternalSyntheticLambda0 = new StoriesViewPager$$ExternalSyntheticLambda0(messageSuggestionOfferSheet, 5);
-                        Pattern pattern = AlertsCreator.URL_PATTERN;
-                        AlertsCreator.createSuggestedMessageDatePickerDialog(context, j4, storiesViewPager$$ExternalSyntheticLambda0, new AlertsCreator.ScheduleDatePickerColors(null), resourcesProvider, 0).bottomSheet.show();
+                        MessageSuggestionOfferSheet messageSuggestionOfferSheet = this.f$0;
+                        AlertsCreator.createSuggestedMessageDatePickerDialog(context, messageSuggestionOfferSheet.selectedTime, new GiftSheet$$ExternalSyntheticLambda6(messageSuggestionOfferSheet, 15), resourcesProvider, 0).bottomSheet.show();
                         break;
                 }
             }
         });
-        linearLayoutM2.addView(outlineTextContainerView2, LayoutHelper.createLinear(18.0f, 24.0f, 18.0f, 0.0f, -1, 58));
+        linearLayoutM2.addView(outlineTextContainerView2, LayoutHelper.createLinear(-1, 58, 18.0f, 24.0f, 18.0f, 0.0f));
         ImageView imageView4 = new ImageView(context);
         imageView4.setImageResource(R.drawable.arrow_more);
         imageView4.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i5, resourcesProvider), mode));
@@ -281,13 +270,13 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
         linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 80));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
         this.buttonView = buttonWithCounterView;
         buttonWithCounterView.setOnClickListener(new MessageSuggestionOfferSheet$$ExternalSyntheticLambda5(this, chatActivity, i, context, resourcesProvider, j, callback));
         if (i2 == 1) {
-            buttonWithCounterView.setText(LocaleController.getString(R.string.PostSuggestionsOfferChangeUpdateTerms), false, true);
+            buttonWithCounterView.setText(LocaleController.getString(R.string.PostSuggestionsOfferChangeUpdateTerms), false);
         }
-        linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(18.0f, 0.0f, 18.0f, 8.0f, -1, 48));
+        linearLayout2.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48, 18.0f, 0.0f, 18.0f, 8.0f));
         AmountUtils$Amount amountUtils$Amount2 = messageSuggestionParams.amount;
         if (amountUtils$Amount2 != null) {
             z = false;
@@ -338,7 +327,7 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
         return Character.toUpperCase(dateTime.charAt(0)) + dateTime.substring(1);
     }
 
-    public final void checkBalanceCloudVisibility$3() {
+    public final void checkBalanceCloudVisibility$2() {
         boolean z = this.isFullyVisible;
         BalanceCloud balanceCloud = this.balanceCloud;
         boolean z2 = (z && !isDismissed() && balanceCloud != null && this.containerView.getY() > ((float) AndroidUtilities.dp(32.0f))) || this.currencyTabsView == null;
@@ -355,7 +344,7 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
     public final void checkButtonEnabled$1(boolean z) {
         boolean z2 = this.inputAmountError == 0 && (this.inputAmount.nanos >= 0 || this.selectedTime > 0);
         ButtonWithCounterView buttonWithCounterView = this.buttonView;
-        if (buttonWithCounterView.enabled != z2) {
+        if (buttonWithCounterView.isEnabled() != z2) {
             buttonWithCounterView.setEnabled(z2);
             buttonWithCounterView.setClickable(z2);
             if (z) {
@@ -378,14 +367,14 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
     @Override
     public final void onContainerTranslationYChanged(float f) {
         super.onContainerTranslationYChanged(f);
-        checkBalanceCloudVisibility$3();
+        checkBalanceCloudVisibility$2();
     }
 
     @Override
     public final void onOpenAnimationEnd() {
         super.onOpenAnimationEnd();
         this.isFullyVisible = true;
-        checkBalanceCloudVisibility$3();
+        checkBalanceCloudVisibility$2();
     }
 
     public final void setAmount$1(AmountUtils$Amount amountUtils$Amount, boolean z, boolean z2, boolean z3) {
@@ -433,7 +422,7 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
         boolean z6 = z2 || i != this.inputAmountError;
         OutlineTextContainerView outlineTextContainerView = this.starsCountEditOutline;
         if (z6) {
-            OutlineTextContainerView.animateSpring(outlineTextContainerView.errorSpring, (this.inputAmountError & (-9)) == 0 ? 0.0f : 1.0f);
+            outlineTextContainerView.animateError((this.inputAmountError & (-9)) == 0 ? 0.0f : 1.0f);
         }
         AmountUtils$Currency amountUtils$Currency4 = AmountUtils$Currency.STARS;
         EditTextBoldCursor editTextBoldCursor = this.starsCountEditField;
@@ -596,8 +585,9 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
                 if (this.inputAmount.currency == amountUtils$Currency3) {
                     amountUtils$Amount6 = amountUtils$Amount7;
                 }
+                String asDecimalSpaced = amountUtils$Amount6.formatAsDecimalSpaced();
                 Object[] objArr2 = new Object[1];
-                objArr2[c] = amountUtils$Amount6.formatAsDecimalSpaced();
+                objArr2[c] = asDecimalSpaced;
                 outlineTextContainerView.setText(LocaleController.formatString(i4, objArr2));
             } else {
                 outlineTextContainerView.setText(LocaleController.getString(this.inputAmount.currency == amountUtils$Currency4 ? R.string.PostSuggestionsOfferTitlePriceStars : R.string.PostSuggestionsOfferTitlePriceTON));
@@ -606,16 +596,16 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
         if (z4 || z5 || z6) {
             ButtonWithCounterView buttonWithCounterView = this.buttonView;
             if (this.mode != 0) {
-                buttonWithCounterView.setText(LocaleController.getString(R.string.PostSuggestionsOfferChangeUpdateTerms), z3, true);
+                buttonWithCounterView.setText(LocaleController.getString(R.string.PostSuggestionsOfferChangeUpdateTerms), z3);
             } else if (this.inputAmount.isZero()) {
-                buttonWithCounterView.setText(LocaleController.getString(R.string.PostSuggestionsOfferForFree), z3, true);
+                buttonWithCounterView.setText(LocaleController.getString(R.string.PostSuggestionsOfferForFree), z3);
             } else {
                 AmountUtils$Amount amountUtils$Amount9 = this.inputAmount;
                 boolean z7 = amountUtils$Amount9.currency == amountUtils$Currency3;
                 int i5 = R.string.PostSuggestionsOfferStars;
                 Object[] objArr3 = new Object[1];
                 objArr3[c] = z7 ? amountUtils$Amount9.asDecimalString() : LocaleController.formatNumber(amountUtils$Amount9.nanos / 1000000000, ',');
-                buttonWithCounterView.setText(StarsIntroActivity.replaceStars(z7, LocaleController.formatString(i5, objArr3), z7 ? this.spanRefTon : this.spanRefStars), z3, true);
+                buttonWithCounterView.setText(StarsIntroActivity.replaceStars(z7, LocaleController.formatString(i5, objArr3), z7 ? this.spanRefTon : this.spanRefStars), z3);
             }
             checkButtonEnabled$1(z3);
         }
@@ -623,7 +613,7 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
             StringBuilder sb = new StringBuilder(10);
             sb.append('~');
             sb.append(BillingController.getInstance().formatCurrency((long) (this.inputAmount.asDouble() * (this.inputAmount.currency == amountUtils$Currency3 ? MessagesController.getInstance(this.currentAccount).config.tonUsdRate.get() : ((double) MessagesController.getInstance(this.currentAccount).starsUsdWithdrawRate1000) * 1.0E-5d) * 100.0d), "USD", 2));
-            this.dollarsEqView.setText(sb, z3, true);
+            this.dollarsEqView.setText(sb, z3);
         }
         if (z && z5) {
             String strAsDecimalString = this.inputAmount.asDecimalString();
@@ -635,6 +625,6 @@ public final class MessageSuggestionOfferSheet extends BottomSheet {
     @Override
     public final void show() {
         super.show();
-        AndroidUtilities.runOnUIThread(new ProfileActivity$9$$ExternalSyntheticLambda1(this, 21), 50L);
+        AndroidUtilities.runOnUIThread(new BalanceCloud$$ExternalSyntheticLambda1(this, 4), 50L);
     }
 }

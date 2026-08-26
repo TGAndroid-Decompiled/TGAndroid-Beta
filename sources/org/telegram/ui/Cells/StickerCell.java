@@ -44,7 +44,7 @@ public final class StickerCell extends FrameLayout {
         backupImageView.setLayerNum(1);
         addView(backupImageView, LayoutHelper.createFrame(66, 66.0f, 1, 0.0f, 5.0f, 0.0f, 0.0f));
         setFocusable(true);
-        PremiumLockIconView premiumLockIconView = new PremiumLockIconView(context, 1, null);
+        PremiumLockIconView premiumLockIconView = new PremiumLockIconView(context, PremiumLockIconView.TYPE_STICKERS_PREMIUM_LOCKED, null);
         this.premiumIconView = premiumLockIconView;
         premiumLockIconView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
         premiumLockIconView.setImageReceiver(backupImageView.getImageReceiver());

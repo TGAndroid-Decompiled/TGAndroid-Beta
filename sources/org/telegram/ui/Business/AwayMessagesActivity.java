@@ -6,6 +6,9 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
+import androidx.core.app.ActivityCompat$$ExternalSyntheticLambda0;
+import com.google.android.gms.internal.mlkit_vision_common.zzke;
+import com.google.android.gms.internal.mlkit_vision_common.zzkf;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
@@ -14,21 +17,19 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
-import org.telegram.ui.CallLogActivity;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
+import org.telegram.ui.web.HistoryFragment;
 
 public final class AwayMessagesActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public int currentScheduleCustomEnd;
@@ -69,7 +70,7 @@ public final class AwayMessagesActivity extends BaseFragment implements Notifica
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessAway));
-        this.actionBar.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 5));
+        this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 1));
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), PorterDuff.Mode.MULTIPLY));
@@ -77,24 +78,19 @@ public final class AwayMessagesActivity extends BaseFragment implements Notifica
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.doneButtonDrawable);
         checkDone(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        int i2 = Theme.key_windowBackgroundGray;
-        frameLayout.setBackgroundColor(Theme.getColor(null, i2, false));
-        BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new ArticleViewer$$ExternalSyntheticLambda3(this, 12));
+        frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
+        BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new ActivityCompat$$ExternalSyntheticLambda0(this, 28));
         this.recipientsHelper = businessRecipientsHelper;
         businessRecipientsHelper.exclude = this.exclude;
         TL_account.TL_businessAwayMessage tL_businessAwayMessage = this.currentValue;
-        businessRecipientsHelper.setValue(tL_businessAwayMessage != null ? tL_businessAwayMessage.recipients : null);
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new CallLogActivity$$ExternalSyntheticLambda3(this, 3), new AwayMessagesActivity$$ExternalSyntheticLambda2(this, 0), null, getResourceProvider());
+        businessRecipientsHelper.setValue(tL_businessAwayMessage == null ? null : tL_businessAwayMessage.recipients);
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new GiftSheet$$ExternalSyntheticLambda8(this, 2), new AwayMessagesActivity$$ExternalSyntheticLambda2(this, 0), null);
         this.listView = universalRecyclerView;
         universalRecyclerView.setSections();
-        UniversalRecyclerView universalRecyclerView2 = this.listView;
-        universalRecyclerView2.adapter.applyBackground = false;
-        frameLayout.addView(universalRecyclerView2, LayoutHelper.createFrame(-1.0f, -1));
-        ActionBar actionBar = this.actionBar;
-        UniversalRecyclerView universalRecyclerView3 = this.listView;
-        actionBar.getClass();
-        actionBar.setAdaptiveBackground(universalRecyclerView3, true, i2, Theme.key_actionBarDefault);
-        setValue$1();
+        this.listView.adapter.setApplyBackground(false);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.actionBar.setAdaptiveBackground(this.listView, true);
+        setValue();
         this.fragmentView = frameLayout;
         return frameLayout;
     }
@@ -104,7 +100,7 @@ public final class AwayMessagesActivity extends BaseFragment implements Notifica
         UniversalAdapter universalAdapter;
         if (i != NotificationCenter.quickRepliesUpdated) {
             if (i == NotificationCenter.userInfoDidLoad) {
-                setValue$1();
+                setValue();
             }
         } else {
             UniversalRecyclerView universalRecyclerView = this.listView;
@@ -115,89 +111,40 @@ public final class AwayMessagesActivity extends BaseFragment implements Notifica
         }
     }
 
-    public final void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        String string = LocaleController.getString(R.string.BusinessAway);
-        String string2 = LocaleController.getString(R.string.BusinessAwayInfo);
-        UItem uItem = new UItem(2);
-        uItem.text = string;
-        uItem.animatedText = string2;
-        uItem.subtext = "RestrictedEmoji";
-        uItem.textValue = "💤";
-        arrayList.add(uItem);
-        UItem uItemAsCheck = UItem.asCheck(1, LocaleController.getString(R.string.BusinessAwaySend));
-        uItemAsCheck.setChecked(this.enabled);
-        arrayList.add(uItemAsCheck);
-        UItem uItem2 = new UItem(7);
-        uItem2.text = null;
-        arrayList.add(uItem2);
+    public final void fillItems$1(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        arrayList.add(UItem.asTopView(LocaleController.getString(R.string.BusinessAway), LocaleController.getString(R.string.BusinessAwayInfo), "RestrictedEmoji", "💤"));
+        arrayList.add(UItem.asCheck(1, LocaleController.getString(R.string.BusinessAwaySend)).setChecked(this.enabled));
+        arrayList.add(UItem.asShadow(null));
         if (this.enabled) {
             QuickRepliesController.QuickReply quickReplyFindReply = QuickRepliesController.getInstance(this.currentAccount).findReply("away");
             if (quickReplyFindReply != null) {
-                UItem uItem3 = new UItem(17);
-                uItem3.object = quickReplyFindReply;
-                arrayList.add(uItem3);
+                arrayList.add(UItem.asLargeQuickReply(quickReplyFindReply));
             } else {
-                UItem uItemAsButton = UItem.asButton(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessAwayCreate));
-                uItemAsButton.accent = true;
-                arrayList.add(uItemAsButton);
+                arrayList.add(UItem.asButton(2, R.drawable.msg2_chats_add, LocaleController.getString(R.string.BusinessAwayCreate)).accent());
             }
-            UItem uItem4 = new UItem(7);
-            uItem4.text = null;
-            arrayList.add(uItem4);
+            arrayList.add(UItem.asShadow(null));
             int i = R.string.BusinessAwaySchedule;
-            String string3 = LocaleController.getString(i);
-            UItem uItem5 = new UItem(0);
-            uItem5.text = string3;
-            arrayList.add(uItem5);
-            UItem uItemAsRadio = UItem.asRadio(3, LocaleController.getString(R.string.BusinessAwayScheduleAlways));
-            uItemAsRadio.setChecked(this.schedule == 0);
-            arrayList.add(uItemAsRadio);
+            zzke.m(i, arrayList);
+            arrayList.add(UItem.asRadio(3, LocaleController.getString(R.string.BusinessAwayScheduleAlways)).setChecked(this.schedule == 0));
             if (this.hasHours) {
-                UItem uItemAsRadio2 = UItem.asRadio(4, LocaleController.getString(R.string.BusinessAwayScheduleOutsideHours));
-                uItemAsRadio2.setChecked(this.schedule == 1);
-                arrayList.add(uItemAsRadio2);
+                arrayList.add(UItem.asRadio(4, LocaleController.getString(R.string.BusinessAwayScheduleOutsideHours)).setChecked(this.schedule == 1));
             }
-            UItem uItemAsRadio3 = UItem.asRadio(5, LocaleController.getString(R.string.BusinessAwayScheduleCustom));
-            uItemAsRadio3.setChecked(this.schedule == 2);
-            arrayList.add(uItemAsRadio3);
+            arrayList.add(UItem.asRadio(5, LocaleController.getString(R.string.BusinessAwayScheduleCustom)).setChecked(this.schedule == 2));
             if (this.schedule == 2) {
-                UItem uItem6 = new UItem(7);
-                uItem6.text = null;
-                arrayList.add(uItem6);
-                String string4 = LocaleController.getString(i);
-                UItem uItem7 = new UItem(0);
-                uItem7.text = string4;
-                arrayList.add(uItem7);
-                arrayList.add(UItem.asButton(LocaleController.getString(R.string.BusinessAwayScheduleCustomStart), LocaleController.formatShortDateTime(this.scheduleCustomStart), 8));
-                arrayList.add(UItem.asButton(LocaleController.getString(R.string.BusinessAwayScheduleCustomEnd), LocaleController.formatShortDateTime(this.scheduleCustomEnd), 9));
+                arrayList.add(UItem.asShadow(null));
+                zzke.m(i, arrayList);
+                arrayList.add(UItem.asButton(8, LocaleController.getString(R.string.BusinessAwayScheduleCustomStart), LocaleController.formatShortDateTime(this.scheduleCustomStart)));
+                arrayList.add(UItem.asButton(9, LocaleController.getString(R.string.BusinessAwayScheduleCustomEnd), LocaleController.formatShortDateTime(this.scheduleCustomEnd)));
             }
-            UItem uItem8 = new UItem(7);
-            uItem8.text = null;
-            arrayList.add(uItem8);
-            UItem uItemAsCheck2 = UItem.asCheck(10, LocaleController.getString(R.string.BusinessAwayOnlyOffline));
-            uItemAsCheck2.setChecked(this.offline_only);
-            arrayList.add(uItemAsCheck2);
-            String string5 = LocaleController.getString(R.string.BusinessAwayOnlyOfflineInfo);
-            UItem uItem9 = new UItem(7);
-            uItem9.text = string5;
-            arrayList.add(uItem9);
-            String string6 = LocaleController.getString(R.string.BusinessRecipients);
-            UItem uItem10 = new UItem(0);
-            uItem10.text = string6;
-            arrayList.add(uItem10);
-            UItem uItemAsRadio4 = UItem.asRadio(6, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2));
-            uItemAsRadio4.setChecked(this.exclude);
-            arrayList.add(uItemAsRadio4);
-            UItem uItemAsRadio5 = UItem.asRadio(7, LocaleController.getString(R.string.BusinessChatsOnlySelected2));
-            uItemAsRadio5.setChecked(!this.exclude);
-            arrayList.add(uItemAsRadio5);
-            UItem uItem11 = new UItem(7);
-            uItem11.text = null;
-            arrayList.add(uItem11);
+            arrayList.add(UItem.asShadow(null));
+            arrayList.add(UItem.asCheck(10, LocaleController.getString(R.string.BusinessAwayOnlyOffline)).setChecked(this.offline_only));
+            zzkf.m(R.string.BusinessAwayOnlyOfflineInfo, arrayList);
+            zzke.m(R.string.BusinessRecipients, arrayList);
+            arrayList.add(UItem.asRadio(6, LocaleController.getString(R.string.BusinessChatsAllPrivateExcept2)).setChecked(this.exclude));
+            arrayList.add(UItem.asRadio(7, LocaleController.getString(R.string.BusinessChatsOnlySelected2)).setChecked(!this.exclude));
+            arrayList.add(UItem.asShadow(null));
             this.recipientsHelper.fillItems(arrayList, universalAdapter, true);
-            UItem uItem12 = new UItem(7);
-            uItem12.text = null;
-            arrayList.add(uItem12);
+            arrayList.add(UItem.asShadow(null));
         }
     }
 
@@ -237,13 +184,11 @@ public final class AwayMessagesActivity extends BaseFragment implements Notifica
                 return false;
             }
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, null);
-            String string = LocaleController.getString(R.string.UnsavedChanges);
-            AlertDialog alertDialog = builder.alertDialog;
-            alertDialog.title = string;
-            alertDialog.message = LocaleController.getString(R.string.BusinessAwayUnsavedChanges);
+            builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
+            builder.setMessage(LocaleController.getString(R.string.BusinessAwayUnsavedChanges));
             builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AwayMessagesActivity$$ExternalSyntheticLambda2(this, 1));
             builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new AwayMessagesActivity$$ExternalSyntheticLambda2(this, 2));
-            showDialog(alertDialog);
+            showDialog(builder.create());
         }
         return false;
     }
@@ -252,8 +197,8 @@ public final class AwayMessagesActivity extends BaseFragment implements Notifica
     public final boolean onFragmentCreate() {
         getNotificationCenter().addObserver(this, NotificationCenter.quickRepliesUpdated);
         getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
-        QuickRepliesController.getInstance(this.currentAccount).load(null, true);
-        setValue$1();
+        QuickRepliesController.getInstance(this.currentAccount).load(true, null);
+        setValue();
         return super.onFragmentCreate();
     }
 
@@ -271,7 +216,7 @@ public final class AwayMessagesActivity extends BaseFragment implements Notifica
     }
 
     public final void processDone() {
-        if (this.doneButtonDrawable.progress > 0.0f) {
+        if (this.doneButtonDrawable.getProgress() > 0.0f) {
             return;
         }
         if (!hasChanges()) {
@@ -325,12 +270,12 @@ public final class AwayMessagesActivity extends BaseFragment implements Notifica
                 userFull.flags2 &= -9;
                 userFull.business_away_message = null;
             }
-            getConnectionsManager().sendRequest(updatebusinessawaymessage, new CallLogActivity$$ExternalSyntheticLambda1(this, 6));
+            getConnectionsManager().sendRequest(updatebusinessawaymessage, new RichMediaUploader$$ExternalSyntheticLambda0(this, 5));
             getMessagesStorage().updateUserInfo(userFull, false);
         }
     }
 
-    public final void setValue$1() {
+    public final void setValue() {
         TL_account.TL_businessAwayMessage tL_businessAwayMessage;
         UniversalAdapter universalAdapter;
         if (this.valueSet) {

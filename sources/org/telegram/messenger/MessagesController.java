@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
@@ -28,20 +27,20 @@ import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
 import android.view.View;
 import android.widget.FrameLayout;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.collection.LongSparseArray;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.util.Consumer;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
 import com.google.android.exoplayer2.audio.AacUtil;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
 import com.google.android.exoplayer2.util.Log;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import com.google.android.gms.internal.mlkit_language_id_common.zziq;
-import com.google.android.gms.internal.mlkit_language_id_common.zzit;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import j$.util.Collection;
 import j$.util.DesugarArrays;
 import j$.util.Objects;
@@ -52,7 +51,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.Serializable;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -83,6 +81,7 @@ import org.telegram.messenger.voip.VoIPDebugToSend;
 import org.telegram.messenger.voip.VoIPPreNotificationService;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticLambda111;
+import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticLambda139;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
@@ -106,18 +105,16 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.MessageDrawable;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda3;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda39;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda48;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda0;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda44;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.Business.QuickRepliesController;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda31;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda31;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda482;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda488;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda484;
 import org.telegram.ui.ChatRightsEditActivity;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.AlertsCreator$$ExternalSyntheticLambda16;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.BulletinFactory;
@@ -129,22 +126,22 @@ import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.TranscribeButton;
 import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda11;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda101;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda121;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda40;
 import org.telegram.ui.MainTabsActivity;
-import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda0;
-import org.telegram.ui.PhotoPickerActivity$$ExternalSyntheticLambda4;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda174;
+import org.telegram.ui.MessageSeenView$$ExternalSyntheticLambda4;
+import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda72;
+import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda138;
 import org.telegram.ui.SecretMediaViewer;
-import org.telegram.ui.Stars.BotStarsActivity$$ExternalSyntheticLambda26;
+import org.telegram.ui.Stars.BotStarsActivity$$ExternalSyntheticLambda25;
 import org.telegram.ui.Stars.BotStarsController;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda132;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda162;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda139;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda150;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda152;
 import org.telegram.ui.Stars.StarsController;
-import org.telegram.ui.Stars.StarsIntroActivity$$ExternalSyntheticLambda10;
+import org.telegram.ui.Stars.StarsIntroActivity$$ExternalSyntheticLambda15;
 import org.telegram.ui.Stories.HighlightMessageSheet;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.ThemeActivity;
@@ -1180,7 +1177,7 @@ public class MessagesController extends BaseController implements NotificationCe
             this.loading = true;
             TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
             tL_messages_getCommonChats.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(this.dialogId);
-            tL_messages_getCommonChats.max_id = this.chats.isEmpty() ? 0L : ((TLRPC.Chat) zziq.m(1, this.chats)).id;
+            tL_messages_getCommonChats.max_id = this.chats.isEmpty() ? 0L : ((TLRPC.Chat) zzin.m(1, this.chats)).id;
             tL_messages_getCommonChats.limit = zIsEmpty ? 15 : 30;
             int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getCommonChats, new ChatObject$Call$$ExternalSyntheticLambda11(this, iArr, zIsEmpty, 4));
             this.currentRequestId = iSendRequest;
@@ -2072,7 +2069,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
 
         private static int color(String str) {
-            String strM = SurfaceContainer$$ExternalSyntheticOutline0.m("ff", str);
+            String strM = Fragment$$ExternalSyntheticOutline0.m("ff", str);
             if (strM.length() > 1 && strM.charAt(0) == '+') {
                 strM = strM.substring(1);
             }
@@ -2080,7 +2077,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if ((4294967295L & j) == j) {
                 return (int) j;
             }
-            throw new NumberFormatException(SurfaceContainer$$ExternalSyntheticOutline0.m("Input ", strM, " in base 16 is not in the range of an unsigned integer"));
+            throw new NumberFormatException(Fragment$$ExternalSyntheticOutline0.m("Input ", strM, " in base 16 is not in the range of an unsigned integer"));
         }
 
         public static PeerColors fromJSON(int i, TLRPC.TL_jsonObject tL_jsonObject, TLRPC.TL_jsonObject tL_jsonObject2, TLRPC.TL_jsonArray tL_jsonArray) {
@@ -2726,7 +2723,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.faqSearchArray = new ArrayList<>();
         this.suggestContacts = true;
         this.themeCheckRunnable = new Emoji$$ExternalSyntheticLambda1(15);
-        this.passwordCheckRunnable = new MessagesController$$ExternalSyntheticLambda5(this, 12);
+        this.passwordCheckRunnable = new MessagesController$$ExternalSyntheticLambda16(this, 2);
         this.welcomeMessages = new LongSparseArray();
         this.uploadingThemes = new HashMap<>();
         this.appConfigFetcher = new AnonymousClass1();
@@ -2743,12 +2740,12 @@ public class MessagesController extends BaseController implements NotificationCe
         AppGlobalConfig appGlobalConfig = new AppGlobalConfig();
         this.config = appGlobalConfig;
         this.photoSuggestion = new SparseArray<>();
-        this.dialogDateComparator = new MessagesController$$ExternalSyntheticLambda101(this, 0);
-        this.dialogComparator = new MessagesController$$ExternalSyntheticLambda101(this, 1);
-        this.communityPeerDialogComparator = new MessagesController$$ExternalSyntheticLambda101(this, 2);
-        this.updatesComparator = new MessagesController$$ExternalSyntheticLambda101(this, 3);
-        this.loadAppConfigRunnable = new MessagesController$$ExternalSyntheticLambda5(this, 10);
-        this.notifyTranscriptionAudioCooldownUpdate = new MessagesController$$ExternalSyntheticLambda14(this, 2);
+        this.dialogDateComparator = new MessagesController$$ExternalSyntheticLambda103(this, 0);
+        this.dialogComparator = new MessagesController$$ExternalSyntheticLambda103(this, 1);
+        this.communityPeerDialogComparator = new MessagesController$$ExternalSyntheticLambda103(this, 2);
+        this.updatesComparator = new MessagesController$$ExternalSyntheticLambda103(this, 3);
+        this.loadAppConfigRunnable = new MessagesController$$ExternalSyntheticLambda7(this, 12);
+        this.notifyTranscriptionAudioCooldownUpdate = new MessagesController$$ExternalSyntheticLambda16(this, 4);
         this.peerDialogsRequested = new LongSparseArray();
         this.peerDialogRequestTimeout = 240000L;
         this.dialogPhotos = new LongSparseArray();
@@ -2763,19 +2760,19 @@ public class MessagesController extends BaseController implements NotificationCe
         this.sensitiveAgreed = new HashSet<>();
         this.cachedIsUserContactBlocked = new LongSparseArray();
         this.loadingIsUserContactBlocked = new HashSet<>();
-        this.requestIsUserContactBlockedRunnable = new MessagesController$$ExternalSyntheticLambda14(this, 3);
+        this.requestIsUserContactBlockedRunnable = new MessagesController$$ExternalSyntheticLambda16(this, 5);
         this.effectsFetcher = new AnonymousClass4();
         this.reportedMessageDelivery = new HashSet<>();
         this.pendingReportMessageDelivery = new HashSet<>();
-        this.sendReportMessageDeliver = new MessagesController$$ExternalSyntheticLambda14(this, 4);
+        this.sendReportMessageDeliver = new MessagesController$$ExternalSyntheticLambda16(this, 6);
         this.commonChats = new android.util.LongSparseArray<>();
         this.sendingSuggestedMessageApprovalMap = new HashMap<>();
-        this.loadWebConfigRunnable = new MessagesController$$ExternalSyntheticLambda5(this, 8);
+        this.loadWebConfigRunnable = new MessagesController$$ExternalSyntheticLambda7(this, 10);
         this.webBrowserSettingsFetcher = new AnonymousClass5(3600000);
         ImageLoader.getInstance();
         getMessagesStorage();
         getLocationController();
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 9));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 11));
         addSupportUser();
         if (this.currentAccount == 0) {
             this.notificationsPreferences = ApplicationLoader.applicationContext.getSharedPreferences("Notifications", 0);
@@ -2952,7 +2949,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.todoItemLengthMax = this.mainPreferences.getInt("todoItemLengthMax", 64);
         this.translationsManualEnabled = this.mainPreferences.getString("translationsManualEnabled", "enabled");
         this.translationsAutoEnabled = this.mainPreferences.getString("translationsAutoEnabled", "enabled");
-        this.whitelistedBots = (HashSet) Collection.EL.stream(this.mainPreferences.getStringSet("whitelistedBots", new HashSet())).map(new MessagesController$$ExternalSyntheticLambda92(0)).collect(Collectors.toCollection(new MessagesController$$ExternalSyntheticLambda93()));
+        this.whitelistedBots = (HashSet) Collection.EL.stream(this.mainPreferences.getStringSet("whitelistedBots", new HashSet())).map(new MessagesController$$ExternalSyntheticLambda94(0)).collect(Collectors.toCollection(new MessagesController$$ExternalSyntheticLambda95()));
         this.starsGroupcallMessageAmountMax = this.mainPreferences.getInt("starsGroupcallMessageAmountMax", 10000);
         this.starsGroupcallMessageLimits = HighlightMessageSheet.parseTiersString(this.mainPreferences.getString("starsGroupcallMessageLimits", null));
         this.freezeAppealUrl = this.mainPreferences.getString("freezeAppealUrl", "t.me/spambot");
@@ -3019,8 +3016,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.paidReactionsPrivacyTime = this.mainPreferences.getLong("paidReactionsAnonymousTime", 0L);
         this.tonStakeddiceStakeAmountMin = this.mainPreferences.getLong("tonStakeddiceStakeAmountMin", 100000000L);
         this.tonStakeddiceStakeAmountMax = this.mainPreferences.getLong("tonStakeddiceStakeAmountMax", 50000000000L);
-        this.tonStakediceStakeSuggestedAmounts = DesugarArrays.stream(this.mainPreferences.getString("tonStakediceStakeSuggestedAmounts", "100000000,1000000000,2000000000,5000000000,10000000000,20000000000").split(",")).mapToLong(new MessagesController$$ExternalSyntheticLambda94(0)).toArray();
-        this.stargiftsCraftAttributesPermilles = (int[][]) DesugarArrays.stream(this.mainPreferences.getString("stargiftsCraftAttributesPermilles", "90,,80,200,,70,190,460,,60,180,450,1000").split(",,")).map(new MessagesController$$ExternalSyntheticLambda92(3)).toArray(new MessagesController$$ExternalSyntheticLambda44(1));
+        this.tonStakediceStakeSuggestedAmounts = DesugarArrays.stream(this.mainPreferences.getString("tonStakediceStakeSuggestedAmounts", "100000000,1000000000,2000000000,5000000000,10000000000,20000000000").split(",")).mapToLong(new MessagesController$$ExternalSyntheticLambda96(0)).toArray();
+        this.stargiftsCraftAttributesPermilles = (int[][]) DesugarArrays.stream(this.mainPreferences.getString("stargiftsCraftAttributesPermilles", "90,,80,200,,70,190,460,,60,180,450,1000").split(",,")).map(new MessagesController$$ExternalSyntheticLambda94(3)).toArray(new MessagesController$$ExternalSyntheticLambda46(1));
         appGlobalConfig.load(this.mainPreferences);
         System.currentTimeMillis();
         this.paidReactionsPrivacy = null;
@@ -3184,13 +3181,13 @@ public class MessagesController extends BaseController implements NotificationCe
                 FileLog.e(e3);
             }
         }
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 10), 2000L);
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 8), 2000L);
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 11), 400L);
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 12), 2000L);
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 10), 2000L);
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 1), 400L);
         this.topicsController = new TopicsController(i);
         this.cacheByChatsController = new CacheByChatsController(i);
         this.translateController = new TranslateController(this);
-        Utilities.globalQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda14(this, 1));
+        Utilities.globalQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda16(this, 3));
     }
 
     private boolean addDialogToItsCommunity(TLRPC.Dialog dialog) {
@@ -3243,7 +3240,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     private void addOrRemoveActiveVoiceChat(TLRPC.Chat chat) {
         if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda206(this, chat, 0));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda208(this, chat, 0));
         } else {
             lambda$addOrRemoveActiveVoiceChat$61(chat);
         }
@@ -7199,7 +7196,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         str2 = str15;
                         if (!Arrays.deepEquals(iArr, this.stargiftsCraftAttributesPermilles)) {
                             this.stargiftsCraftAttributesPermilles = iArr;
-                            editorEdit.putString("stargiftsCraftAttributesPermilles", (String) DesugarArrays.stream(iArr).map(new MessagesController$$ExternalSyntheticLambda92(2)).collect(Collectors.joining(",,")));
+                            editorEdit.putString("stargiftsCraftAttributesPermilles", (String) DesugarArrays.stream(iArr).map(new MessagesController$$ExternalSyntheticLambda94(2)).collect(Collectors.joining(",,")));
                             str3 = str16;
                             str4 = str17;
                             str5 = str18;
@@ -9091,7 +9088,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                     if (!hashSet8.equals(this.whitelistedBots)) {
                         this.whitelistedBots = hashSet8;
-                        editorEdit.putStringSet("whitelistedBots", (Set) Collection.EL.stream(hashSet8).map(new MessagesController$$ExternalSyntheticLambda92(1)).collect(Collectors.toCollection(new MessagesController$$ExternalSyntheticLambda93())));
+                        editorEdit.putStringSet("whitelistedBots", (Set) Collection.EL.stream(hashSet8).map(new MessagesController$$ExternalSyntheticLambda94(1)).collect(Collectors.toCollection(new MessagesController$$ExternalSyntheticLambda95())));
                         str = str14;
                         str2 = str15;
                         str3 = str16;
@@ -10154,7 +10151,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         if (z) {
             editorEdit.apply();
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 7));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 9));
         }
         if (tL_jsonObject3 != null) {
             LiteMode.updatePresets(tL_jsonObject3);
@@ -10165,7 +10162,7 @@ public class MessagesController extends BaseController implements NotificationCe
             connectionsManager.setPushConnectionEnabled(connectionsManager.isPushConnectionEnabled());
         }
         if (z30) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 8));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 10));
         }
         logDeviceStats();
     }
@@ -10243,7 +10240,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_toggleSuggestedPostApproval.reject_comment = str;
         }
         this.sendingSuggestedMessageApprovalMap.put(j + "_" + i, Boolean.valueOf(!z));
-        getConnectionsManager().sendRequest(tL_messages_toggleSuggestedPostApproval, new ArticleViewer$$ExternalSyntheticLambda39(this, j, i, 1));
+        getConnectionsManager().sendRequest(tL_messages_toggleSuggestedPostApproval, new ArticleViewer$$ExternalSyntheticLambda44(this, j, i, 1));
     }
 
     private ArrayList<CommunityPeerDialog> buildCommunityChats(long j) {
@@ -10398,9 +10395,9 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         this.currentDeleteTaskRunnable = null;
         LongSparseArray longSparseArray = this.currentDeletingTaskMids;
-        LongSparseArray longSparseArrayClone = longSparseArray != null ? longSparseArray.m20clone() : null;
+        LongSparseArray longSparseArrayClone = longSparseArray != null ? longSparseArray.m18clone() : null;
         LongSparseArray longSparseArray2 = this.currentDeletingTaskMediaMids;
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda42(this, longSparseArrayClone, longSparseArray2 != null ? longSparseArray2.m20clone() : null, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda44(this, longSparseArrayClone, longSparseArray2 != null ? longSparseArray2.m18clone() : null, 1));
         return true;
     }
 
@@ -10427,13 +10424,13 @@ public class MessagesController extends BaseController implements NotificationCe
             int i = this.lastCheckPromoId + 1;
             this.lastCheckPromoId = i;
             this.checkingPromoInfo = true;
-            this.checkingPromoInfoRequestId = getConnectionsManager().sendRequest(new TLRPC.TL_help_getPromoData(), new MessagesController$$ExternalSyntheticLambda45(this, i, string, string2, 0));
+            this.checkingPromoInfoRequestId = getConnectionsManager().sendRequest(new TLRPC.TL_help_getPromoData(), new MessagesController$$ExternalSyntheticLambda47(this, i, string, string2, 0));
             if (z2) {
                 this.promoDialogId = 0L;
                 this.proxyDialogAddress = null;
                 this.nextPromoInfoCheckTime = getConnectionsManager().getCurrentTime() + 3600;
                 getGlobalMainSettings().edit().putLong("proxy_dialog", this.promoDialogId).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime).commit();
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 4));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 6));
             }
         }
     }
@@ -10473,13 +10470,13 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         this.checkingTosUpdate = true;
-        getConnectionsManager().sendRequest(new TLRPC.TL_help_getTermsOfServiceUpdate(), new MessagesController$$ExternalSyntheticLambda16(this, 12));
+        getConnectionsManager().sendRequest(new TLRPC.TL_help_getTermsOfServiceUpdate(), new MessagesController$$ExternalSyntheticLambda18(this, 12));
     }
 
     private void checkUnreadPollVotesInternal2(long j, long j2, boolean z, boolean z2, int i, ArrayList<Integer> arrayList) {
         if (!z) {
             if (z2) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda22(this, j2, j, i, arrayList, 1));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda24(this, j2, j, i, arrayList, 1));
                 return;
             }
             return;
@@ -10489,20 +10486,20 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC.TL_inputDialogPeer tL_inputDialogPeer = new TLRPC.TL_inputDialogPeer();
             tL_inputDialogPeer.peer = getInputPeer(j);
             tL_messages_getPeerDialogs.peers.add(tL_inputDialogPeer);
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getPeerDialogs, new MessagesController$$ExternalSyntheticLambda255(0, j, j2, arrayList, this));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getPeerDialogs, new MessagesController$$ExternalSyntheticLambda257(0, j, j2, arrayList, this));
             return;
         }
         if (isMonoForum(j)) {
             TLRPC.TL_messages_getSavedDialogsByID tL_messages_getSavedDialogsByID = new TLRPC.TL_messages_getSavedDialogsByID();
             tL_messages_getSavedDialogsByID.ids.add(getInputPeer(j2));
             tL_messages_getSavedDialogsByID.parent_peer = getInputPeer(j);
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSavedDialogsByID, new MessagesController$$ExternalSyntheticLambda255(1, j, j2, arrayList, this));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSavedDialogsByID, new MessagesController$$ExternalSyntheticLambda257(1, j, j2, arrayList, this));
             return;
         }
         TL_forum.TL_messages_getForumTopicsByID tL_messages_getForumTopicsByID = new TL_forum.TL_messages_getForumTopicsByID();
         tL_messages_getForumTopicsByID.topics.add(Integer.valueOf((int) j2));
         tL_messages_getForumTopicsByID.peer = getMessagesController().getInputPeer(j);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getForumTopicsByID, new MessagesController$$ExternalSyntheticLambda255(2, j, j2, arrayList, this));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getForumTopicsByID, new MessagesController$$ExternalSyntheticLambda257(2, j, j2, arrayList, this));
     }
 
     private void checkUnreadReactionsInternal(final long j, final long j2, final SparseBooleanArray sparseBooleanArray, final boolean z) {
@@ -10520,7 +10517,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private void checkUnreadReactionsInternal2(long j, long j2, boolean z, boolean z2, int i, ArrayList<Integer> arrayList) {
         if (!z) {
             if (z2) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda22(this, j2, j, i, arrayList, 4));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda24(this, j2, j, i, arrayList, 4));
                 return;
             }
             return;
@@ -10530,20 +10527,20 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC.TL_inputDialogPeer tL_inputDialogPeer = new TLRPC.TL_inputDialogPeer();
             tL_inputDialogPeer.peer = getInputPeer(j);
             tL_messages_getPeerDialogs.peers.add(tL_inputDialogPeer);
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getPeerDialogs, new MessagesController$$ExternalSyntheticLambda255(3, j, j2, arrayList, this));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getPeerDialogs, new MessagesController$$ExternalSyntheticLambda257(3, j, j2, arrayList, this));
             return;
         }
         if (isMonoForum(j)) {
             TLRPC.TL_messages_getSavedDialogsByID tL_messages_getSavedDialogsByID = new TLRPC.TL_messages_getSavedDialogsByID();
             tL_messages_getSavedDialogsByID.ids.add(getInputPeer(j2));
             tL_messages_getSavedDialogsByID.parent_peer = getInputPeer(j);
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSavedDialogsByID, new MessagesController$$ExternalSyntheticLambda255(4, j, j2, arrayList, this));
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSavedDialogsByID, new MessagesController$$ExternalSyntheticLambda257(4, j, j2, arrayList, this));
             return;
         }
         TL_forum.TL_messages_getForumTopicsByID tL_messages_getForumTopicsByID = new TL_forum.TL_messages_getForumTopicsByID();
         tL_messages_getForumTopicsByID.topics.add(Integer.valueOf((int) j2));
         tL_messages_getForumTopicsByID.peer = getMessagesController().getInputPeer(j);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getForumTopicsByID, new MessagesController$$ExternalSyntheticLambda255(5, j, j2, arrayList, this));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getForumTopicsByID, new MessagesController$$ExternalSyntheticLambda257(5, j, j2, arrayList, this));
     }
 
     private void completeReadTask(ReadTask readTask) {
@@ -10553,7 +10550,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_readDiscussion.msg_id = (int) readTask.replyId;
             tL_messages_readDiscussion.peer = getInputPeer(readTask.dialogId);
             tL_messages_readDiscussion.read_max_id = readTask.maxId;
-            getConnectionsManager().sendRequest(tL_messages_readDiscussion, new FileRefController$$ExternalSyntheticLambda11(18));
+            getConnectionsManager().sendRequest(tL_messages_readDiscussion, new FileRefController$$ExternalSyntheticLambda11(19));
             return;
         }
         if (DialogObject.isEncryptedDialog(readTask.dialogId)) {
@@ -10568,7 +10565,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_inputEncryptedChat.chat_id = encryptedChatM.id;
             tL_inputEncryptedChat.access_hash = encryptedChatM.access_hash;
             tL_messages_readEncryptedHistory.max_date = readTask.maxDate;
-            getConnectionsManager().sendRequest(tL_messages_readEncryptedHistory, new FileRefController$$ExternalSyntheticLambda11(19));
+            getConnectionsManager().sendRequest(tL_messages_readEncryptedHistory, new FileRefController$$ExternalSyntheticLambda11(20));
             return;
         }
         TLRPC.InputPeer inputPeer = getInputPeer(readTask.dialogId);
@@ -10589,7 +10586,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_readHistory.max_id = readTask.maxId;
             tLObject = tL_messages_readHistory;
         }
-        getConnectionsManager().sendRequest(tLObject, new MessagesController$$ExternalSyntheticLambda16(this, 7));
+        getConnectionsManager().sendRequest(tLObject, new MessagesController$$ExternalSyntheticLambda18(this, 7));
     }
 
     private static void deleteWebBrowserExceptionFromList(ArrayList<TL_account.WebDomainException> arrayList, TL_account.WebDomainException webDomainException) {
@@ -11369,11 +11366,11 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.Updates updates;
         boolean z4;
         if (z && (inputUser instanceof TLRPC.TL_inputUserSelf)) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 17));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 17));
         }
         if (tL_error != null) {
             if ("JOIN_GUARD_TIMEOUT".equals(tL_error.text)) {
-                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(18, callback, runnable));
+                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(17, callback, runnable));
                 return;
             }
             if ("PRIVACY_PREMIUM_REQUIRED".equals(tL_error.text)) {
@@ -11384,7 +11381,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 tL_missingInvitee.premium_would_allow_invite = true;
                 tL_missingInvitee.premium_required_for_pm = true;
                 tL_messages_invitedUsers.missing_invitees.add(tL_missingInvitee);
-                AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda121(this, (Object) callback, (TLObject) tL_messages_invitedUsers, j, 8));
+                AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda139(this, callback, tL_messages_invitedUsers, j, 8));
                 return;
             }
             AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda257(8, callback));
@@ -11396,7 +11393,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 return;
             } else {
                 if (errorDelegate != null) {
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda69(this, errorDelegate, tL_error, baseFragment, tLObject, z, z3));
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda71(this, errorDelegate, tL_error, baseFragment, tLObject, z, z3));
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
@@ -11449,7 +11446,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (!z4 && (inputUser instanceof TLRPC.TL_inputUserSelf)) {
                 generateJoinMessage(j, true);
             }
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 19), 1000L);
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 19), 1000L);
         }
         if (z && (inputUser instanceof TLRPC.TL_inputUserSelf)) {
             getMessagesStorage().updateDialogsWithDeletedMessages(-j, j, new ArrayList<>(), null);
@@ -11461,7 +11458,7 @@ public class MessagesController extends BaseController implements NotificationCe
             AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda257(9, callback));
         }
         if (UserObject.isUserSelf(user) && !ChatObject.isChannelAndNotMegaGroup(chat) && z4) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 18));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 18));
         }
     }
 
@@ -11477,7 +11474,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$addUsersToChannel$274(BaseFragment baseFragment, TLRPC.TL_channels_inviteToChannel tL_channels_inviteToChannel, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(this, tL_error, baseFragment, tL_channels_inviteToChannel, 21));
+            AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(21, this, tL_error, baseFragment, tL_channels_inviteToChannel));
         } else if (tLObject instanceof TLRPC.TL_messages_invitedUsers) {
             TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) tLObject;
             processUpdates(tL_messages_invitedUsers.updates, false);
@@ -11522,11 +11519,11 @@ public class MessagesController extends BaseController implements NotificationCe
         if (updates != null) {
             processUpdates(updates, false);
         }
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 7));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 9));
     }
 
     public static String lambda$applyAppConfig$35(int[] iArr) {
-        return (String) DesugarArrays.stream(iArr).mapToObj(new MessagesController$$ExternalSyntheticLambda44(0)).collect(Collectors.joining(","));
+        return (String) DesugarArrays.stream(iArr).mapToObj(new MessagesController$$ExternalSyntheticLambda46(0)).collect(Collectors.joining(","));
     }
 
     public void lambda$applyAppConfig$36() {
@@ -11606,11 +11603,11 @@ public class MessagesController extends BaseController implements NotificationCe
                     StringBuilder sb = new StringBuilder();
                     sb.append(fileLocation.volume_id);
                     sb.append("_");
-                    String strM = SurfaceContainer$$ExternalSyntheticOutline0.m(fileLocation.local_id, "@50_50", sb);
+                    String strM = Fragment$$ExternalSyntheticOutline0.m(fileLocation.local_id, "@50_50", sb);
                     StringBuilder sb2 = new StringBuilder();
                     sb2.append(closestPhotoSizeWithSize.location.volume_id);
                     sb2.append("_");
-                    ImageLoader.getInstance().replaceImageInCache(strM, SurfaceContainer$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize.location.local_id, "@50_50", sb2), ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), true);
+                    ImageLoader.getInstance().replaceImageInCache(strM, Fragment$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize.location.local_id, "@50_50", sb2), ImageLocation.getForPhoto(closestPhotoSizeWithSize, photo), true);
                 }
                 TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 800);
                 if (closestPhotoSizeWithSize2 != null && fileLocation2 != null) {
@@ -11682,7 +11679,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$checkChatInviter$373(ArrayList arrayList) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda13(this, arrayList, 5));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda15(this, arrayList, 5));
     }
 
     public void lambda$checkChatInviter$374(long j, ArrayList arrayList, TLRPC.TL_channels_channelParticipant tL_channels_channelParticipant) {
@@ -11704,7 +11701,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (chat.megagroup && getMessagesStorage().isMigratedChat(chat.id)) {
                     return;
                 }
-                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(17, this, tL_channels_channelParticipant));
+                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(16, this, tL_channels_channelParticipant));
                 getMessagesStorage().putUsersAndChats(tL_channels_channelParticipant.users, tL_channels_channelParticipant.chats, true, true);
                 if (!z || Math.abs(getConnectionsManager().getCurrentTime() - tL_channels_channelParticipant.participant.date) >= 86400 || getMessagesStorage().hasInviteMeMessage(j)) {
                     arrayList = null;
@@ -11742,13 +11739,13 @@ public class MessagesController extends BaseController implements NotificationCe
                     arrayList2.add(tL_messageService);
                     arrayList.add(new MessageObject(this.currentAccount, (TLRPC.Message) tL_messageService, (AbstractMap<Long, TLRPC.User>) concurrentHashMap, true, false));
                     if (tL_messageService.from_id.user_id != getUserConfig().getClientUserId()) {
-                        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda13(this, arrayList, 7));
+                        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda15(this, arrayList, 7));
                     }
                     getMessagesStorage().putMessages(arrayList2, true, true, false, 0, 0, 0L);
                 }
                 ArrayList arrayList3 = arrayList;
                 getMessagesStorage().saveChatInviter(j, tL_channels_channelParticipant.participant.inviter_id);
-                AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda121(this, j, (Serializable) arrayList3, (Object) tL_channels_channelParticipant, 7));
+                AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda139(this, j, arrayList3, tL_channels_channelParticipant, 7));
             }
         }
     }
@@ -11786,27 +11783,27 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         MessagesController messagesController = this;
         if (longSparseArray2 != null) {
-            boolean z = SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible;
-            MessageObject messageObject = z ? SecretMediaViewer.getInstance().currentMessageObject : null;
+            boolean z = SecretMediaViewer.hasInstance() && SecretMediaViewer.getInstance().isVisible();
+            MessageObject currentMessageObject = z ? SecretMediaViewer.getInstance().getCurrentMessageObject() : null;
             int size2 = longSparseArray2.size();
             for (int i2 = 0; i2 < size2; i2++) {
                 long jKeyAt = longSparseArray2.keyAt(i2);
                 ArrayList<Integer> arrayList2 = (ArrayList) longSparseArray2.valueAt(i2);
-                if (z && messageObject != null && messageObject.currentAccount == messagesController.currentAccount && messageObject.getDialogId() == jKeyAt && arrayList2.contains(Integer.valueOf(messageObject.getId()))) {
-                    int id = messageObject.getId();
+                if (z && currentMessageObject != null && currentMessageObject.currentAccount == messagesController.currentAccount && currentMessageObject.getDialogId() == jKeyAt && arrayList2.contains(Integer.valueOf(currentMessageObject.getId()))) {
+                    int id = currentMessageObject.getId();
                     arrayList2.remove(Integer.valueOf(id));
-                    messageObject.forceExpired = true;
+                    currentMessageObject.forceExpired = true;
                     long jCreateDeleteShowOnceTask = messagesController.createDeleteShowOnceTask(jKeyAt, id);
                     messagesController = this;
-                    SecretMediaViewer.getInstance().onClose = new MessagesController$$ExternalSyntheticLambda34(id, jCreateDeleteShowOnceTask, jKeyAt, this);
-                    messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateMessageMedia, messageObject.messageOwner);
+                    SecretMediaViewer.getInstance().setOnClose(new MessagesController$$ExternalSyntheticLambda36(id, jCreateDeleteShowOnceTask, jKeyAt, this));
+                    messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateMessageMedia, currentMessageObject.messageOwner);
                 }
                 if (!arrayList2.isEmpty()) {
                     messagesController.getMessagesStorage().emptyMessagesMedia(jKeyAt, arrayList2);
                 }
             }
         }
-        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda42(messagesController, longSparseArray, longSparseArray2, 3));
+        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda44(messagesController, longSparseArray, longSparseArray2, 3));
     }
 
     public static void lambda$checkIsInChat$473(IsInChatCheckedCallback isInChatCheckedCallback, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -11830,7 +11827,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("checkLastDialogMessage for " + dialog.id + " current dialog not found");
                 }
-                getMessagesStorage().isDialogHasTopMessage(dialog.id, new MessagesController$$ExternalSyntheticLambda465(this, dialog, 2));
+                getMessagesStorage().isDialogHasTopMessage(dialog.id, new MessagesController$$ExternalSyntheticLambda467(this, dialog, 2));
                 return;
             }
             if (BuildVars.LOGS_ENABLED) {
@@ -11854,7 +11851,7 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
             removeDeletedMessagesFromArray(dialog.id, messages_messages.messages);
             if (messages_messages.messages.isEmpty()) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda465(this, dialog, 0));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda467(this, dialog, 0));
             } else {
                 if (BuildVars.LOGS_ENABLED) {
                     FileLog.d("checkLastDialogMessage for " + dialog.id + " has message");
@@ -11892,7 +11889,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (j != 0) {
             getMessagesStorage().removePendingTask(j);
         }
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda465(this, dialog, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda467(this, dialog, 1));
     }
 
     public void lambda$checkPeerColors$490(TLObject tLObject) {
@@ -11903,7 +11900,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$checkPeerColors$491(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.TL_help_peerColors) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda406(this, (TLRPC.TL_help_peerColors) tLObject, 1));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda408(this, (TLRPC.TL_help_peerColors) tLObject, 1));
         }
     }
 
@@ -11915,7 +11912,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$checkPeerColors$493(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject instanceof TLRPC.TL_help_peerColors) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda406(this, (TLRPC.TL_help_peerColors) tLObject, 0));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda408(this, (TLRPC.TL_help_peerColors) tLObject, 0));
         }
     }
 
@@ -12012,7 +12009,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
         if (tL_messages_peerDialogs == null || tL_messages_peerDialogs.dialogs.isEmpty()) {
             messagesController = this;
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 19));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 21));
         } else {
             getMessagesStorage().putUsersAndChats(tL_help_promoData.users, tL_help_promoData.chats, true, true);
             TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
@@ -12022,7 +12019,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_dialogs.messages = tL_messages_peerDialogs.messages;
             getMessagesStorage().putDialogs(tL_messages_dialogs, 2);
             messagesController = this;
-            AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda121(messagesController, (Object) tL_help_promoData, (TLObject) tL_messages_peerDialogs, j, 5));
+            AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda139(messagesController, tL_help_promoData, tL_messages_peerDialogs, j, 5));
         }
         messagesController.checkingPromoInfo = false;
     }
@@ -12109,7 +12106,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
         }
         tL_messages_getPeerDialogs.peers.add(tL_inputDialogPeer);
-        this.checkingPromoInfoRequestId = getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new MessageSeenView$$ExternalSyntheticLambda0(this, i, tL_help_promoData, j, 3));
+        this.checkingPromoInfoRequestId = getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new MessageSeenView$$ExternalSyntheticLambda4(this, i, tL_help_promoData, j, 3));
     }
 
     public void lambda$checkPromoInfoInternal$169(int i, String str, String str2, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -12190,7 +12187,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         this.promoDialogType = PROMO_TYPE_PSA;
                         this.promoPsaType = tL_help_promoData2.psa_type;
                     }
-                    this.proxyDialogAddress = zzhr.m(str, str2);
+                    this.proxyDialogAddress = zzhp.m(str, str2);
                     this.promoPsaMessage = tL_help_promoData2.psa_message;
                     this.nextPromoInfoCheckTime = tL_help_promoData2.expires;
                     editorEdit = getGlobalMainSettings().edit();
@@ -12212,7 +12209,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     editorEdit.putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime);
                     editorEdit.commit();
                     if (!z) {
-                        AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda48(this, j, tL_help_promoData2, i, 3));
+                        AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda0(this, j, tL_help_promoData2, i, 3));
                     }
                     z2 = z;
                 }
@@ -12227,7 +12224,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 } else {
                     this.promoDialogType = PROMO_TYPE_OTHER;
                 }
-                this.proxyDialogAddress = zzhr.m(str, str2);
+                this.proxyDialogAddress = zzhp.m(str, str2);
                 this.promoPsaMessage = tL_help_promoData2.psa_message;
                 this.nextPromoInfoCheckTime = tL_help_promoData2.expires;
                 editorEdit = getGlobalMainSettings().edit();
@@ -12249,7 +12246,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 editorEdit.putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime);
                 editorEdit.commit();
                 if (!z) {
-                    AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda48(this, j, tL_help_promoData2, i, 3));
+                    AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda0(this, j, tL_help_promoData2, i, 3));
                 }
                 z2 = z;
             } else {
@@ -12260,7 +12257,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 getGlobalMainSettings().edit().putLong("proxy_dialog", this.promoDialogId).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime).commit();
                 this.checkingPromoInfoRequestId = 0;
                 this.checkingPromoInfo = false;
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 4));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 6));
             }
         }
         this.nextPromoInfoCheckTime = ((TLRPC.TL_help_promoDataEmpty) tLObject).expires;
@@ -12270,7 +12267,7 @@ public class MessagesController extends BaseController implements NotificationCe
             getGlobalMainSettings().edit().putLong("proxy_dialog", this.promoDialogId).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", this.nextPromoInfoCheckTime).commit();
             this.checkingPromoInfoRequestId = 0;
             this.checkingPromoInfo = false;
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 4));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 6));
         }
     }
 
@@ -12289,9 +12286,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public static void lambda$checkSensitive$447(BaseFragment baseFragment) {
         if (baseFragment != null) {
-            ThemeActivity themeActivity = new ThemeActivity(0);
-            themeActivity.highlightSensitiveRow = true;
-            baseFragment.presentFragment(themeActivity);
+            baseFragment.presentFragment(new ThemeActivity(0).highlightSensitiveRow());
         }
     }
 
@@ -12299,7 +12294,7 @@ public class MessagesController extends BaseController implements NotificationCe
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!bool.booleanValue()) {
             if (safeLastFragment != null) {
-                BulletinFactory.of(safeLastFragment).createSimpleBulletin(LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText), R.raw.error).show();
+                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.AgeVerificationFailedTitle), LocaleController.getString(R.string.AgeVerificationFailedText)).show();
                 return;
             }
             return;
@@ -12307,7 +12302,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.sensitiveAgreed.add(Long.valueOf(j));
         setContentSettings(true);
         if (safeLastFragment != null) {
-            BulletinFactory.of(safeLastFragment).createSimpleBulletinDetail(R.raw.chats_infotip, AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.SensitiveContentSettingsToast), new SendMessagesHelper$$ExternalSyntheticLambda65(1, safeLastFragment)), true)).show(true);
+            BulletinFactory.of(safeLastFragment).createSimpleBulletinDetail(R.raw.chats_infotip, AndroidUtilities.replaceArrows(AndroidUtilities.premiumText(LocaleController.getString(R.string.SensitiveContentSettingsToast), new SendMessagesHelper$$ExternalSyntheticLambda65(safeLastFragment, 1)), true)).show(true);
         }
         zArr[0] = true;
         if (runnable != null) {
@@ -12317,7 +12312,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$checkSensitive$449(boolean z, boolean[] zArr, TL_account.contentSettings contentsettings, Context context, long j, boolean[] zArr2, Runnable runnable, Theme.ResourcesProvider resourcesProvider, AlertDialog alertDialog, int i) {
         if (z || (zArr[0] && contentsettings != null && contentsettings.sensitive_can_change)) {
-            ThemeActivity.verifyAge(this.currentAccount, context, new PhotoViewer$$ExternalSyntheticLambda174(this, j, zArr2, runnable, 2), resourcesProvider);
+            ThemeActivity.verifyAge(context, this.currentAccount, new GiftSheet$$ExternalSyntheticLambda11(this, j, zArr2, runnable, 2), resourcesProvider);
             return;
         }
         this.sensitiveAgreed.add(Long.valueOf(j));
@@ -12364,16 +12359,10 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             checkBoxCell.setPadding(iDp, 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
             frameLayout.addView(checkBoxCell, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
-            checkBoxCell.setOnClickListener(new MessagesController$$ExternalSyntheticLambda350(zArr, 0));
+            checkBoxCell.setOnClickListener(new MessagesController$$ExternalSyntheticLambda352(zArr, 0));
         }
         final boolean[] zArr2 = new boolean[1];
-        AlertDialog.Builder builder = new AlertDialog.Builder(context2, 0, resourceProvider);
-        builder.alertDialog.title = LocaleController.getString(R.string.MessageShowSensitiveContentChannelTitle);
-        builder.alertDialog.message = LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentChannelTextClosed : R.string.MessageShowSensitiveContentChannelText);
-        builder.setView(frameLayout);
-        builder.alertDialog.customViewOffset = 9;
-        builder.setNegativeButton(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentChannelTextClosedButton : R.string.Cancel), null);
-        builder.alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        AlertDialog.Builder onDismissListener = new AlertDialog.Builder(context2, 0, resourceProvider).setTitle(LocaleController.getString(R.string.MessageShowSensitiveContentChannelTitle)).setMessage(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentChannelTextClosed : R.string.MessageShowSensitiveContentChannelText)).setView(frameLayout).setCustomViewOffset(9).setNegativeButton(LocaleController.getString(z2 ? R.string.MessageShowSensitiveContentChannelTextClosedButton : R.string.Cancel), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 MessagesController.lambda$checkSensitive$446(zArr2, runnable, dialogInterface);
@@ -12381,14 +12370,14 @@ public class MessagesController extends BaseController implements NotificationCe
         });
         if (!z2) {
             final boolean z3 = z;
-            builder.setPositiveButton(LocaleController.getString(R.string.MessageShowSensitiveContentButton), new AlertDialog.OnButtonClickListener() {
+            onDismissListener.setPositiveButton(LocaleController.getString(R.string.MessageShowSensitiveContentButton), new AlertDialog.OnButtonClickListener() {
                 @Override
                 public final void onClick(AlertDialog alertDialog2, int i) {
                     this.f$0.lambda$checkSensitive$449(z3, zArr, contentsettings, context2, j, zArr2, runnable2, resourceProvider, alertDialog2, i);
                 }
             });
         }
-        builder.show();
+        onDismissListener.show();
     }
 
     public void lambda$checkTosUpdate$162(TLRPC.TL_help_termsOfServiceUpdate tL_help_termsOfServiceUpdate) {
@@ -12423,7 +12412,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$checkUnreadPollVotesInternal2$430(long j, long j2, ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda22(this, j, tL_messages_peerDialogs.dialogs.size() == 0 ? 0 : tL_messages_peerDialogs.dialogs.get(0).unread_poll_votes_count, j2, arrayList, 6));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda24(this, j, tL_messages_peerDialogs.dialogs.size() == 0 ? 0 : tL_messages_peerDialogs.dialogs.get(0).unread_poll_votes_count, j2, arrayList, 6));
         }
     }
 
@@ -12435,7 +12424,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$checkUnreadPollVotesInternal2$432(long j, long j2, ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda31(this, j, j2, arrayList));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda33(this, j, j2, arrayList));
         }
     }
 
@@ -12448,7 +12437,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$checkUnreadPollVotesInternal2$434(long j, long j2, ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda22(this, j, j2, tL_messages_forumTopics.topics.size() == 0 ? 0 : tL_messages_forumTopics.topics.get(0).unread_poll_votes_count, arrayList, 3));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda24(this, j, j2, tL_messages_forumTopics.topics.size() == 0 ? 0 : tL_messages_forumTopics.topics.get(0).unread_poll_votes_count, arrayList, 3));
         }
     }
 
@@ -12612,7 +12601,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$checkUnreadReactionsInternal2$423(long j, long j2, ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda22(this, j, tL_messages_peerDialogs.dialogs.size() == 0 ? 0 : tL_messages_peerDialogs.dialogs.get(0).unread_reactions_count, j2, arrayList, 5));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda24(this, j, tL_messages_peerDialogs.dialogs.size() == 0 ? 0 : tL_messages_peerDialogs.dialogs.get(0).unread_reactions_count, j2, arrayList, 5));
         }
     }
 
@@ -12625,7 +12614,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$checkUnreadReactionsInternal2$425(long j, long j2, ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject;
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda22(this, j, j2, tL_messages_savedDialogs.dialogs.size() == 0 ? 0 : tL_messages_savedDialogs.dialogs.get(0).unread_reactions_count, arrayList, 0));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda24(this, j, j2, tL_messages_savedDialogs.dialogs.size() == 0 ? 0 : tL_messages_savedDialogs.dialogs.get(0).unread_reactions_count, arrayList, 0));
         }
     }
 
@@ -12638,7 +12627,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$checkUnreadReactionsInternal2$427(long j, long j2, ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject;
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda22(this, j, j2, tL_messages_forumTopics.topics.size() == 0 ? 0 : tL_messages_forumTopics.topics.get(0).unread_reactions_count, arrayList, 2));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda24(this, j, j2, tL_messages_forumTopics.topics.size() == 0 ? 0 : tL_messages_forumTopics.topics.get(0).unread_reactions_count, arrayList, 2));
         }
     }
 
@@ -12815,7 +12804,7 @@ public class MessagesController extends BaseController implements NotificationCe
         getMessagesStorage().setLastDateValue(i2);
         getMessagesStorage().setLastQtsValue(i3);
         getDifference();
-        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(this, messages_dialogs, longSparseArray, longSparseArray2, 23));
+        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(23, this, messages_dialogs, longSparseArray, longSparseArray2));
     }
 
     public static void lambda$completeReadTask$237(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -12865,11 +12854,11 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$convertToGigaGroup$270(Context context, AlertDialog alertDialog, MessagesStorage.BooleanCallback booleanCallback, BaseFragment baseFragment, TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda42(this, booleanCallback, context, alertDialog, tL_error, baseFragment, tL_channels_convertToGigagroup, 3));
+            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda41(this, booleanCallback, context, alertDialog, tL_error, baseFragment, tL_channels_convertToGigagroup, 3));
             return;
         }
         if (context != null) {
-            AndroidUtilities.runOnUIThread(new SecretChatHelper$$ExternalSyntheticLambda26(1, context, alertDialog));
+            AndroidUtilities.runOnUIThread(new SecretChatHelper$$ExternalSyntheticLambda26(context, alertDialog, 1));
         }
         processUpdates((TLRPC.Updates) tLObject, false);
         AndroidUtilities.runOnUIThread(new ANRDetector$$ExternalSyntheticLambda0(booleanCallback, 27));
@@ -12946,10 +12935,10 @@ public class MessagesController extends BaseController implements NotificationCe
             if (runnable != null) {
                 runnable.run();
             }
-            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda42(this, longCallback, context, alertDialog, tL_error, baseFragment, tL_messages_migrateChat, 4));
+            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda41(this, longCallback, context, alertDialog, tL_error, baseFragment, tL_messages_migrateChat, 4));
         } else {
             if (context != null) {
-                AndroidUtilities.runOnUIThread(new SecretChatHelper$$ExternalSyntheticLambda26(2, context, alertDialog));
+                AndroidUtilities.runOnUIThread(new SecretChatHelper$$ExternalSyntheticLambda26(context, alertDialog, 2));
             }
             TLRPC.Updates updates = (TLRPC.Updates) tLObject;
             processUpdates(updates, false);
@@ -12980,7 +12969,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$createChat$258(BaseFragment baseFragment, TLRPC.TL_messages_createChat tL_messages_createChat, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(this, tL_error, baseFragment, tL_messages_createChat, 22));
+            AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(22, this, tL_error, baseFragment, tL_messages_createChat));
         } else if (tLObject instanceof TLRPC.TL_messages_invitedUsers) {
             TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) tLObject;
             processUpdates(tL_messages_invitedUsers.updates, false);
@@ -13006,7 +12995,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$createChat$261(BaseFragment baseFragment, TLRPC.TL_channels_createChannel tL_channels_createChannel, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(this, tL_error, baseFragment, tL_channels_createChannel, 20));
+            AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(20, this, tL_error, baseFragment, tL_channels_createChannel));
             return;
         }
         TLRPC.Updates updates = (TLRPC.Updates) tLObject;
@@ -13038,7 +13027,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$deleteDialog$140(long j) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 0));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 0));
     }
 
     public void lambda$deleteDialog$141(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -13136,7 +13125,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$deleteMessagesByPush$370(ArrayList arrayList, long j, long j2) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda120(this, arrayList, j, 4));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda122(this, arrayList, j, 4));
         getMessagesStorage().deletePushMessages(j2, arrayList);
         getMessagesStorage().updateDialogsWithDeletedMessages(j2, j, arrayList, getMessagesStorage().markMessagesAsDeleted(j2, arrayList, false, true, 0, 0));
     }
@@ -13169,7 +13158,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
         processNewDifferenceParams(-1, tL_messages_affectedHistory.pts, -1, tL_messages_affectedHistory.pts_count);
-        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda226(this, j, i, i2, j2, tL_messages_affectedHistory, z, runnable));
+        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda228(this, j, i, i2, j2, tL_messages_affectedHistory, z, runnable));
     }
 
     public static void lambda$deleteParticipantFromChat$311(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -13185,7 +13174,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         processUpdates((TLRPC.Updates) tLObject, false);
         if (z && !z2) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 13), 1000L);
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 13), 1000L);
         }
         if (runnable != null) {
             AndroidUtilities.runOnUIThread(runnable);
@@ -13209,7 +13198,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (!z || UserObject.isUserSelf(user)) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 16), 1000L);
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 16), 1000L);
     }
 
     public void lambda$deleteReactionsFromMessage$132(TLRPC.Updates updates, TLRPC.TL_error tL_error) {
@@ -13261,7 +13250,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             tL_messages_deleteSavedHistory.max_id = i3;
         }
-        getConnectionsManager().sendRequest(tL_messages_deleteSavedHistory, new StarGiftSheet$$ExternalSyntheticLambda162(this, j2, iArr, inputPeer, 1), 64);
+        getConnectionsManager().sendRequest(tL_messages_deleteSavedHistory, new StarGiftSheet$$ExternalSyntheticLambda150(this, j2, iArr, inputPeer, 1), 64);
     }
 
     public static void lambda$deleteSavedDialog$145(int[] iArr, Runnable runnable, int i) {
@@ -13325,7 +13314,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$deleteUserPhoto$115(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda33(this, tLObject, j));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda35(this, tLObject, j));
         }
     }
 
@@ -13377,7 +13366,7 @@ public class MessagesController extends BaseController implements NotificationCe
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(user);
             getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 6));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 8));
         }
     }
 
@@ -13401,7 +13390,7 @@ public class MessagesController extends BaseController implements NotificationCe
             StringBuilder sb = new StringBuilder();
             sb.append(closestPhotoSizeWithSize.location.volume_id);
             sb.append("_");
-            ImageLoader.getInstance().replaceImageInCache(Utilities.MD5(file.getAbsolutePath()) + "@100_100", SurfaceContainer$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize.location.local_id, "@100_100", sb), ImageLocation.getForDocument(closestPhotoSizeWithSize, wallPaper.document), false);
+            ImageLoader.getInstance().replaceImageInCache(Utilities.MD5(file.getAbsolutePath()) + "@100_100", Fragment$$ExternalSyntheticOutline0.m(closestPhotoSizeWithSize.location.local_id, "@100_100", sb), ImageLocation.getForDocument(closestPhotoSizeWithSize, wallPaper.document), false);
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.wallpapersNeedReload, wallPaper.slug);
         ArrayList arrayList2 = this.uploadingWallpaperInfo.requestIds;
@@ -13434,7 +13423,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$didReceivedNotification$47(Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda178(this, tLObject, themeInfo, themeAccent, 0));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda180(this, tLObject, themeInfo, themeAccent, 0));
     }
 
     public void lambda$didReceivedNotification$48(TLObject tLObject, Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent) {
@@ -13447,7 +13436,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$didReceivedNotification$49(Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda178(this, tLObject, themeInfo, themeAccent, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda180(this, tLObject, themeInfo, themeAccent, 1));
     }
 
     public void lambda$didReceivedNotification$50(Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent) {
@@ -13740,7 +13729,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$getChannelDifference$342(ArrayList arrayList, TLRPC.updates_ChannelDifference updates_channeldifference) {
         if (!arrayList.isEmpty()) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda13(this, arrayList, 3));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda15(this, arrayList, 3));
         }
         getMessagesStorage().putMessages(updates_channeldifference.new_messages, true, false, false, getDownloadController().getAutodownloadMask(), 0, 0L);
     }
@@ -13750,7 +13739,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$getChannelDifference$344(long j) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 3));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 3));
     }
 
     public void lambda$getChannelDifference$345(long j) {
@@ -13787,7 +13776,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                     message.unread = z2;
                 }
-                getMessagesStorage().overwriteChannel(j, (TLRPC.TL_updates_channelDifferenceTooLong) updates_channeldifference, i, new MessagesController$$ExternalSyntheticLambda49(this, j, 20));
+                getMessagesStorage().overwriteChannel(j, (TLRPC.TL_updates_channelDifferenceTooLong) updates_channeldifference, i, new MessagesController$$ExternalSyntheticLambda51(this, j, 20));
             }
             this.gettingDifferenceChannels.delete(j);
             this.channelsPts.put(j, updates_channeldifference.pts);
@@ -13805,7 +13794,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 getMessagesStorage().removePendingTask(j2);
             }
             if (z3) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 21));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 21));
             }
         }
         if (!updates_channeldifference.new_messages.isEmpty()) {
@@ -13849,7 +13838,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 i3++;
                 chat2 = chat;
             }
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda83(this, longSparseArray2, 0));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda85(this, longSparseArray2, 0));
             getMessagesStorage().getStorageQueue().postRunnable(new Utilities$$ExternalSyntheticLambda1(this, arrayList, updates_channeldifference, 15));
         }
         if (!updates_channeldifference.other_updates.isEmpty()) {
@@ -13874,7 +13863,7 @@ public class MessagesController extends BaseController implements NotificationCe
             getMessagesStorage().removePendingTask(j2);
         }
         if (z3) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 21));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 21));
         }
     }
 
@@ -13897,12 +13886,12 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             if (sparseArray.size() != 0) {
                 messagesController = this;
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(messagesController, sparseArray, 0));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda9(messagesController, sparseArray, 0));
             } else {
                 messagesController = this;
             }
         }
-        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda8(messagesController, updates_channeldifference, j, chat, longSparseArray, i, j2));
+        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda10(messagesController, updates_channeldifference, j, chat, longSparseArray, i, j2));
     }
 
     public void lambda$getChannelDifference$348(TLRPC.TL_error tL_error, long j) {
@@ -13914,7 +13903,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.Chat chat;
         if (tLObject == null) {
             if (tL_error != null) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda233(this, tL_error, j, 1));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda235(this, tL_error, j, 1));
                 this.gettingDifferenceChannels.delete(j);
                 if (j2 != 0) {
                     getMessagesStorage().removePendingTask(j2);
@@ -14001,7 +13990,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$getChannelRecommendations$482(boolean z, long j, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda72(this, tLObject, z, j, 4));
+        AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda138(this, tLObject, z, j, 4));
     }
 
     public void lambda$getContentSettings$501(TLObject tLObject) {
@@ -14039,7 +14028,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$getContentSettings$502(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda182(this, tLObject, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda184(this, tLObject, 1));
     }
 
     public void lambda$getDifference$350(TLRPC.updates_Difference updates_difference, int i, int i2) {
@@ -14094,7 +14083,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$getDifference$355(long j, ArrayList arrayList) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda120(this, j, arrayList, 2));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda122(this, j, arrayList, 2));
     }
 
     public void lambda$getDifference$356(ArrayList arrayList, TLRPC.updates_Difference updates_difference, LongSparseArray longSparseArray) {
@@ -14105,7 +14094,7 @@ public class MessagesController extends BaseController implements NotificationCe
         for (int i = 0; i < longSparseArray.size(); i++) {
             long jKeyAt = longSparseArray.keyAt(i);
             ArrayList<MessageObject> arrayList2 = (ArrayList) longSparseArray.valueAt(i);
-            getMediaDataController().loadReplyMessagesForMessages(arrayList2, jKeyAt, 0, 0L, new MessagesController$$ExternalSyntheticLambda120(this, jKeyAt, arrayList2, 5), 0, null);
+            getMediaDataController().loadReplyMessagesForMessages(arrayList2, jKeyAt, 0, 0L, new MessagesController$$ExternalSyntheticLambda122(this, jKeyAt, arrayList2, 5), 0, null);
         }
     }
 
@@ -14175,35 +14164,35 @@ public class MessagesController extends BaseController implements NotificationCe
                     arrayList2.add(messageObject);
                 }
             }
-            getMessagesStorage().getStorageQueue().postRunnable(new ImageLoader$$ExternalSyntheticLambda10(this, arrayList, updates_difference, longSparseArray4, 24));
+            getMessagesStorage().getStorageQueue().postRunnable(new ImageLoader$$ExternalSyntheticLambda10(24, this, arrayList, updates_difference, longSparseArray4));
             getSecretChatHelper().processPendingEncMessages();
         }
-        if (r3.other_updates.isEmpty()) {
+        if (r4.other_updates.isEmpty()) {
             messagesController = this;
         } else {
             messagesController = this;
-            messagesController.processUpdateArray(r3.other_updates, r3.users, updates_difference.chats, true, 0);
+            messagesController.processUpdateArray(r4.other_updates, r4.users, updates_difference.chats, true, 0);
         }
-        if (r3 instanceof TLRPC.TL_updates_difference) {
+        if (r4 instanceof TLRPC.TL_updates_difference) {
             messagesController.gettingDifference = false;
-            messagesController.getMessagesStorage().setLastSeqValue(r3.state.seq);
-            messagesController.getMessagesStorage().setLastDateValue(r3.state.date);
-            messagesController.getMessagesStorage().setLastPtsValue(r3.state.pts);
-            messagesController.getMessagesStorage().setLastQtsValue(r3.state.qts);
+            messagesController.getMessagesStorage().setLastSeqValue(r4.state.seq);
+            messagesController.getMessagesStorage().setLastDateValue(r4.state.date);
+            messagesController.getMessagesStorage().setLastPtsValue(r4.state.pts);
+            messagesController.getMessagesStorage().setLastQtsValue(r4.state.qts);
             FileLog.d("received difference: isUpdating = false");
             messagesController.getConnectionsManager().setIsUpdating(false);
             while (i < 3) {
                 messagesController.processUpdatesQueue(i, 1);
                 i++;
             }
-        } else if (r3 instanceof TLRPC.TL_updates_differenceSlice) {
-            messagesController.getMessagesStorage().setLastDateValue(r3.intermediate_state.date);
-            messagesController.getMessagesStorage().setLastPtsValue(r3.intermediate_state.pts);
-            messagesController.getMessagesStorage().setLastQtsValue(r3.intermediate_state.qts);
-        } else if (r3 instanceof TLRPC.TL_updates_differenceEmpty) {
+        } else if (r4 instanceof TLRPC.TL_updates_differenceSlice) {
+            messagesController.getMessagesStorage().setLastDateValue(r4.intermediate_state.date);
+            messagesController.getMessagesStorage().setLastPtsValue(r4.intermediate_state.pts);
+            messagesController.getMessagesStorage().setLastQtsValue(r4.intermediate_state.qts);
+        } else if (r4 instanceof TLRPC.TL_updates_differenceEmpty) {
             messagesController.gettingDifference = false;
-            messagesController.getMessagesStorage().setLastSeqValue(r3.seq);
-            messagesController.getMessagesStorage().setLastDateValue(r3.date);
+            messagesController.getMessagesStorage().setLastSeqValue(r4.seq);
+            messagesController.getMessagesStorage().setLastDateValue(r4.date);
             messagesController.getConnectionsManager().setIsUpdating(false);
             FileLog.d("received differenceEmpty: isUpdating = false");
             while (i < 3) {
@@ -14213,7 +14202,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         messagesController.getMessagesStorage().saveDiffParams(messagesController.getMessagesStorage().getLastSeqValue(), messagesController.getMessagesStorage().getLastPtsValue(), messagesController.getMessagesStorage().getLastDateValue(), messagesController.getMessagesStorage().getLastQtsValue());
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("received difference with date = " + messagesController.getMessagesStorage().getLastDateValue() + " pts = " + messagesController.getMessagesStorage().getLastPtsValue() + " seq = " + messagesController.getMessagesStorage().getLastSeqValue() + " messages = " + r3.new_messages.size() + " users = " + r3.users.size() + " chats = " + r3.chats.size() + " other updates = " + r3.other_updates.size());
+            FileLog.d("received difference with date = " + messagesController.getMessagesStorage().getLastDateValue() + " pts = " + messagesController.getMessagesStorage().getLastPtsValue() + " seq = " + messagesController.getMessagesStorage().getLastSeqValue() + " messages = " + r4.new_messages.size() + " users = " + r4.users.size() + " chats = " + r4.chats.size() + " other updates = " + r4.other_updates.size());
         }
     }
 
@@ -14233,12 +14222,12 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             if (sparseArray.size() != 0) {
                 messagesController = this;
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(messagesController, sparseArray, 1));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda9(messagesController, sparseArray, 1));
             } else {
                 messagesController = this;
             }
         }
-        Utilities.stageQueue.postRunnable(new ImageLoader$$ExternalSyntheticLambda10(messagesController, updates_difference, longSparseArray, longSparseArray2, 25));
+        Utilities.stageQueue.postRunnable(new ImageLoader$$ExternalSyntheticLambda10(25, messagesController, updates_difference, longSparseArray, longSparseArray2));
     }
 
     public void lambda$getDifference$359(int i, int i2, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -14314,7 +14303,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$getGroupCall$63(long j, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda121(this, tLObject, j, runnable));
+        AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda139(this, tLObject, j, runnable, 4));
     }
 
     public void lambda$getNewDeleteTask$83(LongSparseArray longSparseArray, LongSparseArray longSparseArray2) {
@@ -14336,7 +14325,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (tL_error == null && messages_messages != null && (arrayList = messages_messages.messages) != null && !arrayList.isEmpty()) {
             i = messages_messages.messages.get(0).id;
         }
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda199(consumer, i, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda201(consumer, i, 1));
     }
 
     public void lambda$getNextReactionMentionInternal$4(long j, String str, long j2, String str2, boolean z, boolean z2, Consumer consumer, int i) {
@@ -14380,7 +14369,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     } else {
                         j3 = j2;
                     }
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda199(consumer, iIntValue, 0));
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda201(consumer, iIntValue, 0));
                 }
             } catch (SQLiteException e2) {
                 e = e2;
@@ -14450,7 +14439,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_getSavedReactionTags.flags = 1 | tL_messages_getSavedReactionTags.flags;
             tL_messages_getSavedReactionTags.peer = getInputPeer(j);
         }
-        getConnectionsManager().sendRequest(tL_messages_getSavedReactionTags, new StarGiftSheet$$ExternalSyntheticLambda162(this, j, messages_savedreactiontags, tL_messages_getSavedReactionTags, 2));
+        getConnectionsManager().sendRequest(tL_messages_getSavedReactionTags, new StarGiftSheet$$ExternalSyntheticLambda150(this, j, messages_savedreactiontags, tL_messages_getSavedReactionTags, 2));
     }
 
     public void lambda$getSavedReactionTags$488(long j) throws Throwable {
@@ -14522,7 +14511,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (tL_channels_sendAsPeers.peers.isEmpty()) {
                 tL_channels_sendAsPeers = null;
             } else {
-                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(12, this, tL_channels_sendAsPeers));
+                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(11, this, tL_channels_sendAsPeers));
             }
         } else {
             tL_channels_sendAsPeers = null;
@@ -14677,7 +14666,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadAppConfig$33(TLRPC.TL_help_appConfig tL_help_appConfig) {
-        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(16, this, tL_help_appConfig));
+        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(15, this, tL_help_appConfig));
     }
 
     public void lambda$loadChannelAdmins$65(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -14896,7 +14885,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$loadFullChat$69(long j, long j2, TLRPC.Chat chat, int i, TLObject tLObject, TLRPC.TL_error tL_error) throws FileNotFoundException {
         if (tL_error != null) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda233(this, tL_error, j2, 0));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda235(this, tL_error, j2, 0));
             return;
         }
         TLRPC.TL_messages_chatFull tL_messages_chatFull = (TLRPC.TL_messages_chatFull) tLObject;
@@ -15006,7 +14995,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$loadFullUser$72(long j, Utilities.Callback callback, TLRPC.User user, int i, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda293(this, user, 0));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda295(this, user, 0));
             return;
         }
         TLRPC.TL_users_userFull tL_users_userFull = (TLRPC.TL_users_userFull) tLObject;
@@ -15101,7 +15090,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadGlobalNotificationsSettings$203(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda182(this, tLObject, 3));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda184(this, tLObject, 3));
     }
 
     public void lambda$loadHintDialogs$195(TLObject tLObject) {
@@ -15115,7 +15104,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$loadHintDialogs$196(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda182(this, tLObject, 0));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda184(this, tLObject, 0));
         }
     }
 
@@ -15168,7 +15157,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (i3 == 0 || messages_messages.messages.isEmpty()) {
             i13 = i2;
         } else {
-            int i14 = ((TLRPC.Message) zziq.m(1, messages_messages.messages)).id;
+            int i14 = ((TLRPC.Message) zzin.m(1, messages_messages.messages)).id;
             for (int size = messages_messages.messages.size() - 1; size >= 0; size--) {
                 TLRPC.Message message = messages_messages.messages.get(size);
                 if (message.date > i3) {
@@ -15202,7 +15191,7 @@ public class MessagesController extends BaseController implements NotificationCe
             i14 = i2;
             i15 = 0;
         } else if (i3 != 0) {
-            int i16 = ((TLRPC.Message) zziq.m(1, messages_messages.messages)).id;
+            int i16 = ((TLRPC.Message) zzin.m(1, messages_messages.messages)).id;
             for (int size = messages_messages.messages.size() - 1; size >= 0; size--) {
                 TLRPC.Message message = messages_messages.messages.get(size);
                 if (message.date > i3) {
@@ -15245,7 +15234,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (i2 == 0 || messages_messages.messages.isEmpty()) {
                 i13 = i;
             } else {
-                int i14 = ((TLRPC.Message) zziq.m(1, messages_messages.messages)).id;
+                int i14 = ((TLRPC.Message) zzin.m(1, messages_messages.messages)).id;
                 for (int size = messages_messages.messages.size() - 1; size >= 0; size--) {
                     TLRPC.Message message = messages_messages.messages.get(size);
                     if (message.date > i2) {
@@ -15302,7 +15291,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (i3 == 0 || messages_messages.messages.isEmpty()) {
             i13 = i2;
         } else {
-            int i14 = ((TLRPC.Message) zziq.m(1, messages_messages.messages)).id;
+            int i14 = ((TLRPC.Message) zzin.m(1, messages_messages.messages)).id;
             for (int size = messages_messages.messages.size() - 1; size >= 0; size--) {
                 TLRPC.Message message = messages_messages.messages.get(size);
                 if (message.date > i3) {
@@ -15327,7 +15316,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadPeerSettings$80(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda33(this, j, tLObject));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda35(this, j, tLObject));
     }
 
     public void lambda$loadPinnedDialogs$365(int i, ArrayList arrayList, boolean z, TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs, LongSparseArray longSparseArray, TLRPC.TL_messages_dialogs tL_messages_dialogs) {
@@ -15453,7 +15442,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadPinnedDialogs$366(int i, ArrayList arrayList, boolean z, TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs, LongSparseArray longSparseArray, TLRPC.TL_messages_dialogs tL_messages_dialogs) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda54(this, i, arrayList, z, tL_messages_peerDialogs, longSparseArray, tL_messages_dialogs, 0));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda56(this, i, arrayList, z, tL_messages_peerDialogs, longSparseArray, tL_messages_dialogs, 0));
     }
 
     public void lambda$loadPinnedDialogs$367(int i, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -15552,7 +15541,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(numValueOf2.intValue(), dialog.read_outbox_max_id)));
                 }
             }
-            getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda54(this, i, arrayList3, z, tL_messages_peerDialogs, longSparseArray, tL_messages_dialogs, 1));
+            getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda56(this, i, arrayList3, z, tL_messages_peerDialogs, longSparseArray, tL_messages_dialogs, 1));
         }
     }
 
@@ -15592,11 +15581,11 @@ public class MessagesController extends BaseController implements NotificationCe
             for (int i = 0; i < vector.objects.size(); i++) {
                 arrayList.add((TLRPC.DialogFilter) vector.objects.get(i));
             }
-            getMessagesStorage().checkLoadedRemoteFilters(arrayList, new MessagesController$$ExternalSyntheticLambda14(this, 10));
+            getMessagesStorage().checkLoadedRemoteFilters(arrayList, new MessagesController$$ExternalSyntheticLambda16(this, 12));
             return;
         }
         if (!(tLObject instanceof TLRPC.TL_messages_dialogFilters)) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 13));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 15));
             return;
         }
         TLRPC.TL_messages_dialogFilters tL_messages_dialogFilters = (TLRPC.TL_messages_dialogFilters) tLObject;
@@ -15604,9 +15593,9 @@ public class MessagesController extends BaseController implements NotificationCe
         boolean z2 = tL_messages_dialogFilters.tags_enabled;
         if (z != z2) {
             setFolderTags(z2);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 11));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 13));
         }
-        getMessagesStorage().checkLoadedRemoteFilters(tL_messages_dialogFilters.filters, new MessagesController$$ExternalSyntheticLambda14(this, 12));
+        getMessagesStorage().checkLoadedRemoteFilters(tL_messages_dialogFilters.filters, new MessagesController$$ExternalSyntheticLambda16(this, 14));
     }
 
     public void lambda$loadSignUpNotificationsSettings$206(TLObject tLObject) {
@@ -15621,7 +15610,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadSignUpNotificationsSettings$207(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda182(this, tLObject, 6));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda184(this, tLObject, 6));
     }
 
     public void lambda$loadStakeDiceInfo$507(TLRPC.EmojiGameInfo emojiGameInfo, TLRPC.TL_error tL_error) {
@@ -15649,7 +15638,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadSuggestedFilters$25(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda182(this, tLObject, 5));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda184(this, tLObject, 5));
     }
 
     public void lambda$loadUnknownChannel$330(long j, TLRPC.Chat chat, TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -15721,7 +15710,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadUnreadDialogs$362(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda182(this, tLObject, 4));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda184(this, tLObject, 4));
     }
 
     public void lambda$loadWebBrowserConfig$508(TL_account.TL_webBrowserSettings tL_webBrowserSettings) {
@@ -15732,7 +15721,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadWebBrowserConfig$509(Long l, TL_account.TL_webBrowserSettings tL_webBrowserSettings) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda244(this, tL_webBrowserSettings, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda246(this, tL_webBrowserSettings, 1));
     }
 
     public void lambda$loadWebBrowserConfig$510(TL_account.TL_webBrowserSettings tL_webBrowserSettings) {
@@ -15745,7 +15734,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadWebBrowserConfig$511(TL_account.TL_webBrowserSettings tL_webBrowserSettings) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda244(this, tL_webBrowserSettings, 0));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda246(this, tL_webBrowserSettings, 0));
     }
 
     public static void lambda$logDeviceStats$31(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -15758,7 +15747,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$markAllTopicsAsRead$6() {
         getMessagesStorage().resetAllUnreadCounters(false);
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 2));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 4));
     }
 
     public void lambda$markAllTopicsAsRead$7(ArrayList arrayList, long j) {
@@ -15772,11 +15761,11 @@ public class MessagesController extends BaseController implements NotificationCe
                 getMessagesStorage().updateRepliesMaxReadId(-j, isMonoForum(j) ? DialogObject.getPeerDialogId(tL_forumTopic.from_id) : tL_forumTopic.id, tL_forumTopic.top_message, 0, true);
             }
         }
-        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda5(this, 0));
+        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda7(this, 0));
     }
 
     public void lambda$markAllTopicsAsRead$8(long j, ArrayList arrayList) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda120(this, arrayList, j, 0));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda122(this, arrayList, j, 0));
     }
 
     public void lambda$markDialogAsRead$241(long j, int i, int i2, boolean z) {
@@ -15834,7 +15823,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$markDialogAsRead$242(long j, int i, int i2, boolean z) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda525(i, i2, 1, j, this, z));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda527(i, i2, 1, j, this, z));
     }
 
     public void lambda$markDialogAsRead$243(long j, int i, boolean z, int i2, int i3) {
@@ -15885,7 +15874,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$markDialogAsRead$244(long j, int i, boolean z, int i2, int i3) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda118(this, j, i, z, i2, i3, 0));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda120(this, j, i, z, i2, i3, 0));
     }
 
     public void lambda$markDialogAsRead$245(long j, long j2, long j3, boolean z, int i, int i2) {
@@ -16177,7 +16166,7 @@ public class MessagesController extends BaseController implements NotificationCe
             processLoadedDialogs(messages_dialogs, null, null, 0, i3, 0, 0, false, true, false);
         } catch (Exception e) {
             FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 9));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 11));
         }
     }
 
@@ -16189,7 +16178,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (tL_error == null) {
             getMessagesStorage().getStorageQueue().postRunnable(new FileLoader$$ExternalSyntheticLambda5(this, (TLRPC.messages_Dialogs) tLObject, i, 13));
         } else {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 21));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 23));
         }
     }
 
@@ -16277,7 +16266,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public static int[] lambda$new$15(String str) {
-        return DesugarArrays.stream(str.split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda335(0)).toArray();
+        return DesugarArrays.stream(str.split(",")).mapToInt(new MessagesController$$ExternalSyntheticLambda337(0)).toArray();
     }
 
     public static int[][] lambda$new$16(int i) {
@@ -16503,7 +16492,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (baseFragment instanceof ChatActivity) {
                     ((ChatActivity) baseFragment).shakeContent();
                 }
-                BulletinFactory.of(baseFragment).createErrorBulletin(LocaleController.getString(R.string.NoUsernameFound), null).show();
+                BulletinFactory.of(baseFragment).createErrorBulletin(LocaleController.getString(R.string.NoUsernameFound)).show();
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -16822,7 +16811,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 this.dialogs_read_outbox_max.put(Long.valueOf(dialog.id), Integer.valueOf(Math.max(num.intValue(), dialog.read_outbox_max_id)));
             }
         }
-        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda482(this, messages_dialogs, longSparseArray, longSparseArray2, z, longSparseIntArray, 5));
+        AndroidUtilities.runOnUIThread(new FileLoadOperation$$ExternalSyntheticLambda15(this, messages_dialogs, longSparseArray, longSparseArray2, z, longSparseIntArray));
     }
 
     public void lambda$processDialogsUpdateRead$223(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2) {
@@ -16970,7 +16959,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (checkDeletingTask(false)) {
             return;
         }
-        this.currentDeleteTaskRunnable = new MessagesController$$ExternalSyntheticLambda5(this, 1);
+        this.currentDeleteTaskRunnable = new MessagesController$$ExternalSyntheticLambda7(this, 3);
         Utilities.stageQueue.postRunnable(this.currentDeleteTaskRunnable, ((long) Math.abs(getConnectionsManager().getCurrentTime() - this.currentDeletingTaskTime)) * 1000);
     }
 
@@ -17001,7 +16990,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 DialogFilter dialogFilter = this.dialogFilters.get(i5);
                 this.dialogFiltersById.put(dialogFilter.id, dialogFilter);
             }
-            Collections.sort(this.dialogFilters, new Emoji$$ExternalSyntheticLambda0(19));
+            Collections.sort(this.dialogFilters, new Emoji$$ExternalSyntheticLambda0(18));
             putUsers(arrayList2, true);
             putChats(arrayList3, true);
             this.dialogFiltersLoaded = true;
@@ -17496,7 +17485,7 @@ public class MessagesController extends BaseController implements NotificationCe
             this.loadingDialogs.put(i2, false);
         }
         this.dialogsLoaded = true;
-        int i16 = (!z || this.allDialogs.isEmpty()) ? 0 : ((TLRPC.Dialog) zziq.m(1, this.allDialogs)).last_message_date;
+        int i16 = (!z || this.allDialogs.isEmpty()) ? 0 : ((TLRPC.Dialog) zzin.m(1, this.allDialogs)).last_message_date;
         int i17 = 0;
         int i18 = 0;
         boolean z3 = false;
@@ -18187,7 +18176,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (i2 == messagesController.DIALOGS_LOAD_TYPE_CHANNEL) {
             TLRPC.Chat chat8 = messages_dialogs.chats.get(0);
             messagesController.getChannelDifference(chat8.id);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda206(messagesController, chat8, 1));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda208(messagesController, chat8, 1));
         }
         final TLRPC.Message message6 = message2;
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -18389,7 +18378,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$391(TL_update.TL_updatePeerBlocked tL_updatePeerBlocked) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda313(this, tL_updatePeerBlocked, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda315(this, tL_updatePeerBlocked, 1));
     }
 
     public void lambda$processUpdateArray$392(TL_update.TL_updateServiceNotification tL_updateServiceNotification) {
@@ -18417,7 +18406,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$398(ArrayList arrayList) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda13(this, arrayList, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda15(this, arrayList, 1));
     }
 
     public void lambda$processUpdateArray$399(EphemeralMessagesHelper.EphemeralUpdates.StructBuilder structBuilder) {
@@ -18433,11 +18422,11 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$processUpdateArray$400(EphemeralMessagesHelper.EphemeralUpdates.StructBuilder structBuilder, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2) {
         structBuilder.build(this.currentAccount, concurrentHashMap, concurrentHashMap2, 0);
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda172(this, structBuilder, 2));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda174(this, structBuilder, 2));
     }
 
     public void lambda$processUpdateArray$401(EphemeralMessagesHelper.EphemeralUpdates.StructBuilder structBuilder, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2) {
-        getMessagesStorage().processEphemeralMessages(structBuilder.messages, new MessagesController$$ExternalSyntheticLambda157(this, structBuilder, concurrentHashMap, concurrentHashMap2, 0));
+        getMessagesStorage().processEphemeralMessages(structBuilder.messages, new MessagesController$$ExternalSyntheticLambda159(this, structBuilder, concurrentHashMap, concurrentHashMap2, 0));
     }
 
     public void lambda$processUpdateArray$402(EphemeralMessagesHelper.EphemeralUpdates.StructBuilder structBuilder) {
@@ -18452,7 +18441,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$processUpdateArray$403(EphemeralMessagesHelper.EphemeralUpdates.StructBuilder structBuilder, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i) {
         structBuilder.build(this.currentAccount, concurrentHashMap, concurrentHashMap2, i);
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda172(this, structBuilder, 0));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda174(this, structBuilder, 0));
     }
 
     public void lambda$processUpdateArray$404(EphemeralMessagesHelper.EphemeralUpdates.StructBuilder structBuilder) {
@@ -18467,7 +18456,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$processUpdateArray$405(EphemeralMessagesHelper.EphemeralUpdates.StructBuilder structBuilder, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2) {
         structBuilder.build(this.currentAccount, concurrentHashMap, concurrentHashMap2, 0);
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda172(this, structBuilder, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda174(this, structBuilder, 1));
     }
 
     public void lambda$processUpdateArray$406(LongSparseArray longSparseArray) {
@@ -18476,7 +18465,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$407(LongSparseArray longSparseArray) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda83(this, longSparseArray, 2));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda85(this, longSparseArray, 2));
     }
 
     public void lambda$processUpdateArray$408(TLRPC.User user) {
@@ -18556,10 +18545,12 @@ public class MessagesController extends BaseController implements NotificationCe
         long j;
         char c;
         boolean z6;
-        ArrayList<TLRPC.User> arrayList13;
         int i19;
+        ArrayList<TLRPC.User> arrayList13;
+        int i20;
         ArrayList<TLRPC.User> arrayList14;
         ArrayList<TLRPC.User> arrayList15;
+        ArrayList<TLRPC.User> arrayList16;
         ConferenceCall conferenceCall;
         TLRPC.ChatFull chatFull;
         TLRPC.UserFull userFull;
@@ -18569,34 +18560,36 @@ public class MessagesController extends BaseController implements NotificationCe
         long j3;
         TLRPC.ChatFull chatFull2;
         TLRPC.InputGroupCall inputGroupCall;
-        int i20;
         int i21;
+        int i22;
         TLRPC.Dialog dialog;
         ChatObject.Call groupCall;
+        int i23;
         SharedPreferences.Editor editor;
         long j4;
         long j5;
+        long j6;
         boolean z9;
         Boolean boolValueOf;
+        Boolean bool;
         Boolean boolValueOf2;
-        Boolean boolValueOf3;
         TLRPC.User user;
         TLRPC.UserProfilePhoto userProfilePhoto;
-        ArrayList<Long> arrayList16;
-        long j6;
+        boolean z10;
+        ArrayList<Long> arrayList17;
+        long j7;
         String str;
-        ArrayList arrayList17 = arrayList;
-        int i22 = 0;
-        if (arrayList17 != null) {
+        if (arrayList != null) {
             ArrayList<TLRPC.User> arrayList18 = new ArrayList<>();
             ArrayList<TLRPC.User> arrayList19 = new ArrayList<>();
-            int size10 = arrayList17.size();
+            int size10 = arrayList.size();
             i5 = i;
+            int i24 = 0;
             SharedPreferences.Editor editorEdit = null;
             i6 = 0;
             z2 = false;
-            while (i22 < size10) {
-                TLRPC.Update update = (TLRPC.Update) arrayList17.get(i22);
+            while (i24 < size10) {
+                TLRPC.Update update = (TLRPC.Update) arrayList.get(i24);
                 if (update instanceof TL_update.TL_updatePrivacy) {
                     TL_update.TL_updatePrivacy tL_updatePrivacy = (TL_update.TL_updatePrivacy) update;
                     TLRPC.PrivacyKey privacyKey = tL_updatePrivacy.key;
@@ -18634,8 +18627,10 @@ public class MessagesController extends BaseController implements NotificationCe
                         BotStarsController.getInstance(this.currentAccount).onUpdate((TL_update.TL_updateStarsRevenueStatus) update);
                     } else if (update instanceof TL_update.TL_updateUserStatus) {
                         TL_update.TL_updateUserStatus tL_updateUserStatus = (TL_update.TL_updateUserStatus) update;
+                        int i25 = size10;
                         TLRPC.User user2 = getUser(Long.valueOf(tL_updateUserStatus.user_id));
                         TLRPC.UserStatus userStatus = tL_updateUserStatus.status;
+                        int i26 = i24;
                         if (userStatus instanceof TLRPC.TL_userStatusRecently) {
                             userStatus.expires = -100;
                         } else if (userStatus instanceof TLRPC.TL_userStatusLastWeek) {
@@ -18643,7 +18638,6 @@ public class MessagesController extends BaseController implements NotificationCe
                         } else if (userStatus instanceof TLRPC.TL_userStatusLastMonth) {
                             userStatus.expires = -102;
                         }
-                        int i23 = i22;
                         if (user2 != null) {
                             user2.id = tL_updateUserStatus.user_id;
                             user2.status = userStatus;
@@ -18655,26 +18649,30 @@ public class MessagesController extends BaseController implements NotificationCe
                         if (tL_updateUserStatus.user_id == getUserConfig().getClientUserId()) {
                             getNotificationsController().setLastOnlineFromOtherDevice(tL_updateUserStatus.status.expires);
                         }
-                        i19 = i23;
+                        i20 = i26;
+                        i19 = i25;
                         arrayList15 = arrayList19;
+                        arrayList16 = arrayList18;
                     } else {
-                        size10 = size10;
-                        int i24 = i22;
+                        int i27 = size10;
+                        int i28 = i24;
                         if (update instanceof TL_update.TL_updateMonoForumNoPaidException) {
                             TL_update.TL_updateMonoForumNoPaidException tL_updateMonoForumNoPaidException = (TL_update.TL_updateMonoForumNoPaidException) update;
                             StarsController starsController = StarsController.getInstance(this.currentAccount);
-                            long j7 = tL_updateMonoForumNoPaidException.channel_id;
-                            arrayList13 = arrayList19;
+                            long j8 = tL_updateMonoForumNoPaidException.channel_id;
                             long peerDialogId = DialogObject.getPeerDialogId(tL_updateMonoForumNoPaidException.saved_peer_id);
-                            boolean z10 = tL_updateMonoForumNoPaidException.exception;
+                            boolean z11 = tL_updateMonoForumNoPaidException.exception;
+                            i19 = i27;
                             TopicsController topicsController = getInstance(starsController.currentAccount).getTopicsController();
-                            TLRPC.TL_forumTopic tL_forumTopicFindTopic = topicsController.findTopic(j7, peerDialogId);
+                            arrayList13 = arrayList19;
+                            TLRPC.TL_forumTopic tL_forumTopicFindTopic = topicsController.findTopic(j8, peerDialogId);
                             if (tL_forumTopicFindTopic != null) {
-                                tL_forumTopicFindTopic.nopaid_messages_exception = z10;
-                                topicsController.saveTopics(j7);
+                                tL_forumTopicFindTopic.nopaid_messages_exception = z11;
+                                topicsController.saveTopics(j8);
                                 NotificationCenter.getInstance(starsController.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesFeeUpdated, Long.valueOf(peerDialogId));
                             }
                         } else {
+                            i19 = i27;
                             arrayList13 = arrayList19;
                             if (update instanceof TL_update.TL_updatePeerWallpaper) {
                                 ChatThemeController.getInstance(this.currentAccount).processUpdate((TL_update.TL_updatePeerWallpaper) update);
@@ -18701,16 +18699,16 @@ public class MessagesController extends BaseController implements NotificationCe
                                         user4.last_name = tL_updateUserName.last_name;
                                     }
                                     if (user4.usernames != null) {
-                                        for (int i25 = 0; i25 < user4.usernames.size(); i25++) {
-                                            TLRPC.TL_username tL_username = user4.usernames.get(i25);
+                                        for (int i29 = 0; i29 < user4.usernames.size(); i29++) {
+                                            TLRPC.TL_username tL_username = user4.usernames.get(i29);
                                             if (tL_username != null && !TextUtils.isEmpty(tL_username.username)) {
                                                 this.objectsByUsernames.remove(tL_username.username);
                                             }
                                         }
                                     }
-                                    for (int i26 = 0; i26 < tL_updateUserName.usernames.size(); i26++) {
-                                        String str2 = tL_updateUserName.usernames.get(i26).username;
-                                        if (!TextUtils.isEmpty(str2) && tL_updateUserName.usernames.get(i26).active) {
+                                    for (int i30 = 0; i30 < tL_updateUserName.usernames.size(); i30++) {
+                                        String str2 = tL_updateUserName.usernames.get(i30).username;
+                                        if (!TextUtils.isEmpty(str2) && tL_updateUserName.usernames.get(i30).active) {
                                             this.objectsByUsernames.put(str2, user4);
                                         }
                                     }
@@ -18739,7 +18737,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                 if (update instanceof TL_update.TL_updateDialogPinned) {
                                     TL_update.TL_updateDialogPinned tL_updateDialogPinned = (TL_update.TL_updateDialogPinned) update;
                                     TLRPC.DialogPeer dialogPeer = tL_updateDialogPinned.peer;
-                                    i19 = i24;
+                                    i20 = i28;
                                     arrayList14 = arrayList18;
                                     arrayList15 = arrayList13;
                                     long peerDialogId2 = dialogPeer instanceof TLRPC.TL_dialogPeer ? DialogObject.getPeerDialogId(((TLRPC.TL_dialogPeer) dialogPeer).peer) : 0L;
@@ -18749,7 +18747,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                         loadPinnedDialogs(tL_updateDialogPinned.folder_id, peerDialogId2, null);
                                     }
                                 } else {
-                                    i19 = i24;
+                                    i20 = i28;
                                     arrayList14 = arrayList18;
                                     arrayList15 = arrayList13;
                                     if (update instanceof TL_update.TL_updatePinnedDialogs) {
@@ -18757,30 +18755,29 @@ public class MessagesController extends BaseController implements NotificationCe
                                         getUserConfig().setPinnedDialogsLoaded(tL_updatePinnedDialogs.folder_id, false);
                                         getUserConfig().saveConfig(false);
                                         if ((tL_updatePinnedDialogs.flags & 1) != 0) {
-                                            arrayList16 = new ArrayList<>();
+                                            arrayList17 = new ArrayList<>();
                                             ArrayList<TLRPC.DialogPeer> arrayList23 = tL_updatePinnedDialogs.order;
                                             int size11 = arrayList23.size();
-                                            int iM = 0;
-                                            while (iM < size11) {
+                                            for (int iM = 0; iM < size11; iM = MessagesController$$ExternalSyntheticOutline2.m(j7, arrayList17, iM, 1)) {
                                                 TLRPC.DialogPeer dialogPeer2 = arrayList23.get(iM);
                                                 if (dialogPeer2 instanceof TLRPC.TL_dialogPeer) {
                                                     TLRPC.Peer peer2 = ((TLRPC.TL_dialogPeer) dialogPeer2).peer;
-                                                    long j8 = peer2.user_id;
-                                                    if (j8 != 0) {
-                                                        j6 = j8;
-                                                    } else {
+                                                    j7 = peer2.user_id;
+                                                    if (j7 == 0) {
                                                         long j9 = peer2.chat_id;
-                                                        j6 = j9 != 0 ? -j9 : -peer2.channel_id;
+                                                        if (j9 == 0) {
+                                                            j9 = peer2.channel_id;
+                                                        }
+                                                        j7 = -j9;
                                                     }
                                                 } else {
-                                                    j6 = 0;
+                                                    j7 = 0;
                                                 }
-                                                iM = MessagesController$$ExternalSyntheticOutline2.m(j6, arrayList16, iM, 1);
                                             }
                                         } else {
-                                            arrayList16 = null;
+                                            arrayList17 = null;
                                         }
-                                        loadPinnedDialogs(tL_updatePinnedDialogs.folder_id, 0L, arrayList16);
+                                        loadPinnedDialogs(tL_updatePinnedDialogs.folder_id, 0L, arrayList17);
                                     } else if (update instanceof TL_update.TL_updateUserPhoto) {
                                         TL_update.TL_updateUserPhoto tL_updateUserPhoto = (TL_update.TL_updateUserPhoto) update;
                                         TLRPC.User user5 = getUser(Long.valueOf(tL_updateUserPhoto.user_id));
@@ -18790,35 +18787,38 @@ public class MessagesController extends BaseController implements NotificationCe
                                         TLRPC.TL_user tL_user4 = new TLRPC.TL_user();
                                         tL_user4.id = tL_updateUserPhoto.user_id;
                                         tL_user4.photo = tL_updateUserPhoto.photo;
-                                        arrayList18 = arrayList14;
-                                        arrayList18.add(tL_user4);
+                                        arrayList16 = arrayList14;
+                                        arrayList16.add(tL_user4);
                                         if (UserObject.isUserSelf(user5)) {
                                             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
                                         }
                                     } else {
-                                        arrayList18 = arrayList14;
+                                        arrayList16 = arrayList14;
                                         if (update instanceof TL_update.TL_updateNewStoryReaction) {
                                             TL_update.TL_updateNewStoryReaction tL_updateNewStoryReaction = (TL_update.TL_updateNewStoryReaction) update;
                                             long peerDialogId3 = DialogObject.getPeerDialogId(tL_updateNewStoryReaction.peer);
-                                            int i27 = tL_updateNewStoryReaction.story_id;
+                                            int i31 = tL_updateNewStoryReaction.story_id;
                                             TLRPC.Message message2 = new TLRPC.Message();
-                                            message2.id = -i27;
+                                            message2.id = -i31;
                                             message2.dialog_id = peerDialogId3;
                                             message2.peer_id = getPeer(peerDialogId3);
                                             message2.date = getConnectionsManager().getCurrentTime();
                                             TLRPC.User user6 = getMessagesController().getUser(Long.valueOf(message2.dialog_id));
                                             if (user6 == null || !getNotificationsSettings(this.currentAccount).getBoolean("EnableReactionsPreview", true)) {
+                                                z10 = false;
                                                 message2.message = LocaleController.formatString(R.string.PushReactStoryHidden, new Object[0]);
                                             } else {
                                                 ReactionsLayoutInBubble.VisibleReaction visibleReactionFlatten = ReactionsLayoutInBubble.VisibleReaction.fromTL(tL_updateNewStoryReaction.reaction).flatten();
                                                 if (visibleReactionFlatten.emojicon != null) {
+                                                    z10 = false;
                                                     message2.message = LocaleController.formatString(R.string.PushReactStory, UserObject.getFirstName(user6), visibleReactionFlatten.emojicon);
                                                 } else {
+                                                    z10 = false;
                                                     message2.message = LocaleController.formatString(R.string.PushReactStoryHidden, new Object[0]);
                                                 }
                                             }
                                             ArrayList<MessageObject> arrayList24 = new ArrayList<>();
-                                            MessageObject messageObject5 = new MessageObject(this.currentAccount, message2, false, false);
+                                            MessageObject messageObject5 = new MessageObject(this.currentAccount, message2, z10, z10);
                                             messageObject5.isStoryReactionPush = true;
                                             messageObject5.localType = 1;
                                             if (user6 == null || UserObject.isDeleted(user6)) {
@@ -18830,9 +18830,9 @@ public class MessagesController extends BaseController implements NotificationCe
                                             getNotificationsController().processNewMessages(arrayList24, true, false, null);
                                         } else if (update instanceof TL_update.TL_updateStarsBalance) {
                                             TL_update.TL_updateStarsBalance tL_updateStarsBalance = (TL_update.TL_updateStarsBalance) update;
-                                            boolean z11 = tL_updateStarsBalance.balance instanceof TL_stars.TL_starsTonAmount;
-                                            StarsController.getInstance(this.currentAccount, z11).updateBalance(tL_updateStarsBalance.balance);
-                                            StarsController.getInstance(this.currentAccount, z11).invalidateTransactions(false);
+                                            boolean z12 = tL_updateStarsBalance.balance instanceof TL_stars.TL_starsTonAmount;
+                                            StarsController.getInstance(this.currentAccount, z12).updateBalance(tL_updateStarsBalance.balance);
+                                            StarsController.getInstance(this.currentAccount, z12).invalidateTransactions(false);
                                         } else if (update instanceof TL_update.TL_updateUser) {
                                             TL_update.TL_updateUser tL_updateUser = (TL_update.TL_updateUser) update;
                                             TLRPC.User user7 = getUser(Long.valueOf(tL_updateUser.user_id));
@@ -18840,17 +18840,17 @@ public class MessagesController extends BaseController implements NotificationCe
                                                 user = null;
                                                 break;
                                             }
-                                            int i28 = 0;
+                                            int i32 = 0;
                                             while (true) {
-                                                if (i28 >= arrayList2.size()) {
+                                                if (i32 >= arrayList2.size()) {
                                                     user = null;
                                                     break;
                                                 }
-                                                user = (TLRPC.User) arrayList2.get(i28);
+                                                user = (TLRPC.User) arrayList2.get(i32);
                                                 if (user != null && user.id == tL_updateUser.user_id) {
                                                     break;
                                                 }
-                                                i28++;
+                                                i32++;
                                             }
                                             if (user != null && (userProfilePhoto = user.photo) != null) {
                                                 if (user7 != null) {
@@ -18859,7 +18859,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                                 TLRPC.TL_user tL_user5 = new TLRPC.TL_user();
                                                 tL_user5.id = user.id;
                                                 tL_user5.photo = user.photo;
-                                                arrayList18.add(tL_user5);
+                                                arrayList16.add(tL_user5);
                                             }
                                             if (UserObject.isUserSelf(user7)) {
                                                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
@@ -18869,7 +18869,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                             TLRPC.User user8 = getUser(Long.valueOf(tL_updateUserPhone.user_id));
                                             if (user8 != null) {
                                                 user8.phone = tL_updateUserPhone.phone;
-                                                Utilities.phoneBookQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda293(this, user8, 1));
+                                                Utilities.phoneBookQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda295(this, user8, 1));
                                                 if (UserObject.isUserSelf(user8)) {
                                                     getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
                                                 }
@@ -18877,21 +18877,22 @@ public class MessagesController extends BaseController implements NotificationCe
                                             TLRPC.TL_user tL_user6 = new TLRPC.TL_user();
                                             tL_user6.id = tL_updateUserPhone.user_id;
                                             tL_user6.phone = tL_updateUserPhone.phone;
-                                            arrayList18.add(tL_user6);
+                                            arrayList16.add(tL_user6);
                                         } else if (update instanceof TL_update.TL_updateNotifySettings) {
                                             TL_update.TL_updateNotifySettings tL_updateNotifySettings = (TL_update.TL_updateNotifySettings) update;
                                             if (tL_updateNotifySettings.notify_settings instanceof TLRPC.TL_peerNotifySettings) {
-                                                int i29 = i6 | DIALOG_FILTER_FLAG_EXCLUDE_MUTED;
+                                                int i33 = i6 | DIALOG_FILTER_FLAG_EXCLUDE_MUTED;
                                                 if (editorEdit == null) {
                                                     editorEdit = this.notificationsPreferences.edit();
                                                 }
                                                 SharedPreferences.Editor editor2 = editorEdit;
                                                 getConnectionsManager().getCurrentTime();
                                                 TLRPC.NotifyPeer notifyPeer = tL_updateNotifySettings.peer;
-                                                boolean z12 = notifyPeer instanceof TLRPC.TL_notifyPeer;
-                                                if (z12 || (notifyPeer instanceof TLRPC.TL_notifyForumTopic)) {
+                                                boolean z13 = notifyPeer instanceof TLRPC.TL_notifyPeer;
+                                                if (z13 || (notifyPeer instanceof TLRPC.TL_notifyForumTopic)) {
+                                                    i23 = i33;
                                                     editor = editor2;
-                                                    if (z12) {
+                                                    if (z13) {
                                                         TLRPC.Peer peer3 = ((TLRPC.TL_notifyPeer) notifyPeer).peer;
                                                         long j10 = peer3.user_id;
                                                         if (j10 == 0) {
@@ -18899,45 +18900,45 @@ public class MessagesController extends BaseController implements NotificationCe
                                                             j10 = j11 != 0 ? -j11 : -peer3.channel_id;
                                                         }
                                                         j5 = j10;
-                                                        j4 = 0;
+                                                        j6 = 0;
                                                     } else {
                                                         TLRPC.TL_notifyForumTopic tL_notifyForumTopic = (TLRPC.TL_notifyForumTopic) notifyPeer;
                                                         TLRPC.Peer peer4 = tL_notifyForumTopic.peer;
                                                         long j12 = peer4.user_id;
-                                                        if (j12 == 0) {
+                                                        if (j12 != 0) {
+                                                            j4 = j12;
+                                                        } else {
                                                             long j13 = peer4.chat_id;
-                                                            if (j13 == 0) {
-                                                                j13 = peer4.channel_id;
-                                                            }
-                                                            j12 = -j13;
+                                                            j4 = j13 != 0 ? -j13 : -peer4.channel_id;
                                                         }
-                                                        j4 = tL_notifyForumTopic.top_msg_id;
-                                                        j5 = j12;
+                                                        j5 = j4;
+                                                        j6 = tL_notifyForumTopic.top_msg_id;
                                                     }
-                                                    getNotificationsController().getNotificationsSettingsFacade().applyDialogNotificationsSettings(j5, j4, tL_updateNotifySettings.notify_settings);
+                                                    getNotificationsController().getNotificationsSettingsFacade().applyDialogNotificationsSettings(j5, j6, tL_updateNotifySettings.notify_settings);
                                                 } else if (notifyPeer instanceof TLRPC.TL_notifyChats) {
                                                     TLRPC.PeerNotifySettings peerNotifySettings = tL_updateNotifySettings.notify_settings;
                                                     if ((peerNotifySettings.flags & 1) != 0) {
                                                         editor2.putBoolean("EnablePreviewGroup", peerNotifySettings.show_previews);
                                                     }
                                                     if ((tL_updateNotifySettings.notify_settings.flags & 4) != 0) {
-                                                        int i30 = this.notificationsPreferences.getInt("EnableGroup2", 0);
-                                                        int i31 = tL_updateNotifySettings.notify_settings.mute_until;
-                                                        if (i30 != i31) {
-                                                            editor2.putInt("EnableGroup2", i31);
+                                                        int i34 = this.notificationsPreferences.getInt("EnableGroup2", 0);
+                                                        int i35 = tL_updateNotifySettings.notify_settings.mute_until;
+                                                        if (i34 != i35) {
+                                                            editor2.putInt("EnableGroup2", i35);
                                                             editor2.putBoolean("overwrite_group", true);
-                                                            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 23));
+                                                            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 25));
                                                         }
                                                     }
                                                     editor = editor2;
                                                     getNotificationsController().getNotificationsSettingsFacade().applySoundSettings(tL_updateNotifySettings.notify_settings.android_sound, editor, 0L, 0L, 0, false);
+                                                    i23 = i33;
                                                 } else {
                                                     if (notifyPeer instanceof TLRPC.TL_notifyUsers) {
                                                         TLRPC.PeerNotifySettings peerNotifySettings2 = tL_updateNotifySettings.notify_settings;
                                                         if ((peerNotifySettings2.flags & 1) != 0) {
                                                             editor2.putBoolean("EnablePreviewAll", peerNotifySettings2.show_previews);
                                                         }
-                                                        int i32 = tL_updateNotifySettings.notify_settings.flags;
+                                                        int i36 = tL_updateNotifySettings.notify_settings.flags;
                                                         if (this.notificationsPreferences.contains("EnableAllStories")) {
                                                             z9 = true;
                                                             boolValueOf = Boolean.valueOf(this.notificationsPreferences.getBoolean("EnableAllStories", true));
@@ -18945,59 +18946,64 @@ public class MessagesController extends BaseController implements NotificationCe
                                                             z9 = true;
                                                             boolValueOf = null;
                                                         }
-                                                        Boolean boolValueOf4 = this.notificationsPreferences.contains("EnableHideStoriesSenders") ? Boolean.valueOf(this.notificationsPreferences.getBoolean("EnableHideStoriesSenders", z9)) : null;
+                                                        Boolean boolValueOf3 = this.notificationsPreferences.contains("EnableHideStoriesSenders") ? Boolean.valueOf(this.notificationsPreferences.getBoolean("EnableHideStoriesSenders", z9)) : null;
                                                         TLRPC.PeerNotifySettings peerNotifySettings3 = tL_updateNotifySettings.notify_settings;
+                                                        i23 = i33;
                                                         if ((peerNotifySettings3.flags & 64) != 0) {
-                                                            boolean z13 = !peerNotifySettings3.stories_muted;
-                                                            boolValueOf2 = Boolean.valueOf(z13);
-                                                            editor2.putBoolean("EnableAllStories", z13);
+                                                            boolean z14 = !peerNotifySettings3.stories_muted;
+                                                            Boolean boolValueOf4 = Boolean.valueOf(z14);
+                                                            editor2.putBoolean("EnableAllStories", z14);
+                                                            bool = boolValueOf4;
                                                         } else {
-                                                            boolValueOf2 = null;
+                                                            bool = null;
                                                         }
                                                         TLRPC.PeerNotifySettings peerNotifySettings4 = tL_updateNotifySettings.notify_settings;
                                                         if ((peerNotifySettings4.flags & 128) != 0) {
-                                                            boolean z14 = peerNotifySettings4.stories_hide_sender;
-                                                            boolValueOf3 = Boolean.valueOf(z14);
-                                                            editor2.putBoolean("EnableHideStoriesSenders", z14);
+                                                            boolean z15 = peerNotifySettings4.stories_hide_sender;
+                                                            boolValueOf2 = Boolean.valueOf(z15);
+                                                            editor2.putBoolean("EnableHideStoriesSenders", z15);
                                                         } else {
-                                                            boolValueOf3 = null;
+                                                            boolValueOf2 = null;
                                                         }
-                                                        if ((boolValueOf == null) != (boolValueOf2 == null)) {
+                                                        if ((boolValueOf == null) != (bool == null)) {
                                                             editor2.putBoolean("overwrite_stories", true);
-                                                        } else if ((boolValueOf4 == null) != (boolValueOf3 == null) || ((boolValueOf != null && boolValueOf != boolValueOf2) || (boolValueOf4 != null && boolValueOf4 != boolValueOf3))) {
+                                                        } else if ((boolValueOf3 == null) != (boolValueOf2 == null) || ((boolValueOf != null && boolValueOf != bool) || (boolValueOf3 != null && boolValueOf3 != boolValueOf2))) {
                                                             editor2.putBoolean("overwrite_stories", true);
                                                         }
                                                         getNotificationsController().getNotificationsSettingsFacade().applySoundSettings(tL_updateNotifySettings.notify_settings.android_sound, editor2, 0L, 0L, 1, false);
                                                         if ((tL_updateNotifySettings.notify_settings.flags & 4) != 0) {
-                                                            int i33 = this.notificationsPreferences.getInt("EnableAll2", 0);
-                                                            int i34 = tL_updateNotifySettings.notify_settings.mute_until;
-                                                            if (i33 != i34) {
-                                                                editor2.putInt("EnableAll2", i34);
+                                                            int i37 = this.notificationsPreferences.getInt("EnableAll2", 0);
+                                                            int i38 = tL_updateNotifySettings.notify_settings.mute_until;
+                                                            if (i37 != i38) {
+                                                                editor2.putInt("EnableAll2", i38);
                                                                 editor2.putBoolean("overwrite_private", true);
-                                                                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 24));
+                                                                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 26));
                                                             }
                                                         }
-                                                    } else if (notifyPeer instanceof TLRPC.TL_notifyBroadcasts) {
-                                                        TLRPC.PeerNotifySettings peerNotifySettings5 = tL_updateNotifySettings.notify_settings;
-                                                        if ((peerNotifySettings5.flags & 1) != 0) {
-                                                            editor2.putBoolean("EnablePreviewChannel", peerNotifySettings5.show_previews);
-                                                        }
-                                                        if ((tL_updateNotifySettings.notify_settings.flags & 4) != 0) {
-                                                            int i35 = this.notificationsPreferences.getInt("EnableChannel2", 0);
-                                                            int i36 = tL_updateNotifySettings.notify_settings.mute_until;
-                                                            if (i35 != i36) {
-                                                                editor2.putInt("EnableChannel2", i36);
-                                                                editor2.putBoolean("overwrite_channel", true);
-                                                                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 25));
+                                                    } else {
+                                                        i23 = i33;
+                                                        if (notifyPeer instanceof TLRPC.TL_notifyBroadcasts) {
+                                                            TLRPC.PeerNotifySettings peerNotifySettings5 = tL_updateNotifySettings.notify_settings;
+                                                            if ((peerNotifySettings5.flags & 1) != 0) {
+                                                                editor2.putBoolean("EnablePreviewChannel", peerNotifySettings5.show_previews);
                                                             }
+                                                            if ((tL_updateNotifySettings.notify_settings.flags & 4) != 0) {
+                                                                int i39 = this.notificationsPreferences.getInt("EnableChannel2", 0);
+                                                                int i40 = tL_updateNotifySettings.notify_settings.mute_until;
+                                                                if (i39 != i40) {
+                                                                    editor2.putInt("EnableChannel2", i40);
+                                                                    editor2.putBoolean("overwrite_channel", true);
+                                                                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 27));
+                                                                }
+                                                            }
+                                                            editor = editor2;
+                                                            getNotificationsController().getNotificationsSettingsFacade().applySoundSettings(tL_updateNotifySettings.notify_settings.android_sound, editor, 0L, 0L, 2, false);
                                                         }
-                                                        editor = editor2;
-                                                        getNotificationsController().getNotificationsSettingsFacade().applySoundSettings(tL_updateNotifySettings.notify_settings.android_sound, editor, 0L, 0L, 2, false);
                                                     }
                                                     editor = editor2;
                                                 }
                                                 getMessagesStorage().updateMutedDialogsFiltersCounters();
-                                                i6 = i29;
+                                                i6 = i23;
                                                 editorEdit = editor;
                                             }
                                         } else if (update instanceof TL_update.TL_updateNewAuthorization) {
@@ -19030,13 +19036,13 @@ public class MessagesController extends BaseController implements NotificationCe
                                                         }
                                                     }
                                                 }
-                                                i21 = i5 | UPDATE_MASK_CHAT;
+                                                i22 = i5 | UPDATE_MASK_CHAT;
                                                 loadFullChat(tL_updateChannel.channel_id, 0, true);
                                             } else if (update instanceof TL_update.TL_updateChat) {
                                                 TL_update.TL_updateChat tL_updateChat = (TL_update.TL_updateChat) update;
                                                 TLRPC.Chat chat2 = getChat(Long.valueOf(tL_updateChat.chat_id));
                                                 if (chat2 == null || !((chat2 instanceof TLRPC.TL_chatForbidden) || chat2.kicked)) {
-                                                    i20 = 0;
+                                                    i21 = 0;
                                                 } else {
                                                     ChatObject.Call groupCall3 = getGroupCall(chat2.id, false);
                                                     if (groupCall3 != null) {
@@ -19055,14 +19061,14 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     }
                                                     TLRPC.Dialog dialog3 = (TLRPC.Dialog) this.dialogs_dict.get(-chat2.id);
                                                     if (dialog3 != null) {
-                                                        i20 = 0;
+                                                        i21 = 0;
                                                         deleteDialog(dialog3.id, 0);
                                                     } else {
-                                                        i20 = 0;
+                                                        i21 = 0;
                                                     }
                                                 }
-                                                i21 = i5 | UPDATE_MASK_CHAT;
-                                                loadFullChat(tL_updateChat.chat_id, i20, true);
+                                                i22 = i5 | UPDATE_MASK_CHAT;
+                                                loadFullChat(tL_updateChat.chat_id, i21, true);
                                             } else if (update instanceof TL_update.TL_updateChatDefaultBannedRights) {
                                                 TL_update.TL_updateChatDefaultBannedRights tL_updateChatDefaultBannedRights = (TL_update.TL_updateChatDefaultBannedRights) update;
                                                 TLRPC.Peer peer5 = tL_updateChatDefaultBannedRights.peer;
@@ -19073,7 +19079,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                                 TLRPC.Chat chat3 = getChat(Long.valueOf(j14));
                                                 if (chat3 != null) {
                                                     chat3.default_banned_rights = tL_updateChatDefaultBannedRights.default_banned_rights;
-                                                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda206(this, chat3, 2));
+                                                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda208(this, chat3, 2));
                                                 }
                                             } else if (update instanceof TL_update.TL_updateBotCommands) {
                                                 TL_update.TL_updateBotCommands tL_updateBotCommands = (TL_update.TL_updateBotCommands) update;
@@ -19084,10 +19090,10 @@ public class MessagesController extends BaseController implements NotificationCe
                                                 TL_update.TL_updateStickerSetsOrder tL_updateStickerSetsOrder = (TL_update.TL_updateStickerSetsOrder) update;
                                                 getMediaDataController().reorderStickers(tL_updateStickerSetsOrder.masks ? 1 : tL_updateStickerSetsOrder.emojis ? 5 : 0, tL_updateStickerSetsOrder.order, false);
                                             } else {
-                                                boolean z15 = update instanceof TL_update.TL_updateRecentReactions;
-                                                if (z15) {
+                                                boolean z16 = update instanceof TL_update.TL_updateRecentReactions;
+                                                if (z16) {
                                                     getMediaDataController().loadRecentAndTopReactions(true);
-                                                } else if (z15) {
+                                                } else if (z16) {
                                                     getMediaDataController().loadSavedReactions(true);
                                                 } else if (update instanceof TL_update.TL_updateSavedReactionTags) {
                                                     getSavedReactionTags(0L, true);
@@ -19180,7 +19186,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     VoIPService sharedInstance2 = VoIPService.getSharedInstance();
                                                     if (BuildVars.LOGS_ENABLED) {
                                                         FileLog.d("Received call in update: " + phoneCall);
-                                                        zzjj.m(new StringBuilder("call id "), phoneCall.id);
+                                                        zzjg.m(new StringBuilder("call id "), phoneCall.id);
                                                     }
                                                     VoIPDebugToSend voIPDebugToSend = this.voipDebug;
                                                     if (voIPDebugToSend != null && (phoneCall instanceof TL_phone.TL_phoneCallDiscarded)) {
@@ -19205,7 +19211,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                                             FileLog.e("updatePhoneCall: svc=" + sharedInstance2 + " callIShouldHavePutIntoIntent=" + VoIPService.callIShouldHavePutIntoIntent + " callStateIsIdle=" + z8);
                                                             if (sharedInstance2 == null && VoIPService.callIShouldHavePutIntoIntent == null && z8) {
                                                                 if (BuildVars.LOGS_ENABLED) {
-                                                                    zzjj.m(new StringBuilder("Starting service for call "), phoneCall.id);
+                                                                    zzjg.m(new StringBuilder("Starting service for call "), phoneCall.id);
                                                                 }
                                                                 VoIPService.callIShouldHavePutIntoIntent = phoneCall;
                                                                 FileLog.e("set VoIPService.callIShouldHavePutIntoIntent = " + phoneCall);
@@ -19215,20 +19221,25 @@ public class MessagesController extends BaseController implements NotificationCe
                                                                 intent.putExtra("account", this.currentAccount);
                                                                 intent.putExtra("notifications_disabled", z7);
                                                                 try {
-                                                                    int i37 = Build.VERSION.SDK_INT;
-                                                                    if (i37 >= 33) {
+                                                                    int i41 = Build.VERSION.SDK_INT;
+                                                                    if (i41 >= 33) {
                                                                         intent.putExtra("accept", true);
                                                                         VoIPPreNotificationService.show(ApplicationLoader.applicationContext, intent, phoneCall);
-                                                                    } else if (z7 || i37 < 26) {
+                                                                    } else if (z7 || i41 < 26) {
                                                                         ApplicationLoader.applicationContext.startService(intent);
                                                                     } else {
                                                                         ApplicationLoader.applicationContext.startForegroundService(intent);
                                                                     }
-                                                                    if (ApplicationLoader.mainInterfacePaused || !ApplicationLoader.isScreenOn) {
-                                                                        this.ignoreSetOnline = true;
+                                                                    try {
+                                                                        if (ApplicationLoader.mainInterfacePaused || !ApplicationLoader.isScreenOn) {
+                                                                            this.ignoreSetOnline = true;
+                                                                        }
+                                                                    } catch (Throwable th2) {
+                                                                        th = th2;
+                                                                        FileLog.e(th);
                                                                     }
-                                                                } catch (Throwable th2) {
-                                                                    FileLog.e(th2);
+                                                                } catch (Throwable th3) {
+                                                                    th = th3;
                                                                 }
                                                             } else if (sharedInstance2 == null || sharedInstance2.getAccount() == this.currentAccount || sharedInstance2.getUser() == null || sharedInstance2.getUser().id != getUserConfig().getClientUserId()) {
                                                                 if (BuildVars.LOGS_ENABLED) {
@@ -19241,7 +19252,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                                                 tL_inputPhoneCall.id = phoneCall.id;
                                                                 discardcall.reason = new TLRPC.TL_phoneCallDiscardReasonBusy();
                                                                 FileLog.e("discardCall " + discardcall.reason);
-                                                                getConnectionsManager().sendRequest(discardcall, new MessagesController$$ExternalSyntheticLambda16(this, 16));
+                                                                getConnectionsManager().sendRequest(discardcall, new MessagesController$$ExternalSyntheticLambda18(this, 15));
                                                             }
                                                         } else if (BuildVars.LOGS_ENABLED) {
                                                             FileLog.d("ignoring too old call");
@@ -19270,12 +19281,10 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     TLRPC.DialogPeer dialogPeer3 = tL_updateDialogUnreadMark.peer;
                                                     if (dialogPeer3 instanceof TLRPC.TL_dialogPeer) {
                                                         TLRPC.Peer peer9 = ((TLRPC.TL_dialogPeer) dialogPeer3).peer;
-                                                        long j19 = peer9.user_id;
-                                                        if (j19 != 0) {
-                                                            j2 = j19;
-                                                        } else {
-                                                            long j20 = peer9.chat_id;
-                                                            j2 = j20 != 0 ? -j20 : -peer9.channel_id;
+                                                        j2 = peer9.user_id;
+                                                        if (j2 == 0) {
+                                                            long j19 = peer9.chat_id;
+                                                            j2 = j19 != 0 ? -j19 : -peer9.channel_id;
                                                         }
                                                     } else {
                                                         j2 = 0;
@@ -19283,10 +19292,10 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     getMessagesStorage().setDialogUnread(j2, tL_updateDialogUnreadMark.unread);
                                                     TLRPC.Dialog dialog4 = (TLRPC.Dialog) this.dialogs_dict.get(j2);
                                                     if (dialog4 != null) {
-                                                        boolean z16 = dialog4.unread_mark;
-                                                        boolean z17 = tL_updateDialogUnreadMark.unread;
-                                                        if (z16 != z17) {
-                                                            dialog4.unread_mark = z17;
+                                                        boolean z17 = dialog4.unread_mark;
+                                                        boolean z18 = tL_updateDialogUnreadMark.unread;
+                                                        if (z17 != z18) {
+                                                            dialog4.unread_mark = z18;
                                                             if (dialog4.unread_count == 0 && !isDialogMuted(j2, 0L)) {
                                                                 if (dialog4.unread_mark) {
                                                                     this.unreadUnmutedDialogs++;
@@ -19357,9 +19366,9 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     if (peerId2 > 0) {
                                                         TLRPC.UserFull userFull2 = getUserFull(peerId2);
                                                         if (userFull2 != null) {
-                                                            int i38 = tL_updatePeerHistoryTTL.ttl_period;
-                                                            userFull2.ttl_period = i38;
-                                                            if (i38 == 0) {
+                                                            int i42 = tL_updatePeerHistoryTTL.ttl_period;
+                                                            userFull2.ttl_period = i42;
+                                                            if (i42 == 0) {
                                                                 userFull2.flags &= -16385;
                                                             } else {
                                                                 userFull2.flags |= 16384;
@@ -19370,15 +19379,15 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     } else {
                                                         chatFull = getChatFull(-peerId2);
                                                         if (chatFull != null) {
-                                                            int i39 = tL_updatePeerHistoryTTL.ttl_period;
-                                                            chatFull.ttl_period = i39;
+                                                            int i43 = tL_updatePeerHistoryTTL.ttl_period;
+                                                            chatFull.ttl_period = i43;
                                                             if (chatFull instanceof TLRPC.TL_channelFull) {
-                                                                if (i39 == 0) {
+                                                                if (i43 == 0) {
                                                                     chatFull.flags &= -16777217;
                                                                 } else {
                                                                     chatFull.flags |= 16777216;
                                                                 }
-                                                            } else if (i39 == 0) {
+                                                            } else if (i43 == 0) {
                                                                 chatFull.flags &= -16385;
                                                             } else {
                                                                 chatFull.flags |= 16384;
@@ -19388,9 +19397,9 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     }
                                                     if (chatFull != null) {
                                                         NotificationCenter notificationCenter = getNotificationCenter();
-                                                        int i40 = NotificationCenter.chatInfoDidLoad;
-                                                        Boolean bool = Boolean.FALSE;
-                                                        notificationCenter.lambda$postNotificationNameOnUIThread$1(i40, chatFull, 0, bool, bool);
+                                                        int i44 = NotificationCenter.chatInfoDidLoad;
+                                                        Boolean bool2 = Boolean.FALSE;
+                                                        notificationCenter.lambda$postNotificationNameOnUIThread$1(i44, chatFull, 0, bool2, bool2);
                                                         getMessagesStorage().updateChatInfo(chatFull, false);
                                                     } else if (userFull != null) {
                                                         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(peerId2), userFull);
@@ -19429,11 +19438,11 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     TL_update.TL_updateChannelViewForumAsMessages tL_updateChannelViewForumAsMessages = (TL_update.TL_updateChannelViewForumAsMessages) update;
                                                     TLRPC.ChatFull chatFull3 = getChatFull(tL_updateChannelViewForumAsMessages.channel_id);
                                                     if (chatFull3 != null) {
-                                                        boolean z18 = chatFull3.view_forum_as_messages;
-                                                        boolean z19 = tL_updateChannelViewForumAsMessages.enabled;
-                                                        if (z18 != z19) {
-                                                            chatFull3.view_forum_as_messages = z19;
-                                                            if (z19) {
+                                                        boolean z19 = chatFull3.view_forum_as_messages;
+                                                        boolean z20 = tL_updateChannelViewForumAsMessages.enabled;
+                                                        if (z19 != z20) {
+                                                            chatFull3.view_forum_as_messages = z20;
+                                                            if (z20) {
                                                                 chatFull3.flags2 |= 64;
                                                             } else {
                                                                 chatFull3.flags2 &= -65;
@@ -19445,10 +19454,10 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     }
                                                     TLRPC.Dialog dialog6 = getDialog(-tL_updateChannelViewForumAsMessages.channel_id);
                                                     if (dialog6 != null) {
-                                                        boolean z20 = dialog6.view_forum_as_messages;
-                                                        boolean z21 = tL_updateChannelViewForumAsMessages.enabled;
-                                                        if (z20 != z21) {
-                                                            dialog6.view_forum_as_messages = z21;
+                                                        boolean z21 = dialog6.view_forum_as_messages;
+                                                        boolean z22 = tL_updateChannelViewForumAsMessages.enabled;
+                                                        if (z21 != z22) {
+                                                            dialog6.view_forum_as_messages = z22;
                                                             getMessagesStorage().setDialogViewThreadAsMessages(-tL_updateChannelViewForumAsMessages.channel_id, tL_updateChannelViewForumAsMessages.enabled);
                                                         }
                                                     } else {
@@ -19491,31 +19500,35 @@ public class MessagesController extends BaseController implements NotificationCe
                                                     }
                                                 }
                                             }
-                                            i5 = i21;
+                                            i5 = i22;
                                         }
                                     }
                                 }
-                                arrayList18 = arrayList14;
+                                arrayList16 = arrayList14;
                             }
                         }
-                        i19 = i24;
+                        i20 = i28;
+                        arrayList16 = arrayList18;
                         arrayList15 = arrayList13;
                     }
-                    arrayList17 = arrayList;
-                    i22 = i19 + 1;
-                    size10 = size10;
+                    i24 = i20 + 1;
+                    arrayList18 = arrayList16;
+                    size10 = i19;
                     arrayList19 = arrayList15;
                 }
-                i19 = i22;
+                i19 = size10;
+                i20 = i24;
                 arrayList15 = arrayList19;
-                arrayList17 = arrayList;
-                i22 = i19 + 1;
-                size10 = size10;
+                arrayList16 = arrayList18;
+                i24 = i20 + 1;
+                arrayList18 = arrayList16;
+                size10 = i19;
                 arrayList19 = arrayList15;
             }
             ArrayList<TLRPC.User> arrayList25 = arrayList19;
             i3 = 1;
             i4 = 9;
+            ArrayList<TLRPC.User> arrayList26 = arrayList18;
             if (editorEdit != null) {
                 editorEdit.commit();
                 z6 = false;
@@ -19524,7 +19537,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 z6 = false;
             }
             getMessagesStorage().updateUsers(arrayList25, true, true, true);
-            getMessagesStorage().updateUsers(arrayList18, z6, true, true);
+            getMessagesStorage().updateUsers(arrayList26, z6, true, true);
         } else {
             i3 = 1;
             i4 = 9;
@@ -19534,10 +19547,10 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         if (arrayList3 != null) {
             int size12 = arrayList3.size();
-            int i41 = 0;
-            while (i41 < size12) {
-                Object obj = arrayList3.get(i41);
-                i41 += i3;
+            int i45 = 0;
+            while (i45 < size12) {
+                Object obj = arrayList3.get(i45);
+                i45 += i3;
                 TLRPC.Message message3 = (TLRPC.Message) obj;
                 long peerId3 = MessageObject.getPeerId(message3.peer_id);
                 long peerId4 = MessageObject.getPeerId(message3.from_id);
@@ -19557,11 +19570,11 @@ public class MessagesController extends BaseController implements NotificationCe
                             userFull3.noforwards_my_enabled = true;
                         }
                         NotificationCenter notificationCenter2 = getNotificationCenter();
-                        int i42 = NotificationCenter.userInfoDidLoad;
+                        int i46 = NotificationCenter.userInfoDidLoad;
                         Object[] objArr = new Object[2];
                         objArr[0] = Long.valueOf(peerId3);
                         objArr[c] = userFull3;
-                        notificationCenter2.lambda$postNotificationNameOnUIThread$1(i42, objArr);
+                        notificationCenter2.lambda$postNotificationNameOnUIThread$1(i46, objArr);
                         getMessagesStorage().updateUserInfo(userFull3, false);
                     }
                 }
@@ -19570,37 +19583,37 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         if (arrayList4 != null) {
             int size13 = arrayList4.size();
-            for (int i43 = 0; i43 < size13; i43++) {
-                getMediaDataController().increaseGuestRating(((Long) arrayList4.get(i43)).longValue());
+            for (int i47 = 0; i47 < size13; i47++) {
+                getMediaDataController().increaseGuestRating(((Long) arrayList4.get(i47)).longValue());
             }
         }
         if (longSparseArray != null) {
             int size14 = longSparseArray.size();
-            for (int i44 = 0; i44 < size14; i44++) {
-                ChatObject.Call call3 = (ChatObject.Call) this.groupCallsByChatId.get(longSparseArray.keyAt(i44));
+            for (int i48 = 0; i48 < size14; i48++) {
+                ChatObject.Call call3 = (ChatObject.Call) this.groupCallsByChatId.get(longSparseArray.keyAt(i48));
                 if (call3 != null) {
-                    call3.processTypingsUpdate(getAccountInstance(), (ArrayList) longSparseArray.valueAt(i44), i2);
+                    call3.processTypingsUpdate(getAccountInstance(), (ArrayList) longSparseArray.valueAt(i48), i2);
                 }
             }
         }
         if (longSparseIntArray != null) {
             int size15 = longSparseIntArray.size();
-            for (int i45 = 0; i45 < size15; i45++) {
-                SendMessagesHelper.ImportingHistory importingHistory = getSendMessagesHelper().getImportingHistory(longSparseIntArray.keyAt(i45));
+            for (int i49 = 0; i49 < size15; i49++) {
+                SendMessagesHelper.ImportingHistory importingHistory = getSendMessagesHelper().getImportingHistory(longSparseIntArray.keyAt(i49));
                 if (importingHistory != null) {
-                    importingHistory.setImportProgress(longSparseIntArray.valueAt(i45));
+                    importingHistory.setImportProgress(longSparseIntArray.valueAt(i49));
                 }
             }
         }
-        int i46 = 1;
+        int i50 = 1;
         if (longSparseArray2 != null) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceivedWebpagesInUpdates, longSparseArray2);
-            int i47 = 0;
-            while (i47 < 3) {
-                if (i47 == i46) {
+            int i51 = 0;
+            while (i51 < 3) {
+                if (i51 == i50) {
                     longSparseArray10 = this.reloadingScheduledWebpagesPending;
                     i18 = 1;
-                } else if (i47 == 2) {
+                } else if (i51 == 2) {
                     longSparseArray10 = this.reloadingSavedWebpagesPending;
                     i18 = 3;
                 } else {
@@ -19608,56 +19621,56 @@ public class MessagesController extends BaseController implements NotificationCe
                     i18 = 0;
                 }
                 int size16 = longSparseArray2.size();
-                for (int i48 = 0; i48 < size16; i48++) {
-                    long jKeyAt3 = longSparseArray2.keyAt(i48);
-                    ArrayList arrayList26 = (ArrayList) longSparseArray10.get(jKeyAt3);
+                for (int i52 = 0; i52 < size16; i52++) {
+                    long jKeyAt3 = longSparseArray2.keyAt(i52);
+                    ArrayList arrayList27 = (ArrayList) longSparseArray10.get(jKeyAt3);
                     longSparseArray10.remove(jKeyAt3);
-                    if (arrayList26 != null) {
-                        TLRPC.WebPage webPage = (TLRPC.WebPage) longSparseArray2.valueAt(i48);
-                        ArrayList<TLRPC.Message> arrayList27 = new ArrayList<>();
+                    if (arrayList27 != null) {
+                        TLRPC.WebPage webPage = (TLRPC.WebPage) longSparseArray2.valueAt(i52);
+                        ArrayList<TLRPC.Message> arrayList28 = new ArrayList<>();
                         if ((webPage instanceof TLRPC.TL_webPage) || (webPage instanceof TLRPC.TL_webPageEmpty)) {
-                            int size17 = arrayList26.size();
+                            int size17 = arrayList27.size();
                             long dialogId2 = 0;
-                            for (int i49 = 0; i49 < size17; i49++) {
-                                ((MessageObject) arrayList26.get(i49)).messageOwner.media.webpage = webPage;
-                                if (i49 == 0) {
-                                    dialogId2 = ((MessageObject) arrayList26.get(i49)).getDialogId();
-                                    ImageLoader.saveMessageThumbs(((MessageObject) arrayList26.get(i49)).messageOwner);
+                            for (int i53 = 0; i53 < size17; i53++) {
+                                ((MessageObject) arrayList27.get(i53)).messageOwner.media.webpage = webPage;
+                                if (i53 == 0) {
+                                    dialogId2 = ((MessageObject) arrayList27.get(i53)).getDialogId();
+                                    ImageLoader.saveMessageThumbs(((MessageObject) arrayList27.get(i53)).messageOwner);
                                 }
-                                arrayList27.add(((MessageObject) arrayList26.get(i49)).messageOwner);
+                                arrayList28.add(((MessageObject) arrayList27.get(i53)).messageOwner);
                             }
                             j = dialogId2;
                         } else {
-                            longSparseArray10.put(arrayList26, webPage.id);
+                            longSparseArray10.put(arrayList27, webPage.id);
                             j = 0;
                         }
-                        if (!arrayList27.isEmpty()) {
-                            getMessagesStorage().putMessages(arrayList27, true, true, false, getDownloadController().getAutodownloadMask(), i18, 0L);
-                            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(j), arrayList26);
+                        if (!arrayList28.isEmpty()) {
+                            getMessagesStorage().putMessages(arrayList28, true, true, false, getDownloadController().getAutodownloadMask(), i18, 0L);
+                            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(j), arrayList27);
                         }
                     }
                 }
-                i47++;
-                i46 = 1;
+                i51++;
+                i50 = 1;
             }
         }
         if (i6 == 0) {
             z3 = z2;
             break;
         }
-        int i50 = 0;
+        int i54 = 0;
         while (true) {
             DialogFilter[] dialogFilterArr = this.selectedDialogFilter;
-            if (i50 >= dialogFilterArr.length) {
+            if (i54 >= dialogFilterArr.length) {
                 z3 = z2;
                 break;
             }
-            DialogFilter dialogFilter = dialogFilterArr[i50];
+            DialogFilter dialogFilter = dialogFilterArr[i54];
             if (dialogFilter != null && (dialogFilter.flags & i6) != 0) {
                 z3 = true;
                 break;
             }
-            i50++;
+            i54++;
         }
         if (longSparseArray3 == null) {
             boolean zApplyFoldersUpdates = applyFoldersUpdates(arrayList5);
@@ -19710,12 +19723,14 @@ public class MessagesController extends BaseController implements NotificationCe
                                         this.dialogMessagesByIds.put(messageObject2.getId(), messageObject2);
                                     }
                                     z5 = true;
-                                } else if (messageObject.getDialogId() != messageObject2.getDialogId() && (messageObject.messageOwner.action instanceof TLRPC.TL_messageActionPinMessage) && (messageObject3 = messageObject.replyMessageObject) != null && messageObject3.getId() == messageObject2.getId()) {
+                                    break;
+                                }
+                                if (messageObject.getDialogId() != messageObject2.getDialogId() && (messageObject.messageOwner.action instanceof TLRPC.TL_messageActionPinMessage) && (messageObject3 = messageObject.replyMessageObject) != null && messageObject3.getId() == messageObject2.getId()) {
                                     messageObject.replyMessageObject = messageObject2;
                                     messageObject.generatePinMessageText(null, null);
                                     z5 = true;
+                                    break;
                                 }
-                                break;
                             }
                         }
                     }
@@ -19775,23 +19790,23 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             if (i5 != 0) {
                 NotificationCenter notificationCenter3 = getNotificationCenter();
-                int i51 = NotificationCenter.updateInterfaces;
+                int i55 = NotificationCenter.updateInterfaces;
                 Object[] objArr2 = new Object[i7];
                 objArr2[0] = Integer.valueOf(i5);
-                notificationCenter3.lambda$postNotificationNameOnUIThread$1(i51, objArr2);
+                notificationCenter3.lambda$postNotificationNameOnUIThread$1(i55, objArr2);
             }
             if (arrayList8 != null) {
                 ImageLoader.getInstance().putThumbsToCache(arrayList8);
             }
         }
         int size18 = longSparseArray3.size();
-        boolean z22 = false;
-        for (int i52 = 0; i52 < size18; i52++) {
-            if (updateInterfaceWithMessages(longSparseArray3.keyAt(i52), (ArrayList) longSparseArray3.valueAt(i52), 0)) {
-                z22 = true;
+        boolean z23 = false;
+        for (int i56 = 0; i56 < size18; i56++) {
+            if (updateInterfaceWithMessages(longSparseArray3.keyAt(i56), (ArrayList) longSparseArray3.valueAt(i56), 0)) {
+                z23 = true;
             }
         }
-        if (applyFoldersUpdates(arrayList5) || (!z22 && z3)) {
+        if (applyFoldersUpdates(arrayList5) || (!z23 && z3)) {
             sortDialogs(null);
         }
         z4 = true;
@@ -19838,12 +19853,10 @@ public class MessagesController extends BaseController implements NotificationCe
                                     this.dialogMessagesByIds.put(messageObject2.getId(), messageObject2);
                                 }
                                 z5 = true;
-                            } else {
-                                if (messageObject.getDialogId() != messageObject2.getDialogId()) {
-                                }
+                                break;
                             }
-                            break;
-                            break;
+                            if (messageObject.getDialogId() != messageObject2.getDialogId()) {
+                            }
                         }
                     }
                 }
@@ -19904,10 +19917,10 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         if (i5 != 0) {
             NotificationCenter notificationCenter4 = getNotificationCenter();
-            int i53 = NotificationCenter.updateInterfaces;
+            int i57 = NotificationCenter.updateInterfaces;
             Object[] objArr3 = new Object[i7];
             objArr3[0] = Integer.valueOf(i5);
-            notificationCenter4.lambda$postNotificationNameOnUIThread$1(i53, objArr3);
+            notificationCenter4.lambda$postNotificationNameOnUIThread$1(i57, objArr3);
         }
         if (arrayList8 != null) {
             ImageLoader.getInstance().putThumbsToCache(arrayList8);
@@ -20222,7 +20235,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdateArray$417(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, SparseIntArray sparseIntArray, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, LongSparseArray longSparseArray3, LongSparseArray longSparseArray4, LongSparseArray longSparseArray5, LongSparseIntArray longSparseIntArray3) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda278(this, longSparseIntArray, longSparseIntArray2, sparseIntArray, longSparseArray, longSparseArray2, longSparseArray3, longSparseArray4, longSparseArray5, longSparseIntArray3, 0));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda280(this, longSparseIntArray, longSparseIntArray2, sparseIntArray, longSparseArray, longSparseArray2, longSparseArray3, longSparseArray4, longSparseArray5, longSparseIntArray3, 0));
     }
 
     public void lambda$processUpdateArray$418(long j, ArrayList arrayList) {
@@ -20258,7 +20271,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$processUpdates$379(ArrayList arrayList) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda13(this, arrayList, 2));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda15(this, arrayList, 2));
     }
 
     public void lambda$processUpdates$380() {
@@ -20336,7 +20349,7 @@ public class MessagesController extends BaseController implements NotificationCe
             SharedConfig.pushType = i;
             getUserConfig().saveConfig(false);
         }
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 26));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 28));
     }
 
     public void lambda$reloadDialogsReadValue$64(TLObject tLObject, TLRPC.TL_error tL_error) throws FileNotFoundException {
@@ -20479,7 +20492,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             ImageLoader.saveMessagesThumbs(messages_messages.messages);
             getMessagesStorage().putMessages(messages_messages, j, -1, 0, false, i, 0L);
-            AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda121(this, j, (Serializable) arrayList, (Object) arrayList2, 9));
+            AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda139(this, j, arrayList, arrayList2, 9));
         }
     }
 
@@ -20505,7 +20518,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$reloadReactionsNotifySettings$205(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda182(this, tLObject, 2));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda184(this, tLObject, 2));
     }
 
     public void lambda$reloadUser$56(TLObject tLObject, TLRPC.TL_error tL_error) {
@@ -20613,7 +20626,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (updates != null) {
             processUpdates(updates, false);
         }
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 18));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 20));
     }
 
     public int lambda$renameSavedReactionTag$484(TLRPC.TL_savedReactionTag tL_savedReactionTag, TLRPC.TL_savedReactionTag tL_savedReactionTag2) {
@@ -20793,577 +20806,1488 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$saveThemeToServer$120(String str, File file, Theme.ThemeAccent themeAccent, Theme.ThemeInfo themeInfo) {
-        ?? r4;
+        ?? paint;
+        ?? r3;
         ?? absolutePath;
-        char c;
         int i;
         int i2;
         int i3;
         int i4;
-        String[] strArr;
-        Paint paint;
         int i5;
         int i6;
         int i7;
         int i8;
         int i9;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
         ?? Mutate;
         ?? Mutate2;
         ?? Mutate3;
         ?? Mutate4;
-        int i10;
-        ?? r15;
-        int i11;
+        int i15;
+        MessageDrawable[] messageDrawableArr;
+        int i16;
         RectF rectF;
-        int i12;
+        int i17;
+        int i18;
+        boolean z;
         BitmapFactory.Options options;
-        int i13;
-        int i14;
+        int i19;
+        int i20;
         float fMin;
         Bitmap bitmapDecodeFile;
-        int i15;
-        int i16;
-        boolean z;
-        int i17;
+        int i21;
+        int i22;
+        int i23;
         FileInputStream fileInputStream;
         BitmapFactory.Options options2;
+        float f;
         File file2;
-        int i18;
-        int i19;
+        int i24;
+        int i25;
         Bitmap bitmapDecodeStream;
-        int i20;
-        int i21;
+        int i26;
+        int i27;
         ?? motionBackgroundDrawable;
-        boolean z2;
-        int i22;
-        ?? paint2 = themeAccent;
-        String absolutePath2 = file != null ? file.getAbsolutePath() : null;
-        int i23 = Theme.default_shadow_color;
+        final boolean z2;
+        int i28;
+        str = file != null ? file.getAbsolutePath() : null;
+        int i29 = Theme.default_shadow_color;
         try {
-            String[] strArr2 = new String[1];
-            SparseIntArray themeFileValues = Theme.getThemeFileValues(new File(str), null, strArr2);
-            if (paint2 != 0) {
-                Theme.checkIsDark(themeFileValues, paint2.parentTheme);
+            String[] strArr = new String[1];
+            final SparseIntArray themeFileValues = Theme.getThemeFileValues(new File(str), null, strArr);
+            if (themeAccent != null) {
+                Theme.checkIsDark(themeFileValues, themeAccent.parentTheme);
             }
-            int i24 = Theme.currentColorsNoAccent.get(Theme.key_wallpaperFileOffset, -1);
+            int i30 = Theme.currentColorsNoAccent.get(Theme.key_wallpaperFileOffset, -1);
             Bitmap bitmapCreateBitmap = Bitmaps.createBitmap(560, 678, Bitmap.Config.ARGB_8888);
             ?? canvas = new Canvas(bitmapCreateBitmap);
-            Paint paint3 = new Paint();
-            int i25 = Theme.key_actionBarDefault;
-            int iIndexOfKey = themeFileValues.indexOfKey(i25);
-            int iValueAt = iIndexOfKey >= 0 ? themeFileValues.valueAt(iIndexOfKey) : Theme.defaultColors[i25];
-            int i26 = Theme.key_actionBarDefaultIcon;
-            int iIndexOfKey2 = themeFileValues.indexOfKey(i26);
-            int iValueAt2 = iIndexOfKey2 >= 0 ? themeFileValues.valueAt(iIndexOfKey2) : Theme.defaultColors[i26];
-            int i27 = Theme.key_chat_messagePanelBackground;
-            int iIndexOfKey3 = themeFileValues.indexOfKey(i27);
-            int iValueAt3 = iIndexOfKey3 >= 0 ? themeFileValues.valueAt(iIndexOfKey3) : Theme.defaultColors[i27];
-            int i28 = Theme.key_chat_messagePanelIcons;
-            int iIndexOfKey4 = themeFileValues.indexOfKey(i28);
-            int iValueAt4 = iIndexOfKey4 >= 0 ? themeFileValues.valueAt(iIndexOfKey4) : Theme.defaultColors[i28];
-            int i29 = Theme.key_chat_inBubble;
+            Paint paint2 = new Paint();
+            int i31 = Theme.key_actionBarDefault;
+            int iIndexOfKey = themeFileValues.indexOfKey(i31);
+            int iValueAt = iIndexOfKey >= 0 ? themeFileValues.valueAt(iIndexOfKey) : Theme.defaultColors[i31];
+            int i32 = Theme.key_actionBarDefaultIcon;
+            int iIndexOfKey2 = themeFileValues.indexOfKey(i32);
+            int iValueAt2 = iIndexOfKey2 >= 0 ? themeFileValues.valueAt(iIndexOfKey2) : Theme.defaultColors[i32];
+            int i33 = Theme.key_chat_messagePanelBackground;
+            int iIndexOfKey3 = themeFileValues.indexOfKey(i33);
+            int iValueAt3 = iIndexOfKey3 >= 0 ? themeFileValues.valueAt(iIndexOfKey3) : Theme.defaultColors[i33];
+            int i34 = Theme.key_chat_messagePanelIcons;
+            int iIndexOfKey4 = themeFileValues.indexOfKey(i34);
+            int iValueAt4 = iIndexOfKey4 >= 0 ? themeFileValues.valueAt(iIndexOfKey4) : Theme.defaultColors[i34];
+            int i35 = Theme.key_chat_inBubble;
             try {
-                int iIndexOfKey5 = themeFileValues.indexOfKey(i29);
-                int iValueAt5 = iIndexOfKey5 >= 0 ? themeFileValues.valueAt(iIndexOfKey5) : Theme.defaultColors[i29];
-                int i30 = Theme.key_chat_outBubble;
-                int iIndexOfKey6 = themeFileValues.indexOfKey(i30);
-                int iValueAt6 = iIndexOfKey6 >= 0 ? themeFileValues.valueAt(iIndexOfKey6) : Theme.defaultColors[i30];
+                int iIndexOfKey5 = themeFileValues.indexOfKey(i35);
+                int iValueAt5 = iIndexOfKey5 >= 0 ? themeFileValues.valueAt(iIndexOfKey5) : Theme.defaultColors[i35];
+                int i36 = Theme.key_chat_outBubble;
+                int iIndexOfKey6 = themeFileValues.indexOfKey(i36);
+                int iValueAt6 = iIndexOfKey6 >= 0 ? themeFileValues.valueAt(iIndexOfKey6) : Theme.defaultColors[i36];
                 themeFileValues.get(Theme.key_chat_outBubbleGradient1);
-                int i31 = themeFileValues.get(Theme.key_chat_wallpaper);
-                int i32 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_to1);
-                int i33 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_to2);
-                int i34 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_to3);
-                if (paint2 != 0) {
-                    c = 0;
-                    i = (int) paint2.backgroundOverrideColor;
-                } else {
-                    c = 0;
-                    i = 0;
-                }
+                int i37 = themeFileValues.get(Theme.key_chat_wallpaper);
+                int i38 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_to1);
+                int i39 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_to2);
+                int i40 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_to3);
+                int i41 = themeAccent != null ? (int) themeAccent.backgroundOverrideColor : 0;
                 try {
-                    if (i == 0 && paint2 != 0) {
-                        if (paint2.backgroundOverrideColor != 0) {
-                            i31 = 0;
-                        }
-                        if (paint2 != 0) {
-                            i2 = (int) paint2.backgroundGradientOverrideColor1;
-                        } else {
-                            i2 = 0;
-                        }
-                        if (i2 != 0 && paint2 != 0) {
-                            if (paint2.backgroundGradientOverrideColor1 != 0) {
-                                i32 = 0;
+                    try {
+                        if (i41 == 0 && themeAccent != null) {
+                            if (themeAccent.backgroundOverrideColor != 0) {
+                                i37 = 0;
                             }
-                            if (paint2 != 0) {
-                                i3 = (int) paint2.backgroundGradientOverrideColor2;
+                            if (themeAccent != null) {
+                                i = (int) themeAccent.backgroundGradientOverrideColor1;
                             } else {
-                                i3 = 0;
+                                i = 0;
                             }
-                            if (i3 != 0 && paint2 != 0) {
-                                if (paint2.backgroundGradientOverrideColor2 != 0) {
-                                    i3 = 0;
+                            if (i != 0 && themeAccent != null) {
+                                if (themeAccent.backgroundGradientOverrideColor1 != 0) {
+                                    i38 = 0;
                                 }
-                                if (paint2 != 0) {
-                                    i4 = (int) paint2.backgroundGradientOverrideColor3;
+                                if (themeAccent != null) {
+                                    i2 = (int) themeAccent.backgroundGradientOverrideColor2;
                                 } else {
-                                    i4 = 0;
+                                    i2 = 0;
                                 }
-                                if (i4 != 0 && paint2 != 0) {
-                                    if (paint2.backgroundGradientOverrideColor3 != 0) {
+                                if (i2 != 0 && themeAccent != null) {
+                                    if (themeAccent.backgroundGradientOverrideColor2 != 0) {
+                                        i3 = 0;
+                                    }
+                                    if (themeAccent != null) {
+                                        i3 = i2;
+                                        i4 = (int) themeAccent.backgroundGradientOverrideColor3;
+                                    } else {
+                                        i3 = i2;
                                         i4 = 0;
                                     }
-                                    if (TextUtils.isEmpty(strArr2[c])) {
-                                        strArr = strArr2;
-                                        paint = paint3;
-                                        i5 = iValueAt;
-                                        i6 = i31;
-                                        i8 = i32;
-                                        i9 = i3;
-                                        i7 = i4;
-                                    } else {
-                                        try {
-                                            String queryParameter = Uri.parse(strArr2[c]).getQueryParameter("bg_color");
-                                            if (paint2 != 0 || TextUtils.isEmpty(queryParameter)) {
-                                                strArr = strArr2;
-                                                paint = paint3;
-                                                i5 = iValueAt;
-                                                i6 = i31;
-                                                i8 = i32;
-                                                i9 = i3;
-                                                i7 = i4;
-                                            } else {
-                                                strArr = strArr2;
+                                    if (i4 != 0 && themeAccent != null) {
+                                        if (themeAccent.backgroundGradientOverrideColor3 != 0) {
+                                            i4 = 0;
+                                        }
+                                        if (TextUtils.isEmpty(strArr[0])) {
+                                            i5 = iValueAt2;
+                                            i6 = iValueAt5;
+                                            i9 = i37;
+                                            i10 = i38;
+                                            i8 = i3;
+                                            i14 = i4;
+                                        } else {
+                                            try {
                                                 try {
-                                                    int i35 = Integer.parseInt(queryParameter.substring(0, 6), 16) | (-16777216);
-                                                    try {
-                                                        paint2.backgroundOverrideColor = i35;
-                                                        if (queryParameter.length() < 13 || !AndroidUtilities.isValidWallChar(queryParameter.charAt(6))) {
-                                                            paint = paint3;
-                                                            i5 = iValueAt;
-                                                        } else {
-                                                            int i36 = Integer.parseInt(queryParameter.substring(7, 13), 16) | (-16777216);
-                                                            paint = paint3;
-                                                            i5 = iValueAt;
-                                                            try {
-                                                                paint2.backgroundGradientOverrideColor1 = i36;
-                                                                i32 = i36;
-                                                            } catch (Exception e) {
-                                                                e = e;
-                                                                i32 = i36;
-                                                                i31 = i35;
-                                                                FileLog.e(e);
-                                                                i6 = i31;
-                                                                i8 = i32;
-                                                                i9 = i3;
-                                                                i7 = i4;
-                                                                Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
-                                                                Theme.setDrawableColor(iValueAt2, Mutate);
-                                                                Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
-                                                                Theme.setDrawableColor(iValueAt2, Mutate2);
-                                                                Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
-                                                                Theme.setDrawableColor(iValueAt4, Mutate3);
-                                                                Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
-                                                                Theme.setDrawableColor(iValueAt4, Mutate4);
-                                                                r15 = new MessageDrawable[2];
-                                                                i11 = 0;
-                                                                for (i10 = 2; i11 < i10; i10 = 2) {
-                                                                    Paint paint4 = paint;
-                                                                    if (i11 == 1) {
-                                                                        z2 = true;
-                                                                    } else {
-                                                                        z2 = false;
-                                                                    }
-                                                                    Theme.AnonymousClass12 anonymousClass12 = new Theme.AnonymousClass12(z2, themeFileValues);
-                                                                    r15[i11] = anonymousClass12;
-                                                                    if (i11 == 0) {
-                                                                        i22 = iValueAt5;
-                                                                    } else {
-                                                                        i22 = iValueAt6;
-                                                                    }
-                                                                    Theme.setDrawableColor(i22, anonymousClass12);
-                                                                    i11++;
-                                                                    paint = paint4;
-                                                                }
-                                                                Paint paint5 = paint;
-                                                                rectF = new RectF();
-                                                                i12 = 80;
-                                                                if (absolutePath2 != null) {
-                                                                    try {
-                                                                        options = new BitmapFactory.Options();
-                                                                        options.inJustDecodeBounds = true;
-                                                                        BitmapFactory.decodeFile(absolutePath2, options);
-                                                                        i13 = options.outWidth;
-                                                                        if (i13 > 0) {
-                                                                            fMin = Math.min(i13 / 560.0f, i14 / 560.0f);
-                                                                            options.inSampleSize = 1;
-                                                                            if (fMin > 1.0f) {
-                                                                                do {
-                                                                                    i15 = options.inSampleSize * 2;
-                                                                                    options.inSampleSize = i15;
-                                                                                } while (i15 < fMin);
-                                                                            }
-                                                                            Bitmap.Config config = Bitmap.Config.ALPHA_8;
-                                                                            options.inPreferredConfig = config;
-                                                                            options.inJustDecodeBounds = false;
-                                                                            bitmapDecodeFile = BitmapFactory.decodeFile(absolutePath2, options);
-                                                                            if (bitmapDecodeFile != null) {
-                                                                                if (i9 != 0) {
-                                                                                    Paint paint6 = new Paint();
-                                                                                    paint6.setFilterBitmap(true);
-                                                                                    float fMin2 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                                                                    try {
-                                                                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin2, bitmapDecodeFile.getHeight() / fMin2);
-                                                                                        rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                                                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint6);
-                                                                                    } catch (Throwable th) {
-                                                                                        th = th;
-                                                                                        FileLog.e(th);
-                                                                                        i16 = 80;
-                                                                                        z = false;
-                                                                                    }
+                                                    String queryParameter = Uri.parse(strArr[0]).getQueryParameter("bg_color");
+                                                    if (themeAccent == null && !TextUtils.isEmpty(queryParameter)) {
+                                                        i37 = Integer.parseInt(queryParameter.substring(0, 6), 16) | (-16777216);
+                                                        i5 = iValueAt2;
+                                                        try {
+                                                            themeAccent.backgroundOverrideColor = i37;
+                                                            if (queryParameter.length() >= 13) {
+                                                                try {
+                                                                    if (AndroidUtilities.isValidWallChar(queryParameter.charAt(6))) {
+                                                                        int i42 = Integer.parseInt(queryParameter.substring(7, 13), 16) | (-16777216);
+                                                                        i6 = iValueAt5;
+                                                                        try {
+                                                                            themeAccent.backgroundGradientOverrideColor1 = i42;
+                                                                            i38 = i42;
+                                                                        } catch (Exception e) {
+                                                                            e = e;
+                                                                            i38 = i42;
+                                                                            i7 = i3;
+                                                                            FileLog.e(e);
+                                                                            i8 = i7;
+                                                                            i9 = i37;
+                                                                            i10 = i38;
+                                                                            i14 = i4;
+                                                                            Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
+                                                                            int i43 = i5;
+                                                                            Theme.setDrawableColor(i43, Mutate);
+                                                                            Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
+                                                                            Theme.setDrawableColor(i43, Mutate2);
+                                                                            Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
+                                                                            Theme.setDrawableColor(iValueAt4, Mutate3);
+                                                                            Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
+                                                                            Theme.setDrawableColor(iValueAt4, Mutate4);
+                                                                            messageDrawableArr = new MessageDrawable[2];
+                                                                            i16 = 0;
+                                                                            for (i15 = 2; i16 < i15; i15 = 2) {
+                                                                                MessageDrawable[] messageDrawableArr2 = messageDrawableArr;
+                                                                                if (i16 == 1) {
+                                                                                    z2 = true;
                                                                                 } else {
-                                                                                    Paint paint7 = new Paint();
-                                                                                    paint7.setFilterBitmap(true);
-                                                                                    float fMin3 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin3, bitmapDecodeFile.getHeight() / fMin3);
-                                                                                    rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                                                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint7);
+                                                                                    z2 = false;
                                                                                 }
-                                                                                i16 = i12;
-                                                                                z = true;
+                                                                                MessageDrawable messageDrawable = new MessageDrawable(z2) {
+                                                                                    public final SparseIntArray val$colors;
+
+                                                                                    public AnonymousClass12(final boolean z3) {
+                                                                                        super(2, z3, false, null);
+                                                                                        sparseIntArray = themeFileValues;
+                                                                                    }
+
+                                                                                    @Override
+                                                                                    public final int getColor(int i44) {
+                                                                                        SparseIntArray sparseIntArray = sparseIntArray;
+                                                                                        int iIndexOfKey7 = sparseIntArray.indexOfKey(i44);
+                                                                                        return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i44];
+                                                                                    }
+
+                                                                                    @Override
+                                                                                    public final int getCurrentColor(int i44) {
+                                                                                        return sparseIntArray.get(i44);
+                                                                                    }
+                                                                                };
+                                                                                messageDrawableArr2[i16] = messageDrawable;
+                                                                                if (i16 == 0) {
+                                                                                    i28 = i6;
+                                                                                } else {
+                                                                                    i28 = iValueAt6;
+                                                                                }
+                                                                                Theme.setDrawableColor(i28, messageDrawable);
+                                                                                i16++;
+                                                                                messageDrawableArr = messageDrawableArr2;
                                                                             }
-                                                                        }
-                                                                    } catch (Throwable th2) {
-                                                                        th = th2;
-                                                                    }
-                                                                    i16 = 80;
-                                                                    z = false;
-                                                                } else {
-                                                                    i17 = i6;
-                                                                    if (i17 != 0) {
-                                                                        if (i24 < 0) {
-                                                                            try {
-                                                                                options2 = new BitmapFactory.Options();
-                                                                                options2.inJustDecodeBounds = true;
-                                                                                if (TextUtils.isEmpty(strArr[0])) {
-                                                                                    fileInputStream = new FileInputStream(str);
+                                                                            ?? r25 = messageDrawableArr;
+                                                                            rectF = new RectF();
+                                                                            paint = 120;
+                                                                            paint = 120;
+                                                                            i17 = 80;
+                                                                            if (str != null) {
+                                                                                try {
+                                                                                    options = new BitmapFactory.Options();
+                                                                                    options.inJustDecodeBounds = true;
+                                                                                    BitmapFactory.decodeFile(str, options);
+                                                                                    i19 = options.outWidth;
+                                                                                    if (i19 > 0) {
+                                                                                        fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
+                                                                                        options.inSampleSize = 1;
+                                                                                        if (fMin > 1.0f) {
+                                                                                            do {
+                                                                                                i21 = options.inSampleSize * 2;
+                                                                                                options.inSampleSize = i21;
+                                                                                            } while (i21 < fMin);
+                                                                                        }
+                                                                                        Bitmap.Config config = Bitmap.Config.ALPHA_8;
+                                                                                        options.inPreferredConfig = config;
+                                                                                        options.inJustDecodeBounds = false;
+                                                                                        bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
+                                                                                        if (bitmapDecodeFile != null) {
+                                                                                            if (i8 != 0) {
+                                                                                                Paint paint3 = new Paint();
+                                                                                                paint3.setFilterBitmap(true);
+                                                                                                float fMin2 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                                rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin2, bitmapDecodeFile.getHeight() / fMin2);
+                                                                                                rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                                                                canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint3);
+                                                                                            } else {
+                                                                                                Paint paint4 = new Paint();
+                                                                                                paint4.setFilterBitmap(true);
+                                                                                                float fMin3 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                                rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin3, bitmapDecodeFile.getHeight() / fMin3);
+                                                                                                rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                                                                canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint4);
+                                                                                            }
+                                                                                            i18 = i17;
+                                                                                            z = true;
+                                                                                            i22 = 120;
+                                                                                        }
+                                                                                    }
+                                                                                    str = str;
+                                                                                    i22 = 120;
+                                                                                    i18 = 80;
+                                                                                    z = false;
+                                                                                } catch (Throwable th) {
+                                                                                    th = th;
+                                                                                }
+                                                                            } else {
+                                                                                i23 = i9;
+                                                                                if (i23 == 0) {
+                                                                                    if (i30 < 0) {
+                                                                                    }
                                                                                     try {
-                                                                                        fileInputStream.getChannel().position(i24);
-                                                                                        BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                                                        file2 = null;
-                                                                                    } catch (Throwable th3) {
-                                                                                        th = th3;
-                                                                                        try {
+                                                                                        options2 = new BitmapFactory.Options();
+                                                                                        options2.inJustDecodeBounds = true;
+                                                                                        if (TextUtils.isEmpty(strArr[0])) {
+                                                                                            f = 2.0f;
+                                                                                            str = str;
                                                                                             try {
+                                                                                                fileInputStream = new FileInputStream(str);
+                                                                                                try {
+                                                                                                    i22 = 120;
+                                                                                                    paint = i30;
+                                                                                                    try {
+                                                                                                        fileInputStream.getChannel().position(paint);
+                                                                                                        BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                                                                                        file2 = null;
+                                                                                                        i24 = options2.outWidth;
+                                                                                                        if (i24 > 0) {
+                                                                                                            z = false;
+                                                                                                        } else {
+                                                                                                            z = false;
+                                                                                                        }
+                                                                                                        if (fileInputStream != null) {
+                                                                                                            fileInputStream.close();
+                                                                                                        }
+                                                                                                        i18 = 80;
+                                                                                                    } catch (Throwable th2) {
+                                                                                                        th = th2;
+                                                                                                        FileLog.e(th);
+                                                                                                        if (fileInputStream != null) {
+                                                                                                            fileInputStream.close();
+                                                                                                        }
+                                                                                                        i18 = 80;
+                                                                                                        z = false;
+                                                                                                        if (!z) {
+                                                                                                            ?? CreateDefaultWallpaper = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                                            CreateDefaultWallpaper.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                                            CreateDefaultWallpaper.draw(canvas);
+                                                                                                        }
+                                                                                                        paint2.setColor(iValueAt);
+                                                                                                        canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                                                                                                        if (Mutate != 0) {
+                                                                                                            int intrinsicHeight = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                                                                                            Mutate.setBounds(13, intrinsicHeight, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight);
+                                                                                                            Mutate.draw(canvas);
+                                                                                                        }
+                                                                                                        if (Mutate2 != 0) {
+                                                                                                            int width = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                                                                                            int intrinsicHeight2 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                                                                                            Mutate2.setBounds(width, intrinsicHeight2, Mutate2.getIntrinsicWidth() + width, Mutate2.getIntrinsicHeight() + intrinsicHeight2);
+                                                                                                            Mutate2.draw(canvas);
+                                                                                                        }
+                                                                                                        r25[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                                                                                        r25[1].setTop(0, 560, 522, false, false);
+                                                                                                        r25[1].draw(canvas);
+                                                                                                        r25[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                                                                                        r25[1].setTop(430, 560, 522, false, false);
+                                                                                                        r25[1].draw(canvas);
+                                                                                                        r25[0].setBounds(20, 323, 399, 415);
+                                                                                                        r25[0].setTop(323, 560, 522, false, false);
+                                                                                                        r25[0].draw(canvas);
+                                                                                                        paint2.setColor(iValueAt3);
+                                                                                                        canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                                                                                                        if (Mutate3 != 0) {
+                                                                                                            int height = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                                                                                            Mutate3.setBounds(22, height, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height);
+                                                                                                            Mutate3.draw(canvas);
+                                                                                                        }
+                                                                                                        if (Mutate4 != 0) {
+                                                                                                            int width2 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                                                                                            int height2 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                                                                                            Mutate4.setBounds(width2, height2, Mutate4.getIntrinsicWidth() + width2, Mutate4.getIntrinsicHeight() + height2);
+                                                                                                            Mutate4.draw(canvas);
+                                                                                                        }
+                                                                                                        paint = 0;
+                                                                                                        paint = 0;
+                                                                                                        r3 = 0;
+                                                                                                        canvas.setBitmap(null);
+                                                                                                        File file3 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                                                                                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file3));
+                                                                                                        SharedConfig.saveConfig();
+                                                                                                        absolutePath = file3.getAbsolutePath();
+                                                                                                        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                                                                    }
+                                                                                                } catch (Throwable th3) {
+                                                                                                    th = th3;
+                                                                                                    i22 = 120;
+                                                                                                    FileLog.e(th);
+                                                                                                    if (fileInputStream != null) {
+                                                                                                        fileInputStream.close();
+                                                                                                    }
+                                                                                                    i18 = 80;
+                                                                                                    z = false;
+                                                                                                    if (!z) {
+                                                                                                        ?? CreateDefaultWallpaper2 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                                        CreateDefaultWallpaper2.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                                        CreateDefaultWallpaper2.draw(canvas);
+                                                                                                    }
+                                                                                                    paint2.setColor(iValueAt);
+                                                                                                    canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                                                                                                    if (Mutate != 0) {
+                                                                                                        int intrinsicHeight3 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                                                                                        Mutate.setBounds(13, intrinsicHeight3, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight3);
+                                                                                                        Mutate.draw(canvas);
+                                                                                                    }
+                                                                                                    if (Mutate2 != 0) {
+                                                                                                        int width3 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                                                                                        int intrinsicHeight4 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                                                                                        Mutate2.setBounds(width3, intrinsicHeight4, Mutate2.getIntrinsicWidth() + width3, Mutate2.getIntrinsicHeight() + intrinsicHeight4);
+                                                                                                        Mutate2.draw(canvas);
+                                                                                                    }
+                                                                                                    r25[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                                                                                    r25[1].setTop(0, 560, 522, false, false);
+                                                                                                    r25[1].draw(canvas);
+                                                                                                    r25[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                                                                                    r25[1].setTop(430, 560, 522, false, false);
+                                                                                                    r25[1].draw(canvas);
+                                                                                                    r25[0].setBounds(20, 323, 399, 415);
+                                                                                                    r25[0].setTop(323, 560, 522, false, false);
+                                                                                                    r25[0].draw(canvas);
+                                                                                                    paint2.setColor(iValueAt3);
+                                                                                                    canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                                                                                                    if (Mutate3 != 0) {
+                                                                                                        int height3 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                                                                                        Mutate3.setBounds(22, height3, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height3);
+                                                                                                        Mutate3.draw(canvas);
+                                                                                                    }
+                                                                                                    if (Mutate4 != 0) {
+                                                                                                        int width4 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                                                                                        int height4 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                                                                                        Mutate4.setBounds(width4, height4, Mutate4.getIntrinsicWidth() + width4, Mutate4.getIntrinsicHeight() + height4);
+                                                                                                        Mutate4.draw(canvas);
+                                                                                                    }
+                                                                                                    paint = 0;
+                                                                                                    paint = 0;
+                                                                                                    r3 = 0;
+                                                                                                    canvas.setBitmap(null);
+                                                                                                    File file4 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                                                                                    bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file4));
+                                                                                                    SharedConfig.saveConfig();
+                                                                                                    absolutePath = file4.getAbsolutePath();
+                                                                                                    AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                                                                }
+                                                                                            } catch (Throwable th4) {
+                                                                                                th = th4;
+                                                                                                i22 = 120;
+                                                                                                fileInputStream = null;
                                                                                                 FileLog.e(th);
+                                                                                                if (fileInputStream != null) {
+                                                                                                    fileInputStream.close();
+                                                                                                }
+                                                                                                i18 = 80;
+                                                                                                z = false;
+                                                                                                if (!z) {
+                                                                                                    ?? CreateDefaultWallpaper3 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                                    CreateDefaultWallpaper3.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                                    CreateDefaultWallpaper3.draw(canvas);
+                                                                                                }
+                                                                                                paint2.setColor(iValueAt);
+                                                                                                canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                                                                                                if (Mutate != 0) {
+                                                                                                    int intrinsicHeight5 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                                                                                    Mutate.setBounds(13, intrinsicHeight5, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight5);
+                                                                                                    Mutate.draw(canvas);
+                                                                                                }
+                                                                                                if (Mutate2 != 0) {
+                                                                                                    int width5 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                                                                                    int intrinsicHeight6 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                                                                                    Mutate2.setBounds(width5, intrinsicHeight6, Mutate2.getIntrinsicWidth() + width5, Mutate2.getIntrinsicHeight() + intrinsicHeight6);
+                                                                                                    Mutate2.draw(canvas);
+                                                                                                }
+                                                                                                r25[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                                                                                r25[1].setTop(0, 560, 522, false, false);
+                                                                                                r25[1].draw(canvas);
+                                                                                                r25[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                                                                                r25[1].setTop(430, 560, 522, false, false);
+                                                                                                r25[1].draw(canvas);
+                                                                                                r25[0].setBounds(20, 323, 399, 415);
+                                                                                                r25[0].setTop(323, 560, 522, false, false);
+                                                                                                r25[0].draw(canvas);
+                                                                                                paint2.setColor(iValueAt3);
+                                                                                                canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                                                                                                if (Mutate3 != 0) {
+                                                                                                    int height5 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                                                                                    Mutate3.setBounds(22, height5, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height5);
+                                                                                                    Mutate3.draw(canvas);
+                                                                                                }
+                                                                                                if (Mutate4 != 0) {
+                                                                                                    int width6 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                                                                                    int height6 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                                                                                    Mutate4.setBounds(width6, height6, Mutate4.getIntrinsicWidth() + width6, Mutate4.getIntrinsicHeight() + height6);
+                                                                                                    Mutate4.draw(canvas);
+                                                                                                }
+                                                                                                paint = 0;
+                                                                                                paint = 0;
+                                                                                                r3 = 0;
+                                                                                                canvas.setBitmap(null);
+                                                                                                File file5 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                                                                                bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file5));
+                                                                                                SharedConfig.saveConfig();
+                                                                                                absolutePath = file5.getAbsolutePath();
+                                                                                                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                                                            }
+                                                                                        } else {
+                                                                                            try {
+                                                                                                f = 2.0f;
+                                                                                                File file6 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                                                                                BitmapFactory.decodeFile(file6.getAbsolutePath(), options2);
+                                                                                                file2 = file6;
+                                                                                                fileInputStream = null;
+                                                                                                i22 = 120;
+                                                                                                str = str;
+                                                                                                i24 = options2.outWidth;
+                                                                                                if (i24 > 0) {
+                                                                                                    z = false;
+                                                                                                } else {
+                                                                                                    z = false;
+                                                                                                }
                                                                                                 if (fileInputStream != null) {
                                                                                                     try {
                                                                                                         fileInputStream.close();
                                                                                                     } catch (Exception e2) {
                                                                                                         e = e2;
-                                                                                                        z = false;
                                                                                                         FileLog.e(e);
-                                                                                                        i16 = 80;
                                                                                                     }
                                                                                                 }
-                                                                                                i16 = 80;
-                                                                                                z = false;
-                                                                                                if (!z) {
-                                                                                                    ?? CreateDefaultWallpaper = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                                                                    CreateDefaultWallpaper.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                                                                    CreateDefaultWallpaper.draw(canvas);
+                                                                                                i18 = 80;
+                                                                                            } catch (Throwable th5) {
+                                                                                                th = th5;
+                                                                                                str = str;
+                                                                                                fileInputStream = null;
+                                                                                                i22 = 120;
+                                                                                                try {
+                                                                                                    try {
+                                                                                                        FileLog.e(th);
+                                                                                                        if (fileInputStream != null) {
+                                                                                                            try {
+                                                                                                                fileInputStream.close();
+                                                                                                            } catch (Exception e3) {
+                                                                                                                e = e3;
+                                                                                                                z = false;
+                                                                                                                FileLog.e(e);
+                                                                                                                i18 = 80;
+                                                                                                            }
+                                                                                                        }
+                                                                                                        i18 = 80;
+                                                                                                        z = false;
+                                                                                                        if (!z) {
+                                                                                                            ?? CreateDefaultWallpaper4 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                                            CreateDefaultWallpaper4.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                                            CreateDefaultWallpaper4.draw(canvas);
+                                                                                                        }
+                                                                                                        paint2.setColor(iValueAt);
+                                                                                                        canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                                                                                                        if (Mutate != 0) {
+                                                                                                            int intrinsicHeight7 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                                                                                            Mutate.setBounds(13, intrinsicHeight7, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight7);
+                                                                                                            Mutate.draw(canvas);
+                                                                                                        }
+                                                                                                        if (Mutate2 != 0) {
+                                                                                                            int width7 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                                                                                            int intrinsicHeight8 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                                                                                            Mutate2.setBounds(width7, intrinsicHeight8, Mutate2.getIntrinsicWidth() + width7, Mutate2.getIntrinsicHeight() + intrinsicHeight8);
+                                                                                                            Mutate2.draw(canvas);
+                                                                                                        }
+                                                                                                        r25[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                                                                                        r25[1].setTop(0, 560, 522, false, false);
+                                                                                                        r25[1].draw(canvas);
+                                                                                                        r25[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                                                                                        r25[1].setTop(430, 560, 522, false, false);
+                                                                                                        r25[1].draw(canvas);
+                                                                                                        r25[0].setBounds(20, 323, 399, 415);
+                                                                                                        r25[0].setTop(323, 560, 522, false, false);
+                                                                                                        r25[0].draw(canvas);
+                                                                                                        paint2.setColor(iValueAt3);
+                                                                                                        canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                                                                                                        if (Mutate3 != 0) {
+                                                                                                            int height7 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                                                                                            Mutate3.setBounds(22, height7, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height7);
+                                                                                                            Mutate3.draw(canvas);
+                                                                                                        }
+                                                                                                        if (Mutate4 != 0) {
+                                                                                                            int width8 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                                                                                            int height8 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                                                                                            Mutate4.setBounds(width8, height8, Mutate4.getIntrinsicWidth() + width8, Mutate4.getIntrinsicHeight() + height8);
+                                                                                                            Mutate4.draw(canvas);
+                                                                                                        }
+                                                                                                        paint = 0;
+                                                                                                        paint = 0;
+                                                                                                        r3 = 0;
+                                                                                                        canvas.setBitmap(null);
+                                                                                                        File file7 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                                                                                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file7));
+                                                                                                        SharedConfig.saveConfig();
+                                                                                                        absolutePath = file7.getAbsolutePath();
+                                                                                                    } catch (Throwable th6) {
+                                                                                                        paint = 0;
+                                                                                                        paint = 0;
+                                                                                                        if (fileInputStream == null) {
+                                                                                                            throw th6;
+                                                                                                        }
+                                                                                                        try {
+                                                                                                            fileInputStream.close();
+                                                                                                            throw th6;
+                                                                                                        } catch (Exception e4) {
+                                                                                                            FileLog.e(e4);
+                                                                                                            throw th6;
+                                                                                                        }
+                                                                                                        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                                                                    }
+                                                                                                } catch (Throwable th7) {
+                                                                                                    th = th7;
+                                                                                                    FileLog.e(th);
+                                                                                                    r3 = paint;
+                                                                                                    absolutePath = r3;
                                                                                                 }
-                                                                                                paint5.setColor(i5);
-                                                                                                canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint5);
-                                                                                                if (Mutate != 0) {
-                                                                                                    int intrinsicHeight = (120 - Mutate.getIntrinsicHeight()) / 2;
-                                                                                                    Mutate.setBounds(13, intrinsicHeight, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight);
-                                                                                                    Mutate.draw(canvas);
-                                                                                                }
-                                                                                                if (Mutate2 != 0) {
-                                                                                                    int width = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
-                                                                                                    int intrinsicHeight2 = (120 - Mutate2.getIntrinsicHeight()) / 2;
-                                                                                                    Mutate2.setBounds(width, intrinsicHeight2, Mutate2.getIntrinsicWidth() + width, Mutate2.getIntrinsicHeight() + intrinsicHeight2);
-                                                                                                    Mutate2.draw(canvas);
-                                                                                                }
-                                                                                                r15[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
-                                                                                                r15[1].setTop(0, 560, 522);
-                                                                                                r15[1].draw(canvas);
-                                                                                                r15[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
-                                                                                                r15[1].setTop(430, 560, 522);
-                                                                                                r15[1].draw(canvas);
-                                                                                                r15[0].setBounds(20, 323, 399, 415);
-                                                                                                r15[0].setTop(323, 560, 522);
-                                                                                                r15[0].draw(canvas);
-                                                                                                paint5.setColor(iValueAt3);
-                                                                                                canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint5);
-                                                                                                if (Mutate3 != 0) {
-                                                                                                    int height = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
-                                                                                                    Mutate3.setBounds(22, height, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height);
-                                                                                                    Mutate3.draw(canvas);
-                                                                                                }
-                                                                                                if (Mutate4 != 0) {
-                                                                                                    int width2 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
-                                                                                                    int height2 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
-                                                                                                    Mutate4.setBounds(width2, height2, Mutate4.getIntrinsicWidth() + width2, Mutate4.getIntrinsicHeight() + height2);
-                                                                                                    Mutate4.draw(canvas);
-                                                                                                }
-                                                                                                paint2 = 0;
-                                                                                                paint2 = 0;
-                                                                                                r4 = 0;
-                                                                                                canvas.setBitmap(null);
-                                                                                                File file3 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
-                                                                                                bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i16, new FileOutputStream(file3));
-                                                                                                SharedConfig.saveConfig();
-                                                                                                absolutePath = file3.getAbsolutePath();
-                                                                                            } catch (Throwable th4) {
-                                                                                                th = th4;
-                                                                                                FileLog.e(th);
-                                                                                                r4 = paint2;
-                                                                                                absolutePath = r4;
                                                                                                 AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                                                                             }
-                                                                                            AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
-                                                                                        } catch (Throwable th5) {
-                                                                                            paint2 = 0;
-                                                                                            paint2 = 0;
-                                                                                            if (fileInputStream == null) {
-                                                                                                throw th5;
+                                                                                        }
+                                                                                    } catch (Throwable th8) {
+                                                                                        th = th8;
+                                                                                        str = str;
+                                                                                    }
+                                                                                    AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                                                }
+                                                                                if (i10 == 0) {
+                                                                                    motionBackgroundDrawable = new ColorDrawable(i23);
+                                                                                } else if (i8 != 0) {
+                                                                                    motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
+                                                                                } else {
+                                                                                    i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                                                                    if (i27 == -1) {
+                                                                                        i27 = 45;
+                                                                                    }
+                                                                                    i17 = 90;
+                                                                                    motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                                                }
+                                                                                motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                                                motionBackgroundDrawable.draw(canvas);
+                                                                                i18 = i17;
+                                                                                z = true;
+                                                                                i22 = 120;
+                                                                            }
+                                                                            if (!z) {
+                                                                                ?? CreateDefaultWallpaper5 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                CreateDefaultWallpaper5.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                CreateDefaultWallpaper5.draw(canvas);
+                                                                            }
+                                                                            paint2.setColor(iValueAt);
+                                                                            canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                                                                            if (Mutate != 0) {
+                                                                                int intrinsicHeight9 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                                                                Mutate.setBounds(13, intrinsicHeight9, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight9);
+                                                                                Mutate.draw(canvas);
+                                                                            }
+                                                                            if (Mutate2 != 0) {
+                                                                                int width9 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                                                                int intrinsicHeight10 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                                                                Mutate2.setBounds(width9, intrinsicHeight10, Mutate2.getIntrinsicWidth() + width9, Mutate2.getIntrinsicHeight() + intrinsicHeight10);
+                                                                                Mutate2.draw(canvas);
+                                                                            }
+                                                                            r25[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                                                            r25[1].setTop(0, 560, 522, false, false);
+                                                                            r25[1].draw(canvas);
+                                                                            r25[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                                                            r25[1].setTop(430, 560, 522, false, false);
+                                                                            r25[1].draw(canvas);
+                                                                            r25[0].setBounds(20, 323, 399, 415);
+                                                                            r25[0].setTop(323, 560, 522, false, false);
+                                                                            r25[0].draw(canvas);
+                                                                            paint2.setColor(iValueAt3);
+                                                                            canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                                                                            if (Mutate3 != 0) {
+                                                                                int height9 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                                                                Mutate3.setBounds(22, height9, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height9);
+                                                                                Mutate3.draw(canvas);
+                                                                            }
+                                                                            if (Mutate4 != 0) {
+                                                                                int width10 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                                                                int height10 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                                                                Mutate4.setBounds(width10, height10, Mutate4.getIntrinsicWidth() + width10, Mutate4.getIntrinsicHeight() + height10);
+                                                                                Mutate4.draw(canvas);
+                                                                            }
+                                                                            paint = 0;
+                                                                            paint = 0;
+                                                                            r3 = 0;
+                                                                            canvas.setBitmap(null);
+                                                                            File file8 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                                                            bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file8));
+                                                                            SharedConfig.saveConfig();
+                                                                            absolutePath = file8.getAbsolutePath();
+                                                                            AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                                        }
+                                                                    } else {
+                                                                        i6 = iValueAt5;
+                                                                    }
+                                                                    try {
+                                                                        if (queryParameter.length() < 20) {
+                                                                            try {
+                                                                                if (AndroidUtilities.isValidWallChar(queryParameter.charAt(13))) {
+                                                                                    i7 = Integer.parseInt(queryParameter.substring(14, 20), 16) | (-16777216);
+                                                                                    try {
+                                                                                        themeAccent.backgroundGradientOverrideColor2 = i7;
+                                                                                    } catch (Exception e5) {
+                                                                                        e = e5;
+                                                                                        i37 = i37;
+                                                                                        FileLog.e(e);
+                                                                                        i8 = i7;
+                                                                                        i9 = i37;
+                                                                                        i10 = i38;
+                                                                                        i14 = i4;
+                                                                                        Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
+                                                                                        int i44 = i5;
+                                                                                        Theme.setDrawableColor(i44, Mutate);
+                                                                                        Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
+                                                                                        Theme.setDrawableColor(i44, Mutate2);
+                                                                                        Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
+                                                                                        Theme.setDrawableColor(iValueAt4, Mutate3);
+                                                                                        Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
+                                                                                        Theme.setDrawableColor(iValueAt4, Mutate4);
+                                                                                        messageDrawableArr = new MessageDrawable[2];
+                                                                                        i16 = 0;
+                                                                                        while (i16 < i15) {
+                                                                                            MessageDrawable[] messageDrawableArr3 = messageDrawableArr;
+                                                                                            if (i16 == 1) {
+                                                                                                z3 = true;
+                                                                                            } else {
+                                                                                                z3 = false;
                                                                                             }
-                                                                                            try {
-                                                                                                fileInputStream.close();
-                                                                                                throw th5;
-                                                                                            } catch (Exception e3) {
-                                                                                                FileLog.e(e3);
-                                                                                                throw th5;
+                                                                                            MessageDrawable messageDrawable2 = new MessageDrawable(z3) {
+                                                                                                public final SparseIntArray val$colors;
+
+                                                                                                public AnonymousClass12(final boolean z3) {
+                                                                                                    super(2, z3, false, null);
+                                                                                                    sparseIntArray = themeFileValues;
+                                                                                                }
+
+                                                                                                @Override
+                                                                                                public final int getColor(int i45) {
+                                                                                                    SparseIntArray sparseIntArray = sparseIntArray;
+                                                                                                    int iIndexOfKey7 = sparseIntArray.indexOfKey(i45);
+                                                                                                    return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i45];
+                                                                                                }
+
+                                                                                                @Override
+                                                                                                public final int getCurrentColor(int i45) {
+                                                                                                    return sparseIntArray.get(i45);
+                                                                                                }
+                                                                                            };
+                                                                                            messageDrawableArr3[i16] = messageDrawable2;
+                                                                                            if (i16 == 0) {
+                                                                                                i28 = i6;
+                                                                                            } else {
+                                                                                                i28 = iValueAt6;
                                                                                             }
+                                                                                            Theme.setDrawableColor(i28, messageDrawable2);
+                                                                                            i16++;
+                                                                                            messageDrawableArr = messageDrawableArr3;
+                                                                                        }
+                                                                                        ?? r26 = messageDrawableArr;
+                                                                                        rectF = new RectF();
+                                                                                        paint = 120;
+                                                                                        paint = 120;
+                                                                                        i17 = 80;
+                                                                                        if (str != null) {
+                                                                                            options = new BitmapFactory.Options();
+                                                                                            options.inJustDecodeBounds = true;
+                                                                                            BitmapFactory.decodeFile(str, options);
+                                                                                            i19 = options.outWidth;
+                                                                                            if (i19 > 0) {
+                                                                                                fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
+                                                                                                options.inSampleSize = 1;
+                                                                                                if (fMin > 1.0f) {
+                                                                                                    do {
+                                                                                                        i21 = options.inSampleSize * 2;
+                                                                                                        options.inSampleSize = i21;
+                                                                                                    } while (i21 < fMin);
+                                                                                                }
+                                                                                                Bitmap.Config config2 = Bitmap.Config.ALPHA_8;
+                                                                                                options.inPreferredConfig = config2;
+                                                                                                options.inJustDecodeBounds = false;
+                                                                                                bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
+                                                                                                if (bitmapDecodeFile != null) {
+                                                                                                    if (i8 != 0) {
+                                                                                                        Paint paint5 = new Paint();
+                                                                                                        paint5.setFilterBitmap(true);
+                                                                                                        float fMin4 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin4, bitmapDecodeFile.getHeight() / fMin4);
+                                                                                                        rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                                                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint5);
+                                                                                                    } else {
+                                                                                                        Paint paint6 = new Paint();
+                                                                                                        paint6.setFilterBitmap(true);
+                                                                                                        float fMin5 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin5, bitmapDecodeFile.getHeight() / fMin5);
+                                                                                                        rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                                                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint6);
+                                                                                                    }
+                                                                                                    i18 = i17;
+                                                                                                    z = true;
+                                                                                                    i22 = 120;
+                                                                                                }
+                                                                                            }
+                                                                                            str = str;
+                                                                                            i22 = 120;
+                                                                                            i18 = 80;
+                                                                                            z = false;
+                                                                                        } else {
+                                                                                            i23 = i9;
+                                                                                            if (i23 == 0) {
+                                                                                                if (i30 < 0) {
+                                                                                                }
+                                                                                                options2 = new BitmapFactory.Options();
+                                                                                                options2.inJustDecodeBounds = true;
+                                                                                                if (TextUtils.isEmpty(strArr[0])) {
+                                                                                                    f = 2.0f;
+                                                                                                    File file9 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                                                                                    BitmapFactory.decodeFile(file9.getAbsolutePath(), options2);
+                                                                                                    file2 = file9;
+                                                                                                    fileInputStream = null;
+                                                                                                    i22 = 120;
+                                                                                                    str = str;
+                                                                                                    i24 = options2.outWidth;
+                                                                                                    if (i24 > 0) {
+                                                                                                        z = false;
+                                                                                                    } else {
+                                                                                                        z = false;
+                                                                                                    }
+                                                                                                    if (fileInputStream != null) {
+                                                                                                        fileInputStream.close();
+                                                                                                    }
+                                                                                                    i18 = 80;
+                                                                                                } else {
+                                                                                                    f = 2.0f;
+                                                                                                    str = str;
+                                                                                                    fileInputStream = new FileInputStream(str);
+                                                                                                    i22 = 120;
+                                                                                                    paint = i30;
+                                                                                                    fileInputStream.getChannel().position(paint);
+                                                                                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                                                                                    file2 = null;
+                                                                                                    i24 = options2.outWidth;
+                                                                                                    if (i24 > 0) {
+                                                                                                        z = false;
+                                                                                                    } else {
+                                                                                                        z = false;
+                                                                                                    }
+                                                                                                    if (fileInputStream != null) {
+                                                                                                        fileInputStream.close();
+                                                                                                    }
+                                                                                                    i18 = 80;
+                                                                                                }
+                                                                                                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                                                            }
+                                                                                            if (i10 == 0) {
+                                                                                                motionBackgroundDrawable = new ColorDrawable(i23);
+                                                                                            } else if (i8 != 0) {
+                                                                                                motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
+                                                                                            } else {
+                                                                                                i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                                                                                if (i27 == -1) {
+                                                                                                    i27 = 45;
+                                                                                                }
+                                                                                                i17 = 90;
+                                                                                                motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                                                            }
+                                                                                            motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                                                            motionBackgroundDrawable.draw(canvas);
+                                                                                            i18 = i17;
+                                                                                            z = true;
+                                                                                            i22 = 120;
+                                                                                        }
+                                                                                        if (!z) {
+                                                                                            ?? CreateDefaultWallpaper6 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                            CreateDefaultWallpaper6.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                            CreateDefaultWallpaper6.draw(canvas);
+                                                                                        }
+                                                                                        paint2.setColor(iValueAt);
+                                                                                        canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                                                                                        if (Mutate != 0) {
+                                                                                            int intrinsicHeight11 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                                                                            Mutate.setBounds(13, intrinsicHeight11, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight11);
+                                                                                            Mutate.draw(canvas);
+                                                                                        }
+                                                                                        if (Mutate2 != 0) {
+                                                                                            int width11 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                                                                            int intrinsicHeight12 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                                                                            Mutate2.setBounds(width11, intrinsicHeight12, Mutate2.getIntrinsicWidth() + width11, Mutate2.getIntrinsicHeight() + intrinsicHeight12);
+                                                                                            Mutate2.draw(canvas);
+                                                                                        }
+                                                                                        r26[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                                                                        r26[1].setTop(0, 560, 522, false, false);
+                                                                                        r26[1].draw(canvas);
+                                                                                        r26[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                                                                        r26[1].setTop(430, 560, 522, false, false);
+                                                                                        r26[1].draw(canvas);
+                                                                                        r26[0].setBounds(20, 323, 399, 415);
+                                                                                        r26[0].setTop(323, 560, 522, false, false);
+                                                                                        r26[0].draw(canvas);
+                                                                                        paint2.setColor(iValueAt3);
+                                                                                        canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                                                                                        if (Mutate3 != 0) {
+                                                                                            int height11 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                                                                            Mutate3.setBounds(22, height11, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height11);
+                                                                                            Mutate3.draw(canvas);
+                                                                                        }
+                                                                                        if (Mutate4 != 0) {
+                                                                                            int width12 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                                                                            int height12 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                                                                            Mutate4.setBounds(width12, height12, Mutate4.getIntrinsicWidth() + width12, Mutate4.getIntrinsicHeight() + height12);
+                                                                                            Mutate4.draw(canvas);
+                                                                                        }
+                                                                                        paint = 0;
+                                                                                        paint = 0;
+                                                                                        r3 = 0;
+                                                                                        canvas.setBitmap(null);
+                                                                                        File file10 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                                                                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file10));
+                                                                                        SharedConfig.saveConfig();
+                                                                                        absolutePath = file10.getAbsolutePath();
+                                                                                        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                                                    }
+                                                                                } else {
+                                                                                    i7 = i3;
+                                                                                }
+                                                                            } catch (Exception e6) {
+                                                                                e = e6;
+                                                                                i7 = i3;
+                                                                                FileLog.e(e);
+                                                                                i8 = i7;
+                                                                                i9 = i37;
+                                                                                i10 = i38;
+                                                                                i14 = i4;
+                                                                                Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
+                                                                                int i45 = i5;
+                                                                                Theme.setDrawableColor(i45, Mutate);
+                                                                                Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
+                                                                                Theme.setDrawableColor(i45, Mutate2);
+                                                                                Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
+                                                                                Theme.setDrawableColor(iValueAt4, Mutate3);
+                                                                                Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
+                                                                                Theme.setDrawableColor(iValueAt4, Mutate4);
+                                                                                messageDrawableArr = new MessageDrawable[2];
+                                                                                i16 = 0;
+                                                                                while (i16 < i15) {
+                                                                                    MessageDrawable[] messageDrawableArr4 = messageDrawableArr;
+                                                                                    if (i16 == 1) {
+                                                                                        z3 = true;
+                                                                                    } else {
+                                                                                        z3 = false;
+                                                                                    }
+                                                                                    MessageDrawable messageDrawable3 = new MessageDrawable(z3) {
+                                                                                        public final SparseIntArray val$colors;
+
+                                                                                        public AnonymousClass12(final boolean z3) {
+                                                                                            super(2, z3, false, null);
+                                                                                            sparseIntArray = themeFileValues;
+                                                                                        }
+
+                                                                                        @Override
+                                                                                        public final int getColor(int i46) {
+                                                                                            SparseIntArray sparseIntArray = sparseIntArray;
+                                                                                            int iIndexOfKey7 = sparseIntArray.indexOfKey(i46);
+                                                                                            return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i46];
+                                                                                        }
+
+                                                                                        @Override
+                                                                                        public final int getCurrentColor(int i46) {
+                                                                                            return sparseIntArray.get(i46);
+                                                                                        }
+                                                                                    };
+                                                                                    messageDrawableArr4[i16] = messageDrawable3;
+                                                                                    if (i16 == 0) {
+                                                                                        i28 = i6;
+                                                                                    } else {
+                                                                                        i28 = iValueAt6;
+                                                                                    }
+                                                                                    Theme.setDrawableColor(i28, messageDrawable3);
+                                                                                    i16++;
+                                                                                    messageDrawableArr = messageDrawableArr4;
+                                                                                }
+                                                                                ?? r27 = messageDrawableArr;
+                                                                                rectF = new RectF();
+                                                                                paint = 120;
+                                                                                paint = 120;
+                                                                                i17 = 80;
+                                                                                if (str != null) {
+                                                                                    options = new BitmapFactory.Options();
+                                                                                    options.inJustDecodeBounds = true;
+                                                                                    BitmapFactory.decodeFile(str, options);
+                                                                                    i19 = options.outWidth;
+                                                                                    if (i19 > 0) {
+                                                                                        fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
+                                                                                        options.inSampleSize = 1;
+                                                                                        if (fMin > 1.0f) {
+                                                                                            do {
+                                                                                                i21 = options.inSampleSize * 2;
+                                                                                                options.inSampleSize = i21;
+                                                                                            } while (i21 < fMin);
+                                                                                        }
+                                                                                        Bitmap.Config config3 = Bitmap.Config.ALPHA_8;
+                                                                                        options.inPreferredConfig = config3;
+                                                                                        options.inJustDecodeBounds = false;
+                                                                                        bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
+                                                                                        if (bitmapDecodeFile != null) {
+                                                                                            if (i8 != 0) {
+                                                                                                Paint paint7 = new Paint();
+                                                                                                paint7.setFilterBitmap(true);
+                                                                                                float fMin6 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                                rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin6, bitmapDecodeFile.getHeight() / fMin6);
+                                                                                                rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                                                                canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint7);
+                                                                                            } else {
+                                                                                                Paint paint8 = new Paint();
+                                                                                                paint8.setFilterBitmap(true);
+                                                                                                float fMin7 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                                rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin7, bitmapDecodeFile.getHeight() / fMin7);
+                                                                                                rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                                                                canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint8);
+                                                                                            }
+                                                                                            i18 = i17;
+                                                                                            z = true;
+                                                                                            i22 = 120;
                                                                                         }
                                                                                     }
-                                                                                } else {
-                                                                                    file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                                                                    BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                                                    fileInputStream = null;
-                                                                                }
-                                                                                i18 = options2.outWidth;
-                                                                                if (i18 > 0) {
+                                                                                    str = str;
+                                                                                    i22 = 120;
+                                                                                    i18 = 80;
                                                                                     z = false;
                                                                                 } else {
-                                                                                    z = false;
-                                                                                }
-                                                                                if (fileInputStream != null) {
-                                                                                    try {
-                                                                                        fileInputStream.close();
-                                                                                    } catch (Exception e4) {
-                                                                                        e = e4;
-                                                                                        FileLog.e(e);
+                                                                                    i23 = i9;
+                                                                                    if (i23 == 0) {
+                                                                                        if (i30 < 0) {
+                                                                                        }
+                                                                                        options2 = new BitmapFactory.Options();
+                                                                                        options2.inJustDecodeBounds = true;
+                                                                                        if (TextUtils.isEmpty(strArr[0])) {
+                                                                                            f = 2.0f;
+                                                                                            File file11 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                                                                            BitmapFactory.decodeFile(file11.getAbsolutePath(), options2);
+                                                                                            file2 = file11;
+                                                                                            fileInputStream = null;
+                                                                                            i22 = 120;
+                                                                                            str = str;
+                                                                                            i24 = options2.outWidth;
+                                                                                            if (i24 > 0) {
+                                                                                                z = false;
+                                                                                            } else {
+                                                                                                z = false;
+                                                                                            }
+                                                                                            if (fileInputStream != null) {
+                                                                                                fileInputStream.close();
+                                                                                            }
+                                                                                            i18 = 80;
+                                                                                        } else {
+                                                                                            f = 2.0f;
+                                                                                            str = str;
+                                                                                            fileInputStream = new FileInputStream(str);
+                                                                                            i22 = 120;
+                                                                                            paint = i30;
+                                                                                            fileInputStream.getChannel().position(paint);
+                                                                                            BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                                                                            file2 = null;
+                                                                                            i24 = options2.outWidth;
+                                                                                            if (i24 > 0) {
+                                                                                                z = false;
+                                                                                            } else {
+                                                                                                z = false;
+                                                                                            }
+                                                                                            if (fileInputStream != null) {
+                                                                                                fileInputStream.close();
+                                                                                            }
+                                                                                            i18 = 80;
+                                                                                        }
+                                                                                        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                                                                     }
+                                                                                    if (i10 == 0) {
+                                                                                        motionBackgroundDrawable = new ColorDrawable(i23);
+                                                                                    } else if (i8 != 0) {
+                                                                                        motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
+                                                                                    } else {
+                                                                                        i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                                                                        if (i27 == -1) {
+                                                                                            i27 = 45;
+                                                                                        }
+                                                                                        i17 = 90;
+                                                                                        motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                                                    }
+                                                                                    motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                                                    motionBackgroundDrawable.draw(canvas);
+                                                                                    i18 = i17;
+                                                                                    z = true;
+                                                                                    i22 = 120;
                                                                                 }
-                                                                                i16 = 80;
-                                                                            } catch (Throwable th6) {
-                                                                                th = th6;
-                                                                                fileInputStream = null;
+                                                                                if (!z) {
+                                                                                    ?? CreateDefaultWallpaper7 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                    CreateDefaultWallpaper7.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                                    CreateDefaultWallpaper7.draw(canvas);
+                                                                                }
+                                                                                paint2.setColor(iValueAt);
+                                                                                canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                                                                                if (Mutate != 0) {
+                                                                                    int intrinsicHeight13 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                                                                    Mutate.setBounds(13, intrinsicHeight13, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight13);
+                                                                                    Mutate.draw(canvas);
+                                                                                }
+                                                                                if (Mutate2 != 0) {
+                                                                                    int width13 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                                                                    int intrinsicHeight14 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                                                                    Mutate2.setBounds(width13, intrinsicHeight14, Mutate2.getIntrinsicWidth() + width13, Mutate2.getIntrinsicHeight() + intrinsicHeight14);
+                                                                                    Mutate2.draw(canvas);
+                                                                                }
+                                                                                r27[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                                                                r27[1].setTop(0, 560, 522, false, false);
+                                                                                r27[1].draw(canvas);
+                                                                                r27[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                                                                r27[1].setTop(430, 560, 522, false, false);
+                                                                                r27[1].draw(canvas);
+                                                                                r27[0].setBounds(20, 323, 399, 415);
+                                                                                r27[0].setTop(323, 560, 522, false, false);
+                                                                                r27[0].draw(canvas);
+                                                                                paint2.setColor(iValueAt3);
+                                                                                canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                                                                                if (Mutate3 != 0) {
+                                                                                    int height13 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                                                                    Mutate3.setBounds(22, height13, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height13);
+                                                                                    Mutate3.draw(canvas);
+                                                                                }
+                                                                                if (Mutate4 != 0) {
+                                                                                    int width14 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                                                                    int height14 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                                                                    Mutate4.setBounds(width14, height14, Mutate4.getIntrinsicWidth() + width14, Mutate4.getIntrinsicHeight() + height14);
+                                                                                    Mutate4.draw(canvas);
+                                                                                }
+                                                                                paint = 0;
+                                                                                paint = 0;
+                                                                                r3 = 0;
+                                                                                canvas.setBitmap(null);
+                                                                                File file12 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                                                                bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file12));
+                                                                                SharedConfig.saveConfig();
+                                                                                absolutePath = file12.getAbsolutePath();
+                                                                                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                                                             }
                                                                         } else {
-                                                                            options2 = new BitmapFactory.Options();
-                                                                            options2.inJustDecodeBounds = true;
-                                                                            if (TextUtils.isEmpty(strArr[0])) {
-                                                                                file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                                                                BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                                                fileInputStream = null;
-                                                                            } else {
-                                                                                fileInputStream = new FileInputStream(str);
-                                                                                fileInputStream.getChannel().position(i24);
-                                                                                BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                                                file2 = null;
-                                                                            }
-                                                                            i18 = options2.outWidth;
-                                                                            if (i18 > 0) {
-                                                                                z = false;
-                                                                            } else {
-                                                                                z = false;
-                                                                            }
-                                                                            if (fileInputStream != null) {
-                                                                                fileInputStream.close();
-                                                                            }
-                                                                            i16 = 80;
+                                                                            i7 = i3;
                                                                         }
+                                                                        try {
+                                                                            if (queryParameter.length() == 27) {
+                                                                                try {
+                                                                                    if (AndroidUtilities.isValidWallChar(queryParameter.charAt(20))) {
+                                                                                        i12 = Integer.parseInt(queryParameter.substring(21), 16) | (-16777216);
+                                                                                        i11 = i37;
+                                                                                        i13 = i7;
+                                                                                        try {
+                                                                                            themeAccent.backgroundGradientOverrideColor3 = i12;
+                                                                                            i14 = i12;
+                                                                                            i9 = i11;
+                                                                                            i8 = i13;
+                                                                                            i10 = i38;
+                                                                                        } catch (Exception e7) {
+                                                                                            e = e7;
+                                                                                            i4 = i12;
+                                                                                            i7 = i13;
+                                                                                            i37 = i11;
+                                                                                            FileLog.e(e);
+                                                                                            i8 = i7;
+                                                                                            i9 = i37;
+                                                                                            i10 = i38;
+                                                                                            i14 = i4;
+                                                                                        }
+                                                                                    }
+                                                                                } catch (Exception e8) {
+                                                                                    e = e8;
+                                                                                    i11 = i37;
+                                                                                }
+                                                                            }
+                                                                            i9 = i37;
+                                                                            i8 = i7;
+                                                                        } catch (Exception e9) {
+                                                                            e = e9;
+                                                                            i11 = i37;
+                                                                        }
+                                                                    } catch (Exception e10) {
+                                                                        e = e10;
+                                                                        i37 = i37;
+                                                                        i7 = i3;
+                                                                        FileLog.e(e);
+                                                                        i8 = i7;
+                                                                        i9 = i37;
+                                                                        i10 = i38;
+                                                                        i14 = i4;
+                                                                        Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
+                                                                        int i46 = i5;
+                                                                        Theme.setDrawableColor(i46, Mutate);
+                                                                        Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
+                                                                        Theme.setDrawableColor(i46, Mutate2);
+                                                                        Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
+                                                                        Theme.setDrawableColor(iValueAt4, Mutate3);
+                                                                        Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
+                                                                        Theme.setDrawableColor(iValueAt4, Mutate4);
+                                                                        messageDrawableArr = new MessageDrawable[2];
+                                                                        i16 = 0;
+                                                                        while (i16 < i15) {
+                                                                            MessageDrawable[] messageDrawableArr5 = messageDrawableArr;
+                                                                            if (i16 == 1) {
+                                                                                z3 = true;
+                                                                            } else {
+                                                                                z3 = false;
+                                                                            }
+                                                                            MessageDrawable messageDrawable4 = new MessageDrawable(z3) {
+                                                                                public final SparseIntArray val$colors;
+
+                                                                                public AnonymousClass12(final boolean z3) {
+                                                                                    super(2, z3, false, null);
+                                                                                    sparseIntArray = themeFileValues;
+                                                                                }
+
+                                                                                @Override
+                                                                                public final int getColor(int i47) {
+                                                                                    SparseIntArray sparseIntArray = sparseIntArray;
+                                                                                    int iIndexOfKey7 = sparseIntArray.indexOfKey(i47);
+                                                                                    return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i47];
+                                                                                }
+
+                                                                                @Override
+                                                                                public final int getCurrentColor(int i47) {
+                                                                                    return sparseIntArray.get(i47);
+                                                                                }
+                                                                            };
+                                                                            messageDrawableArr5[i16] = messageDrawable4;
+                                                                            if (i16 == 0) {
+                                                                                i28 = i6;
+                                                                            } else {
+                                                                                i28 = iValueAt6;
+                                                                            }
+                                                                            Theme.setDrawableColor(i28, messageDrawable4);
+                                                                            i16++;
+                                                                            messageDrawableArr = messageDrawableArr5;
+                                                                        }
+                                                                        ?? r28 = messageDrawableArr;
+                                                                        rectF = new RectF();
+                                                                        paint = 120;
+                                                                        paint = 120;
+                                                                        i17 = 80;
+                                                                        if (str != null) {
+                                                                            options = new BitmapFactory.Options();
+                                                                            options.inJustDecodeBounds = true;
+                                                                            BitmapFactory.decodeFile(str, options);
+                                                                            i19 = options.outWidth;
+                                                                            if (i19 > 0) {
+                                                                                fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
+                                                                                options.inSampleSize = 1;
+                                                                                if (fMin > 1.0f) {
+                                                                                    do {
+                                                                                        i21 = options.inSampleSize * 2;
+                                                                                        options.inSampleSize = i21;
+                                                                                    } while (i21 < fMin);
+                                                                                }
+                                                                                Bitmap.Config config4 = Bitmap.Config.ALPHA_8;
+                                                                                options.inPreferredConfig = config4;
+                                                                                options.inJustDecodeBounds = false;
+                                                                                bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
+                                                                                if (bitmapDecodeFile != null) {
+                                                                                    if (i8 != 0) {
+                                                                                        Paint paint9 = new Paint();
+                                                                                        paint9.setFilterBitmap(true);
+                                                                                        float fMin8 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin8, bitmapDecodeFile.getHeight() / fMin8);
+                                                                                        rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint9);
+                                                                                    } else {
+                                                                                        Paint paint10 = new Paint();
+                                                                                        paint10.setFilterBitmap(true);
+                                                                                        float fMin9 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin9, bitmapDecodeFile.getHeight() / fMin9);
+                                                                                        rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint10);
+                                                                                    }
+                                                                                    i18 = i17;
+                                                                                    z = true;
+                                                                                    i22 = 120;
+                                                                                }
+                                                                            }
+                                                                            str = str;
+                                                                            i22 = 120;
+                                                                            i18 = 80;
+                                                                            z = false;
+                                                                        } else {
+                                                                            i23 = i9;
+                                                                            if (i23 == 0) {
+                                                                                if (i30 < 0) {
+                                                                                }
+                                                                                options2 = new BitmapFactory.Options();
+                                                                                options2.inJustDecodeBounds = true;
+                                                                                if (TextUtils.isEmpty(strArr[0])) {
+                                                                                    f = 2.0f;
+                                                                                    File file13 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                                                                    BitmapFactory.decodeFile(file13.getAbsolutePath(), options2);
+                                                                                    file2 = file13;
+                                                                                    fileInputStream = null;
+                                                                                    i22 = 120;
+                                                                                    str = str;
+                                                                                    i24 = options2.outWidth;
+                                                                                    if (i24 > 0) {
+                                                                                        z = false;
+                                                                                    } else {
+                                                                                        z = false;
+                                                                                    }
+                                                                                    if (fileInputStream != null) {
+                                                                                        fileInputStream.close();
+                                                                                    }
+                                                                                    i18 = 80;
+                                                                                } else {
+                                                                                    f = 2.0f;
+                                                                                    str = str;
+                                                                                    fileInputStream = new FileInputStream(str);
+                                                                                    i22 = 120;
+                                                                                    paint = i30;
+                                                                                    fileInputStream.getChannel().position(paint);
+                                                                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                                                                    file2 = null;
+                                                                                    i24 = options2.outWidth;
+                                                                                    if (i24 > 0) {
+                                                                                        z = false;
+                                                                                    } else {
+                                                                                        z = false;
+                                                                                    }
+                                                                                    if (fileInputStream != null) {
+                                                                                        fileInputStream.close();
+                                                                                    }
+                                                                                    i18 = 80;
+                                                                                }
+                                                                                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                                            }
+                                                                            if (i10 == 0) {
+                                                                                motionBackgroundDrawable = new ColorDrawable(i23);
+                                                                            } else if (i8 != 0) {
+                                                                                motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
+                                                                            } else {
+                                                                                i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                                                                if (i27 == -1) {
+                                                                                    i27 = 45;
+                                                                                }
+                                                                                i17 = 90;
+                                                                                motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                                            }
+                                                                            motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                                            motionBackgroundDrawable.draw(canvas);
+                                                                            i18 = i17;
+                                                                            z = true;
+                                                                            i22 = 120;
+                                                                        }
+                                                                        if (!z) {
+                                                                            ?? CreateDefaultWallpaper8 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                            CreateDefaultWallpaper8.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                            CreateDefaultWallpaper8.draw(canvas);
+                                                                        }
+                                                                        paint2.setColor(iValueAt);
+                                                                        canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                                                                        if (Mutate != 0) {
+                                                                            int intrinsicHeight15 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                                                            Mutate.setBounds(13, intrinsicHeight15, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight15);
+                                                                            Mutate.draw(canvas);
+                                                                        }
+                                                                        if (Mutate2 != 0) {
+                                                                            int width15 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                                                            int intrinsicHeight16 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                                                            Mutate2.setBounds(width15, intrinsicHeight16, Mutate2.getIntrinsicWidth() + width15, Mutate2.getIntrinsicHeight() + intrinsicHeight16);
+                                                                            Mutate2.draw(canvas);
+                                                                        }
+                                                                        r28[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                                                        r28[1].setTop(0, 560, 522, false, false);
+                                                                        r28[1].draw(canvas);
+                                                                        r28[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                                                        r28[1].setTop(430, 560, 522, false, false);
+                                                                        r28[1].draw(canvas);
+                                                                        r28[0].setBounds(20, 323, 399, 415);
+                                                                        r28[0].setTop(323, 560, 522, false, false);
+                                                                        r28[0].draw(canvas);
+                                                                        paint2.setColor(iValueAt3);
+                                                                        canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                                                                        if (Mutate3 != 0) {
+                                                                            int height15 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                                                            Mutate3.setBounds(22, height15, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height15);
+                                                                            Mutate3.draw(canvas);
+                                                                        }
+                                                                        if (Mutate4 != 0) {
+                                                                            int width16 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                                                            int height16 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                                                            Mutate4.setBounds(width16, height16, Mutate4.getIntrinsicWidth() + width16, Mutate4.getIntrinsicHeight() + height16);
+                                                                            Mutate4.draw(canvas);
+                                                                        }
+                                                                        paint = 0;
+                                                                        paint = 0;
+                                                                        r3 = 0;
+                                                                        canvas.setBitmap(null);
+                                                                        File file14 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                                                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file14));
+                                                                        SharedConfig.saveConfig();
+                                                                        absolutePath = file14.getAbsolutePath();
                                                                         AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                                                     }
-                                                                    if (i8 == 0) {
-                                                                        motionBackgroundDrawable = new ColorDrawable(i17);
-                                                                    } else if (i9 != 0) {
-                                                                        motionBackgroundDrawable = new MotionBackgroundDrawable(i17, i8, i9, i7, true, 0, false);
-                                                                    } else {
-                                                                        i21 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
-                                                                        if (i21 == -1) {
-                                                                            i21 = 45;
-                                                                        }
-                                                                        i12 = 90;
-                                                                        motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i21, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120, new int[]{i17, i33});
-                                                                    }
-                                                                    motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                                    motionBackgroundDrawable.draw(canvas);
-                                                                    i16 = i12;
-                                                                    z = true;
-                                                                }
-                                                                if (!z) {
-                                                                    ?? CreateDefaultWallpaper2 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                                    CreateDefaultWallpaper2.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                                    CreateDefaultWallpaper2.draw(canvas);
-                                                                }
-                                                                paint5.setColor(i5);
-                                                                canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint5);
-                                                                if (Mutate != 0) {
-                                                                    int intrinsicHeight3 = (120 - Mutate.getIntrinsicHeight()) / 2;
-                                                                    Mutate.setBounds(13, intrinsicHeight3, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight3);
-                                                                    Mutate.draw(canvas);
-                                                                }
-                                                                if (Mutate2 != 0) {
-                                                                    int width3 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
-                                                                    int intrinsicHeight4 = (120 - Mutate2.getIntrinsicHeight()) / 2;
-                                                                    Mutate2.setBounds(width3, intrinsicHeight4, Mutate2.getIntrinsicWidth() + width3, Mutate2.getIntrinsicHeight() + intrinsicHeight4);
-                                                                    Mutate2.draw(canvas);
-                                                                }
-                                                                r15[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
-                                                                r15[1].setTop(0, 560, 522);
-                                                                r15[1].draw(canvas);
-                                                                r15[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
-                                                                r15[1].setTop(430, 560, 522);
-                                                                r15[1].draw(canvas);
-                                                                r15[0].setBounds(20, 323, 399, 415);
-                                                                r15[0].setTop(323, 560, 522);
-                                                                r15[0].draw(canvas);
-                                                                paint5.setColor(iValueAt3);
-                                                                canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint5);
-                                                                if (Mutate3 != 0) {
-                                                                    int height3 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
-                                                                    Mutate3.setBounds(22, height3, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height3);
-                                                                    Mutate3.draw(canvas);
-                                                                }
-                                                                if (Mutate4 != 0) {
-                                                                    int width4 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
-                                                                    int height4 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
-                                                                    Mutate4.setBounds(width4, height4, Mutate4.getIntrinsicWidth() + width4, Mutate4.getIntrinsicHeight() + height4);
-                                                                    Mutate4.draw(canvas);
-                                                                }
-                                                                paint2 = 0;
-                                                                paint2 = 0;
-                                                                r4 = 0;
-                                                                canvas.setBitmap(null);
-                                                                File file4 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
-                                                                bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i16, new FileOutputStream(file4));
-                                                                SharedConfig.saveConfig();
-                                                                absolutePath = file4.getAbsolutePath();
-                                                                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
-                                                            }
-                                                        }
-                                                        try {
-                                                            if (queryParameter.length() >= 20 && AndroidUtilities.isValidWallChar(queryParameter.charAt(13))) {
-                                                                int i37 = Integer.parseInt(queryParameter.substring(14, 20), 16) | (-16777216);
-                                                                try {
-                                                                    paint2.backgroundGradientOverrideColor2 = i37;
-                                                                    i3 = i37;
-                                                                    if (queryParameter.length() == 27) {
-                                                                    }
-                                                                    i6 = i35;
-                                                                } catch (Exception e5) {
-                                                                    e = e5;
-                                                                    i3 = i37;
-                                                                    i31 = i35;
+                                                                } catch (Exception e11) {
+                                                                    e = e11;
+                                                                    i6 = iValueAt5;
+                                                                    i7 = i3;
                                                                     FileLog.e(e);
-                                                                    i6 = i31;
-                                                                    i8 = i32;
-                                                                    i9 = i3;
-                                                                    i7 = i4;
+                                                                    i8 = i7;
+                                                                    i9 = i37;
+                                                                    i10 = i38;
+                                                                    i14 = i4;
                                                                     Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
-                                                                    Theme.setDrawableColor(iValueAt2, Mutate);
+                                                                    int i47 = i5;
+                                                                    Theme.setDrawableColor(i47, Mutate);
                                                                     Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
-                                                                    Theme.setDrawableColor(iValueAt2, Mutate2);
+                                                                    Theme.setDrawableColor(i47, Mutate2);
                                                                     Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
                                                                     Theme.setDrawableColor(iValueAt4, Mutate3);
                                                                     Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
                                                                     Theme.setDrawableColor(iValueAt4, Mutate4);
-                                                                    r15 = new MessageDrawable[2];
-                                                                    i11 = 0;
-                                                                    while (i11 < i10) {
-                                                                        Paint paint8 = paint;
-                                                                        if (i11 == 1) {
-                                                                            z2 = true;
+                                                                    messageDrawableArr = new MessageDrawable[2];
+                                                                    i16 = 0;
+                                                                    while (i16 < i15) {
+                                                                        MessageDrawable[] messageDrawableArr6 = messageDrawableArr;
+                                                                        if (i16 == 1) {
+                                                                            z3 = true;
                                                                         } else {
-                                                                            z2 = false;
+                                                                            z3 = false;
                                                                         }
-                                                                        Theme.AnonymousClass12 anonymousClass13 = new Theme.AnonymousClass12(z2, themeFileValues);
-                                                                        r15[i11] = anonymousClass13;
-                                                                        if (i11 == 0) {
-                                                                            i22 = iValueAt5;
+                                                                        MessageDrawable messageDrawable5 = new MessageDrawable(z3) {
+                                                                            public final SparseIntArray val$colors;
+
+                                                                            public AnonymousClass12(final boolean z3) {
+                                                                                super(2, z3, false, null);
+                                                                                sparseIntArray = themeFileValues;
+                                                                            }
+
+                                                                            @Override
+                                                                            public final int getColor(int i48) {
+                                                                                SparseIntArray sparseIntArray = sparseIntArray;
+                                                                                int iIndexOfKey7 = sparseIntArray.indexOfKey(i48);
+                                                                                return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i48];
+                                                                            }
+
+                                                                            @Override
+                                                                            public final int getCurrentColor(int i48) {
+                                                                                return sparseIntArray.get(i48);
+                                                                            }
+                                                                        };
+                                                                        messageDrawableArr6[i16] = messageDrawable5;
+                                                                        if (i16 == 0) {
+                                                                            i28 = i6;
                                                                         } else {
-                                                                            i22 = iValueAt6;
+                                                                            i28 = iValueAt6;
                                                                         }
-                                                                        Theme.setDrawableColor(i22, anonymousClass13);
-                                                                        i11++;
-                                                                        paint = paint8;
+                                                                        Theme.setDrawableColor(i28, messageDrawable5);
+                                                                        i16++;
+                                                                        messageDrawableArr = messageDrawableArr6;
                                                                     }
-                                                                    Paint paint9 = paint;
+                                                                    ?? r29 = messageDrawableArr;
                                                                     rectF = new RectF();
-                                                                    i12 = 80;
-                                                                    if (absolutePath2 != null) {
+                                                                    paint = 120;
+                                                                    paint = 120;
+                                                                    i17 = 80;
+                                                                    if (str != null) {
                                                                         options = new BitmapFactory.Options();
                                                                         options.inJustDecodeBounds = true;
-                                                                        BitmapFactory.decodeFile(absolutePath2, options);
-                                                                        i13 = options.outWidth;
-                                                                        if (i13 > 0) {
-                                                                            fMin = Math.min(i13 / 560.0f, i14 / 560.0f);
+                                                                        BitmapFactory.decodeFile(str, options);
+                                                                        i19 = options.outWidth;
+                                                                        if (i19 > 0) {
+                                                                            fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
                                                                             options.inSampleSize = 1;
                                                                             if (fMin > 1.0f) {
                                                                                 do {
-                                                                                    i15 = options.inSampleSize * 2;
-                                                                                    options.inSampleSize = i15;
-                                                                                } while (i15 < fMin);
+                                                                                    i21 = options.inSampleSize * 2;
+                                                                                    options.inSampleSize = i21;
+                                                                                } while (i21 < fMin);
                                                                             }
-                                                                            Bitmap.Config config2 = Bitmap.Config.ALPHA_8;
-                                                                            options.inPreferredConfig = config2;
+                                                                            Bitmap.Config config5 = Bitmap.Config.ALPHA_8;
+                                                                            options.inPreferredConfig = config5;
                                                                             options.inJustDecodeBounds = false;
-                                                                            bitmapDecodeFile = BitmapFactory.decodeFile(absolutePath2, options);
+                                                                            bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
                                                                             if (bitmapDecodeFile != null) {
-                                                                                if (i9 != 0) {
-                                                                                    Paint paint10 = new Paint();
-                                                                                    paint10.setFilterBitmap(true);
-                                                                                    float fMin4 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin4, bitmapDecodeFile.getHeight() / fMin4);
-                                                                                    rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                                                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint10);
-                                                                                } else {
+                                                                                if (i8 != 0) {
                                                                                     Paint paint11 = new Paint();
                                                                                     paint11.setFilterBitmap(true);
-                                                                                    float fMin5 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin5, bitmapDecodeFile.getHeight() / fMin5);
+                                                                                    float fMin10 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin10, bitmapDecodeFile.getHeight() / fMin10);
                                                                                     rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
                                                                                     canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint11);
+                                                                                } else {
+                                                                                    Paint paint12 = new Paint();
+                                                                                    paint12.setFilterBitmap(true);
+                                                                                    float fMin11 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin11, bitmapDecodeFile.getHeight() / fMin11);
+                                                                                    rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint12);
                                                                                 }
-                                                                                i16 = i12;
+                                                                                i18 = i17;
                                                                                 z = true;
+                                                                                i22 = 120;
                                                                             }
                                                                         }
-                                                                        i16 = 80;
+                                                                        str = str;
+                                                                        i22 = 120;
+                                                                        i18 = 80;
                                                                         z = false;
                                                                     } else {
-                                                                        i17 = i6;
-                                                                        if (i17 != 0) {
-                                                                            if (i24 < 0) {
-                                                                                options2 = new BitmapFactory.Options();
-                                                                                options2.inJustDecodeBounds = true;
-                                                                                if (TextUtils.isEmpty(strArr[0])) {
-                                                                                    file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                                                                    BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                                                    fileInputStream = null;
-                                                                                } else {
-                                                                                    fileInputStream = new FileInputStream(str);
-                                                                                    fileInputStream.getChannel().position(i24);
-                                                                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                                                    file2 = null;
-                                                                                }
-                                                                                i18 = options2.outWidth;
-                                                                                if (i18 > 0) {
+                                                                        i23 = i9;
+                                                                        if (i23 == 0) {
+                                                                            if (i30 < 0) {
+                                                                            }
+                                                                            options2 = new BitmapFactory.Options();
+                                                                            options2.inJustDecodeBounds = true;
+                                                                            if (TextUtils.isEmpty(strArr[0])) {
+                                                                                f = 2.0f;
+                                                                                File file15 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                                                                BitmapFactory.decodeFile(file15.getAbsolutePath(), options2);
+                                                                                file2 = file15;
+                                                                                fileInputStream = null;
+                                                                                i22 = 120;
+                                                                                str = str;
+                                                                                i24 = options2.outWidth;
+                                                                                if (i24 > 0) {
                                                                                     z = false;
                                                                                 } else {
                                                                                     z = false;
@@ -21371,22 +22295,18 @@ public class MessagesController extends BaseController implements NotificationCe
                                                                                 if (fileInputStream != null) {
                                                                                     fileInputStream.close();
                                                                                 }
-                                                                                i16 = 80;
+                                                                                i18 = 80;
                                                                             } else {
-                                                                                options2 = new BitmapFactory.Options();
-                                                                                options2.inJustDecodeBounds = true;
-                                                                                if (TextUtils.isEmpty(strArr[0])) {
-                                                                                    file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                                                                    BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                                                    fileInputStream = null;
-                                                                                } else {
-                                                                                    fileInputStream = new FileInputStream(str);
-                                                                                    fileInputStream.getChannel().position(i24);
-                                                                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                                                    file2 = null;
-                                                                                }
-                                                                                i18 = options2.outWidth;
-                                                                                if (i18 > 0) {
+                                                                                f = 2.0f;
+                                                                                str = str;
+                                                                                fileInputStream = new FileInputStream(str);
+                                                                                i22 = 120;
+                                                                                paint = i30;
+                                                                                fileInputStream.getChannel().position(paint);
+                                                                                BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                                                                file2 = null;
+                                                                                i24 = options2.outWidth;
+                                                                                if (i24 > 0) {
                                                                                     z = false;
                                                                                 } else {
                                                                                     z = false;
@@ -21394,635 +22314,766 @@ public class MessagesController extends BaseController implements NotificationCe
                                                                                 if (fileInputStream != null) {
                                                                                     fileInputStream.close();
                                                                                 }
-                                                                                i16 = 80;
+                                                                                i18 = 80;
                                                                             }
                                                                             AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                                                         }
-                                                                        if (i8 == 0) {
-                                                                            motionBackgroundDrawable = new ColorDrawable(i17);
-                                                                        } else if (i9 != 0) {
-                                                                            motionBackgroundDrawable = new MotionBackgroundDrawable(i17, i8, i9, i7, true, 0, false);
+                                                                        if (i10 == 0) {
+                                                                            motionBackgroundDrawable = new ColorDrawable(i23);
+                                                                        } else if (i8 != 0) {
+                                                                            motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
                                                                         } else {
-                                                                            i21 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
-                                                                            if (i21 == -1) {
-                                                                                i21 = 45;
+                                                                            i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                                                            if (i27 == -1) {
+                                                                                i27 = 45;
                                                                             }
-                                                                            i12 = 90;
-                                                                            motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i21, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120, new int[]{i17, i33});
+                                                                            i17 = 90;
+                                                                            motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                                                                         }
                                                                         motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                                                                         motionBackgroundDrawable.draw(canvas);
-                                                                        i16 = i12;
+                                                                        i18 = i17;
                                                                         z = true;
+                                                                        i22 = 120;
                                                                     }
                                                                     if (!z) {
-                                                                        ?? CreateDefaultWallpaper3 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                                        CreateDefaultWallpaper3.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                                        CreateDefaultWallpaper3.draw(canvas);
+                                                                        ?? CreateDefaultWallpaper9 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                        CreateDefaultWallpaper9.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                                                        CreateDefaultWallpaper9.draw(canvas);
                                                                     }
-                                                                    paint9.setColor(i5);
-                                                                    canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint9);
+                                                                    paint2.setColor(iValueAt);
+                                                                    canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
                                                                     if (Mutate != 0) {
-                                                                        int intrinsicHeight5 = (120 - Mutate.getIntrinsicHeight()) / 2;
-                                                                        Mutate.setBounds(13, intrinsicHeight5, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight5);
+                                                                        int intrinsicHeight17 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                                                        Mutate.setBounds(13, intrinsicHeight17, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight17);
                                                                         Mutate.draw(canvas);
                                                                     }
                                                                     if (Mutate2 != 0) {
-                                                                        int width5 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
-                                                                        int intrinsicHeight6 = (120 - Mutate2.getIntrinsicHeight()) / 2;
-                                                                        Mutate2.setBounds(width5, intrinsicHeight6, Mutate2.getIntrinsicWidth() + width5, Mutate2.getIntrinsicHeight() + intrinsicHeight6);
+                                                                        int width17 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                                                        int intrinsicHeight18 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                                                        Mutate2.setBounds(width17, intrinsicHeight18, Mutate2.getIntrinsicWidth() + width17, Mutate2.getIntrinsicHeight() + intrinsicHeight18);
                                                                         Mutate2.draw(canvas);
                                                                     }
-                                                                    r15[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
-                                                                    r15[1].setTop(0, 560, 522);
-                                                                    r15[1].draw(canvas);
-                                                                    r15[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
-                                                                    r15[1].setTop(430, 560, 522);
-                                                                    r15[1].draw(canvas);
-                                                                    r15[0].setBounds(20, 323, 399, 415);
-                                                                    r15[0].setTop(323, 560, 522);
-                                                                    r15[0].draw(canvas);
-                                                                    paint9.setColor(iValueAt3);
-                                                                    canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint9);
+                                                                    r29[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                                                    r29[1].setTop(0, 560, 522, false, false);
+                                                                    r29[1].draw(canvas);
+                                                                    r29[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                                                    r29[1].setTop(430, 560, 522, false, false);
+                                                                    r29[1].draw(canvas);
+                                                                    r29[0].setBounds(20, 323, 399, 415);
+                                                                    r29[0].setTop(323, 560, 522, false, false);
+                                                                    r29[0].draw(canvas);
+                                                                    paint2.setColor(iValueAt3);
+                                                                    canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
                                                                     if (Mutate3 != 0) {
-                                                                        int height5 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
-                                                                        Mutate3.setBounds(22, height5, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height5);
+                                                                        int height17 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                                                        Mutate3.setBounds(22, height17, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height17);
                                                                         Mutate3.draw(canvas);
                                                                     }
                                                                     if (Mutate4 != 0) {
-                                                                        int width6 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
-                                                                        int height6 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
-                                                                        Mutate4.setBounds(width6, height6, Mutate4.getIntrinsicWidth() + width6, Mutate4.getIntrinsicHeight() + height6);
+                                                                        int width18 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                                                        int height18 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                                                        Mutate4.setBounds(width18, height18, Mutate4.getIntrinsicWidth() + width18, Mutate4.getIntrinsicHeight() + height18);
                                                                         Mutate4.draw(canvas);
                                                                     }
-                                                                    paint2 = 0;
-                                                                    paint2 = 0;
-                                                                    r4 = 0;
+                                                                    paint = 0;
+                                                                    paint = 0;
+                                                                    r3 = 0;
                                                                     canvas.setBitmap(null);
-                                                                    File file5 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
-                                                                    bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i16, new FileOutputStream(file5));
+                                                                    File file16 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                                                    bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file16));
                                                                     SharedConfig.saveConfig();
-                                                                    absolutePath = file5.getAbsolutePath();
+                                                                    absolutePath = file16.getAbsolutePath();
                                                                     AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                                                 }
-                                                                i8 = i32;
-                                                                i9 = i3;
-                                                                i7 = i4;
-                                                            } else if (queryParameter.length() == 27 || !AndroidUtilities.isValidWallChar(queryParameter.charAt(20))) {
-                                                                i6 = i35;
-                                                                i8 = i32;
-                                                                i9 = i3;
-                                                                i7 = i4;
+                                                                i10 = i38;
+                                                                i14 = i4;
                                                             } else {
-                                                                int i38 = Integer.parseInt(queryParameter.substring(21), 16) | (-16777216);
-                                                                try {
-                                                                    paint2.backgroundGradientOverrideColor3 = i38;
-                                                                    i7 = i38;
-                                                                    i6 = i35;
-                                                                    i8 = i32;
-                                                                    i9 = i3;
-                                                                } catch (Exception e6) {
-                                                                    e = e6;
-                                                                    i4 = i38;
-                                                                    i31 = i35;
-                                                                    FileLog.e(e);
-                                                                    i6 = i31;
-                                                                    i8 = i32;
-                                                                    i9 = i3;
-                                                                    i7 = i4;
-                                                                }
-                                                            }
-                                                        } catch (Exception e7) {
-                                                            e = e7;
-                                                        }
-                                                    } catch (Exception e8) {
-                                                        e = e8;
-                                                        paint = paint3;
-                                                        i5 = iValueAt;
-                                                    }
-                                                } catch (Exception e9) {
-                                                    e = e9;
-                                                    paint = paint3;
-                                                    i5 = iValueAt;
-                                                    FileLog.e(e);
-                                                    i6 = i31;
-                                                    i8 = i32;
-                                                    i9 = i3;
-                                                    i7 = i4;
-                                                    Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
-                                                    Theme.setDrawableColor(iValueAt2, Mutate);
-                                                    Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
-                                                    Theme.setDrawableColor(iValueAt2, Mutate2);
-                                                    Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
-                                                    Theme.setDrawableColor(iValueAt4, Mutate3);
-                                                    Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
-                                                    Theme.setDrawableColor(iValueAt4, Mutate4);
-                                                    r15 = new MessageDrawable[2];
-                                                    i11 = 0;
-                                                    while (i11 < i10) {
-                                                        Paint paint12 = paint;
-                                                        if (i11 == 1) {
-                                                            z2 = true;
-                                                        } else {
-                                                            z2 = false;
-                                                        }
-                                                        Theme.AnonymousClass12 anonymousClass14 = new Theme.AnonymousClass12(z2, themeFileValues);
-                                                        r15[i11] = anonymousClass14;
-                                                        if (i11 == 0) {
-                                                            i22 = iValueAt5;
-                                                        } else {
-                                                            i22 = iValueAt6;
-                                                        }
-                                                        Theme.setDrawableColor(i22, anonymousClass14);
-                                                        i11++;
-                                                        paint = paint12;
-                                                    }
-                                                    Paint paint13 = paint;
-                                                    rectF = new RectF();
-                                                    i12 = 80;
-                                                    if (absolutePath2 != null) {
-                                                        options = new BitmapFactory.Options();
-                                                        options.inJustDecodeBounds = true;
-                                                        BitmapFactory.decodeFile(absolutePath2, options);
-                                                        i13 = options.outWidth;
-                                                        if (i13 > 0) {
-                                                            fMin = Math.min(i13 / 560.0f, i14 / 560.0f);
-                                                            options.inSampleSize = 1;
-                                                            if (fMin > 1.0f) {
-                                                                do {
-                                                                    i15 = options.inSampleSize * 2;
-                                                                    options.inSampleSize = i15;
-                                                                } while (i15 < fMin);
-                                                            }
-                                                            Bitmap.Config config3 = Bitmap.Config.ALPHA_8;
-                                                            options.inPreferredConfig = config3;
-                                                            options.inJustDecodeBounds = false;
-                                                            bitmapDecodeFile = BitmapFactory.decodeFile(absolutePath2, options);
-                                                            if (bitmapDecodeFile != null) {
-                                                                if (i9 != 0) {
-                                                                    Paint paint14 = new Paint();
-                                                                    paint14.setFilterBitmap(true);
-                                                                    float fMin6 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin6, bitmapDecodeFile.getHeight() / fMin6);
-                                                                    rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint14);
+                                                                i6 = iValueAt5;
+                                                                if (queryParameter.length() < 20) {
+                                                                    i7 = i3;
+                                                                } else if (AndroidUtilities.isValidWallChar(queryParameter.charAt(13))) {
+                                                                    i7 = Integer.parseInt(queryParameter.substring(14, 20), 16) | (-16777216);
+                                                                    themeAccent.backgroundGradientOverrideColor2 = i7;
                                                                 } else {
-                                                                    Paint paint15 = new Paint();
-                                                                    paint15.setFilterBitmap(true);
-                                                                    float fMin7 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin7, bitmapDecodeFile.getHeight() / fMin7);
-                                                                    rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint15);
+                                                                    i7 = i3;
                                                                 }
-                                                                i16 = i12;
-                                                                z = true;
+                                                                if (queryParameter.length() == 27) {
+                                                                    if (AndroidUtilities.isValidWallChar(queryParameter.charAt(20))) {
+                                                                        i12 = Integer.parseInt(queryParameter.substring(21), 16) | (-16777216);
+                                                                        i11 = i37;
+                                                                        i13 = i7;
+                                                                        themeAccent.backgroundGradientOverrideColor3 = i12;
+                                                                        i14 = i12;
+                                                                        i9 = i11;
+                                                                        i8 = i13;
+                                                                        i10 = i38;
+                                                                    }
+                                                                }
+                                                                i9 = i37;
+                                                                i8 = i7;
+                                                                i10 = i38;
+                                                                i14 = i4;
                                                             }
+                                                        } catch (Exception e12) {
+                                                            e = e12;
+                                                            i6 = iValueAt5;
                                                         }
-                                                        i16 = 80;
-                                                        z = false;
+                                                        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                    }
+                                                    i5 = iValueAt2;
+                                                    i6 = iValueAt5;
+                                                    i9 = i37;
+                                                    i10 = i38;
+                                                    i8 = i3;
+                                                    i14 = i4;
+                                                } catch (Exception e13) {
+                                                    e = e13;
+                                                    i5 = iValueAt2;
+                                                    i6 = iValueAt5;
+                                                }
+                                            } catch (Throwable th9) {
+                                                th = th9;
+                                                str = str;
+                                                paint = 0;
+                                                FileLog.e(th);
+                                                r3 = paint;
+                                                absolutePath = r3;
+                                                AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                            }
+                                        }
+                                        Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
+                                        int i48 = i5;
+                                        Theme.setDrawableColor(i48, Mutate);
+                                        Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
+                                        Theme.setDrawableColor(i48, Mutate2);
+                                        Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
+                                        Theme.setDrawableColor(iValueAt4, Mutate3);
+                                        Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
+                                        Theme.setDrawableColor(iValueAt4, Mutate4);
+                                        messageDrawableArr = new MessageDrawable[2];
+                                        i16 = 0;
+                                        while (i16 < i15) {
+                                            MessageDrawable[] messageDrawableArr7 = messageDrawableArr;
+                                            if (i16 == 1) {
+                                                z3 = true;
+                                            } else {
+                                                z3 = false;
+                                            }
+                                            MessageDrawable messageDrawable6 = new MessageDrawable(z3) {
+                                                public final SparseIntArray val$colors;
+
+                                                public AnonymousClass12(final boolean z3) {
+                                                    super(2, z3, false, null);
+                                                    sparseIntArray = themeFileValues;
+                                                }
+
+                                                @Override
+                                                public final int getColor(int i49) {
+                                                    SparseIntArray sparseIntArray = sparseIntArray;
+                                                    int iIndexOfKey7 = sparseIntArray.indexOfKey(i49);
+                                                    return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i49];
+                                                }
+
+                                                @Override
+                                                public final int getCurrentColor(int i49) {
+                                                    return sparseIntArray.get(i49);
+                                                }
+                                            };
+                                            messageDrawableArr7[i16] = messageDrawable6;
+                                            if (i16 == 0) {
+                                                i28 = i6;
+                                            } else {
+                                                i28 = iValueAt6;
+                                            }
+                                            Theme.setDrawableColor(i28, messageDrawable6);
+                                            i16++;
+                                            messageDrawableArr = messageDrawableArr7;
+                                        }
+                                        ?? r210 = messageDrawableArr;
+                                        rectF = new RectF();
+                                        paint = 120;
+                                        paint = 120;
+                                        i17 = 80;
+                                        if (str != null) {
+                                            options = new BitmapFactory.Options();
+                                            options.inJustDecodeBounds = true;
+                                            BitmapFactory.decodeFile(str, options);
+                                            i19 = options.outWidth;
+                                            if (i19 > 0 && (i20 = options.outHeight) > 0) {
+                                                fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
+                                                options.inSampleSize = 1;
+                                                if (fMin > 1.0f) {
+                                                    do {
+                                                        i21 = options.inSampleSize * 2;
+                                                        options.inSampleSize = i21;
+                                                    } while (i21 < fMin);
+                                                }
+                                                Bitmap.Config config6 = Bitmap.Config.ALPHA_8;
+                                                options.inPreferredConfig = config6;
+                                                options.inJustDecodeBounds = false;
+                                                bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
+                                                if (bitmapDecodeFile != null) {
+                                                    if (i8 != 0 || themeAccent == null) {
+                                                        Paint paint13 = new Paint();
+                                                        paint13.setFilterBitmap(true);
+                                                        float fMin12 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin12, bitmapDecodeFile.getHeight() / fMin12);
+                                                        rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint13);
                                                     } else {
-                                                        i17 = i6;
-                                                        if (i17 != 0) {
-                                                            if (i24 < 0) {
-                                                                options2 = new BitmapFactory.Options();
-                                                                options2.inJustDecodeBounds = true;
-                                                                if (TextUtils.isEmpty(strArr[0])) {
-                                                                    file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                                                    BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                                    fileInputStream = null;
-                                                                } else {
-                                                                    fileInputStream = new FileInputStream(str);
-                                                                    fileInputStream.getChannel().position(i24);
-                                                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                                    file2 = null;
-                                                                }
-                                                                i18 = options2.outWidth;
-                                                                if (i18 > 0) {
-                                                                    z = false;
-                                                                } else {
-                                                                    z = false;
-                                                                }
-                                                                if (fileInputStream != null) {
-                                                                    fileInputStream.close();
-                                                                }
-                                                                i16 = 80;
-                                                            } else {
-                                                                options2 = new BitmapFactory.Options();
-                                                                options2.inJustDecodeBounds = true;
-                                                                if (TextUtils.isEmpty(strArr[0])) {
-                                                                    file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                                                    BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                                    fileInputStream = null;
-                                                                } else {
-                                                                    fileInputStream = new FileInputStream(str);
-                                                                    fileInputStream.getChannel().position(i24);
-                                                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                                    file2 = null;
-                                                                }
-                                                                i18 = options2.outWidth;
-                                                                if (i18 > 0) {
-                                                                    z = false;
-                                                                } else {
-                                                                    z = false;
-                                                                }
-                                                                if (fileInputStream != null) {
-                                                                    fileInputStream.close();
-                                                                }
-                                                                i16 = 80;
+                                                        ?? motionBackgroundDrawable2 = new MotionBackgroundDrawable(i9, i10, i8, i14, true);
+                                                        if (bitmapCreateBitmap != null && bitmapCreateBitmap.getConfig() != config6) {
+                                                            Bitmap bitmapCopy = bitmapCreateBitmap.copy(config6, false);
+                                                            try {
+                                                                bitmapCreateBitmap.recycle();
+                                                                bitmapCreateBitmap = bitmapCopy;
+                                                            } catch (Throwable th10) {
+                                                                th = th10;
+                                                                bitmapCreateBitmap = bitmapCopy;
+                                                                FileLog.e(th);
+                                                                i18 = 80;
+                                                                z = false;
                                                             }
-                                                            AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                                         }
-                                                        if (i8 == 0) {
-                                                            motionBackgroundDrawable = new ColorDrawable(i17);
-                                                        } else if (i9 != 0) {
-                                                            motionBackgroundDrawable = new MotionBackgroundDrawable(i17, i8, i9, i7, true, 0, false);
-                                                        } else {
-                                                            i21 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
-                                                            if (i21 == -1) {
-                                                                i21 = 45;
-                                                            }
-                                                            i12 = 90;
-                                                            motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i21, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120, new int[]{i17, i33});
-                                                        }
-                                                        motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                        motionBackgroundDrawable.draw(canvas);
-                                                        i16 = i12;
-                                                        z = true;
+                                                        motionBackgroundDrawable2.setPatternBitmap((int) (themeAccent.patternIntensity * 100.0f), bitmapDecodeFile);
+                                                        motionBackgroundDrawable2.setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
+                                                        motionBackgroundDrawable2.draw(canvas);
                                                     }
-                                                    if (!z) {
-                                                        ?? CreateDefaultWallpaper4 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                        CreateDefaultWallpaper4.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                                        CreateDefaultWallpaper4.draw(canvas);
-                                                    }
-                                                    paint13.setColor(i5);
-                                                    canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint13);
-                                                    if (Mutate != 0) {
-                                                        int intrinsicHeight7 = (120 - Mutate.getIntrinsicHeight()) / 2;
-                                                        Mutate.setBounds(13, intrinsicHeight7, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight7);
-                                                        Mutate.draw(canvas);
-                                                    }
-                                                    if (Mutate2 != 0) {
-                                                        int width7 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
-                                                        int intrinsicHeight8 = (120 - Mutate2.getIntrinsicHeight()) / 2;
-                                                        Mutate2.setBounds(width7, intrinsicHeight8, Mutate2.getIntrinsicWidth() + width7, Mutate2.getIntrinsicHeight() + intrinsicHeight8);
-                                                        Mutate2.draw(canvas);
-                                                    }
-                                                    r15[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
-                                                    r15[1].setTop(0, 560, 522);
-                                                    r15[1].draw(canvas);
-                                                    r15[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
-                                                    r15[1].setTop(430, 560, 522);
-                                                    r15[1].draw(canvas);
-                                                    r15[0].setBounds(20, 323, 399, 415);
-                                                    r15[0].setTop(323, 560, 522);
-                                                    r15[0].draw(canvas);
-                                                    paint13.setColor(iValueAt3);
-                                                    canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint13);
-                                                    if (Mutate3 != 0) {
-                                                        int height7 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
-                                                        Mutate3.setBounds(22, height7, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height7);
-                                                        Mutate3.draw(canvas);
-                                                    }
-                                                    if (Mutate4 != 0) {
-                                                        int width8 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
-                                                        int height8 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
-                                                        Mutate4.setBounds(width8, height8, Mutate4.getIntrinsicWidth() + width8, Mutate4.getIntrinsicHeight() + height8);
-                                                        Mutate4.draw(canvas);
-                                                    }
-                                                    paint2 = 0;
-                                                    paint2 = 0;
-                                                    r4 = 0;
-                                                    canvas.setBitmap(null);
-                                                    File file6 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
-                                                    bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i16, new FileOutputStream(file6));
-                                                    SharedConfig.saveConfig();
-                                                    absolutePath = file6.getAbsolutePath();
-                                                    AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                    i18 = i17;
+                                                    z = true;
+                                                    i22 = 120;
                                                 }
                                             }
-                                        } catch (Exception e10) {
-                                            e = e10;
-                                            strArr = strArr2;
+                                            str = str;
+                                            i22 = 120;
+                                            i18 = 80;
+                                            z = false;
+                                        } else {
+                                            i23 = i9;
+                                            if (i23 == 0) {
+                                                if (i10 == 0) {
+                                                    motionBackgroundDrawable = new ColorDrawable(i23);
+                                                } else if (i8 != 0) {
+                                                    motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
+                                                } else {
+                                                    i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                                    if (i27 == -1) {
+                                                        i27 = 45;
+                                                    }
+                                                    i17 = 90;
+                                                    motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                }
+                                                motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
+                                                motionBackgroundDrawable.draw(canvas);
+                                                i18 = i17;
+                                                z = true;
+                                                i22 = 120;
+                                            } else {
+                                                if (i30 < 0 || !TextUtils.isEmpty(strArr[0])) {
+                                                    options2 = new BitmapFactory.Options();
+                                                    options2.inJustDecodeBounds = true;
+                                                    if (TextUtils.isEmpty(strArr[0])) {
+                                                        f = 2.0f;
+                                                        File file17 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                                        BitmapFactory.decodeFile(file17.getAbsolutePath(), options2);
+                                                        file2 = file17;
+                                                        fileInputStream = null;
+                                                        i22 = 120;
+                                                        str = str;
+                                                        i24 = options2.outWidth;
+                                                        if (i24 > 0 || (i25 = options2.outHeight) <= 0) {
+                                                            z = false;
+                                                        } else {
+                                                            float fMin13 = Math.min(i24 / 560.0f, i25 / 560.0f);
+                                                            options2.inSampleSize = 1;
+                                                            if (fMin13 > 1.0f) {
+                                                                do {
+                                                                    i26 = options2.inSampleSize * 2;
+                                                                    options2.inSampleSize = i26;
+                                                                } while (i26 < fMin13);
+                                                            }
+                                                            options2.inJustDecodeBounds = false;
+                                                            if (file2 != null) {
+                                                                bitmapDecodeStream = BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
+                                                            } else {
+                                                                fileInputStream.getChannel().position(i30);
+                                                                bitmapDecodeStream = BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                                            }
+                                                            if (bitmapDecodeStream != null) {
+                                                                paint = new Paint();
+                                                                paint.setFilterBitmap(true);
+                                                                float fMin14 = Math.min(bitmapDecodeStream.getWidth() / 560.0f, bitmapDecodeStream.getHeight() / 560.0f);
+                                                                rectF.set(0.0f, 0.0f, bitmapDecodeStream.getWidth() / fMin14, bitmapDecodeStream.getHeight() / fMin14);
+                                                                rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / f, (bitmapCreateBitmap.getHeight() - rectF.height()) / f);
+                                                                canvas.drawBitmap(bitmapDecodeStream, null, rectF, paint);
+                                                                z = true;
+                                                            } else {
+                                                                z = false;
+                                                            }
+                                                        }
+                                                        if (fileInputStream != null) {
+                                                            fileInputStream.close();
+                                                        }
+                                                        i18 = 80;
+                                                    } else {
+                                                        f = 2.0f;
+                                                        str = str;
+                                                        fileInputStream = new FileInputStream(str);
+                                                        i22 = 120;
+                                                        paint = i30;
+                                                        fileInputStream.getChannel().position(paint);
+                                                        BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                                        file2 = null;
+                                                        i24 = options2.outWidth;
+                                                        if (i24 > 0) {
+                                                            z = false;
+                                                        } else {
+                                                            z = false;
+                                                        }
+                                                        if (fileInputStream != null) {
+                                                            fileInputStream.close();
+                                                        }
+                                                        i18 = 80;
+                                                    }
+                                                    AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                                }
+                                                str = str;
+                                                i22 = 120;
+                                                i18 = 80;
+                                                z = false;
+                                            }
                                         }
+                                        if (!z) {
+                                            ?? CreateDefaultWallpaper10 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                            CreateDefaultWallpaper10.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                            CreateDefaultWallpaper10.draw(canvas);
+                                        }
+                                        paint2.setColor(iValueAt);
+                                        canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                                        if (Mutate != 0) {
+                                            int intrinsicHeight19 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                            Mutate.setBounds(13, intrinsicHeight19, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight19);
+                                            Mutate.draw(canvas);
+                                        }
+                                        if (Mutate2 != 0) {
+                                            int width19 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                            int intrinsicHeight110 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                            Mutate2.setBounds(width19, intrinsicHeight110, Mutate2.getIntrinsicWidth() + width19, Mutate2.getIntrinsicHeight() + intrinsicHeight110);
+                                            Mutate2.draw(canvas);
+                                        }
+                                        r210[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                        r210[1].setTop(0, 560, 522, false, false);
+                                        r210[1].draw(canvas);
+                                        r210[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                        r210[1].setTop(430, 560, 522, false, false);
+                                        r210[1].draw(canvas);
+                                        r210[0].setBounds(20, 323, 399, 415);
+                                        r210[0].setTop(323, 560, 522, false, false);
+                                        r210[0].draw(canvas);
+                                        paint2.setColor(iValueAt3);
+                                        canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                                        if (Mutate3 != 0) {
+                                            int height19 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                            Mutate3.setBounds(22, height19, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height19);
+                                            Mutate3.draw(canvas);
+                                        }
+                                        if (Mutate4 != 0) {
+                                            int width110 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                            int height110 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                            Mutate4.setBounds(width110, height110, Mutate4.getIntrinsicWidth() + width110, Mutate4.getIntrinsicHeight() + height110);
+                                            Mutate4.draw(canvas);
+                                        }
+                                        paint = 0;
+                                        paint = 0;
+                                        r3 = 0;
+                                        canvas.setBitmap(null);
+                                        File file18 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file18));
+                                        SharedConfig.saveConfig();
+                                        absolutePath = file18.getAbsolutePath();
+                                        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                                    }
+                                    if (i4 == 0) {
+                                        i4 = i40;
+                                    }
+                                    if (TextUtils.isEmpty(strArr[0])) {
+                                        String queryParameter2 = Uri.parse(strArr[0]).getQueryParameter("bg_color");
+                                        if (themeAccent == null) {
+                                        }
+                                        i5 = iValueAt2;
+                                        i6 = iValueAt5;
+                                        i9 = i37;
+                                        i10 = i38;
+                                        i8 = i3;
+                                        i14 = i4;
+                                    } else {
+                                        i5 = iValueAt2;
+                                        i6 = iValueAt5;
+                                        i9 = i37;
+                                        i10 = i38;
+                                        i8 = i3;
+                                        i14 = i4;
                                     }
                                     Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
-                                    Theme.setDrawableColor(iValueAt2, Mutate);
+                                    int i49 = i5;
+                                    Theme.setDrawableColor(i49, Mutate);
                                     Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
-                                    Theme.setDrawableColor(iValueAt2, Mutate2);
+                                    Theme.setDrawableColor(i49, Mutate2);
                                     Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
                                     Theme.setDrawableColor(iValueAt4, Mutate3);
                                     Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
                                     Theme.setDrawableColor(iValueAt4, Mutate4);
-                                    r15 = new MessageDrawable[2];
-                                    i11 = 0;
-                                    while (i11 < i10) {
-                                        Paint paint16 = paint;
-                                        if (i11 == 1) {
-                                            z2 = true;
+                                    messageDrawableArr = new MessageDrawable[2];
+                                    i16 = 0;
+                                    while (i16 < i15) {
+                                        MessageDrawable[] messageDrawableArr8 = messageDrawableArr;
+                                        if (i16 == 1) {
+                                            z3 = true;
                                         } else {
-                                            z2 = false;
+                                            z3 = false;
                                         }
-                                        Theme.AnonymousClass12 anonymousClass15 = new Theme.AnonymousClass12(z2, themeFileValues);
-                                        r15[i11] = anonymousClass15;
-                                        if (i11 == 0) {
-                                            i22 = iValueAt5;
+                                        MessageDrawable messageDrawable7 = new MessageDrawable(z3) {
+                                            public final SparseIntArray val$colors;
+
+                                            public AnonymousClass12(final boolean z3) {
+                                                super(2, z3, false, null);
+                                                sparseIntArray = themeFileValues;
+                                            }
+
+                                            @Override
+                                            public final int getColor(int i410) {
+                                                SparseIntArray sparseIntArray = sparseIntArray;
+                                                int iIndexOfKey7 = sparseIntArray.indexOfKey(i410);
+                                                return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i410];
+                                            }
+
+                                            @Override
+                                            public final int getCurrentColor(int i410) {
+                                                return sparseIntArray.get(i410);
+                                            }
+                                        };
+                                        messageDrawableArr8[i16] = messageDrawable7;
+                                        if (i16 == 0) {
+                                            i28 = i6;
                                         } else {
-                                            i22 = iValueAt6;
+                                            i28 = iValueAt6;
                                         }
-                                        Theme.setDrawableColor(i22, anonymousClass15);
-                                        i11++;
-                                        paint = paint16;
+                                        Theme.setDrawableColor(i28, messageDrawable7);
+                                        i16++;
+                                        messageDrawableArr = messageDrawableArr8;
                                     }
-                                    Paint paint17 = paint;
+                                    ?? r211 = messageDrawableArr;
                                     rectF = new RectF();
-                                    i12 = 80;
-                                    if (absolutePath2 != null) {
+                                    paint = 120;
+                                    paint = 120;
+                                    i17 = 80;
+                                    if (str != null) {
                                         options = new BitmapFactory.Options();
                                         options.inJustDecodeBounds = true;
-                                        BitmapFactory.decodeFile(absolutePath2, options);
-                                        i13 = options.outWidth;
-                                        if (i13 > 0 && (i14 = options.outHeight) > 0) {
-                                            fMin = Math.min(i13 / 560.0f, i14 / 560.0f);
+                                        BitmapFactory.decodeFile(str, options);
+                                        i19 = options.outWidth;
+                                        if (i19 > 0) {
+                                            fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
                                             options.inSampleSize = 1;
                                             if (fMin > 1.0f) {
                                                 do {
-                                                    i15 = options.inSampleSize * 2;
-                                                    options.inSampleSize = i15;
-                                                } while (i15 < fMin);
+                                                    i21 = options.inSampleSize * 2;
+                                                    options.inSampleSize = i21;
+                                                } while (i21 < fMin);
                                             }
-                                            Bitmap.Config config4 = Bitmap.Config.ALPHA_8;
-                                            options.inPreferredConfig = config4;
+                                            Bitmap.Config config7 = Bitmap.Config.ALPHA_8;
+                                            options.inPreferredConfig = config7;
                                             options.inJustDecodeBounds = false;
-                                            bitmapDecodeFile = BitmapFactory.decodeFile(absolutePath2, options);
+                                            bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
                                             if (bitmapDecodeFile != null) {
-                                                if (i9 != 0 || paint2 == 0) {
-                                                    Paint paint18 = new Paint();
-                                                    paint18.setFilterBitmap(true);
-                                                    float fMin8 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin8, bitmapDecodeFile.getHeight() / fMin8);
+                                                if (i8 != 0) {
+                                                    Paint paint14 = new Paint();
+                                                    paint14.setFilterBitmap(true);
+                                                    float fMin15 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin15, bitmapDecodeFile.getHeight() / fMin15);
                                                     rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint18);
+                                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint14);
                                                 } else {
-                                                    ?? motionBackgroundDrawable2 = new MotionBackgroundDrawable(i6, i8, i9, i7, true, 0, false);
-                                                    if (bitmapCreateBitmap != null && bitmapCreateBitmap.getConfig() != config4) {
-                                                        Bitmap bitmapCopy = bitmapCreateBitmap.copy(config4, false);
-                                                        try {
-                                                            bitmapCreateBitmap.recycle();
-                                                            bitmapCreateBitmap = bitmapCopy;
-                                                        } catch (Throwable th7) {
-                                                            th = th7;
-                                                            bitmapCreateBitmap = bitmapCopy;
-                                                            FileLog.e(th);
-                                                            i16 = 80;
-                                                            z = false;
-                                                        }
-                                                    }
-                                                    motionBackgroundDrawable2.setPatternBitmap(bitmapDecodeFile, (int) (paint2.patternIntensity * 100.0f));
-                                                    motionBackgroundDrawable2.setBounds(0, 0, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight());
-                                                    motionBackgroundDrawable2.draw(canvas);
+                                                    Paint paint15 = new Paint();
+                                                    paint15.setFilterBitmap(true);
+                                                    float fMin16 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin16, bitmapDecodeFile.getHeight() / fMin16);
+                                                    rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
+                                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint15);
                                                 }
-                                                i16 = i12;
+                                                i18 = i17;
                                                 z = true;
+                                                i22 = 120;
                                             }
                                         }
-                                        i16 = 80;
+                                        str = str;
+                                        i22 = 120;
+                                        i18 = 80;
                                         z = false;
                                     } else {
-                                        i17 = i6;
-                                        if (i17 != 0) {
-                                            if (i24 < 0 || !TextUtils.isEmpty(strArr[0])) {
-                                                options2 = new BitmapFactory.Options();
-                                                options2.inJustDecodeBounds = true;
-                                                if (TextUtils.isEmpty(strArr[0])) {
-                                                    file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                                    BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                    fileInputStream = null;
-                                                } else {
-                                                    fileInputStream = new FileInputStream(str);
-                                                    fileInputStream.getChannel().position(i24);
-                                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                    file2 = null;
-                                                }
-                                                i18 = options2.outWidth;
-                                                if (i18 > 0 || (i19 = options2.outHeight) <= 0) {
+                                        i23 = i9;
+                                        if (i23 == 0) {
+                                            if (i30 < 0) {
+                                            }
+                                            options2 = new BitmapFactory.Options();
+                                            options2.inJustDecodeBounds = true;
+                                            if (TextUtils.isEmpty(strArr[0])) {
+                                                f = 2.0f;
+                                                File file19 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                                BitmapFactory.decodeFile(file19.getAbsolutePath(), options2);
+                                                file2 = file19;
+                                                fileInputStream = null;
+                                                i22 = 120;
+                                                str = str;
+                                                i24 = options2.outWidth;
+                                                if (i24 > 0) {
                                                     z = false;
                                                 } else {
-                                                    float fMin9 = Math.min(i18 / 560.0f, i19 / 560.0f);
-                                                    options2.inSampleSize = 1;
-                                                    if (fMin9 > 1.0f) {
-                                                        do {
-                                                            i20 = options2.inSampleSize * 2;
-                                                            options2.inSampleSize = i20;
-                                                        } while (i20 < fMin9);
-                                                    }
-                                                    options2.inJustDecodeBounds = false;
-                                                    if (file2 != null) {
-                                                        bitmapDecodeStream = BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                    } else {
-                                                        fileInputStream.getChannel().position(i24);
-                                                        bitmapDecodeStream = BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                    }
-                                                    if (bitmapDecodeStream != null) {
-                                                        paint2 = new Paint();
-                                                        paint2.setFilterBitmap(true);
-                                                        float fMin10 = Math.min(bitmapDecodeStream.getWidth() / 560.0f, bitmapDecodeStream.getHeight() / 560.0f);
-                                                        rectF.set(0.0f, 0.0f, bitmapDecodeStream.getWidth() / fMin10, bitmapDecodeStream.getHeight() / fMin10);
-                                                        rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                                        canvas.drawBitmap(bitmapDecodeStream, null, rectF, paint2);
-                                                        z = true;
-                                                    } else {
-                                                        z = false;
-                                                    }
+                                                    z = false;
                                                 }
                                                 if (fileInputStream != null) {
                                                     fileInputStream.close();
                                                 }
-                                                i16 = 80;
+                                                i18 = 80;
                                             } else {
-                                                i16 = 80;
-                                                z = false;
+                                                f = 2.0f;
+                                                str = str;
+                                                fileInputStream = new FileInputStream(str);
+                                                i22 = 120;
+                                                paint = i30;
+                                                fileInputStream.getChannel().position(paint);
+                                                BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                                file2 = null;
+                                                i24 = options2.outWidth;
+                                                if (i24 > 0) {
+                                                    z = false;
+                                                } else {
+                                                    z = false;
+                                                }
+                                                if (fileInputStream != null) {
+                                                    fileInputStream.close();
+                                                }
+                                                i18 = 80;
                                             }
                                             AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                         }
-                                        if (i8 == 0) {
-                                            motionBackgroundDrawable = new ColorDrawable(i17);
-                                        } else if (i9 != 0) {
-                                            motionBackgroundDrawable = new MotionBackgroundDrawable(i17, i8, i9, i7, true, 0, false);
+                                        if (i10 == 0) {
+                                            motionBackgroundDrawable = new ColorDrawable(i23);
+                                        } else if (i8 != 0) {
+                                            motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
                                         } else {
-                                            i21 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
-                                            if (i21 == -1) {
-                                                i21 = 45;
+                                            i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                            if (i27 == -1) {
+                                                i27 = 45;
                                             }
-                                            i12 = 90;
-                                            motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i21, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120, new int[]{i17, i33});
+                                            i17 = 90;
+                                            motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                                         }
                                         motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                                         motionBackgroundDrawable.draw(canvas);
-                                        i16 = i12;
+                                        i18 = i17;
                                         z = true;
+                                        i22 = 120;
                                     }
                                     if (!z) {
-                                        ?? CreateDefaultWallpaper5 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                        CreateDefaultWallpaper5.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                        CreateDefaultWallpaper5.draw(canvas);
+                                        ?? CreateDefaultWallpaper11 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                        CreateDefaultWallpaper11.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                        CreateDefaultWallpaper11.draw(canvas);
                                     }
-                                    paint17.setColor(i5);
-                                    canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint17);
+                                    paint2.setColor(iValueAt);
+                                    canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
                                     if (Mutate != 0) {
-                                        int intrinsicHeight9 = (120 - Mutate.getIntrinsicHeight()) / 2;
-                                        Mutate.setBounds(13, intrinsicHeight9, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight9);
+                                        int intrinsicHeight111 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                        Mutate.setBounds(13, intrinsicHeight111, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight111);
                                         Mutate.draw(canvas);
                                     }
                                     if (Mutate2 != 0) {
-                                        int width9 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
-                                        int intrinsicHeight10 = (120 - Mutate2.getIntrinsicHeight()) / 2;
-                                        Mutate2.setBounds(width9, intrinsicHeight10, Mutate2.getIntrinsicWidth() + width9, Mutate2.getIntrinsicHeight() + intrinsicHeight10);
+                                        int width111 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                        int intrinsicHeight112 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                        Mutate2.setBounds(width111, intrinsicHeight112, Mutate2.getIntrinsicWidth() + width111, Mutate2.getIntrinsicHeight() + intrinsicHeight112);
                                         Mutate2.draw(canvas);
                                     }
-                                    r15[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
-                                    r15[1].setTop(0, 560, 522);
-                                    r15[1].draw(canvas);
-                                    r15[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
-                                    r15[1].setTop(430, 560, 522);
-                                    r15[1].draw(canvas);
-                                    r15[0].setBounds(20, 323, 399, 415);
-                                    r15[0].setTop(323, 560, 522);
-                                    r15[0].draw(canvas);
-                                    paint17.setColor(iValueAt3);
-                                    canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint17);
+                                    r211[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                    r211[1].setTop(0, 560, 522, false, false);
+                                    r211[1].draw(canvas);
+                                    r211[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                    r211[1].setTop(430, 560, 522, false, false);
+                                    r211[1].draw(canvas);
+                                    r211[0].setBounds(20, 323, 399, 415);
+                                    r211[0].setTop(323, 560, 522, false, false);
+                                    r211[0].draw(canvas);
+                                    paint2.setColor(iValueAt3);
+                                    canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
                                     if (Mutate3 != 0) {
-                                        int height9 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
-                                        Mutate3.setBounds(22, height9, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height9);
+                                        int height111 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                        Mutate3.setBounds(22, height111, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height111);
                                         Mutate3.draw(canvas);
                                     }
                                     if (Mutate4 != 0) {
-                                        int width10 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
-                                        int height10 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
-                                        Mutate4.setBounds(width10, height10, Mutate4.getIntrinsicWidth() + width10, Mutate4.getIntrinsicHeight() + height10);
+                                        int width112 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                        int height112 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                        Mutate4.setBounds(width112, height112, Mutate4.getIntrinsicWidth() + width112, Mutate4.getIntrinsicHeight() + height112);
                                         Mutate4.draw(canvas);
                                     }
-                                    paint2 = 0;
-                                    paint2 = 0;
-                                    r4 = 0;
+                                    paint = 0;
+                                    paint = 0;
+                                    r3 = 0;
                                     canvas.setBitmap(null);
-                                    File file7 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
-                                    bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i16, new FileOutputStream(file7));
+                                    File file110 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                    bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file110));
                                     SharedConfig.saveConfig();
-                                    absolutePath = file7.getAbsolutePath();
+                                    absolutePath = file110.getAbsolutePath();
                                     AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                 }
-                                if (i4 == 0) {
-                                    i4 = i34;
+                                if (i2 == 0) {
+                                    i3 = i39;
                                 }
-                                if (TextUtils.isEmpty(strArr2[c])) {
-                                    String queryParameter2 = Uri.parse(strArr2[c]).getQueryParameter("bg_color");
-                                    if (paint2 != 0) {
-                                    }
-                                    strArr = strArr2;
-                                    paint = paint3;
-                                    i5 = iValueAt;
-                                    i6 = i31;
-                                    i8 = i32;
-                                    i9 = i3;
-                                    i7 = i4;
+                                if (themeAccent != null) {
+                                    i3 = i2;
+                                    i4 = (int) themeAccent.backgroundGradientOverrideColor3;
                                 } else {
-                                    strArr = strArr2;
-                                    paint = paint3;
-                                    i5 = iValueAt;
-                                    i6 = i31;
-                                    i8 = i32;
-                                    i9 = i3;
-                                    i7 = i4;
+                                    i3 = i2;
+                                    i4 = 0;
+                                }
+                                if (i4 != 0) {
+                                    if (i4 == 0) {
+                                        i4 = i40;
+                                    }
+                                } else if (i4 == 0) {
+                                    i4 = i40;
+                                }
+                                if (TextUtils.isEmpty(strArr[0])) {
+                                    String queryParameter3 = Uri.parse(strArr[0]).getQueryParameter("bg_color");
+                                    if (themeAccent == null) {
+                                    }
+                                    i5 = iValueAt2;
+                                    i6 = iValueAt5;
+                                    i9 = i37;
+                                    i10 = i38;
+                                    i8 = i3;
+                                    i14 = i4;
+                                } else {
+                                    i5 = iValueAt2;
+                                    i6 = iValueAt5;
+                                    i9 = i37;
+                                    i10 = i38;
+                                    i8 = i3;
+                                    i14 = i4;
                                 }
                                 Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
-                                Theme.setDrawableColor(iValueAt2, Mutate);
+                                int i410 = i5;
+                                Theme.setDrawableColor(i410, Mutate);
                                 Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
-                                Theme.setDrawableColor(iValueAt2, Mutate2);
+                                Theme.setDrawableColor(i410, Mutate2);
                                 Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
                                 Theme.setDrawableColor(iValueAt4, Mutate3);
                                 Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
                                 Theme.setDrawableColor(iValueAt4, Mutate4);
-                                r15 = new MessageDrawable[2];
-                                i11 = 0;
-                                while (i11 < i10) {
-                                    Paint paint19 = paint;
-                                    if (i11 == 1) {
-                                        z2 = true;
+                                messageDrawableArr = new MessageDrawable[2];
+                                i16 = 0;
+                                while (i16 < i15) {
+                                    MessageDrawable[] messageDrawableArr9 = messageDrawableArr;
+                                    if (i16 == 1) {
+                                        z3 = true;
                                     } else {
-                                        z2 = false;
+                                        z3 = false;
                                     }
-                                    Theme.AnonymousClass12 anonymousClass16 = new Theme.AnonymousClass12(z2, themeFileValues);
-                                    r15[i11] = anonymousClass16;
-                                    if (i11 == 0) {
-                                        i22 = iValueAt5;
+                                    MessageDrawable messageDrawable8 = new MessageDrawable(z3) {
+                                        public final SparseIntArray val$colors;
+
+                                        public AnonymousClass12(final boolean z3) {
+                                            super(2, z3, false, null);
+                                            sparseIntArray = themeFileValues;
+                                        }
+
+                                        @Override
+                                        public final int getColor(int i411) {
+                                            SparseIntArray sparseIntArray = sparseIntArray;
+                                            int iIndexOfKey7 = sparseIntArray.indexOfKey(i411);
+                                            return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i411];
+                                        }
+
+                                        @Override
+                                        public final int getCurrentColor(int i411) {
+                                            return sparseIntArray.get(i411);
+                                        }
+                                    };
+                                    messageDrawableArr9[i16] = messageDrawable8;
+                                    if (i16 == 0) {
+                                        i28 = i6;
                                     } else {
-                                        i22 = iValueAt6;
+                                        i28 = iValueAt6;
                                     }
-                                    Theme.setDrawableColor(i22, anonymousClass16);
-                                    i11++;
-                                    paint = paint19;
+                                    Theme.setDrawableColor(i28, messageDrawable8);
+                                    i16++;
+                                    messageDrawableArr = messageDrawableArr9;
                                 }
-                                Paint paint110 = paint;
+                                ?? r212 = messageDrawableArr;
                                 rectF = new RectF();
-                                i12 = 80;
-                                if (absolutePath2 != null) {
+                                paint = 120;
+                                paint = 120;
+                                i17 = 80;
+                                if (str != null) {
                                     options = new BitmapFactory.Options();
                                     options.inJustDecodeBounds = true;
-                                    BitmapFactory.decodeFile(absolutePath2, options);
-                                    i13 = options.outWidth;
-                                    if (i13 > 0) {
-                                        fMin = Math.min(i13 / 560.0f, i14 / 560.0f);
+                                    BitmapFactory.decodeFile(str, options);
+                                    i19 = options.outWidth;
+                                    if (i19 > 0) {
+                                        fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
                                         options.inSampleSize = 1;
                                         if (fMin > 1.0f) {
                                             do {
-                                                i15 = options.inSampleSize * 2;
-                                                options.inSampleSize = i15;
-                                            } while (i15 < fMin);
+                                                i21 = options.inSampleSize * 2;
+                                                options.inSampleSize = i21;
+                                            } while (i21 < fMin);
                                         }
-                                        Bitmap.Config config5 = Bitmap.Config.ALPHA_8;
-                                        options.inPreferredConfig = config5;
+                                        Bitmap.Config config8 = Bitmap.Config.ALPHA_8;
+                                        options.inPreferredConfig = config8;
                                         options.inJustDecodeBounds = false;
-                                        bitmapDecodeFile = BitmapFactory.decodeFile(absolutePath2, options);
+                                        bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
                                         if (bitmapDecodeFile != null) {
-                                            if (i9 != 0) {
-                                                Paint paint111 = new Paint();
-                                                paint111.setFilterBitmap(true);
-                                                float fMin11 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                                rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin11, bitmapDecodeFile.getHeight() / fMin11);
+                                            if (i8 != 0) {
+                                                Paint paint16 = new Paint();
+                                                paint16.setFilterBitmap(true);
+                                                float fMin17 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin17, bitmapDecodeFile.getHeight() / fMin17);
                                                 rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                                canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint111);
+                                                canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint16);
                                             } else {
-                                                Paint paint112 = new Paint();
-                                                paint112.setFilterBitmap(true);
-                                                float fMin12 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                                rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin12, bitmapDecodeFile.getHeight() / fMin12);
+                                                Paint paint17 = new Paint();
+                                                paint17.setFilterBitmap(true);
+                                                float fMin18 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                                rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin18, bitmapDecodeFile.getHeight() / fMin18);
                                                 rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                                canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint112);
+                                                canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint17);
                                             }
-                                            i16 = i12;
+                                            i18 = i17;
                                             z = true;
+                                            i22 = 120;
                                         }
                                     }
-                                    i16 = 80;
+                                    str = str;
+                                    i22 = 120;
+                                    i18 = 80;
                                     z = false;
                                 } else {
-                                    i17 = i6;
-                                    if (i17 != 0) {
-                                        if (i24 < 0) {
-                                            options2 = new BitmapFactory.Options();
-                                            options2.inJustDecodeBounds = true;
-                                            if (TextUtils.isEmpty(strArr[0])) {
-                                                file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                                BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                fileInputStream = null;
-                                            } else {
-                                                fileInputStream = new FileInputStream(str);
-                                                fileInputStream.getChannel().position(i24);
-                                                BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                file2 = null;
-                                            }
-                                            i18 = options2.outWidth;
-                                            if (i18 > 0) {
+                                    i23 = i9;
+                                    if (i23 == 0) {
+                                        if (i30 < 0) {
+                                        }
+                                        options2 = new BitmapFactory.Options();
+                                        options2.inJustDecodeBounds = true;
+                                        if (TextUtils.isEmpty(strArr[0])) {
+                                            f = 2.0f;
+                                            File file111 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                            BitmapFactory.decodeFile(file111.getAbsolutePath(), options2);
+                                            file2 = file111;
+                                            fileInputStream = null;
+                                            i22 = 120;
+                                            str = str;
+                                            i24 = options2.outWidth;
+                                            if (i24 > 0) {
                                                 z = false;
                                             } else {
                                                 z = false;
@@ -22030,22 +23081,18 @@ public class MessagesController extends BaseController implements NotificationCe
                                             if (fileInputStream != null) {
                                                 fileInputStream.close();
                                             }
-                                            i16 = 80;
+                                            i18 = 80;
                                         } else {
-                                            options2 = new BitmapFactory.Options();
-                                            options2.inJustDecodeBounds = true;
-                                            if (TextUtils.isEmpty(strArr[0])) {
-                                                file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                                BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                                fileInputStream = null;
-                                            } else {
-                                                fileInputStream = new FileInputStream(str);
-                                                fileInputStream.getChannel().position(i24);
-                                                BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                                file2 = null;
-                                            }
-                                            i18 = options2.outWidth;
-                                            if (i18 > 0) {
+                                            f = 2.0f;
+                                            str = str;
+                                            fileInputStream = new FileInputStream(str);
+                                            i22 = 120;
+                                            paint = i30;
+                                            fileInputStream.getChannel().position(paint);
+                                            BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                            file2 = null;
+                                            i24 = options2.outWidth;
+                                            if (i24 > 0) {
                                                 z = false;
                                             } else {
                                                 z = false;
@@ -22053,201 +23100,238 @@ public class MessagesController extends BaseController implements NotificationCe
                                             if (fileInputStream != null) {
                                                 fileInputStream.close();
                                             }
-                                            i16 = 80;
+                                            i18 = 80;
                                         }
                                         AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                     }
-                                    if (i8 == 0) {
-                                        motionBackgroundDrawable = new ColorDrawable(i17);
-                                    } else if (i9 != 0) {
-                                        motionBackgroundDrawable = new MotionBackgroundDrawable(i17, i8, i9, i7, true, 0, false);
+                                    if (i10 == 0) {
+                                        motionBackgroundDrawable = new ColorDrawable(i23);
+                                    } else if (i8 != 0) {
+                                        motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
                                     } else {
-                                        i21 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
-                                        if (i21 == -1) {
-                                            i21 = 45;
+                                        i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                        if (i27 == -1) {
+                                            i27 = 45;
                                         }
-                                        i12 = 90;
-                                        motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i21, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120, new int[]{i17, i33});
+                                        i17 = 90;
+                                        motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                                     }
                                     motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                                     motionBackgroundDrawable.draw(canvas);
-                                    i16 = i12;
+                                    i18 = i17;
                                     z = true;
+                                    i22 = 120;
                                 }
                                 if (!z) {
-                                    ?? CreateDefaultWallpaper6 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                    CreateDefaultWallpaper6.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                    CreateDefaultWallpaper6.draw(canvas);
+                                    ?? CreateDefaultWallpaper12 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                    CreateDefaultWallpaper12.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                    CreateDefaultWallpaper12.draw(canvas);
                                 }
-                                paint110.setColor(i5);
-                                canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint110);
+                                paint2.setColor(iValueAt);
+                                canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
                                 if (Mutate != 0) {
-                                    int intrinsicHeight11 = (120 - Mutate.getIntrinsicHeight()) / 2;
-                                    Mutate.setBounds(13, intrinsicHeight11, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight11);
+                                    int intrinsicHeight113 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                    Mutate.setBounds(13, intrinsicHeight113, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight113);
                                     Mutate.draw(canvas);
                                 }
                                 if (Mutate2 != 0) {
-                                    int width11 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
-                                    int intrinsicHeight12 = (120 - Mutate2.getIntrinsicHeight()) / 2;
-                                    Mutate2.setBounds(width11, intrinsicHeight12, Mutate2.getIntrinsicWidth() + width11, Mutate2.getIntrinsicHeight() + intrinsicHeight12);
+                                    int width113 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                    int intrinsicHeight114 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                    Mutate2.setBounds(width113, intrinsicHeight114, Mutate2.getIntrinsicWidth() + width113, Mutate2.getIntrinsicHeight() + intrinsicHeight114);
                                     Mutate2.draw(canvas);
                                 }
-                                r15[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
-                                r15[1].setTop(0, 560, 522);
-                                r15[1].draw(canvas);
-                                r15[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
-                                r15[1].setTop(430, 560, 522);
-                                r15[1].draw(canvas);
-                                r15[0].setBounds(20, 323, 399, 415);
-                                r15[0].setTop(323, 560, 522);
-                                r15[0].draw(canvas);
-                                paint110.setColor(iValueAt3);
-                                canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint110);
+                                r212[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                                r212[1].setTop(0, 560, 522, false, false);
+                                r212[1].draw(canvas);
+                                r212[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                                r212[1].setTop(430, 560, 522, false, false);
+                                r212[1].draw(canvas);
+                                r212[0].setBounds(20, 323, 399, 415);
+                                r212[0].setTop(323, 560, 522, false, false);
+                                r212[0].draw(canvas);
+                                paint2.setColor(iValueAt3);
+                                canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
                                 if (Mutate3 != 0) {
-                                    int height11 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
-                                    Mutate3.setBounds(22, height11, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height11);
+                                    int height113 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                    Mutate3.setBounds(22, height113, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height113);
                                     Mutate3.draw(canvas);
                                 }
                                 if (Mutate4 != 0) {
-                                    int width12 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
-                                    int height12 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
-                                    Mutate4.setBounds(width12, height12, Mutate4.getIntrinsicWidth() + width12, Mutate4.getIntrinsicHeight() + height12);
+                                    int width114 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                    int height114 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                    Mutate4.setBounds(width114, height114, Mutate4.getIntrinsicWidth() + width114, Mutate4.getIntrinsicHeight() + height114);
                                     Mutate4.draw(canvas);
                                 }
-                                paint2 = 0;
-                                paint2 = 0;
-                                r4 = 0;
+                                paint = 0;
+                                paint = 0;
+                                r3 = 0;
                                 canvas.setBitmap(null);
-                                File file8 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
-                                bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i16, new FileOutputStream(file8));
+                                File file112 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                                bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file112));
                                 SharedConfig.saveConfig();
-                                absolutePath = file8.getAbsolutePath();
+                                absolutePath = file112.getAbsolutePath();
                                 AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                             }
-                            if (i3 == 0) {
-                                i3 = i33;
+                            if (i != 0) {
+                                i38 = i;
                             }
-                            if (paint2 != 0) {
-                                i4 = (int) paint2.backgroundGradientOverrideColor3;
+                            if (themeAccent != null) {
+                                i2 = (int) themeAccent.backgroundGradientOverrideColor2;
                             } else {
+                                i2 = 0;
+                            }
+                            if (i2 != 0) {
+                                if (i2 == 0) {
+                                    i3 = i39;
+                                }
+                            } else if (i2 == 0) {
+                                i3 = i39;
+                            }
+                            if (themeAccent != null) {
+                                i3 = i2;
+                                i4 = (int) themeAccent.backgroundGradientOverrideColor3;
+                            } else {
+                                i3 = i2;
                                 i4 = 0;
                             }
                             if (i4 != 0) {
                                 if (i4 == 0) {
-                                    i4 = i34;
+                                    i4 = i40;
                                 }
                             } else if (i4 == 0) {
-                                i4 = i34;
+                                i4 = i40;
                             }
-                            if (TextUtils.isEmpty(strArr2[c])) {
-                                String queryParameter3 = Uri.parse(strArr2[c]).getQueryParameter("bg_color");
-                                if (paint2 != 0) {
+                            if (TextUtils.isEmpty(strArr[0])) {
+                                String queryParameter4 = Uri.parse(strArr[0]).getQueryParameter("bg_color");
+                                if (themeAccent == null) {
                                 }
-                                strArr = strArr2;
-                                paint = paint3;
-                                i5 = iValueAt;
-                                i6 = i31;
-                                i8 = i32;
-                                i9 = i3;
-                                i7 = i4;
+                                i5 = iValueAt2;
+                                i6 = iValueAt5;
+                                i9 = i37;
+                                i10 = i38;
+                                i8 = i3;
+                                i14 = i4;
                             } else {
-                                strArr = strArr2;
-                                paint = paint3;
-                                i5 = iValueAt;
-                                i6 = i31;
-                                i8 = i32;
-                                i9 = i3;
-                                i7 = i4;
+                                i5 = iValueAt2;
+                                i6 = iValueAt5;
+                                i9 = i37;
+                                i10 = i38;
+                                i8 = i3;
+                                i14 = i4;
                             }
                             Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
-                            Theme.setDrawableColor(iValueAt2, Mutate);
+                            int i411 = i5;
+                            Theme.setDrawableColor(i411, Mutate);
                             Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
-                            Theme.setDrawableColor(iValueAt2, Mutate2);
+                            Theme.setDrawableColor(i411, Mutate2);
                             Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
                             Theme.setDrawableColor(iValueAt4, Mutate3);
                             Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
                             Theme.setDrawableColor(iValueAt4, Mutate4);
-                            r15 = new MessageDrawable[2];
-                            i11 = 0;
-                            while (i11 < i10) {
-                                Paint paint113 = paint;
-                                if (i11 == 1) {
-                                    z2 = true;
+                            messageDrawableArr = new MessageDrawable[2];
+                            i16 = 0;
+                            while (i16 < i15) {
+                                MessageDrawable[] messageDrawableArr10 = messageDrawableArr;
+                                if (i16 == 1) {
+                                    z3 = true;
                                 } else {
-                                    z2 = false;
+                                    z3 = false;
                                 }
-                                Theme.AnonymousClass12 anonymousClass17 = new Theme.AnonymousClass12(z2, themeFileValues);
-                                r15[i11] = anonymousClass17;
-                                if (i11 == 0) {
-                                    i22 = iValueAt5;
+                                MessageDrawable messageDrawable9 = new MessageDrawable(z3) {
+                                    public final SparseIntArray val$colors;
+
+                                    public AnonymousClass12(final boolean z3) {
+                                        super(2, z3, false, null);
+                                        sparseIntArray = themeFileValues;
+                                    }
+
+                                    @Override
+                                    public final int getColor(int i412) {
+                                        SparseIntArray sparseIntArray = sparseIntArray;
+                                        int iIndexOfKey7 = sparseIntArray.indexOfKey(i412);
+                                        return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i412];
+                                    }
+
+                                    @Override
+                                    public final int getCurrentColor(int i412) {
+                                        return sparseIntArray.get(i412);
+                                    }
+                                };
+                                messageDrawableArr10[i16] = messageDrawable9;
+                                if (i16 == 0) {
+                                    i28 = i6;
                                 } else {
-                                    i22 = iValueAt6;
+                                    i28 = iValueAt6;
                                 }
-                                Theme.setDrawableColor(i22, anonymousClass17);
-                                i11++;
-                                paint = paint113;
+                                Theme.setDrawableColor(i28, messageDrawable9);
+                                i16++;
+                                messageDrawableArr = messageDrawableArr10;
                             }
-                            Paint paint114 = paint;
+                            ?? r213 = messageDrawableArr;
                             rectF = new RectF();
-                            i12 = 80;
-                            if (absolutePath2 != null) {
+                            paint = 120;
+                            paint = 120;
+                            i17 = 80;
+                            if (str != null) {
                                 options = new BitmapFactory.Options();
                                 options.inJustDecodeBounds = true;
-                                BitmapFactory.decodeFile(absolutePath2, options);
-                                i13 = options.outWidth;
-                                if (i13 > 0) {
-                                    fMin = Math.min(i13 / 560.0f, i14 / 560.0f);
+                                BitmapFactory.decodeFile(str, options);
+                                i19 = options.outWidth;
+                                if (i19 > 0) {
+                                    fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
                                     options.inSampleSize = 1;
                                     if (fMin > 1.0f) {
                                         do {
-                                            i15 = options.inSampleSize * 2;
-                                            options.inSampleSize = i15;
-                                        } while (i15 < fMin);
+                                            i21 = options.inSampleSize * 2;
+                                            options.inSampleSize = i21;
+                                        } while (i21 < fMin);
                                     }
-                                    Bitmap.Config config6 = Bitmap.Config.ALPHA_8;
-                                    options.inPreferredConfig = config6;
+                                    Bitmap.Config config9 = Bitmap.Config.ALPHA_8;
+                                    options.inPreferredConfig = config9;
                                     options.inJustDecodeBounds = false;
-                                    bitmapDecodeFile = BitmapFactory.decodeFile(absolutePath2, options);
+                                    bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
                                     if (bitmapDecodeFile != null) {
-                                        if (i9 != 0) {
-                                            Paint paint115 = new Paint();
-                                            paint115.setFilterBitmap(true);
-                                            float fMin13 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                            rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin13, bitmapDecodeFile.getHeight() / fMin13);
+                                        if (i8 != 0) {
+                                            Paint paint18 = new Paint();
+                                            paint18.setFilterBitmap(true);
+                                            float fMin19 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                            rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin19, bitmapDecodeFile.getHeight() / fMin19);
                                             rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                            canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint115);
+                                            canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint18);
                                         } else {
-                                            Paint paint116 = new Paint();
-                                            paint116.setFilterBitmap(true);
-                                            float fMin14 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                            rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin14, bitmapDecodeFile.getHeight() / fMin14);
+                                            Paint paint19 = new Paint();
+                                            paint19.setFilterBitmap(true);
+                                            float fMin110 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                            rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin110, bitmapDecodeFile.getHeight() / fMin110);
                                             rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                            canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint116);
+                                            canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint19);
                                         }
-                                        i16 = i12;
+                                        i18 = i17;
                                         z = true;
+                                        i22 = 120;
                                     }
                                 }
-                                i16 = 80;
+                                str = str;
+                                i22 = 120;
+                                i18 = 80;
                                 z = false;
                             } else {
-                                i17 = i6;
-                                if (i17 != 0) {
-                                    if (i24 < 0) {
-                                        options2 = new BitmapFactory.Options();
-                                        options2.inJustDecodeBounds = true;
-                                        if (TextUtils.isEmpty(strArr[0])) {
-                                            file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                            BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                            fileInputStream = null;
-                                        } else {
-                                            fileInputStream = new FileInputStream(str);
-                                            fileInputStream.getChannel().position(i24);
-                                            BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                            file2 = null;
-                                        }
-                                        i18 = options2.outWidth;
-                                        if (i18 > 0) {
+                                i23 = i9;
+                                if (i23 == 0) {
+                                    if (i30 < 0) {
+                                    }
+                                    options2 = new BitmapFactory.Options();
+                                    options2.inJustDecodeBounds = true;
+                                    if (TextUtils.isEmpty(strArr[0])) {
+                                        f = 2.0f;
+                                        File file113 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                        BitmapFactory.decodeFile(file113.getAbsolutePath(), options2);
+                                        file2 = file113;
+                                        fileInputStream = null;
+                                        i22 = 120;
+                                        str = str;
+                                        i24 = options2.outWidth;
+                                        if (i24 > 0) {
                                             z = false;
                                         } else {
                                             z = false;
@@ -22255,22 +23339,18 @@ public class MessagesController extends BaseController implements NotificationCe
                                         if (fileInputStream != null) {
                                             fileInputStream.close();
                                         }
-                                        i16 = 80;
+                                        i18 = 80;
                                     } else {
-                                        options2 = new BitmapFactory.Options();
-                                        options2.inJustDecodeBounds = true;
-                                        if (TextUtils.isEmpty(strArr[0])) {
-                                            file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                            BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                            fileInputStream = null;
-                                        } else {
-                                            fileInputStream = new FileInputStream(str);
-                                            fileInputStream.getChannel().position(i24);
-                                            BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                            file2 = null;
-                                        }
-                                        i18 = options2.outWidth;
-                                        if (i18 > 0) {
+                                        f = 2.0f;
+                                        str = str;
+                                        fileInputStream = new FileInputStream(str);
+                                        i22 = 120;
+                                        paint = i30;
+                                        fileInputStream.getChannel().position(paint);
+                                        BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                        file2 = null;
+                                        i24 = options2.outWidth;
+                                        if (i24 > 0) {
                                             z = false;
                                         } else {
                                             z = false;
@@ -22278,213 +23358,138 @@ public class MessagesController extends BaseController implements NotificationCe
                                         if (fileInputStream != null) {
                                             fileInputStream.close();
                                         }
-                                        i16 = 80;
+                                        i18 = 80;
                                     }
                                     AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                                 }
-                                if (i8 == 0) {
-                                    motionBackgroundDrawable = new ColorDrawable(i17);
-                                } else if (i9 != 0) {
-                                    motionBackgroundDrawable = new MotionBackgroundDrawable(i17, i8, i9, i7, true, 0, false);
+                                if (i10 == 0) {
+                                    motionBackgroundDrawable = new ColorDrawable(i23);
+                                } else if (i8 != 0) {
+                                    motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
                                 } else {
-                                    i21 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
-                                    if (i21 == -1) {
-                                        i21 = 45;
+                                    i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                    if (i27 == -1) {
+                                        i27 = 45;
                                     }
-                                    i12 = 90;
-                                    motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i21, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120, new int[]{i17, i33});
+                                    i17 = 90;
+                                    motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                                 }
                                 motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                                 motionBackgroundDrawable.draw(canvas);
-                                i16 = i12;
+                                i18 = i17;
                                 z = true;
+                                i22 = 120;
                             }
                             if (!z) {
-                                ?? CreateDefaultWallpaper7 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                CreateDefaultWallpaper7.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                                CreateDefaultWallpaper7.draw(canvas);
+                                ?? CreateDefaultWallpaper13 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                CreateDefaultWallpaper13.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                                CreateDefaultWallpaper13.draw(canvas);
                             }
-                            paint114.setColor(i5);
-                            canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint114);
+                            paint2.setColor(iValueAt);
+                            canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
                             if (Mutate != 0) {
-                                int intrinsicHeight13 = (120 - Mutate.getIntrinsicHeight()) / 2;
-                                Mutate.setBounds(13, intrinsicHeight13, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight13);
+                                int intrinsicHeight115 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                                Mutate.setBounds(13, intrinsicHeight115, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight115);
                                 Mutate.draw(canvas);
                             }
                             if (Mutate2 != 0) {
-                                int width13 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
-                                int intrinsicHeight14 = (120 - Mutate2.getIntrinsicHeight()) / 2;
-                                Mutate2.setBounds(width13, intrinsicHeight14, Mutate2.getIntrinsicWidth() + width13, Mutate2.getIntrinsicHeight() + intrinsicHeight14);
+                                int width115 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                                int intrinsicHeight116 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                                Mutate2.setBounds(width115, intrinsicHeight116, Mutate2.getIntrinsicWidth() + width115, Mutate2.getIntrinsicHeight() + intrinsicHeight116);
                                 Mutate2.draw(canvas);
                             }
-                            r15[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
-                            r15[1].setTop(0, 560, 522);
-                            r15[1].draw(canvas);
-                            r15[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
-                            r15[1].setTop(430, 560, 522);
-                            r15[1].draw(canvas);
-                            r15[0].setBounds(20, 323, 399, 415);
-                            r15[0].setTop(323, 560, 522);
-                            r15[0].draw(canvas);
-                            paint114.setColor(iValueAt3);
-                            canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint114);
+                            r213[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                            r213[1].setTop(0, 560, 522, false, false);
+                            r213[1].draw(canvas);
+                            r213[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                            r213[1].setTop(430, 560, 522, false, false);
+                            r213[1].draw(canvas);
+                            r213[0].setBounds(20, 323, 399, 415);
+                            r213[0].setTop(323, 560, 522, false, false);
+                            r213[0].draw(canvas);
+                            paint2.setColor(iValueAt3);
+                            canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
                             if (Mutate3 != 0) {
-                                int height13 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
-                                Mutate3.setBounds(22, height13, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height13);
+                                int height115 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                                Mutate3.setBounds(22, height115, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height115);
                                 Mutate3.draw(canvas);
                             }
                             if (Mutate4 != 0) {
-                                int width14 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
-                                int height14 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
-                                Mutate4.setBounds(width14, height14, Mutate4.getIntrinsicWidth() + width14, Mutate4.getIntrinsicHeight() + height14);
+                                int width116 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                                int height116 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                                Mutate4.setBounds(width116, height116, Mutate4.getIntrinsicWidth() + width116, Mutate4.getIntrinsicHeight() + height116);
                                 Mutate4.draw(canvas);
                             }
-                            paint2 = 0;
-                            paint2 = 0;
-                            r4 = 0;
+                            paint = 0;
+                            paint = 0;
+                            r3 = 0;
                             canvas.setBitmap(null);
-                            File file9 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
-                            bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i16, new FileOutputStream(file9));
+                            File file114 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                            bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file114));
                             SharedConfig.saveConfig();
-                            absolutePath = file9.getAbsolutePath();
+                            absolutePath = file114.getAbsolutePath();
                             AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                         }
-                        if (i2 != 0) {
-                            i32 = i2;
-                        }
-                        if (paint2 != 0) {
-                            i3 = (int) paint2.backgroundGradientOverrideColor2;
-                        } else {
-                            i3 = 0;
-                        }
-                        if (i3 != 0) {
-                            if (i3 == 0) {
-                                i3 = i33;
-                            }
-                        } else if (i3 == 0) {
-                            i3 = i33;
-                        }
-                        if (paint2 != 0) {
-                            i4 = (int) paint2.backgroundGradientOverrideColor3;
-                        } else {
-                            i4 = 0;
-                        }
-                        if (i4 != 0) {
-                            if (i4 == 0) {
-                                i4 = i34;
-                            }
-                        } else if (i4 == 0) {
-                            i4 = i34;
-                        }
-                        if (TextUtils.isEmpty(strArr2[c])) {
-                            String queryParameter4 = Uri.parse(strArr2[c]).getQueryParameter("bg_color");
-                            if (paint2 != 0) {
-                            }
-                            strArr = strArr2;
-                            paint = paint3;
-                            i5 = iValueAt;
-                            i6 = i31;
-                            i8 = i32;
-                            i9 = i3;
-                            i7 = i4;
-                        } else {
-                            strArr = strArr2;
-                            paint = paint3;
-                            i5 = iValueAt;
-                            i6 = i31;
-                            i8 = i32;
-                            i9 = i3;
-                            i7 = i4;
-                        }
-                        Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
-                        Theme.setDrawableColor(iValueAt2, Mutate);
-                        Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
-                        Theme.setDrawableColor(iValueAt2, Mutate2);
-                        Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
-                        Theme.setDrawableColor(iValueAt4, Mutate3);
-                        Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
-                        Theme.setDrawableColor(iValueAt4, Mutate4);
-                        r15 = new MessageDrawable[2];
-                        i11 = 0;
-                        while (i11 < i10) {
-                            Paint paint117 = paint;
-                            if (i11 == 1) {
-                                z2 = true;
-                            } else {
-                                z2 = false;
-                            }
-                            Theme.AnonymousClass12 anonymousClass18 = new Theme.AnonymousClass12(z2, themeFileValues);
-                            r15[i11] = anonymousClass18;
-                            if (i11 == 0) {
-                                i22 = iValueAt5;
-                            } else {
-                                i22 = iValueAt6;
-                            }
-                            Theme.setDrawableColor(i22, anonymousClass18);
-                            i11++;
-                            paint = paint117;
-                        }
-                        Paint paint118 = paint;
-                        rectF = new RectF();
-                        i12 = 80;
-                        if (absolutePath2 != null) {
+                        if (str != null) {
                             options = new BitmapFactory.Options();
                             options.inJustDecodeBounds = true;
-                            BitmapFactory.decodeFile(absolutePath2, options);
-                            i13 = options.outWidth;
-                            if (i13 > 0) {
-                                fMin = Math.min(i13 / 560.0f, i14 / 560.0f);
+                            BitmapFactory.decodeFile(str, options);
+                            i19 = options.outWidth;
+                            if (i19 > 0) {
+                                fMin = Math.min(i19 / 560.0f, i20 / 560.0f);
                                 options.inSampleSize = 1;
                                 if (fMin > 1.0f) {
                                     do {
-                                        i15 = options.inSampleSize * 2;
-                                        options.inSampleSize = i15;
-                                    } while (i15 < fMin);
+                                        i21 = options.inSampleSize * 2;
+                                        options.inSampleSize = i21;
+                                    } while (i21 < fMin);
                                 }
-                                Bitmap.Config config7 = Bitmap.Config.ALPHA_8;
-                                options.inPreferredConfig = config7;
+                                Bitmap.Config config10 = Bitmap.Config.ALPHA_8;
+                                options.inPreferredConfig = config10;
                                 options.inJustDecodeBounds = false;
-                                bitmapDecodeFile = BitmapFactory.decodeFile(absolutePath2, options);
+                                bitmapDecodeFile = BitmapFactory.decodeFile(str, options);
                                 if (bitmapDecodeFile != null) {
-                                    if (i9 != 0) {
-                                        Paint paint119 = new Paint();
-                                        paint119.setFilterBitmap(true);
-                                        float fMin15 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin15, bitmapDecodeFile.getHeight() / fMin15);
+                                    if (i8 != 0) {
+                                        Paint paint110 = new Paint();
+                                        paint110.setFilterBitmap(true);
+                                        float fMin111 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin111, bitmapDecodeFile.getHeight() / fMin111);
                                         rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint119);
+                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint110);
                                     } else {
-                                        Paint paint1110 = new Paint();
-                                        paint1110.setFilterBitmap(true);
-                                        float fMin16 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin16, bitmapDecodeFile.getHeight() / fMin16);
+                                        Paint paint111 = new Paint();
+                                        paint111.setFilterBitmap(true);
+                                        float fMin112 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
+                                        rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin112, bitmapDecodeFile.getHeight() / fMin112);
                                         rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint1110);
+                                        canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint111);
                                     }
-                                    i16 = i12;
+                                    i18 = i17;
                                     z = true;
+                                    i22 = 120;
                                 }
                             }
-                            i16 = 80;
+                            str = str;
+                            i22 = 120;
+                            i18 = 80;
                             z = false;
                         } else {
-                            i17 = i6;
-                            if (i17 != 0) {
-                                if (i24 < 0) {
-                                    options2 = new BitmapFactory.Options();
-                                    options2.inJustDecodeBounds = true;
-                                    if (TextUtils.isEmpty(strArr[0])) {
-                                        file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                        BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                        fileInputStream = null;
-                                    } else {
-                                        fileInputStream = new FileInputStream(str);
-                                        fileInputStream.getChannel().position(i24);
-                                        BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                        file2 = null;
-                                    }
-                                    i18 = options2.outWidth;
-                                    if (i18 > 0) {
+                            i23 = i9;
+                            if (i23 == 0) {
+                                if (i30 < 0) {
+                                }
+                                options2 = new BitmapFactory.Options();
+                                options2.inJustDecodeBounds = true;
+                                if (TextUtils.isEmpty(strArr[0])) {
+                                    f = 2.0f;
+                                    File file115 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
+                                    BitmapFactory.decodeFile(file115.getAbsolutePath(), options2);
+                                    file2 = file115;
+                                    fileInputStream = null;
+                                    i22 = 120;
+                                    str = str;
+                                    i24 = options2.outWidth;
+                                    if (i24 > 0) {
                                         z = false;
                                     } else {
                                         z = false;
@@ -22492,22 +23497,18 @@ public class MessagesController extends BaseController implements NotificationCe
                                     if (fileInputStream != null) {
                                         fileInputStream.close();
                                     }
-                                    i16 = 80;
+                                    i18 = 80;
                                 } else {
-                                    options2 = new BitmapFactory.Options();
-                                    options2.inJustDecodeBounds = true;
-                                    if (TextUtils.isEmpty(strArr[0])) {
-                                        file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                        BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                        fileInputStream = null;
-                                    } else {
-                                        fileInputStream = new FileInputStream(str);
-                                        fileInputStream.getChannel().position(i24);
-                                        BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                        file2 = null;
-                                    }
-                                    i18 = options2.outWidth;
-                                    if (i18 > 0) {
+                                    f = 2.0f;
+                                    str = str;
+                                    fileInputStream = new FileInputStream(str);
+                                    i22 = 120;
+                                    paint = i30;
+                                    fileInputStream.getChannel().position(paint);
+                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
+                                    file2 = null;
+                                    i24 = options2.outWidth;
+                                    if (i24 > 0) {
                                         z = false;
                                     } else {
                                         z = false;
@@ -22515,335 +23516,208 @@ public class MessagesController extends BaseController implements NotificationCe
                                     if (fileInputStream != null) {
                                         fileInputStream.close();
                                     }
-                                    i16 = 80;
+                                    i18 = 80;
                                 }
                                 AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
                             }
-                            if (i8 == 0) {
-                                motionBackgroundDrawable = new ColorDrawable(i17);
-                            } else if (i9 != 0) {
-                                motionBackgroundDrawable = new MotionBackgroundDrawable(i17, i8, i9, i7, true, 0, false);
+                            if (i10 == 0) {
+                                motionBackgroundDrawable = new ColorDrawable(i23);
+                            } else if (i8 != 0) {
+                                motionBackgroundDrawable = new MotionBackgroundDrawable(i23, i10, i8, i14, true);
                             } else {
-                                i21 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
-                                if (i21 == -1) {
-                                    i21 = 45;
+                                i27 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
+                                if (i27 == -1) {
+                                    i27 = 45;
                                 }
-                                i12 = 90;
-                                motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i21, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120, new int[]{i17, i33});
+                                i17 = 90;
+                                motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i27, new int[]{i23, i39}, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                             }
                             motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
                             motionBackgroundDrawable.draw(canvas);
-                            i16 = i12;
+                            i18 = i17;
                             z = true;
+                            i22 = 120;
                         }
-                        if (!z) {
-                            ?? CreateDefaultWallpaper8 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                            CreateDefaultWallpaper8.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                            CreateDefaultWallpaper8.draw(canvas);
-                        }
-                        paint118.setColor(i5);
-                        canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint118);
-                        if (Mutate != 0) {
-                            int intrinsicHeight15 = (120 - Mutate.getIntrinsicHeight()) / 2;
-                            Mutate.setBounds(13, intrinsicHeight15, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight15);
-                            Mutate.draw(canvas);
-                        }
-                        if (Mutate2 != 0) {
-                            int width15 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
-                            int intrinsicHeight16 = (120 - Mutate2.getIntrinsicHeight()) / 2;
-                            Mutate2.setBounds(width15, intrinsicHeight16, Mutate2.getIntrinsicWidth() + width15, Mutate2.getIntrinsicHeight() + intrinsicHeight16);
-                            Mutate2.draw(canvas);
-                        }
-                        r15[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
-                        r15[1].setTop(0, 560, 522);
-                        r15[1].draw(canvas);
-                        r15[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
-                        r15[1].setTop(430, 560, 522);
-                        r15[1].draw(canvas);
-                        r15[0].setBounds(20, 323, 399, 415);
-                        r15[0].setTop(323, 560, 522);
-                        r15[0].draw(canvas);
-                        paint118.setColor(iValueAt3);
-                        canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint118);
-                        if (Mutate3 != 0) {
-                            int height15 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
-                            Mutate3.setBounds(22, height15, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height15);
-                            Mutate3.draw(canvas);
-                        }
-                        if (Mutate4 != 0) {
-                            int width16 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
-                            int height16 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
-                            Mutate4.setBounds(width16, height16, Mutate4.getIntrinsicWidth() + width16, Mutate4.getIntrinsicHeight() + height16);
-                            Mutate4.draw(canvas);
-                        }
-                        paint2 = 0;
-                        paint2 = 0;
-                        r4 = 0;
-                        canvas.setBitmap(null);
-                        File file10 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
-                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i16, new FileOutputStream(file10));
+                        bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i18, new FileOutputStream(file114));
                         SharedConfig.saveConfig();
-                        absolutePath = file10.getAbsolutePath();
-                        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                        absolutePath = file114.getAbsolutePath();
+                    } catch (Throwable th11) {
+                        FileLog.e(th11);
+                        absolutePath = r3;
                     }
-                    if (absolutePath2 != null) {
-                        options = new BitmapFactory.Options();
-                        options.inJustDecodeBounds = true;
-                        BitmapFactory.decodeFile(absolutePath2, options);
-                        i13 = options.outWidth;
-                        if (i13 > 0) {
-                            fMin = Math.min(i13 / 560.0f, i14 / 560.0f);
-                            options.inSampleSize = 1;
-                            if (fMin > 1.0f) {
-                                do {
-                                    i15 = options.inSampleSize * 2;
-                                    options.inSampleSize = i15;
-                                } while (i15 < fMin);
-                            }
-                            Bitmap.Config config8 = Bitmap.Config.ALPHA_8;
-                            options.inPreferredConfig = config8;
-                            options.inJustDecodeBounds = false;
-                            bitmapDecodeFile = BitmapFactory.decodeFile(absolutePath2, options);
-                            if (bitmapDecodeFile != null) {
-                                if (i9 != 0) {
-                                    Paint paint1111 = new Paint();
-                                    paint1111.setFilterBitmap(true);
-                                    float fMin17 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin17, bitmapDecodeFile.getHeight() / fMin17);
-                                    rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint1111);
-                                } else {
-                                    Paint paint1112 = new Paint();
-                                    paint1112.setFilterBitmap(true);
-                                    float fMin18 = Math.min(bitmapDecodeFile.getWidth() / 560.0f, bitmapDecodeFile.getHeight() / 560.0f);
-                                    rectF.set(0.0f, 0.0f, bitmapDecodeFile.getWidth() / fMin18, bitmapDecodeFile.getHeight() / fMin18);
-                                    rectF.offset((bitmapCreateBitmap.getWidth() - rectF.width()) / 2.0f, (bitmapCreateBitmap.getHeight() - rectF.height()) / 2.0f);
-                                    canvas.drawBitmap(bitmapDecodeFile, null, rectF, paint1112);
-                                }
-                                i16 = i12;
-                                z = true;
-                            }
-                        }
-                        i16 = 80;
-                        z = false;
-                    } else {
-                        i17 = i6;
-                        if (i17 != 0) {
-                            if (i24 < 0) {
-                                options2 = new BitmapFactory.Options();
-                                options2.inJustDecodeBounds = true;
-                                if (TextUtils.isEmpty(strArr[0])) {
-                                    file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                    BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                    fileInputStream = null;
-                                } else {
-                                    fileInputStream = new FileInputStream(str);
-                                    fileInputStream.getChannel().position(i24);
-                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                    file2 = null;
-                                }
-                                i18 = options2.outWidth;
-                                if (i18 > 0) {
-                                    z = false;
-                                } else {
-                                    z = false;
-                                }
-                                if (fileInputStream != null) {
-                                    fileInputStream.close();
-                                }
-                                i16 = 80;
-                            } else {
-                                options2 = new BitmapFactory.Options();
-                                options2.inJustDecodeBounds = true;
-                                if (TextUtils.isEmpty(strArr[0])) {
-                                    file2 = new File(ApplicationLoader.getFilesDirFixed(), Utilities.MD5(strArr[0]) + ".wp");
-                                    BitmapFactory.decodeFile(file2.getAbsolutePath(), options2);
-                                    fileInputStream = null;
-                                } else {
-                                    fileInputStream = new FileInputStream(str);
-                                    fileInputStream.getChannel().position(i24);
-                                    BitmapFactory.decodeStream(fileInputStream, null, options2);
-                                    file2 = null;
-                                }
-                                i18 = options2.outWidth;
-                                if (i18 > 0) {
-                                    z = false;
-                                } else {
-                                    z = false;
-                                }
-                                if (fileInputStream != null) {
-                                    fileInputStream.close();
-                                }
-                                i16 = 80;
-                            }
-                            AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
-                        }
-                        if (i8 == 0) {
-                            motionBackgroundDrawable = new ColorDrawable(i17);
-                        } else if (i9 != 0) {
-                            motionBackgroundDrawable = new MotionBackgroundDrawable(i17, i8, i9, i7, true, 0, false);
-                        } else {
-                            i21 = themeFileValues.get(Theme.key_chat_wallpaper_gradient_rotation, -1);
-                            if (i21 == -1) {
-                                i21 = 45;
-                            }
-                            i12 = 90;
-                            motionBackgroundDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(i21, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120, new int[]{i17, i33});
-                        }
-                        motionBackgroundDrawable.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                        motionBackgroundDrawable.draw(canvas);
-                        i16 = i12;
-                        z = true;
+                    if (!z) {
+                        ?? CreateDefaultWallpaper14 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                        CreateDefaultWallpaper14.setBounds(0, i22, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - i22);
+                        CreateDefaultWallpaper14.draw(canvas);
                     }
-                    bitmapCreateBitmap.compress(Bitmap.CompressFormat.JPEG, i16, new FileOutputStream(file10));
-                    SharedConfig.saveConfig();
-                    absolutePath = file10.getAbsolutePath();
-                } catch (Throwable th8) {
-                    FileLog.e(th8);
-                    absolutePath = r4;
+                    paint2.setColor(iValueAt);
+                    canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint2);
+                    if (Mutate != 0) {
+                        int intrinsicHeight117 = (120 - Mutate.getIntrinsicHeight()) / 2;
+                        Mutate.setBounds(13, intrinsicHeight117, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight117);
+                        Mutate.draw(canvas);
+                    }
+                    if (Mutate2 != 0) {
+                        int width117 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
+                        int intrinsicHeight118 = (120 - Mutate2.getIntrinsicHeight()) / 2;
+                        Mutate2.setBounds(width117, intrinsicHeight118, Mutate2.getIntrinsicWidth() + width117, Mutate2.getIntrinsicHeight() + intrinsicHeight118);
+                        Mutate2.draw(canvas);
+                    }
+                    r213[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
+                    r213[1].setTop(0, 560, 522, false, false);
+                    r213[1].draw(canvas);
+                    r213[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
+                    r213[1].setTop(430, 560, 522, false, false);
+                    r213[1].draw(canvas);
+                    r213[0].setBounds(20, 323, 399, 415);
+                    r213[0].setTop(323, 560, 522, false, false);
+                    r213[0].draw(canvas);
+                    paint2.setColor(iValueAt3);
+                    canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint2);
+                    if (Mutate3 != 0) {
+                        int height117 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
+                        Mutate3.setBounds(22, height117, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height117);
+                        Mutate3.draw(canvas);
+                    }
+                    if (Mutate4 != 0) {
+                        int width118 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
+                        int height118 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
+                        Mutate4.setBounds(width118, height118, Mutate4.getIntrinsicWidth() + width118, Mutate4.getIntrinsicHeight() + height118);
+                        Mutate4.draw(canvas);
+                    }
+                    paint = 0;
+                    paint = 0;
+                    r3 = 0;
+                    canvas.setBitmap(null);
+                    File file116 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
+                } catch (Throwable th12) {
+                    th = th12;
+                    paint = 0;
+                    FileLog.e(th);
+                    r3 = paint;
+                    absolutePath = r3;
+                    AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
+                }
+                if (i41 != 0) {
+                    i37 = i41;
+                }
+                if (themeAccent != null) {
+                    i = (int) themeAccent.backgroundGradientOverrideColor1;
+                } else {
+                    i = 0;
                 }
                 if (i != 0) {
-                    i31 = i;
+                    if (i != 0) {
+                        i38 = i;
+                    }
+                } else if (i != 0) {
+                    i38 = i;
                 }
-                if (paint2 != 0) {
-                    i2 = (int) paint2.backgroundGradientOverrideColor1;
+                if (themeAccent != null) {
+                    i2 = (int) themeAccent.backgroundGradientOverrideColor2;
                 } else {
                     i2 = 0;
                 }
                 if (i2 != 0) {
-                    if (i2 != 0) {
-                        i32 = i2;
+                    if (i2 == 0) {
+                        i3 = i39;
                     }
-                } else if (i2 != 0) {
-                    i32 = i2;
+                } else if (i2 == 0) {
+                    i3 = i39;
                 }
-                if (paint2 != 0) {
-                    i3 = (int) paint2.backgroundGradientOverrideColor2;
+                if (themeAccent != null) {
+                    i3 = i2;
+                    i4 = (int) themeAccent.backgroundGradientOverrideColor3;
                 } else {
-                    i3 = 0;
-                }
-                if (i3 != 0) {
-                    if (i3 == 0) {
-                        i3 = i33;
-                    }
-                } else if (i3 == 0) {
-                    i3 = i33;
-                }
-                if (paint2 != 0) {
-                    i4 = (int) paint2.backgroundGradientOverrideColor3;
-                } else {
+                    i3 = i2;
                     i4 = 0;
                 }
                 if (i4 != 0) {
                     if (i4 == 0) {
-                        i4 = i34;
+                        i4 = i40;
                     }
                 } else if (i4 == 0) {
-                    i4 = i34;
+                    i4 = i40;
                 }
-                if (TextUtils.isEmpty(strArr2[c])) {
-                    String queryParameter5 = Uri.parse(strArr2[c]).getQueryParameter("bg_color");
-                    if (paint2 != 0) {
+                if (TextUtils.isEmpty(strArr[0])) {
+                    String queryParameter5 = Uri.parse(strArr[0]).getQueryParameter("bg_color");
+                    if (themeAccent == null) {
                     }
-                    strArr = strArr2;
-                    paint = paint3;
-                    i5 = iValueAt;
-                    i6 = i31;
-                    i8 = i32;
-                    i9 = i3;
-                    i7 = i4;
+                    i5 = iValueAt2;
+                    i6 = iValueAt5;
+                    i9 = i37;
+                    i10 = i38;
+                    i8 = i3;
+                    i14 = i4;
                 } else {
-                    strArr = strArr2;
-                    paint = paint3;
-                    i5 = iValueAt;
-                    i6 = i31;
-                    i8 = i32;
-                    i9 = i3;
-                    i7 = i4;
+                    i5 = iValueAt2;
+                    i6 = iValueAt5;
+                    i9 = i37;
+                    i10 = i38;
+                    i8 = i3;
+                    i14 = i4;
                 }
                 Mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
-                Theme.setDrawableColor(iValueAt2, Mutate);
+                int i412 = i5;
+                Theme.setDrawableColor(i412, Mutate);
                 Mutate2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_dots).mutate();
-                Theme.setDrawableColor(iValueAt2, Mutate2);
+                Theme.setDrawableColor(i412, Mutate2);
                 Mutate3 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_smile).mutate();
                 Theme.setDrawableColor(iValueAt4, Mutate3);
                 Mutate4 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_mic).mutate();
                 Theme.setDrawableColor(iValueAt4, Mutate4);
-                r15 = new MessageDrawable[2];
-                i11 = 0;
-                while (i11 < i10) {
-                    Paint paint1113 = paint;
-                    if (i11 == 1) {
-                        z2 = true;
+                messageDrawableArr = new MessageDrawable[2];
+                i16 = 0;
+                while (i16 < i15) {
+                    MessageDrawable[] messageDrawableArr11 = messageDrawableArr;
+                    if (i16 == 1) {
+                        z3 = true;
                     } else {
-                        z2 = false;
+                        z3 = false;
                     }
-                    Theme.AnonymousClass12 anonymousClass19 = new Theme.AnonymousClass12(z2, themeFileValues);
-                    r15[i11] = anonymousClass19;
-                    if (i11 == 0) {
-                        i22 = iValueAt5;
+                    MessageDrawable messageDrawable10 = new MessageDrawable(z3) {
+                        public final SparseIntArray val$colors;
+
+                        public AnonymousClass12(final boolean z3) {
+                            super(2, z3, false, null);
+                            sparseIntArray = themeFileValues;
+                        }
+
+                        @Override
+                        public final int getColor(int i413) {
+                            SparseIntArray sparseIntArray = sparseIntArray;
+                            int iIndexOfKey7 = sparseIntArray.indexOfKey(i413);
+                            return iIndexOfKey7 > 0 ? sparseIntArray.valueAt(iIndexOfKey7) : Theme.defaultColors[i413];
+                        }
+
+                        @Override
+                        public final int getCurrentColor(int i413) {
+                            return sparseIntArray.get(i413);
+                        }
+                    };
+                    messageDrawableArr11[i16] = messageDrawable10;
+                    if (i16 == 0) {
+                        i28 = i6;
                     } else {
-                        i22 = iValueAt6;
+                        i28 = iValueAt6;
                     }
-                    Theme.setDrawableColor(i22, anonymousClass19);
-                    i11++;
-                    paint = paint1113;
+                    Theme.setDrawableColor(i28, messageDrawable10);
+                    i16++;
+                    messageDrawableArr = messageDrawableArr11;
                 }
-                Paint paint1114 = paint;
+                ?? r214 = messageDrawableArr;
                 rectF = new RectF();
-                i12 = 80;
-                if (!z) {
-                    ?? CreateDefaultWallpaper9 = Theme.createDefaultWallpaper(bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                    CreateDefaultWallpaper9.setBounds(0, 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight() - 120);
-                    CreateDefaultWallpaper9.draw(canvas);
-                }
-                paint1114.setColor(i5);
-                canvas.drawRect(0.0f, 0.0f, bitmapCreateBitmap.getWidth(), 120.0f, paint1114);
-                if (Mutate != 0) {
-                    int intrinsicHeight17 = (120 - Mutate.getIntrinsicHeight()) / 2;
-                    Mutate.setBounds(13, intrinsicHeight17, Mutate.getIntrinsicWidth() + 13, Mutate.getIntrinsicHeight() + intrinsicHeight17);
-                    Mutate.draw(canvas);
-                }
-                if (Mutate2 != 0) {
-                    int width17 = (bitmapCreateBitmap.getWidth() - Mutate2.getIntrinsicWidth()) - 10;
-                    int intrinsicHeight18 = (120 - Mutate2.getIntrinsicHeight()) / 2;
-                    Mutate2.setBounds(width17, intrinsicHeight18, Mutate2.getIntrinsicWidth() + width17, Mutate2.getIntrinsicHeight() + intrinsicHeight18);
-                    Mutate2.draw(canvas);
-                }
-                r15[1].setBounds(161, 216, bitmapCreateBitmap.getWidth() - 20, 308);
-                r15[1].setTop(0, 560, 522);
-                r15[1].draw(canvas);
-                r15[1].setBounds(161, 430, bitmapCreateBitmap.getWidth() - 20, 522);
-                r15[1].setTop(430, 560, 522);
-                r15[1].draw(canvas);
-                r15[0].setBounds(20, 323, 399, 415);
-                r15[0].setTop(323, 560, 522);
-                r15[0].draw(canvas);
-                paint1114.setColor(iValueAt3);
-                canvas.drawRect(0.0f, bitmapCreateBitmap.getHeight() - 120, bitmapCreateBitmap.getWidth(), bitmapCreateBitmap.getHeight(), paint1114);
-                if (Mutate3 != 0) {
-                    int height17 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate3.getIntrinsicHeight()) / 2);
-                    Mutate3.setBounds(22, height17, Mutate3.getIntrinsicWidth() + 22, Mutate3.getIntrinsicHeight() + height17);
-                    Mutate3.draw(canvas);
-                }
-                if (Mutate4 != 0) {
-                    int width18 = (bitmapCreateBitmap.getWidth() - Mutate4.getIntrinsicWidth()) - 22;
-                    int height18 = (bitmapCreateBitmap.getHeight() - 120) + ((120 - Mutate4.getIntrinsicHeight()) / 2);
-                    Mutate4.setBounds(width18, height18, Mutate4.getIntrinsicWidth() + width18, Mutate4.getIntrinsicHeight() + height18);
-                    Mutate4.draw(canvas);
-                }
-                paint2 = 0;
-                paint2 = 0;
-                r4 = 0;
-                canvas.setBitmap(null);
-                File file11 = new File(FileLoader.getDirectory(4), "-2147483648_" + SharedConfig.getLastLocalId() + ".jpg");
-            } catch (Throwable th9) {
-                th = th9;
-                paint2 = 0;
+                paint = 120;
+                paint = 120;
+                i17 = 80;
+            } catch (Throwable th13) {
+                th = th13;
+                str = str;
             }
-        } catch (Throwable th10) {
-            th = th10;
-            paint2 = 0;
+        } catch (Throwable th14) {
+            th = th14;
+            str = str;
+            paint = 0;
         }
         AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, (Object) absolutePath, str, themeAccent, themeInfo, 8));
     }
@@ -22892,11 +23766,11 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void lambda$sendTyping$172(int i, long j, long j2, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda34(this, i, j, j2, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda36(this, i, j, j2, 1));
     }
 
     public void lambda$sendTyping$174(int i, long j, long j2, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda34(this, i, j, j2, 0));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda36(this, i, j, j2, 0));
     }
 
     public void lambda$setBoostsToUnblockRestrictions$95(long j) {
@@ -22906,7 +23780,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$setBoostsToUnblockRestrictions$96(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 15), 1000L);
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 15), 1000L);
         }
     }
 
@@ -22917,7 +23791,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$setChannelSlowMode$94(long j, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             getMessagesController().processUpdates((TLRPC.Updates) tLObject, false);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 1), 1000L);
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 1), 1000L);
         }
     }
 
@@ -22939,7 +23813,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 chatFull.available_reactions = tL_messages_setChatAvailableReactions.available_reactions;
                 getMessagesStorage().updateChatInfo(chatFull, false);
             }
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 2));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 2));
         }
     }
 
@@ -22983,7 +23857,7 @@ public class MessagesController extends BaseController implements NotificationCe
             chatFull.available_reactions = tL_messages_setChatAvailableReactions.available_reactions;
             getMessagesStorage().updateChatInfo(chatFull, false);
         }
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda219(j, runnable, this));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda221(j, runnable, this));
     }
 
     public void lambda$setDefaultBannedRole$97(long j) {
@@ -22992,7 +23866,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$setDefaultBannedRole$98(long j, BaseFragment baseFragment, TLRPC.TL_messages_editChatDefaultBannedRights tL_messages_editChatDefaultBannedRights, boolean z, TLRPC.Updates updates, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 5), 1000L);
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 5), 1000L);
         } else {
             AlertsCreator.processError(this.currentAccount, tL_error, baseFragment, tL_messages_editChatDefaultBannedRights, Boolean.valueOf(z));
         }
@@ -23041,11 +23915,11 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$setParticipantBannedRole$92(long j, Runnable runnable, BaseFragment baseFragment, TLRPC.TL_channels_editBanned tL_channels_editBanned, boolean z, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error != null) {
-            AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda488(this, tL_error, baseFragment, tL_channels_editBanned, z, 3));
+            AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda112(this, tL_error, baseFragment, tL_channels_editBanned, z, 3));
             return;
         }
         processUpdates((TLRPC.Updates) tLObject, false);
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 14), 1000L);
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 14), 1000L);
         if (runnable != null) {
             AndroidUtilities.runOnUIThread(runnable);
         }
@@ -23054,8 +23928,8 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$setUserAdminRole$100(TLRPC.User user, TLRPC.Chat chat, ErrorDelegate errorDelegate, TLRPC.TL_error tL_error) {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment != null && lastFragment.getParentActivity() != null) {
-            LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(11, this.currentAccount, lastFragment.getParentActivity(), lastFragment, null);
-            ArrayList arrayList = new ArrayList();
+            LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(11, lastFragment, lastFragment.getParentActivity(), this.currentAccount, null);
+            ArrayList<TLRPC.User> arrayList = new ArrayList<>();
             arrayList.add(user);
             limitReachedBottomSheet.setRestrictedUsers(chat, arrayList, null, null, null);
             limitReachedBottomSheet.show();
@@ -23070,7 +23944,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$setUserAdminRole$103(long j, Runnable runnable, TLRPC.Chat chat, TLRPC.User user, ErrorDelegate errorDelegate, BaseFragment baseFragment, TLRPC.TL_channels_editAdmin tL_channels_editAdmin, boolean z, boolean z2, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
             processUpdates((TLRPC.Updates) tLObject, false);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda219(this, j, runnable, 2), 1000L);
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda221(this, j, runnable, 2), 1000L);
         } else {
             if ("USER_PRIVACY_RESTRICTED".equals(tL_error.text) && !ChatObject.isCommunity(chat) && ChatObject.canUserDoAdminAction(chat, 3)) {
                 AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda84(this, user, chat, errorDelegate, tL_error, 9));
@@ -23078,7 +23952,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             AndroidUtilities.runOnUIThread(new ActionBarLayout$$ExternalSyntheticLambda16(this, tL_error, baseFragment, tL_channels_editAdmin, z, z2));
             if (errorDelegate != null) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda221(errorDelegate, tL_error, 1));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda223(errorDelegate, tL_error, 1));
             }
         }
     }
@@ -23100,12 +23974,12 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$setUserAdminRole$108(long j, Runnable runnable, BaseFragment baseFragment, TLRPC.TL_messages_editChatAdmin tL_messages_editChatAdmin, ErrorDelegate errorDelegate, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tL_error == null) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda219(this, j, runnable, 0), 1000L);
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda221(this, j, runnable, 0), 1000L);
             return;
         }
-        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(this, tL_error, baseFragment, tL_messages_editChatAdmin, 19));
+        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(19, this, tL_error, baseFragment, tL_messages_editChatAdmin));
         if (errorDelegate != null) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda221(errorDelegate, tL_error, 0));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda223(errorDelegate, tL_error, 0));
         }
     }
 
@@ -23217,7 +24091,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$toggleChannelForum$286(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             processUpdates((TLRPC.Updates) tLObject, false);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 28));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 1));
         }
     }
 
@@ -23228,7 +24102,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$toggleChannelInvitesHistory$288(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             processUpdates((TLRPC.Updates) tLObject, false);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 17));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 18));
         }
     }
 
@@ -23239,7 +24113,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$toggleChannelSignatures$284(TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             processUpdates((TLRPC.Updates) tLObject, false);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 29));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 2));
         }
     }
 
@@ -23288,7 +24162,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public void lambda$toggleChatJoinToSend$280(Runnable runnable, Runnable runnable2, TLObject tLObject, TLRPC.TL_error tL_error) {
         if (tLObject != null) {
             processUpdates((TLRPC.Updates) tLObject, false);
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 20));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 22));
             if (runnable != null) {
                 runnable.run();
                 return;
@@ -23447,7 +24321,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$updateChannelUserName$292(long j, String str, Runnable runnable, BaseFragment baseFragment, TLRPC.TL_channels_updateUsername tL_channels_updateUsername, Runnable runnable2, TLObject tLObject, TLRPC.TL_error tL_error) {
         if ((tLObject instanceof TLRPC.TL_boolTrue) || (tL_error != null && "USERNAME_NOT_MODIFIED".equals(tL_error.text))) {
-            AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda121(this, j, (Serializable) str, (Object) runnable, 6));
+            AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda139(this, j, str, runnable, 6));
             return;
         }
         AlertsCreator.processError(UserConfig.selectedAccount, tL_error, baseFragment, tL_channels_updateUsername, new Object[0]);
@@ -23489,7 +24363,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.linkPrefix = str;
         boolean z = tL_config.force_try_ipv6;
         if (str.endsWith("/")) {
-            this.linkPrefix = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 0, this.linkPrefix);
+            this.linkPrefix = Fragment$$ExternalSyntheticOutline0.m(1, 0, this.linkPrefix);
         }
         if (this.linkPrefix.startsWith("https://")) {
             this.linkPrefix = this.linkPrefix.substring(8);
@@ -23777,7 +24651,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         tL_messages_getPollResults.peer = getInputPeer(messageObject.getDialogId());
                         tL_messages_getPollResults.msg_id = messageObject.getId();
                         tL_messages_getPollResults.poll_hash = messageObject.getPollHash();
-                        getConnectionsManager().sendRequest(tL_messages_getPollResults, new CallLogActivity$$ExternalSyntheticLambda31(1, this, z));
+                        getConnectionsManager().sendRequest(tL_messages_getPollResults, new VoIPService$$ExternalSyntheticLambda139(this, z, 1));
                     }
                     size2 = size2;
                     i4++;
@@ -23915,7 +24789,7 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC.TL_messages_getQuickReplyMessages tL_messages_getQuickReplyMessages = new TLRPC.TL_messages_getQuickReplyMessages();
             tL_messages_getQuickReplyMessages.shortcut_id = (int) j3;
             tL_messages_getQuickReplyMessages.hash = j4;
-            getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getQuickReplyMessages, new MessagesController$$ExternalSyntheticLambda450(this, j, j2, i, i2, i3, i5, i10, i7, i11, i12, i6, i8, j3, i9, z3, i13, z5, z6)), i5);
+            getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getQuickReplyMessages, new MessagesController$$ExternalSyntheticLambda452(this, j, j2, i, i2, i3, i5, i10, i7, i11, i12, i6, i8, j3, i9, z3, i13, z5, z6)), i5);
             return;
         }
         if (j3 == 0) {
@@ -23926,7 +24800,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 TLRPC.TL_messages_getScheduledHistory tL_messages_getScheduledHistory = new TLRPC.TL_messages_getScheduledHistory();
                 tL_messages_getScheduledHistory.peer = getInputPeer(j);
                 tL_messages_getScheduledHistory.hash = j4;
-                getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getScheduledHistory, new MessagesController$$ExternalSyntheticLambda450(this, i2, i3, j, j2, i, i5, i10, i7, i11, i12, i6, i8, j3, i9, z3, i13, z5, z6)), i5);
+                getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getScheduledHistory, new MessagesController$$ExternalSyntheticLambda452(this, i2, i3, j, j2, i, i5, i10, i7, i11, i12, i6, i8, j3, i9, z3, i13, z5, z6)), i5);
                 return;
             }
             if (!ChatObject.isMonoForum(chat) && z4 && ((i6 == 3 || i6 == 2) && i7 == 0)) {
@@ -23961,7 +24835,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_getHistory.limit = i;
             tL_messages_getHistory.offset_id = i2;
             tL_messages_getHistory.offset_date = i3;
-            getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getHistory, new MessagesController$$ExternalSyntheticLambda451(this, j, i, i2, i3, j2, i5, i10, i7, i11, i12, i6, i8, j3, i9, z3, i13, z5, z6, tL_messages_getHistory, 2)), i5);
+            getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getHistory, new MessagesController$$ExternalSyntheticLambda453(this, j, i, i2, i3, j2, i5, i10, i7, i11, i12, i6, i8, j3, i9, z3, i13, z5, z6, tL_messages_getHistory, 2)), i5);
             return;
         }
         if (i8 == 3 || ChatObject.isMonoForum(chat)) {
@@ -23985,7 +24859,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_getSavedHistory.limit = i;
             tL_messages_getSavedHistory.offset_id = i2;
             tL_messages_getSavedHistory.offset_date = i3;
-            getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getSavedHistory, new MessagesController$$ExternalSyntheticLambda451(this, j, i, i2, i3, j2, i5, i10, i7, i11, i12, i6, i8, j3, i9, z3, i13, z5, z6, tL_messages_getSavedHistory, 1)), i5);
+            getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getSavedHistory, new MessagesController$$ExternalSyntheticLambda453(this, j, i, i2, i3, j2, i5, i10, i7, i11, i12, i6, i8, j3, i9, z3, i13, z5, z6, tL_messages_getSavedHistory, 1)), i5);
             return;
         }
         if (z4 && z6 && i6 == 2 && i7 == 0 && (tL_forumTopicFindTopic = this.topicsController.findTopic(-j, j3)) != null) {
@@ -24015,7 +24889,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_getReplies.offset_id = i2;
         tL_messages_getReplies.hash = j4;
         System.currentTimeMillis();
-        getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getReplies, new MessagesController$$ExternalSyntheticLambda451(this, i, i2, i3, i10, i6, j, j2, i5, i7, i11, i12, i8, j3, i9, z3, i13, z5, z6, tL_messages_getReplies)), i5);
+        getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_messages_getReplies, new MessagesController$$ExternalSyntheticLambda453(this, i, i2, i3, i10, i6, j, j2, i5, i7, i11, i12, i8, j3, i9, z3, i13, z5, z6, tL_messages_getReplies)), i5);
     }
 
     private void loadPremiumFeaturesPreviewOrder(SparseIntArray sparseIntArray, String str) {
@@ -24147,7 +25021,7 @@ public class MessagesController extends BaseController implements NotificationCe
         ArrayList<TLRPC.Updates> arrayList;
         if (i == 0) {
             arrayList = this.updatesQueueSeq;
-            Collections.sort(arrayList, new MessagesController$$ExternalSyntheticLambda101(this, 4));
+            Collections.sort(arrayList, new MessagesController$$ExternalSyntheticLambda103(this, 4));
         } else if (i == 1) {
             arrayList = this.updatesQueuePts;
             Collections.sort(arrayList, new Emoji$$ExternalSyntheticLambda0(15));
@@ -24243,7 +25117,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (tL_messages_getPeerDialogs.peers.isEmpty()) {
             return;
         }
-        getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new MessagesController$$ExternalSyntheticLambda16(this, 6));
+        getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new MessagesController$$ExternalSyntheticLambda18(this, 6));
     }
 
     private void reloadMessages(ArrayList<Integer> arrayList, final long j, final int i) {
@@ -24294,7 +25168,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         long j = dialog.id;
         if (this.dialogsServerOnly.remove(dialog) && DialogObject.isChannel(dialog)) {
-            Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda49(this, j, 12));
+            Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda51(this, j, 12));
         }
         this.allDialogs.remove(dialog);
         this.dialogsMyChannels.remove(dialog);
@@ -24694,170 +25568,32 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     private boolean savePremiumFeaturesPreviewOrder(String str, SparseIntArray sparseIntArray, SharedPreferences.Editor editor, ArrayList<TLRPC.JSONValue> arrayList) {
-        int i;
+        int iServerStringToFeatureType;
         StringBuilder sb = new StringBuilder();
         sparseIntArray.clear();
-        int i2 = 0;
+        int i = 0;
         while (true) {
-            if (i2 >= arrayList.size()) {
-                if (sb.length() <= 0) {
-                    editor.remove(str);
-                    return this.mainPreferences.getString(str, null) != null;
-                }
-                String string = sb.toString();
-                boolean z = !string.equals(this.mainPreferences.getString(str, null));
-                editor.putString(str, string);
-                return z;
+            if (i >= arrayList.size()) {
+                break;
             }
-            String str2 = arrayList.get(i2) instanceof TLRPC.TL_jsonString ? ((TLRPC.TL_jsonString) arrayList.get(i2)).value : null;
-            if (str2 != null) {
-                switch (str2) {
-                    case "animated_userpics":
-                        i = 7;
-                        break;
-                    case "infinite_reactions":
-                        i = 4;
-                        break;
-                    case "stories__caption":
-                        i = 21;
-                        break;
-                    case "away_message":
-                        i = 33;
-                        break;
-                    case "business_hours":
-                        i = 30;
-                        break;
-                    case "business_intro":
-                        i = 36;
-                        break;
-                    case "business_links":
-                        i = 37;
-                        break;
-                    case "stories__quality":
-                        i = 25;
-                        break;
-                    case "stories__save_stories_to_gallery":
-                        i = 18;
-                        break;
-                    case "stories":
-                        i = 14;
-                        break;
-                    case "effects":
-                        i = 38;
-                        break;
-                    case "business_location":
-                        i = 29;
-                        break;
-                    case "peer_colors":
-                        i = 23;
-                        break;
-                    case "voice_to_text":
-                        i = 8;
-                        break;
-                    case "wallpapers":
-                        i = 22;
-                        break;
-                    case "message_privacy":
-                        i = 27;
-                        break;
-                    case "animated_emoji":
-                        i = 11;
-                        break;
-                    case "translations":
-                        i = 13;
-                        break;
-                    case "business":
-                        i = 28;
-                        break;
-                    case "no_ads":
-                        i = 3;
-                        break;
-                    case "more_upload":
-                        i = 1;
-                        break;
-                    case "emoji_status":
-                        i = 12;
-                        break;
-                    case "profile_badge":
-                        i = 6;
-                        break;
-                    case "faster_download":
-                        i = 2;
-                        break;
-                    case "greeting_message":
-                        i = 32;
-                        break;
-                    case "premium_stickers":
-                        i = 5;
-                        break;
-                    case "double_limits":
-                        i = 0;
-                        break;
-                    case "todo":
-                        i = 39;
-                        break;
-                    case "gifts":
-                        i = 40;
-                        break;
-                    case "folder_tags":
-                        i = 35;
-                        break;
-                    case "stories__expiration_durations":
-                        i = 17;
-                        break;
-                    case "stories__stealth_mode":
-                        i = 15;
-                        break;
-                    case "quick_replies":
-                        i = 31;
-                        break;
-                    case "ai_compose":
-                        i = 42;
-                        break;
-                    case "business_bots":
-                        i = 34;
-                        break;
-                    case "stories__priority_order":
-                        i = 20;
-                        break;
-                    case "pm_noforwards":
-                        i = 41;
-                        break;
-                    case "stories__links_and_formatting":
-                        i = 19;
-                        break;
-                    case "advanced_chat_management":
-                        i = 9;
-                        break;
-                    case "stories__permanent_views_history":
-                        i = 16;
-                        break;
-                    case "rich_formatting":
-                        i = 43;
-                        break;
-                    case "saved_tags":
-                        i = 24;
-                        break;
-                    case "app_icons":
-                        i = 10;
-                        break;
-                    case "last_seen":
-                        i = 26;
-                        break;
-                    default:
-                        i = -1;
-                        break;
+            String str2 = arrayList.get(i) instanceof TLRPC.TL_jsonString ? ((TLRPC.TL_jsonString) arrayList.get(i)).value : null;
+            if (str2 != null && (iServerStringToFeatureType = PremiumPreviewFragment.serverStringToFeatureType(str2)) >= 0) {
+                sparseIntArray.put(iServerStringToFeatureType, i);
+                if (sb.length() > 0) {
+                    sb.append('_');
                 }
-                if (i >= 0) {
-                    sparseIntArray.put(i, i2);
-                    if (sb.length() > 0) {
-                        sb.append('_');
-                    }
-                    sb.append(i);
-                }
+                sb.append(iServerStringToFeatureType);
             }
-            i2++;
+            i++;
         }
+        if (sb.length() <= 0) {
+            editor.remove(str);
+            return this.mainPreferences.getString(str, null) != null;
+        }
+        String string = sb.toString();
+        boolean zEquals = true ^ string.equals(this.mainPreferences.getString(str, null));
+        editor.putString(str, string);
+        return zEquals;
     }
 
     private void saveSavedReactionsTags(long j, TLRPC.TL_messages_savedReactionsTags tL_messages_savedReactionsTags) {
@@ -24865,7 +25601,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     private void scheduleTranscriptionUpdate() {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 22));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 24));
     }
 
     private void sendLoadPeersRequest(final TLObject tLObject, final ArrayList<TLObject> arrayList, final TLRPC.messages_Dialogs messages_dialogs, final TLRPC.messages_Dialogs messages_dialogs2, final ArrayList<TLRPC.User> arrayList2, final ArrayList<TLRPC.Chat> arrayList3, final ArrayList<DialogFilter> arrayList4, final SparseArray<DialogFilter> sparseArray, final ArrayList<Integer> arrayList5, final HashMap<Integer, HashSet<Long>> map, final HashSet<Integer> hashSet, final Runnable runnable) {
@@ -24898,18 +25634,16 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(baseFragment.getParentActivity(), 0, baseFragment.getResourceProvider());
-        String string = LocaleController.getString(R.string.DialogNotAvailable);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
+        builder.setTitle(LocaleController.getString(R.string.DialogNotAvailable));
         HashMap map = new HashMap();
         int i = Theme.key_dialogTopBackground;
         map.put("info1", Integer.valueOf(baseFragment.getThemedColor(i)));
         map.put("info2", Integer.valueOf(baseFragment.getThemedColor(i)));
-        builder.setTopAnimation(R.raw.not_available, 52, baseFragment.getThemedColor(i), map);
-        alertDialog.topAnimationIsNew = true;
+        builder.setTopAnimation(R.raw.not_available, 52, false, baseFragment.getThemedColor(i), map);
+        builder.setTopAnimationIsNew(true);
         builder.setPositiveButton(LocaleController.getString(R.string.Close), null);
-        alertDialog.message = str;
-        baseFragment.showDialog(alertDialog);
+        builder.setMessage(str);
+        baseFragment.showDialog(builder.create());
     }
 
     public static TLRPC.InputDocument toInputDocument(TLRPC.Document document) {
@@ -25102,7 +25836,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
         }
         this.lastPrintingStringCount = longSparseArray.size();
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda42(this, longSparseArray, longSparseArray2, 2));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda44(this, longSparseArray, longSparseArray2, 2));
     }
 
     private boolean updatePrintingUsersWithNewMessages(long j, ArrayList<MessageObject> arrayList) {
@@ -25176,7 +25910,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TL_account.updateWebBrowserSettings updatewebbrowsersettings = new TL_account.updateWebBrowserSettings();
         updatewebbrowsersettings.open_external_browser = z;
         updatewebbrowsersettings.display_close_button = z2;
-        getConnectionsManager().sendRequestTyped(updatewebbrowsersettings, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda119(this, 0));
+        getConnectionsManager().sendRequestTyped(updatewebbrowsersettings, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda121(this, 0));
     }
 
     public void addDialogAction(long j, boolean z) {
@@ -25316,7 +26050,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (messageObject == null) {
             return;
         }
-        Utilities.stageQueue.postRunnable(new MessagesStorage$$ExternalSyntheticLambda3(11, this, messageObject));
+        Utilities.stageQueue.postRunnable(new MessagesStorage$$ExternalSyntheticLambda3(12, this, messageObject));
     }
 
     public void addUserToChat(long j, TLRPC.User user, int i, String str, BaseFragment baseFragment, Runnable runnable) {
@@ -25330,7 +26064,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_channels_inviteToChannel tL_channels_inviteToChannel = new TLRPC.TL_channels_inviteToChannel();
         tL_channels_inviteToChannel.channel = getInputChannel(j);
         tL_channels_inviteToChannel.users = arrayList;
-        getConnectionsManager().sendRequest(tL_channels_inviteToChannel, new StarGiftSheet$$ExternalSyntheticLambda162(this, baseFragment, tL_channels_inviteToChannel, j, 3));
+        getConnectionsManager().sendRequest(tL_channels_inviteToChannel, new StarGiftSheet$$ExternalSyntheticLambda150(this, baseFragment, tL_channels_inviteToChannel, j, 3));
     }
 
     public void addUsersToChat(TLRPC.Chat chat, BaseFragment baseFragment, ArrayList<TLRPC.User> arrayList, int i, Consumer consumer, Consumer consumer2, Runnable runnable) {
@@ -25342,7 +26076,7 @@ public class MessagesController extends BaseController implements NotificationCe
         long j = chat2.id;
         for (int i2 = 0; i2 < size; i2++) {
             TLRPC.User user = arrayList.get(i2);
-            addUserToChat(j, user, i, null, baseFragment, false, new MessagesStorage$$ExternalSyntheticLambda3(15, consumer, user), new GoogleMapsProvider$GoogleMapImpl$$ExternalSyntheticLambda3(3, consumer2, user), new MessagesController$$ExternalSyntheticLambda377(this, tL_messages_invitedUsers, iArr, size, chat2, runnable));
+            addUserToChat(j, user, i, null, baseFragment, false, new MessagesStorage$$ExternalSyntheticLambda3(14, consumer, user), new GoogleMapsProvider$GoogleMapImpl$$ExternalSyntheticLambda3(3, consumer2, user), new MessagesController$$ExternalSyntheticLambda379(this, tL_messages_invitedUsers, iArr, size, chat2, runnable));
             putUser(user, false);
             chat2 = chat;
         }
@@ -25353,7 +26087,7 @@ public class MessagesController extends BaseController implements NotificationCe
         togglewebbrowsersettingsexception.flags |= 1;
         togglewebbrowsersettingsexception.open_external_browser = z;
         togglewebbrowsersettingsexception.url = str;
-        getConnectionsManager().sendRequestTyped(togglewebbrowsersettingsexception, new MessagesController$$ExternalSyntheticLambda119(this, 2));
+        getConnectionsManager().sendRequestTyped(togglewebbrowsersettingsexception, new MessagesController$$ExternalSyntheticLambda121(this, 2));
     }
 
     public void approveSuggestedMessage(long j, int i, int i2) {
@@ -25398,7 +26132,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             tL_contacts_block.id = getInputPeer(chat);
         }
-        getConnectionsManager().sendRequest(tL_contacts_block, new MessagesController$$ExternalSyntheticLambda9(3));
+        getConnectionsManager().sendRequest(tL_contacts_block, new MessagesController$$ExternalSyntheticLambda4(2));
     }
 
     public CommunityPeersDialog buildCommunityPeers(long j) {
@@ -25546,7 +26280,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_editChatPhoto.photo = tL_inputChatPhotoEmpty;
             tLObject = tL_messages_editChatPhoto;
         }
-        getConnectionsManager().sendRequest(tLObject, new MessagesController$$ExternalSyntheticLambda77(this, tL_inputChatPhoto, fileLocation, fileLocation2, str, j, runnable), 64);
+        getConnectionsManager().sendRequest(tLObject, new MessagesController$$ExternalSyntheticLambda79(this, tL_inputChatPhoto, fileLocation, fileLocation2, str, j, runnable), 64);
     }
 
     public void changeChatTitle(long j, String str) {
@@ -25581,7 +26315,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_channels_getParticipant tL_channels_getParticipant = new TLRPC.TL_channels_getParticipant();
         tL_channels_getParticipant.channel = getInputChannel(j);
         tL_channels_getParticipant.participant = getInputPeer(getUserConfig().getClientUserId());
-        getConnectionsManager().sendRequest(tL_channels_getParticipant, new BotStarsActivity$$ExternalSyntheticLambda26(this, chat, z2, j, 2));
+        getConnectionsManager().sendRequest(tL_channels_getParticipant, new BotStarsActivity$$ExternalSyntheticLambda25(this, chat, z2, j, 2));
     }
 
     public void checkChatlistFolderUpdate(int i, boolean z) {
@@ -25728,7 +26462,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_getHistory.limit = 1;
         this.checkingLastMessagesDialogs.put(Boolean.TRUE, dialog.id);
         if (BuildVars.LOGS_ENABLED) {
-            zzjj.m(new StringBuilder("checkLastDialogMessage for "), dialog.id);
+            zzjg.m(new StringBuilder("checkLastDialogMessage for "), dialog.id);
         }
         if (j == 0) {
             try {
@@ -25775,7 +26509,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (peerColors2 != null && peerColors2.needUpdate()) {
                 tL_help_getPeerColors.hash = 0;
             }
-            getConnectionsManager().sendRequest(tL_help_getPeerColors, new MessagesController$$ExternalSyntheticLambda16(this, 22));
+            getConnectionsManager().sendRequest(tL_help_getPeerColors, new MessagesController$$ExternalSyntheticLambda18(this, 22));
         }
         if (this.loadingProfilePeerColors) {
             return;
@@ -25789,12 +26523,12 @@ public class MessagesController extends BaseController implements NotificationCe
             if (peerColors4 != null && peerColors4.needUpdate()) {
                 tL_help_getPeerProfileColors.hash = 0;
             }
-            getConnectionsManager().sendRequest(tL_help_getPeerProfileColors, new MessagesController$$ExternalSyntheticLambda16(this, 23));
+            getConnectionsManager().sendRequest(tL_help_getPeerProfileColors, new MessagesController$$ExternalSyntheticLambda18(this, 23));
         }
     }
 
     public void checkPromoInfo(boolean z) {
-        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda331(0, this, z));
+        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda333(0, this, z));
     }
 
     public void checkSensitive(final BaseFragment baseFragment, final long j, final Runnable runnable, final Runnable runnable2) {
@@ -25994,7 +26728,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.suggestedFilters.clear();
         this.dialogFiltersLoaded = false;
         this.ignoreSetOnline = false;
-        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda14(this, 14));
+        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda16(this, 16));
         this.createdDialogMainThreadIds.clear();
         this.visibleDialogMainThreadIds.clear();
         this.visibleScheduledDialogMainThreadIds.clear();
@@ -26049,13 +26783,13 @@ public class MessagesController extends BaseController implements NotificationCe
         this.gettingChatInviters.clear();
         this.statusRequest = 0;
         this.statusSettingState = 0;
-        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda14(this, 15));
+        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda16(this, 17));
         if (this.currentDeleteTaskRunnable != null) {
             Utilities.stageQueue.cancelRunnable(this.currentDeleteTaskRunnable);
             this.currentDeleteTaskRunnable = null;
         }
         addSupportUser();
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 16));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 19));
     }
 
     public void clearAllWebBrowserExceptions() {
@@ -26067,7 +26801,7 @@ public class MessagesController extends BaseController implements NotificationCe
             this.webBrowserSettings.inapp_exceptions.clear();
             setWebBrowserSettings(this.webBrowserSettings);
         }
-        getConnectionsManager().sendRequestTyped(new TL_account.deleteWebBrowserSettingsExceptions(), new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda119(this, 6));
+        getConnectionsManager().sendRequestTyped(new TL_account.deleteWebBrowserSettingsExceptions(), new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda121(this, 6));
     }
 
     public void clearFullUsers() {
@@ -26129,7 +26863,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     tL_messages_createChat.users.add(getInputUser(user));
                 }
             }
-            return getConnectionsManager().sendRequest(tL_messages_createChat, new MessagesController$$ExternalSyntheticLambda30(this, baseFragment, tL_messages_createChat, 3), 2);
+            return getConnectionsManager().sendRequest(tL_messages_createChat, new MessagesController$$ExternalSyntheticLambda32(this, baseFragment, tL_messages_createChat, 3), 2);
         }
         if (!z && i != 2 && i != 4 && i != 5) {
             return 0;
@@ -26155,7 +26889,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_channels_createChannel.address = str3;
             tL_channels_createChannel.flags |= 4;
         }
-        return getConnectionsManager().sendRequest(tL_channels_createChannel, new MessagesController$$ExternalSyntheticLambda30(this, baseFragment, tL_channels_createChannel, 4), 2);
+        return getConnectionsManager().sendRequest(tL_channels_createChannel, new MessagesController$$ExternalSyntheticLambda32(this, baseFragment, tL_channels_createChannel, 4), 2);
     }
 
     public int createCommunity(String str, long j, boolean z, Utilities.Callback2<TLRPC.Bool, TLRPC.TL_error> callback2) {
@@ -26238,7 +26972,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void deleteMessagesByPush(long j, ArrayList<Integer> arrayList, long j2) {
-        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda31(this, arrayList, j2, j));
+        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda33(this, arrayList, j2, j));
     }
 
     public void deleteMessagesRange(long j, long j2, int i, int i2, boolean z, Runnable runnable) {
@@ -26248,7 +26982,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_deleteHistory.min_date = i;
         tL_messages_deleteHistory.max_date = i2;
         tL_messages_deleteHistory.revoke = z;
-        getConnectionsManager().sendRequest(tL_messages_deleteHistory, new MessagesController$$ExternalSyntheticLambda262(this, j, i, i2, j2, z, runnable));
+        getConnectionsManager().sendRequest(tL_messages_deleteHistory, new MessagesController$$ExternalSyntheticLambda264(this, j, i, i2, j2, z, runnable));
     }
 
     public void deleteParticipantFromChat(long j, TLRPC.User user) {
@@ -26261,7 +26995,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_deleteParticipantReaction.peer = getInputPeer(j);
         tL_messages_deleteParticipantReaction.participant = getInputPeer(j2);
         tL_messages_deleteParticipantReaction.msg_id = i;
-        getConnectionsManager().sendRequestTyped(tL_messages_deleteParticipantReaction, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda119(this, 4));
+        getConnectionsManager().sendRequestTyped(tL_messages_deleteParticipantReaction, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda121(this, 4));
     }
 
     public void deleteSavedDialog(long j) {
@@ -26322,11 +27056,11 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(UPDATE_MASK_ALL));
-        getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new MessagesController$$ExternalSyntheticLambda112(this, clientUserId, 5));
+        getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new MessagesController$$ExternalSyntheticLambda114(this, clientUserId, 5));
     }
 
     public void didAddedNewTask(int i, long j, SparseArray<ArrayList<Integer>> sparseArray) {
-        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda127(this, i, 3));
+        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda129(this, i, 3));
         if (sparseArray != null) {
             AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda11(this, j, sparseArray, 13));
         }
@@ -26346,15 +27080,16 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_theme tL_theme;
         Theme.ThemeInfo themeInfo2;
         TLRPC.TL_inputThemeSettings tL_inputThemeSettings;
+        MessagesController messagesController = this;
         TLRPC.BaseTheme tL_baseThemeNight = null;
         if (i == NotificationCenter.fileUploaded) {
             String str = (String) objArr[0];
             TLRPC.InputFile inputFile3 = (TLRPC.InputFile) objArr[1];
-            String str2 = this.uploadingAvatar;
+            String str2 = messagesController.uploadingAvatar;
             if (str2 == null || !str2.equals(str)) {
-                String str3 = this.uploadingWallpaper;
+                String str3 = messagesController.uploadingWallpaper;
                 if (str3 == null || !str3.equals(str)) {
-                    Object obj = this.uploadingThemes.get(str);
+                    Object obj = messagesController.uploadingThemes.get(str);
                     if (obj instanceof Theme.ThemeInfo) {
                         themeInfo = (Theme.ThemeInfo) obj;
                         if (str.equals(themeInfo.uploadingThumb)) {
@@ -26388,7 +27123,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         themeAccent = null;
                         inputFile2 = null;
                     }
-                    this.uploadingThemes.remove(str);
+                    messagesController.uploadingThemes.remove(str);
                     if (inputFile2 != null && inputFile != null) {
                         new File(str);
                         TL_account.uploadTheme uploadtheme = new TL_account.uploadTheme();
@@ -26491,85 +27226,86 @@ public class MessagesController extends BaseController implements NotificationCe
                             themeInfo2 = themeInfo;
                             tL_inputThemeSettings = null;
                         }
-                        getConnectionsManager().sendRequest(uploadtheme, new SecretChatHelper$$ExternalSyntheticLambda27(this, tL_theme, themeInfo2, tL_inputThemeSettings, themeAccent, 2));
+                        messagesController.getConnectionsManager().sendRequest(uploadtheme, new SecretChatHelper$$ExternalSyntheticLambda27(messagesController, tL_theme, themeInfo2, tL_inputThemeSettings, themeAccent, 2));
                     }
                 } else {
                     TL_account.uploadWallPaper uploadwallpaper = new TL_account.uploadWallPaper();
                     uploadwallpaper.file = inputFile3;
                     uploadwallpaper.mime_type = "image/jpeg";
-                    Theme.OverrideWallpaperInfo overrideWallpaperInfo = this.uploadingWallpaperInfo;
-                    String str5 = this.uploadingWallpaper;
+                    Theme.OverrideWallpaperInfo overrideWallpaperInfo = messagesController.uploadingWallpaperInfo;
+                    String str5 = messagesController.uploadingWallpaper;
                     TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
                     tL_wallPaperSettings.blur = overrideWallpaperInfo.isBlurred;
                     tL_wallPaperSettings.motion = overrideWallpaperInfo.isMotion;
                     uploadwallpaper.settings = tL_wallPaperSettings;
-                    Theme.OverrideWallpaperInfo overrideWallpaperInfo2 = this.uploadingWallpaperInfo;
+                    Theme.OverrideWallpaperInfo overrideWallpaperInfo2 = messagesController.uploadingWallpaperInfo;
                     overrideWallpaperInfo2.uploadingProgress = 1.0f;
                     overrideWallpaperInfo2.requestIds = new ArrayList();
-                    this.uploadingWallpaperInfo.requestIds.add(Integer.valueOf(getConnectionsManager().sendRequest(uploadwallpaper, new SecretChatHelper$$ExternalSyntheticLambda9(this, overrideWallpaperInfo, tL_wallPaperSettings, str5, 3))));
+                    messagesController = this;
+                    messagesController.uploadingWallpaperInfo.requestIds.add(Integer.valueOf(messagesController.getConnectionsManager().sendRequest(uploadwallpaper, new SecretChatHelper$$ExternalSyntheticLambda9(3, this, overrideWallpaperInfo, tL_wallPaperSettings, str5))));
                 }
             } else {
                 TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
                 tL_photos_uploadProfilePhoto.file = inputFile3;
                 tL_photos_uploadProfilePhoto.flags |= 1;
-                getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new MessagesController$$ExternalSyntheticLambda16(this, 19));
+                messagesController.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new MessagesController$$ExternalSyntheticLambda18(messagesController, 19));
             }
         } else if (i == NotificationCenter.fileUploadFailed) {
             String str6 = (String) objArr[0];
-            String str7 = this.uploadingAvatar;
+            String str7 = messagesController.uploadingAvatar;
             if (str7 == null || !str7.equals(str6)) {
-                String str8 = this.uploadingWallpaper;
+                String str8 = messagesController.uploadingWallpaper;
                 if (str8 == null || !str8.equals(str6)) {
-                    Object objRemove = this.uploadingThemes.remove(str6);
+                    Object objRemove = messagesController.uploadingThemes.remove(str6);
                     if (objRemove instanceof Theme.ThemeInfo) {
                         Theme.ThemeInfo themeInfo5 = (Theme.ThemeInfo) objRemove;
                         themeInfo5.uploadedFile = null;
                         themeInfo5.uploadedThumb = null;
-                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeUploadError, themeInfo5, null);
+                        messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeUploadError, themeInfo5, null);
                     } else if (objRemove instanceof Theme.ThemeAccent) {
                         Theme.ThemeAccent themeAccent3 = (Theme.ThemeAccent) objRemove;
                         themeAccent3.uploadingThumb = null;
-                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeUploadError, themeAccent3.parentTheme, themeAccent3);
+                        messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeUploadError, themeAccent3.parentTheme, themeAccent3);
                     }
                 } else {
-                    this.uploadingWallpaper = null;
-                    this.uploadingWallpaperInfo = null;
+                    messagesController.uploadingWallpaper = null;
+                    messagesController.uploadingWallpaperInfo = null;
                 }
             } else {
-                this.uploadingAvatar = null;
+                messagesController.uploadingAvatar = null;
             }
         }
         if (i == NotificationCenter.fileUploadProgressChanged) {
             String str9 = (String) objArr[0];
-            String str10 = this.uploadingWallpaper;
+            String str10 = messagesController.uploadingWallpaper;
             if (str10 == null || !str10.equals(str9)) {
                 return;
             }
-            this.uploadingWallpaperInfo.uploadingProgress = ((Long) objArr[1]).longValue() / ((Long) objArr[2]).longValue();
+            messagesController.uploadingWallpaperInfo.uploadingProgress = ((Long) objArr[1]).longValue() / ((Long) objArr[2]).longValue();
             return;
         }
         if (i != NotificationCenter.messageReceivedByServer) {
             if (i != NotificationCenter.updateMessageMedia) {
                 if (i == NotificationCenter.currentUserPremiumStatusChanged) {
-                    loadAppConfig(false);
-                    getContactsController().reloadContactsStatusesMaybe(true);
-                    if ((!this.storyQualityFull || getUserConfig().isPremium()) && !getUserConfig().isPremium()) {
+                    messagesController.loadAppConfig(false);
+                    messagesController.getContactsController().reloadContactsStatusesMaybe(true);
+                    if ((!messagesController.storyQualityFull || messagesController.getUserConfig().isPremium()) && !messagesController.getUserConfig().isPremium()) {
                         return;
                     }
-                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyQualityUpdate, new Object[0]);
+                    messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.storyQualityUpdate, new Object[0]);
                     return;
                 }
                 return;
             }
             TLRPC.Message message = (TLRPC.Message) objArr[0];
-            if (message.peer_id.channel_id != 0 || (messageObject = this.dialogMessagesByIds.get(message.id)) == null) {
+            if (message.peer_id.channel_id != 0 || (messageObject = messagesController.dialogMessagesByIds.get(message.id)) == null) {
                 return;
             }
             messageObject.messageOwner.media = MessageObject.getMedia(message);
             if (MessageObject.getMedia(message).ttl_seconds != 0) {
                 if ((MessageObject.getMedia(message).photo instanceof TLRPC.TL_photoEmpty) || (MessageObject.getMedia(message).document instanceof TLRPC.TL_documentEmpty)) {
                     messageObject.setType();
-                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
+                    messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
                     return;
                 }
                 return;
@@ -26582,33 +27318,33 @@ public class MessagesController extends BaseController implements NotificationCe
         Integer num = (Integer) objArr[0];
         Integer num2 = (Integer) objArr[1];
         Long l = (Long) objArr[3];
-        ArrayList arrayList = (ArrayList) this.dialogMessage.get(l.longValue());
+        ArrayList arrayList = (ArrayList) messagesController.dialogMessage.get(l.longValue());
         for (int i9 = 0; arrayList != null && i9 < arrayList.size(); i9++) {
             MessageObject messageObject2 = (MessageObject) arrayList.get(i9);
             if (messageObject2 != null && (messageObject2.getId() == num.intValue() || messageObject2.messageOwner.local_id == num.intValue())) {
                 messageObject2.messageOwner.id = num2.intValue();
                 messageObject2.messageOwner.send_state = 0;
             }
-            MessageObject messageObject3 = this.dialogMessagesByIds.get(num.intValue());
+            MessageObject messageObject3 = messagesController.dialogMessagesByIds.get(num.intValue());
             if (messageObject3 != null) {
-                this.dialogMessagesByIds.remove(num.intValue());
-                this.dialogMessagesByIds.put(num2.intValue(), messageObject3);
+                messagesController.dialogMessagesByIds.remove(num.intValue());
+                messagesController.dialogMessagesByIds.put(num2.intValue(), messageObject3);
             }
         }
-        TLRPC.Dialog dialog = (TLRPC.Dialog) this.dialogs_dict.get(l.longValue());
+        TLRPC.Dialog dialog = (TLRPC.Dialog) messagesController.dialogs_dict.get(l.longValue());
         if (dialog != null && dialog.top_message == num.intValue()) {
             dialog.top_message = num2.intValue();
-            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
+            messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
         }
         if (DialogObject.isChatDialog(l.longValue())) {
-            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) this.fullChats.get(-l.longValue());
-            TLRPC.Chat chat = getChat(Long.valueOf(-l.longValue()));
+            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) messagesController.fullChats.get(-l.longValue());
+            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-l.longValue()));
             if (chat == null || ChatObject.hasAdminRights(chat) || MessageObject.isEphemeralMessageId(num2.intValue()) || chatFull == null || chatFull.slowmode_seconds == 0) {
                 return;
             }
-            chatFull.slowmode_next_send_date = getConnectionsManager().getCurrentTime() + chatFull.slowmode_seconds;
+            chatFull.slowmode_next_send_date = messagesController.getConnectionsManager().getCurrentTime() + chatFull.slowmode_seconds;
             chatFull.flags |= 262144;
-            getMessagesStorage().updateChatInfo(chatFull, false);
+            messagesController.getMessagesStorage().updateChatInfo(chatFull, false);
         }
     }
 
@@ -26746,20 +27482,20 @@ public class MessagesController extends BaseController implements NotificationCe
             messagesController = this;
             messagesController.loadMessagesInternal(j, 0L, true, i3, i4, 0, true, 0, iGenerateClassGuid, 2, 0, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
         }
-        return new MessagesController$$ExternalSyntheticLambda127(messagesController, iGenerateClassGuid, 2);
+        return new MessagesController$$ExternalSyntheticLambda129(messagesController, iGenerateClassGuid, 2);
     }
 
     public int fetchChatsToAddToCommunity(Utilities.Callback2<ArrayList<TLRPC.Chat>, TLRPC.TL_error> callback2) {
         TLRPC.TL_channels_getAdminedPublicChannels tL_channels_getAdminedPublicChannels = new TLRPC.TL_channels_getAdminedPublicChannels();
         tL_channels_getAdminedPublicChannels.for_community_peer = true;
-        return getConnectionsManager().sendRequestTyped(tL_channels_getAdminedPublicChannels, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda57(this, callback2, 0));
+        return getConnectionsManager().sendRequestTyped(tL_channels_getAdminedPublicChannels, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda59(this, callback2, 0));
     }
 
     public int fetchCommunityJoinedChats(long j, long j2, Utilities.Callback2<TL_communities.ParticipantJoinedChats, TLRPC.TL_error> callback2) {
         TL_communities.TL_communities_getParticipantJoinedChats tL_communities_getParticipantJoinedChats = new TL_communities.TL_communities_getParticipantJoinedChats();
         tL_communities_getParticipantJoinedChats.community = getInputChannel(j);
         tL_communities_getParticipantJoinedChats.participant = getInputPeer(j2);
-        return getConnectionsManager().sendRequestTyped(tL_communities_getParticipantJoinedChats, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda57(this, callback2, 3));
+        return getConnectionsManager().sendRequestTyped(tL_communities_getParticipantJoinedChats, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda59(this, callback2, 3));
     }
 
     public void fetchCommunityPendingJoinRequests(long j, String str, Utilities.Callback2<TL_communities.PeerLinkRequests, TLRPC.TL_error> callback2) {
@@ -26767,7 +27503,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_communities_getPeerLinkRequests.community = getInputChannel(j);
         tL_communities_getPeerLinkRequests.offset = str;
         tL_communities_getPeerLinkRequests.limit = 100;
-        getConnectionsManager().sendRequestTyped(tL_communities_getPeerLinkRequests, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda57(this, callback2, 2));
+        getConnectionsManager().sendRequestTyped(tL_communities_getPeerLinkRequests, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda59(this, callback2, 2));
     }
 
     public void fetchJoinedCommunities(Utilities.Callback<ArrayList<TLRPC.Chat>> callback, int i) {
@@ -26855,7 +27591,7 @@ public class MessagesController extends BaseController implements NotificationCe
         arrayList2.add(tL_messageService);
         arrayList.add(new MessageObject(this.currentAccount, tL_messageService, true, false));
         getMessagesStorage().putMessages(arrayList2, true, true, false, 0, 0, 0L);
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda120(this, j, arrayList, 1));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda122(this, j, arrayList, 1));
     }
 
     public int getAboutLimit() {
@@ -26937,7 +27673,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public TLRPC.messages_AvailableEffects getAvailableEffects() {
         if (!this.loadingAvailableEffects) {
             this.loadingAvailableEffects = true;
-            this.effectsFetcher.fetch(this.currentAccount, 0, new MessagesController$$ExternalSyntheticLambda355(this, 2));
+            this.effectsFetcher.fetch(this.currentAccount, 0, new MessagesController$$ExternalSyntheticLambda357(this, 2));
         }
         return this.availableEffects;
     }
@@ -27240,7 +27976,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (arrayList == null || arrayList.isEmpty()) {
             return null;
         }
-        MessageObject messageObject = (MessageObject) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList);
+        MessageObject messageObject = (MessageObject) Fragment$$ExternalSyntheticOutline0.m(1, arrayList);
         if (TextUtils.isEmpty(messageObject.caption)) {
             return !TextUtils.isEmpty(messageObject.messageText) ? messageObject.messageText.toString() : "";
         }
@@ -27380,12 +28116,12 @@ public class MessagesController extends BaseController implements NotificationCe
         if (!getMessagesController().isDialogMuted(j, j2)) {
             return LocaleController.getString(R.string.NotificationsUnmuted);
         }
-        int i = this.notificationsPreferences.getInt(MessagesController$$ExternalSyntheticOutline1.m(j, j2, new StringBuilder("notifyuntil_")), 0);
+        int i = this.notificationsPreferences.getInt(Theme.ResourcesProvider.CC.m(j, j2, "notifyuntil_"), 0);
         return i >= getConnectionsManager().getCurrentTime() ? LocaleController.formatString("NotificationsMutedForHint", R.string.NotificationsMutedForHint, LocaleController.formatTTLString(i)) : LocaleController.getString(R.string.NotificationsMuted);
     }
 
     public void getNewDeleteTask(LongSparseArray longSparseArray, LongSparseArray longSparseArray2) {
-        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda42(this, longSparseArray, longSparseArray2, 0));
+        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda44(this, longSparseArray, longSparseArray2, 0));
     }
 
     public void getNextPollVotesMention(long j, long j2, int i, Consumer consumer) {
@@ -27751,7 +28487,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             tL_messages_hidePeerSettingsBar.peer = getInputPeer(-chat.id);
         }
-        getConnectionsManager().sendRequest(tL_messages_hidePeerSettingsBar, new FileRefController$$ExternalSyntheticLambda11(21));
+        getConnectionsManager().sendRequest(tL_messages_hidePeerSettingsBar, new FileRefController$$ExternalSyntheticLambda11(22));
     }
 
     public void hidePromoDialog() {
@@ -27760,8 +28496,8 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         TLRPC.TL_help_hidePromoData tL_help_hidePromoData = new TLRPC.TL_help_hidePromoData();
         tL_help_hidePromoData.peer = getInputPeer(this.promoDialog.id);
-        getConnectionsManager().sendRequest(tL_help_hidePromoData, new MessagesController$$ExternalSyntheticLambda9(2));
-        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda5(this, 3));
+        getConnectionsManager().sendRequest(tL_help_hidePromoData, new MessagesController$$ExternalSyntheticLambda4(1));
+        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda7(this, 5));
         removePromoDialog();
     }
 
@@ -27784,7 +28520,7 @@ public class MessagesController extends BaseController implements NotificationCe
             installtheme.theme = tL_inputTheme;
             installtheme.flags |= 2;
         }
-        getConnectionsManager().sendRequest(installtheme, new FileRefController$$ExternalSyntheticLambda11(22));
+        getConnectionsManager().sendRequest(installtheme, new MessagesController$$ExternalSyntheticLambda4(0));
         if (TextUtils.isEmpty(str)) {
             return;
         }
@@ -27796,7 +28532,7 @@ public class MessagesController extends BaseController implements NotificationCe
         installwallpaper.settings = tL_wallPaperSettings;
         tL_wallPaperSettings.blur = z2;
         tL_wallPaperSettings.motion = z3;
-        getConnectionsManager().sendRequest(installwallpaper, new FileRefController$$ExternalSyntheticLambda11(25));
+        getConnectionsManager().sendRequest(installwallpaper, new MessagesController$$ExternalSyntheticLambda4(4));
     }
 
     public void invalidateChatlistFolderUpdate(int i) {
@@ -27867,7 +28603,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public boolean isDialogNotificationsSoundEnabled(long j, long j2) {
-        return this.notificationsPreferences.getBoolean(MessagesController$$ExternalSyntheticOutline1.m(j, j2, new StringBuilder("sound_enabled_")), true);
+        return this.notificationsPreferences.getBoolean(Theme.ResourcesProvider.CC.m(j, j2, "sound_enabled_"), true);
     }
 
     public boolean isDialogVisible(long j, boolean z) {
@@ -28067,7 +28803,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_getParticipants.channel = getInputChannel(j);
         tL_channels_getParticipants.limit = 100;
         tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsAdmins();
-        getConnectionsManager().sendRequest(tL_channels_getParticipants, new MessagesController$$ExternalSyntheticLambda112(this, j, 9));
+        getConnectionsManager().sendRequest(tL_channels_getParticipants, new MessagesController$$ExternalSyntheticLambda114(this, j, 9));
     }
 
     public void loadChannelParticipants(Long l) {
@@ -28079,7 +28815,7 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         this.updatingState = true;
-        getConnectionsManager().sendRequest(new TLRPC.TL_updates_getState(), new MessagesController$$ExternalSyntheticLambda16(this, 3));
+        getConnectionsManager().sendRequest(new TLRPC.TL_updates_getState(), new MessagesController$$ExternalSyntheticLambda18(this, 3));
     }
 
     public void loadDialogs(int i, int i2, int i3, boolean z) {
@@ -28177,7 +28913,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
                 getConnectionsManager().sendRequest(getnotifysettings, new ContactsController$$ExternalSyntheticLambda61(this, i, 3));
             }
-            getConnectionsManager().sendRequest(new TL_account.getReactionsNotifySettings(), new MessagesController$$ExternalSyntheticLambda16(this, 20));
+            getConnectionsManager().sendRequest(new TL_account.getReactionsNotifySettings(), new MessagesController$$ExternalSyntheticLambda18(this, 20));
         }
         if (getUserConfig().notificationsSignUpSettingsLoaded) {
             return;
@@ -28191,7 +28927,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         TLRPC.TL_help_getRecentMeUrls tL_help_getRecentMeUrls = new TLRPC.TL_help_getRecentMeUrls();
         tL_help_getRecentMeUrls.referer = this.installReferer;
-        getConnectionsManager().sendRequest(tL_help_getRecentMeUrls, new MessagesController$$ExternalSyntheticLambda16(this, 14));
+        getConnectionsManager().sendRequest(tL_help_getRecentMeUrls, new MessagesController$$ExternalSyntheticLambda18(this, 14));
     }
 
     public void loadMessages(long j, long j2, boolean z, int i, int i2, int i3, boolean z2, int i4, int i5, int i6, int i7, int i8, long j3, int i9, int i10, boolean z3) {
@@ -28221,7 +28957,7 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         this.loadingNotificationSignUpSettings = true;
-        getConnectionsManager().sendRequest(new TL_account.getContactSignUpNotification(), new MessagesController$$ExternalSyntheticLambda16(this, 5));
+        getConnectionsManager().sendRequest(new TL_account.getContactSignUpNotification(), new MessagesController$$ExternalSyntheticLambda18(this, 5));
     }
 
     public void loadStakeDiceInfo(Utilities.Callback<Boolean> callback) {
@@ -28238,7 +28974,7 @@ public class MessagesController extends BaseController implements NotificationCe
         ArrayList<Utilities.Callback<Boolean>> arrayList2 = new ArrayList<>();
         this.loadingStakeDiceInfo = arrayList2;
         arrayList2.add(callback);
-        getConnectionsManager().sendRequestTyped(new TLRPC.TL_messages_getEmojiGameInfo(), new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda119(this, 3));
+        getConnectionsManager().sendRequestTyped(new TLRPC.TL_messages_getEmojiGameInfo(), new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda121(this, 3));
     }
 
     public void loadSuggestedFilters() {
@@ -28246,7 +28982,7 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         this.loadingSuggestedFilters = true;
-        getConnectionsManager().sendRequest(new TLRPC.TL_messages_getSuggestedDialogFilters(), new MessagesController$$ExternalSyntheticLambda16(this, 24));
+        getConnectionsManager().sendRequest(new TLRPC.TL_messages_getSuggestedDialogFilters(), new MessagesController$$ExternalSyntheticLambda18(this, 24));
     }
 
     public void loadUnknownChannel(TLRPC.Chat chat, long j) {
@@ -28330,7 +29066,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             j = getMessagesStorage().createPendingTask(nativeByteBuffer);
         }
-        getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new MessagesController$$ExternalSyntheticLambda270(0, j, peerDialogId, this));
+        getConnectionsManager().sendRequest(tL_messages_getPeerDialogs, new MessagesController$$ExternalSyntheticLambda272(0, j, peerDialogId, this));
     }
 
     public void loadUnreadDialogs() {
@@ -28338,7 +29074,7 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         this.loadingUnreadDialogs = true;
-        getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDialogUnreadMarks(), new MessagesController$$ExternalSyntheticLambda16(this, 11));
+        getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDialogUnreadMarks(), new MessagesController$$ExternalSyntheticLambda18(this, 11));
     }
 
     public void loadUserInfo(TLRPC.User user, boolean z, int i) {
@@ -28404,7 +29140,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_inputAppEvent.data = tL_jsonBool;
             tL_inputAppEvent.peer = zContains ? 1L : 0L;
             tL_help_saveAppLog.events.add(tL_inputAppEvent);
-            getConnectionsManager().sendRequest(tL_help_saveAppLog, new MessagesController$$ExternalSyntheticLambda9(4));
+            getConnectionsManager().sendRequest(tL_help_saveAppLog, new MessagesController$$ExternalSyntheticLambda4(3));
         }
         this.loggedDeviceStats = true;
     }
@@ -28432,7 +29168,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
                 TLRPC.EncryptedChat encryptedChatM = MessagesController$DialogFilter$$ExternalSyntheticOutline0.m(this, j);
                 getMessagesStorage().processPendingRead(j, i, i2, i5);
-                getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda118(this, j, i3, z, i4, i2, 1));
+                getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda120(this, j, i3, z, i4, i2, 1));
                 if (encryptedChatM != null && encryptedChatM.ttl > 0) {
                     getMessagesStorage().createTaskForSecretChat(encryptedChatM.id, i3, Math.max(getConnectionsManager().getCurrentTime(), i3), 0, null);
                 }
@@ -28446,7 +29182,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
                 this.dialogs_read_inbox_max.put(Long.valueOf(j), Integer.valueOf(Math.max(num.intValue(), i)));
                 getMessagesStorage().processPendingRead(j, i, i2, i5);
-                getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda525(i4, i, 0, j, this, z));
+                getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda527(i4, i, 0, j, this, z));
                 if (i == Integer.MAX_VALUE) {
                     z3 = false;
                 }
@@ -28466,7 +29202,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void markDialogAsReadNow(long j, long j2) {
-        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda422(this, j2, j, 0));
+        Utilities.stageQueue.postRunnable(new MessagesController$$ExternalSyntheticLambda424(this, j2, j, 0));
     }
 
     public void markDialogAsUnread(long j, TLRPC.InputPeer inputPeer, long j2) {
@@ -28528,7 +29264,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
         }
-        getConnectionsManager().sendRequest(tL_messages_markDialogUnread, new MessagesController$$ExternalSyntheticLambda112(this, j2, 17));
+        getConnectionsManager().sendRequest(tL_messages_markDialogUnread, new MessagesController$$ExternalSyntheticLambda114(this, j2, 17));
     }
 
     public void markDialogMessageAsDeleted(long j, ArrayList<Integer> arrayList) {
@@ -28557,7 +29293,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (j == 0) {
             TLRPC.TL_messages_readMessageContents tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
             tL_messages_readMessageContents.id.add(Integer.valueOf(i));
-            getConnectionsManager().sendRequest(tL_messages_readMessageContents, new MessagesController$$ExternalSyntheticLambda16(this, 8));
+            getConnectionsManager().sendRequest(tL_messages_readMessageContents, new MessagesController$$ExternalSyntheticLambda18(this, 8));
             return;
         }
         TLRPC.TL_channels_readMessageContents tL_channels_readMessageContents = new TLRPC.TL_channels_readMessageContents();
@@ -28567,7 +29303,7 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         tL_channels_readMessageContents.id.add(Integer.valueOf(i));
-        getConnectionsManager().sendRequest(tL_channels_readMessageContents, new FileRefController$$ExternalSyntheticLambda11(20));
+        getConnectionsManager().sendRequest(tL_channels_readMessageContents, new FileRefController$$ExternalSyntheticLambda11(21));
     }
 
     public void markMentionsAsRead(long j, long j2) {
@@ -28623,7 +29359,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (messageObject.messageOwner.peer_id.channel_id == 0) {
             TLRPC.TL_messages_readMessageContents tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
             tL_messages_readMessageContents.id.add(Integer.valueOf(messageObject.getId()));
-            getConnectionsManager().sendRequest(tL_messages_readMessageContents, new MessagesController$$ExternalSyntheticLambda16(this, 17));
+            getConnectionsManager().sendRequest(tL_messages_readMessageContents, new MessagesController$$ExternalSyntheticLambda18(this, 17));
             return;
         }
         TLRPC.TL_channels_readMessageContents tL_channels_readMessageContents = new TLRPC.TL_channels_readMessageContents();
@@ -28683,7 +29419,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 tL_messages_readReactions.flags |= 1;
             }
         }
-        getConnectionsManager().sendRequest(tL_messages_readReactions, new FileRefController$$ExternalSyntheticLambda11(29));
+        getConnectionsManager().sendRequest(tL_messages_readReactions, new FileRefController$$ExternalSyntheticLambda11(26));
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(UPDATE_MASK_REACTIONS_READ));
     }
 
@@ -28746,7 +29482,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void onFolderEmpty(int i) {
         if (getUserConfig().getDialogLoadOffsets(i)[0] != 2147483647L) {
-            loadDialogs(i, 0, 10, false, new MessagesController$$ExternalSyntheticLambda127(this, i, 1));
+            loadDialogs(i, 0, 10, false, new MessagesController$$ExternalSyntheticLambda129(this, i, 1));
         } else if (i != 1) {
             removeFolder(i);
         } else {
@@ -28794,24 +29530,22 @@ public class MessagesController extends BaseController implements NotificationCe
             bundle.putLong("user_id", user.id);
         }
         if (i == 0) {
-            baseFragment.presentFragment(new ProfileActivity(bundle, null));
+            baseFragment.presentFragment(new ProfileActivity(bundle));
             return;
         }
         if (i == 2) {
-            if (!ChatObject.isForum(chat)) {
-                baseFragment.presentFragment(new ChatActivity(bundle), !z2, true);
+            if (ChatObject.isForum(chat)) {
+                baseFragment.presentFragment(TopicsFragment.getTopicsOrChat(baseFragment, bundle), !z2, true);
                 return;
             } else {
-                HashSet hashSet = TopicsFragment.settingsPreloaded;
-                baseFragment.presentFragment(TopicsFragment.getTopicsOrChat(baseFragment.getMessagesController(), baseFragment.getMessagesStorage(), bundle), !z2, true);
+                baseFragment.presentFragment(new ChatActivity(bundle), !z2, true);
                 return;
             }
         }
-        if (!ChatObject.isForum(chat)) {
-            baseFragment.presentFragment(new ChatActivity(bundle), z && !z2);
+        if (ChatObject.isForum(chat)) {
+            baseFragment.presentFragment(TopicsFragment.getTopicsOrChat(baseFragment, bundle), z && !z2);
         } else {
-            HashSet hashSet2 = TopicsFragment.settingsPreloaded;
-            baseFragment.presentFragment(TopicsFragment.getTopicsOrChat(baseFragment.getMessagesController(), baseFragment.getMessagesStorage(), bundle), z && !z2);
+            baseFragment.presentFragment(new ChatActivity(bundle), z && !z2);
         }
     }
 
@@ -28820,7 +29554,7 @@ public class MessagesController extends BaseController implements NotificationCe
         LaunchActivity launchActivity;
         if (i == 1) {
             unregistedPush();
-            getConnectionsManager().sendRequest(new TLRPC.TL_auth_logOut(), new MessagesController$$ExternalSyntheticLambda16(this, 21));
+            getConnectionsManager().sendRequest(new TLRPC.TL_auth_logOut(), new MessagesController$$ExternalSyntheticLambda18(this, 21));
         } else {
             getConnectionsManager().cleanup(i == 2);
         }
@@ -28911,8 +29645,8 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             NativeByteBuffer nativeByteBuffer2 = null;
             sortDialogs(null);
-            if (!z && !dialogs.isEmpty() && SurfaceContainer$$ExternalSyntheticOutline0.m(1, (ArrayList) dialogs) == dialog && !this.dialogsEndReached.get(i)) {
-                SurfaceContainer$$ExternalSyntheticOutline0.m5m(1, (ArrayList) dialogs);
+            if (!z && !dialogs.isEmpty() && Fragment$$ExternalSyntheticOutline0.m(1, (ArrayList) dialogs) == dialog && !this.dialogsEndReached.get(i)) {
+                Fragment$$ExternalSyntheticOutline0.m81m(1, (ArrayList) dialogs);
             }
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
             if (!DialogObject.isEncryptedDialog(j) && j2 != -1) {
@@ -28944,7 +29678,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     } else {
                         jCreatePendingTask = j2;
                     }
-                    getConnectionsManager().sendRequest(tL_messages_toggleDialogPin, new MessagesController$$ExternalSyntheticLambda112(this, jCreatePendingTask, 2));
+                    getConnectionsManager().sendRequest(tL_messages_toggleDialogPin, new MessagesController$$ExternalSyntheticLambda114(this, jCreatePendingTask, 2));
                 }
             }
             getMessagesStorage().setDialogPinned(j, dialog.pinnedNum);
@@ -28956,7 +29690,7 @@ public class MessagesController extends BaseController implements NotificationCe
         return false;
     }
 
-    public void pinMessage(TLRPC.Chat chat, TLRPC.User user, int i, boolean z, boolean z2, boolean z3) {
+    public void pinMessage(final TLRPC.Chat chat, final TLRPC.User user, final int i, final boolean z, boolean z2, boolean z3) {
         if (chat == null && user == null) {
             return;
         }
@@ -28966,7 +29700,12 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_updatePinnedMessage.unpin = z;
         tL_messages_updatePinnedMessage.silent = !z3;
         tL_messages_updatePinnedMessage.pm_oneside = z2;
-        getConnectionsManager().sendRequest(tL_messages_updatePinnedMessage, new PhotoPickerActivity$$ExternalSyntheticLambda4(this, i, chat, user, z));
+        getConnectionsManager().sendRequest(tL_messages_updatePinnedMessage, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                this.f$0.lambda$pinMessage$130(i, chat, user, z, tLObject, tL_error);
+            }
+        });
     }
 
     public boolean premiumFeaturesBlocked() {
@@ -29033,7 +29772,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (!z) {
             getMessagesStorage().putChannelAdmins(j, longSparseArray);
         }
-        AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda72(this, j, longSparseArray, z, 5));
+        AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda138(this, j, longSparseArray, z, 5));
     }
 
     public void processLoadedDeleteTask(int i, LongSparseArray longSparseArray, LongSparseArray longSparseArray2) {
@@ -29041,7 +29780,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void processLoadedDialogFilters(ArrayList<DialogFilter> arrayList, TLRPC.messages_Dialogs messages_dialogs, TLRPC.messages_Dialogs messages_dialogs2, ArrayList<TLRPC.User> arrayList2, ArrayList<TLRPC.Chat> arrayList3, ArrayList<TLRPC.EncryptedChat> arrayList4, int i, Runnable runnable) {
-        Utilities.stageQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda101(this, messages_dialogs, arrayList4, messages_dialogs2, i, arrayList, arrayList2, arrayList3, runnable, 1));
+        Utilities.stageQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda40(this, messages_dialogs, arrayList4, messages_dialogs2, i, arrayList, arrayList2, arrayList3, runnable));
     }
 
     public void processLoadedDialogs(final TLRPC.messages_Dialogs messages_dialogs, final ArrayList<TLRPC.EncryptedChat> arrayList, final ArrayList<TLRPC.UserFull> arrayList2, final int i, final int i2, final int i3, final int i4, final boolean z, final boolean z2, final boolean z3) {
@@ -29059,7 +29798,7 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void processNewChannelDifferenceParams(int i, int i2, long j) {
         if (BuildVars.LOGS_ENABLED) {
-            zzjj.m(DiffUtil.m("processNewChannelDifferenceParams pts = ", i, " pts_count = ", i2, " channeldId = "), j);
+            zzjg.m(DiffUtil.m("processNewChannelDifferenceParams pts = ", i, " pts_count = ", i2, " channeldId = "), j);
         }
         int channelPtsSync = this.channelsPts.get(j);
         if (channelPtsSync == 0) {
@@ -29632,7 +30371,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     messagesController.getConnectionsManager().sendRequest(tL_messages_receivedQueue, null);
                 }
                 if (z6) {
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(messagesController, 0));
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(messagesController, 0));
                 }
                 messagesController.getMessagesStorage().saveDiffParams(messagesController.getMessagesStorage().getLastSeqValue(), messagesController.getMessagesStorage().getLastPtsValue(), messagesController.getMessagesStorage().getLastDateValue(), messagesController.getMessagesStorage().getLastQtsValue());
             }
@@ -29813,7 +30552,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         }
                         messagesController = this;
                         arrayList = arrayListM;
-                        AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda72(this, z18, j6, arrayListM, 3));
+                        AndroidUtilities.runOnUIThread(new ProfileActivity$$ExternalSyntheticLambda138(this, z18, j6, arrayListM, 3));
                     } else {
                         arrayList = arrayListM;
                         boolean zUpdatePrintingUsersWithNewMessages = messagesController.updatePrintingUsersWithNewMessages(-updates.chat_id, arrayList);
@@ -29824,7 +30563,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         AndroidUtilities.runOnUIThread(new CacheFetcher$$ExternalSyntheticLambda0(this, zUpdatePrintingUsersWithNewMessages, updates, arrayList, 10));
                     }
                     if (!messageObject.isOut()) {
-                        messagesController.getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda13(messagesController, arrayList, 0));
+                        messagesController.getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda15(messagesController, arrayList, 0));
                     }
                     messagesController.getMessagesStorage().putMessages(arrayList4, false, true, false, 0, 0, 0L);
                 } else if (messagesController.getMessagesStorage().getLastPtsValue() != updates.pts) {
@@ -29873,7 +30612,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     messagesController.getConnectionsManager().sendRequest(tL_messages_receivedQueue2, null);
                 }
                 if (z6) {
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(messagesController, 0));
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(messagesController, 0));
                 }
                 messagesController.getMessagesStorage().saveDiffParams(messagesController.getMessagesStorage().getLastSeqValue(), messagesController.getMessagesStorage().getLastPtsValue(), messagesController.getMessagesStorage().getLastDateValue(), messagesController.getMessagesStorage().getLastQtsValue());
             }
@@ -29906,7 +30645,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 messagesController.getConnectionsManager().sendRequest(tL_messages_receivedQueue3, null);
             }
             if (z6) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(messagesController, 0));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(messagesController, 0));
             }
             messagesController.getMessagesStorage().saveDiffParams(messagesController.getMessagesStorage().getLastSeqValue(), messagesController.getMessagesStorage().getLastPtsValue(), messagesController.getMessagesStorage().getLastDateValue(), messagesController.getMessagesStorage().getLastQtsValue());
         }
@@ -29942,7 +30681,7 @@ public class MessagesController extends BaseController implements NotificationCe
             messagesController.getConnectionsManager().sendRequest(tL_messages_receivedQueue4, null);
         }
         if (z6) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(messagesController, 0));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(messagesController, 0));
         }
         messagesController.getMessagesStorage().saveDiffParams(messagesController.getMessagesStorage().getLastSeqValue(), messagesController.getMessagesStorage().getLastPtsValue(), messagesController.getMessagesStorage().getLastDateValue(), messagesController.getMessagesStorage().getLastQtsValue());
     }
@@ -30046,7 +30785,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         chat.stories_hidden = chat2.stories_hidden;
                     }
                     if (i6 != i7 || i8 != i9) {
-                        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda206(this, chat, i2));
+                        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda208(this, chat, i2));
                     }
                 }
                 this.chats.put(Long.valueOf(chat.id), chat);
@@ -30148,10 +30887,10 @@ public class MessagesController extends BaseController implements NotificationCe
             }
         }
         if (chat2 != null && chat2.forum != chat.forum) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda206(this, chat, 4));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda208(this, chat, 4));
         }
         if (chat2 != null && chat2.collapsed_in_dialogs != chat.collapsed_in_dialogs) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda206(this, chat, 5));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda208(this, chat, 5));
         }
         if (chat instanceof TLRPC.TL_community) {
             long j2 = chat.id;
@@ -30265,7 +31004,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
         }
         if (z2) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda5(this, 5));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda7(this, 7));
         }
     }
 
@@ -30332,11 +31071,11 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void reloadMentionsCountForChannels(ArrayList<Long> arrayList) {
-        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda13(this, arrayList, 6));
+        AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda15(this, arrayList, 6));
     }
 
     public void reloadReactionsNotifySettings() {
-        getConnectionsManager().sendRequest(new TL_account.getReactionsNotifySettings(), new MessagesController$$ExternalSyntheticLambda16(this, 13));
+        getConnectionsManager().sendRequest(new TL_account.getReactionsNotifySettings(), new MessagesController$$ExternalSyntheticLambda18(this, 13));
     }
 
     public void reloadUser(long j) {
@@ -30346,7 +31085,7 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         tL_users_getUsers.id.add(inputUser);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_users_getUsers, new MessagesController$$ExternalSyntheticLambda16(this, 15));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_users_getUsers, new MessagesController$$ExternalSyntheticLambda18(this, 16));
     }
 
     public void reloadWebPages(long j, HashMap<String, ArrayList<MessageObject>> map, int i) {
@@ -30453,7 +31192,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (!zIsEmpty) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
         }
-        return new Pair<>(new ImageLoader$5$$ExternalSyntheticLambda0(i, this, z), new MessagesController$$ExternalSyntheticLambda331(1, this, z));
+        return new Pair<>(new ImageLoader$5$$ExternalSyntheticLambda0(i, this, z), new MessagesController$$ExternalSyntheticLambda333(1, this, z));
     }
 
     public void removeSuggestion(long j, String str) {
@@ -30484,14 +31223,14 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             tL_help_dismissSuggestion.peer = getInputPeer(j);
         }
-        getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new MessagesController$$ExternalSyntheticLambda9(1));
+        getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new FileRefController$$ExternalSyntheticLambda11(28));
     }
 
     public void removeWebBrowserException(String str) {
         TL_account.toggleWebBrowserSettingsException togglewebbrowsersettingsexception = new TL_account.toggleWebBrowserSettingsException();
         togglewebbrowsersettingsexception.url = str;
         togglewebbrowsersettingsexception.delete = true;
-        getConnectionsManager().sendRequestTyped(togglewebbrowsersettingsexception, new MessagesController$$ExternalSyntheticLambda119(this, 1));
+        getConnectionsManager().sendRequestTyped(togglewebbrowsersettingsexception, new MessagesController$$ExternalSyntheticLambda121(this, 1));
     }
 
     public void renameSavedReactionTag(ReactionsLayoutInBubble.VisibleReaction visibleReaction, String str) {
@@ -30563,7 +31302,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 tL_messages_updateSavedReactionTag.title = str;
             }
             getConnectionsManager().sendRequest(tL_messages_updateSavedReactionTag, null);
-            Collections.sort(tL_messages_savedReactionsTags2.tags, new MessagesController$$ExternalSyntheticLambda101(this, 5));
+            Collections.sort(tL_messages_savedReactionsTags2.tags, new MessagesController$$ExternalSyntheticLambda103(this, 5));
             long jCalcHash = 0;
             int i4 = 0;
             while (i4 < tL_messages_savedReactionsTags2.tags.size()) {
@@ -30770,7 +31509,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             tL_messages_reorderPinnedDialogs.order = arrayList;
         }
-        getConnectionsManager().sendRequest(tL_messages_reorderPinnedDialogs, new MessagesController$$ExternalSyntheticLambda112(this, j, 6));
+        getConnectionsManager().sendRequest(tL_messages_reorderPinnedDialogs, new MessagesController$$ExternalSyntheticLambda114(this, j, 6));
     }
 
     public void reportMessageDelivery(long j, int i, boolean z) {
@@ -30800,7 +31539,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_reportEncryptedSpam.peer = tL_inputEncryptedChat;
             tL_inputEncryptedChat.chat_id = encryptedChat.id;
             tL_inputEncryptedChat.access_hash = encryptedChat.access_hash;
-            getConnectionsManager().sendRequest(tL_messages_reportEncryptedSpam, new FileRefController$$ExternalSyntheticLambda11(24), 2);
+            getConnectionsManager().sendRequest(tL_messages_reportEncryptedSpam, new FileRefController$$ExternalSyntheticLambda11(25), 2);
             return;
         }
         if (!z) {
@@ -30810,7 +31549,7 @@ public class MessagesController extends BaseController implements NotificationCe
             } else if (user != null) {
                 tL_messages_reportSpam.peer = getInputPeer(user.id);
             }
-            getConnectionsManager().sendRequest(tL_messages_reportSpam, new FileRefController$$ExternalSyntheticLambda11(28), 2);
+            getConnectionsManager().sendRequest(tL_messages_reportSpam, new FileRefController$$ExternalSyntheticLambda11(29), 2);
             return;
         }
         TL_account.reportPeer reportpeer = new TL_account.reportPeer();
@@ -30821,7 +31560,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         reportpeer.message = "";
         reportpeer.reason = new TLRPC.TL_inputReportReasonGeoIrrelevant();
-        getConnectionsManager().sendRequest(reportpeer, new FileRefController$$ExternalSyntheticLambda11(26), 2);
+        getConnectionsManager().sendRequest(reportpeer, new FileRefController$$ExternalSyntheticLambda11(27), 2);
     }
 
     public void requestContactToken(Utilities.Callback<TLRPC.TL_exportedContactToken> callback) {
@@ -30832,7 +31571,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TL_communities.TL_communities_toggleAllPeerLinkRequestApproval tL_communities_toggleAllPeerLinkRequestApproval = new TL_communities.TL_communities_toggleAllPeerLinkRequestApproval();
         tL_communities_toggleAllPeerLinkRequestApproval.community = getInputChannel(j);
         tL_communities_toggleAllPeerLinkRequestApproval.reject = z;
-        return getConnectionsManager().sendRequestTyped(tL_communities_toggleAllPeerLinkRequestApproval, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda56(this, j, callback2, 1));
+        return getConnectionsManager().sendRequestTyped(tL_communities_toggleAllPeerLinkRequestApproval, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda58(this, j, callback2, 1));
     }
 
     public int resolveCommunityJoinPendingRequest(long j, long j2, boolean z, Utilities.Callback2<TLRPC.Bool, TLRPC.TL_error> callback2) {
@@ -30840,7 +31579,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_communities_togglePeerLinkRequestApproval.community = getInputChannel(j);
         tL_communities_togglePeerLinkRequestApproval.peer = getInputPeer(j2);
         tL_communities_togglePeerLinkRequestApproval.reject = z;
-        return getConnectionsManager().sendRequestTyped(tL_communities_togglePeerLinkRequestApproval, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda56(this, j, callback2, 2));
+        return getConnectionsManager().sendRequestTyped(tL_communities_togglePeerLinkRequestApproval, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda58(this, j, callback2, 2));
     }
 
     public void revertWelcomeEphemeralMessage(MessageObject messageObject) {
@@ -30904,7 +31643,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_inputDocument.file_reference = new byte[0];
         }
         tL_messages_saveGif.unsave = false;
-        getConnectionsManager().sendRequest(tL_messages_saveGif, new MessagesController$$ExternalSyntheticLambda30(this, obj, tL_messages_saveGif, 5));
+        getConnectionsManager().sendRequest(tL_messages_saveGif, new MessagesController$$ExternalSyntheticLambda32(this, obj, tL_messages_saveGif, 5));
     }
 
     public void saveRecentSticker(Object obj, TLRPC.Document document, boolean z) {
@@ -30923,7 +31662,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         tL_messages_saveRecentSticker.unsave = false;
         tL_messages_saveRecentSticker.attached = z;
-        getConnectionsManager().sendRequest(tL_messages_saveRecentSticker, new MessagesController$$ExternalSyntheticLambda30(this, obj, tL_messages_saveRecentSticker, 7));
+        getConnectionsManager().sendRequest(tL_messages_saveRecentSticker, new MessagesController$$ExternalSyntheticLambda32(this, obj, tL_messages_saveRecentSticker, 7));
     }
 
     public void saveTheme(Theme.ThemeInfo themeInfo, Theme.ThemeAccent themeAccent, boolean z, boolean z2) {
@@ -30935,7 +31674,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_inputTheme.access_hash = tL_theme.access_hash;
             savetheme.theme = tL_inputTheme;
             savetheme.unsave = z2;
-            getConnectionsManager().sendRequest(savetheme, new FileRefController$$ExternalSyntheticLambda11(27));
+            getConnectionsManager().sendRequest(savetheme, new FileRefController$$ExternalSyntheticLambda11(24));
             getConnectionsManager().resumeNetworkMaybe();
         }
         if (z2) {
@@ -30997,7 +31736,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 String lowerCase4 = i4 != 0 ? String.format("%02x%02x%02x", Integer.valueOf(((byte) (i4 >> 16)) & 255), Integer.valueOf(((byte) (i4 >> 8)) & 255), Byte.valueOf((byte) (i4 & 255))).toLowerCase() : null;
                 if (lowerCase2 == null || lowerCase3 == null) {
                     if (lowerCase2 != null) {
-                        lowerCase = zzit.m(lowerCase, "-", lowerCase2) + "&rotation=" + i5;
+                        lowerCase = zziq.m(lowerCase, "-", lowerCase2) + "&rotation=" + i5;
                     }
                 } else if (lowerCase4 != null) {
                     StringBuilder sb2 = new StringBuilder();
@@ -31023,7 +31762,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     int iKeyAt = sparseIntArrayClone.keyAt(i6);
                     int iValueAt = sparseIntArrayClone.valueAt(i6);
                     if (string == null || (Theme.key_chat_wallpaper != iKeyAt && Theme.key_chat_wallpaper_gradient_to1 != iKeyAt && Theme.key_chat_wallpaper_gradient_to2 != iKeyAt && Theme.key_chat_wallpaper_gradient_to3 != iKeyAt)) {
-                        SurfaceContainer$$ExternalSyntheticOutline0.m(sb3, iKeyAt, "=", iValueAt, "\n");
+                        Fragment$$ExternalSyntheticOutline0.m(sb3, iKeyAt, "=", iValueAt, "\n");
                     }
                 } catch (Exception e) {
                     FileLog.e(e);
@@ -31177,7 +31916,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
                 j = getMessagesStorage().createPendingTask(nativeByteBuffer);
             }
-            getConnectionsManager().sendRequest(tLObject, new MessagesController$$ExternalSyntheticLambda112(this, j, 3));
+            getConnectionsManager().sendRequest(tLObject, new MessagesController$$ExternalSyntheticLambda114(this, j, 3));
         }
         if (("c".equals(overrideWallpaperInfo.slug) || overrideWallpaperInfo.gradientColor2 != 0) && overrideWallpaperInfo.wallpaperId <= 0) {
             if ("c".equals(overrideWallpaperInfo.slug)) {
@@ -31197,47 +31936,35 @@ public class MessagesController extends BaseController implements NotificationCe
             } else {
                 tL_wallPaper.id = j2;
             }
-            int i = overrideWallpaperInfo.color;
-            int i2 = overrideWallpaperInfo.gradientColor1;
-            int i3 = overrideWallpaperInfo.gradientColor2;
-            int i4 = overrideWallpaperInfo.gradientColor3;
-            boolean z2 = MotionBackgroundDrawable.useLegacyBitmap;
-            int averageColor = AndroidUtilities.getAverageColor(i, i2);
-            if (i3 != 0) {
-                averageColor = AndroidUtilities.getAverageColor(averageColor, i3);
-            }
-            if (i4 != 0) {
-                averageColor = AndroidUtilities.getAverageColor(averageColor, i4);
-            }
-            tL_wallPaper.dark = AndroidUtilities.RGBtoHSB(Color.red(averageColor), Color.green(averageColor), Color.blue(averageColor))[2] < 0.3f;
+            tL_wallPaper.dark = MotionBackgroundDrawable.isDark(overrideWallpaperInfo.color, overrideWallpaperInfo.gradientColor1, overrideWallpaperInfo.gradientColor2, overrideWallpaperInfo.gradientColor3);
             tL_wallPaper.flags |= 4;
             TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
             tL_wallPaper.settings = tL_wallPaperSettings;
             tL_wallPaperSettings.blur = overrideWallpaperInfo.isBlurred;
             tL_wallPaperSettings.motion = overrideWallpaperInfo.isMotion;
-            int i5 = overrideWallpaperInfo.color;
-            if (i5 != 0) {
-                tL_wallPaperSettings.background_color = i5;
-                int i6 = tL_wallPaperSettings.flags;
+            int i = overrideWallpaperInfo.color;
+            if (i != 0) {
+                tL_wallPaperSettings.background_color = i;
+                int i2 = tL_wallPaperSettings.flags;
                 tL_wallPaperSettings.intensity = (int) (overrideWallpaperInfo.intensity * 100.0f);
-                tL_wallPaperSettings.flags = i6 | 9;
+                tL_wallPaperSettings.flags = i2 | 9;
             }
-            int i7 = overrideWallpaperInfo.gradientColor1;
-            if (i7 != 0) {
-                tL_wallPaperSettings.second_background_color = i7;
+            int i3 = overrideWallpaperInfo.gradientColor1;
+            if (i3 != 0) {
+                tL_wallPaperSettings.second_background_color = i3;
                 tL_wallPaperSettings.rotation = AndroidUtilities.getWallpaperRotation(overrideWallpaperInfo.rotation, true);
                 tL_wallPaper.settings.flags |= 16;
             }
-            int i8 = overrideWallpaperInfo.gradientColor2;
-            if (i8 != 0) {
+            int i4 = overrideWallpaperInfo.gradientColor2;
+            if (i4 != 0) {
                 TLRPC.WallPaperSettings wallPaperSettings = tL_wallPaper.settings;
-                wallPaperSettings.third_background_color = i8;
+                wallPaperSettings.third_background_color = i4;
                 wallPaperSettings.flags |= 32;
             }
-            int i9 = overrideWallpaperInfo.gradientColor3;
-            if (i9 != 0) {
+            int i5 = overrideWallpaperInfo.gradientColor3;
+            if (i5 != 0) {
                 TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper.settings;
-                wallPaperSettings2.fourth_background_color = i9;
+                wallPaperSettings2.fourth_background_color = i5;
                 wallPaperSettings2.flags |= 64;
             }
             ArrayList<TLRPC.WallPaper> arrayList = new ArrayList<>();
@@ -31274,7 +32001,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_messages_startBot.peer = getInputPeer(user.id);
         tL_messages_startBot.start_param = str;
         tL_messages_startBot.random_id = Utilities.random.nextLong();
-        getConnectionsManager().sendRequest(tL_messages_startBot, new MessagesController$$ExternalSyntheticLambda16(this, 0));
+        getConnectionsManager().sendRequest(tL_messages_startBot, new MessagesController$$ExternalSyntheticLambda18(this, 0));
     }
 
     public boolean sendTyping(long j, long j2, int i, int i2) {
@@ -31285,14 +32012,14 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_channels_setBoostsToUnblockRestrictions tL_channels_setBoostsToUnblockRestrictions = new TLRPC.TL_channels_setBoostsToUnblockRestrictions();
         tL_channels_setBoostsToUnblockRestrictions.boosts = i;
         tL_channels_setBoostsToUnblockRestrictions.channel = getInputChannel(j);
-        getConnectionsManager().sendRequest(tL_channels_setBoostsToUnblockRestrictions, new MessagesController$$ExternalSyntheticLambda112(this, j, 16));
+        getConnectionsManager().sendRequest(tL_channels_setBoostsToUnblockRestrictions, new MessagesController$$ExternalSyntheticLambda114(this, j, 16));
     }
 
     public void setChannelSlowMode(long j, int i) {
         TLRPC.TL_channels_toggleSlowMode tL_channels_toggleSlowMode = new TLRPC.TL_channels_toggleSlowMode();
         tL_channels_toggleSlowMode.seconds = i;
         tL_channels_toggleSlowMode.channel = getInputChannel(j);
-        getConnectionsManager().sendRequest(tL_channels_toggleSlowMode, new MessagesController$$ExternalSyntheticLambda112(this, j, 8));
+        getConnectionsManager().sendRequest(tL_channels_toggleSlowMode, new MessagesController$$ExternalSyntheticLambda114(this, j, 8));
     }
 
     public void setChatPendingRequestsOnClose(long j, int i) {
@@ -31341,7 +32068,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         TL_account.setContentSettings setcontentsettings = new TL_account.setContentSettings();
         setcontentsettings.sensitive_enabled = z;
-        getConnectionsManager().sendRequest(setcontentsettings, new FileRefController$$ExternalSyntheticLambda11(16));
+        getConnectionsManager().sendRequest(setcontentsettings, new FileRefController$$ExternalSyntheticLambda11(17));
     }
 
     public void setCustomChatReactions(final long j, int i, List<TLRPC.Reaction> list, int i2, Boolean bool, final Utilities.Callback<TLRPC.TL_error> callback, final Runnable runnable) {
@@ -31411,7 +32138,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_messages_saveDefaultSendAs tL_messages_saveDefaultSendAs = new TLRPC.TL_messages_saveDefaultSendAs();
         tL_messages_saveDefaultSendAs.peer = getInputPeer(j);
         tL_messages_saveDefaultSendAs.send_as = getInputPeer(j2);
-        getConnectionsManager().sendRequest(tL_messages_saveDefaultSendAs, new MessagesController$$ExternalSyntheticLambda112(this, j, 12), 64);
+        getConnectionsManager().sendRequest(tL_messages_saveDefaultSendAs, new MessagesController$$ExternalSyntheticLambda114(this, j, 12), 64);
     }
 
     public void setDialogHistoryTTL(long j, int i) {
@@ -31419,7 +32146,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_messages_setHistoryTTL tL_messages_setHistoryTTL = new TLRPC.TL_messages_setHistoryTTL();
         tL_messages_setHistoryTTL.peer = getInputPeer(j);
         tL_messages_setHistoryTTL.period = i;
-        getConnectionsManager().sendRequest(tL_messages_setHistoryTTL, new MessagesController$$ExternalSyntheticLambda16(this, 10));
+        getConnectionsManager().sendRequest(tL_messages_setHistoryTTL, new MessagesController$$ExternalSyntheticLambda18(this, 10));
         TLRPC.Dialog dialog = (TLRPC.Dialog) getMessagesController().dialogs_dict.get(j);
         if (dialog != null) {
             dialog.ttl_period = i;
@@ -31493,7 +32220,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 arrayList.add(Long.valueOf(j));
             }
         }
-        Utilities.stageQueue.postRunnable(new ChatActivity$$ExternalSyntheticLambda31(this, z, z2, j, 1));
+        Utilities.stageQueue.postRunnable(new ChatActivity$$ExternalSyntheticLambda484(this, z, z2, j, 1));
     }
 
     public void setLastVisibleDialogId(long j, boolean z, boolean z2) {
@@ -31879,7 +32606,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_toggleForum.channel = getInputChannel(j);
         tL_channels_toggleForum.enabled = z;
         tL_channels_toggleForum.tabs = z2;
-        getConnectionsManager().sendRequest(tL_channels_toggleForum, new MessagesController$$ExternalSyntheticLambda16(this, 9), 64);
+        getConnectionsManager().sendRequest(tL_channels_toggleForum, new MessagesController$$ExternalSyntheticLambda18(this, 9), 64);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.chatSwitchedForum, Long.valueOf(j), Boolean.valueOf(z), Boolean.valueOf(z2));
     }
 
@@ -31887,7 +32614,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_channels_togglePreHistoryHidden tL_channels_togglePreHistoryHidden = new TLRPC.TL_channels_togglePreHistoryHidden();
         tL_channels_togglePreHistoryHidden.channel = getInputChannel(j);
         tL_channels_togglePreHistoryHidden.enabled = z;
-        getConnectionsManager().sendRequest(tL_channels_togglePreHistoryHidden, new MessagesController$$ExternalSyntheticLambda16(this, 25), 64);
+        getConnectionsManager().sendRequest(tL_channels_togglePreHistoryHidden, new MessagesController$$ExternalSyntheticLambda18(this, 25), 64);
     }
 
     public void toggleChannelSignatures(long j, boolean z, boolean z2) {
@@ -31901,7 +32628,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_toggleSignatures.channel = getInputChannel(j);
         tL_channels_toggleSignatures.signatures_enabled = z;
         tL_channels_toggleSignatures.profiles_enabled = z2;
-        getConnectionsManager().sendRequest(tL_channels_toggleSignatures, new MessagesController$$ExternalSyntheticLambda16(this, 26), 64);
+        getConnectionsManager().sendRequest(tL_channels_toggleSignatures, new MessagesController$$ExternalSyntheticLambda18(this, 26), 64);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateAllMessages, Long.valueOf(-j));
     }
 
@@ -31913,7 +32640,7 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_channels_toggleJoinToSend tL_channels_toggleJoinToSend = new TLRPC.TL_channels_toggleJoinToSend();
         tL_channels_toggleJoinToSend.channel = getInputChannel(j);
         tL_channels_toggleJoinToSend.enabled = z;
-        getConnectionsManager().sendRequest(tL_channels_toggleJoinToSend, new MessagesController$$ExternalSyntheticLambda30(this, runnable, runnable2, 0), 64);
+        getConnectionsManager().sendRequest(tL_channels_toggleJoinToSend, new MessagesController$$ExternalSyntheticLambda32(this, runnable, runnable2, 0), 64);
     }
 
     public void toggleChatNoForwards(long j, boolean z) {
@@ -31941,7 +32668,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_communities_toggleParticipantBanned.community = getInputChannel(j);
         tL_communities_toggleParticipantBanned.participant = getInputPeer(j2);
         tL_communities_toggleParticipantBanned.unban = !z;
-        return getConnectionsManager().sendRequestTyped(tL_communities_toggleParticipantBanned, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda56(this, j, callback2, 0));
+        return getConnectionsManager().sendRequestTyped(tL_communities_toggleParticipantBanned, new AiTonesController$$ExternalSyntheticLambda0(), new MessagesController$$ExternalSyntheticLambda58(this, j, callback2, 0));
     }
 
     public void toggleWebBrowserInAppEnabled() {
@@ -31972,7 +32699,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         TLRPC.TL_messages_unpinAllMessages tL_messages_unpinAllMessages = new TLRPC.TL_messages_unpinAllMessages();
         tL_messages_unpinAllMessages.peer = getInputPeer(chat != null ? -chat.id : user.id);
-        getConnectionsManager().sendRequest(tL_messages_unpinAllMessages, new MessagesController$$ExternalSyntheticLambda30(this, chat, user, 6));
+        getConnectionsManager().sendRequest(tL_messages_unpinAllMessages, new MessagesController$$ExternalSyntheticLambda32(this, chat, user, 6));
     }
 
     public void unregistedPush() {
@@ -31986,7 +32713,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     unregisterdevice.other_uids.add(Long.valueOf(userConfig.getClientUserId()));
                 }
             }
-            getConnectionsManager().sendRequest(unregisterdevice, new FileRefController$$ExternalSyntheticLambda11(17));
+            getConnectionsManager().sendRequest(unregisterdevice, new FileRefController$$ExternalSyntheticLambda11(18));
         }
     }
 
@@ -31994,18 +32721,18 @@ public class MessagesController extends BaseController implements NotificationCe
         TLRPC.TL_channels_updateUsername tL_channels_updateUsername = new TLRPC.TL_channels_updateUsername();
         tL_channels_updateUsername.channel = getInputChannel(j);
         tL_channels_updateUsername.username = str;
-        getConnectionsManager().sendRequest(tL_channels_updateUsername, new MessagesController$$ExternalSyntheticLambda77(this, j, str, runnable, baseFragment, tL_channels_updateUsername, runnable2), 64);
+        getConnectionsManager().sendRequest(tL_channels_updateUsername, new MessagesController$$ExternalSyntheticLambda79(this, j, str, runnable, baseFragment, tL_channels_updateUsername, runnable2), 64);
     }
 
     public void updateChatAbout(long j, String str, TLRPC.ChatFull chatFull) {
         TLRPC.TL_messages_editChatAbout tL_messages_editChatAbout = new TLRPC.TL_messages_editChatAbout();
         tL_messages_editChatAbout.peer = getInputPeer(-j);
         tL_messages_editChatAbout.about = str;
-        getConnectionsManager().sendRequest(tL_messages_editChatAbout, new MessagesController$$ExternalSyntheticLambda30(this, chatFull, str, 9), 64);
+        getConnectionsManager().sendRequest(tL_messages_editChatAbout, new MessagesController$$ExternalSyntheticLambda32(this, chatFull, str, 9), 64);
     }
 
     public void updateConfig(TLRPC.TL_config tL_config) {
-        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(14, this, tL_config));
+        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda3(18, this, tL_config));
     }
 
     public void updateEmojiStatus(TLRPC.EmojiStatus emojiStatus) {
@@ -32040,9 +32767,9 @@ public class MessagesController extends BaseController implements NotificationCe
             AndroidUtilities.cancelRunOnUIThread(this.recentEmojiStatusUpdateRunnable);
             this.recentEmojiStatusUpdateRunnableTime = j;
             this.recentEmojiStatusUpdateRunnableTimeout = jLongValue;
-            MessagesController$$ExternalSyntheticLambda14 messagesController$$ExternalSyntheticLambda14 = new MessagesController$$ExternalSyntheticLambda14(this, 27);
-            this.recentEmojiStatusUpdateRunnable = messagesController$$ExternalSyntheticLambda14;
-            AndroidUtilities.runOnUIThread(messagesController$$ExternalSyntheticLambda14, jLongValue * 1000);
+            MessagesController$$ExternalSyntheticLambda16 messagesController$$ExternalSyntheticLambda16 = new MessagesController$$ExternalSyntheticLambda16(this, 29);
+            this.recentEmojiStatusUpdateRunnable = messagesController$$ExternalSyntheticLambda16;
+            AndroidUtilities.runOnUIThread(messagesController$$ExternalSyntheticLambda16, jLongValue * 1000);
         }
     }
 
@@ -32102,46 +32829,48 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean updateInterfaceWithMessages(final long j, ArrayList<MessageObject> arrayList, int i) {
         MessagesController messagesController;
         long j2;
+        long j3;
         MessageObject messageObject;
         boolean z;
         boolean z2;
+        long j4;
         boolean z3;
         boolean z4;
         ChatObject.Call groupCall;
         TLRPC.Chat chat;
-        long j3;
-        int i2;
+        boolean z5;
         QuickRepliesController.QuickReply quickReply;
         MessagesController messagesController2;
         MessageObject messageObject2;
         TLRPC.ChatFull chatFull;
         MessagesController messagesController3 = this;
-        int i3 = 1;
         if (arrayList == null || arrayList.isEmpty()) {
             return false;
         }
-        boolean z5 = i == 1;
-        boolean z6 = i == 5;
-        boolean z7 = i == 9;
+        boolean z6 = i == 1;
+        boolean z7 = i == 5;
+        boolean z8 = i == 9;
         boolean zIsEncryptedDialog = DialogObject.isEncryptedDialog(j);
-        if (z5 || z6 || z7) {
+        if (z6 || z7 || z8) {
             messagesController = messagesController3;
             j2 = 0;
+            j3 = 0;
             messageObject = null;
             z = false;
         } else {
-            int i4 = 0;
+            int i2 = 0;
             MessageObject messageObject3 = null;
-            long j4 = 0;
-            boolean z8 = false;
+            long j5 = 0;
             boolean z9 = false;
-            while (i4 < arrayList.size()) {
-                MessageObject messageObject4 = arrayList.get(i4);
+            z = false;
+            j2 = 0;
+            while (i2 < arrayList.size()) {
+                MessageObject messageObject4 = arrayList.get(i2);
                 if (messageObject3 == null || ((!zIsEncryptedDialog && messageObject4.getId() > messageObject3.getId()) || (((zIsEncryptedDialog || (messageObject4.getId() < 0 && messageObject3.getId() < 0)) && messageObject4.getId() < messageObject3.getId()) || messageObject4.messageOwner.date > messageObject3.messageOwner.date))) {
-                    long j5 = messageObject4.messageOwner.peer_id.channel_id;
-                    if (j5 != 0) {
+                    long j6 = messageObject4.messageOwner.peer_id.channel_id;
+                    if (j6 != 0) {
                         messageObject3 = messageObject4;
-                        j4 = j5;
+                        j5 = j6;
                     } else {
                         messageObject3 = messageObject4;
                     }
@@ -32158,8 +32887,8 @@ public class MessagesController extends BaseController implements NotificationCe
                         messagesController2 = this;
                     }
                 }
-                if (!z8 && !messageObject4.isOut()) {
-                    z8 = true;
+                if (!z9 && !messageObject4.isOut()) {
+                    z9 = true;
                 }
                 if (!messageObject4.isOut() || messageObject4.isSending() || messageObject4.isForwarded()) {
                     messageObject2 = messageObject4;
@@ -32179,44 +32908,45 @@ public class MessagesController extends BaseController implements NotificationCe
                     messageObject2 = messageObject4;
                 }
                 if (messageObject2.isOut() && messageObject2.isSent()) {
-                    z9 = true;
+                    z = true;
                 }
-                i4++;
+                i2++;
                 messagesController3 = messagesController2;
             }
             messagesController = messagesController3;
             messageObject = messageObject3;
-            z = z9;
-            j2 = j4;
+            j3 = j5;
         }
+        boolean z10 = z6;
+        long j7 = j2;
         messagesController.getMediaDataController().loadReplyMessagesForMessages(arrayList, j, i, 0L, null, 0, null);
         if (i == 5) {
             QuickRepliesController quickRepliesController = QuickRepliesController.getInstance(messagesController.currentAccount);
             int size = arrayList.size();
-            int i5 = 0;
-            while (i5 < size) {
-                MessageObject messageObject5 = arrayList.get(i5);
-                i5 += i3;
+            int i3 = 0;
+            while (i3 < size) {
+                MessageObject messageObject5 = arrayList.get(i3);
+                i3++;
                 MessageObject messageObject6 = messageObject5;
                 if (messageObject6.isSending() && quickRepliesController.findReply(messageObject6.getQuickReplyId()) == null && messageObject6.getQuickReplyName() != null && quickRepliesController.findReply(messageObject6.getQuickReplyName()) == null) {
                     String quickReplyName = messageObject6.getQuickReplyName();
                     ArrayList arrayList2 = quickRepliesController.localReplies;
                     int size2 = arrayList2.size();
-                    int i6 = 0;
+                    int i4 = 0;
                     while (true) {
-                        if (i6 >= size2) {
-                            i2 = size;
+                        if (i4 >= size2) {
+                            z5 = z10;
                             quickReply = null;
                             break;
                         }
-                        Object obj = arrayList2.get(i6);
-                        i6++;
-                        i2 = size;
+                        Object obj = arrayList2.get(i4);
+                        z5 = z10;
+                        i4++;
                         quickReply = (QuickRepliesController.QuickReply) obj;
                         if (TextUtils.equals(quickReplyName, quickReply.name)) {
                             break;
                         }
-                        size = i2;
+                        z10 = z5;
                     }
                     if (quickReply == null) {
                         quickReply = new QuickRepliesController.QuickReply();
@@ -32228,16 +32958,18 @@ public class MessagesController extends BaseController implements NotificationCe
                         arrayList2.add(quickReply);
                     }
                     quickReply.localIds.add(Integer.valueOf(messageObject6.getId()));
-                    AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda3(quickRepliesController, 19));
+                    AndroidUtilities.runOnUIThread(new ChatbotSheet$$ExternalSyntheticLambda0(quickRepliesController, 5));
                 } else {
-                    i2 = size;
+                    z5 = z10;
                 }
-                size = i2;
-                i3 = 1;
+                z10 = z5;
+                j7 = j7;
             }
         }
-        messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveNewMessages, Long.valueOf(j), arrayList, Boolean.valueOf(z5), Integer.valueOf(i));
-        if (messageObject == null || z5) {
+        boolean z11 = z10;
+        long j8 = j7;
+        messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceiveNewMessages, Long.valueOf(j), arrayList, Boolean.valueOf(z11), Integer.valueOf(i));
+        if (messageObject == null || z11) {
             return false;
         }
         TLRPC.TL_dialog tL_dialog = (TLRPC.TL_dialog) messagesController.dialogs_dict.get(j);
@@ -32250,18 +32982,18 @@ public class MessagesController extends BaseController implements NotificationCe
                 messagesController.dialogsMyChannels.remove(tL_dialog);
                 messagesController.dialogsChannelsOnly.remove(tL_dialog);
                 messagesController.dialogsGroupsOnly.remove(tL_dialog);
-                int i7 = 0;
+                int i5 = 0;
                 while (true) {
                     DialogFilter[] dialogFilterArr = messagesController.selectedDialogFilter;
-                    if (i7 >= dialogFilterArr.length) {
+                    if (i5 >= dialogFilterArr.length) {
                         break;
                     }
-                    DialogFilter dialogFilter = dialogFilterArr[i7];
+                    DialogFilter dialogFilter = dialogFilterArr[i5];
                     if (dialogFilter != null) {
                         dialogFilter.dialogs.remove(tL_dialog);
-                        messagesController.selectedDialogFilter[i7].dialogsForward.remove(tL_dialog);
+                        messagesController.selectedDialogFilter[i5].dialogsForward.remove(tL_dialog);
                     }
-                    i7++;
+                    i5++;
                 }
                 messagesController.dialogsUsersOnly.remove(tL_dialog);
                 messagesController.dialogsForBlock.remove(tL_dialog);
@@ -32269,9 +33001,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 messagesController.dialogs_dict.remove(tL_dialog.id);
                 messagesController.dialogs_read_inbox_max.remove(Long.valueOf(tL_dialog.id));
                 messagesController.dialogs_read_outbox_max.remove(Long.valueOf(tL_dialog.id));
-                int i8 = messagesController.nextDialogsCacheOffset.get(tL_dialog.folder_id, 0);
-                if (i8 > 0) {
-                    messagesController.nextDialogsCacheOffset.put(tL_dialog.folder_id, i8 - 1);
+                int i6 = messagesController.nextDialogsCacheOffset.get(tL_dialog.folder_id, 0);
+                if (i6 > 0) {
+                    messagesController.nextDialogsCacheOffset.put(tL_dialog.folder_id, i6 - 1);
                 }
                 messagesController.dialogMessage.remove(tL_dialog.id);
                 ArrayList<TLRPC.Dialog> arrayList3 = messagesController.dialogsByFolder.get(tL_dialog.folder_id);
@@ -32280,18 +33012,13 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
                 messagesController.removeDialogFromCommunityMap(tL_dialog);
                 MessageObject messageObject7 = messagesController.dialogMessagesByIds.get(tL_dialog.top_message);
-                if (messageObject7 != null) {
-                    j3 = 0;
-                    if (messageObject7.messageOwner.peer_id.channel_id == 0) {
-                        messagesController.dialogMessagesByIds.remove(tL_dialog.top_message);
-                    }
-                } else {
-                    j3 = 0;
+                if (messageObject7 != null && messageObject7.messageOwner.peer_id.channel_id == j8) {
+                    messagesController.dialogMessagesByIds.remove(tL_dialog.top_message);
                 }
                 if (messageObject7 != null) {
-                    long j6 = messageObject7.messageOwner.random_id;
-                    if (j6 != j3) {
-                        messagesController.dialogMessagesByRandomIds.remove(j6);
+                    long j9 = messageObject7.messageOwner.random_id;
+                    if (j9 != j8) {
+                        messagesController.dialogMessagesByRandomIds.remove(j9);
                     }
                 }
                 z4 = false;
@@ -32307,120 +33034,118 @@ public class MessagesController extends BaseController implements NotificationCe
             groupCall.migrateToChat(chat);
             return z4;
         }
-        if (tL_dialog != null) {
-            if ((tL_dialog.top_message <= 0 || messageObject.getId() <= 0 || messageObject.getId() <= tL_dialog.top_message) && ((tL_dialog.top_message >= 0 || messageObject.getId() >= 0 || messageObject.getId() >= tL_dialog.top_message) && messagesController.dialogMessage.indexOfKey(j) >= 0 && tL_dialog.top_message >= 0 && tL_dialog.last_message_date > messageObject.messageOwner.date)) {
-                z2 = false;
-            } else {
-                MessageObject messageObject8 = messagesController.dialogMessagesByIds.get(tL_dialog.top_message);
-                if (messageObject8 != null && messageObject8.messageOwner.peer_id.channel_id == 0) {
-                    messagesController.dialogMessagesByIds.remove(tL_dialog.top_message);
-                }
-                if (messageObject8 != null) {
-                    long j7 = messageObject8.messageOwner.random_id;
-                    if (j7 != 0) {
-                        messagesController.dialogMessagesByRandomIds.remove(j7);
-                    }
-                }
-                tL_dialog.top_message = messageObject.getId();
-                tL_dialog.last_message_date = messageObject.messageOwner.date;
-                ArrayList arrayList4 = new ArrayList(1);
-                for (int i9 = 0; i9 < arrayList.size(); i9++) {
-                    MessageObject messageObject9 = arrayList.get(i9);
-                    if (messageObject9 != null && (messageObject9.getId() == messageObject.getId() || (messageObject9.hasValidGroupId() && messageObject.hasValidGroupId() && messageObject9.getGroupIdForUse() == messageObject.getGroupIdForUse()))) {
-                        arrayList4.add(messageObject9);
-                    }
-                }
-                messagesController.dialogMessage.put(arrayList4, j);
-                messagesController.getTranslateController().checkDialogMessage(j);
-                if (messageObject.messageOwner.peer_id.channel_id == 0) {
-                    messagesController.dialogMessagesByIds.put(messageObject.getId(), messageObject);
-                    long j8 = messageObject.messageOwner.random_id;
-                    if (j8 != 0) {
-                        messagesController.dialogMessagesByRandomIds.put(messageObject, j8);
-                    }
-                }
+        if (tL_dialog == null) {
+            TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(j3));
+            if (j3 != j8 && chat2 == null) {
+                return false;
             }
-            if (z2) {
-                messagesController.sortDialogs(null);
+            if (chat2 != null && (ChatObject.isNotInChat(chat2) || chat2.min)) {
+                return false;
             }
-            if (z) {
-                messagesController.getMediaDataController().increasePeerRaiting(j);
+            if (BuildVars.LOGS_ENABLED) {
+                StringBuilder sbM = AacUtil.m(j, "not found dialog with id ", " dictCount = ");
+                sbM.append(messagesController.dialogs_dict.size());
+                sbM.append(" allCount = ");
+                sbM.append(messagesController.allDialogs.size());
+                FileLog.d(sbM.toString());
             }
-            return z2;
-        }
-        TLRPC.Chat chat2 = messagesController.getChat(Long.valueOf(j2));
-        if (j2 != 0 && chat2 == null) {
-            return false;
-        }
-        if (chat2 != null && (ChatObject.isNotInChat(chat2) || chat2.min)) {
-            return false;
-        }
-        if (BuildVars.LOGS_ENABLED) {
-            StringBuilder sbM = AacUtil.m(j, "not found dialog with id ", " dictCount = ");
-            sbM.append(messagesController.dialogs_dict.size());
-            sbM.append(" allCount = ");
-            sbM.append(messagesController.allDialogs.size());
-            FileLog.d(sbM.toString());
-        }
-        final TLRPC.TL_dialog tL_dialog2 = new TLRPC.TL_dialog();
-        tL_dialog2.id = j;
-        final int id = messageObject.getId();
-        tL_dialog2.top_message = id;
-        tL_dialog2.last_message_date = messageObject.messageOwner.date;
-        tL_dialog2.flags = ChatObject.isChannel(chat2) ? 1 : 0;
-        if (messagesController.pendingUnreadCounter.get(j, 0) <= 0) {
-            z3 = false;
-            break;
-        }
-        tL_dialog2.unread_count = messagesController.pendingUnreadCounter.get(j);
-        messagesController.pendingUnreadCounter.delete(j);
-        if (!messagesController.isDialogMuted(j, 0L)) {
-            messagesController.unreadUnmutedDialogs++;
-        }
-        int i10 = 0;
-        while (true) {
-            DialogFilter[] dialogFilterArr2 = messagesController.selectedDialogFilter;
-            if (i10 >= dialogFilterArr2.length) {
+            final TLRPC.TL_dialog tL_dialog2 = new TLRPC.TL_dialog();
+            tL_dialog2.id = j;
+            final int id = messageObject.getId();
+            tL_dialog2.top_message = id;
+            tL_dialog2.last_message_date = messageObject.messageOwner.date;
+            tL_dialog2.flags = ChatObject.isChannel(chat2) ? 1 : 0;
+            if (messagesController.pendingUnreadCounter.get(j, 0) <= 0) {
                 z3 = false;
                 break;
             }
-            DialogFilter dialogFilter2 = dialogFilterArr2[i10];
-            if (dialogFilter2 != null && (dialogFilter2.flags & DIALOG_FILTER_FLAG_EXCLUDE_READ) != 0) {
-                z3 = true;
-                break;
+            tL_dialog2.unread_count = messagesController.pendingUnreadCounter.get(j);
+            messagesController.pendingUnreadCounter.delete(j);
+            if (!messagesController.isDialogMuted(j, j8)) {
+                messagesController.unreadUnmutedDialogs++;
             }
-            i10++;
-        }
-        messagesController.dialogs_dict.put(tL_dialog2, j);
-        messagesController.allDialogs.add(tL_dialog2);
-        ArrayList arrayList5 = new ArrayList();
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            MessageObject messageObject10 = arrayList.get(i11);
-            if (messageObject10 != null && (messageObject10.getId() == messageObject.getId() || (messageObject10.hasValidGroupId() && messageObject.hasValidGroupId() && messageObject10.getGroupIdForUse() == messageObject.getGroupIdForUse()))) {
-                arrayList5.add(messageObject10);
-                if (messageObject10.messageOwner.peer_id.channel_id == 0) {
-                    messagesController.dialogMessagesByIds.put(messageObject10.getId(), messageObject10);
-                    long j9 = messageObject10.messageOwner.random_id;
-                    if (j9 != 0) {
-                        messagesController.dialogMessagesByRandomIds.put(messageObject10, j9);
+            int i7 = 0;
+            while (true) {
+                DialogFilter[] dialogFilterArr2 = messagesController.selectedDialogFilter;
+                if (i7 >= dialogFilterArr2.length) {
+                    z3 = false;
+                    break;
+                }
+                DialogFilter dialogFilter2 = dialogFilterArr2[i7];
+                if (dialogFilter2 != null && (dialogFilter2.flags & DIALOG_FILTER_FLAG_EXCLUDE_READ) != 0) {
+                    z3 = true;
+                    break;
+                }
+                i7++;
+            }
+            messagesController.dialogs_dict.put(tL_dialog2, j);
+            messagesController.allDialogs.add(tL_dialog2);
+            ArrayList arrayList4 = new ArrayList();
+            for (int i8 = 0; i8 < arrayList.size(); i8++) {
+                MessageObject messageObject8 = arrayList.get(i8);
+                if (messageObject8 != null && (messageObject8.getId() == messageObject.getId() || (messageObject8.hasValidGroupId() && messageObject.hasValidGroupId() && messageObject8.getGroupIdForUse() == messageObject.getGroupIdForUse()))) {
+                    arrayList4.add(messageObject8);
+                    if (messageObject8.messageOwner.peer_id.channel_id == 0) {
+                        messagesController.dialogMessagesByIds.put(messageObject8.getId(), messageObject8);
+                        long j10 = messageObject8.messageOwner.random_id;
+                        if (j10 != 0) {
+                            messagesController.dialogMessagesByRandomIds.put(messageObject8, j10);
+                        }
                     }
                 }
             }
-        }
-        messagesController.dialogMessage.put(arrayList5, j);
-        messagesController.getTranslateController().checkDialogMessage(j);
-        if (z3) {
-            messagesController.sortDialogs(null);
-            messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
-        }
-        final MessagesController messagesController4 = messagesController;
-        messagesController.getMessagesStorage().getDialogFolderId(j, new MessagesStorage.IntCallback() {
-            @Override
-            public final void run(int i12) {
-                this.f$0.lambda$updateInterfaceWithMessages$444(tL_dialog2, id, j, i12);
+            messagesController.dialogMessage.put(arrayList4, j);
+            messagesController.getTranslateController().checkDialogMessage(j);
+            if (z3) {
+                messagesController.sortDialogs(null);
+                messagesController.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
             }
-        });
-        z2 = true;
+            final MessagesController messagesController4 = messagesController;
+            messagesController.getMessagesStorage().getDialogFolderId(j, new MessagesStorage.IntCallback() {
+                @Override
+                public final void run(int i9) {
+                    this.f$0.lambda$updateInterfaceWithMessages$444(tL_dialog2, id, j, i9);
+                }
+            });
+            z2 = true;
+        } else if ((tL_dialog.top_message <= 0 || messageObject.getId() <= 0 || messageObject.getId() <= tL_dialog.top_message) && ((tL_dialog.top_message >= 0 || messageObject.getId() >= 0 || messageObject.getId() >= tL_dialog.top_message) && messagesController.dialogMessage.indexOfKey(j) >= 0 && tL_dialog.top_message >= 0 && tL_dialog.last_message_date > messageObject.messageOwner.date)) {
+            z2 = false;
+        } else {
+            MessageObject messageObject9 = messagesController.dialogMessagesByIds.get(tL_dialog.top_message);
+            if (messageObject9 != null) {
+                j4 = 0;
+                if (messageObject9.messageOwner.peer_id.channel_id == 0) {
+                    messagesController.dialogMessagesByIds.remove(tL_dialog.top_message);
+                }
+            } else {
+                j4 = 0;
+            }
+            if (messageObject9 != null) {
+                long j11 = messageObject9.messageOwner.random_id;
+                if (j11 != j4) {
+                    messagesController.dialogMessagesByRandomIds.remove(j11);
+                }
+            }
+            tL_dialog.top_message = messageObject.getId();
+            tL_dialog.last_message_date = messageObject.messageOwner.date;
+            ArrayList arrayList5 = new ArrayList(1);
+            for (int i9 = 0; i9 < arrayList.size(); i9++) {
+                MessageObject messageObject10 = arrayList.get(i9);
+                if (messageObject10 != null && (messageObject10.getId() == messageObject.getId() || (messageObject10.hasValidGroupId() && messageObject.hasValidGroupId() && messageObject10.getGroupIdForUse() == messageObject.getGroupIdForUse()))) {
+                    arrayList5.add(messageObject10);
+                }
+            }
+            z2 = true;
+            messagesController.dialogMessage.put(arrayList5, j);
+            messagesController.getTranslateController().checkDialogMessage(j);
+            if (messageObject.messageOwner.peer_id.channel_id == 0) {
+                messagesController.dialogMessagesByIds.put(messageObject.getId(), messageObject);
+                long j12 = messageObject.messageOwner.random_id;
+                if (j12 != 0) {
+                    messagesController.dialogMessagesByRandomIds.put(messageObject, j12);
+                }
+            }
+        }
         if (z2) {
             messagesController.sortDialogs(null);
         }
@@ -32562,7 +33287,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                     TL_account.updateStatus updatestatus = new TL_account.updateStatus();
                     updatestatus.offline = true;
-                    this.statusRequest = getConnectionsManager().sendRequest(updatestatus, new MessagesController$$ExternalSyntheticLambda16(this, 2));
+                    this.statusRequest = getConnectionsManager().sendRequest(updatestatus, new MessagesController$$ExternalSyntheticLambda18(this, 2));
                 }
             } else if (ApplicationLoader.mainInterfacePausedStageQueueTime != 0 && Math.abs(ApplicationLoader.mainInterfacePausedStageQueueTime - System.currentTimeMillis()) > 1000 && this.statusSettingState != 1 && (this.lastStatusUpdateTime == 0 || Math.abs(System.currentTimeMillis() - this.lastStatusUpdateTime) >= 55000 || this.offlineSent)) {
                 this.statusSettingState = 1;
@@ -32571,7 +33296,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
                 TL_account.updateStatus updatestatus2 = new TL_account.updateStatus();
                 updatestatus2.offline = false;
-                this.statusRequest = getConnectionsManager().sendRequest(updatestatus2, new MessagesController$$ExternalSyntheticLambda16(this, 1));
+                this.statusRequest = getConnectionsManager().sendRequest(updatestatus2, new MessagesController$$ExternalSyntheticLambda18(this, 1));
             }
             if (this.updatesQueueChannels.size() != 0) {
                 for (int i = 0; i < this.updatesQueueChannels.size(); i++) {
@@ -32614,7 +33339,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 j = 1000;
             }
             if (this.pollsToCheckSize > 0) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda127(this, currentTime, 0));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda129(this, currentTime, 0));
             }
         } else {
             j = 1000;
@@ -32637,7 +33362,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     i4++;
                     this.onlinePrivacy.remove((Long) obj);
                 }
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 5));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 7));
             }
         }
         if (this.shortPollChannels.size() != 0) {
@@ -32668,7 +33393,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                     TLRPC.TL_messages_getOnlines tL_messages_getOnlines = new TLRPC.TL_messages_getOnlines();
                     tL_messages_getOnlines.peer = getInputPeer(-jKeyAt4);
-                    getConnectionsManager().sendRequest(tL_messages_getOnlines, new MessagesController$$ExternalSyntheticLambda112(this, jKeyAt4, 4));
+                    getConnectionsManager().sendRequest(tL_messages_getOnlines, new MessagesController$$ExternalSyntheticLambda114(this, jKeyAt4, 4));
                 }
                 i6++;
             }
@@ -32733,7 +33458,7 @@ public class MessagesController extends BaseController implements NotificationCe
             j3 = j5;
             updatePrintingStrings();
             if (z) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda14(this, 6));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda16(this, 8));
             }
         }
         if (Theme.selectedAutoNightType == 1 && Math.abs(j2 - lastThemeCheckTime) >= 60) {
@@ -32786,7 +33511,7 @@ public class MessagesController extends BaseController implements NotificationCe
         sb.append("/");
         sb.append(fileLocation.volume_id);
         sb.append("_");
-        this.uploadingAvatar = SurfaceContainer$$ExternalSyntheticOutline0.m(fileLocation.local_id, ".jpg", sb);
+        this.uploadingAvatar = Fragment$$ExternalSyntheticOutline0.m(fileLocation.local_id, ".jpg", sb);
         getFileLoader().uploadFile(this.uploadingAvatar, false, true, 16777216);
     }
 
@@ -32887,19 +33612,19 @@ public class MessagesController extends BaseController implements NotificationCe
                     this.channelsPts.put(j, channelPtsSync);
                 }
                 if (channelPtsSync == 0 && (i == 2 || i == 3)) {
-                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 9));
+                    AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 9));
                     return;
                 }
             }
             if (channelPtsSync == 0) {
-                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 10));
+                AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 10));
                 return;
             } else {
                 i2 = channelPtsSync;
                 i3 = 100;
             }
         } else if (this.channelsPts.get(j) != 0) {
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 8));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 8));
             return;
         } else {
             i2 = 1;
@@ -32918,7 +33643,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (jCreatePendingTask != 0) {
                 getMessagesStorage().removePendingTask(jCreatePendingTask);
             }
-            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda49(this, j, 11));
+            AndroidUtilities.runOnUIThread(new MessagesController$$ExternalSyntheticLambda51(this, j, 11));
             return;
         }
         if (jCreatePendingTask == 0) {
@@ -32949,7 +33674,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("start getChannelDifference with pts = " + i2 + " channelId = " + j);
         }
-        getConnectionsManager().sendRequest(tL_updates_getChannelDifference, new MessagesController$$ExternalSyntheticLambda330(i, j, jCreatePendingTask, this));
+        getConnectionsManager().sendRequest(tL_updates_getChannelDifference, new MessagesController$$ExternalSyntheticLambda332(i, j, jCreatePendingTask, this));
     }
 
     public CommonChatsList getCommonChats(long j, boolean z) {
@@ -32981,7 +33706,7 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         this.contentSettingsLoading = true;
-        getConnectionsManager().sendRequest(new TL_account.getContentSettings(), new MessagesController$$ExternalSyntheticLambda16(this, 4));
+        getConnectionsManager().sendRequest(new TL_account.getContentSettings(), new MessagesController$$ExternalSyntheticLambda18(this, 4));
     }
 
     public void getDifference(int i, int i2, int i3, boolean z) {
@@ -33063,7 +33788,7 @@ public class MessagesController extends BaseController implements NotificationCe
             this.loadingReactionTags = new HashSet<>();
         }
         this.loadingReactionTags.add(Long.valueOf(j));
-        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda49(this, j, 7));
+        getMessagesStorage().getStorageQueue().postRunnable(new MessagesController$$ExternalSyntheticLambda51(this, j, 7));
         return null;
     }
 
@@ -33090,13 +33815,13 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public boolean isDialogMuted(long j, long j2, TLRPC.Chat chat) {
         Boolean boolValueOf;
-        int i = this.notificationsPreferences.getInt(MessagesController$$ExternalSyntheticOutline1.m(j, j2, new StringBuilder("notify2_")), -1);
+        int i = this.notificationsPreferences.getInt(Theme.ResourcesProvider.CC.m(j, j2, "notify2_"), -1);
         boolean z = false;
         if (i != -1) {
             if (i == 2) {
                 return true;
             }
-            return i == 3 && this.notificationsPreferences.getInt(MessagesController$$ExternalSyntheticOutline1.m(j, j2, new StringBuilder("notifyuntil_")), 0) >= getConnectionsManager().getCurrentTime();
+            return i == 3 && this.notificationsPreferences.getInt(Theme.ResourcesProvider.CC.m(j, j2, "notifyuntil_"), 0) >= getConnectionsManager().getCurrentTime();
         }
         if (chat != null) {
             if (ChatObject.isChannel(chat) && !chat.megagroup) {
@@ -33145,7 +33870,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (z) {
             this.appConfigFetcher.forceRequest(this.currentAccount, 0);
         }
-        this.appConfigFetcher.fetch(this.currentAccount, 0, new MessagesController$$ExternalSyntheticLambda355(this, 0));
+        this.appConfigFetcher.fetch(this.currentAccount, 0, new MessagesController$$ExternalSyntheticLambda357(this, 0));
     }
 
     public void loadChannelParticipants(Long l, Utilities.Callback<TLRPC.TL_channels_channelParticipants> callback, int i) {
@@ -33158,7 +33883,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
         tL_channels_getParticipants.offset = 0;
         tL_channels_getParticipants.limit = i;
-        getConnectionsManager().sendRequest(tL_channels_getParticipants, new MessagesController$$ExternalSyntheticLambda30(this, l, callback, 8));
+        getConnectionsManager().sendRequest(tL_channels_getParticipants, new MessagesController$$ExternalSyntheticLambda32(this, l, callback, 8));
     }
 
     public void loadDialogs(final int i, int i2, final int i3, boolean z, final Runnable runnable) {
@@ -33281,7 +34006,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (this.dialogs_read_inbox_max.get(Long.valueOf(j)) == null || this.dialogs_read_outbox_max.get(Long.valueOf(j)) == null) {
                 reloadDialogsReadValue(null, j);
             }
-            getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_users_getFullUser, new MessagesController$$ExternalSyntheticLambda417(this, j, callback, user, i)), i);
+            getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tL_users_getFullUser, new AlertsCreator$$ExternalSyntheticLambda16(this, j, callback, user, i)), i);
         }
     }
 
@@ -33315,7 +34040,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else {
             tL_messages_getPeerSettings.peer = getInputPeer(-chat.id);
         }
-        getConnectionsManager().sendRequest(tL_messages_getPeerSettings, new MessagesController$$ExternalSyntheticLambda112(this, j, 7));
+        getConnectionsManager().sendRequest(tL_messages_getPeerSettings, new MessagesController$$ExternalSyntheticLambda114(this, j, 7));
     }
 
     public void loadRemoteFilters(boolean z, Utilities.Callback<Boolean> callback) {
@@ -33330,7 +34055,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 getUserConfig().filtersLoaded = false;
                 getUserConfig().saveConfig(false);
             }
-            getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDialogFilters(), new MessagesController$$ExternalSyntheticLambda16(this, 18));
+            getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDialogFilters(), new MessagesController$$ExternalSyntheticLambda18(this, 18));
         }
     }
 
@@ -33341,12 +34066,12 @@ public class MessagesController extends BaseController implements NotificationCe
     public void loadWebBrowserConfig(boolean z) {
         AndroidUtilities.cancelRunOnUIThread(this.loadWebConfigRunnable);
         if (this.webBrowserSettings == null) {
-            this.webBrowserSettingsFetcher.getLocal(this.currentAccount, null, new MessagesController$$ExternalSyntheticLambda119(this, 5));
+            this.webBrowserSettingsFetcher.getLocal(this.currentAccount, null, new MessagesController$$ExternalSyntheticLambda121(this, 5));
         }
         if (z) {
             this.webBrowserSettingsFetcher.forceRequest(this.currentAccount, null);
         }
-        this.webBrowserSettingsFetcher.fetch(this.currentAccount, null, new MessagesController$$ExternalSyntheticLambda355(this, 1));
+        this.webBrowserSettingsFetcher.fetch(this.currentAccount, null, new MessagesController$$ExternalSyntheticLambda357(this, 1));
     }
 
     public void markMessageAsRead2(long j, int i, TLRPC.InputChannel inputChannel, int i2, long j2, boolean z) {
@@ -33396,12 +34121,12 @@ public class MessagesController extends BaseController implements NotificationCe
         if (inputChannel2 == null) {
             TLRPC.TL_messages_readMessageContents tL_messages_readMessageContents = new TLRPC.TL_messages_readMessageContents();
             tL_messages_readMessageContents.id.add(Integer.valueOf(i));
-            getConnectionsManager().sendRequest(tL_messages_readMessageContents, new MessagesController$$ExternalSyntheticLambda112(this, jCreatePendingTask, 1));
+            getConnectionsManager().sendRequest(tL_messages_readMessageContents, new MessagesController$$ExternalSyntheticLambda114(this, jCreatePendingTask, 1));
         } else {
             TLRPC.TL_channels_readMessageContents tL_channels_readMessageContents = new TLRPC.TL_channels_readMessageContents();
             tL_channels_readMessageContents.channel = inputChannel2;
             tL_channels_readMessageContents.id.add(Integer.valueOf(i));
-            getConnectionsManager().sendRequest(tL_channels_readMessageContents, new MessagesController$$ExternalSyntheticLambda112(this, jCreatePendingTask, 0));
+            getConnectionsManager().sendRequest(tL_channels_readMessageContents, new MessagesController$$ExternalSyntheticLambda114(this, jCreatePendingTask, 0));
         }
     }
 
@@ -33464,7 +34189,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (progress == null) {
             AndroidUtilities.runOnUIThread(new Utilities$$ExternalSyntheticLambda1(alertDialogArr, zArr, baseFragment, 11), 500L);
         } else {
-            progress.onCancelListener = new MessagesController$$ExternalSyntheticLambda320(i2, zArr);
+            progress.onCancel(new MessagesController$$ExternalSyntheticLambda322(zArr, i2));
             progress.init();
         }
     }
@@ -33597,7 +34322,7 @@ public class MessagesController extends BaseController implements NotificationCe
             return;
         }
         this.requestingContactToken = true;
-        getConnectionsManager().sendRequest(new TLRPC.TL_contacts_exportContactToken(), new StarGiftSheet$$ExternalSyntheticLambda132(3, j, System.currentTimeMillis(), this, callback));
+        getConnectionsManager().sendRequest(new TLRPC.TL_contacts_exportContactToken(), new StarGiftSheet$$ExternalSyntheticLambda152(this, callback, j, System.currentTimeMillis(), 3));
     }
 
     public boolean sendTyping(long j, long j2, int i, String str, int i2) {
@@ -33681,7 +34406,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 tL_messages_setTyping.action = tL_sendMessageEmojiInteractionSeen;
             }
             longSparseArray2.put(Boolean.TRUE, j2);
-            int iSendRequest = getConnectionsManager().sendRequest(tL_messages_setTyping, new MessagesController$$ExternalSyntheticLambda330(this, i, j, j2, 1), 2);
+            int iSendRequest = getConnectionsManager().sendRequest(tL_messages_setTyping, new MessagesController$$ExternalSyntheticLambda332(this, i, j, j2, 1), 2);
             if (i2 != 0) {
                 getConnectionsManager().bindRequestToGuid(iSendRequest, i2);
                 return true;
@@ -33700,7 +34425,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 tL_inputEncryptedChat.access_hash = encryptedChatM.access_hash;
                 tL_messages_setEncryptedTyping.typing = true;
                 longSparseArray2.put(Boolean.TRUE, j2);
-                int iSendRequest2 = getConnectionsManager().sendRequest(tL_messages_setEncryptedTyping, new MessagesController$$ExternalSyntheticLambda330(this, i, j, j2, 2), 2);
+                int iSendRequest2 = getConnectionsManager().sendRequest(tL_messages_setEncryptedTyping, new MessagesController$$ExternalSyntheticLambda332(this, i, j, j2, 2), 2);
                 if (i2 != 0) {
                     getConnectionsManager().bindRequestToGuid(iSendRequest2, i2);
                 }
@@ -33809,7 +34534,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tL_messages_toggleNoForwards.request_msg_id = i;
             tL_messages_toggleNoForwards.flags |= 1;
         }
-        getConnectionsManager().sendRequestTyped(tL_messages_toggleNoForwards, null, new MessagesController$$ExternalSyntheticLambda57(this, callback2, 1), 64);
+        getConnectionsManager().sendRequestTyped(tL_messages_toggleNoForwards, null, new MessagesController$$ExternalSyntheticLambda59(this, callback2, 1), 64);
     }
 
     public void unblockPeer(long j, Runnable runnable) {
@@ -34058,7 +34783,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 return true;
             }
             progress.init();
-            progress.onCancelListener = ensureMessagesLoaded(-j2, i, new MessagesLoadedCallback() {
+            progress.onCancel(ensureMessagesLoaded(-j2, i, new MessagesLoadedCallback() {
                 @Override
                 public void onError() {
                     progress.end();
@@ -34070,7 +34795,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     progress.end();
                     baseFragment.presentFragment(new ChatActivity(bundle));
                 }
-            });
+            }));
             return false;
         }
         long dialogId = messageObject.getDialogId();
@@ -34109,7 +34834,7 @@ public class MessagesController extends BaseController implements NotificationCe
             alertDialog2.show();
             return false;
         }
-        progress.onCancelListener = new FileLoader$$ExternalSyntheticLambda5(this, iSendRequest, baseFragment, 11);
+        progress.onCancel(new FileLoader$$ExternalSyntheticLambda5(this, iSendRequest, baseFragment, 11));
         progress.init();
         return false;
     }
@@ -34129,16 +34854,16 @@ public class MessagesController extends BaseController implements NotificationCe
     public void deleteSavedDialog(long j, int i, TLRPC.InputPeer inputPeer) {
         long peerDialogId = DialogObject.getPeerDialogId(inputPeer);
         final int[] iArr = {i};
-        final StarsIntroActivity$$ExternalSyntheticLambda10 starsIntroActivity$$ExternalSyntheticLambda10 = new StarsIntroActivity$$ExternalSyntheticLambda10(this, peerDialogId, j, inputPeer, i, iArr);
+        final StarsIntroActivity$$ExternalSyntheticLambda15 starsIntroActivity$$ExternalSyntheticLambda15 = new StarsIntroActivity$$ExternalSyntheticLambda15(this, peerDialogId, j, inputPeer, i, iArr);
         if (iArr[0] <= 0 && peerDialogId == 0) {
             getMessagesStorage().getSavedDialogMaxMessageId(j, new MessagesStorage.IntCallback() {
                 @Override
                 public final void run(int i2) {
-                    MessagesController.lambda$deleteSavedDialog$145(iArr, starsIntroActivity$$ExternalSyntheticLambda10, i2);
+                    MessagesController.lambda$deleteSavedDialog$145(iArr, starsIntroActivity$$ExternalSyntheticLambda15, i2);
                 }
             });
         } else {
-            starsIntroActivity$$ExternalSyntheticLambda10.run();
+            starsIntroActivity$$ExternalSyntheticLambda15.run();
         }
     }
 
@@ -34149,7 +34874,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         boolean[] zArr = {false};
         if (progress != null) {
-            progress.onCancelListener = new MessagesController$$ExternalSyntheticLambda320(i2, zArr);
+            progress.onCancel(new MessagesController$$ExternalSyntheticLambda322(zArr, i2));
             progress.init();
         }
         TL_bots.BotInfo[] botInfoArr = {botInfoCached};
@@ -34163,7 +34888,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (botInfoCached == null) {
                 MediaDataController mediaDataController2 = getMediaDataController();
                 long j2 = user.id;
-                mediaDataController2.loadBotInfo(j2, j2, false, i, new MessagesController$$ExternalSyntheticLambda377(this, zArr, botInfoArr, user, i, fileLoader$1$$ExternalSyntheticLambda1));
+                mediaDataController2.loadBotInfo(j2, j2, false, i, new MessagesController$$ExternalSyntheticLambda379(this, zArr, botInfoArr, user, i, fileLoader$1$$ExternalSyntheticLambda1));
                 return;
             }
             fileLoader$1$$ExternalSyntheticLambda1.run();
@@ -34356,7 +35081,7 @@ public class MessagesController extends BaseController implements NotificationCe
             jCreatePendingTask = j;
         }
         if (!tL_folders_editPeerFolders.folder_peers.isEmpty()) {
-            getConnectionsManager().sendRequest(tL_folders_editPeerFolders, new MessagesController$$ExternalSyntheticLambda112(this, jCreatePendingTask, 11));
+            getConnectionsManager().sendRequest(tL_folders_editPeerFolders, new MessagesController$$ExternalSyntheticLambda114(this, jCreatePendingTask, 11));
             getMessagesStorage().setDialogsFolderId(null, tL_folders_editPeerFolders.folder_peers, 0L, i);
         }
         if (zArr == null) {
@@ -34530,7 +35255,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 jCreatePendingTask4 = getMessagesStorage().createPendingTask(nativeByteBuffer5);
                 tL_messages_deleteScheduledMessages = tL_messages_deleteScheduledMessages2;
             }
-            getConnectionsManager().sendRequest(tL_messages_deleteScheduledMessages, new MessagesController$$ExternalSyntheticLambda112(this, jCreatePendingTask4, 13));
+            getConnectionsManager().sendRequest(tL_messages_deleteScheduledMessages, new MessagesController$$ExternalSyntheticLambda114(this, jCreatePendingTask4, 13));
             return;
         }
         if (z5) {
@@ -34559,7 +35284,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 jCreatePendingTask3 = getMessagesStorage().createPendingTask(nativeByteBuffer4);
                 tL_messages_deleteQuickReplyMessages = tL_messages_deleteQuickReplyMessages2;
             }
-            getConnectionsManager().sendRequest(tL_messages_deleteQuickReplyMessages, new MessagesController$$ExternalSyntheticLambda112(this, jCreatePendingTask3, 14));
+            getConnectionsManager().sendRequest(tL_messages_deleteQuickReplyMessages, new MessagesController$$ExternalSyntheticLambda114(this, jCreatePendingTask3, 14));
             return;
         }
         if (j3 != 0) {
@@ -34587,7 +35312,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 jCreatePendingTask2 = getMessagesStorage().createPendingTask(nativeByteBuffer3);
                 tL_channels_deleteMessages = tL_channels_deleteMessages2;
             }
-            getConnectionsManager().sendRequest(tL_channels_deleteMessages, new MessagesController$$ExternalSyntheticLambda270(1, j3, jCreatePendingTask2, this));
+            getConnectionsManager().sendRequest(tL_channels_deleteMessages, new MessagesController$$ExternalSyntheticLambda272(1, j3, jCreatePendingTask2, this));
             return;
         }
         if (arrayList2 == null || encryptedChat == null || arrayList2.isEmpty()) {
@@ -34620,7 +35345,7 @@ public class MessagesController extends BaseController implements NotificationCe
             jCreatePendingTask = getMessagesStorage().createPendingTask(nativeByteBuffer2);
             tL_messages_deleteMessages = tL_messages_deleteMessages2;
         }
-        getConnectionsManager().sendRequest(tL_messages_deleteMessages, new MessagesController$$ExternalSyntheticLambda112(this, jCreatePendingTask, 15));
+        getConnectionsManager().sendRequest(tL_messages_deleteMessages, new MessagesController$$ExternalSyntheticLambda114(this, jCreatePendingTask, 15));
     }
 
     public void deleteParticipantFromChat(final long j, TLRPC.InputPeer inputPeer, boolean z, boolean z2, final Runnable runnable) {
@@ -34667,7 +35392,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else if (z) {
             TLRPC.TL_messages_deleteChat tL_messages_deleteChat = new TLRPC.TL_messages_deleteChat();
             tL_messages_deleteChat.chat_id = j;
-            getConnectionsManager().sendRequest(tL_messages_deleteChat, new FileRefController$$ExternalSyntheticLambda11(15));
+            getConnectionsManager().sendRequest(tL_messages_deleteChat, new FileRefController$$ExternalSyntheticLambda11(16));
             return;
         } else {
             TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser = new TLRPC.TL_messages_deleteChatUser();
@@ -34901,7 +35626,7 @@ public class MessagesController extends BaseController implements NotificationCe
             longSparseArray2.put(tL_messages_savedReactionsTags3, j);
             tL_messages_savedReactionsTags2 = tL_messages_savedReactionsTags3;
         }
-        Collections.sort(tL_messages_savedReactionsTags2.tags, new MessagesController$$ExternalSyntheticLambda101(this, 6));
+        Collections.sort(tL_messages_savedReactionsTags2.tags, new MessagesController$$ExternalSyntheticLambda103(this, 6));
         long jCalcHash = 0;
         int i3 = 0;
         while (i3 < tL_messages_savedReactionsTags2.tags.size()) {
@@ -35139,7 +35864,7 @@ public class MessagesController extends BaseController implements NotificationCe
         } else if (z) {
             TLRPC.TL_messages_deleteChat tL_messages_deleteChat = new TLRPC.TL_messages_deleteChat();
             tL_messages_deleteChat.chat_id = j;
-            getConnectionsManager().sendRequest(tL_messages_deleteChat, new MessagesController$$ExternalSyntheticLambda9(0));
+            getConnectionsManager().sendRequest(tL_messages_deleteChat, new FileRefController$$ExternalSyntheticLambda11(15));
             return;
         } else {
             TLRPC.TL_messages_deleteChatUser tL_messages_deleteChatUser = new TLRPC.TL_messages_deleteChatUser();
@@ -35151,7 +35876,7 @@ public class MessagesController extends BaseController implements NotificationCe
         if (UserObject.isUserSelf(user)) {
             deleteDialog(-j, 0, z2);
         }
-        getConnectionsManager().sendRequest(tLObject, new BotStarsActivity$$ExternalSyntheticLambda26(this, zIsChannel, user, j), 64);
+        getConnectionsManager().sendRequest(tLObject, new BotStarsActivity$$ExternalSyntheticLambda25(this, zIsChannel, user, j), 64);
     }
 
     public static TLRPC.InputPeer getInputPeer(TLRPC.Chat chat) {

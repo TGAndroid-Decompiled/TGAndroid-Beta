@@ -3,7 +3,7 @@ package org.telegram.ui.iv;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -212,7 +212,7 @@ public abstract class RichMessageConvert {
                                         spannableStringBuilderJoin3 = null;
                                     }
                                     if (spannableStringBuilderJoin3 != null) {
-                                        SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(zzhr.m(!TextUtils.isEmpty(pageListOrderedItem2.num) ? pageListOrderedItem2.num : String.valueOf(i2), ".  "));
+                                        SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(zzhp.m(!TextUtils.isEmpty(pageListOrderedItem2.num) ? pageListOrderedItem2.num : String.valueOf(i2), ".  "));
                                         spannableStringBuilder4.append((CharSequence) spannableStringBuilderJoin3);
                                         arrayList9.add(spannableStringBuilder4);
                                     }
@@ -262,7 +262,7 @@ public abstract class RichMessageConvert {
                                     spannable = new SpannableStringBuilder(spannableStringBuilder);
                                     TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
                                     textStyleRun.flags = 4;
-                                    spannable.setSpan(new TextStyleSpan(textStyleRun, 0), 0, spannable.length(), 33);
+                                    spannable.setSpan(new TextStyleSpan(textStyleRun), 0, spannable.length(), 33);
                                     objQuoted = spannable;
                                 }
                             }
@@ -274,7 +274,7 @@ public abstract class RichMessageConvert {
                                 SpannableStringBuilder spannableStringBuilder6 = new SpannableStringBuilder(spannable);
                                 TextStyleSpan.TextStyleRun textStyleRun2 = new TextStyleSpan.TextStyleRun();
                                 textStyleRun2.flags = 1;
-                                spannableStringBuilder6.setSpan(new TextStyleSpan(textStyleRun2, 0), 0, spannableStringBuilder6.length(), 33);
+                                spannableStringBuilder6.setSpan(new TextStyleSpan(textStyleRun2), 0, spannableStringBuilder6.length(), 33);
                                 spannable = spannableStringBuilder6;
                             }
                             if (!TextUtils.isEmpty(spannable)) {

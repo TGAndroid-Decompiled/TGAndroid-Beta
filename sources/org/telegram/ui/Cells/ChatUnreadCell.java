@@ -16,10 +16,12 @@ import org.telegram.ui.Components.LayoutHelper;
 public final class ChatUnreadCell extends FrameLayout {
     public final FrameLayout backgroundLayout;
     public final ImageView imageView;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final TextView textView;
 
     public ChatUnreadCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         FrameLayout frameLayout = new FrameLayout(context);
         this.backgroundLayout = frameLayout;
         frameLayout.setBackgroundResource(R.drawable.newmsg_divider);

@@ -2,8 +2,8 @@ package org.telegram.ui.Business;
 
 import android.content.SharedPreferences;
 import android.text.TextUtils;
-import com.google.android.exoplayer2.util.Log;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
+import androidx.recyclerview.widget.DiffUtil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
 import j$.time.Instant;
 import j$.time.ZoneId;
 import j$.time.format.TextStyle;
@@ -15,7 +15,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda208;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
 
 public final class TimezonesController {
     public static volatile TimezonesController[] Instance = new TimezonesController[4];
@@ -57,6 +57,16 @@ public final class TimezonesController {
         return timezonesController;
     }
 
+    public static String getTimezoneName(TLRPC.TL_timezone tL_timezone, boolean z) {
+        if (tL_timezone == null) {
+            return null;
+        }
+        if (!z) {
+            return tL_timezone.name;
+        }
+        return tL_timezone.name + ", " + getTimezoneOffsetName(tL_timezone);
+    }
+
     public static String getTimezoneOffsetName(TLRPC.TL_timezone tL_timezone) {
         int i = tL_timezone.utc_offset;
         if (i == 0) {
@@ -66,10 +76,10 @@ public final class TimezonesController {
         int iAbs = Math.abs(tL_timezone.utc_offset) / 60;
         int i2 = iAbs / 60;
         int i3 = iAbs % 60;
-        StringBuilder sbM = Log.m(strConcat);
+        StringBuilder sbM = DiffUtil.m(strConcat);
         sbM.append(i2 < 10 ? "0" : "");
         sbM.append(i2);
-        StringBuilder sbM2 = Log.m(zzhr.m(sbM.toString(), ":"));
+        StringBuilder sbM2 = DiffUtil.m(zzhp.m(sbM.toString(), ":"));
         sbM2.append(i3 < 10 ? "0" : "");
         sbM2.append(i3);
         return sbM2.toString();
@@ -125,34 +135,6 @@ public final class TimezonesController {
         return id;
     }
 
-    public final String getTimezoneName(String str, boolean z) {
-        String strConcat;
-        TLRPC.TL_timezone tL_timezoneFindTimezone = findTimezone(str);
-        if (tL_timezoneFindTimezone != null) {
-            if (!z) {
-                return tL_timezoneFindTimezone.name;
-            }
-            return tL_timezoneFindTimezone.name + ", " + getTimezoneOffsetName(tL_timezoneFindTimezone);
-        }
-        ZoneId zoneIdOf = ZoneId.of(str);
-        if (zoneIdOf == null) {
-            return "";
-        }
-        if (z) {
-            String displayName = zoneIdOf.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
-            strConcat = "GMT";
-            if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
-                strConcat = "GMT".concat(displayName);
-            }
-        } else {
-            strConcat = null;
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append(zoneIdOf.getId().replace("/", ", ").replace("_", " "));
-        sb.append(strConcat != null ? ", ".concat(strConcat) : "");
-        return sb.toString();
-    }
-
     public final void load() {
         if (this.loading || this.loaded) {
             return;
@@ -174,6 +156,31 @@ public final class TimezonesController {
         NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.timezonesUpdated, new Object[0]);
         TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
         tL_help_getTimezonesList.hash = help_timezoneslistTLdeserialize != null ? help_timezoneslistTLdeserialize.hash : 0;
-        ConnectionsManager.getInstance(i).sendRequest(tL_help_getTimezonesList, new ChatActivity$$ExternalSyntheticLambda208(12, this, mainSettings));
+        ConnectionsManager.getInstance(i).sendRequest(tL_help_getTimezonesList, new StarGiftSheet$$ExternalSyntheticLambda0(12, this, mainSettings));
+    }
+
+    public final String getTimezoneName(String str, boolean z) {
+        String strConcat;
+        TLRPC.TL_timezone tL_timezoneFindTimezone = findTimezone(str);
+        if (tL_timezoneFindTimezone != null) {
+            return getTimezoneName(tL_timezoneFindTimezone, z);
+        }
+        ZoneId zoneIdOf = ZoneId.of(str);
+        if (zoneIdOf == null) {
+            return "";
+        }
+        if (z) {
+            String displayName = zoneIdOf.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, LocaleController.getInstance().getCurrentLocale());
+            strConcat = "GMT";
+            if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
+                strConcat = "GMT".concat(displayName);
+            }
+        } else {
+            strConcat = null;
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append(zoneIdOf.getId().replace("/", ", ").replace("_", " "));
+        sb.append(strConcat != null ? ", ".concat(strConcat) : "");
+        return sb.toString();
     }
 }

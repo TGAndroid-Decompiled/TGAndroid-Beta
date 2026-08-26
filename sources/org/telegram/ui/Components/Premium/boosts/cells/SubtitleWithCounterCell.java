@@ -15,12 +15,7 @@ public final class SubtitleWithCounterCell extends org.telegram.ui.Cells.HeaderC
         super(context, resourcesProvider);
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
         this.counterTextView = animatedTextView;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = animatedTextView.drawable;
-        animatedTextDrawable.moveAmplitude = 0.45f;
-        animatedTextDrawable.animateDuration = 240L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        animatedTextView.setAnimationProperties(0.45f, 0L, 240L, CubicBezierInterpolator.EASE_OUT_QUINT);
         animatedTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
         animatedTextView.setTypeface(AndroidUtilities.bold());

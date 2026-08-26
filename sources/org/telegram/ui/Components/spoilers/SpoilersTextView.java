@@ -2,6 +2,7 @@ package org.telegram.ui.Components.spoilers;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -12,104 +13,105 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.widget.TextView;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.ChatMessageCell$$ExternalSyntheticLambda25;
 import org.telegram.ui.Cells.TextSelectionHelper;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda168;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.LinkPath;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.LoadingDrawable;
-import org.telegram.ui.IntroActivity$$ExternalSyntheticLambda5;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda66;
 
 public class SpoilersTextView extends TextView implements TextSelectionHelper.SimpleSelectabeleView {
-    public static Class editorClass;
-    public static Field mEditor;
-    public static Method mEditorInvalidateDisplayList;
+    private static Class editorClass;
+    private static Field mEditor;
+    private static Method mEditorInvalidateDisplayList;
     public boolean allowClickSpoilers;
-    public AnimatedEmojiSpan.EmojiGroupedSpans animatedEmoji;
-    public PorterDuffColorFilter animatedEmojiColorFilter;
+    private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmoji;
+    private ColorFilter animatedEmojiColorFilter;
     public int cacheType;
-    public final SpoilersClickDetector clickDetector;
-    public CharacterStyle currentLinkLoading;
-    public final boolean disablePaddingInLinks;
-    public boolean disablePaddingsOffset;
-    public boolean disablePaddingsOffsetX;
-    public boolean disablePaddingsOffsetY;
-    public Object editor;
-    public boolean isSpoilersRevealed;
-    public Layout lastLayout;
-    public int lastTextLength;
-    public final LinkSpanDrawable.LinkCollector links;
-    public LinkSpanDrawable.LinksTextView.OnLinkPress onLongPressListener;
-    public LinkSpanDrawable.LinksTextView.OnLinkPress onPressListener;
-    public final Path path;
-    public LinkSpanDrawable pressedLink;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public final ArrayList spoilers;
-    public final Stack spoilersPool;
-    public boolean triedGetInvalidate;
-    public boolean useAlphaForEmoji;
+    private boolean clearLinkOnLongPress;
+    private SpoilersClickDetector clickDetector;
+    private CharacterStyle currentLinkLoading;
+    protected boolean disablePaddingInLinks;
+    private boolean disablePaddingsOffset;
+    private boolean disablePaddingsOffsetX;
+    private boolean disablePaddingsOffsetY;
+    private Object editor;
+    private boolean isSpoilersRevealed;
+    private Layout lastLayout;
+    private int lastTextLength;
+    private final LinkSpanDrawable.LinkCollector links;
+    protected LinkSpanDrawable.LinksTextView.OnLinkPress onLongPressListener;
+    protected LinkSpanDrawable.LinksTextView.OnLinkPress onPressListener;
+    private Path path;
+    private LinkSpanDrawable<ClickableSpan> pressedLink;
+    private Theme.ResourcesProvider resourcesProvider;
+    protected List<SpoilerEffect> spoilers;
+    private Stack<SpoilerEffect> spoilersPool;
+    private boolean triedGetInvalidate;
+    private boolean useAlphaForEmoji;
 
-    public SpoilersTextView(Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
+    public SpoilersTextView(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        ArrayList arrayList = new ArrayList();
-        this.spoilers = arrayList;
-        this.spoilersPool = new Stack();
+        this.spoilers = new ArrayList();
+        this.spoilersPool = new Stack<>();
         this.path = new Path();
         this.allowClickSpoilers = true;
         this.cacheType = 0;
         this.useAlphaForEmoji = true;
+        this.clearLinkOnLongPress = true;
         this.disablePaddingInLinks = true;
         this.lastLayout = null;
         this.links = new LinkSpanDrawable.LinkCollector(this);
         this.resourcesProvider = resourcesProvider;
-        this.clickDetector = new SpoilersClickDetector(this, arrayList, new ChatActivity$$ExternalSyntheticLambda168(6, this, z));
+        this.clickDetector = new SpoilersClickDetector(this, this.spoilers, new ChatMessageCell$$ExternalSyntheticLambda25(this, z));
+    }
+
+    public void clearLinks() {
+        this.links.clear();
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        CharacterStyle characterStyle;
-        LinkSpanDrawable.LinkCollector linkCollector = this.links;
-        if (linkCollector != null) {
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.links != null) {
             Layout layout = getLayout();
             ClickableSpan clickableSpanHit = hit((int) motionEvent.getX(), (int) motionEvent.getY());
             if (clickableSpanHit != null && motionEvent.getAction() == 0) {
-                float x = motionEvent.getX();
-                float y = motionEvent.getY();
-                Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-                LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(clickableSpanHit, resourcesProvider, x, y);
-                linkSpanDrawable.setColor(Theme.getColor(Theme.key_chat_linkSelectBackground, resourcesProvider));
+                LinkSpanDrawable<ClickableSpan> linkSpanDrawable = new LinkSpanDrawable<>(clickableSpanHit, this.resourcesProvider, motionEvent.getX(), motionEvent.getY());
+                linkSpanDrawable.setColor(overrideLinkColor());
                 this.pressedLink = linkSpanDrawable;
-                linkCollector.addLink(linkSpanDrawable, null);
+                this.links.addLink(linkSpanDrawable);
                 SpannableString spannableString = new SpannableString(layout.getText());
-                int spanStart = spannableString.getSpanStart(this.pressedLink.mSpan);
-                int spanEnd = spannableString.getSpanEnd(this.pressedLink.mSpan);
+                int spanStart = spannableString.getSpanStart(this.pressedLink.getSpan());
+                int spanEnd = spannableString.getSpanEnd(this.pressedLink.getSpan());
                 LinkPath linkPathObtainNewPath = this.pressedLink.obtainNewPath();
-                linkPathObtainNewPath.setCurrentLayout(layout, spanStart, 0.0f, this.disablePaddingInLinks ? 0.0f : getPaddingTop());
+                linkPathObtainNewPath.setCurrentLayout(layout, spanStart, this.disablePaddingInLinks ? 0.0f : getPaddingTop());
                 layout.getSelectionPath(spanStart, spanEnd, linkPathObtainNewPath);
-                AndroidUtilities.runOnUIThread(new IntroActivity$$ExternalSyntheticLambda5(this, linkSpanDrawable, clickableSpanHit, 12), ViewConfiguration.getLongPressTimeout());
+                AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda66(this, linkSpanDrawable, clickableSpanHit, 8), ViewConfiguration.getLongPressTimeout());
                 return true;
             }
             if (motionEvent.getAction() == 1) {
-                linkCollector.clear(true);
-                LinkSpanDrawable linkSpanDrawable2 = this.pressedLink;
-                if (linkSpanDrawable2 != null && (characterStyle = linkSpanDrawable2.mSpan) == clickableSpanHit) {
+                this.links.clear();
+                LinkSpanDrawable<ClickableSpan> linkSpanDrawable2 = this.pressedLink;
+                if (linkSpanDrawable2 != null && linkSpanDrawable2.getSpan() == clickableSpanHit) {
                     LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onPressListener;
                     if (onLinkPress != null) {
-                        onLinkPress.run((ClickableSpan) characterStyle);
-                    } else if (characterStyle != null) {
-                        ((ClickableSpan) characterStyle).onClick(this);
+                        onLinkPress.run((ClickableSpan) this.pressedLink.getSpan());
+                    } else if (this.pressedLink.getSpan() != null) {
+                        ((ClickableSpan) this.pressedLink.getSpan()).onClick(this);
                     }
                     this.pressedLink = null;
                     return true;
@@ -117,11 +119,11 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
                 this.pressedLink = null;
             }
             if (motionEvent.getAction() == 3) {
-                linkCollector.clear(true);
+                this.links.clear();
                 this.pressedLink = null;
             }
         }
-        if (this.pressedLink == null && !(this.allowClickSpoilers && ((GestureDetector) this.clickDetector.gestureDetector.zza).onTouchEvent(motionEvent))) {
+        if (this.pressedLink == null && !(this.allowClickSpoilers && this.clickDetector.gestureDetector.mDetector.onTouchEvent(motionEvent))) {
             return super.dispatchTouchEvent(motionEvent);
         }
         return true;
@@ -153,7 +155,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
     }
 
     @Override
-    public final void invalidate() {
+    public void invalidate() {
         if (!this.triedGetInvalidate) {
             this.triedGetInvalidate = true;
             try {
@@ -192,34 +194,65 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
     }
 
     public final void invalidateSpoilers() {
-        ArrayList arrayList = this.spoilers;
-        if (arrayList == null) {
+        List<SpoilerEffect> list = this.spoilers;
+        if (list == null) {
             return;
         }
-        Stack stack = this.spoilersPool;
-        stack.addAll(arrayList);
-        arrayList.clear();
+        this.spoilersPool.addAll(list);
+        this.spoilers.clear();
         if (this.isSpoilersRevealed) {
             invalidate();
             return;
         }
         if (getLayout() != null && (getText() instanceof Spanned)) {
+            Stack<SpoilerEffect> stack = this.spoilersPool;
+            List<SpoilerEffect> list2 = this.spoilers;
             int i = SpoilerEffect.MAX_PARTICLES_PER_ENTITY;
             int measuredWidth = getMeasuredWidth();
-            SpoilerEffect.addSpoilers(this, getLayout(), 0, measuredWidth > 0 ? measuredWidth : -2, (Spanned) getText(), stack, arrayList, null);
+            SpoilerEffect.addSpoilers(this, getLayout(), 0, measuredWidth > 0 ? measuredWidth : -2, (Spanned) getText(), stack, list2, null);
         }
         invalidate();
     }
 
+    public final void lambda$dispatchTouchEvent$3(LinkSpanDrawable linkSpanDrawable, ClickableSpan clickableSpan) {
+        LinkSpanDrawable.LinksTextView.OnLinkPress onLinkPress = this.onLongPressListener;
+        if (onLinkPress == null || this.pressedLink != linkSpanDrawable) {
+            return;
+        }
+        onLinkPress.run(clickableSpan);
+        this.pressedLink = null;
+        this.links.clear();
+    }
+
+    public final void lambda$new$0$18() {
+        this.isSpoilersRevealed = true;
+        invalidateSpoilers();
+    }
+
+    public final void lambda$new$1$10() {
+        post(new SpoilersTextView$$ExternalSyntheticLambda0(this, 1));
+    }
+
+    public final void lambda$new$2(boolean z, SpoilerEffect spoilerEffect, float f, float f2) {
+        if (this.isSpoilersRevealed || !z) {
+            return;
+        }
+        spoilerEffect.onRippleEndCallback = new SpoilersTextView$$ExternalSyntheticLambda0(this, 0);
+        float fSqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
+        Iterator<SpoilerEffect> it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            it.next().startRipple(f, f2, fSqrt, false);
+        }
+    }
+
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         updateAnimatedEmoji(true);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        Canvas canvas2;
         int paddingLeft = getPaddingLeft();
         int paddingTop = getPaddingTop();
         canvas.save();
@@ -231,34 +264,28 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
             invalidate();
         }
         canvas.restore();
-        ArrayList arrayList = this.spoilers;
-        boolean zIsEmpty = arrayList.isEmpty();
-        Path path = this.path;
-        if (zIsEmpty) {
+        if (this.spoilers.isEmpty()) {
             super.onDraw(canvas);
         } else {
             canvas.save();
-            path.rewind();
-            int size = arrayList.size();
-            int i = 0;
-            while (i < size) {
-                Object obj = arrayList.get(i);
-                i++;
-                Rect bounds = ((SpoilerEffect) obj).getBounds();
-                path.addRect(bounds.left + paddingLeft, bounds.top + paddingTop, bounds.right + paddingLeft, bounds.bottom + paddingTop, Path.Direction.CW);
+            this.path.rewind();
+            Iterator<SpoilerEffect> it = this.spoilers.iterator();
+            while (it.hasNext()) {
+                Rect bounds = it.next().getBounds();
+                this.path.addRect(bounds.left + paddingLeft, bounds.top + paddingTop, bounds.right + paddingLeft, bounds.bottom + paddingTop, Path.Direction.CW);
             }
-            canvas.clipPath(path, Region.Op.DIFFERENCE);
+            canvas.clipPath(this.path, Region.Op.DIFFERENCE);
             Emoji.emojiDrawingUseAlpha = this.useAlphaForEmoji;
             super.onDraw(canvas);
             Emoji.emojiDrawingUseAlpha = true;
             canvas.restore();
-            SpoilerEffect spoilerEffect = (SpoilerEffect) arrayList.get(0);
+            SpoilerEffect spoilerEffect = this.spoilers.get(0);
             if (spoilerEffect.rippleMaxRadius > 0.0f && spoilerEffect.rippleProgress > 0.0f) {
                 canvas.save();
-                canvas.clipPath(path);
-                path.rewind();
-                ((SpoilerEffect) arrayList.get(0)).getRipplePath(path);
-                canvas.clipPath(path);
+                canvas.clipPath(this.path);
+                this.path.rewind();
+                this.spoilers.get(0).getRipplePath(this.path);
+                canvas.clipPath(this.path);
                 super.onDraw(canvas);
                 canvas.restore();
             }
@@ -267,46 +294,39 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         if (this.animatedEmoji != null) {
             canvas.save();
             canvas.translate(paddingLeft, paddingTop);
-            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, getLayout(), this.animatedEmoji, 0.0f, arrayList, 0.0f, getHeight(), 0.0f, 1.0f, this.animatedEmojiColorFilter);
+            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, getLayout(), this.animatedEmoji, 0.0f, this.spoilers, 0.0f, getHeight(), 0.0f, 1.0f, this.animatedEmojiColorFilter);
             canvas.restore();
         }
-        if (arrayList.isEmpty()) {
+        if (this.spoilers.isEmpty()) {
             return;
         }
-        boolean z = ((SpoilerEffect) arrayList.get(0)).rippleProgress != -1.0f;
+        boolean z = this.spoilers.get(0).rippleProgress != -1.0f;
         if (z) {
-            canvas2 = canvas;
-            canvas2.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), null, 31);
+            canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), null, 31);
         } else {
-            canvas2 = canvas;
-            canvas2.save();
+            canvas.save();
         }
-        canvas2.translate(paddingLeft, AndroidUtilities.dp(2.0f) + paddingTop);
-        int size2 = arrayList.size();
-        int i2 = 0;
-        while (i2 < size2) {
-            Object obj2 = arrayList.get(i2);
-            i2++;
-            SpoilerEffect spoilerEffect2 = (SpoilerEffect) obj2;
+        canvas.translate(paddingLeft, AndroidUtilities.dp(2.0f) + paddingTop);
+        for (SpoilerEffect spoilerEffect2 : this.spoilers) {
             spoilerEffect2.setColor(getPaint().getColor());
-            spoilerEffect2.draw(canvas2);
+            spoilerEffect2.draw(canvas);
         }
         if (z) {
-            path.rewind();
-            ((SpoilerEffect) arrayList.get(0)).getRipplePath(path);
-            canvas2.drawPath(path, Theme.PAINT_CLEAR);
+            this.path.rewind();
+            this.spoilers.get(0).getRipplePath(this.path);
+            canvas.drawPath(this.path, Theme.PAINT_CLEAR);
         }
-        canvas2.restore();
+        canvas.restore();
     }
 
     @Override
-    public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         invalidateSpoilers();
     }
 
     @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+    public void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         invalidateSpoilers();
     }
@@ -318,7 +338,12 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         updateAnimatedEmoji(true);
     }
 
+    public int overrideLinkColor() {
+        return Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider);
+    }
+
     public void setClearLinkOnLongPress(boolean z) {
+        this.clearLinkOnLongPress = z;
     }
 
     public void setDisablePaddingsOffset(boolean z) {
@@ -334,24 +359,15 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
     }
 
     public void setLoading(CharacterStyle characterStyle) {
-        LinkSpanDrawable.LinkCollector linkCollector;
         if (this.currentLinkLoading != characterStyle) {
-            int i = 0;
-            while (true) {
-                linkCollector = this.links;
-                if (i >= linkCollector.mLoadingCount) {
-                    break;
-                }
-                linkCollector.removeLoadingAt(i, true);
-                i++;
-            }
+            this.links.clearLoading(true);
             this.currentLinkLoading = characterStyle;
             LoadingDrawable loadingDrawableMakeLoading = LinkSpanDrawable.LinkCollector.makeLoading(getLayout(), characterStyle, getPaddingTop());
             if (loadingDrawableMakeLoading != null) {
                 int color = Theme.getColor(Theme.key_chat_linkSelectBackground, this.resourcesProvider);
                 loadingDrawableMakeLoading.setColors(Theme.multAlpha(0.8f, color), Theme.multAlpha(1.3f, color), Theme.multAlpha(1.0f, color), Theme.multAlpha(4.0f, color));
                 loadingDrawableMakeLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
-                linkCollector.addLoading(loadingDrawableMakeLoading, null);
+                this.links.addLoading(loadingDrawableMakeLoading);
             }
         }
     }
@@ -380,7 +396,7 @@ public class SpoilersTextView extends TextView implements TextSelectionHelper.Si
         this.useAlphaForEmoji = z;
     }
 
-    public final void updateAnimatedEmoji(boolean z) {
+    public void updateAnimatedEmoji(boolean z) {
         int length = (getLayout() == null || getLayout().getText() == null) ? 0 : getLayout().getText().length();
         if (!z && this.lastLayout == getLayout() && this.lastTextLength == length) {
             return;

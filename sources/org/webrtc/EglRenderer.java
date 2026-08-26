@@ -619,7 +619,7 @@ public class EglRenderer implements VideoSink {
                 if (Thread.currentThread() == this.renderThreadHandler.getLooper().getThread()) {
                     throw new RuntimeException("removeFrameListener must not be called on the render thread.");
                 }
-                postToRenderThread(new EglRenderer$$ExternalSyntheticLambda6(this, countDownLatch, frameListener, 13));
+                postToRenderThread(new EglRenderer$$ExternalSyntheticLambda6(this, countDownLatch, frameListener, 23));
                 ThreadUtils.awaitUninterruptibly(countDownLatch);
             } catch (Throwable th) {
                 throw th;

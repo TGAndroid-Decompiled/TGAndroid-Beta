@@ -8,11 +8,10 @@ import com.google.zxing.common.detector.MathUtils;
 import java.util.Vector;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.ui.Cells.AboutLinkCell$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Size;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda116;
+import org.telegram.ui.Stories.StoriesStorage$$ExternalSyntheticLambda10;
 
 public final class Input {
     public static final CubicBezierInterpolator PRESSURE_INTERPOLATOR = new CubicBezierInterpolator(0.0d, 0.5d, 0.0d, 1.0d);
@@ -42,11 +41,11 @@ public final class Input {
     public float velocity;
     public final Point[] points = new Point[3];
     public final float[] tempPoint = new float[2];
-    public final Input$$ExternalSyntheticLambda1 fillWithCurrentBrush = new Input$$ExternalSyntheticLambda1(this, 1);
+    public final Input$$ExternalSyntheticLambda2 fillWithCurrentBrush = new Input$$ExternalSyntheticLambda2(this, 1);
 
     public Input(RenderView renderView) {
         this.renderView = renderView;
-        this.detector = new ShapeDetector(renderView.getContext(), new DialogCell$$ExternalSyntheticLambda6(this, 21));
+        this.detector = new ShapeDetector(renderView.getContext(), new DialogCell$$ExternalSyntheticLambda6(this, 10));
     }
 
     public final void fill(Brush.Eraser eraser, final boolean z, final RenderView$$ExternalSyntheticLambda0 renderView$$ExternalSyntheticLambda0) {
@@ -66,7 +65,7 @@ public final class Input {
                 renderView.getPainting().hasBlur = false;
             }
             Painting painting = renderView.getPainting();
-            painting.renderView.performInContext(new Painting$$ExternalSyntheticLambda2(painting, 1));
+            painting.renderView.performInContext(new Painting$$ExternalSyntheticLambda0(painting, 1));
             this.pointsCount = 0;
             this.realPointsCount = 0;
             this.lastAngleSet = false;
@@ -97,7 +96,29 @@ public final class Input {
             final Point point6 = new Point(point5.x, point5.y, 1.0d);
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
             this.fillAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, point6, brush, fMax2));
+            valueAnimatorOfFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
+                    Input input = this.f$0;
+                    input.getClass();
+                    float fFloatValue = ((Float) valueAnimator3.getAnimatedValue()).floatValue();
+                    Path path = new Path(new Point[]{point6});
+                    Brush brush2 = brush;
+                    brush2.getClass();
+                    boolean z2 = brush2 instanceof Brush.Eraser;
+                    RenderView renderView2 = input.renderView;
+                    int currentColor = z2 ? -1 : renderView2.getCurrentColor();
+                    float f = fFloatValue * fMax2;
+                    path.color = currentColor;
+                    path.baseWeight = f;
+                    path.brush = brush2;
+                    Painting painting2 = renderView2.getPainting();
+                    if (painting2.helperApplyAnimator != null) {
+                        return;
+                    }
+                    painting2.renderView.performInContext(new StoriesStorage$$ExternalSyntheticLambda10(painting2, path, true, true, null, 1));
+                }
+            });
             this.fillAnimator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public final void onAnimationEnd(Animator animator) {
@@ -152,7 +173,7 @@ public final class Input {
         Input$$ExternalSyntheticLambda5 input$$ExternalSyntheticLambda5 = new Input$$ExternalSyntheticLambda5(this, path, 0);
         boolean z2 = false;
         if (painting.helperApplyAnimator == null) {
-            painting.renderView.performInContext(new ProfileActivity$$ExternalSyntheticLambda116(painting, path, z, z2, input$$ExternalSyntheticLambda5, 1));
+            painting.renderView.performInContext(new StoriesStorage$$ExternalSyntheticLambda10(painting, path, z, z2, input$$ExternalSyntheticLambda5, 1));
         }
         this.clearBuffer = false;
     }

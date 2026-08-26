@@ -29,13 +29,14 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -49,58 +50,57 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ScaleStateListAnimator;
 import org.telegram.ui.Components.SectionsScrollView;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.SlideChooseView;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 
-public final class LinkEditActivity extends BaseFragment {
-    public AnonymousClass7 approveCell;
-    public TextInfoPrivacyCell approveHintCell;
-    public FrameLayout buttonLayout;
-    public Callback callback;
-    public final long chatId;
-    public TextView createTextView;
-    public int currentInviteDate;
-    public final int[] defaultDates;
-    public final int[] defaultUses;
-    public final ArrayList dispalyedDates;
-    public final ArrayList dispalyedUses;
-    public TextInfoPrivacyCell divider;
-    public TextInfoPrivacyCell dividerName;
-    public TextInfoPrivacyCell dividerUses;
-    public boolean ignoreSet;
-    public TLRPC.TL_chatInviteExported inviteToEdit;
-    public boolean loading;
-    public AnonymousClass5 nameEditText;
-    public AlertDialog progressDialog;
-    public TextSettingsCell revokeLink;
-    public SectionsScrollView scrollView;
-    public int shakeDp;
-    public TextCheckCell subCell;
-    public AnonymousClass8 subEditPriceCell;
-    public TextInfoPrivacyCell subInfoCell;
-    public TextView subPriceView;
-    public SlideChooseView timeChooseView;
-    public TextView timeEditText;
-    public HeaderCell timeHeaderCell;
-    public final int type;
-    public SlideChooseView usesChooseView;
-    public AnonymousClass5 usesEditText;
-    public HeaderCell usesHeaderCell;
-
-    public final class AnonymousClass7 extends TextCheckCell {
-        @Override
-        public final void onDraw(Canvas canvas) {
-            canvas.save();
-            canvas.clipRect(0, 0, getWidth(), getHeight());
-            super.onDraw(canvas);
-            canvas.restore();
-        }
-    }
+public class LinkEditActivity extends BaseFragment {
+    public static final int CREATE_TYPE = 0;
+    public static final int EDIT_TYPE = 1;
+    private TextCheckCell approveCell;
+    private TextInfoPrivacyCell approveHintCell;
+    private FrameLayout buttonLayout;
+    private Callback callback;
+    private final long chatId;
+    private TextView createTextView;
+    int currentInviteDate;
+    private final int[] defaultDates;
+    private final int[] defaultUses;
+    private ArrayList<Integer> dispalyedDates;
+    private ArrayList<Integer> dispalyedUses;
+    private TextInfoPrivacyCell divider;
+    private TextInfoPrivacyCell dividerName;
+    private TextInfoPrivacyCell dividerUses;
+    private boolean finished;
+    private boolean firstLayout;
+    private boolean ignoreSet;
+    TLRPC.TL_chatInviteExported inviteToEdit;
+    boolean loading;
+    private EditText nameEditText;
+    AlertDialog progressDialog;
+    private TextSettingsCell revokeLink;
+    boolean scrollToEnd;
+    boolean scrollToStart;
+    private SectionsScrollView scrollView;
+    private int shakeDp;
+    private TextCheckCell subCell;
+    private EditTextCell subEditPriceCell;
+    private TextInfoPrivacyCell subInfoCell;
+    private TextView subPriceView;
+    private SlideChooseView timeChooseView;
+    private TextView timeEditText;
+    private HeaderCell timeHeaderCell;
+    private int type;
+    private SlideChooseView usesChooseView;
+    private EditText usesEditText;
+    private HeaderCell usesHeaderCell;
 
     public interface Callback {
         void onLinkCreated(TLObject tLObject);
 
         void onLinkEdited(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject);
+
+        void onLinkRemoved(TLRPC.TL_chatInviteExported tL_chatInviteExported);
 
         void revokeLink(TLRPC.TL_chatInviteExported tL_chatInviteExported);
     }
@@ -108,51 +108,50 @@ public final class LinkEditActivity extends BaseFragment {
     public LinkEditActivity(int i, long j) {
         super(null);
         this.shakeDp = -3;
-        this.dispalyedDates = new ArrayList();
+        this.firstLayout = true;
+        this.dispalyedDates = new ArrayList<>();
         this.defaultDates = new int[]{3600, 86400, 604800};
-        this.dispalyedUses = new ArrayList();
+        this.dispalyedUses = new ArrayList<>();
         this.defaultUses = new int[]{1, 10, 100};
         this.type = i;
         this.chatId = j;
     }
 
-    public final void chooseDate(int i) {
-        int[] iArr;
+    private void chooseDate(int i) {
         long j = i;
         this.timeEditText.setText(LocaleController.formatDateAudio(j, false));
         int currentTime = i - getConnectionsManager().getCurrentTime();
-        ArrayList arrayList = this.dispalyedDates;
-        arrayList.clear();
+        this.dispalyedDates.clear();
         int iM = 0;
         boolean z = false;
         int length = 0;
         while (true) {
-            iArr = this.defaultDates;
+            int[] iArr = this.defaultDates;
             if (iM >= iArr.length) {
                 break;
             }
             if (!z && currentTime < iArr[iM]) {
-                arrayList.add(Integer.valueOf(currentTime));
+                this.dispalyedDates.add(Integer.valueOf(currentTime));
                 length = iM;
                 z = true;
             }
-            iM = LocationController$$ExternalSyntheticOutline0.m(iArr[iM], iM, 1, arrayList);
+            iM = LocationController$$ExternalSyntheticOutline0.m(this.defaultDates[iM], iM, 1, this.dispalyedDates);
         }
         if (!z) {
-            arrayList.add(Integer.valueOf(currentTime));
-            length = iArr.length;
+            this.dispalyedDates.add(Integer.valueOf(currentTime));
+            length = this.defaultDates.length;
         }
-        int size = arrayList.size();
+        int size = this.dispalyedDates.size();
         int i2 = size + 1;
         String[] strArr = new String[i2];
         for (int i3 = 0; i3 < i2; i3++) {
             if (i3 == size) {
                 strArr[i3] = LocaleController.getString(R.string.NoLimit);
-            } else if (((Integer) arrayList.get(i3)).intValue() == iArr[0]) {
+            } else if (this.dispalyedDates.get(i3).intValue() == this.defaultDates[0]) {
                 strArr[i3] = LocaleController.formatPluralString("Hours", 1, new Object[0]);
-            } else if (((Integer) arrayList.get(i3)).intValue() == iArr[1]) {
+            } else if (this.dispalyedDates.get(i3).intValue() == this.defaultDates[1]) {
                 strArr[i3] = LocaleController.formatPluralString("Days", 1, new Object[0]);
-            } else if (((Integer) arrayList.get(i3)).intValue() == iArr[2]) {
+            } else if (this.dispalyedDates.get(i3).intValue() == this.defaultDates[2]) {
                 strArr[i3] = LocaleController.formatPluralString("Weeks", 1, new Object[0]);
             } else {
                 long j2 = currentTime;
@@ -165,66 +164,497 @@ public final class LinkEditActivity extends BaseFragment {
                 }
             }
         }
-        this.timeChooseView.setOptions(length, null, strArr);
+        this.timeChooseView.setOptions(length, strArr);
     }
 
-    public final void chooseUses(int i) {
-        int[] iArr;
+    public void chooseUses(int i) {
         int i2;
-        ArrayList arrayList = this.dispalyedUses;
-        arrayList.clear();
+        this.dispalyedUses.clear();
         int iM = 0;
         boolean z = false;
         int length = 0;
         while (true) {
-            iArr = this.defaultUses;
+            int[] iArr = this.defaultUses;
             if (iM >= iArr.length) {
                 break;
             }
             if (!z && i <= (i2 = iArr[iM])) {
                 if (i != i2) {
-                    arrayList.add(Integer.valueOf(i));
+                    this.dispalyedUses.add(Integer.valueOf(i));
                 }
                 length = iM;
                 z = true;
             }
-            iM = LocationController$$ExternalSyntheticOutline0.m(iArr[iM], iM, 1, arrayList);
+            iM = LocationController$$ExternalSyntheticOutline0.m(this.defaultUses[iM], iM, 1, this.dispalyedUses);
         }
         if (!z) {
-            arrayList.add(Integer.valueOf(i));
-            length = iArr.length;
+            this.dispalyedUses.add(Integer.valueOf(i));
+            length = this.defaultUses.length;
         }
-        int size = arrayList.size();
+        int size = this.dispalyedUses.size();
         int i3 = size + 1;
         String[] strArr = new String[i3];
         for (int i4 = 0; i4 < i3; i4++) {
             if (i4 == size) {
                 strArr[i4] = LocaleController.getString(R.string.NoLimit);
             } else {
-                strArr[i4] = ((Integer) arrayList.get(i4)).toString();
+                strArr[i4] = this.dispalyedUses.get(i4).toString();
             }
         }
-        this.usesChooseView.setOptions(length, null, strArr);
+        this.usesChooseView.setOptions(length, strArr);
+    }
+
+    public void lambda$createView$0(boolean z, int i, int i2) {
+        chooseDate(i);
+    }
+
+    public void lambda$createView$1(Context context, View view) {
+        AlertsCreator.createDatePickerDialog(context, LocaleController.getString(R.string.ExpireAfter), LocaleController.getString(R.string.SetTimeLimit), -1L, new LinkEditActivity$$ExternalSyntheticLambda4(this, 0));
+    }
+
+    public void lambda$createView$10(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, null);
+        builder.setMessage(LocaleController.getString(R.string.RevokeAlert));
+        builder.setTitle(LocaleController.getString(R.string.RevokeLink));
+        builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new LinkEditActivity$$ExternalSyntheticLambda4(this, 1));
+        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+        showDialog(builder.create());
+    }
+
+    public static void lambda$createView$11(Integer num) {
+    }
+
+    public void lambda$createView$2(int i) {
+        if (i >= this.dispalyedDates.size()) {
+            this.timeEditText.setText("");
+            return;
+        }
+        this.timeEditText.setText(LocaleController.formatDateAudio(getConnectionsManager().getCurrentTime() + this.dispalyedDates.get(i).intValue(), false));
+    }
+
+    public void lambda$createView$3(int i) {
+        this.usesEditText.clearFocus();
+        this.ignoreSet = true;
+        if (i < this.dispalyedUses.size()) {
+            this.usesEditText.setText(this.dispalyedUses.get(i).toString());
+        } else {
+            this.usesEditText.setText("");
+        }
+        this.ignoreSet = false;
+    }
+
+    public void lambda$createView$4(boolean z, View view) {
+        if (z) {
+            return;
+        }
+        TextCheckCell textCheckCell = this.subCell;
+        if (textCheckCell != null && textCheckCell.isChecked()) {
+            TextCheckCell textCheckCell2 = this.subCell;
+            int i = -this.shakeDp;
+            this.shakeDp = i;
+            AndroidUtilities.shakeViewSpring(textCheckCell2, i);
+            return;
+        }
+        TextCheckCell textCheckCell3 = (TextCheckCell) view;
+        boolean zIsChecked = textCheckCell3.isChecked();
+        textCheckCell3.setChecked(!zIsChecked);
+        setUsesVisible(zIsChecked);
+        this.firstLayout = true;
+        if (this.subCell != null) {
+            if (textCheckCell3.isChecked()) {
+                this.subCell.setChecked(false);
+                this.subCell.setCheckBoxIcon(R.drawable.permission_locked);
+                this.subEditPriceCell.setVisibility(8);
+            } else if (this.inviteToEdit == null) {
+                this.subCell.setCheckBoxIcon(0);
+            }
+        }
+    }
+
+    public void lambda$createView$5() {
+        this.subEditPriceCell.editText.requestFocus();
+        AndroidUtilities.showKeyboard(this.subEditPriceCell.editText);
+    }
+
+    public void lambda$createView$6() {
+        this.subEditPriceCell.editText.clearFocus();
+        AndroidUtilities.hideKeyboard(this.subEditPriceCell.editText);
+    }
+
+    public void lambda$createView$7(Runnable[] runnableArr, View view) {
+        if (this.inviteToEdit != null) {
+            return;
+        }
+        if (this.approveCell.isChecked()) {
+            TextCheckCell textCheckCell = this.approveCell;
+            int i = -this.shakeDp;
+            this.shakeDp = i;
+            AndroidUtilities.shakeViewSpring(textCheckCell, i);
+            return;
+        }
+        TextCheckCell textCheckCell2 = (TextCheckCell) view;
+        textCheckCell2.setChecked(!textCheckCell2.isChecked());
+        this.subEditPriceCell.setVisibility(textCheckCell2.isChecked() ? 0 : 8);
+        AndroidUtilities.cancelRunOnUIThread(runnableArr[0]);
+        if (!textCheckCell2.isChecked()) {
+            this.approveCell.setCheckBoxIcon(0);
+            this.approveHintCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescription2));
+            LinkEditActivity$$ExternalSyntheticLambda1 linkEditActivity$$ExternalSyntheticLambda1 = new LinkEditActivity$$ExternalSyntheticLambda1(this, 2);
+            runnableArr[0] = linkEditActivity$$ExternalSyntheticLambda1;
+            AndroidUtilities.runOnUIThread(linkEditActivity$$ExternalSyntheticLambda1);
+            return;
+        }
+        this.approveCell.setChecked(false);
+        this.approveCell.setCheckBoxIcon(R.drawable.permission_locked);
+        this.approveHintCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescriptionFrozen));
+        LinkEditActivity$$ExternalSyntheticLambda1 linkEditActivity$$ExternalSyntheticLambda2 = new LinkEditActivity$$ExternalSyntheticLambda1(this, 0);
+        runnableArr[0] = linkEditActivity$$ExternalSyntheticLambda2;
+        AndroidUtilities.runOnUIThread(linkEditActivity$$ExternalSyntheticLambda2, 60L);
+    }
+
+    public void lambda$createView$8() {
+        Browser.openUrl(getContext(), LocaleController.getString(R.string.RequireMonthlyFeeInfoLink));
+    }
+
+    public void lambda$createView$9(AlertDialog alertDialog, int i) {
+        this.callback.revokeLink(this.inviteToEdit);
+        finishFragment();
+    }
+
+    public void lambda$getThemeDescriptions$16() {
+        TextInfoPrivacyCell textInfoPrivacyCell = this.dividerUses;
+        if (textInfoPrivacyCell != null) {
+            textInfoPrivacyCell.getContext();
+            EditText editText = this.usesEditText;
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            editText.setTextColor(Theme.getColor(null, i, false));
+            EditText editText2 = this.usesEditText;
+            int i2 = Theme.key_windowBackgroundWhiteGrayText;
+            editText2.setHintTextColor(Theme.getColor(null, i2, false));
+            this.timeEditText.setTextColor(Theme.getColor(null, i, false));
+            this.timeEditText.setHintTextColor(Theme.getColor(null, i2, false));
+            TextSettingsCell textSettingsCell = this.revokeLink;
+            if (textSettingsCell != null) {
+                textSettingsCell.setTextColor(Theme.getColor(null, Theme.key_text_RedRegular, false));
+            }
+            this.createTextView.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
+            this.nameEditText.setTextColor(Theme.getColor(null, i, false));
+            this.nameEditText.setHintTextColor(Theme.getColor(null, i2, false));
+        }
+    }
+
+    public void lambda$onCreateClicked$12(TLRPC.TL_error tL_error, TLObject tLObject) {
+        this.loading = false;
+        AlertDialog alertDialog = this.progressDialog;
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+        }
+        if (tL_error != null) {
+            AlertsCreator.showSimpleAlert(this, tL_error.text);
+            return;
+        }
+        Callback callback = this.callback;
+        if (callback != null) {
+            callback.onLinkCreated(tLObject);
+        }
+        finishFragment();
+    }
+
+    public void lambda$onCreateClicked$13(TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new LinkEditActivity$$ExternalSyntheticLambda3(this, tL_error, tLObject, 0));
+    }
+
+    public void lambda$onCreateClicked$14(TLRPC.TL_error tL_error, TLObject tLObject) {
+        this.loading = false;
+        AlertDialog alertDialog = this.progressDialog;
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+        }
+        if (tL_error != null) {
+            AlertsCreator.showSimpleAlert(this, tL_error.text);
+            return;
+        }
+        if (tLObject instanceof TLRPC.TL_messages_exportedChatInvite) {
+            this.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
+        }
+        Callback callback = this.callback;
+        if (callback != null) {
+            callback.onLinkEdited(this.inviteToEdit, tLObject);
+        }
+        finishFragment();
+    }
+
+    public void lambda$onCreateClicked$15(TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new LinkEditActivity$$ExternalSyntheticLambda3(this, tL_error, tLObject, 1));
+    }
+
+    public void onCreateClicked(View view) {
+        long j;
+        boolean z;
+        if (this.loading) {
+            return;
+        }
+        int selectedIndex = this.timeChooseView.getSelectedIndex();
+        if (selectedIndex < this.dispalyedDates.size() && this.dispalyedDates.get(selectedIndex).intValue() < 0) {
+            AndroidUtilities.shakeView(this.timeEditText);
+            Vibrator vibrator = (Vibrator) this.timeEditText.getContext().getSystemService("vibrator");
+            if (vibrator != null) {
+                vibrator.vibrate(200L);
+                return;
+            }
+            return;
+        }
+        TextCheckCell textCheckCell = this.subCell;
+        if (textCheckCell == null || !textCheckCell.isChecked()) {
+            j = 0;
+        } else {
+            try {
+                j = Long.parseLong(this.subEditPriceCell.editText.getText().toString());
+            } catch (Exception e) {
+                FileLog.e(e);
+                j = 0;
+            }
+        }
+        int i = this.type;
+        if (i == 0) {
+            AlertDialog alertDialog = this.progressDialog;
+            if (alertDialog != null) {
+                alertDialog.dismiss();
+            }
+            this.loading = true;
+            AlertDialog alertDialog2 = new AlertDialog(getParentActivity(), 3, null);
+            this.progressDialog = alertDialog2;
+            alertDialog2.showDelayed(500L);
+            TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
+            tL_messages_exportChatInvite.peer = getMessagesController().getInputPeer(-this.chatId);
+            tL_messages_exportChatInvite.legacy_revoke_permanent = false;
+            int selectedIndex2 = this.timeChooseView.getSelectedIndex();
+            tL_messages_exportChatInvite.flags |= 1;
+            if (selectedIndex2 < this.dispalyedDates.size()) {
+                tL_messages_exportChatInvite.expire_date = getConnectionsManager().getCurrentTime() + this.dispalyedDates.get(selectedIndex2).intValue();
+            } else {
+                tL_messages_exportChatInvite.expire_date = 0;
+            }
+            int selectedIndex3 = this.usesChooseView.getSelectedIndex();
+            tL_messages_exportChatInvite.flags |= 2;
+            if (selectedIndex3 < this.dispalyedUses.size()) {
+                tL_messages_exportChatInvite.usage_limit = this.dispalyedUses.get(selectedIndex3).intValue();
+            } else {
+                tL_messages_exportChatInvite.usage_limit = 0;
+            }
+            TextCheckCell textCheckCell2 = this.approveCell;
+            boolean z2 = textCheckCell2 != null && textCheckCell2.isChecked();
+            tL_messages_exportChatInvite.request_needed = z2;
+            if (z2) {
+                tL_messages_exportChatInvite.usage_limit = 0;
+            }
+            String string = this.nameEditText.getText().toString();
+            tL_messages_exportChatInvite.title = string;
+            if (!TextUtils.isEmpty(string)) {
+                tL_messages_exportChatInvite.flags |= 16;
+            }
+            if (j > 0) {
+                tL_messages_exportChatInvite.flags |= 32;
+                TL_stars.TL_starsSubscriptionPricing tL_starsSubscriptionPricing = new TL_stars.TL_starsSubscriptionPricing();
+                tL_messages_exportChatInvite.subscription_pricing = tL_starsSubscriptionPricing;
+                tL_starsSubscriptionPricing.period = getConnectionsManager().isTestBackend() ? 300 : 2592000;
+                tL_messages_exportChatInvite.subscription_pricing.amount = j;
+            }
+            final int i2 = 0;
+            getConnectionsManager().sendRequest(tL_messages_exportChatInvite, new RequestDelegate(this) {
+                public final LinkEditActivity f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    switch (i2) {
+                        case 0:
+                            this.f$0.lambda$onCreateClicked$13(tLObject, tL_error);
+                            break;
+                        default:
+                            this.f$0.lambda$onCreateClicked$15(tLObject, tL_error);
+                            break;
+                    }
+                }
+            });
+            return;
+        }
+        if (i == 1) {
+            AlertDialog alertDialog3 = this.progressDialog;
+            if (alertDialog3 != null) {
+                alertDialog3.dismiss();
+            }
+            TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
+            tL_messages_editExportedChatInvite.link = this.inviteToEdit.link;
+            tL_messages_editExportedChatInvite.revoked = false;
+            tL_messages_editExportedChatInvite.peer = getMessagesController().getInputPeer(-this.chatId);
+            int selectedIndex4 = this.timeChooseView.getSelectedIndex();
+            if (selectedIndex4 < this.dispalyedDates.size()) {
+                if (this.currentInviteDate != this.dispalyedDates.get(selectedIndex4).intValue()) {
+                    tL_messages_editExportedChatInvite.flags |= 1;
+                    tL_messages_editExportedChatInvite.expire_date = getConnectionsManager().getCurrentTime() + this.dispalyedDates.get(selectedIndex4).intValue();
+                    z = true;
+                } else {
+                    z = false;
+                }
+            } else if (this.currentInviteDate != 0) {
+                tL_messages_editExportedChatInvite.flags |= 1;
+                tL_messages_editExportedChatInvite.expire_date = 0;
+                z = true;
+            } else {
+                z = false;
+            }
+            int selectedIndex5 = this.usesChooseView.getSelectedIndex();
+            if (selectedIndex5 < this.dispalyedUses.size()) {
+                int iIntValue = this.dispalyedUses.get(selectedIndex5).intValue();
+                if (this.inviteToEdit.usage_limit != iIntValue) {
+                    tL_messages_editExportedChatInvite.flags |= 2;
+                    tL_messages_editExportedChatInvite.usage_limit = iIntValue;
+                    z = true;
+                }
+            } else if (this.inviteToEdit.usage_limit != 0) {
+                tL_messages_editExportedChatInvite.flags |= 2;
+                tL_messages_editExportedChatInvite.usage_limit = 0;
+                z = true;
+            }
+            boolean z3 = this.inviteToEdit.request_needed;
+            TextCheckCell textCheckCell3 = this.approveCell;
+            if (z3 != (textCheckCell3 != null && textCheckCell3.isChecked())) {
+                tL_messages_editExportedChatInvite.flags |= 8;
+                TextCheckCell textCheckCell4 = this.approveCell;
+                boolean z4 = textCheckCell4 != null && textCheckCell4.isChecked();
+                tL_messages_editExportedChatInvite.request_needed = z4;
+                if (z4) {
+                    tL_messages_editExportedChatInvite.flags |= 2;
+                    tL_messages_editExportedChatInvite.usage_limit = 0;
+                }
+                z = true;
+            }
+            String string2 = this.nameEditText.getText().toString();
+            if (!TextUtils.equals(this.inviteToEdit.title, string2)) {
+                tL_messages_editExportedChatInvite.title = string2;
+                tL_messages_editExportedChatInvite.flags |= 16;
+                z = true;
+            }
+            if (!z) {
+                finishFragment();
+                return;
+            }
+            this.loading = true;
+            AlertDialog alertDialog4 = new AlertDialog(getParentActivity(), 3, null);
+            this.progressDialog = alertDialog4;
+            alertDialog4.showDelayed(500L);
+            final int i3 = 1;
+            getConnectionsManager().sendRequest(tL_messages_editExportedChatInvite, new RequestDelegate(this) {
+                public final LinkEditActivity f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                    switch (i3) {
+                        case 0:
+                            this.f$0.lambda$onCreateClicked$13(tLObject, tL_error);
+                            break;
+                        default:
+                            this.f$0.lambda$onCreateClicked$15(tLObject, tL_error);
+                            break;
+                    }
+                }
+            });
+        }
+    }
+
+    private void resetDates() {
+        this.dispalyedDates.clear();
+        int iM = 0;
+        while (true) {
+            int[] iArr = this.defaultDates;
+            if (iM >= iArr.length) {
+                this.timeChooseView.setOptions(3, LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Days", 1, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.getString(R.string.NoLimit));
+                return;
+            } else {
+                iM = LocationController$$ExternalSyntheticOutline0.m(iArr[iM], iM, 1, this.dispalyedDates);
+            }
+        }
+    }
+
+    public void resetUses() {
+        this.dispalyedUses.clear();
+        int iM = 0;
+        while (true) {
+            int[] iArr = this.defaultUses;
+            if (iM >= iArr.length) {
+                this.usesChooseView.setOptions(3, "1", "10", "100", LocaleController.getString(R.string.NoLimit));
+                return;
+            } else {
+                iM = LocationController$$ExternalSyntheticOutline0.m(iArr[iM], iM, 1, this.dispalyedUses);
+            }
+        }
+    }
+
+    private void setUsesVisible(boolean z) {
+        this.usesHeaderCell.setVisibility(z ? 0 : 8);
+        this.usesChooseView.setVisibility(z ? 0 : 8);
+        this.usesEditText.setVisibility(z ? 0 : 8);
+        this.dividerUses.setVisibility(z ? 0 : 8);
     }
 
     @Override
-    public final View createView(Context context) {
+    public View createView(Context context) {
         TLRPC.TL_chatInviteExported tL_chatInviteExported;
-        int i = 3;
-        int i2 = 4;
-        final int i3 = 0;
+        int i;
+        int i2;
+        int i3 = 3;
+        int i4 = 2;
+        final int i5 = 0;
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        final int i6 = 1;
         this.actionBar.setAllowOverlayTitle(true);
-        int i4 = this.type;
-        if (i4 == 0) {
+        int i7 = this.type;
+        if (i7 == 0) {
             this.actionBar.setTitle(LocaleController.getString(R.string.NewLink));
-        } else if (i4 == 1) {
+        } else if (i7 == 1) {
             this.actionBar.setTitle(LocaleController.getString(R.string.EditLink));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new LoginActivity.AnonymousClass1(this, 28));
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i8) {
+                if (i8 == -1) {
+                    LinkEditActivity.this.finishFragment();
+                    AndroidUtilities.hideKeyboard(LinkEditActivity.this.usesEditText);
+                }
+            }
+        });
         TextView textView = new TextView(context);
         this.createTextView = textView;
-        textView.setBackground(new AnonymousClass2(0));
+        textView.setBackground(new Drawable() {
+            final Paint p = new Paint(1);
+
+            @Override
+            public void draw(Canvas canvas) {
+                this.p.setColor(Theme.getColor(null, Theme.key_telegram_color, false));
+                canvas.drawRoundRect(getBounds().left, getBounds().exactCenterY() - AndroidUtilities.dp(14.0f), getBounds().right, AndroidUtilities.dp(14.0f) + getBounds().exactCenterY(), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.p);
+            }
+
+            @Override
+            public int getOpacity() {
+                return 0;
+            }
+
+            @Override
+            public void setAlpha(int i8) {
+            }
+
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+            }
+        });
         this.createTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.createTextView.setGravity(17);
         this.createTextView.setOnClickListener(new View.OnClickListener(this) {
@@ -236,416 +666,86 @@ public final class LinkEditActivity extends BaseFragment {
 
             @Override
             public final void onClick(View view) {
-                long j;
-                boolean z;
-                switch (i3) {
+                switch (i5) {
                     case 0:
-                        final LinkEditActivity linkEditActivity = this.f$0;
-                        if (!linkEditActivity.loading) {
-                            int selectedIndex = linkEditActivity.timeChooseView.getSelectedIndex();
-                            ArrayList arrayList = linkEditActivity.dispalyedDates;
-                            if (selectedIndex < arrayList.size() && ((Integer) arrayList.get(selectedIndex)).intValue() < 0) {
-                                AndroidUtilities.shakeView(linkEditActivity.timeEditText);
-                                Vibrator vibrator = (Vibrator) linkEditActivity.timeEditText.getContext().getSystemService("vibrator");
-                                if (vibrator != null) {
-                                    vibrator.vibrate(200L);
-                                }
-                            } else {
-                                TextCheckCell textCheckCell = linkEditActivity.subCell;
-                                if (textCheckCell == null || !textCheckCell.checkBox.isChecked) {
-                                    j = 0;
-                                } else {
-                                    try {
-                                        j = Long.parseLong(linkEditActivity.subEditPriceCell.editText.getText().toString());
-                                    } catch (Exception e) {
-                                        FileLog.e(e);
-                                        j = 0;
-                                    }
-                                }
-                                ArrayList arrayList2 = linkEditActivity.dispalyedUses;
-                                long j2 = linkEditActivity.chatId;
-                                int i5 = linkEditActivity.type;
-                                if (i5 == 0) {
-                                    AlertDialog alertDialog = linkEditActivity.progressDialog;
-                                    if (alertDialog != null) {
-                                        alertDialog.dismiss();
-                                    }
-                                    linkEditActivity.loading = true;
-                                    AlertDialog alertDialog2 = new AlertDialog(linkEditActivity.getParentActivity(), 3, null);
-                                    linkEditActivity.progressDialog = alertDialog2;
-                                    AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog2.showRunnable;
-                                    AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
-                                    AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 500L);
-                                    TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
-                                    tL_messages_exportChatInvite.peer = linkEditActivity.getMessagesController().getInputPeer(-j2);
-                                    tL_messages_exportChatInvite.legacy_revoke_permanent = false;
-                                    int selectedIndex2 = linkEditActivity.timeChooseView.getSelectedIndex();
-                                    tL_messages_exportChatInvite.flags |= 1;
-                                    if (selectedIndex2 < arrayList.size()) {
-                                        tL_messages_exportChatInvite.expire_date = linkEditActivity.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(selectedIndex2)).intValue();
-                                    } else {
-                                        tL_messages_exportChatInvite.expire_date = 0;
-                                    }
-                                    int selectedIndex3 = linkEditActivity.usesChooseView.getSelectedIndex();
-                                    tL_messages_exportChatInvite.flags |= 2;
-                                    if (selectedIndex3 < arrayList2.size()) {
-                                        tL_messages_exportChatInvite.usage_limit = ((Integer) arrayList2.get(selectedIndex3)).intValue();
-                                    } else {
-                                        tL_messages_exportChatInvite.usage_limit = 0;
-                                    }
-                                    LinkEditActivity.AnonymousClass7 anonymousClass7 = linkEditActivity.approveCell;
-                                    boolean z2 = anonymousClass7 != null && anonymousClass7.checkBox.isChecked;
-                                    tL_messages_exportChatInvite.request_needed = z2;
-                                    if (z2) {
-                                        tL_messages_exportChatInvite.usage_limit = 0;
-                                    }
-                                    String string = linkEditActivity.nameEditText.getText().toString();
-                                    tL_messages_exportChatInvite.title = string;
-                                    if (!TextUtils.isEmpty(string)) {
-                                        tL_messages_exportChatInvite.flags |= 16;
-                                    }
-                                    if (j > 0) {
-                                        tL_messages_exportChatInvite.flags |= 32;
-                                        TL_stars.TL_starsSubscriptionPricing tL_starsSubscriptionPricing = new TL_stars.TL_starsSubscriptionPricing();
-                                        tL_messages_exportChatInvite.subscription_pricing = tL_starsSubscriptionPricing;
-                                        tL_starsSubscriptionPricing.period = linkEditActivity.getConnectionsManager().isTestBackend() ? 300 : 2592000;
-                                        tL_messages_exportChatInvite.subscription_pricing.amount = j;
-                                    }
-                                    final int i6 = 0;
-                                    linkEditActivity.getConnectionsManager().sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
-                                        @Override
-                                        public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-                                            switch (i6) {
-                                                case 0:
-                                                    final LinkEditActivity linkEditActivity2 = linkEditActivity;
-                                                    final int i7 = 0;
-                                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                                        @Override
-                                                        public final void run() {
-                                                            switch (i7) {
-                                                                case 0:
-                                                                    LinkEditActivity linkEditActivity3 = linkEditActivity2;
-                                                                    linkEditActivity3.loading = false;
-                                                                    AlertDialog alertDialog3 = linkEditActivity3.progressDialog;
-                                                                    if (alertDialog3 != null) {
-                                                                        alertDialog3.dismiss();
-                                                                    }
-                                                                    TLRPC.TL_error tL_error2 = tL_error;
-                                                                    if (tL_error2 != null) {
-                                                                        AlertsCreator.showSimpleAlert(linkEditActivity3, null, tL_error2.text, null);
-                                                                    } else {
-                                                                        LinkEditActivity.Callback callback = linkEditActivity3.callback;
-                                                                        if (callback != null) {
-                                                                            callback.onLinkCreated(tLObject);
-                                                                        }
-                                                                        linkEditActivity3.finishFragment();
-                                                                    }
-                                                                    break;
-                                                                default:
-                                                                    LinkEditActivity linkEditActivity4 = linkEditActivity2;
-                                                                    linkEditActivity4.loading = false;
-                                                                    AlertDialog alertDialog4 = linkEditActivity4.progressDialog;
-                                                                    if (alertDialog4 != null) {
-                                                                        alertDialog4.dismiss();
-                                                                    }
-                                                                    TLRPC.TL_error tL_error3 = tL_error;
-                                                                    if (tL_error3 != null) {
-                                                                        AlertsCreator.showSimpleAlert(linkEditActivity4, null, tL_error3.text, null);
-                                                                    } else {
-                                                                        TLObject tLObject2 = tLObject;
-                                                                        if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInvite) {
-                                                                            linkEditActivity4.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject2).invite;
-                                                                        }
-                                                                        LinkEditActivity.Callback callback2 = linkEditActivity4.callback;
-                                                                        if (callback2 != null) {
-                                                                            callback2.onLinkEdited(linkEditActivity4.inviteToEdit, tLObject2);
-                                                                        }
-                                                                        linkEditActivity4.finishFragment();
-                                                                    }
-                                                                    break;
-                                                            }
-                                                        }
-                                                    });
-                                                    break;
-                                                default:
-                                                    final LinkEditActivity linkEditActivity3 = linkEditActivity;
-                                                    final int i8 = 1;
-                                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                                        @Override
-                                                        public final void run() {
-                                                            switch (i8) {
-                                                                case 0:
-                                                                    LinkEditActivity linkEditActivity4 = linkEditActivity3;
-                                                                    linkEditActivity4.loading = false;
-                                                                    AlertDialog alertDialog3 = linkEditActivity4.progressDialog;
-                                                                    if (alertDialog3 != null) {
-                                                                        alertDialog3.dismiss();
-                                                                    }
-                                                                    TLRPC.TL_error tL_error2 = tL_error;
-                                                                    if (tL_error2 != null) {
-                                                                        AlertsCreator.showSimpleAlert(linkEditActivity4, null, tL_error2.text, null);
-                                                                    } else {
-                                                                        LinkEditActivity.Callback callback = linkEditActivity4.callback;
-                                                                        if (callback != null) {
-                                                                            callback.onLinkCreated(tLObject);
-                                                                        }
-                                                                        linkEditActivity4.finishFragment();
-                                                                    }
-                                                                    break;
-                                                                default:
-                                                                    LinkEditActivity linkEditActivity5 = linkEditActivity3;
-                                                                    linkEditActivity5.loading = false;
-                                                                    AlertDialog alertDialog4 = linkEditActivity5.progressDialog;
-                                                                    if (alertDialog4 != null) {
-                                                                        alertDialog4.dismiss();
-                                                                    }
-                                                                    TLRPC.TL_error tL_error3 = tL_error;
-                                                                    if (tL_error3 != null) {
-                                                                        AlertsCreator.showSimpleAlert(linkEditActivity5, null, tL_error3.text, null);
-                                                                    } else {
-                                                                        TLObject tLObject2 = tLObject;
-                                                                        if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInvite) {
-                                                                            linkEditActivity5.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject2).invite;
-                                                                        }
-                                                                        LinkEditActivity.Callback callback2 = linkEditActivity5.callback;
-                                                                        if (callback2 != null) {
-                                                                            callback2.onLinkEdited(linkEditActivity5.inviteToEdit, tLObject2);
-                                                                        }
-                                                                        linkEditActivity5.finishFragment();
-                                                                    }
-                                                                    break;
-                                                            }
-                                                        }
-                                                    });
-                                                    break;
-                                            }
-                                        }
-                                    });
-                                } else if (i5 == 1) {
-                                    AlertDialog alertDialog3 = linkEditActivity.progressDialog;
-                                    if (alertDialog3 != null) {
-                                        alertDialog3.dismiss();
-                                    }
-                                    TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
-                                    tL_messages_editExportedChatInvite.link = linkEditActivity.inviteToEdit.link;
-                                    tL_messages_editExportedChatInvite.revoked = false;
-                                    tL_messages_editExportedChatInvite.peer = linkEditActivity.getMessagesController().getInputPeer(-j2);
-                                    int selectedIndex4 = linkEditActivity.timeChooseView.getSelectedIndex();
-                                    if (selectedIndex4 < arrayList.size()) {
-                                        if (linkEditActivity.currentInviteDate != ((Integer) arrayList.get(selectedIndex4)).intValue()) {
-                                            tL_messages_editExportedChatInvite.flags |= 1;
-                                            tL_messages_editExportedChatInvite.expire_date = linkEditActivity.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(selectedIndex4)).intValue();
-                                            z = true;
-                                        } else {
-                                            z = false;
-                                        }
-                                    } else if (linkEditActivity.currentInviteDate != 0) {
-                                        tL_messages_editExportedChatInvite.flags |= 1;
-                                        tL_messages_editExportedChatInvite.expire_date = 0;
-                                        z = true;
-                                    } else {
-                                        z = false;
-                                    }
-                                    int selectedIndex5 = linkEditActivity.usesChooseView.getSelectedIndex();
-                                    if (selectedIndex5 < arrayList2.size()) {
-                                        int iIntValue = ((Integer) arrayList2.get(selectedIndex5)).intValue();
-                                        if (linkEditActivity.inviteToEdit.usage_limit != iIntValue) {
-                                            tL_messages_editExportedChatInvite.flags |= 2;
-                                            tL_messages_editExportedChatInvite.usage_limit = iIntValue;
-                                            z = true;
-                                        }
-                                    } else if (linkEditActivity.inviteToEdit.usage_limit != 0) {
-                                        tL_messages_editExportedChatInvite.flags |= 2;
-                                        tL_messages_editExportedChatInvite.usage_limit = 0;
-                                        z = true;
-                                    }
-                                    boolean z3 = linkEditActivity.inviteToEdit.request_needed;
-                                    LinkEditActivity.AnonymousClass7 anonymousClass8 = linkEditActivity.approveCell;
-                                    if (z3 != (anonymousClass8 != null && anonymousClass8.checkBox.isChecked)) {
-                                        int i7 = tL_messages_editExportedChatInvite.flags;
-                                        tL_messages_editExportedChatInvite.flags = i7 | 8;
-                                        boolean z4 = anonymousClass8 != null && anonymousClass8.checkBox.isChecked;
-                                        tL_messages_editExportedChatInvite.request_needed = z4;
-                                        if (z4) {
-                                            tL_messages_editExportedChatInvite.flags = i7 | 10;
-                                            tL_messages_editExportedChatInvite.usage_limit = 0;
-                                        }
-                                        z = true;
-                                    }
-                                    String string2 = linkEditActivity.nameEditText.getText().toString();
-                                    if (!TextUtils.equals(linkEditActivity.inviteToEdit.title, string2)) {
-                                        tL_messages_editExportedChatInvite.title = string2;
-                                        tL_messages_editExportedChatInvite.flags |= 16;
-                                        z = true;
-                                    }
-                                    if (!z) {
-                                        linkEditActivity.finishFragment();
-                                    } else {
-                                        linkEditActivity.loading = true;
-                                        AlertDialog alertDialog4 = new AlertDialog(linkEditActivity.getParentActivity(), 3, null);
-                                        linkEditActivity.progressDialog = alertDialog4;
-                                        AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda2 = alertDialog4.showRunnable;
-                                        AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda2);
-                                        AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda2, 500L);
-                                        final int i8 = 1;
-                                        linkEditActivity.getConnectionsManager().sendRequest(tL_messages_editExportedChatInvite, new RequestDelegate() {
-                                            @Override
-                                            public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-                                                switch (i8) {
-                                                    case 0:
-                                                        final LinkEditActivity linkEditActivity2 = linkEditActivity;
-                                                        final int i9 = 0;
-                                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                                            @Override
-                                                            public final void run() {
-                                                                switch (i9) {
-                                                                    case 0:
-                                                                        LinkEditActivity linkEditActivity4 = linkEditActivity2;
-                                                                        linkEditActivity4.loading = false;
-                                                                        AlertDialog alertDialog5 = linkEditActivity4.progressDialog;
-                                                                        if (alertDialog5 != null) {
-                                                                            alertDialog5.dismiss();
-                                                                        }
-                                                                        TLRPC.TL_error tL_error2 = tL_error;
-                                                                        if (tL_error2 != null) {
-                                                                            AlertsCreator.showSimpleAlert(linkEditActivity4, null, tL_error2.text, null);
-                                                                        } else {
-                                                                            LinkEditActivity.Callback callback = linkEditActivity4.callback;
-                                                                            if (callback != null) {
-                                                                                callback.onLinkCreated(tLObject);
-                                                                            }
-                                                                            linkEditActivity4.finishFragment();
-                                                                        }
-                                                                        break;
-                                                                    default:
-                                                                        LinkEditActivity linkEditActivity5 = linkEditActivity2;
-                                                                        linkEditActivity5.loading = false;
-                                                                        AlertDialog alertDialog6 = linkEditActivity5.progressDialog;
-                                                                        if (alertDialog6 != null) {
-                                                                            alertDialog6.dismiss();
-                                                                        }
-                                                                        TLRPC.TL_error tL_error3 = tL_error;
-                                                                        if (tL_error3 != null) {
-                                                                            AlertsCreator.showSimpleAlert(linkEditActivity5, null, tL_error3.text, null);
-                                                                        } else {
-                                                                            TLObject tLObject2 = tLObject;
-                                                                            if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInvite) {
-                                                                                linkEditActivity5.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject2).invite;
-                                                                            }
-                                                                            LinkEditActivity.Callback callback2 = linkEditActivity5.callback;
-                                                                            if (callback2 != null) {
-                                                                                callback2.onLinkEdited(linkEditActivity5.inviteToEdit, tLObject2);
-                                                                            }
-                                                                            linkEditActivity5.finishFragment();
-                                                                        }
-                                                                        break;
-                                                                }
-                                                            }
-                                                        });
-                                                        break;
-                                                    default:
-                                                        final LinkEditActivity linkEditActivity3 = linkEditActivity;
-                                                        final int i10 = 1;
-                                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                                            @Override
-                                                            public final void run() {
-                                                                switch (i10) {
-                                                                    case 0:
-                                                                        LinkEditActivity linkEditActivity4 = linkEditActivity3;
-                                                                        linkEditActivity4.loading = false;
-                                                                        AlertDialog alertDialog5 = linkEditActivity4.progressDialog;
-                                                                        if (alertDialog5 != null) {
-                                                                            alertDialog5.dismiss();
-                                                                        }
-                                                                        TLRPC.TL_error tL_error2 = tL_error;
-                                                                        if (tL_error2 != null) {
-                                                                            AlertsCreator.showSimpleAlert(linkEditActivity4, null, tL_error2.text, null);
-                                                                        } else {
-                                                                            LinkEditActivity.Callback callback = linkEditActivity4.callback;
-                                                                            if (callback != null) {
-                                                                                callback.onLinkCreated(tLObject);
-                                                                            }
-                                                                            linkEditActivity4.finishFragment();
-                                                                        }
-                                                                        break;
-                                                                    default:
-                                                                        LinkEditActivity linkEditActivity5 = linkEditActivity3;
-                                                                        linkEditActivity5.loading = false;
-                                                                        AlertDialog alertDialog6 = linkEditActivity5.progressDialog;
-                                                                        if (alertDialog6 != null) {
-                                                                            alertDialog6.dismiss();
-                                                                        }
-                                                                        TLRPC.TL_error tL_error3 = tL_error;
-                                                                        if (tL_error3 != null) {
-                                                                            AlertsCreator.showSimpleAlert(linkEditActivity5, null, tL_error3.text, null);
-                                                                        } else {
-                                                                            TLObject tLObject2 = tLObject;
-                                                                            if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInvite) {
-                                                                                linkEditActivity5.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject2).invite;
-                                                                            }
-                                                                            LinkEditActivity.Callback callback2 = linkEditActivity5.callback;
-                                                                            if (callback2 != null) {
-                                                                                callback2.onLinkEdited(linkEditActivity5.inviteToEdit, tLObject2);
-                                                                            }
-                                                                            linkEditActivity5.finishFragment();
-                                                                        }
-                                                                        break;
-                                                                }
-                                                            }
-                                                        });
-                                                        break;
-                                                }
-                                            }
-                                        });
-                                    }
-                                }
-                            }
-                            break;
-                        }
+                        this.f$0.onCreateClicked(view);
                         break;
                     default:
-                        LinkEditActivity linkEditActivity2 = this.f$0;
-                        AlertDialog.Builder builder = new AlertDialog.Builder(linkEditActivity2.getParentActivity(), 0, null);
-                        String string3 = LocaleController.getString(R.string.RevokeAlert);
-                        AlertDialog alertDialog5 = builder.alertDialog;
-                        alertDialog5.message = string3;
-                        alertDialog5.title = LocaleController.getString(R.string.RevokeLink);
-                        builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new LinkEditActivity$$ExternalSyntheticLambda3(linkEditActivity2, 1));
-                        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                        linkEditActivity2.showDialog(alertDialog5);
+                        this.f$0.lambda$createView$10(view);
                         break;
                 }
             }
         });
         this.createTextView.setSingleLine();
-        if (i4 == 0) {
+        int i8 = this.type;
+        if (i8 == 0) {
             this.createTextView.setText(LocaleController.getString(R.string.CreateLinkHeaderNoCaps));
-        } else if (i4 == 1) {
+        } else if (i8 == 1) {
             this.createTextView.setText(LocaleController.getString(R.string.SaveLinkHeaderNoCaps));
         }
         this.createTextView.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
         this.createTextView.setTextSize(1, 14.0f);
         this.createTextView.setTypeface(AndroidUtilities.bold());
         this.createTextView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        ScaleStateListAnimator.apply(this.createTextView, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(this.createTextView);
         this.actionBar.addView(this.createTextView, LayoutHelper.createFrame(-2, ActionBar.getCurrentActionBarHeight() / AndroidUtilities.density, 8388693, 0.0f, 0.0f, 12.0f, 0.0f));
-        GLIconSettingsView gLIconSettingsView = new GLIconSettingsView(context) {
+        SectionsScrollView.SectionsLinearLayout sectionsLinearLayout = new SectionsScrollView.SectionsLinearLayout(context) {
             @Override
-            public final void dispatchDraw(Canvas canvas) {
+            public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
-                LinkEditActivity.this.getClass();
+                LinkEditActivity.this.firstLayout = false;
             }
 
             @Override
-            public final void onMeasure(int i5, int i6) {
-                super.onMeasure(i5, i6);
+            public void onMeasure(int i9, int i10) {
+                super.onMeasure(i9, i10);
             }
         };
-        SectionsScrollView sectionsScrollView = new SectionsScrollView(context, gLIconSettingsView, this.resourceProvider, true);
+        SectionsScrollView sectionsScrollView = new SectionsScrollView(context, sectionsLinearLayout, this.resourceProvider);
         this.scrollView = sectionsScrollView;
         this.actionBar.setAdaptiveBackground(sectionsScrollView);
-        LoginActivity.AnonymousClass2 anonymousClass2 = new LoginActivity.AnonymousClass2(this, context, i2);
-        this.fragmentView = anonymousClass2;
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                LinkEditActivity linkEditActivity = LinkEditActivity.this;
+                if (linkEditActivity.scrollToEnd) {
+                    linkEditActivity.scrollToEnd = false;
+                    linkEditActivity.scrollView.smoothScrollTo(0, Math.max(0, LinkEditActivity.this.scrollView.getChildAt(0).getMeasuredHeight() - LinkEditActivity.this.scrollView.getMeasuredHeight()));
+                } else if (linkEditActivity.scrollToStart) {
+                    linkEditActivity.scrollToStart = false;
+                    linkEditActivity.scrollView.smoothScrollTo(0, 0);
+                }
+            }
+
+            @Override
+            public void onLayout(boolean z, int i9, int i10, int i11, int i12) {
+                int scrollY = LinkEditActivity.this.scrollView.getScrollY();
+                super.onLayout(z, i9, i10, i11, i12);
+                if (scrollY != LinkEditActivity.this.scrollView.getScrollY()) {
+                    LinkEditActivity linkEditActivity = LinkEditActivity.this;
+                    if (linkEditActivity.scrollToEnd) {
+                        return;
+                    }
+                    linkEditActivity.scrollView.setTranslationY(LinkEditActivity.this.scrollView.getScrollY() - scrollY);
+                    LinkEditActivity.this.scrollView.animate().cancel();
+                    LinkEditActivity.this.scrollView.animate().translationY(0.0f).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).start();
+                }
+            }
+
+            @Override
+            public void onMeasure(int i9, int i10) {
+                super.onMeasure(i9, i10);
+                measureKeyboardHeight();
+                int i11 = this.keyboardHeight;
+                if (i11 != 0 && i11 < AndroidUtilities.dp(20.0f)) {
+                    LinkEditActivity.this.usesEditText.clearFocus();
+                    LinkEditActivity.this.nameEditText.clearFocus();
+                }
+                LinkEditActivity.this.buttonLayout.setVisibility(this.keyboardHeight > AndroidUtilities.dp(20.0f) ? 8 : 0);
+            }
+        };
+        this.fragmentView = sizeNotifierFrameLayout;
         LayoutTransition layoutTransition = new LayoutTransition();
         layoutTransition.setDuration(420L);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -654,151 +754,109 @@ public final class LinkEditActivity extends BaseFragment {
         layoutTransition.setInterpolator(4, cubicBezierInterpolator);
         layoutTransition.setInterpolator(1, cubicBezierInterpolator);
         layoutTransition.setInterpolator(3, cubicBezierInterpolator);
-        gLIconSettingsView.setLayoutTransition(layoutTransition);
-        gLIconSettingsView.setOrientation(1);
-        gLIconSettingsView.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(91.0f));
-        this.scrollView.addView(gLIconSettingsView);
+        sectionsLinearLayout.setLayoutTransition(layoutTransition);
+        sectionsLinearLayout.setOrientation(1);
+        sectionsLinearLayout.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(91.0f));
+        this.scrollView.addView(sectionsLinearLayout);
         HeaderCell headerCell = new HeaderCell(context);
         this.timeHeaderCell = headerCell;
         headerCell.setText(LocaleController.getString(R.string.LimitByPeriod));
-        gLIconSettingsView.addView(this.timeHeaderCell);
-        SlideChooseView slideChooseView = new SlideChooseView(context, null);
+        sectionsLinearLayout.addView(this.timeHeaderCell);
+        SlideChooseView slideChooseView = new SlideChooseView(context);
         this.timeChooseView = slideChooseView;
-        gLIconSettingsView.addView(slideChooseView);
+        sectionsLinearLayout.addView(slideChooseView);
         TextView textView2 = new TextView(context);
         this.timeEditText = textView2;
         textView2.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
         this.timeEditText.setGravity(16);
         this.timeEditText.setTextSize(1, 16.0f);
         this.timeEditText.setHint(LocaleController.getString(R.string.TimeLimitHint));
-        this.timeEditText.setOnClickListener(new IntroActivity$$ExternalSyntheticLambda1(20, this, context));
-        this.timeChooseView.setCallback(new LinkEditActivity$$ExternalSyntheticLambda3(this, i3));
-        ArrayList arrayList = this.dispalyedDates;
-        arrayList.clear();
-        int iM = 0;
-        while (true) {
-            int[] iArr = this.defaultDates;
-            if (iM >= iArr.length) {
-                break;
-            }
-            iM = LocationController$$ExternalSyntheticOutline0.m(iArr[iM], iM, 1, arrayList);
-        }
-        this.timeChooseView.setOptions(3, null, LocaleController.formatPluralString("Hours", 1, new Object[0]), LocaleController.formatPluralString("Days", 1, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.getString(R.string.NoLimit));
-        gLIconSettingsView.addView(this.timeEditText, LayoutHelper.createLinear(-1, 50));
+        this.timeEditText.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda91(9, this, context));
+        this.timeChooseView.setCallback(new LinkEditActivity$$ExternalSyntheticLambda4(this, i4));
+        resetDates();
+        sectionsLinearLayout.addView(this.timeEditText, LayoutHelper.createLinear(-1, 50));
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
         this.divider = textInfoPrivacyCell;
         textInfoPrivacyCell.setText(LocaleController.getString(R.string.TimeLimitHelp));
-        gLIconSettingsView.addView(this.divider);
+        sectionsLinearLayout.addView(this.divider);
         HeaderCell headerCell2 = new HeaderCell(context);
         this.usesHeaderCell = headerCell2;
         headerCell2.setText(LocaleController.getString(R.string.LimitNumberOfUses));
-        gLIconSettingsView.addView(this.usesHeaderCell);
-        SlideChooseView slideChooseView2 = new SlideChooseView(context, null);
+        sectionsLinearLayout.addView(this.usesHeaderCell);
+        SlideChooseView slideChooseView2 = new SlideChooseView(context);
         this.usesChooseView = slideChooseView2;
-        slideChooseView2.setCallback(new LinkEditActivity$$ExternalSyntheticLambda3(this, i));
+        slideChooseView2.setCallback(new LinkEditActivity$$ExternalSyntheticLambda4(this, i3));
         resetUses();
-        gLIconSettingsView.addView(this.usesChooseView);
-        ?? r2 = new EditText(context) {
+        sectionsLinearLayout.addView(this.usesChooseView);
+        EditText editText = new EditText(context) {
             @Override
-            public final boolean onTouchEvent(MotionEvent motionEvent) {
-                switch (i3) {
-                    case 0:
-                        if (motionEvent.getAction() == 1) {
-                            setCursorVisible(true);
-                        }
-                        break;
-                    default:
-                        if (motionEvent.getAction() == 1) {
-                            setCursorVisible(true);
-                        }
-                        break;
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
                 }
                 return super.onTouchEvent(motionEvent);
             }
         };
-        this.usesEditText = r2;
-        r2.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
-        setGravity(16);
-        setTextSize(1, 16.0f);
-        setHint(LocaleController.getString(R.string.UsesLimitHint));
-        setKeyListener(DigitsKeyListener.getInstance("0123456789."));
-        setInputType(2);
-        addTextChangedListener(new TextWatcher(this) {
-            public final LinkEditActivity this$0;
-
-            {
-                this.this$0 = this;
-            }
-
+        this.usesEditText = editText;
+        editText.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+        this.usesEditText.setGravity(16);
+        this.usesEditText.setTextSize(1, 16.0f);
+        this.usesEditText.setHint(LocaleController.getString(R.string.UsesLimitHint));
+        this.usesEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789."));
+        this.usesEditText.setInputType(2);
+        this.usesEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public final void afterTextChanged(Editable editable) {
-                switch (i3) {
-                    case 0:
-                        LinkEditActivity linkEditActivity = this.this$0;
-                        if (!linkEditActivity.ignoreSet) {
-                            if (editable.toString().equals("0")) {
-                                linkEditActivity.usesEditText.setText("");
-                            } else {
-                                try {
-                                    int i5 = Integer.parseInt(editable.toString());
-                                    if (i5 <= 100000) {
-                                        linkEditActivity.chooseUses(i5);
-                                    } else {
-                                        linkEditActivity.resetUses();
-                                    }
-                                } catch (NumberFormatException unused) {
-                                    linkEditActivity.resetUses();
-                                    return;
-                                }
-                            }
-                            break;
-                        }
-                        break;
-                    default:
-                        Emoji.replaceEmoji(editable, getPaint().getFontMetricsInt(), false);
-                        break;
+            public void afterTextChanged(Editable editable) {
+                if (LinkEditActivity.this.ignoreSet) {
+                    return;
+                }
+                if (editable.toString().equals("0")) {
+                    LinkEditActivity.this.usesEditText.setText("");
+                    return;
+                }
+                try {
+                    int i9 = Integer.parseInt(editable.toString());
+                    if (i9 > 100000) {
+                        LinkEditActivity.this.resetUses();
+                    } else {
+                        LinkEditActivity.this.chooseUses(i9);
+                    }
+                } catch (NumberFormatException unused) {
+                    LinkEditActivity.this.resetUses();
                 }
             }
 
             @Override
-            public final void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
-                int i8 = i3;
+            public void beforeTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
             }
 
             @Override
-            public final void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
-                int i8 = i3;
-            }
-
-            private final void beforeTextChanged$org$telegram$ui$LinkEditActivity$10(int i5, int i6, int i7, CharSequence charSequence) {
-            }
-
-            private final void beforeTextChanged$org$telegram$ui$LinkEditActivity$6(int i5, int i6, int i7, CharSequence charSequence) {
-            }
-
-            private final void onTextChanged$org$telegram$ui$LinkEditActivity$10(int i5, int i6, int i7, CharSequence charSequence) {
-            }
-
-            private final void onTextChanged$org$telegram$ui$LinkEditActivity$6(int i5, int i6, int i7, CharSequence charSequence) {
+            public void onTextChanged(CharSequence charSequence, int i9, int i10, int i11) {
             }
         });
-        gLIconSettingsView.addView(this.usesEditText, LayoutHelper.createLinear(-1, 50));
+        sectionsLinearLayout.addView(this.usesEditText, LayoutHelper.createLinear(-1, 50));
         TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
         this.dividerUses = textInfoPrivacyCell2;
         textInfoPrivacyCell2.setText(LocaleController.getString(R.string.UsesLimitHelp));
-        gLIconSettingsView.addView(this.dividerUses);
-        MessagesController messagesController = getMessagesController();
-        long j = this.chatId;
-        TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j));
+        sectionsLinearLayout.addView(this.dividerUses);
+        TLRPC.Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
         boolean z = (!ChatObject.isPublic(chat) || chat.join_request || chat.join_to_send) ? false : true;
-        AnonymousClass7 anonymousClass7 = new AnonymousClass7(context);
-        this.approveCell = anonymousClass7;
-        int i5 = Theme.key_windowBackgroundWhite;
-        anonymousClass7.setBackgroundColor(Theme.getColor(null, i5, false));
-        this.approveCell.setTag(Integer.valueOf(i5));
+        TextCheckCell textCheckCell = new TextCheckCell(context) {
+            @Override
+            public void onDraw(Canvas canvas) {
+                canvas.save();
+                canvas.clipRect(0, 0, getWidth(), getHeight());
+                super.onDraw(canvas);
+                canvas.restore();
+            }
+        };
+        this.approveCell = textCheckCell;
+        int i9 = Theme.key_windowBackgroundWhite;
+        textCheckCell.setBackgroundColor(Theme.getColor(null, i9, false));
+        this.approveCell.setTag(Integer.valueOf(i9));
         this.approveCell.setTextAndCheck(LocaleController.getString(R.string.ApproveNewMembers2), false, false);
-        this.approveCell.setOnClickListener(new LinkEditActivity$$ExternalSyntheticLambda5(i3, this, z));
-        gLIconSettingsView.addView(this.approveCell, LayoutHelper.createLinear(-1, 56));
+        this.approveCell.setOnClickListener(new LinkEditActivity$$ExternalSyntheticLambda10(this, z, i5));
+        sectionsLinearLayout.addView(this.approveCell, LayoutHelper.createLinear(-1, 56));
         TextInfoPrivacyCell textInfoPrivacyCell3 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
         this.approveHintCell = textInfoPrivacyCell3;
         if (z) {
@@ -807,191 +865,131 @@ public final class LinkEditActivity extends BaseFragment {
         } else {
             textInfoPrivacyCell3.setText(LocaleController.getString(R.string.ApproveNewMembersDescription2));
         }
-        gLIconSettingsView.addView(this.approveHintCell);
+        sectionsLinearLayout.addView(this.approveHintCell);
         if (chat == null || chat.username == null) {
-            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(j);
-            if ((this.inviteToEdit == null && ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j))) && chatFull != null && chatFull.paid_media_allowed) || ((tL_chatInviteExported = this.inviteToEdit) != null && tL_chatInviteExported.subscription_pricing != null)) {
-                TextCheckCell textCheckCell = new TextCheckCell(context);
-                this.subCell = textCheckCell;
-                textCheckCell.setBackgroundColor(Theme.getColor(null, i5, false));
+            TLRPC.ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chatId);
+            if (!(this.inviteToEdit == null && ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(this.chatId))) && chatFull != null && chatFull.paid_media_allowed) && ((tL_chatInviteExported = this.inviteToEdit) == null || tL_chatInviteExported.subscription_pricing == null)) {
+                i = -2;
+                i2 = -1;
+            } else {
+                TextCheckCell textCheckCell2 = new TextCheckCell(context);
+                this.subCell = textCheckCell2;
+                textCheckCell2.setBackgroundColor(Theme.getColor(null, i9, false));
                 this.subCell.setDrawCheckRipple(true);
                 this.subCell.setTextAndCheck(LocaleController.getString(R.string.RequireMonthlyFee), false, true);
                 if (this.inviteToEdit != null) {
                     this.subCell.setCheckBoxIcon(R.drawable.permission_locked);
                     this.subCell.setEnabled(false);
                 }
-                this.subCell.setOnClickListener(new IntroActivity$$ExternalSyntheticLambda1(21, this, new Runnable[1]));
-                gLIconSettingsView.addView(this.subCell, LayoutHelper.createLinear(-1, 48));
+                this.subCell.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda91(8, this, new Runnable[1]));
+                sectionsLinearLayout.addView(this.subCell, LayoutHelper.createLinear(-1, 48));
                 TextView textView3 = new TextView(context);
                 this.subPriceView = textView3;
                 textView3.setTextSize(1, 16.0f);
                 this.subPriceView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText3, false));
-                ?? r3 = new EditTextCell(context, LocaleController.getString(getConnectionsManager().isTestBackend() ? R.string.RequireMonthlyFeePriceHintTest5Minutes : R.string.RequireMonthlyFeePriceHint), this.resourceProvider) {
-                    public boolean ignoreTextChanged;
+                i = -2;
+                i2 = -1;
+                EditTextCell editTextCell = new EditTextCell(context, LocaleController.getString(getConnectionsManager().isTestBackend() ? R.string.RequireMonthlyFeePriceHintTest5Minutes : R.string.RequireMonthlyFeePriceHint), false, false, -1, this.resourceProvider) {
+                    private boolean ignoreTextChanged;
 
                     @Override
-                    public final void onTextChanged(Editable editable) {
+                    public void onTextChanged(CharSequence charSequence) {
                         if (this.ignoreTextChanged) {
                             return;
                         }
-                        boolean zIsEmpty = TextUtils.isEmpty(editable);
-                        LinkEditActivity linkEditActivity = LinkEditActivity.this;
-                        if (zIsEmpty) {
-                            linkEditActivity.subPriceView.setText("");
+                        if (TextUtils.isEmpty(charSequence)) {
+                            LinkEditActivity.this.subPriceView.setText("");
                             return;
                         }
                         try {
-                            long j2 = Long.parseLong(editable.toString());
-                            if (j2 > linkEditActivity.getMessagesController().starsSubscriptionAmountMax) {
+                            long j = Long.parseLong(charSequence.toString());
+                            if (j > LinkEditActivity.this.getMessagesController().starsSubscriptionAmountMax) {
                                 this.ignoreTextChanged = true;
-                                j2 = linkEditActivity.getMessagesController().starsSubscriptionAmountMax;
-                                setText(Long.toString(j2));
+                                j = LinkEditActivity.this.getMessagesController().starsSubscriptionAmountMax;
+                                setText(Long.toString(j));
                                 this.ignoreTextChanged = false;
                             }
-                            linkEditActivity.subPriceView.setText(LocaleController.formatString(linkEditActivity.getConnectionsManager().isTestBackend() ? R.string.RequireMonthlyFeePriceTest5Minutes : R.string.RequireMonthlyFeePrice, BillingController.getInstance().formatCurrency((long) ((j2 / 1000.0d) * ((double) MessagesController.getInstance(((BaseFragment) linkEditActivity).currentAccount).starsUsdWithdrawRate1000)), "USD")));
+                            LinkEditActivity.this.subPriceView.setText(LocaleController.formatString(LinkEditActivity.this.getConnectionsManager().isTestBackend() ? R.string.RequireMonthlyFeePriceTest5Minutes : R.string.RequireMonthlyFeePrice, BillingController.getInstance().formatCurrency((long) ((j / 1000.0d) * ((double) MessagesController.getInstance(((BaseFragment) LinkEditActivity.this).currentAccount).starsUsdWithdrawRate1000)), "USD")));
                         } catch (Exception e) {
                             FileLog.e(e);
                         }
                     }
                 };
-                this.subEditPriceCell = r3;
-                r3.editText.setInputType(2);
+                this.subEditPriceCell = editTextCell;
+                editTextCell.editText.setInputType(2);
                 this.subEditPriceCell.editText.setRawInputType(2);
-                setBackgroundColor(getThemedColor(i5));
-                hideKeyboardOnEnter();
-                addView(this.subPriceView, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 19.0f, 0.0f));
-                AnonymousClass8 anonymousClass8 = this.subEditPriceCell;
-                Drawable drawableMutate = getParentActivity().getResources().getDrawable(R.drawable.star_small_inner).mutate();
-                anonymousClass8.getClass();
-                ImageView imageView = new ImageView(anonymousClass8.getContext());
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                imageView.setImageDrawable(drawableMutate);
-                anonymousClass8.addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 18.0f, 0.0f, 0.0f, 0.0f));
-                EditTextCell.AnonymousClass2 anonymousClass3 = anonymousClass8.editText;
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) anonymousClass3.getLayoutParams();
-                layoutParams.leftMargin = AndroidUtilities.dp(24.0f);
-                anonymousClass3.setLayoutParams(layoutParams);
-                imageView.setScaleX(0.83f);
-                imageView.setScaleY(0.83f);
-                imageView.setTranslationY(AndroidUtilities.dp(-1.0f));
-                imageView.setTranslationX(AndroidUtilities.dp(1.0f));
-                gLIconSettingsView.addView(this.subEditPriceCell, LayoutHelper.createLinear(-1, 48));
-                setVisibility(8);
+                this.subEditPriceCell.setBackgroundColor(getThemedColor(i9));
+                this.subEditPriceCell.hideKeyboardOnEnter();
+                this.subEditPriceCell.addView(this.subPriceView, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 19.0f, 0.0f));
+                ImageView leftDrawable = this.subEditPriceCell.setLeftDrawable(getContext().getResources().getDrawable(R.drawable.star_small_inner).mutate());
+                leftDrawable.setScaleX(0.83f);
+                leftDrawable.setScaleY(0.83f);
+                leftDrawable.setTranslationY(AndroidUtilities.dp(-1.0f));
+                leftDrawable.setTranslationX(AndroidUtilities.dp(1.0f));
+                sectionsLinearLayout.addView(this.subEditPriceCell, LayoutHelper.createLinear(-1, 48));
+                this.subEditPriceCell.setVisibility(8);
                 TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
                 this.subInfoCell = textInfoPrivacyCell4;
                 if (this.inviteToEdit != null) {
                     textInfoPrivacyCell4.setText(LocaleController.getString(R.string.RequireMonthlyFeeInfoFrozen));
                 } else {
-                    textInfoPrivacyCell4.setText(AndroidUtilities.withLearnMore(LocaleController.getString(R.string.RequireMonthlyFeeInfo), new LinkEditActivity$$ExternalSyntheticLambda7(this, i3)));
+                    textInfoPrivacyCell4.setText(AndroidUtilities.withLearnMore(LocaleController.getString(R.string.RequireMonthlyFeeInfo), new LinkEditActivity$$ExternalSyntheticLambda1(this, i6)));
                 }
-                gLIconSettingsView.addView(this.subInfoCell, LayoutHelper.createLinear(-1, -2));
+                sectionsLinearLayout.addView(this.subInfoCell, LayoutHelper.createLinear(-1, -2));
             }
+        } else {
+            i = -2;
+            i2 = -1;
         }
-        final int i6 = 1;
-        ?? r4 = new EditText(context) {
+        EditText editText2 = new EditText(context) {
             @Override
-            public final boolean onTouchEvent(MotionEvent motionEvent) {
-                switch (i6) {
-                    case 0:
-                        if (motionEvent.getAction() == 1) {
-                            setCursorVisible(true);
-                        }
-                        break;
-                    default:
-                        if (motionEvent.getAction() == 1) {
-                            setCursorVisible(true);
-                        }
-                        break;
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() == 1) {
+                    setCursorVisible(true);
                 }
                 return super.onTouchEvent(motionEvent);
             }
         };
-        this.nameEditText = r4;
-        r4.addTextChangedListener(new TextWatcher(this) {
-            public final LinkEditActivity this$0;
-
-            {
-                this.this$0 = this;
+        this.nameEditText = editText2;
+        editText2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable editable) {
+                Emoji.replaceEmoji(editable, LinkEditActivity.this.nameEditText.getPaint().getFontMetricsInt(), false);
             }
 
             @Override
-            public final void afterTextChanged(Editable editable) {
-                switch (i6) {
-                    case 0:
-                        LinkEditActivity linkEditActivity = this.this$0;
-                        if (!linkEditActivity.ignoreSet) {
-                            if (editable.toString().equals("0")) {
-                                linkEditActivity.usesEditText.setText("");
-                            } else {
-                                try {
-                                    int i7 = Integer.parseInt(editable.toString());
-                                    if (i7 <= 100000) {
-                                        linkEditActivity.chooseUses(i7);
-                                    } else {
-                                        linkEditActivity.resetUses();
-                                    }
-                                } catch (NumberFormatException unused) {
-                                    linkEditActivity.resetUses();
-                                    return;
-                                }
-                            }
-                            break;
-                        }
-                        break;
-                    default:
-                        Emoji.replaceEmoji(editable, getPaint().getFontMetricsInt(), false);
-                        break;
-                }
+            public void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
             }
 
             @Override
-            public final void beforeTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
-                int i10 = i6;
-            }
-
-            @Override
-            public final void onTextChanged(CharSequence charSequence, int i7, int i8, int i9) {
-                int i10 = i6;
-            }
-
-            private final void beforeTextChanged$org$telegram$ui$LinkEditActivity$10(int i7, int i8, int i9, CharSequence charSequence) {
-            }
-
-            private final void beforeTextChanged$org$telegram$ui$LinkEditActivity$6(int i7, int i8, int i9, CharSequence charSequence) {
-            }
-
-            private final void onTextChanged$org$telegram$ui$LinkEditActivity$10(int i7, int i8, int i9, CharSequence charSequence) {
-            }
-
-            private final void onTextChanged$org$telegram$ui$LinkEditActivity$6(int i7, int i8, int i9, CharSequence charSequence) {
+            public void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
             }
         });
-        setCursorVisible(false);
-        setFilters(new InputFilter[]{new InputFilter.LengthFilter(32)});
-        setGravity(16);
-        setHint(LocaleController.getString(R.string.LinkNameHint));
-        AnonymousClass5 anonymousClass5 = this.nameEditText;
-        int i7 = Theme.key_windowBackgroundWhiteGrayText;
-        anonymousClass5.setHintTextColor(Theme.getColor(null, i7, false));
-        setLines(1);
-        setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
-        setSingleLine();
-        AnonymousClass5 anonymousClass6 = this.nameEditText;
-        int i8 = Theme.key_windowBackgroundWhiteBlackText;
-        anonymousClass6.setTextColor(Theme.getColor(null, i8, false));
-        setTextSize(1, 16.0f);
-        gLIconSettingsView.addView(this.nameEditText, LayoutHelper.createLinear(-1, 50));
+        this.nameEditText.setCursorVisible(false);
+        this.nameEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(32)});
+        this.nameEditText.setGravity(16);
+        this.nameEditText.setHint(LocaleController.getString(R.string.LinkNameHint));
+        EditText editText3 = this.nameEditText;
+        int i10 = Theme.key_windowBackgroundWhiteGrayText;
+        editText3.setHintTextColor(Theme.getColor(null, i10, false));
+        this.nameEditText.setLines(1);
+        this.nameEditText.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+        this.nameEditText.setSingleLine();
+        EditText editText4 = this.nameEditText;
+        int i11 = Theme.key_windowBackgroundWhiteBlackText;
+        editText4.setTextColor(Theme.getColor(null, i11, false));
+        this.nameEditText.setTextSize(1, 16.0f);
+        sectionsLinearLayout.addView(this.nameEditText, LayoutHelper.createLinear(i2, 50));
         TextInfoPrivacyCell textInfoPrivacyCell5 = new TextInfoPrivacyCell(context, 12, this.resourceProvider);
         this.dividerName = textInfoPrivacyCell5;
         textInfoPrivacyCell5.setText(LocaleController.getString(R.string.LinkNameHelp));
-        gLIconSettingsView.addView(this.dividerName);
-        if (i4 == 1) {
-            TextSettingsCell textSettingsCell = new TextSettingsCell(context, 0, null);
+        sectionsLinearLayout.addView(this.dividerName);
+        if (this.type == 1) {
+            TextSettingsCell textSettingsCell = new TextSettingsCell(context, null, 0);
             this.revokeLink = textSettingsCell;
-            textSettingsCell.setBackgroundColor(Theme.getColor(null, i5, false));
+            textSettingsCell.setBackgroundColor(Theme.getColor(null, i9, false));
             this.revokeLink.setText(LocaleController.getString(R.string.RevokeLink), false);
             this.revokeLink.setTextColor(Theme.getColor(null, Theme.key_text_RedRegular, false));
-            final int i9 = 1;
             this.revokeLink.setOnClickListener(new View.OnClickListener(this) {
                 public final LinkEditActivity f$0;
 
@@ -1001,426 +999,56 @@ public final class LinkEditActivity extends BaseFragment {
 
                 @Override
                 public final void onClick(View view) {
-                    long j2;
-                    boolean z2;
-                    switch (i9) {
+                    switch (i6) {
                         case 0:
-                            final LinkEditActivity linkEditActivity = this.f$0;
-                            if (!linkEditActivity.loading) {
-                                int selectedIndex = linkEditActivity.timeChooseView.getSelectedIndex();
-                                ArrayList arrayList2 = linkEditActivity.dispalyedDates;
-                                if (selectedIndex < arrayList2.size() && ((Integer) arrayList2.get(selectedIndex)).intValue() < 0) {
-                                    AndroidUtilities.shakeView(linkEditActivity.timeEditText);
-                                    Vibrator vibrator = (Vibrator) linkEditActivity.timeEditText.getContext().getSystemService("vibrator");
-                                    if (vibrator != null) {
-                                        vibrator.vibrate(200L);
-                                    }
-                                } else {
-                                    TextCheckCell textCheckCell2 = linkEditActivity.subCell;
-                                    if (textCheckCell2 == null || !textCheckCell2.checkBox.isChecked) {
-                                        j2 = 0;
-                                    } else {
-                                        try {
-                                            j2 = Long.parseLong(linkEditActivity.subEditPriceCell.editText.getText().toString());
-                                        } catch (Exception e) {
-                                            FileLog.e(e);
-                                            j2 = 0;
-                                        }
-                                    }
-                                    ArrayList arrayList3 = linkEditActivity.dispalyedUses;
-                                    long j3 = linkEditActivity.chatId;
-                                    int i10 = linkEditActivity.type;
-                                    if (i10 == 0) {
-                                        AlertDialog alertDialog = linkEditActivity.progressDialog;
-                                        if (alertDialog != null) {
-                                            alertDialog.dismiss();
-                                        }
-                                        linkEditActivity.loading = true;
-                                        AlertDialog alertDialog2 = new AlertDialog(linkEditActivity.getParentActivity(), 3, null);
-                                        linkEditActivity.progressDialog = alertDialog2;
-                                        AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog2.showRunnable;
-                                        AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
-                                        AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 500L);
-                                        TLRPC.TL_messages_exportChatInvite tL_messages_exportChatInvite = new TLRPC.TL_messages_exportChatInvite();
-                                        tL_messages_exportChatInvite.peer = linkEditActivity.getMessagesController().getInputPeer(-j3);
-                                        tL_messages_exportChatInvite.legacy_revoke_permanent = false;
-                                        int selectedIndex2 = linkEditActivity.timeChooseView.getSelectedIndex();
-                                        tL_messages_exportChatInvite.flags |= 1;
-                                        if (selectedIndex2 < arrayList2.size()) {
-                                            tL_messages_exportChatInvite.expire_date = linkEditActivity.getConnectionsManager().getCurrentTime() + ((Integer) arrayList2.get(selectedIndex2)).intValue();
-                                        } else {
-                                            tL_messages_exportChatInvite.expire_date = 0;
-                                        }
-                                        int selectedIndex3 = linkEditActivity.usesChooseView.getSelectedIndex();
-                                        tL_messages_exportChatInvite.flags |= 2;
-                                        if (selectedIndex3 < arrayList3.size()) {
-                                            tL_messages_exportChatInvite.usage_limit = ((Integer) arrayList3.get(selectedIndex3)).intValue();
-                                        } else {
-                                            tL_messages_exportChatInvite.usage_limit = 0;
-                                        }
-                                        LinkEditActivity.AnonymousClass7 anonymousClass9 = linkEditActivity.approveCell;
-                                        boolean z3 = anonymousClass9 != null && anonymousClass9.checkBox.isChecked;
-                                        tL_messages_exportChatInvite.request_needed = z3;
-                                        if (z3) {
-                                            tL_messages_exportChatInvite.usage_limit = 0;
-                                        }
-                                        String string = linkEditActivity.nameEditText.getText().toString();
-                                        tL_messages_exportChatInvite.title = string;
-                                        if (!TextUtils.isEmpty(string)) {
-                                            tL_messages_exportChatInvite.flags |= 16;
-                                        }
-                                        if (j2 > 0) {
-                                            tL_messages_exportChatInvite.flags |= 32;
-                                            TL_stars.TL_starsSubscriptionPricing tL_starsSubscriptionPricing = new TL_stars.TL_starsSubscriptionPricing();
-                                            tL_messages_exportChatInvite.subscription_pricing = tL_starsSubscriptionPricing;
-                                            tL_starsSubscriptionPricing.period = linkEditActivity.getConnectionsManager().isTestBackend() ? 300 : 2592000;
-                                            tL_messages_exportChatInvite.subscription_pricing.amount = j2;
-                                        }
-                                        final int i11 = 0;
-                                        linkEditActivity.getConnectionsManager().sendRequest(tL_messages_exportChatInvite, new RequestDelegate() {
-                                            @Override
-                                            public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-                                                switch (i11) {
-                                                    case 0:
-                                                        final LinkEditActivity linkEditActivity2 = linkEditActivity;
-                                                        final int i12 = 0;
-                                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                                            @Override
-                                                            public final void run() {
-                                                                switch (i12) {
-                                                                    case 0:
-                                                                        LinkEditActivity linkEditActivity4 = linkEditActivity2;
-                                                                        linkEditActivity4.loading = false;
-                                                                        AlertDialog alertDialog5 = linkEditActivity4.progressDialog;
-                                                                        if (alertDialog5 != null) {
-                                                                            alertDialog5.dismiss();
-                                                                        }
-                                                                        TLRPC.TL_error tL_error2 = tL_error;
-                                                                        if (tL_error2 != null) {
-                                                                            AlertsCreator.showSimpleAlert(linkEditActivity4, null, tL_error2.text, null);
-                                                                        } else {
-                                                                            LinkEditActivity.Callback callback = linkEditActivity4.callback;
-                                                                            if (callback != null) {
-                                                                                callback.onLinkCreated(tLObject);
-                                                                            }
-                                                                            linkEditActivity4.finishFragment();
-                                                                        }
-                                                                        break;
-                                                                    default:
-                                                                        LinkEditActivity linkEditActivity5 = linkEditActivity2;
-                                                                        linkEditActivity5.loading = false;
-                                                                        AlertDialog alertDialog6 = linkEditActivity5.progressDialog;
-                                                                        if (alertDialog6 != null) {
-                                                                            alertDialog6.dismiss();
-                                                                        }
-                                                                        TLRPC.TL_error tL_error3 = tL_error;
-                                                                        if (tL_error3 != null) {
-                                                                            AlertsCreator.showSimpleAlert(linkEditActivity5, null, tL_error3.text, null);
-                                                                        } else {
-                                                                            TLObject tLObject2 = tLObject;
-                                                                            if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInvite) {
-                                                                                linkEditActivity5.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject2).invite;
-                                                                            }
-                                                                            LinkEditActivity.Callback callback2 = linkEditActivity5.callback;
-                                                                            if (callback2 != null) {
-                                                                                callback2.onLinkEdited(linkEditActivity5.inviteToEdit, tLObject2);
-                                                                            }
-                                                                            linkEditActivity5.finishFragment();
-                                                                        }
-                                                                        break;
-                                                                }
-                                                            }
-                                                        });
-                                                        break;
-                                                    default:
-                                                        final LinkEditActivity linkEditActivity3 = linkEditActivity;
-                                                        final int i13 = 1;
-                                                        AndroidUtilities.runOnUIThread(new Runnable() {
-                                                            @Override
-                                                            public final void run() {
-                                                                switch (i13) {
-                                                                    case 0:
-                                                                        LinkEditActivity linkEditActivity4 = linkEditActivity3;
-                                                                        linkEditActivity4.loading = false;
-                                                                        AlertDialog alertDialog5 = linkEditActivity4.progressDialog;
-                                                                        if (alertDialog5 != null) {
-                                                                            alertDialog5.dismiss();
-                                                                        }
-                                                                        TLRPC.TL_error tL_error2 = tL_error;
-                                                                        if (tL_error2 != null) {
-                                                                            AlertsCreator.showSimpleAlert(linkEditActivity4, null, tL_error2.text, null);
-                                                                        } else {
-                                                                            LinkEditActivity.Callback callback = linkEditActivity4.callback;
-                                                                            if (callback != null) {
-                                                                                callback.onLinkCreated(tLObject);
-                                                                            }
-                                                                            linkEditActivity4.finishFragment();
-                                                                        }
-                                                                        break;
-                                                                    default:
-                                                                        LinkEditActivity linkEditActivity5 = linkEditActivity3;
-                                                                        linkEditActivity5.loading = false;
-                                                                        AlertDialog alertDialog6 = linkEditActivity5.progressDialog;
-                                                                        if (alertDialog6 != null) {
-                                                                            alertDialog6.dismiss();
-                                                                        }
-                                                                        TLRPC.TL_error tL_error3 = tL_error;
-                                                                        if (tL_error3 != null) {
-                                                                            AlertsCreator.showSimpleAlert(linkEditActivity5, null, tL_error3.text, null);
-                                                                        } else {
-                                                                            TLObject tLObject2 = tLObject;
-                                                                            if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInvite) {
-                                                                                linkEditActivity5.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject2).invite;
-                                                                            }
-                                                                            LinkEditActivity.Callback callback2 = linkEditActivity5.callback;
-                                                                            if (callback2 != null) {
-                                                                                callback2.onLinkEdited(linkEditActivity5.inviteToEdit, tLObject2);
-                                                                            }
-                                                                            linkEditActivity5.finishFragment();
-                                                                        }
-                                                                        break;
-                                                                }
-                                                            }
-                                                        });
-                                                        break;
-                                                }
-                                            }
-                                        });
-                                    } else if (i10 == 1) {
-                                        AlertDialog alertDialog3 = linkEditActivity.progressDialog;
-                                        if (alertDialog3 != null) {
-                                            alertDialog3.dismiss();
-                                        }
-                                        TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
-                                        tL_messages_editExportedChatInvite.link = linkEditActivity.inviteToEdit.link;
-                                        tL_messages_editExportedChatInvite.revoked = false;
-                                        tL_messages_editExportedChatInvite.peer = linkEditActivity.getMessagesController().getInputPeer(-j3);
-                                        int selectedIndex4 = linkEditActivity.timeChooseView.getSelectedIndex();
-                                        if (selectedIndex4 < arrayList2.size()) {
-                                            if (linkEditActivity.currentInviteDate != ((Integer) arrayList2.get(selectedIndex4)).intValue()) {
-                                                tL_messages_editExportedChatInvite.flags |= 1;
-                                                tL_messages_editExportedChatInvite.expire_date = linkEditActivity.getConnectionsManager().getCurrentTime() + ((Integer) arrayList2.get(selectedIndex4)).intValue();
-                                                z2 = true;
-                                            } else {
-                                                z2 = false;
-                                            }
-                                        } else if (linkEditActivity.currentInviteDate != 0) {
-                                            tL_messages_editExportedChatInvite.flags |= 1;
-                                            tL_messages_editExportedChatInvite.expire_date = 0;
-                                            z2 = true;
-                                        } else {
-                                            z2 = false;
-                                        }
-                                        int selectedIndex5 = linkEditActivity.usesChooseView.getSelectedIndex();
-                                        if (selectedIndex5 < arrayList3.size()) {
-                                            int iIntValue = ((Integer) arrayList3.get(selectedIndex5)).intValue();
-                                            if (linkEditActivity.inviteToEdit.usage_limit != iIntValue) {
-                                                tL_messages_editExportedChatInvite.flags |= 2;
-                                                tL_messages_editExportedChatInvite.usage_limit = iIntValue;
-                                                z2 = true;
-                                            }
-                                        } else if (linkEditActivity.inviteToEdit.usage_limit != 0) {
-                                            tL_messages_editExportedChatInvite.flags |= 2;
-                                            tL_messages_editExportedChatInvite.usage_limit = 0;
-                                            z2 = true;
-                                        }
-                                        boolean z4 = linkEditActivity.inviteToEdit.request_needed;
-                                        LinkEditActivity.AnonymousClass7 anonymousClass10 = linkEditActivity.approveCell;
-                                        if (z4 != (anonymousClass10 != null && anonymousClass10.checkBox.isChecked)) {
-                                            int i12 = tL_messages_editExportedChatInvite.flags;
-                                            tL_messages_editExportedChatInvite.flags = i12 | 8;
-                                            boolean z5 = anonymousClass10 != null && anonymousClass10.checkBox.isChecked;
-                                            tL_messages_editExportedChatInvite.request_needed = z5;
-                                            if (z5) {
-                                                tL_messages_editExportedChatInvite.flags = i12 | 10;
-                                                tL_messages_editExportedChatInvite.usage_limit = 0;
-                                            }
-                                            z2 = true;
-                                        }
-                                        String string2 = linkEditActivity.nameEditText.getText().toString();
-                                        if (!TextUtils.equals(linkEditActivity.inviteToEdit.title, string2)) {
-                                            tL_messages_editExportedChatInvite.title = string2;
-                                            tL_messages_editExportedChatInvite.flags |= 16;
-                                            z2 = true;
-                                        }
-                                        if (!z2) {
-                                            linkEditActivity.finishFragment();
-                                        } else {
-                                            linkEditActivity.loading = true;
-                                            AlertDialog alertDialog4 = new AlertDialog(linkEditActivity.getParentActivity(), 3, null);
-                                            linkEditActivity.progressDialog = alertDialog4;
-                                            AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda2 = alertDialog4.showRunnable;
-                                            AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda2);
-                                            AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda2, 500L);
-                                            final int i13 = 1;
-                                            linkEditActivity.getConnectionsManager().sendRequest(tL_messages_editExportedChatInvite, new RequestDelegate() {
-                                                @Override
-                                                public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-                                                    switch (i13) {
-                                                        case 0:
-                                                            final LinkEditActivity linkEditActivity2 = linkEditActivity;
-                                                            final int i14 = 0;
-                                                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                                                @Override
-                                                                public final void run() {
-                                                                    switch (i14) {
-                                                                        case 0:
-                                                                            LinkEditActivity linkEditActivity4 = linkEditActivity2;
-                                                                            linkEditActivity4.loading = false;
-                                                                            AlertDialog alertDialog5 = linkEditActivity4.progressDialog;
-                                                                            if (alertDialog5 != null) {
-                                                                                alertDialog5.dismiss();
-                                                                            }
-                                                                            TLRPC.TL_error tL_error2 = tL_error;
-                                                                            if (tL_error2 != null) {
-                                                                                AlertsCreator.showSimpleAlert(linkEditActivity4, null, tL_error2.text, null);
-                                                                            } else {
-                                                                                LinkEditActivity.Callback callback = linkEditActivity4.callback;
-                                                                                if (callback != null) {
-                                                                                    callback.onLinkCreated(tLObject);
-                                                                                }
-                                                                                linkEditActivity4.finishFragment();
-                                                                            }
-                                                                            break;
-                                                                        default:
-                                                                            LinkEditActivity linkEditActivity5 = linkEditActivity2;
-                                                                            linkEditActivity5.loading = false;
-                                                                            AlertDialog alertDialog6 = linkEditActivity5.progressDialog;
-                                                                            if (alertDialog6 != null) {
-                                                                                alertDialog6.dismiss();
-                                                                            }
-                                                                            TLRPC.TL_error tL_error3 = tL_error;
-                                                                            if (tL_error3 != null) {
-                                                                                AlertsCreator.showSimpleAlert(linkEditActivity5, null, tL_error3.text, null);
-                                                                            } else {
-                                                                                TLObject tLObject2 = tLObject;
-                                                                                if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInvite) {
-                                                                                    linkEditActivity5.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject2).invite;
-                                                                                }
-                                                                                LinkEditActivity.Callback callback2 = linkEditActivity5.callback;
-                                                                                if (callback2 != null) {
-                                                                                    callback2.onLinkEdited(linkEditActivity5.inviteToEdit, tLObject2);
-                                                                                }
-                                                                                linkEditActivity5.finishFragment();
-                                                                            }
-                                                                            break;
-                                                                    }
-                                                                }
-                                                            });
-                                                            break;
-                                                        default:
-                                                            final LinkEditActivity linkEditActivity3 = linkEditActivity;
-                                                            final int i15 = 1;
-                                                            AndroidUtilities.runOnUIThread(new Runnable() {
-                                                                @Override
-                                                                public final void run() {
-                                                                    switch (i15) {
-                                                                        case 0:
-                                                                            LinkEditActivity linkEditActivity4 = linkEditActivity3;
-                                                                            linkEditActivity4.loading = false;
-                                                                            AlertDialog alertDialog5 = linkEditActivity4.progressDialog;
-                                                                            if (alertDialog5 != null) {
-                                                                                alertDialog5.dismiss();
-                                                                            }
-                                                                            TLRPC.TL_error tL_error2 = tL_error;
-                                                                            if (tL_error2 != null) {
-                                                                                AlertsCreator.showSimpleAlert(linkEditActivity4, null, tL_error2.text, null);
-                                                                            } else {
-                                                                                LinkEditActivity.Callback callback = linkEditActivity4.callback;
-                                                                                if (callback != null) {
-                                                                                    callback.onLinkCreated(tLObject);
-                                                                                }
-                                                                                linkEditActivity4.finishFragment();
-                                                                            }
-                                                                            break;
-                                                                        default:
-                                                                            LinkEditActivity linkEditActivity5 = linkEditActivity3;
-                                                                            linkEditActivity5.loading = false;
-                                                                            AlertDialog alertDialog6 = linkEditActivity5.progressDialog;
-                                                                            if (alertDialog6 != null) {
-                                                                                alertDialog6.dismiss();
-                                                                            }
-                                                                            TLRPC.TL_error tL_error3 = tL_error;
-                                                                            if (tL_error3 != null) {
-                                                                                AlertsCreator.showSimpleAlert(linkEditActivity5, null, tL_error3.text, null);
-                                                                            } else {
-                                                                                TLObject tLObject2 = tLObject;
-                                                                                if (tLObject2 instanceof TLRPC.TL_messages_exportedChatInvite) {
-                                                                                    linkEditActivity5.inviteToEdit = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject2).invite;
-                                                                                }
-                                                                                LinkEditActivity.Callback callback2 = linkEditActivity5.callback;
-                                                                                if (callback2 != null) {
-                                                                                    callback2.onLinkEdited(linkEditActivity5.inviteToEdit, tLObject2);
-                                                                                }
-                                                                                linkEditActivity5.finishFragment();
-                                                                            }
-                                                                            break;
-                                                                    }
-                                                                }
-                                                            });
-                                                            break;
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    }
-                                }
-                                break;
-                            }
+                            this.f$0.onCreateClicked(view);
                             break;
                         default:
-                            LinkEditActivity linkEditActivity2 = this.f$0;
-                            AlertDialog.Builder builder = new AlertDialog.Builder(linkEditActivity2.getParentActivity(), 0, null);
-                            String string3 = LocaleController.getString(R.string.RevokeAlert);
-                            AlertDialog alertDialog5 = builder.alertDialog;
-                            alertDialog5.message = string3;
-                            alertDialog5.title = LocaleController.getString(R.string.RevokeLink);
-                            builder.setPositiveButton(LocaleController.getString(R.string.RevokeButton), new LinkEditActivity$$ExternalSyntheticLambda3(linkEditActivity2, 1));
-                            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                            linkEditActivity2.showDialog(alertDialog5);
+                            this.f$0.lambda$createView$10(view);
                             break;
                     }
                 }
             });
-            gLIconSettingsView.addView(this.revokeLink);
+            sectionsLinearLayout.addView(this.revokeLink);
         }
-        anonymousClass2.addView(this.scrollView, LayoutHelper.createFrame(-1.0f, -1));
+        sizeNotifierFrameLayout.addView(this.scrollView, LayoutHelper.createFrame(i2, -1.0f));
         FrameLayout frameLayout = new FrameLayout(context);
         this.buttonLayout = frameLayout;
-        int i10 = Theme.key_windowBackgroundGray;
-        frameLayout.setBackgroundColor(getThemedColor(i10));
-        new KeyboardNotifier(anonymousClass2, false, new LinkEditActivity$$ExternalSyntheticLambda9(i3));
-        anonymousClass2.addView(this.buttonLayout, LayoutHelper.createFrame(-1, -2, 80));
-        this.timeHeaderCell.setBackgroundColor(Theme.getColor(null, i5, false));
-        this.timeChooseView.setBackgroundColor(Theme.getColor(null, i5, false));
-        this.timeEditText.setBackgroundColor(Theme.getColor(null, i5, false));
-        this.usesHeaderCell.setBackgroundColor(Theme.getColor(null, i5, false));
-        this.usesChooseView.setBackgroundColor(Theme.getColor(null, i5, false));
-        setBackgroundColor(Theme.getColor(null, i5, false));
-        setBackgroundColor(Theme.getColor(null, i5, false));
-        anonymousClass2.setBackgroundColor(Theme.getColor(null, i10, false));
-        setTextColor(Theme.getColor(null, i8, false));
-        setHintTextColor(Theme.getColor(null, i7, false));
-        this.timeEditText.setTextColor(Theme.getColor(null, i8, false));
-        this.timeEditText.setHintTextColor(Theme.getColor(null, i7, false));
-        setCursorVisible(false);
+        int i12 = Theme.key_windowBackgroundGray;
+        frameLayout.setBackgroundColor(getThemedColor(i12));
+        new KeyboardNotifier(sizeNotifierFrameLayout, false, new LinkEditActivity$$ExternalSyntheticLambda14(0));
+        sizeNotifierFrameLayout.addView(this.buttonLayout, LayoutHelper.createFrame(i2, i, 80));
+        this.timeHeaderCell.setBackgroundColor(Theme.getColor(null, i9, false));
+        this.timeChooseView.setBackgroundColor(Theme.getColor(null, i9, false));
+        this.timeEditText.setBackgroundColor(Theme.getColor(null, i9, false));
+        this.usesHeaderCell.setBackgroundColor(Theme.getColor(null, i9, false));
+        this.usesChooseView.setBackgroundColor(Theme.getColor(null, i9, false));
+        this.usesEditText.setBackgroundColor(Theme.getColor(null, i9, false));
+        this.nameEditText.setBackgroundColor(Theme.getColor(null, i9, false));
+        sizeNotifierFrameLayout.setBackgroundColor(Theme.getColor(null, i12, false));
+        this.usesEditText.setTextColor(Theme.getColor(null, i11, false));
+        this.usesEditText.setHintTextColor(Theme.getColor(null, i10, false));
+        this.timeEditText.setTextColor(Theme.getColor(null, i11, false));
+        this.timeEditText.setHintTextColor(Theme.getColor(null, i10, false));
+        this.usesEditText.setCursorVisible(false);
         setInviteToEdit(this.inviteToEdit);
-        anonymousClass2.setClipChildren(false);
+        sizeNotifierFrameLayout.setClipChildren(false);
         this.scrollView.setClipChildren(false);
-        gLIconSettingsView.setClipChildren(false);
-        return anonymousClass2;
+        sectionsLinearLayout.setClipChildren(false);
+        return sizeNotifierFrameLayout;
     }
 
     @Override
-    public final void finishFragment() {
+    public void finishFragment() {
         this.scrollView.getLayoutParams().height = this.scrollView.getHeight();
+        this.finished = true;
         super.finishFragment();
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        QrActivity$$ExternalSyntheticLambda9 qrActivity$$ExternalSyntheticLambda9 = new QrActivity$$ExternalSyntheticLambda9(3, this);
-        ArrayList arrayList = new ArrayList();
+    public ArrayList<ThemeDescription> getThemeDescriptions() {
+        IntroActivity$$ExternalSyntheticLambda0 introActivity$$ExternalSyntheticLambda0 = new IntroActivity$$ExternalSyntheticLambda0(this, 20);
+        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
         int i = Theme.key_windowBackgroundWhiteBlueHeader;
         arrayList.add(new ThemeDescription(this.timeHeaderCell, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, null, null, -1, null, i));
         arrayList.add(new ThemeDescription(this.usesHeaderCell, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, null, null, -1, null, i));
@@ -1442,30 +1070,20 @@ public final class LinkEditActivity extends BaseFragment {
         arrayList.add(new ThemeDescription(this.actionBar, 64, null, null, null, null, Theme.key_actionBarDefaultIcon));
         arrayList.add(new ThemeDescription(this.actionBar, 128, null, null, null, null, Theme.key_actionBarDefaultTitle));
         arrayList.add(new ThemeDescription(this.actionBar, 256, null, null, null, null, Theme.key_actionBarDefaultSelector));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, qrActivity$$ExternalSyntheticLambda9, Theme.key_featuredStickers_addButton));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, qrActivity$$ExternalSyntheticLambda9, Theme.key_featuredStickers_addButtonPressed));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, qrActivity$$ExternalSyntheticLambda9, Theme.key_windowBackgroundWhiteBlackText));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, qrActivity$$ExternalSyntheticLambda9, Theme.key_windowBackgroundWhiteGrayText));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, qrActivity$$ExternalSyntheticLambda9, Theme.key_featuredStickers_buttonText));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, qrActivity$$ExternalSyntheticLambda9, Theme.key_text_RedRegular));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, introActivity$$ExternalSyntheticLambda0, Theme.key_featuredStickers_addButton));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, introActivity$$ExternalSyntheticLambda0, Theme.key_featuredStickers_addButtonPressed));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, introActivity$$ExternalSyntheticLambda0, Theme.key_windowBackgroundWhiteBlackText));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, introActivity$$ExternalSyntheticLambda0, Theme.key_windowBackgroundWhiteGrayText));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, introActivity$$ExternalSyntheticLambda0, Theme.key_featuredStickers_buttonText));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, introActivity$$ExternalSyntheticLambda0, Theme.key_text_RedRegular));
         return arrayList;
     }
 
-    public final void resetUses() {
-        ArrayList arrayList = this.dispalyedUses;
-        arrayList.clear();
-        int iM = 0;
-        while (true) {
-            int[] iArr = this.defaultUses;
-            if (iM >= iArr.length) {
-                this.usesChooseView.setOptions(3, null, "1", "10", "100", LocaleController.getString(R.string.NoLimit));
-                return;
-            }
-            iM = LocationController$$ExternalSyntheticOutline0.m(iArr[iM], iM, 1, arrayList);
-        }
+    public void setCallback(Callback callback) {
+        this.callback = callback;
     }
 
-    public final void setInviteToEdit(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    public void setInviteToEdit(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         this.inviteToEdit = tL_chatInviteExported;
         if (this.fragmentView == null || tL_chatInviteExported == null) {
             return;
@@ -1473,34 +1091,34 @@ public final class LinkEditActivity extends BaseFragment {
         int i = tL_chatInviteExported.expire_date;
         if (i > 0) {
             chooseDate(i);
-            this.currentInviteDate = ((Integer) this.dispalyedDates.get(this.timeChooseView.getSelectedIndex())).intValue();
+            this.currentInviteDate = this.dispalyedDates.get(this.timeChooseView.getSelectedIndex()).intValue();
         } else {
             this.currentInviteDate = 0;
         }
         int i2 = tL_chatInviteExported.usage_limit;
         if (i2 > 0) {
             chooseUses(i2);
-            setText(Integer.toString(tL_chatInviteExported.usage_limit));
+            this.usesEditText.setText(Integer.toString(tL_chatInviteExported.usage_limit));
         }
-        AnonymousClass7 anonymousClass7 = this.approveCell;
-        if (anonymousClass7 != null) {
-            anonymousClass7.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+        TextCheckCell textCheckCell = this.approveCell;
+        if (textCheckCell != null) {
+            textCheckCell.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
             this.approveCell.setChecked(tL_chatInviteExported.request_needed);
         }
         setUsesVisible(!tL_chatInviteExported.request_needed);
         if (!TextUtils.isEmpty(tL_chatInviteExported.title)) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_chatInviteExported.title);
-            Emoji.replaceEmoji(spannableStringBuilder, getPaint().getFontMetricsInt(), false);
-            setText(spannableStringBuilder);
+            Emoji.replaceEmoji(spannableStringBuilder, this.nameEditText.getPaint().getFontMetricsInt(), false);
+            this.nameEditText.setText(spannableStringBuilder);
         }
-        TextCheckCell textCheckCell = this.subCell;
-        if (textCheckCell != null) {
-            textCheckCell.setChecked(tL_chatInviteExported.subscription_pricing != null);
+        TextCheckCell textCheckCell2 = this.subCell;
+        if (textCheckCell2 != null) {
+            textCheckCell2.setChecked(tL_chatInviteExported.subscription_pricing != null);
         }
         if (tL_chatInviteExported.subscription_pricing != null) {
-            AnonymousClass7 anonymousClass8 = this.approveCell;
-            if (anonymousClass8 != null) {
-                anonymousClass8.setChecked(false);
+            TextCheckCell textCheckCell3 = this.approveCell;
+            if (textCheckCell3 != null) {
+                textCheckCell3.setChecked(false);
                 this.approveCell.setCheckBoxIcon(R.drawable.permission_locked);
             }
             TextInfoPrivacyCell textInfoPrivacyCell = this.approveHintCell;
@@ -1508,86 +1126,14 @@ public final class LinkEditActivity extends BaseFragment {
                 textInfoPrivacyCell.setText(LocaleController.getString(R.string.ApproveNewMembersDescriptionFrozen));
             }
         }
-        AnonymousClass8 anonymousClass9 = this.subEditPriceCell;
-        if (anonymousClass9 != null) {
-            anonymousClass9.setVisibility(tL_chatInviteExported.subscription_pricing != null ? 0 : 8);
-            setText(Long.toString(tL_chatInviteExported.subscription_pricing.amount));
+        EditTextCell editTextCell = this.subEditPriceCell;
+        if (editTextCell != null) {
+            editTextCell.setVisibility(tL_chatInviteExported.subscription_pricing != null ? 0 : 8);
+            this.subEditPriceCell.setText(Long.toString(tL_chatInviteExported.subscription_pricing.amount));
             this.subEditPriceCell.editText.setClickable(false);
             this.subEditPriceCell.editText.setFocusable(false);
             this.subEditPriceCell.editText.setFocusableInTouchMode(false);
             this.subEditPriceCell.editText.setLongClickable(false);
-        }
-    }
-
-    public final void setUsesVisible(boolean z) {
-        this.usesHeaderCell.setVisibility(z ? 0 : 8);
-        this.usesChooseView.setVisibility(z ? 0 : 8);
-        setVisibility(z ? 0 : 8);
-        this.dividerUses.setVisibility(z ? 0 : 8);
-    }
-
-    public final class AnonymousClass2 extends Drawable {
-        public final int $r8$classId;
-        public final Paint p;
-
-        public AnonymousClass2(int i) {
-            this.$r8$classId = i;
-            switch (i) {
-                case 1:
-                    Paint paint = new Paint(1);
-                    this.p = paint;
-                    paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);
-                    break;
-                default:
-                    this.p = new Paint(1);
-                    break;
-            }
-        }
-
-        @Override
-        public final void draw(Canvas canvas) {
-            switch (this.$r8$classId) {
-                case 0:
-                    Paint paint = this.p;
-                    paint.setColor(Theme.getColor(null, Theme.key_telegram_color, false));
-                    canvas.drawRoundRect(getBounds().left, getBounds().exactCenterY() - AndroidUtilities.dp(14.0f), getBounds().right, getBounds().exactCenterY() + AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), paint);
-                    break;
-                default:
-                    canvas.drawCircle(getBounds().centerX(), getBounds().centerY() - AndroidUtilities.dp(1.0f), (getBounds().width() - AndroidUtilities.dp(8.0f)) / 2.0f, this.p);
-                    break;
-            }
-        }
-
-        @Override
-        public final int getOpacity() {
-            switch (this.$r8$classId) {
-            }
-            return 0;
-        }
-
-        @Override
-        public final void setAlpha(int i) {
-            switch (this.$r8$classId) {
-                case 0:
-                    break;
-                default:
-                    this.p.setAlpha(i);
-                    break;
-            }
-        }
-
-        @Override
-        public final void setColorFilter(ColorFilter colorFilter) {
-            int i = this.$r8$classId;
-        }
-
-        private final void setAlpha$org$telegram$ui$LinkEditActivity$2(int i) {
-        }
-
-        private final void setColorFilter$org$telegram$ui$ActionBar$RoundVideoShadow(ColorFilter colorFilter) {
-        }
-
-        private final void setColorFilter$org$telegram$ui$LinkEditActivity$2(ColorFilter colorFilter) {
         }
     }
 }

@@ -21,7 +21,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticApiModelOutline0;
+import org.telegram.ui.LaunchActivity$$ExternalSyntheticApiModelOutline1;
 import org.telegram.ui.bots.BotStorage$$ExternalSyntheticApiModelOutline0;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
@@ -265,7 +265,7 @@ public class WebRtcAudioRecord {
         Iterator<AudioRecordingConfiguration> it = list.iterator();
         Logging.d("WebRtcAudioRecordExternal", "AudioRecordingConfigurations: ");
         while (it.hasNext()) {
-            AudioRecordingConfiguration audioRecordingConfigurationM = LaunchActivity$$ExternalSyntheticApiModelOutline0.m((Object) it.next());
+            AudioRecordingConfiguration audioRecordingConfigurationM = LaunchActivity$$ExternalSyntheticApiModelOutline1.m((Object) it.next());
             StringBuilder sb = new StringBuilder("  client audio source=");
             sb.append(WebRtcAudioUtils.audioSourceToString(audioRecordingConfigurationM.getClientAudioSource()));
             sb.append(", client session id=");
@@ -452,7 +452,7 @@ public class WebRtcAudioRecord {
         assertTrue(!list.isEmpty());
         Iterator<AudioRecordingConfiguration> it = list.iterator();
         while (it.hasNext()) {
-            AudioRecordingConfiguration audioRecordingConfigurationM = LaunchActivity$$ExternalSyntheticApiModelOutline0.m((Object) it.next());
+            AudioRecordingConfiguration audioRecordingConfigurationM = LaunchActivity$$ExternalSyntheticApiModelOutline1.m((Object) it.next());
             AudioDeviceInfo audioDevice = audioRecordingConfigurationM.getAudioDevice();
             if (audioDevice != null && audioRecordingConfigurationM.getClientAudioSource() == i && audioRecordingConfigurationM.getClientAudioSessionId() == i2 && audioRecordingConfigurationM.getClientFormat().getEncoding() == audioFormat.getEncoding() && audioRecordingConfigurationM.getClientFormat().getSampleRate() == audioFormat.getSampleRate() && audioRecordingConfigurationM.getClientFormat().getChannelMask() == audioFormat.getChannelMask() && audioRecordingConfigurationM.getClientFormat().getChannelIndexMask() == audioFormat.getChannelIndexMask() && audioRecordingConfigurationM.getFormat().getEncoding() != 0 && audioRecordingConfigurationM.getFormat().getSampleRate() > 0 && (audioRecordingConfigurationM.getFormat().getChannelMask() != 0 || audioRecordingConfigurationM.getFormat().getChannelIndexMask() != 0)) {
                 if (checkDeviceMatch(audioDevice, audioDeviceInfo)) {

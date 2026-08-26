@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import android.opengl.GLES20;
-import com.google.android.gms.internal.mlkit_language_id_common.zzij;
+import com.google.android.gms.internal.mlkit_language_id_common.zzig;
 import java.nio.Buffer;
 import java.nio.FloatBuffer;
 
@@ -58,7 +58,7 @@ public class GlShader {
         if (iGlGetAttribLocation >= 0) {
             return iGlGetAttribLocation;
         }
-        throw new RuntimeException(zzij.m("Could not locate '", str, "' in program"));
+        throw new RuntimeException(zzig.m("Could not locate '", str, "' in program"));
     }
 
     public int getUniformLocation(String str) {
@@ -70,7 +70,7 @@ public class GlShader {
         if (iGlGetUniformLocation >= 0) {
             return iGlGetUniformLocation;
         }
-        throw new RuntimeException(zzij.m("Could not locate uniform '", str, "' in program"));
+        throw new RuntimeException(zzig.m("Could not locate uniform '", str, "' in program"));
     }
 
     public void release() {

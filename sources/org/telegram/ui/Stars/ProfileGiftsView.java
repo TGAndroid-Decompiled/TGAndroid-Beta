@@ -1,5 +1,6 @@
 package org.telegram.ui.Stars;
 
+import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
@@ -10,7 +11,6 @@ import android.graphics.Shader;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -25,17 +25,15 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.ProfileActivity;
 
 public final class ProfileGiftsView extends View implements NotificationCenter.NotificationCenterDelegate {
     public float actionBarProgress;
     public boolean active;
-    public final ProfileActivity.AnonymousClass19 avatarContainer;
+    public final View avatarContainer;
     public float collapseProgress;
     public final int currentAccount;
     public float cy;
@@ -54,6 +52,7 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
     public final ArrayList oldGifts;
     public Gift pressedGift;
     public float progressToInsets;
+    public final Theme.ResourcesProvider resourcesProvider;
     public float right;
     public final AnimatedFloat rightAnimated;
 
@@ -75,7 +74,7 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
         public Gift(ProfileGiftsView profileGiftsView, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
             new Matrix();
             this.bounds = new RectF();
-            this.bounce = new ButtonBounce(profileGiftsView, 1.0f, 5.0f);
+            this.bounce = new ButtonBounce(profileGiftsView);
             this.id = tL_starGiftUnique.id;
             TLRPC.Document document = tL_starGiftUnique.getDocument();
             this.document = document;
@@ -90,7 +89,7 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
         }
     }
 
-    public ProfileGiftsView(Context context, int i, long j, ProfileActivity.AnonymousClass19 anonymousClass19) {
+    public ProfileGiftsView(int i, Context context, Theme.ResourcesProvider resourcesProvider, long j, View view) {
         super(context);
         this.active = true;
         this.rightAnimated = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -102,7 +101,8 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
         this.giftCollapseYInterpolator = new LinearInterpolator();
         this.currentAccount = i;
         this.dialogId = j;
-        this.avatarContainer = anonymousClass19;
+        this.avatarContainer = view;
+        this.resourcesProvider = resourcesProvider;
     }
 
     @Override
@@ -133,49 +133,48 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
         if (profileGiftsView.expandProgress >= 1.0f || profileGiftsView.collapseProgress <= 0.0f) {
             return;
         }
-        ProfileActivity.AnonymousClass19 anonymousClass19 = profileGiftsView.avatarContainer;
-        float x = anonymousClass19.getX();
-        float y = anonymousClass19.getY();
-        float scaleX = anonymousClass19.getScaleX() * anonymousClass19.getWidth();
-        float scaleY = anonymousClass19.getScaleY() * anonymousClass19.getHeight();
+        View view = profileGiftsView.avatarContainer;
+        float x = view.getX();
+        float y = view.getY();
+        float scaleX = view.getScaleX() * view.getWidth();
+        float scaleY = view.getScaleY() * view.getHeight();
         float fDpf2 = AndroidUtilities.dpf2(96.0f);
         float fMin2 = Math.min(x, (profileGiftsView.getWidth() - fDpf2) / 2.0f);
-        float fM = ChatActivity$$ExternalSyntheticOutline0.m(profileGiftsView.maxExpandY, fDpf2, 2.0f, y);
-        float fMax = Math.max(scaleX, fDpf2);
-        float fMax2 = Math.max(scaleY, fDpf2);
+        float fMax = Math.max(y, (profileGiftsView.maxExpandY - fDpf2) / 2.0f);
+        float fMax2 = Math.max(scaleX, fDpf2);
+        float fMax3 = Math.max(scaleY, fDpf2);
         canvas.save();
         canvas.clipRect(0.0f, 0.0f, profileGiftsView.getWidth(), profileGiftsView.expandY);
-        float f4 = (fMax / 2.0f) + fMin2;
-        float f5 = (fMax2 / 2.0f) + fM;
+        float f4 = (fMax2 / 2.0f) + fMin2;
+        float f5 = (fMax3 / 2.0f) + fMax;
         float f6 = (scaleX / 2.0f) + x;
         float f7 = (scaleY / 2.0f) + y;
         float f8 = profileGiftsView.expandY;
         float f9 = f8 / profileGiftsView.maxExpandY;
         float fClamp02 = Utilities.clamp01((f8 - (ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight)) / AndroidUtilities.dp(50.0f));
-        boolean z = false;
         int i = 0;
         while (i < arrayList.size()) {
             Gift gift2 = (Gift) arrayList.get(i);
-            float f10 = gift2.animatedFloat.set(f3, z);
+            float f10 = gift2.animatedFloat.set(f3);
             float fLerp2 = AndroidUtilities.lerp(0.5f, f3, f10);
             int i2 = i;
-            float fM2 = ImageReceiver$$ExternalSyntheticOutline2.m(f3, profileGiftsView.actionBarProgress, (f3 - profileGiftsView.expandProgress) * f10, fClamp02);
+            float fM = ImageReceiver$$ExternalSyntheticOutline2.m(f3, profileGiftsView.actionBarProgress, (f3 - profileGiftsView.expandProgress) * f10, fClamp02);
             int i3 = gift2.position;
             float f11 = 1.6f;
             if (i3 != 0) {
                 if (i3 != 1) {
                     if (i3 == 2) {
                         fDp = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(12.0f) * f9);
-                        fLerp = (fM + fMax2) - AndroidUtilities.dp(16.0f);
+                        fLerp = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
                     } else if (i3 == 3) {
                         fDp = (AndroidUtilities.dp(20.0f) * f9) + (1.5f * f4);
                         iDp = AndroidUtilities.dp(13.0f);
                     } else if (i3 != 4) {
                         fDp = (AndroidUtilities.dp(12.0f) * f9) + ((4.0f * f4) / 3.0f);
-                        fLerp = (fM + fMax2) - AndroidUtilities.dp(16.0f);
+                        fLerp = (fMax + fMax3) - AndroidUtilities.dp(16.0f);
                     } else {
                         fDp = (AndroidUtilities.dp(12.0f) * f9) + ((f4 * 4.0f) / 3.0f);
-                        fLerp = fM - AndroidUtilities.dp(4.0f);
+                        fLerp = fMax - AndroidUtilities.dp(4.0f);
                     }
                     f11 = 0.9f;
                     if (!profileGiftsView.isOpening || f10 >= 1.0f) {
@@ -194,24 +193,23 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
                         fLerp = AndroidUtilities.lerp(f7, fLerp, profileGiftsView.giftCollapseYInterpolator.getInterpolation(fClamp01));
                         fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
                     }
-                    if (fM2 > 0.0f) {
+                    if (fM > 0.0f) {
                         fDp2 = AndroidUtilities.dp(45.0f);
-                        float f12 = fLerp2;
                         f2 = fDp2 / 2.0f;
                         gift2.bounds.set(fDp - f2, fLerp - f2, fDp + f2, fLerp + f2);
                         canvas.save();
                         canvas.translate(fDp, fLerp);
                         canvas.rotate(0.0f);
-                        float scale = gift2.bounce.getScale(0.1f) * f12;
+                        float scale = gift2.bounce.getScale(0.1f) * fLerp2;
                         canvas.scale(scale, scale);
                         gift2.particles.process();
-                        gift2.particles.draw(canvas, gift2.color, fM2);
+                        gift2.particles.draw(canvas, gift2.color, fM);
                         paint = gift2.gradientPaint;
                         if (paint != null) {
-                            paint.setAlpha((int) (fM2 * 255.0f * 1.0f));
-                            float f13 = (-fDp2) / 2.0f;
+                            paint.setAlpha((int) (fM * 255.0f * 1.0f));
+                            float f12 = (-fDp2) / 2.0f;
                             gift = gift2;
-                            canvas.drawRect(f13, f13, f2, f2, gift2.gradientPaint);
+                            canvas.drawRect(f12, f12, f2, f2, gift2.gradientPaint);
                         } else {
                             gift = gift2;
                         }
@@ -220,7 +218,7 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
                             int i4 = (-iDp2) / 2;
                             int i5 = iDp2 / 2;
                             gift.emojiDrawable.setBounds(i4, i4, i5, i5);
-                            gift.emojiDrawable.setAlpha((int) (fM2 * 255.0f));
+                            gift.emojiDrawable.setAlpha((int) (fM * 255.0f));
                             gift.emojiDrawable.draw(canvas);
                         }
                         canvas.restore();
@@ -229,12 +227,12 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
                     profileGiftsView = this;
                     f7 = f7;
                     arrayList = arrayList;
+                    f5 = f5;
                     fClamp02 = fClamp02;
-                    z = false;
                     f3 = 1.0f;
                 } else {
                     fDp = ((f4 * 2.0f) / 3.0f) - (AndroidUtilities.dp(6.0f) * f9);
-                    fLerp = fM - AndroidUtilities.dp(4.0f);
+                    fLerp = fMax - AndroidUtilities.dp(4.0f);
                 }
                 f11 = 0.0f;
                 if (profileGiftsView.isOpening) {
@@ -253,24 +251,23 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
                     fLerp = AndroidUtilities.lerp(f7, fLerp, profileGiftsView.giftCollapseYInterpolator.getInterpolation(fClamp01));
                     fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
                 }
-                if (fM2 > 0.0f) {
+                if (fM > 0.0f) {
                     fDp2 = AndroidUtilities.dp(45.0f);
-                    float f14 = fLerp2;
                     f2 = fDp2 / 2.0f;
                     gift2.bounds.set(fDp - f2, fLerp - f2, fDp + f2, fLerp + f2);
                     canvas.save();
                     canvas.translate(fDp, fLerp);
                     canvas.rotate(0.0f);
-                    float scale2 = gift2.bounce.getScale(0.1f) * f14;
+                    float scale2 = gift2.bounce.getScale(0.1f) * fLerp2;
                     canvas.scale(scale2, scale2);
                     gift2.particles.process();
-                    gift2.particles.draw(canvas, gift2.color, fM2);
+                    gift2.particles.draw(canvas, gift2.color, fM);
                     paint = gift2.gradientPaint;
                     if (paint != null) {
-                        paint.setAlpha((int) (fM2 * 255.0f * 1.0f));
-                        float f15 = (-fDp2) / 2.0f;
+                        paint.setAlpha((int) (fM * 255.0f * 1.0f));
+                        float f13 = (-fDp2) / 2.0f;
                         gift = gift2;
-                        canvas.drawRect(f15, f15, f2, f2, gift2.gradientPaint);
+                        canvas.drawRect(f13, f13, f2, f2, gift2.gradientPaint);
                     } else {
                         gift = gift2;
                     }
@@ -279,7 +276,7 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
                         int i6 = (-iDp3) / 2;
                         int i7 = iDp3 / 2;
                         gift.emojiDrawable.setBounds(i6, i6, i7, i7);
-                        gift.emojiDrawable.setAlpha((int) (fM2 * 255.0f));
+                        gift.emojiDrawable.setAlpha((int) (fM * 255.0f));
                         gift.emojiDrawable.draw(canvas);
                     }
                     canvas.restore();
@@ -288,8 +285,8 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
                 profileGiftsView = this;
                 f7 = f7;
                 arrayList = arrayList;
+                f5 = f5;
                 fClamp02 = fClamp02;
-                z = false;
                 f3 = 1.0f;
             } else {
                 fDp = (f4 / 2.0f) - (AndroidUtilities.dp(20.0f) * f9);
@@ -312,24 +309,23 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
                 fLerp = AndroidUtilities.lerp(f7, fLerp, profileGiftsView.giftCollapseYInterpolator.getInterpolation(fClamp01));
                 fLerp2 = AndroidUtilities.lerp(fLerp2 / 2.0f, fLerp2, fClamp01);
             }
-            if (fM2 > 0.0f) {
+            if (fM > 0.0f) {
                 fDp2 = AndroidUtilities.dp(45.0f);
-                float f16 = fLerp2;
                 f2 = fDp2 / 2.0f;
                 gift2.bounds.set(fDp - f2, fLerp - f2, fDp + f2, fLerp + f2);
                 canvas.save();
                 canvas.translate(fDp, fLerp);
                 canvas.rotate(0.0f);
-                float scale3 = gift2.bounce.getScale(0.1f) * f16;
+                float scale3 = gift2.bounce.getScale(0.1f) * fLerp2;
                 canvas.scale(scale3, scale3);
                 gift2.particles.process();
-                gift2.particles.draw(canvas, gift2.color, fM2);
+                gift2.particles.draw(canvas, gift2.color, fM);
                 paint = gift2.gradientPaint;
                 if (paint != null) {
-                    paint.setAlpha((int) (fM2 * 255.0f * 1.0f));
-                    float f17 = (-fDp2) / 2.0f;
+                    paint.setAlpha((int) (fM * 255.0f * 1.0f));
+                    float f14 = (-fDp2) / 2.0f;
                     gift = gift2;
-                    canvas.drawRect(f17, f17, f2, f2, gift2.gradientPaint);
+                    canvas.drawRect(f14, f14, f2, f2, gift2.gradientPaint);
                 } else {
                     gift = gift2;
                 }
@@ -338,7 +334,7 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
                     int i8 = (-iDp4) / 2;
                     int i9 = iDp4 / 2;
                     gift.emojiDrawable.setBounds(i8, i8, i9, i9);
-                    gift.emojiDrawable.setAlpha((int) (fM2 * 255.0f));
+                    gift.emojiDrawable.setAlpha((int) (fM * 255.0f));
                     gift.emojiDrawable.draw(canvas);
                 }
                 canvas.restore();
@@ -347,8 +343,8 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
             profileGiftsView = this;
             f7 = f7;
             arrayList = arrayList;
+            f5 = f5;
             fClamp02 = fClamp02;
-            z = false;
             f3 = 1.0f;
         }
         canvas.restore();
@@ -566,11 +562,11 @@ public final class ProfileGiftsView extends View implements NotificationCenter.N
                     if (document != null) {
                         gift6.emojiDrawable = AnimatedEmojiDrawable.make(i, i2, document);
                     } else {
-                        gift6.emojiDrawable = AnimatedEmojiDrawable.make(i, gift6.documentId, null, i2);
+                        gift6.emojiDrawable = AnimatedEmojiDrawable.make(i, i2, gift6.documentId);
                     }
-                    AnimatedFloat animatedFloat = new AnimatedFloat(this, 0L, 320L, (Interpolator) null);
+                    AnimatedFloat animatedFloat = new AnimatedFloat(this, 0L, 320L, (TimeInterpolator) null);
                     gift6.animatedFloat = animatedFloat;
-                    animatedFloat.set(0.0f, true);
+                    animatedFloat.force(0.0f);
                     if (isAttachedToWindow()) {
                         gift6.emojiDrawable.addView(this);
                     }

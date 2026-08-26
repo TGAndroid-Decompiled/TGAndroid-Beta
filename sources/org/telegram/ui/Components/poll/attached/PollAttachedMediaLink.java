@@ -1,14 +1,13 @@
 package org.telegram.ui.Components.poll.attached;
 
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
-import com.google.common.base.Splitter;
 import me.vkryl.android.animator.BoolAnimator;
 import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
@@ -20,6 +19,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.PorterDuffColorFilterState;
 import org.telegram.ui.Components.poll.PollAttachButton;
 import org.telegram.ui.Components.poll.PollAttachedMedia;
 
@@ -31,11 +31,11 @@ public final class PollAttachedMediaLink extends PollAttachedMedia implements Dr
     public final CircularProgressDrawable progressDrawable;
     public final String url;
     public TLRPC.WebPage webPage;
-    public final Splitter colorFilterState = new Splitter((char) 0, 21);
+    public final PorterDuffColorFilterState colorFilterState = new PorterDuffColorFilterState();
     public final Paint paint = new Paint(1);
 
     public PollAttachedMediaLink(String str) {
-        CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(-1);
+        CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable();
         this.progressDrawable = circularProgressDrawable;
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.animatorProgress = new BoolAnimator(0, this, cubicBezierInterpolator, 320L, false);
@@ -44,7 +44,7 @@ public final class PollAttachedMediaLink extends PollAttachedMedia implements Dr
         this.imageReceiver.setRoundRadius(AndroidUtilities.dp(7.0f));
         this.drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
         circularProgressDrawable.setCallback(this);
-        circularProgressDrawable.paint.setColor(Theme.getColor(null, Theme.key_pollCreateIcons, false));
+        circularProgressDrawable.setColor(Theme.getColor(null, Theme.key_pollCreateIcons, false));
         circularProgressDrawable.size = AndroidUtilities.dp(15.0f);
     }
 
@@ -76,18 +76,9 @@ public final class PollAttachedMediaLink extends PollAttachedMedia implements Dr
         BoolAnimator boolAnimator = this.animatorHasImage;
         paint.setColor(ColorUtils.blendARGB(boolAnimator.floatValue, color, 1073741824));
         canvas.drawRoundRect(0.0f, 0.0f, f, f2, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), paint);
-        int iBlendARGB = ColorUtils.blendARGB(boolAnimator.floatValue, Theme.getColor(null, Theme.key_pollCreateIcons, false), -1);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        Splitter splitter = this.colorFilterState;
-        splitter.getClass();
-        if (((PorterDuffColorFilter) splitter.trimmer) == null || splitter.limit != iBlendARGB || ((PorterDuff.Mode) splitter.strategy) != mode) {
-            splitter.trimmer = new PorterDuffColorFilter(iBlendARGB, mode);
-            splitter.limit = iBlendARGB;
-            splitter.strategy = mode;
-        }
-        PorterDuffColorFilter porterDuffColorFilter = (PorterDuffColorFilter) splitter.trimmer;
+        ColorFilter colorFilter = this.colorFilterState.get(ColorUtils.blendARGB(boolAnimator.floatValue, Theme.getColor(null, Theme.key_pollCreateIcons, false), -1), PorterDuff.Mode.SRC_IN);
         Drawable drawable = this.drawable;
-        drawable.setColorFilter(porterDuffColorFilter);
+        drawable.setColorFilter(colorFilter);
         int iDp = AndroidUtilities.dp(24.0f);
         int iDp2 = AndroidUtilities.dp(24.0f);
         Rect rect = DrawableUtils.tmpRect;
@@ -107,7 +98,7 @@ public final class PollAttachedMediaLink extends PollAttachedMedia implements Dr
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override

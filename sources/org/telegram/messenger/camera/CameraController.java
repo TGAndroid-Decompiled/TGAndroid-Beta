@@ -29,26 +29,26 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLoadOperation$$ExternalSyntheticLambda15;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda112;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda14;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda17;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda5;
 import org.telegram.ui.Adapters.MentionsAdapter$$ExternalSyntheticLambda10;
 import org.telegram.ui.Cells.ContextLinkCell$1$$ExternalSyntheticLambda0;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda218;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda271;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda482;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda488;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda121;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda89;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda15;
+import org.telegram.ui.Gifts.SendGiftSheet$$ExternalSyntheticLambda16;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda139;
+import org.webrtc.EglRenderer$$ExternalSyntheticLambda8;
 
 public class CameraController implements MediaRecorder.OnInfoListener {
     private static final int CORE_POOL_SIZE = 1;
@@ -159,7 +159,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                                             bitmap = bitmapCreateVideoThumbnail;
                                             file = file2;
                                             SharedConfig.saveConfig();
-                                            AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda121(this, file, bitmap, j2, 21));
+                                            AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda139(this, file, bitmap, j2, 21));
                                         } catch (Throwable th3) {
                                             if (fileOutputStream2 == null) {
                                                 throw th3;
@@ -184,7 +184,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
                             bitmap = null;
                         }
                         SharedConfig.saveConfig();
-                        AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda121(this, file, bitmap, j2, 21));
+                        AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda139(this, file, bitmap, j2, 21));
                     } catch (Throwable th5) {
                         th = th5;
                         mediaMetadataRetriever2 = mediaMetadataRetriever;
@@ -245,7 +245,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             bitmap = null;
         }
         SharedConfig.saveConfig();
-        AndroidUtilities.runOnUIThread(new LaunchActivity$$ExternalSyntheticLambda121(this, file, bitmap, j3, 21));
+        AndroidUtilities.runOnUIThread(new StarGiftSheet$$ExternalSyntheticLambda139(this, file, bitmap, j3, 21));
     }
 
     public static CameraController getInstance() {
@@ -568,7 +568,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             AndroidUtilities.runOnUIThread(new Camera2Session$1$$ExternalSyntheticLambda0(this, 2));
         } catch (Exception e) {
             FileLog.e(e, !"APP_PAUSED".equals(e.getMessage()));
-            AndroidUtilities.runOnUIThread(new QrActivity$$ExternalSyntheticLambda15(this, z, e, runnable, 1));
+            AndroidUtilities.runOnUIThread(new Theme$$ExternalSyntheticLambda14(this, z, e, runnable, 1));
         }
     }
 
@@ -667,7 +667,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
     }
 
     public void lambda$recordVideo$12(ICameraView iCameraView, File file, boolean z, Runnable runnable) {
-        iCameraView.startRecording(file, new FileLoader$$ExternalSyntheticLambda1(6, this, z));
+        iCameraView.startRecording(file, new FileLoader$$ExternalSyntheticLambda1(this, z, 6));
         if (runnable != null) {
             runnable.run();
         }
@@ -691,7 +691,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             } else if (obj instanceof Camera2Session) {
                 ((Camera2Session) obj).setRecordingVideo(true);
             }
-            AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda488(this, iCameraView, file, z, runnable, 9));
+            AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda112(this, iCameraView, file, z, runnable, 8));
         } catch (Exception e2) {
             FileLog.e(e2);
         }
@@ -1029,12 +1029,12 @@ public class CameraController implements MediaRecorder.OnInfoListener {
         if (cameraSession == null || surfaceTexture == null) {
             return;
         }
-        this.threadPool.execute(new ChatActivity$$ExternalSyntheticLambda218(this, cameraSession, runnable2, surfaceTexture, runnable, 1));
+        this.threadPool.execute(new SendGiftSheet$$ExternalSyntheticLambda16(this, cameraSession, runnable2, surfaceTexture, runnable, 1));
     }
 
     public void openRound(CameraSession cameraSession, SurfaceTexture surfaceTexture, Runnable runnable, Runnable runnable2) {
         if (cameraSession != null && surfaceTexture != null) {
-            this.threadPool.execute(new ChatActivity$$ExternalSyntheticLambda271(cameraSession, runnable2, surfaceTexture, runnable, 4));
+            this.threadPool.execute(new Theme$$ExternalSyntheticLambda17(4, cameraSession, runnable2, surfaceTexture, runnable));
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
@@ -1108,12 +1108,12 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             return;
         }
         this.loadingCameras = true;
-        this.threadPool.execute(new PhotoViewer$$ExternalSyntheticLambda89(this, z, runnable, 2));
+        this.threadPool.execute(new EglRenderer$$ExternalSyntheticLambda8(this, z, runnable, 2));
     }
 
     public void close(CameraSession cameraSession, CountDownLatch countDownLatch, Runnable runnable, Runnable runnable2) {
         cameraSession.destroy();
-        this.threadPool.execute(new ChatActivity$$ExternalSyntheticLambda271(runnable, cameraSession, countDownLatch, runnable2, 5));
+        this.threadPool.execute(new Theme$$ExternalSyntheticLambda17(5, runnable, cameraSession, countDownLatch, runnable2));
         if (countDownLatch != null) {
             try {
                 countDownLatch.await();
@@ -1131,7 +1131,7 @@ public class CameraController implements MediaRecorder.OnInfoListener {
             this.recordingCurrentCameraView = iCameraView;
             this.onVideoTakeCallback = videoTakeCallback;
             this.recordedFile = file.getAbsolutePath();
-            this.threadPool.execute(new ChatActivity$$ExternalSyntheticLambda482(this, obj, iCameraView, file, z2, runnable, 7));
+            this.threadPool.execute(new FileLoadOperation$$ExternalSyntheticLambda15(this, obj, iCameraView, file, z2, runnable));
             return;
         }
         if (obj instanceof CameraSession) {

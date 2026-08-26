@@ -14,7 +14,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.LiquidGlassEffect;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSource;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticApiModelOutline3;
+import org.telegram.ui.PhotoViewer$$ExternalSyntheticApiModelOutline1;
 
 public final class BlurredBackgroundDrawableRenderNode extends BlurredBackgroundDrawable {
     public LiquidGlassEffect liquidGlassEffect;
@@ -35,11 +35,11 @@ public final class BlurredBackgroundDrawableRenderNode extends BlurredBackground
         this.paintStrokeTop = paint2;
         Paint paint3 = new Paint(1);
         this.paintStrokeBottom = paint3;
-        RenderNode renderNodeM1095m = PhotoViewer$$ExternalSyntheticApiModelOutline3.m1095m();
-        this.renderNode = renderNodeM1095m;
-        this.renderNodeFill = PhotoViewer$$ExternalSyntheticApiModelOutline3.m$1();
-        renderNodeM1095m.setClipToOutline(true);
-        renderNodeM1095m.setClipToBounds(true);
+        RenderNode renderNodeM3090m = PhotoViewer$$ExternalSyntheticApiModelOutline1.m3090m();
+        this.renderNode = renderNodeM3090m;
+        this.renderNodeFill = PhotoViewer$$ExternalSyntheticApiModelOutline1.m$1();
+        renderNodeM3090m.setClipToOutline(true);
+        renderNodeM3090m.setClipToBounds(true);
         this.source = blurredBackgroundSource;
         paint.setColor(0);
         Paint.Style style = Paint.Style.STROKE;

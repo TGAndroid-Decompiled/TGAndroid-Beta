@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.HashSet;
 import java.util.Set;
 import ru.noties.jlatexmath.awt.Color;
@@ -635,7 +635,7 @@ public class TeXParser {
                 if (this.isPartial) {
                     return new ColorAtom(new RomanAtom(new TeXFormula("\\backslash ".concat(command)).root), (Color) null, Color.RED);
                 }
-                throw new ParseException(SurfaceContainer$$ExternalSyntheticOutline0.m("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
+                throw new ParseException(Fragment$$ExternalSyntheticOutline0.m("Unknown symbol or command or predefined TeXFormula: '", command, "'"));
             }
         } catch (FormulaNotFoundException unused2) {
             return SymbolAtom.get(command);
@@ -733,7 +733,7 @@ public class TeXParser {
         TeXFormula.FontInfos externalFont = (!(zEquals && TeXFormula.isRegisteredBlock(unicodeBlock)) && zEquals) ? null : TeXFormula.getExternalFont(unicodeBlockOf);
         if (externalFont == null) {
             if (this.isPartial) {
-                return new ColorAtom(new RomanAtom(new TeXFormula(SurfaceContainer$$ExternalSyntheticOutline0.m(cConvertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
+                return new ColorAtom(new RomanAtom(new TeXFormula(Fragment$$ExternalSyntheticOutline0.m(cConvertToRomanNumber, "\\text{(Unknown char ", ")}")).root), (Color) null, Color.RED);
             }
             throw new ParseException("Unknown character : '" + Character.toString(cConvertToRomanNumber) + "' (or " + ((int) cConvertToRomanNumber) + ")");
         }
@@ -1352,7 +1352,7 @@ public class TeXParser {
             if (this.isPartial) {
                 return stringBuffer.toString();
             }
-            throw new ParseException(SurfaceContainer$$ExternalSyntheticOutline0.m("The token ", str, " must be closed by ", str2));
+            throw new ParseException(Fragment$$ExternalSyntheticOutline0.m("The token ", str, " must be closed by ", str2));
         }
         return stringBuffer.substring(0, (stringBuffer.length() - this.pos) + i2);
     }

@@ -16,7 +16,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.AnimatedFileNative;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda12;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda17;
 
 public class VideoFramesRewinder {
     private Frame currentFrame;
@@ -195,7 +195,7 @@ public class VideoFramesRewinder {
                 }
             }
         }
-        AndroidUtilities.runOnUIThread(new PollItemMenu$$ExternalSyntheticLambda12(this, arrayList, jCurrentTimeMillis, 2));
+        AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda17(this, arrayList, jCurrentTimeMillis, 2));
     }
 
     private void prepare(long j) {

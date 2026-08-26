@@ -91,11 +91,11 @@ public final class ShareTopicCell extends FrameLayout {
         BackupImageView backupImageView = this.imageView;
         backupImageView.setAnimatedEmojiDrawable(null);
         ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(ForumBubbleDrawable.serverSupportedColor[0]);
-        LetterDrawable letterDrawable = new LetterDrawable(1, null);
+        LetterDrawable letterDrawable = new LetterDrawable(null, 1);
         letterDrawable.setTitle("");
         letterDrawable.scale = 1.8f;
         CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
-        combinedDrawable.fullSize = true;
+        combinedDrawable.setFullsize(true);
         backupImageView.setImageDrawable(combinedDrawable);
     }
 }

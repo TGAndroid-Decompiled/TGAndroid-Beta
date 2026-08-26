@@ -7,8 +7,8 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import androidx.recyclerview.widget.DiffUtil;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
-import com.google.android.exoplayer2.util.Log;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
@@ -38,7 +38,7 @@ public final class AdminedChannelCell extends FrameLayout {
     public AdminedChannelCell(Context context, View.OnClickListener onClickListener, boolean z, int i) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(24.0f));
@@ -47,7 +47,7 @@ public final class AdminedChannelCell extends FrameLayout {
         if (z) {
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
             this.checkBox = checkBox2;
-            checkBox2.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+            checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             checkBox2.setDrawUnchecked(false);
             checkBox2.setDrawBackgroundAsArc(3);
             boolean z3 = LocaleController.isRTL;
@@ -113,15 +113,13 @@ public final class AdminedChannelCell extends FrameLayout {
         this.currentChannel = chat;
         AvatarDrawable avatarDrawable = this.avatarDrawable;
         avatarDrawable.setInfo(i, chat);
-        this.nameTextView.setText(chat.title, false);
-        StringBuilder sbM = Log.m(strM);
+        this.nameTextView.setText(chat.title);
+        StringBuilder sbM = DiffUtil.m(strM);
         sbM.append(ChatObject.getPublicUsername(chat));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sbM.toString());
-        spannableStringBuilder.setSpan(new URLSpanNoUnderline("", null), strM.length(), spannableStringBuilder.length(), 33);
-        this.statusTextView.setText(spannableStringBuilder, false);
-        BackupImageView backupImageView = this.avatarImageView;
-        backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-        backupImageView.onNewImageSet();
+        spannableStringBuilder.setSpan(new URLSpanNoUnderline(""), strM.length(), spannableStringBuilder.length(), 33);
+        this.statusTextView.setText(spannableStringBuilder);
+        this.avatarImageView.setForUserOrChat(chat, avatarDrawable);
         this.isLast = z;
     }
 }

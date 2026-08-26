@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -15,7 +16,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.InstantCameraView;
 import org.telegram.ui.Components.ReactionsContainerLayout;
-import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
 
 public abstract class StoriesViewPager extends ViewPager {
     public int currentAccount;
@@ -27,7 +28,7 @@ public abstract class StoriesViewPager extends ViewPager {
     public Runnable doOnNextIdle;
     public int keyboardHeight;
     public float lastProgressToDismiss;
-    public final LaunchActivity.AnonymousClass18 lockTouchRunnable;
+    public final PeerStoriesView.AnonymousClass34 lockTouchRunnable;
     public final AnonymousClass2 pagerAdapter;
     public float progress;
     public final PeerStoriesView.SharedResources resources;
@@ -64,7 +65,7 @@ public abstract class StoriesViewPager extends ViewPager {
         this.dialogs = new ArrayList();
         this.touchEnabled = true;
         final HwStoriesViewPager hwStoriesViewPager = (HwStoriesViewPager) this;
-        this.lockTouchRunnable = new LaunchActivity.AnonymousClass18(hwStoriesViewPager, 20);
+        this.lockTouchRunnable = new PeerStoriesView.AnonymousClass34(hwStoriesViewPager, 4);
         this.updateVisibleItemPosition = -1;
         this.currentAccount = i;
         this.resources = new PeerStoriesView.SharedResources(context);
@@ -72,15 +73,7 @@ public abstract class StoriesViewPager extends ViewPager {
         AnonymousClass2 anonymousClass2 = new AnonymousClass2(hwStoriesViewPager, context, storyViewer, darkThemeResourceProvider);
         this.pagerAdapter = anonymousClass2;
         setAdapter(anonymousClass2);
-        StoriesViewPager$$ExternalSyntheticLambda0 storiesViewPager$$ExternalSyntheticLambda0 = new StoriesViewPager$$ExternalSyntheticLambda0((HwStoriesViewPager) this, 0);
-        boolean z = this.mPageTransformer == null;
-        this.mPageTransformer = storiesViewPager$$ExternalSyntheticLambda0;
-        setChildrenDrawingOrderEnabled(true);
-        this.mDrawingOrder = 1;
-        this.mPageTransformerLayerType = 2;
-        if (z) {
-            populate();
-        }
+        setPageTransformer(false, new GiftSheet$$ExternalSyntheticLambda6((HwStoriesViewPager) this, 28));
         setOffscreenPageLimit(0);
         addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -102,7 +95,7 @@ public abstract class StoriesViewPager extends ViewPager {
             }
 
             @Override
-            public final void onPageScrolled(float f, int i2, int i3) {
+            public final void onPageScrolled(int i2, float f, int i3) {
                 HwStoriesViewPager hwStoriesViewPager2 = hwStoriesViewPager;
                 hwStoriesViewPager2.selectedPosition = i2;
                 hwStoriesViewPager2.toPosition = i3 > 0 ? i2 + 1 : i2 - 1;
@@ -220,7 +213,7 @@ public abstract class StoriesViewPager extends ViewPager {
                         peerStoriesView.day = arrayList;
                         peerStoriesView.bindInternal(0);
                     } else {
-                        pageLayout.peerStoryView.setDialogId(0, pageLayout.dialogId);
+                        pageLayout.peerStoryView.setDialogId(pageLayout.dialogId, 0);
                     }
                 }
             }
@@ -445,9 +438,9 @@ public abstract class StoriesViewPager extends ViewPager {
         }
 
         @Override
-        public final void destroyItem(ViewPager viewPager, Object obj) {
+        public final void destroyItem(ViewGroup viewGroup, int i, Object obj) {
             FrameLayout frameLayout = (FrameLayout) obj;
-            viewPager.removeView(frameLayout);
+            viewGroup.removeView(frameLayout);
             PeerStoriesView peerStoriesView = (PeerStoriesView) frameLayout.getChildAt(0);
             AndroidUtilities.removeFromParent(peerStoriesView);
             this.cachedViews.add(peerStoriesView);
@@ -461,13 +454,15 @@ public abstract class StoriesViewPager extends ViewPager {
         }
 
         @Override
-        public final Object instantiateItem(ViewPager viewPager, int i) {
+        public final Object instantiateItem(ViewGroup viewGroup, int i) {
+            AnonymousClass2 anonymousClass2;
             PeerStoriesView anonymousClass1;
             HwStoriesViewPager hwStoriesViewPager = this.this$0;
             PageLayout pageLayout = new PageLayout(hwStoriesViewPager, this.val$context);
             ArrayList arrayList = this.cachedViews;
             if (arrayList.isEmpty()) {
-                anonymousClass1 = new AnonymousClass1(this.val$context, this.val$storyViewer, hwStoriesViewPager.resources, this.val$resourcesProvider);
+                anonymousClass2 = this;
+                anonymousClass1 = anonymousClass2.new AnonymousClass1(this.val$context, this.val$storyViewer, hwStoriesViewPager.resources, this.val$resourcesProvider);
             } else {
                 anonymousClass1 = (PeerStoriesView) arrayList.remove(0);
                 anonymousClass1.headerView.backupImageView.getImageReceiver().setVisible(true, true);
@@ -495,17 +490,24 @@ public abstract class StoriesViewPager extends ViewPager {
                 anonymousClass1.progressToHideInterface.set(0.0f, false);
                 anonymousClass1.viewsThumbImageReceiver = null;
                 anonymousClass1.messageSent = false;
-                anonymousClass1.cancelTextSelection();
+                PeerStoriesView.AnonymousClass5 anonymousClass5 = anonymousClass1.storyCaptionView;
+                if (anonymousClass5.textSelectionHelper.isInSelectionMode()) {
+                    anonymousClass5.textSelectionHelper.clear();
+                }
+                anonymousClass2 = this;
             }
             pageLayout.peerStoryView = anonymousClass1;
             anonymousClass1.setAccount(hwStoriesViewPager.currentAccount);
             anonymousClass1.setDelegate(hwStoriesViewPager.delegate);
-            StoryViewer storyViewer = this.val$storyViewer;
+            StoryViewer storyViewer = anonymousClass2.val$storyViewer;
             anonymousClass1.setLongpressed(storyViewer.isLongpressed);
             pageLayout.setTag(Integer.valueOf(i));
             ArrayList arrayList2 = hwStoriesViewPager.days;
             if (arrayList2 != null) {
-                ArrayList arrayList3 = (ArrayList) arrayList2.get(storyViewer.reversed ? (arrayList2.size() - 1) - i : i);
+                if (storyViewer.reversed) {
+                    i = (arrayList2.size() - 1) - i;
+                }
+                ArrayList arrayList3 = (ArrayList) arrayList2.get(i);
                 pageLayout.day = arrayList3;
                 StoriesController.StoriesList storiesList = storyViewer.storiesList;
                 if ((storiesList instanceof StoriesController.SearchStoriesList) || (storiesList instanceof StoriesController.StoryRepostsList)) {
@@ -520,7 +522,7 @@ public abstract class StoriesViewPager extends ViewPager {
             }
             pageLayout.addView(anonymousClass1);
             anonymousClass1.requestLayout();
-            viewPager.addView(pageLayout);
+            viewGroup.addView(pageLayout);
             return pageLayout;
         }
 

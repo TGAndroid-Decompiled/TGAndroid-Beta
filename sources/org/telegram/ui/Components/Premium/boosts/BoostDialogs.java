@@ -1,6 +1,5 @@
 package org.telegram.ui.Components.Premium.boosts;
 
-import android.app.Activity;
 import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -17,22 +16,23 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline0;
+import org.telegram.messenger.SendMessagesHelper$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda14;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.EffectsTextView;
 import org.telegram.ui.Components.NumberPicker;
-import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
-import org.telegram.ui.Components.ProfileGooeyView$$ExternalSyntheticLambda0;
-import org.telegram.ui.Components.ShareAlert$$ExternalSyntheticLambda15;
 import org.telegram.ui.Components.spoilers.SpoilersTextView;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda6;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda15;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
 
 public abstract class BoostDialogs {
 
@@ -87,16 +87,14 @@ public abstract class BoostDialogs {
         }
         String str2 = LocaleController.getInstance().getFormatterBoostExpired().format(new Date(Long.parseLong(tL_error.text.replace("PREMIUM_SUB_ACTIVE_UNTIL_", "")) * 1000));
         SpannableStringBuilder spannableStringBuilderReplaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("GiftPremiumActivateErrorText", R.string.GiftPremiumActivateErrorText), Theme.key_undo_cancelColor, 0, runnable);
-        BulletinFactory bulletinFactory = new BulletinFactory(frameLayout, resourcesProvider);
-        int i = R.raw.chats_infotip;
-        bulletinFactory.createSimpleBulletin(LocaleController.getString(R.string.GiftPremiumActivateErrorTitle), AndroidUtilities.replaceCharSequence("%1$s", spannableStringBuilderReplaceSingleTag, AndroidUtilities.replaceTags("**" + str2 + "**")), i).show();
+        BulletinFactory.of(frameLayout, resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString(R.string.GiftPremiumActivateErrorTitle), AndroidUtilities.replaceCharSequence("%1$s", spannableStringBuilderReplaceSingleTag, AndroidUtilities.replaceTags("**" + str2 + "**"))).show();
         try {
             frameLayout.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
     }
 
-    public static void showAbout(boolean z, String str, TLRPC.TL_payments_giveawayInfo tL_payments_giveawayInfo, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Activity activity, Theme.ResourcesProvider resourcesProvider) {
+    public static void showAbout(boolean z, String str, TLRPC.TL_payments_giveawayInfo tL_payments_giveawayInfo, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, Theme.ResourcesProvider resourcesProvider) {
         char c;
         int i = tL_messageMediaGiveaway.quantity;
         String pluralString = LocaleController.formatPluralString("BoldMonths", tL_messageMediaGiveaway.months, new Object[0]);
@@ -105,10 +103,8 @@ public abstract class BoostDialogs {
         String str4 = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(((long) tL_payments_giveawayInfo.start_date) * 1000));
         boolean z2 = tL_messageMediaGiveaway.channels.size() > 1;
         boolean z3 = (tL_messageMediaGiveaway.flags & 32) != 0;
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, resourcesProvider);
-        String string = LocaleController.getString("BoostingGiveAwayAbout", R.string.BoostingGiveAwayAbout);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, resourcesProvider);
+        builder.setTitle(LocaleController.getString("BoostingGiveAwayAbout", R.string.BoostingGiveAwayAbout));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z3) {
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma(z ? "BoostingStarsGiveawayHowItWorksText" : "BoostingStarsGiveawayHowItWorksTextGroup", (int) tL_messageMediaGiveaway.stars, str)));
@@ -176,12 +172,12 @@ public abstract class BoostDialogs {
         } else {
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveawayParticipant", R.string.BoostingGiveawayParticipant, str)));
         }
-        alertDialog.message = spannableStringBuilder;
-        builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new ShareAlert$$ExternalSyntheticLambda15(24));
+        builder.setMessage(spannableStringBuilder);
+        builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new LivePlayer$$ExternalSyntheticLambda1(3));
         applyDialogStyle(builder.show(), false);
     }
 
-    public static void showAboutEnd(boolean z, String str, TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Activity activity, Theme.ResourcesProvider resourcesProvider) {
+    public static void showAboutEnd(boolean z, String str, TLRPC.TL_payments_giveawayInfoResults tL_payments_giveawayInfoResults, TLRPC.TL_messageMediaGiveaway tL_messageMediaGiveaway, Context context, Theme.ResourcesProvider resourcesProvider) {
         char c;
         String string;
         if (tL_messageMediaGiveaway.until_date == 0) {
@@ -194,13 +190,10 @@ public abstract class BoostDialogs {
         String str4 = LocaleController.getInstance().getFormatterGiveawayMonthDayYear().format(new Date(((long) tL_payments_giveawayInfoResults.start_date) * 1000));
         boolean z2 = tL_messageMediaGiveaway.channels.size() > 1;
         boolean z3 = (tL_messageMediaGiveaway.flags & 32) != 0;
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, 0, resourcesProvider);
-        String string2 = LocaleController.getString("BoostingGiveawayEnd", R.string.BoostingGiveawayEnd);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string2;
+        AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, resourcesProvider);
+        builder.setTitle(LocaleController.getString("BoostingGiveawayEnd", R.string.BoostingGiveawayEnd));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (z3) {
-            spannableStringBuilder = spannableStringBuilder;
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma(z ? "BoostingStarsGiveawayHowItWorksTextEnd" : "BoostingStarsGiveawayHowItWorksTextEndGroup", (int) tL_messageMediaGiveaway.stars, str)));
             c = 1;
         } else {
@@ -264,33 +257,33 @@ public abstract class BoostDialogs {
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayUsedLinksPlural", i2, new Object[0])));
         }
         if (tL_payments_giveawayInfoResults.refunded) {
-            String string3 = LocaleController.getString("BoostingGiveawayCanceledByPayment", R.string.BoostingGiveawayCanceledByPayment);
-            TextView textViewM = RichMessageLayout$$ExternalSyntheticOutline0.m(activity, 1, 14.0f);
+            String string2 = LocaleController.getString("BoostingGiveawayCanceledByPayment", R.string.BoostingGiveawayCanceledByPayment);
+            TextView textViewM = RichMessageLayout$$ExternalSyntheticOutline0.m(context, 1, 14.0f);
             textViewM.setTypeface(AndroidUtilities.bold());
             textViewM.setGravity(17);
-            textViewM.setText(string3);
+            textViewM.setText(string2);
             int i3 = Theme.key_text_RedRegular;
             textViewM.setTextColor(Theme.getColor(i3, resourcesProvider));
             textViewM.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), Theme.multAlpha(0.1f, Theme.getColor(i3, resourcesProvider))));
             textViewM.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-            alertDialog.bottomView = textViewM;
-            alertDialog.message = spannableStringBuilder;
-            builder.setPositiveButton(LocaleController.getString("Close", R.string.Close), new ShareAlert$$ExternalSyntheticLambda15(24));
+            builder.addBottomView(textViewM);
+            builder.setMessage(spannableStringBuilder);
+            builder.setPositiveButton(LocaleController.getString("Close", R.string.Close), new LivePlayer$$ExternalSyntheticLambda1(3));
             applyDialogStyle(builder.show(), true);
             return;
         }
-        alertDialog.message = spannableStringBuilder;
+        builder.setMessage(spannableStringBuilder);
         if (tL_payments_giveawayInfoResults.winner) {
             string = LocaleController.getString(R.string.BoostingGiveawayYouWon);
             if ((tL_payments_giveawayInfoResults.flags & 16) == 0) {
-                builder.setPositiveButton(LocaleController.getString("BoostingGiveawayViewPrize", R.string.BoostingGiveawayViewPrize), new ProfileGooeyView$$ExternalSyntheticLambda0(tL_payments_giveawayInfoResults, 18));
+                builder.setPositiveButton(LocaleController.getString("BoostingGiveawayViewPrize", R.string.BoostingGiveawayViewPrize), new GiftSheet$$ExternalSyntheticLambda6(tL_payments_giveawayInfoResults, 4));
             }
-            builder.setNegativeButton(LocaleController.getString("Close", R.string.Close), new ShareAlert$$ExternalSyntheticLambda15(24));
+            builder.setNegativeButton(LocaleController.getString("Close", R.string.Close), new LivePlayer$$ExternalSyntheticLambda1(3));
         } else {
             string = LocaleController.getString("BoostingGiveawayYouNotWon", R.string.BoostingGiveawayYouNotWon);
-            builder.setPositiveButton(LocaleController.getString("Close", R.string.Close), new ShareAlert$$ExternalSyntheticLambda15(24));
+            builder.setPositiveButton(LocaleController.getString("Close", R.string.Close), new LivePlayer$$ExternalSyntheticLambda1(3));
         }
-        EffectsTextView effectsTextView = new EffectsTextView(activity);
+        EffectsTextView effectsTextView = new EffectsTextView(context);
         NotificationCenter.listenEmojiLoading(effectsTextView);
         effectsTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
         effectsTextView.setTextSize(1, 14.0f);
@@ -298,7 +291,7 @@ public abstract class BoostDialogs {
         effectsTextView.setText(string);
         effectsTextView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_profile_actionPressedBackground, resourcesProvider)));
         effectsTextView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(9.0f));
-        alertDialog.aboveMessageView = effectsTextView;
+        builder.aboveMessageView(effectsTextView);
         applyDialogStyle(builder.show(), false);
     }
 
@@ -306,7 +299,7 @@ public abstract class BoostDialogs {
         if (baseFragment == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new QrActivity$$ExternalSyntheticLambda15(BulletinFactory.of(baseFragment), z, chat, baseFragment.getResourceProvider(), 14), 300L);
+        AndroidUtilities.runOnUIThread(new Theme$$ExternalSyntheticLambda14(BulletinFactory.of(baseFragment), z, chat, baseFragment.getResourceProvider(), 4), 300L);
     }
 
     public static void showFloodWait(int i) {
@@ -328,11 +321,9 @@ public abstract class BoostDialogs {
             }
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), 0, lastFragment.getResourceProvider());
-        String string = LocaleController.getString(R.string.CantBoostTooOften);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = AndroidUtilities.replaceTags(LocaleController.formatString("CantBoostTooOftenDescription", R.string.CantBoostTooOftenDescription, pluralString));
-        builder.setPositiveButton(LocaleController.getString(R.string.OK), new ShareAlert$$ExternalSyntheticLambda15(25));
+        builder.setTitle(LocaleController.getString(R.string.CantBoostTooOften));
+        SendMessagesHelper$$ExternalSyntheticOutline0.m("CantBoostTooOftenDescription", R.string.CantBoostTooOftenDescription, new Object[]{pluralString}, builder);
+        builder.setPositiveButton(LocaleController.getString(R.string.OK), new LivePlayer$$ExternalSyntheticLambda1(2));
         builder.show();
     }
 
@@ -345,23 +336,20 @@ public abstract class BoostDialogs {
         } else {
             spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiftLinkForwardedTo", R.string.BoostingGiftLinkForwardedTo, UserObject.getFirstName(MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j)))));
         }
-        AndroidUtilities.runOnUIThread(new PasscodeView$9$$ExternalSyntheticLambda0(spannableStringBuilderReplaceTags, 19), 450L);
+        AndroidUtilities.runOnUIThread(new ChatbotSheet$$ExternalSyntheticLambda0(spannableStringBuilderReplaceTags, 27), 450L);
     }
 
     public static void showMoreBoostsNeeded(long j, LimitReachedBottomSheet limitReachedBottomSheet) {
-        int i = 0;
         TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j));
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         if (lastFragment == null) {
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), 0, lastFragment.getResourceProvider());
-        String string = LocaleController.getString(R.string.BoostingMoreBoostsNeeded);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGetMoreBoostByGiftingCount", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, chat.title));
-        builder.setNegativeButton(LocaleController.getString("GiftPremium", R.string.GiftPremium), new BoostDialogs$$ExternalSyntheticLambda10(limitReachedBottomSheet, i));
-        builder.setPositiveButton(LocaleController.getString("Close", R.string.Close), new ShareAlert$$ExternalSyntheticLambda15(24));
+        builder.setTitle(LocaleController.getString(R.string.BoostingMoreBoostsNeeded));
+        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGetMoreBoostByGiftingCount", (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift, chat.title)));
+        builder.setNegativeButton(LocaleController.getString("GiftPremium", R.string.GiftPremium), new GiftSheet$$ExternalSyntheticLambda6(limitReachedBottomSheet, 6));
+        builder.setPositiveButton(LocaleController.getString("Close", R.string.Close), new LivePlayer$$ExternalSyntheticLambda1(3));
         builder.show();
     }
 

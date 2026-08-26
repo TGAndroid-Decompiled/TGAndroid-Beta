@@ -59,8 +59,7 @@ public final class ResaleGiftsFragment$$ExternalSyntheticLambda14 implements Uti
                         if (!TextUtils.isEmpty(lowerCase)) {
                             z = (zIsEmpty || zContains) ? false : true;
                         }
-                        uItemOfFactory.setChecked(z);
-                        arrayList3.add(uItemOfFactory);
+                        arrayList3.add(uItemOfFactory.setChecked(z));
                     }
                     cls = cls;
                 }
@@ -99,8 +98,7 @@ public final class ResaleGiftsFragment$$ExternalSyntheticLambda14 implements Uti
                         if (!TextUtils.isEmpty(lowerCase2)) {
                             z2 = (zIsEmpty2 || zContains2) ? false : true;
                         }
-                        uItemOfFactory3.setChecked(z2);
-                        arrayList4.add(uItemOfFactory3);
+                        arrayList4.add(uItemOfFactory3.setChecked(z2));
                     }
                 }
                 if (arrayList4.isEmpty()) {
@@ -140,12 +138,12 @@ public final class ResaleGiftsFragment$$ExternalSyntheticLambda14 implements Uti
                         if (!TextUtils.isEmpty(str)) {
                             z3 = (zIsEmpty3 || zContains3) ? false : true;
                         }
-                        uItemOfFactory5.setChecked(z3);
+                        UItem checked = uItemOfFactory5.setChecked(z3);
                         arrayList = arrayList6;
-                        arrayList.add(uItemOfFactory5);
+                        arrayList.add(checked);
                     } else {
-                        arrayList = arrayList6;
                         str = lowerCase3;
+                        arrayList = arrayList6;
                     }
                     arrayList5 = arrayList;
                     lowerCase3 = str;

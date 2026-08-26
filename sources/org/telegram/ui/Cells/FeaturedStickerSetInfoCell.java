@@ -15,8 +15,8 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzlj;
-import java.util.ArrayList;
+import com.google.android.gms.internal.mlkit_vision_common.zzkr;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -61,7 +61,7 @@ public final class FeaturedStickerSetInfoCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         TextView textView = new TextView(context);
         this.nameTextView = textView;
-        zzlj.m(Theme.key_chat_emojiPanelTrendingTitle, resourcesProvider, textView, 17.0f);
+        zzkr.m(Theme.key_chat_emojiPanelTrendingTitle, resourcesProvider, textView, 17.0f);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
         textView.setSingleLine(true);
@@ -81,7 +81,7 @@ public final class FeaturedStickerSetInfoCell extends FrameLayout {
             TextView textView3 = new TextView(context);
             this.delButton = textView3;
             textView3.setGravity(17);
-            zzlj.m(Theme.key_featuredStickers_removeButtonText, resourcesProvider, textView3, 14.0f);
+            zzkr.m(Theme.key_featuredStickers_removeButtonText, resourcesProvider, textView3, 14.0f);
             textView3.setText(LocaleController.getString(R.string.StickersRemove));
             addView(textView3, z ? LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 16.0f, 14.0f, 0.0f) : LayoutHelper.createFrame(-2, 28.0f, 53, 0.0f, 16.0f, 14.0f, 0.0f));
         }
@@ -89,19 +89,19 @@ public final class FeaturedStickerSetInfoCell extends FrameLayout {
         updateColors();
     }
 
-    public static void createThemeDescriptions(ArrayList arrayList, RecyclerListView recyclerListView, ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate) {
-        arrayList.add(new ThemeDescription(recyclerListView, 4, new Class[]{FeaturedStickerSetInfoCell.class}, new String[]{"nameTextView"}, null, null, -1, null, Theme.key_chat_emojiPanelTrendingTitle));
+    public static void createThemeDescriptions(List list, RecyclerListView recyclerListView, ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate) {
+        list.add(new ThemeDescription(recyclerListView, 4, new Class[]{FeaturedStickerSetInfoCell.class}, new String[]{"nameTextView"}, null, null, -1, null, Theme.key_chat_emojiPanelTrendingTitle));
         int i = Theme.key_chat_emojiPanelTrendingDescription;
-        arrayList.add(new ThemeDescription(recyclerListView, 4, new Class[]{FeaturedStickerSetInfoCell.class}, new String[]{"infoTextView"}, null, null, -1, null, i));
-        arrayList.add(new ThemeDescription(recyclerListView, 4, new Class[]{FeaturedStickerSetInfoCell.class}, new String[]{"addButton"}, null, null, -1, null, Theme.key_featuredStickers_buttonText));
-        arrayList.add(new ThemeDescription(recyclerListView, 4, new Class[]{FeaturedStickerSetInfoCell.class}, new String[]{"delButton"}, null, null, -1, null, Theme.key_featuredStickers_removeButtonText));
-        arrayList.add(new ThemeDescription(recyclerListView, 0, new Class[]{FeaturedStickerSetInfoCell.class}, null, null, null, Theme.key_featuredStickers_unread));
-        arrayList.add(new ThemeDescription(recyclerListView, 0, new Class[]{FeaturedStickerSetInfoCell.class}, Theme.dividerPaint, null, null, Theme.key_divider));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_buttonProgress));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_addButton));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_addButtonPressed));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteBlueText4));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i));
+        list.add(new ThemeDescription(recyclerListView, 4, new Class[]{FeaturedStickerSetInfoCell.class}, new String[]{"infoTextView"}, null, null, -1, null, i));
+        list.add(new ThemeDescription(recyclerListView, 4, new Class[]{FeaturedStickerSetInfoCell.class}, new String[]{"addButton"}, null, null, -1, null, Theme.key_featuredStickers_buttonText));
+        list.add(new ThemeDescription(recyclerListView, 4, new Class[]{FeaturedStickerSetInfoCell.class}, new String[]{"delButton"}, null, null, -1, null, Theme.key_featuredStickers_removeButtonText));
+        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{FeaturedStickerSetInfoCell.class}, null, null, null, Theme.key_featuredStickers_unread));
+        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{FeaturedStickerSetInfoCell.class}, Theme.dividerPaint, null, null, Theme.key_divider));
+        list.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_buttonProgress));
+        list.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_addButton));
+        list.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_addButtonPressed));
+        list.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteBlueText4));
+        list.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i));
     }
 
     public TLRPC.StickerSetCovered getStickerSet() {
@@ -294,9 +294,7 @@ public final class FeaturedStickerSetInfoCell extends FrameLayout {
             int color = Theme.getColor(i, resourcesProvider);
             ProgressButton progressButton = this.addButton;
             progressButton.setProgressColor(color);
-            int color2 = Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider);
-            Theme.getColor(Theme.key_featuredStickers_addButtonPressed, resourcesProvider);
-            progressButton.setBackgroundRoundRect(14.0f, color2);
+            progressButton.setBackgroundRoundRect(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButtonPressed, resourcesProvider));
         }
         updateStickerSetNameSearchSpan();
         updateUrlSearchSpan();

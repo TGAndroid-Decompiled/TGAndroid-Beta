@@ -11,8 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzks;
-import com.stripe.android.Stripe;
+import com.google.android.gms.internal.mlkit_vision_common.zzkh;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController$$ExternalSyntheticLambda37;
@@ -31,14 +30,10 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda8;
-import org.telegram.ui.CallLogActivity;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
+import org.telegram.ui.Cells.ChatActionCell$$ExternalSyntheticLambda8;
 import org.telegram.ui.Cells.CheckBoxCell;
 import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Cells.TextCheckCell2;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda380;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
@@ -47,8 +42,12 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.iv.RichEditText$$ExternalSyntheticLambda4;
+import org.telegram.ui.iv.RichEditor;
+import org.telegram.ui.web.HistoryFragment;
+import org.telegram.ui.web.WebActionBar;
 
 public final class ChatbotsActivity extends BaseFragment {
     public TL_account.TL_connectedBot currentBot;
@@ -58,7 +57,7 @@ public final class ChatbotsActivity extends BaseFragment {
     public EditTextBoldCursor editText;
     public FrameLayout editTextContainer;
     public View editTextDivider;
-    public PhotoViewer.AnonymousClass19 emptyView;
+    public ActionBar.AnonymousClass8 emptyView;
     public ImageView emptyViewLoading;
     public TextView emptyViewText;
     public boolean exclude;
@@ -131,13 +130,7 @@ public final class ChatbotsActivity extends BaseFragment {
         final int i2 = 1;
         final int i3 = 0;
         if (!this.shownUsernamePermissionsAlert && i == -14 && z) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, getResourceProvider());
-            String string = LocaleController.getString(R.string.BusinessBotPermissionsWarning);
-            AlertDialog alertDialog = builder.alertDialog;
-            alertDialog.title = string;
-            alertDialog.message = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsUsernamesWarningText, UserObject.getPublicUsername(this.selectedBot)));
-            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-            builder.setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener(this) {
+            new AlertDialog.Builder(getContext(), 0, getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessBotPermissionsWarning)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsUsernamesWarningText, UserObject.getPublicUsername(this.selectedBot)))).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener(this) {
                 public final ChatbotsActivity f$0;
 
                 {
@@ -145,7 +138,7 @@ public final class ChatbotsActivity extends BaseFragment {
                 }
 
                 @Override
-                public final void onClick(AlertDialog alertDialog2, int i4) {
+                public final void onClick(AlertDialog alertDialog, int i4) {
                     switch (i3) {
                         case 0:
                             this.f$0.shownUsernamePermissionsAlert = true;
@@ -157,47 +150,37 @@ public final class ChatbotsActivity extends BaseFragment {
                             break;
                     }
                 }
-            });
-            builder.makeRed(-1);
-            builder.show();
+            }).makeRed(-1).show();
             return;
         }
-        if (this.shownGiftsPermissionsAlert || !z || (i != -17 && i != -18 && i != -19 && i != -20)) {
-            runnable.run();
-            return;
-        }
-        AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity(), 0, getResourceProvider());
-        String string2 = LocaleController.getString(R.string.BusinessBotPermissionsWarning);
-        AlertDialog alertDialog2 = builder2.alertDialog;
-        alertDialog2.title = string2;
-        alertDialog2.message = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsGiftsWarningText, UserObject.getPublicUsername(this.selectedBot)));
-        builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        builder2.setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener(this) {
-            public final ChatbotsActivity f$0;
+        if (!this.shownGiftsPermissionsAlert && z && (i == -17 || i == -18 || i == -19 || i == -20)) {
+            new AlertDialog.Builder(getContext(), 0, getResourceProvider()).setTitle(LocaleController.getString(R.string.BusinessBotPermissionsWarning)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessBotPermissionsGiftsWarningText, UserObject.getPublicUsername(this.selectedBot)))).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setPositiveButton(LocaleController.getString(R.string.Allow), new AlertDialog.OnButtonClickListener(this) {
+                public final ChatbotsActivity f$0;
 
-            {
-                this.f$0 = this;
-            }
-
-            @Override
-            public final void onClick(AlertDialog alertDialog3, int i4) {
-                switch (i2) {
-                    case 0:
-                        this.f$0.shownUsernamePermissionsAlert = true;
-                        runnable.run();
-                        break;
-                    default:
-                        this.f$0.shownGiftsPermissionsAlert = true;
-                        runnable.run();
-                        break;
+                {
+                    this.f$0 = this;
                 }
-            }
-        });
-        builder2.makeRed(-1);
-        builder2.show();
+
+                @Override
+                public final void onClick(AlertDialog alertDialog, int i4) {
+                    switch (i2) {
+                        case 0:
+                            this.f$0.shownUsernamePermissionsAlert = true;
+                            runnable.run();
+                            break;
+                        default:
+                            this.f$0.shownGiftsPermissionsAlert = true;
+                            runnable.run();
+                            break;
+                    }
+                }
+            }).makeRed(-1).show();
+        } else {
+            runnable.run();
+        }
     }
 
-    public final void checkDone$6(boolean z) {
+    public final void checkDone$5(boolean z) {
         if (this.doneButton == null) {
             return;
         }
@@ -217,24 +200,23 @@ public final class ChatbotsActivity extends BaseFragment {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.BusinessBots2));
-        this.actionBar.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 7));
+        this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 3));
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
         int i = Theme.key_actionBarDefaultIcon;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), PorterDuff.Mode.MULTIPLY));
         this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(null, i, false)));
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.doneButtonDrawable);
-        checkDone$6(false);
+        checkDone$5(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        int i2 = Theme.key_windowBackgroundGray;
-        frameLayout.setBackgroundColor(Theme.getColor(null, i2, false));
-        new LinearLayout(getParentActivity()).setOrientation(0);
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getParentActivity());
+        frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
+        new LinearLayout(getContext()).setOrientation(0);
+        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
         this.editText = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 17.0f);
         this.editText.setHintTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteHintText, false));
         EditTextBoldCursor editTextBoldCursor2 = this.editText;
-        int i3 = Theme.key_windowBackgroundWhiteBlackText;
-        editTextBoldCursor2.setTextColor(Theme.getColor(null, i3, false));
+        int i2 = Theme.key_windowBackgroundWhiteBlackText;
+        editTextBoldCursor2.setTextColor(Theme.getColor(null, i2, false));
         this.editText.setBackgroundDrawable(null);
         this.editText.setMaxLines(1);
         this.editText.setLines(1);
@@ -244,17 +226,17 @@ public final class ChatbotsActivity extends BaseFragment {
         this.editText.setInputType(180224);
         this.editText.setImeOptions(6);
         this.editText.setHint(LocaleController.getString(R.string.BusinessBotLink));
-        this.editText.setCursorColor(Theme.getColor(null, i3, false));
+        this.editText.setCursorColor(Theme.getColor(null, i2, false));
         this.editText.setCursorSize(AndroidUtilities.dp(19.0f));
         this.editText.setCursorWidth(1.5f);
-        this.editText.setOnEditorActionListener(new ChatActivity$$ExternalSyntheticLambda380(this, 1));
-        this.editText.addTextChangedListener(new ArticleViewer.AnonymousClass16(this, 2));
+        this.editText.setOnEditorActionListener(new RichEditText$$ExternalSyntheticLambda4(this, 1));
+        this.editText.addTextChangedListener(new WebActionBar.AnonymousClass5(this, 2));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.editTextContainer = frameLayout2;
         frameLayout2.addView(this.editText, LayoutHelper.createFrame(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.editTextContainer;
-        int i4 = Theme.key_windowBackgroundWhite;
-        frameLayout3.setBackgroundColor(getThemedColor(i4));
+        int i3 = Theme.key_windowBackgroundWhite;
+        frameLayout3.setBackgroundColor(getThemedColor(i3));
         View view = new View(context);
         this.editTextDivider = view;
         view.setBackgroundColor(getThemedColor(Theme.key_divider));
@@ -263,19 +245,19 @@ public final class ChatbotsActivity extends BaseFragment {
         float f = 1.0f / AndroidUtilities.density;
         boolean z = LocaleController.isRTL;
         frameLayout4.addView(view2, LayoutHelper.createFrame(-1, f, 87, z ? 0 : 21, 0.0f, z ? 21 : 0, 0.0f));
-        PhotoViewer.AnonymousClass19 anonymousClass19 = new PhotoViewer.AnonymousClass19(context, 5);
-        this.emptyView = anonymousClass19;
-        anonymousClass19.setBackgroundColor(getThemedColor(i4));
+        ActionBar.AnonymousClass8 anonymousClass8 = new ActionBar.AnonymousClass8(context, 2);
+        this.emptyView = anonymousClass8;
+        anonymousClass8.setBackgroundColor(getThemedColor(i3));
         TextView textView = new TextView(context);
         this.emptyViewText = textView;
         textView.setText(LocaleController.getString(R.string.BusinessBotNotFound));
         this.emptyViewText.setTextSize(1, 14.0f);
         TextView textView2 = this.emptyViewText;
-        int i5 = Theme.key_windowBackgroundWhiteGrayText2;
-        textView2.setTextColor(getThemedColor(i5));
+        int i4 = Theme.key_windowBackgroundWhiteGrayText2;
+        textView2.setTextColor(getThemedColor(i4));
         this.emptyView.addView(this.emptyViewText, LayoutHelper.createFrame(-2, -2, 17));
         this.emptyViewLoading = new ImageView(context);
-        AnonymousClass4 anonymousClass4 = new AnonymousClass4(getThemedColor(i5));
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(getThemedColor(i4));
         this.emptyViewLoading.setScaleType(ImageView.ScaleType.CENTER);
         this.emptyViewLoading.setImageDrawable(anonymousClass4);
         this.emptyView.addView(this.emptyViewLoading, LayoutHelper.createFrame(-2, -2, 17));
@@ -283,21 +265,17 @@ public final class ChatbotsActivity extends BaseFragment {
         this.emptyViewLoading.setTranslationY(AndroidUtilities.dp(8.0f));
         SearchAdapterHelper searchAdapterHelper = new SearchAdapterHelper(true);
         this.searchHelper = searchAdapterHelper;
-        searchAdapterHelper.delegate = new Stripe.AnonymousClass1(this, 19);
+        searchAdapterHelper.setDelegate(new RichEditor.AnonymousClass3(this));
         BusinessRecipientsHelper businessRecipientsHelper = new BusinessRecipientsHelper(this, new ChatbotsActivity$$ExternalSyntheticLambda5(this, 0));
         this.recipientsHelper = businessRecipientsHelper;
         TL_account.TL_connectedBot tL_connectedBot = this.currentBot;
-        businessRecipientsHelper.setValue(tL_connectedBot != null ? tL_connectedBot.recipients : null);
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new CallLogActivity$$ExternalSyntheticLambda3(this, 6), new ChatbotsActivity$$ExternalSyntheticLambda0(this, 3), null, getResourceProvider());
+        businessRecipientsHelper.setValue(tL_connectedBot == null ? null : tL_connectedBot.recipients);
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new GiftSheet$$ExternalSyntheticLambda8(this, 5), new ChatbotsActivity$$ExternalSyntheticLambda1(this, 3), null);
         this.listView = universalRecyclerView;
         universalRecyclerView.setSections();
-        UniversalRecyclerView universalRecyclerView2 = this.listView;
-        universalRecyclerView2.adapter.applyBackground = false;
-        frameLayout.addView(universalRecyclerView2, LayoutHelper.createFrame(-1.0f, -1));
-        ActionBar actionBar = this.actionBar;
-        UniversalRecyclerView universalRecyclerView3 = this.listView;
-        actionBar.getClass();
-        actionBar.setAdaptiveBackground(universalRecyclerView3, true, i2, Theme.key_actionBarDefault);
+        this.listView.adapter.setApplyBackground(false);
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.actionBar.setAdaptiveBackground(this.listView, true);
         this.fragmentView = frameLayout;
         return frameLayout;
     }
@@ -335,11 +313,11 @@ public final class ChatbotsActivity extends BaseFragment {
         }
         if (tLObject instanceof TLRPC.TL_boolFalse) {
             this.doneButtonDrawable.animateToProgress(0.0f);
-            UserNameResolver$$ExternalSyntheticOutline0.m(R.string.UnknownError, BulletinFactory.of(this), null);
+            UserNameResolver$$ExternalSyntheticOutline0.m(BulletinFactory.of(this), R.string.UnknownError);
             return;
         }
         if (tLObject instanceof TLRPC.Updates) {
-            Utilities.stageQueue.postRunnable(new ArticleViewer$$ExternalSyntheticLambda8(13, this, tLObject));
+            Utilities.stageQueue.postRunnable(new ChatActionCell$$ExternalSyntheticLambda8(8, this, tLObject));
         }
         int i = iArr[0] + 1;
         iArr[0] = i;
@@ -353,12 +331,12 @@ public final class ChatbotsActivity extends BaseFragment {
                 if (user == null || (safeLastFragment = LaunchActivity.getSafeLastFragment()) == null) {
                     return;
                 }
-                zzks.m(R.string.BusinessBotUpdated, new Object[]{UserObject.getUserName(user)}, BulletinFactory.of(safeLastFragment), R.raw.contact_check);
+                zzkh.m(R.string.BusinessBotUpdated, new Object[]{UserObject.getUserName(user)}, BulletinFactory.of(safeLastFragment), R.raw.contact_check);
                 return;
             }
             BaseFragment safeLastFragment2 = LaunchActivity.getSafeLastFragment();
             if (safeLastFragment2 != null) {
-                zzks.m(R.string.BusinessBotDone, new Object[]{UserObject.getUserName(user)}, BulletinFactory.of(safeLastFragment2), R.raw.contact_check);
+                zzkh.m(R.string.BusinessBotDone, new Object[]{UserObject.getUserName(user)}, BulletinFactory.of(safeLastFragment2), R.raw.contact_check);
             }
         }
     }
@@ -368,34 +346,30 @@ public final class ChatbotsActivity extends BaseFragment {
         if (hasChanges()) {
             if (z) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, null);
-                String string = LocaleController.getString(R.string.UnsavedChanges);
-                AlertDialog alertDialog = builder.alertDialog;
-                alertDialog.title = string;
-                alertDialog.message = LocaleController.getString(R.string.BusinessBotUnsavedChanges);
-                builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new ChatbotsActivity$$ExternalSyntheticLambda0(this, 0));
-                builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new ChatbotsActivity$$ExternalSyntheticLambda0(this, 1));
-                showDialog(alertDialog);
+                builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
+                builder.setMessage(LocaleController.getString(R.string.BusinessBotUnsavedChanges));
+                builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new ChatbotsActivity$$ExternalSyntheticLambda1(this, 0));
+                builder.setNegativeButton(LocaleController.getString(R.string.PassportDiscard), new ChatbotsActivity$$ExternalSyntheticLambda1(this, 1));
+                showDialog(builder.create());
                 return false;
             }
         } else {
-            if (this.selectedBot != null || hasChanges() || (this.searchHelper.localServerSearch.isEmpty() && this.searchHelper.globalSearch.isEmpty())) {
+            if (this.selectedBot != null || hasChanges() || (this.searchHelper.getLocalServerSearch().isEmpty() && this.searchHelper.getGlobalSearch().isEmpty())) {
                 return super.onBackPressed(z);
             }
             if (z) {
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(getParentActivity(), 0, null);
-                String string2 = LocaleController.getString(R.string.BusinessBotNoAddedTitle);
-                AlertDialog alertDialog2 = builder2.alertDialog;
-                alertDialog2.title = string2;
-                alertDialog2.message = LocaleController.getString(R.string.BusinessBotNoAddedText);
-                builder2.setPositiveButton(LocaleController.getString(R.string.BusinessBotNoAddedButton), new ChatbotsActivity$$ExternalSyntheticLambda0(this, 2));
+                builder2.setTitle(LocaleController.getString(R.string.BusinessBotNoAddedTitle));
+                builder2.setMessage(LocaleController.getString(R.string.BusinessBotNoAddedText));
+                builder2.setPositiveButton(LocaleController.getString(R.string.BusinessBotNoAddedButton), new ChatbotsActivity$$ExternalSyntheticLambda1(this, 2));
                 builder2.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                showDialog(alertDialog2);
+                showDialog(builder2.create());
             }
         }
         return false;
     }
 
-    public final void onClick$16(UItem uItem, final View view) {
+    public final void onClick$11(UItem uItem, final View view) {
         if (uItem.enabled && !this.recipientsHelper.onClick(uItem)) {
             int i = uItem.id;
             if (i == -1) {
@@ -403,7 +377,7 @@ public final class ChatbotsActivity extends BaseFragment {
                 this.exclude = true;
                 businessRecipientsHelper.exclude = true;
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -2) {
@@ -411,13 +385,13 @@ public final class ChatbotsActivity extends BaseFragment {
                 this.exclude = false;
                 businessRecipientsHelper2.exclude = false;
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -3) {
                 this.selectedBot = null;
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (uItem.viewType == 13) {
@@ -425,20 +399,14 @@ public final class ChatbotsActivity extends BaseFragment {
                 if (user == null) {
                     return;
                 }
-                if (user.bot_business) {
-                    this.selectedBot = user;
-                    AndroidUtilities.hideKeyboard(this.editText);
-                    this.listView.adapter.update(true);
-                    checkDone$6(true);
+                if (!user.bot_business) {
+                    showDialog(new AlertDialog.Builder(getContext(), 0, this.resourceProvider).setTitle(LocaleController.getString(R.string.BusinessBotNotSupportedTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage))).setPositiveButton(LocaleController.getString(R.string.OK), null).create());
                     return;
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, this.resourceProvider);
-                String string = LocaleController.getString(R.string.BusinessBotNotSupportedTitle);
-                AlertDialog alertDialog = builder.alertDialog;
-                alertDialog.title = string;
-                alertDialog.message = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessBotNotSupportedMessage));
-                builder.setPositiveButton(LocaleController.getString(R.string.OK), null);
-                showDialog(alertDialog);
+                this.selectedBot = user;
+                AndroidUtilities.hideKeyboard(this.editText);
+                this.listView.adapter.update(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -4) {
@@ -460,7 +428,7 @@ public final class ChatbotsActivity extends BaseFragment {
                 tL_businessBotRights.reply = z2;
                 ((CheckBoxCell) view).setChecked(z2, true);
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -7) {
@@ -469,7 +437,7 @@ public final class ChatbotsActivity extends BaseFragment {
                 tL_businessBotRights2.read_messages = z3;
                 ((CheckBoxCell) view).setChecked(z3, true);
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -8) {
@@ -478,7 +446,7 @@ public final class ChatbotsActivity extends BaseFragment {
                 tL_businessBotRights3.delete_sent_messages = z4;
                 ((CheckBoxCell) view).setChecked(z4, true);
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -9) {
@@ -487,7 +455,7 @@ public final class ChatbotsActivity extends BaseFragment {
                 tL_businessBotRights4.delete_received_messages = z5;
                 ((CheckBoxCell) view).setChecked(z5, true);
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -10) {
@@ -503,7 +471,7 @@ public final class ChatbotsActivity extends BaseFragment {
                 tL_businessBotRights5.edit_name = z7;
                 ((CheckBoxCell) view).setChecked(z7, true);
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -12) {
@@ -512,7 +480,7 @@ public final class ChatbotsActivity extends BaseFragment {
                 tL_businessBotRights6.edit_bio = z8;
                 ((CheckBoxCell) view).setChecked(z8, true);
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -13) {
@@ -521,7 +489,7 @@ public final class ChatbotsActivity extends BaseFragment {
                 tL_businessBotRights7.edit_profile_photo = z9;
                 ((CheckBoxCell) view).setChecked(z9, true);
                 this.listView.adapter.update(true);
-                checkDone$6(true);
+                checkDone$5(true);
                 return;
             }
             if (i == -14) {
@@ -545,7 +513,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights8.edit_username = z10;
                                 checkBoxCell.setChecked(z10, true);
                                 chatbotsActivity.listView.adapter.update(true);
-                                chatbotsActivity.checkDone$6(true);
+                                chatbotsActivity.checkDone$5(true);
                                 break;
                             case 1:
                                 ChatbotsActivity chatbotsActivity2 = this.f$0;
@@ -556,7 +524,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights9.view_gifts = z11;
                                 checkBoxCell2.setChecked(z11, true);
                                 chatbotsActivity2.listView.adapter.update(true);
-                                chatbotsActivity2.checkDone$6(true);
+                                chatbotsActivity2.checkDone$5(true);
                                 break;
                             case 2:
                                 ChatbotsActivity chatbotsActivity3 = this.f$0;
@@ -567,7 +535,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights10.sell_gifts = z12;
                                 checkBoxCell3.setChecked(z12, true);
                                 chatbotsActivity3.listView.adapter.update(true);
-                                chatbotsActivity3.checkDone$6(true);
+                                chatbotsActivity3.checkDone$5(true);
                                 break;
                             case 3:
                                 ChatbotsActivity chatbotsActivity4 = this.f$0;
@@ -578,7 +546,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights11.change_gift_settings = z13;
                                 checkBoxCell4.setChecked(z13, true);
                                 chatbotsActivity4.listView.adapter.update(true);
-                                chatbotsActivity4.checkDone$6(true);
+                                chatbotsActivity4.checkDone$5(true);
                                 break;
                             case 4:
                                 ChatbotsActivity chatbotsActivity5 = this.f$0;
@@ -589,7 +557,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights12.transfer_and_upgrade_gifts = z14;
                                 checkBoxCell5.setChecked(z14, true);
                                 chatbotsActivity5.listView.adapter.update(true);
-                                chatbotsActivity5.checkDone$6(true);
+                                chatbotsActivity5.checkDone$5(true);
                                 break;
                             default:
                                 ChatbotsActivity chatbotsActivity6 = this.f$0;
@@ -600,7 +568,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights13.transfer_stars = z15;
                                 checkBoxCell6.setChecked(z15, true);
                                 chatbotsActivity6.listView.adapter.update(true);
-                                chatbotsActivity6.checkDone$6(true);
+                                chatbotsActivity6.checkDone$5(true);
                                 break;
                         }
                     }
@@ -635,7 +603,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights8.edit_username = z11;
                                 checkBoxCell.setChecked(z11, true);
                                 chatbotsActivity.listView.adapter.update(true);
-                                chatbotsActivity.checkDone$6(true);
+                                chatbotsActivity.checkDone$5(true);
                                 break;
                             case 1:
                                 ChatbotsActivity chatbotsActivity2 = this.f$0;
@@ -646,7 +614,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights9.view_gifts = z12;
                                 checkBoxCell2.setChecked(z12, true);
                                 chatbotsActivity2.listView.adapter.update(true);
-                                chatbotsActivity2.checkDone$6(true);
+                                chatbotsActivity2.checkDone$5(true);
                                 break;
                             case 2:
                                 ChatbotsActivity chatbotsActivity3 = this.f$0;
@@ -657,7 +625,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights10.sell_gifts = z13;
                                 checkBoxCell3.setChecked(z13, true);
                                 chatbotsActivity3.listView.adapter.update(true);
-                                chatbotsActivity3.checkDone$6(true);
+                                chatbotsActivity3.checkDone$5(true);
                                 break;
                             case 3:
                                 ChatbotsActivity chatbotsActivity4 = this.f$0;
@@ -668,7 +636,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights11.change_gift_settings = z14;
                                 checkBoxCell4.setChecked(z14, true);
                                 chatbotsActivity4.listView.adapter.update(true);
-                                chatbotsActivity4.checkDone$6(true);
+                                chatbotsActivity4.checkDone$5(true);
                                 break;
                             case 4:
                                 ChatbotsActivity chatbotsActivity5 = this.f$0;
@@ -679,7 +647,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
                                 checkBoxCell5.setChecked(z15, true);
                                 chatbotsActivity5.listView.adapter.update(true);
-                                chatbotsActivity5.checkDone$6(true);
+                                chatbotsActivity5.checkDone$5(true);
                                 break;
                             default:
                                 ChatbotsActivity chatbotsActivity6 = this.f$0;
@@ -690,7 +658,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights13.transfer_stars = z16;
                                 checkBoxCell6.setChecked(z16, true);
                                 chatbotsActivity6.listView.adapter.update(true);
-                                chatbotsActivity6.checkDone$6(true);
+                                chatbotsActivity6.checkDone$5(true);
                                 break;
                         }
                     }
@@ -718,7 +686,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights8.edit_username = z11;
                                 checkBoxCell.setChecked(z11, true);
                                 chatbotsActivity.listView.adapter.update(true);
-                                chatbotsActivity.checkDone$6(true);
+                                chatbotsActivity.checkDone$5(true);
                                 break;
                             case 1:
                                 ChatbotsActivity chatbotsActivity2 = this.f$0;
@@ -729,7 +697,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights9.view_gifts = z12;
                                 checkBoxCell2.setChecked(z12, true);
                                 chatbotsActivity2.listView.adapter.update(true);
-                                chatbotsActivity2.checkDone$6(true);
+                                chatbotsActivity2.checkDone$5(true);
                                 break;
                             case 2:
                                 ChatbotsActivity chatbotsActivity3 = this.f$0;
@@ -740,7 +708,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights10.sell_gifts = z13;
                                 checkBoxCell3.setChecked(z13, true);
                                 chatbotsActivity3.listView.adapter.update(true);
-                                chatbotsActivity3.checkDone$6(true);
+                                chatbotsActivity3.checkDone$5(true);
                                 break;
                             case 3:
                                 ChatbotsActivity chatbotsActivity4 = this.f$0;
@@ -751,7 +719,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights11.change_gift_settings = z14;
                                 checkBoxCell4.setChecked(z14, true);
                                 chatbotsActivity4.listView.adapter.update(true);
-                                chatbotsActivity4.checkDone$6(true);
+                                chatbotsActivity4.checkDone$5(true);
                                 break;
                             case 4:
                                 ChatbotsActivity chatbotsActivity5 = this.f$0;
@@ -762,7 +730,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
                                 checkBoxCell5.setChecked(z15, true);
                                 chatbotsActivity5.listView.adapter.update(true);
-                                chatbotsActivity5.checkDone$6(true);
+                                chatbotsActivity5.checkDone$5(true);
                                 break;
                             default:
                                 ChatbotsActivity chatbotsActivity6 = this.f$0;
@@ -773,7 +741,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights13.transfer_stars = z16;
                                 checkBoxCell6.setChecked(z16, true);
                                 chatbotsActivity6.listView.adapter.update(true);
-                                chatbotsActivity6.checkDone$6(true);
+                                chatbotsActivity6.checkDone$5(true);
                                 break;
                         }
                     }
@@ -801,7 +769,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights8.edit_username = z11;
                                 checkBoxCell.setChecked(z11, true);
                                 chatbotsActivity.listView.adapter.update(true);
-                                chatbotsActivity.checkDone$6(true);
+                                chatbotsActivity.checkDone$5(true);
                                 break;
                             case 1:
                                 ChatbotsActivity chatbotsActivity2 = this.f$0;
@@ -812,7 +780,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights9.view_gifts = z12;
                                 checkBoxCell2.setChecked(z12, true);
                                 chatbotsActivity2.listView.adapter.update(true);
-                                chatbotsActivity2.checkDone$6(true);
+                                chatbotsActivity2.checkDone$5(true);
                                 break;
                             case 2:
                                 ChatbotsActivity chatbotsActivity3 = this.f$0;
@@ -823,7 +791,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights10.sell_gifts = z13;
                                 checkBoxCell3.setChecked(z13, true);
                                 chatbotsActivity3.listView.adapter.update(true);
-                                chatbotsActivity3.checkDone$6(true);
+                                chatbotsActivity3.checkDone$5(true);
                                 break;
                             case 3:
                                 ChatbotsActivity chatbotsActivity4 = this.f$0;
@@ -834,7 +802,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights11.change_gift_settings = z14;
                                 checkBoxCell4.setChecked(z14, true);
                                 chatbotsActivity4.listView.adapter.update(true);
-                                chatbotsActivity4.checkDone$6(true);
+                                chatbotsActivity4.checkDone$5(true);
                                 break;
                             case 4:
                                 ChatbotsActivity chatbotsActivity5 = this.f$0;
@@ -845,7 +813,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
                                 checkBoxCell5.setChecked(z15, true);
                                 chatbotsActivity5.listView.adapter.update(true);
-                                chatbotsActivity5.checkDone$6(true);
+                                chatbotsActivity5.checkDone$5(true);
                                 break;
                             default:
                                 ChatbotsActivity chatbotsActivity6 = this.f$0;
@@ -856,7 +824,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights13.transfer_stars = z16;
                                 checkBoxCell6.setChecked(z16, true);
                                 chatbotsActivity6.listView.adapter.update(true);
-                                chatbotsActivity6.checkDone$6(true);
+                                chatbotsActivity6.checkDone$5(true);
                                 break;
                         }
                     }
@@ -884,7 +852,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights8.edit_username = z11;
                                 checkBoxCell.setChecked(z11, true);
                                 chatbotsActivity.listView.adapter.update(true);
-                                chatbotsActivity.checkDone$6(true);
+                                chatbotsActivity.checkDone$5(true);
                                 break;
                             case 1:
                                 ChatbotsActivity chatbotsActivity2 = this.f$0;
@@ -895,7 +863,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights9.view_gifts = z12;
                                 checkBoxCell2.setChecked(z12, true);
                                 chatbotsActivity2.listView.adapter.update(true);
-                                chatbotsActivity2.checkDone$6(true);
+                                chatbotsActivity2.checkDone$5(true);
                                 break;
                             case 2:
                                 ChatbotsActivity chatbotsActivity3 = this.f$0;
@@ -906,7 +874,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights10.sell_gifts = z13;
                                 checkBoxCell3.setChecked(z13, true);
                                 chatbotsActivity3.listView.adapter.update(true);
-                                chatbotsActivity3.checkDone$6(true);
+                                chatbotsActivity3.checkDone$5(true);
                                 break;
                             case 3:
                                 ChatbotsActivity chatbotsActivity4 = this.f$0;
@@ -917,7 +885,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights11.change_gift_settings = z14;
                                 checkBoxCell4.setChecked(z14, true);
                                 chatbotsActivity4.listView.adapter.update(true);
-                                chatbotsActivity4.checkDone$6(true);
+                                chatbotsActivity4.checkDone$5(true);
                                 break;
                             case 4:
                                 ChatbotsActivity chatbotsActivity5 = this.f$0;
@@ -928,7 +896,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
                                 checkBoxCell5.setChecked(z15, true);
                                 chatbotsActivity5.listView.adapter.update(true);
-                                chatbotsActivity5.checkDone$6(true);
+                                chatbotsActivity5.checkDone$5(true);
                                 break;
                             default:
                                 ChatbotsActivity chatbotsActivity6 = this.f$0;
@@ -939,7 +907,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights13.transfer_stars = z16;
                                 checkBoxCell6.setChecked(z16, true);
                                 chatbotsActivity6.listView.adapter.update(true);
-                                chatbotsActivity6.checkDone$6(true);
+                                chatbotsActivity6.checkDone$5(true);
                                 break;
                         }
                     }
@@ -965,7 +933,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights8.edit_username = z11;
                                 checkBoxCell.setChecked(z11, true);
                                 chatbotsActivity.listView.adapter.update(true);
-                                chatbotsActivity.checkDone$6(true);
+                                chatbotsActivity.checkDone$5(true);
                                 break;
                             case 1:
                                 ChatbotsActivity chatbotsActivity2 = this.f$0;
@@ -976,7 +944,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights9.view_gifts = z12;
                                 checkBoxCell2.setChecked(z12, true);
                                 chatbotsActivity2.listView.adapter.update(true);
-                                chatbotsActivity2.checkDone$6(true);
+                                chatbotsActivity2.checkDone$5(true);
                                 break;
                             case 2:
                                 ChatbotsActivity chatbotsActivity3 = this.f$0;
@@ -987,7 +955,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights10.sell_gifts = z13;
                                 checkBoxCell3.setChecked(z13, true);
                                 chatbotsActivity3.listView.adapter.update(true);
-                                chatbotsActivity3.checkDone$6(true);
+                                chatbotsActivity3.checkDone$5(true);
                                 break;
                             case 3:
                                 ChatbotsActivity chatbotsActivity4 = this.f$0;
@@ -998,7 +966,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights11.change_gift_settings = z14;
                                 checkBoxCell4.setChecked(z14, true);
                                 chatbotsActivity4.listView.adapter.update(true);
-                                chatbotsActivity4.checkDone$6(true);
+                                chatbotsActivity4.checkDone$5(true);
                                 break;
                             case 4:
                                 ChatbotsActivity chatbotsActivity5 = this.f$0;
@@ -1009,7 +977,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights12.transfer_and_upgrade_gifts = z15;
                                 checkBoxCell5.setChecked(z15, true);
                                 chatbotsActivity5.listView.adapter.update(true);
-                                chatbotsActivity5.checkDone$6(true);
+                                chatbotsActivity5.checkDone$5(true);
                                 break;
                             default:
                                 ChatbotsActivity chatbotsActivity6 = this.f$0;
@@ -1020,7 +988,7 @@ public final class ChatbotsActivity extends BaseFragment {
                                 tL_businessBotRights13.transfer_stars = z16;
                                 checkBoxCell6.setChecked(z16, true);
                                 chatbotsActivity6.listView.adapter.update(true);
-                                chatbotsActivity6.checkDone$6(true);
+                                chatbotsActivity6.checkDone$5(true);
                                 break;
                         }
                     }
@@ -1035,7 +1003,7 @@ public final class ChatbotsActivity extends BaseFragment {
     public final boolean onFragmentCreate() {
         if (!this.loading && !this.valueSet) {
             this.loading = true;
-            BusinessChatbotController.getInstance(this.currentAccount).load(new DialogCell$$ExternalSyntheticLambda6(this, 6));
+            BusinessChatbotController.getInstance(this.currentAccount).load(new DialogCell$$ExternalSyntheticLambda6(this, 5));
         }
         return super.onFragmentCreate();
     }
@@ -1046,10 +1014,10 @@ public final class ChatbotsActivity extends BaseFragment {
         this.listView.setClipToPadding(false);
     }
 
-    public final void processDone$14() {
+    public final void processDone$8() {
         TLRPC.User user;
         TL_account.TL_connectedBot tL_connectedBot;
-        if (this.doneButtonDrawable.progress > 0.0f) {
+        if (this.doneButtonDrawable.getProgress() > 0.0f) {
             return;
         }
         if (!hasChanges()) {

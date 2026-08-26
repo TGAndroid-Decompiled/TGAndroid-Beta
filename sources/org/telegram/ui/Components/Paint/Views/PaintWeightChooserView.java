@@ -8,10 +8,9 @@ import android.graphics.RectF;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.math.MathUtils;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.DiffUtil;
-import com.android.billingclient.api.zzcv;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -26,7 +25,7 @@ public final class PaintWeightChooserView extends View {
     public final Paint colorPaint;
     public Swatch colorSwatch;
     public boolean drawCenter;
-    public final zzcv gestureDetector;
+    public final GestureDetectorCompat gestureDetector;
     public float hideProgress;
     public boolean isTouchInProgress;
     public boolean isViewHidden;
@@ -59,9 +58,9 @@ public final class PaintWeightChooserView extends View {
         this.animatedWeight = new AnimatedFloat(this);
         this.animatedMin = new AnimatedFloat(this);
         this.animatedMax = new AnimatedFloat(this);
-        this.colorSwatch = new Swatch(0.016773745f, -1);
+        this.colorSwatch = new Swatch(-1, 0.016773745f);
         this.drawCenter = true;
-        this.gestureDetector = new zzcv(context, new GestureDetector.SimpleOnGestureListener() {
+        this.gestureDetector = new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener() {
             public float startDeltaY;
             public float startWeight;
             public boolean startedY;
@@ -117,7 +116,7 @@ public final class PaintWeightChooserView extends View {
         paint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(1.0f), 637534208);
     }
 
-    public final void drawCircleWithShadow(float f, float f2, float f3, Canvas canvas, boolean z) {
+    public final void drawCircleWithShadow(Canvas canvas, float f, float f2, float f3, boolean z) {
         if (z) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((f - f3) - AndroidUtilities.dp(6.0f), (f2 - f3) - AndroidUtilities.dp(6.0f), f + f3 + AndroidUtilities.dp(6.0f), f2 + f3 + AndroidUtilities.dp(6.0f));
@@ -137,9 +136,9 @@ public final class PaintWeightChooserView extends View {
         long jMin = Math.min(16L, System.currentTimeMillis() - this.lastUpdate);
         this.lastUpdate = System.currentTimeMillis();
         ValueOverride valueOverride = this.valueOverride;
-        float f3 = this.animatedWeight.set(valueOverride != null ? valueOverride.get() : this.colorSwatch.brushWeight, false);
-        float f4 = this.animatedMin.set(this.min, false);
-        float f5 = this.animatedMax.set(this.max, false);
+        float f3 = this.animatedWeight.set(valueOverride != null ? valueOverride.get() : this.colorSwatch.brushWeight);
+        float f4 = this.animatedMin.set(this.min);
+        float f5 = this.animatedMax.set(this.max);
         boolean z = this.isViewHidden;
         if (z) {
             float f6 = this.hideProgress;
@@ -213,13 +212,13 @@ public final class PaintWeightChooserView extends View {
         canvas.restore();
         float f9 = (f3 - f4) / (f5 - f4);
         float f10 = iDp2 * 1.5f;
-        drawCircleWithShadow(cubicBezierInterpolator.getInterpolation(this.showProgress) * AndroidUtilities.dp(32.0f), MathUtils.clamp(DiffUtil.m(1.0f, f9, rectF.height(), rectF.top), rectF.top + f8, rectF.bottom - Math.min(f10, f8)), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.lerp(Math.min(f10, f8), f8, f9), this.showProgress), canvas, false);
+        drawCircleWithShadow(canvas, cubicBezierInterpolator.getInterpolation(this.showProgress) * AndroidUtilities.dp(32.0f), MathUtils.clamp(DiffUtil.m(1.0f, f9, rectF.height(), rectF.top), rectF.top + f8, rectF.bottom - Math.min(f10, f8)), AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), AndroidUtilities.lerp(Math.min(f10, f8), f8, f9), this.showProgress), false);
         if (this.drawCenter && this.showProgress != 0.0f && this.showPreview && this.renderView != null) {
             float width = getWidth() / 2.0f;
             float height = getHeight() / 2.0f;
             RenderView renderView = this.renderView;
             float f11 = renderView.painting.size.width;
-            drawCircleWithShadow(width, height, renderView.getCurrentBrush().getScale() * SurfaceContainer$$ExternalSyntheticOutline0.m(f11, 0.043945312f, f3, 0.00390625f * f11) * this.renderView.getCurrentBrush().getPreviewScale(), canvas, true);
+            drawCircleWithShadow(canvas, width, height, this.renderView.getCurrentBrush().getPreviewScale() * renderView.getCurrentBrush().getScale() * ((f11 * 0.043945312f * f3) + (0.00390625f * f11)), true);
         }
         if (this.hideProgress != 0.0f) {
             canvas.restore();
@@ -235,7 +234,7 @@ public final class PaintWeightChooserView extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean zOnTouchEvent = ((GestureDetector) this.gestureDetector.zza).onTouchEvent(motionEvent);
+        boolean zOnTouchEvent = this.gestureDetector.mDetector.onTouchEvent(motionEvent);
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return zOnTouchEvent;
         }

@@ -19,7 +19,7 @@ public final class ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda1
     }
 
     @Override
-    public final void mo1067run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+    public final void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         UItem uItem = (UItem) obj;
         switch (this.$r8$classId) {
             case 0:

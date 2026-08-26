@@ -3,14 +3,14 @@ package org.telegram.ui.Components.inset;
 import android.view.View;
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
+import com.stripe.android.Stripe;
 import me.vkryl.android.animator.FactorAnimator;
 import me.vkryl.android.animator.VariableFloat;
 import me.vkryl.android.animator.VariableRect;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 
 public final class WindowInsetsStateHolder implements WindowInsetsProvider, WindowInsetsInAppController, WindowAnimatedInsetsProvider.Listener {
     public int activeAnimations;
@@ -27,13 +27,13 @@ public final class WindowInsetsStateHolder implements WindowInsetsProvider, Wind
     public final VariableRect insetsMaxRect = new VariableRect();
     public final VariableRect insetsImeRect = new VariableRect();
     public final AnimationNotificationsLocker locker = new AnimationNotificationsLocker();
-    public final KeyboardState keyboardState = new KeyboardState(new PollItemMenu$$ExternalSyntheticLambda14(this, 6));
+    public final KeyboardState keyboardState = new KeyboardState(new DialogCell$$ExternalSyntheticLambda6(this, 18));
     public int inAppKeyboardState = 1;
     public final WindowInsetsStateHolder$$ExternalSyntheticLambda1 closeInAppKeyboard = new WindowInsetsStateHolder$$ExternalSyntheticLambda1(this, 0);
 
     public WindowInsetsStateHolder(Runnable runnable) {
         this.onUpdateListener = runnable;
-        this.insetsAnimator = new FactorAnimator(0, new PhotoViewer.AnonymousClass14(2, this, runnable), AdjustPanLayoutHelper.keyboardInterpolator, 250L);
+        this.insetsAnimator = new FactorAnimator(0, new Stripe(this, runnable, false, 20), AdjustPanLayoutHelper.keyboardInterpolator, 250L);
     }
 
     public final float getAnimatedImeBottomInset() {
@@ -72,7 +72,7 @@ public final class WindowInsetsStateHolder implements WindowInsetsProvider, Wind
     }
 
     @Override
-    public final void onAnimatedInsetsChanged(WindowInsetsCompat windowInsetsCompat) {
+    public final void onAnimatedInsetsChanged(View view, WindowInsetsCompat windowInsetsCompat) {
         this.animatedImeInset = windowInsetsCompat.mImpl.getInsets(8).bottom;
         this.onUpdateListener.run();
     }

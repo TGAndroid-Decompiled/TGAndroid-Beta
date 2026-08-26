@@ -15,22 +15,13 @@ public final class SelectAnimatedEmojiDialog$ImageViewEmoji$$ExternalSyntheticLa
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji = this.f$0;
-                imageViewEmoji.getClass();
-                imageViewEmoji.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                imageViewEmoji.this$0.emojiGridView.invalidate();
+                this.f$0.lambda$setPressed$1(valueAnimator);
                 break;
             case 1:
-                SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji2 = this.f$0;
-                imageViewEmoji2.getClass();
-                imageViewEmoji2.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                imageViewEmoji2.this$0.emojiGridView.invalidate();
+                this.f$0.lambda$unselectWithScale$2(valueAnimator);
                 break;
             default:
-                SelectAnimatedEmojiDialog.ImageViewEmoji imageViewEmoji3 = this.f$0;
-                imageViewEmoji3.getClass();
-                imageViewEmoji3.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                imageViewEmoji3.this$0.emojiGridView.invalidate();
+                this.f$0.lambda$setViewSelectedWithScale$3(valueAnimator);
                 break;
         }
     }

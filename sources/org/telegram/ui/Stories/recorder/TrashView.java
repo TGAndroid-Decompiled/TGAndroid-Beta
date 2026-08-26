@@ -2,13 +2,12 @@ package org.telegram.ui.Stories.recorder;
 
 import android.app.Activity;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -33,7 +32,7 @@ public final class TrashView extends View {
         this.circlePaint = paint;
         Paint paint2 = new Paint(1);
         this.greyPaint = paint2;
-        this.bounce = new ButtonBounce(this, 1.0f, 5.0f);
+        this.bounce = new ButtonBounce(this);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.draggedT = new AnimatedFloat(this, 0L, 240L, cubicBezierInterpolator);
         paint.setColor(-1);
@@ -42,28 +41,23 @@ public final class TrashView extends View {
         paint.setShadowLayer(AndroidUtilities.dpf2(3.0f), 0.0f, AndroidUtilities.dp(1.66f), 805306368);
         paint2.setColor(855638016);
         int i = R.raw.group_pip_delete_icon;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, SurfaceContainer$$ExternalSyntheticOutline0.m(i, ""), AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, Fragment$$ExternalSyntheticOutline0.m(i, ""), AndroidUtilities.dp(48.0f), AndroidUtilities.dp(48.0f), true, null);
         this.drawable = rLottieDrawable;
-        rLottieDrawable.masterParent = this;
+        rLottieDrawable.setMasterParent(this);
         rLottieDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-        rLottieDrawable.playInDirectionOfCustomEndFrame = true;
+        rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
         rLottieDrawable.setCustomEndFrame(0);
-        rLottieDrawable.decodeSingleFrame = true;
-        rLottieDrawable.scheduleNextGetFrame();
+        rLottieDrawable.setAllowDecodeSingleFrame(true);
         rLottieDrawable.start();
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false, false);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
         this.textDrawable = animatedTextDrawable;
-        animatedTextDrawable.moveAmplitude = 0.3f;
-        animatedTextDrawable.animateDuration = 250L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
-        animatedTextDrawable.overrideFullWidth = AndroidUtilities.displaySize.x;
+        animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
+        animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
-        animatedTextDrawable.textPaint.setColor(-1);
-        animatedTextDrawable.alpha = Color.alpha(-1);
-        animatedTextDrawable.setShadowLayer(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dp(1.0f), 1073741824);
-        animatedTextDrawable.setText(LocaleController.getString(R.string.TrashHintDrag), true, true);
-        animatedTextDrawable.gravity = 17;
+        animatedTextDrawable.setTextColor(-1);
+        animatedTextDrawable.setShadowLayer(AndroidUtilities.dpf2(1.33f), 0.0f, AndroidUtilities.dp(1.0f), 1073741824);
+        animatedTextDrawable.setText(LocaleController.getString(R.string.TrashHintDrag));
+        animatedTextDrawable.setGravity(17);
     }
 
     @Override
@@ -86,13 +80,13 @@ public final class TrashView extends View {
 
     public final void onDragInfo(boolean z, boolean z2) {
         this.bounce.setPressed(z);
-        this.textDrawable.setText(LocaleController.getString((z || z2) ? R.string.TrashHintRelease : R.string.TrashHintDrag), true, true);
+        this.textDrawable.setText(LocaleController.getString((z || z2) ? R.string.TrashHintRelease : R.string.TrashHintDrag));
         boolean z3 = z && !z2;
         this.dragged = z3;
         RLottieDrawable rLottieDrawable = this.drawable;
         if (z3) {
-            if (rLottieDrawable.currentFrame > 34) {
-                rLottieDrawable.setCurrentFrame(0, false, false);
+            if (rLottieDrawable.getCurrentFrame() > 34) {
+                rLottieDrawable.setCurrentFrame(0, false);
             }
             rLottieDrawable.setCustomEndFrame(33);
             rLottieDrawable.start();

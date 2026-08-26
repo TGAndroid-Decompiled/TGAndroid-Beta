@@ -1,54 +1,72 @@
 package org.telegram.ui.Stars;
 
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.TopicsController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
+import com.google.android.gms.internal.mlkit_vision_common.zzkh;
+import java.util.ArrayList;
+import org.telegram.messenger.R;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Amount;
+import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Gifts.ProfileGiftsContainer$Page$$ExternalSyntheticLambda4;
 
-public final class StarGiftSheet$$ExternalSyntheticLambda132 implements RequestDelegate {
+public final class StarGiftSheet$$ExternalSyntheticLambda132 implements Runnable {
     public final int $r8$classId;
-    public final Object f$0;
-    public final Object f$1;
-    public final long f$2;
-    public final long f$3;
+    public final StarGiftSheet f$0;
+    public final TL_stars.TL_starGiftUnique f$1;
+    public final AmountUtils$Amount f$2;
+    public final Runnable f$3;
 
-    public StarGiftSheet$$ExternalSyntheticLambda132(int i, long j, long j2, Object obj, Object obj2) {
+    public StarGiftSheet$$ExternalSyntheticLambda132(StarGiftSheet starGiftSheet, TL_stars.TL_starGiftUnique tL_starGiftUnique, AmountUtils$Amount amountUtils$Amount, Runnable runnable, int i) {
         this.$r8$classId = i;
-        this.f$0 = obj;
-        this.f$1 = obj2;
-        this.f$2 = j;
-        this.f$3 = j2;
+        this.f$0 = starGiftSheet;
+        this.f$1 = tL_starGiftUnique;
+        this.f$2 = amountUtils$Amount;
+        this.f$3 = runnable;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.$r8$classId) {
+    public final void run() {
+        Runnable runnable = this.f$3;
+        AmountUtils$Currency amountUtils$Currency = AmountUtils$Currency.STARS;
+        AmountUtils$Currency amountUtils$Currency2 = AmountUtils$Currency.TON;
+        AmountUtils$Amount amountUtils$Amount = this.f$2;
+        TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f$1;
+        StarGiftSheet starGiftSheet = this.f$0;
+        int i = this.$r8$classId;
+        starGiftSheet.getClass();
+        switch (i) {
             case 0:
-                ((StarGiftSheet) this.f$0).lambda$doTransfer$158((Utilities.Callback) this.f$1, this.f$2, this.f$3, tLObject, tL_error);
-                break;
-            case 1:
-                ((MediaDataController) this.f$0).lambda$loadPinnedMessageInternal$164(this.f$2, this.f$3, (TLRPC.TL_channels_getMessages) this.f$1, tLObject, tL_error);
-                break;
-            case 2:
-                ((MediaDataController) this.f$0).lambda$getMediaCounts$129((int[]) this.f$1, this.f$2, this.f$3, tLObject, tL_error);
-                break;
-            case 3:
-                ((MessagesController) this.f$0).lambda$requestContactToken$476((Utilities.Callback) this.f$1, this.f$2, this.f$3, tLObject, tL_error);
+                tL_starGiftUnique.flags |= 16;
+                tL_starGiftUnique.resale_ton_only = amountUtils$Amount.currency == amountUtils$Currency2;
+                ArrayList<TL_stars.StarsAmount> arrayList = new ArrayList<>();
+                tL_starGiftUnique.resell_amount = arrayList;
+                arrayList.add(amountUtils$Amount.convertTo(amountUtils$Currency).toTl());
+                tL_starGiftUnique.resell_amount.add(amountUtils$Amount.convertTo(amountUtils$Currency2).toTl());
+                starGiftSheet.topView.setResellPrice(amountUtils$Amount);
+                ProfileGiftsContainer$Page$$ExternalSyntheticLambda4 profileGiftsContainer$Page$$ExternalSyntheticLambda4 = starGiftSheet.onGiftUpdatedListener;
+                if (profileGiftsContainer$Page$$ExternalSyntheticLambda4 != null) {
+                    profileGiftsContainer$Page$$ExternalSyntheticLambda4.run();
+                }
+                if (runnable != null) {
+                    runnable.run();
+                }
+                zzkh.m(R.string.Gift2ResaleEnable, new Object[]{starGiftSheet.getGiftName()}, starGiftSheet.getBulletinFactory(), R.raw.contact_check);
                 break;
             default:
-                ((TopicsController) this.f$0).lambda$getTopicRepliesCount$30((TLRPC.TL_forumTopic) this.f$1, this.f$2, this.f$3, tLObject, tL_error);
+                tL_starGiftUnique.flags |= 16;
+                tL_starGiftUnique.resale_ton_only = amountUtils$Amount.currency == amountUtils$Currency2;
+                ArrayList<TL_stars.StarsAmount> arrayList2 = new ArrayList<>();
+                tL_starGiftUnique.resell_amount = arrayList2;
+                arrayList2.add(amountUtils$Amount.convertTo(amountUtils$Currency).toTl());
+                tL_starGiftUnique.resell_amount.add(amountUtils$Amount.convertTo(amountUtils$Currency2).toTl());
+                starGiftSheet.topView.setResellPrice(amountUtils$Amount);
+                ProfileGiftsContainer$Page$$ExternalSyntheticLambda4 profileGiftsContainer$Page$$ExternalSyntheticLambda5 = starGiftSheet.onGiftUpdatedListener;
+                if (profileGiftsContainer$Page$$ExternalSyntheticLambda5 != null) {
+                    profileGiftsContainer$Page$$ExternalSyntheticLambda5.run();
+                }
+                if (runnable != null) {
+                    runnable.run();
+                }
                 break;
         }
-    }
-
-    public StarGiftSheet$$ExternalSyntheticLambda132(MediaDataController mediaDataController, long j, long j2, TLRPC.TL_channels_getMessages tL_channels_getMessages) {
-        this.$r8$classId = 1;
-        this.f$0 = mediaDataController;
-        this.f$2 = j;
-        this.f$3 = j2;
-        this.f$1 = tL_channels_getMessages;
     }
 }

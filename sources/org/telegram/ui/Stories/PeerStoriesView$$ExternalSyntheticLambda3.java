@@ -1,7 +1,6 @@
 package org.telegram.ui.Stories;
 
 import android.app.Activity;
-import android.graphics.Paint;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -9,7 +8,6 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.StickersActivity$$ExternalSyntheticLambda18;
 import org.telegram.ui.Stories.recorder.HintView2;
 
 public final class PeerStoriesView$$ExternalSyntheticLambda3 implements Runnable {
@@ -34,7 +32,7 @@ public final class PeerStoriesView$$ExternalSyntheticLambda3 implements Runnable
             case 2:
                 StoryViewer storyViewer = this.f$0.storyViewer;
                 if (storyViewer != null) {
-                    storyViewer.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                    storyViewer.presentFragment(new PremiumPreviewFragment("noncontacts"));
                 }
                 break;
             case 3:
@@ -54,17 +52,17 @@ public final class PeerStoriesView$$ExternalSyntheticLambda3 implements Runnable
                 PeerStoriesView peerStoriesView2 = this.f$0;
                 Activity activityFindActivity = AndroidUtilities.findActivity(peerStoriesView2.getContext());
                 if (activityFindActivity != null) {
-                    StickersActivity$$ExternalSyntheticLambda18 stickersActivity$$ExternalSyntheticLambda18 = new StickersActivity$$ExternalSyntheticLambda18(21, peerStoriesView2, activityFindActivity);
+                    LivePlayer$$ExternalSyntheticLambda17 livePlayer$$ExternalSyntheticLambda17 = new LivePlayer$$ExternalSyntheticLambda17(24, peerStoriesView2, activityFindActivity);
                     StoryViewer.AnonymousClass5 anonymousClass5 = (StoryViewer.AnonymousClass5) peerStoriesView2.delegate;
                     StoryViewer.VideoPlayerHolder videoPlayerHolder = StoryViewer.this.playerHolder;
                     if (videoPlayerHolder != null) {
-                        zRelease = videoPlayerHolder.release(stickersActivity$$ExternalSyntheticLambda18);
+                        zRelease = videoPlayerHolder.release(livePlayer$$ExternalSyntheticLambda17);
                         StoryViewer.this.playerHolder = null;
                     } else {
                         zRelease = false;
                     }
                     if (!zRelease) {
-                        AndroidUtilities.runOnUIThread(stickersActivity$$ExternalSyntheticLambda18, 80L);
+                        AndroidUtilities.runOnUIThread(livePlayer$$ExternalSyntheticLambda17, 80L);
                     }
                     break;
                 }
@@ -74,18 +72,11 @@ public final class PeerStoriesView$$ExternalSyntheticLambda3 implements Runnable
                 if (!peerStoriesView3.storyViewer.isClosed) {
                     peerStoriesView3.reactionsTooltipRunnable = null;
                     if (peerStoriesView3.reactionsLongpressTooltip == null) {
-                        HintView2 hintView2 = new HintView2(peerStoriesView3.getContext(), 3);
-                        hintView2.setJoint(1.0f, -22.0f);
-                        peerStoriesView3.reactionsLongpressTooltip = hintView2;
-                        int alphaComponent = ColorUtils.setAlphaComponent(ColorUtils.blendARGB(0.13f, -16777216, -1), 240);
-                        Paint paint = hintView2.backgroundPaint;
-                        if (paint.getColor() != alphaComponent) {
-                            paint.setColor(alphaComponent);
-                            hintView2.invalidate();
-                        }
-                        HintView2 hintView3 = peerStoriesView3.reactionsLongpressTooltip;
-                        hintView3.repeatedBounce = false;
-                        hintView3.setText(LocaleController.getString(R.string.ReactionLongTapHint));
+                        HintView2 joint = new HintView2(peerStoriesView3.getContext(), 3).setJoint(1.0f, -22.0f);
+                        peerStoriesView3.reactionsLongpressTooltip = joint;
+                        joint.setBgColor(ColorUtils.setAlphaComponent(ColorUtils.blendARGB(0.13f, -16777216, -1), 240));
+                        peerStoriesView3.reactionsLongpressTooltip.setBounce(false);
+                        peerStoriesView3.reactionsLongpressTooltip.setText(LocaleController.getString(R.string.ReactionLongTapHint));
                         peerStoriesView3.reactionsLongpressTooltip.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(1.0f));
                         peerStoriesView3.storyContainer.addView(peerStoriesView3.reactionsLongpressTooltip, LayoutHelper.createFrame(-1, -2.0f, 85, 0.0f, 0.0f, 0.0f, peerStoriesView3.BIG_SCREEN ? 0.0f : 56.0f));
                     }
@@ -100,7 +91,7 @@ public final class PeerStoriesView$$ExternalSyntheticLambda3 implements Runnable
                 peerStoriesView4.setActive(false);
                 break;
             default:
-                this.f$0.openChat$1();
+                this.f$0.openChat();
                 break;
         }
     }

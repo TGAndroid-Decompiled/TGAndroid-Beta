@@ -9,86 +9,97 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 
-public final class ComposeDrawable extends Drawable {
-    public final Drawable background;
-    public final Drawable icon;
-    public int tx;
-    public int ty;
-    public final ArrayList views = new ArrayList();
-    public boolean iconVisible = false;
-    public final AnimatedFloat animatedIconVisible = new AnimatedFloat(new ComposeDrawable$$ExternalSyntheticLambda0(this, 0), 420, CubicBezierInterpolator.EASE_OUT_QUINT);
-    public int alpha = 255;
+public class ComposeDrawable extends Drawable {
+    private final Drawable background;
+    private final Drawable icon;
+    private int tx;
+    private int ty;
+    private final ArrayList<View> views = new ArrayList<>();
+    private boolean iconVisible = false;
+    private final AnimatedFloat animatedIconVisible = new AnimatedFloat(new IntroActivity$$ExternalSyntheticLambda5(this, 13), 420, CubicBezierInterpolator.EASE_OUT_QUINT);
+    private int alpha = 255;
 
     public ComposeDrawable(Drawable drawable, Drawable drawable2) {
         this.background = drawable;
         this.icon = drawable2;
     }
 
+    public void invalidate() {
+        ArrayList<View> arrayList = this.views;
+        int size = arrayList.size();
+        int i = 0;
+        while (i < size) {
+            View view = arrayList.get(i);
+            i++;
+            view.invalidate();
+        }
+        invalidateSelf();
+    }
+
+    public void addView(View view) {
+        this.views.add(view);
+    }
+
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         float f = this.animatedIconVisible.set(this.iconVisible);
-        int i = this.alpha;
-        Drawable drawable = this.background;
-        drawable.setAlpha(i);
-        drawable.setBounds(getBounds());
-        drawable.draw(canvas);
+        this.background.setAlpha(this.alpha);
+        this.background.setBounds(getBounds());
+        this.background.draw(canvas);
         if (f > 0.0f) {
-            int i2 = (int) (this.alpha * f);
-            Drawable drawable2 = this.icon;
-            drawable2.setAlpha(i2);
-            drawable2.setBounds(getBounds().left + this.tx, getBounds().top + this.ty, drawable2.getIntrinsicWidth() + getBounds().left + this.tx, drawable2.getIntrinsicHeight() + getBounds().top + this.ty);
+            this.icon.setAlpha((int) (this.alpha * f));
+            this.icon.setBounds(getBounds().left + this.tx, getBounds().top + this.ty, this.icon.getIntrinsicWidth() + getBounds().left + this.tx, this.icon.getIntrinsicHeight() + getBounds().top + this.ty);
             float fLerp = AndroidUtilities.lerp(0.5f, 1.0f, f);
             canvas.save();
-            canvas.scale(fLerp, fLerp, drawable2.getBounds().centerX(), drawable2.getBounds().centerY());
-            drawable2.draw(canvas);
+            canvas.scale(fLerp, fLerp, this.icon.getBounds().centerX(), this.icon.getBounds().centerY());
+            this.icon.draw(canvas);
             canvas.restore();
         }
     }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return this.background.getIntrinsicHeight();
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return this.background.getIntrinsicWidth();
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
         this.alpha = i;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
         this.background.setColorFilter(colorFilter);
         this.icon.setColorFilter(colorFilter);
     }
 
-    public final void setIconTranslate(int i, int i2) {
+    public void setIconTranslate(int i, int i2) {
         this.tx = i;
         this.ty = i2;
     }
 
-    public final void setIconVisible(boolean z) {
+    public void setIconVisible(boolean z) {
+        setIconVisible(z, true);
+    }
+
+    public void setIconVisible(boolean z, boolean z2) {
         if (this.iconVisible == z) {
             return;
         }
         this.iconVisible = z;
-        ArrayList arrayList = this.views;
-        int size = arrayList.size();
-        int i = 0;
-        while (i < size) {
-            Object obj = arrayList.get(i);
-            i++;
-            ((View) obj).invalidate();
+        if (!z2) {
+            this.animatedIconVisible.force(z);
         }
-        invalidateSelf();
+        invalidate();
     }
 }

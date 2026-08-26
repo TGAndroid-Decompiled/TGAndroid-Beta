@@ -9,7 +9,7 @@ public final class DefaultScheduler extends SchedulerCoroutineDispatcher {
         long j = TasksKt.IDLE_WORKER_KEEP_ALIVE_NS;
         String str = TasksKt.DEFAULT_SCHEDULER_NAME;
         DefaultScheduler defaultScheduler = new DefaultScheduler();
-        defaultScheduler.coroutineScheduler = new CoroutineScheduler(i, j, str, i2);
+        defaultScheduler.coroutineScheduler = new CoroutineScheduler(i, i2, j, str);
         INSTANCE = defaultScheduler;
     }
 

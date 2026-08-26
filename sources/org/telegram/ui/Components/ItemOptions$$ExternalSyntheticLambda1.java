@@ -1,38 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
+import android.view.MotionEvent;
+import android.view.View;
+import java.lang.ref.WeakReference;
 
-public final class ItemOptions$$ExternalSyntheticLambda1 implements ActionBarPopupWindow.OnDispatchKeyEventListener {
+public final class ItemOptions$$ExternalSyntheticLambda1 implements View.OnTouchListener {
     public final int $r8$classId;
-    public final ItemOptions f$0;
+    public final Object f$0;
 
-    public ItemOptions$$ExternalSyntheticLambda1(int i, ItemOptions itemOptions) {
+    public ItemOptions$$ExternalSyntheticLambda1(Object obj, int i) {
         this.$r8$classId = i;
-        this.f$0 = itemOptions;
+        this.f$0 = obj;
     }
 
     @Override
-    public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-        ItemOptions.AnonymousClass4 anonymousClass4;
-        ItemOptions.AnonymousClass4 anonymousClass5;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
         switch (this.$r8$classId) {
             case 0:
-                ItemOptions itemOptions = this.f$0;
-                itemOptions.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (anonymousClass4 = itemOptions.actionBarPopupWindow) != null && anonymousClass4.isShowing()) {
-                    itemOptions.dismiss();
-                    break;
-                }
-                break;
+                return ItemOptions.lambda$installHoverReleaseListener$19((WeakReference) this.f$0, view, motionEvent);
+            case 1:
+                return ((MessagePreviewView.Page) this.f$0).lambda$new$0(view, motionEvent);
+            case 2:
+                return ((CustomPopupMenu) this.f$0).lambda$new$0(view, motionEvent);
+            case 3:
+                return ((MentionsContainerView) this.f$0).lambda$withDelegate$5(view, motionEvent);
             default:
-                ItemOptions itemOptions2 = this.f$0;
-                itemOptions2.getClass();
-                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (anonymousClass5 = itemOptions2.actionBarPopupWindow) != null && anonymousClass5.isShowing()) {
-                    itemOptions2.dismiss();
-                    break;
-                }
-                break;
+                return ((StickersAlert) this.f$0).lambda$init$9(view, motionEvent);
         }
     }
 }

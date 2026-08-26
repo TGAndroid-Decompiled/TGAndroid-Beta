@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
-import org.telegram.ui.WearAuthSheet$$ExternalSyntheticLambda3;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda15;
 
 public class NotificationCenter {
     private static final long EXPIRE_NOTIFICATIONS_TIME = 5017;
@@ -708,7 +708,7 @@ public class NotificationCenter {
             }
         };
         view.addOnAttachStateChangeListener(onAttachStateChangeListener);
-        return new WearAuthSheet$$ExternalSyntheticLambda3(this, view, onAttachStateChangeListener, notificationCenterDelegate, i, 6);
+        return new GiftSheet$$ExternalSyntheticLambda15(this, view, onAttachStateChangeListener, notificationCenterDelegate, i, 6);
     }
 
     public void onAnimationFinish(int i) {

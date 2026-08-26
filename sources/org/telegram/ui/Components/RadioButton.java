@@ -16,18 +16,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 
 public class RadioButton extends View {
-    public static Paint checkedPaint;
-    public static Paint eraser;
-    public static Paint paint;
-    public boolean attachedToWindow;
-    public ObjectAnimator checkAnimator;
-    public int checkedColor;
-    public int color;
-    public Drawable icon;
-    public int iconColor;
-    public boolean isChecked;
-    public float progress;
-    public int size;
+    private static Paint checkedPaint;
+    private static Paint eraser;
+    private static Paint paint;
+    private boolean attachedToWindow;
+    private ObjectAnimator checkAnimator;
+    private int checkedColor;
+    private int color;
+    private Drawable icon;
+    private int iconColor;
+    private boolean isChecked;
+    private float progress;
+    private int size;
 
     public RadioButton(Context context) {
         super(context);
@@ -45,6 +45,20 @@ public class RadioButton extends View {
         }
     }
 
+    private void animateToCheckedState(boolean z) {
+        ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
+        this.checkAnimator = objectAnimatorOfFloat;
+        objectAnimatorOfFloat.setDuration(200L);
+        this.checkAnimator.start();
+    }
+
+    private void cancelCheckAnimator() {
+        ObjectAnimator objectAnimator = this.checkAnimator;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+        }
+    }
+
     public int getColor() {
         return this.color;
     }
@@ -53,20 +67,24 @@ public class RadioButton extends View {
         return this.progress;
     }
 
+    public boolean isChecked() {
+        return this.isChecked;
+    }
+
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.attachedToWindow = true;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.attachedToWindow = false;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         float f;
         float f2 = this.progress;
         if (f2 <= 0.5f) {
@@ -115,27 +133,27 @@ public class RadioButton extends View {
         invalidate();
     }
 
-    public final void setChecked(boolean z, boolean z2) {
+    public void setChecked(boolean z, boolean z2) {
         if (z == this.isChecked) {
             return;
         }
         this.isChecked = z;
         if (this.attachedToWindow && z2) {
-            ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this, "progress", z ? 1.0f : 0.0f);
-            this.checkAnimator = objectAnimatorOfFloat;
-            objectAnimatorOfFloat.setDuration(200L);
-            this.checkAnimator.start();
-            return;
+            animateToCheckedState(z);
+        } else {
+            cancelCheckAnimator();
+            setProgress(z ? 1.0f : 0.0f);
         }
-        ObjectAnimator objectAnimator = this.checkAnimator;
-        if (objectAnimator != null) {
-            objectAnimator.cancel();
-        }
-        setProgress(z ? 1.0f : 0.0f);
     }
 
     public void setCheckedColor(int i) {
         this.checkedColor = i;
+        invalidate();
+    }
+
+    public void setColor(int i, int i2) {
+        this.color = i;
+        this.checkedColor = i2;
         invalidate();
     }
 

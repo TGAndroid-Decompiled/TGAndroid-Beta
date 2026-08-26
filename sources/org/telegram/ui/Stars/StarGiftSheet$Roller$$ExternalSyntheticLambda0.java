@@ -129,15 +129,15 @@ public final class StarGiftSheet$Roller$$ExternalSyntheticLambda0 implements Run
                 StarGiftSheet.Roller roller2 = this.f$0;
                 roller2.rolling = false;
                 roller2.topView.imagesRollView.resetDrawing();
-                StarGiftSheet$$ExternalSyntheticLambda3 starGiftSheet$$ExternalSyntheticLambda3 = roller2.whenDone;
-                if (starGiftSheet$$ExternalSyntheticLambda3 != null) {
-                    starGiftSheet$$ExternalSyntheticLambda3.run();
+                StarGiftSheet$$ExternalSyntheticLambda4 starGiftSheet$$ExternalSyntheticLambda4 = roller2.whenDone;
+                if (starGiftSheet$$ExternalSyntheticLambda4 != null) {
+                    starGiftSheet$$ExternalSyntheticLambda4.run();
                 }
                 break;
             default:
-                StarGiftSheet$$ExternalSyntheticLambda3 starGiftSheet$$ExternalSyntheticLambda4 = this.f$0.whenDone2;
-                if (starGiftSheet$$ExternalSyntheticLambda4 != null) {
-                    starGiftSheet$$ExternalSyntheticLambda4.run();
+                StarGiftSheet$$ExternalSyntheticLambda4 starGiftSheet$$ExternalSyntheticLambda5 = this.f$0.whenDone2;
+                if (starGiftSheet$$ExternalSyntheticLambda5 != null) {
+                    starGiftSheet$$ExternalSyntheticLambda5.run();
                 }
                 break;
         }

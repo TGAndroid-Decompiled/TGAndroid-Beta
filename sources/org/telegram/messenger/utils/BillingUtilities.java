@@ -1,7 +1,7 @@
 package org.telegram.messenger.utils;
 
 import com.google.android.exoplayer2.util.Util;
-import com.google.android.gms.internal.mlkit_language_id_common.zzij;
+import com.google.android.gms.internal.mlkit_language_id_common.zzig;
 import com.google.common.base.Charsets;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -98,7 +98,7 @@ public abstract class BillingUtilities {
         String string = ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).getString(strBytesToHex, null);
         if (string == null) {
             FileLog.d("BillingUtilities.getPurpose: purpose under " + strBytesToHex + " not found");
-            throw new RuntimeException(zzij.m("no purpose under ", strBytesToHex, " found :("));
+            throw new RuntimeException(zzig.m("no purpose under ", strBytesToHex, " found :("));
         }
         FileLog.d("BillingUtilities.getPurpose: got {" + string + "} under " + strBytesToHex);
         SerializedData serializedData3 = new SerializedData(Utilities.hexToBytes(string));

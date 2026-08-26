@@ -5,18 +5,26 @@ import android.text.style.CharacterStyle;
 import android.text.style.UpdateAppearance;
 import org.telegram.ui.ActionBar.Theme;
 
-public final class ForegroundColorSpanThemable extends CharacterStyle implements UpdateAppearance {
-    public float alpha;
-    public int color;
-    public int colorKey;
-    public final Theme.ResourcesProvider resourcesProvider;
+public class ForegroundColorSpanThemable extends CharacterStyle implements UpdateAppearance {
+    private float alpha;
+    private int color;
+    private int colorKey;
+    private final Theme.ResourcesProvider resourcesProvider;
 
     public ForegroundColorSpanThemable(int i) {
         this(i, null);
     }
 
+    public void setAlpha(float f) {
+        this.alpha = f;
+    }
+
+    public void setColorKey(int i) {
+        this.colorKey = i;
+    }
+
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
+    public void updateDrawState(TextPaint textPaint) {
         this.color = Theme.multAlpha(this.alpha, Theme.getColor(this.colorKey, this.resourcesProvider));
         int color = textPaint.getColor();
         int i = this.color;

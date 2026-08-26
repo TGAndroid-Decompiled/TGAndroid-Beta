@@ -6,8 +6,8 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Build;
 import android.util.DisplayMetrics;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.graphics.PathParser;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 
 public class NotchInfoUtils {
     private static final String BOTTOM_MARKER = "@bottom";
@@ -55,7 +55,7 @@ public class NotchInfoUtils {
             }
             boolean zEndsWith = strTrim.endsWith("@dp");
             if (zEndsWith) {
-                strTrim = SurfaceContainer$$ExternalSyntheticOutline0.m(3, 0, strTrim);
+                strTrim = Fragment$$ExternalSyntheticOutline0.m(3, 0, strTrim);
             }
             if (strTrim.contains("@bottom")) {
                 strTrim = strTrim.split("@bottom", 2)[0].trim();

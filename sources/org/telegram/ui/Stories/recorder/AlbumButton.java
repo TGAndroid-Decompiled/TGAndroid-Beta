@@ -61,11 +61,8 @@ public final class AlbumButton extends View {
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         drawableMutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));
         CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), -13750737), drawableMutate);
-        combinedDrawable.fullSize = false;
-        int iDp = AndroidUtilities.dp(18.0f);
-        int iDp2 = AndroidUtilities.dp(18.0f);
-        combinedDrawable.iconWidth = iDp;
-        combinedDrawable.iconHeight = iDp2;
+        combinedDrawable.setFullsize(false);
+        combinedDrawable.setIconSize(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f));
         if (photoEntry != null && (str2 = photoEntry.thumbPath) != null) {
             imageReceiver.setImage(ImageLocation.getForPath(str2), "30.0_30.0", (ImageLocation) null, (String) null, combinedDrawable, (Object) null, 0);
         } else if (photoEntry == null || photoEntry.path == null) {

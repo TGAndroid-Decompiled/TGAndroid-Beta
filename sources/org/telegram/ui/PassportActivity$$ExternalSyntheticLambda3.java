@@ -1,116 +1,106 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 
-public final class PassportActivity$$ExternalSyntheticLambda3 implements TextView.OnEditorActionListener {
+public final class PassportActivity$$ExternalSyntheticLambda3 implements RequestDelegate {
     public final int $r8$classId;
-    public final PassportActivity f$0;
 
-    public PassportActivity$$ExternalSyntheticLambda3(PassportActivity passportActivity, int i) {
+    public PassportActivity$$ExternalSyntheticLambda3(int i) {
         this.$r8$classId = i;
-        this.f$0 = passportActivity;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         switch (this.$r8$classId) {
             case 0:
-                PassportActivity passportActivity = this.f$0;
-                passportActivity.getClass();
-                if (i != 6 && i != 5) {
-                    return false;
-                }
-                passportActivity.doneItem.callOnClick();
-                return true;
+                PassportActivity.lambda$new$1(tLObject, tL_error);
+                break;
             case 1:
-                PassportActivity passportActivity2 = this.f$0;
-                if (i == 5) {
-                    passportActivity2.inputFields[2].requestFocus();
-                    return true;
-                }
-                if (i == 6) {
-                    passportActivity2.doneItem.callOnClick();
-                    return true;
-                }
-                passportActivity2.getClass();
-                return false;
+                ChatEditTypeActivity.UsernamesListView.lambda$sendReorder$0(tLObject, tL_error);
+                break;
             case 2:
-                PassportActivity passportActivity3 = this.f$0;
-                passportActivity3.getClass();
-                if (i != 5) {
-                    return false;
-                }
-                int iIntValue = ((Integer) textView.getTag()).intValue() + 1;
-                EditTextBoldCursor[] editTextBoldCursorArr = passportActivity3.inputFields;
-                if (iIntValue >= editTextBoldCursorArr.length) {
-                    return true;
-                }
-                if (editTextBoldCursorArr[iIntValue].isFocusable()) {
-                    passportActivity3.inputFields[iIntValue].requestFocus();
-                    return true;
-                }
-                passportActivity3.inputFields[iIntValue].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                textView.clearFocus();
-                AndroidUtilities.hideKeyboard(textView);
-                return true;
+                GroupCallActivity.AnonymousClass6.lambda$onItemClick$8(tLObject, tL_error);
+                break;
             case 3:
-                PassportActivity passportActivity4 = this.f$0;
-                passportActivity4.getClass();
-                if (i != 5) {
-                    return false;
-                }
-                int iIntValue2 = ((Integer) textView.getTag()).intValue() + 1;
-                EditTextBoldCursor[] editTextBoldCursorArr2 = passportActivity4.inputExtraFields;
-                if (iIntValue2 >= editTextBoldCursorArr2.length) {
-                    return true;
-                }
-                if (editTextBoldCursorArr2[iIntValue2].isFocusable()) {
-                    passportActivity4.inputExtraFields[iIntValue2].requestFocus();
-                    return true;
-                }
-                passportActivity4.inputExtraFields[iIntValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                textView.clearFocus();
-                AndroidUtilities.hideKeyboard(textView);
-                return true;
+                NotificationsSoundActivity.AnonymousClass1.lambda$deleteSelectedMessages$2(tLObject, tL_error);
+                break;
             case 4:
-                PassportActivity passportActivity5 = this.f$0;
-                passportActivity5.getClass();
-                if (i != 5) {
-                    return false;
-                }
-                int iIntValue3 = ((Integer) textView.getTag()).intValue() + 1;
-                EditTextBoldCursor[] editTextBoldCursorArr3 = passportActivity5.inputFields;
-                if (iIntValue3 >= editTextBoldCursorArr3.length) {
-                    return true;
-                }
-                if (editTextBoldCursorArr3[iIntValue3].isFocusable()) {
-                    passportActivity5.inputFields[iIntValue3].requestFocus();
-                    return true;
-                }
-                passportActivity5.inputFields[iIntValue3].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
-                textView.clearFocus();
-                AndroidUtilities.hideKeyboard(textView);
-                return true;
+                TopicCreateFragment.AnonymousClass1.lambda$onItemClick$2(tLObject, tL_error);
+                break;
             case 5:
-                PassportActivity passportActivity6 = this.f$0;
-                passportActivity6.getClass();
-                if (i != 5 && i != 6) {
-                    return false;
-                }
-                passportActivity6.doneItem.callOnClick();
-                return true;
+                TopicCreateFragment.AnonymousClass1.lambda$onItemClick$3(tLObject, tL_error);
+                break;
+            case 6:
+                ArchiveSettingsActivity.lambda$onFragmentDestroy$2(tLObject, tL_error);
+                break;
+            case 7:
+                ChangeNameActivity.lambda$saveName$3(tLObject, tL_error);
+                break;
+            case 8:
+                ChangeUsernameActivity.lambda$sendReorder$2(tLObject, tL_error);
+                break;
+            case 9:
+                ChatUsersActivity.lambda$processDone$30(tLObject, tL_error);
+                break;
+            case 10:
+                FiltersSetupActivity.lambda$onFragmentDestroy$1(tLObject, tL_error);
+                break;
+            case 11:
+                LoginActivity.LoginActivitySmsView.lambda$onBackPressed$43(tLObject, tL_error);
+                break;
+            case 12:
+                NotificationsSettingsActivity.lambda$createView$7(tLObject, tL_error);
+                break;
+            case 13:
+                PassportActivity.PhoneConfirmationView.lambda$onBackPressed$9(tLObject, tL_error);
+                break;
+            case 14:
+                PaymentFormActivity.lambda$createView$26(tLObject, tL_error);
+                break;
+            case 15:
+                PaymentFormActivity.lambda$sendForm$52(tLObject, tL_error);
+                break;
+            case 16:
+                PremiumPreviewFragment.lambda$sentShowFeaturePreview$23(tLObject, tL_error);
+                break;
+            case 17:
+                PremiumPreviewFragment.lambda$sentShowScreenStat$20(tLObject, tL_error);
+                break;
+            case 18:
+                PremiumPreviewFragment.lambda$sentPremiumBuyCanceled$22(tLObject, tL_error);
+                break;
+            case 19:
+                PremiumPreviewFragment.lambda$sentPremiumButtonClick$21(tLObject, tL_error);
+                break;
+            case 20:
+                PrivacySettingsActivity.lambda$createView$16(tLObject, tL_error);
+                break;
+            case 21:
+                PrivacySettingsActivity.lambda$onFragmentDestroy$2(tLObject, tL_error);
+                break;
+            case 22:
+                PrivacySettingsActivity.lambda$onFragmentDestroy$3(tLObject, tL_error);
+                break;
+            case 23:
+                ProfileActivity.lambda$createView$22(tLObject, tL_error);
+                break;
+            case 24:
+                SessionBottomSheet.lambda$uploadSessionSettings$0(tLObject, tL_error);
+                break;
+            case 25:
+                SessionsActivity.lambda$createView$1(tLObject, tL_error);
+                break;
+            case 26:
+                TopicsNotifySettingsFragments.lambda$removeException$0(tLObject, tL_error);
+                break;
+            case 27:
+                TwoStepVerificationActivity.lambda$checkSecretValues$28(tLObject, tL_error);
+                break;
             default:
-                PassportActivity passportActivity7 = this.f$0;
-                passportActivity7.getClass();
-                if (i != 6 && i != 5) {
-                    return false;
-                }
-                passportActivity7.doneItem.callOnClick();
-                return true;
+                TwoStepVerificationSetupActivity.lambda$createView$19(tLObject, tL_error);
+                break;
         }
     }
 }

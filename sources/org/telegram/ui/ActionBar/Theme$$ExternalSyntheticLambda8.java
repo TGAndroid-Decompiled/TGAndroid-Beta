@@ -11,8 +11,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda71;
 import org.telegram.ui.Components.AudioVisualizerDrawable;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda8;
 
 public final class Theme$$ExternalSyntheticLambda8 implements Runnable {
     public final int $r8$classId;
@@ -24,23 +24,19 @@ public final class Theme$$ExternalSyntheticLambda8 implements Runnable {
     }
 
     @Override
-    public final void run() {
+    public final void run() throws Throwable {
         switch (this.$r8$classId) {
             case 0:
                 AudioVisualizerDrawable audioVisualizerDrawable = (AudioVisualizerDrawable) Theme.animatedOutVisualizerDrawables.remove((MessageObject) this.f$0);
                 if (audioVisualizerDrawable != null) {
-                    audioVisualizerDrawable.parentView = null;
+                    audioVisualizerDrawable.setParentView(null);
                 }
                 break;
             case 1:
-                AndroidUtilities.runOnUIThread((ArticleViewer$$ExternalSyntheticLambda71) this.f$0);
+                AndroidUtilities.runOnUIThread((BotBiometry$$ExternalSyntheticLambda8) this.f$0);
                 break;
             case 2:
-                ActionBarMenuItem actionBarMenuItem = (ActionBarMenuItem) this.f$0;
-                if (actionBarMenuItem.getParent() != null) {
-                    actionBarMenuItem.getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                actionBarMenuItem.toggleSubMenu(null, null);
+                ((ActionBarMenuItem) this.f$0).lambda$onTouchEvent$0();
                 break;
             case 3:
                 ((ActionBarMenuItem.SearchFilterView) this.f$0).setSelectedForDelete(false);
@@ -119,8 +115,9 @@ public final class Theme$$ExternalSyntheticLambda8 implements Runnable {
                 break;
             case 12:
                 BottomSheetTabsOverlay.Sheet sheet = (BottomSheetTabsOverlay.Sheet) this.f$0;
-                if (sheet.mo1066getWindowView() != null) {
-                    sheet.mo1066getWindowView().setDrawingFromOverlay(true);
+                if (sheet != null && sheet.mo1107getWindowView() != null) {
+                    sheet.mo1107getWindowView().setDrawingFromOverlay(true);
+                    break;
                 }
                 break;
             case 13:
@@ -137,6 +134,9 @@ public final class Theme$$ExternalSyntheticLambda8 implements Runnable {
                 ((FloatingToolbar.FloatingToolbarPopup.AnonymousClass4) this.f$0).this$1.mPopupWindow.dismiss();
                 break;
             case 16:
+                OKLCH.m(1, (BaseFragment) this.f$0);
+                break;
+            case 17:
                 Theme.wallpaperLoadTask = null;
                 Theme.createCommonChatResources();
                 if (!Theme.disallowChangeServiceMessageColor) {
@@ -146,11 +146,8 @@ public final class Theme$$ExternalSyntheticLambda8 implements Runnable {
                 }
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
                 break;
-            case 17:
-                ((CountDownLatch) this.f$0).countDown();
-                break;
             case 18:
-                OKLCH.m(1, (BaseFragment) this.f$0);
+                ((CountDownLatch) this.f$0).countDown();
                 break;
             default:
                 ((Theme.ThemeInfo) this.f$0).onFinishLoadingRemoteTheme();

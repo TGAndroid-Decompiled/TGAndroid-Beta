@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.google.android.exoplayer2.audio.AacUtil;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
-import com.google.android.gms.internal.mlkit_vision_common.zzlm;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
+import kotlinx.coroutines.flow.SafeFlow;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline2;
 import org.telegram.messenger.MediaController;
@@ -23,9 +23,8 @@ import org.telegram.ui.Components.Crop.CropRotationWheel;
 import org.telegram.ui.Components.Crop.CropTransform;
 import org.telegram.ui.Components.Crop.CropView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EditTextCaption$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.PhotoCropView;
-import org.telegram.ui.PhotoViewer;
 
 public abstract class CropEditor extends FrameLayout {
     public final AnimatedFloat animatedMirror;
@@ -42,6 +41,104 @@ public abstract class CropEditor extends FrameLayout {
     public final StoryRecorder.AnonymousClass7 previewView;
     public final int[] thisLocation;
     public final CropRotationWheel wheel;
+
+    public final class AnonymousClass3 implements CropRotationWheel.RotationWheelListener {
+        public final int $r8$classId;
+        public final FrameLayout this$0;
+
+        public AnonymousClass3(FrameLayout frameLayout, int i) {
+            this.$r8$classId = i;
+            this.this$0 = frameLayout;
+        }
+
+        @Override
+        public final void aspectRatioPressed() {
+            switch (this.$r8$classId) {
+                case 0:
+                    ((StoryRecorder.AnonymousClass36) this.this$0).cropView.showAspectRatioDialog();
+                    break;
+                default:
+                    ((StoryRecorder.AnonymousClass37) this.this$0).cropView.showAspectRatioDialog();
+                    break;
+            }
+        }
+
+        @Override
+        public final boolean mirror() {
+            switch (this.$r8$classId) {
+                case 0:
+                    StoryRecorder.AnonymousClass36 anonymousClass36 = (StoryRecorder.AnonymousClass36) this.this$0;
+                    anonymousClass36.contentView.invalidate();
+                    return anonymousClass36.cropView.mirror();
+                default:
+                    StoryRecorder.AnonymousClass37 anonymousClass37 = (StoryRecorder.AnonymousClass37) this.this$0;
+                    anonymousClass37.contentView.invalidate();
+                    return anonymousClass37.cropView.mirror();
+            }
+        }
+
+        @Override
+        public final void onChange(float f) {
+            switch (this.$r8$classId) {
+                case 0:
+                    ((StoryRecorder.AnonymousClass36) this.this$0).cropView.setRotation(f);
+                    break;
+                default:
+                    ((StoryRecorder.AnonymousClass37) this.this$0).cropView.setRotation(f);
+                    break;
+            }
+        }
+
+        @Override
+        public final void onEnd(float f) {
+            switch (this.$r8$classId) {
+                case 0:
+                    ((StoryRecorder.AnonymousClass36) this.this$0).cropView.areaView.setGridType(1, true);
+                    break;
+                default:
+                    ((StoryRecorder.AnonymousClass37) this.this$0).cropView.areaView.setGridType(1, true);
+                    break;
+            }
+        }
+
+        @Override
+        public final void onStart() {
+            switch (this.$r8$classId) {
+                case 0:
+                    AnonymousClass1 anonymousClass1 = ((StoryRecorder.AnonymousClass36) this.this$0).cropView;
+                    anonymousClass1.areaView.setGridType(2, false);
+                    if (anonymousClass1.rotationStartScale < 1.0E-5f) {
+                        anonymousClass1.rotationStartScale = anonymousClass1.state.scale;
+                    }
+                    break;
+                default:
+                    CropInlineEditor.AnonymousClass1 anonymousClass2 = ((StoryRecorder.AnonymousClass37) this.this$0).cropView;
+                    anonymousClass2.areaView.setGridType(2, false);
+                    if (anonymousClass2.rotationStartScale < 1.0E-5f) {
+                        anonymousClass2.rotationStartScale = anonymousClass2.state.scale;
+                    }
+                    break;
+            }
+        }
+
+        @Override
+        public final boolean rotate90Pressed() {
+            switch (this.$r8$classId) {
+                case 0:
+                    StoryRecorder.AnonymousClass36 anonymousClass36 = (StoryRecorder.AnonymousClass36) this.this$0;
+                    boolean zRotate = anonymousClass36.cropView.rotate(-90.0f);
+                    anonymousClass36.cropView.maximize();
+                    anonymousClass36.contentView.invalidate();
+                    return zRotate;
+                default:
+                    StoryRecorder.AnonymousClass37 anonymousClass37 = (StoryRecorder.AnonymousClass37) this.this$0;
+                    boolean zRotate2 = anonymousClass37.cropView.rotate(-90.0f);
+                    anonymousClass37.cropView.maximize();
+                    anonymousClass37.contentView.invalidate();
+                    return zRotate2;
+            }
+        }
+    }
 
     public final class ContentView extends View {
         public final Matrix clipMatrix;
@@ -308,23 +405,23 @@ public abstract class CropEditor extends FrameLayout {
             }
         };
         this.cropView = r0;
-        r0.setListener(new PhotoViewer.AnonymousClass18(anonymousClass36, 27));
+        r0.setListener(new SafeFlow(anonymousClass36));
         addView(r0);
         FrameLayout frameLayout = new FrameLayout(context);
         this.controlsLayout = frameLayout;
         addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
         CropRotationWheel cropRotationWheel = new CropRotationWheel(context);
         this.wheel = cropRotationWheel;
-        cropRotationWheel.setListener(new PhotoCropView.AnonymousClass4(anonymousClass36, 1));
+        cropRotationWheel.setListener(new AnonymousClass3(anonymousClass36, 0));
         frameLayout.addView(cropRotationWheel, LayoutHelper.createFrame(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 52.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.buttonsLayout = frameLayout2;
         frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 52.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        zzkk.m(14.0f, 1, textView);
+        zzkb.m(14.0f, 1, textView);
         textView.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
         textView.setTextColor(-1);
-        textView.setPadding(zzlm.m(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
+        textView.setPadding(EditTextCaption$$ExternalSyntheticOutline0.m(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -1, 115));
         final StoryRecorder.AnonymousClass36 anonymousClass37 = (StoryRecorder.AnonymousClass36) this;
         final int i = 0;
@@ -363,7 +460,7 @@ public abstract class CropEditor extends FrameLayout {
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
         textView2.setTextColor(-1);
-        textView2.setPadding(zzlm.m(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
+        textView2.setPadding(EditTextCaption$$ExternalSyntheticOutline0.m(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
         frameLayout2.addView(textView2, LayoutHelper.createFrame(-2, -1, 113));
         final int i2 = 1;
         textView2.setOnClickListener(new View.OnClickListener() {
@@ -401,7 +498,7 @@ public abstract class CropEditor extends FrameLayout {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
         textView3.setTextColor(-15098625);
-        textView3.setPadding(zzlm.m(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
+        textView3.setPadding(EditTextCaption$$ExternalSyntheticOutline0.m(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
         frameLayout2.addView(textView3, LayoutHelper.createFrame(-2, -1, 117));
         final int i3 = 2;
         textView3.setOnClickListener(new View.OnClickListener() {
@@ -518,8 +615,7 @@ public abstract class CropEditor extends FrameLayout {
             cropRotationWheel.setRotation$1(0.0f);
             cropRotationWheel.setRotated(false);
             cropRotationWheel.setMirrored(false);
-            animatedFloat.getClass();
-            animatedFloat.set(0.0f, false);
+            animatedFloat.set(false, false);
         }
         anonymousClass1.updateMatrix(false);
         this.animatedOrientation.set(cropTransform.cropOrientation, true);

@@ -1,11 +1,14 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
@@ -14,8 +17,8 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.os.Bundle;
 import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.URLSpan;
@@ -24,14 +27,17 @@ import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
 import android.widget.FrameLayout;
-import androidx.appcompat.view.menu.BaseMenuWrapper;
+import android.widget.LinearLayout;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
 import java.util.ArrayList;
+import me.vkryl.android.animator.FactorAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline1;
 import org.telegram.messenger.BotInlineKeyboard;
@@ -39,8 +45,8 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.FileLoader$$ExternalSyntheticLambda1;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -48,119 +54,184 @@ import org.telegram.messenger.MessagePreviewParams;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline1;
 import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
-import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda26;
-import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Cells.IMessageCell;
 import org.telegram.ui.Cells.TextSelectionHelper;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda174;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda62;
-import org.telegram.ui.ChatActivity$64$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.chat.ChatActivityDraftMessageMeasureController;
-import org.telegram.ui.Gifts.ProfileGiftsContainer$Page$$ExternalSyntheticLambda16;
-import org.telegram.ui.IntroActivity;
 import org.telegram.ui.PinchToZoomHelper;
-import org.telegram.ui.PollItemMenu;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda0;
-import org.telegram.ui.SettingsActivity;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda4;
 import org.telegram.ui.recyclerview.ChatListItemAnimator;
 
-public abstract class MessagePreviewView extends FrameLayout {
-    public final BubbleActivity.AnonymousClass1 changeBoundsRunnable;
-    public final ChatActivity chatActivity;
-    public final int currentAccount;
-    public final TLRPC.Chat currentChat;
-    public final TLRPC.User currentUser;
-    public final ArrayList drawingGroups;
-    public final BlurredBackgroundDrawableViewFactory iBlur3Factory;
-    public boolean isLandscapeMode;
-    public final MessagePreviewParams messagePreviewParams;
-    public ValueAnimator offsetsAnimator;
-    public final ResourcesDelegate resourcesProvider;
-    public boolean returnSendersNames;
-    public TLRPC.Peer sendAsPeer;
-    public final boolean showOutdatedQuote;
-    public boolean showing;
-    public final TabsView tabsView;
-    public final AnonymousClass2 viewPager;
+public class MessagePreviewView extends FrameLayout {
+    public static final int TAB_FORWARD = 1;
+    public static final int TAB_LINK = 2;
+    public static final int TAB_REPLY = 0;
+    Runnable changeBoundsRunnable;
+    final ChatActivity chatActivity;
+    private final int currentAccount;
+    TLRPC.Chat currentChat;
+    TLRPC.User currentUser;
+    private final ArrayList<MessageObject.GroupedMessages> drawingGroups;
+    private final BlurredBackgroundDrawableViewFactory iBlur3Factory;
+    boolean isLandscapeMode;
+    final MessagePreviewParams messagePreviewParams;
+    ValueAnimator offsetsAnimator;
+    private final ResourcesDelegate resourcesProvider;
+    boolean returnSendersNames;
+    TLRPC.Peer sendAsPeer;
+    final boolean showOutdatedQuote;
+    boolean showing;
+    TabsView tabsView;
+    ViewPagerFixed viewPager;
 
-    public final class Page extends FrameLayout {
-        public final IntroActivity.AnonymousClass1 actionBar;
-        public final Adapter adapter;
-        public int buttonsHeight;
-        public final ToggleButton changePositionBtn;
-        public final ToggleButton changeSizeBtn;
-        public final FrameLayout changeSizeBtnContainer;
-        public final AnonymousClass6 chatListView;
-        public final AnonymousClass2 chatPreviewContainer;
-        public int chatTopOffset;
-        public final AnonymousClass13 clearQuoteButton;
-        public final int currentTab;
-        public int currentTopOffset;
-        public boolean firstAttach;
-        public boolean firstLayout;
-        public final AnonymousClass7 itemAnimator;
-        public int lastSize;
-        public final ActionBarPopupWindow.ActionBarPopupWindowLayout menu;
-        public final int menuBack;
-        public MessagePreviewParams.Messages messages;
-        public final ActionBarMenuSubItem quoteAnotherChatButton;
-        public final AnonymousClass13 quoteButton;
-        public AnimatorSet quoteSwitcher;
-        public final Rect rect;
-        public final ActionBarMenuSubItem replyAnotherChatButton;
-        public int scrollToQuoteEndY;
-        public int scrollToQuoteStartY;
-        public final ChatMessageSharedResources sharedResources;
-        public boolean shouldScrollToQuote;
-        public final AnonymousClass4 textSelectionHelper;
-        public final TextSelectionHelper.TextSelectionOverlay textSelectionOverlay;
-        public final ChatActivity.AnonymousClass64 this$0;
-        public boolean toQuote;
-        public boolean updateAfterAnimations;
-        public boolean updateScroll;
-        public final ToggleButton videoChangeSizeBtn;
-        public float yOffset;
+    public class ActionBar extends FrameLayout {
+        private boolean forward;
+        private Theme.ResourcesProvider resourcesProvider;
+        private final AnimatedTextView.AnimatedTextDrawable subtitle;
+        private final AnimatedTextView.AnimatedTextDrawable title;
 
-        public final class AnonymousClass10 extends GridLayoutManagerFixed {
-            public AnonymousClass10() {
-                super(true);
+        public ActionBar(Context context, Theme.ResourcesProvider resourcesProvider) {
+            super(context);
+            this.resourcesProvider = resourcesProvider;
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
+            this.title = animatedTextDrawable;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            animatedTextDrawable.setAnimationProperties(0.3f, 0L, 430L, cubicBezierInterpolator);
+            animatedTextDrawable.setTypeface(AndroidUtilities.bold());
+            animatedTextDrawable.setTextColor(Theme.getColor(Theme.key_actionBarDefaultTitle, resourcesProvider));
+            animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
+            animatedTextDrawable.setEllipsizeByGradient(!LocaleController.isRTL);
+            animatedTextDrawable.setCallback(this);
+            animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
+            this.subtitle = animatedTextDrawable2;
+            animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 430L, cubicBezierInterpolator);
+            animatedTextDrawable2.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubtitle, resourcesProvider));
+            animatedTextDrawable2.setTextSize(AndroidUtilities.dp(14.0f));
+            animatedTextDrawable2.setEllipsizeByGradient(true ^ LocaleController.isRTL);
+            animatedTextDrawable2.setCallback(this);
+            animatedTextDrawable2.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+        }
+
+        private void setBounds(Drawable drawable, float f) {
+            int i = (int) f;
+            drawable.setBounds(getPaddingLeft(), i - AndroidUtilities.dp(32.0f), getMeasuredWidth() - getPaddingRight(), AndroidUtilities.dp(32.0f) + i);
+        }
+
+        @Override
+        public void dispatchDraw(Canvas canvas) {
+            setBounds(this.title, AndroidUtilities.lerp(AndroidUtilities.dp(29.0f), AndroidUtilities.dp(18.83f), this.subtitle.isNotEmpty()));
+            this.title.draw(canvas);
+            setBounds(this.subtitle, AndroidUtilities.dp(39.5f));
+            this.subtitle.draw(canvas);
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+            setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        }
+
+        public void setAnimationForward(boolean z) {
+            this.forward = z;
+            invalidate();
+        }
+
+        public void setSubtitle(CharSequence charSequence, boolean z) {
+            this.subtitle.setText(charSequence, z && !LocaleController.isRTL);
+        }
+
+        public void setTitle(CharSequence charSequence, boolean z) {
+            this.title.setText(charSequence, z && !LocaleController.isRTL);
+        }
+
+        @Override
+        public boolean verifyDrawable(Drawable drawable) {
+            return this.title == drawable || this.subtitle == drawable || super.verifyDrawable(drawable);
+        }
+    }
+
+    public class Page extends FrameLayout {
+        ActionBar actionBar;
+        Adapter adapter;
+        private int buttonsHeight;
+        ToggleButton changePositionBtn;
+        ToggleButton changeSizeBtn;
+        FrameLayout changeSizeBtnContainer;
+        GridLayoutManagerFixed chatLayoutManager;
+        RecyclerListView chatListView;
+        SizeNotifierFrameLayout chatPreviewContainer;
+        int chatTopOffset;
+        ActionBarMenuSubItem clearQuoteButton;
+        public int currentTab;
+        int currentTopOffset;
+        float currentYOffset;
+        ActionBarMenuSubItem deleteReplyButton;
+        private boolean firstAttach;
+        private boolean firstLayout;
+        ChatListItemAnimator itemAnimator;
+        int lastSize;
+        ActionBarPopupWindow.ActionBarPopupWindowLayout menu;
+        int menuBack;
+        MessagePreviewParams.Messages messages;
+        ActionBarMenuSubItem quoteAnotherChatButton;
+        ActionBarMenuSubItem quoteButton;
+        private AnimatorSet quoteSwitcher;
+        Rect rect;
+        ActionBarMenuSubItem replyAnotherChatButton;
+        int scrollToQuoteEndY;
+        int scrollToQuoteStartY;
+        ChatMessageSharedResources sharedResources;
+        boolean shouldScrollToQuote;
+        boolean shownBackMenu;
+        TextSelectionHelper.ChatListTextSelectionHelper textSelectionHelper;
+        View textSelectionOverlay;
+        boolean toQuote;
+        boolean updateAfterAnimations;
+        private boolean updateScroll;
+        ToggleButton videoChangeSizeBtn;
+        float yOffset;
+
+        public class AnonymousClass10 extends GridLayoutManagerFixed {
+            final MessagePreviewView val$this$0;
+
+            public AnonymousClass10(Context context, int i, int i2, boolean z, MessagePreviewView messagePreviewView) {
+                super(i, i2, z);
+                this.val$this$0 = messagePreviewView;
+            }
+
+            public void lambda$onLayoutChildren$0() {
+                Page.this.adapter.notifyDataSetChanged();
             }
 
             @Override
-            public final boolean hasSiblingChild(int i) {
+            public boolean hasSiblingChild(int i) {
                 byte b;
-                Page page = Page.this;
-                MessageObject messageObject = page.messages.previewMessages.get(i);
-                MessageObject.GroupedMessages groupedMessagesAccess$1300 = Page.access$1300(page, messageObject);
-                if (groupedMessagesAccess$1300 != null) {
-                    MessageObject.GroupedMessagePosition position = groupedMessagesAccess$1300.getPosition(messageObject);
+                MessageObject messageObject = Page.this.messages.previewMessages.get(i);
+                MessageObject.GroupedMessages validGroupedMessage = Page.this.getValidGroupedMessage(messageObject);
+                if (validGroupedMessage != null) {
+                    MessageObject.GroupedMessagePosition position = validGroupedMessage.getPosition(messageObject);
                     if (position.minX != position.maxX && (b = position.minY) == position.maxY && b != 0) {
-                        int size = groupedMessagesAccess$1300.posArray.size();
+                        int size = validGroupedMessage.posArray.size();
                         for (int i2 = 0; i2 < size; i2++) {
-                            MessageObject.GroupedMessagePosition groupedMessagePosition = groupedMessagesAccess$1300.posArray.get(i2);
+                            MessageObject.GroupedMessagePosition groupedMessagePosition = validGroupedMessage.posArray.get(i2);
                             if (groupedMessagePosition != position) {
                                 byte b2 = groupedMessagePosition.minY;
                                 byte b3 = position.minY;
@@ -175,7 +246,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public final void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
+            public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
                 if (BuildVars.DEBUG_PRIVATE_VERSION) {
                     super.onLayoutChildren(recycler, state);
                     return;
@@ -184,190 +255,63 @@ public abstract class MessagePreviewView extends FrameLayout {
                     super.onLayoutChildren(recycler, state);
                 } catch (Exception e) {
                     FileLog.e(e);
-                    AndroidUtilities.runOnUIThread(new HintView$1$$ExternalSyntheticLambda0(this, 20));
+                    AndroidUtilities.runOnUIThread(new Bulletin$2$$ExternalSyntheticLambda1(this, 22));
                 }
             }
 
             @Override
-            public final boolean shouldLayoutChildFromOpositeSide(View view) {
+            public boolean shouldLayoutChildFromOpositeSide(View view) {
                 return false;
             }
         }
 
-        public final class AnonymousClass12 extends RecyclerView.ItemDecoration {
-            @Override
-            public final void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
-                ChatMessageCell chatMessageCell;
-                MessageObject.GroupedMessages currentMessagesGroup;
-                MessageObject.GroupedMessagePosition currentPosition;
-                rect.bottom = 0;
-                if (!(view instanceof ChatMessageCell) || (currentMessagesGroup = (chatMessageCell = (ChatMessageCell) view).getCurrentMessagesGroup()) == null || (currentPosition = chatMessageCell.getCurrentPosition()) == null || currentPosition.siblingHeights == null) {
-                    return;
-                }
-                Point point = AndroidUtilities.displaySize;
-                float fMax = Math.max(point.x, point.y) * 0.5f;
-                int extraInsetHeight = chatMessageCell.getExtraInsetHeight();
-                int i = 0;
-                while (true) {
-                    float[] fArr = currentPosition.siblingHeights;
-                    if (i >= fArr.length) {
-                        break;
-                    }
-                    extraInsetHeight += (int) Math.ceil(fArr[i] * fMax);
-                    i++;
-                }
-                int iRound = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
-                int size = currentMessagesGroup.posArray.size();
-                for (int i2 = 0; i2 < size; i2++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i2);
-                    byte b = groupedMessagePosition.minY;
-                    byte b2 = currentPosition.minY;
-                    if (b == b2 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b != b2 || groupedMessagePosition.maxY != currentPosition.maxY) && b == b2)) {
-                        iRound = RichMessageLayout$$ExternalSyntheticOutline1.m((int) Math.ceil(fMax * groupedMessagePosition.ph), 4.0f, iRound);
-                        break;
-                    }
-                }
-                rect.bottom = -iRound;
-            }
-        }
+        public class AnonymousClass6 extends RecyclerListView {
+            final MessagePreviewView val$this$0;
 
-        public final class AnonymousClass4 extends TextSelectionHelper.ChatListTextSelectionHelper {
-            public AnonymousClass4() {
-                this.resourcesProvider = Page.this.this$0.resourcesProvider;
-            }
-
-            @Override
-            public final boolean canCopy() {
-                MessageObject replyMessage;
-                TLRPC.Message message;
-                Page page = Page.this;
-                if (page.currentTab == 0 && (replyMessage = page.getReplyMessage(null)) != null && (message = replyMessage.messageOwner) != null && message.rich_message != null) {
-                    return false;
-                }
-                MessagePreviewParams messagePreviewParams = page.this$0.messagePreviewParams;
-                return messagePreviewParams == null || !messagePreviewParams.noforwards;
-            }
-
-            @Override
-            public final boolean canShowQuote() {
-                MessageObject replyMessage;
-                TLRPC.Message message;
-                Page page = Page.this;
-                int i = page.currentTab;
-                if (i != 0 || page.this$0.messagePreviewParams.isSecret) {
-                    return false;
-                }
-                return i != 0 || (replyMessage = page.getReplyMessage(null)) == null || (message = replyMessage.messageOwner) == null || message.rich_message == null;
-            }
-
-            @Override
-            public final Theme.ResourcesProvider getResourcesProvider() {
-                return this.resourcesProvider;
-            }
-
-            @Override
-            public final void invalidate() {
-                super.invalidate();
-                AnonymousClass6 anonymousClass6 = Page.this.chatListView;
-                if (anonymousClass6 != null) {
-                    anonymousClass6.invalidate();
-                }
-            }
-
-            @Override
-            public final boolean isSelected(MessageObject messageObject) {
-                Page page = Page.this;
-                return page.currentTab == 0 && !page.this$0.messagePreviewParams.isSecret && isInSelectionMode();
-            }
-
-            @Override
-            public final void onQuoteClick(int i, int i2, MessageObject messageObject) {
-                ChatActivity.ReplyQuote replyQuote;
-                MessageObject messageObject2;
-                Page page = Page.this;
-                AnonymousClass4 anonymousClass4 = page.textSelectionHelper;
-                int i3 = anonymousClass4.selectionEnd - anonymousClass4.selectionStart;
-                ChatActivity.AnonymousClass64 anonymousClass64 = page.this$0;
-                if (i3 > MessagesController.getInstance(anonymousClass64.currentAccount).quoteLengthMax) {
-                    page.showQuoteLengthError();
-                    return;
-                }
-                AnonymousClass4 anonymousClass5 = page.textSelectionHelper;
-                int i4 = anonymousClass5.selectionStart;
-                MessagePreviewParams messagePreviewParams = anonymousClass64.messagePreviewParams;
-                messagePreviewParams.quoteStart = i4;
-                messagePreviewParams.quoteEnd = anonymousClass5.selectionEnd;
-                MessageObject replyMessage = page.getReplyMessage(messageObject);
-                if (replyMessage != null && ((replyQuote = anonymousClass64.messagePreviewParams.quote) == null || (messageObject2 = replyQuote.message) == null || messageObject2.getId() != replyMessage.getId())) {
-                    anonymousClass64.messagePreviewParams.quote = ChatActivity.ReplyQuote.from(i, i2, replyMessage);
-                }
-                anonymousClass64.onQuoteSelectedPart();
-                anonymousClass64.dismiss(true);
-            }
-        }
-
-        public final class AnonymousClass6 extends RecyclerListView {
-            public AnonymousClass6(Context context, Theme.ResourcesProvider resourcesProvider) {
+            public AnonymousClass6(Context context, Theme.ResourcesProvider resourcesProvider, MessagePreviewView messagePreviewView) {
                 super(context, resourcesProvider);
+                this.val$this$0 = messagePreviewView;
             }
 
-            @Override
-            public final void dispatchDraw(Canvas canvas) {
-                Page page;
+            private void drawChatBackgroundElements(Canvas canvas) {
                 boolean z;
-                ChatActivity.AnonymousClass64 anonymousClass64;
                 Canvas canvas2;
                 float f;
                 MessageObject.GroupedMessages currentMessagesGroup;
                 MessageObject.GroupedMessages currentMessagesGroup2;
-                ?? r1 = 0;
-                int i = 0;
-                while (true) {
-                    int childCount = getChildCount();
-                    page = Page.this;
-                    if (i >= childCount) {
-                        break;
-                    }
-                    View childAt = getChildAt(i);
-                    if (childAt instanceof ChatMessageCell) {
-                        ((ChatMessageCell) childAt).setParentViewSize(page.chatPreviewContainer.getMeasuredWidth(), page.chatPreviewContainer.getBackgroundSizeY());
-                    }
-                    i++;
-                }
-                int childCount2 = getChildCount();
+                int childCount = getChildCount();
+                ?? r3 = 0;
                 MessageObject.GroupedMessages groupedMessages = null;
-                for (int i2 = 0; i2 < childCount2; i2++) {
-                    View childAt2 = getChildAt(i2);
-                    if ((childAt2 instanceof ChatMessageCell) && ((currentMessagesGroup2 = ((ChatMessageCell) childAt2).getCurrentMessagesGroup()) == null || currentMessagesGroup2 != groupedMessages)) {
+                for (int i = 0; i < childCount; i++) {
+                    View childAt = getChildAt(i);
+                    if ((childAt instanceof ChatMessageCell) && ((currentMessagesGroup2 = ((ChatMessageCell) childAt).getCurrentMessagesGroup()) == null || currentMessagesGroup2 != groupedMessages)) {
                         groupedMessages = currentMessagesGroup2;
                     }
                 }
-                int i3 = 0;
-                while (i3 < 3) {
-                    page.this$0.drawingGroups.clear();
-                    AnonymousClass6 anonymousClass6 = page.chatListView;
-                    if (i3 != 2 || anonymousClass6.fastScrollAnimationRunning) {
-                        int i4 = 0;
+                int i2 = 0;
+                while (i2 < 3) {
+                    MessagePreviewView.this.drawingGroups.clear();
+                    if (i2 != 2 || Page.this.chatListView.isFastScrollAnimationRunning()) {
+                        int i3 = 0;
                         while (true) {
                             z = true;
-                            anonymousClass64 = page.this$0;
-                            if (i4 >= childCount2) {
+                            if (i3 >= childCount) {
                                 break;
                             }
-                            View childAt3 = anonymousClass6.getChildAt(i4);
-                            if (childAt3 instanceof ChatMessageCell) {
-                                ChatMessageCell chatMessageCell = (ChatMessageCell) childAt3;
-                                if (childAt3.getY() <= anonymousClass6.getHeight() && childAt3.getY() + childAt3.getHeight() >= 0.0f && (currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup()) != null && ((i3 != 0 || currentMessagesGroup.messages.size() != 1) && ((i3 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i3 != 0 || !chatMessageCell.getMessageObject().deleted) && ((i3 != 1 || chatMessageCell.getMessageObject().deleted) && ((i3 != 2 || chatMessageCell.willRemoved) && (i3 == 2 || !chatMessageCell.willRemoved))))))) {
-                                    if (!anonymousClass64.drawingGroups.contains(currentMessagesGroup)) {
+                            View childAt2 = Page.this.chatListView.getChildAt(i3);
+                            if (childAt2 instanceof ChatMessageCell) {
+                                ChatMessageCell chatMessageCell = (ChatMessageCell) childAt2;
+                                if (childAt2.getY() <= Page.this.chatListView.getHeight() && childAt2.getY() + childAt2.getHeight() >= 0.0f && (currentMessagesGroup = chatMessageCell.getCurrentMessagesGroup()) != null && ((i2 != 0 || currentMessagesGroup.messages.size() != 1) && ((i2 != 1 || currentMessagesGroup.transitionParams.drawBackgroundForDeletedItems) && ((i2 != 0 || !chatMessageCell.getMessageObject().deleted) && ((i2 != 1 || chatMessageCell.getMessageObject().deleted) && ((i2 != 2 || chatMessageCell.willRemovedAfterAnimation()) && (i2 == 2 || !chatMessageCell.willRemovedAfterAnimation()))))))) {
+                                    if (!MessagePreviewView.this.drawingGroups.contains(currentMessagesGroup)) {
                                         MessageObject.GroupedMessages.TransitionParams transitionParams = currentMessagesGroup.transitionParams;
-                                        transitionParams.left = r1;
-                                        transitionParams.top = r1;
-                                        transitionParams.right = r1;
-                                        transitionParams.bottom = r1;
-                                        transitionParams.pinnedBotton = r1;
-                                        transitionParams.pinnedTop = r1;
+                                        transitionParams.left = r3;
+                                        transitionParams.top = r3;
+                                        transitionParams.right = r3;
+                                        transitionParams.bottom = r3;
+                                        transitionParams.pinnedBotton = r3;
+                                        transitionParams.pinnedTop = r3;
                                         transitionParams.cell = chatMessageCell;
-                                        anonymousClass64.drawingGroups.add(currentMessagesGroup);
+                                        MessagePreviewView.this.drawingGroups.add(currentMessagesGroup);
                                     }
                                     currentMessagesGroup.transitionParams.pinnedTop = chatMessageCell.isPinnedTop();
                                     currentMessagesGroup.transitionParams.pinnedBotton = chatMessageCell.isPinnedBottom();
@@ -381,33 +325,33 @@ public abstract class MessagePreviewView extends FrameLayout {
                                     if ((chatMessageCell.getCurrentPosition().flags & 8) == 0) {
                                         backgroundDrawableBottom += AndroidUtilities.dp(10.0f);
                                     }
-                                    if (chatMessageCell.willRemoved) {
+                                    if (chatMessageCell.willRemovedAfterAnimation()) {
                                         currentMessagesGroup.transitionParams.cell = chatMessageCell;
                                     }
                                     MessageObject.GroupedMessages.TransitionParams transitionParams2 = currentMessagesGroup.transitionParams;
-                                    int i5 = transitionParams2.top;
-                                    if (i5 == 0 || backgroundDrawableTop < i5) {
+                                    int i4 = transitionParams2.top;
+                                    if (i4 == 0 || backgroundDrawableTop < i4) {
                                         transitionParams2.top = backgroundDrawableTop;
                                     }
-                                    int i6 = transitionParams2.bottom;
-                                    if (i6 == 0 || backgroundDrawableBottom > i6) {
+                                    int i5 = transitionParams2.bottom;
+                                    if (i5 == 0 || backgroundDrawableBottom > i5) {
                                         transitionParams2.bottom = backgroundDrawableBottom;
                                     }
-                                    int i7 = transitionParams2.left;
-                                    if (i7 == 0 || backgroundDrawableLeft < i7) {
+                                    int i6 = transitionParams2.left;
+                                    if (i6 == 0 || backgroundDrawableLeft < i6) {
                                         transitionParams2.left = backgroundDrawableLeft;
                                     }
-                                    int i8 = transitionParams2.right;
-                                    if (i8 == 0 || backgroundDrawableRight > i8) {
+                                    int i7 = transitionParams2.right;
+                                    if (i7 == 0 || backgroundDrawableRight > i7) {
                                         transitionParams2.right = backgroundDrawableRight;
                                     }
                                 }
                             }
-                            i4++;
+                            i3++;
                         }
-                        int i9 = 0;
-                        while (i9 < anonymousClass64.drawingGroups.size()) {
-                            MessageObject.GroupedMessages groupedMessages2 = (MessageObject.GroupedMessages) anonymousClass64.drawingGroups.get(i9);
+                        int i8 = 0;
+                        while (i8 < MessagePreviewView.this.drawingGroups.size()) {
+                            MessageObject.GroupedMessages groupedMessages2 = (MessageObject.GroupedMessages) MessagePreviewView.this.drawingGroups.get(i8);
                             if (groupedMessages2 != null) {
                                 float nonAnimationTranslationX = groupedMessages2.transitionParams.cell.getNonAnimationTranslationX(z);
                                 MessageObject.GroupedMessages.TransitionParams transitionParams3 = groupedMessages2.transitionParams;
@@ -422,8 +366,8 @@ public abstract class MessagePreviewView extends FrameLayout {
                                 if (translationY < (-AndroidUtilities.dp(20.0f))) {
                                     translationY = -AndroidUtilities.dp(20.0f);
                                 }
-                                if (fDp > AndroidUtilities.dp(20.0f) + anonymousClass6.getMeasuredHeight()) {
-                                    fDp = AndroidUtilities.dp(20.0f) + anonymousClass6.getMeasuredHeight();
+                                if (fDp > AndroidUtilities.dp(20.0f) + Page.this.chatListView.getMeasuredHeight()) {
+                                    fDp = AndroidUtilities.dp(20.0f) + Page.this.chatListView.getMeasuredHeight();
                                 }
                                 boolean z2 = (groupedMessages2.transitionParams.cell.getScaleX() == 1.0f && groupedMessages2.transitionParams.cell.getScaleY() == 1.0f) ? false : true;
                                 if (z2) {
@@ -442,32 +386,63 @@ public abstract class MessagePreviewView extends FrameLayout {
                                 transitionParams5.drawCaptionLayout = groupedMessages2.hasCaption;
                                 if (z2) {
                                     canvas.restore();
-                                    for (int i10 = 0; i10 < childCount2; i10++) {
-                                        View childAt4 = anonymousClass6.getChildAt(i10);
-                                        if (childAt4 instanceof ChatMessageCell) {
-                                            ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt4;
+                                    for (int i9 = 0; i9 < childCount; i9++) {
+                                        View childAt3 = Page.this.chatListView.getChildAt(i9);
+                                        if (childAt3 instanceof ChatMessageCell) {
+                                            ChatMessageCell chatMessageCell2 = (ChatMessageCell) childAt3;
                                             if (chatMessageCell2.getCurrentMessagesGroup() == groupedMessages2) {
                                                 int left = chatMessageCell2.getLeft();
                                                 int top = chatMessageCell2.getTop();
-                                                childAt4.setPivotX(((f3 - f2) / f) + (f2 - left));
-                                                childAt4.setPivotY(((fDp - translationY) / f) + (translationY - top));
+                                                childAt3.setPivotX(((f3 - f2) / f) + (f2 - left));
+                                                childAt3.setPivotY(((fDp - translationY) / f) + (translationY - top));
                                             }
                                         }
                                     }
                                 }
                             }
-                            i9++;
+                            i8++;
                             z = true;
                         }
                     }
-                    i3++;
-                    r1 = 0;
+                    i2++;
+                    r3 = 0;
                 }
+            }
+
+            public void lambda$onLayout$0(int i, int i2) {
+                View replyMessageCell = Page.this.getReplyMessageCell();
+                if (replyMessageCell == null) {
+                    return;
+                }
+                int top = replyMessageCell.getTop() + i;
+                int top2 = replyMessageCell.getTop() + i2;
+                int i3 = top2 - top;
+                int paddingTop = Page.this.chatListView.getPaddingTop();
+                int height = Page.this.chatListView.getHeight() - Page.this.chatListView.getPaddingBottom();
+                if (i3 <= height - paddingTop) {
+                    top = (top + top2) / 2;
+                    paddingTop = (paddingTop + height) / 2;
+                }
+                int i4 = top - paddingTop;
+                if (i4 < 0) {
+                    Page.this.chatListView.scrollBy(0, i4);
+                }
+            }
+
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                for (int i = 0; i < getChildCount(); i++) {
+                    View childAt = getChildAt(i);
+                    if (childAt instanceof ChatMessageCell) {
+                        ((ChatMessageCell) childAt).setParentViewSize(Page.this.chatPreviewContainer.getMeasuredWidth(), Page.this.chatPreviewContainer.getBackgroundSizeY());
+                    }
+                }
+                drawChatBackgroundElements(canvas);
                 super.dispatchDraw(canvas);
             }
 
             @Override
-            public final boolean drawChild(Canvas canvas, View view, long j) {
+            public boolean drawChild(Canvas canvas, View view, long j) {
                 if (!(view instanceof ChatMessageCell)) {
                     return super.drawChild(canvas, view, j);
                 }
@@ -482,7 +457,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                 chatMessageCell.layoutTextXY(true);
                 chatMessageCell.drawMessageText(canvas);
                 if (chatMessageCell.getCurrentMessagesGroup() == null || ((chatMessageCell.getCurrentPosition() != null && (((chatMessageCell.getCurrentPosition().flags & chatMessageCell.captionFlag()) != 0 && (chatMessageCell.getCurrentPosition().flags & 1) != 0) || (chatMessageCell.getCurrentMessagesGroup() != null && chatMessageCell.getCurrentMessagesGroup().isDocuments))) || chatMessageCell.getTransitionParams().animateBackgroundBoundsInner)) {
-                    chatMessageCell.drawCaptionLayout(chatMessageCell.getAlpha(), canvas, false);
+                    chatMessageCell.drawCaptionLayout(canvas, false, chatMessageCell.getAlpha());
                     chatMessageCell.drawReactionsLayout(canvas, chatMessageCell.getAlpha(), null);
                     chatMessageCell.drawCommentLayout(canvas, chatMessageCell.getAlpha());
                 }
@@ -490,72 +465,91 @@ public abstract class MessagePreviewView extends FrameLayout {
                     chatMessageCell.drawNamesLayout(canvas, chatMessageCell.getAlpha());
                 }
                 if ((chatMessageCell.getCurrentPosition() != null && chatMessageCell.getCurrentPosition().last) || chatMessageCell.getTransitionParams().animateBackgroundBoundsInner) {
-                    chatMessageCell.drawTime(chatMessageCell.getAlpha(), canvas, true);
+                    chatMessageCell.drawTime(canvas, chatMessageCell.getAlpha(), true);
                 }
                 chatMessageCell.drawOverlays(canvas);
                 canvas.restore();
-                chatMessageCell.getTransitionParams().recordDrawingStatePreview();
+                ChatMessageCell.TransitionParams transitionParams = chatMessageCell.getTransitionParams();
+                StaticLayout[] staticLayoutArr = transitionParams.lastDrawnForwardedNameLayout;
+                ChatMessageCell chatMessageCell2 = ChatMessageCell.this;
+                staticLayoutArr[0] = chatMessageCell2.forwardedNameLayout[0];
+                transitionParams.lastDrawnForwardedNameLayout[1] = chatMessageCell2.forwardedNameLayout[1];
+                transitionParams.lastDrawnForwardedName = chatMessageCell2.currentMessageObject.needDrawForwarded();
+                transitionParams.lastForwardNameX = chatMessageCell2.forwardNameX;
+                int i = chatMessageCell2.namesOffset;
+                transitionParams.lastForwardedNamesOffset = i;
+                transitionParams.lastNamesOffset = i;
+                transitionParams.lastForwardNameWidth = chatMessageCell2.forwardedNameWidth;
                 canvas.restore();
                 return zDrawChild;
             }
 
             @Override
-            public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-                Page page = Page.this;
-                boolean z2 = page.firstLayout;
-                int i5 = page.currentTab;
-                if (z2) {
-                    if (i5 != 0) {
+            public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                if (Page.this.firstLayout) {
+                    if (Page.this.currentTab != 0) {
                         scrollToPosition(0);
                     }
-                    page.firstLayout = false;
+                    Page.this.firstLayout = false;
                 }
                 super.onLayout(z, i, i2, i3, i4);
-                page.updatePositions();
-                if (page.updateScroll) {
-                    AnonymousClass6 anonymousClass6 = page.chatListView;
-                    if (anonymousClass6.computeVerticalScrollRange() > anonymousClass6.computeVerticalScrollExtent()) {
-                        page.postDelayed(new MessagePreviewView$Page$$ExternalSyntheticLambda10(page, 1), 0L);
-                    }
-                    page.updateScroll = false;
-                }
-                if (page.shouldScrollToQuote && i5 == 0) {
-                    int i6 = page.scrollToQuoteStartY;
-                    int i7 = page.scrollToQuoteEndY;
+                Page.this.updatePositions();
+                Page.this.checkScroll();
+                Page page = Page.this;
+                if (page.shouldScrollToQuote && page.currentTab == 0) {
+                    int i5 = page.scrollToQuoteStartY;
+                    int i6 = page.scrollToQuoteEndY;
                     page.shouldScrollToQuote = false;
-                    post(new ArticleViewer$$ExternalSyntheticLambda26(this, i6, i7, 10));
+                    post(new MessagePreviewView$Page$6$$ExternalSyntheticLambda0(this, i5, i6));
                 }
             }
 
             @Override
-            public final void onScrollStateChanged(int i) {
+            public void onScrollStateChanged(int i) {
                 if (i == 0) {
-                    AnonymousClass4 anonymousClass4 = Page.this.textSelectionHelper;
-                    anonymousClass4.parentIsScrolling = false;
-                    anonymousClass4.textSelectionOverlay.invalidate();
-                    ChatActivity$$ExternalSyntheticLambda174 chatActivity$$ExternalSyntheticLambda174 = anonymousClass4.showActionsRunnable;
-                    AndroidUtilities.cancelRunOnUIThread(chatActivity$$ExternalSyntheticLambda174);
-                    AndroidUtilities.runOnUIThread(chatActivity$$ExternalSyntheticLambda174);
+                    Page.this.textSelectionHelper.stopScrolling();
                 }
+                super.onScrollStateChanged(i);
             }
 
             @Override
-            public final void onScrolled(int i, int i2) {
+            public void onScrolled(int i, int i2) {
+                super.onScrolled(i, i2);
                 Page.this.textSelectionHelper.onParentScrolled();
             }
         }
 
-        public final class AnonymousClass7 extends ChatListItemAnimator {
-            public Runnable finishRunnable;
-            public int scrollAnimationIndex;
+        public class AnonymousClass7 extends ChatListItemAnimator {
+            Runnable finishRunnable;
+            int scrollAnimationIndex;
+            final MessagePreviewView val$this$0;
 
-            public AnonymousClass7(AnonymousClass6 anonymousClass6, Theme.ResourcesProvider resourcesProvider) {
-                super(null, anonymousClass6, resourcesProvider);
+            public AnonymousClass7(ChatActivity chatActivity, RecyclerListView recyclerListView, Theme.ResourcesProvider resourcesProvider, MessagePreviewView messagePreviewView) {
+                super(chatActivity, recyclerListView, resourcesProvider);
+                this.val$this$0 = messagePreviewView;
                 this.scrollAnimationIndex = -1;
             }
 
+            public void lambda$endAnimations$2() {
+                if (this.scrollAnimationIndex != -1) {
+                    NotificationCenter.getInstance(MessagePreviewView.this.currentAccount).onAnimationFinish(this.scrollAnimationIndex);
+                    this.scrollAnimationIndex = -1;
+                }
+            }
+
+            public void lambda$onAllAnimationsDone$0() {
+                if (this.scrollAnimationIndex != -1) {
+                    NotificationCenter.getInstance(MessagePreviewView.this.currentAccount).onAnimationFinish(this.scrollAnimationIndex);
+                    this.scrollAnimationIndex = -1;
+                }
+            }
+
+            public void lambda$onAllAnimationsDone$1() {
+                Page.this.updateMessages();
+            }
+
             @Override
-            public final void endAnimations() {
+            public void endAnimations() {
                 super.endAnimations();
                 Runnable runnable = this.finishRunnable;
                 if (runnable != null) {
@@ -567,7 +561,7 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public final void onAllAnimationsDone() {
+            public void onAllAnimationsDone() {
                 super.onAllAnimationsDone();
                 Runnable runnable = this.finishRunnable;
                 if (runnable != null) {
@@ -584,12 +578,11 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public final void onAnimationStart() {
-                Page page = Page.this;
-                AndroidUtilities.cancelRunOnUIThread(page.this$0.changeBoundsRunnable);
-                page.this$0.changeBoundsRunnable.run();
+            public void onAnimationStart() {
+                AndroidUtilities.cancelRunOnUIThread(MessagePreviewView.this.changeBoundsRunnable);
+                MessagePreviewView.this.changeBoundsRunnable.run();
                 if (this.scrollAnimationIndex == -1) {
-                    this.scrollAnimationIndex = NotificationCenter.getInstance(page.this$0.currentAccount).setAnimationInProgress(this.scrollAnimationIndex, null, false);
+                    this.scrollAnimationIndex = NotificationCenter.getInstance(MessagePreviewView.this.currentAccount).setAnimationInProgress(this.scrollAnimationIndex, null, false);
                 }
                 Runnable runnable = this.finishRunnable;
                 if (runnable != null) {
@@ -599,59 +592,16 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
         }
 
-        public final class Adapter extends RecyclerView.Adapter {
-            public Adapter() {
+        public class Adapter extends RecyclerView.Adapter {
+            private Adapter() {
             }
 
-            public static int offset(boolean z, int i, ChatMessageCell chatMessageCell) {
-                MessageObject messageObject;
-                int iM;
-                ArrayList<MessageObject.TextLayoutBlock> arrayList;
-                CharSequence charSequence;
-                float lineBottom;
-                MessageObject.TextLayoutBlocks textLayoutBlocks;
-                if (chatMessageCell != null && (messageObject = chatMessageCell.getMessageObject()) != null && messageObject.getGroupId() == 0) {
-                    if (TextUtils.isEmpty(messageObject.caption) || (textLayoutBlocks = chatMessageCell.captionLayout) == null) {
-                        chatMessageCell.layoutTextXY(true);
-                        iM = chatMessageCell.textY;
-                        CharSequence charSequence2 = messageObject.messageText;
-                        ArrayList<MessageObject.TextLayoutBlock> arrayList2 = messageObject.textLayoutBlocks;
-                        if (chatMessageCell.linkPreviewAbove) {
-                            iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(chatMessageCell.linkPreviewHeight, 10.0f, iM);
-                        }
-                        arrayList = arrayList2;
-                        charSequence = charSequence2;
-                    } else {
-                        iM = (int) chatMessageCell.captionY;
-                        charSequence = messageObject.caption;
-                        arrayList = textLayoutBlocks.textLayoutBlocks;
-                    }
-                    if (arrayList != null && charSequence != null) {
-                        for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i2);
-                            StaticLayout staticLayout = textLayoutBlock.textLayout;
-                            String string = staticLayout.getText().toString();
-                            int i3 = textLayoutBlock.charactersOffset;
-                            if (i > i3) {
-                                int i4 = i - i3;
-                                int length = string.length() - 1;
-                                ChatMessageCell.TransitionParams transitionParams = chatMessageCell.transitionParams;
-                                if (i4 > length) {
-                                    lineBottom = iM + ((int) (textLayoutBlock.textYOffset(arrayList, transitionParams) + textLayoutBlock.padTop + textLayoutBlock.height));
-                                } else {
-                                    int lineForOffset = staticLayout.getLineForOffset(i - textLayoutBlock.charactersOffset);
-                                    lineBottom = (z ? staticLayout.getLineBottom(lineForOffset) : staticLayout.getLineTop(lineForOffset)) + textLayoutBlock.textYOffset(arrayList, transitionParams) + iM + textLayoutBlock.padTop;
-                                }
-                                return (int) lineBottom;
-                            }
-                        }
-                    }
-                }
-                return 0;
+            private int offset(ChatMessageCell chatMessageCell, int i) {
+                return offset(chatMessageCell, i, false);
             }
 
             @Override
-            public final int getItemCount() {
+            public int getItemCount() {
                 MessagePreviewParams.Messages messages = Page.this.messages;
                 if (messages == null) {
                     return 0;
@@ -660,67 +610,511 @@ public abstract class MessagePreviewView extends FrameLayout {
             }
 
             @Override
-            public final int getItemViewType(int i) {
+            public int getItemViewType(int i) {
                 return 0;
             }
 
             @Override
-            public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-                Page page = Page.this;
-                MessagePreviewParams.Messages messages = page.messages;
-                if (messages != null && viewHolder.mItemViewType == 0) {
+            public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                if (Page.this.messages != null && viewHolder.getItemViewType() == 0) {
                     ChatMessageCell chatMessageCell = (ChatMessageCell) viewHolder.itemView;
-                    chatMessageCell.setInvalidateSpoilersParent(messages.hasSpoilers);
-                    AnonymousClass6 anonymousClass6 = page.chatListView;
-                    chatMessageCell.setParentViewSize(anonymousClass6.getMeasuredWidth(), anonymousClass6.getMeasuredHeight());
+                    chatMessageCell.setInvalidateSpoilersParent(Page.this.messages.hasSpoilers);
+                    chatMessageCell.setParentViewSize(Page.this.chatListView.getMeasuredWidth(), Page.this.chatListView.getMeasuredHeight());
                     int id = chatMessageCell.getMessageObject() != null ? chatMessageCell.getMessageObject().getId() : 0;
-                    int i2 = page.currentTab;
-                    if (i2 == 2) {
-                        page.this$0.messagePreviewParams.checkCurrentLink(page.messages.previewMessages.get(i));
+                    Page page = Page.this;
+                    if (page.currentTab == 2) {
+                        MessagePreviewView.this.messagePreviewParams.checkCurrentLink(page.messages.previewMessages.get(i));
                     }
-                    MessageObject messageObject = page.messages.previewMessages.get(i);
-                    MessagePreviewParams.Messages messages2 = page.messages;
-                    chatMessageCell.setMessageObject(messageObject, messages2.groupedMessagesMap.get(messages2.previewMessages.get(i).getGroupId()), true, true, false, false);
-                    if (i2 == 1) {
-                        chatMessageCell.setDelegate(new PollItemMenu.AnonymousClass8(25));
+                    MessageObject messageObject = Page.this.messages.previewMessages.get(i);
+                    MessagePreviewParams.Messages messages = Page.this.messages;
+                    chatMessageCell.setMessageObject(messageObject, messages.groupedMessagesMap.get(messages.previewMessages.get(i).getGroupId()), true, true, false);
+                    if (Page.this.currentTab == 1) {
+                        chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
+                            @Override
+                            public boolean allowAddPollOptions() {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean canDrawOutboundsContent() {
+                                return true;
+                            }
+
+                            @Override
+                            public boolean canPerformActions() {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean canPerformReply() {
+                                return canPerformActions();
+                            }
+
+                            @Override
+                            public boolean canSaveRichDocument(ChatMessageCell chatMessageCell2) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2) {
+                                return false;
+                            }
+
+                            @Override
+                            public void didLongPress(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            }
+
+                            @Override
+                            public void didLongPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                            }
+
+                            @Override
+                            public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat, int i2, float f, float f2) {
+                                return false;
+                            }
+
+                            @Override
+                            public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                            }
+
+                            @Override
+                            public boolean didLongPressPollOption(ChatMessageCell chatMessageCell2, TLRPC.PollAnswer pollAnswer) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2) {
+                                return false;
+                            }
+
+                            @Override
+                            public void didPressAboutRevenueSharingAds() {
+                            }
+
+                            @Override
+                            public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressAdmin(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
+                                return false;
+                            }
+
+                            @Override
+                            public void didPressAppUpdateButton() {
+                            }
+
+                            @Override
+                            public void didPressBoostCounter(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                            }
+
+                            @Override
+                            public void didPressCancelSendButton(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat, int i2, float f, float f2, boolean z) {
+                            }
+
+                            @Override
+                            public void didPressChannelRecommendation(ChatMessageCell chatMessageCell2, TLObject tLObject, boolean z) {
+                            }
+
+                            @Override
+                            public void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressCodeCopy(ChatMessageCell chatMessageCell2, MessageObject.TextLayoutBlock textLayoutBlock) {
+                            }
+
+                            @Override
+                            public void didPressCommentButton(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                            }
+
+                            public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressEffect(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            public void didPressEmojiStatus() {
+                            }
+
+                            @Override
+                            public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                            }
+
+                            @Override
+                            public void didPressFactCheck(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressFactCheckWhat(ChatMessageCell chatMessageCell2, int i2, int i3) {
+                            }
+
+                            @Override
+                            public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i2) {
+                            }
+
+                            @Override
+                            public void didPressGroupImage(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
+                            }
+
+                            @Override
+                            public void didPressHiddenForward(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressHint(ChatMessageCell chatMessageCell2, int i2) {
+                            }
+
+                            @Override
+                            public void didPressImage(ChatMessageCell chatMessageCell2, float f, float f2, boolean z) {
+                            }
+
+                            @Override
+                            public void didPressInstantButton(ChatMessageCell chatMessageCell2, int i2) {
+                            }
+
+                            @Override
+                            public void didPressMoreChannelRecommendations(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressOther(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            }
+
+                            @Override
+                            public void didPressPollMedia(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i2) {
+                            }
+
+                            @Override
+                            public void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
+                            }
+
+                            @Override
+                            public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i2, float f, float f2, boolean z) {
+                            }
+
+                            @Override
+                            public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell2, TLRPC.Document document, float f, float f2) {
+                            }
+
+                            @Override
+                            public void didPressShowMore(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressSideButton(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressSponsoredInfo(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            }
+
+                            @Override
+                            public void didPressSummarize(ChatMessageCell chatMessageCell2, boolean z) {
+                            }
+
+                            @Override
+                            public void didPressTime(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z) {
+                                return false;
+                            }
+
+                            public void didPressTopicButton(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) {
+                            }
+
+                            @Override
+                            public void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2, boolean z) {
+                            }
+
+                            @Override
+                            public void didPressUserStatus(ChatMessageCell chatMessageCell2, TLRPC.User user, TLRPC.Document document, String str) {
+                            }
+
+                            @Override
+                            public void didPressViaBot(ChatMessageCell chatMessageCell2, String str) {
+                            }
+
+                            @Override
+                            public void didPressViaBotNotInline(ChatMessageCell chatMessageCell2, long j) {
+                            }
+
+                            @Override
+                            public void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i2, int i3, int i4) {
+                            }
+
+                            @Override
+                            public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage, String str, boolean z) {
+                                Browser.openUrl(chatMessageCell2.getContext(), str);
+                            }
+
+                            @Override
+                            public void didQuickShareEnd(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            }
+
+                            @Override
+                            public void didQuickShareMove(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            }
+
+                            @Override
+                            public void didQuickShareStart(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            }
+
+                            @Override
+                            public void didStartVideoStream(MessageObject messageObject2) {
+                            }
+
+                            @Override
+                            public void didTogglePollPreview(ChatMessageCell chatMessageCell2) {
+                            }
+
+                            @Override
+                            public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2, boolean z, Runnable runnable) {
+                            }
+
+                            @Override
+                            public boolean doNotShowLoadingReply(MessageObject messageObject2) {
+                                return Theme.ResourcesProvider.CC.$default$doNotShowLoadingReply(messageObject2);
+                            }
+
+                            @Override
+                            public void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell2) {
+                            }
+
+                            public boolean drawingVideoPlayerContainer() {
+                                return false;
+                            }
+
+                            @Override
+                            public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z) {
+                            }
+
+                            @Override
+                            public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell2, boolean z) {
+                            }
+
+                            @Override
+                            public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell2) {
+                                return 0;
+                            }
+
+                            @Override
+                            public String getAdminRank(long j) {
+                                return null;
+                            }
+
+                            @Override
+                            public int getChatMode() {
+                                return 0;
+                            }
+
+                            @Override
+                            public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                                return null;
+                            }
+
+                            @Override
+                            public PinchToZoomHelper getPinchToZoomHelper() {
+                                return null;
+                            }
+
+                            @Override
+                            public String getProgressLoadingBotButtonUrl(ChatMessageCell chatMessageCell2) {
+                                return null;
+                            }
+
+                            @Override
+                            public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell2) {
+                                return null;
+                            }
+
+                            @Override
+                            public TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
+                                return null;
+                            }
+
+                            @Override
+                            public boolean hasSelectedMessages() {
+                                return false;
+                            }
+
+                            @Override
+                            public void invalidateBlur() {
+                            }
+
+                            @Override
+                            public boolean isAdmin(long j) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean isLandscape() {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean isOwner(long j) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i2) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean isReplyOrSelf() {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean keyboardIsOpened() {
+                                return false;
+                            }
+
+                            @Override
+                            public void needOpenWebView(MessageObject messageObject2, String str, String str2, String str3, String str4, int i2, int i3) {
+                            }
+
+                            @Override
+                            public boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject2, boolean z) {
+                                return false;
+                            }
+
+                            @Override
+                            public void needReloadPolls() {
+                            }
+
+                            @Override
+                            public void needShowPremiumBulletin(int i2) {
+                            }
+
+                            public void needShowPremiumFeatures(String str) {
+                            }
+
+                            @Override
+                            public boolean onAccessibilityAction(int i2, Bundle bundle) {
+                                return false;
+                            }
+
+                            @Override
+                            public void onDiceFinished() {
+                            }
+
+                            @Override
+                            public boolean openArticlePhoto(ChatMessageCell chatMessageCell2, TL_iv.PageBlock pageBlock) {
+                                return false;
+                            }
+
+                            @Override
+                            public void setShouldNotRepeatSticker(MessageObject messageObject2) {
+                            }
+
+                            @Override
+                            public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean shouldRepeatSticker(MessageObject messageObject2) {
+                                return true;
+                            }
+
+                            public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
+                                return false;
+                            }
+
+                            public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
+                                return false;
+                            }
+
+                            @Override
+                            public void videoTimerReached() {
+                            }
+
+                            @Override
+                            public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z, boolean z2) {
+                                forceUpdate(chatMessageCell2, z);
+                            }
+                        });
                     }
-                    if (page.messages.previewMessages.size() > 1) {
-                        chatMessageCell.setCheckBoxVisible(i2 == 1, false);
-                        boolean z = id == page.messages.previewMessages.get(i).getId();
-                        MessagePreviewParams.Messages messages3 = page.messages;
-                        boolean z2 = messages3.selectedIds.get(messages3.previewMessages.get(i).getId(), false);
+                    if (Page.this.messages.previewMessages.size() > 1) {
+                        chatMessageCell.setCheckBoxVisible(Page.this.currentTab == 1, false);
+                        boolean z = id == Page.this.messages.previewMessages.get(i).getId();
+                        MessagePreviewParams.Messages messages2 = Page.this.messages;
+                        boolean z2 = messages2.selectedIds.get(messages2.previewMessages.get(i).getId(), false);
                         chatMessageCell.setChecked(z2, z2, z);
                     }
                 }
             }
 
             @Override
-            public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 Context context = viewGroup.getContext();
+                int i2 = MessagePreviewView.this.currentAccount;
                 Page page = Page.this;
-                ChatActivity.AnonymousClass64 anonymousClass64 = page.this$0;
-                ChatMessageCell chatMessageCell = new ChatMessageCell(context, anonymousClass64.currentAccount, page.sharedResources, anonymousClass64.resourcesProvider) {
+                ChatMessageCell chatMessageCell = new ChatMessageCell(context, i2, false, page.sharedResources, MessagePreviewView.this.resourcesProvider) {
                     @Override
-                    public final void invalidate() {
+                    public void invalidate() {
                         super.invalidate();
                         Page.this.chatListView.invalidate();
                     }
 
                     @Override
-                    public final void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                        super.onLayout(z, i2, i3, i4, i5);
-                        Page.access$1600(Page.this, this);
+                    public void onFactorChangeFinished(int i3, float f, FactorAnimator factorAnimator) {
                     }
 
                     @Override
-                    public final void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) {
+                    public void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                        super.onLayout(z, i3, i4, i5, i6);
+                        Page.this.updateLinkHighlight(this);
+                    }
+
+                    @Override
+                    public void setMessageObject(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, boolean z, boolean z2, boolean z3, boolean z4) {
                         super.setMessageObject(messageObject, groupedMessages, z, z2, z3, z4);
-                        Page.access$1600(Page.this, this);
+                        Page.this.updateLinkHighlight(this);
                     }
 
                     @Override
-                    public final void invalidate(int i2, int i3, int i4, int i5) {
-                        super.invalidate(i2, i3, i4, i5);
+                    public void invalidate(int i3, int i4, int i5, int i6) {
+                        super.invalidate(i3, i4, i5, i6);
                         Page.this.chatListView.invalidate();
                     }
                 };
@@ -728,344 +1122,360 @@ public abstract class MessagePreviewView extends FrameLayout {
                 chatMessageCell.setClipToPadding(false);
                 chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate() {
                     @Override
-                    public final boolean allowAddPollOptions() {
+                    public boolean allowAddPollOptions() {
                         return false;
                     }
 
                     @Override
-                    public final boolean canDrawOutboundsContent() {
+                    public boolean canDrawOutboundsContent() {
                         return true;
                     }
 
                     @Override
-                    public final boolean canPerformActions() {
+                    public boolean canPerformActions() {
                         Page page2 = Page.this;
                         if (page2.currentTab != 2) {
                             return false;
                         }
-                        MessagePreviewParams messagePreviewParams = page2.this$0.messagePreviewParams;
+                        MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
                         return (messagePreviewParams.singleLink || messagePreviewParams.isSecret) ? false : true;
                     }
 
                     @Override
-                    public final boolean canPerformReply() {
+                    public boolean canPerformReply() {
                         return canPerformActions();
                     }
 
                     @Override
-                    public final boolean canSaveRichDocument(ChatMessageCell chatMessageCell2) {
+                    public boolean canSaveRichDocument(ChatMessageCell chatMessageCell2) {
                         return false;
                     }
 
                     @Override
-                    public final boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2) {
+                    public boolean canToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2) {
                         return false;
                     }
 
                     @Override
-                    public final void didLongPress(ChatMessageCell chatMessageCell2, float f, float f2) {
+                    public void didLongPress(ChatMessageCell chatMessageCell2, float f, float f2) {
                     }
 
                     @Override
-                    public final void didLongPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    public void didLongPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
                     }
 
                     @Override
-                    public final boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat) {
+                    public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat, int i3, float f, float f2) {
                         return false;
                     }
 
                     @Override
-                    public final boolean didLongPressPollOption(ChatMessageCell chatMessageCell2, TLRPC.PollAnswer pollAnswer) {
+                    public void didLongPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                    }
+
+                    @Override
+                    public boolean didLongPressPollOption(ChatMessageCell chatMessageCell2, TLRPC.PollAnswer pollAnswer) {
                         return false;
                     }
 
                     @Override
-                    public final boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
+                    public boolean didLongPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem) {
                         return false;
                     }
 
                     @Override
-                    public final boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user) {
+                    public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2) {
                         return false;
                     }
 
                     @Override
-                    public final void didPressAboutRevenueSharingAds() {
+                    public void didPressAboutRevenueSharingAds() {
                     }
 
                     @Override
-                    public final void didPressAddPollOptionButton(ChatMessageCell chatMessageCell2) {
+                    public void didPressAddPollOptionButton(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressAdmin(ChatMessageCell chatMessageCell2) {
+                    public void didPressAdmin(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final boolean didPressAnimatedEmoji(AnimatedEmojiSpan animatedEmojiSpan) {
+                    public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
                         return false;
                     }
 
                     @Override
-                    public final void didPressAppUpdateButton() {
+                    public void didPressAppUpdateButton() {
                     }
 
                     @Override
-                    public final void didPressBoostCounter(ChatMessageCell chatMessageCell2) {
+                    public void didPressBoostCounter(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+                    public void didPressBotButton(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
                     }
 
                     @Override
-                    public final void didPressCancelSendButton(ChatMessageCell chatMessageCell2) {
+                    public void didPressCancelSendButton(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat, int i2, float f, float f2, boolean z) {
+                    public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC.Chat chat, int i3, float f, float f2, boolean z) {
                     }
 
                     @Override
-                    public final void didPressChannelRecommendation(ChatMessageCell chatMessageCell2, TLObject tLObject, boolean z) {
+                    public void didPressChannelRecommendation(ChatMessageCell chatMessageCell2, TLObject tLObject, boolean z) {
                     }
 
                     @Override
-                    public final void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell2) {
+                    public void didPressChannelRecommendationsClose(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressCodeCopy(MessageObject.TextLayoutBlock textLayoutBlock) {
+                    public void didPressCodeCopy(ChatMessageCell chatMessageCell2, MessageObject.TextLayoutBlock textLayoutBlock) {
                     }
 
                     @Override
-                    public final void didPressCommentButton(ChatMessageCell chatMessageCell2) {
+                    public void didPressCommentButton(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                    public void didPressCustomBotButton(ChatMessageCell chatMessageCell2, BotInlineKeyboard.ButtonCustom buttonCustom) {
+                    }
+
+                    public void didPressDialogButton(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressEffect(ChatMessageCell chatMessageCell2) {
+                    public void didPressEffect(ChatMessageCell chatMessageCell2) {
+                    }
+
+                    public void didPressEmojiStatus() {
                     }
 
                     @Override
-                    public final void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
+                    public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
                     }
 
                     @Override
-                    public final void didPressFactCheck(ChatMessageCell chatMessageCell2) {
+                    public void didPressFactCheck(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressFactCheckWhat(ChatMessageCell chatMessageCell2, int i2, int i3) {
+                    public void didPressFactCheckWhat(ChatMessageCell chatMessageCell2, int i3, int i4) {
                     }
 
                     @Override
-                    public final void didPressGiveawayChatButton(int i2, ChatMessageCell chatMessageCell2) {
+                    public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i3) {
                     }
 
                     @Override
-                    public final void didPressGroupImage(ChatMessageCell chatMessageCell2, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+                    public void didPressGroupImage(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC.MessageExtendedMedia messageExtendedMedia, float f, float f2) {
                     }
 
                     @Override
-                    public final void didPressHiddenForward(ChatMessageCell chatMessageCell2) {
+                    public void didPressHiddenForward(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressHint(ChatMessageCell chatMessageCell2) {
+                    public void didPressHint(ChatMessageCell chatMessageCell2, int i3) {
                     }
 
                     @Override
-                    public final void didPressImage(ChatMessageCell chatMessageCell2, float f, float f2, boolean z) {
+                    public void didPressImage(ChatMessageCell chatMessageCell2, float f, float f2, boolean z) {
                     }
 
                     @Override
-                    public final void didPressInstantButton(int i2, ChatMessageCell chatMessageCell2) {
+                    public void didPressInstantButton(ChatMessageCell chatMessageCell2, int i3) {
                     }
 
                     @Override
-                    public final void didPressMoreChannelRecommendations() {
+                    public void didPressMoreChannelRecommendations(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressOther(ChatMessageCell chatMessageCell2, float f, float f2) {
+                    public void didPressOther(ChatMessageCell chatMessageCell2, float f, float f2) {
                     }
 
                     @Override
-                    public final void didPressPollMedia(ChatMessageCell chatMessageCell2, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i2) {
+                    public void didPressPollMedia(ChatMessageCell chatMessageCell2, ImageReceiver imageReceiver, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, float f, float f2, int i3) {
                     }
 
                     @Override
-                    public final void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
+                    public void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC.ReactionCount reactionCount, boolean z, float f, float f2) {
                     }
 
                     @Override
-                    public final void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i2, float f, float f2, boolean z) {
+                    public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i3, float f, float f2, boolean z) {
                     }
 
                     @Override
-                    public final void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell2) {
+                    public void didPressRevealSensitiveContent(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressRichDocumentOptions(ChatMessageCell chatMessageCell2, TLRPC.Document document) {
+                    public void didPressRichDocumentOptions(ChatMessageCell chatMessageCell2, TLRPC.Document document, float f, float f2) {
                     }
 
                     @Override
-                    public final void didPressShowMore(ChatMessageCell chatMessageCell2) {
+                    public void didPressShowMore(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressSideButton(ChatMessageCell chatMessageCell2) {
+                    public void didPressSideButton(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
+                    public void didPressSponsoredClose(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didPressSponsoredInfo(ChatMessageCell chatMessageCell2, float f, float f2) {
+                    public void didPressSponsoredInfo(ChatMessageCell chatMessageCell2, float f, float f2) {
                     }
 
                     @Override
-                    public final void didPressSummarize(ChatMessageCell chatMessageCell2) {
+                    public void didPressSummarize(ChatMessageCell chatMessageCell2, boolean z) {
                     }
 
                     @Override
-                    public final void didPressTime() {
+                    public void didPressTime(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z) {
+                    public boolean didPressToDoButton(ChatMessageCell chatMessageCell2, TLRPC.TodoItem todoItem, boolean z) {
                         return false;
                     }
 
+                    public void didPressTopicButton(ChatMessageCell chatMessageCell2) {
+                    }
+
                     @Override
-                    public final void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) {
-                        Adapter adapter = Adapter.this;
+                    public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) {
                         Page page2 = Page.this;
-                        if (page2.currentTab != 2 || page2.this$0.messagePreviewParams.currentLink == characterStyle || chatMessageCell2.getMessageObject() == null || !(characterStyle instanceof URLSpan)) {
+                        if (page2.currentTab != 2 || MessagePreviewView.this.messagePreviewParams.currentLink == characterStyle || chatMessageCell2.getMessageObject() == null || !(characterStyle instanceof URLSpan)) {
                             return;
                         }
                         String url = ((URLSpan) characterStyle).getURL();
-                        ChatActivity.AnonymousClass64 anonymousClass65 = Page.this.this$0;
-                        MessagePreviewParams messagePreviewParams = anonymousClass65.messagePreviewParams;
+                        MessagePreviewView messagePreviewView = MessagePreviewView.this;
+                        MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
                         messagePreviewParams.currentLink = characterStyle;
                         messagePreviewParams.webpage = null;
-                        ChatActivity chatActivity = anonymousClass65.chatActivity;
+                        ChatActivity chatActivity = messagePreviewView.chatActivity;
                         if (chatActivity != null && url != null) {
                             chatActivity.searchLinks(url, true);
                         }
-                        Page.access$1600(Page.this, chatMessageCell2);
+                        Page.this.updateLinkHighlight(chatMessageCell2);
                     }
 
                     @Override
-                    public final void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2) {
+                    public void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC.User user, float f, float f2, boolean z) {
                     }
 
                     @Override
-                    public final void didPressUserStatus(ChatMessageCell chatMessageCell2, TLRPC.User user, TLRPC.Document document, String str) {
+                    public void didPressUserStatus(ChatMessageCell chatMessageCell2, TLRPC.User user, TLRPC.Document document, String str) {
                     }
 
                     @Override
-                    public final void didPressViaBot(String str) {
+                    public void didPressViaBot(ChatMessageCell chatMessageCell2, String str) {
                     }
 
                     @Override
-                    public final void didPressViaBotNotInline(ChatMessageCell chatMessageCell2, long j) {
+                    public void didPressViaBotNotInline(ChatMessageCell chatMessageCell2, long j) {
                     }
 
                     @Override
-                    public final void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i2, int i3, int i4) {
+                    public void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i3, int i4, int i5) {
                     }
 
                     @Override
-                    public final void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage, String str, boolean z) {
-                        ArticleViewer.IBlock.CC.$default$didPressWebPage(chatMessageCell2, str);
+                    public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC.WebPage webPage, String str, boolean z) {
+                        Browser.openUrl(chatMessageCell2.getContext(), str);
                     }
 
                     @Override
-                    public final void didQuickShareEnd(ChatMessageCell chatMessageCell2) {
+                    public void didQuickShareEnd(ChatMessageCell chatMessageCell2, float f, float f2) {
                     }
 
                     @Override
-                    public final void didQuickShareMove(ChatMessageCell chatMessageCell2, float f, float f2) {
+                    public void didQuickShareMove(ChatMessageCell chatMessageCell2, float f, float f2) {
                     }
 
                     @Override
-                    public final void didQuickShareStart(ChatMessageCell chatMessageCell2) {
+                    public void didQuickShareStart(ChatMessageCell chatMessageCell2, float f, float f2) {
                     }
 
                     @Override
-                    public final void didStartVideoStream(MessageObject messageObject) {
+                    public void didStartVideoStream(MessageObject messageObject) {
                     }
 
                     @Override
-                    public final void didTogglePollPreview(ChatMessageCell chatMessageCell2) {
+                    public void didTogglePollPreview(ChatMessageCell chatMessageCell2) {
                     }
 
                     @Override
-                    public final void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2, FileLoader$$ExternalSyntheticLambda1 fileLoader$$ExternalSyntheticLambda1) {
+                    public void didToggleRichMessageCheckbox(ChatMessageCell chatMessageCell2, boolean z, Runnable runnable) {
                     }
 
                     @Override
-                    public final boolean doNotShowLoadingReply(MessageObject messageObject) {
-                        return ArticleViewer.IBlock.CC.$default$doNotShowLoadingReply(messageObject);
+                    public boolean doNotShowLoadingReply(MessageObject messageObject) {
+                        return Theme.ResourcesProvider.CC.$default$doNotShowLoadingReply(messageObject);
                     }
 
                     @Override
-                    public final void drawPollMode(ChatMessageCell chatMessageCell2) {
+                    public void drawPollMode(Canvas canvas, ChatMessageCell chatMessageCell2) {
+                    }
+
+                    public boolean drawingVideoPlayerContainer() {
+                        return false;
                     }
 
                     @Override
-                    public final void forceUpdate(ChatMessageCell chatMessageCell2) {
+                    public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z) {
                     }
 
                     @Override
-                    public final void forceUpdateNoAnimation(ChatMessageCell chatMessageCell2) {
+                    public void forceUpdateNoAnimation(ChatMessageCell chatMessageCell2, boolean z) {
                     }
 
                     @Override
-                    public final int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell2) {
+                    public int getAddPollOptionInputFieldHeight(ChatMessageCell chatMessageCell2) {
                         return 0;
                     }
 
                     @Override
-                    public final String getAdminRank(long j) {
+                    public String getAdminRank(long j) {
                         return null;
                     }
 
                     @Override
-                    public final int getChatMode() {
+                    public int getChatMode() {
                         return 0;
                     }
 
                     @Override
-                    public final ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
+                    public ChatActivityDraftMessageMeasureController getDraftMessageMeasureController() {
                         return null;
                     }
 
                     @Override
-                    public final PinchToZoomHelper getPinchToZoomHelper() {
+                    public PinchToZoomHelper getPinchToZoomHelper() {
                         return null;
                     }
 
                     @Override
-                    public final String getProgressLoadingBotButtonUrl(ChatMessageCell chatMessageCell2) {
+                    public String getProgressLoadingBotButtonUrl(ChatMessageCell chatMessageCell2) {
                         return null;
                     }
 
                     @Override
-                    public final CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell2) {
+                    public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell2) {
                         Page page2 = Page.this;
                         if (page2.currentTab != 2) {
                             return null;
                         }
-                        MessagePreviewParams messagePreviewParams = page2.this$0.messagePreviewParams;
+                        MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
                         if (messagePreviewParams.singleLink) {
                             return null;
                         }
@@ -1073,117 +1483,128 @@ public abstract class MessagePreviewView extends FrameLayout {
                     }
 
                     @Override
-                    public final TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
+                    public TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
                         return Page.this.textSelectionHelper;
                     }
 
                     @Override
-                    public final boolean hasSelectedMessages() {
+                    public boolean hasSelectedMessages() {
                         return true;
                     }
 
                     @Override
-                    public final void invalidateBlur() {
+                    public void invalidateBlur() {
                     }
 
                     @Override
-                    public final boolean isAdmin(long j) {
+                    public boolean isAdmin(long j) {
                         return false;
                     }
 
                     @Override
-                    public final boolean isLandscape() {
+                    public boolean isLandscape() {
                         return false;
                     }
 
                     @Override
-                    public final boolean isOwner(long j) {
+                    public boolean isOwner(long j) {
                         return false;
                     }
 
                     @Override
-                    public final boolean isProgressLoading(int i2, ChatMessageCell chatMessageCell2) {
+                    public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i3) {
                         Page page2 = Page.this;
-                        if (page2.currentTab != 2 || i2 != 1) {
-                            return false;
+                        if (page2.currentTab == 2 && i3 == 1) {
+                            MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                            if (!messagePreviewParams.singleLink) {
+                                TLRPC.WebPage webPage = messagePreviewParams.webpage;
+                                return webPage == null || (webPage instanceof TLRPC.TL_webPagePending);
+                            }
                         }
-                        MessagePreviewParams messagePreviewParams = page2.this$0.messagePreviewParams;
-                        if (messagePreviewParams.singleLink) {
-                            return false;
-                        }
-                        TLRPC.WebPage webPage = messagePreviewParams.webpage;
-                        return webPage == null || (webPage instanceof TLRPC.TL_webPagePending);
-                    }
-
-                    @Override
-                    public final boolean isReplyOrSelf() {
                         return false;
                     }
 
                     @Override
-                    public final boolean keyboardIsOpened() {
+                    public boolean isReplyOrSelf() {
                         return false;
                     }
 
                     @Override
-                    public final void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i2, int i3) {
-                    }
-
-                    @Override
-                    public final boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject) {
+                    public boolean keyboardIsOpened() {
                         return false;
                     }
 
                     @Override
-                    public final void needReloadPolls() {
+                    public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i3, int i4) {
                     }
 
                     @Override
-                    public final void needShowPremiumBulletin(int i2) {
-                    }
-
-                    @Override
-                    public final boolean onAccessibilityAction(int i2) {
+                    public boolean needPlayMessage(ChatMessageCell chatMessageCell2, MessageObject messageObject, boolean z) {
                         return false;
                     }
 
                     @Override
-                    public final void onDiceFinished() {
+                    public void needReloadPolls() {
                     }
 
                     @Override
-                    public final void openArticlePhoto(ChatMessageCell chatMessageCell2, TL_iv.PageBlock pageBlock) {
+                    public void needShowPremiumBulletin(int i3) {
+                    }
+
+                    public void needShowPremiumFeatures(String str) {
                     }
 
                     @Override
-                    public final void setShouldNotRepeatSticker(MessageObject messageObject) {
-                    }
-
-                    @Override
-                    public final boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z) {
+                    public boolean onAccessibilityAction(int i3, Bundle bundle) {
                         return false;
                     }
 
                     @Override
-                    public final boolean shouldRepeatSticker(MessageObject messageObject) {
+                    public void onDiceFinished() {
+                    }
+
+                    @Override
+                    public boolean openArticlePhoto(ChatMessageCell chatMessageCell2, TL_iv.PageBlock pageBlock) {
+                        return false;
+                    }
+
+                    @Override
+                    public void setShouldNotRepeatSticker(MessageObject messageObject) {
+                    }
+
+                    @Override
+                    public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2, boolean z) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean shouldRepeatSticker(MessageObject messageObject) {
                         return true;
                     }
 
-                    @Override
-                    public final void videoTimerReached() {
+                    public boolean shouldShowDialogButton(ChatMessageCell chatMessageCell2) {
+                        return false;
+                    }
+
+                    public boolean shouldShowTopicButton(ChatMessageCell chatMessageCell2) {
+                        return false;
                     }
 
                     @Override
-                    public final void forceUpdate(ChatMessageCell chatMessageCell2, boolean z) {
+                    public void videoTimerReached() {
+                    }
+
+                    @Override
+                    public void forceUpdate(ChatMessageCell chatMessageCell2, boolean z, boolean z2) {
+                        forceUpdate(chatMessageCell2, z);
                     }
                 });
                 return new RecyclerListView.Holder(chatMessageCell);
             }
 
             @Override
-            public final void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+            public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
                 int i;
-                MessageObject replyMessage;
                 Page page = Page.this;
                 if (page.messages == null || (i = page.currentTab) == 1) {
                     return;
@@ -1195,64 +1616,105 @@ public abstract class MessagePreviewView extends FrameLayout {
                         chatMessageCell.setDrawSelectionBackground(false);
                         return;
                     }
-                    MessageObject.GroupedMessages groupedMessagesAccess$1300 = Page.access$1300(page, chatMessageCell.getMessageObject());
-                    chatMessageCell.setDrawSelectionBackground(groupedMessagesAccess$1300 == null);
-                    chatMessageCell.setChecked(true, groupedMessagesAccess$1300 == null, false);
-                    ChatActivity.AnonymousClass64 anonymousClass64 = page.this$0;
-                    MessagePreviewParams messagePreviewParams = anonymousClass64.messagePreviewParams;
-                    if (messagePreviewParams.isSecret || messagePreviewParams.quote == null || chatMessageCell.getMessageObject() == null || (replyMessage = page.getReplyMessage(null)) == null) {
+                    MessageObject.GroupedMessages validGroupedMessage = page.getValidGroupedMessage(chatMessageCell.getMessageObject());
+                    chatMessageCell.setDrawSelectionBackground(validGroupedMessage == null);
+                    chatMessageCell.setChecked(true, validGroupedMessage == null, false);
+                    Page page2 = Page.this;
+                    MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                    if (messagePreviewParams.isSecret || messagePreviewParams.quote == null || !page2.isReplyMessageCell(chatMessageCell) || Page.this.textSelectionHelper.isInSelectionMode()) {
                         return;
                     }
-                    if (chatMessageCell.getMessageObject() == replyMessage || chatMessageCell.getMessageObject().getId() == replyMessage.getId()) {
-                        AnonymousClass4 anonymousClass4 = page.textSelectionHelper;
-                        if (anonymousClass4.isInSelectionMode()) {
-                            return;
-                        }
-                        MessagePreviewParams messagePreviewParams2 = anonymousClass64.messagePreviewParams;
-                        anonymousClass4.select(chatMessageCell, messagePreviewParams2.quoteStart, messagePreviewParams2.quoteEnd);
-                        if (page.firstAttach) {
-                            page.scrollToQuoteStartY = offset(false, anonymousClass64.messagePreviewParams.quoteStart, chatMessageCell);
-                            page.scrollToQuoteEndY = offset(true, anonymousClass64.messagePreviewParams.quoteEnd, chatMessageCell);
-                            page.shouldScrollToQuote = true;
-                            page.firstAttach = false;
-                        }
+                    Page page3 = Page.this;
+                    TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper = page3.textSelectionHelper;
+                    MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                    chatListTextSelectionHelper.select(chatMessageCell, messagePreviewParams2.quoteStart, messagePreviewParams2.quoteEnd);
+                    if (Page.this.firstAttach) {
+                        Page page4 = Page.this;
+                        page4.scrollToQuoteStartY = offset(chatMessageCell, MessagePreviewView.this.messagePreviewParams.quoteStart, false);
+                        Page page5 = Page.this;
+                        page5.scrollToQuoteEndY = offset(chatMessageCell, MessagePreviewView.this.messagePreviewParams.quoteEnd, true);
+                        Page page6 = Page.this;
+                        page6.shouldScrollToQuote = true;
+                        page6.firstAttach = false;
                     }
                 }
             }
+
+            private int offset(ChatMessageCell chatMessageCell, int i, boolean z) {
+                MessageObject messageObject;
+                int iM;
+                ArrayList<MessageObject.TextLayoutBlock> arrayList;
+                CharSequence charSequence;
+                float fTextYOffset;
+                MessageObject.TextLayoutBlocks textLayoutBlocks;
+                if (chatMessageCell == null || (messageObject = chatMessageCell.getMessageObject()) == null || messageObject.getGroupId() != 0) {
+                    return 0;
+                }
+                if (TextUtils.isEmpty(messageObject.caption) || (textLayoutBlocks = chatMessageCell.captionLayout) == null) {
+                    chatMessageCell.layoutTextXY(true);
+                    iM = chatMessageCell.textY;
+                    CharSequence charSequence2 = messageObject.messageText;
+                    ArrayList<MessageObject.TextLayoutBlock> arrayList2 = messageObject.textLayoutBlocks;
+                    if (chatMessageCell.linkPreviewAbove) {
+                        iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(10.0f, chatMessageCell.linkPreviewHeight, iM);
+                    }
+                    arrayList = arrayList2;
+                    charSequence = charSequence2;
+                } else {
+                    iM = (int) chatMessageCell.captionY;
+                    charSequence = messageObject.caption;
+                    arrayList = textLayoutBlocks.textLayoutBlocks;
+                }
+                if (arrayList != null && charSequence != null) {
+                    for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                        MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i2);
+                        StaticLayout staticLayout = textLayoutBlock.textLayout;
+                        String string = staticLayout.getText().toString();
+                        int i3 = textLayoutBlock.charactersOffset;
+                        if (i > i3) {
+                            if (i - i3 > string.length() - 1) {
+                                fTextYOffset = iM + ((int) (textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + textLayoutBlock.padTop + textLayoutBlock.height));
+                            } else {
+                                int lineForOffset = staticLayout.getLineForOffset(i - textLayoutBlock.charactersOffset);
+                                fTextYOffset = textLayoutBlock.textYOffset(arrayList, chatMessageCell.transitionParams) + iM + textLayoutBlock.padTop + (z ? staticLayout.getLineBottom(lineForOffset) : staticLayout.getLineTop(lineForOffset));
+                            }
+                            return (int) fTextYOffset;
+                        }
+                    }
+                }
+                return 0;
+            }
         }
 
-        public Page(ChatActivity.AnonymousClass64 anonymousClass64, Context context, int i) {
+        public Page(final Context context, int i) {
             final Page page;
-            int i2;
+            float f;
+            MessagePreviewView messagePreviewView;
             Context context2;
-            Page page2;
             boolean z;
             ToggleButton toggleButton;
             ToggleButton toggleButton2;
-            Page page3;
+            MessagePreviewParams messagePreviewParams;
             MessagePreviewParams.Messages messages;
-            ResourcesDelegate resourcesDelegate;
+            MessagePreviewView messagePreviewView2;
+            int i2;
+            int i3;
+            float f2;
             ViewGroup viewGroup;
-            Context context3 = context;
-            int i3 = 2;
-            int i4 = 4;
-            this.this$0 = anonymousClass64;
-            super(context3);
-            final int i5 = 1;
+            super(context);
             this.firstLayout = true;
             this.scrollToQuoteStartY = -1;
             this.scrollToQuoteEndY = -1;
-            int i6 = 0;
             this.shouldScrollToQuote = false;
             this.rect = new Rect();
             this.updateScroll = false;
             this.firstAttach = true;
-            this.sharedResources = new ChatMessageSharedResources(context3);
+            this.sharedResources = new ChatMessageSharedResources(context);
             this.currentTab = i;
-            setOnTouchListener(new TodoItemMenu$$ExternalSyntheticLambda4(this, 6));
-            ?? r3 = new SizeNotifierFrameLayout(context3) {
+            setOnTouchListener(new ItemOptions$$ExternalSyntheticLambda1(this, 1));
+            SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
                 @Override
-                public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                     if (motionEvent.getY() < Page.this.currentTopOffset) {
                         return false;
                     }
@@ -1260,140 +1722,280 @@ public abstract class MessagePreviewView extends FrameLayout {
                 }
 
                 @Override
-                public final Drawable getNewDrawable() {
-                    Drawable wallpaperDrawable = ((ChatActivity.ThemeDelegate) Page.this.this$0.resourcesProvider).getWallpaperDrawable();
+                public Drawable getNewDrawable() {
+                    Drawable wallpaperDrawable = MessagePreviewView.this.resourcesProvider.getWallpaperDrawable();
                     return wallpaperDrawable != null ? wallpaperDrawable : super.getNewDrawable();
                 }
             };
-            this.chatPreviewContainer = r3;
-            ResourcesDelegate resourcesDelegate2 = anonymousClass64.resourcesProvider;
-            Drawable wallpaperDrawable = ((ChatActivity.ThemeDelegate) resourcesDelegate2).getWallpaperDrawable();
-            if (((ChatActivity.ThemeDelegate) resourcesDelegate2).chatTheme == null) {
-                int i7 = Theme.default_shadow_color;
-            }
-            r3.setBackgroundImage(wallpaperDrawable);
-            r3.setOccupyStatusBar(false);
-            r3.setOutlineProvider(new PremiumPreviewFragment.AnonymousClass3(this, i4));
-            r3.setClipToOutline(true);
-            r3.setElevation(AndroidUtilities.dp(4.0f));
-            IntroActivity.AnonymousClass1 anonymousClass1 = new IntroActivity.AnonymousClass1(context3, 10, resourcesDelegate2);
-            this.actionBar = anonymousClass1;
-            anonymousClass1.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefault, resourcesDelegate2));
-            AnonymousClass4 anonymousClass4 = new AnonymousClass4();
-            this.textSelectionHelper = anonymousClass4;
-            anonymousClass4.callback = new ArticleViewer.AnonymousClass8(this, i3);
-            AnonymousClass6 anonymousClass6 = new AnonymousClass6(context3, resourcesDelegate2);
-            this.chatListView = anonymousClass6;
-            AnonymousClass7 anonymousClass7 = new AnonymousClass7(anonymousClass6, resourcesDelegate2);
-            this.itemAnimator = anonymousClass7;
-            anonymousClass6.setItemAnimator(anonymousClass7);
-            anonymousClass6.setOnScrollListener(new ChatActivity.AnonymousClass53(this, 28));
-            anonymousClass6.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+            this.chatPreviewContainer = sizeNotifierFrameLayout;
+            sizeNotifierFrameLayout.setBackgroundImage(MessagePreviewView.this.resourcesProvider.getWallpaperDrawable(), MessagePreviewView.this.resourcesProvider.isWallpaperMotion());
+            this.chatPreviewContainer.setOccupyStatusBar(false);
+            this.chatPreviewContainer.setOutlineProvider(new ViewOutlineProvider() {
                 @Override
-                public final void onItemClick(int i8, View view) {
-                    Page page4 = Page.this;
-                    if (page4.currentTab != 1 || page4.messages.previewMessages.size() <= 1) {
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0, Page.this.currentTopOffset + 1, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(8.0f));
+                }
+            });
+            this.chatPreviewContainer.setClipToOutline(true);
+            this.chatPreviewContainer.setElevation(AndroidUtilities.dp(4.0f));
+            ActionBar actionBar = MessagePreviewView.this.new ActionBar(context, MessagePreviewView.this.resourcesProvider);
+            this.actionBar = actionBar;
+            actionBar.setBackgroundColor(MessagePreviewView.this.getThemedColor(Theme.key_actionBarDefault));
+            TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper = new TextSelectionHelper.ChatListTextSelectionHelper() {
+                {
+                    this.resourcesProvider = MessagePreviewView.this.resourcesProvider;
+                }
+
+                @Override
+                public boolean canCopy() {
+                    if (Page.this.isReplyToRichMessage()) {
+                        return false;
+                    }
+                    MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                    return messagePreviewParams2 == null || !messagePreviewParams2.noforwards;
+                }
+
+                @Override
+                public boolean canShowQuote() {
+                    Page page2 = Page.this;
+                    return (page2.currentTab != 0 || MessagePreviewView.this.messagePreviewParams.isSecret || page2.isReplyToRichMessage()) ? false : true;
+                }
+
+                @Override
+                public Theme.ResourcesProvider getResourcesProvider() {
+                    return this.resourcesProvider;
+                }
+
+                @Override
+                public void invalidate() {
+                    super.invalidate();
+                    RecyclerListView recyclerListView = Page.this.chatListView;
+                    if (recyclerListView != null) {
+                        recyclerListView.invalidate();
+                    }
+                }
+
+                @Override
+                public boolean isSelected(MessageObject messageObject) {
+                    Page page2 = Page.this;
+                    return page2.currentTab == 0 && !MessagePreviewView.this.messagePreviewParams.isSecret && isInSelectionMode();
+                }
+
+                @Override
+                public void onQuoteClick(MessageObject messageObject, int i4, int i5, CharSequence charSequence) {
+                    ChatActivity.ReplyQuote replyQuote;
+                    MessageObject messageObject2;
+                    Page page2 = Page.this;
+                    TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper2 = page2.textSelectionHelper;
+                    if (chatListTextSelectionHelper2.selectionEnd - chatListTextSelectionHelper2.selectionStart > MessagesController.getInstance(MessagePreviewView.this.currentAccount).quoteLengthMax) {
+                        Page.this.showQuoteLengthError();
                         return;
                     }
-                    int id = page4.messages.previewMessages.get(i8).getId();
-                    boolean z2 = page4.messages.selectedIds.get(id, false);
+                    Page page3 = Page.this;
+                    MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                    TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper3 = page3.textSelectionHelper;
+                    messagePreviewParams2.quoteStart = chatListTextSelectionHelper3.selectionStart;
+                    messagePreviewParams2.quoteEnd = chatListTextSelectionHelper3.selectionEnd;
+                    MessageObject replyMessage = page3.getReplyMessage(messageObject);
+                    if (replyMessage != null && ((replyQuote = MessagePreviewView.this.messagePreviewParams.quote) == null || (messageObject2 = replyQuote.message) == null || messageObject2.getId() != replyMessage.getId())) {
+                        MessagePreviewView.this.messagePreviewParams.quote = ChatActivity.ReplyQuote.from(replyMessage, i4, i5);
+                    }
+                    MessagePreviewView.this.onQuoteSelectedPart();
+                    MessagePreviewView.this.dismiss(true);
+                }
+            };
+            this.textSelectionHelper = chatListTextSelectionHelper;
+            chatListTextSelectionHelper.setCallback(new TextSelectionHelper.Callback() {
+                @Override
+                public void onStateChanged(boolean z2) {
+                    Page page2 = Page.this;
+                    if (MessagePreviewView.this.showing) {
+                        if (!z2 && page2.menu.getSwipeBack().isForegroundOpen()) {
+                            Page.this.menu.getSwipeBack().closeForeground(true);
+                            return;
+                        }
+                        if (z2) {
+                            Page page3 = Page.this;
+                            TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper2 = page3.textSelectionHelper;
+                            if (chatListTextSelectionHelper2.selectionEnd - chatListTextSelectionHelper2.selectionStart > MessagesController.getInstance(MessagePreviewView.this.currentAccount).quoteLengthMax) {
+                                Page.this.showQuoteLengthError();
+                                return;
+                            }
+                            MessageObject replyMessage = Page.this.getReplyMessage(Page.this.textSelectionHelper.getSelectedCell() != null ? ((ChatMessageCell) Page.this.textSelectionHelper.getSelectedCell()).getMessageObject() : null);
+                            Page page4 = Page.this;
+                            MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                            if (messagePreviewParams2.quote == null) {
+                                TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper3 = page4.textSelectionHelper;
+                                int i4 = chatListTextSelectionHelper3.selectionStart;
+                                messagePreviewParams2.quoteStart = i4;
+                                int i5 = chatListTextSelectionHelper3.selectionEnd;
+                                messagePreviewParams2.quoteEnd = i5;
+                                messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(replyMessage, i4, i5);
+                                Page.this.menu.getSwipeBack().openForeground(Page.this.menuBack);
+                            }
+                        }
+                    }
+                }
+            });
+            AnonymousClass6 anonymousClass6 = new AnonymousClass6(context, MessagePreviewView.this.resourcesProvider, MessagePreviewView.this);
+            this.chatListView = anonymousClass6;
+            AnonymousClass7 anonymousClass7 = new AnonymousClass7(null, this.chatListView, MessagePreviewView.this.resourcesProvider, MessagePreviewView.this);
+            this.itemAnimator = anonymousClass7;
+            anonymousClass6.lambda$onCellEnter$52(anonymousClass7);
+            this.chatListView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
+                    super.onScrolled(recyclerView, i4, i5);
+                    for (int i6 = 0; i6 < Page.this.chatListView.getChildCount(); i6++) {
+                        View childAt = Page.this.chatListView.getChildAt(i6);
+                        if (childAt instanceof ChatMessageCell) {
+                            ((ChatMessageCell) childAt).setParentViewSize(Page.this.chatPreviewContainer.getMeasuredWidth(), Page.this.chatPreviewContainer.getBackgroundSizeY());
+                        }
+                    }
+                    TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper2 = Page.this.textSelectionHelper;
+                    if (chatListTextSelectionHelper2 != null) {
+                        chatListTextSelectionHelper2.invalidate();
+                    }
+                }
+            });
+            this.chatListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                @Override
+                public void onItemClick(View view, int i4) {
+                    Page page2 = Page.this;
+                    if (page2.currentTab != 1 || page2.messages.previewMessages.size() <= 1) {
+                        return;
+                    }
+                    int id = Page.this.messages.previewMessages.get(i4).getId();
+                    boolean z2 = Page.this.messages.selectedIds.get(id, false);
                     boolean z3 = !z2;
-                    if (page4.messages.selectedIds.size() == 1 && z2) {
+                    if (Page.this.messages.selectedIds.size() == 1 && z2) {
                         return;
                     }
                     if (z2) {
-                        page4.messages.selectedIds.delete(id);
+                        Page.this.messages.selectedIds.delete(id);
                     } else {
-                        page4.messages.selectedIds.put(id, z3);
+                        Page.this.messages.selectedIds.put(id, z3);
                     }
                     if (view instanceof ChatMessageCell) {
                         ((ChatMessageCell) view).setChecked(z3, z3, true);
                     }
-                    page4.updateSubtitle(true);
+                    Page.this.updateSubtitle(true);
                 }
             });
+            RecyclerListView recyclerListView = this.chatListView;
             Adapter adapter = new Adapter();
             this.adapter = adapter;
-            anonymousClass6.setAdapter(adapter);
-            anonymousClass6.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-            AnonymousClass10 anonymousClass10 = new AnonymousClass10();
-            anonymousClass10.mSpanSizeLookup = new BaseMenuWrapper() {
+            recyclerListView.setAdapter(adapter);
+            this.chatListView.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+            Context context3 = context;
+            AnonymousClass10 anonymousClass10 = new AnonymousClass10(context3, 1000, 1, true, MessagePreviewView.this);
+            this.chatLayoutManager = anonymousClass10;
+            anonymousClass10.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
-                public final int getSpanSize(int i8) {
-                    MessageObject messageObject;
-                    MessageObject.GroupedMessages groupedMessagesAccess$1300;
-                    if (i8 < 0) {
+                public int getSpanSize(int i4) {
+                    if (i4 < 0 || i4 >= Page.this.messages.previewMessages.size()) {
                         return 1000;
                     }
-                    Page page4 = Page.this;
-                    if (i8 >= page4.messages.previewMessages.size() || (groupedMessagesAccess$1300 = Page.access$1300(page4, (messageObject = page4.messages.previewMessages.get(i8)))) == null) {
-                        return 1000;
+                    MessageObject messageObject = Page.this.messages.previewMessages.get(i4);
+                    MessageObject.GroupedMessages validGroupedMessage = Page.this.getValidGroupedMessage(messageObject);
+                    if (validGroupedMessage != null) {
+                        return validGroupedMessage.getPosition(messageObject).spanSize;
                     }
-                    return groupedMessagesAccess$1300.getPosition(messageObject).spanSize;
+                    return 1000;
                 }
-            };
-            anonymousClass6.setClipToPadding(false);
-            anonymousClass6.setLayoutManager(anonymousClass10);
-            anonymousClass6.addItemDecoration(new AnonymousClass12());
-            r3.addView(anonymousClass6);
-            addView((View) r3, LayoutHelper.createFrame(-1, 400.0f, 0, 8.0f, 0.0f, 8.0f, 0.0f));
-            r3.addView(anonymousClass1, LayoutHelper.createFrame(-2.0f, -1));
-            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(R.drawable.popup_fixed_alert2, 1, getContext(), resourcesDelegate2);
+            });
+            this.chatListView.setClipToPadding(false);
+            this.chatListView.setLayoutManager(this.chatLayoutManager);
+            this.chatListView.addItemDecoration(new RecyclerView.ItemDecoration() {
+                @Override
+                public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+                    ChatMessageCell chatMessageCell;
+                    MessageObject.GroupedMessages currentMessagesGroup;
+                    MessageObject.GroupedMessagePosition currentPosition;
+                    rect.bottom = 0;
+                    if (!(view instanceof ChatMessageCell) || (currentMessagesGroup = (chatMessageCell = (ChatMessageCell) view).getCurrentMessagesGroup()) == null || (currentPosition = chatMessageCell.getCurrentPosition()) == null || currentPosition.siblingHeights == null) {
+                        return;
+                    }
+                    Point point = AndroidUtilities.displaySize;
+                    float fMax = Math.max(point.x, point.y) * 0.5f;
+                    int extraInsetHeight = chatMessageCell.getExtraInsetHeight();
+                    int i4 = 0;
+                    while (true) {
+                        float[] fArr = currentPosition.siblingHeights;
+                        if (i4 >= fArr.length) {
+                            break;
+                        }
+                        extraInsetHeight += (int) Math.ceil(fArr[i4] * fMax);
+                        i4++;
+                    }
+                    int iRound = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
+                    int size = currentMessagesGroup.posArray.size();
+                    for (int i5 = 0; i5 < size; i5++) {
+                        MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i5);
+                        byte b = groupedMessagePosition.minY;
+                        byte b2 = currentPosition.minY;
+                        if (b == b2 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b != b2 || groupedMessagePosition.maxY != currentPosition.maxY) && b == b2)) {
+                            iRound -= ((int) Math.ceil(fMax * groupedMessagePosition.ph)) - AndroidUtilities.dp(4.0f);
+                            break;
+                        }
+                    }
+                    rect.bottom = -iRound;
+                }
+            });
+            this.chatPreviewContainer.addView(this.chatListView);
+            addView(this.chatPreviewContainer, LayoutHelper.createFrame(-1, 400.0f, 0, 8.0f, 0.0f, 8.0f, 0.0f));
+            this.chatPreviewContainer.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext(), R.drawable.popup_fixed_alert2, MessagePreviewView.this.resourcesProvider, 1);
             this.menu = actionBarPopupWindowLayout;
-            actionBarPopupWindowLayout.getSwipeBack().setOnForegroundOpenFinished(new MessagePreviewView$Page$$ExternalSyntheticLambda10(this, i6));
-            BlurredBackgroundDrawable blurredBackgroundDrawableCreate = anonymousClass64.iBlur3Factory.create(actionBarPopupWindowLayout, null, false);
-            blurredBackgroundDrawableCreate.setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(resourcesDelegate2));
+            actionBarPopupWindowLayout.getSwipeBack().setOnForegroundOpenFinished(new MessagePreviewView$Page$$ExternalSyntheticLambda9(this, 0));
+            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.menu;
+            BlurredBackgroundDrawable blurredBackgroundDrawableCreate = MessagePreviewView.this.iBlur3Factory.create(this.menu, null, false);
+            blurredBackgroundDrawableCreate.setColorProvider(BlurredBackgroundProviderImpl.scrimMenuBackground(MessagePreviewView.this.resourcesProvider));
             blurredBackgroundDrawableCreate.setPadding(AndroidUtilities.dp(8.0f));
             blurredBackgroundDrawableCreate.boundProps.hasPadding = true;
             blurredBackgroundDrawableCreate.setRadius(AndroidUtilities.dp(12.0f));
-            actionBarPopupWindowLayout.setBackground(blurredBackgroundDrawableCreate);
-            addView(actionBarPopupWindowLayout, LayoutHelper.createFrame(-2.0f, -2));
-            MessagePreviewParams messagePreviewParams = anonymousClass64.messagePreviewParams;
-            ActionBarPopupWindow.ActionBarPopupWindowLayout.AnonymousClass2 anonymousClass2 = actionBarPopupWindowLayout.linearLayout;
-            if (i != 0 || (messages = messagePreviewParams.replyMessage) == null) {
-                if (i != 1 || messagePreviewParams.forwardMessages == null) {
-                    page = this;
-                    page2 = page;
-                    if (i == 2 && messagePreviewParams.linkMessage != null) {
-                        ToggleButton toggleButton3 = new ToggleButton(context, R.raw.position_below, LocaleController.getString(R.string.LinkAbove), R.raw.position_above, LocaleController.getString(R.string.LinkBelow), anonymousClass64.resourcesProvider);
+            actionBarPopupWindowLayout2.setBackground(blurredBackgroundDrawableCreate);
+            addView(this.menu, LayoutHelper.createFrame(-2, -2.0f));
+            if (i != 0 || (messages = (messagePreviewParams = MessagePreviewView.this.messagePreviewParams).replyMessage) == null) {
+                page = this;
+                f = 8.0f;
+                if (i != 1 || MessagePreviewView.this.messagePreviewParams.forwardMessages == null) {
+                    messagePreviewView = MessagePreviewView.this;
+                    if (i == 2 && messagePreviewView.messagePreviewParams.linkMessage != null) {
+                        ToggleButton toggleButton3 = new ToggleButton(context, R.raw.position_below, LocaleController.getString(R.string.LinkAbove), R.raw.position_above, LocaleController.getString(R.string.LinkBelow), messagePreviewView.resourcesProvider);
                         page.changePositionBtn = toggleButton3;
-                        toggleButton3.setState(!messagePreviewParams.webpageTop, false);
-                        anonymousClass2.addView(toggleButton3, LayoutHelper.createLinear(-1, 48));
+                        toggleButton3.setState(!messagePreviewView.messagePreviewParams.webpageTop, false);
+                        page.menu.addView((View) page.changePositionBtn, LayoutHelper.createLinear(-1, 48));
                         FrameLayout frameLayout = new FrameLayout(context);
                         page.changeSizeBtnContainer = frameLayout;
-                        frameLayout.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesDelegate2), 0, 0));
-                        int i8 = R.raw.media_shrink;
+                        frameLayout.setBackground(Theme.createRadSelectorDrawable(messagePreviewView.getThemedColor(Theme.key_dialogButtonSelector), 0, 0));
+                        int i4 = R.raw.media_shrink;
                         String string = LocaleController.getString(R.string.LinkMediaLarger);
-                        int i9 = R.raw.media_enlarge;
-                        ToggleButton toggleButton4 = new ToggleButton(context, i8, string, i9, LocaleController.getString(R.string.LinkMediaSmaller), anonymousClass64.resourcesProvider);
+                        int i5 = R.raw.media_enlarge;
+                        ToggleButton toggleButton4 = new ToggleButton(context, i4, string, i5, LocaleController.getString(R.string.LinkMediaSmaller), messagePreviewView.resourcesProvider);
                         page.changeSizeBtn = toggleButton4;
                         toggleButton4.setBackground(null);
-                        if (messagePreviewParams.isVideo) {
-                            page2 = page;
-                            i2 = 4;
-                        } else {
-                            page2 = page;
-                            i2 = 0;
-                        }
-                        toggleButton4.setVisibility(i2);
-                        frameLayout.addView(toggleButton4, LayoutHelper.createLinear(-1, 48));
-                        ToggleButton toggleButton5 = new ToggleButton(context, i8, LocaleController.getString(R.string.LinkVideoLarger), i9, LocaleController.getString(R.string.LinkVideoSmaller), anonymousClass64.resourcesProvider);
+                        page.changeSizeBtn.setVisibility(messagePreviewView.messagePreviewParams.isVideo ? 4 : 0);
+                        page.changeSizeBtnContainer.addView(page.changeSizeBtn, LayoutHelper.createLinear(-1, 48));
+                        ToggleButton toggleButton5 = new ToggleButton(context, i4, LocaleController.getString(R.string.LinkVideoLarger), i5, LocaleController.getString(R.string.LinkVideoSmaller), messagePreviewView.resourcesProvider);
                         page.videoChangeSizeBtn = toggleButton5;
                         toggleButton5.setBackground(null);
-                        toggleButton5.setVisibility(!messagePreviewParams.isVideo ? 4 : 0);
-                        frameLayout.setAlpha(messagePreviewParams.hasMedia ? 1.0f : 0.5f);
-                        frameLayout.addView(toggleButton5, LayoutHelper.createLinear(-1, 48));
-                        anonymousClass2.addView(frameLayout, LayoutHelper.createLinear(-1, 48));
-                        frameLayout.setVisibility((!messagePreviewParams.singleLink || messagePreviewParams.hasMedia) ? 0 : 8);
-                        toggleButton4.setState(messagePreviewParams.webpageSmall, false);
-                        toggleButton5.setState(messagePreviewParams.webpageSmall, false);
-                        ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(context, Theme.key_actionBarDefaultSubmenuSeparator, resourcesDelegate2);
-                        gapView.setColor(Theme.multAlpha(0.06f, Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesDelegate2)));
+                        page.videoChangeSizeBtn.setVisibility(messagePreviewView.messagePreviewParams.isVideo ? 0 : 4);
+                        page.changeSizeBtnContainer.setAlpha(messagePreviewView.messagePreviewParams.hasMedia ? 1.0f : 0.5f);
+                        page.changeSizeBtnContainer.addView(page.videoChangeSizeBtn, LayoutHelper.createLinear(-1, 48));
+                        page.menu.addView((View) page.changeSizeBtnContainer, LayoutHelper.createLinear(-1, 48));
+                        FrameLayout frameLayout2 = page.changeSizeBtnContainer;
+                        MessagePreviewParams messagePreviewParams2 = messagePreviewView.messagePreviewParams;
+                        frameLayout2.setVisibility((!messagePreviewParams2.singleLink || messagePreviewParams2.hasMedia) ? 0 : 8);
+                        page.changeSizeBtn.setState(messagePreviewView.messagePreviewParams.webpageSmall, false);
+                        page.videoChangeSizeBtn.setState(messagePreviewView.messagePreviewParams.webpageSmall, false);
+                        ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(context, messagePreviewView.resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                        gapView.setColor(Theme.multAlpha(0.06f, Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, messagePreviewView.resourcesProvider)));
                         gapView.setTag(R.id.fit_width_tag, 1);
-                        anonymousClass2.addView(gapView, LayoutHelper.createLinear(-1, 8));
-                        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(1, context, anonymousClass64.resourcesProvider, false, false);
-                        actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.ApplyChanges), R.drawable.msg_select, null);
-                        final int i10 = 10;
+                        page.menu.addView((View) gapView, LayoutHelper.createLinear(-1, 8));
+                        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(1, context, messagePreviewView.resourcesProvider, false, false);
+                        actionBarMenuSubItem.setTextAndIcon(LocaleController.getString(R.string.ApplyChanges), R.drawable.msg_select);
+                        final int i6 = 10;
                         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener(page) {
                             public final MessagePreviewView.Page f$0;
 
@@ -1403,203 +2005,60 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                             @Override
                             public final void onClick(View view) {
-                                TLRPC.Message message;
-                                TLRPC.MessageMedia messageMedia;
-                                TLRPC.Message message2;
-                                TLRPC.MessageMedia messageMedia2;
-                                TLRPC.Message message3;
-                                TLRPC.Message message4;
-                                switch (i10) {
+                                switch (i6) {
                                     case 0:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$10(view);
                                         break;
                                     case 1:
-                                        MessagePreviewView.Page page4 = this.f$0;
-                                        page4.this$0.messagePreviewParams.quote = null;
-                                        page4.textSelectionHelper.clear(false);
-                                        page4.switchToQuote(false, false);
-                                        page4.menu.getSwipeBack().closeForeground(true);
+                                        this.f$0.lambda$new$2(view);
                                         break;
                                     case 2:
-                                        MessagePreviewView.Page page5 = this.f$0;
-                                        if (page5.getReplyMessage(null) != null) {
-                                            MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page5.textSelectionHelper;
-                                            int i11 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                            ChatActivity.AnonymousClass64 anonymousClass65 = page5.this$0;
-                                            if (i11 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                                TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                                MessageObject replyMessage = page5.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                                int i12 = anonymousClass5.selectionStart;
-                                                MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                                messagePreviewParams2.quoteStart = i12;
-                                                int i13 = anonymousClass5.selectionEnd;
-                                                messagePreviewParams2.quoteEnd = i13;
-                                                messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i12, i13, replyMessage);
-                                                anonymousClass65.onQuoteSelectedPart();
-                                                anonymousClass65.dismiss(true);
-                                            } else {
-                                                page5.showQuoteLengthError();
-                                            }
-                                        }
+                                        this.f$0.lambda$new$3(view);
                                         break;
                                     case 3:
-                                        MessagePreviewView.Page page6 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass66 = page6.this$0;
-                                        MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                        ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                        boolean z2 = anonymousClass66.showOutdatedQuote;
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page6.textSelectionHelper;
-                                        if (replyQuote == null || z2) {
-                                            int i14 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                            int i15 = anonymousClass66.currentAccount;
-                                            if (i14 <= MessagesController.getInstance(i15).quoteLengthMax) {
-                                                MessageObject replyMessage2 = page6.getReplyMessage(null);
-                                                if (replyMessage2 != null) {
-                                                    boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                    MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                    if (!zIsInSelectionMode) {
-                                                        messagePreviewParams4.quoteStart = 0;
-                                                        messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i15).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                        View replyMessageCell = page6.getReplyMessageCell();
-                                                        if (replyMessageCell instanceof ChatMessageCell) {
-                                                            anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                        }
-                                                        if (!z2) {
-                                                            page6.menu.getSwipeBack().openForeground(page6.menuBack);
-                                                        }
-                                                        page6.switchToQuote(true, true);
-                                                    } else {
-                                                        messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                        messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                        TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page6.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                        anonymousClass66.onQuoteSelectedPart();
-                                                        anonymousClass66.dismiss(true);
-                                                    }
-                                                }
-                                            } else {
-                                                page6.showQuoteLengthError();
-                                            }
-                                        } else {
-                                            messagePreviewParams3.quote = null;
-                                            anonymousClass8.clear(false);
-                                            page6.switchToQuote(false, true);
-                                            page6.updateSubtitle(true);
-                                        }
+                                        this.f$0.lambda$new$4(view);
                                         break;
                                     case 4:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$5(view);
                                         break;
                                     case 5:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$6(view);
                                         break;
                                     case 6:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$7(view);
                                         break;
                                     case 7:
-                                        ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                        boolean z3 = anonymousClass67.showOutdatedQuote;
-                                        ChatActivity chatActivity = ChatActivity.this;
-                                        if (!z3) {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingMessageObject = null;
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                            chatActivity.fallbackFieldPanel();
-                                        } else {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                        }
+                                        this.f$0.lambda$new$8(view);
                                         break;
                                     case 8:
-                                        this.f$0.this$0.selectAnotherChat(true);
+                                        this.f$0.lambda$new$9(view);
                                         break;
                                     case 9:
-                                        ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                        anonymousClass68.dismiss(true);
-                                        ChatActivity chatActivity2 = ChatActivity.this;
-                                        chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                        chatActivity2.fallbackFieldPanel();
+                                        this.f$0.lambda$new$11(view);
                                         break;
                                     case 10:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$16(view);
                                         break;
                                     case 11:
-                                        ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                        anonymousClass69.dismiss(true);
-                                        ChatActivity chatActivity3 = ChatActivity.this;
-                                        chatActivity3.foundWebPage = null;
-                                        ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                        if (anonymousClass39 != null) {
-                                            anonymousClass39.messageWebPage = null;
-                                            anonymousClass39.messageWebPageSearch = false;
-                                        }
-                                        MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                        if (messagePreviewParams5 != null) {
-                                            int i16 = ((BaseFragment) chatActivity3).currentAccount;
-                                            MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                            messagePreviewParams5.updateLink(i16, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                        }
-                                        chatActivity3.fallbackFieldPanel();
+                                        this.f$0.lambda$new$17(view);
                                         break;
                                     case 12:
-                                        MessagePreviewView.Page page7 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass610 = page7.this$0;
-                                        MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                        if (messagePreviewParams6.hasMedia) {
-                                            boolean z4 = !messagePreviewParams6.webpageSmall;
-                                            messagePreviewParams6.webpageSmall = z4;
-                                            page7.changeSizeBtn.setState(z4, true);
-                                            MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                            page7.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                            if (page7.messages.messages.size() > 0 && (message2 = page7.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                                boolean z5 = messagePreviewParams7.webpageSmall;
-                                                messageMedia2.force_small_media = z5;
-                                                messageMedia2.force_large_media = !z5;
-                                            }
-                                            if (page7.messages.previewMessages.size() > 0 && (message = page7.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                                boolean z6 = messagePreviewParams7.webpageSmall;
-                                                messageMedia.force_small_media = z6;
-                                                messageMedia.force_large_media = !z6;
-                                            }
-                                            page7.updateMessages();
-                                            page7.updateScroll = true;
-                                            break;
-                                        }
+                                        this.f$0.lambda$new$18(view);
                                         break;
                                     default:
-                                        MessagePreviewView.Page page8 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass611 = page8.this$0;
-                                        MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                        boolean z7 = messagePreviewParams8.webpageTop;
-                                        messagePreviewParams8.webpageTop = !z7;
-                                        page8.changePositionBtn.setState(z7, true);
-                                        int size = page8.messages.messages.size();
-                                        MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                        if (size > 0 && (message4 = page8.messages.messages.get(0).messageOwner) != null) {
-                                            message4.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        if (page8.messages.previewMessages.size() > 0 && (message3 = page8.messages.previewMessages.get(0).messageOwner) != null) {
-                                            message3.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        page8.updateMessages();
-                                        page8.updateScroll = true;
+                                        this.f$0.lambda$new$19(view);
                                         break;
                                 }
                             }
                         });
-                        anonymousClass2.addView(actionBarMenuSubItem, LayoutHelper.createLinear(-1, 48));
-                        ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(1, context, anonymousClass64.resourcesProvider, false, true);
+                        page.menu.addView((View) actionBarMenuSubItem, LayoutHelper.createLinear(-1, 48));
                         context2 = context;
-                        actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.DoNotLinkPreview), R.drawable.msg_delete, null);
-                        int color = Theme.getColor(Theme.key_text_RedBold, resourcesDelegate2);
-                        int i11 = Theme.key_text_RedRegular;
-                        int color2 = Theme.getColor(i11, resourcesDelegate2);
-                        actionBarMenuSubItem2.setTextColor(color);
-                        actionBarMenuSubItem2.setIconColor(color2);
-                        final int i12 = 11;
+                        ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(1, context2, messagePreviewView.resourcesProvider, false, true);
+                        actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.DoNotLinkPreview), R.drawable.msg_delete);
+                        int themedColor = messagePreviewView.getThemedColor(Theme.key_text_RedBold);
+                        int i7 = Theme.key_text_RedRegular;
+                        actionBarMenuSubItem2.setColors(themedColor, messagePreviewView.getThemedColor(i7));
+                        final int i8 = 11;
                         actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener(page) {
                             public final MessagePreviewView.Page f$0;
 
@@ -1609,197 +2068,56 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                             @Override
                             public final void onClick(View view) {
-                                TLRPC.Message message;
-                                TLRPC.MessageMedia messageMedia;
-                                TLRPC.Message message2;
-                                TLRPC.MessageMedia messageMedia2;
-                                TLRPC.Message message3;
-                                TLRPC.Message message4;
-                                switch (i12) {
+                                switch (i8) {
                                     case 0:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$10(view);
                                         break;
                                     case 1:
-                                        MessagePreviewView.Page page4 = this.f$0;
-                                        page4.this$0.messagePreviewParams.quote = null;
-                                        page4.textSelectionHelper.clear(false);
-                                        page4.switchToQuote(false, false);
-                                        page4.menu.getSwipeBack().closeForeground(true);
+                                        this.f$0.lambda$new$2(view);
                                         break;
                                     case 2:
-                                        MessagePreviewView.Page page5 = this.f$0;
-                                        if (page5.getReplyMessage(null) != null) {
-                                            MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page5.textSelectionHelper;
-                                            int i13 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                            ChatActivity.AnonymousClass64 anonymousClass65 = page5.this$0;
-                                            if (i13 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                                TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                                MessageObject replyMessage = page5.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                                int i14 = anonymousClass5.selectionStart;
-                                                MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                                messagePreviewParams2.quoteStart = i14;
-                                                int i15 = anonymousClass5.selectionEnd;
-                                                messagePreviewParams2.quoteEnd = i15;
-                                                messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i14, i15, replyMessage);
-                                                anonymousClass65.onQuoteSelectedPart();
-                                                anonymousClass65.dismiss(true);
-                                            } else {
-                                                page5.showQuoteLengthError();
-                                            }
-                                        }
+                                        this.f$0.lambda$new$3(view);
                                         break;
                                     case 3:
-                                        MessagePreviewView.Page page6 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass66 = page6.this$0;
-                                        MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                        ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                        boolean z2 = anonymousClass66.showOutdatedQuote;
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page6.textSelectionHelper;
-                                        if (replyQuote == null || z2) {
-                                            int i16 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                            int i17 = anonymousClass66.currentAccount;
-                                            if (i16 <= MessagesController.getInstance(i17).quoteLengthMax) {
-                                                MessageObject replyMessage2 = page6.getReplyMessage(null);
-                                                if (replyMessage2 != null) {
-                                                    boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                    MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                    if (!zIsInSelectionMode) {
-                                                        messagePreviewParams4.quoteStart = 0;
-                                                        messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i17).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                        View replyMessageCell = page6.getReplyMessageCell();
-                                                        if (replyMessageCell instanceof ChatMessageCell) {
-                                                            anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                        }
-                                                        if (!z2) {
-                                                            page6.menu.getSwipeBack().openForeground(page6.menuBack);
-                                                        }
-                                                        page6.switchToQuote(true, true);
-                                                    } else {
-                                                        messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                        messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                        TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page6.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                        anonymousClass66.onQuoteSelectedPart();
-                                                        anonymousClass66.dismiss(true);
-                                                    }
-                                                }
-                                            } else {
-                                                page6.showQuoteLengthError();
-                                            }
-                                        } else {
-                                            messagePreviewParams3.quote = null;
-                                            anonymousClass8.clear(false);
-                                            page6.switchToQuote(false, true);
-                                            page6.updateSubtitle(true);
-                                        }
+                                        this.f$0.lambda$new$4(view);
                                         break;
                                     case 4:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$5(view);
                                         break;
                                     case 5:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$6(view);
                                         break;
                                     case 6:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$7(view);
                                         break;
                                     case 7:
-                                        ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                        boolean z3 = anonymousClass67.showOutdatedQuote;
-                                        ChatActivity chatActivity = ChatActivity.this;
-                                        if (!z3) {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingMessageObject = null;
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                            chatActivity.fallbackFieldPanel();
-                                        } else {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                        }
+                                        this.f$0.lambda$new$8(view);
                                         break;
                                     case 8:
-                                        this.f$0.this$0.selectAnotherChat(true);
+                                        this.f$0.lambda$new$9(view);
                                         break;
                                     case 9:
-                                        ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                        anonymousClass68.dismiss(true);
-                                        ChatActivity chatActivity2 = ChatActivity.this;
-                                        chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                        chatActivity2.fallbackFieldPanel();
+                                        this.f$0.lambda$new$11(view);
                                         break;
                                     case 10:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$16(view);
                                         break;
                                     case 11:
-                                        ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                        anonymousClass69.dismiss(true);
-                                        ChatActivity chatActivity3 = ChatActivity.this;
-                                        chatActivity3.foundWebPage = null;
-                                        ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                        if (anonymousClass39 != null) {
-                                            anonymousClass39.messageWebPage = null;
-                                            anonymousClass39.messageWebPageSearch = false;
-                                        }
-                                        MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                        if (messagePreviewParams5 != null) {
-                                            int i18 = ((BaseFragment) chatActivity3).currentAccount;
-                                            MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                            messagePreviewParams5.updateLink(i18, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                        }
-                                        chatActivity3.fallbackFieldPanel();
+                                        this.f$0.lambda$new$17(view);
                                         break;
                                     case 12:
-                                        MessagePreviewView.Page page7 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass610 = page7.this$0;
-                                        MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                        if (messagePreviewParams6.hasMedia) {
-                                            boolean z4 = !messagePreviewParams6.webpageSmall;
-                                            messagePreviewParams6.webpageSmall = z4;
-                                            page7.changeSizeBtn.setState(z4, true);
-                                            MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                            page7.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                            if (page7.messages.messages.size() > 0 && (message2 = page7.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                                boolean z5 = messagePreviewParams7.webpageSmall;
-                                                messageMedia2.force_small_media = z5;
-                                                messageMedia2.force_large_media = !z5;
-                                            }
-                                            if (page7.messages.previewMessages.size() > 0 && (message = page7.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                                boolean z6 = messagePreviewParams7.webpageSmall;
-                                                messageMedia.force_small_media = z6;
-                                                messageMedia.force_large_media = !z6;
-                                            }
-                                            page7.updateMessages();
-                                            page7.updateScroll = true;
-                                            break;
-                                        }
+                                        this.f$0.lambda$new$18(view);
                                         break;
                                     default:
-                                        MessagePreviewView.Page page8 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass611 = page8.this$0;
-                                        MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                        boolean z7 = messagePreviewParams8.webpageTop;
-                                        messagePreviewParams8.webpageTop = !z7;
-                                        page8.changePositionBtn.setState(z7, true);
-                                        int size = page8.messages.messages.size();
-                                        MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                        if (size > 0 && (message4 = page8.messages.messages.get(0).messageOwner) != null) {
-                                            message4.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        if (page8.messages.previewMessages.size() > 0 && (message3 = page8.messages.previewMessages.get(0).messageOwner) != null) {
-                                            message3.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        page8.updateMessages();
-                                        page8.updateScroll = true;
+                                        this.f$0.lambda$new$19(view);
                                         break;
                                 }
                             }
                         });
-                        actionBarMenuSubItem2.setSelectorColor(Theme.multAlpha(0.12f, Theme.getColor(null, i11, false)));
-                        anonymousClass2.addView(actionBarMenuSubItem2, LayoutHelper.createLinear(-1, 48));
-                        final int i13 = 12;
-                        frameLayout.setOnClickListener(new View.OnClickListener(page) {
+                        actionBarMenuSubItem2.setSelectorColor(Theme.multAlpha(0.12f, Theme.getColor(null, i7, false)));
+                        page.menu.addView((View) actionBarMenuSubItem2, LayoutHelper.createLinear(-1, 48));
+                        final int i9 = 12;
+                        page.changeSizeBtnContainer.setOnClickListener(new View.OnClickListener(page) {
                             public final MessagePreviewView.Page f$0;
 
                             {
@@ -1808,195 +2126,54 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                             @Override
                             public final void onClick(View view) {
-                                TLRPC.Message message;
-                                TLRPC.MessageMedia messageMedia;
-                                TLRPC.Message message2;
-                                TLRPC.MessageMedia messageMedia2;
-                                TLRPC.Message message3;
-                                TLRPC.Message message4;
-                                switch (i13) {
+                                switch (i9) {
                                     case 0:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$10(view);
                                         break;
                                     case 1:
-                                        MessagePreviewView.Page page4 = this.f$0;
-                                        page4.this$0.messagePreviewParams.quote = null;
-                                        page4.textSelectionHelper.clear(false);
-                                        page4.switchToQuote(false, false);
-                                        page4.menu.getSwipeBack().closeForeground(true);
+                                        this.f$0.lambda$new$2(view);
                                         break;
                                     case 2:
-                                        MessagePreviewView.Page page5 = this.f$0;
-                                        if (page5.getReplyMessage(null) != null) {
-                                            MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page5.textSelectionHelper;
-                                            int i14 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                            ChatActivity.AnonymousClass64 anonymousClass65 = page5.this$0;
-                                            if (i14 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                                TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                                MessageObject replyMessage = page5.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                                int i15 = anonymousClass5.selectionStart;
-                                                MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                                messagePreviewParams2.quoteStart = i15;
-                                                int i16 = anonymousClass5.selectionEnd;
-                                                messagePreviewParams2.quoteEnd = i16;
-                                                messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i15, i16, replyMessage);
-                                                anonymousClass65.onQuoteSelectedPart();
-                                                anonymousClass65.dismiss(true);
-                                            } else {
-                                                page5.showQuoteLengthError();
-                                            }
-                                        }
+                                        this.f$0.lambda$new$3(view);
                                         break;
                                     case 3:
-                                        MessagePreviewView.Page page6 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass66 = page6.this$0;
-                                        MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                        ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                        boolean z2 = anonymousClass66.showOutdatedQuote;
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page6.textSelectionHelper;
-                                        if (replyQuote == null || z2) {
-                                            int i17 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                            int i18 = anonymousClass66.currentAccount;
-                                            if (i17 <= MessagesController.getInstance(i18).quoteLengthMax) {
-                                                MessageObject replyMessage2 = page6.getReplyMessage(null);
-                                                if (replyMessage2 != null) {
-                                                    boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                    MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                    if (!zIsInSelectionMode) {
-                                                        messagePreviewParams4.quoteStart = 0;
-                                                        messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i18).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                        View replyMessageCell = page6.getReplyMessageCell();
-                                                        if (replyMessageCell instanceof ChatMessageCell) {
-                                                            anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                        }
-                                                        if (!z2) {
-                                                            page6.menu.getSwipeBack().openForeground(page6.menuBack);
-                                                        }
-                                                        page6.switchToQuote(true, true);
-                                                    } else {
-                                                        messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                        messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                        TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page6.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                        anonymousClass66.onQuoteSelectedPart();
-                                                        anonymousClass66.dismiss(true);
-                                                    }
-                                                }
-                                            } else {
-                                                page6.showQuoteLengthError();
-                                            }
-                                        } else {
-                                            messagePreviewParams3.quote = null;
-                                            anonymousClass8.clear(false);
-                                            page6.switchToQuote(false, true);
-                                            page6.updateSubtitle(true);
-                                        }
+                                        this.f$0.lambda$new$4(view);
                                         break;
                                     case 4:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$5(view);
                                         break;
                                     case 5:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$6(view);
                                         break;
                                     case 6:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$7(view);
                                         break;
                                     case 7:
-                                        ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                        boolean z3 = anonymousClass67.showOutdatedQuote;
-                                        ChatActivity chatActivity = ChatActivity.this;
-                                        if (!z3) {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingMessageObject = null;
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                            chatActivity.fallbackFieldPanel();
-                                        } else {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                        }
+                                        this.f$0.lambda$new$8(view);
                                         break;
                                     case 8:
-                                        this.f$0.this$0.selectAnotherChat(true);
+                                        this.f$0.lambda$new$9(view);
                                         break;
                                     case 9:
-                                        ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                        anonymousClass68.dismiss(true);
-                                        ChatActivity chatActivity2 = ChatActivity.this;
-                                        chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                        chatActivity2.fallbackFieldPanel();
+                                        this.f$0.lambda$new$11(view);
                                         break;
                                     case 10:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$16(view);
                                         break;
                                     case 11:
-                                        ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                        anonymousClass69.dismiss(true);
-                                        ChatActivity chatActivity3 = ChatActivity.this;
-                                        chatActivity3.foundWebPage = null;
-                                        ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                        if (anonymousClass39 != null) {
-                                            anonymousClass39.messageWebPage = null;
-                                            anonymousClass39.messageWebPageSearch = false;
-                                        }
-                                        MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                        if (messagePreviewParams5 != null) {
-                                            int i19 = ((BaseFragment) chatActivity3).currentAccount;
-                                            MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                            messagePreviewParams5.updateLink(i19, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                        }
-                                        chatActivity3.fallbackFieldPanel();
+                                        this.f$0.lambda$new$17(view);
                                         break;
                                     case 12:
-                                        MessagePreviewView.Page page7 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass610 = page7.this$0;
-                                        MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                        if (messagePreviewParams6.hasMedia) {
-                                            boolean z4 = !messagePreviewParams6.webpageSmall;
-                                            messagePreviewParams6.webpageSmall = z4;
-                                            page7.changeSizeBtn.setState(z4, true);
-                                            MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                            page7.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                            if (page7.messages.messages.size() > 0 && (message2 = page7.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                                boolean z5 = messagePreviewParams7.webpageSmall;
-                                                messageMedia2.force_small_media = z5;
-                                                messageMedia2.force_large_media = !z5;
-                                            }
-                                            if (page7.messages.previewMessages.size() > 0 && (message = page7.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                                boolean z6 = messagePreviewParams7.webpageSmall;
-                                                messageMedia.force_small_media = z6;
-                                                messageMedia.force_large_media = !z6;
-                                            }
-                                            page7.updateMessages();
-                                            page7.updateScroll = true;
-                                            break;
-                                        }
+                                        this.f$0.lambda$new$18(view);
                                         break;
                                     default:
-                                        MessagePreviewView.Page page8 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass611 = page8.this$0;
-                                        MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                        boolean z7 = messagePreviewParams8.webpageTop;
-                                        messagePreviewParams8.webpageTop = !z7;
-                                        page8.changePositionBtn.setState(z7, true);
-                                        int size = page8.messages.messages.size();
-                                        MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                        if (size > 0 && (message4 = page8.messages.messages.get(0).messageOwner) != null) {
-                                            message4.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        if (page8.messages.previewMessages.size() > 0 && (message3 = page8.messages.previewMessages.get(0).messageOwner) != null) {
-                                            message3.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        page8.updateMessages();
-                                        page8.updateScroll = true;
+                                        this.f$0.lambda$new$19(view);
                                         break;
                                 }
                             }
                         });
-                        final int i14 = 13;
-                        toggleButton3.setOnClickListener(new View.OnClickListener(page) {
+                        final int i10 = 13;
+                        page.changePositionBtn.setOnClickListener(new View.OnClickListener(page) {
                             public final MessagePreviewView.Page f$0;
 
                             {
@@ -2005,863 +2182,310 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                             @Override
                             public final void onClick(View view) {
-                                TLRPC.Message message;
-                                TLRPC.MessageMedia messageMedia;
-                                TLRPC.Message message2;
-                                TLRPC.MessageMedia messageMedia2;
-                                TLRPC.Message message3;
-                                TLRPC.Message message4;
-                                switch (i14) {
+                                switch (i10) {
                                     case 0:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$10(view);
                                         break;
                                     case 1:
-                                        MessagePreviewView.Page page4 = this.f$0;
-                                        page4.this$0.messagePreviewParams.quote = null;
-                                        page4.textSelectionHelper.clear(false);
-                                        page4.switchToQuote(false, false);
-                                        page4.menu.getSwipeBack().closeForeground(true);
+                                        this.f$0.lambda$new$2(view);
                                         break;
                                     case 2:
-                                        MessagePreviewView.Page page5 = this.f$0;
-                                        if (page5.getReplyMessage(null) != null) {
-                                            MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page5.textSelectionHelper;
-                                            int i15 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                            ChatActivity.AnonymousClass64 anonymousClass65 = page5.this$0;
-                                            if (i15 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                                TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                                MessageObject replyMessage = page5.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                                int i16 = anonymousClass5.selectionStart;
-                                                MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                                messagePreviewParams2.quoteStart = i16;
-                                                int i17 = anonymousClass5.selectionEnd;
-                                                messagePreviewParams2.quoteEnd = i17;
-                                                messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i16, i17, replyMessage);
-                                                anonymousClass65.onQuoteSelectedPart();
-                                                anonymousClass65.dismiss(true);
-                                            } else {
-                                                page5.showQuoteLengthError();
-                                            }
-                                        }
+                                        this.f$0.lambda$new$3(view);
                                         break;
                                     case 3:
-                                        MessagePreviewView.Page page6 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass66 = page6.this$0;
-                                        MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                        ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                        boolean z2 = anonymousClass66.showOutdatedQuote;
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page6.textSelectionHelper;
-                                        if (replyQuote == null || z2) {
-                                            int i18 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                            int i19 = anonymousClass66.currentAccount;
-                                            if (i18 <= MessagesController.getInstance(i19).quoteLengthMax) {
-                                                MessageObject replyMessage2 = page6.getReplyMessage(null);
-                                                if (replyMessage2 != null) {
-                                                    boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                    MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                    if (!zIsInSelectionMode) {
-                                                        messagePreviewParams4.quoteStart = 0;
-                                                        messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i19).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                        View replyMessageCell = page6.getReplyMessageCell();
-                                                        if (replyMessageCell instanceof ChatMessageCell) {
-                                                            anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                        }
-                                                        if (!z2) {
-                                                            page6.menu.getSwipeBack().openForeground(page6.menuBack);
-                                                        }
-                                                        page6.switchToQuote(true, true);
-                                                    } else {
-                                                        messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                        messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                        TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page6.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                        anonymousClass66.onQuoteSelectedPart();
-                                                        anonymousClass66.dismiss(true);
-                                                    }
-                                                }
-                                            } else {
-                                                page6.showQuoteLengthError();
-                                            }
-                                        } else {
-                                            messagePreviewParams3.quote = null;
-                                            anonymousClass8.clear(false);
-                                            page6.switchToQuote(false, true);
-                                            page6.updateSubtitle(true);
-                                        }
+                                        this.f$0.lambda$new$4(view);
                                         break;
                                     case 4:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$5(view);
                                         break;
                                     case 5:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$6(view);
                                         break;
                                     case 6:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$7(view);
                                         break;
                                     case 7:
-                                        ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                        boolean z3 = anonymousClass67.showOutdatedQuote;
-                                        ChatActivity chatActivity = ChatActivity.this;
-                                        if (!z3) {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingMessageObject = null;
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                            chatActivity.fallbackFieldPanel();
-                                        } else {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                        }
+                                        this.f$0.lambda$new$8(view);
                                         break;
                                     case 8:
-                                        this.f$0.this$0.selectAnotherChat(true);
+                                        this.f$0.lambda$new$9(view);
                                         break;
                                     case 9:
-                                        ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                        anonymousClass68.dismiss(true);
-                                        ChatActivity chatActivity2 = ChatActivity.this;
-                                        chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                        chatActivity2.fallbackFieldPanel();
+                                        this.f$0.lambda$new$11(view);
                                         break;
                                     case 10:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$16(view);
                                         break;
                                     case 11:
-                                        ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                        anonymousClass69.dismiss(true);
-                                        ChatActivity chatActivity3 = ChatActivity.this;
-                                        chatActivity3.foundWebPage = null;
-                                        ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                        if (anonymousClass39 != null) {
-                                            anonymousClass39.messageWebPage = null;
-                                            anonymousClass39.messageWebPageSearch = false;
-                                        }
-                                        MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                        if (messagePreviewParams5 != null) {
-                                            int i110 = ((BaseFragment) chatActivity3).currentAccount;
-                                            MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                            messagePreviewParams5.updateLink(i110, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                        }
-                                        chatActivity3.fallbackFieldPanel();
+                                        this.f$0.lambda$new$17(view);
                                         break;
                                     case 12:
-                                        MessagePreviewView.Page page7 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass610 = page7.this$0;
-                                        MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                        if (messagePreviewParams6.hasMedia) {
-                                            boolean z4 = !messagePreviewParams6.webpageSmall;
-                                            messagePreviewParams6.webpageSmall = z4;
-                                            page7.changeSizeBtn.setState(z4, true);
-                                            MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                            page7.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                            if (page7.messages.messages.size() > 0 && (message2 = page7.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                                boolean z5 = messagePreviewParams7.webpageSmall;
-                                                messageMedia2.force_small_media = z5;
-                                                messageMedia2.force_large_media = !z5;
-                                            }
-                                            if (page7.messages.previewMessages.size() > 0 && (message = page7.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                                boolean z6 = messagePreviewParams7.webpageSmall;
-                                                messageMedia.force_small_media = z6;
-                                                messageMedia.force_large_media = !z6;
-                                            }
-                                            page7.updateMessages();
-                                            page7.updateScroll = true;
-                                            break;
-                                        }
+                                        this.f$0.lambda$new$18(view);
                                         break;
                                     default:
-                                        MessagePreviewView.Page page8 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass611 = page8.this$0;
-                                        MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                        boolean z7 = messagePreviewParams8.webpageTop;
-                                        messagePreviewParams8.webpageTop = !z7;
-                                        page8.changePositionBtn.setState(z7, true);
-                                        int size = page8.messages.messages.size();
-                                        MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                        if (size > 0 && (message4 = page8.messages.messages.get(0).messageOwner) != null) {
-                                            message4.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        if (page8.messages.previewMessages.size() > 0 && (message3 = page8.messages.previewMessages.get(0).messageOwner) != null) {
-                                            message3.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        page8.updateMessages();
-                                        page8.updateScroll = true;
+                                        this.f$0.lambda$new$19(view);
                                         break;
                                 }
                             }
                         });
-                        page3 = page;
                     }
                 } else {
-                    if (!UserConfig.getInstance(anonymousClass64.currentAccount).isPremium()) {
-                        int i15 = 0;
+                    if (!UserConfig.getInstance(MessagePreviewView.this.currentAccount).isPremium()) {
+                        int i11 = 0;
                         while (true) {
-                            if (i15 >= messagePreviewParams.forwardMessages.messages.size()) {
+                            if (i11 >= MessagePreviewView.this.messagePreviewParams.forwardMessages.messages.size()) {
                                 z = true;
                                 break;
                             } else {
-                                if (messagePreviewParams.forwardMessages.messages.get(i15).type == 36) {
+                                if (MessagePreviewView.this.messagePreviewParams.forwardMessages.messages.get(i11).type == 36) {
                                     z = false;
                                     break;
                                 }
-                                i15++;
+                                i11++;
                             }
                         }
                     } else {
                         z = true;
                         break;
                     }
-                    ToggleButton toggleButton6 = new ToggleButton(context, R.raw.name_hide, LocaleController.getString(messagePreviewParams.multipleUsers ? R.string.ShowSenderNames : R.string.ShowSendersName), R.raw.name_show, LocaleController.getString(messagePreviewParams.multipleUsers ? R.string.HideSenderNames : R.string.HideSendersName), anonymousClass64.resourcesProvider);
-                    this.menu.linearLayout.addView(toggleButton6, LayoutHelper.createLinear(-1, 48));
-                    if (messagePreviewParams.hasCaption) {
+                    messagePreviewView = MessagePreviewView.this;
+                    ToggleButton toggleButton6 = new ToggleButton(context, R.raw.name_hide, LocaleController.getString(MessagePreviewView.this.messagePreviewParams.multipleUsers ? R.string.ShowSenderNames : R.string.ShowSendersName), R.raw.name_show, LocaleController.getString(MessagePreviewView.this.messagePreviewParams.multipleUsers ? R.string.HideSenderNames : R.string.HideSendersName), MessagePreviewView.this.resourcesProvider);
+                    page.menu.addView((View) toggleButton6, LayoutHelper.createLinear(-1, 48));
+                    if (messagePreviewView.messagePreviewParams.hasCaption) {
                         toggleButton = toggleButton6;
-                        ToggleButton toggleButton7 = new ToggleButton(context, R.raw.caption_hide, LocaleController.getString(R.string.ShowCaption), R.raw.caption_show, LocaleController.getString(R.string.HideCaption), anonymousClass64.resourcesProvider);
-                        toggleButton7.setState(messagePreviewParams.hideCaption, false);
-                        this.menu.linearLayout.addView(toggleButton7, LayoutHelper.createLinear(-1, 48));
+                        ToggleButton toggleButton7 = new ToggleButton(context, R.raw.caption_hide, LocaleController.getString(R.string.ShowCaption), R.raw.caption_show, LocaleController.getString(R.string.HideCaption), messagePreviewView.resourcesProvider);
+                        toggleButton7.setState(messagePreviewView.messagePreviewParams.hideCaption, false);
+                        page.menu.addView((View) toggleButton7, LayoutHelper.createLinear(-1, 48));
                         toggleButton2 = toggleButton7;
                     } else {
                         toggleButton = toggleButton6;
                         toggleButton2 = null;
                     }
-                    ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(0, context, anonymousClass64.resourcesProvider, true, false);
-                    final int i16 = 8;
-                    actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener(this) {
+                    ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(0, context, messagePreviewView.resourcesProvider, true, false);
+                    final int i12 = 8;
+                    actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener(page) {
                         public final MessagePreviewView.Page f$0;
 
                         {
-                            this.f$0 = this;
+                            this.f$0 = page;
                         }
 
                         @Override
                         public final void onClick(View view) {
-                            TLRPC.Message message;
-                            TLRPC.MessageMedia messageMedia;
-                            TLRPC.Message message2;
-                            TLRPC.MessageMedia messageMedia2;
-                            TLRPC.Message message3;
-                            TLRPC.Message message4;
-                            switch (i16) {
+                            switch (i12) {
                                 case 0:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$10(view);
                                     break;
                                 case 1:
-                                    MessagePreviewView.Page page4 = this.f$0;
-                                    page4.this$0.messagePreviewParams.quote = null;
-                                    page4.textSelectionHelper.clear(false);
-                                    page4.switchToQuote(false, false);
-                                    page4.menu.getSwipeBack().closeForeground(true);
+                                    this.f$0.lambda$new$2(view);
                                     break;
                                 case 2:
-                                    MessagePreviewView.Page page5 = this.f$0;
-                                    if (page5.getReplyMessage(null) != null) {
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page5.textSelectionHelper;
-                                        int i17 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                        ChatActivity.AnonymousClass64 anonymousClass65 = page5.this$0;
-                                        if (i17 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                            TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                            MessageObject replyMessage = page5.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                            int i18 = anonymousClass5.selectionStart;
-                                            MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                            messagePreviewParams2.quoteStart = i18;
-                                            int i19 = anonymousClass5.selectionEnd;
-                                            messagePreviewParams2.quoteEnd = i19;
-                                            messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i18, i19, replyMessage);
-                                            anonymousClass65.onQuoteSelectedPart();
-                                            anonymousClass65.dismiss(true);
-                                        } else {
-                                            page5.showQuoteLengthError();
-                                        }
-                                    }
+                                    this.f$0.lambda$new$3(view);
                                     break;
                                 case 3:
-                                    MessagePreviewView.Page page6 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass66 = page6.this$0;
-                                    MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                    ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                    boolean z2 = anonymousClass66.showOutdatedQuote;
-                                    MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page6.textSelectionHelper;
-                                    if (replyQuote == null || z2) {
-                                        int i110 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                        int i111 = anonymousClass66.currentAccount;
-                                        if (i110 <= MessagesController.getInstance(i111).quoteLengthMax) {
-                                            MessageObject replyMessage2 = page6.getReplyMessage(null);
-                                            if (replyMessage2 != null) {
-                                                boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                if (!zIsInSelectionMode) {
-                                                    messagePreviewParams4.quoteStart = 0;
-                                                    messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i111).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                    View replyMessageCell = page6.getReplyMessageCell();
-                                                    if (replyMessageCell instanceof ChatMessageCell) {
-                                                        anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                    }
-                                                    if (!z2) {
-                                                        page6.menu.getSwipeBack().openForeground(page6.menuBack);
-                                                    }
-                                                    page6.switchToQuote(true, true);
-                                                } else {
-                                                    messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                    messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                    TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page6.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                    anonymousClass66.onQuoteSelectedPart();
-                                                    anonymousClass66.dismiss(true);
-                                                }
-                                            }
-                                        } else {
-                                            page6.showQuoteLengthError();
-                                        }
-                                    } else {
-                                        messagePreviewParams3.quote = null;
-                                        anonymousClass8.clear(false);
-                                        page6.switchToQuote(false, true);
-                                        page6.updateSubtitle(true);
-                                    }
+                                    this.f$0.lambda$new$4(view);
                                     break;
                                 case 4:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$5(view);
                                     break;
                                 case 5:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$6(view);
                                     break;
                                 case 6:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$7(view);
                                     break;
                                 case 7:
-                                    ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                    boolean z3 = anonymousClass67.showOutdatedQuote;
-                                    ChatActivity chatActivity = ChatActivity.this;
-                                    if (!z3) {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingMessageObject = null;
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                        chatActivity.fallbackFieldPanel();
-                                    } else {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                    }
+                                    this.f$0.lambda$new$8(view);
                                     break;
                                 case 8:
-                                    this.f$0.this$0.selectAnotherChat(true);
+                                    this.f$0.lambda$new$9(view);
                                     break;
                                 case 9:
-                                    ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                    anonymousClass68.dismiss(true);
-                                    ChatActivity chatActivity2 = ChatActivity.this;
-                                    chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                    chatActivity2.fallbackFieldPanel();
+                                    this.f$0.lambda$new$11(view);
                                     break;
                                 case 10:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$16(view);
                                     break;
                                 case 11:
-                                    ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                    anonymousClass69.dismiss(true);
-                                    ChatActivity chatActivity3 = ChatActivity.this;
-                                    chatActivity3.foundWebPage = null;
-                                    ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                    if (anonymousClass39 != null) {
-                                        anonymousClass39.messageWebPage = null;
-                                        anonymousClass39.messageWebPageSearch = false;
-                                    }
-                                    MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                    if (messagePreviewParams5 != null) {
-                                        int i112 = ((BaseFragment) chatActivity3).currentAccount;
-                                        MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                        messagePreviewParams5.updateLink(i112, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                    }
-                                    chatActivity3.fallbackFieldPanel();
+                                    this.f$0.lambda$new$17(view);
                                     break;
                                 case 12:
-                                    MessagePreviewView.Page page7 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass610 = page7.this$0;
-                                    MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                    if (messagePreviewParams6.hasMedia) {
-                                        boolean z4 = !messagePreviewParams6.webpageSmall;
-                                        messagePreviewParams6.webpageSmall = z4;
-                                        page7.changeSizeBtn.setState(z4, true);
-                                        MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                        page7.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                        if (page7.messages.messages.size() > 0 && (message2 = page7.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                            boolean z5 = messagePreviewParams7.webpageSmall;
-                                            messageMedia2.force_small_media = z5;
-                                            messageMedia2.force_large_media = !z5;
-                                        }
-                                        if (page7.messages.previewMessages.size() > 0 && (message = page7.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                            boolean z6 = messagePreviewParams7.webpageSmall;
-                                            messageMedia.force_small_media = z6;
-                                            messageMedia.force_large_media = !z6;
-                                        }
-                                        page7.updateMessages();
-                                        page7.updateScroll = true;
-                                        break;
-                                    }
+                                    this.f$0.lambda$new$18(view);
                                     break;
                                 default:
-                                    MessagePreviewView.Page page8 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass611 = page8.this$0;
-                                    MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                    boolean z7 = messagePreviewParams8.webpageTop;
-                                    messagePreviewParams8.webpageTop = !z7;
-                                    page8.changePositionBtn.setState(z7, true);
-                                    int size = page8.messages.messages.size();
-                                    MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                    if (size > 0 && (message4 = page8.messages.messages.get(0).messageOwner) != null) {
-                                        message4.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    if (page8.messages.previewMessages.size() > 0 && (message3 = page8.messages.previewMessages.get(0).messageOwner) != null) {
-                                        message3.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    page8.updateMessages();
-                                    page8.updateScroll = true;
+                                    this.f$0.lambda$new$19(view);
                                     break;
                             }
                         }
                     });
-                    actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString(R.string.ChangeRecipient), R.drawable.msg_forward_replace, null);
-                    this.menu.linearLayout.addView(actionBarMenuSubItem3, LayoutHelper.createLinear(-1, 48));
-                    ActionBarPopupWindow.GapView gapView2 = new ActionBarPopupWindow.GapView(context, Theme.key_actionBarDefaultSubmenuSeparator, resourcesDelegate2);
-                    gapView2.setColor(Theme.multAlpha(0.06f, Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesDelegate2)));
+                    actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString(R.string.ChangeRecipient), R.drawable.msg_forward_replace);
+                    page.menu.addView((View) actionBarMenuSubItem3, LayoutHelper.createLinear(-1, 48));
+                    ActionBarPopupWindow.GapView gapView2 = new ActionBarPopupWindow.GapView(context, messagePreviewView.resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                    gapView2.setColor(Theme.multAlpha(0.06f, Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, messagePreviewView.resourcesProvider)));
                     gapView2.setTag(R.id.fit_width_tag, 1);
-                    this.menu.linearLayout.addView(gapView2, LayoutHelper.createLinear(-1, 8));
-                    ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(1, context, anonymousClass64.resourcesProvider, false, false);
-                    actionBarMenuSubItem4.setTextAndIcon(LocaleController.getString(R.string.ApplyChanges), R.drawable.msg_select, null);
-                    final int i17 = 0;
-                    actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener(this) {
+                    page.menu.addView((View) gapView2, LayoutHelper.createLinear(-1, 8));
+                    ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(1, context, messagePreviewView.resourcesProvider, false, false);
+                    actionBarMenuSubItem4.setTextAndIcon(LocaleController.getString(R.string.ApplyChanges), R.drawable.msg_select);
+                    final int i13 = 0;
+                    actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener(page) {
                         public final MessagePreviewView.Page f$0;
 
                         {
-                            this.f$0 = this;
+                            this.f$0 = page;
                         }
 
                         @Override
                         public final void onClick(View view) {
-                            TLRPC.Message message;
-                            TLRPC.MessageMedia messageMedia;
-                            TLRPC.Message message2;
-                            TLRPC.MessageMedia messageMedia2;
-                            TLRPC.Message message3;
-                            TLRPC.Message message4;
-                            switch (i17) {
+                            switch (i13) {
                                 case 0:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$10(view);
                                     break;
                                 case 1:
-                                    MessagePreviewView.Page page4 = this.f$0;
-                                    page4.this$0.messagePreviewParams.quote = null;
-                                    page4.textSelectionHelper.clear(false);
-                                    page4.switchToQuote(false, false);
-                                    page4.menu.getSwipeBack().closeForeground(true);
+                                    this.f$0.lambda$new$2(view);
                                     break;
                                 case 2:
-                                    MessagePreviewView.Page page5 = this.f$0;
-                                    if (page5.getReplyMessage(null) != null) {
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page5.textSelectionHelper;
-                                        int i18 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                        ChatActivity.AnonymousClass64 anonymousClass65 = page5.this$0;
-                                        if (i18 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                            TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                            MessageObject replyMessage = page5.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                            int i19 = anonymousClass5.selectionStart;
-                                            MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                            messagePreviewParams2.quoteStart = i19;
-                                            int i110 = anonymousClass5.selectionEnd;
-                                            messagePreviewParams2.quoteEnd = i110;
-                                            messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i19, i110, replyMessage);
-                                            anonymousClass65.onQuoteSelectedPart();
-                                            anonymousClass65.dismiss(true);
-                                        } else {
-                                            page5.showQuoteLengthError();
-                                        }
-                                    }
+                                    this.f$0.lambda$new$3(view);
                                     break;
                                 case 3:
-                                    MessagePreviewView.Page page6 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass66 = page6.this$0;
-                                    MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                    ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                    boolean z2 = anonymousClass66.showOutdatedQuote;
-                                    MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page6.textSelectionHelper;
-                                    if (replyQuote == null || z2) {
-                                        int i111 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                        int i112 = anonymousClass66.currentAccount;
-                                        if (i111 <= MessagesController.getInstance(i112).quoteLengthMax) {
-                                            MessageObject replyMessage2 = page6.getReplyMessage(null);
-                                            if (replyMessage2 != null) {
-                                                boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                if (!zIsInSelectionMode) {
-                                                    messagePreviewParams4.quoteStart = 0;
-                                                    messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i112).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                    View replyMessageCell = page6.getReplyMessageCell();
-                                                    if (replyMessageCell instanceof ChatMessageCell) {
-                                                        anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                    }
-                                                    if (!z2) {
-                                                        page6.menu.getSwipeBack().openForeground(page6.menuBack);
-                                                    }
-                                                    page6.switchToQuote(true, true);
-                                                } else {
-                                                    messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                    messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                    TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page6.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                    anonymousClass66.onQuoteSelectedPart();
-                                                    anonymousClass66.dismiss(true);
-                                                }
-                                            }
-                                        } else {
-                                            page6.showQuoteLengthError();
-                                        }
-                                    } else {
-                                        messagePreviewParams3.quote = null;
-                                        anonymousClass8.clear(false);
-                                        page6.switchToQuote(false, true);
-                                        page6.updateSubtitle(true);
-                                    }
+                                    this.f$0.lambda$new$4(view);
                                     break;
                                 case 4:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$5(view);
                                     break;
                                 case 5:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$6(view);
                                     break;
                                 case 6:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$7(view);
                                     break;
                                 case 7:
-                                    ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                    boolean z3 = anonymousClass67.showOutdatedQuote;
-                                    ChatActivity chatActivity = ChatActivity.this;
-                                    if (!z3) {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingMessageObject = null;
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                        chatActivity.fallbackFieldPanel();
-                                    } else {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                    }
+                                    this.f$0.lambda$new$8(view);
                                     break;
                                 case 8:
-                                    this.f$0.this$0.selectAnotherChat(true);
+                                    this.f$0.lambda$new$9(view);
                                     break;
                                 case 9:
-                                    ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                    anonymousClass68.dismiss(true);
-                                    ChatActivity chatActivity2 = ChatActivity.this;
-                                    chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                    chatActivity2.fallbackFieldPanel();
+                                    this.f$0.lambda$new$11(view);
                                     break;
                                 case 10:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$16(view);
                                     break;
                                 case 11:
-                                    ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                    anonymousClass69.dismiss(true);
-                                    ChatActivity chatActivity3 = ChatActivity.this;
-                                    chatActivity3.foundWebPage = null;
-                                    ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                    if (anonymousClass39 != null) {
-                                        anonymousClass39.messageWebPage = null;
-                                        anonymousClass39.messageWebPageSearch = false;
-                                    }
-                                    MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                    if (messagePreviewParams5 != null) {
-                                        int i113 = ((BaseFragment) chatActivity3).currentAccount;
-                                        MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                        messagePreviewParams5.updateLink(i113, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                    }
-                                    chatActivity3.fallbackFieldPanel();
+                                    this.f$0.lambda$new$17(view);
                                     break;
                                 case 12:
-                                    MessagePreviewView.Page page7 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass610 = page7.this$0;
-                                    MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                    if (messagePreviewParams6.hasMedia) {
-                                        boolean z4 = !messagePreviewParams6.webpageSmall;
-                                        messagePreviewParams6.webpageSmall = z4;
-                                        page7.changeSizeBtn.setState(z4, true);
-                                        MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                        page7.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                        if (page7.messages.messages.size() > 0 && (message2 = page7.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                            boolean z5 = messagePreviewParams7.webpageSmall;
-                                            messageMedia2.force_small_media = z5;
-                                            messageMedia2.force_large_media = !z5;
-                                        }
-                                        if (page7.messages.previewMessages.size() > 0 && (message = page7.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                            boolean z6 = messagePreviewParams7.webpageSmall;
-                                            messageMedia.force_small_media = z6;
-                                            messageMedia.force_large_media = !z6;
-                                        }
-                                        page7.updateMessages();
-                                        page7.updateScroll = true;
-                                        break;
-                                    }
+                                    this.f$0.lambda$new$18(view);
                                     break;
                                 default:
-                                    MessagePreviewView.Page page8 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass611 = page8.this$0;
-                                    MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                    boolean z7 = messagePreviewParams8.webpageTop;
-                                    messagePreviewParams8.webpageTop = !z7;
-                                    page8.changePositionBtn.setState(z7, true);
-                                    int size = page8.messages.messages.size();
-                                    MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                    if (size > 0 && (message4 = page8.messages.messages.get(0).messageOwner) != null) {
-                                        message4.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    if (page8.messages.previewMessages.size() > 0 && (message3 = page8.messages.previewMessages.get(0).messageOwner) != null) {
-                                        message3.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    page8.updateMessages();
-                                    page8.updateScroll = true;
+                                    this.f$0.lambda$new$19(view);
                                     break;
                             }
                         }
                     });
-                    this.menu.linearLayout.addView(actionBarMenuSubItem4, LayoutHelper.createLinear(-1, 48));
-                    ActionBarMenuSubItem actionBarMenuSubItem5 = new ActionBarMenuSubItem(1, context, anonymousClass64.resourcesProvider, false, true);
-                    actionBarMenuSubItem5.setTextAndIcon(LocaleController.getString(R.string.DoNotForward), R.drawable.msg_delete, null);
-                    int color3 = Theme.getColor(Theme.key_text_RedBold, resourcesDelegate2);
-                    int i18 = Theme.key_text_RedRegular;
-                    int color4 = Theme.getColor(i18, resourcesDelegate2);
-                    actionBarMenuSubItem5.setTextColor(color3);
-                    actionBarMenuSubItem5.setIconColor(color4);
-                    final int i19 = 9;
-                    actionBarMenuSubItem5.setOnClickListener(new View.OnClickListener(this) {
+                    page.menu.addView((View) actionBarMenuSubItem4, LayoutHelper.createLinear(-1, 48));
+                    ActionBarMenuSubItem actionBarMenuSubItem5 = new ActionBarMenuSubItem(1, context, messagePreviewView.resourcesProvider, false, true);
+                    actionBarMenuSubItem5.setTextAndIcon(LocaleController.getString(R.string.DoNotForward), R.drawable.msg_delete);
+                    int themedColor2 = messagePreviewView.getThemedColor(Theme.key_text_RedBold);
+                    int i14 = Theme.key_text_RedRegular;
+                    actionBarMenuSubItem5.setColors(themedColor2, messagePreviewView.getThemedColor(i14));
+                    final int i15 = 9;
+                    actionBarMenuSubItem5.setOnClickListener(new View.OnClickListener(page) {
                         public final MessagePreviewView.Page f$0;
 
                         {
-                            this.f$0 = this;
+                            this.f$0 = page;
                         }
 
                         @Override
                         public final void onClick(View view) {
-                            TLRPC.Message message;
-                            TLRPC.MessageMedia messageMedia;
-                            TLRPC.Message message2;
-                            TLRPC.MessageMedia messageMedia2;
-                            TLRPC.Message message3;
-                            TLRPC.Message message4;
-                            switch (i19) {
+                            switch (i15) {
                                 case 0:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$10(view);
                                     break;
                                 case 1:
-                                    MessagePreviewView.Page page4 = this.f$0;
-                                    page4.this$0.messagePreviewParams.quote = null;
-                                    page4.textSelectionHelper.clear(false);
-                                    page4.switchToQuote(false, false);
-                                    page4.menu.getSwipeBack().closeForeground(true);
+                                    this.f$0.lambda$new$2(view);
                                     break;
                                 case 2:
-                                    MessagePreviewView.Page page5 = this.f$0;
-                                    if (page5.getReplyMessage(null) != null) {
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page5.textSelectionHelper;
-                                        int i110 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                        ChatActivity.AnonymousClass64 anonymousClass65 = page5.this$0;
-                                        if (i110 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                            TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                            MessageObject replyMessage = page5.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                            int i111 = anonymousClass5.selectionStart;
-                                            MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                            messagePreviewParams2.quoteStart = i111;
-                                            int i112 = anonymousClass5.selectionEnd;
-                                            messagePreviewParams2.quoteEnd = i112;
-                                            messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i111, i112, replyMessage);
-                                            anonymousClass65.onQuoteSelectedPart();
-                                            anonymousClass65.dismiss(true);
-                                        } else {
-                                            page5.showQuoteLengthError();
-                                        }
-                                    }
+                                    this.f$0.lambda$new$3(view);
                                     break;
                                 case 3:
-                                    MessagePreviewView.Page page6 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass66 = page6.this$0;
-                                    MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                    ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                    boolean z2 = anonymousClass66.showOutdatedQuote;
-                                    MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page6.textSelectionHelper;
-                                    if (replyQuote == null || z2) {
-                                        int i113 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                        int i114 = anonymousClass66.currentAccount;
-                                        if (i113 <= MessagesController.getInstance(i114).quoteLengthMax) {
-                                            MessageObject replyMessage2 = page6.getReplyMessage(null);
-                                            if (replyMessage2 != null) {
-                                                boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                if (!zIsInSelectionMode) {
-                                                    messagePreviewParams4.quoteStart = 0;
-                                                    messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i114).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                    View replyMessageCell = page6.getReplyMessageCell();
-                                                    if (replyMessageCell instanceof ChatMessageCell) {
-                                                        anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                    }
-                                                    if (!z2) {
-                                                        page6.menu.getSwipeBack().openForeground(page6.menuBack);
-                                                    }
-                                                    page6.switchToQuote(true, true);
-                                                } else {
-                                                    messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                    messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                    TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page6.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                    anonymousClass66.onQuoteSelectedPart();
-                                                    anonymousClass66.dismiss(true);
-                                                }
-                                            }
-                                        } else {
-                                            page6.showQuoteLengthError();
-                                        }
-                                    } else {
-                                        messagePreviewParams3.quote = null;
-                                        anonymousClass8.clear(false);
-                                        page6.switchToQuote(false, true);
-                                        page6.updateSubtitle(true);
-                                    }
+                                    this.f$0.lambda$new$4(view);
                                     break;
                                 case 4:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$5(view);
                                     break;
                                 case 5:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$6(view);
                                     break;
                                 case 6:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$7(view);
                                     break;
                                 case 7:
-                                    ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                    boolean z3 = anonymousClass67.showOutdatedQuote;
-                                    ChatActivity chatActivity = ChatActivity.this;
-                                    if (!z3) {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingMessageObject = null;
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                        chatActivity.fallbackFieldPanel();
-                                    } else {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                    }
+                                    this.f$0.lambda$new$8(view);
                                     break;
                                 case 8:
-                                    this.f$0.this$0.selectAnotherChat(true);
+                                    this.f$0.lambda$new$9(view);
                                     break;
                                 case 9:
-                                    ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                    anonymousClass68.dismiss(true);
-                                    ChatActivity chatActivity2 = ChatActivity.this;
-                                    chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                    chatActivity2.fallbackFieldPanel();
+                                    this.f$0.lambda$new$11(view);
                                     break;
                                 case 10:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$16(view);
                                     break;
                                 case 11:
-                                    ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                    anonymousClass69.dismiss(true);
-                                    ChatActivity chatActivity3 = ChatActivity.this;
-                                    chatActivity3.foundWebPage = null;
-                                    ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                    if (anonymousClass39 != null) {
-                                        anonymousClass39.messageWebPage = null;
-                                        anonymousClass39.messageWebPageSearch = false;
-                                    }
-                                    MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                    if (messagePreviewParams5 != null) {
-                                        int i115 = ((BaseFragment) chatActivity3).currentAccount;
-                                        MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                        messagePreviewParams5.updateLink(i115, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                    }
-                                    chatActivity3.fallbackFieldPanel();
+                                    this.f$0.lambda$new$17(view);
                                     break;
                                 case 12:
-                                    MessagePreviewView.Page page7 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass610 = page7.this$0;
-                                    MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                    if (messagePreviewParams6.hasMedia) {
-                                        boolean z4 = !messagePreviewParams6.webpageSmall;
-                                        messagePreviewParams6.webpageSmall = z4;
-                                        page7.changeSizeBtn.setState(z4, true);
-                                        MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                        page7.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                        if (page7.messages.messages.size() > 0 && (message2 = page7.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                            boolean z5 = messagePreviewParams7.webpageSmall;
-                                            messageMedia2.force_small_media = z5;
-                                            messageMedia2.force_large_media = !z5;
-                                        }
-                                        if (page7.messages.previewMessages.size() > 0 && (message = page7.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                            boolean z6 = messagePreviewParams7.webpageSmall;
-                                            messageMedia.force_small_media = z6;
-                                            messageMedia.force_large_media = !z6;
-                                        }
-                                        page7.updateMessages();
-                                        page7.updateScroll = true;
-                                        break;
-                                    }
+                                    this.f$0.lambda$new$18(view);
                                     break;
                                 default:
-                                    MessagePreviewView.Page page8 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass611 = page8.this$0;
-                                    MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                    boolean z7 = messagePreviewParams8.webpageTop;
-                                    messagePreviewParams8.webpageTop = !z7;
-                                    page8.changePositionBtn.setState(z7, true);
-                                    int size = page8.messages.messages.size();
-                                    MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                    if (size > 0 && (message4 = page8.messages.messages.get(0).messageOwner) != null) {
-                                        message4.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    if (page8.messages.previewMessages.size() > 0 && (message3 = page8.messages.previewMessages.get(0).messageOwner) != null) {
-                                        message3.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    page8.updateMessages();
-                                    page8.updateScroll = true;
+                                    this.f$0.lambda$new$19(view);
                                     break;
                             }
                         }
                     });
-                    actionBarMenuSubItem5.setSelectorColor(Theme.multAlpha(0.12f, Theme.getColor(null, i18, false)));
-                    this.menu.linearLayout.addView(actionBarMenuSubItem5, LayoutHelper.createLinear(-1, 48));
-                    ToggleButton toggleButton8 = toggleButton;
-                    toggleButton8.setState(messagePreviewParams.hideForwardSendersName, false);
-                    ToggleButton toggleButton9 = toggleButton2;
-                    Page page4 = this;
-                    toggleButton8.setOnClickListener(new ProfileGiftsContainer$Page$$ExternalSyntheticLambda16(this, z, context, toggleButton9, toggleButton8, 1));
-                    page2 = page4;
+                    actionBarMenuSubItem5.setSelectorColor(Theme.multAlpha(0.12f, Theme.getColor(null, i14, false)));
+                    page.menu.addView((View) actionBarMenuSubItem5, LayoutHelper.createLinear(-1, 48));
+                    final ToggleButton toggleButton8 = toggleButton;
+                    toggleButton8.setState(messagePreviewView.messagePreviewParams.hideForwardSendersName, false);
+                    final ToggleButton toggleButton9 = toggleButton2;
+                    final boolean z2 = z;
+                    toggleButton8.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            this.f$0.lambda$new$14(z2, context, toggleButton9, toggleButton8, view);
+                        }
+                    });
                     if (toggleButton9 != null) {
-                        toggleButton9.setOnClickListener(new ChatActivity$$ExternalSyntheticLambda62(page4, toggleButton9, toggleButton8, 24));
-                        page2 = page4;
+                        toggleButton9.setOnClickListener(new EditTextEmoji$$ExternalSyntheticLambda0(page, toggleButton9, toggleButton8, 2));
                     }
                 }
-                page2 = page;
                 context2 = context;
-                page3 = page2;
             } else {
-                boolean z2 = messages.hasText;
-                boolean z3 = anonymousClass64.showOutdatedQuote;
-                if (!z2 || messagePreviewParams.isSecret) {
-                    resourcesDelegate = resourcesDelegate2;
+                if (!messages.hasText || messagePreviewParams.isSecret) {
+                    page = this;
+                    messagePreviewView = MessagePreviewView.this;
+                    i2 = 8;
+                    i3 = 48;
+                    f2 = 0.06f;
+                    f = 8.0f;
                 } else {
-                    ViewGroup viewGroupM = zzkf.m(context3, 1);
-                    if (z3) {
-                        resourcesDelegate = resourcesDelegate2;
-                        viewGroup = viewGroupM;
+                    LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context3);
+                    if (MessagePreviewView.this.showOutdatedQuote) {
+                        viewGroup = linearLayoutM;
+                        i2 = 8;
+                        i3 = 48;
+                        f2 = 0.06f;
+                        f = 8.0f;
                     } else {
-                        ActionBarMenuSubItem actionBarMenuSubItem6 = new ActionBarMenuSubItem(0, context3, anonymousClass64.resourcesProvider, true, false);
-                        actionBarMenuSubItem6.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back, null);
+                        viewGroup = linearLayoutM;
+                        i2 = 8;
+                        i3 = 48;
+                        f2 = 0.06f;
+                        f = 8.0f;
+                        ActionBarMenuSubItem actionBarMenuSubItem6 = new ActionBarMenuSubItem(0, context3, MessagePreviewView.this.resourcesProvider, true, false);
+                        actionBarMenuSubItem6.setTextAndIcon(LocaleController.getString(R.string.Back), R.drawable.msg_arrow_back);
+                        final int i16 = 1;
                         actionBarMenuSubItem6.setOnClickListener(new View.OnClickListener(this) {
                             public final MessagePreviewView.Page f$0;
 
@@ -2871,202 +2495,60 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                             @Override
                             public final void onClick(View view) {
-                                TLRPC.Message message;
-                                TLRPC.MessageMedia messageMedia;
-                                TLRPC.Message message2;
-                                TLRPC.MessageMedia messageMedia2;
-                                TLRPC.Message message3;
-                                TLRPC.Message message4;
-                                switch (i5) {
+                                switch (i16) {
                                     case 0:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$10(view);
                                         break;
                                     case 1:
-                                        MessagePreviewView.Page page5 = this.f$0;
-                                        page5.this$0.messagePreviewParams.quote = null;
-                                        page5.textSelectionHelper.clear(false);
-                                        page5.switchToQuote(false, false);
-                                        page5.menu.getSwipeBack().closeForeground(true);
+                                        this.f$0.lambda$new$2(view);
                                         break;
                                     case 2:
-                                        MessagePreviewView.Page page6 = this.f$0;
-                                        if (page6.getReplyMessage(null) != null) {
-                                            MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page6.textSelectionHelper;
-                                            int i110 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                            ChatActivity.AnonymousClass64 anonymousClass65 = page6.this$0;
-                                            if (i110 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                                TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                                MessageObject replyMessage = page6.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                                int i111 = anonymousClass5.selectionStart;
-                                                MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                                messagePreviewParams2.quoteStart = i111;
-                                                int i112 = anonymousClass5.selectionEnd;
-                                                messagePreviewParams2.quoteEnd = i112;
-                                                messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i111, i112, replyMessage);
-                                                anonymousClass65.onQuoteSelectedPart();
-                                                anonymousClass65.dismiss(true);
-                                            } else {
-                                                page6.showQuoteLengthError();
-                                            }
-                                        }
+                                        this.f$0.lambda$new$3(view);
                                         break;
                                     case 3:
-                                        MessagePreviewView.Page page7 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass66 = page7.this$0;
-                                        MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                        ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                        boolean z4 = anonymousClass66.showOutdatedQuote;
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page7.textSelectionHelper;
-                                        if (replyQuote == null || z4) {
-                                            int i113 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                            int i114 = anonymousClass66.currentAccount;
-                                            if (i113 <= MessagesController.getInstance(i114).quoteLengthMax) {
-                                                MessageObject replyMessage2 = page7.getReplyMessage(null);
-                                                if (replyMessage2 != null) {
-                                                    boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                    MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                    if (!zIsInSelectionMode) {
-                                                        messagePreviewParams4.quoteStart = 0;
-                                                        messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i114).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                        View replyMessageCell = page7.getReplyMessageCell();
-                                                        if (replyMessageCell instanceof ChatMessageCell) {
-                                                            anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                        }
-                                                        if (!z4) {
-                                                            page7.menu.getSwipeBack().openForeground(page7.menuBack);
-                                                        }
-                                                        page7.switchToQuote(true, true);
-                                                    } else {
-                                                        messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                        messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                        TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page7.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                        anonymousClass66.onQuoteSelectedPart();
-                                                        anonymousClass66.dismiss(true);
-                                                    }
-                                                }
-                                            } else {
-                                                page7.showQuoteLengthError();
-                                            }
-                                        } else {
-                                            messagePreviewParams3.quote = null;
-                                            anonymousClass8.clear(false);
-                                            page7.switchToQuote(false, true);
-                                            page7.updateSubtitle(true);
-                                        }
+                                        this.f$0.lambda$new$4(view);
                                         break;
                                     case 4:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$5(view);
                                         break;
                                     case 5:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$6(view);
                                         break;
                                     case 6:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$7(view);
                                         break;
                                     case 7:
-                                        ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                        boolean z5 = anonymousClass67.showOutdatedQuote;
-                                        ChatActivity chatActivity = ChatActivity.this;
-                                        if (!z5) {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingMessageObject = null;
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                            chatActivity.fallbackFieldPanel();
-                                        } else {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                        }
+                                        this.f$0.lambda$new$8(view);
                                         break;
                                     case 8:
-                                        this.f$0.this$0.selectAnotherChat(true);
+                                        this.f$0.lambda$new$9(view);
                                         break;
                                     case 9:
-                                        ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                        anonymousClass68.dismiss(true);
-                                        ChatActivity chatActivity2 = ChatActivity.this;
-                                        chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                        chatActivity2.fallbackFieldPanel();
+                                        this.f$0.lambda$new$11(view);
                                         break;
                                     case 10:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$16(view);
                                         break;
                                     case 11:
-                                        ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                        anonymousClass69.dismiss(true);
-                                        ChatActivity chatActivity3 = ChatActivity.this;
-                                        chatActivity3.foundWebPage = null;
-                                        ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                        if (anonymousClass39 != null) {
-                                            anonymousClass39.messageWebPage = null;
-                                            anonymousClass39.messageWebPageSearch = false;
-                                        }
-                                        MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                        if (messagePreviewParams5 != null) {
-                                            int i115 = ((BaseFragment) chatActivity3).currentAccount;
-                                            MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                            messagePreviewParams5.updateLink(i115, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                        }
-                                        chatActivity3.fallbackFieldPanel();
+                                        this.f$0.lambda$new$17(view);
                                         break;
                                     case 12:
-                                        MessagePreviewView.Page page8 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass610 = page8.this$0;
-                                        MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                        if (messagePreviewParams6.hasMedia) {
-                                            boolean z6 = !messagePreviewParams6.webpageSmall;
-                                            messagePreviewParams6.webpageSmall = z6;
-                                            page8.changeSizeBtn.setState(z6, true);
-                                            MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                            page8.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                            if (page8.messages.messages.size() > 0 && (message2 = page8.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                                boolean z7 = messagePreviewParams7.webpageSmall;
-                                                messageMedia2.force_small_media = z7;
-                                                messageMedia2.force_large_media = !z7;
-                                            }
-                                            if (page8.messages.previewMessages.size() > 0 && (message = page8.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                                boolean z8 = messagePreviewParams7.webpageSmall;
-                                                messageMedia.force_small_media = z8;
-                                                messageMedia.force_large_media = !z8;
-                                            }
-                                            page8.updateMessages();
-                                            page8.updateScroll = true;
-                                            break;
-                                        }
+                                        this.f$0.lambda$new$18(view);
                                         break;
                                     default:
-                                        MessagePreviewView.Page page9 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass611 = page9.this$0;
-                                        MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                        boolean z9 = messagePreviewParams8.webpageTop;
-                                        messagePreviewParams8.webpageTop = !z9;
-                                        page9.changePositionBtn.setState(z9, true);
-                                        int size = page9.messages.messages.size();
-                                        MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                        if (size > 0 && (message4 = page9.messages.messages.get(0).messageOwner) != null) {
-                                            message4.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        if (page9.messages.previewMessages.size() > 0 && (message3 = page9.messages.previewMessages.get(0).messageOwner) != null) {
-                                            message3.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        page9.updateMessages();
-                                        page9.updateScroll = true;
+                                        this.f$0.lambda$new$19(view);
                                         break;
                                 }
                             }
                         });
-                        viewGroupM.addView(actionBarMenuSubItem6, LayoutHelper.createLinear(-1, 48));
-                        ActionBarPopupWindow.GapView gapView3 = new ActionBarPopupWindow.GapView(context3, Theme.key_actionBarDefaultSubmenuSeparator, resourcesDelegate2);
-                        gapView3.setColor(Theme.multAlpha(0.06f, Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesDelegate2)));
+                        viewGroup.addView(actionBarMenuSubItem6, LayoutHelper.createLinear(-1, 48));
+                        ActionBarPopupWindow.GapView gapView3 = new ActionBarPopupWindow.GapView(context3, MessagePreviewView.this.resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                        gapView3.setColor(Theme.multAlpha(0.06f, Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, MessagePreviewView.this.resourcesProvider)));
                         gapView3.setTag(R.id.fit_width_tag, 1);
-                        viewGroupM.addView(gapView3, LayoutHelper.createLinear(-1, 8));
-                        resourcesDelegate = resourcesDelegate2;
-                        ActionBarMenuSubItem actionBarMenuSubItem7 = new ActionBarMenuSubItem(0, context3, anonymousClass64.resourcesProvider, false, true);
-                        actionBarMenuSubItem7.setTextAndIcon(LocaleController.getString(R.string.QuoteSelectedPart), R.drawable.menu_quote_specific, null);
-                        final int i20 = 2;
+                        viewGroup.addView(gapView3, LayoutHelper.createLinear(-1, 8));
+                        ActionBarMenuSubItem actionBarMenuSubItem7 = new ActionBarMenuSubItem(0, context3, MessagePreviewView.this.resourcesProvider, false, true);
+                        actionBarMenuSubItem7.setTextAndIcon(LocaleController.getString(R.string.QuoteSelectedPart), R.drawable.menu_quote_specific);
+                        final int i17 = 2;
                         actionBarMenuSubItem7.setOnClickListener(new View.OnClickListener(this) {
                             public final MessagePreviewView.Page f$0;
 
@@ -3076,1479 +2558,742 @@ public abstract class MessagePreviewView extends FrameLayout {
 
                             @Override
                             public final void onClick(View view) {
-                                TLRPC.Message message;
-                                TLRPC.MessageMedia messageMedia;
-                                TLRPC.Message message2;
-                                TLRPC.MessageMedia messageMedia2;
-                                TLRPC.Message message3;
-                                TLRPC.Message message4;
-                                switch (i20) {
+                                switch (i17) {
                                     case 0:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$10(view);
                                         break;
                                     case 1:
-                                        MessagePreviewView.Page page5 = this.f$0;
-                                        page5.this$0.messagePreviewParams.quote = null;
-                                        page5.textSelectionHelper.clear(false);
-                                        page5.switchToQuote(false, false);
-                                        page5.menu.getSwipeBack().closeForeground(true);
+                                        this.f$0.lambda$new$2(view);
                                         break;
                                     case 2:
-                                        MessagePreviewView.Page page6 = this.f$0;
-                                        if (page6.getReplyMessage(null) != null) {
-                                            MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page6.textSelectionHelper;
-                                            int i110 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                            ChatActivity.AnonymousClass64 anonymousClass65 = page6.this$0;
-                                            if (i110 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                                TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                                MessageObject replyMessage = page6.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                                int i111 = anonymousClass5.selectionStart;
-                                                MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                                messagePreviewParams2.quoteStart = i111;
-                                                int i112 = anonymousClass5.selectionEnd;
-                                                messagePreviewParams2.quoteEnd = i112;
-                                                messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i111, i112, replyMessage);
-                                                anonymousClass65.onQuoteSelectedPart();
-                                                anonymousClass65.dismiss(true);
-                                            } else {
-                                                page6.showQuoteLengthError();
-                                            }
-                                        }
+                                        this.f$0.lambda$new$3(view);
                                         break;
                                     case 3:
-                                        MessagePreviewView.Page page7 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass66 = page7.this$0;
-                                        MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                        ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                        boolean z4 = anonymousClass66.showOutdatedQuote;
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page7.textSelectionHelper;
-                                        if (replyQuote == null || z4) {
-                                            int i113 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                            int i114 = anonymousClass66.currentAccount;
-                                            if (i113 <= MessagesController.getInstance(i114).quoteLengthMax) {
-                                                MessageObject replyMessage2 = page7.getReplyMessage(null);
-                                                if (replyMessage2 != null) {
-                                                    boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                    MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                    if (!zIsInSelectionMode) {
-                                                        messagePreviewParams4.quoteStart = 0;
-                                                        messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i114).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                        View replyMessageCell = page7.getReplyMessageCell();
-                                                        if (replyMessageCell instanceof ChatMessageCell) {
-                                                            anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                        }
-                                                        if (!z4) {
-                                                            page7.menu.getSwipeBack().openForeground(page7.menuBack);
-                                                        }
-                                                        page7.switchToQuote(true, true);
-                                                    } else {
-                                                        messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                        messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                        TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                        messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page7.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                        anonymousClass66.onQuoteSelectedPart();
-                                                        anonymousClass66.dismiss(true);
-                                                    }
-                                                }
-                                            } else {
-                                                page7.showQuoteLengthError();
-                                            }
-                                        } else {
-                                            messagePreviewParams3.quote = null;
-                                            anonymousClass8.clear(false);
-                                            page7.switchToQuote(false, true);
-                                            page7.updateSubtitle(true);
-                                        }
+                                        this.f$0.lambda$new$4(view);
                                         break;
                                     case 4:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$5(view);
                                         break;
                                     case 5:
-                                        this.f$0.this$0.selectAnotherChat(false);
+                                        this.f$0.lambda$new$6(view);
                                         break;
                                     case 6:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$7(view);
                                         break;
                                     case 7:
-                                        ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                        boolean z5 = anonymousClass67.showOutdatedQuote;
-                                        ChatActivity chatActivity = ChatActivity.this;
-                                        if (!z5) {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingMessageObject = null;
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                            chatActivity.fallbackFieldPanel();
-                                        } else {
-                                            anonymousClass67.dismiss(true);
-                                            chatActivity.replyingQuote = null;
-                                            chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                        }
+                                        this.f$0.lambda$new$8(view);
                                         break;
                                     case 8:
-                                        this.f$0.this$0.selectAnotherChat(true);
+                                        this.f$0.lambda$new$9(view);
                                         break;
                                     case 9:
-                                        ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                        anonymousClass68.dismiss(true);
-                                        ChatActivity chatActivity2 = ChatActivity.this;
-                                        chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                        chatActivity2.fallbackFieldPanel();
+                                        this.f$0.lambda$new$11(view);
                                         break;
                                     case 10:
-                                        this.f$0.this$0.dismiss(true);
+                                        this.f$0.lambda$new$16(view);
                                         break;
                                     case 11:
-                                        ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                        anonymousClass69.dismiss(true);
-                                        ChatActivity chatActivity3 = ChatActivity.this;
-                                        chatActivity3.foundWebPage = null;
-                                        ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                        if (anonymousClass39 != null) {
-                                            anonymousClass39.messageWebPage = null;
-                                            anonymousClass39.messageWebPageSearch = false;
-                                        }
-                                        MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                        if (messagePreviewParams5 != null) {
-                                            int i115 = ((BaseFragment) chatActivity3).currentAccount;
-                                            MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                            messagePreviewParams5.updateLink(i115, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                        }
-                                        chatActivity3.fallbackFieldPanel();
+                                        this.f$0.lambda$new$17(view);
                                         break;
                                     case 12:
-                                        MessagePreviewView.Page page8 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass610 = page8.this$0;
-                                        MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                        if (messagePreviewParams6.hasMedia) {
-                                            boolean z6 = !messagePreviewParams6.webpageSmall;
-                                            messagePreviewParams6.webpageSmall = z6;
-                                            page8.changeSizeBtn.setState(z6, true);
-                                            MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                            page8.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                            if (page8.messages.messages.size() > 0 && (message2 = page8.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                                boolean z7 = messagePreviewParams7.webpageSmall;
-                                                messageMedia2.force_small_media = z7;
-                                                messageMedia2.force_large_media = !z7;
-                                            }
-                                            if (page8.messages.previewMessages.size() > 0 && (message = page8.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                                boolean z8 = messagePreviewParams7.webpageSmall;
-                                                messageMedia.force_small_media = z8;
-                                                messageMedia.force_large_media = !z8;
-                                            }
-                                            page8.updateMessages();
-                                            page8.updateScroll = true;
-                                            break;
-                                        }
+                                        this.f$0.lambda$new$18(view);
                                         break;
                                     default:
-                                        MessagePreviewView.Page page9 = this.f$0;
-                                        ChatActivity.AnonymousClass64 anonymousClass611 = page9.this$0;
-                                        MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                        boolean z9 = messagePreviewParams8.webpageTop;
-                                        messagePreviewParams8.webpageTop = !z9;
-                                        page9.changePositionBtn.setState(z9, true);
-                                        int size = page9.messages.messages.size();
-                                        MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                        if (size > 0 && (message4 = page9.messages.messages.get(0).messageOwner) != null) {
-                                            message4.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        if (page9.messages.previewMessages.size() > 0 && (message3 = page9.messages.previewMessages.get(0).messageOwner) != null) {
-                                            message3.invert_media = messagePreviewParams9.webpageTop;
-                                        }
-                                        page9.updateMessages();
-                                        page9.updateScroll = true;
+                                        this.f$0.lambda$new$19(view);
                                         break;
                                 }
                             }
                         });
-                        viewGroup = viewGroupM;
                         viewGroup.addView(actionBarMenuSubItem7, LayoutHelper.createLinear(-1, 48));
                     }
-                    this.menuBack = actionBarPopupWindowLayout.addViewToSwipeBack(viewGroup);
-                    actionBarPopupWindowLayout.getSwipeBack().setStickToRight(true);
-                    FrameLayout frameLayout2 = new FrameLayout(context3);
-                    final int i21 = 0;
-                    ?? r2 = new ActionBarMenuSubItem(1, context, anonymousClass64.resourcesProvider, true, false) {
-                        @Override
-                        public final boolean onTouchEvent(MotionEvent motionEvent) {
-                            switch (i21) {
-                                case 0:
-                                    if (getVisibility() != 0 || getAlpha() < 0.5f) {
-                                        return false;
-                                    }
-                                    return super.onTouchEvent(motionEvent);
-                                default:
-                                    if (getVisibility() != 0 || getAlpha() < 0.5f) {
-                                        return false;
-                                    }
-                                    return super.onTouchEvent(motionEvent);
-                            }
-                        }
-
-                        @Override
-                        public final void updateBackground() {
-                            switch (i21) {
-                                case 0:
-                                    setBackground(null);
-                                    break;
-                                default:
-                                    setBackground(null);
-                                    break;
-                            }
-                        }
-                    };
-                    this.quoteButton = r2;
-                    r2.setTextAndIcon(LocaleController.getString(z3 ? R.string.QuoteSelectedPart : R.string.SelectSpecificQuote), R.drawable.menu_select_quote, null);
-                    final int i22 = 1;
-                    ?? r4 = new ActionBarMenuSubItem(1, context, anonymousClass64.resourcesProvider, true, false) {
-                        @Override
-                        public final boolean onTouchEvent(MotionEvent motionEvent) {
-                            switch (i22) {
-                                case 0:
-                                    if (getVisibility() != 0 || getAlpha() < 0.5f) {
-                                        return false;
-                                    }
-                                    return super.onTouchEvent(motionEvent);
-                                default:
-                                    if (getVisibility() != 0 || getAlpha() < 0.5f) {
-                                        return false;
-                                    }
-                                    return super.onTouchEvent(motionEvent);
-                            }
-                        }
-
-                        @Override
-                        public final void updateBackground() {
-                            switch (i22) {
-                                case 0:
-                                    setBackground(null);
-                                    break;
-                                default:
-                                    setBackground(null);
-                                    break;
-                            }
-                        }
-                    };
-                    context3 = context;
-                    this.clearQuoteButton = r4;
-                    r4.setTextAndIcon(LocaleController.getString(R.string.ClearQuote), R.drawable.menu_quote_delete, null);
-                    frameLayout2.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesDelegate), 6, 0));
-                    final int i23 = 3;
-                    frameLayout2.setOnClickListener(new View.OnClickListener(this) {
-                        public final MessagePreviewView.Page f$0;
-
-                        {
-                            this.f$0 = this;
-                        }
-
-                        @Override
-                        public final void onClick(View view) {
-                            TLRPC.Message message;
-                            TLRPC.MessageMedia messageMedia;
-                            TLRPC.Message message2;
-                            TLRPC.MessageMedia messageMedia2;
-                            TLRPC.Message message3;
-                            TLRPC.Message message4;
-                            switch (i23) {
-                                case 0:
-                                    this.f$0.this$0.dismiss(true);
-                                    break;
-                                case 1:
-                                    MessagePreviewView.Page page5 = this.f$0;
-                                    page5.this$0.messagePreviewParams.quote = null;
-                                    page5.textSelectionHelper.clear(false);
-                                    page5.switchToQuote(false, false);
-                                    page5.menu.getSwipeBack().closeForeground(true);
-                                    break;
-                                case 2:
-                                    MessagePreviewView.Page page6 = this.f$0;
-                                    if (page6.getReplyMessage(null) != null) {
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page6.textSelectionHelper;
-                                        int i110 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                        ChatActivity.AnonymousClass64 anonymousClass65 = page6.this$0;
-                                        if (i110 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                            TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                            MessageObject replyMessage = page6.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                            int i111 = anonymousClass5.selectionStart;
-                                            MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                            messagePreviewParams2.quoteStart = i111;
-                                            int i112 = anonymousClass5.selectionEnd;
-                                            messagePreviewParams2.quoteEnd = i112;
-                                            messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i111, i112, replyMessage);
-                                            anonymousClass65.onQuoteSelectedPart();
-                                            anonymousClass65.dismiss(true);
-                                        } else {
-                                            page6.showQuoteLengthError();
-                                        }
-                                    }
-                                    break;
-                                case 3:
-                                    MessagePreviewView.Page page7 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass66 = page7.this$0;
-                                    MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                    ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                    boolean z4 = anonymousClass66.showOutdatedQuote;
-                                    MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page7.textSelectionHelper;
-                                    if (replyQuote == null || z4) {
-                                        int i113 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                        int i114 = anonymousClass66.currentAccount;
-                                        if (i113 <= MessagesController.getInstance(i114).quoteLengthMax) {
-                                            MessageObject replyMessage2 = page7.getReplyMessage(null);
-                                            if (replyMessage2 != null) {
-                                                boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                if (!zIsInSelectionMode) {
-                                                    messagePreviewParams4.quoteStart = 0;
-                                                    messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i114).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                    View replyMessageCell = page7.getReplyMessageCell();
-                                                    if (replyMessageCell instanceof ChatMessageCell) {
-                                                        anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                    }
-                                                    if (!z4) {
-                                                        page7.menu.getSwipeBack().openForeground(page7.menuBack);
-                                                    }
-                                                    page7.switchToQuote(true, true);
-                                                } else {
-                                                    messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                    messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                    TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page7.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                    anonymousClass66.onQuoteSelectedPart();
-                                                    anonymousClass66.dismiss(true);
-                                                }
-                                            }
-                                        } else {
-                                            page7.showQuoteLengthError();
-                                        }
-                                    } else {
-                                        messagePreviewParams3.quote = null;
-                                        anonymousClass8.clear(false);
-                                        page7.switchToQuote(false, true);
-                                        page7.updateSubtitle(true);
-                                    }
-                                    break;
-                                case 4:
-                                    this.f$0.this$0.selectAnotherChat(false);
-                                    break;
-                                case 5:
-                                    this.f$0.this$0.selectAnotherChat(false);
-                                    break;
-                                case 6:
-                                    this.f$0.this$0.dismiss(true);
-                                    break;
-                                case 7:
-                                    ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                    boolean z5 = anonymousClass67.showOutdatedQuote;
-                                    ChatActivity chatActivity = ChatActivity.this;
-                                    if (!z5) {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingMessageObject = null;
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                        chatActivity.fallbackFieldPanel();
-                                    } else {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                    }
-                                    break;
-                                case 8:
-                                    this.f$0.this$0.selectAnotherChat(true);
-                                    break;
-                                case 9:
-                                    ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                    anonymousClass68.dismiss(true);
-                                    ChatActivity chatActivity2 = ChatActivity.this;
-                                    chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                    chatActivity2.fallbackFieldPanel();
-                                    break;
-                                case 10:
-                                    this.f$0.this$0.dismiss(true);
-                                    break;
-                                case 11:
-                                    ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                    anonymousClass69.dismiss(true);
-                                    ChatActivity chatActivity3 = ChatActivity.this;
-                                    chatActivity3.foundWebPage = null;
-                                    ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                    if (anonymousClass39 != null) {
-                                        anonymousClass39.messageWebPage = null;
-                                        anonymousClass39.messageWebPageSearch = false;
-                                    }
-                                    MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                    if (messagePreviewParams5 != null) {
-                                        int i115 = ((BaseFragment) chatActivity3).currentAccount;
-                                        MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                        messagePreviewParams5.updateLink(i115, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                    }
-                                    chatActivity3.fallbackFieldPanel();
-                                    break;
-                                case 12:
-                                    MessagePreviewView.Page page8 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass610 = page8.this$0;
-                                    MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                    if (messagePreviewParams6.hasMedia) {
-                                        boolean z6 = !messagePreviewParams6.webpageSmall;
-                                        messagePreviewParams6.webpageSmall = z6;
-                                        page8.changeSizeBtn.setState(z6, true);
-                                        MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                        page8.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                        if (page8.messages.messages.size() > 0 && (message2 = page8.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                            boolean z7 = messagePreviewParams7.webpageSmall;
-                                            messageMedia2.force_small_media = z7;
-                                            messageMedia2.force_large_media = !z7;
-                                        }
-                                        if (page8.messages.previewMessages.size() > 0 && (message = page8.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                            boolean z8 = messagePreviewParams7.webpageSmall;
-                                            messageMedia.force_small_media = z8;
-                                            messageMedia.force_large_media = !z8;
-                                        }
-                                        page8.updateMessages();
-                                        page8.updateScroll = true;
-                                        break;
-                                    }
-                                    break;
-                                default:
-                                    MessagePreviewView.Page page9 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass611 = page9.this$0;
-                                    MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                    boolean z9 = messagePreviewParams8.webpageTop;
-                                    messagePreviewParams8.webpageTop = !z9;
-                                    page9.changePositionBtn.setState(z9, true);
-                                    int size = page9.messages.messages.size();
-                                    MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                    if (size > 0 && (message4 = page9.messages.messages.get(0).messageOwner) != null) {
-                                        message4.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    if (page9.messages.previewMessages.size() > 0 && (message3 = page9.messages.previewMessages.get(0).messageOwner) != null) {
-                                        message3.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    page9.updateMessages();
-                                    page9.updateScroll = true;
-                                    break;
-                            }
-                        }
-                    });
-                    frameLayout2.addView((View) r2, LayoutHelper.createFrame(48.0f, -1));
-                    frameLayout2.addView((View) r4, LayoutHelper.createFrame(48.0f, -1));
-                    anonymousClass2.addView(frameLayout2, LayoutHelper.createLinear(-1, 48));
-                }
-                if (!messagePreviewParams.monoforum && !messagePreviewParams.noforwards && !messagePreviewParams.hasSecretMessages) {
+                    this.menuBack = this.menu.addViewToSwipeBack(viewGroup);
+                    this.menu.getSwipeBack().setStickToRight(true);
                     FrameLayout frameLayout3 = new FrameLayout(context3);
-                    ActionBarMenuSubItem actionBarMenuSubItem8 = new ActionBarMenuSubItem(1, context3, anonymousClass64.resourcesProvider, false, false);
-                    this.replyAnotherChatButton = actionBarMenuSubItem8;
-                    String string2 = LocaleController.getString(R.string.ReplyToAnotherChat);
-                    int i24 = R.drawable.msg_forward_replace;
-                    actionBarMenuSubItem8.setTextAndIcon(string2, i24, null);
-                    final int i25 = 4;
-                    actionBarMenuSubItem8.setOnClickListener(new View.OnClickListener(this) {
+                    ActionBarMenuSubItem actionBarMenuSubItem8 = new ActionBarMenuSubItem(context3, true, true, false, MessagePreviewView.this.resourcesProvider, MessagePreviewView.this) {
+                        final MessagePreviewView val$this$0;
+
+                        {
+                            this.val$this$0 = messagePreviewView;
+                            int i18 = z ? 1 : 0;
+                        }
+
+                        @Override
+                        public boolean onTouchEvent(MotionEvent motionEvent) {
+                            if (getVisibility() != 0 || getAlpha() < 0.5f) {
+                                return false;
+                            }
+                            return super.onTouchEvent(motionEvent);
+                        }
+
+                        @Override
+                        public void updateBackground() {
+                            setBackground(null);
+                        }
+                    };
+                    this.quoteButton = actionBarMenuSubItem8;
+                    actionBarMenuSubItem8.setTextAndIcon(LocaleController.getString(MessagePreviewView.this.showOutdatedQuote ? R.string.QuoteSelectedPart : R.string.SelectSpecificQuote), R.drawable.menu_select_quote);
+                    context3 = context;
+                    ActionBarMenuSubItem actionBarMenuSubItem9 = new ActionBarMenuSubItem(context3, true, true, false, MessagePreviewView.this.resourcesProvider, MessagePreviewView.this) {
+                        final MessagePreviewView val$this$0;
+
+                        {
+                            this.val$this$0 = messagePreviewView;
+                            int i18 = z ? 1 : 0;
+                        }
+
+                        @Override
+                        public boolean onTouchEvent(MotionEvent motionEvent) {
+                            if (getVisibility() != 0 || getAlpha() < 0.5f) {
+                                return false;
+                            }
+                            return super.onTouchEvent(motionEvent);
+                        }
+
+                        @Override
+                        public void updateBackground() {
+                            setBackground(null);
+                        }
+                    };
+                    messagePreviewView = MessagePreviewView.this;
+                    page = this;
+                    page.clearQuoteButton = actionBarMenuSubItem9;
+                    actionBarMenuSubItem9.setTextAndIcon(LocaleController.getString(R.string.ClearQuote), R.drawable.menu_quote_delete);
+                    frameLayout3.setBackground(Theme.createRadSelectorDrawable(messagePreviewView2.getThemedColor(Theme.key_dialogButtonSelector), 6, 0));
+                    final int i18 = 3;
+                    frameLayout3.setOnClickListener(new View.OnClickListener(page) {
                         public final MessagePreviewView.Page f$0;
 
                         {
-                            this.f$0 = this;
+                            this.f$0 = page;
                         }
 
                         @Override
                         public final void onClick(View view) {
-                            TLRPC.Message message;
-                            TLRPC.MessageMedia messageMedia;
-                            TLRPC.Message message2;
-                            TLRPC.MessageMedia messageMedia2;
-                            TLRPC.Message message3;
-                            TLRPC.Message message4;
-                            switch (i25) {
+                            switch (i18) {
                                 case 0:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$10(view);
                                     break;
                                 case 1:
-                                    MessagePreviewView.Page page5 = this.f$0;
-                                    page5.this$0.messagePreviewParams.quote = null;
-                                    page5.textSelectionHelper.clear(false);
-                                    page5.switchToQuote(false, false);
-                                    page5.menu.getSwipeBack().closeForeground(true);
+                                    this.f$0.lambda$new$2(view);
                                     break;
                                 case 2:
-                                    MessagePreviewView.Page page6 = this.f$0;
-                                    if (page6.getReplyMessage(null) != null) {
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page6.textSelectionHelper;
-                                        int i110 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                        ChatActivity.AnonymousClass64 anonymousClass65 = page6.this$0;
-                                        if (i110 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                            TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                            MessageObject replyMessage = page6.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                            int i111 = anonymousClass5.selectionStart;
-                                            MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                            messagePreviewParams2.quoteStart = i111;
-                                            int i112 = anonymousClass5.selectionEnd;
-                                            messagePreviewParams2.quoteEnd = i112;
-                                            messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i111, i112, replyMessage);
-                                            anonymousClass65.onQuoteSelectedPart();
-                                            anonymousClass65.dismiss(true);
-                                        } else {
-                                            page6.showQuoteLengthError();
-                                        }
-                                    }
+                                    this.f$0.lambda$new$3(view);
                                     break;
                                 case 3:
-                                    MessagePreviewView.Page page7 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass66 = page7.this$0;
-                                    MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                    ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                    boolean z4 = anonymousClass66.showOutdatedQuote;
-                                    MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page7.textSelectionHelper;
-                                    if (replyQuote == null || z4) {
-                                        int i113 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                        int i114 = anonymousClass66.currentAccount;
-                                        if (i113 <= MessagesController.getInstance(i114).quoteLengthMax) {
-                                            MessageObject replyMessage2 = page7.getReplyMessage(null);
-                                            if (replyMessage2 != null) {
-                                                boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                if (!zIsInSelectionMode) {
-                                                    messagePreviewParams4.quoteStart = 0;
-                                                    messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i114).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                    View replyMessageCell = page7.getReplyMessageCell();
-                                                    if (replyMessageCell instanceof ChatMessageCell) {
-                                                        anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                    }
-                                                    if (!z4) {
-                                                        page7.menu.getSwipeBack().openForeground(page7.menuBack);
-                                                    }
-                                                    page7.switchToQuote(true, true);
-                                                } else {
-                                                    messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                    messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                    TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page7.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                    anonymousClass66.onQuoteSelectedPart();
-                                                    anonymousClass66.dismiss(true);
-                                                }
-                                            }
-                                        } else {
-                                            page7.showQuoteLengthError();
-                                        }
-                                    } else {
-                                        messagePreviewParams3.quote = null;
-                                        anonymousClass8.clear(false);
-                                        page7.switchToQuote(false, true);
-                                        page7.updateSubtitle(true);
-                                    }
+                                    this.f$0.lambda$new$4(view);
                                     break;
                                 case 4:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$5(view);
                                     break;
                                 case 5:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$6(view);
                                     break;
                                 case 6:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$7(view);
                                     break;
                                 case 7:
-                                    ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                    boolean z5 = anonymousClass67.showOutdatedQuote;
-                                    ChatActivity chatActivity = ChatActivity.this;
-                                    if (!z5) {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingMessageObject = null;
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                        chatActivity.fallbackFieldPanel();
-                                    } else {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                    }
+                                    this.f$0.lambda$new$8(view);
                                     break;
                                 case 8:
-                                    this.f$0.this$0.selectAnotherChat(true);
+                                    this.f$0.lambda$new$9(view);
                                     break;
                                 case 9:
-                                    ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                    anonymousClass68.dismiss(true);
-                                    ChatActivity chatActivity2 = ChatActivity.this;
-                                    chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                    chatActivity2.fallbackFieldPanel();
+                                    this.f$0.lambda$new$11(view);
                                     break;
                                 case 10:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$16(view);
                                     break;
                                 case 11:
-                                    ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                    anonymousClass69.dismiss(true);
-                                    ChatActivity chatActivity3 = ChatActivity.this;
-                                    chatActivity3.foundWebPage = null;
-                                    ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                    if (anonymousClass39 != null) {
-                                        anonymousClass39.messageWebPage = null;
-                                        anonymousClass39.messageWebPageSearch = false;
-                                    }
-                                    MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                    if (messagePreviewParams5 != null) {
-                                        int i115 = ((BaseFragment) chatActivity3).currentAccount;
-                                        MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                        messagePreviewParams5.updateLink(i115, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                    }
-                                    chatActivity3.fallbackFieldPanel();
+                                    this.f$0.lambda$new$17(view);
                                     break;
                                 case 12:
-                                    MessagePreviewView.Page page8 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass610 = page8.this$0;
-                                    MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                    if (messagePreviewParams6.hasMedia) {
-                                        boolean z6 = !messagePreviewParams6.webpageSmall;
-                                        messagePreviewParams6.webpageSmall = z6;
-                                        page8.changeSizeBtn.setState(z6, true);
-                                        MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                        page8.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                        if (page8.messages.messages.size() > 0 && (message2 = page8.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                            boolean z7 = messagePreviewParams7.webpageSmall;
-                                            messageMedia2.force_small_media = z7;
-                                            messageMedia2.force_large_media = !z7;
-                                        }
-                                        if (page8.messages.previewMessages.size() > 0 && (message = page8.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                            boolean z8 = messagePreviewParams7.webpageSmall;
-                                            messageMedia.force_small_media = z8;
-                                            messageMedia.force_large_media = !z8;
-                                        }
-                                        page8.updateMessages();
-                                        page8.updateScroll = true;
-                                        break;
-                                    }
+                                    this.f$0.lambda$new$18(view);
                                     break;
                                 default:
-                                    MessagePreviewView.Page page9 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass611 = page9.this$0;
-                                    MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                    boolean z9 = messagePreviewParams8.webpageTop;
-                                    messagePreviewParams8.webpageTop = !z9;
-                                    page9.changePositionBtn.setState(z9, true);
-                                    int size = page9.messages.messages.size();
-                                    MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                    if (size > 0 && (message4 = page9.messages.messages.get(0).messageOwner) != null) {
-                                        message4.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    if (page9.messages.previewMessages.size() > 0 && (message3 = page9.messages.previewMessages.get(0).messageOwner) != null) {
-                                        message3.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    page9.updateMessages();
-                                    page9.updateScroll = true;
+                                    this.f$0.lambda$new$19(view);
+                                    break;
+                            }
+                        }
+                    });
+                    frameLayout3.addView(page.quoteButton, LayoutHelper.createFrame(-1, 48.0f));
+                    frameLayout3.addView(page.clearQuoteButton, LayoutHelper.createFrame(-1, 48.0f));
+                    page.menu.addView((View) frameLayout3, LayoutHelper.createLinear(-1, i3));
+                }
+                MessagePreviewParams messagePreviewParams3 = messagePreviewView2.messagePreviewParams;
+                if (!messagePreviewParams3.monoforum && !messagePreviewParams3.noforwards && !messagePreviewParams3.hasSecretMessages) {
+                    FrameLayout frameLayout4 = new FrameLayout(context3);
+                    ActionBarMenuSubItem actionBarMenuSubItem10 = new ActionBarMenuSubItem(1, context3, messagePreviewView2.resourcesProvider, false, false);
+                    page.replyAnotherChatButton = actionBarMenuSubItem10;
+                    String string2 = LocaleController.getString(R.string.ReplyToAnotherChat);
+                    int i19 = R.drawable.msg_forward_replace;
+                    actionBarMenuSubItem10.setTextAndIcon(string2, i19);
+                    final int i20 = 4;
+                    page.replyAnotherChatButton.setOnClickListener(new View.OnClickListener(page) {
+                        public final MessagePreviewView.Page f$0;
+
+                        {
+                            this.f$0 = page;
+                        }
+
+                        @Override
+                        public final void onClick(View view) {
+                            switch (i20) {
+                                case 0:
+                                    this.f$0.lambda$new$10(view);
+                                    break;
+                                case 1:
+                                    this.f$0.lambda$new$2(view);
+                                    break;
+                                case 2:
+                                    this.f$0.lambda$new$3(view);
+                                    break;
+                                case 3:
+                                    this.f$0.lambda$new$4(view);
+                                    break;
+                                case 4:
+                                    this.f$0.lambda$new$5(view);
+                                    break;
+                                case 5:
+                                    this.f$0.lambda$new$6(view);
+                                    break;
+                                case 6:
+                                    this.f$0.lambda$new$7(view);
+                                    break;
+                                case 7:
+                                    this.f$0.lambda$new$8(view);
+                                    break;
+                                case 8:
+                                    this.f$0.lambda$new$9(view);
+                                    break;
+                                case 9:
+                                    this.f$0.lambda$new$11(view);
+                                    break;
+                                case 10:
+                                    this.f$0.lambda$new$16(view);
+                                    break;
+                                case 11:
+                                    this.f$0.lambda$new$17(view);
+                                    break;
+                                case 12:
+                                    this.f$0.lambda$new$18(view);
+                                    break;
+                                default:
+                                    this.f$0.lambda$new$19(view);
                                     break;
                             }
                         }
                     });
                     context3 = context;
-                    ActionBarMenuSubItem actionBarMenuSubItem9 = new ActionBarMenuSubItem(1, context3, anonymousClass64.resourcesProvider, false, false);
-                    this.quoteAnotherChatButton = actionBarMenuSubItem9;
-                    actionBarMenuSubItem9.setTextAndIcon(LocaleController.getString(R.string.QuoteToAnotherChat), i24, null);
-                    final int i26 = 5;
-                    actionBarMenuSubItem9.setOnClickListener(new View.OnClickListener(this) {
+                    ActionBarMenuSubItem actionBarMenuSubItem11 = new ActionBarMenuSubItem(1, context3, messagePreviewView2.resourcesProvider, false, false);
+                    page.quoteAnotherChatButton = actionBarMenuSubItem11;
+                    actionBarMenuSubItem11.setTextAndIcon(LocaleController.getString(R.string.QuoteToAnotherChat), i19);
+                    final int i21 = 5;
+                    page.quoteAnotherChatButton.setOnClickListener(new View.OnClickListener(page) {
                         public final MessagePreviewView.Page f$0;
 
                         {
-                            this.f$0 = this;
+                            this.f$0 = page;
                         }
 
                         @Override
                         public final void onClick(View view) {
-                            TLRPC.Message message;
-                            TLRPC.MessageMedia messageMedia;
-                            TLRPC.Message message2;
-                            TLRPC.MessageMedia messageMedia2;
-                            TLRPC.Message message3;
-                            TLRPC.Message message4;
-                            switch (i26) {
+                            switch (i21) {
                                 case 0:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$10(view);
                                     break;
                                 case 1:
-                                    MessagePreviewView.Page page5 = this.f$0;
-                                    page5.this$0.messagePreviewParams.quote = null;
-                                    page5.textSelectionHelper.clear(false);
-                                    page5.switchToQuote(false, false);
-                                    page5.menu.getSwipeBack().closeForeground(true);
+                                    this.f$0.lambda$new$2(view);
                                     break;
                                 case 2:
-                                    MessagePreviewView.Page page6 = this.f$0;
-                                    if (page6.getReplyMessage(null) != null) {
-                                        MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page6.textSelectionHelper;
-                                        int i110 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                        ChatActivity.AnonymousClass64 anonymousClass65 = page6.this$0;
-                                        if (i110 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                            TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                            MessageObject replyMessage = page6.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                            int i111 = anonymousClass5.selectionStart;
-                                            MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                            messagePreviewParams2.quoteStart = i111;
-                                            int i112 = anonymousClass5.selectionEnd;
-                                            messagePreviewParams2.quoteEnd = i112;
-                                            messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i111, i112, replyMessage);
-                                            anonymousClass65.onQuoteSelectedPart();
-                                            anonymousClass65.dismiss(true);
-                                        } else {
-                                            page6.showQuoteLengthError();
-                                        }
-                                    }
+                                    this.f$0.lambda$new$3(view);
                                     break;
                                 case 3:
-                                    MessagePreviewView.Page page7 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass66 = page7.this$0;
-                                    MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                    ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                    boolean z4 = anonymousClass66.showOutdatedQuote;
-                                    MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page7.textSelectionHelper;
-                                    if (replyQuote == null || z4) {
-                                        int i113 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                        int i114 = anonymousClass66.currentAccount;
-                                        if (i113 <= MessagesController.getInstance(i114).quoteLengthMax) {
-                                            MessageObject replyMessage2 = page7.getReplyMessage(null);
-                                            if (replyMessage2 != null) {
-                                                boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                                MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                                if (!zIsInSelectionMode) {
-                                                    messagePreviewParams4.quoteStart = 0;
-                                                    messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i114).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                    View replyMessageCell = page7.getReplyMessageCell();
-                                                    if (replyMessageCell instanceof ChatMessageCell) {
-                                                        anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                    }
-                                                    if (!z4) {
-                                                        page7.menu.getSwipeBack().openForeground(page7.menuBack);
-                                                    }
-                                                    page7.switchToQuote(true, true);
-                                                } else {
-                                                    messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                    messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                    TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                    messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page7.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                    anonymousClass66.onQuoteSelectedPart();
-                                                    anonymousClass66.dismiss(true);
-                                                }
-                                            }
-                                        } else {
-                                            page7.showQuoteLengthError();
-                                        }
-                                    } else {
-                                        messagePreviewParams3.quote = null;
-                                        anonymousClass8.clear(false);
-                                        page7.switchToQuote(false, true);
-                                        page7.updateSubtitle(true);
-                                    }
+                                    this.f$0.lambda$new$4(view);
                                     break;
                                 case 4:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$5(view);
                                     break;
                                 case 5:
-                                    this.f$0.this$0.selectAnotherChat(false);
+                                    this.f$0.lambda$new$6(view);
                                     break;
                                 case 6:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$7(view);
                                     break;
                                 case 7:
-                                    ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                    boolean z5 = anonymousClass67.showOutdatedQuote;
-                                    ChatActivity chatActivity = ChatActivity.this;
-                                    if (!z5) {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingMessageObject = null;
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                        chatActivity.fallbackFieldPanel();
-                                    } else {
-                                        anonymousClass67.dismiss(true);
-                                        chatActivity.replyingQuote = null;
-                                        chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                    }
+                                    this.f$0.lambda$new$8(view);
                                     break;
                                 case 8:
-                                    this.f$0.this$0.selectAnotherChat(true);
+                                    this.f$0.lambda$new$9(view);
                                     break;
                                 case 9:
-                                    ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                    anonymousClass68.dismiss(true);
-                                    ChatActivity chatActivity2 = ChatActivity.this;
-                                    chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                    chatActivity2.fallbackFieldPanel();
+                                    this.f$0.lambda$new$11(view);
                                     break;
                                 case 10:
-                                    this.f$0.this$0.dismiss(true);
+                                    this.f$0.lambda$new$16(view);
                                     break;
                                 case 11:
-                                    ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                    anonymousClass69.dismiss(true);
-                                    ChatActivity chatActivity3 = ChatActivity.this;
-                                    chatActivity3.foundWebPage = null;
-                                    ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                    if (anonymousClass39 != null) {
-                                        anonymousClass39.messageWebPage = null;
-                                        anonymousClass39.messageWebPageSearch = false;
-                                    }
-                                    MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                    if (messagePreviewParams5 != null) {
-                                        int i115 = ((BaseFragment) chatActivity3).currentAccount;
-                                        MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                        messagePreviewParams5.updateLink(i115, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                    }
-                                    chatActivity3.fallbackFieldPanel();
+                                    this.f$0.lambda$new$17(view);
                                     break;
                                 case 12:
-                                    MessagePreviewView.Page page8 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass610 = page8.this$0;
-                                    MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                    if (messagePreviewParams6.hasMedia) {
-                                        boolean z6 = !messagePreviewParams6.webpageSmall;
-                                        messagePreviewParams6.webpageSmall = z6;
-                                        page8.changeSizeBtn.setState(z6, true);
-                                        MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                        page8.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                        if (page8.messages.messages.size() > 0 && (message2 = page8.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                            boolean z7 = messagePreviewParams7.webpageSmall;
-                                            messageMedia2.force_small_media = z7;
-                                            messageMedia2.force_large_media = !z7;
-                                        }
-                                        if (page8.messages.previewMessages.size() > 0 && (message = page8.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                            boolean z8 = messagePreviewParams7.webpageSmall;
-                                            messageMedia.force_small_media = z8;
-                                            messageMedia.force_large_media = !z8;
-                                        }
-                                        page8.updateMessages();
-                                        page8.updateScroll = true;
-                                        break;
-                                    }
+                                    this.f$0.lambda$new$18(view);
                                     break;
                                 default:
-                                    MessagePreviewView.Page page9 = this.f$0;
-                                    ChatActivity.AnonymousClass64 anonymousClass611 = page9.this$0;
-                                    MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                    boolean z9 = messagePreviewParams8.webpageTop;
-                                    messagePreviewParams8.webpageTop = !z9;
-                                    page9.changePositionBtn.setState(z9, true);
-                                    int size = page9.messages.messages.size();
-                                    MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                    if (size > 0 && (message4 = page9.messages.messages.get(0).messageOwner) != null) {
-                                        message4.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    if (page9.messages.previewMessages.size() > 0 && (message3 = page9.messages.previewMessages.get(0).messageOwner) != null) {
-                                        message3.invert_media = messagePreviewParams9.webpageTop;
-                                    }
-                                    page9.updateMessages();
-                                    page9.updateScroll = true;
+                                    this.f$0.lambda$new$19(view);
                                     break;
                             }
                         }
                     });
-                    frameLayout3.addView(actionBarMenuSubItem9, LayoutHelper.createFrame(48.0f, -1));
-                    frameLayout3.addView(actionBarMenuSubItem8, LayoutHelper.createFrame(48.0f, -1));
-                    anonymousClass2.addView(frameLayout3, LayoutHelper.createLinear(-1, 48));
+                    frameLayout4.addView(page.quoteAnotherChatButton, LayoutHelper.createFrame(-1, 48.0f));
+                    frameLayout4.addView(page.replyAnotherChatButton, LayoutHelper.createFrame(-1, 48.0f));
+                    page.menu.addView((View) frameLayout4, LayoutHelper.createLinear(-1, i3));
                 }
-                if (!messagePreviewParams.noforwards && !messagePreviewParams.hasSecretMessages) {
-                    ActionBarPopupWindow.GapView gapView4 = new ActionBarPopupWindow.GapView(context3, Theme.key_actionBarDefaultSubmenuSeparator, resourcesDelegate);
-                    gapView4.setColor(Theme.multAlpha(0.06f, Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesDelegate)));
+                MessagePreviewParams messagePreviewParams4 = messagePreviewView2.messagePreviewParams;
+                if (!messagePreviewParams4.noforwards && !messagePreviewParams4.hasSecretMessages) {
+                    ActionBarPopupWindow.GapView gapView4 = new ActionBarPopupWindow.GapView(context3, messagePreviewView2.resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
+                    gapView4.setColor(Theme.multAlpha(f2, Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, messagePreviewView2.resourcesProvider)));
                     gapView4.setTag(R.id.fit_width_tag, 1);
-                    anonymousClass2.addView(gapView4, LayoutHelper.createLinear(-1, 8));
+                    page.menu.addView((View) gapView4, LayoutHelper.createLinear(-1, i2));
                 }
-                switchToQuote(messagePreviewParams.quote != null, false);
-                ActionBarMenuSubItem actionBarMenuSubItem10 = new ActionBarMenuSubItem(1, context3, anonymousClass64.resourcesProvider, false, false);
-                actionBarMenuSubItem10.setTextAndIcon(LocaleController.getString(R.string.ApplyChanges), R.drawable.msg_select, null);
-                final int i27 = 6;
-                actionBarMenuSubItem10.setOnClickListener(new View.OnClickListener(this) {
+                page.switchToQuote(messagePreviewView2.messagePreviewParams.quote != null, false);
+                ActionBarMenuSubItem actionBarMenuSubItem12 = new ActionBarMenuSubItem(1, context3, messagePreviewView2.resourcesProvider, false, false);
+                actionBarMenuSubItem12.setTextAndIcon(LocaleController.getString(R.string.ApplyChanges), R.drawable.msg_select);
+                final int i22 = 6;
+                actionBarMenuSubItem12.setOnClickListener(new View.OnClickListener(page) {
                     public final MessagePreviewView.Page f$0;
 
                     {
-                        this.f$0 = this;
+                        this.f$0 = page;
                     }
 
                     @Override
                     public final void onClick(View view) {
-                        TLRPC.Message message;
-                        TLRPC.MessageMedia messageMedia;
-                        TLRPC.Message message2;
-                        TLRPC.MessageMedia messageMedia2;
-                        TLRPC.Message message3;
-                        TLRPC.Message message4;
-                        switch (i27) {
+                        switch (i22) {
                             case 0:
-                                this.f$0.this$0.dismiss(true);
+                                this.f$0.lambda$new$10(view);
                                 break;
                             case 1:
-                                MessagePreviewView.Page page5 = this.f$0;
-                                page5.this$0.messagePreviewParams.quote = null;
-                                page5.textSelectionHelper.clear(false);
-                                page5.switchToQuote(false, false);
-                                page5.menu.getSwipeBack().closeForeground(true);
+                                this.f$0.lambda$new$2(view);
                                 break;
                             case 2:
-                                MessagePreviewView.Page page6 = this.f$0;
-                                if (page6.getReplyMessage(null) != null) {
-                                    MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page6.textSelectionHelper;
-                                    int i110 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                    ChatActivity.AnonymousClass64 anonymousClass65 = page6.this$0;
-                                    if (i110 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                        TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                        MessageObject replyMessage = page6.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                        int i111 = anonymousClass5.selectionStart;
-                                        MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                        messagePreviewParams2.quoteStart = i111;
-                                        int i112 = anonymousClass5.selectionEnd;
-                                        messagePreviewParams2.quoteEnd = i112;
-                                        messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i111, i112, replyMessage);
-                                        anonymousClass65.onQuoteSelectedPart();
-                                        anonymousClass65.dismiss(true);
-                                    } else {
-                                        page6.showQuoteLengthError();
-                                    }
-                                }
+                                this.f$0.lambda$new$3(view);
                                 break;
                             case 3:
-                                MessagePreviewView.Page page7 = this.f$0;
-                                ChatActivity.AnonymousClass64 anonymousClass66 = page7.this$0;
-                                MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                boolean z4 = anonymousClass66.showOutdatedQuote;
-                                MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page7.textSelectionHelper;
-                                if (replyQuote == null || z4) {
-                                    int i113 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                    int i114 = anonymousClass66.currentAccount;
-                                    if (i113 <= MessagesController.getInstance(i114).quoteLengthMax) {
-                                        MessageObject replyMessage2 = page7.getReplyMessage(null);
-                                        if (replyMessage2 != null) {
-                                            boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                            MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                            if (!zIsInSelectionMode) {
-                                                messagePreviewParams4.quoteStart = 0;
-                                                messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i114).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                View replyMessageCell = page7.getReplyMessageCell();
-                                                if (replyMessageCell instanceof ChatMessageCell) {
-                                                    anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                }
-                                                if (!z4) {
-                                                    page7.menu.getSwipeBack().openForeground(page7.menuBack);
-                                                }
-                                                page7.switchToQuote(true, true);
-                                            } else {
-                                                messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page7.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                anonymousClass66.onQuoteSelectedPart();
-                                                anonymousClass66.dismiss(true);
-                                            }
-                                        }
-                                    } else {
-                                        page7.showQuoteLengthError();
-                                    }
-                                } else {
-                                    messagePreviewParams3.quote = null;
-                                    anonymousClass8.clear(false);
-                                    page7.switchToQuote(false, true);
-                                    page7.updateSubtitle(true);
-                                }
+                                this.f$0.lambda$new$4(view);
                                 break;
                             case 4:
-                                this.f$0.this$0.selectAnotherChat(false);
+                                this.f$0.lambda$new$5(view);
                                 break;
                             case 5:
-                                this.f$0.this$0.selectAnotherChat(false);
+                                this.f$0.lambda$new$6(view);
                                 break;
                             case 6:
-                                this.f$0.this$0.dismiss(true);
+                                this.f$0.lambda$new$7(view);
                                 break;
                             case 7:
-                                ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                boolean z5 = anonymousClass67.showOutdatedQuote;
-                                ChatActivity chatActivity = ChatActivity.this;
-                                if (!z5) {
-                                    anonymousClass67.dismiss(true);
-                                    chatActivity.replyingMessageObject = null;
-                                    chatActivity.replyingQuote = null;
-                                    chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                    chatActivity.fallbackFieldPanel();
-                                } else {
-                                    anonymousClass67.dismiss(true);
-                                    chatActivity.replyingQuote = null;
-                                    chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                }
+                                this.f$0.lambda$new$8(view);
                                 break;
                             case 8:
-                                this.f$0.this$0.selectAnotherChat(true);
+                                this.f$0.lambda$new$9(view);
                                 break;
                             case 9:
-                                ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                anonymousClass68.dismiss(true);
-                                ChatActivity chatActivity2 = ChatActivity.this;
-                                chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                chatActivity2.fallbackFieldPanel();
+                                this.f$0.lambda$new$11(view);
                                 break;
                             case 10:
-                                this.f$0.this$0.dismiss(true);
+                                this.f$0.lambda$new$16(view);
                                 break;
                             case 11:
-                                ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                anonymousClass69.dismiss(true);
-                                ChatActivity chatActivity3 = ChatActivity.this;
-                                chatActivity3.foundWebPage = null;
-                                ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                if (anonymousClass39 != null) {
-                                    anonymousClass39.messageWebPage = null;
-                                    anonymousClass39.messageWebPageSearch = false;
-                                }
-                                MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                if (messagePreviewParams5 != null) {
-                                    int i115 = ((BaseFragment) chatActivity3).currentAccount;
-                                    MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                    messagePreviewParams5.updateLink(i115, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                }
-                                chatActivity3.fallbackFieldPanel();
+                                this.f$0.lambda$new$17(view);
                                 break;
                             case 12:
-                                MessagePreviewView.Page page8 = this.f$0;
-                                ChatActivity.AnonymousClass64 anonymousClass610 = page8.this$0;
-                                MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                if (messagePreviewParams6.hasMedia) {
-                                    boolean z6 = !messagePreviewParams6.webpageSmall;
-                                    messagePreviewParams6.webpageSmall = z6;
-                                    page8.changeSizeBtn.setState(z6, true);
-                                    MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                    page8.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                    if (page8.messages.messages.size() > 0 && (message2 = page8.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                        boolean z7 = messagePreviewParams7.webpageSmall;
-                                        messageMedia2.force_small_media = z7;
-                                        messageMedia2.force_large_media = !z7;
-                                    }
-                                    if (page8.messages.previewMessages.size() > 0 && (message = page8.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                        boolean z8 = messagePreviewParams7.webpageSmall;
-                                        messageMedia.force_small_media = z8;
-                                        messageMedia.force_large_media = !z8;
-                                    }
-                                    page8.updateMessages();
-                                    page8.updateScroll = true;
-                                    break;
-                                }
+                                this.f$0.lambda$new$18(view);
                                 break;
                             default:
-                                MessagePreviewView.Page page9 = this.f$0;
-                                ChatActivity.AnonymousClass64 anonymousClass611 = page9.this$0;
-                                MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                boolean z9 = messagePreviewParams8.webpageTop;
-                                messagePreviewParams8.webpageTop = !z9;
-                                page9.changePositionBtn.setState(z9, true);
-                                int size = page9.messages.messages.size();
-                                MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                if (size > 0 && (message4 = page9.messages.messages.get(0).messageOwner) != null) {
-                                    message4.invert_media = messagePreviewParams9.webpageTop;
-                                }
-                                if (page9.messages.previewMessages.size() > 0 && (message3 = page9.messages.previewMessages.get(0).messageOwner) != null) {
-                                    message3.invert_media = messagePreviewParams9.webpageTop;
-                                }
-                                page9.updateMessages();
-                                page9.updateScroll = true;
+                                this.f$0.lambda$new$19(view);
                                 break;
                         }
                     }
                 });
-                anonymousClass2.addView(actionBarMenuSubItem10, LayoutHelper.createLinear(-1, 48));
-                ActionBarMenuSubItem actionBarMenuSubItem11 = new ActionBarMenuSubItem(1, context, anonymousClass64.resourcesProvider, false, true);
-                actionBarMenuSubItem11.setTextAndIcon(LocaleController.getString(z3 ? R.string.DoNotQuote : R.string.DoNotReply), R.drawable.msg_delete, null);
-                int color5 = Theme.getColor(Theme.key_text_RedBold, resourcesDelegate);
-                int i28 = Theme.key_text_RedRegular;
-                int color6 = Theme.getColor(i28, resourcesDelegate);
-                actionBarMenuSubItem11.setTextColor(color5);
-                actionBarMenuSubItem11.setIconColor(color6);
-                actionBarMenuSubItem11.setSelectorColor(Theme.multAlpha(0.12f, Theme.getColor(null, i28, false)));
-                final int i29 = 7;
-                actionBarMenuSubItem11.setOnClickListener(new View.OnClickListener(this) {
+                page.menu.addView((View) actionBarMenuSubItem12, LayoutHelper.createLinear(-1, i3));
+                ActionBarMenuSubItem actionBarMenuSubItem13 = new ActionBarMenuSubItem(1, context, messagePreviewView2.resourcesProvider, false, true);
+                page.deleteReplyButton = actionBarMenuSubItem13;
+                actionBarMenuSubItem13.setTextAndIcon(LocaleController.getString(messagePreviewView2.showOutdatedQuote ? R.string.DoNotQuote : R.string.DoNotReply), R.drawable.msg_delete);
+                ActionBarMenuSubItem actionBarMenuSubItem14 = page.deleteReplyButton;
+                int themedColor3 = messagePreviewView2.getThemedColor(Theme.key_text_RedBold);
+                int i23 = Theme.key_text_RedRegular;
+                actionBarMenuSubItem14.setColors(themedColor3, messagePreviewView2.getThemedColor(i23));
+                page.deleteReplyButton.setSelectorColor(Theme.multAlpha(0.12f, Theme.getColor(null, i23, false)));
+                final int i24 = 7;
+                page.deleteReplyButton.setOnClickListener(new View.OnClickListener(page) {
                     public final MessagePreviewView.Page f$0;
 
                     {
-                        this.f$0 = this;
+                        this.f$0 = page;
                     }
 
                     @Override
                     public final void onClick(View view) {
-                        TLRPC.Message message;
-                        TLRPC.MessageMedia messageMedia;
-                        TLRPC.Message message2;
-                        TLRPC.MessageMedia messageMedia2;
-                        TLRPC.Message message3;
-                        TLRPC.Message message4;
-                        switch (i29) {
+                        switch (i24) {
                             case 0:
-                                this.f$0.this$0.dismiss(true);
+                                this.f$0.lambda$new$10(view);
                                 break;
                             case 1:
-                                MessagePreviewView.Page page5 = this.f$0;
-                                page5.this$0.messagePreviewParams.quote = null;
-                                page5.textSelectionHelper.clear(false);
-                                page5.switchToQuote(false, false);
-                                page5.menu.getSwipeBack().closeForeground(true);
+                                this.f$0.lambda$new$2(view);
                                 break;
                             case 2:
-                                MessagePreviewView.Page page6 = this.f$0;
-                                if (page6.getReplyMessage(null) != null) {
-                                    MessagePreviewView.Page.AnonymousClass4 anonymousClass5 = page6.textSelectionHelper;
-                                    int i110 = anonymousClass5.selectionEnd - anonymousClass5.selectionStart;
-                                    ChatActivity.AnonymousClass64 anonymousClass65 = page6.this$0;
-                                    if (i110 <= MessagesController.getInstance(anonymousClass65.currentAccount).quoteLengthMax) {
-                                        TextSelectionHelper.SelectableView selectableView = anonymousClass5.selectedView;
-                                        MessageObject replyMessage = page6.getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                                        int i111 = anonymousClass5.selectionStart;
-                                        MessagePreviewParams messagePreviewParams2 = anonymousClass65.messagePreviewParams;
-                                        messagePreviewParams2.quoteStart = i111;
-                                        int i112 = anonymousClass5.selectionEnd;
-                                        messagePreviewParams2.quoteEnd = i112;
-                                        messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(i111, i112, replyMessage);
-                                        anonymousClass65.onQuoteSelectedPart();
-                                        anonymousClass65.dismiss(true);
-                                    } else {
-                                        page6.showQuoteLengthError();
-                                    }
-                                }
+                                this.f$0.lambda$new$3(view);
                                 break;
                             case 3:
-                                MessagePreviewView.Page page7 = this.f$0;
-                                ChatActivity.AnonymousClass64 anonymousClass66 = page7.this$0;
-                                MessagePreviewParams messagePreviewParams3 = anonymousClass66.messagePreviewParams;
-                                ChatActivity.ReplyQuote replyQuote = messagePreviewParams3.quote;
-                                boolean z4 = anonymousClass66.showOutdatedQuote;
-                                MessagePreviewView.Page.AnonymousClass4 anonymousClass8 = page7.textSelectionHelper;
-                                if (replyQuote == null || z4) {
-                                    int i113 = anonymousClass8.selectionEnd - anonymousClass8.selectionStart;
-                                    int i114 = anonymousClass66.currentAccount;
-                                    if (i113 <= MessagesController.getInstance(i114).quoteLengthMax) {
-                                        MessageObject replyMessage2 = page7.getReplyMessage(null);
-                                        if (replyMessage2 != null) {
-                                            boolean zIsInSelectionMode = anonymousClass8.isInSelectionMode();
-                                            MessagePreviewParams messagePreviewParams4 = anonymousClass66.messagePreviewParams;
-                                            if (!zIsInSelectionMode) {
-                                                messagePreviewParams4.quoteStart = 0;
-                                                messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(i114).quoteLengthMax, replyMessage2.messageOwner.message.length());
-                                                messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, replyMessage2);
-                                                View replyMessageCell = page7.getReplyMessageCell();
-                                                if (replyMessageCell instanceof ChatMessageCell) {
-                                                    anonymousClass8.select((ChatMessageCell) replyMessageCell, messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd);
-                                                }
-                                                if (!z4) {
-                                                    page7.menu.getSwipeBack().openForeground(page7.menuBack);
-                                                }
-                                                page7.switchToQuote(true, true);
-                                            } else {
-                                                messagePreviewParams4.quoteStart = anonymousClass8.selectionStart;
-                                                messagePreviewParams4.quoteEnd = anonymousClass8.selectionEnd;
-                                                TextSelectionHelper.SelectableView selectableView2 = anonymousClass8.selectedView;
-                                                messagePreviewParams4.quote = ChatActivity.ReplyQuote.from(messagePreviewParams4.quoteStart, messagePreviewParams4.quoteEnd, page7.getReplyMessage(selectableView2 != null ? ((ChatMessageCell) selectableView2).getMessageObject() : null));
-                                                anonymousClass66.onQuoteSelectedPart();
-                                                anonymousClass66.dismiss(true);
-                                            }
-                                        }
-                                    } else {
-                                        page7.showQuoteLengthError();
-                                    }
-                                } else {
-                                    messagePreviewParams3.quote = null;
-                                    anonymousClass8.clear(false);
-                                    page7.switchToQuote(false, true);
-                                    page7.updateSubtitle(true);
-                                }
+                                this.f$0.lambda$new$4(view);
                                 break;
                             case 4:
-                                this.f$0.this$0.selectAnotherChat(false);
+                                this.f$0.lambda$new$5(view);
                                 break;
                             case 5:
-                                this.f$0.this$0.selectAnotherChat(false);
+                                this.f$0.lambda$new$6(view);
                                 break;
                             case 6:
-                                this.f$0.this$0.dismiss(true);
+                                this.f$0.lambda$new$7(view);
                                 break;
                             case 7:
-                                ChatActivity.AnonymousClass64 anonymousClass67 = this.f$0.this$0;
-                                boolean z5 = anonymousClass67.showOutdatedQuote;
-                                ChatActivity chatActivity = ChatActivity.this;
-                                if (!z5) {
-                                    anonymousClass67.dismiss(true);
-                                    chatActivity.replyingMessageObject = null;
-                                    chatActivity.replyingQuote = null;
-                                    chatActivity.messagePreviewParams.updateReply(null, null, chatActivity.dialog_id, null);
-                                    chatActivity.fallbackFieldPanel();
-                                } else {
-                                    anonymousClass67.dismiss(true);
-                                    chatActivity.replyingQuote = null;
-                                    chatActivity.showFieldPanelForReply(chatActivity.replyingMessageObject);
-                                }
+                                this.f$0.lambda$new$8(view);
                                 break;
                             case 8:
-                                this.f$0.this$0.selectAnotherChat(true);
+                                this.f$0.lambda$new$9(view);
                                 break;
                             case 9:
-                                ChatActivity.AnonymousClass64 anonymousClass68 = this.f$0.this$0;
-                                anonymousClass68.dismiss(true);
-                                ChatActivity chatActivity2 = ChatActivity.this;
-                                chatActivity2.messagePreviewParams.updateForward(null, chatActivity2.dialog_id);
-                                chatActivity2.fallbackFieldPanel();
+                                this.f$0.lambda$new$11(view);
                                 break;
                             case 10:
-                                this.f$0.this$0.dismiss(true);
+                                this.f$0.lambda$new$16(view);
                                 break;
                             case 11:
-                                ChatActivity.AnonymousClass64 anonymousClass69 = this.f$0.this$0;
-                                anonymousClass69.dismiss(true);
-                                ChatActivity chatActivity3 = ChatActivity.this;
-                                chatActivity3.foundWebPage = null;
-                                ChatActivity.AnonymousClass39 anonymousClass39 = chatActivity3.chatActivityEnterView;
-                                if (anonymousClass39 != null) {
-                                    anonymousClass39.messageWebPage = null;
-                                    anonymousClass39.messageWebPageSearch = false;
-                                }
-                                MessagePreviewParams messagePreviewParams5 = chatActivity3.messagePreviewParams;
-                                if (messagePreviewParams5 != null) {
-                                    int i115 = ((BaseFragment) chatActivity3).currentAccount;
-                                    MessageObject messageObject = chatActivity3.replyingMessageObject;
-                                    messagePreviewParams5.updateLink(i115, null, null, messageObject == chatActivity3.threadMessageObject ? null : messageObject, chatActivity3.replyingQuote, chatActivity3.editingMessageObject);
-                                }
-                                chatActivity3.fallbackFieldPanel();
+                                this.f$0.lambda$new$17(view);
                                 break;
                             case 12:
-                                MessagePreviewView.Page page8 = this.f$0;
-                                ChatActivity.AnonymousClass64 anonymousClass610 = page8.this$0;
-                                MessagePreviewParams messagePreviewParams6 = anonymousClass610.messagePreviewParams;
-                                if (messagePreviewParams6.hasMedia) {
-                                    boolean z6 = !messagePreviewParams6.webpageSmall;
-                                    messagePreviewParams6.webpageSmall = z6;
-                                    page8.changeSizeBtn.setState(z6, true);
-                                    MessagePreviewParams messagePreviewParams7 = anonymousClass610.messagePreviewParams;
-                                    page8.videoChangeSizeBtn.setState(messagePreviewParams7.webpageSmall, true);
-                                    if (page8.messages.messages.size() > 0 && (message2 = page8.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
-                                        boolean z7 = messagePreviewParams7.webpageSmall;
-                                        messageMedia2.force_small_media = z7;
-                                        messageMedia2.force_large_media = !z7;
-                                    }
-                                    if (page8.messages.previewMessages.size() > 0 && (message = page8.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
-                                        boolean z8 = messagePreviewParams7.webpageSmall;
-                                        messageMedia.force_small_media = z8;
-                                        messageMedia.force_large_media = !z8;
-                                    }
-                                    page8.updateMessages();
-                                    page8.updateScroll = true;
-                                    break;
-                                }
+                                this.f$0.lambda$new$18(view);
                                 break;
                             default:
-                                MessagePreviewView.Page page9 = this.f$0;
-                                ChatActivity.AnonymousClass64 anonymousClass611 = page9.this$0;
-                                MessagePreviewParams messagePreviewParams8 = anonymousClass611.messagePreviewParams;
-                                boolean z9 = messagePreviewParams8.webpageTop;
-                                messagePreviewParams8.webpageTop = !z9;
-                                page9.changePositionBtn.setState(z9, true);
-                                int size = page9.messages.messages.size();
-                                MessagePreviewParams messagePreviewParams9 = anonymousClass611.messagePreviewParams;
-                                if (size > 0 && (message4 = page9.messages.messages.get(0).messageOwner) != null) {
-                                    message4.invert_media = messagePreviewParams9.webpageTop;
-                                }
-                                if (page9.messages.previewMessages.size() > 0 && (message3 = page9.messages.previewMessages.get(0).messageOwner) != null) {
-                                    message3.invert_media = messagePreviewParams9.webpageTop;
-                                }
-                                page9.updateMessages();
-                                page9.updateScroll = true;
+                                this.f$0.lambda$new$19(view);
                                 break;
                         }
                     }
                 });
-                anonymousClass2.addView(actionBarMenuSubItem11, LayoutHelper.createLinear(-1, 48));
+                page.menu.addView((View) page.deleteReplyButton, LayoutHelper.createLinear(-1, i3));
                 context2 = context;
-                page3 = this;
+                messagePreviewView = messagePreviewView2;
             }
-            int i30 = page3.currentTab;
-            if (i30 == 1) {
-                page3.messages = messagePreviewParams.forwardMessages;
-            } else if (i30 == 0) {
-                page3.messages = messagePreviewParams.replyMessage;
-            } else if (i30 == 2) {
-                page3.messages = messagePreviewParams.linkMessage;
+            int i25 = page.currentTab;
+            if (i25 == 1) {
+                page.messages = messagePreviewView.messagePreviewParams.forwardMessages;
+            } else if (i25 == 0) {
+                page.messages = messagePreviewView.messagePreviewParams.replyMessage;
+            } else if (i25 == 2) {
+                page.messages = messagePreviewView.messagePreviewParams.linkMessage;
             }
-            TextSelectionHelper.TextSelectionOverlay overlayView = page3.textSelectionHelper.getOverlayView(context2);
-            page3.textSelectionOverlay = overlayView;
-            overlayView.setElevation(AndroidUtilities.dp(8.0f));
-            overlayView.setOutlineProvider(null);
-            if (overlayView.getParent() instanceof ViewGroup) {
-                ((ViewGroup) overlayView.getParent()).removeView(overlayView);
+            TextSelectionHelper.TextSelectionOverlay overlayView = page.textSelectionHelper.getOverlayView(context2);
+            page.textSelectionOverlay = overlayView;
+            overlayView.setElevation(AndroidUtilities.dp(f));
+            page.textSelectionOverlay.setOutlineProvider(null);
+            View view = page.textSelectionOverlay;
+            if (view != null) {
+                if (view.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) page.textSelectionOverlay.getParent()).removeView(page.textSelectionOverlay);
+                }
+                page.addView(page.textSelectionOverlay, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, org.telegram.ui.ActionBar.ActionBar.getCurrentActionBarHeight() / AndroidUtilities.density, 0.0f, 0.0f));
             }
-            page3.addView(overlayView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, ActionBar.getCurrentActionBarHeight() / AndroidUtilities.density, 0.0f, 0.0f));
-            page3.textSelectionHelper.setParentView(page3.chatListView);
+            page.textSelectionHelper.setParentView(page.chatListView);
         }
 
-        public static MessageObject.GroupedMessages access$1300(Page page, MessageObject messageObject) {
-            page.getClass();
+        public void checkScroll() {
+            if (this.updateScroll) {
+                if (this.chatListView.computeVerticalScrollRange() > this.chatListView.computeVerticalScrollExtent()) {
+                    postDelayed(new MessagePreviewView$Page$$ExternalSyntheticLambda9(this, 1), 0L);
+                }
+                this.updateScroll = false;
+            }
+        }
+
+        public MessageObject.GroupedMessages getValidGroupedMessage(MessageObject messageObject) {
             if (messageObject.getGroupId() == 0) {
                 return null;
             }
-            MessageObject.GroupedMessages groupedMessages = page.messages.groupedMessagesMap.get(messageObject.getGroupId());
+            MessageObject.GroupedMessages groupedMessages = this.messages.groupedMessagesMap.get(messageObject.getGroupId());
             if (groupedMessages == null || (groupedMessages.messages.size() > 1 && groupedMessages.getPosition(messageObject) != null)) {
                 return groupedMessages;
             }
             return null;
         }
 
-        public static void access$1600(Page page, ChatMessageCell chatMessageCell) {
-            CharacterStyle characterStyle;
-            TLRPC.WebPage webPage;
-            if (page.currentTab == 2) {
-                MessagePreviewParams messagePreviewParams = page.this$0.messagePreviewParams;
-                if (!messagePreviewParams.singleLink && (characterStyle = messagePreviewParams.currentLink) != null && (webPage = messagePreviewParams.webpage) != null && !(webPage instanceof TLRPC.TL_webPagePending)) {
-                    chatMessageCell.setHighlightedSpan(characterStyle);
+        public void lambda$checkScroll$20() {
+            if (MessagePreviewView.this.messagePreviewParams.webpageTop) {
+                RecyclerListView recyclerListView = this.chatListView;
+                recyclerListView.smoothScrollBy(0, -recyclerListView.computeVerticalScrollOffset(), 250, ChatListItemAnimator.DEFAULT_INTERPOLATOR);
+            } else {
+                RecyclerListView recyclerListView2 = this.chatListView;
+                recyclerListView2.smoothScrollBy(0, recyclerListView2.computeVerticalScrollRange() - (this.chatListView.computeVerticalScrollExtent() + this.chatListView.computeVerticalScrollOffset()), 250, ChatListItemAnimator.DEFAULT_INTERPOLATOR);
+            }
+        }
+
+        public boolean lambda$new$0(View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() == 1) {
+                MessagePreviewView.this.dismiss(true);
+            }
+            return true;
+        }
+
+        public void lambda$new$1() {
+            switchToQuote(true, false);
+        }
+
+        public void lambda$new$10(View view) {
+            MessagePreviewView.this.dismiss(true);
+        }
+
+        public void lambda$new$11(View view) {
+            MessagePreviewView.this.removeForward();
+        }
+
+        public void lambda$new$12(Context context) {
+            if (AndroidUtilities.isContextSafe(context)) {
+                new PremiumFeatureBottomSheet(context, 43, MessagePreviewView.this.resourcesProvider).show();
+            }
+        }
+
+        public void lambda$new$13(Context context) {
+            MessagePreviewView.this.dismiss(false);
+            AndroidUtilities.runOnUIThread(new MessagePreviewView$Page$$ExternalSyntheticLambda19(this, context, 1));
+        }
+
+        public void lambda$new$14(boolean z, Context context, ToggleButton toggleButton, ToggleButton toggleButton2, View view) {
+            if (!z) {
+                MessagePreviewView messagePreviewView = MessagePreviewView.this;
+                BulletinFactory.of(messagePreviewView, messagePreviewView.resourcesProvider).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.replaceSingleTag("Subscribe to **Telegram Premium** to forward formatted messages without the sender’s name.", new MessagePreviewView$Page$$ExternalSyntheticLambda19(this, context, 0))).show();
+                return;
+            }
+            MessagePreviewView messagePreviewView2 = MessagePreviewView.this;
+            MessagePreviewParams messagePreviewParams = messagePreviewView2.messagePreviewParams;
+            boolean z2 = messagePreviewParams.hideForwardSendersName;
+            messagePreviewParams.hideForwardSendersName = !z2;
+            messagePreviewView2.returnSendersNames = false;
+            if (z2) {
+                messagePreviewParams.hideCaption = false;
+                if (toggleButton != null) {
+                    toggleButton.setState(false, true);
+                }
+            }
+            toggleButton2.setState(MessagePreviewView.this.messagePreviewParams.hideForwardSendersName, true);
+            updateMessages();
+            updateSubtitle(true);
+        }
+
+        public void lambda$new$15(ToggleButton toggleButton, ToggleButton toggleButton2, View view) {
+            MessagePreviewView messagePreviewView = MessagePreviewView.this;
+            MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
+            boolean z = messagePreviewParams.hideCaption;
+            boolean z2 = !z;
+            messagePreviewParams.hideCaption = z2;
+            if (z) {
+                if (messagePreviewView.returnSendersNames) {
+                    messagePreviewParams.hideForwardSendersName = false;
+                }
+                messagePreviewView.returnSendersNames = false;
+            } else if (!messagePreviewParams.hideForwardSendersName) {
+                messagePreviewParams.hideForwardSendersName = true;
+                messagePreviewView.returnSendersNames = true;
+            }
+            toggleButton.setState(z2, true);
+            toggleButton2.setState(MessagePreviewView.this.messagePreviewParams.hideForwardSendersName, true);
+            updateMessages();
+            updateSubtitle(true);
+        }
+
+        public void lambda$new$16(View view) {
+            MessagePreviewView.this.dismiss(true);
+        }
+
+        public void lambda$new$17(View view) {
+            MessagePreviewView.this.removeLink();
+        }
+
+        public void lambda$new$18(View view) {
+            TLRPC.Message message;
+            TLRPC.MessageMedia messageMedia;
+            TLRPC.Message message2;
+            TLRPC.MessageMedia messageMedia2;
+            MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+            if (messagePreviewParams.hasMedia) {
+                boolean z = !messagePreviewParams.webpageSmall;
+                messagePreviewParams.webpageSmall = z;
+                this.changeSizeBtn.setState(z, true);
+                this.videoChangeSizeBtn.setState(MessagePreviewView.this.messagePreviewParams.webpageSmall, true);
+                if (this.messages.messages.size() > 0 && (message2 = this.messages.messages.get(0).messageOwner) != null && (messageMedia2 = message2.media) != null) {
+                    boolean z2 = MessagePreviewView.this.messagePreviewParams.webpageSmall;
+                    messageMedia2.force_small_media = z2;
+                    messageMedia2.force_large_media = !z2;
+                }
+                if (this.messages.previewMessages.size() > 0 && (message = this.messages.previewMessages.get(0).messageOwner) != null && (messageMedia = message.media) != null) {
+                    boolean z3 = MessagePreviewView.this.messagePreviewParams.webpageSmall;
+                    messageMedia.force_small_media = z3;
+                    messageMedia.force_large_media = !z3;
+                }
+                updateMessages();
+                this.updateScroll = true;
+            }
+        }
+
+        public void lambda$new$19(View view) {
+            TLRPC.Message message;
+            TLRPC.Message message2;
+            MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+            boolean z = messagePreviewParams.webpageTop;
+            messagePreviewParams.webpageTop = !z;
+            this.changePositionBtn.setState(z, true);
+            if (this.messages.messages.size() > 0 && (message2 = this.messages.messages.get(0).messageOwner) != null) {
+                message2.invert_media = MessagePreviewView.this.messagePreviewParams.webpageTop;
+            }
+            if (this.messages.previewMessages.size() > 0 && (message = this.messages.previewMessages.get(0).messageOwner) != null) {
+                message.invert_media = MessagePreviewView.this.messagePreviewParams.webpageTop;
+            }
+            updateMessages();
+            this.updateScroll = true;
+        }
+
+        public void lambda$new$2(View view) {
+            MessagePreviewView.this.messagePreviewParams.quote = null;
+            this.textSelectionHelper.clear();
+            switchToQuote(false, false);
+            this.menu.getSwipeBack().closeForeground();
+        }
+
+        public void lambda$new$3(View view) {
+            if (getReplyMessage() != null) {
+                TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper = this.textSelectionHelper;
+                if (chatListTextSelectionHelper.selectionEnd - chatListTextSelectionHelper.selectionStart > MessagesController.getInstance(MessagePreviewView.this.currentAccount).quoteLengthMax) {
+                    showQuoteLengthError();
                     return;
                 }
+                MessageObject replyMessage = getReplyMessage(this.textSelectionHelper.getSelectedCell() != null ? ((ChatMessageCell) this.textSelectionHelper.getSelectedCell()).getMessageObject() : null);
+                MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper2 = this.textSelectionHelper;
+                int i = chatListTextSelectionHelper2.selectionStart;
+                messagePreviewParams.quoteStart = i;
+                int i2 = chatListTextSelectionHelper2.selectionEnd;
+                messagePreviewParams.quoteEnd = i2;
+                messagePreviewParams.quote = ChatActivity.ReplyQuote.from(replyMessage, i, i2);
+                MessagePreviewView.this.onQuoteSelectedPart();
+                MessagePreviewView.this.dismiss(true);
             }
-            chatMessageCell.setHighlightedSpan(null);
         }
 
-        public final MessageObject getReplyMessage(MessageObject messageObject) {
-            MessageObject.GroupedMessages groupedMessagesValueAt;
-            ChatActivity.AnonymousClass64 anonymousClass64 = this.this$0;
-            MessagePreviewParams.Messages messages = anonymousClass64.messagePreviewParams.replyMessage;
-            if (messages == null) {
-                return null;
+        public void lambda$new$4(View view) {
+            MessagePreviewView messagePreviewView = MessagePreviewView.this;
+            MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
+            if (messagePreviewParams.quote != null && !messagePreviewView.showOutdatedQuote) {
+                messagePreviewParams.quote = null;
+                this.textSelectionHelper.clear();
+                switchToQuote(false, true);
+                updateSubtitle(true);
+                return;
             }
-            LongSparseArray<MessageObject.GroupedMessages> longSparseArray = messages.groupedMessagesMap;
-            if (longSparseArray == null || longSparseArray.size() <= 0 || (groupedMessagesValueAt = anonymousClass64.messagePreviewParams.replyMessage.groupedMessagesMap.valueAt(0)) == null) {
-                return anonymousClass64.messagePreviewParams.replyMessage.messages.get(0);
+            TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper = this.textSelectionHelper;
+            if (chatListTextSelectionHelper.selectionEnd - chatListTextSelectionHelper.selectionStart > MessagesController.getInstance(messagePreviewView.currentAccount).quoteLengthMax) {
+                showQuoteLengthError();
+                return;
             }
-            if (groupedMessagesValueAt.isDocuments) {
-                if (messageObject != null) {
-                    return messageObject;
+            MessageObject replyMessage = getReplyMessage();
+            if (replyMessage != null) {
+                if (this.textSelectionHelper.isInSelectionMode()) {
+                    MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                    TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper2 = this.textSelectionHelper;
+                    messagePreviewParams2.quoteStart = chatListTextSelectionHelper2.selectionStart;
+                    messagePreviewParams2.quoteEnd = chatListTextSelectionHelper2.selectionEnd;
+                    MessageObject replyMessage2 = getReplyMessage(chatListTextSelectionHelper2.getSelectedCell() != null ? ((ChatMessageCell) this.textSelectionHelper.getSelectedCell()).getMessageObject() : null);
+                    MessagePreviewParams messagePreviewParams3 = MessagePreviewView.this.messagePreviewParams;
+                    messagePreviewParams3.quote = ChatActivity.ReplyQuote.from(replyMessage2, messagePreviewParams3.quoteStart, messagePreviewParams3.quoteEnd);
+                    MessagePreviewView.this.onQuoteSelectedPart();
+                    MessagePreviewView.this.dismiss(true);
+                    return;
                 }
-                ChatActivity.ReplyQuote replyQuote = anonymousClass64.messagePreviewParams.quote;
-                if (replyQuote != null) {
-                    return replyQuote.message;
+                MessagePreviewView messagePreviewView2 = MessagePreviewView.this;
+                MessagePreviewParams messagePreviewParams4 = messagePreviewView2.messagePreviewParams;
+                messagePreviewParams4.quoteStart = 0;
+                messagePreviewParams4.quoteEnd = Math.min(MessagesController.getInstance(messagePreviewView2.currentAccount).quoteLengthMax, replyMessage.messageOwner.message.length());
+                MessagePreviewParams messagePreviewParams5 = MessagePreviewView.this.messagePreviewParams;
+                messagePreviewParams5.quote = ChatActivity.ReplyQuote.from(replyMessage, messagePreviewParams5.quoteStart, messagePreviewParams5.quoteEnd);
+                View replyMessageCell = getReplyMessageCell();
+                if (replyMessageCell instanceof ChatMessageCell) {
+                    MessagePreviewParams messagePreviewParams6 = MessagePreviewView.this.messagePreviewParams;
+                    this.textSelectionHelper.select((ChatMessageCell) replyMessageCell, messagePreviewParams6.quoteStart, messagePreviewParams6.quoteEnd);
                 }
-            }
-            return groupedMessagesValueAt.captionMessage;
-        }
-
-        public final View getReplyMessageCell() {
-            MessageObject replyMessage = getReplyMessage(null);
-            if (replyMessage == null) {
-                return null;
-            }
-            int i = 0;
-            while (true) {
-                AnonymousClass6 anonymousClass6 = this.chatListView;
-                if (i >= anonymousClass6.getChildCount()) {
-                    return null;
+                if (!MessagePreviewView.this.showOutdatedQuote) {
+                    this.menu.getSwipeBack().openForeground(this.menuBack);
                 }
-                View childAt = anonymousClass6.getChildAt(i);
-                IMessageCell iMessageCell = (IMessageCell) childAt;
-                if (iMessageCell.getMessageObject() != null && (iMessageCell.getMessageObject() == replyMessage || iMessageCell.getMessageObject().getId() == replyMessage.getId())) {
-                    return childAt;
-                }
-                i++;
+                switchToQuote(true, true);
             }
         }
 
-        @Override
-        public final void onAttachedToWindow() {
-            super.onAttachedToWindow();
-            if (this.currentTab == 0) {
-                AndroidUtilities.forEachViews((RecyclerView) this.chatListView, (Consumer) new QrActivity$5$$ExternalSyntheticLambda0(this, 3));
-            }
+        public void lambda$new$5(View view) {
+            MessagePreviewView.this.selectAnotherChat(false);
         }
 
-        @Override
-        public final void onDetachedFromWindow() {
-            super.onDetachedFromWindow();
-            updateSelection();
-            this.firstAttach = true;
-            this.firstLayout = true;
+        public void lambda$new$6(View view) {
+            MessagePreviewView.this.selectAnotherChat(false);
         }
 
-        @Override
-        public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
-            super.onLayout(z, i, i2, i3, i4);
-            updatePositions();
-            this.firstLayout = false;
+        public void lambda$new$7(View view) {
+            MessagePreviewView.this.dismiss(true);
         }
 
-        @Override
-        public final void onMeasure(int i, int i2) {
-            boolean z = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
-            ChatActivity.AnonymousClass64 anonymousClass64 = this.this$0;
-            anonymousClass64.isLandscapeMode = z;
-            this.buttonsHeight = 0;
-            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.menu;
-            actionBarPopupWindowLayout.measure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 0));
-            int i3 = this.buttonsHeight;
-            int measuredHeight = actionBarPopupWindowLayout.getMeasuredHeight();
-            Rect rect = this.rect;
-            this.buttonsHeight = Math.max(i3, measuredHeight + rect.top + rect.bottom);
-            ((ViewGroup.MarginLayoutParams) this.chatListView.getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight();
-            boolean z2 = anonymousClass64.isLandscapeMode;
-            AnonymousClass2 anonymousClass2 = this.chatPreviewContainer;
-            if (z2) {
-                anonymousClass2.getLayoutParams().height = -1;
-                ((ViewGroup.MarginLayoutParams) anonymousClass2.getLayoutParams()).topMargin = AndroidUtilities.dp(8.0f);
-                ((ViewGroup.MarginLayoutParams) anonymousClass2.getLayoutParams()).bottomMargin = AndroidUtilities.dp(8.0f);
-                anonymousClass2.getLayoutParams().width = (int) Math.min(View.MeasureSpec.getSize(i), Math.max(AndroidUtilities.dp(340.0f), View.MeasureSpec.getSize(i) * 0.6f));
-                actionBarPopupWindowLayout.getLayoutParams().height = -1;
+        public void lambda$new$8(View view) {
+            MessagePreviewView messagePreviewView = MessagePreviewView.this;
+            if (messagePreviewView.showOutdatedQuote) {
+                messagePreviewView.removeQuote();
             } else {
-                ((ViewGroup.MarginLayoutParams) anonymousClass2.getLayoutParams()).topMargin = 0;
-                ((ViewGroup.MarginLayoutParams) anonymousClass2.getLayoutParams()).bottomMargin = 0;
-                anonymousClass2.getLayoutParams().height = (View.MeasureSpec.getSize(i2) - AndroidUtilities.dp(6.0f)) - this.buttonsHeight;
-                if (anonymousClass2.getLayoutParams().height < View.MeasureSpec.getSize(i2) * 0.5f) {
-                    anonymousClass2.getLayoutParams().height = (int) (View.MeasureSpec.getSize(i2) * 0.5f);
-                }
-                anonymousClass2.getLayoutParams().width = -1;
-                actionBarPopupWindowLayout.getLayoutParams().height = View.MeasureSpec.getSize(i2) - anonymousClass2.getLayoutParams().height;
+                messagePreviewView.removeReply();
             }
-            int size = (View.MeasureSpec.getSize(i2) + View.MeasureSpec.getSize(i)) << 16;
-            if (this.lastSize != size) {
-                for (int i4 = 0; i4 < this.messages.previewMessages.size(); i4++) {
-                    MessageObject messageObject = this.messages.previewMessages.get(i4);
-                    messageObject.parentWidth = anonymousClass64.isLandscapeMode ? anonymousClass2.getLayoutParams().width : View.MeasureSpec.getSize(i) - AndroidUtilities.dp(16.0f);
-                    messageObject.resetLayout();
-                    messageObject.forceUpdate = true;
-                    Adapter adapter = this.adapter;
-                    if (adapter != null) {
-                        adapter.mObservable.notifyChanged();
-                    }
-                }
-                this.firstLayout = true;
-            }
-            this.lastSize = size;
-            super.onMeasure(i, i2);
         }
 
-        public final void setOffset(float f, int i) {
-            boolean z = this.this$0.isLandscapeMode;
-            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.menu;
-            IntroActivity.AnonymousClass1 anonymousClass1 = this.actionBar;
-            AnonymousClass2 anonymousClass2 = this.chatPreviewContainer;
-            if (z) {
-                anonymousClass1.setTranslationY(0.0f);
-                anonymousClass2.invalidateOutline();
-                anonymousClass2.setTranslationY(0.0f);
-                actionBarPopupWindowLayout.setTranslationY(0.0f);
+        public void lambda$new$9(View view) {
+            MessagePreviewView.this.selectAnotherChat(true);
+        }
+
+        public void lambda$onAttachedToWindow$21(View view) {
+            this.adapter.onViewAttachedToWindow(this.chatListView.getChildViewHolder(view));
+        }
+
+        public void lambda$updatePositions$22(int i, float f, ValueAnimator valueAnimator) {
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            float f2 = 1.0f - fFloatValue;
+            int i2 = (int) ((this.chatTopOffset * fFloatValue) + (i * f2));
+            this.currentTopOffset = i2;
+            float f3 = (this.yOffset * fFloatValue) + (f * f2);
+            this.currentYOffset = f3;
+            setOffset(f3, i2);
+        }
+
+        public void setOffset(float f, int i) {
+            if (MessagePreviewView.this.isLandscapeMode) {
+                this.actionBar.setTranslationY(0.0f);
+                this.chatPreviewContainer.invalidateOutline();
+                this.chatPreviewContainer.setTranslationY(0.0f);
+                this.menu.setTranslationY(0.0f);
             } else {
-                anonymousClass1.setTranslationY(i);
-                anonymousClass2.invalidateOutline();
-                anonymousClass2.setTranslationY(f);
-                actionBarPopupWindowLayout.setTranslationY((f + anonymousClass2.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
+                this.actionBar.setTranslationY(i);
+                this.chatPreviewContainer.invalidateOutline();
+                this.chatPreviewContainer.setTranslationY(f);
+                this.menu.setTranslationY((f + this.chatPreviewContainer.getMeasuredHeight()) - AndroidUtilities.dp(2.0f));
             }
-            float x = anonymousClass2.getX();
-            TextSelectionHelper.TextSelectionOverlay textSelectionOverlay = this.textSelectionOverlay;
-            textSelectionOverlay.setTranslationX(x);
-            textSelectionOverlay.setTranslationY(anonymousClass2.getY());
+            this.textSelectionOverlay.setTranslationX(this.chatPreviewContainer.getX());
+            this.textSelectionOverlay.setTranslationY(this.chatPreviewContainer.getY());
         }
 
-        public final void showQuoteLengthError() {
-            ChatActivity.AnonymousClass64 anonymousClass64 = this.this$0;
-            new BulletinFactory(anonymousClass64, anonymousClass64.resourcesProvider).createSimpleBulletin(LocaleController.getString(R.string.QuoteMaxError), LocaleController.getString(R.string.QuoteMaxErrorMessage), R.raw.error).show();
+        public void showQuoteLengthError() {
+            MessagePreviewView messagePreviewView = MessagePreviewView.this;
+            BulletinFactory.of(messagePreviewView, messagePreviewView.resourcesProvider).createSimpleBulletin(R.raw.error, LocaleController.getString(R.string.QuoteMaxError), LocaleController.getString(R.string.QuoteMaxErrorMessage)).show();
         }
 
-        public final void switchToQuote(boolean z, boolean z2) {
-            if (this.this$0.showOutdatedQuote) {
+        public void switchToQuote(final boolean z, boolean z2) {
+            if (MessagePreviewView.this.showOutdatedQuote) {
                 z = false;
             }
             if (z2 && this.toQuote == z) {
@@ -4560,76 +3305,92 @@ public abstract class MessagePreviewView extends FrameLayout {
                 animatorSet.cancel();
                 this.quoteSwitcher = null;
             }
-            ActionBarMenuSubItem actionBarMenuSubItem = this.quoteAnotherChatButton;
-            ActionBarMenuSubItem actionBarMenuSubItem2 = this.replyAnotherChatButton;
-            AnonymousClass13 anonymousClass13 = this.clearQuoteButton;
-            AnonymousClass13 anonymousClass14 = this.quoteButton;
             if (!z2) {
-                if (anonymousClass14 != null) {
-                    anonymousClass14.setAlpha(!z ? 1.0f : 0.0f);
-                    anonymousClass14.setVisibility(!z ? 0 : 4);
-                }
-                if (anonymousClass13 != null) {
-                    anonymousClass13.setAlpha(z ? 1.0f : 0.0f);
-                    anonymousClass13.setVisibility(z ? 0 : 4);
-                }
-                if (actionBarMenuSubItem2 != null) {
-                    actionBarMenuSubItem2.setAlpha(!z ? 1.0f : 0.0f);
-                    actionBarMenuSubItem2.setVisibility(!z ? 0 : 4);
-                }
+                ActionBarMenuSubItem actionBarMenuSubItem = this.quoteButton;
                 if (actionBarMenuSubItem != null) {
-                    actionBarMenuSubItem.setAlpha(z ? 1.0f : 0.0f);
-                    actionBarMenuSubItem.setVisibility(z ? 0 : 4);
+                    actionBarMenuSubItem.setAlpha(!z ? 1.0f : 0.0f);
+                    this.quoteButton.setVisibility(!z ? 0 : 4);
+                }
+                ActionBarMenuSubItem actionBarMenuSubItem2 = this.clearQuoteButton;
+                if (actionBarMenuSubItem2 != null) {
+                    actionBarMenuSubItem2.setAlpha(z ? 1.0f : 0.0f);
+                    this.clearQuoteButton.setVisibility(z ? 0 : 4);
+                }
+                ActionBarMenuSubItem actionBarMenuSubItem3 = this.replyAnotherChatButton;
+                if (actionBarMenuSubItem3 != null) {
+                    actionBarMenuSubItem3.setAlpha(!z ? 1.0f : 0.0f);
+                    this.replyAnotherChatButton.setVisibility(!z ? 0 : 4);
+                }
+                ActionBarMenuSubItem actionBarMenuSubItem4 = this.quoteAnotherChatButton;
+                if (actionBarMenuSubItem4 != null) {
+                    actionBarMenuSubItem4.setAlpha(z ? 1.0f : 0.0f);
+                    this.quoteAnotherChatButton.setVisibility(z ? 0 : 4);
                     return;
                 }
                 return;
             }
             this.quoteSwitcher = new AnimatorSet();
             ArrayList arrayList = new ArrayList();
+            ActionBarMenuSubItem actionBarMenuSubItem5 = this.quoteButton;
             Property property = View.ALPHA;
-            if (anonymousClass14 != null) {
-                anonymousClass14.setVisibility(0);
-                arrayList.add(ObjectAnimator.ofFloat(anonymousClass14, (Property<AnonymousClass13, Float>) property, !z ? 1.0f : 0.0f));
+            if (actionBarMenuSubItem5 != null) {
+                actionBarMenuSubItem5.setVisibility(0);
+                arrayList.add(ObjectAnimator.ofFloat(this.quoteButton, (Property<ActionBarMenuSubItem, Float>) property, !z ? 1.0f : 0.0f));
             }
-            if (anonymousClass13 != null) {
-                anonymousClass13.setVisibility(0);
-                arrayList.add(ObjectAnimator.ofFloat(anonymousClass13, (Property<AnonymousClass13, Float>) property, z ? 1.0f : 0.0f));
+            ActionBarMenuSubItem actionBarMenuSubItem6 = this.clearQuoteButton;
+            if (actionBarMenuSubItem6 != null) {
+                actionBarMenuSubItem6.setVisibility(0);
+                arrayList.add(ObjectAnimator.ofFloat(this.clearQuoteButton, (Property<ActionBarMenuSubItem, Float>) property, z ? 1.0f : 0.0f));
             }
-            if (actionBarMenuSubItem2 != null) {
-                actionBarMenuSubItem2.setVisibility(0);
-                arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem2, (Property<ActionBarMenuSubItem, Float>) property, !z ? 1.0f : 0.0f));
+            ActionBarMenuSubItem actionBarMenuSubItem7 = this.replyAnotherChatButton;
+            if (actionBarMenuSubItem7 != null) {
+                actionBarMenuSubItem7.setVisibility(0);
+                arrayList.add(ObjectAnimator.ofFloat(this.replyAnotherChatButton, (Property<ActionBarMenuSubItem, Float>) property, !z ? 1.0f : 0.0f));
             }
-            if (actionBarMenuSubItem != null) {
-                actionBarMenuSubItem.setVisibility(0);
-                arrayList.add(ObjectAnimator.ofFloat(actionBarMenuSubItem, (Property<ActionBarMenuSubItem, Float>) property, z ? 1.0f : 0.0f));
+            ActionBarMenuSubItem actionBarMenuSubItem8 = this.quoteAnotherChatButton;
+            if (actionBarMenuSubItem8 != null) {
+                actionBarMenuSubItem8.setVisibility(0);
+                arrayList.add(ObjectAnimator.ofFloat(this.quoteAnotherChatButton, (Property<ActionBarMenuSubItem, Float>) property, z ? 1.0f : 0.0f));
             }
             this.quoteSwitcher.playTogether(arrayList);
             this.quoteSwitcher.setDuration(360L);
             this.quoteSwitcher.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.quoteSwitcher.addListener(new ChatActivity.AnonymousClass77(29, this, z));
+            this.quoteSwitcher.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    Page.this.quoteSwitcher = null;
+                    Page.this.switchToQuote(z, false);
+                }
+            });
             this.quoteSwitcher.start();
         }
 
-        public final void updateMessages() {
-            ChatActivity.AnonymousClass64 anonymousClass64;
+        public void updateLinkHighlight(ChatMessageCell chatMessageCell) {
+            CharacterStyle characterStyle;
+            TLRPC.WebPage webPage;
+            if (this.currentTab == 2) {
+                MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                if (!messagePreviewParams.singleLink && (characterStyle = messagePreviewParams.currentLink) != null && (webPage = messagePreviewParams.webpage) != null && !(webPage instanceof TLRPC.TL_webPagePending)) {
+                    chatMessageCell.setHighlightedSpan(characterStyle);
+                    return;
+                }
+            }
+            chatMessageCell.setHighlightedSpan(null);
+        }
+
+        public void updateMessages() {
             TLRPC.Message message;
             TLRPC.MessageMedia messageMedia;
-            AnonymousClass7 anonymousClass7 = this.itemAnimator;
-            if (anonymousClass7.isRunning()) {
+            if (this.itemAnimator.isRunning()) {
                 this.updateAfterAnimations = true;
                 return;
             }
-            int i = 0;
-            while (true) {
-                int size = this.messages.previewMessages.size();
-                anonymousClass64 = this.this$0;
-                if (i >= size) {
-                    break;
-                }
+            for (int i = 0; i < this.messages.previewMessages.size(); i++) {
                 MessageObject messageObject = this.messages.previewMessages.get(i);
                 messageObject.forceUpdate = true;
-                messageObject.sendAsPeer = anonymousClass64.sendAsPeer;
-                MessagePreviewParams messagePreviewParams = anonymousClass64.messagePreviewParams;
+                MessagePreviewView messagePreviewView = MessagePreviewView.this;
+                messageObject.sendAsPeer = messagePreviewView.sendAsPeer;
+                MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
                 if (messagePreviewParams.hideForwardSendersName) {
                     messageObject.messageOwner.flags &= -5;
                     messageObject.hideSendersName = true;
@@ -4643,7 +3404,7 @@ public abstract class MessagePreviewView extends FrameLayout {
                         message.flags |= 512;
                         message.media = new TLRPC.TL_messageMediaWebPage();
                         TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
-                        MessagePreviewParams messagePreviewParams2 = anonymousClass64.messagePreviewParams;
+                        MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
                         messageMedia2.webpage = messagePreviewParams2.webpage;
                         boolean z = messagePreviewParams2.webpageSmall;
                         messageMedia2.force_large_media = !z;
@@ -4663,190 +3424,414 @@ public abstract class MessagePreviewView extends FrameLayout {
                         message2.media = null;
                     }
                 }
-                if (anonymousClass64.messagePreviewParams.hideCaption) {
+                if (MessagePreviewView.this.messagePreviewParams.hideCaption) {
                     messageObject.caption = null;
                 } else {
                     messageObject.generateCaption();
                 }
                 if (messageObject.isPoll()) {
                     MessagePreviewParams.PreviewMediaPoll previewMediaPoll = (MessagePreviewParams.PreviewMediaPoll) messageObject.messageOwner.media;
-                    previewMediaPoll.results.total_voters = anonymousClass64.messagePreviewParams.hideCaption ? 0 : previewMediaPoll.totalVotersCached;
+                    previewMediaPoll.results.total_voters = MessagePreviewView.this.messagePreviewParams.hideCaption ? 0 : previewMediaPoll.totalVotersCached;
                 }
-                i++;
             }
             for (int i2 = 0; i2 < this.messages.pollChosenAnswers.size(); i2++) {
-                this.messages.pollChosenAnswers.get(i2).chosen = !anonymousClass64.messagePreviewParams.hideForwardSendersName;
+                this.messages.pollChosenAnswers.get(i2).chosen = !MessagePreviewView.this.messagePreviewParams.hideForwardSendersName;
             }
             for (int i3 = 0; i3 < this.messages.groupedMessagesMap.size(); i3++) {
-                anonymousClass7.groupWillChanged(this.messages.groupedMessagesMap.valueAt(i3));
+                this.itemAnimator.groupWillChanged(this.messages.groupedMessagesMap.valueAt(i3));
             }
-            this.adapter.mObservable.notifyItemRangeChanged(0, this.messages.previewMessages.size(), null);
+            this.adapter.notifyItemRangeChanged(0, this.messages.previewMessages.size());
         }
 
-        public final void updatePositions() {
+        public void updatePositions() {
             int i = this.chatTopOffset;
             float f = this.yOffset;
-            ChatActivity.AnonymousClass64 anonymousClass64 = this.this$0;
-            boolean z = anonymousClass64.isLandscapeMode;
-            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = this.menu;
-            AnonymousClass6 anonymousClass6 = this.chatListView;
-            if (z) {
+            int i2 = 0;
+            if (MessagePreviewView.this.isLandscapeMode) {
                 this.yOffset = 0.0f;
                 this.chatTopOffset = 0;
-                actionBarPopupWindowLayout.setTranslationX(AndroidUtilities.dp(8.0f) + anonymousClass6.getMeasuredWidth());
+                this.menu.setTranslationX(AndroidUtilities.dp(8.0f) + this.chatListView.getMeasuredWidth());
             } else {
-                int measuredHeight = anonymousClass6.getMeasuredHeight();
-                int i2 = 0;
-                for (int i3 = 0; i3 < anonymousClass6.getChildCount(); i3++) {
-                    View childAt = anonymousClass6.getChildAt(i3);
-                    if (RecyclerView.getChildAdapterPosition(childAt) != -1) {
+                int measuredHeight = this.chatListView.getMeasuredHeight();
+                int i3 = 0;
+                for (int i4 = 0; i4 < this.chatListView.getChildCount(); i4++) {
+                    View childAt = this.chatListView.getChildAt(i4);
+                    if (this.chatListView.getChildAdapterPosition(childAt) != -1) {
                         measuredHeight = Math.min(measuredHeight, childAt.getTop());
-                        i2++;
+                        i3++;
                     }
                 }
                 MessagePreviewParams.Messages messages = this.messages;
-                if (messages == null || i2 == 0 || i2 > messages.previewMessages.size()) {
+                if (messages == null || i3 == 0 || i3 > messages.previewMessages.size()) {
                     this.chatTopOffset = 0;
                 } else {
-                    int iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(measuredHeight, 4.0f, 0);
+                    int iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(4.0f, measuredHeight, 0);
                     this.chatTopOffset = iM;
-                    this.chatTopOffset = Math.min(((anonymousClass6.getMeasuredHeight() - this.chatTopOffset) + iM) - ((int) ((((AndroidUtilities.displaySize.y - (Build.VERSION.SDK_INT >= 35 ? AndroidUtilities.navigationBarHeight : 0)) * 0.8f) - this.buttonsHeight) - AndroidUtilities.dp(8.0f))), this.chatTopOffset);
+                    this.chatTopOffset = Math.min(((this.chatListView.getMeasuredHeight() - this.chatTopOffset) + iM) - ((int) ((((AndroidUtilities.displaySize.y - (Build.VERSION.SDK_INT >= 35 ? AndroidUtilities.navigationBarHeight : 0)) * 0.8f) - this.buttonsHeight) - AndroidUtilities.dp(8.0f))), this.chatTopOffset);
                 }
-                float fM = ImageReceiver$$ExternalSyntheticOutline0.m(getMeasuredHeight() - AndroidUtilities.dp(16.0f), (getMeasuredHeight() - this.chatTopOffset) + (this.buttonsHeight - AndroidUtilities.dp(8.0f)), 2.0f, AndroidUtilities.dp(8.0f)) - this.chatTopOffset;
+                float fM = ImageReceiver$$ExternalSyntheticOutline0.m(getMeasuredHeight() - AndroidUtilities.dp(16.0f), (this.chatPreviewContainer.getMeasuredHeight() - this.chatTopOffset) + (this.buttonsHeight - AndroidUtilities.dp(8.0f)), 2.0f, AndroidUtilities.dp(8.0f)) - this.chatTopOffset;
                 this.yOffset = fM;
                 if (fM > AndroidUtilities.dp(8.0f)) {
                     this.yOffset = AndroidUtilities.dp(8.0f);
                 }
-                actionBarPopupWindowLayout.setTranslationX(getMeasuredWidth() - actionBarPopupWindowLayout.getMeasuredWidth());
+                this.menu.setTranslationX(getMeasuredWidth() - this.menu.getMeasuredWidth());
             }
-            boolean z2 = this.firstLayout;
-            if (z2 || (this.chatTopOffset == i && this.yOffset == f)) {
-                if (z2) {
+            boolean z = this.firstLayout;
+            if (z || (this.chatTopOffset == i && this.yOffset == f)) {
+                if (z) {
                     float f2 = this.yOffset;
-                    int i4 = this.chatTopOffset;
-                    this.currentTopOffset = i4;
-                    setOffset(f2, i4);
+                    this.currentYOffset = f2;
+                    int i5 = this.chatTopOffset;
+                    this.currentTopOffset = i5;
+                    setOffset(f2, i5);
                     return;
                 }
                 return;
             }
-            ValueAnimator valueAnimator = anonymousClass64.offsetsAnimator;
+            ValueAnimator valueAnimator = MessagePreviewView.this.offsetsAnimator;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            anonymousClass64.offsetsAnimator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new MessagePreviewView$Page$$ExternalSyntheticLambda0(this, i, f, 0));
-            anonymousClass64.offsetsAnimator.setDuration(250L);
-            anonymousClass64.offsetsAnimator.setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR);
-            anonymousClass64.offsetsAnimator.addListener(new ItemOptions.AnonymousClass3(this, 7));
-            AndroidUtilities.runOnUIThread(anonymousClass64.changeBoundsRunnable, 50L);
+            MessagePreviewView.this.offsetsAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
+            MessagePreviewView.this.offsetsAnimator.addUpdateListener(new MessagePreviewView$Page$$ExternalSyntheticLambda18(this, i, f, i2));
+            MessagePreviewView.this.offsetsAnimator.setDuration(250L);
+            MessagePreviewView.this.offsetsAnimator.setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR);
+            MessagePreviewView.this.offsetsAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    Page page = Page.this;
+                    MessagePreviewView.this.offsetsAnimator = null;
+                    page.setOffset(page.yOffset, page.chatTopOffset);
+                }
+            });
+            AndroidUtilities.runOnUIThread(MessagePreviewView.this.changeBoundsRunnable, 50L);
             this.currentTopOffset = i;
+            this.currentYOffset = f;
             setOffset(f, i);
         }
 
-        public final void updateSelection() {
-            MessageObject messageObject;
-            if (this.currentTab == 0) {
-                AnonymousClass4 anonymousClass4 = this.textSelectionHelper;
-                int i = anonymousClass4.selectionEnd - anonymousClass4.selectionStart;
-                ChatActivity.AnonymousClass64 anonymousClass64 = this.this$0;
-                if (i > MessagesController.getInstance(anonymousClass64.currentAccount).quoteLengthMax) {
-                    return;
-                }
-                TextSelectionHelper.SelectableView selectableView = anonymousClass4.selectedView;
-                MessageObject replyMessage = getReplyMessage(selectableView != null ? ((ChatMessageCell) selectableView).getMessageObject() : null);
-                if (anonymousClass64.messagePreviewParams.quote != null && anonymousClass4.isInSelectionMode()) {
-                    MessagePreviewParams messagePreviewParams = anonymousClass64.messagePreviewParams;
-                    messagePreviewParams.quoteStart = anonymousClass4.selectionStart;
-                    messagePreviewParams.quoteEnd = anonymousClass4.selectionEnd;
-                    if (replyMessage != null && ((messageObject = messagePreviewParams.quote.message) == null || messageObject.getId() != replyMessage.getId())) {
-                        MessagePreviewParams messagePreviewParams2 = anonymousClass64.messagePreviewParams;
-                        messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(messagePreviewParams2.quoteStart, messagePreviewParams2.quoteEnd, replyMessage);
-                        anonymousClass64.onQuoteSelectedPart();
-                    }
-                }
-                anonymousClass4.clear(false);
-            }
-        }
-
-        public final void updateSubtitle(boolean z) {
+        public void updateSubtitle(boolean z) {
             String string;
-            ChatActivity.AnonymousClass64 anonymousClass64 = this.this$0;
-            MessagePreviewParams messagePreviewParams = anonymousClass64.messagePreviewParams;
-            IntroActivity.AnonymousClass1 anonymousClass1 = this.actionBar;
             int i = this.currentTab;
             if (i != 1) {
                 if (i != 0) {
                     if (i == 2) {
-                        anonymousClass1.setTitle(LocaleController.getString(R.string.MessageOptionsLinkTitle), z);
-                        anonymousClass1.setSubtitle(LocaleController.getString(R.string.MessageOptionsLinkSubtitle), z);
+                        this.actionBar.setTitle(LocaleController.getString(R.string.MessageOptionsLinkTitle), z);
+                        this.actionBar.setSubtitle(LocaleController.getString(R.string.MessageOptionsLinkSubtitle), z);
                         return;
                     }
                     return;
                 }
+                MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
                 if (messagePreviewParams.quote == null || !messagePreviewParams.replyMessage.hasText) {
-                    anonymousClass1.setTitle(LocaleController.getString(R.string.MessageOptionsReplyTitle), z);
-                    anonymousClass1.setSubtitle(messagePreviewParams.replyMessage.hasText ? LocaleController.getString(R.string.MessageOptionsReplySubtitle) : "", z);
+                    this.actionBar.setTitle(LocaleController.getString(R.string.MessageOptionsReplyTitle), z);
+                    this.actionBar.setSubtitle(MessagePreviewView.this.messagePreviewParams.replyMessage.hasText ? LocaleController.getString(R.string.MessageOptionsReplySubtitle) : "", z);
                     return;
                 } else {
-                    anonymousClass1.setTitle(LocaleController.getString(R.string.PreviewQuoteUpdate), z);
-                    anonymousClass1.setSubtitle(LocaleController.getString(R.string.PreviewQuoteUpdateSubtitle), z);
+                    this.actionBar.setTitle(LocaleController.getString(R.string.PreviewQuoteUpdate), z);
+                    this.actionBar.setSubtitle(LocaleController.getString(R.string.PreviewQuoteUpdateSubtitle), z);
                     return;
                 }
             }
-            MessagePreviewParams.Messages messages = messagePreviewParams.forwardMessages;
-            anonymousClass1.setTitle(LocaleController.formatPluralString("PreviewForwardMessagesCount", messages == null ? 0 : messages.selectedIds.size(), new Object[0]), z);
-            boolean z2 = messagePreviewParams.hasSenders;
-            TLRPC.Chat chat = anonymousClass64.currentChat;
-            TLRPC.User user = anonymousClass64.currentUser;
-            if (z2) {
-                if (messagePreviewParams.hideForwardSendersName) {
+            ActionBar actionBar = this.actionBar;
+            MessagePreviewParams.Messages messages = MessagePreviewView.this.messagePreviewParams.forwardMessages;
+            actionBar.setTitle(LocaleController.formatPluralString("PreviewForwardMessagesCount", messages == null ? 0 : messages.selectedIds.size(), new Object[0]), z);
+            MessagePreviewView messagePreviewView = MessagePreviewView.this;
+            MessagePreviewParams messagePreviewParams2 = messagePreviewView.messagePreviewParams;
+            if (messagePreviewParams2.hasSenders) {
+                if (messagePreviewParams2.hideForwardSendersName) {
+                    TLRPC.User user = messagePreviewView.currentUser;
                     if (user != null) {
                         string = LocaleController.formatString("ForwardPreviewSendersNameHidden", R.string.ForwardPreviewSendersNameHidden, ContactsController.formatName(user.first_name, user.last_name));
                     } else {
-                        string = (!ChatObject.isChannel(chat) || chat.megagroup) ? LocaleController.getString(R.string.ForwardPreviewSendersNameHiddenGroup) : LocaleController.getString(R.string.ForwardPreviewSendersNameHiddenChannel);
+                        string = (!ChatObject.isChannel(messagePreviewView.currentChat) || MessagePreviewView.this.currentChat.megagroup) ? LocaleController.getString(R.string.ForwardPreviewSendersNameHiddenGroup) : LocaleController.getString(R.string.ForwardPreviewSendersNameHiddenChannel);
                     }
-                } else if (user != null) {
-                    string = LocaleController.formatString("ForwardPreviewSendersNameVisible", R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(user.first_name, user.last_name));
                 } else {
-                    string = (!ChatObject.isChannel(chat) || chat.megagroup) ? LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleGroup) : LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleChannel);
+                    TLRPC.User user2 = messagePreviewView.currentUser;
+                    if (user2 != null) {
+                        string = LocaleController.formatString("ForwardPreviewSendersNameVisible", R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(user2.first_name, user2.last_name));
+                    } else {
+                        string = (!ChatObject.isChannel(messagePreviewView.currentChat) || MessagePreviewView.this.currentChat.megagroup) ? LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleGroup) : LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleChannel);
+                    }
                 }
-            } else if (messagePreviewParams.willSeeSenders) {
-                if (user != null) {
-                    string = LocaleController.formatString("ForwardPreviewSendersNameVisible", R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(user.first_name, user.last_name));
+            } else if (messagePreviewParams2.willSeeSenders) {
+                TLRPC.User user3 = messagePreviewView.currentUser;
+                if (user3 != null) {
+                    string = LocaleController.formatString("ForwardPreviewSendersNameVisible", R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(user3.first_name, user3.last_name));
                 } else {
-                    string = (!ChatObject.isChannel(chat) || chat.megagroup) ? LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleGroup) : LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleChannel);
+                    string = (!ChatObject.isChannel(messagePreviewView.currentChat) || MessagePreviewView.this.currentChat.megagroup) ? LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleGroup) : LocaleController.getString(R.string.ForwardPreviewSendersNameVisibleChannel);
                 }
-            } else if (user != null) {
-                string = LocaleController.formatString("ForwardPreviewSendersNameVisible", R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(user.first_name, user.last_name));
             } else {
-                string = (!ChatObject.isChannel(chat) || chat.megagroup) ? LocaleController.getString(R.string.ForwardPreviewSendersNameHiddenGroup) : LocaleController.getString(R.string.ForwardPreviewSendersNameHiddenChannel);
+                TLRPC.User user4 = messagePreviewView.currentUser;
+                if (user4 != null) {
+                    string = LocaleController.formatString("ForwardPreviewSendersNameVisible", R.string.ForwardPreviewSendersNameVisible, ContactsController.formatName(user4.first_name, user4.last_name));
+                } else {
+                    string = (!ChatObject.isChannel(messagePreviewView.currentChat) || MessagePreviewView.this.currentChat.megagroup) ? LocaleController.getString(R.string.ForwardPreviewSendersNameHiddenGroup) : LocaleController.getString(R.string.ForwardPreviewSendersNameHiddenChannel);
+                }
             }
-            anonymousClass1.setSubtitle(string, z);
+            this.actionBar.setSubtitle(string, z);
+        }
+
+        public void bind() {
+            updateMessages();
+            updateSubtitle(false);
+        }
+
+        public MessageObject getReplyMessage() {
+            return getReplyMessage(null);
+        }
+
+        public View getReplyMessageCell() {
+            MessageObject replyMessage = getReplyMessage();
+            if (replyMessage == null) {
+                return null;
+            }
+            for (int i = 0; i < this.chatListView.getChildCount(); i++) {
+                View childAt = this.chatListView.getChildAt(i);
+                IMessageCell iMessageCell = (IMessageCell) childAt;
+                if (iMessageCell.getMessageObject() != null && (iMessageCell.getMessageObject() == replyMessage || iMessageCell.getMessageObject().getId() == replyMessage.getId())) {
+                    return childAt;
+                }
+            }
+            return null;
+        }
+
+        public boolean isReplyMessageCell(ChatMessageCell chatMessageCell) {
+            MessageObject replyMessage;
+            if (chatMessageCell == null || chatMessageCell.getMessageObject() == null || (replyMessage = getReplyMessage()) == null) {
+                return false;
+            }
+            return chatMessageCell.getMessageObject() == replyMessage || chatMessageCell.getMessageObject().getId() == replyMessage.getId();
+        }
+
+        public boolean isReplyToRichMessage() {
+            MessageObject replyMessage;
+            TLRPC.Message message;
+            return (this.currentTab != 0 || (replyMessage = getReplyMessage()) == null || (message = replyMessage.messageOwner) == null || message.rich_message == null) ? false : true;
+        }
+
+        @Override
+        public void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            if (this.currentTab == 0) {
+                AndroidUtilities.forEachViews((RecyclerView) this.chatListView, (Consumer) new UniversalRecyclerView$$ExternalSyntheticLambda3(this, 1));
+            }
+        }
+
+        @Override
+        public void onDetachedFromWindow() {
+            super.onDetachedFromWindow();
+            updateSelection();
+            this.firstAttach = true;
+            this.firstLayout = true;
+        }
+
+        @Override
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            super.onLayout(z, i, i2, i3, i4);
+            updatePositions();
+            this.firstLayout = false;
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            MessagePreviewView.this.isLandscapeMode = View.MeasureSpec.getSize(i) > View.MeasureSpec.getSize(i2);
+            this.buttonsHeight = 0;
+            this.menu.measure(i, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 0));
+            int i3 = this.buttonsHeight;
+            int measuredHeight = this.menu.getMeasuredHeight();
+            Rect rect = this.rect;
+            this.buttonsHeight = Math.max(i3, measuredHeight + rect.top + rect.bottom);
+            ((ViewGroup.MarginLayoutParams) this.chatListView.getLayoutParams()).topMargin = org.telegram.ui.ActionBar.ActionBar.getCurrentActionBarHeight();
+            if (MessagePreviewView.this.isLandscapeMode) {
+                this.chatPreviewContainer.getLayoutParams().height = -1;
+                ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).topMargin = AndroidUtilities.dp(8.0f);
+                ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).bottomMargin = AndroidUtilities.dp(8.0f);
+                this.chatPreviewContainer.getLayoutParams().width = (int) Math.min(View.MeasureSpec.getSize(i), Math.max(AndroidUtilities.dp(340.0f), View.MeasureSpec.getSize(i) * 0.6f));
+                this.menu.getLayoutParams().height = -1;
+            } else {
+                ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).topMargin = 0;
+                ((ViewGroup.MarginLayoutParams) this.chatPreviewContainer.getLayoutParams()).bottomMargin = 0;
+                this.chatPreviewContainer.getLayoutParams().height = (View.MeasureSpec.getSize(i2) - AndroidUtilities.dp(6.0f)) - this.buttonsHeight;
+                if (this.chatPreviewContainer.getLayoutParams().height < View.MeasureSpec.getSize(i2) * 0.5f) {
+                    this.chatPreviewContainer.getLayoutParams().height = (int) (View.MeasureSpec.getSize(i2) * 0.5f);
+                }
+                this.chatPreviewContainer.getLayoutParams().width = -1;
+                this.menu.getLayoutParams().height = View.MeasureSpec.getSize(i2) - this.chatPreviewContainer.getLayoutParams().height;
+            }
+            int size = (View.MeasureSpec.getSize(i2) + View.MeasureSpec.getSize(i)) << 16;
+            if (this.lastSize != size) {
+                for (int i4 = 0; i4 < this.messages.previewMessages.size(); i4++) {
+                    MessageObject messageObject = this.messages.previewMessages.get(i4);
+                    messageObject.parentWidth = MessagePreviewView.this.isLandscapeMode ? this.chatPreviewContainer.getLayoutParams().width : View.MeasureSpec.getSize(i) - AndroidUtilities.dp(16.0f);
+                    messageObject.resetLayout();
+                    messageObject.forceUpdate = true;
+                    Adapter adapter = this.adapter;
+                    if (adapter != null) {
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                this.firstLayout = true;
+            }
+            this.lastSize = size;
+            super.onMeasure(i, i2);
+        }
+
+        public void updateSelection() {
+            MessageObject messageObject;
+            if (this.currentTab == 0) {
+                TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper = this.textSelectionHelper;
+                if (chatListTextSelectionHelper.selectionEnd - chatListTextSelectionHelper.selectionStart > MessagesController.getInstance(MessagePreviewView.this.currentAccount).quoteLengthMax) {
+                    return;
+                }
+                MessageObject replyMessage = getReplyMessage(this.textSelectionHelper.getSelectedCell() != null ? ((ChatMessageCell) this.textSelectionHelper.getSelectedCell()).getMessageObject() : null);
+                if (MessagePreviewView.this.messagePreviewParams.quote != null && this.textSelectionHelper.isInSelectionMode()) {
+                    MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                    TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper2 = this.textSelectionHelper;
+                    messagePreviewParams.quoteStart = chatListTextSelectionHelper2.selectionStart;
+                    messagePreviewParams.quoteEnd = chatListTextSelectionHelper2.selectionEnd;
+                    if (replyMessage != null && ((messageObject = messagePreviewParams.quote.message) == null || messageObject.getId() != replyMessage.getId())) {
+                        MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                        messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(replyMessage, messagePreviewParams2.quoteStart, messagePreviewParams2.quoteEnd);
+                        MessagePreviewView.this.onQuoteSelectedPart();
+                    }
+                }
+                this.textSelectionHelper.clear();
+            }
+        }
+
+        public MessageObject getReplyMessage(MessageObject messageObject) {
+            MessageObject.GroupedMessages groupedMessagesValueAt;
+            MessagePreviewParams.Messages messages = MessagePreviewView.this.messagePreviewParams.replyMessage;
+            if (messages == null) {
+                return null;
+            }
+            LongSparseArray<MessageObject.GroupedMessages> longSparseArray = messages.groupedMessagesMap;
+            if (longSparseArray == null || longSparseArray.size() <= 0 || (groupedMessagesValueAt = MessagePreviewView.this.messagePreviewParams.replyMessage.groupedMessagesMap.valueAt(0)) == null) {
+                return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
+            }
+            if (groupedMessagesValueAt.isDocuments) {
+                if (messageObject != null) {
+                    return messageObject;
+                }
+                ChatActivity.ReplyQuote replyQuote = MessagePreviewView.this.messagePreviewParams.quote;
+                if (replyQuote != null) {
+                    return replyQuote.message;
+                }
+            }
+            return groupedMessagesValueAt.captionMessage;
         }
     }
 
-    public interface ResourcesDelegate extends Theme.ResourcesProvider {
+    public static class RLottieToggleDrawable extends Drawable {
+        private RLottieDrawable currentState;
+        private boolean detached;
+        private boolean isState1;
+        private RLottieDrawable state1;
+        private RLottieDrawable state2;
+
+        public RLottieToggleDrawable(View view, int i, int i2) {
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, DiffUtil.m(i, ""), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+            this.state1 = rLottieDrawable;
+            rLottieDrawable.setMasterParent(view);
+            this.state1.setAllowDecodeSingleFrame(true);
+            this.state1.setPlayInDirectionOfCustomEndFrame(true);
+            this.state1.setAutoRepeat(0);
+            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i2, DiffUtil.m(i2, ""), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+            this.state2 = rLottieDrawable2;
+            rLottieDrawable2.setMasterParent(view);
+            this.state2.setAllowDecodeSingleFrame(true);
+            this.state2.setPlayInDirectionOfCustomEndFrame(true);
+            this.state2.setAutoRepeat(0);
+            this.currentState = this.state1;
+        }
+
+        public void detach() {
+            this.detached = true;
+            this.state1.recycle(true);
+            this.state2.recycle(true);
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            if (this.detached) {
+                return;
+            }
+            Rect rect = AndroidUtilities.rectTmp2;
+            rect.set(getBounds().centerX() - AndroidUtilities.dp(12.0f), getBounds().centerY() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + getBounds().centerX(), AndroidUtilities.dp(12.0f) + getBounds().centerY());
+            if (this.currentState.isLastFrame()) {
+                RLottieDrawable rLottieDrawable = this.currentState;
+                boolean z = this.isState1;
+                if (rLottieDrawable != (z ? this.state1 : this.state2)) {
+                    RLottieDrawable rLottieDrawable2 = z ? this.state1 : this.state2;
+                    this.currentState = rLottieDrawable2;
+                    rLottieDrawable2.setCurrentFrame(rLottieDrawable2.getFramesCount() - 1);
+                }
+            }
+            this.currentState.setBounds(rect);
+            this.currentState.draw(canvas);
+        }
+
+        @Override
+        public int getIntrinsicHeight() {
+            return AndroidUtilities.dp(24.0f);
+        }
+
+        @Override
+        public int getIntrinsicWidth() {
+            return AndroidUtilities.dp(24.0f);
+        }
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
+
+        @Override
+        public void setAlpha(int i) {
+            this.state1.setAlpha(i);
+            this.state2.setAlpha(i);
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+            this.state1.setColorFilter(colorFilter);
+            this.state2.setColorFilter(colorFilter);
+        }
+
+        public void setState(boolean z, boolean z2) {
+            this.isState1 = z;
+            if (!z2) {
+                RLottieDrawable rLottieDrawable = z ? this.state1 : this.state2;
+                this.currentState = rLottieDrawable;
+                rLottieDrawable.setCurrentFrame(rLottieDrawable.getFramesCount() - 1);
+            } else {
+                this.currentState = z ? this.state1 : this.state2;
+                this.state1.setCurrentFrame(0);
+                this.state2.setCurrentFrame(0);
+                this.currentState.start();
+            }
+        }
     }
 
-    public final class TabsView extends View {
-        public Drawable bgDrawable;
-        public final Paint bgPaint;
-        public final int color;
-        public float marginBetween;
-        public Utilities.Callback onTabClick;
-        public final RectF selectRect;
-        public final int selectedColor;
-        public float selectedTab;
-        public float tabInnerPadding;
-        public final ArrayList tabs;
+    public static class TabsView extends View {
+        private Drawable bgDrawable;
+        private final Paint bgPaint;
+        private int color;
+        private float marginBetween;
+        private Utilities.Callback<Integer> onTabClick;
+        private final Theme.ResourcesProvider resourcesProvider;
+        private RectF selectRect;
+        private int selectedColor;
+        private float selectedTab;
+        private float tabInnerPadding;
+        public final ArrayList<Tab> tabs;
 
-        public final class Tab {
-            public final RectF bounds = new RectF();
-            public final RectF clickBounds = new RectF();
-            public final int id;
-            public final Text text;
+        public static class Tab {
+            final RectF bounds = new RectF();
+            final RectF clickBounds = new RectF();
+            final int id;
+            final Text text;
 
             public Tab(int i, String str) {
                 this.id = i;
@@ -4855,14 +3840,15 @@ public abstract class MessagePreviewView extends FrameLayout {
         }
 
         public TabsView(Context context, Theme.ResourcesProvider resourcesProvider) {
-            int[] iArr;
+            int[] colors;
             super(context);
-            this.tabs = new ArrayList();
+            this.tabs = new ArrayList<>();
             Paint paint = new Paint(1);
             this.bgPaint = paint;
             this.tabInnerPadding = AndroidUtilities.dp(14.0f);
             this.marginBetween = AndroidUtilities.dp(0.0f);
             this.selectRect = new RectF();
+            this.resourcesProvider = resourcesProvider;
             if (Theme.currentTheme.isDark()) {
                 this.color = -1862270977;
                 this.selectedColor = -1325400065;
@@ -4872,8 +3858,8 @@ public abstract class MessagePreviewView extends FrameLayout {
             int color = Theme.getColor(Theme.key_chat_wallpaper, resourcesProvider);
             if (resourcesProvider instanceof ChatActivity.ThemeDelegate) {
                 ChatActivity.ThemeDelegate themeDelegate = (ChatActivity.ThemeDelegate) resourcesProvider;
-                if ((themeDelegate.getWallpaperDrawable() instanceof MotionBackgroundDrawable) && (iArr = ((MotionBackgroundDrawable) themeDelegate.getWallpaperDrawable()).colors) != null) {
-                    color = AndroidUtilities.getAverageColor(AndroidUtilities.getAverageColor(iArr[0], iArr[1]), AndroidUtilities.getAverageColor(iArr[2], iArr[3]));
+                if ((themeDelegate.getWallpaperDrawable() instanceof MotionBackgroundDrawable) && (colors = ((MotionBackgroundDrawable) themeDelegate.getWallpaperDrawable()).getColors()) != null) {
+                    color = AndroidUtilities.getAverageColor(AndroidUtilities.getAverageColor(colors[0], colors[1]), AndroidUtilities.getAverageColor(colors[2], colors[3]));
                 }
             }
             this.color = Theme.adaptHue(-1606201797, color);
@@ -4881,66 +3867,71 @@ public abstract class MessagePreviewView extends FrameLayout {
             paint.setColor(Theme.adaptHue(814980216, color));
         }
 
+        private int getHitTab(float f, float f2) {
+            for (int i = 0; i < this.tabs.size(); i++) {
+                if (this.tabs.get(i).clickBounds.contains(f, f2)) {
+                    return this.tabs.get(i).id;
+                }
+            }
+            return -1;
+        }
+
+        public void addTab(int i, String str) {
+            this.tabs.add(new Tab(i, str));
+        }
+
+        public boolean containsTab(int i) {
+            for (int i2 = 0; i2 < this.tabs.size(); i2++) {
+                if (this.tabs.get(i2).id == i) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         @Override
-        public final void dispatchDraw(Canvas canvas) {
-            ArrayList arrayList = this.tabs;
-            if (arrayList.size() <= 1) {
+        public void dispatchDraw(Canvas canvas) {
+            if (this.tabs.size() <= 1) {
                 return;
             }
             float f = this.selectedTab;
             double d = f;
             int iFloor = (int) Math.floor(d);
-            boolean z = iFloor >= 0 && iFloor < arrayList.size();
+            boolean z = iFloor >= 0 && iFloor < this.tabs.size();
             int iCeil = (int) Math.ceil(d);
-            boolean z2 = iCeil >= 0 && iCeil < arrayList.size();
-            RectF rectF = this.selectRect;
+            boolean z2 = iCeil >= 0 && iCeil < this.tabs.size();
             if (z && z2) {
-                AndroidUtilities.lerp(((Tab) arrayList.get(iFloor)).bounds, ((Tab) arrayList.get(iCeil)).bounds, f - iFloor, rectF);
+                AndroidUtilities.lerp(this.tabs.get(iFloor).bounds, this.tabs.get(iCeil).bounds, f - iFloor, this.selectRect);
             } else if (z) {
-                rectF.set(((Tab) arrayList.get(iFloor)).bounds);
+                this.selectRect.set(this.tabs.get(iFloor).bounds);
             } else if (z2) {
-                rectF.set(((Tab) arrayList.get(iCeil)).bounds);
+                this.selectRect.set(this.tabs.get(iCeil).bounds);
             }
             Drawable drawable = this.bgDrawable;
             if (drawable != null) {
                 drawable.draw(canvas);
             }
             if (z || z2) {
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.bgPaint);
+                canvas.drawRoundRect(this.selectRect, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.bgPaint);
             }
-            for (int i = 0; i < arrayList.size(); i++) {
-                Tab tab = (Tab) arrayList.get(i);
-                tab.text.draw(tab.bounds.left + this.tabInnerPadding, getMeasuredHeight() / 2.0f, 1.0f, ColorUtils.blendARGB(1.0f - Math.abs(f - i), this.color, this.selectedColor), canvas);
+            for (int i = 0; i < this.tabs.size(); i++) {
+                Tab tab = this.tabs.get(i);
+                tab.text.draw(canvas, tab.bounds.left + this.tabInnerPadding, getMeasuredHeight() / 2.0f, ColorUtils.blendARGB(1.0f - Math.abs(f - i), this.color, this.selectedColor), 1.0f);
             }
         }
 
         @Override
-        public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-            int i;
-            Utilities.Callback callback;
-            ArrayList arrayList = this.tabs;
-            if (arrayList.size() > 1) {
-                float x = motionEvent.getX();
-                float y = motionEvent.getY();
-                int i2 = 0;
-                while (true) {
-                    if (i2 >= arrayList.size()) {
-                        i = -1;
-                        break;
-                    }
-                    if (((Tab) arrayList.get(i2)).clickBounds.contains(x, y)) {
-                        i = ((Tab) arrayList.get(i2)).id;
-                        break;
-                    }
-                    i2++;
-                }
-                if (motionEvent.getAction() == 0) {
-                    if (i != -1) {
-                        return true;
-                    }
-                } else if (motionEvent.getAction() == 1 && i != -1 && (callback = this.onTabClick) != null) {
-                    callback.run(Integer.valueOf(i));
-                }
+        public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+            Utilities.Callback<Integer> callback;
+            if (this.tabs.size() <= 1) {
+                return false;
+            }
+            int hitTab = getHitTab(motionEvent.getX(), motionEvent.getY());
+            if (motionEvent.getAction() == 0) {
+                return hitTab != -1;
+            }
+            if (motionEvent.getAction() == 1 && hitTab != -1 && (callback = this.onTabClick) != null) {
+                callback.run(Integer.valueOf(hitTab));
             }
             return false;
         }
@@ -4950,23 +3941,16 @@ public abstract class MessagePreviewView extends FrameLayout {
         }
 
         @Override
-        public final void onMeasure(int i, int i2) {
-            ArrayList arrayList;
+        public void onMeasure(int i, int i2) {
             super.onMeasure(i, i2);
             this.tabInnerPadding = AndroidUtilities.dp(14.0f);
             float width = 0.0f;
             this.marginBetween = AndroidUtilities.dp(0.0f);
-            int i3 = 0;
-            while (true) {
-                arrayList = this.tabs;
-                if (i3 >= arrayList.size()) {
-                    break;
-                }
+            for (int i3 = 0; i3 < this.tabs.size(); i3++) {
                 if (i3 > 0) {
                     width += this.marginBetween;
                 }
-                width += ((Tab) arrayList.get(i3)).text.getWidth() + this.tabInnerPadding + this.tabInnerPadding;
-                i3++;
+                width += this.tabs.get(i3).text.getWidth() + this.tabInnerPadding + this.tabInnerPadding;
             }
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
@@ -4975,11 +3959,11 @@ public abstract class MessagePreviewView extends FrameLayout {
             float f = measuredWidth;
             float f2 = (f - width) / 2.0f;
             float f3 = f2;
-            for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                float width2 = ((Tab) arrayList.get(i4)).text.getWidth() + this.tabInnerPadding + this.tabInnerPadding;
-                ((Tab) arrayList.get(i4)).bounds.set(f3, fDp, f3 + width2, fDp2);
-                ((Tab) arrayList.get(i4)).clickBounds.set(((Tab) arrayList.get(i4)).bounds);
-                ((Tab) arrayList.get(i4)).clickBounds.inset((-this.marginBetween) / 2.0f, -fDp);
+            for (int i4 = 0; i4 < this.tabs.size(); i4++) {
+                float width2 = this.tabs.get(i4).text.getWidth() + this.tabInnerPadding + this.tabInnerPadding;
+                this.tabs.get(i4).bounds.set(f3, fDp, f3 + width2, fDp2);
+                this.tabs.get(i4).clickBounds.set(this.tabs.get(i4).bounds);
+                this.tabs.get(i4).clickBounds.inset((-this.marginBetween) / 2.0f, -fDp);
                 f3 += width2 + this.marginBetween;
             }
             Drawable drawable = this.bgDrawable;
@@ -5006,14 +3990,14 @@ public abstract class MessagePreviewView extends FrameLayout {
         }
     }
 
-    public final class ToggleButton extends View {
-        public boolean first;
-        public final SettingsActivity.SettingCell.Background iconDrawable;
-        public boolean isState1;
-        public final int minWidth;
-        public final String text1;
-        public final String text2;
-        public final AnimatedTextView.AnimatedTextDrawable textDrawable;
+    public static class ToggleButton extends View {
+        private boolean first;
+        RLottieToggleDrawable iconDrawable;
+        private boolean isState1;
+        final int minWidth;
+        final String text1;
+        final String text2;
+        AnimatedTextView.AnimatedTextDrawable textDrawable;
 
         public ToggleButton(Context context, int i, String str, int i2, String str2, Theme.ResourcesProvider resourcesProvider) {
             super(context);
@@ -5021,48 +4005,35 @@ public abstract class MessagePreviewView extends FrameLayout {
             this.text1 = str;
             this.text2 = str2;
             setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 2, -1));
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true, false);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
             this.textDrawable = animatedTextDrawable;
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            animatedTextDrawable.moveAmplitude = 0.35f;
-            animatedTextDrawable.animateDuration = 300L;
-            animatedTextDrawable.animateWave = 1.0f;
-            animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
-            animatedTextDrawable.setTextSize(AndroidUtilities.dp(16.0f));
-            int color = Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider);
-            TextPaint textPaint = animatedTextDrawable.textPaint;
-            textPaint.setColor(color);
-            animatedTextDrawable.alpha = Color.alpha(color);
-            animatedTextDrawable.setCallback(this);
-            animatedTextDrawable.ellipsizeByGradient = true ^ LocaleController.isRTL;
-            animatedTextDrawable.invalidateSelf();
+            animatedTextDrawable.setAnimationProperties(0.35f, 0L, 300L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.textDrawable.setTextSize(AndroidUtilities.dp(16.0f));
+            this.textDrawable.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
+            this.textDrawable.setCallback(this);
+            this.textDrawable.setEllipsizeByGradient(true ^ LocaleController.isRTL);
             if (LocaleController.isRTL) {
-                animatedTextDrawable.gravity = 5;
+                this.textDrawable.setGravity(5);
             }
-            int iMax = (int) (Math.max(textPaint.measureText(str), textPaint.measureText(str2)) + AndroidUtilities.dp(77.0f));
+            int iMax = (int) (Math.max(this.textDrawable.getPaint().measureText(str), this.textDrawable.getPaint().measureText(str2)) + AndroidUtilities.dp(77.0f));
             this.minWidth = iMax;
-            animatedTextDrawable.overrideFullWidth = iMax;
-            SettingsActivity.SettingCell.Background background = new SettingsActivity.SettingCell.Background(this, i, i2);
-            this.iconDrawable = background;
-            PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), PorterDuff.Mode.SRC_IN);
-            ((RLottieDrawable) background.paint).setColorFilter(porterDuffColorFilter);
-            ((RLottieDrawable) background.strokePaint).setColorFilter(porterDuffColorFilter);
+            this.textDrawable.setOverrideFullWidth(iMax);
+            RLottieToggleDrawable rLottieToggleDrawable = new RLottieToggleDrawable(this, i, i2);
+            this.iconDrawable = rLottieToggleDrawable;
+            rLottieToggleDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider), PorterDuff.Mode.SRC_IN));
         }
 
         @Override
-        public final void dispatchDraw(Canvas canvas) {
-            boolean z = LocaleController.isRTL;
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-            SettingsActivity.SettingCell.Background background = this.iconDrawable;
-            if (z) {
-                background.setBounds(getMeasuredWidth() - AndroidUtilities.dp(41.0f), OKLCH.m$2(24.0f, getMeasuredHeight(), 2), getMeasuredWidth() - AndroidUtilities.dp(17.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
-                animatedTextDrawable.setBounds(0, 0, getMeasuredWidth() - AndroidUtilities.dp(59.0f), getMeasuredHeight());
+        public void dispatchDraw(Canvas canvas) {
+            if (LocaleController.isRTL) {
+                this.iconDrawable.setBounds(getMeasuredWidth() - AndroidUtilities.dp(41.0f), OKLCH.m$2(24.0f, getMeasuredHeight(), 2), getMeasuredWidth() - AndroidUtilities.dp(17.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
+                this.textDrawable.setBounds(0, 0, getMeasuredWidth() - AndroidUtilities.dp(59.0f), getMeasuredHeight());
             } else {
-                background.setBounds(AndroidUtilities.dp(17.0f), OKLCH.m$2(24.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(41.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
-                animatedTextDrawable.setBounds(AndroidUtilities.dp(59.0f), 0, getMeasuredWidth(), getMeasuredHeight());
+                this.iconDrawable.setBounds(AndroidUtilities.dp(17.0f), OKLCH.m$2(24.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(41.0f), (AndroidUtilities.dp(24.0f) + getMeasuredHeight()) / 2);
+                this.textDrawable.setBounds(AndroidUtilities.dp(59.0f), 0, getMeasuredWidth(), getMeasuredHeight());
             }
-            animatedTextDrawable.draw(canvas);
-            background.draw(canvas);
+            this.textDrawable.draw(canvas);
+            this.iconDrawable.draw(canvas);
         }
 
         public boolean getState() {
@@ -5070,57 +4041,48 @@ public abstract class MessagePreviewView extends FrameLayout {
         }
 
         @Override
-        public final void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             int mode = View.MeasureSpec.getMode(i);
-            int i3 = this.minWidth;
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(mode == 1073741824 ? Math.max(View.MeasureSpec.getSize(i), i3) : Math.min(View.MeasureSpec.getSize(i), i3), mode), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(mode == 1073741824 ? Math.max(View.MeasureSpec.getSize(i), this.minWidth) : Math.min(View.MeasureSpec.getSize(i), this.minWidth), mode), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
         }
 
         @Override
-        public final boolean onTouchEvent(MotionEvent motionEvent) {
+        public boolean onTouchEvent(MotionEvent motionEvent) {
             if (getVisibility() != 0 || getAlpha() < 0.5f) {
                 return false;
             }
             return super.onTouchEvent(motionEvent);
         }
 
-        public final void setState(boolean z, boolean z2) {
+        public void setState(boolean z, boolean z2) {
             if (this.first || z != this.isState1) {
                 this.isState1 = z;
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.textDrawable;
-                animatedTextDrawable.setText(z ? this.text1 : this.text2, z2 && !LocaleController.isRTL, true);
-                SettingsActivity.SettingCell.Background background = this.iconDrawable;
-                background.border = z;
-                RLottieDrawable rLottieDrawable = (RLottieDrawable) background.strokePaint;
-                RLottieDrawable rLottieDrawable2 = (RLottieDrawable) background.paint;
-                if (z2) {
-                    background.matrix = z ? rLottieDrawable2 : rLottieDrawable;
-                    rLottieDrawable2.setCurrentFrame(0, true, false);
-                    rLottieDrawable.setCurrentFrame(0, true, false);
-                    ((RLottieDrawable) background.matrix).start();
-                } else {
-                    if (z) {
-                        rLottieDrawable = rLottieDrawable2;
-                    }
-                    background.matrix = rLottieDrawable;
-                    rLottieDrawable.setCurrentFrame(rLottieDrawable.metaData[0] - 1, true, false);
-                }
+                this.textDrawable.setText(z ? this.text1 : this.text2, z2 && !LocaleController.isRTL);
+                this.iconDrawable.setState(z, z2);
                 this.first = false;
-                setContentDescription(animatedTextDrawable.currentText);
+                setContentDescription(this.textDrawable.getText());
             }
         }
 
         @Override
-        public final boolean verifyDrawable(Drawable drawable) {
+        public boolean verifyDrawable(Drawable drawable) {
             return drawable == this.textDrawable || super.verifyDrawable(drawable);
         }
     }
 
     public MessagePreviewView(final Context context, ChatActivity chatActivity, BlurredBackgroundDrawableViewFactory blurredBackgroundDrawableViewFactory, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i, ResourcesDelegate resourcesDelegate, int i2, final boolean z) {
         super(context);
-        final ChatActivity.AnonymousClass64 anonymousClass64 = (ChatActivity.AnonymousClass64) this;
-        this.changeBoundsRunnable = new BubbleActivity.AnonymousClass1(anonymousClass64, 22);
-        this.drawingGroups = new ArrayList(10);
+        this.changeBoundsRunnable = new Runnable() {
+            @Override
+            public void run() {
+                ValueAnimator valueAnimator = MessagePreviewView.this.offsetsAnimator;
+                if (valueAnimator == null || valueAnimator.isRunning()) {
+                    return;
+                }
+                MessagePreviewView.this.offsetsAnimator.start();
+            }
+        };
+        this.drawingGroups = new ArrayList<>(10);
         this.showOutdatedQuote = z;
         this.chatActivity = chatActivity;
         this.currentAccount = i;
@@ -5131,57 +4093,33 @@ public abstract class MessagePreviewView extends FrameLayout {
         this.resourcesProvider = resourcesDelegate;
         this.viewPager = new ViewPagerFixed(context, resourcesDelegate) {
             @Override
-            public final void onScrollEnd() {
+            public void onScrollEnd() {
                 View view = this.viewPages[0];
                 if (view instanceof Page) {
-                    Page.AnonymousClass4 anonymousClass4 = ((Page) view).textSelectionHelper;
-                    anonymousClass4.parentIsScrolling = false;
-                    anonymousClass4.textSelectionOverlay.invalidate();
-                    ChatActivity$$ExternalSyntheticLambda174 chatActivity$$ExternalSyntheticLambda174 = anonymousClass4.showActionsRunnable;
-                    AndroidUtilities.cancelRunOnUIThread(chatActivity$$ExternalSyntheticLambda174);
-                    AndroidUtilities.runOnUIThread(chatActivity$$ExternalSyntheticLambda174);
+                    ((Page) view).textSelectionHelper.stopScrolling();
                 }
             }
 
             @Override
-            public final void onTabAnimationUpdate(boolean z2) {
-                ChatActivity.AnonymousClass64 anonymousClass65 = anonymousClass64;
-                anonymousClass65.tabsView.setSelectedTab(anonymousClass65.viewPager.getPositionAnimated());
-                View[] viewArr = this.viewPages;
-                View view = viewArr[0];
+            public void onTabAnimationUpdate(boolean z2) {
+                MessagePreviewView messagePreviewView = MessagePreviewView.this;
+                messagePreviewView.tabsView.setSelectedTab(messagePreviewView.viewPager.getPositionAnimated());
+                View view = this.viewPages[0];
                 if (view instanceof Page) {
                     ((Page) view).textSelectionHelper.onParentScrolled();
                 }
-                View view2 = viewArr[1];
+                View view2 = this.viewPages[1];
                 if (view2 instanceof Page) {
                     ((Page) view2).textSelectionHelper.onParentScrolled();
                 }
             }
 
             @Override
-            public final boolean onTouchEvent(MotionEvent motionEvent) {
-                boolean z2;
-                int i3 = 0;
-                while (true) {
-                    View[] viewArr = anonymousClass64.viewPager.viewPages;
-                    if (i3 >= viewArr.length) {
-                        z2 = false;
-                        break;
-                    }
-                    View view = viewArr[i3];
-                    if (view != null) {
-                        Page page = (Page) view;
-                        if (page.currentTab == 0) {
-                            z2 = page.textSelectionHelper.movingHandle;
-                            break;
-                        }
-                    }
-                    i3++;
-                }
-                if (z2) {
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (MessagePreviewView.this.isTouchedHandle()) {
                     return false;
                 }
-                return onTouchEventInternal(motionEvent);
+                return super.onTouchEvent(motionEvent);
             }
         };
         TabsView tabsView = new TabsView(context, resourcesDelegate);
@@ -5195,55 +4133,48 @@ public abstract class MessagePreviewView extends FrameLayout {
         int size = 0;
         for (int i3 = 0; i3 < 3; i3++) {
             if (i3 == 0 && messagePreviewParams.replyMessage != null) {
-                this.tabsView.tabs.add(new TabsView.Tab(0, LocaleController.getString(R.string.MessageOptionsReply)));
+                this.tabsView.addTab(0, LocaleController.getString(R.string.MessageOptionsReply));
             } else if (i3 != 1 || messagePreviewParams.forwardMessages == null || z) {
                 if (i3 == 2 && messagePreviewParams.linkMessage != null && !z) {
-                    this.tabsView.tabs.add(new TabsView.Tab(2, LocaleController.getString(R.string.MessageOptionsLink)));
+                    this.tabsView.addTab(2, LocaleController.getString(R.string.MessageOptionsLink));
                 }
             } else {
-                this.tabsView.tabs.add(new TabsView.Tab(1, LocaleController.getString(R.string.MessageOptionsForward)));
+                this.tabsView.addTab(1, LocaleController.getString(R.string.MessageOptionsForward));
             }
             if (i3 == i2) {
                 size = this.tabsView.tabs.size() - 1;
             }
         }
-        setAdapter(new ViewPagerFixed.Adapter() {
+        this.viewPager.setAdapter(new ViewPagerFixed.Adapter() {
             @Override
-            public final void bindView(View view, int i4, int i5) {
-                Page page = (Page) view;
-                page.updateMessages();
-                page.updateSubtitle(false);
+            public void bindView(View view, int i4, int i5) {
+                ((Page) view).bind();
             }
 
             @Override
-            public final View createView(int i4) {
-                return new Page(anonymousClass64, context, i4);
+            public View createView(int i4) {
+                return MessagePreviewView.this.new Page(context, i4);
             }
 
             @Override
-            public final int getItemCount() {
-                return anonymousClass64.tabsView.tabs.size();
+            public int getItemCount() {
+                return MessagePreviewView.this.tabsView.tabs.size();
             }
 
             @Override
-            public final int getItemViewType(int i4) {
-                return ((TabsView.Tab) anonymousClass64.tabsView.tabs.get(i4)).id;
+            public int getItemViewType(int i4) {
+                return MessagePreviewView.this.tabsView.tabs.get(i4).id;
             }
         });
-        setPosition(size);
+        this.viewPager.setPosition(size);
         this.tabsView.setSelectedTab(size);
         addView(this.tabsView, LayoutHelper.createFrame(-1, 66, 87));
         addView(this.viewPager, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, 66.0f));
-        final ChatActivity.AnonymousClass64 anonymousClass65 = (ChatActivity.AnonymousClass64) this;
-        this.tabsView.setOnTabClick(new DialogCell$$ExternalSyntheticLambda6(anonymousClass65, 20));
+        this.tabsView.setOnTabClick(new PasscodeView$$ExternalSyntheticLambda8(this, 8));
         setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view, MotionEvent motionEvent) {
-                ChatActivity.AnonymousClass64 anonymousClass66 = anonymousClass65;
-                if (motionEvent.getAction() == 1 && !z) {
-                    anonymousClass66.dismiss(true);
-                }
-                return true;
+                return this.f$0.lambda$new$1(z, view, motionEvent);
             }
         });
         this.showing = true;
@@ -5251,13 +4182,56 @@ public abstract class MessagePreviewView extends FrameLayout {
         setScaleX(0.95f);
         setScaleY(0.95f);
         animate().alpha(1.0f).scaleX(1.0f).setDuration(250L).setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR).scaleY(1.0f);
+        updateColors();
     }
 
-    public final void dismiss(boolean z) {
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public void lambda$new$0(Integer num) {
+        if (this.tabsView.tabs.get(this.viewPager.getCurrentPosition()).id == num.intValue()) {
+            return;
+        }
+        int i = 0;
+        for (int i2 = 0; i2 < this.tabsView.tabs.size(); i2++) {
+            if (this.tabsView.tabs.get(i2).id == num.intValue()) {
+                i = i2;
+                break;
+            }
+        }
+        if (this.viewPager.getCurrentPosition() == i) {
+            return;
+        }
+        this.viewPager.scrollToPosition(i);
+    }
+
+    public boolean lambda$new$1(boolean z, View view, MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 1 && !z) {
+            dismiss(true);
+        }
+        return true;
+    }
+
+    private void updateColors() {
+    }
+
+    public void didSendPressed() {
+    }
+
+    public void dismiss(final boolean z) {
         if (this.showing) {
-            this.showing = false;
-            animate().alpha(0.0f).scaleX(0.95f).scaleY(0.95f).setDuration(250L).setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR).setListener(new ChatActivity.AnonymousClass77(28, this, z));
             int i = 0;
+            this.showing = false;
+            animate().alpha(0.0f).scaleX(0.95f).scaleY(0.95f).setDuration(250L).setInterpolator(ChatListItemAnimator.DEFAULT_INTERPOLATOR).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (MessagePreviewView.this.getParent() != null) {
+                        ((ViewGroup) MessagePreviewView.this.getParent()).removeView(MessagePreviewView.this);
+                    }
+                    MessagePreviewView.this.onFullDismiss(z);
+                }
+            });
             while (true) {
                 View[] viewArr = this.viewPager.viewPages;
                 if (i >= viewArr.length) {
@@ -5273,42 +4247,54 @@ public abstract class MessagePreviewView extends FrameLayout {
                 }
                 i++;
             }
-            ChatActivity.AnonymousClass64 anonymousClass64 = (ChatActivity.AnonymousClass64) this;
-            ChatActivity chatActivity = ChatActivity.this;
-            chatActivity.forwardingPreviewView = null;
-            chatActivity.checkShowBlur();
-            MessagePreviewParams messagePreviewParams = chatActivity.messagePreviewParams;
-            if (messagePreviewParams != null) {
-                if (chatActivity.replyingQuote == null) {
-                    chatActivity.replyingQuote = messagePreviewParams.quote;
-                }
-                if (messagePreviewParams.quote == null) {
-                    chatActivity.replyingQuote = null;
-                }
-                ChatActivity.ReplyQuote replyQuote = chatActivity.replyingQuote;
-                if (replyQuote != null) {
-                    replyQuote.outdated = false;
-                    replyQuote.start = messagePreviewParams.quoteStart;
-                    replyQuote.end = messagePreviewParams.quoteEnd;
-                    replyQuote.update();
-                    if (chatActivity.fieldPanelShown == 2) {
-                        chatActivity.showFieldPanelForReplyQuote(chatActivity.replyingMessageObject, chatActivity.replyingQuote);
-                    }
-                } else {
-                    ArrayList<MessageObject> arrayList = new ArrayList<>();
-                    MessagePreviewParams.Messages messages = chatActivity.messagePreviewParams.forwardMessages;
-                    if (messages != null) {
-                        messages.getSelectedMessages(arrayList);
-                    }
-                    chatActivity.fallbackFieldPanel();
-                }
-            }
-            if (chatActivity.keyboardWasVisible && z) {
-                AndroidUtilities.runOnUIThread(new ChatActivity$64$$ExternalSyntheticLambda0(anonymousClass64, 1), 50L);
-                chatActivity.keyboardWasVisible = false;
-            }
-            AndroidUtilities.requestAdjustResize(chatActivity.getParentActivity(), ((BaseFragment) chatActivity).classGuid);
+            onDismiss(z);
         }
+    }
+
+    public boolean isShowing() {
+        return this.showing;
+    }
+
+    public boolean isTouchedHandle() {
+        int i = 0;
+        while (true) {
+            View[] viewArr = this.viewPager.viewPages;
+            if (i >= viewArr.length) {
+                return false;
+            }
+            View view = viewArr[i];
+            if (view != null) {
+                Page page = (Page) view;
+                if (page.currentTab == 0) {
+                    return page.textSelectionHelper.isTouched();
+                }
+            }
+            i++;
+        }
+    }
+
+    public void onDismiss(boolean z) {
+    }
+
+    public void onFullDismiss(boolean z) {
+    }
+
+    public void onQuoteSelectedPart() {
+    }
+
+    public void removeForward() {
+    }
+
+    public void removeLink() {
+    }
+
+    public void removeQuote() {
+    }
+
+    public void removeReply() {
+    }
+
+    public void selectAnotherChat(boolean z) {
     }
 
     public void setSendAsPeer(TLRPC.Peer peer) {
@@ -5327,6 +4313,132 @@ public abstract class MessagePreviewView extends FrameLayout {
                 }
             }
             i++;
+        }
+    }
+
+    public void updateAll() {
+        int i = 0;
+        while (true) {
+            View[] viewArr = this.viewPager.viewPages;
+            if (i >= viewArr.length) {
+                return;
+            }
+            View view = viewArr[i];
+            if (view instanceof Page) {
+                Page page = (Page) view;
+                int i2 = page.currentTab;
+                if (i2 == 1) {
+                    page.messages = this.messagePreviewParams.forwardMessages;
+                } else if (i2 == 0) {
+                    page.messages = this.messagePreviewParams.replyMessage;
+                } else if (i2 == 2) {
+                    page.messages = this.messagePreviewParams.linkMessage;
+                }
+                page.updateMessages();
+                if (page.currentTab == 0) {
+                    if (!this.showOutdatedQuote || this.messagePreviewParams.isSecret) {
+                        this.messagePreviewParams.quote = null;
+                        page.textSelectionHelper.clear();
+                        page.switchToQuote(false, true);
+                    } else {
+                        MessageObject replyMessage = page.getReplyMessage(page.textSelectionHelper.getSelectedCell() != null ? ((ChatMessageCell) page.textSelectionHelper.getSelectedCell()).getMessageObject() : null);
+                        if (replyMessage != null) {
+                            MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
+                            messagePreviewParams.quoteStart = 0;
+                            messagePreviewParams.quoteEnd = Math.min(MessagesController.getInstance(this.currentAccount).quoteLengthMax, replyMessage.messageOwner.message.length());
+                            MessagePreviewParams messagePreviewParams2 = this.messagePreviewParams;
+                            messagePreviewParams2.quote = ChatActivity.ReplyQuote.from(replyMessage, messagePreviewParams2.quoteStart, messagePreviewParams2.quoteEnd);
+                            View replyMessageCell = page.getReplyMessageCell();
+                            if (replyMessageCell instanceof ChatMessageCell) {
+                                MessagePreviewParams messagePreviewParams3 = this.messagePreviewParams;
+                                page.textSelectionHelper.select((ChatMessageCell) replyMessageCell, messagePreviewParams3.quoteStart, messagePreviewParams3.quoteEnd);
+                            }
+                        }
+                    }
+                    page.updateSubtitle(true);
+                }
+                ToggleButton toggleButton = page.changeSizeBtn;
+                if (toggleButton != null) {
+                    toggleButton.animate().alpha(this.messagePreviewParams.hasMedia ? 1.0f : 0.5f).start();
+                }
+            }
+            i++;
+        }
+    }
+
+    public void updateLink() {
+        int i = 0;
+        while (true) {
+            View[] viewArr = this.viewPager.viewPages;
+            if (i >= viewArr.length) {
+                return;
+            }
+            View view = viewArr[i];
+            if (view != null) {
+                Page page = (Page) view;
+                if (page.currentTab == 2) {
+                    FrameLayout frameLayout = page.changeSizeBtnContainer;
+                    MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
+                    frameLayout.setVisibility((!messagePreviewParams.singleLink || messagePreviewParams.hasMedia) ? 0 : 8);
+                    page.changeSizeBtn.setVisibility(this.messagePreviewParams.isVideo ? 4 : 0);
+                    page.videoChangeSizeBtn.setVisibility(this.messagePreviewParams.isVideo ? 0 : 4);
+                    page.changeSizeBtnContainer.animate().alpha(this.messagePreviewParams.hasMedia ? 1.0f : 0.5f).start();
+                    page.changeSizeBtn.setState(this.messagePreviewParams.webpageSmall, true);
+                    page.videoChangeSizeBtn.setState(this.messagePreviewParams.webpageSmall, true);
+                    page.changePositionBtn.setState(!this.messagePreviewParams.webpageTop, true);
+                    page.updateMessages();
+                }
+            }
+            i++;
+        }
+    }
+
+    public interface ResourcesDelegate extends Theme.ResourcesProvider {
+        @Override
+        void applyServiceShaderMatrix(int i, int i2, float f, float f2);
+
+        @Override
+        ColorFilter getAnimatedEmojiColorFilter();
+
+        @Override
+        int getColor(int i);
+
+        @Override
+        int getColorOrDefault(int i);
+
+        @Override
+        int getCurrentColor(int i);
+
+        @Override
+        Drawable getDrawable(String str);
+
+        @Override
+        Paint getPaint(String str);
+
+        Drawable getWallpaperDrawable();
+
+        @Override
+        boolean hasGradientService();
+
+        @Override
+        boolean isDark();
+
+        boolean isWallpaperMotion();
+
+        @Override
+        void setAnimatedColor(int i, int i2);
+
+        public abstract class CC {
+            public static Drawable $default$getDrawable(ResourcesDelegate resourcesDelegate, String str) {
+                return null;
+            }
+
+            public static boolean $default$hasGradientService(ResourcesDelegate resourcesDelegate) {
+                return false;
+            }
+
+            public static void $default$setAnimatedColor(ResourcesDelegate resourcesDelegate, int i, int i2) {
+            }
         }
     }
 }

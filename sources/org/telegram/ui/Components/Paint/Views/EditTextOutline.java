@@ -19,24 +19,23 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 
 public class EditTextOutline extends EditTextBoldCursor {
     public RectF framePadding;
-    public boolean isFrameDirty;
-    public float lastFrameRoundRadius;
-    public RectF[] lines;
-    public Bitmap mCache;
-    public final Canvas mCanvas;
-    public int mFrameColor;
-    public int mStrokeColor;
-    public float mStrokeWidth;
-    public boolean mUpdateCachedBitmap;
-    public final Paint paint;
-    public final CornerPath path;
-    public final TextPaint textPaint;
+    private boolean isFrameDirty;
+    private float lastFrameRoundRadius;
+    private RectF[] lines;
+    private Bitmap mCache;
+    private Canvas mCanvas;
+    private int mFrameColor;
+    private int mStrokeColor;
+    private float mStrokeWidth;
+    private boolean mUpdateCachedBitmap;
+    private Paint paint;
+    private CornerPath path;
+    private TextPaint textPaint;
 
     public EditTextOutline(Context context) {
         super(context);
         this.mCanvas = new Canvas();
-        TextPaint textPaint = new TextPaint(1);
-        this.textPaint = textPaint;
+        this.textPaint = new TextPaint(1);
         this.paint = new Paint(1);
         this.path = new CornerPath();
         this.mStrokeColor = 0;
@@ -44,7 +43,7 @@ public class EditTextOutline extends EditTextBoldCursor {
         this.mUpdateCachedBitmap = true;
         this.isFrameDirty = true;
         setFrameRoundRadius(AndroidUtilities.dp(16.0f));
-        textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        this.textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
     }
 
     private void setFrameRoundRadius(float f) {
@@ -56,46 +55,42 @@ public class EditTextOutline extends EditTextBoldCursor {
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         boolean z;
         int i = 0;
         if (this.mCache != null && this.mStrokeColor != 0) {
-            boolean z2 = this.mUpdateCachedBitmap;
-            TextPaint textPaint = this.textPaint;
-            if (z2) {
+            if (this.mUpdateCachedBitmap) {
                 int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
                 int measuredHeight = getMeasuredHeight();
                 Editable text = getText();
-                Canvas canvas2 = this.mCanvas;
-                canvas2.setBitmap(this.mCache);
-                canvas2.drawColor(0, PorterDuff.Mode.CLEAR);
+                this.mCanvas.setBitmap(this.mCache);
+                this.mCanvas.drawColor(0, PorterDuff.Mode.CLEAR);
                 float fCeil = this.mStrokeWidth;
                 if (fCeil <= 0.0f) {
                     fCeil = (float) Math.ceil(getTextSize() / 11.5f);
                 }
-                textPaint.setStrokeWidth(fCeil);
-                textPaint.setColor(this.mStrokeColor);
-                textPaint.setTextSize(getTextSize());
-                textPaint.setTypeface(getTypeface());
-                textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+                this.textPaint.setStrokeWidth(fCeil);
+                this.textPaint.setColor(this.mStrokeColor);
+                this.textPaint.setTextSize(getTextSize());
+                this.textPaint.setTypeface(getTypeface());
+                this.textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
                 if (getLayout() != null) {
                     alignment = getLayout().getAlignment();
                 }
-                StaticLayout staticLayout = new StaticLayout(text, textPaint, measuredWidth, alignment, 1.0f, 0.0f, true);
-                canvas2.save();
-                canvas2.translate(getPaddingLeft(), ((((measuredHeight - getPaddingTop()) - getPaddingBottom()) - staticLayout.getHeight()) / 2.0f) + getPaddingTop());
-                staticLayout.draw(canvas2);
-                canvas2.restore();
+                StaticLayout staticLayout = new StaticLayout(text, this.textPaint, measuredWidth, alignment, 1.0f, 0.0f, true);
+                this.mCanvas.save();
+                this.mCanvas.translate(getPaddingLeft(), ((((measuredHeight - getPaddingTop()) - getPaddingBottom()) - staticLayout.getHeight()) / 2.0f) + getPaddingTop());
+                staticLayout.draw(this.mCanvas);
+                this.mCanvas.restore();
                 this.mUpdateCachedBitmap = false;
             }
-            canvas.drawBitmap(this.mCache, 0.0f, 0.0f, textPaint);
+            canvas.drawBitmap(this.mCache, 0.0f, 0.0f, this.textPaint);
         }
         if (this.mFrameColor != 0) {
             canvas.save();
             canvas.translate(getPaddingLeft(), getPaddingTop());
-            Paint paint = this.paint;
-            paint.setColor(this.mFrameColor);
+            this.paint.setColor(this.mFrameColor);
             Layout layout = getLayout();
             if (layout == null) {
                 super.onDraw(canvas);
@@ -158,8 +153,7 @@ public class EditTextOutline extends EditTextBoldCursor {
                 rectF9.right = measuredWidth2 - rectF10.right;
                 rectF10.bottom = getMeasuredHeight() - this.framePadding.bottom;
             }
-            CornerPath cornerPath = this.path;
-            cornerPath.rewind();
+            this.path.rewind();
             float textSize = getTextSize() / 3.0f;
             float f = 1.5f * textSize;
             int i5 = 1;
@@ -213,13 +207,13 @@ public class EditTextOutline extends EditTextBoldCursor {
                     break;
                 }
                 if (rectFArr6[i].width() != 0.0f) {
-                    cornerPath.addRect(this.lines[i], Path.Direction.CW);
+                    this.path.addRect(this.lines[i], Path.Direction.CW);
                 }
                 i++;
             }
-            cornerPath.closeRects();
+            this.path.closeRects();
             setFrameRoundRadius(textSize);
-            canvas.drawPath(cornerPath, paint);
+            canvas.drawPath(this.path, this.paint);
             canvas.restore();
         } else {
             this.framePadding = null;
@@ -228,7 +222,7 @@ public class EditTextOutline extends EditTextBoldCursor {
     }
 
     @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+    public void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         if (i <= 0 || i2 <= 0) {
             this.mCache = null;
@@ -244,10 +238,15 @@ public class EditTextOutline extends EditTextBoldCursor {
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
         super.onTextChanged(charSequence, i, i2, i3);
         this.mUpdateCachedBitmap = true;
         this.isFrameDirty = true;
+    }
+
+    @Override
+    public boolean onTextContextMenuItem(int i) {
+        return super.onTextContextMenuItem(i);
     }
 
     public void setFrameColor(int i) {

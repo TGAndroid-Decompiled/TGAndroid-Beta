@@ -12,11 +12,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.MotionPhotoDrawable;
 import org.telegram.ui.Components.Premium.VideoScreenPreview;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda31;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
-import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
 
 public final class CollageLayoutView2$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
@@ -69,31 +66,11 @@ public final class CollageLayoutView2$$ExternalSyntheticLambda0 implements Runna
                         frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 23, 47.0f, 8.0f, 24.0f, 8.0f));
                         ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(collageLayoutView2.containerView, collageLayoutView2.resourcesProvider, collageLayoutView2);
                         if (collageLayoutView2.longPressedPart.content.isVideo) {
-                            SliderView sliderView = new SliderView(collageLayoutView2.getContext(), 0);
-                            sliderView.minVolume = 0.0f;
-                            sliderView.maxVolume = 1.5f;
-                            sliderView.setValue(collageLayoutView2.longPressedPart.content.videoVolume);
-                            sliderView.onValueChange = new VoIPFragment$$ExternalSyntheticLambda7(collageLayoutView2, 12);
-                            sliderView.fixWidth = AndroidUtilities.dp(220.0f);
-                            itemOptionsMakeOptions.addView(sliderView);
-                            itemOptionsMakeOptions.addSpaceGap$1();
+                            SliderView onValueChange = new SliderView(collageLayoutView2.getContext(), 0).setMinMax(0.0f, 1.5f).setValue(collageLayoutView2.longPressedPart.content.videoVolume).setOnValueChange(new HintView2$$ExternalSyntheticLambda0(collageLayoutView2, 2));
+                            onValueChange.fixWidth = AndroidUtilities.dp(220.0f);
+                            itemOptionsMakeOptions.addView(onValueChange).addSpaceGap();
                         }
-                        itemOptionsMakeOptions.fixedWidthDp = 220;
-                        itemOptionsMakeOptions.add(R.drawable.menu_camera_retake, LocaleController.getString(R.string.StoreCollageRetake), new CollageLayoutView2$$ExternalSyntheticLambda0(collageLayoutView2, 4), false);
-                        itemOptionsMakeOptions.add(R.drawable.msg_delete, LocaleController.getString(R.string.Delete), new CollageLayoutView2$$ExternalSyntheticLambda0(collageLayoutView2, 5), true);
-                        itemOptionsMakeOptions.addSpaceGap$1();
-                        itemOptionsMakeOptions.addView(frameLayout, LayoutHelper.createLinear(220, -2));
-                        itemOptionsMakeOptions.dismissListener = new VoIPFragment$$ExternalSyntheticLambda31(6);
-                        itemOptionsMakeOptions.gravity = 1;
-                        itemOptionsMakeOptions.allowCenter = true;
-                        itemOptionsMakeOptions.blur = true;
-                        itemOptionsMakeOptions.blurForMenu = false;
-                        int iDp = AndroidUtilities.dp(12.0f);
-                        int iDp2 = AndroidUtilities.dp(10.0f);
-                        itemOptionsMakeOptions.scrimViewRoundRadius = iDp;
-                        itemOptionsMakeOptions.scrimViewPadding = iDp2;
-                        itemOptionsMakeOptions.dismissListener = new CollageLayoutView2$$ExternalSyntheticLambda0(collageLayoutView2, 6);
-                        itemOptionsMakeOptions.show();
+                        itemOptionsMakeOptions.setFixedWidth(220).add(R.drawable.menu_camera_retake, LocaleController.getString(R.string.StoreCollageRetake), new CollageLayoutView2$$ExternalSyntheticLambda0(collageLayoutView2, 4)).add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.Delete), true, (Runnable) new CollageLayoutView2$$ExternalSyntheticLambda0(collageLayoutView2, 5)).addSpaceGap().addView(frameLayout, LayoutHelper.createLinear(220, -2)).setOnDismiss(new GiftSheet$$ExternalSyntheticLambda2(25)).setGravity(1).allowCenter(true).setBlur(true, false).setRoundRadius(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(10.0f)).setOnDismiss(new CollageLayoutView2$$ExternalSyntheticLambda0(collageLayoutView2, 6)).show();
                         try {
                             collageLayoutView2.performHapticFeedback(0, 1);
                         } catch (Exception unused) {
@@ -165,7 +142,7 @@ public final class CollageLayoutView2$$ExternalSyntheticLambda0 implements Runna
                         if (Math.abs((part4.pendingSeek >= 0 ? part4.pendingSeek : part4.videoPlayer.getCurrentPosition()) - jClamp2) > 450 && part4.pendingSeek < 0) {
                             VideoScreenPreview.AnonymousClass3 anonymousClass8 = part4.videoPlayer;
                             part4.pendingSeek = jClamp2;
-                            anonymousClass8.seekTo(jClamp2, collageLayoutView4.fastSeek, new VoIPFragment$12$$ExternalSyntheticLambda0(part4, 1));
+                            anonymousClass8.seekTo(jClamp2, collageLayoutView4.fastSeek, new PreviewView$$ExternalSyntheticLambda12(part4, 3));
                         }
                     }
                 }
@@ -226,7 +203,7 @@ public final class CollageLayoutView2$$ExternalSyntheticLambda0 implements Runna
                         collageLayout = null;
                     }
                     if (collageLayout.parts.size() <= 1) {
-                        collageLayoutView6.clear$2();
+                        collageLayoutView6.clear();
                         collageLayoutView6.invalidate();
                     }
                     collageLayoutView6.setLayout(collageLayout);
@@ -242,7 +219,7 @@ public final class CollageLayoutView2$$ExternalSyntheticLambda0 implements Runna
                     if (collageLayout.parts.size() > 1) {
                         CollageLayoutButton collageLayoutButton = storyRecorder.collageButton;
                         storyRecorder.lastCollageLayout = collageLayout;
-                        collageLayoutButton.setIcon(new MotionPhotoDrawable(collageLayout, false), true);
+                        collageLayoutButton.setIcon(new CollageLayoutButton.CollageLayoutDrawable(collageLayout, false), true);
                         storyRecorder.collageButton.setSelected(true, true);
                     } else {
                         storyRecorder.collageButton.setSelected(false, true);

@@ -15,20 +15,18 @@ import org.telegram.ui.Components.RadioButton;
 public final class RadioColorCell extends FrameLayout {
     public int heightDp;
     public final RadioButton radioButton;
+    public final Theme.ResourcesProvider resourcesProvider;
     public final TextView text2View;
     public final TextView textView;
 
     public RadioColorCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.heightDp = 50;
+        this.resourcesProvider = resourcesProvider;
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        int color = Theme.getColor(Theme.key_dialogRadioBackground, resourcesProvider);
-        int color2 = Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider);
-        radioButton.color = color;
-        radioButton.checkedColor = color2;
-        radioButton.invalidate();
+        radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground, resourcesProvider), Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider));
         boolean z = LocaleController.isRTL;
         addView(radioButton, LayoutHelper.createFrame(22, 22.0f, (z ? 5 : 3) | 48, z ? 0 : 18, 14.0f, z ? 18 : 0, 0.0f));
         TextView textView = new TextView(context);
@@ -54,7 +52,7 @@ public final class RadioColorCell extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.radioButton.isChecked);
+        accessibilityNodeInfo.setChecked(this.radioButton.isChecked());
     }
 
     @Override
@@ -72,13 +70,6 @@ public final class RadioColorCell extends FrameLayout {
             measuredHeight = 0;
         }
         super.onMeasure(iMakeMeasureSpec, View.MeasureSpec.makeMeasureSpec(iDp + measuredHeight, 1073741824));
-    }
-
-    public final void setCheckColor(int i, int i2) {
-        RadioButton radioButton = this.radioButton;
-        radioButton.color = i;
-        radioButton.checkedColor = i2;
-        radioButton.invalidate();
     }
 
     public final void setTextAndValue(CharSequence charSequence, boolean z) {

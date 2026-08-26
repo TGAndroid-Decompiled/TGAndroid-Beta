@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,12 +17,11 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.CacheControlActivity;
 
-public final class DownloadsInfoBottomSheet extends BottomSheet {
-    public static final int $r8$clinit = 0;
-
-    public DownloadsInfoBottomSheet(Context context, BaseFragment baseFragment) {
-        super(context, null, false, false);
+public class DownloadsInfoBottomSheet extends BottomSheet {
+    public DownloadsInfoBottomSheet(Context context, BaseFragment baseFragment, boolean z) {
+        super(context, z, false, null);
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
         int i = Theme.key_windowBackgroundWhite;
@@ -46,10 +46,10 @@ public final class DownloadsInfoBottomSheet extends BottomSheet {
             public final void onClick(View view) {
                 switch (i2) {
                     case 0:
-                        this.f$0.lambda$new$0$43(view);
+                        this.f$0.lambda$new$0(view);
                         break;
                     default:
-                        this.f$0.lambda$new$2$21();
+                        this.f$0.lambda$new$2(view);
                         break;
                 }
             }
@@ -106,7 +106,7 @@ public final class DownloadsInfoBottomSheet extends BottomSheet {
         NestedScrollView nestedScrollView = new NestedScrollView(context, null);
         nestedScrollView.addView(frameLayout);
         setCustomView(nestedScrollView);
-        textView3.setOnClickListener(new ItemOptions$$ExternalSyntheticLambda7(22, this, baseFragment));
+        textView3.setOnClickListener(new AIEditorAlert$$ExternalSyntheticLambda16(25, this, baseFragment));
         final int i5 = 1;
         textView4.setOnClickListener(new View.OnClickListener(this) {
             public final DownloadsInfoBottomSheet f$0;
@@ -119,18 +119,38 @@ public final class DownloadsInfoBottomSheet extends BottomSheet {
             public final void onClick(View view) {
                 switch (i5) {
                     case 0:
-                        this.f$0.lambda$new$0$43(view);
+                        this.f$0.lambda$new$0(view);
                         break;
                     default:
-                        this.f$0.lambda$new$2$21();
+                        this.f$0.lambda$new$2(view);
                         break;
                 }
             }
         });
     }
 
-    public final void lambda$new$2$21() {
+    public void lambda$new$0(View view) {
+        lambda$showGiftOfferSheet$15();
+    }
+
+    public void lambda$new$1(BaseFragment baseFragment, View view) {
+        lambda$showGiftOfferSheet$15();
+        baseFragment.presentFragment(new CacheControlActivity());
+    }
+
+    public void lambda$new$2(View view) {
         lambda$showGiftOfferSheet$15();
         DownloadController.getInstance(this.currentAccount).clearRecentDownloadedFiles();
+    }
+
+    public static void show(Activity activity, BaseFragment baseFragment) {
+        if (baseFragment == null || activity == null) {
+            return;
+        }
+        new DownloadsInfoBottomSheet(activity, baseFragment, false).show();
+    }
+
+    @Override
+    public void setLastVisible(boolean z) {
     }
 }

@@ -1,6 +1,6 @@
 package kotlinx.coroutines.flow.internal;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -71,9 +71,9 @@ public final class SafeCollector extends ContinuationImpl implements FlowCollect
 
     @Override
     public final Object invokeSuspend(Object obj) {
-        Throwable thM139exceptionOrNullimpl = Result.m139exceptionOrNullimpl(obj);
-        if (thM139exceptionOrNullimpl != null) {
-            this.lastEmissionContext = new DownstreamExceptionContext(thM139exceptionOrNullimpl, getContext());
+        Throwable thM144exceptionOrNullimpl = Result.m144exceptionOrNullimpl(obj);
+        if (thM144exceptionOrNullimpl != null) {
+            this.lastEmissionContext = new DownstreamExceptionContext(thM144exceptionOrNullimpl, getContext());
         }
         Continuation continuation = this.completion_;
         if (continuation != null) {
@@ -160,7 +160,7 @@ public final class SafeCollector extends ContinuationImpl implements FlowCollect
                                 strSubstring = str3.substring(length4);
                                 Intrinsics.checkNotNullExpressionValue(strSubstring, "substring(...)");
                             } else {
-                                throw new IllegalArgumentException(SurfaceContainer$$ExternalSyntheticOutline0.m(iIntValue, "Requested character count ", " is less than zero.").toString());
+                                throw new IllegalArgumentException(Fragment$$ExternalSyntheticOutline0.m(iIntValue, "Requested character count ", " is less than zero.").toString());
                             }
                         }
                         if (strSubstring != null) {

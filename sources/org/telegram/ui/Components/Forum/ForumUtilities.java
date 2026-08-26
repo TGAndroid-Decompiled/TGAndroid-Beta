@@ -28,17 +28,18 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Business.ChatbotSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$26$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LetterDrawable;
+import org.telegram.ui.Gifts.AuctionBidSheet$$ExternalSyntheticLambda10;
 import org.telegram.ui.TopicsFragment;
-import org.telegram.ui.TopicsFragment$$ExternalSyntheticLambda8;
 
 public abstract class ForumUtilities {
     public static final int $r8$clinit = 0;
@@ -101,7 +102,7 @@ public abstract class ForumUtilities {
         }
         if (topicKey.dialogId > 0) {
             if (UserObject.isBotForum(chatActivity.getMessagesController().getUser(Long.valueOf(topicKey.dialogId)))) {
-                ArrayList arrayList = new ArrayList();
+                ArrayList<MessageObject> arrayList = new ArrayList<>();
                 arrayList.add(new MessageObject(chatActivity.getCurrentAccount(), tL_forumTopicFindTopic.topicStartMessage, false, false));
                 chatActivity.setThreadMessages(arrayList, null, tL_forumTopicFindTopic.id, tL_forumTopicFindTopic.read_inbox_max_id, tL_forumTopicFindTopic.read_outbox_max_id, tL_forumTopicFindTopic);
                 chatActivity.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
@@ -114,19 +115,11 @@ public abstract class ForumUtilities {
             return;
         }
         if (!ChatObject.isMonoForum(chat)) {
-            ArrayList arrayList2 = new ArrayList();
+            ArrayList<MessageObject> arrayList2 = new ArrayList<>();
             arrayList2.add(new MessageObject(chatActivity.getCurrentAccount(), tL_forumTopicFindTopic.topicStartMessage, false, false));
             chatActivity.setThreadMessages(arrayList2, chat, tL_forumTopicFindTopic.id, tL_forumTopicFindTopic.read_inbox_max_id, tL_forumTopicFindTopic.read_outbox_max_id, tL_forumTopicFindTopic);
         } else if (ChatObject.canManageMonoForum(UserConfig.selectedAccount, chat)) {
-            int i = tL_forumTopicFindTopic.read_inbox_max_id;
-            int i2 = tL_forumTopicFindTopic.read_outbox_max_id;
-            chatActivity.threadMaxInboxReadId = i;
-            chatActivity.threadMaxOutboxReadId = i2;
-            chatActivity.replyMaxReadId = Math.max(1, i);
-            chatActivity.threadMessageId = DialogObject.getPeerDialogId(tL_forumTopicFindTopic.from_id);
-            chatActivity.updatePinnedTopicStarterMessage();
-            chatActivity.updateTopPanel(false);
-            chatActivity.updateBottomOverlay(false);
+            chatActivity.setMonoForumThreadMessages(tL_forumTopicFindTopic.read_inbox_max_id, tL_forumTopicFindTopic.read_outbox_max_id, tL_forumTopicFindTopic);
         }
         chatActivity.getMessagesController().setForumLastTopicId(-topicKey.dialogId, topicKey.topicId);
     }
@@ -171,7 +164,7 @@ public abstract class ForumUtilities {
         if (message == null) {
             return null;
         }
-        ArrayList arrayList = new ArrayList();
+        ArrayList<MessageObject> arrayList = new ArrayList<>();
         arrayList.add(new MessageObject(baseFragment.getCurrentAccount(), message, false, false));
         chatActivity.setThreadMessages(arrayList, chat, tL_forumTopic2.id, tL_forumTopic2.read_inbox_max_id, tL_forumTopic2.read_outbox_max_id, tL_forumTopic2);
         if (i != 0) {
@@ -211,15 +204,14 @@ public abstract class ForumUtilities {
             spannableStringBuilder.append((CharSequence) " ");
             CombinedDrawable combinedDrawableCreateTopicDrawable = createTopicDrawable(tL_forumTopic);
             if (drawableArr != null) {
-                drawableArr[0] = combinedDrawableCreateTopicDrawable.background;
+                drawableArr[0] = combinedDrawableCreateTopicDrawable.getBackgroundDrawable();
             }
             combinedDrawableCreateTopicDrawable.setBounds(0, 0, (int) (combinedDrawableCreateTopicDrawable.getIntrinsicWidth() * 0.65f), (int) (combinedDrawableCreateTopicDrawable.getIntrinsicHeight() * 0.65f));
-            Drawable drawable = combinedDrawableCreateTopicDrawable.icon;
-            if (drawable instanceof LetterDrawable) {
-                ((LetterDrawable) drawable).scale = 0.7f;
+            if (combinedDrawableCreateTopicDrawable.getIcon() instanceof LetterDrawable) {
+                ((LetterDrawable) combinedDrawableCreateTopicDrawable.getIcon()).scale = 0.7f;
             }
             if (textPaint != null) {
-                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(0, combinedDrawableCreateTopicDrawable);
+                ColoredImageSpan coloredImageSpan = new ColoredImageSpan(combinedDrawableCreateTopicDrawable);
                 coloredImageSpan.setSize((int) (Math.abs(textPaint.getFontMetrics().ascent) + Math.abs(textPaint.getFontMetrics().descent)));
                 spannableStringBuilder.setSpan(coloredImageSpan, 0, 1, 33);
             } else {
@@ -305,13 +297,13 @@ public abstract class ForumUtilities {
         }
     }
 
-    public static void switchAllFragmentsInStackToForum(long j, ActionBarLayout actionBarLayout) {
-        BaseFragment lastFragment = actionBarLayout.getLastFragment();
+    public static void switchAllFragmentsInStackToForum(long j, INavigationLayout iNavigationLayout) {
+        BaseFragment lastFragment = ((ActionBarLayout) iNavigationLayout).getLastFragment();
         if (lastFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) lastFragment;
             if ((-chatActivity.getDialogId()) == j && chatActivity.getMessagesController().getChat(Long.valueOf(j)).forum && chatActivity.getParentLayout() != null) {
                 if (((ActionBarLayout) chatActivity.getParentLayout()).checkTransitionAnimation()) {
-                    AndroidUtilities.runOnUIThread(new ChatActivity$26$$ExternalSyntheticLambda2(chatActivity, 10), 500L);
+                    AndroidUtilities.runOnUIThread(new AuctionBidSheet$$ExternalSyntheticLambda10(chatActivity, 1), 500L);
                 } else {
                     TopicsFragment.prepareToSwitchAnimation(chatActivity);
                 }
@@ -319,29 +311,24 @@ public abstract class ForumUtilities {
         }
         if (lastFragment instanceof TopicsFragment) {
             TopicsFragment topicsFragment = (TopicsFragment) lastFragment;
-            if ((-(-topicsFragment.chatId)) != j || topicsFragment.getMessagesController().getChat(Long.valueOf(j)).forum) {
+            if ((-topicsFragment.getDialogId()) != j || topicsFragment.getMessagesController().getChat(Long.valueOf(j)).forum) {
                 return;
             }
-            if (topicsFragment.getParentLayout() != null && ((ActionBarLayout) topicsFragment.getParentLayout()).checkTransitionAnimation()) {
-                AndroidUtilities.runOnUIThread(new TopicsFragment$$ExternalSyntheticLambda8(topicsFragment, 1), 500L);
-                return;
+            if (topicsFragment.getParentLayout() == null || !((ActionBarLayout) topicsFragment.getParentLayout()).checkTransitionAnimation()) {
+                topicsFragment.switchToChat(true);
+            } else {
+                AndroidUtilities.runOnUIThread(new ChatbotSheet$$ExternalSyntheticLambda0(topicsFragment, 16), 500L);
             }
-            topicsFragment.removeFragmentOnTransitionEnd = true;
-            Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", topicsFragment.chatId);
-            ChatActivity chatActivity2 = new ChatActivity(bundle);
-            chatActivity2.switchFromTopics = true;
-            topicsFragment.presentFragment(chatActivity2);
         }
     }
 
     public static CombinedDrawable createTopicDrawable(int i, String str) {
         ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(i);
-        LetterDrawable letterDrawable = new LetterDrawable(1, null);
+        LetterDrawable letterDrawable = new LetterDrawable(null, 1);
         String strTrim = str.trim();
         letterDrawable.setTitle(strTrim.length() >= 1 ? strTrim.substring(0, 1).toUpperCase() : "");
         CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
-        combinedDrawable.fullSize = true;
+        combinedDrawable.setFullsize(true);
         return combinedDrawable;
     }
 

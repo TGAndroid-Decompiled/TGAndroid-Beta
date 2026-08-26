@@ -8,8 +8,9 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.graphics.drawable.GradientDrawable;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import com.android.billingclient.api.zzbv;
+import com.google.mlkit.common.sdkinternal.TaskQueue;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.Result;
 import com.google.zxing.WriterException;
@@ -32,7 +33,6 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
-import org.telegram.ui.AvatarPreviewer;
 
 public final class TelegramQRCodeWriter {
     private static final int QUIET_ZONE_SIZE = 4;
@@ -193,7 +193,7 @@ public final class TelegramQRCodeWriter {
         return this.sideQuadSize;
     }
 
-    public Bitmap encode(String str, int i, int i2, Map<EncodeHintType, ?> map, Bitmap bitmap, float f, int i3, int i4) throws WriterException {
+    public Bitmap encode(String str, int i, int i2, Map<EncodeHintType, ?> map, Bitmap bitmap, float f, int i3, int i4) {
         ErrorCorrectionLevel errorCorrectionLevel;
         int i5;
         boolean z;
@@ -290,13 +290,9 @@ public final class TelegramQRCodeWriter {
             if (charsetForName.equals(charset)) {
                 charsetForName = null;
             }
-            AvatarPreviewer avatarPreviewer = new AvatarPreviewer();
-            avatarPreviewer.view = str;
-            avatarPreviewer.visible = z;
-            avatarPreviewer.windowManager = new ECIEncoderSet(str, charsetForName);
-            avatarPreviewer.layout = errorCorrectionLevel;
-            Version[] versionArr = {AvatarPreviewer.getVersion(1), AvatarPreviewer.getVersion(2), AvatarPreviewer.getVersion(3)};
-            Result[] resultArr = {avatarPreviewer.encodeSpecificVersion(versionArr[0]), avatarPreviewer.encodeSpecificVersion(versionArr[1]), avatarPreviewer.encodeSpecificVersion(versionArr[2])};
+            TaskQueue taskQueue = new TaskQueue(str, charsetForName, z, errorCorrectionLevel);
+            Version[] versionArr = {TaskQueue.getVersion(1), TaskQueue.getVersion(2), TaskQueue.getVersion(3)};
+            Result[] resultArr = {taskQueue.encodeSpecificVersion(versionArr[0]), taskQueue.encodeSpecificVersion(versionArr[1]), taskQueue.encodeSpecificVersion(versionArr[2])};
             int i15 = 0;
             int i16 = -1;
             int i17 = Integer.MAX_VALUE;
@@ -304,7 +300,7 @@ public final class TelegramQRCodeWriter {
                 Result result = resultArr[i15];
                 int size = result.getSize((Version) result.resultPoints);
                 int i19 = i15;
-                if (Encoder.willFit(size, versionArr[i15], (ErrorCorrectionLevel) avatarPreviewer.layout) && size < i17) {
+                if (Encoder.willFit(size, versionArr[i15], (ErrorCorrectionLevel) taskQueue.zzd) && size < i17) {
                     i17 = size;
                     i16 = i19;
                 }
@@ -333,11 +329,11 @@ public final class TelegramQRCodeWriter {
                 Mode mode4 = Mode.ECI;
                 int i22 = minimalEncoder$ResultList$ResultNode.charsetEncoderIndex;
                 if (mode3 == mode4) {
-                    bitArray.appendBits(((CharacterSetECI) CharacterSetECI.NAME_TO_ECI.get(((ECIEncoderSet) ((AvatarPreviewer) result3.resultMetadata).windowManager).encoders[i22].charset().name())).values[0], 8);
+                    bitArray.appendBits(((CharacterSetECI) CharacterSetECI.NAME_TO_ECI.get(((ECIEncoderSet) ((TaskQueue) result3.resultMetadata).zzc).encoders[i22].charset().name())).values[0], 8);
                 } else if (i21 > 0) {
-                    String str2 = (String) ((AvatarPreviewer) result3.resultMetadata).view;
+                    String str2 = (String) ((TaskQueue) result3.resultMetadata).zza;
                     int i23 = minimalEncoder$ResultList$ResultNode.fromPosition;
-                    Encoder.appendBytes(str2.substring(i23, i23 + i21), mode3, bitArray, ((ECIEncoderSet) ((AvatarPreviewer) result3.resultMetadata).windowManager).encoders[i22].charset());
+                    Encoder.appendBytes(str2.substring(i23, i23 + i21), mode3, bitArray, ((ECIEncoderSet) ((TaskQueue) result3.resultMetadata).zzc).encoders[i22].charset());
                 }
                 arrayList = arrayList2;
             }
@@ -605,7 +601,7 @@ public final class TelegramQRCodeWriter {
                 throw new IllegalArgumentException("No data bytes provided");
             }
             if (i60 >= arrayList4.size()) {
-                GenericGFPoly genericGFPoly = (GenericGFPoly) SurfaceContainer$$ExternalSyntheticOutline0.m(1, arrayList4);
+                GenericGFPoly genericGFPoly = (GenericGFPoly) Fragment$$ExternalSyntheticOutline0.m(1, arrayList4);
                 int size3 = arrayList4.size();
                 while (size3 <= i60) {
                     int i65 = size3;

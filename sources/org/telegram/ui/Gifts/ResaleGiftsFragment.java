@@ -4,12 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
@@ -19,11 +22,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import androidx.core.math.MathUtils;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzlm;
+import com.google.android.gms.internal.mlkit_vision_common.zzlb;
+import j$.util.Objects;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -43,6 +48,7 @@ import org.telegram.messenger.utils.tlutils.AmountUtils$Currency;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -54,33 +60,30 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.AvatarSpan;
+import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.ChatActivity;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda326;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda464;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline1;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
-import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EditTextCaption;
+import org.telegram.ui.Components.EditTextCaption$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.FireworksOverlay;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.FragmentFloatingButton;
 import org.telegram.ui.Components.ItemOptions;
-import org.telegram.ui.Components.JoinGroupAlert$$ExternalSyntheticLambda3;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.Paint.ColorPickerBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
-import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
@@ -89,22 +92,21 @@ import org.telegram.ui.Components.blur3.BlurredBackgroundDrawableViewFactory;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.blur3.drawable.color.impl.BlurredBackgroundProviderImpl;
 import org.telegram.ui.Components.blur3.source.BlurredBackgroundSourceColor;
-import org.telegram.ui.DialogsActivity$$ExternalSyntheticLambda89;
-import org.telegram.ui.IntroActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda1;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda8;
-import org.telegram.ui.LocationActivity;
-import org.telegram.ui.LoginActivity;
-import org.telegram.ui.PeerColorActivity;
-import org.telegram.ui.PeerColorActivity$$ExternalSyntheticLambda8;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda97;
-import org.telegram.ui.PollItemMenu$$ExternalSyntheticLambda14;
+import org.telegram.ui.PeerColorActivity$$ExternalSyntheticLambda12;
+import org.telegram.ui.Stars.GiftOfferSheet$$ExternalSyntheticLambda12;
+import org.telegram.ui.Stars.StarGiftPreviewSheet;
 import org.telegram.ui.Stars.StarGiftSheet;
-import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda102;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda95;
 import org.telegram.ui.Stars.StarsController;
 import org.telegram.ui.Stars.StarsIntroActivity;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
+import org.telegram.ui.Stars.StarsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda1;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda30;
+import org.telegram.ui.web.HistoryFragment;
 
 public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.Target {
     public final BoolAnimator animatorClearFiltersButtonVisible;
@@ -173,6 +175,118 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
     }
 
+    public final class AnonymousClass6 implements TextWatcher {
+        public final int $r8$classId;
+        public final ViewGroup val$listView;
+        public Serializable val$query;
+
+        public AnonymousClass6(String[] strArr, UniversalRecyclerView universalRecyclerView, int i) {
+            this.$r8$classId = i;
+            this.val$query = strArr;
+            this.val$listView = universalRecyclerView;
+        }
+
+        @Override
+        public final void afterTextChanged(Editable editable) {
+            ViewGroup viewGroup = this.val$listView;
+            switch (this.$r8$classId) {
+                case 0:
+                    ((String[]) this.val$query)[0] = editable.toString();
+                    ((AnonymousClass5) viewGroup).adapter.update(true);
+                    break;
+                case 1:
+                    ColorPickerBottomSheet.SliderCell sliderCell = (ColorPickerBottomSheet.SliderCell) viewGroup;
+                    if (!sliderCell.isInvalidatingColor && ((String) this.val$query) != null && editable != null && !TextUtils.isEmpty(editable) && !Objects.equals(((String) this.val$query).toString(), editable.toString())) {
+                        int iClamp = MathUtils.clamp(Integer.parseInt(editable.toString()), 0, 255);
+                        int i = sliderCell.mode;
+                        ColorPickerBottomSheet colorPickerBottomSheet = ColorPickerBottomSheet.this;
+                        int iArgb = i != 1 ? i != 2 ? Color.argb(Color.alpha(colorPickerBottomSheet.mColor), iClamp, Color.green(colorPickerBottomSheet.mColor), Color.blue(colorPickerBottomSheet.mColor)) : Color.argb(Color.alpha(colorPickerBottomSheet.mColor), Color.red(colorPickerBottomSheet.mColor), Color.green(colorPickerBottomSheet.mColor), iClamp) : Color.argb(Color.alpha(colorPickerBottomSheet.mColor), Color.red(colorPickerBottomSheet.mColor), iClamp, Color.blue(colorPickerBottomSheet.mColor));
+                        int i2 = ColorPickerBottomSheet.$r8$clinit;
+                        colorPickerBottomSheet.onSetColor(iArgb, 5);
+                    }
+                    break;
+                case 2:
+                    ((String[]) this.val$query)[0] = editable.toString();
+                    ((AnonymousClass9) viewGroup).adapter.update(true);
+                    break;
+                case 3:
+                    ((String[]) this.val$query)[0] = editable.toString();
+                    ((AnonymousClass7) viewGroup).adapter.update(true);
+                    break;
+                case 4:
+                    ((String[]) this.val$query)[0] = editable.toString();
+                    ((SelectGiftSheet.AnonymousClass1) viewGroup).adapter.update(true);
+                    break;
+                case 5:
+                    ((String[]) this.val$query)[0] = editable.toString();
+                    ((SelectGiftSheet.AnonymousClass3) viewGroup).adapter.update(true);
+                    break;
+                default:
+                    ((String[]) this.val$query)[0] = editable.toString();
+                    ((SelectGiftSheet.AnonymousClass5) viewGroup).adapter.update(true);
+                    break;
+            }
+        }
+
+        @Override
+        public final void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            switch (this.$r8$classId) {
+                case 1:
+                    this.val$query = charSequence.toString();
+                    break;
+            }
+        }
+
+        @Override
+        public final void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+            int i4 = this.$r8$classId;
+        }
+
+        public AnonymousClass6(ColorPickerBottomSheet.SliderCell sliderCell) {
+            this.$r8$classId = 1;
+            this.val$listView = sliderCell;
+        }
+
+        private final void beforeTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$10(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void beforeTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$6(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void beforeTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$8(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void beforeTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$SelectGiftSheet$2(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void beforeTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$SelectGiftSheet$4(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void beforeTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$SelectGiftSheet$6(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void onTextChanged$org$telegram$ui$Components$Paint$ColorPickerBottomSheet$SliderCell$1(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void onTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$10(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void onTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$6(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void onTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$8(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void onTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$SelectGiftSheet$2(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void onTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$SelectGiftSheet$4(int i, int i2, int i3, CharSequence charSequence) {
+        }
+
+        private final void onTextChanged$org$telegram$ui$Gifts$ResaleGiftsFragment$SelectGiftSheet$6(int i, int i2, int i3, CharSequence charSequence) {
+        }
+    }
+
     public final class AnonymousClass7 extends UniversalRecyclerView {
         @Override
         public final void onMeasure(int i, int i2) {
@@ -198,46 +312,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
             @Override
             public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                BackdropItem backdropItem = (BackdropItem) view;
-                TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) uItem.object;
-                int i = uItem.intValue;
-                String str = (String) uItem.text;
-                boolean z2 = uItem.checked;
-                backdropItem.getClass();
-                ShapeDrawable shapeDrawableCreateCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.dp(20.0f), stargiftattributebackdrop.center_color | (-16777216));
-                CharSequence charSequenceHighlightText = stargiftattributebackdrop.name;
-                if (!TextUtils.isEmpty(str)) {
-                    charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, backdropItem.resourcesProvider);
-                }
-                if (i > 0) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
-                    spannableStringBuilder.append((CharSequence) "  ");
-                    int length = spannableStringBuilder.length();
-                    spannableStringBuilder.append((CharSequence) Integer.toString(i));
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
-                    charSequenceHighlightText = spannableStringBuilder;
-                }
-                backdropItem.setTextAndIcon(charSequenceHighlightText, 0, shapeDrawableCreateCircleDrawable);
-                backdropItem.setChecked(z2);
+                ((BackdropItem) view).set((TL_stars.starGiftAttributeBackdrop) uItem.object, uItem.intValue, (String) uItem.text, uItem.checked);
             }
 
             @Override
             public final View createView(Context context, RecyclerListView recyclerListView, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
                 BackdropItem backdropItem = new BackdropItem(0, context, resourcesProvider, false, false);
                 backdropItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-                int color = Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider);
-                int color2 = Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider);
-                backdropItem.setTextColor(color);
-                backdropItem.setIconColor(color2);
-                PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-                int i3 = backdropItem.iconColor;
-                RLottieImageView rLottieImageView = backdropItem.imageView;
-                if (i3 != -1 || backdropItem.iconColorMode != mode) {
-                    backdropItem.iconColor = -1;
-                    backdropItem.iconColorMode = mode;
-                    rLottieImageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
-                }
-                rLottieImageView.setTranslationX(AndroidUtilities.dp(2.0f));
+                backdropItem.setColors(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider), Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider));
+                backdropItem.setIconColor(-1, PorterDuff.Mode.MULTIPLY);
+                backdropItem.imageView.setTranslationX(AndroidUtilities.dp(2.0f));
                 backdropItem.makeCheckView(2);
                 backdropItem.setBackground(null);
                 return backdropItem;
@@ -251,6 +335,24 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 size = AndroidUtilities.dp(250.0f);
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
+        }
+
+        public final void set(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop, int i, String str, boolean z) {
+            Drawable drawableCreateCircleDrawable = Theme.createCircleDrawable(AndroidUtilities.dp(20.0f), stargiftattributebackdrop.center_color | (-16777216));
+            CharSequence charSequenceHighlightText = stargiftattributebackdrop.name;
+            if (!TextUtils.isEmpty(str)) {
+                charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, this.resourcesProvider);
+            }
+            if (i > 0) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
+                spannableStringBuilder.append((CharSequence) "  ");
+                int length = spannableStringBuilder.length();
+                spannableStringBuilder.append((CharSequence) Integer.toString(i));
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
+                charSequenceHighlightText = spannableStringBuilder;
+            }
+            setTextAndIcon(charSequenceHighlightText, 0, drawableCreateCircleDrawable);
+            setChecked(z);
         }
     }
 
@@ -279,7 +381,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             super(context);
             setOrientation(1);
             BackupImageView backupImageView = new BackupImageView(context);
-            backupImageView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty, "utyan_empty", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f), true, null));
+            backupImageView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty, "utyan_empty", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
             addView(backupImageView, LayoutHelper.createLinear(64, 64, 17, 0, 32, 0, 0));
             TextView textView = new TextView(context);
             this.textView = textView;
@@ -313,7 +415,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
             setGravity(17);
             setTypeface(AndroidUtilities.bold());
-            ScaleStateListAnimator.apply(this, 0.1f, 1.5f);
+            ScaleStateListAnimator.apply(this);
             ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.arrows_select);
             this.span = coloredImageSpan;
             coloredImageSpan.spaceScaleX = 0.8f;
@@ -385,37 +487,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
             @Override
             public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                ModelItem modelItem = (ModelItem) view;
-                TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) uItem.object;
-                int i = uItem.intValue;
-                String str = (String) uItem.text;
-                boolean z2 = uItem.checked;
-                AnonymousClass2 anonymousClass2 = modelItem.emojiDrawable;
-                RLottieImageView rLottieImageView = modelItem.imageView;
-                if (anonymousClass2 == null || modelItem.emojiDrawableId != stargiftattributemodel.document.id) {
-                    modelItem.emojiDrawableId = stargiftattributemodel.document.id;
-                    if (anonymousClass2 != null) {
-                        anonymousClass2.removeView(rLottieImageView);
-                    }
-                    modelItem.emojiDrawable = new AnonymousClass2(3, modelItem.currentAccount, stargiftattributemodel.document);
-                }
-                if (rLottieImageView.isAttachedToWindow()) {
-                    modelItem.emojiDrawable.addView(rLottieImageView);
-                }
-                CharSequence charSequenceHighlightText = stargiftattributemodel.name;
-                if (!TextUtils.isEmpty(str)) {
-                    charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, modelItem.resourcesProvider);
-                }
-                if (i > 0) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
-                    spannableStringBuilder.append((CharSequence) "  ");
-                    int length = spannableStringBuilder.length();
-                    spannableStringBuilder.append((CharSequence) Integer.toString(i));
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
-                    charSequenceHighlightText = spannableStringBuilder;
-                }
-                modelItem.setTextAndIcon(charSequenceHighlightText, 0, modelItem.emojiDrawable);
-                modelItem.setChecked(z2);
+                ((ModelItem) view).set((TL_stars.starGiftAttributeModel) uItem.object, uItem.intValue, (String) uItem.text, uItem.checked);
             }
 
             @Override
@@ -428,17 +500,14 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             super(0, context, resourcesProvider, false, false);
             this.currentAccount = i;
             setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-            int color = Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider);
-            int color2 = Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider);
-            setTextColor(color);
-            setIconColor(color2);
+            setColors(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider), Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, resourcesProvider));
             setIconColor(-1);
             this.imageView.setTranslationX(AndroidUtilities.dp(2.0f));
             this.imageView.setScaleX(1.2f);
             this.imageView.setScaleY(1.2f);
             makeCheckView(2);
             setBackground(null);
-            this.imageView.addOnAttachStateChangeListener(new AvatarSpan.AnonymousClass1(this, 11));
+            this.imageView.addOnAttachStateChangeListener(new StarGiftSheet.Roller.AnonymousClass1(this, 5));
         }
 
         @Override
@@ -448,6 +517,34 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 size = AndroidUtilities.dp(250.0f);
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
+        }
+
+        public final void set(TL_stars.starGiftAttributeModel stargiftattributemodel, int i, String str, boolean z) {
+            AnonymousClass2 anonymousClass2 = this.emojiDrawable;
+            if (anonymousClass2 == null || this.emojiDrawableId != stargiftattributemodel.document.id) {
+                this.emojiDrawableId = stargiftattributemodel.document.id;
+                if (anonymousClass2 != null) {
+                    anonymousClass2.removeView(this.imageView);
+                }
+                this.emojiDrawable = new AnonymousClass2(3, this.currentAccount, stargiftattributemodel.document);
+            }
+            if (this.imageView.isAttachedToWindow()) {
+                this.emojiDrawable.addView(this.imageView);
+            }
+            CharSequence charSequenceHighlightText = stargiftattributemodel.name;
+            if (!TextUtils.isEmpty(str)) {
+                charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, this.resourcesProvider);
+            }
+            if (i > 0) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
+                spannableStringBuilder.append((CharSequence) "  ");
+                int length = spannableStringBuilder.length();
+                spannableStringBuilder.append((CharSequence) Integer.toString(i));
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
+                charSequenceHighlightText = spannableStringBuilder;
+            }
+            setTextAndIcon(charSequenceHighlightText, 0, this.emojiDrawable);
+            setChecked(z);
         }
     }
 
@@ -477,40 +574,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
             @Override
             public final void bindView(View view, UItem uItem, boolean z, UniversalAdapter universalAdapter, UniversalRecyclerView universalRecyclerView) {
-                PatternItem patternItem = (PatternItem) view;
-                TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) uItem.object;
-                int i = uItem.intValue;
-                String str = (String) uItem.text;
-                boolean z2 = uItem.checked;
-                AnonymousClass2 anonymousClass2 = patternItem.emojiDrawable;
-                RLottieImageView rLottieImageView = patternItem.imageView;
-                Theme.ResourcesProvider resourcesProvider = patternItem.resourcesProvider;
-                if (anonymousClass2 == null || patternItem.emojiDrawableId != stargiftattributepattern.document.id) {
-                    patternItem.emojiDrawableId = stargiftattributepattern.document.id;
-                    if (anonymousClass2 != null) {
-                        anonymousClass2.removeView(rLottieImageView);
-                    }
-                    AnonymousClass2 anonymousClass3 = new AnonymousClass2(3, patternItem.currentAccount, stargiftattributepattern.document);
-                    patternItem.emojiDrawable = anonymousClass3;
-                    anonymousClass3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider), PorterDuff.Mode.SRC_IN));
-                }
-                if (rLottieImageView.isAttachedToWindow()) {
-                    patternItem.emojiDrawable.addView(rLottieImageView);
-                }
-                CharSequence charSequenceHighlightText = stargiftattributepattern.name;
-                if (!TextUtils.isEmpty(str)) {
-                    charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, resourcesProvider);
-                }
-                if (i > 0) {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
-                    spannableStringBuilder.append((CharSequence) "  ");
-                    int length = spannableStringBuilder.length();
-                    spannableStringBuilder.append((CharSequence) Integer.toString(i));
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
-                    charSequenceHighlightText = spannableStringBuilder;
-                }
-                patternItem.setTextAndIcon(charSequenceHighlightText, 0, patternItem.emojiDrawable);
-                patternItem.setChecked(z2);
+                ((PatternItem) view).set((TL_stars.starGiftAttributePattern) uItem.object, uItem.intValue, (String) uItem.text, uItem.checked);
             }
 
             @Override
@@ -525,21 +589,12 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
             int color = Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider);
             int i2 = Theme.key_actionBarDefaultSubmenuItemIcon;
-            int color2 = Theme.getColor(i2, resourcesProvider);
-            setTextColor(color);
-            setIconColor(color2);
-            int color3 = Theme.getColor(i2, resourcesProvider);
-            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-            if (this.iconColor != color3 || this.iconColorMode != mode) {
-                RLottieImageView rLottieImageView = this.imageView;
-                this.iconColor = color3;
-                this.iconColorMode = mode;
-                rLottieImageView.setColorFilter(new PorterDuffColorFilter(color3, mode));
-            }
+            setColors(color, Theme.getColor(i2, resourcesProvider));
+            setIconColor(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.SRC_IN);
             this.imageView.setTranslationX(AndroidUtilities.dp(2.0f));
             makeCheckView(2);
             setBackground(null);
-            this.imageView.addOnAttachStateChangeListener(new AvatarSpan.AnonymousClass1(this, 12));
+            this.imageView.addOnAttachStateChangeListener(new StarGiftSheet.Roller.AnonymousClass1(this, 6));
         }
 
         @Override
@@ -549,6 +604,36 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 size = AndroidUtilities.dp(250.0f);
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), i2);
+        }
+
+        public final void set(TL_stars.starGiftAttributePattern stargiftattributepattern, int i, String str, boolean z) {
+            AnonymousClass2 anonymousClass2 = this.emojiDrawable;
+            if (anonymousClass2 == null || this.emojiDrawableId != stargiftattributepattern.document.id) {
+                this.emojiDrawableId = stargiftattributepattern.document.id;
+                if (anonymousClass2 != null) {
+                    anonymousClass2.removeView(this.imageView);
+                }
+                AnonymousClass2 anonymousClass3 = new AnonymousClass2(3, this.currentAccount, stargiftattributepattern.document);
+                this.emojiDrawable = anonymousClass3;
+                anonymousClass3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
+            }
+            if (this.imageView.isAttachedToWindow()) {
+                this.emojiDrawable.addView(this.imageView);
+            }
+            CharSequence charSequenceHighlightText = stargiftattributepattern.name;
+            if (!TextUtils.isEmpty(str)) {
+                charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, str, this.resourcesProvider);
+            }
+            if (i > 0) {
+                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequenceHighlightText);
+                spannableStringBuilder.append((CharSequence) "  ");
+                int length = spannableStringBuilder.length();
+                spannableStringBuilder.append((CharSequence) Integer.toString(i));
+                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), length, spannableStringBuilder.length(), 33);
+                charSequenceHighlightText = spannableStringBuilder;
+            }
+            setTextAndIcon(charSequenceHighlightText, 0, this.emojiDrawable);
+            setChecked(z);
         }
     }
 
@@ -741,7 +826,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                         }
                     }
                 }
-                this.reqId = ConnectionsManager.getInstance(this.account).sendRequest(getresalestargifts, new LinkManager$$ExternalSyntheticLambda8(18, this, getresalestargifts));
+                this.reqId = ConnectionsManager.getInstance(this.account).sendRequest(getresalestargifts, new StarGiftSheet$$ExternalSyntheticLambda0(17, this, getresalestargifts));
             }
         }
     }
@@ -755,7 +840,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         public final HorizontalScrollView filterScrollView;
         public boolean hadResaleGifts;
         public final Filter modelButton;
-        public StarGiftSheet$$ExternalSyntheticLambda102 onSelect;
+        public StarGiftSheet$$ExternalSyntheticLambda95 onSelect;
         public final Filter patternButton;
         public final Filter sortButton;
         public final State state;
@@ -795,7 +880,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 StarsController.GiftsList giftsList = new StarsController.GiftsList(i, 0L, false);
                 this.list = giftsList;
                 giftsList.craftingGiftId = j;
-                ResaleGiftsList resaleGiftsList = new ResaleGiftsList(j, i, new PollItemMenu$$ExternalSyntheticLambda14(this, 14));
+                ResaleGiftsList resaleGiftsList = new ResaleGiftsList(j, i, new DialogCell$$ExternalSyntheticLambda6(this, 24));
                 resaleGiftsList.for_craft = true;
                 this.resaleList = resaleGiftsList;
             }
@@ -824,7 +909,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
 
         public SelectGiftSheet(final Context context, String str, final State state) {
-            super(context, null, false, false, false, false, false, 2, null);
+            super(context, null, false, false, false, BottomSheetWithRecyclerListView.ActionBarType.SLIDING, null);
             this.without = new HashSet();
             this.headerMoveTop = AndroidUtilities.dp(12.0f);
             fixNavigationBar();
@@ -846,7 +931,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             this.sortButton = filter;
             filter.setSorting(state.resaleList.sorting);
             linearLayout.addView(filter, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 6, 0));
-            filter.setOnClickListener(new IntroActivity$$ExternalSyntheticLambda1(15, this, state));
+            filter.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(3, this, state));
             Filter filter2 = new Filter(context, this.resourcesProvider);
             this.modelButton = filter2;
             filter2.setValue(LocaleController.getString(R.string.Gift2AttributeModel));
@@ -930,22 +1015,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             });
             getContext();
             GridLayoutManager gridLayoutManager = new GridLayoutManager(3);
-            gridLayoutManager.mSpanSizeLookup = new PeerColorActivity.Page.AnonymousClass2(this, 5);
+            gridLayoutManager.setSpanSizeLookup(new StarGiftPreviewSheet.AnonymousClass1(this, 1));
             this.recyclerListView.setLayoutManager(gridLayoutManager);
-            this.recyclerListView.setOnItemClickListener(new DialogsActivity$$ExternalSyntheticLambda89(9, this, state));
+            this.recyclerListView.setOnItemClickListener(new RateCallLayout$$ExternalSyntheticLambda1(15, this, state));
             this.recyclerListView.setPadding(AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(8.0f) + this.backgroundPaddingLeft, 0);
-            this.recyclerListView.setOnScrollListener(new LocationActivity.AnonymousClass10(this, 19));
+            this.recyclerListView.setOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 11));
             DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-            defaultItemAnimator.mSupportsChangeAnimations = false;
-            defaultItemAnimator.delayAnimations = false;
-            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-            defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-            defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+            defaultItemAnimator.setSupportsChangeAnimations(false);
+            defaultItemAnimator.setDelayAnimations(false);
+            defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             defaultItemAnimator.setDurations(350L);
-            this.recyclerListView.setItemAnimator(defaultItemAnimator);
-            this.recyclerListView.setItemSelectorColorProvider(new PhotoViewer$$ExternalSyntheticLambda97(6));
+            this.recyclerListView.lambda$onCellEnter$52(defaultItemAnimator);
+            this.recyclerListView.setItemSelectorColorProvider(new LivePlayer$$ExternalSyntheticLambda1(27));
             StarGiftSheet.ActionView actionView = new StarGiftSheet.ActionView(context);
             this.actionView = actionView;
             int iDp = AndroidUtilities.dp(20.0f);
@@ -954,7 +1035,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             actionView.py = iDp2;
             actionView.setRoundRadius(AndroidUtilities.dp(22.0f));
             actionView.setFullRect(true);
-            AndroidUtilities.makeGlobalBlurBitmap(new VoIPFragment$$ExternalSyntheticLambda7(actionView, 1), 12.0f, 12, null, new ArrayList());
+            AndroidUtilities.makeGlobalBlurBitmap(new DialogCell$$ExternalSyntheticLambda6(actionView, 28), 12.0f, 12, null, new ArrayList());
             actionView.setPivotY(0.0f);
             this.container.addView(actionView, LayoutHelper.createFrame(-1, -2, 55));
             update(false);
@@ -963,7 +1044,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
         @Override
         public final RecyclerListView.SelectionAdapter createAdapter(RecyclerListView recyclerListView) {
-            ?? r0 = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, new LinkManager$$ExternalSyntheticLambda1(this, 1), this.resourcesProvider) {
+            ?? r0 = new UniversalAdapter(recyclerListView, getContext(), this.currentAccount, new GiftSheet$$ExternalSyntheticLambda8(this, 23), this.resourcesProvider) {
                 @Override
                 public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                     SelectGiftSheet selectGiftSheet = SelectGiftSheet.this;
@@ -977,7 +1058,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             return r0;
         }
 
-        public final void fillItems$35(ArrayList arrayList) {
+        public final void fillItems$21(ArrayList arrayList) {
             StarsController.GiftsList giftsList;
             ResaleGiftsList resaleGiftsList;
             State state = this.state;
@@ -997,10 +1078,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 i2++;
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
                 if (!this.without.contains(Long.valueOf(savedStarGift.gift.id))) {
-                    boolean z2 = savedStarGift.can_craft_at <= currentTime;
-                    UItem uItemAsStarGift = GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true);
-                    uItemAsStarGift.enabled = z2;
-                    arrayList.add(uItemAsStarGift);
+                    arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, savedStarGift.gift, false, true, false, false, true).setEnabled(savedStarGift.can_craft_at <= currentTime));
                     i3++;
                     z = false;
                 }
@@ -1009,20 +1087,14 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 int i4 = i3 % 3;
                 int i5 = 6 - i4;
                 for (int i6 = 0; i6 < i5; i6++) {
-                    UItem uItemAsFlicker = UItem.asFlicker((i6 - i4) + 1, 35);
-                    uItemAsFlicker.spanCount = 1;
-                    arrayList.add(uItemAsFlicker);
+                    arrayList.add(UItem.asFlicker((i6 - i4) + 1, 35).setSpanCount(1));
                 }
             } else if (z) {
                 arrayList.add(UItem.asCenterShadow(LocaleController.getString(R.string.GiftCraftSelectYourEmpty)));
             }
             if (resaleGiftsList.totalCount > 0 || this.hadResaleGifts) {
                 this.hadResaleGifts = true;
-                String string = LocaleController.getString(R.string.GiftCraftSelectResale);
-                UItem uItem = new UItem(42);
-                uItem.id = -2;
-                uItem.animatedText = string;
-                arrayList.add(uItem);
+                arrayList.add(UItem.asAnimatedHeader(-2, LocaleController.getString(R.string.GiftCraftSelectResale)));
                 HorizontalScrollView horizontalScrollView = this.filterScrollView;
                 if (horizontalScrollView != null) {
                     arrayList.add(UItem.asCustom(-3, horizontalScrollView));
@@ -1035,24 +1107,12 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                     arrayList.add(GiftSheet.GiftCell.Factory.asStarGift(0, (TL_stars.TL_starGiftUnique) obj2, false, true, false, true, true));
                 }
                 if (resaleGiftsList.loading || !resaleGiftsList.endReached) {
-                    UItem uItemAsFlicker2 = UItem.asFlicker(10, 35);
-                    uItemAsFlicker2.spanCount = 1;
-                    arrayList.add(uItemAsFlicker2);
-                    UItem uItemAsFlicker3 = UItem.asFlicker(11, 35);
-                    uItemAsFlicker3.spanCount = 1;
-                    arrayList.add(uItemAsFlicker3);
-                    UItem uItemAsFlicker4 = UItem.asFlicker(12, 35);
-                    uItemAsFlicker4.spanCount = 1;
-                    arrayList.add(uItemAsFlicker4);
-                    UItem uItemAsFlicker5 = UItem.asFlicker(13, 35);
-                    uItemAsFlicker5.spanCount = 1;
-                    arrayList.add(uItemAsFlicker5);
-                    UItem uItemAsFlicker6 = UItem.asFlicker(14, 35);
-                    uItemAsFlicker6.spanCount = 1;
-                    arrayList.add(uItemAsFlicker6);
-                    UItem uItemAsFlicker7 = UItem.asFlicker(15, 35);
-                    uItemAsFlicker7.spanCount = 1;
-                    arrayList.add(uItemAsFlicker7);
+                    zzlb.m(10, 35, arrayList);
+                    zzlb.m(11, 35, arrayList);
+                    zzlb.m(12, 35, arrayList);
+                    zzlb.m(13, 35, arrayList);
+                    zzlb.m(14, 35, arrayList);
+                    zzlb.m(15, 35, arrayList);
                 }
             }
         }
@@ -1065,7 +1125,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
         public final void lambda$buyGift$26(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, StarGiftSheet.PaymentFormState paymentFormState, Browser.Progress progress) {
             progress.init();
-            StarsController.getInstance(this.currentAccount, paymentFormState.currency).buyResellingGift(paymentFormState.form, tL_starGiftUnique, j, null, true, new ChatActivity$$ExternalSyntheticLambda464(this, progress, tL_starGiftUnique, 8));
+            StarsController.getInstance(this.currentAccount, paymentFormState.currency).buyResellingGift(paymentFormState.form, tL_starGiftUnique, j, null, true, new GiftOfferSheet$$ExternalSyntheticLambda12(this, progress, tL_starGiftUnique, 3));
         }
 
         public final void lambda$buyGift$27(AlertDialog alertDialog, AmountUtils$Currency amountUtils$Currency, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift) {
@@ -1080,26 +1140,22 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             StringBuilder sb = new StringBuilder();
             sb.append(tL_starGiftUnique.title);
             sb.append(" #");
-            new StarGiftSheet.ResaleBuyTransferAlert(context, resourcesProvider, tL_starGiftUnique, paymentFormState, i, j, BillingController$$ExternalSyntheticOutline0.m(tL_starGiftUnique.num, ',', sb), true, new JoinGroupAlert$$ExternalSyntheticLambda3(this, tL_starGiftUnique, j, 1)).show();
+            new StarGiftSheet.ResaleBuyTransferAlert(context, resourcesProvider, tL_starGiftUnique, paymentFormState, i, j, BillingController$$ExternalSyntheticOutline0.m(tL_starGiftUnique.num, ',', sb), true, new StarsIntroActivity$GiftStarsSheet$$ExternalSyntheticLambda4(this, tL_starGiftUnique, j, 1)).show();
         }
 
         public final void lambda$new$15(State state, Context context) {
             if (state.resaleList.backdropAttributes.isEmpty()) {
                 return;
             }
-            ItemOptions itemOptions = new ItemOptions(this.container, this.resourcesProvider, this.backdropButton, false, true, false);
-            itemOptions.drawScrim = false;
-            itemOptions.onTopOfScrim = true;
-            itemOptions.translate(0.0f, AndroidUtilities.dp(-8.0f));
-            itemOptions.needsFocus = true;
-            itemOptions.dismissListener = new ChatActivity$$ExternalSyntheticLambda326(6, itemOptions);
+            ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((ViewGroup) this.container, this.resourcesProvider, (View) this.backdropButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new RichEditor$$ExternalSyntheticLambda30(5, itemOptionsNeedsFocus));
             String[] strArr = {""};
             ResaleGiftsList resaleGiftsList = state.resaleList;
             ArrayList arrayList = new ArrayList(resaleGiftsList.backdropAttributes);
             int i = 1;
-            Collections.sort(arrayList, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda9(state, i));
-            AnonymousClass3 anonymousClass3 = new AnonymousClass3(context, this.currentAccount, 0, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda10(strArr, state, arrayList, i), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda11(state, itemOptions, i), null, this.resourcesProvider);
-            anonymousClass3.adapter.applyBackground = false;
+            Collections.sort(arrayList, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda9(state, 1));
+            AnonymousClass3 anonymousClass3 = new AnonymousClass3(context, this.currentAccount, 0, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda10(strArr, state, arrayList, i), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda11(state, itemOptionsNeedsFocus, i), null, this.resourcesProvider);
+            anonymousClass3.adapter.setApplyBackground(false);
             FrameLayout frameLayout = new FrameLayout(context);
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -1118,35 +1174,31 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider));
             editTextCaption.setBackground(null);
             frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-            editTextCaption.addTextChangedListener(new LoginActivity.AnonymousClass7(strArr, anonymousClass3, false, 8));
+            editTextCaption.addTextChangedListener(new AnonymousClass6(strArr, anonymousClass3, 5));
             if (arrayList.size() > 8) {
-                itemOptions.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
-                itemOptions.addGap();
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
             }
             if (!resaleGiftsList.notSelectedBackdropAttributes.isEmpty()) {
-                itemOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 1), false);
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 1));
             }
-            itemOptions.addView(anonymousClass3);
-            itemOptions.show();
+            itemOptionsNeedsFocus.addView(anonymousClass3);
+            itemOptionsNeedsFocus.show();
         }
 
         public final void lambda$new$21(State state, Context context) {
             if (state.resaleList.patternAttributes.isEmpty()) {
                 return;
             }
-            ItemOptions itemOptions = new ItemOptions(this.container, this.resourcesProvider, this.patternButton, false, true, false);
-            itemOptions.drawScrim = false;
-            itemOptions.onTopOfScrim = true;
-            itemOptions.translate(0.0f, AndroidUtilities.dp(-8.0f));
-            itemOptions.needsFocus = true;
-            itemOptions.dismissListener = new ChatActivity$$ExternalSyntheticLambda326(7, itemOptions);
+            ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((ViewGroup) this.container, this.resourcesProvider, (View) this.patternButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new RichEditor$$ExternalSyntheticLambda30(6, itemOptionsNeedsFocus));
             String[] strArr = {""};
             ResaleGiftsList resaleGiftsList = state.resaleList;
             ArrayList arrayList = new ArrayList(resaleGiftsList.patternAttributes);
             int i = 2;
-            Collections.sort(arrayList, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda9(state, i));
-            AnonymousClass5 anonymousClass5 = new AnonymousClass5(context, this.currentAccount, 0, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda10(strArr, state, arrayList, i), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda11(state, itemOptions, i), null, this.resourcesProvider);
-            anonymousClass5.adapter.applyBackground = false;
+            Collections.sort(arrayList, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda9(state, 2));
+            AnonymousClass5 anonymousClass5 = new AnonymousClass5(context, this.currentAccount, 0, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda10(strArr, state, arrayList, i), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda11(state, itemOptionsNeedsFocus, i), null, this.resourcesProvider);
+            anonymousClass5.adapter.setApplyBackground(false);
             FrameLayout frameLayout = new FrameLayout(context);
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -1165,16 +1217,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider));
             editTextCaption.setBackground(null);
             frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-            editTextCaption.addTextChangedListener(new LoginActivity.AnonymousClass7(strArr, anonymousClass5, false, 9));
+            editTextCaption.addTextChangedListener(new AnonymousClass6(strArr, anonymousClass5, 6));
             if (arrayList.size() > 8) {
-                itemOptions.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
-                itemOptions.addGap();
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
             }
             if (!resaleGiftsList.notSelectedPatternAttributes.isEmpty()) {
-                itemOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 2), false);
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 2));
             }
-            itemOptions.addView(anonymousClass5);
-            itemOptions.show();
+            itemOptionsNeedsFocus.addView(anonymousClass5);
+            itemOptionsNeedsFocus.show();
         }
 
         public final void lambda$new$22(State state, int i) {
@@ -1186,23 +1238,18 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                     TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
                     boolean z = item.red;
                     if (!TextUtils.isEmpty(starGift.gift_address) && this.willBeFirst) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), 0, this.resourcesProvider);
-                        String string = LocaleController.getString(R.string.GiftCraftCantChooseFirstTitle);
-                        AlertDialog alertDialog = builder.alertDialog;
-                        alertDialog.title = string;
-                        alertDialog.message = LocaleController.getString(R.string.GiftCraftCantChooseFirst);
-                        ChatActivity$$ExternalSyntheticOutline1.m(R.string.OK, builder);
+                        ChatActivity$$ExternalSyntheticOutline0.m(R.string.OK, new AlertDialog.Builder(getContext(), 0, this.resourcesProvider).setTitle(LocaleController.getString(R.string.GiftCraftCantChooseFirstTitle)).setMessage(LocaleController.getString(R.string.GiftCraftCantChooseFirst)), null);
                         return;
                     }
                     if (z && (starGift instanceof TL_stars.TL_starGiftUnique)) {
                         TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) item.object;
-                        AlertDialog alertDialog2 = new AlertDialog(getContext(), 3, null);
-                        AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog2.showRunnable;
+                        AlertDialog alertDialog = new AlertDialog(getContext(), 3, null);
+                        AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog.showRunnable;
                         AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
                         AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 400L);
                         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
                         AmountUtils$Currency amountUtils$Currency = tL_starGiftUnique.resale_ton_only ? AmountUtils$Currency.TON : AmountUtils$Currency.STARS;
-                        StarsController.getInstance(this.currentAccount, amountUtils$Currency).getResellingGiftForm(tL_starGiftUnique, clientUserId, null, true, new PeerColorActivity$$ExternalSyntheticLambda8(this, alertDialog2, amountUtils$Currency, tL_starGiftUnique, clientUserId));
+                        StarsController.getInstance(this.currentAccount, amountUtils$Currency).getResellingGiftForm(tL_starGiftUnique, clientUserId, null, true, new PeerColorActivity$$ExternalSyntheticLambda12(this, alertDialog, amountUtils$Currency, tL_starGiftUnique, clientUserId));
                         return;
                     }
                     if (!z) {
@@ -1220,12 +1267,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                             }
                         } while (savedStarGift.gift != starGift);
                         if (savedStarGift != null && savedStarGift.can_craft_at > 0 && savedStarGift.can_craft_at > ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) {
-                            AlertDialog.Builder builder2 = new AlertDialog.Builder(getContext(), 0, null);
-                            String string2 = LocaleController.getString(R.string.GiftCraftUnavailableTitle);
-                            AlertDialog alertDialog3 = builder2.alertDialog;
-                            alertDialog3.title = string2;
-                            alertDialog3.message = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCraftUnavailableTextTime, LocaleController.formatDateTime(savedStarGift.can_craft_at, true)));
-                            ChatActivity$$ExternalSyntheticOutline1.m(R.string.OK, builder2);
+                            ChatActivity$$ExternalSyntheticOutline0.m(R.string.OK, new AlertDialog.Builder(getContext(), 0, null).setTitle(LocaleController.getString(R.string.GiftCraftUnavailableTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.GiftCraftUnavailableTextTime, LocaleController.formatDateTime(savedStarGift.can_craft_at, true)))), null);
                             return;
                         }
                     }
@@ -1236,33 +1278,22 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
 
         public final void lambda$new$3(State state) {
-            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this.container, this.resourcesProvider, this.sortButton);
-            itemOptionsMakeOptions.add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 3), false);
-            itemOptionsMakeOptions.add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 4), false);
-            itemOptionsMakeOptions.add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 5), false);
-            itemOptionsMakeOptions.drawScrim = false;
-            itemOptionsMakeOptions.onTopOfScrim = true;
-            itemOptionsMakeOptions.translate(0.0f, AndroidUtilities.dp(-8.0f));
-            itemOptionsMakeOptions.show();
+            ItemOptions.makeOptions(this.container, this.resourcesProvider, this.sortButton).add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 3)).add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 4)).add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 5)).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).show();
         }
 
         public final void lambda$new$9(State state, Context context) {
             if (state.resaleList.modelAttributes.isEmpty()) {
                 return;
             }
-            ItemOptions itemOptions = new ItemOptions(this.container, this.resourcesProvider, this.modelButton, false, true, false);
-            itemOptions.drawScrim = false;
-            itemOptions.onTopOfScrim = true;
-            itemOptions.translate(0.0f, AndroidUtilities.dp(-8.0f));
-            itemOptions.needsFocus = true;
-            itemOptions.dismissListener = new ChatActivity$$ExternalSyntheticLambda326(8, itemOptions);
+            ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((ViewGroup) this.container, this.resourcesProvider, (View) this.modelButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new RichEditor$$ExternalSyntheticLambda30(7, itemOptionsNeedsFocus));
             String[] strArr = {""};
             ResaleGiftsList resaleGiftsList = state.resaleList;
             ArrayList arrayList = new ArrayList(resaleGiftsList.modelAttributes);
             int i = 0;
-            Collections.sort(arrayList, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda9(state, i));
-            AnonymousClass1 anonymousClass1 = new AnonymousClass1(context, this.currentAccount, 0, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda10(strArr, state, arrayList, i), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda11(state, itemOptions, i), null, this.resourcesProvider);
-            anonymousClass1.adapter.applyBackground = false;
+            Collections.sort(arrayList, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda9(state, 0));
+            AnonymousClass1 anonymousClass1 = new AnonymousClass1(context, this.currentAccount, 0, new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda10(strArr, state, arrayList, i), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda11(state, itemOptionsNeedsFocus, i), null, this.resourcesProvider);
+            anonymousClass1.adapter.setApplyBackground(false);
             FrameLayout frameLayout = new FrameLayout(context);
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -1281,41 +1312,32 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourcesProvider));
             editTextCaption.setBackground(null);
             frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-            editTextCaption.addTextChangedListener(new LoginActivity.AnonymousClass7(strArr, anonymousClass1, false, 7));
+            editTextCaption.addTextChangedListener(new AnonymousClass6(strArr, anonymousClass1, 4));
             if (arrayList.size() > 8) {
-                itemOptions.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
-                itemOptions.addGap();
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
             }
             if (!resaleGiftsList.notSelectedModelAttributes.isEmpty()) {
-                itemOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 0), false);
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$SelectGiftSheet$$ExternalSyntheticLambda12(state, 0));
             }
-            itemOptions.addView(anonymousClass1);
-            itemOptions.show();
+            itemOptionsNeedsFocus.addView(anonymousClass1);
+            itemOptionsNeedsFocus.show();
         }
 
         public final void onScroll$1() {
+            int childAdapterPosition;
             UItem item;
-            int i = 0;
             boolean z = false;
             boolean z2 = false;
-            while (true) {
-                RecyclerListView recyclerListView = this.recyclerListView;
-                if (i >= recyclerListView.getChildCount()) {
-                    break;
-                }
-                View childAt = recyclerListView.getChildAt(i);
-                if (childAt instanceof FlickerLoadingView) {
-                    recyclerListView.getClass();
-                    int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt) - 1;
-                    if (childAdapterPosition >= 0 && (item = getItem(childAdapterPosition)) != null) {
-                        if (item.id < 10) {
-                            z = true;
-                        } else {
-                            z2 = true;
-                        }
+            for (int i = 0; i < this.recyclerListView.getChildCount(); i++) {
+                View childAt = this.recyclerListView.getChildAt(i);
+                if ((childAt instanceof FlickerLoadingView) && (childAdapterPosition = this.recyclerListView.getChildAdapterPosition(childAt) - 1) >= 0 && (item = getItem(childAdapterPosition)) != null) {
+                    if (item.id < 10) {
+                        z = true;
+                    } else {
+                        z2 = true;
                     }
                 }
-                i++;
             }
             State state = this.state;
             if (z) {
@@ -1350,7 +1372,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.dialogId = j;
         this.gift_name = str;
         this.resourceProvider = resourcesProvider;
-        ResaleGiftsList resaleGiftsList = new ResaleGiftsList(j2, this.currentAccount, new PollItemMenu$$ExternalSyntheticLambda14(this, 13));
+        ResaleGiftsList resaleGiftsList = new ResaleGiftsList(j2, this.currentAccount, new DialogCell$$ExternalSyntheticLambda6(this, 23));
         this.list = resaleGiftsList;
         resaleGiftsList.load(false);
     }
@@ -1369,7 +1391,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.backDrawable.animationTime = 240.0f;
         this.actionBar.setCastShadows(false);
         this.actionBar.setAddToContainer(false);
-        this.actionBar.setActionBarMenuOnItemClick(new LoginActivity.AnonymousClass1(this, 19));
+        this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 13));
         this.actionBar.setTitle(this.gift_name);
         this.actionBar.setBackgroundColor(getThemedColor(i));
         ActionBar actionBar2 = this.actionBar;
@@ -1379,24 +1401,34 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), false);
         this.actionBar.setTitleColor(getThemedColor(i2));
         this.actionBar.setSubtitleColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
-        LoginActivity.AnonymousClass2 anonymousClass2 = new LoginActivity.AnonymousClass2(this, context, 3);
+        SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
+            @Override
+            public final void onMeasure(int i3, int i4) {
+                ResaleGiftsFragment resaleGiftsFragment = ResaleGiftsFragment.this;
+                ((FrameLayout.LayoutParams) resaleGiftsFragment.filterScrollView.getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight() + (((BaseFragment) resaleGiftsFragment).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0);
+                ((FrameLayout.LayoutParams) resaleGiftsFragment.filtersDivider.getLayoutParams()).topMargin = AndroidUtilities.dp(47.0f) + ActionBar.getCurrentActionBarHeight() + (((BaseFragment) resaleGiftsFragment).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0);
+                ((FrameLayout.LayoutParams) resaleGiftsFragment.listView.getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight() + (((BaseFragment) resaleGiftsFragment).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0);
+                ((FrameLayout.LayoutParams) resaleGiftsFragment.emptyView.getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight() + (((BaseFragment) resaleGiftsFragment).actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0);
+                super.onMeasure(i3, i4);
+            }
+        };
         int iBlendOver = Theme.blendOver(Theme.getColor(i, this.resourceProvider), Theme.multAlpha(0.04f, Theme.getColor(i2, this.resourceProvider)));
-        anonymousClass2.setBackgroundColor(iBlendOver);
-        this.fragmentView = anonymousClass2;
+        sizeNotifierFrameLayout.setBackgroundColor(iBlendOver);
+        this.fragmentView = sizeNotifierFrameLayout;
         StarsIntroActivity.StarsBalanceView starsBalanceView = new StarsIntroActivity.StarsBalanceView(context, this.currentAccount, this.resourceProvider);
         starsBalanceView.withTon = true;
-        ScaleStateListAnimator.apply(starsBalanceView, 0.1f, 1.5f);
-        starsBalanceView.setOnClickListener(new IntroActivity$$ExternalSyntheticLambda1(14, this, starsBalanceView));
+        ScaleStateListAnimator.apply(starsBalanceView);
+        starsBalanceView.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(2, this, starsBalanceView));
         this.actionBar.addView(starsBalanceView, LayoutHelper.createFrame(-2, -2.0f, 85, 0.0f, 0.0f, 4.0f, 0.0f));
-        AnonymousClass3 anonymousClass3 = new AnonymousClass3(getParentActivity(), getCurrentAccount(), getClassGuid(), new GiftSheet$$ExternalSyntheticLambda8(this, 29), new ResaleGiftsFragment$$ExternalSyntheticLambda4(this), new ResaleGiftsFragment$$ExternalSyntheticLambda4(this), getResourceProvider());
+        AnonymousClass3 anonymousClass3 = new AnonymousClass3(this, new GiftSheet$$ExternalSyntheticLambda8(this, 22), new ResaleGiftsFragment$$ExternalSyntheticLambda4(this), new ResaleGiftsFragment$$ExternalSyntheticLambda4(this));
         this.listView = anonymousClass3;
-        anonymousClass3.adapter.applyBackground = false;
-        anonymousClass3.setSpanCount(3);
-        this.listView.addOnScrollListener(new LocationActivity.AnonymousClass10(this, 18));
+        anonymousClass3.adapter.setApplyBackground(false);
+        this.listView.setSpanCount(3);
+        this.listView.addOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 10));
         this.listView.setPadding(0, AndroidUtilities.dp(45.0f), 0, AndroidUtilities.dp(101.0f));
         this.listView.setClipToPadding(false);
-        anonymousClass2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 119, 7.33f, 0.0f, 7.33f, -45.0f));
-        anonymousClass2.addView(this.actionBar);
+        sizeNotifierFrameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 119, 7.33f, 0.0f, 7.33f, -45.0f));
+        sizeNotifierFrameLayout.addView(this.actionBar);
         final int i3 = 0;
         View.OnClickListener onClickListener = new View.OnClickListener(this) {
             public final ResaleGiftsFragment f$0;
@@ -1427,10 +1459,10 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         };
         Theme.ResourcesProvider resourcesProvider = this.resourceProvider;
         LargeEmptyView largeEmptyView = new LargeEmptyView(context);
-        LinearLayout linearLayoutM = zzkf.m(context, 1);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
         largeEmptyView.addView(linearLayoutM, LayoutHelper.createFrame(-1, -2, 23));
         BackupImageView backupImageView = new BackupImageView(context);
-        backupImageView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty, "utyan_empty", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f), true, null));
+        backupImageView.setImageDrawable(new RLottieDrawable(R.raw.utyan_empty, "utyan_empty", AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
         linearLayoutM.addView(backupImageView, LayoutHelper.createLinear(130, 130, 17));
         TextView textView = new TextView(context);
         OKLCH.m(i2, resourcesProvider, textView, 17.0f);
@@ -1438,7 +1470,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.Gift2ResaleFiltersEmptyTitle));
         linearLayoutM.addView(textView, LayoutHelper.createLinear(-2, -2, 17, 32, 12, 32, 9));
-        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, null);
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
         linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3, resourcesProvider));
         linksTextView.setTextSize(1, 14.0f);
         linksTextView.setGravity(17);
@@ -1450,8 +1482,8 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         textView2.setTextColor(Theme.getColor(i4, resourcesProvider));
         textView2.setBackground(Theme.createRadSelectorDrawable(Theme.multAlpha(0.1f, Theme.getColor(i4, resourcesProvider)), 6, 6));
         textView2.setGravity(17);
-        textView2.setPadding(zzlm.m(13.0f, R.string.Gift2ResaleFiltersEmptyClear, textView2), 0, AndroidUtilities.dp(13.0f), 0);
-        ScaleStateListAnimator.apply(textView2, 0.1f, 1.5f);
+        textView2.setPadding(EditTextCaption$$ExternalSyntheticOutline0.m(13.0f, R.string.Gift2ResaleFiltersEmptyClear, textView2), 0, AndroidUtilities.dp(13.0f), 0);
+        ScaleStateListAnimator.apply(textView2);
         linearLayoutM.addView(textView2, LayoutHelper.createLinear(-2, 27, 17, 32, 0, 32, 12));
         textView2.setOnClickListener(onClickListener);
         this.emptyView = largeEmptyView;
@@ -1460,7 +1492,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.emptyView.setScaleX(0.95f);
         this.emptyView.setScaleY(0.95f);
         this.emptyView.setVisibility(8);
-        anonymousClass2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, -45.0f));
+        sizeNotifierFrameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, 0.0f, -45.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.filtersContainer = linearLayout;
         linearLayout.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
@@ -1471,23 +1503,19 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.filterScrollView.addView(this.filtersContainer);
         this.filterScrollView.setBackgroundColor(iBlendOver);
         this.filterScrollView.setClipChildren(false);
-        anonymousClass2.addView(this.filterScrollView, LayoutHelper.createFrame(-1, 47, 55));
+        sizeNotifierFrameLayout.addView(this.filterScrollView, LayoutHelper.createFrame(-1, 47, 55));
         View view = new View(context);
         this.filtersDivider = view;
         view.setBackgroundColor(getThemedColor(Theme.key_divider));
         this.filtersDivider.setAlpha(0.0f);
-        anonymousClass2.addView(this.filtersDivider, new FrameLayout.LayoutParams(LayoutHelper.getSize(-1.0f), LayoutHelper.getSize(2.0f / AndroidUtilities.density), 55));
+        sizeNotifierFrameLayout.addView(this.filtersDivider, LayoutHelper.createFrame(-1.0f, 2.0f / AndroidUtilities.density, 55));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(15.0f), 0);
         linearLayout2.setOrientation(0);
         final CheckBox2 checkBox2 = new CheckBox2(context, 24, this.resourceProvider);
-        int i5 = Theme.key_radioBackgroundChecked;
-        int i6 = Theme.key_checkboxDisabled;
-        int i7 = Theme.key_checkboxCheck;
-        CheckBoxBase checkBoxBase = checkBox2.checkBoxBase;
-        checkBoxBase.setColor(i5, i6, i7);
+        checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
         checkBox2.setDrawUnchecked(true);
-        checkBoxBase.setChecked(-1, false, false);
+        checkBox2.setChecked(false, false);
         checkBox2.setDrawBackgroundAsArc(10);
         checkBox2.setTranslationX(AndroidUtilities.dp(4.0f));
         checkBox2.setScaleX(0.8f);
@@ -1509,7 +1537,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         blurredBackgroundDrawableCreate.setPadding(AndroidUtilities.dp(8.0f));
         blurredBackgroundDrawableCreate.setRadius(AndroidUtilities.dp(18.0f));
         view2.setBackground(blurredBackgroundDrawableCreate);
-        final int i8 = 0;
+        final int i5 = 0;
         this.onlyStarsContainer.setOnClickListener(new View.OnClickListener(this) {
             public final ResaleGiftsFragment f$0;
 
@@ -1519,38 +1547,35 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
             @Override
             public final void onClick(View view3) {
-                switch (i8) {
+                switch (i5) {
                     case 0:
                         ResaleGiftsFragment.ResaleGiftsList resaleGiftsList = this.f$0.list;
                         if (resaleGiftsList != null) {
                             boolean z = !resaleGiftsList.starsOnly;
                             resaleGiftsList.starsOnly = z;
-                            checkBox2.checkBoxBase.setChecked(-1, z, true);
+                            checkBox2.setChecked(z, true);
                             resaleGiftsList.reload();
                         }
                         break;
                     default:
                         final ResaleGiftsFragment resaleGiftsFragment = this.f$0;
                         if (resaleGiftsFragment.filtersShown) {
-                            ItemOptions itemOptions = new ItemOptions(resaleGiftsFragment, resaleGiftsFragment.sortButton, false, true);
-                            itemOptions.add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 3), false);
-                            itemOptions.add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 4), false);
-                            itemOptions.add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 5), false);
-                            itemOptions.addGap();
+                            ItemOptions itemOptionsAddGap = ItemOptions.makeOptions(resaleGiftsFragment, resaleGiftsFragment.sortButton).add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 3)).add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 4)).add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 5)).addGap();
                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList2 = resaleGiftsFragment.list;
                             boolean z2 = !resaleGiftsList2.starsOnly;
                             String string = LocaleController.getString(R.string.GiftResaleFilterAllListings);
                             final CheckBox2 checkBox3 = checkBox2;
-                            final int i9 = 0;
-                            itemOptions.addChecked(z2, 0, null, string, new Runnable() {
+                            final int i6 = 0;
+                            final int i7 = 1;
+                            itemOptionsAddGap.addChecked(z2, string, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    switch (i9) {
+                                    switch (i6) {
                                         case 0:
                                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList3 = resaleGiftsFragment.list;
                                             if (resaleGiftsList3.starsOnly) {
                                                 resaleGiftsList3.starsOnly = false;
-                                                checkBox3.checkBoxBase.setChecked(-1, false, true);
+                                                checkBox3.setChecked(false, true);
                                                 resaleGiftsList3.reload();
                                             }
                                             break;
@@ -1558,23 +1583,21 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList4 = resaleGiftsFragment.list;
                                             if (!resaleGiftsList4.starsOnly) {
                                                 resaleGiftsList4.starsOnly = true;
-                                                checkBox3.checkBoxBase.setChecked(-1, true, true);
+                                                checkBox3.setChecked(true, true);
                                                 resaleGiftsList4.reload();
                                             }
                                             break;
                                     }
                                 }
-                            });
-                            final int i10 = 1;
-                            itemOptions.addChecked(resaleGiftsList2.starsOnly, 0, null, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), new Runnable() {
+                            }).addChecked(resaleGiftsList2.starsOnly, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), new Runnable() {
                                 @Override
                                 public final void run() {
-                                    switch (i10) {
+                                    switch (i7) {
                                         case 0:
                                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList3 = resaleGiftsFragment.list;
                                             if (resaleGiftsList3.starsOnly) {
                                                 resaleGiftsList3.starsOnly = false;
-                                                checkBox3.checkBoxBase.setChecked(-1, false, true);
+                                                checkBox3.setChecked(false, true);
                                                 resaleGiftsList3.reload();
                                             }
                                             break;
@@ -1582,26 +1605,22 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList4 = resaleGiftsFragment.list;
                                             if (!resaleGiftsList4.starsOnly) {
                                                 resaleGiftsList4.starsOnly = true;
-                                                checkBox3.checkBoxBase.setChecked(-1, true, true);
+                                                checkBox3.setChecked(true, true);
                                                 resaleGiftsList4.reload();
                                             }
                                             break;
                                     }
                                 }
-                            });
-                            itemOptions.drawScrim = false;
-                            itemOptions.onTopOfScrim = true;
-                            itemOptions.translate(0.0f, AndroidUtilities.dp(-8.0f));
-                            itemOptions.show();
+                            }).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).show();
                             break;
                         }
                         break;
                 }
             }
         });
-        this.onlyStarsContainer.addView(linearLayout2, LayoutHelper.createFrame(-1.0f, -2));
+        this.onlyStarsContainer.addView(linearLayout2, LayoutHelper.createFrame(-2, -1.0f));
         ScaleStateListAnimator.apply(this.onlyStarsContainer, 0.04f, 1.5f);
-        anonymousClass2.addView(this.onlyStarsContainer, LayoutHelper.createFrame(-2, 52.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
+        sizeNotifierFrameLayout.addView(this.onlyStarsContainer, LayoutHelper.createFrame(-2, 52.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
         StarsController starsController = StarsController.getInstance(this.currentAccount, true);
         if (starsController.balanceLoaded && !starsController.getBalanceAmount().isZero()) {
             this.onlyStarsContainer.setVisibility(8);
@@ -1615,7 +1634,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         blurredBackgroundDrawableCreate2.setPadding(AndroidUtilities.dp(8.0f));
         blurredBackgroundDrawableCreate2.setRadius(AndroidUtilities.dp(22.0f));
         view3.setBackground(blurredBackgroundDrawableCreate2);
-        anonymousClass2.addView(this.clearFiltersContainer, LayoutHelper.createFrame(-2, 60.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
+        sizeNotifierFrameLayout.addView(this.clearFiltersContainer, LayoutHelper.createFrame(-2, 60.0f, 81, 0.0f, 0.0f, 0.0f, AndroidUtilities.navigationBarHeight / AndroidUtilities.density));
         this.clearFiltersButton = new TextView(context);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("x");
         spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.msg_clearcache), 0, 1, 33);
@@ -1629,7 +1648,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         int iBlendOver3 = Theme.blendOver(getThemedColor(i), Theme.multAlpha(0.1f, getThemedColor(i4)));
         textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp2, iDp2, iDp2, iDp2, 0, iBlendOver3, iBlendOver3));
         this.clearFiltersButton.setGravity(17);
-        final int i9 = 1;
+        final int i6 = 1;
         this.clearFiltersContainer.setOnClickListener(new View.OnClickListener(this) {
             public final ResaleGiftsFragment f$0;
 
@@ -1639,7 +1658,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
             @Override
             public final void onClick(View view4) {
-                switch (i9) {
+                switch (i6) {
                     case 0:
                         ResaleGiftsFragment.ResaleGiftsList resaleGiftsList = this.f$0.list;
                         resaleGiftsList.notSelectedBackdropAttributes.clear();
@@ -1657,14 +1676,14 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 }
             }
         });
-        this.clearFiltersContainer.addView(this.clearFiltersButton, LayoutHelper.createFrame(-1.0f, -2));
+        this.clearFiltersContainer.addView(this.clearFiltersButton, LayoutHelper.createFrame(-2, -1.0f));
         this.clearFiltersContainer.setVisibility(8);
         ScaleStateListAnimator.apply(this.clearFiltersContainer, 0.05f, 1.5f);
         Filter filter = new Filter(context, this.resourceProvider);
         this.sortButton = filter;
         filter.setSorting(this.list.sorting);
         this.filtersContainer.addView(this.sortButton, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 6, 0));
-        final int i10 = 1;
+        final int i7 = 1;
         this.sortButton.setOnClickListener(new View.OnClickListener(this) {
             public final ResaleGiftsFragment f$0;
 
@@ -1674,38 +1693,35 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
             @Override
             public final void onClick(View view4) {
-                switch (i10) {
+                switch (i7) {
                     case 0:
                         ResaleGiftsFragment.ResaleGiftsList resaleGiftsList = this.f$0.list;
                         if (resaleGiftsList != null) {
                             boolean z = !resaleGiftsList.starsOnly;
                             resaleGiftsList.starsOnly = z;
-                            checkBox2.checkBoxBase.setChecked(-1, z, true);
+                            checkBox2.setChecked(z, true);
                             resaleGiftsList.reload();
                         }
                         break;
                     default:
                         final ResaleGiftsFragment resaleGiftsFragment = this.f$0;
                         if (resaleGiftsFragment.filtersShown) {
-                            ItemOptions itemOptions = new ItemOptions(resaleGiftsFragment, resaleGiftsFragment.sortButton, false, true);
-                            itemOptions.add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 3), false);
-                            itemOptions.add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 4), false);
-                            itemOptions.add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 5), false);
-                            itemOptions.addGap();
+                            ItemOptions itemOptionsAddGap = ItemOptions.makeOptions(resaleGiftsFragment, resaleGiftsFragment.sortButton).add(R.drawable.menu_sort_value, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_PRICE.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 3)).add(R.drawable.menu_sort_date, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_DATE.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 4)).add(R.drawable.menu_sort_number, LocaleController.getString(ResaleGiftsFragment.ResaleGiftsList.Sorting.BY_NUMBER.buttonStringResId), new ResaleGiftsFragment$$ExternalSyntheticLambda16(resaleGiftsFragment, 5)).addGap();
                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList2 = resaleGiftsFragment.list;
                             boolean z2 = !resaleGiftsList2.starsOnly;
                             String string = LocaleController.getString(R.string.GiftResaleFilterAllListings);
                             final CheckBox2 checkBox3 = checkBox2;
-                            final int i11 = 0;
-                            itemOptions.addChecked(z2, 0, null, string, new Runnable() {
+                            final int i8 = 0;
+                            final int i9 = 1;
+                            itemOptionsAddGap.addChecked(z2, string, new Runnable() {
                                 @Override
                                 public final void run() {
-                                    switch (i11) {
+                                    switch (i8) {
                                         case 0:
                                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList3 = resaleGiftsFragment.list;
                                             if (resaleGiftsList3.starsOnly) {
                                                 resaleGiftsList3.starsOnly = false;
-                                                checkBox3.checkBoxBase.setChecked(-1, false, true);
+                                                checkBox3.setChecked(false, true);
                                                 resaleGiftsList3.reload();
                                             }
                                             break;
@@ -1713,23 +1729,21 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList4 = resaleGiftsFragment.list;
                                             if (!resaleGiftsList4.starsOnly) {
                                                 resaleGiftsList4.starsOnly = true;
-                                                checkBox3.checkBoxBase.setChecked(-1, true, true);
+                                                checkBox3.setChecked(true, true);
                                                 resaleGiftsList4.reload();
                                             }
                                             break;
                                     }
                                 }
-                            });
-                            final int i12 = 1;
-                            itemOptions.addChecked(resaleGiftsList2.starsOnly, 0, null, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), new Runnable() {
+                            }).addChecked(resaleGiftsList2.starsOnly, LocaleController.getString(R.string.GiftResaleFilterForStarsOnly), new Runnable() {
                                 @Override
                                 public final void run() {
-                                    switch (i12) {
+                                    switch (i9) {
                                         case 0:
                                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList3 = resaleGiftsFragment.list;
                                             if (resaleGiftsList3.starsOnly) {
                                                 resaleGiftsList3.starsOnly = false;
-                                                checkBox3.checkBoxBase.setChecked(-1, false, true);
+                                                checkBox3.setChecked(false, true);
                                                 resaleGiftsList3.reload();
                                             }
                                             break;
@@ -1737,17 +1751,13 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                                             ResaleGiftsFragment.ResaleGiftsList resaleGiftsList4 = resaleGiftsFragment.list;
                                             if (!resaleGiftsList4.starsOnly) {
                                                 resaleGiftsList4.starsOnly = true;
-                                                checkBox3.checkBoxBase.setChecked(-1, true, true);
+                                                checkBox3.setChecked(true, true);
                                                 resaleGiftsList4.reload();
                                             }
                                             break;
                                     }
                                 }
-                            });
-                            itemOptions.drawScrim = false;
-                            itemOptions.onTopOfScrim = true;
-                            itemOptions.translate(0.0f, AndroidUtilities.dp(-8.0f));
-                            itemOptions.show();
+                            }).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).show();
                             break;
                         }
                         break;
@@ -1758,7 +1768,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.modelButton = filter2;
         filter2.setValue(LocaleController.getString(R.string.Gift2AttributeModel));
         this.filtersContainer.addView(this.modelButton, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 6, 0));
-        final int i11 = 1;
+        final int i8 = 1;
         this.modelButton.setOnClickListener(new View.OnClickListener(this) {
             public final ResaleGiftsFragment f$0;
 
@@ -1768,7 +1778,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
             @Override
             public final void onClick(View view4) {
-                switch (i11) {
+                switch (i8) {
                     case 0:
                         this.f$0.lambda$createView$27(context);
                         break;
@@ -1785,7 +1795,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.backdropButton = filter3;
         filter3.setValue(LocaleController.getString(R.string.Gift2AttributeBackdrop));
         this.filtersContainer.addView(this.backdropButton, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 6, 0));
-        final int i12 = 2;
+        final int i9 = 2;
         this.backdropButton.setOnClickListener(new View.OnClickListener(this) {
             public final ResaleGiftsFragment f$0;
 
@@ -1795,7 +1805,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
             @Override
             public final void onClick(View view4) {
-                switch (i12) {
+                switch (i9) {
                     case 0:
                         this.f$0.lambda$createView$27(context);
                         break;
@@ -1812,7 +1822,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         this.patternButton = filter4;
         filter4.setValue(LocaleController.getString(R.string.Gift2AttributeSymbol));
         this.filtersContainer.addView(this.patternButton, LayoutHelper.createLinear(-2, -2, 16, 0, 0, 0, 0));
-        final int i13 = 0;
+        final int i10 = 0;
         this.patternButton.setOnClickListener(new View.OnClickListener(this) {
             public final ResaleGiftsFragment f$0;
 
@@ -1822,7 +1832,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
 
             @Override
             public final void onClick(View view4) {
-                switch (i13) {
+                switch (i10) {
                     case 0:
                         this.f$0.lambda$createView$27(context);
                         break;
@@ -1835,11 +1845,11 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 }
             }
         });
-        FireworksOverlay fireworksOverlay = new FireworksOverlay(getParentActivity());
+        FireworksOverlay fireworksOverlay = new FireworksOverlay(getContext());
         this.fireworksOverlay = fireworksOverlay;
-        anonymousClass2.addView(fireworksOverlay, LayoutHelper.createFrame(-1.0f, -1));
+        sizeNotifierFrameLayout.addView(fireworksOverlay, LayoutHelper.createFrame(-1, -1.0f));
         setFiltersShown(false, false);
-        return anonymousClass2;
+        return sizeNotifierFrameLayout;
     }
 
     @Override
@@ -1867,18 +1877,13 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             if (resaleGiftsList.modelAttributes.isEmpty()) {
                 return;
             }
-            ItemOptions itemOptions = new ItemOptions(this, this.modelButton, false, false);
-            itemOptions.drawScrim = false;
-            itemOptions.onTopOfScrim = true;
-            itemOptions.translate(0.0f, AndroidUtilities.dp(-8.0f));
-            itemOptions.needsFocus = true;
-            itemOptions.dismissListener = new ChatActivity$$ExternalSyntheticLambda326(5, itemOptions);
+            ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.modelButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new RichEditor$$ExternalSyntheticLambda30(4, itemOptionsNeedsFocus));
             String[] strArr = {""};
             ArrayList arrayList = new ArrayList(resaleGiftsList.modelAttributes);
             Collections.sort(arrayList, new ResaleGiftsFragment$$ExternalSyntheticLambda13(this, 2));
-            int i = 2;
-            AnonymousClass5 anonymousClass5 = new AnonymousClass5(getParentActivity(), getCurrentAccount(), getClassGuid(), new ResaleGiftsFragment$$ExternalSyntheticLambda14(this, strArr, arrayList, i), new ResaleGiftsFragment$$ExternalSyntheticLambda15(this, itemOptions, i), null, getResourceProvider());
-            anonymousClass5.adapter.applyBackground = false;
+            AnonymousClass5 anonymousClass5 = new AnonymousClass5(this, new ResaleGiftsFragment$$ExternalSyntheticLambda14(this, strArr, arrayList, 2), new ResaleGiftsFragment$$ExternalSyntheticLambda15(this, itemOptionsNeedsFocus, 2), null);
+            anonymousClass5.adapter.setApplyBackground(false);
             FrameLayout frameLayout = new FrameLayout(context);
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -1897,16 +1902,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourceProvider));
             editTextCaption.setBackground(null);
             frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-            editTextCaption.addTextChangedListener(new LoginActivity.AnonymousClass7(strArr, anonymousClass5, false, 5));
+            editTextCaption.addTextChangedListener(new AnonymousClass6(strArr, anonymousClass5, 0));
             if (arrayList.size() > 8) {
-                itemOptions.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
-                itemOptions.addGap();
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
             }
             if (!resaleGiftsList.notSelectedModelAttributes.isEmpty()) {
-                itemOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$$ExternalSyntheticLambda16(this, 2), false);
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$$ExternalSyntheticLambda16(this, 2));
             }
-            itemOptions.addView(anonymousClass5);
-            itemOptions.show();
+            itemOptionsNeedsFocus.addView(anonymousClass5);
+            itemOptionsNeedsFocus.show();
         }
     }
 
@@ -1916,18 +1921,13 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             if (resaleGiftsList.backdropAttributes.isEmpty()) {
                 return;
             }
-            ItemOptions itemOptions = new ItemOptions(this, this.backdropButton, false, false);
-            itemOptions.drawScrim = false;
-            itemOptions.onTopOfScrim = true;
-            itemOptions.translate(0.0f, AndroidUtilities.dp(-8.0f));
-            itemOptions.needsFocus = true;
-            itemOptions.dismissListener = new ChatActivity$$ExternalSyntheticLambda326(4, itemOptions);
+            ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.backdropButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new RichEditor$$ExternalSyntheticLambda30(3, itemOptionsNeedsFocus));
             String[] strArr = {""};
             ArrayList arrayList = new ArrayList(resaleGiftsList.backdropAttributes);
             Collections.sort(arrayList, new ResaleGiftsFragment$$ExternalSyntheticLambda13(this, 1));
-            int i = 1;
-            AnonymousClass7 anonymousClass7 = new AnonymousClass7(getParentActivity(), getCurrentAccount(), getClassGuid(), new ResaleGiftsFragment$$ExternalSyntheticLambda14(this, strArr, arrayList, i), new ResaleGiftsFragment$$ExternalSyntheticLambda15(this, itemOptions, i), null, getResourceProvider());
-            anonymousClass7.adapter.applyBackground = false;
+            AnonymousClass7 anonymousClass7 = new AnonymousClass7(this, new ResaleGiftsFragment$$ExternalSyntheticLambda14(this, strArr, arrayList, 1), new ResaleGiftsFragment$$ExternalSyntheticLambda15(this, itemOptionsNeedsFocus, 1), null);
+            anonymousClass7.adapter.setApplyBackground(false);
             FrameLayout frameLayout = new FrameLayout(context);
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -1946,16 +1946,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourceProvider));
             editTextCaption.setBackground(null);
             frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-            editTextCaption.addTextChangedListener(new LoginActivity.AnonymousClass7(strArr, anonymousClass7, false, 6));
+            editTextCaption.addTextChangedListener(new AnonymousClass6(strArr, anonymousClass7, 3));
             if (arrayList.size() > 8) {
-                itemOptions.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
-                itemOptions.addGap();
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
             }
             if (!resaleGiftsList.notSelectedBackdropAttributes.isEmpty()) {
-                itemOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$$ExternalSyntheticLambda16(this, 1), false);
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$$ExternalSyntheticLambda16(this, 1));
             }
-            itemOptions.addView(anonymousClass7);
-            itemOptions.show();
+            itemOptionsNeedsFocus.addView(anonymousClass7);
+            itemOptionsNeedsFocus.show();
         }
     }
 
@@ -1965,18 +1965,13 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             if (resaleGiftsList.patternAttributes.isEmpty()) {
                 return;
             }
-            ItemOptions itemOptions = new ItemOptions(this, this.patternButton, false, false);
-            itemOptions.drawScrim = false;
-            itemOptions.onTopOfScrim = true;
-            itemOptions.translate(0.0f, AndroidUtilities.dp(-8.0f));
-            itemOptions.needsFocus = true;
-            itemOptions.dismissListener = new ChatActivity$$ExternalSyntheticLambda326(3, itemOptions);
+            ItemOptions itemOptionsNeedsFocus = ItemOptions.makeOptions((BaseFragment) this, (View) this.patternButton, false, true).setDrawScrim(false).setOnTopOfScrim().translate(0.0f, AndroidUtilities.dp(-8.0f)).needsFocus();
+            itemOptionsNeedsFocus.setOnDismiss(new RichEditor$$ExternalSyntheticLambda30(2, itemOptionsNeedsFocus));
             String[] strArr = {""};
             ArrayList arrayList = new ArrayList(resaleGiftsList.patternAttributes);
             Collections.sort(arrayList, new ResaleGiftsFragment$$ExternalSyntheticLambda13(this, 0));
-            int i = 0;
-            AnonymousClass9 anonymousClass9 = new AnonymousClass9(getParentActivity(), getCurrentAccount(), getClassGuid(), new ResaleGiftsFragment$$ExternalSyntheticLambda14(this, strArr, arrayList, i), new ResaleGiftsFragment$$ExternalSyntheticLambda15(this, itemOptions, i), null, getResourceProvider());
-            anonymousClass9.adapter.applyBackground = false;
+            AnonymousClass9 anonymousClass9 = new AnonymousClass9(this, new ResaleGiftsFragment$$ExternalSyntheticLambda14(this, strArr, arrayList, 0), new ResaleGiftsFragment$$ExternalSyntheticLambda15(this, itemOptionsNeedsFocus, 0), null);
+            anonymousClass9.adapter.setApplyBackground(false);
             FrameLayout frameLayout = new FrameLayout(context);
             ImageView imageView = new ImageView(context);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -1995,16 +1990,16 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
             editTextCaption.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, this.resourceProvider));
             editTextCaption.setBackground(null);
             frameLayout.addView(editTextCaption, LayoutHelper.createFrame(-1, -2.0f, 19, 43.0f, 0.0f, 8.0f, 0.0f));
-            editTextCaption.addTextChangedListener(new LoginActivity.AnonymousClass7(strArr, anonymousClass9, false, 4));
+            editTextCaption.addTextChangedListener(new AnonymousClass6(strArr, anonymousClass9, 2));
             if (arrayList.size() > 8) {
-                itemOptions.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
-                itemOptions.addGap();
+                itemOptionsNeedsFocus.addView(frameLayout, LayoutHelper.createLinear(-1, 44));
+                itemOptionsNeedsFocus.addGap();
             }
             if (!resaleGiftsList.notSelectedPatternAttributes.isEmpty()) {
-                itemOptions.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$$ExternalSyntheticLambda16(this, 0), false);
+                itemOptionsNeedsFocus.add(R.drawable.msg_select, LocaleController.getString(R.string.SelectAll), new ResaleGiftsFragment$$ExternalSyntheticLambda16(this, 0));
             }
-            itemOptions.addView(anonymousClass9);
-            itemOptions.show();
+            itemOptionsNeedsFocus.addView(anonymousClass9);
+            itemOptionsNeedsFocus.show();
         }
     }
 
@@ -2020,13 +2015,9 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                 StringBuilder sb = new StringBuilder();
                 sb.append(tL_starGiftUnique.title);
                 sb.append(" #");
-                Bulletin bulletinCreateSimpleBulletin = bulletinFactoryOf.createSimpleBulletin(document, string, LocaleController.formatString(i, BillingController$$ExternalSyntheticOutline0.m(tL_starGiftUnique.num, ',', sb)));
-                bulletinCreateSimpleBulletin.hideAfterBottomSheet = false;
-                bulletinCreateSimpleBulletin.show();
+                bulletinFactoryOf.createSimpleBulletin(document, string, LocaleController.formatString(i, BillingController$$ExternalSyntheticOutline0.m(tL_starGiftUnique.num, ',', sb))).hideAfterBottomSheet(false).show();
             } else {
-                Bulletin bulletinCreateSimpleBulletin2 = BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, j)));
-                bulletinCreateSimpleBulletin2.hideAfterBottomSheet = false;
-                bulletinCreateSimpleBulletin2.show();
+                BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, j))).hideAfterBottomSheet(false).show();
             }
             this.fireworksOverlay.start(true);
             return;
@@ -2047,9 +2038,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
                     return;
                 }
                 this.shownToast = true;
-                Bulletin bulletinCreateSimpleBulletin3 = BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, j)));
-                bulletinCreateSimpleBulletin3.hideAfterBottomSheet = false;
-                bulletinCreateSimpleBulletin3.show();
+                BulletinFactory.of(this).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(this.currentAccount, j))).hideAfterBottomSheet(false).show();
                 FireworksOverlay fireworksOverlay = this.fireworksOverlay;
                 if (fireworksOverlay != null) {
                     fireworksOverlay.start(true);
@@ -2077,7 +2066,7 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
     }
 
     @Override
-    public final void onFactorChangeFinished(float f, int i) {
+    public final void onFactorChangeFinished(int i, float f, FactorAnimator factorAnimator) {
     }
 
     @Override
@@ -2088,11 +2077,11 @@ public class ResaleGiftsFragment extends BaseFragment implements FactorAnimator.
         }
     }
 
-    public final void onItemClick$5(UItem uItem) {
+    public final void onItemClick$3(UItem uItem) {
         Object obj = uItem.object;
         if (obj instanceof TL_stars.TL_starGiftUnique) {
             TL_stars.TL_starGiftUnique tL_starGiftUnique = (TL_stars.TL_starGiftUnique) obj;
-            StarGiftSheet starGiftSheet = new StarGiftSheet(this.currentAccount, getParentActivity(), this.resourceProvider, this.dialogId, null);
+            StarGiftSheet starGiftSheet = new StarGiftSheet(this.currentAccount, getContext(), this.resourceProvider, this.dialogId, null);
             starGiftSheet.set(tL_starGiftUnique.slug, tL_starGiftUnique, this.list);
             starGiftSheet.boughtGift = new ResaleGiftsFragment$$ExternalSyntheticLambda4(this);
             showDialog(starGiftSheet);

@@ -11,8 +11,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_vision_common.zzkk;
-import com.google.android.gms.internal.mlkit_vision_common.zzlm;
+import com.google.android.gms.internal.mlkit_vision_common.zzkb;
+import com.stripe.android.Stripe;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
@@ -23,11 +23,9 @@ import org.telegram.ui.Components.Crop.CropRotationWheel;
 import org.telegram.ui.Components.Crop.CropTransform;
 import org.telegram.ui.Components.Crop.CropView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EditTextCaption$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.PhotoView;
-import org.telegram.ui.Components.PhotoCropView;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
 
 public abstract class CropInlineEditor extends FrameLayout {
     public final AnimatedFloat animatedMirror;
@@ -164,7 +162,7 @@ public abstract class CropInlineEditor extends FrameLayout {
             float fLerp6 = (photoView2 == null || (cropState = photoView2.crop) == null) ? AndroidUtilities.lerp(1.0f, f10, f4) : AndroidUtilities.lerp(cropState.cropScale, f10, f4);
             canvas.scale(fLerp6, fLerp6);
             canvas.translate(cropTransform.cropPx * f8 * 1.0f, cropTransform.cropPy * f9 * 1.0f);
-            float orientation = anonymousClass37.animatedOrientation.set(i, false) + anonymousClass37.photoView.getOrientation() + cropTransform.cropRotation;
+            float orientation = anonymousClass37.animatedOrientation.set(i) + anonymousClass37.photoView.getOrientation() + cropTransform.cropRotation;
             MediaController.CropState cropState4 = anonymousClass37.photoView.crop;
             canvas.rotate(cropState4 == null ? AndroidUtilities.lerp(0.0f, orientation, anonymousClass37.appearProgress) : AndroidUtilities.lerp(cropState4.cropRotate + cropState4.transformRotation, orientation, anonymousClass37.appearProgress));
             canvas.rotate(anonymousClass37.photoView.getOrientation());
@@ -221,23 +219,23 @@ public abstract class CropInlineEditor extends FrameLayout {
             }
         };
         this.cropView = r0;
-        r0.setListener(new PhotoViewer.AnonymousClass24(anonymousClass37, 6));
+        r0.setListener(new Stripe.AnonymousClass1(anonymousClass37, 14));
         addView(r0);
         FrameLayout frameLayout = new FrameLayout(context);
         this.controlsLayout = frameLayout;
         addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
         CropRotationWheel cropRotationWheel = new CropRotationWheel(context);
         this.wheel = cropRotationWheel;
-        cropRotationWheel.setListener(new PhotoCropView.AnonymousClass4(anonymousClass37, 2));
+        cropRotationWheel.setListener(new CropEditor.AnonymousClass3(anonymousClass37, 1));
         frameLayout.addView(cropRotationWheel, LayoutHelper.createFrame(-1, -2.0f, 81, 0.0f, 0.0f, 0.0f, 52.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.buttonsLayout = frameLayout2;
         frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 52.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        zzkk.m(14.0f, 1, textView);
+        zzkb.m(14.0f, 1, textView);
         textView.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
         textView.setTextColor(-1);
-        textView.setPadding(zzlm.m(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
+        textView.setPadding(EditTextCaption$$ExternalSyntheticOutline0.m(12.0f, R.string.Cancel, textView), 0, AndroidUtilities.dp(12.0f), 0);
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -1, 115));
         final StoryRecorder.AnonymousClass37 anonymousClass38 = (StoryRecorder.AnonymousClass37) this;
         final int i = 0;
@@ -268,7 +266,7 @@ public abstract class CropInlineEditor extends FrameLayout {
                             anonymousClass310.photoView.requestLayout();
                             anonymousClass310.photoView.containerView.requestLayout();
                             anonymousClass310.photoView.containerView.invalidate();
-                            anonymousClass310.photoView.containerView.post(new VoIPFragment$12$$ExternalSyntheticLambda0(anonymousClass310, 2));
+                            anonymousClass310.photoView.containerView.post(new PreviewView$$ExternalSyntheticLambda12(anonymousClass310, 4));
                         }
                         StoryRecorder.this.switchToEditMode(-1, false, true);
                         break;
@@ -280,7 +278,7 @@ public abstract class CropInlineEditor extends FrameLayout {
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
         textView2.setTextColor(-1);
-        textView2.setPadding(zzlm.m(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
+        textView2.setPadding(EditTextCaption$$ExternalSyntheticOutline0.m(12.0f, R.string.CropReset, textView2), 0, AndroidUtilities.dp(12.0f), 0);
         frameLayout2.addView(textView2, LayoutHelper.createFrame(-2, -1, 113));
         final int i2 = 1;
         textView2.setOnClickListener(new View.OnClickListener() {
@@ -310,7 +308,7 @@ public abstract class CropInlineEditor extends FrameLayout {
                             anonymousClass310.photoView.requestLayout();
                             anonymousClass310.photoView.containerView.requestLayout();
                             anonymousClass310.photoView.containerView.invalidate();
-                            anonymousClass310.photoView.containerView.post(new VoIPFragment$12$$ExternalSyntheticLambda0(anonymousClass310, 2));
+                            anonymousClass310.photoView.containerView.post(new PreviewView$$ExternalSyntheticLambda12(anonymousClass310, 4));
                         }
                         StoryRecorder.this.switchToEditMode(-1, false, true);
                         break;
@@ -322,7 +320,7 @@ public abstract class CropInlineEditor extends FrameLayout {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setBackground(Theme.createSelectorDrawable(-12763843, 0, -1));
         textView3.setTextColor(-15098625);
-        textView3.setPadding(zzlm.m(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
+        textView3.setPadding(EditTextCaption$$ExternalSyntheticOutline0.m(12.0f, R.string.StoryCrop, textView3), 0, AndroidUtilities.dp(12.0f), 0);
         frameLayout2.addView(textView3, LayoutHelper.createFrame(-2, -1, 117));
         final int i3 = 2;
         textView3.setOnClickListener(new View.OnClickListener() {
@@ -352,7 +350,7 @@ public abstract class CropInlineEditor extends FrameLayout {
                             anonymousClass310.photoView.requestLayout();
                             anonymousClass310.photoView.containerView.requestLayout();
                             anonymousClass310.photoView.containerView.invalidate();
-                            anonymousClass310.photoView.containerView.post(new VoIPFragment$12$$ExternalSyntheticLambda0(anonymousClass310, 2));
+                            anonymousClass310.photoView.containerView.post(new PreviewView$$ExternalSyntheticLambda12(anonymousClass310, 4));
                         }
                         StoryRecorder.this.switchToEditMode(-1, false, true);
                         break;
@@ -426,8 +424,7 @@ public abstract class CropInlineEditor extends FrameLayout {
             cropRotationWheel.setRotation$1(0.0f);
             cropRotationWheel.setRotated(false);
             cropRotationWheel.setMirrored(false);
-            animatedFloat.getClass();
-            animatedFloat.set(0.0f, false);
+            animatedFloat.set(false, false);
         }
         anonymousClass1.updateMatrix(false);
         ContentView contentView = this.contentView;

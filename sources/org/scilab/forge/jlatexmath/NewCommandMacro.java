@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 
@@ -15,7 +15,7 @@ public class NewCommandMacro {
 
     public static void addReNewCommand(String str, String str2, int i) {
         if (macrocode.get(str) == null) {
-            throw new ParseException(SurfaceContainer$$ExternalSyntheticOutline0.m("Command ", str, " is not defined ! Use newcommand instead ..."));
+            throw new ParseException(Fragment$$ExternalSyntheticOutline0.m("Command ", str, " is not defined ! Use newcommand instead ..."));
         }
         macrocode.put(str, str2);
         MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i));
@@ -60,6 +60,6 @@ public class NewCommandMacro {
             MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i, 1.0f));
             return;
         }
-        throw new ParseException(SurfaceContainer$$ExternalSyntheticOutline0.m("Command ", str, " already exists ! Use renewcommand instead ..."));
+        throw new ParseException(Fragment$$ExternalSyntheticOutline0.m("Command ", str, " already exists ! Use renewcommand instead ..."));
     }
 }

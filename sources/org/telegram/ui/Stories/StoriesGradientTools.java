@@ -13,12 +13,12 @@ public final class StoriesGradientTools extends GradientTools {
         int i2 = Theme.key_voipgroup_overlayBlue1;
         this.colorKey2 = i2;
         this.isDiagonal = true;
-        setColors(Theme.getColor(null, i, false), Theme.getColor(null, i2, false), 0, 0);
+        setColors(Theme.getColor(null, i, false), Theme.getColor(null, i2, false));
     }
 
     @Override
     public final void updateBounds() {
-        setColors(Theme.getColor(null, this.colorKey1, false), Theme.getColor(null, this.colorKey2, false), 0, 0);
+        setColors(Theme.getColor(null, this.colorKey1, false), Theme.getColor(null, this.colorKey2, false));
         super.updateBounds();
     }
 }

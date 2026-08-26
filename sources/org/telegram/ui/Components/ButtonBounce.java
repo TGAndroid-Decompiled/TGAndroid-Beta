@@ -1,31 +1,38 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import androidx.recyclerview.widget.DiffUtil;
-import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
-import org.telegram.ui.Cells.ChatMessageCell;
-import org.telegram.ui.ChatActivity;
-import org.telegram.ui.Stories.recorder.PaintView;
 
 public class ButtonBounce {
-    public Runnable additionalInvalidate;
-    public ValueAnimator animator;
-    public final float durationPressMultiplier;
-    public final float durationReleaseMultiplier;
-    public boolean isPressed;
-    public final float overshoot;
-    public float pressedT;
-    public long releaseDelay;
+    private Runnable additionalInvalidate;
+    private ValueAnimator animator;
+    private final float durationPressMultiplier;
+    private final float durationReleaseMultiplier;
+    private boolean isPressed;
+    private final float overshoot;
+    private float pressedT;
+    private long releaseDelay;
     public View view;
 
-    public ButtonBounce(ChatMessageCell chatMessageCell) {
-        this(chatMessageCell, 1.0f, 5.0f);
+    public ButtonBounce(View view) {
+        this(view, 1.0f, 5.0f);
     }
 
-    public final float getScale(float f) {
+    public void lambda$setPressed$0(ValueAnimator valueAnimator) {
+        this.pressedT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        invalidate();
+    }
+
+    public float getScale(float f) {
         return DiffUtil.m(1.0f, this.pressedT, f, 1.0f - f);
+    }
+
+    public View getView() {
+        return this.view;
     }
 
     public void invalidate() {
@@ -39,7 +46,20 @@ public class ButtonBounce {
         }
     }
 
-    public final void setPressed(boolean z) {
+    public boolean isPressed() {
+        return this.isPressed;
+    }
+
+    public float isPressedProgress() {
+        return this.pressedT;
+    }
+
+    public void setAdditionalInvalidate(Runnable runnable) {
+        this.additionalInvalidate = runnable;
+    }
+
+    public void setPressed(final boolean z) {
+        int i = 0;
         if (this.isPressed != z) {
             this.isPressed = z;
             ValueAnimator valueAnimator = this.animator;
@@ -49,8 +69,17 @@ public class ButtonBounce {
             }
             ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.pressedT, z ? 1.0f : 0.0f);
             this.animator = valueAnimatorOfFloat;
-            valueAnimatorOfFloat.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 25));
-            this.animator.addListener(new ChatActivity.AnonymousClass77(14, this, z));
+            valueAnimatorOfFloat.addUpdateListener(new ButtonBounce$$ExternalSyntheticLambda0(this, i));
+            this.animator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    if (animator == ButtonBounce.this.animator) {
+                        ButtonBounce.this.animator = null;
+                        ButtonBounce.this.pressedT = z ? 1.0f : 0.0f;
+                        ButtonBounce.this.invalidate();
+                    }
+                }
+            });
             if (this.isPressed) {
                 this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
                 this.animator.setDuration((long) (this.durationPressMultiplier * 60.0f));
@@ -64,6 +93,15 @@ public class ButtonBounce {
         }
     }
 
+    public ButtonBounce setReleaseDelay(long j) {
+        this.releaseDelay = j;
+        return this;
+    }
+
+    public void setView(View view) {
+        this.view = view;
+    }
+
     public ButtonBounce(View view, float f, float f2) {
         this.releaseDelay = 0L;
         this.view = view;
@@ -72,11 +110,11 @@ public class ButtonBounce {
         this.overshoot = f2;
     }
 
-    public ButtonBounce(PaintView.PopupWindowLayout popupWindowLayout) {
+    public ButtonBounce(View view, float f, float f2, float f3) {
         this.releaseDelay = 0L;
-        this.view = popupWindowLayout;
-        this.durationPressMultiplier = 1.5f;
-        this.durationReleaseMultiplier = 1.0f;
-        this.overshoot = 2.0f;
+        this.view = view;
+        this.durationPressMultiplier = f;
+        this.durationReleaseMultiplier = f2;
+        this.overshoot = f3;
     }
 }

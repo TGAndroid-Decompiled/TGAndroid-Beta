@@ -3,7 +3,7 @@ package org.telegram.messenger.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import androidx.lifecycle.LiveData$1;
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.DiffUtil;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
 import com.google.common.base.Splitter;
@@ -22,7 +22,6 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.commonmark.internal.InlineParserImpl;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
@@ -30,8 +29,8 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda166;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda470;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
 import org.telegram.ui.iv.TableModel$$ExternalSyntheticLambda1;
 
 public final class BitmapsCache {
@@ -44,7 +43,7 @@ public final class BitmapsCache {
     public volatile boolean cacheCreated;
     public RandomAccessFile cachedFile;
     public final AtomicBoolean cancelled;
-    public final LiveData$1 cleanupSharedBuffers;
+    public final LiveData.AnonymousClass1 cleanupSharedBuffers;
     public final int compressQuality;
     public boolean error;
     public final File file;
@@ -64,6 +63,12 @@ public final class BitmapsCache {
     public static final ConcurrentHashMap sharedBuffers = new ConcurrentHashMap();
     public static final int N = Utilities.clamp(Runtime.getRuntime().availableProcessors() - 2, 6, 1);
 
+    public final class CacheOptions {
+        public int compressQuality = 100;
+        public boolean fallback = false;
+        public boolean firstFrame;
+    }
+
     public interface Cacheable {
         int getNextFrame(Bitmap bitmap);
 
@@ -82,17 +87,21 @@ public final class BitmapsCache {
         }
     }
 
-    public BitmapsCache(File file, Cacheable cacheable, InlineParserImpl.DelimiterData delimiterData, int i, int i2, boolean z, int i3) {
+    public final class Metadata {
+        public int frame;
+    }
+
+    public BitmapsCache(File file, Cacheable cacheable, CacheOptions cacheOptions, int i, int i2, boolean z, int i3) {
         RandomAccessFile randomAccessFile;
         ArrayList arrayList = new ArrayList();
         this.frameOffsets = arrayList;
         this.mutex = new Object();
         this.cancelled = new AtomicBoolean(false);
-        this.cleanupSharedBuffers = new LiveData$1(this, 29);
+        this.cleanupSharedBuffers = new LiveData.AnonymousClass1(this, 25);
         this.source = (BitmapDrawable) cacheable;
         this.w = i;
         this.h = i2;
-        this.compressQuality = delimiterData.count;
+        this.compressQuality = cacheOptions.compressQuality;
         String name = file.getName();
         if (bitmapCompressExecutor == null) {
             int i4 = N;
@@ -180,7 +189,7 @@ public final class BitmapsCache {
         taskCounter = i;
         if (i <= 0) {
             taskCounter = 0;
-            RLottieDrawable.lottieCacheGenerateQueue.postRunnable(new ChatActivity$$ExternalSyntheticLambda470(2));
+            RLottieDrawable.lottieCacheGenerateQueue.postRunnable(new GiftSheet$$ExternalSyntheticLambda2(2));
         }
     }
 
@@ -497,7 +506,7 @@ public final class BitmapsCache {
         return bArr2;
     }
 
-    public final int getFrame(Bitmap bitmap, int i) {
+    public final int getFrame(int i, Bitmap bitmap) {
         RandomAccessFile randomAccessFile;
         int i2;
         if (!this.error) {

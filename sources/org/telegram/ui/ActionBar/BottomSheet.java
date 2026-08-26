@@ -40,21 +40,20 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
-import com.google.zxing.qrcode.decoder.Version;
+import androidx.core.view.NestedScrollingParentHelper;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.messenger.utils.WindowVisibilityManager;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda19;
+import org.telegram.messenger.utils.WindowVisibilityManager.ControllerImpl;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda50;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.ArchiveHelp;
@@ -187,18 +186,18 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                     }
                     break;
                 case 1:
-                    ActionBarLayout actionBarLayout = (ActionBarLayout) this.this$0;
-                    if (actionBarLayout.waitingForKeyboardCloseRunnable == this) {
-                        actionBarLayout.waitingForKeyboardCloseRunnable = null;
-                        actionBarLayout.startLayoutAnimation(false, true, false);
-                        break;
-                    }
-                    break;
-                default:
                     AdjustPanLayoutHelper adjustPanLayoutHelper = (AdjustPanLayoutHelper) this.this$0;
                     ValueAnimator valueAnimator = adjustPanLayoutHelper.animator;
                     if (valueAnimator != null && !valueAnimator.isRunning()) {
                         adjustPanLayoutHelper.animator.start();
+                        break;
+                    }
+                    break;
+                default:
+                    ActionBarLayout actionBarLayout = (ActionBarLayout) this.this$0;
+                    if (actionBarLayout.waitingForKeyboardCloseRunnable == this) {
+                        actionBarLayout.waitingForKeyboardCloseRunnable = null;
+                        actionBarLayout.startLayoutAnimation(false, true, false);
                         break;
                     }
                     break;
@@ -352,11 +351,13 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         public final ImageView imageView;
         public final ImageView imageView2;
         public boolean isSelected;
+        public final Theme.ResourcesProvider resourcesProvider;
         public final AnimatedEmojiSpan.TextViewEmojis textView;
 
         public BottomSheetCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.isSelected = false;
+            this.resourcesProvider = resourcesProvider;
             this.currentType = i;
             if (i != 4) {
                 setBackgroundDrawable(Theme.getSelectorDrawable(resourcesProvider, false));
@@ -389,7 +390,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 textViewEmojis.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
                 textViewEmojis.setTextSize(1, 14.0f);
                 textViewEmojis.setTypeface(AndroidUtilities.bold());
-                addView(textViewEmojis, LayoutHelper.createFrame(-1.0f, -1));
+                addView(textViewEmojis, LayoutHelper.createFrame(-1, -1.0f));
                 return;
             }
             if (i == 2) {
@@ -472,6 +473,20 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
     }
 
+    public abstract class BottomSheetDelegate implements BottomSheetDelegateInterface {
+        @Override
+        public boolean canDismiss() {
+            return true;
+        }
+
+        @Override
+        public void onOpenAnimationEnd() {
+        }
+
+        public void onOpenAnimationStart() {
+        }
+    }
+
     public interface BottomSheetDelegateInterface {
         boolean canDismiss();
 
@@ -482,7 +497,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         public final BottomSheet bottomSheet;
 
         public Builder(Context context, Theme.ResourcesProvider resourcesProvider) {
-            BottomSheet bottomSheet = new BottomSheet(context, resourcesProvider, false, false);
+            BottomSheet bottomSheet = new BottomSheet(context, false, false, resourcesProvider);
             this.bottomSheet = bottomSheet;
             bottomSheet.fixNavigationBar();
         }
@@ -497,8 +512,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             this.bottomSheet.dimBehind = false;
         }
 
-        public final void setOnPreDismissListener(ChatActivity$$ExternalSyntheticLambda19 chatActivity$$ExternalSyntheticLambda19) {
-            this.bottomSheet.setOnHideListener(chatActivity$$ExternalSyntheticLambda19);
+        public final void setOnPreDismissListener(ChatActivity$$ExternalSyntheticLambda50 chatActivity$$ExternalSyntheticLambda50) {
+            this.bottomSheet.setOnHideListener(chatActivity$$ExternalSyntheticLambda50);
         }
     }
 
@@ -510,7 +525,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         public int internalPaddingBottom;
         public boolean keyboardChanged;
         public boolean maybeStartTracking;
-        public final Version.ECB nestedScrollingParentHelper;
+        public final NestedScrollingParentHelper nestedScrollingParentHelper;
         public final Rect rect;
         public boolean startedTracking;
         public int startedTrackingPointerId;
@@ -574,7 +589,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             this.y = 0.0f;
             this.swipeBackX = 0.0f;
             this.internalBackgroundPaint = new Paint(1);
-            this.nestedScrollingParentHelper = new Version.ECB();
+            this.nestedScrollingParentHelper = new NestedScrollingParentHelper();
             setWillNotDraw(false);
         }
 
@@ -742,8 +757,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
         @Override
         public int getNestedScrollAxes() {
-            Version.ECB ecb = this.nestedScrollingParentHelper;
-            return ecb.dataCodewords | ecb.count;
+            NestedScrollingParentHelper nestedScrollingParentHelper = this.nestedScrollingParentHelper;
+            return nestedScrollingParentHelper.mNestedScrollAxesNonTouch | nestedScrollingParentHelper.mNestedScrollAxesTouch;
         }
 
         @Override
@@ -1110,7 +1125,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
         @Override
         public final void onNestedScrollAccepted(View view, View view2, int i) {
-            this.nestedScrollingParentHelper.count = i;
+            this.nestedScrollingParentHelper.mNestedScrollAxesTouch = i;
             BottomSheet bottomSheet = BottomSheet.this;
             if (bottomSheet.dismissed || !bottomSheet.allowNestedScroll) {
                 return;
@@ -1132,7 +1147,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
         @Override
         public final void onStopNestedScroll(View view) {
-            this.nestedScrollingParentHelper.count = 0;
+            this.nestedScrollingParentHelper.mNestedScrollAxesTouch = 0;
             BottomSheet bottomSheet = BottomSheet.this;
             if (bottomSheet.dismissed || !bottomSheet.allowNestedScroll) {
                 return;
@@ -1361,113 +1376,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
     }
 
-    public BottomSheet(Context context, Theme.ResourcesProvider resourcesProvider, boolean z, boolean z2) {
-        super(context, R.style.TransparentDialog);
-        this.currentAccount = UserConfig.selectedAccount;
-        this.useHardwareLayer = true;
-        this.backDrawable = new SheetBackDrawable();
-        this.useLightStatusBar = true;
-        int i = Theme.key_dialogBackground;
-        this.behindKeyboardColorKey = i;
-        this.canDismissWithSwipe = true;
-        this.canDismissWithTouchOutside = true;
-        this.allowCustomAnimation = true;
-        this.statusBarHeight = AndroidUtilities.statusBarHeight;
-        this.openDuration = 400;
-        this.openInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        this.focusableSoftInputMode = 16;
-        this.dimBehind = true;
-        this.dimBehindAlpha = 51;
-        this.allowNestedScroll = true;
-        this.applyTopPadding = true;
-        this.applyBottomPadding = true;
-        this.itemViews = new ArrayList<>();
-        this.dismissRunnable = new BottomSheet$$ExternalSyntheticLambda5(this, 2);
-        this.navigationBarAlpha = 0.0f;
-        this.navBarColorKey = Theme.key_windowBackgroundGray;
-        this.pauseAllHeavyOperations = true;
-        this.notificationsLocker = new AnimationNotificationsLocker();
-        this.useBackgroundTopPadding = true;
-        this.customViewGravity = 51;
-        this.smoothContainerViewLayoutUntil = -1L;
-        this.resourcesProvider = resourcesProvider;
-        int i2 = Build.VERSION.SDK_INT;
-        if (i2 >= 30) {
-            getWindow().addFlags(-2147483392);
-            if (z2) {
-                this.focusableSoftInputMode = 48;
-            }
-        } else {
-            getWindow().addFlags(-2147417856);
-        }
-        this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        Rect rect = new Rect();
-        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        this.shadowDrawable = drawableMutate;
-        int themedColor = getThemedColor(i);
-        this.internalBackgroundColor = themedColor;
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-        this.shadowDrawable.getPadding(rect);
-        this.backgroundPaddingLeft = rect.left;
-        this.backgroundPaddingTop = rect.top;
-        ContainerView containerView = new ContainerView(getContext()) {
-            @Override
-            public final void dispatchDraw(Canvas canvas) {
-                super.dispatchDraw(canvas);
-                BottomSheet.this.mainContainerDispatchDraw(canvas);
-            }
-
-            @Override
-            public final boolean drawChild(Canvas canvas, View view, long j) {
-                try {
-                    return super.drawChild(canvas, view, j);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return true;
-                }
-            }
-
-            @Override
-            public final void onAttachedToWindow() {
-                super.onAttachedToWindow();
-                Bulletin.addDelegate(this, new LaunchActivity.AnonymousClass7(1));
-            }
-
-            @Override
-            public final void onConfigurationChanged(Configuration configuration) {
-                BottomSheet bottomSheet = BottomSheet.this;
-                bottomSheet.lastInsets = null;
-                bottomSheet.container.requestApplyInsets();
-            }
-
-            @Override
-            public final void onDetachedFromWindow() {
-                super.onDetachedFromWindow();
-                Bulletin.removeDelegate(this);
-            }
-        };
-        this.container = containerView;
-        containerView.setClipChildren(false);
-        this.container.setClipToPadding(false);
-        this.container.setBackground(this.backDrawable);
-        this.focusable = z;
-        if (!z2) {
-            this.container.setFitsSystemWindows(true);
-            this.container.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
-                @Override
-                public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    return this.f$0.lambda$new$1(view, windowInsets);
-                }
-            });
-        }
-        if (i2 >= 30) {
-            this.container.setSystemUiVisibility(1792);
-        } else {
-            this.container.setSystemUiVisibility(1280);
-        }
-        SheetBackDrawable sheetBackDrawable = this.backDrawable;
-        sheetBackDrawable.bgPaint.setAlpha(0);
-        sheetBackDrawable.invalidateSelf();
+    public BottomSheet(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        this(context, z, false, resourcesProvider);
     }
 
     public static int access$1012(BottomSheet bottomSheet, int i) {
@@ -1540,7 +1450,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     @Override
     public void lambda$showGiftOfferSheet$15() {
         long j;
-        Bulletin bulletin;
+        Bulletin visibleBulletin;
         int i = 2;
         int i2 = 1;
         BottomSheetDelegateInterface bottomSheetDelegateInterface = this.delegate;
@@ -1578,7 +1488,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                             arrayList.add(objectAnimatorOfFloat2);
                         }
                     }
-                    arrayList.add(ObjectAnimator.ofInt(this.backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 0));
+                    arrayList.add(ObjectAnimator.ofInt(this.backDrawable, (Property<SheetBackDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0));
                     arrayList.add(this.navigationBarAnimation);
                     appendOpenAnimator(false, arrayList);
                     this.currentSheetAnimation.playTogether(arrayList);
@@ -1595,12 +1505,12 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                     NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 512);
                     this.currentSheetAnimation.start();
                 }
-                bulletin = Bulletin.visibleBulletin;
-                if (bulletin != null && bulletin.showing && bulletin.hideAfterBottomSheet) {
+                visibleBulletin = Bulletin.getVisibleBulletin();
+                if (visibleBulletin != null && visibleBulletin.isShowing() && visibleBulletin.hideAfterBottomSheet) {
                     if (j > 0) {
-                        bulletin.hide((long) (j * 0.6f), MessagesController.getGlobalMainSettings().getBoolean("view_animations", true));
+                        visibleBulletin.hide((long) (j * 0.6f));
                     } else {
-                        bulletin.hide();
+                        visibleBulletin.hide();
                     }
                 }
                 if (this.showing) {
@@ -1611,14 +1521,14 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
                 }
                 return;
             }
-            AndroidUtilities.runOnUIThread(new BottomSheet$$ExternalSyntheticLambda5(this, i2));
+            AndroidUtilities.runOnUIThread(new BottomSheet$$ExternalSyntheticLambda5(this, i));
             j = 0;
-            bulletin = Bulletin.visibleBulletin;
-            if (bulletin != null) {
+            visibleBulletin = Bulletin.getVisibleBulletin();
+            if (visibleBulletin != null) {
                 if (j > 0) {
-                    bulletin.hide((long) (j * 0.6f), MessagesController.getGlobalMainSettings().getBoolean("view_animations", true));
+                    visibleBulletin.hide((long) (j * 0.6f));
                 } else {
-                    bulletin.hide();
+                    visibleBulletin.hide();
                 }
             }
             if (this.showing) {
@@ -1656,7 +1566,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         this.currentSheetAnimation = new AnimatorSet();
         ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, Math.max(0, Math.min(AndroidUtilities.navigationBarHeight, getBottomInset())) + AndroidUtilities.dp(10.0f) + getContainerViewHeight() + this.keyboardHeight);
         objectAnimatorOfFloat.addUpdateListener(new BottomSheet$$ExternalSyntheticLambda1(this, i2));
-        this.currentSheetAnimation.playTogether(objectAnimatorOfFloat, ObjectAnimator.ofInt(this.backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, 0));
+        this.currentSheetAnimation.playTogether(objectAnimatorOfFloat, ObjectAnimator.ofInt(this.backDrawable, (Property<SheetBackDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0));
         this.currentSheetAnimation.setDuration(this.cellType == 4 ? 330L : 180L);
         this.currentSheetAnimation.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         this.currentSheetAnimation.addListener(new AnonymousClass6(this, i, i2));
@@ -1723,7 +1633,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
     @Override
     public BulletinFactory getBulletinFactory() {
-        return new BulletinFactory(this.topBulletinContainer, this.resourcesProvider);
+        return BulletinFactory.of(this.topBulletinContainer, this.resourcesProvider);
     }
 
     public ContainerView getContainer() {
@@ -1825,7 +1735,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     @Override
-    public View getWindowView() {
+    public View mo1107getWindowView() {
         return this.container;
     }
 
@@ -1873,19 +1783,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         return f2 < ((float) this.containerView.getTop()) || f < ((float) this.containerView.getLeft()) || f > ((float) this.containerView.getRight());
     }
 
-    public void lambda$close$9(AlertDialog alertDialog, int i) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$createButton$1(AlertDialog alertDialog, int i) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$didReceivedNotification$2(DialogInterface dialogInterface) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public final void lambda$dismiss$10$1() {
+    public final void lambda$dismiss$10() {
         try {
             dismissInternal();
         } catch (Exception e) {
@@ -1927,51 +1825,19 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$0$13(View view) {
+    public void lambda$new$0$15(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$0$16(View view) {
+    public void lambda$new$0$18(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$0$3(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$0$33(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$0$34(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$0$37(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$0$39(View view) {
+    public void lambda$new$0$20(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
     public void lambda$new$0$4(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$0$40(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$0$42(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$0$43(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$0$46(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
@@ -1980,59 +1846,35 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         return Build.VERSION.SDK_INT >= 30 ? WindowInsets.CONSUMED : windowInsets.consumeSystemWindowInsets();
     }
 
-    public void lambda$new$1$17(View view) {
+    public void lambda$new$1$12(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$1$30(View view) {
+    public void lambda$new$1$14(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$1$32(View view) {
+    public void lambda$new$1$15(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$1$35(View view) {
+    public void lambda$new$1$4(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$1$36(View view) {
+    public void lambda$new$2$2(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$1$37(View view) {
+    public void lambda$new$2$6(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$1$7(View view) {
+    public void lambda$new$3$5(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
-    public void lambda$new$2$13(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$2$18(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$2$22(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$2$7(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$3$17(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$3$20(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$new$6$9(View view) {
+    public void lambda$new$6$3(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
@@ -2046,14 +1888,6 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
     }
 
     public void lambda$openAsLearnMore$99(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$requestTranslate$12(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$requestTranslate$13(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
@@ -2095,19 +1929,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         lambda$openCrafting$8();
     }
 
-    public void lambda$updateButton$15(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$updateButton$18(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
     public void lambda$updateButtonText$8(View view) {
-        lambda$showGiftOfferSheet$15();
-    }
-
-    public void lambda$updateFields$35(View view) {
         lambda$showGiftOfferSheet$15();
     }
 
@@ -2133,7 +1955,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         WindowVisibilityManager windowVisibilityManager = this.windowVisibilityManager;
         windowVisibilityManager.getClass();
-        return new LaunchActivity.ActivityVisibilityController(windowVisibilityManager);
+        return windowVisibilityManager.new ControllerImpl();
     }
 
     @Override
@@ -2284,8 +2106,8 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
             }
             this.titleView.setGravity(16);
             i = 48;
-            this.containerView.addView(this.titleView, LayoutHelper.createFrame(this.multipleLinesTitle ? -2.0f : 48, -1));
-            this.titleView.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(1));
+            this.containerView.addView(this.titleView, LayoutHelper.createFrame(-1, this.multipleLinesTitle ? -2.0f : 48));
+            this.titleView.setOnTouchListener(new BottomSheet$$ExternalSyntheticLambda6(0));
         } else {
             i = 0;
         }
@@ -2573,7 +2395,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         }
         if (this.attachedFragment != null) {
             LaunchActivity.instance.checkSystemBarColors(true, true, true);
-            AndroidUtilities.setLightNavigationBar(getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
+            AndroidUtilities.setLightNavigationBar(mo1107getWindowView(), AndroidUtilities.computePerceivedBrightness(getNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray))) >= 0.721f);
         } else {
             AndroidUtilities.setNavigationBarColor(this, this.overlayDrawNavBarColor);
             AndroidUtilities.setLightNavigationBar(this, ((double) AndroidUtilities.computePerceivedBrightness(this.overlayDrawNavBarColor)) > 0.721d);
@@ -2707,7 +2529,7 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
         ObjectAnimator objectAnimatorOfFloat = ObjectAnimator.ofFloat(this.containerView, (Property<ViewGroup, Float>) View.TRANSLATION_Y, 0.0f);
         objectAnimatorOfFloat.addUpdateListener(new BottomSheet$$ExternalSyntheticLambda1(this, 7));
         arrayList.add(objectAnimatorOfFloat);
-        arrayList.add(ObjectAnimator.ofInt(this.backDrawable, AnimationProperties.COLOR_DRAWABLE_ALPHA, this.dimBehind ? this.dimBehindAlpha : 0));
+        arrayList.add(ObjectAnimator.ofInt(this.backDrawable, (Property<SheetBackDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, this.dimBehind ? this.dimBehindAlpha : 0));
         arrayList.add(this.navigationBarAnimation);
         appendOpenAnimator(true, arrayList);
         this.currentSheetAnimation.playTogether(arrayList);
@@ -2730,6 +2552,168 @@ public class BottomSheet extends Dialog implements BaseFragment.AttachedSheet {
 
     public void transitionFromRight(boolean z) {
         this.transitionFromRight = z;
+    }
+
+    public BottomSheet(Context context, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
+        super(context, R.style.TransparentDialog);
+        this.currentAccount = UserConfig.selectedAccount;
+        this.useHardwareLayer = true;
+        this.backDrawable = new SheetBackDrawable();
+        this.useLightStatusBar = true;
+        int i = Theme.key_dialogBackground;
+        this.behindKeyboardColorKey = i;
+        this.canDismissWithSwipe = true;
+        this.canDismissWithTouchOutside = true;
+        this.allowCustomAnimation = true;
+        this.statusBarHeight = AndroidUtilities.statusBarHeight;
+        this.openDuration = 400;
+        this.openInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.focusableSoftInputMode = 16;
+        this.dimBehind = true;
+        this.dimBehindAlpha = 51;
+        this.allowNestedScroll = true;
+        this.applyTopPadding = true;
+        this.applyBottomPadding = true;
+        this.itemViews = new ArrayList<>();
+        this.dismissRunnable = new BottomSheet$$ExternalSyntheticLambda5(this, 1);
+        this.navigationBarAlpha = 0.0f;
+        this.navBarColorKey = Theme.key_windowBackgroundGray;
+        this.pauseAllHeavyOperations = true;
+        this.notificationsLocker = new AnimationNotificationsLocker();
+        this.useBackgroundTopPadding = true;
+        this.customViewGravity = 51;
+        this.smoothContainerViewLayoutUntil = -1L;
+        this.resourcesProvider = resourcesProvider;
+        int i2 = Build.VERSION.SDK_INT;
+        if (i2 >= 30) {
+            getWindow().addFlags(-2147483392);
+            if (z2) {
+                this.focusableSoftInputMode = 48;
+            }
+        } else {
+            getWindow().addFlags(-2147417856);
+        }
+        this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        Rect rect = new Rect();
+        Drawable drawableMutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
+        this.shadowDrawable = drawableMutate;
+        int themedColor = getThemedColor(i);
+        this.internalBackgroundColor = themedColor;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+        this.shadowDrawable.getPadding(rect);
+        this.backgroundPaddingLeft = rect.left;
+        this.backgroundPaddingTop = rect.top;
+        ContainerView containerView = new ContainerView(getContext()) {
+
+            public final class C00021 implements Bulletin.Delegate {
+                @Override
+                public final boolean allowLayoutChanges() {
+                    return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+                }
+
+                @Override
+                public final boolean bottomOffsetAnimated() {
+                    return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+                }
+
+                @Override
+                public final boolean clipWithGradient(int i) {
+                    return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+                }
+
+                @Override
+                public final int getBottomOffset(int i) {
+                    return Bulletin.Delegate.CC.$default$getBottomOffset(this, i);
+                }
+
+                @Override
+                public final int getLeftPadding() {
+                    return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+                }
+
+                @Override
+                public final int getRightPadding() {
+                    return Bulletin.Delegate.CC.$default$getRightPadding(this);
+                }
+
+                @Override
+                public final int getTopOffset(int i) {
+                    return AndroidUtilities.statusBarHeight;
+                }
+
+                @Override
+                public final void onBottomOffsetChange(float f) {
+                    Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+                }
+
+                @Override
+                public final void onHide(Bulletin bulletin) {
+                    Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+                }
+
+                @Override
+                public final void onShow(Bulletin bulletin) {
+                    Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+                }
+            }
+
+            @Override
+            public final void dispatchDraw(Canvas canvas) {
+                super.dispatchDraw(canvas);
+                BottomSheet.this.mainContainerDispatchDraw(canvas);
+            }
+
+            @Override
+            public final boolean drawChild(Canvas canvas, View view, long j) {
+                try {
+                    return super.drawChild(canvas, view, j);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return true;
+                }
+            }
+
+            @Override
+            public final void onAttachedToWindow() {
+                super.onAttachedToWindow();
+                Bulletin.addDelegate(this, new C00021());
+            }
+
+            @Override
+            public final void onConfigurationChanged(Configuration configuration) {
+                BottomSheet bottomSheet = BottomSheet.this;
+                bottomSheet.lastInsets = null;
+                bottomSheet.container.requestApplyInsets();
+            }
+
+            @Override
+            public final void onDetachedFromWindow() {
+                super.onDetachedFromWindow();
+                Bulletin.removeDelegate(this);
+            }
+        };
+        this.container = containerView;
+        containerView.setClipChildren(false);
+        this.container.setClipToPadding(false);
+        this.container.setBackground(this.backDrawable);
+        this.focusable = z;
+        if (!z2) {
+            this.container.setFitsSystemWindows(true);
+            this.container.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                @Override
+                public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                    return this.f$0.lambda$new$1(view, windowInsets);
+                }
+            });
+        }
+        if (i2 >= 30) {
+            this.container.setSystemUiVisibility(1792);
+        } else {
+            this.container.setSystemUiVisibility(1280);
+        }
+        SheetBackDrawable sheetBackDrawable = this.backDrawable;
+        sheetBackDrawable.bgPaint.setAlpha(0);
+        sheetBackDrawable.invalidateSelf();
     }
 
     public void fixNavigationBar(int i) {

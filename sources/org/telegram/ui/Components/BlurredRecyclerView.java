@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
@@ -7,16 +8,33 @@ import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 
-public abstract class BlurredRecyclerView extends RecyclerListView {
+public class BlurredRecyclerView extends RecyclerListView {
     public int additionalClipBottom;
     public boolean alwaysDrawChild;
     public int blurTopPadding;
     public int bottomPadding;
-    public boolean globalIgnoreLayout;
+    boolean globalIgnoreLayout;
     public int topPadding;
 
+    public BlurredRecyclerView(Context context) {
+        super(context);
+    }
+
+    private void updateTopPadding() {
+        if (getLayoutParams() == null) {
+            return;
+        }
+        if (!SharedConfig.chatBlurEnabled()) {
+            this.blurTopPadding = 0;
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
+        } else {
+            this.blurTopPadding = measureBlurTopPadding();
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.blurTopPadding;
+        }
+    }
+
     @Override
-    public final void capture(Canvas canvas, RectF rectF) {
+    public void capture(Canvas canvas, RectF rectF) {
         this.alwaysDrawChild = true;
         super.capture(canvas, rectF);
         this.alwaysDrawChild = false;
@@ -45,32 +63,15 @@ public abstract class BlurredRecyclerView extends RecyclerListView {
     }
 
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (getLayoutParams() == null) {
-            return;
-        }
-        if (!SharedConfig.chatBlurEnabled()) {
-            this.blurTopPadding = 0;
-            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
-        } else {
-            this.blurTopPadding = measureBlurTopPadding();
-            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.blurTopPadding;
-        }
+        updateTopPadding();
     }
 
     @Override
     public void onMeasure(int i, int i2) {
         this.globalIgnoreLayout = true;
-        if (getLayoutParams() != null) {
-            if (SharedConfig.chatBlurEnabled()) {
-                this.blurTopPadding = measureBlurTopPadding();
-                ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.blurTopPadding;
-            } else {
-                this.blurTopPadding = 0;
-                ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
-            }
-        }
+        updateTopPadding();
         super.setPadding(getPaddingLeft(), this.topPadding + this.blurTopPadding, getPaddingRight(), getPaddingBottom());
         this.globalIgnoreLayout = false;
         super.onMeasure(i, i2);
@@ -85,7 +86,7 @@ public abstract class BlurredRecyclerView extends RecyclerListView {
     }
 
     @Override
-    public final void setPadding(int i, int i2, int i3, int i4) {
+    public void setPadding(int i, int i2, int i3, int i4) {
         this.topPadding = i2;
         this.bottomPadding = i4;
         super.setPadding(i, i2 + this.blurTopPadding, i3, i4);

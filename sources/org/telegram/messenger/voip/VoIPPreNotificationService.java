@@ -39,11 +39,11 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda9;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda11;
 import org.telegram.ui.CastSync$$ExternalSyntheticApiModelOutline0;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda208;
 import org.telegram.ui.Components.PermissionRequest;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
 import org.telegram.ui.VoIPFragment;
 import org.telegram.ui.VoIPPermissionActivity;
 
@@ -82,9 +82,8 @@ public class VoIPPreNotificationService {
                 return;
             }
             this.destroyed = true;
-            VoIPFragment voIPFragment = VoIPFragment.instance;
-            if (voIPFragment != null) {
-                voIPFragment.onStateChanged(getCallState());
+            if (VoIPFragment.getInstance() != null) {
+                VoIPFragment.getInstance().onStateChanged(getCallState());
             }
         }
 
@@ -163,7 +162,7 @@ public class VoIPPreNotificationService {
             receivedcall.peer = tL_inputPhoneCall;
             tL_inputPhoneCall.id = phoneCall.id;
             tL_inputPhoneCall.access_hash = phoneCall.access_hash;
-            ConnectionsManager.getInstance(i).sendRequest(receivedcall, new ChatActivity$$ExternalSyntheticLambda208(1, context, runnable), 2);
+            ConnectionsManager.getInstance(i).sendRequest(receivedcall, new StarGiftSheet$$ExternalSyntheticLambda0(1, context, runnable), 2);
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
@@ -238,7 +237,7 @@ public class VoIPPreNotificationService {
             discardcall.reason = new TLRPC.TL_phoneCallDiscardReasonBusy();
         }
         FileLog.e("discardCall " + discardcall.reason);
-        ConnectionsManager.getInstance(intExtra).sendRequest(discardcall, new Theme$$ExternalSyntheticLambda9(intExtra, 2), 2);
+        ConnectionsManager.getInstance(intExtra).sendRequest(discardcall, new Theme$$ExternalSyntheticLambda11(intExtra, 2), 2);
         dismiss(context, false);
     }
 
@@ -317,9 +316,9 @@ public class VoIPPreNotificationService {
         LaunchActivity launchActivity = LaunchActivity.instance;
         if (launchActivity != null && launchActivity.voipLaunchedInBackground && VoIPService.getSharedInstance() == null) {
             launchActivity.voipLaunchedInBackground = false;
-            VoIPFragment voIPFragment = VoIPFragment.instance;
+            VoIPFragment voIPFragment = VoIPFragment.getInstance();
             if (voIPFragment != null) {
-                voIPFragment.windowView.finish(330L);
+                voIPFragment.finish();
             }
             launchActivity.moveTaskToBack(true);
         }
@@ -375,7 +374,7 @@ public class VoIPPreNotificationService {
         }
         if (z2) {
             AudioAttributes audioAttributesBuild = new AudioAttributes.Builder().setContentType(4).setLegacyStreamType(2).setUsage(2).build();
-            AndroidUtilities$$ExternalSyntheticApiModelOutline1.m166m();
+            AndroidUtilities$$ExternalSyntheticApiModelOutline1.m169m();
             NotificationChannel notificationChannelM = PipSource$$ExternalSyntheticApiModelOutline0.m(DiffUtil.m(i2, "incoming_calls4"), LocaleController.getString(R.string.IncomingCallsSystemSetting));
             try {
                 notificationChannelM.setSound(null, audioAttributesBuild);

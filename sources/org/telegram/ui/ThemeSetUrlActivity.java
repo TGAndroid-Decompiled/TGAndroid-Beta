@@ -1,146 +1,125 @@
 package org.telegram.ui;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.Selection;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.ActionBarMenuItem;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Cells.AboutLinkCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Cells.ThemePreviewMessagesCell;
 import org.telegram.ui.Cells.ThemesHorizontalListCell;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.iv.RichTextCell$$ExternalSyntheticLambda3;
 
-public final class ThemeSetUrlActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    public TextInfoPrivacyCell checkInfoCell;
-    public int checkReqId;
-    public TodoItemMenu$$ExternalSyntheticLambda9 checkRunnable;
-    public TextSettingsCell createCell;
-    public TextInfoPrivacyCell createInfoCell;
-    public final boolean creatingNewTheme;
-    public PaymentFormActivity.AnonymousClass2 divider;
-    public ActionBarMenuItem doneButton;
-    public EditTextBoldCursor editText;
-    public HeaderCell headerCell;
-    public TextInfoPrivacyCell helpInfoCell;
-    public boolean ignoreCheck;
-    public final TLRPC.TL_theme info;
-    public SpannableStringBuilder infoText;
-    public String lastCheckName;
-    public LinearLayout linearLayoutTypeContainer;
-    public EditTextBoldCursor linkField;
-    public ThemePreviewMessagesCell messagesCell;
-    public EditTextBoldCursor nameField;
-    public AlertDialog progressDialog;
-    public final Theme.ThemeAccent themeAccent;
-    public final Theme.ThemeInfo themeInfo;
+public class ThemeSetUrlActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    private static final int done_button = 1;
+    private TextInfoPrivacyCell checkInfoCell;
+    private int checkReqId;
+    private Runnable checkRunnable;
+    private TextSettingsCell createCell;
+    private TextInfoPrivacyCell createInfoCell;
+    private boolean creatingNewTheme;
+    private View divider;
+    private View doneButton;
+    private EditTextBoldCursor editText;
+    private HeaderCell headerCell;
+    private TextInfoPrivacyCell helpInfoCell;
+    private boolean ignoreCheck;
+    private TLRPC.TL_theme info;
+    private CharSequence infoText;
+    private String lastCheckName;
+    private boolean lastNameAvailable;
+    private LinearLayout linearLayoutTypeContainer;
+    private EditTextBoldCursor linkField;
+    private ThemePreviewMessagesCell messagesCell;
+    private EditTextBoldCursor nameField;
+    private AlertDialog progressDialog;
+    private Theme.ThemeAccent themeAccent;
+    private Theme.ThemeInfo themeInfo;
 
-    public final class AnonymousClass4 extends ThemesHorizontalListCell {
-        public final int $r8$classId = 0;
-        public final Object val$builder;
-
-        public AnonymousClass4(Context context, ThemeSetUrlActivity themeSetUrlActivity, ArrayList arrayList, ArrayList arrayList2, BottomSheet.Builder builder) {
-            super(context, themeSetUrlActivity, 2, arrayList, arrayList2);
-            this.val$builder = builder;
+    public static class LinkMovementMethodMy extends LinkMovementMethod {
+        private LinkMovementMethodMy() {
         }
 
         @Override
-        public void showOptionsForTheme(Theme.ThemeInfo themeInfo) {
-            boolean z;
-            CharSequence[] charSequenceArr;
-            int[] iArr;
-            switch (this.$r8$classId) {
-                case 1:
-                    ThemeActivity.ListAdapter listAdapter = ThemeActivity.this.listAdapter;
-                    ThemeActivity themeActivity = ThemeActivity.this;
-                    if (themeActivity.getParentActivity() != null) {
-                        if ((themeInfo.info == null || themeInfo.themeLoaded) && themeActivity.currentType != 1) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(themeActivity.getParentActivity(), 0, null);
-                            if (themeInfo.pathToFile == null) {
-                                CharSequence[] charSequenceArr2 = {null, LocaleController.getString("ExportTheme", R.string.ExportTheme)};
-                                iArr = new int[]{0, R.drawable.msg_shareout};
-                                charSequenceArr = charSequenceArr2;
-                                z = false;
-                            } else {
-                                TLRPC.TL_theme tL_theme = themeInfo.info;
-                                z = tL_theme == null || !tL_theme.isDefault;
-                                String string = LocaleController.getString("ShareFile", R.string.ShareFile);
-                                String string2 = LocaleController.getString("ExportTheme", R.string.ExportTheme);
-                                TLRPC.TL_theme tL_theme2 = themeInfo.info;
-                                String string3 = (tL_theme2 == null || (!tL_theme2.isDefault && tL_theme2.creator)) ? LocaleController.getString("Edit", R.string.Edit) : null;
-                                TLRPC.TL_theme tL_theme3 = themeInfo.info;
-                                charSequenceArr = new CharSequence[]{string, string2, string3, (tL_theme3 == null || !tL_theme3.creator) ? null : LocaleController.getString("ThemeSetUrl", R.string.ThemeSetUrl), z ? LocaleController.getString("Delete", R.string.Delete) : null};
-                                iArr = new int[]{R.drawable.msg_share, R.drawable.msg_shareout, R.drawable.msg_edit, R.drawable.msg_link, R.drawable.msg_delete};
-                            }
-                            ArticleViewer$$ExternalSyntheticLambda24 articleViewer$$ExternalSyntheticLambda24 = new ArticleViewer$$ExternalSyntheticLambda24(13, listAdapter, themeInfo);
-                            AlertDialog alertDialog = builder.alertDialog;
-                            alertDialog.items = charSequenceArr;
-                            alertDialog.itemIcons = iArr;
-                            alertDialog.onClickListener = articleViewer$$ExternalSyntheticLambda24;
-                            themeActivity.showDialog(alertDialog);
-                            if (z) {
-                                ArrayList arrayList = alertDialog.itemViews;
-                                int size = arrayList.size() - 1;
-                                int color = Theme.getColor(null, Theme.key_text_RedBold, false);
-                                int color2 = Theme.getColor(null, Theme.key_text_RedRegular, false);
-                                if (size >= 0 && size < arrayList.size()) {
-                                    AlertDialog.AlertDialogCell alertDialogCell = (AlertDialog.AlertDialogCell) arrayList.get(size);
-                                    alertDialogCell.textView.setTextColor(color);
-                                    alertDialogCell.imageView.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.MULTIPLY));
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    break;
+        public boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+            try {
+                boolean zOnTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
+                if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                    return zOnTouchEvent;
+                }
+                Selection.removeSelection(spannable);
+                return zOnTouchEvent;
+            } catch (Exception e) {
+                FileLog.e(e);
+                return false;
+            }
+        }
+    }
+
+    public class LinkSpan extends ClickableSpan {
+        private String url;
+
+        public LinkSpan(String str) {
+            this.url = str;
+        }
+
+        @Override
+        public void onClick(View view) {
+            try {
+                ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", this.url));
+                if (BulletinFactory.canShowBulletin(ThemeSetUrlActivity.this)) {
+                    BulletinFactory.createCopyLinkBulletin(ThemeSetUrlActivity.this).show();
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
             }
         }
 
         @Override
-        public final void updateRows$2() {
-            switch (this.$r8$classId) {
-                case 0:
-                    ((BottomSheet.Builder) this.val$builder).bottomSheet.dismissRunnable.run();
-                    break;
-                default:
-                    ThemeActivity.this.updateRows$8(false);
-                    break;
-            }
-        }
-
-        public AnonymousClass4(ThemeActivity.ListAdapter listAdapter, Context context, BaseFragment baseFragment, int i, ArrayList arrayList, ArrayList arrayList2) {
-            super(context, baseFragment, i, arrayList, arrayList2);
-            this.val$builder = listAdapter;
+        public void updateDrawState(TextPaint textPaint) {
+            super.updateDrawState(textPaint);
+            textPaint.setUnderlineText(false);
         }
     }
 
@@ -153,56 +132,57 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
         this.creatingNewTheme = z;
     }
 
-    public final boolean checkUrl(String str, boolean z) {
+    public boolean checkUrl(String str, boolean z) {
         String str2;
-        TodoItemMenu$$ExternalSyntheticLambda9 todoItemMenu$$ExternalSyntheticLambda9 = this.checkRunnable;
-        if (todoItemMenu$$ExternalSyntheticLambda9 != null) {
-            AndroidUtilities.cancelRunOnUIThread(todoItemMenu$$ExternalSyntheticLambda9);
+        Runnable runnable = this.checkRunnable;
+        if (runnable != null) {
+            AndroidUtilities.cancelRunOnUIThread(runnable);
             this.checkRunnable = null;
             this.lastCheckName = null;
             if (this.checkReqId != 0) {
                 ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.checkReqId, true);
             }
         }
+        this.lastNameAvailable = false;
         if (str != null) {
             if (str.startsWith("_") || str.endsWith("_")) {
-                setCheckText(Theme.key_text_RedRegular, LocaleController.getString(R.string.SetUrlInvalid));
+                setCheckText(LocaleController.getString(R.string.SetUrlInvalid), Theme.key_text_RedRegular);
                 return false;
             }
             for (int i = 0; i < str.length(); i++) {
                 char cCharAt = str.charAt(i);
                 if (i == 0 && cCharAt >= '0' && cCharAt <= '9') {
                     if (z) {
-                        AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidStartNumber), null);
+                        AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidStartNumber));
                         return false;
                     }
-                    setCheckText(Theme.key_text_RedRegular, LocaleController.getString(R.string.SetUrlInvalidStartNumber));
+                    setCheckText(LocaleController.getString(R.string.SetUrlInvalidStartNumber), Theme.key_text_RedRegular);
                     return false;
                 }
                 if ((cCharAt < '0' || cCharAt > '9') && ((cCharAt < 'a' || cCharAt > 'z') && ((cCharAt < 'A' || cCharAt > 'Z') && cCharAt != '_'))) {
                     if (z) {
-                        AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalid), null);
+                        AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalid));
                         return false;
                     }
-                    setCheckText(Theme.key_text_RedRegular, LocaleController.getString(R.string.SetUrlInvalid));
+                    setCheckText(LocaleController.getString(R.string.SetUrlInvalid), Theme.key_text_RedRegular);
                     return false;
                 }
             }
         }
         if (str == null || str.length() < 5) {
             if (z) {
-                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidShort), null);
+                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidShort));
                 return false;
             }
-            setCheckText(Theme.key_text_RedRegular, LocaleController.getString(R.string.SetUrlInvalidShort));
+            setCheckText(LocaleController.getString(R.string.SetUrlInvalidShort), Theme.key_text_RedRegular);
             return false;
         }
         if (str.length() > 64) {
             if (z) {
-                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidLong), null);
+                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.SetUrlInvalidLong));
                 return false;
             }
-            setCheckText(Theme.key_text_RedRegular, LocaleController.getString(R.string.SetUrlInvalidLong));
+            setCheckText(LocaleController.getString(R.string.SetUrlInvalidLong), Theme.key_text_RedRegular);
             return false;
         }
         if (!z) {
@@ -211,38 +191,252 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
                 str2 = "";
             }
             if (str.equals(str2)) {
-                setCheckText(Theme.key_windowBackgroundWhiteGreenText, LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str));
+                setCheckText(LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str), Theme.key_windowBackgroundWhiteGreenText);
                 return true;
             }
-            setCheckText(Theme.key_windowBackgroundWhiteGrayText8, LocaleController.getString(R.string.SetUrlChecking));
+            setCheckText(LocaleController.getString(R.string.SetUrlChecking), Theme.key_windowBackgroundWhiteGrayText8);
             this.lastCheckName = str;
-            TodoItemMenu$$ExternalSyntheticLambda9 todoItemMenu$$ExternalSyntheticLambda10 = new TodoItemMenu$$ExternalSyntheticLambda9(11, this, str);
-            this.checkRunnable = todoItemMenu$$ExternalSyntheticLambda10;
-            AndroidUtilities.runOnUIThread(todoItemMenu$$ExternalSyntheticLambda10, 300L);
+            ThemeActivity$$ExternalSyntheticLambda9 themeActivity$$ExternalSyntheticLambda9 = new ThemeActivity$$ExternalSyntheticLambda9(3, this, str);
+            this.checkRunnable = themeActivity$$ExternalSyntheticLambda9;
+            AndroidUtilities.runOnUIThread(themeActivity$$ExternalSyntheticLambda9, 300L);
         }
         return true;
     }
 
+    public void lambda$checkUrl$6(String str, TLRPC.TL_error tL_error) {
+        this.checkReqId = 0;
+        String str2 = this.lastCheckName;
+        if (str2 == null || !str2.equals(str)) {
+            return;
+        }
+        if (tL_error == null || !("THEME_SLUG_INVALID".equals(tL_error.text) || "THEME_SLUG_OCCUPIED".equals(tL_error.text))) {
+            setCheckText(LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str), Theme.key_windowBackgroundWhiteGreenText);
+            this.lastNameAvailable = true;
+        } else {
+            setCheckText(LocaleController.getString(R.string.SetUrlInUse), Theme.key_text_RedRegular);
+            this.lastNameAvailable = false;
+        }
+    }
+
+    public void lambda$checkUrl$7(String str, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new TodoItemMenu$$ExternalSyntheticLambda11(this, str, tL_error, 3));
+    }
+
+    public void lambda$checkUrl$8(String str) {
+        TL_account.createTheme createtheme = new TL_account.createTheme();
+        createtheme.slug = str;
+        createtheme.title = "";
+        createtheme.document = new TLRPC.TL_inputDocumentEmpty();
+        this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(createtheme, new LinkManager$$ExternalSyntheticLambda15(20, this, str), 2);
+    }
+
+    public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
+        return true;
+    }
+
+    public boolean lambda$createView$1(TextView textView, int i, KeyEvent keyEvent) {
+        if (i != 6) {
+            return false;
+        }
+        AndroidUtilities.hideKeyboard(this.nameField);
+        return true;
+    }
+
+    public boolean lambda$createView$2(TextView textView, int i, KeyEvent keyEvent) {
+        View view;
+        if (i != 6 || (view = this.doneButton) == null) {
+            return false;
+        }
+        view.performClick();
+        return true;
+    }
+
+    public void lambda$createView$3(View view, boolean z) {
+        if (z) {
+            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp2)));
+        } else {
+            this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
+        }
+    }
+
+    public static boolean lambda$createView$4(View view, MotionEvent motionEvent) {
+        return true;
+    }
+
+    public void lambda$createView$5(Context context, View view) {
+        if (getParentActivity() == null) {
+            return;
+        }
+        final BottomSheet.Builder builder = new BottomSheet.Builder(getParentActivity(), null);
+        BottomSheet bottomSheet = builder.bottomSheet;
+        bottomSheet.applyBottomPadding = false;
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        TextView textView = new TextView(context);
+        textView.setText(LocaleController.getString(R.string.ChooseTheme));
+        FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(textView, Theme.getColor(null, Theme.key_dialogTextBlack, false), 1, 20.0f);
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 51, 22, 12, 22, 4));
+        textView.setOnTouchListener(new TopicsFragment$$ExternalSyntheticLambda27(2));
+        bottomSheet.customView = linearLayout;
+        ArrayList arrayList = new ArrayList();
+        int size = Theme.themes.size();
+        for (int i = 0; i < size; i++) {
+            Theme.ThemeInfo themeInfo = (Theme.ThemeInfo) Theme.themes.get(i);
+            TLRPC.TL_theme tL_theme = themeInfo.info;
+            if (tL_theme == null || tL_theme.document != null) {
+                arrayList.add(themeInfo);
+            }
+        }
+        ThemesHorizontalListCell themesHorizontalListCell = new ThemesHorizontalListCell(context, this, 2, arrayList, new ArrayList()) {
+            @Override
+            public void updateRows() {
+                builder.bottomSheet.dismissRunnable.run();
+            }
+        };
+        linearLayout.addView(themesHorizontalListCell, LayoutHelper.createLinear(-1, 148, 0.0f, 7.0f, 0.0f, 1.0f));
+        themesHorizontalListCell.scrollToCurrentTheme(this.fragmentView.getMeasuredWidth(), false);
+        showDialog(bottomSheet);
+    }
+
+    public void lambda$saveTheme$10(TLRPC.TL_theme tL_theme) {
+        try {
+            this.progressDialog.dismiss();
+            this.progressDialog = null;
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        Theme.setThemeUploadInfo(this.themeInfo, this.themeAccent, tL_theme, this.currentAccount, false);
+        finishFragment();
+    }
+
+    public void lambda$saveTheme$11(TLRPC.TL_error tL_error, TL_account.updateTheme updatetheme) {
+        try {
+            this.progressDialog.dismiss();
+            this.progressDialog = null;
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        AlertsCreator.processError(this.currentAccount, tL_error, this, updatetheme, new Object[0]);
+    }
+
+    public void lambda$saveTheme$12(TL_account.updateTheme updatetheme, TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (!(tLObject instanceof TLRPC.TL_theme)) {
+            AndroidUtilities.runOnUIThread(new TodoItemMenu$$ExternalSyntheticLambda11(this, tL_error, updatetheme, 2));
+        } else {
+            AndroidUtilities.runOnUIThread(new ThemeActivity$$ExternalSyntheticLambda9(2, this, (TLRPC.TL_theme) tLObject));
+        }
+    }
+
+    public void lambda$saveTheme$13(int i, DialogInterface dialogInterface) {
+        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
+    }
+
+    public static void lambda$saveTheme$9(DialogInterface dialogInterface) {
+    }
+
+    public void saveTheme() throws Throwable {
+        if (checkUrl(this.linkField.getText().toString(), true) && getParentActivity() != null) {
+            if (this.nameField.length() == 0) {
+                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.ThemeNameInvalid));
+                return;
+            }
+            if (this.creatingNewTheme) {
+                String str = this.info.title;
+                AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3, null);
+                this.progressDialog = alertDialog;
+                alertDialog.setOnCancelListener(new ThemeSetUrlActivity$$ExternalSyntheticLambda11());
+                this.progressDialog.show();
+                Theme.ThemeInfo themeInfo = this.themeInfo;
+                TLRPC.TL_theme tL_theme = this.info;
+                String string = this.nameField.getText().toString();
+                tL_theme.title = string;
+                themeInfo.name = string;
+                this.themeInfo.info.slug = this.linkField.getText().toString();
+                Theme.saveCurrentTheme(this.themeInfo, true, true, true);
+                return;
+            }
+            TLRPC.TL_theme tL_theme2 = this.info;
+            String str2 = tL_theme2.slug;
+            if (str2 == null) {
+                str2 = "";
+            }
+            String str3 = tL_theme2.title;
+            String str4 = str3 != null ? str3 : "";
+            String string2 = this.linkField.getText().toString();
+            String string3 = this.nameField.getText().toString();
+            if (str2.equals(string2) && str4.equals(string3)) {
+                finishFragment();
+                return;
+            }
+            this.progressDialog = new AlertDialog(getParentActivity(), 3, null);
+            TL_account.updateTheme updatetheme = new TL_account.updateTheme();
+            TLRPC.TL_inputTheme tL_inputTheme = new TLRPC.TL_inputTheme();
+            TLRPC.TL_theme tL_theme3 = this.info;
+            tL_inputTheme.id = tL_theme3.id;
+            tL_inputTheme.access_hash = tL_theme3.access_hash;
+            updatetheme.theme = tL_inputTheme;
+            updatetheme.format = "android";
+            updatetheme.slug = string2;
+            int i = updatetheme.flags;
+            updatetheme.title = string3;
+            updatetheme.flags = i | 3;
+            int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatetheme, new LinkManager$$ExternalSyntheticLambda15(21, this, updatetheme), 2);
+            ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(iSendRequest, this.classGuid);
+            this.progressDialog.setOnCancelListener(new ChangeBioActivity$$ExternalSyntheticLambda5(this, iSendRequest, 7));
+            this.progressDialog.show();
+        }
+    }
+
+    private void setCheckText(String str, int i) {
+        if (TextUtils.isEmpty(str)) {
+            this.checkInfoCell.setVisibility(8);
+            if (this.creatingNewTheme) {
+                this.helpInfoCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(getParentActivity(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                return;
+            } else {
+                this.helpInfoCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(getParentActivity(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                return;
+            }
+        }
+        this.checkInfoCell.setVisibility(0);
+        this.checkInfoCell.setText(str);
+        this.checkInfoCell.setTag(Integer.valueOf(i));
+        this.checkInfoCell.setTextColorByKey(i);
+        if (this.creatingNewTheme) {
+            this.helpInfoCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(getParentActivity(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
+        } else {
+            this.helpInfoCell.setBackgroundDrawable(null);
+        }
+    }
+
     @Override
-    public final View createView(Context context) {
+    public View createView(Context context) {
         final int i = 0;
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         final int i2 = 1;
         this.actionBar.setAllowOverlayTitle(true);
-        boolean z = this.creatingNewTheme;
-        if (z) {
+        if (this.creatingNewTheme) {
             this.actionBar.setTitle(LocaleController.getString(R.string.NewThemeTitle));
         } else {
             this.actionBar.setTitle(LocaleController.getString(R.string.EditThemeTitle));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new LogoutActivity.AnonymousClass1(this, 28));
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i3) throws Throwable {
+                if (i3 == -1) {
+                    ThemeSetUrlActivity.this.finishFragment();
+                } else if (i3 == 1) {
+                    ThemeSetUrlActivity.this.saveTheme();
+                }
+            }
+        });
         this.doneButton = this.actionBar.createMenu().addItem(1, LocaleController.getString(R.string.Done).toUpperCase());
         LinearLayout linearLayout = new LinearLayout(context);
         this.fragmentView = linearLayout;
         linearLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
         LinearLayout linearLayout2 = (LinearLayout) this.fragmentView;
         linearLayout2.setOrientation(1);
-        this.fragmentView.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(2));
+        this.fragmentView.setOnTouchListener(new TopicsFragment$$ExternalSyntheticLambda27(i2));
         LinearLayout linearLayout3 = new LinearLayout(context);
         this.linearLayoutTypeContainer = linearLayout3;
         linearLayout3.setOrientation(1);
@@ -274,7 +468,7 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
         this.nameField.setCursorColor(Theme.getColor(null, i4, false));
         this.nameField.setCursorSize(AndroidUtilities.dp(20.0f));
         this.nameField.setCursorWidth(1.5f);
-        this.linearLayoutTypeContainer.addView(this.nameField, LayoutHelper.createLinear(23.0f, 0.0f, 23.0f, 0.0f, -1, 50));
+        this.linearLayoutTypeContainer.addView(this.nameField, LayoutHelper.createLinear(-1, 50, 23.0f, 0.0f, 23.0f, 0.0f));
         this.nameField.setOnEditorActionListener(new TextView.OnEditorActionListener(this) {
             public final ThemeSetUrlActivity f$0;
 
@@ -286,34 +480,23 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
             public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
                 switch (i) {
                     case 0:
-                        ThemeSetUrlActivity themeSetUrlActivity = this.f$0;
-                        if (i5 == 6) {
-                            AndroidUtilities.hideKeyboard(themeSetUrlActivity.nameField);
-                            return true;
-                        }
-                        themeSetUrlActivity.getClass();
-                        return false;
+                        return this.f$0.lambda$createView$1(textView, i5, keyEvent);
                     default:
-                        ThemeSetUrlActivity themeSetUrlActivity2 = this.f$0;
-                        if (i5 == 6) {
-                            ActionBarMenuItem actionBarMenuItem = themeSetUrlActivity2.doneButton;
-                            if (actionBarMenuItem != null) {
-                                actionBarMenuItem.performClick();
-                                return true;
-                            }
-                        } else {
-                            themeSetUrlActivity2.getClass();
-                        }
-                        return false;
+                        return this.f$0.lambda$createView$2(textView, i5, keyEvent);
                 }
             }
         });
-        PaymentFormActivity.AnonymousClass2 anonymousClass2 = new PaymentFormActivity.AnonymousClass2(context, 29);
-        this.divider = anonymousClass2;
-        this.linearLayoutTypeContainer.addView(anonymousClass2, new LinearLayout.LayoutParams(-1, 1));
+        View view = new View(context) {
+            @Override
+            public void onDraw(Canvas canvas) {
+                canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            }
+        };
+        this.divider = view;
+        this.linearLayoutTypeContainer.addView(view, new LinearLayout.LayoutParams(-1, 1));
         LinearLayout linearLayout4 = new LinearLayout(context);
         linearLayout4.setOrientation(0);
-        this.linearLayoutTypeContainer.addView(linearLayout4, LayoutHelper.createLinear(23.0f, 0.0f, 23.0f, 0.0f, -1, 50));
+        this.linearLayoutTypeContainer.addView(linearLayout4, LayoutHelper.createLinear(-1, 50, 23.0f, 0.0f, 23.0f, 0.0f));
         EditTextBoldCursor editTextBoldCursor4 = new EditTextBoldCursor(context);
         this.editText = editTextBoldCursor4;
         editTextBoldCursor4.setText(getMessagesController().linkPrefix + "/addtheme/");
@@ -357,64 +540,47 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
             public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
                 switch (i2) {
                     case 0:
-                        ThemeSetUrlActivity themeSetUrlActivity = this.f$0;
-                        if (i5 == 6) {
-                            AndroidUtilities.hideKeyboard(themeSetUrlActivity.nameField);
-                            return true;
-                        }
-                        themeSetUrlActivity.getClass();
-                        return false;
+                        return this.f$0.lambda$createView$1(textView, i5, keyEvent);
                     default:
-                        ThemeSetUrlActivity themeSetUrlActivity2 = this.f$0;
-                        if (i5 == 6) {
-                            ActionBarMenuItem actionBarMenuItem = themeSetUrlActivity2.doneButton;
-                            if (actionBarMenuItem != null) {
-                                actionBarMenuItem.performClick();
-                                return true;
-                            }
-                        } else {
-                            themeSetUrlActivity2.getClass();
-                        }
-                        return false;
+                        return this.f$0.lambda$createView$2(textView, i5, keyEvent);
                 }
             }
         });
         this.linkField.addTextChangedListener(new TextWatcher() {
             @Override
-            public final void afterTextChanged(Editable editable) {
-                ThemeSetUrlActivity themeSetUrlActivity = ThemeSetUrlActivity.this;
-                if (themeSetUrlActivity.creatingNewTheme) {
+            public void afterTextChanged(Editable editable) {
+                if (ThemeSetUrlActivity.this.creatingNewTheme) {
                     return;
                 }
-                if (themeSetUrlActivity.linkField.length() <= 0) {
-                    themeSetUrlActivity.helpInfoCell.setText(themeSetUrlActivity.infoText);
+                if (ThemeSetUrlActivity.this.linkField.length() <= 0) {
+                    ThemeSetUrlActivity.this.helpInfoCell.setText(ThemeSetUrlActivity.this.infoText);
                     return;
                 }
-                String str = "https://" + themeSetUrlActivity.getMessagesController().linkPrefix + "/addtheme/" + ((Object) themeSetUrlActivity.linkField.getText());
+                String str = "https://" + ThemeSetUrlActivity.this.getMessagesController().linkPrefix + "/addtheme/" + ((Object) ThemeSetUrlActivity.this.linkField.getText());
                 String string = LocaleController.formatString("ThemeHelpLink", R.string.ThemeHelpLink, str);
                 int iIndexOf = string.indexOf(str);
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
                 if (iIndexOf >= 0) {
-                    spannableStringBuilder.setSpan(new AboutLinkCell.AnonymousClass5(str, themeSetUrlActivity, 8), iIndexOf, str.length() + iIndexOf, 33);
+                    spannableStringBuilder.setSpan(ThemeSetUrlActivity.this.new LinkSpan(str), iIndexOf, str.length() + iIndexOf, 33);
                 }
-                themeSetUrlActivity.helpInfoCell.setText(TextUtils.concat(themeSetUrlActivity.infoText, "\n\n", spannableStringBuilder));
+                ThemeSetUrlActivity.this.helpInfoCell.setText(TextUtils.concat(ThemeSetUrlActivity.this.infoText, "\n\n", spannableStringBuilder));
             }
 
             @Override
-            public final void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
+            public void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
             }
 
             @Override
-            public final void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
-                ThemeSetUrlActivity themeSetUrlActivity = ThemeSetUrlActivity.this;
-                if (themeSetUrlActivity.ignoreCheck) {
+            public void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
+                if (ThemeSetUrlActivity.this.ignoreCheck) {
                     return;
                 }
+                ThemeSetUrlActivity themeSetUrlActivity = ThemeSetUrlActivity.this;
                 themeSetUrlActivity.checkUrl(themeSetUrlActivity.linkField.getText().toString(), false);
             }
         });
-        if (z) {
-            this.linkField.setOnFocusChangeListener(new RichTextCell$$ExternalSyntheticLambda3(this, 19));
+        if (this.creatingNewTheme) {
+            this.linkField.setOnFocusChangeListener(new DialogsActivity$$ExternalSyntheticLambda37(this, 11));
         }
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context, 24, null);
         this.checkInfoCell = textInfoPrivacyCell;
@@ -426,9 +592,9 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
         linearLayout2.addView(this.checkInfoCell, LayoutHelper.createLinear(-1, -2));
         TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context, 24, null);
         this.helpInfoCell = textInfoPrivacyCell2;
-        textInfoPrivacyCell2.getTextView().setMovementMethod(new IdenticonActivity.LinkMovementMethodMy(2));
+        textInfoPrivacyCell2.getTextView().setMovementMethod(new LinkMovementMethodMy());
         this.helpInfoCell.getTextView().setHighlightColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteLinkSelection, false));
-        if (z) {
+        if (this.creatingNewTheme) {
             this.helpInfoCell.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.ThemeCreateHelp)));
         } else {
             TextInfoPrivacyCell textInfoPrivacyCell3 = this.helpInfoCell;
@@ -437,17 +603,17 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
             textInfoPrivacyCell3.setText(spannableStringBuilderReplaceTags);
         }
         linearLayout2.addView(this.helpInfoCell, LayoutHelper.createLinear(-1, -2));
-        if (z) {
+        if (this.creatingNewTheme) {
             this.helpInfoCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, i6));
             ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(context, this.parentLayout, 1, 0L, null);
             this.messagesCell = themePreviewMessagesCell;
             linearLayout2.addView(themePreviewMessagesCell, LayoutHelper.createLinear(-1, -2));
-            TextSettingsCell textSettingsCell = new TextSettingsCell(context, 0, null);
+            TextSettingsCell textSettingsCell = new TextSettingsCell(context, null, 0);
             this.createCell = textSettingsCell;
             textSettingsCell.setBackgroundDrawable(Theme.getSelectorDrawable(true));
             this.createCell.setText(LocaleController.getString(R.string.UseDifferentTheme), false);
             linearLayout2.addView(this.createCell, LayoutHelper.createLinear(-1, -2));
-            this.createCell.setOnClickListener(new VoIPFragment$$ExternalSyntheticLambda28(2, this, context));
+            this.createCell.setOnClickListener(new PhotoViewer$$ExternalSyntheticLambda91(29, this, context));
             TextInfoPrivacyCell textInfoPrivacyCell4 = new TextInfoPrivacyCell(context, 24, null);
             this.createInfoCell = textInfoPrivacyCell4;
             textInfoPrivacyCell4.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.UseDifferentThemeInfo)));
@@ -462,7 +628,7 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
             this.nameField.setText(tL_theme.title);
             EditTextBoldCursor editTextBoldCursor6 = this.nameField;
             editTextBoldCursor6.setSelection(editTextBoldCursor6.length());
-            this.linkField.setText(tL_theme.slug);
+            this.linkField.setText(this.info.slug);
             EditTextBoldCursor editTextBoldCursor7 = this.linkField;
             editTextBoldCursor7.setSelection(editTextBoldCursor7.length());
             this.ignoreCheck = false;
@@ -471,32 +637,29 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         AlertDialog alertDialog;
         AlertDialog alertDialog2;
-        int i3 = NotificationCenter.themeUploadedToServer;
-        Theme.ThemeAccent themeAccent = this.themeAccent;
-        Theme.ThemeInfo themeInfo = this.themeInfo;
-        if (i == i3) {
-            Theme.ThemeInfo themeInfo2 = (Theme.ThemeInfo) objArr[0];
-            Theme.ThemeAccent themeAccent2 = (Theme.ThemeAccent) objArr[1];
-            if (themeInfo2 == themeInfo && themeAccent2 == themeAccent && (alertDialog2 = this.progressDialog) != null) {
+        if (i == NotificationCenter.themeUploadedToServer) {
+            Theme.ThemeInfo themeInfo = (Theme.ThemeInfo) objArr[0];
+            Theme.ThemeAccent themeAccent = (Theme.ThemeAccent) objArr[1];
+            if (themeInfo == this.themeInfo && themeAccent == this.themeAccent && (alertDialog2 = this.progressDialog) != null) {
                 try {
                     alertDialog2.dismiss();
                     this.progressDialog = null;
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                Theme.applyTheme(themeInfo, true, false);
+                Theme.applyTheme(this.themeInfo, true, false);
                 finishFragment();
                 return;
             }
             return;
         }
         if (i == NotificationCenter.themeUploadError) {
-            Theme.ThemeInfo themeInfo3 = (Theme.ThemeInfo) objArr[0];
-            Theme.ThemeAccent themeAccent3 = (Theme.ThemeAccent) objArr[1];
-            if (themeInfo3 == themeInfo && themeAccent3 == themeAccent && (alertDialog = this.progressDialog) != null) {
+            Theme.ThemeInfo themeInfo2 = (Theme.ThemeInfo) objArr[0];
+            Theme.ThemeAccent themeAccent2 = (Theme.ThemeAccent) objArr[1];
+            if (themeInfo2 == this.themeInfo && themeAccent2 == this.themeAccent && (alertDialog = this.progressDialog) != null) {
                 try {
                     alertDialog.dismiss();
                     this.progressDialog = null;
@@ -508,8 +671,8 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
+    public ArrayList<ThemeDescription> getThemeDescriptions() {
+        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
         arrayList.add(new ThemeDescription(this.fragmentView, 1, null, null, null, null, Theme.key_windowBackgroundGray));
         LinearLayout linearLayout = this.linearLayoutTypeContainer;
         int i = Theme.key_windowBackgroundWhite;
@@ -547,28 +710,28 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
         arrayList.add(new ThemeDescription(this.nameField, 16777216, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.editText, 4, null, null, null, null, i4));
         arrayList.add(new ThemeDescription(this.editText, 8388608, null, null, null, null, i5));
-        PaymentFormActivity.AnonymousClass2 anonymousClass2 = this.divider;
+        View view = this.divider;
         Paint paint = Theme.dividerPaint;
         int i6 = Theme.key_divider;
-        arrayList.add(new ThemeDescription(anonymousClass2, 0, null, paint, null, null, i6));
+        arrayList.add(new ThemeDescription(view, 0, null, paint, null, null, i6));
         arrayList.add(new ThemeDescription(this.divider, 1, null, Theme.dividerPaint, null, null, i6));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, new Drawable[]{Theme.chat_msgInDrawable, Theme.chat_msgInMediaDrawable}, null, Theme.key_chat_inBubble));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, new Drawable[]{Theme.chat_msgInSelectedDrawable, Theme.chat_msgInMediaSelectedDrawable}, null, Theme.key_chat_inBubbleSelected));
         ThemePreviewMessagesCell themePreviewMessagesCell = this.messagesCell;
-        Drawable[] drawableArr = Theme.chat_msgInDrawable.shadowDrawable;
+        Drawable[] shadowDrawables = Theme.chat_msgInDrawable.getShadowDrawables();
         int i7 = Theme.key_chat_inBubbleShadow;
-        arrayList.add(new ThemeDescription(themePreviewMessagesCell, 0, null, null, drawableArr, null, i7));
-        arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, Theme.chat_msgInMediaDrawable.shadowDrawable, null, i7));
+        arrayList.add(new ThemeDescription(themePreviewMessagesCell, 0, null, null, shadowDrawables, null, i7));
+        arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, Theme.chat_msgInMediaDrawable.getShadowDrawables(), null, i7));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, new Drawable[]{Theme.chat_msgOutDrawable, Theme.chat_msgOutMediaDrawable}, null, Theme.key_chat_outBubble));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, new Drawable[]{Theme.chat_msgOutDrawable, Theme.chat_msgOutMediaDrawable}, null, Theme.key_chat_outBubbleGradient1));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, new Drawable[]{Theme.chat_msgOutDrawable, Theme.chat_msgOutMediaDrawable}, null, Theme.key_chat_outBubbleGradient2));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, new Drawable[]{Theme.chat_msgOutDrawable, Theme.chat_msgOutMediaDrawable}, null, Theme.key_chat_outBubbleGradient3));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, new Drawable[]{Theme.chat_msgOutSelectedDrawable, Theme.chat_msgOutMediaSelectedDrawable}, null, Theme.key_chat_outBubbleSelected));
         ThemePreviewMessagesCell themePreviewMessagesCell2 = this.messagesCell;
-        Drawable[] drawableArr2 = Theme.chat_msgOutDrawable.shadowDrawable;
+        Drawable[] shadowDrawables2 = Theme.chat_msgOutDrawable.getShadowDrawables();
         int i8 = Theme.key_chat_outBubbleShadow;
-        arrayList.add(new ThemeDescription(themePreviewMessagesCell2, 0, null, null, drawableArr2, null, i8));
-        arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, Theme.chat_msgOutMediaDrawable.shadowDrawable, null, i8));
+        arrayList.add(new ThemeDescription(themePreviewMessagesCell2, 0, null, null, shadowDrawables2, null, i8));
+        arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, Theme.chat_msgOutMediaDrawable.getShadowDrawables(), null, i8));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, null, null, Theme.key_chat_messageTextIn));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, null, null, Theme.key_chat_messageTextOut));
         arrayList.add(new ThemeDescription(this.messagesCell, 0, null, null, new Drawable[]{Theme.chat_msgOutCheckDrawable}, null, Theme.key_chat_outSentCheck));
@@ -591,55 +754,22 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
         return arrayList;
     }
 
-    public final void lambda$checkUrl$8(String str) {
-        TL_account.createTheme createtheme = new TL_account.createTheme();
-        createtheme.slug = str;
-        createtheme.title = "";
-        createtheme.document = new TLRPC.TL_inputDocumentEmpty();
-        this.checkReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(createtheme, new ThemeSetUrlActivity$$ExternalSyntheticLambda6(5, this, str), 2);
-    }
-
-    public final void lambda$saveTheme$10(TLRPC.TL_theme tL_theme) {
-        try {
-            this.progressDialog.dismiss();
-            this.progressDialog = null;
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        Theme.setThemeUploadInfo(this.themeInfo, this.themeAccent, tL_theme, this.currentAccount, false);
-        finishFragment();
-    }
-
-    public final void lambda$saveTheme$11(TLRPC.TL_error tL_error, TL_account.updateTheme updatetheme) {
-        try {
-            this.progressDialog.dismiss();
-            this.progressDialog = null;
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-        AlertsCreator.processError(this.currentAccount, tL_error, this, updatetheme, new Object[0]);
-    }
-
-    public final void lambda$saveTheme$13(int i) {
-        ConnectionsManager.getInstance(this.currentAccount).cancelRequest(i, true);
-    }
-
     @Override
-    public final boolean onFragmentCreate() {
+    public boolean onFragmentCreate() {
         getNotificationCenter().addObserver(this, NotificationCenter.themeUploadedToServer);
         getNotificationCenter().addObserver(this, NotificationCenter.themeUploadError);
         return super.onFragmentCreate();
     }
 
     @Override
-    public final void onFragmentDestroy() {
+    public void onFragmentDestroy() {
         super.onFragmentDestroy();
         getNotificationCenter().removeObserver(this, NotificationCenter.themeUploadedToServer);
         getNotificationCenter().removeObserver(this, NotificationCenter.themeUploadError);
     }
 
     @Override
-    public final void onResume() {
+    public void onResume() {
         super.onResume();
         if (!MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && this.creatingNewTheme) {
             this.linkField.requestFocus();
@@ -650,87 +780,11 @@ public final class ThemeSetUrlActivity extends BaseFragment implements Notificat
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z, boolean z2) {
+    public void onTransitionAnimationEnd(boolean z, boolean z2) {
         if (!z || this.creatingNewTheme) {
             return;
         }
         this.linkField.requestFocus();
         AndroidUtilities.showKeyboard(this.linkField);
-    }
-
-    public final void saveTheme() {
-        if (checkUrl(this.linkField.getText().toString(), true) && getParentActivity() != null) {
-            if (this.nameField.length() == 0) {
-                AlertsCreator.showSimpleAlert(this, LocaleController.getString(R.string.Theme), LocaleController.getString(R.string.ThemeNameInvalid), null);
-                return;
-            }
-            boolean z = this.creatingNewTheme;
-            TLRPC.TL_theme tL_theme = this.info;
-            if (z) {
-                String str = tL_theme.title;
-                AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3, null);
-                this.progressDialog = alertDialog;
-                alertDialog.setOnCancelListener(new ThemeSetUrlActivity$$ExternalSyntheticLambda5());
-                this.progressDialog.show();
-                String string = this.nameField.getText().toString();
-                tL_theme.title = string;
-                Theme.ThemeInfo themeInfo = this.themeInfo;
-                themeInfo.name = string;
-                themeInfo.info.slug = this.linkField.getText().toString();
-                Theme.saveCurrentTheme(themeInfo, true, true, true);
-                return;
-            }
-            String str2 = tL_theme.slug;
-            if (str2 == null) {
-                str2 = "";
-            }
-            String str3 = tL_theme.title;
-            String str4 = str3 != null ? str3 : "";
-            String string2 = this.linkField.getText().toString();
-            String string3 = this.nameField.getText().toString();
-            if (str2.equals(string2) && str4.equals(string3)) {
-                finishFragment();
-                return;
-            }
-            this.progressDialog = new AlertDialog(getParentActivity(), 3, null);
-            TL_account.updateTheme updatetheme = new TL_account.updateTheme();
-            TLRPC.TL_inputTheme tL_inputTheme = new TLRPC.TL_inputTheme();
-            tL_inputTheme.id = tL_theme.id;
-            tL_inputTheme.access_hash = tL_theme.access_hash;
-            updatetheme.theme = tL_inputTheme;
-            updatetheme.format = "android";
-            updatetheme.slug = string2;
-            int i = updatetheme.flags;
-            updatetheme.title = string3;
-            updatetheme.flags = i | 3;
-            int iSendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(updatetheme, new ThemeSetUrlActivity$$ExternalSyntheticLambda6(0, this, updatetheme), 2);
-            ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(iSendRequest, this.classGuid);
-            this.progressDialog.setOnCancelListener(new ChatEditActivity$$ExternalSyntheticLambda52(this, iSendRequest, 9));
-            this.progressDialog.show();
-        }
-    }
-
-    public final void setCheckText(int i, String str) {
-        boolean zIsEmpty = TextUtils.isEmpty(str);
-        boolean z = this.creatingNewTheme;
-        if (zIsEmpty) {
-            this.checkInfoCell.setVisibility(8);
-            if (z) {
-                this.helpInfoCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(getParentActivity(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                return;
-            } else {
-                this.helpInfoCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(getParentActivity(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                return;
-            }
-        }
-        this.checkInfoCell.setVisibility(0);
-        this.checkInfoCell.setText(str);
-        this.checkInfoCell.setTag(Integer.valueOf(i));
-        this.checkInfoCell.setTextColorByKey(i);
-        if (z) {
-            this.helpInfoCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(getParentActivity(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
-        } else {
-            this.helpInfoCell.setBackgroundDrawable(null);
-        }
     }
 }

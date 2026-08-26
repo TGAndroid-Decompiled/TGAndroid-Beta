@@ -15,21 +15,13 @@ public final class StickerCategoriesListView$CategoryButton$$ExternalSyntheticLa
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         switch (this.$r8$classId) {
             case 0:
-                StickerCategoriesListView.CategoryButton categoryButton = this.f$0;
-                categoryButton.getClass();
-                categoryButton.pressedProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                categoryButton.invalidate();
+                this.f$0.lambda$setPressed$4(valueAnimator);
                 break;
             case 1:
-                StickerCategoriesListView.CategoryButton categoryButton2 = this.f$0;
-                categoryButton2.getClass();
-                categoryButton2.updateSelectedT(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f$0.lambda$setSelected$3(valueAnimator);
                 break;
             default:
-                StickerCategoriesListView.CategoryButton categoryButton3 = this.f$0;
-                categoryButton3.getClass();
-                categoryButton3.loadProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                categoryButton3.invalidate();
+                this.f$0.lambda$onLoaded$2(valueAnimator);
                 break;
         }
     }

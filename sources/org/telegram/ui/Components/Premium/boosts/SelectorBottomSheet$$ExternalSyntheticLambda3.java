@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.BubbleActivity;
+import org.telegram.ui.Stories.PeerStoriesView;
 
 public final class SelectorBottomSheet$$ExternalSyntheticLambda3 implements Utilities.Callback {
     public final int $r8$classId;
@@ -24,17 +24,17 @@ public final class SelectorBottomSheet$$ExternalSyntheticLambda3 implements Util
                 SelectorBottomSheet selectorBottomSheet = this.f$0;
                 selectorBottomSheet.query = str;
                 int i = selectorBottomSheet.type;
-                BubbleActivity.AnonymousClass1 anonymousClass1 = selectorBottomSheet.remoteSearchRunnable;
+                PeerStoriesView.AnonymousClass34 anonymousClass34 = selectorBottomSheet.remoteSearchRunnable;
                 if (i == 1) {
-                    AndroidUtilities.cancelRunOnUIThread(anonymousClass1);
-                    AndroidUtilities.runOnUIThread(anonymousClass1, 350L);
+                    AndroidUtilities.cancelRunOnUIThread(anonymousClass34);
+                    AndroidUtilities.runOnUIThread(anonymousClass34, 350L);
                     break;
                 } else if (i == 2) {
                     if (!TextUtils.isEmpty(str)) {
-                        AndroidUtilities.cancelRunOnUIThread(anonymousClass1);
-                        AndroidUtilities.runOnUIThread(anonymousClass1, 350L);
+                        AndroidUtilities.cancelRunOnUIThread(anonymousClass34);
+                        AndroidUtilities.runOnUIThread(anonymousClass34, 350L);
                     } else {
-                        AndroidUtilities.cancelRunOnUIThread(anonymousClass1);
+                        AndroidUtilities.cancelRunOnUIThread(anonymousClass34);
                         ArrayList arrayList = selectorBottomSheet.peers;
                         arrayList.clear();
                         arrayList.addAll(BoostRepository.getMyChannels(selectorBottomSheet.currentChat.id));

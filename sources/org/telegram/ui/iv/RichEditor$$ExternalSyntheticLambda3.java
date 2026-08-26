@@ -12,10 +12,8 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Cells.StickerEmojiCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -26,9 +24,7 @@ import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.TrendingStickersLayout;
 import org.telegram.ui.MessageSendPreview;
-import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.StickersActivity;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
 
 public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickListener {
     public final int $r8$classId;
@@ -42,14 +38,15 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
     @Override
     public final void onClick(View view) {
         ChatActivity chatActivity;
+        int i;
+        int i2;
         boolean zCanIndentTarget;
         int iIndexOf;
-        boolean z;
-        int i;
+        int i3;
         BlockRow blockRowRowForCell;
         int iIndexOf2;
         RichEditorListView.AnonymousClass1 anonymousClass1;
-        int i2;
+        int i4;
         RichTableCellHost richTableCellHostFindHostContaining;
         ChatActivity chatActivity2;
         switch (this.$r8$classId) {
@@ -68,17 +65,25 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                         pageblockmath = (TL_iv.pageBlockMath) pageBlock;
                     }
                 }
-                ChatAttachAlertRichLayout.showEditLatexSheet(richEditor.getParentActivity(), (pageblockmath == null || TextUtils.isEmpty(pageblockmath.source)) ? "" : pageblockmath.source, new ThemeActivity$$ExternalSyntheticLambda19(19, richEditor, pageblockmath), richEditor.getResourceProvider());
+                ChatAttachAlertRichLayout.showEditLatexSheet(richEditor.getContext(), (pageblockmath == null || TextUtils.isEmpty(pageblockmath.source)) ? "" : pageblockmath.source, new RichEditor$$ExternalSyntheticLambda51(0, richEditor, pageblockmath), richEditor.getResourceProvider());
                 break;
             case 1:
                 this.f$0.onAiStyleSelection();
                 break;
             case 2:
-                RichEditor richEditor2 = this.f$0;
+                final RichEditor richEditor2 = this.f$0;
                 if (richEditor2.isSendLocked$1()) {
                     richEditor2.showConversionSheet$1();
                 } else if (richEditor2.editingMessageObject == null && (chatActivity = richEditor2.chatActivity) != null && chatActivity.isInScheduleMode()) {
-                    AlertsCreator.createScheduleDatePickerDialog(richEditor2.getParentActivity(), richEditor2.chatActivity.getDialogId(), -1L, 0, new PhotoViewer.AnonymousClass49(richEditor2, 17), null, richEditor2.getResourceProvider());
+                    AlertsCreator.createScheduleDatePickerDialog(richEditor2.getParentActivity(), richEditor2.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+                        public AnonymousClass13() {
+                        }
+
+                        @Override
+                        public final void didSelectDate(boolean z, int i5, int i6) {
+                            RichEditor.this.sendMessage(i5, i6, z);
+                        }
+                    }, richEditor2.getResourceProvider());
                 } else {
                     richEditor2.sendMessage(0, 0, true);
                 }
@@ -102,13 +107,25 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                 }
                 break;
             case 6:
-                this.f$0.lambda$createView$5$12$1();
+                this.f$0.lambda$createView$5$2$1();
                 break;
             case 7:
                 final RichEditor richEditor4 = this.f$0;
-                if (!richEditor4.emojiViewVisible) {
-                    if (richEditor4.emojiView == null) {
-                        EmojiView emojiView = new EmojiView(richEditor4, true, false, false, richEditor4.getParentActivity(), true, null, richEditor4.container, true, richEditor4.getResourceProvider(), false, false);
+                if (richEditor4.emojiViewVisible) {
+                    richEditor4.hideEmojiPopup$2(true);
+                    RichEditText richEditTextFindFocusedEditText = richEditor4.listView.findFocusedEditText();
+                    if (richEditTextFindFocusedEditText != null) {
+                        richEditTextFindFocusedEditText.requestEditFocus();
+                        AndroidUtilities.showKeyboard(richEditTextFindFocusedEditText);
+                    }
+                } else {
+                    if (richEditor4.emojiView != null) {
+                        i = -1;
+                        i2 = 0;
+                    } else {
+                        i = -1;
+                        i2 = 0;
+                        EmojiView emojiView = new EmojiView(richEditor4, true, false, false, richEditor4.getContext(), true, null, richEditor4.container, true, richEditor4.getResourceProvider(), false);
                         richEditor4.emojiView = emojiView;
                         emojiView.setVisibility(8);
                         EmojiView emojiView2 = richEditor4.emojiView;
@@ -118,42 +135,43 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                             }
 
                             @Override
-                            public final boolean canAddCaptionToGif() {
-                                return false;
+                            public final boolean canAddCaptionToGif(TLRPC.Document document) {
+                                return EmojiView.EmojiViewDelegate.CC.$default$canAddCaptionToGif(this, document);
                             }
 
                             @Override
                             public final boolean canSchedule() {
-                                return false;
+                                return EmojiView.EmojiViewDelegate.CC.$default$canSchedule(this);
                             }
 
                             @Override
                             public final long getDialogId() {
-                                return 0L;
+                                return EmojiView.EmojiViewDelegate.CC.$default$getDialogId(this);
                             }
 
                             @Override
                             public final float getProgressToSearchOpened() {
-                                return 0.0f;
+                                return EmojiView.EmojiViewDelegate.CC.$default$getProgressToSearchOpened(this);
                             }
 
                             @Override
                             public final int getThreadId() {
-                                return 0;
+                                return EmojiView.EmojiViewDelegate.CC.$default$getThreadId(this);
                             }
 
                             @Override
                             public final void invalidateEnterView() {
+                                EmojiView.EmojiViewDelegate.CC.$default$invalidateEnterView(this);
                             }
 
                             @Override
                             public final boolean isExpanded() {
-                                return false;
+                                return EmojiView.EmojiViewDelegate.CC.$default$isExpanded(this);
                             }
 
                             @Override
                             public final boolean isInScheduleMode() {
-                                return false;
+                                return EmojiView.EmojiViewDelegate.CC.$default$isInScheduleMode(this);
                             }
 
                             @Override
@@ -163,11 +181,12 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
 
                             @Override
                             public final boolean isUserSelf() {
-                                return false;
+                                return EmojiView.EmojiViewDelegate.CC.$default$isUserSelf(this);
                             }
 
                             @Override
                             public final void onAnimatedEmojiUnlockClick() {
+                                EmojiView.EmojiViewDelegate.CC.$default$onAnimatedEmojiUnlockClick(this);
                             }
 
                             @Override
@@ -192,11 +211,11 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
 
                             @Override
                             public final void onClearEmojiRecent() {
+                                EmojiView.EmojiViewDelegate.CC.$default$onClearEmojiRecent(this);
                             }
 
                             @Override
-                            public final void onCustomEmojiSelected(long j, TLRPC.Document document, String str, boolean z2) {
-                                AnimatedEmojiSpan animatedEmojiSpan;
+                            public final void onCustomEmojiSelected(long j, TLRPC.Document document, String str, boolean z) {
                                 RichEditor richEditor5 = RichEditor.this;
                                 RichEditText focusedEditTextOrNull = richEditor5.listView.getFocusedEditTextOrNull();
                                 if (focusedEditTextOrNull != null) {
@@ -217,12 +236,7 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                                         str = "😀";
                                     }
                                     SpannableString spannableString = new SpannableString(str);
-                                    if (document != null) {
-                                        animatedEmojiSpan = new AnimatedEmojiSpan(document.id, 1.2f, focusedEditTextOrNull.getPaint().getFontMetricsInt());
-                                        animatedEmojiSpan.document = document;
-                                    } else {
-                                        animatedEmojiSpan = new AnimatedEmojiSpan(j, 1.2f, focusedEditTextOrNull.getPaint().getFontMetricsInt());
-                                    }
+                                    AnimatedEmojiSpan animatedEmojiSpan = document != null ? new AnimatedEmojiSpan(document, focusedEditTextOrNull.getPaint().getFontMetricsInt()) : new AnimatedEmojiSpan(j, focusedEditTextOrNull.getPaint().getFontMetricsInt());
                                     animatedEmojiSpan.cacheType = AnimatedEmojiDrawable.getCacheTypeForEnterView();
                                     spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
                                     focusedEditTextOrNull.setText(focusedEditTextOrNull.getText().insert(iMax, spannableString));
@@ -270,44 +284,51 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                             }
 
                             @Override
-                            public final void onGifSelected(View view2, Object obj, String str, Object obj2, boolean z2, int i3, int i4) {
+                            public final void onGifSelected(View view2, Object obj, String str, Object obj2, boolean z, int i5, int i6) {
+                                EmojiView.EmojiViewDelegate.CC.$default$onGifSelected(this, view2, obj, str, obj2, z, i5, i6);
                             }
 
                             @Override
-                            public final void onGifSelectedForAddCaption(TLObject tLObject, Object obj) {
+                            public final void onGifSelectedForAddCaption(View view2, Object obj, String str, Object obj2, boolean z, int i5, int i6) {
+                                EmojiView.EmojiViewDelegate.CC.$default$onGifSelectedForAddCaption(this, view2, obj, str, obj2, z, i5, i6);
                             }
 
                             @Override
-                            public final void onSearchOpenClose(int i3) {
+                            public final void onSearchOpenClose(int i5) {
                                 RichEditText focusedEditTextOrNull;
                                 RichEditor richEditor5 = RichEditor.this;
-                                if (i3 != 0 && (focusedEditTextOrNull = richEditor5.listView.getFocusedEditTextOrNull()) != null) {
+                                if (i5 != 0 && (focusedEditTextOrNull = richEditor5.listView.getFocusedEditTextOrNull()) != null) {
                                     richEditor5.emojiTargetEditText = focusedEditTextOrNull;
                                     richEditor5.emojiTargetSelection = Math.max(0, focusedEditTextOrNull.getSelectionEnd());
                                 }
-                                boolean z2 = i3 != 0;
-                                richEditor5.emojiSearchOpened = z2;
-                                richEditor5.animateEmojiSearch(z2);
+                                boolean z = i5 != 0;
+                                richEditor5.emojiSearchOpened = z;
+                                richEditor5.animateEmojiSearch(z);
                             }
 
                             @Override
-                            public final void onShowStickerSet(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z2) {
+                            public final void onShowStickerSet(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z) {
+                                EmojiView.EmojiViewDelegate.CC.$default$onShowStickerSet(this, stickerSet, inputStickerSet, z);
                             }
 
                             @Override
-                            public final void onStickerSelected(StickerEmojiCell stickerEmojiCell, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z2, int i3) {
+                            public final void onStickerSelected(View view2, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z, int i5, int i6) {
+                                EmojiView.EmojiViewDelegate.CC.$default$onStickerSelected(this, view2, document, str, obj, sendAnimationData, z, i5, i6);
                             }
 
                             @Override
                             public final void onStickerSetAdd(TLRPC.StickerSetCovered stickerSetCovered) {
+                                EmojiView.EmojiViewDelegate.CC.$default$onStickerSetAdd(this, stickerSetCovered);
                             }
 
                             @Override
                             public final void onStickerSetRemove(TLRPC.StickerSetCovered stickerSetCovered) {
+                                EmojiView.EmojiViewDelegate.CC.$default$onStickerSetRemove(this, stickerSetCovered);
                             }
 
                             @Override
                             public final void onStickersGroupClick(long j) {
+                                EmojiView.EmojiViewDelegate.CC.$default$onStickersGroupClick(this, j);
                             }
 
                             @Override
@@ -316,11 +337,13 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                             }
 
                             @Override
-                            public final void onTabOpened(int i3) {
+                            public final void onTabOpened(int i5) {
+                                EmojiView.EmojiViewDelegate.CC.$default$onTabOpened(this, i5);
                             }
 
                             @Override
                             public final void showTrendingStickersAlert(TrendingStickersLayout trendingStickersLayout) {
+                                EmojiView.EmojiViewDelegate.CC.$default$showTrendingStickersAlert(this, trendingStickersLayout);
                             }
                         });
                         int iIndexOfChild = richEditor4.container.indexOfChild(richEditor4.bottomPanel);
@@ -334,28 +357,21 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                     int emojiPanelHeight = richEditor4.getEmojiPanelHeight();
                     FrameLayout.LayoutParams layoutParamsCreateFrame2 = (FrameLayout.LayoutParams) richEditor4.emojiView.getLayoutParams();
                     if (layoutParamsCreateFrame2 == null) {
-                        layoutParamsCreateFrame2 = LayoutHelper.createFrame(-1, emojiPanelHeight, 87);
+                        layoutParamsCreateFrame2 = LayoutHelper.createFrame(i, emojiPanelHeight, 87);
                     } else {
                         layoutParamsCreateFrame2.height = emojiPanelHeight;
                     }
                     layoutParamsCreateFrame2.bottomMargin = richEditor4.bottomInset;
                     richEditor4.emojiView.setLayoutParams(layoutParamsCreateFrame2);
-                    richEditor4.emojiView.setVisibility(0);
+                    richEditor4.emojiView.setVisibility(i2);
                     richEditor4.emojiViewVisible = true;
                     richEditor4.emojiPadding = emojiPanelHeight + richEditor4.bottomInset;
-                    RichEditText richEditTextFindFocusedEditText = richEditor4.listView.findFocusedEditText();
-                    if (richEditTextFindFocusedEditText != null) {
-                        AndroidUtilities.hideKeyboard(richEditTextFindFocusedEditText);
+                    RichEditText richEditTextFindFocusedEditText2 = richEditor4.listView.findFocusedEditText();
+                    if (richEditTextFindFocusedEditText2 != null) {
+                        AndroidUtilities.hideKeyboard(richEditTextFindFocusedEditText2);
                     }
                     richEditor4.checkUI_listViewPadding();
                     richEditor4.emojiButton.setState(ChatActivityEnterViewAnimatedIconView.State.KEYBOARD, true);
-                } else {
-                    richEditor4.hideEmojiPopup$4(true);
-                    RichEditText richEditTextFindFocusedEditText2 = richEditor4.listView.findFocusedEditText();
-                    if (richEditTextFindFocusedEditText2 != null) {
-                        richEditTextFindFocusedEditText2.requestEditFocus();
-                        AndroidUtilities.showKeyboard(richEditTextFindFocusedEditText2);
-                    }
                 }
                 break;
             case 8:
@@ -366,36 +382,33 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                     itemOptions2.dismiss();
                     richEditor5.currentMenuVisible = null;
                 }
-                final ItemOptions itemOptions3 = new ItemOptions(richEditor5, view, false, true);
-                itemOptions3.dontFocus = true;
+                final ItemOptions itemOptionsDontFocus = ItemOptions.makeOptions(richEditor5, view).dontFocus();
                 BlockRow blockRowFindFocusedRow2 = richEditor5.listView.findFocusedRow();
-                itemOptions3.addChecked(blockRowFindFocusedRow2 == null || !blockRowFindFocusedRow2.isInList(), R.drawable.field_carret_empty, null, LocaleController.getString(R.string.ArticleNone), new RichEditor$$ExternalSyntheticLambda31(richEditor5, blockRowFindFocusedRow2, 5));
-                itemOptions3.addChecked((blockRowFindFocusedRow2 == null || !blockRowFindFocusedRow2.isInList() || blockRowFindFocusedRow2.isChecklist() || blockRowFindFocusedRow2.isOrdered()) ? false : true, R.drawable.iv_list, null, LocaleController.getString(R.string.ArticleListBulletedList), new RichEditor$$ExternalSyntheticLambda31(richEditor5, blockRowFindFocusedRow2, 6));
-                itemOptions3.addChecked(blockRowFindFocusedRow2 != null && blockRowFindFocusedRow2.isInList() && !blockRowFindFocusedRow2.isChecklist() && blockRowFindFocusedRow2.isOrdered(), R.drawable.iv_ordered_list, null, LocaleController.getString(R.string.ArticleListNumberedList), new RichEditor$$ExternalSyntheticLambda31(richEditor5, blockRowFindFocusedRow2, 7));
-                itemOptions3.addChecked(blockRowFindFocusedRow2 != null && blockRowFindFocusedRow2.isInList() && blockRowFindFocusedRow2.isChecklist() && !blockRowFindFocusedRow2.isOrdered(), R.drawable.iv_todo, null, LocaleController.getString(R.string.ArticleListChecklist), new RichEditor$$ExternalSyntheticLambda31(richEditor5, blockRowFindFocusedRow2, 8));
+                boolean z = false;
+                ItemOptions itemOptionsAddChecked = itemOptionsDontFocus.addChecked(blockRowFindFocusedRow2 == null || !blockRowFindFocusedRow2.isInList(), R.drawable.field_carret_empty, LocaleController.getString(R.string.ArticleNone), new RichEditor$$ExternalSyntheticLambda31(richEditor5, blockRowFindFocusedRow2, 5)).addChecked((blockRowFindFocusedRow2 == null || !blockRowFindFocusedRow2.isInList() || blockRowFindFocusedRow2.isChecklist() || blockRowFindFocusedRow2.isOrdered()) ? false : true, R.drawable.iv_list, LocaleController.getString(R.string.ArticleListBulletedList), new RichEditor$$ExternalSyntheticLambda31(richEditor5, blockRowFindFocusedRow2, 6)).addChecked(blockRowFindFocusedRow2 != null && blockRowFindFocusedRow2.isInList() && !blockRowFindFocusedRow2.isChecklist() && blockRowFindFocusedRow2.isOrdered(), R.drawable.iv_ordered_list, LocaleController.getString(R.string.ArticleListNumberedList), new RichEditor$$ExternalSyntheticLambda31(richEditor5, blockRowFindFocusedRow2, 7)).addChecked(blockRowFindFocusedRow2 != null && blockRowFindFocusedRow2.isInList() && blockRowFindFocusedRow2.isChecklist() && !blockRowFindFocusedRow2.isOrdered(), R.drawable.iv_todo, LocaleController.getString(R.string.ArticleListChecklist), new RichEditor$$ExternalSyntheticLambda31(richEditor5, blockRowFindFocusedRow2, 8));
                 boolean z2 = blockRowFindFocusedRow2 != null && (blockRowFindFocusedRow2.block instanceof TL_iv.pageBlockDetails);
-                int i3 = R.drawable.iv_details;
+                int i5 = R.drawable.iv_details;
                 String string = LocaleController.getString(R.string.ArticleToggleBlock);
                 RichEditorListView richEditorListView = richEditor5.listView;
                 Objects.requireNonNull(richEditorListView);
-                itemOptions3.addChecked(z2, i3, null, string, new RichEditorListView$$ExternalSyntheticLambda4(richEditorListView, 2));
+                itemOptionsAddChecked.addChecked(z2, i5, string, new RichEditorListView$$ExternalSyntheticLambda4(richEditorListView, 2));
                 RichEditorListView richEditorListView2 = richEditor5.listView;
                 int[] iArrSelectionRowRange = richEditorListView2.selectionRowRange();
                 if (iArrSelectionRowRange == null) {
                     BlockRow blockRowFindFocusedRow3 = richEditorListView2.findFocusedRow();
-                    if (blockRowFindFocusedRow3 == null && ((anonymousClass1 = richEditorListView2.textSelectionHelper) == null || (i2 = anonymousClass1.startViewPosition) < 0 || (blockRowFindFocusedRow3 = richEditorListView2.rowForCell(i2)) == null)) {
+                    if (blockRowFindFocusedRow3 == null && ((anonymousClass1 = richEditorListView2.textSelectionHelper) == null || (i4 = anonymousClass1.startViewPosition) < 0 || (blockRowFindFocusedRow3 = richEditorListView2.rowForCell(i4)) == null)) {
                         blockRowFindFocusedRow3 = null;
                     }
                     zCanIndentTarget = richEditorListView2.canIndentTarget(blockRowFindFocusedRow3);
                 } else {
-                    int i4 = iArrSelectionRowRange[0];
+                    int i6 = iArrSelectionRowRange[0];
                     while (true) {
-                        if (i4 > iArrSelectionRowRange[1]) {
+                        if (i6 > iArrSelectionRowRange[1]) {
                             zCanIndentTarget = false;
-                        } else if (richEditorListView2.canIndentTarget((BlockRow) richEditorListView2.rows.get(i4))) {
+                        } else if (richEditorListView2.canIndentTarget((BlockRow) richEditorListView2.rows.get(i6))) {
                             zCanIndentTarget = true;
                         } else {
-                            i4++;
+                            i6++;
                         }
                     }
                 }
@@ -408,71 +421,68 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                         blockRow = blockRowFindFocusedRow4;
                     } else {
                         RichEditorListView.AnonymousClass1 anonymousClass2 = richEditorListView3.textSelectionHelper;
-                        if (anonymousClass2 != null && (i = anonymousClass2.startViewPosition) >= 0 && (blockRowRowForCell = richEditorListView3.rowForCell(i)) != null) {
+                        if (anonymousClass2 != null && (i3 = anonymousClass2.startViewPosition) >= 0 && (blockRowRowForCell = richEditorListView3.rowForCell(i3)) != null) {
                             blockRow = blockRowRowForCell;
                         }
                     }
-                    z = blockRow != null && (iIndexOf2 = arrayList.indexOf(blockRow)) >= 0 && blockRow.level > 0 && iIndexOf2 >= 0 && iIndexOf2 < arrayList.size() && ((BlockRow) arrayList.get(iIndexOf2)).level > 0;
+                    if (blockRow != null && (iIndexOf2 = arrayList.indexOf(blockRow)) >= 0 && blockRow.level > 0 && iIndexOf2 >= 0 && iIndexOf2 < arrayList.size() && ((BlockRow) arrayList.get(iIndexOf2)).level > 0) {
+                        z = true;
+                    }
                 } else {
-                    int i5 = iArrSelectionRowRange2[0];
-                    while (true) {
-                        if (i5 <= iArrSelectionRowRange2[1]) {
-                            BlockRow blockRow2 = (BlockRow) arrayList.get(i5);
-                            if (blockRow2 == null || (iIndexOf = arrayList.indexOf(blockRow2)) < 0 || blockRow2.level <= 0 || iIndexOf < 0 || iIndexOf >= arrayList.size() || ((BlockRow) arrayList.get(iIndexOf)).level <= 0) {
-                                i5++;
-                            }
+                    for (int i7 = iArrSelectionRowRange2[0]; i7 <= iArrSelectionRowRange2[1]; i7++) {
+                        BlockRow blockRow2 = (BlockRow) arrayList.get(i7);
+                        if (blockRow2 != null && (iIndexOf = arrayList.indexOf(blockRow2)) >= 0 && blockRow2.level > 0 && iIndexOf >= 0 && iIndexOf < arrayList.size() && ((BlockRow) arrayList.get(iIndexOf)).level > 0) {
+                            z = true;
                         }
                     }
                 }
                 if (zCanIndentTarget || z) {
-                    itemOptions3.addGap();
+                    itemOptionsDontFocus.addGap();
                     if (zCanIndentTarget) {
-                        final int i6 = 0;
-                        itemOptions3.add(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
+                        final int i8 = 0;
+                        itemOptionsDontFocus.add(R.drawable.iv_list_tab, LocaleController.getString(R.string.ArticleIndent), new Runnable() {
                             @Override
                             public final void run() {
-                                switch (i6) {
+                                switch (i8) {
                                     case 0:
                                         richEditor5.listView.indentSelection(false);
-                                        itemOptions3.dismiss();
+                                        itemOptionsDontFocus.dismiss();
                                         break;
                                     default:
                                         richEditor5.listView.indentSelection(true);
-                                        itemOptions3.dismiss();
+                                        itemOptionsDontFocus.dismiss();
                                         break;
                                 }
                             }
-                        }, false);
+                        });
                     }
                     if (z) {
-                        final int i7 = 1;
-                        itemOptions3.add(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
+                        final int i9 = 1;
+                        itemOptionsDontFocus.add(R.drawable.iv_list_untab, LocaleController.getString(R.string.ArticleOutdent), new Runnable() {
                             @Override
                             public final void run() {
-                                switch (i7) {
+                                switch (i9) {
                                     case 0:
                                         richEditor5.listView.indentSelection(false);
-                                        itemOptions3.dismiss();
+                                        itemOptionsDontFocus.dismiss();
                                         break;
                                     default:
                                         richEditor5.listView.indentSelection(true);
-                                        itemOptions3.dismiss();
+                                        itemOptionsDontFocus.dismiss();
                                         break;
                                 }
                             }
-                        }, false);
+                        });
                     }
                 }
-                itemOptions3.forceTop = true;
-                itemOptions3.show();
-                richEditor5.currentMenuVisible = itemOptions3;
+                richEditor5.currentMenuVisible = itemOptionsDontFocus.forceTop(true).show();
                 break;
             case 9:
                 RichEditor richEditor6 = this.f$0;
-                ItemOptions itemOptions4 = richEditor6.currentMenuVisible;
+                ItemOptions itemOptions3 = richEditor6.currentMenuVisible;
                 TL_iv.pageTableCell pagetablecell = null;
-                if (itemOptions4 != null) {
-                    itemOptions4.dismiss();
+                if (itemOptions3 != null) {
+                    itemOptions3.dismiss();
                     richEditor6.currentMenuVisible = null;
                 }
                 RichEditorListView richEditorListView4 = richEditor6.listView;
@@ -502,25 +512,32 @@ public final class RichEditor$$ExternalSyntheticLambda3 implements View.OnClickL
                 }
                 break;
             case 10:
-                RichEditor richEditor7 = this.f$0;
-                richEditor7.listView.pendingMediaRow = null;
-                richEditor7.openAttach$1(90, 0);
+                final RichEditor richEditor7 = this.f$0;
+                if (richEditor7.isSendLocked$1()) {
+                    richEditor7.showConversionSheet$1();
+                } else if (richEditor7.editingMessageObject == null && (chatActivity2 = richEditor7.chatActivity) != null && chatActivity2.isInScheduleMode()) {
+                    AlertsCreator.createScheduleDatePickerDialog(richEditor7.getParentActivity(), richEditor7.chatActivity.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+                        public AnonymousClass13() {
+                        }
+
+                        @Override
+                        public final void didSelectDate(boolean z3, int i10, int i11) {
+                            RichEditor.this.sendMessage(i10, i11, z3);
+                        }
+                    }, richEditor7.getResourceProvider());
+                } else {
+                    richEditor7.sendMessage(0, 0, true);
+                }
+                MessageSendPreview messageSendPreview = richEditor7.messageSendPreview;
+                if (messageSendPreview != null) {
+                    messageSendPreview.dismiss(true);
+                    richEditor7.messageSendPreview = null;
+                }
                 break;
             case 11:
                 RichEditor richEditor8 = this.f$0;
-                if (richEditor8.isSendLocked$1()) {
-                    richEditor8.showConversionSheet$1();
-                } else if (richEditor8.editingMessageObject == null && (chatActivity2 = richEditor8.chatActivity) != null && chatActivity2.isInScheduleMode()) {
-                    AlertsCreator.createScheduleDatePickerDialog(richEditor8.getParentActivity(), richEditor8.chatActivity.getDialogId(), -1L, 0, new PhotoViewer.AnonymousClass49(richEditor8, 17), null, richEditor8.getResourceProvider());
-                } else {
-                    richEditor8.sendMessage(0, 0, true);
-                }
-                MessageSendPreview messageSendPreview = richEditor8.messageSendPreview;
-                if (messageSendPreview != null) {
-                    messageSendPreview.sent = true;
-                    messageSendPreview.dismiss();
-                    richEditor8.messageSendPreview = null;
-                }
+                richEditor8.listView.pendingMediaRow = null;
+                richEditor8.openAttach$1(90, 0);
                 break;
             case 12:
                 RichEditor richEditor9 = this.f$0;

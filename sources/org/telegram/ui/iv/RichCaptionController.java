@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.text.Layout;
 import android.view.View;
+import com.stripe.android.Stripe;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -13,8 +14,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextSelectionHelper;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda19;
+import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
 
 public final class RichCaptionController {
     public final RichEditText editText;
@@ -55,8 +55,8 @@ public final class RichCaptionController {
         richEditText.setGravity(8388659);
         richEditText.setTextSize(1, Math.max(8, SharedConfig.fontSize - 2));
         richEditText.setHint(LocaleController.getString(R.string.AddCaption));
-        richEditText.setListener(new PhotoViewer.AnonymousClass14(13, this, host));
-        richEditText.setDelegate(new TodoItemMenu$$ExternalSyntheticLambda19(10, this, host));
+        richEditText.setListener(new Stripe(this, host, false, 22));
+        richEditText.setDelegate(new RateCallLayout$$ExternalSyntheticLambda1(26, this, host));
         applyColors();
     }
 

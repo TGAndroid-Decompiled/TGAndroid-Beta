@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
 import androidx.core.util.Consumer;
@@ -18,6 +17,7 @@ import com.android.billingclient.api.BillingClientStateListener;
 import com.android.billingclient.api.BillingFlowParams$ProductDetailsParams;
 import com.android.billingclient.api.BillingFlowParams$SubscriptionUpdateParams;
 import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ConsumeParams;
 import com.android.billingclient.api.ConsumeResponseListener;
 import com.android.billingclient.api.ProductDetails;
 import com.android.billingclient.api.Purchase;
@@ -37,6 +37,7 @@ import com.google.android.gms.internal.play_billing.zzbr;
 import com.google.android.gms.internal.play_billing.zzbt;
 import com.google.android.gms.internal.play_billing.zzca;
 import com.google.common.base.Charsets;
+import com.stripe.android.time.Clock;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -49,11 +50,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-import kotlinx.coroutines.internal.Symbol;
 import org.json.JSONObject;
 import org.telegram.SQLite.SQLitePreparedStatement$$ExternalSyntheticOutline0;
 import org.telegram.messenger.utils.BillingUtilities;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
@@ -61,10 +60,9 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.LoginActivity;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda1;
+import org.telegram.ui.PremiumPreviewFragment;
 
 public class BillingController implements PurchasesUpdatedListener, BillingClientStateListener {
     public static final QueryProductDetailsParams$Product PREMIUM_PRODUCT;
@@ -99,7 +97,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     private BillingController(Context context) {
         BillingClient zzceVar;
         EmojiCompat.CompatInternal19 compatInternal19 = new EmojiCompat.CompatInternal19(context);
-        compatInternal19.mProcessor = new ChatActivity.AnonymousClass40(6);
+        compatInternal19.mProcessor = new Clock(6);
         compatInternal19.mMetadataRepo = this;
         if (context == null) {
             throw new IllegalArgumentException("Please provide a valid Context.");
@@ -107,17 +105,17 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         if (((BillingController) compatInternal19.mMetadataRepo) == null) {
             throw new IllegalArgumentException("Please provide a valid listener for purchases updates.");
         }
-        if (((ChatActivity.AnonymousClass40) compatInternal19.mProcessor) == null) {
+        if (((Clock) compatInternal19.mProcessor) == null) {
             throw new IllegalArgumentException("Pending purchases for one-time products must be supported.");
         }
-        ((ChatActivity.AnonymousClass40) compatInternal19.mProcessor).getClass();
+        ((Clock) compatInternal19.mProcessor).getClass();
         if (((BillingController) compatInternal19.mMetadataRepo) != null) {
-            ChatActivity.AnonymousClass40 anonymousClass40 = (ChatActivity.AnonymousClass40) compatInternal19.mProcessor;
+            Clock clock = (Clock) compatInternal19.mProcessor;
             BillingController billingController = (BillingController) compatInternal19.mMetadataRepo;
-            zzceVar = compatInternal19.zza() ? new zzce(anonymousClass40, context, billingController, compatInternal19) : new BillingClientImpl(anonymousClass40, context, billingController, compatInternal19);
+            zzceVar = compatInternal19.zza() ? new zzce(clock, context, billingController, compatInternal19) : new BillingClientImpl(clock, context, billingController, compatInternal19);
         } else {
-            ChatActivity.AnonymousClass40 anonymousClass41 = (ChatActivity.AnonymousClass40) compatInternal19.mProcessor;
-            zzceVar = compatInternal19.zza() ? new zzce(anonymousClass41, context, compatInternal19) : new BillingClientImpl(anonymousClass41, context, compatInternal19);
+            Clock clock2 = (Clock) compatInternal19.mProcessor;
+            zzceVar = compatInternal19.zza() ? new zzce(clock2, context, compatInternal19) : new BillingClientImpl(clock2, context, compatInternal19);
         }
         this.billingClient = zzceVar;
     }
@@ -234,16 +232,16 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                         if (purchaseToken == null) {
                             throw new IllegalArgumentException("Purchase token must be set");
                         }
-                        Symbol symbol = new Symbol();
-                        symbol.symbol = purchaseToken;
+                        ConsumeParams consumeParams = new ConsumeParams();
+                        consumeParams.zza = purchaseToken;
                         final MediaController$$ExternalSyntheticLambda44 mediaController$$ExternalSyntheticLambda45 = mediaController$$ExternalSyntheticLambda44;
                         mediaController$$ExternalSyntheticLambda44 = mediaController$$ExternalSyntheticLambda45;
-                        billingClient.consumeAsync(new ConsumeResponseListener() {
+                        billingClient.consumeAsync(consumeParams, new ConsumeResponseListener() {
                             @Override
                             public final void onConsumeResponse(BillingResult billingResult2, String str2) {
                                 BillingController.lambda$launchBillingFlow$2(purchase, arrayList, str, atomicInteger, mediaController$$ExternalSyntheticLambda45, billingResult2, str2);
                             }
-                        }, symbol);
+                        });
                         break;
                     }
                 }
@@ -310,7 +308,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         JSONObject jSONObject = purchase.zzc;
         String strOptString = jSONObject.optString("obfuscatedAccountId");
         String strOptString2 = jSONObject.optString("obfuscatedProfileId");
-        String str = ((strOptString == null && strOptString2 == null) ? null : new AccountIdentifiers(objArr2 == true ? 1 : 0, strOptString, strOptString2, objArr == true ? 1 : 0)).zzb;
+        String str = ((strOptString == null && strOptString2 == null) ? null : new AccountIdentifiers(strOptString, strOptString2, objArr2 == true ? 1 : 0, objArr == true ? 1 : 0)).zzb;
         try {
             FileLog.d("BillingUtilities.clearPurpose: got {" + str + "}");
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
@@ -354,7 +352,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     }
 
     public static void lambda$onPurchasesUpdatedInternal$7(AccountInstance accountInstance, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TL_update.TL_updateSentPhoneCode tL_updateSentPhoneCode) {
-        LoginActivity loginActivity = (LoginActivity) LaunchActivity.findFragment();
+        LoginActivity loginActivity = (LoginActivity) LaunchActivity.findFragment(LoginActivity.class);
         if (loginActivity == null) {
             loginActivity = new LoginActivity(accountInstance.getCurrentAccount());
             BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
@@ -362,14 +360,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                 safeLastFragment.presentFragment(loginActivity);
             }
         }
-        String str = ((TLRPC.TL_inputStorePaymentAuthCode) tL_payments_assignPlayMarketTransaction.purpose).phone_number;
-        TLRPC.auth_SentCode auth_sentcode = tL_updateSentPhoneCode.sent_code;
-        loginActivity.paid = true;
-        Bundle bundle = new Bundle();
-        bundle.putString("phone", "+" + str);
-        bundle.putString("ephone", "+" + str);
-        bundle.putString("phoneFormated", str);
-        loginActivity.fillNextCodeParams(bundle, auth_sentcode, true);
+        loginActivity.open(((TLRPC.TL_inputStorePaymentAuthCode) tL_payments_assignPlayMarketTransaction.purpose).phone_number, tL_updateSentPhoneCode.sent_code);
     }
 
     public static void lambda$onPurchasesUpdatedInternal$8(AtomicInteger atomicInteger, AtomicInteger atomicInteger2, Runnable runnable) {
@@ -450,9 +441,9 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             if (purchaseToken == null) {
                 throw new IllegalArgumentException("Purchase token must be set");
             }
-            Symbol symbol = new Symbol();
-            symbol.symbol = purchaseToken;
-            billingClient.consumeAsync(new AndroidUtilities$$ExternalSyntheticLambda46(inputStorePaymentPurpose, purchase, runnable), symbol);
+            ConsumeParams consumeParams = new ConsumeParams();
+            consumeParams.zza = purchaseToken;
+            billingClient.consumeAsync(consumeParams, new AndroidUtilities$$ExternalSyntheticLambda45(inputStorePaymentPurpose, purchase, runnable));
         }
     }
 
@@ -537,13 +528,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         int i2 = 1;
         if (i != 0) {
             if (i == 1) {
-                TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
-                TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                tL_inputAppEvent.time = ConnectionsManager.getInstance(UserConfig.selectedAccount).getCurrentTime();
-                tL_inputAppEvent.type = "premium.promo_screen_fail";
-                tL_inputAppEvent.data = new TLRPC.TL_jsonNull();
-                tL_help_saveAppLog.events.add(tL_inputAppEvent);
-                ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_help_saveAppLog, new PassportActivity$$ExternalSyntheticLambda1(1));
+                PremiumPreviewFragment.sentPremiumBuyCanceled();
             }
             Runnable runnable2 = this.onCanceled;
             if (runnable2 != null) {
@@ -578,7 +563,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                 if ((jSONObject.optInt("purchaseState", i2) != 4 ? 1 : 2) == i2) {
                     String strOptString = jSONObject.optString("obfuscatedAccountId");
                     String strOptString2 = jSONObject.optString("obfuscatedProfileId");
-                    AccountIdentifiers accountIdentifiers = (strOptString == null && strOptString2 == null) ? null : new AccountIdentifiers(0, strOptString, strOptString2, false);
+                    AccountIdentifiers accountIdentifiers = (strOptString == null && strOptString2 == null) ? null : new AccountIdentifiers(strOptString, strOptString2, 0, false);
                     if (accountIdentifiers == null) {
                         FileLog.d("Billing: Extract payload. No AccountIdentifiers");
                     } else {
@@ -691,7 +676,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             throw new IllegalStateException("Billing: Controller should be ready for this call!");
         }
         BillingClient billingClient = this.billingClient;
-        zzcv zzcvVar = new zzcv(16);
+        zzcv zzcvVar = new zzcv(13);
         if (list == null || list.isEmpty()) {
             throw new IllegalArgumentException("Product list cannot be empty.");
         }
@@ -719,7 +704,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
         }
         BillingClientImpl billingClientImpl = (BillingClientImpl) billingClient;
         billingClientImpl.getClass();
-        if (BillingClientImpl.zzG(new zzx(billingClientImpl, purchasesResponseListener, str), 30000L, new zzbl(billingClientImpl, purchasesResponseListener, false, 17), billingClientImpl.zzan(), billingClientImpl.zzF()) == null) {
+        if (BillingClientImpl.zzG(new zzx(billingClientImpl, purchasesResponseListener, str), 30000L, new zzbl(billingClientImpl, purchasesResponseListener, false, 16), billingClientImpl.zzan(), billingClientImpl.zzF()) == null) {
             BillingResult billingResultZzaq = billingClientImpl.zzaq();
             billingClientImpl.zzbd(25, 9, billingResultZzaq);
             zzbr zzbrVar = zzbt.zza;

@@ -9,24 +9,44 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
 
-public final class GradientClip {
-    public LinearGradient gradient;
-    public final Paint[] paint = new Paint[4];
-    public final Matrix matrix = new Matrix();
+public class GradientClip {
+    public static final int BOTTOM = 3;
+    private static final boolean DEBUG = false;
+    public static final int LEFT = 0;
+    public static final int RIGHT = 2;
+    public static final int TOP = 1;
+    private LinearGradient gradient;
+    private final Paint[] paint = new Paint[4];
+    private final Matrix matrix = new Matrix();
 
-    public final void clipOut(Canvas canvas, RectF rectF, float f) {
+    public void clipOut(Canvas canvas, RectF rectF, float f) {
         Paint[] paintArr = this.paint;
         if (paintArr[0] == null) {
-            Paint paint = new Paint(1);
-            paintArr[0] = paint;
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+            paintArr[0] = new Paint(1);
+            this.paint[0].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
-        paintArr[0].setShader(this.gradient);
-        paintArr[0].setAlpha((int) (f * 255.0f));
-        canvas.drawRect(rectF, paintArr[0]);
+        this.paint[0].setShader(this.gradient);
+        this.paint[0].setAlpha((int) (f * 255.0f));
+        canvas.drawRect(rectF, this.paint[0]);
     }
 
-    public final void draw(Canvas canvas, RectF rectF, int i, float f) {
+    public void draw(Canvas canvas, RectF rectF, boolean z, float f) {
+        draw(canvas, rectF, z ? 1 : 3, f);
+    }
+
+    public Paint getPaint(int i, float f) {
+        Paint[] paintArr = this.paint;
+        if (paintArr[i] == null) {
+            paintArr[i] = new Paint(1);
+            this.paint[i].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        }
+        this.paint[i].setShader(null);
+        this.paint[i].setColor(-65536);
+        this.paint[i].setAlpha((int) (f * 255.0f));
+        return this.paint[i];
+    }
+
+    public void draw(Canvas canvas, RectF rectF, int i, float f) {
         if (f <= 0.0f) {
             return;
         }
@@ -35,31 +55,29 @@ public final class GradientClip {
         }
         Paint[] paintArr = this.paint;
         if (paintArr[i] == null) {
-            Paint paint = new Paint(1);
-            paintArr[i] = paint;
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+            paintArr[i] = new Paint(1);
+            this.paint[i].setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         }
-        paintArr[i].setShader(this.gradient);
-        Matrix matrix = this.matrix;
-        matrix.reset();
+        this.paint[i].setShader(this.gradient);
+        this.matrix.reset();
         if (i == 0) {
-            matrix.postScale(1.0f, rectF.width() / 16.0f);
-            matrix.postRotate(-90.0f);
-            matrix.postTranslate(rectF.left, rectF.top);
+            this.matrix.postScale(1.0f, rectF.width() / 16.0f);
+            this.matrix.postRotate(-90.0f);
+            this.matrix.postTranslate(rectF.left, rectF.top);
         } else if (i == 1) {
-            matrix.postScale(1.0f, rectF.height() / 16.0f);
-            matrix.postTranslate(rectF.left, rectF.top);
+            this.matrix.postScale(1.0f, rectF.height() / 16.0f);
+            this.matrix.postTranslate(rectF.left, rectF.top);
         } else if (i == 2) {
-            matrix.postScale(1.0f, rectF.width() / 16.0f);
-            matrix.postRotate(90.0f);
-            matrix.postTranslate(rectF.right, rectF.top);
+            this.matrix.postScale(1.0f, rectF.width() / 16.0f);
+            this.matrix.postRotate(90.0f);
+            this.matrix.postTranslate(rectF.right, rectF.top);
         } else if (i == 3) {
-            matrix.postScale(1.0f, rectF.height() / 16.0f);
-            matrix.postScale(1.0f, -1.0f);
-            matrix.postTranslate(rectF.left, rectF.bottom);
+            this.matrix.postScale(1.0f, rectF.height() / 16.0f);
+            this.matrix.postScale(1.0f, -1.0f);
+            this.matrix.postTranslate(rectF.left, rectF.bottom);
         }
-        this.gradient.setLocalMatrix(matrix);
-        paintArr[i].setAlpha((int) (f * 255.0f));
-        canvas.drawRect(rectF, paintArr[i]);
+        this.gradient.setLocalMatrix(this.matrix);
+        this.paint[i].setAlpha((int) (f * 255.0f));
+        canvas.drawRect(rectF, this.paint[i]);
     }
 }

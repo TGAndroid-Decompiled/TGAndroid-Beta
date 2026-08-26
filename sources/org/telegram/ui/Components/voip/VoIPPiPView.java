@@ -25,10 +25,11 @@ import org.telegram.messenger.pip.utils.Trigger;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
+import org.telegram.ui.Cells.ChatLoadingCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.IntroActivity;
-import org.telegram.ui.PhotoViewer$73$$ExternalSyntheticLambda0;
-import org.telegram.ui.QrActivity$5$$ExternalSyntheticLambda1;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
+import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda19;
 import org.telegram.ui.iv.RichEditor;
 import org.webrtc.RendererCommon;
 
@@ -54,16 +55,16 @@ public final class VoIPPiPView implements VoIPService.StateListener, IPipSourceD
     public long startTime;
     public float startX;
     public float startY;
-    public final AnonymousClass2 updateXlistener;
-    public final AnonymousClass2 updateYlistener;
     public WindowManager.LayoutParams windowLayoutParams;
     public WindowManager windowManager;
-    public final IntroActivity.AnonymousClass1 windowView;
+    public final ChatLoadingCell.AnonymousClass1 windowView;
     public final int xOffset;
     public final int yOffset;
-    public final PhotoViewer$73$$ExternalSyntheticLambda0 animatorToCameraMiniUpdater = new PhotoViewer$73$$ExternalSyntheticLambda0(this, 9);
+    public final BotButton$$ExternalSyntheticLambda0 animatorToCameraMiniUpdater = new BotButton$$ExternalSyntheticLambda0(this, 23);
     public final float[] point = new float[2];
     public final Theme.AnonymousClass1 collapseRunnable = new Theme.AnonymousClass1(4);
+    public final AnonymousClass2 updateXlistener = new AnonymousClass2(this, 0);
+    public final AnonymousClass2 updateYlistener = new AnonymousClass2(this, 1);
     public final AnonymousClass6 rendererEvents = new RendererCommon.RendererEvents() {
         @Override
         public final void onFirstFrameRendered() {
@@ -80,6 +81,46 @@ public final class VoIPPiPView implements VoIPService.StateListener, IPipSourceD
         }
     };
 
+    public final class AnonymousClass2 implements ValueAnimator.AnimatorUpdateListener {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass2(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+            switch (this.$r8$classId) {
+                case 0:
+                    float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    VoIPPiPView voIPPiPView = (VoIPPiPView) this.this$0;
+                    WindowManager.LayoutParams layoutParams = voIPPiPView.windowLayoutParams;
+                    layoutParams.x = (int) fFloatValue;
+                    AndroidUtilities.updateViewLayout(voIPPiPView.windowManager, voIPPiPView.windowView, layoutParams);
+                    break;
+                case 1:
+                    float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    VoIPPiPView voIPPiPView2 = (VoIPPiPView) this.this$0;
+                    WindowManager.LayoutParams layoutParams2 = voIPPiPView2.windowLayoutParams;
+                    layoutParams2.y = (int) fFloatValue2;
+                    AndroidUtilities.updateViewLayout(voIPPiPView2.windowManager, voIPPiPView2.windowView, layoutParams2);
+                    break;
+                default:
+                    float fFloatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    VoIPFloatingLayout voIPFloatingLayout = (VoIPFloatingLayout) this.this$0;
+                    voIPFloatingLayout.toFloatingModeProgress = fFloatValue3;
+                    VoIPFloatingLayout.VoIPFloatingLayoutDelegate voIPFloatingLayoutDelegate = voIPFloatingLayout.delegate;
+                    if (voIPFloatingLayoutDelegate != null) {
+                        ((VoIPFragment$$ExternalSyntheticLambda19) voIPFloatingLayoutDelegate).f$0.lambda$createView$5(fFloatValue3, voIPFloatingLayout.measuredAsFloatingMode);
+                    }
+                    voIPFloatingLayout.invalidate();
+                    break;
+            }
+        }
+    }
+
     public final class FloatingView extends FrameLayout {
         public static final int $r8$clinit = 0;
         public float bottomPadding;
@@ -91,7 +132,7 @@ public final class VoIPPiPView implements VoIPService.StateListener, IPipSourceD
         public FloatingView(Activity activity) {
             super(activity);
             this.touchSlop = ViewConfiguration.get(activity).getScaledTouchSlop();
-            setOutlineProvider(new RichEditor.AnonymousClass5(14));
+            setOutlineProvider(new RichEditor.AnonymousClass5(7));
             setClipToOutline(true);
         }
 
@@ -125,74 +166,18 @@ public final class VoIPPiPView implements VoIPService.StateListener, IPipSourceD
     }
 
     public VoIPPiPView(Activity activity, int i, int i2) {
-        final int i3 = 0;
-        this.updateXlistener = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final VoIPPiPView this$0;
-
-            {
-                this.this$0 = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                switch (i3) {
-                    case 0:
-                        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        VoIPPiPView voIPPiPView = this.this$0;
-                        WindowManager.LayoutParams layoutParams = voIPPiPView.windowLayoutParams;
-                        layoutParams.x = (int) fFloatValue;
-                        AndroidUtilities.updateViewLayout(voIPPiPView.windowManager, voIPPiPView.windowView, layoutParams);
-                        break;
-                    default:
-                        float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        VoIPPiPView voIPPiPView2 = this.this$0;
-                        WindowManager.LayoutParams layoutParams2 = voIPPiPView2.windowLayoutParams;
-                        layoutParams2.y = (int) fFloatValue2;
-                        AndroidUtilities.updateViewLayout(voIPPiPView2.windowManager, voIPPiPView2.windowView, layoutParams2);
-                        break;
-                }
-            }
-        };
-        final int i4 = 1;
-        this.updateYlistener = new ValueAnimator.AnimatorUpdateListener(this) {
-            public final VoIPPiPView this$0;
-
-            {
-                this.this$0 = this;
-            }
-
-            @Override
-            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                switch (i4) {
-                    case 0:
-                        float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        VoIPPiPView voIPPiPView = this.this$0;
-                        WindowManager.LayoutParams layoutParams = voIPPiPView.windowLayoutParams;
-                        layoutParams.x = (int) fFloatValue;
-                        AndroidUtilities.updateViewLayout(voIPPiPView.windowManager, voIPPiPView.windowView, layoutParams);
-                        break;
-                    default:
-                        float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                        VoIPPiPView voIPPiPView2 = this.this$0;
-                        WindowManager.LayoutParams layoutParams2 = voIPPiPView2.windowLayoutParams;
-                        layoutParams2.y = (int) fFloatValue2;
-                        AndroidUtilities.updateViewLayout(voIPPiPView2.windowManager, voIPPiPView2.windowView, layoutParams2);
-                        break;
-                }
-            }
-        };
         this.parentWidth = i;
         this.parentHeight = i2;
         float f = i2 * 0.4f;
-        int i5 = ((int) ((f * 1.05f) - f)) / 2;
-        this.yOffset = i5;
+        int i3 = ((int) ((f * 1.05f) - f)) / 2;
+        this.yOffset = i3;
         float f2 = i * 0.4f;
-        int i6 = ((int) ((1.05f * f2) - f2)) / 2;
-        this.xOffset = i6;
-        IntroActivity.AnonymousClass1 anonymousClass1 = new IntroActivity.AnonymousClass1(this, activity, activity.getDrawable(R.drawable.calls_pip_outershadow), 18);
+        int i4 = ((int) ((1.05f * f2) - f2)) / 2;
+        this.xOffset = i4;
+        ChatLoadingCell.AnonymousClass1 anonymousClass1 = new ChatLoadingCell.AnonymousClass1(this, activity, activity.getDrawable(R.drawable.calls_pip_outershadow), 5);
         this.windowView = anonymousClass1;
         anonymousClass1.setWillNotDraw(false);
-        anonymousClass1.setPadding(i6, i5, i6, i5);
+        anonymousClass1.setPadding(i4, i3, i4, i3);
         FloatingView floatingView = new FloatingView(activity);
         this.floatingView = floatingView;
         VoIPTextureView voIPTextureView = new VoIPTextureView(activity, false, true, true, false);
@@ -413,7 +398,7 @@ public final class VoIPPiPView implements VoIPService.StateListener, IPipSourceD
     @Override
     public final void onStateChanged(int i) {
         if (i == 11 || i == 17 || i == 4 || i == 10) {
-            AndroidUtilities.runOnUIThread(new QrActivity$5$$ExternalSyntheticLambda1(11), 200L);
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda2(16), 200L);
         }
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance == null) {
@@ -479,8 +464,8 @@ public final class VoIPPiPView implements VoIPService.StateListener, IPipSourceD
     }
 
     @Override
-    public final void pipHidePrimaryWindowView(Trigger trigger) {
-        this.firstFrameCallback = trigger;
+    public final void pipHidePrimaryWindowView(Runnable runnable) {
+        this.firstFrameCallback = (Trigger) runnable;
         VoIPTextureView voIPTextureView = this.callingUserTextureView;
         if (voIPTextureView != null) {
             voIPTextureView.renderer.clearFirstFrame();
@@ -490,7 +475,7 @@ public final class VoIPPiPView implements VoIPService.StateListener, IPipSourceD
             sharedInstance.setSinks(this.currentUserTextureView.renderer, this.pipTextureView.renderer);
         }
         WindowManager windowManager = this.windowManager;
-        IntroActivity.AnonymousClass1 anonymousClass1 = this.windowView;
+        ChatLoadingCell.AnonymousClass1 anonymousClass1 = this.windowView;
         windowManager.removeView(anonymousClass1);
         anonymousClass1.invalidate();
     }
@@ -509,11 +494,11 @@ public final class VoIPPiPView implements VoIPService.StateListener, IPipSourceD
     }
 
     @Override
-    public final void pipShowPrimaryWindowView(Trigger trigger) {
-        this.firstFrameCallback = trigger;
+    public final void pipShowPrimaryWindowView(Runnable runnable) {
+        this.firstFrameCallback = (Trigger) runnable;
         WindowManager windowManager = this.windowManager;
         WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
-        IntroActivity.AnonymousClass1 anonymousClass1 = this.windowView;
+        ChatLoadingCell.AnonymousClass1 anonymousClass1 = this.windowView;
         windowManager.addView(anonymousClass1, layoutParams);
         VoIPTextureView voIPTextureView = this.pipTextureView;
         if (voIPTextureView != null) {

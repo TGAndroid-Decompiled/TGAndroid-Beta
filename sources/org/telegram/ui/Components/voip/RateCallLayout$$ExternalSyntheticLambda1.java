@@ -3,81 +3,108 @@ package org.telegram.ui.Components.voip;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Canvas;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
-import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.mlkit.common.MlKitException;
+import android.view.ViewGroup;
+import androidx.collection.LongSparseArray;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BillingController$$ExternalSyntheticOutline0;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.HashtagSearchController;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.tgnet.tl.TL_phone;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
+import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda17;
 import org.telegram.ui.Cells.TextCell;
-import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.ChatAttachAlertAudioLayout;
-import org.telegram.ui.Components.ChatAttachAlertPollLayout;
-import org.telegram.ui.Components.ChatScrimPopupContainerLayout;
+import org.telegram.ui.ChatActivity$$ExternalSyntheticOutline0;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.EditTextCaption;
-import org.telegram.ui.Components.EmojiPacksAlert;
-import org.telegram.ui.Components.HashtagHistoryView;
-import org.telegram.ui.Components.ImageUpdater$$ExternalSyntheticLambda2;
-import org.telegram.ui.Components.ItemOptions$$ExternalSyntheticLambda7;
-import org.telegram.ui.Components.MediaActivity;
-import org.telegram.ui.Components.Paint.Views.PhotoView;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.BoostDialogs;
 import org.telegram.ui.Components.Premium.boosts.BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13;
 import org.telegram.ui.Components.Premium.boosts.PremiumPreviewGiftLinkBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.Premium.boosts.UserSelectorBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.adapters.GiftInfoAdapter;
+import org.telegram.ui.Components.Reactions.CustomEmojiReactionsWindow;
+import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.SearchViewPager;
-import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.Components.UItem;
-import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 import org.telegram.ui.Components.chat.ViewPositionWatcher;
-import org.telegram.ui.Components.poll.attached.PollAttachedMediaMusic;
-import org.telegram.ui.ContactAddActivity;
-import org.telegram.ui.ContactsActivity;
-import org.telegram.ui.DataSettingsActivity;
-import org.telegram.ui.DialogOrContactPickerActivity;
 import org.telegram.ui.DialogsActivity;
+import org.telegram.ui.Gifts.AuctionBidSheet;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda16;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
+import org.telegram.ui.Gifts.ProfileGiftsContainer;
+import org.telegram.ui.Gifts.ResaleGiftsFragment;
+import org.telegram.ui.Gifts.SendGiftSheet$$ExternalSyntheticLambda16;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda1;
 import org.telegram.ui.PaymentFormActivity;
+import org.telegram.ui.PeerColorActivity;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
+import org.telegram.ui.Stars.BotStarsActivity;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda87;
+import org.telegram.ui.Stories.LivePlayer;
+import org.telegram.ui.Stories.LivePlayer$$ExternalSyntheticLambda6;
+import org.telegram.ui.Stories.PeerStoriesView;
+import org.telegram.ui.Stories.StoriesViewPager;
+import org.telegram.ui.Stories.StoryViewer;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
+import org.telegram.ui.Stories.recorder.ButtonWithCounterView$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stories.recorder.PreviewView$$ExternalSyntheticLambda12;
+import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
+import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda6;
+import org.telegram.ui.Stories.recorder.StoryRecorder$$ExternalSyntheticLambda5;
 import org.telegram.ui.TopicsFragment;
-import org.telegram.ui.web.WebActionBar;
+import org.telegram.ui.TwoStepVerificationActivity;
+import org.telegram.ui.bots.ChannelAffiliateProgramsFragment;
+import org.telegram.ui.iv.ChatAttachAlertRichLayout;
+import org.telegram.ui.iv.RichCaptionController;
+import org.telegram.ui.iv.RichCommandSuggestions$MenuFactory;
+import org.telegram.ui.iv.RichEditText;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda48;
+import org.telegram.ui.iv.RichEditorListView;
+import org.telegram.ui.iv.RichInlineButtonEditor;
+import org.telegram.ui.iv.RichTableCell;
+import org.telegram.ui.iv.RichTableCellHost;
+import org.telegram.ui.iv.TableModel;
+import org.telegram.ui.web.BookmarksFragment;
 
-public final class RateCallLayout$$ExternalSyntheticLambda1 implements ChatAttachAlertAudioLayout.AudioSelectDelegate, AlertsCreator.ScheduleDatePickerDelegate, ActionBarPopupWindow.onSizeChangedListener, AlertDialog.OnButtonClickListener, RecyclerListView.OnItemLongClickListener, OnFailureListener, PaymentFormActivity.PaymentFormCallback, DialogsActivity.DialogsActivityDelegate, SelectAnimatedEmojiDialog.BackgroundDelegate, MessagesStorage.BooleanCallback, RecyclerListView.OnItemClickListenerExtended, RecyclerListView.OnItemLongClickListenerExtended, ViewPositionWatcher.OnChangedListener {
+public final class RateCallLayout$$ExternalSyntheticLambda1 implements AlertDialog.OnButtonClickListener, PaymentFormActivity.PaymentFormCallback, DialogsActivity.DialogsActivityDelegate, SelectAnimatedEmojiDialog.BackgroundDelegate, ViewPositionWatcher.OnChangedListener, StarGiftSheet.BoughtGiftCallback, Utilities.Callback5, RecyclerListView.OnItemClickListenerExtended, TwoStepVerificationActivity.TwoStepVerificationActivityDelegate, StoryPrivacyBottomSheet.DoneCallback, RecyclerListView.OnItemLongClickListener, RichCommandSuggestions$MenuFactory, EditTextCaption.EditTextCaptionDelegate, RichInlineButtonEditor.UserPicked {
     public final int $r8$classId;
     public final Object f$0;
     public final Object f$1;
@@ -88,55 +115,38 @@ public final class RateCallLayout$$ExternalSyntheticLambda1 implements ChatAttac
         this.f$1 = obj2;
     }
 
-    private final void onDoubleTap$org$telegram$ui$Components$UniversalRecyclerView$$ExternalSyntheticLambda4(View view, float f, float f2) {
-    }
-
-    private final void onDoubleTap$org$telegram$ui$DataSettingsActivity$$ExternalSyntheticLambda0(View view, float f, float f2) {
-    }
-
     @Override
     public boolean canSelectStories() {
         switch (this.$r8$classId) {
+            case 6:
+                break;
         }
-        return false;
+        return DialogsActivity.DialogsActivityDelegate.CC.$default$canSelectStories(this);
     }
 
     @Override
-    public void didSelectAudio(ArrayList arrayList, Editable editable, boolean z, int i, int i2, long j, boolean z2, long j2) {
-        if (!arrayList.isEmpty()) {
-            ((Utilities.Callback) this.f$0).run(new PollAttachedMediaMusic((MessageObject) arrayList.get(0)));
-        }
-        ((ChatAttachAlertPollLayout.AnonymousClass14) this.f$1).dismiss(true);
-    }
-
-    @Override
-    public void didSelectDate(int i, int i2, boolean z) {
-        ChatAttachAlertPollLayout chatAttachAlertPollLayout = (ChatAttachAlertPollLayout) this.f$0;
-        if (!z) {
-            chatAttachAlertPollLayout.getClass();
-            return;
-        }
-        chatAttachAlertPollLayout.pollLimitDeadline = i;
-        chatAttachAlertPollLayout.pollLimitDuration = 0;
-        View view = (View) this.f$1;
-        if (view instanceof TextCell) {
-            chatAttachAlertPollLayout.checkDurationInfoRow((TextCell) view, true);
-        } else {
-            chatAttachAlertPollLayout.listAdapter.notifyItemChanged(chatAttachAlertPollLayout.poll2vLimitDurationTimeRow);
+    public void didEnterPassword(TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP) {
+        switch (this.$r8$classId) {
+            case 16:
+                ((BotStarsActivity) this.f$0).initWithdraw(false, 0L, inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f$1);
+                break;
+            default:
+                ((StarGiftSheet) this.f$0).initTONTransfer(inputCheckPasswordSRP, (TwoStepVerificationActivity) this.f$1);
+                break;
         }
     }
 
     @Override
     public boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, boolean z2, int i, int i2, TopicsFragment topicsFragment) {
         switch (this.$r8$classId) {
-            case 14:
+            case 6:
                 PremiumPreviewGiftLinkBottomSheet premiumPreviewGiftLinkBottomSheet = (PremiumPreviewGiftLinkBottomSheet) this.f$0;
                 premiumPreviewGiftLinkBottomSheet.getClass();
                 long j = 0;
                 int i3 = 0;
                 while (i3 < arrayList.size()) {
                     long j2 = ((MessagesStorage.TopicKey) arrayList.get(i3)).dialogId;
-                    premiumPreviewGiftLinkBottomSheet.baseFragment.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of((String) this.f$1, j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    premiumPreviewGiftLinkBottomSheet.getBaseFragment().getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of((String) this.f$1, j2, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     i3++;
                     j = j2;
                 }
@@ -163,139 +173,191 @@ public final class RateCallLayout$$ExternalSyntheticLambda1 implements ChatAttac
 
     @Override
     public boolean didSelectStories(DialogsActivity dialogsActivity) {
-        switch (this.$r8$classId) {
-        }
-        return false;
+        int i = this.$r8$classId;
+        return DialogsActivity.DialogsActivityDelegate.CC.$default$didSelectStories(this, dialogsActivity);
     }
 
     @Override
-    public boolean hasDoubleTap(View view) {
+    public void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, boolean z3, boolean z4, TLRPC.InputPeer inputPeer, int i, ButtonWithCounterView$$ExternalSyntheticLambda1 buttonWithCounterView$$ExternalSyntheticLambda1, PreviewView$$ExternalSyntheticLambda12 previewView$$ExternalSyntheticLambda12) {
         switch (this.$r8$classId) {
+            case 19:
+                PeerStoriesView peerStoriesView = (PeerStoriesView) this.f$0;
+                peerStoriesView.getClass();
+                TL_stories.TL_stories_editStory tL_stories_editStory = new TL_stories.TL_stories_editStory();
+                MessagesController messagesController = MessagesController.getInstance(peerStoriesView.currentAccount);
+                TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f$1;
+                tL_stories_editStory.peer = messagesController.getInputPeer(storyItem.dialogId);
+                tL_stories_editStory.id = storyItem.id;
+                tL_stories_editStory.flags |= 4;
+                tL_stories_editStory.privacy_rules = storyPrivacy.rules;
+                ConnectionsManager.getInstance(peerStoriesView.currentAccount).sendRequest(tL_stories_editStory, new GiftSheet$$ExternalSyntheticLambda16(8, peerStoriesView, buttonWithCounterView$$ExternalSyntheticLambda1, storyItem, storyPrivacy));
+                break;
+            default:
+                PeerStoriesView.AnonymousClass8 anonymousClass8 = (PeerStoriesView.AnonymousClass8) this.f$0;
+                StoriesViewPager.AnonymousClass2.AnonymousClass1 anonymousClass1 = anonymousClass8.this$0;
+                PeerStoriesView.StoryItemHolder storyItemHolder = anonymousClass1.currentStory;
+                TL_stories.StoryItem storyItem2 = storyItemHolder.storyItem;
+                if ((storyItem2 != null && storyItem2.pinned) != z3) {
+                    MessagesController.getInstance(anonymousClass1.currentAccount).getStoriesController().updateStoriesPinned(anonymousClass1.dialogId, anonymousClass1.storyItems, z3, null);
+                }
+                TL_stories.StoryItem storyItem3 = storyItemHolder.storyItem;
+                if (storyItem3 != null) {
+                    TLRPC.MessageMedia messageMedia = storyItem3.media;
+                    if (messageMedia instanceof TLRPC.TL_messageMediaVideoStream) {
+                        TLRPC.InputGroupCall inputGroupCall = ((TLRPC.TL_messageMediaVideoStream) messageMedia).call;
+                        TL_phone.toggleGroupCallSettings togglegroupcallsettings = new TL_phone.toggleGroupCallSettings();
+                        togglegroupcallsettings.call = inputGroupCall;
+                        togglegroupcallsettings.messages_enabled = Boolean.valueOf(z);
+                        togglegroupcallsettings.send_paid_messages_stars = Long.valueOf(i);
+                        ConnectionsManager.getInstance(anonymousClass1.currentAccount).sendRequest(togglegroupcallsettings, new StarGiftSheet$$ExternalSyntheticLambda0(24, anonymousClass8, (StoryPrivacyBottomSheet) this.f$1));
+                    }
+                }
+                break;
         }
-        return false;
+    }
+
+    @Override
+    public void drawRect(Canvas canvas, int i, int i2, int i3, int i4, float f, float f2) {
+        CustomEmojiReactionsWindow customEmojiReactionsWindow = (CustomEmojiReactionsWindow) this.f$0;
+        customEmojiReactionsWindow.getClass();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(i, i2, i3, i4);
+        ReactionsContainerLayout.ReactionsContainerDelegate delegate = ((ReactionsContainerLayout) this.f$1).getDelegate();
+        CustomEmojiReactionsWindow.ContainerView containerView = customEmojiReactionsWindow.containerView;
+        delegate.drawRoundRect(canvas, rectF, 0.0f, containerView.getX() + f, (customEmojiReactionsWindow.type == 1 ? containerView.getY() - AndroidUtilities.statusBarHeight : containerView.getY() + customEmojiReactionsWindow.windowView.getY()) + f2, 255, true);
+    }
+
+    @Override
+    public boolean hasDoubleTap(View view, int i) {
+        int i2 = this.$r8$classId;
+        return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
+    }
+
+    @Override
+    public ItemOptions make(RichEditText richEditText) {
+        ChatAttachAlertRichLayout chatAttachAlertRichLayout = ChatAttachAlertRichLayout.this;
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(chatAttachAlertRichLayout, (Theme.ResourcesProvider) this.f$1, richEditText, false, false, true);
+        chatAttachAlertRichLayout.menu = itemOptionsMakeOptions;
+        return itemOptionsMakeOptions;
+    }
+
+    @Override
+    public void onBoughtGift(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j, boolean z) {
+        ProfileGiftsContainer.Page page = (ProfileGiftsContainer.Page) this.f$0;
+        page.list.gifts.remove((TL_stars.SavedStarGift) this.f$1);
+        page.update(true);
+        int i = page.currentAccount;
+        long clientUserId = UserConfig.getInstance(i).getClientUserId();
+        ProfileGiftsContainer profileGiftsContainer = page.parent;
+        if (j == clientUserId) {
+            BulletinFactory bulletinFactoryOf = BulletinFactory.of(profileGiftsContainer.fragment);
+            TLRPC.Document document = tL_starGiftUnique.getDocument();
+            String string = LocaleController.getString(R.string.BoughtResoldGiftTitle);
+            int i2 = R.string.BoughtResoldGiftText;
+            StringBuilder sb = new StringBuilder();
+            sb.append(tL_starGiftUnique.title);
+            sb.append(" #");
+            bulletinFactoryOf.createSimpleBulletin(document, string, LocaleController.formatString(i2, BillingController$$ExternalSyntheticOutline0.m(tL_starGiftUnique.num, ',', sb))).hideAfterBottomSheet(false).show();
+        } else {
+            BulletinFactory.of(profileGiftsContainer.fragment).createSimpleBulletin(tL_starGiftUnique.getDocument(), LocaleController.getString(R.string.BoughtResoldGiftToTitle), LocaleController.formatString(R.string.BoughtResoldGiftToText, DialogObject.getShortName(i, j))).hideAfterBottomSheet(false).show();
+        }
+        LaunchActivity launchActivity = LaunchActivity.instance;
+        if (launchActivity != null) {
+            launchActivity.getFireworksOverlay().start(true);
+        }
     }
 
     @Override
     public void onClick(AlertDialog alertDialog, int i) {
         switch (this.$r8$classId) {
-            case 4:
-                ((EditTextCaption.InputDialogCallback) this.f$0).run(((WebActionBar.AnonymousClass4) this.f$1).getText().toString().trim());
+            case 1:
+                ((LimitReachedBottomSheet) this.f$0).lambda$revokeLinks$25((ArrayList) this.f$1, alertDialog, i);
                 break;
-            case 5:
-            case 8:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 18:
-            case 20:
-            case 21:
-            case 22:
-            case 27:
-            default:
-                ((DialogsActivity) this.f$0).getMediaDataController().removeWebapp(((TLRPC.User) this.f$1).id);
-                break;
-            case 6:
-                HashtagHistoryView hashtagHistoryView = (HashtagHistoryView) this.f$0;
-                HashtagSearchController.getInstance(hashtagHistoryView.currentAccount).removeHashtagFromHistory((String) this.f$1);
-                hashtagHistoryView.adapter.update(true);
-                break;
-            case 7:
-                MediaActivity mediaActivity = MediaActivity.this;
-                mediaActivity.getMessagesController().getStoriesController().deleteStories(mediaActivity.dialogId, (ArrayList) this.f$1);
-                mediaActivity.sharedMediaLayout.closeActionMode(false);
-                break;
-            case 9:
-                ((LimitReachedBottomSheet) this.f$0).lambda$revokeLinks$25((ArrayList) this.f$1);
-                break;
-            case 10:
+            case 2:
                 ((AtomicBoolean) this.f$0).set(true);
                 ((SelectorBottomSheet$$ExternalSyntheticLambda0) this.f$1).run();
                 break;
-            case 11:
+            case 3:
                 ((BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13) this.f$0).run((TLRPC.TL_premiumGiftCodeOption) this.f$1);
                 break;
-            case 17:
-                SearchViewPager searchViewPager = (SearchViewPager) this.f$0;
-                searchViewPager.getClass();
-                alertDialog.dismiss();
-                searchViewPager.parent.getDownloadController().deleteRecentFiles((ArrayList) this.f$1);
-                searchViewPager.showActionMode(false);
-                break;
-            case 19:
-                ((Runnable) this.f$0).run();
-                TLRPC.TL_stickers_deleteStickerSet tL_stickers_deleteStickerSet = new TLRPC.TL_stickers_deleteStickerSet();
-                tL_stickers_deleteStickerSet.stickerset = MediaDataController.getInputStickerSet((TLRPC.StickerSet) this.f$1);
-                ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stickers_deleteStickerSet, new PassportActivity$$ExternalSyntheticLambda1(11));
-                break;
-            case 23:
-                Activity activity = (Activity) this.f$1;
+            case 10:
+                Activity activity = (Activity) this.f$0;
                 Intent intent = new Intent(activity, (Class<?>) LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");
-                intent.putExtra("android.intent.extra.STREAM", Uri.fromFile((File) this.f$0));
+                intent.putExtra("android.intent.extra.STREAM", Uri.fromFile((File) this.f$1));
                 activity.startActivity(intent);
                 break;
-            case 24:
-                ContactAddActivity contactAddActivity = (ContactAddActivity) this.f$0;
-                contactAddActivity.getClass();
-                ArrayList<TLRPC.User> arrayList = new ArrayList<>();
-                TLRPC.User user = (TLRPC.User) this.f$1;
-                arrayList.add(user);
-                contactAddActivity.getContactsController().deleteContact(arrayList, true);
-                if (user != null) {
-                    user.contact = false;
-                }
-                contactAddActivity.finishFragment();
-                break;
-            case 25:
-                ((ContactsActivity) this.f$0).lambda$createView$4((String) this.f$1);
-                break;
-            case 26:
-                ContactsActivity contactsActivity = (ContactsActivity) this.f$0;
-                ContactsActivity.ContactsActivityDelegate contactsActivityDelegate = contactsActivity.delegate;
-                if (contactsActivityDelegate != null) {
-                    contactsActivityDelegate.didSelectContact((TLRPC.User) this.f$1);
-                    contactsActivity.delegate = null;
+            case 11:
+                AuctionBidSheet auctionBidSheet = (AuctionBidSheet) this.f$0;
+                auctionBidSheet.getClass();
+                AuctionBidSheet.AnonymousClass4 anonymousClass4 = (AuctionBidSheet.AnonymousClass4) this.f$1;
+                try {
+                    int i2 = Integer.parseInt(anonymousClass4.getText().toString().trim());
+                    auctionBidSheet.sendBid(i2);
+                    auctionBidSheet.slider.setValue(i2);
+                    alertDialog.dismiss();
+                } catch (Throwable th) {
+                    AndroidUtilities.shakeView(anonymousClass4);
+                    FileLog.e(th);
+                    return;
                 }
                 break;
-            case 28:
-                ((DialogOrContactPickerActivity) this.f$0).lambda$showBlockAlert$3((TLRPC.User) this.f$1);
-                break;
-        }
-    }
-
-    @Override
-    public void onDoubleTap(View view, float f, float f2) {
-        int i = this.$r8$classId;
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        PhotoView photoView = (PhotoView) this.f$0;
-        photoView.segmentingLoading = false;
-        FileLog.e(exc);
-        if (Build.VERSION.SDK_INT < 24 || !(exc instanceof MlKitException) || exc.getMessage() == null || !exc.getMessage().contains("segmentation optional module to be downloaded") || !photoView.isAttachedToWindow()) {
-            photoView.segmentingLoaded = true;
-        } else {
-            AndroidUtilities.runOnUIThread(new ImageUpdater$$ExternalSyntheticLambda2(14, photoView, (Bitmap) this.f$1), 2000L);
-        }
-    }
-
-    @Override
-    public void onInvoiceStatusChanged(int i) {
-        switch (this.$r8$classId) {
             case 12:
-                if (i == 1) {
+                ProfileGiftsContainer.lambda$openEnterNameAlert$15((ProfileGiftsContainer.AnonymousClass5) this.f$0, (Utilities.Callback) this.f$1, alertDialog, i);
+                break;
+            case 17:
+                StarGiftSheet starGiftSheet = (StarGiftSheet) this.f$0;
+                starGiftSheet.getClass();
+                Browser.Progress progressMakeButtonLoading = alertDialog.makeButtonLoading(i, true, true);
+                TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
+                twoStepVerificationActivity.setDelegate(2, new RateCallLayout$$ExternalSyntheticLambda1(18, starGiftSheet, twoStepVerificationActivity));
+                twoStepVerificationActivity.setDelegateString(starGiftSheet.getGiftName());
+                progressMakeButtonLoading.init();
+                twoStepVerificationActivity.preload(new Theme$$ExternalSyntheticLambda17(22, starGiftSheet, (UserSelectorBottomSheet[]) this.f$1, progressMakeButtonLoading, twoStepVerificationActivity));
+                break;
+            case 21:
+                PeerStoriesView.AnonymousClass8 anonymousClass8 = (PeerStoriesView.AnonymousClass8) this.f$0;
+                LivePlayer livePlayer = ((StoryViewer) this.f$1).livePlayer;
+                if (livePlayer == null) {
+                    anonymousClass8.this$0.deleteStory();
+                    break;
+                } else if (!livePlayer.destroyed) {
+                    TL_phone.discardGroupCall discardgroupcall = new TL_phone.discardGroupCall();
+                    discardgroupcall.call = livePlayer.inputCall;
+                    ConnectionsManager.getInstance(livePlayer.currentAccount).sendRequest(discardgroupcall, new LivePlayer$$ExternalSyntheticLambda6(livePlayer, 5));
+                    livePlayer.destroy();
+                    break;
+                }
+                break;
+            case 23:
+                ((ChannelAffiliateProgramsFragment) this.f$0).lambda$createView$6((TL_payments.connectedBotStarRef) this.f$1);
+                break;
+            default:
+                ((BookmarksFragment) this.f$0).lambda$deleteSelectedMessages$0((HashSet) this.f$1);
+                break;
+        }
+    }
+
+    @Override
+    public void onDoubleTap(View view, int i, float f, float f2) {
+        int i2 = this.$r8$classId;
+        RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
+    }
+
+    @Override
+    public void onInvoiceStatusChanged(PaymentFormActivity.InvoiceStatus invoiceStatus) {
+        switch (this.$r8$classId) {
+            case 4:
+                if (invoiceStatus == PaymentFormActivity.InvoiceStatus.PAID) {
                     ((BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13) this.f$0).run(null);
-                } else if (i != 3) {
+                } else if (invoiceStatus != PaymentFormActivity.InvoiceStatus.PENDING) {
                     ((BoostViaGiftsBottomSheet$$ExternalSyntheticLambda13) this.f$1).run(null);
                 }
                 break;
             default:
-                if (i == 1) {
+                if (invoiceStatus == PaymentFormActivity.InvoiceStatus.PAID) {
                     ((Utilities.Callback) this.f$0).run(null);
-                } else if (i != 3) {
+                } else if (invoiceStatus != PaymentFormActivity.InvoiceStatus.PENDING) {
                     ((Utilities.Callback) this.f$1).run(null);
                 }
                 break;
@@ -304,26 +366,240 @@ public final class RateCallLayout$$ExternalSyntheticLambda1 implements ChatAttac
 
     @Override
     public void onItemClick(View view, int i, float f, float f2) {
+        TLRPC.ChatParticipants chatParticipants;
+        ArrayList<TLRPC.ChatParticipant> arrayList;
         switch (this.$r8$classId) {
-            case 20:
-                UItem item = ((UniversalRecyclerView) this.f$0).adapter.getItem(i);
-                if (item != null) {
-                    ((Utilities.Callback5) this.f$1).mo1067run(item, view, Integer.valueOf(i), Float.valueOf(f), Float.valueOf(f2));
-                    break;
-                }
+            case 15:
+                ((ResaleGiftsFragment.SelectGiftSheet) this.f$0).lambda$new$22((ResaleGiftsFragment.SelectGiftSheet.State) this.f$1, i);
                 break;
             default:
-                ((DataSettingsActivity) this.f$0).lambda$createView$9((Context) this.f$1, view, i, f);
+                final StoryPrivacyBottomSheet.Page page = (StoryPrivacyBottomSheet.Page) this.f$0;
+                if (i < 0) {
+                    page.getClass();
+                    break;
+                } else {
+                    ArrayList arrayList2 = page.items;
+                    if (i < arrayList2.size()) {
+                        StoryPrivacyBottomSheet.ItemInner itemInner = (StoryPrivacyBottomSheet.ItemInner) arrayList2.get(i);
+                        int i2 = itemInner.viewType;
+                        int i3 = 0;
+                        StoryPrivacyBottomSheet storyPrivacyBottomSheet = StoryPrivacyBottomSheet.this;
+                        if (i2 == 3) {
+                            if (itemInner.sendAs && storyPrivacyBottomSheet.canChangePeer) {
+                                new StoryPrivacyBottomSheet.ChoosePeerSheet((Context) this.f$1, ((BottomSheet) storyPrivacyBottomSheet).currentAccount, storyPrivacyBottomSheet.isLive, storyPrivacyBottomSheet.selectedPeer, new StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda6(page, 1), ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).show();
+                            } else {
+                                int i4 = itemInner.type;
+                                if (i4 == 1) {
+                                    if (storyPrivacyBottomSheet.selectedType == 1 || StoryPrivacyBottomSheet.access$6500(storyPrivacyBottomSheet).isEmpty()) {
+                                        storyPrivacyBottomSheet.activePage = 1;
+                                        storyPrivacyBottomSheet.viewPager.scrollToPosition(1);
+                                    }
+                                    storyPrivacyBottomSheet.selectedType = 1;
+                                    page.updateCheckboxes$1(true);
+                                } else if (i4 == 3) {
+                                    if (storyPrivacyBottomSheet.selectedType == 3 || (storyPrivacyBottomSheet.selectedContacts.isEmpty() && storyPrivacyBottomSheet.selectedContactsByGroup.isEmpty())) {
+                                        storyPrivacyBottomSheet.activePage = 3;
+                                        storyPrivacyBottomSheet.viewPager.scrollToPosition(1);
+                                    }
+                                    storyPrivacyBottomSheet.selectedType = 3;
+                                    page.updateCheckboxes$1(true);
+                                } else if (i4 == 2) {
+                                    if (storyPrivacyBottomSheet.selectedType == 2) {
+                                        storyPrivacyBottomSheet.activePage = 2;
+                                        storyPrivacyBottomSheet.viewPager.scrollToPosition(1);
+                                    }
+                                    storyPrivacyBottomSheet.selectedType = 2;
+                                    page.updateCheckboxes$1(true);
+                                } else if (i4 != 4) {
+                                    ArrayList arrayList3 = page.selectedUsers;
+                                    HashMap map = page.selectedUsersByGroup;
+                                    StoryPrivacyBottomSheet.Page.AnonymousClass1 anonymousClass1 = page.searchField;
+                                    if (i4 > 0) {
+                                        arrayList3.clear();
+                                        map.clear();
+                                        storyPrivacyBottomSheet.selectedType = itemInner.type;
+                                        anonymousClass1.spansContainer.removeAllSpans();
+                                    } else {
+                                        TLRPC.Chat chat = itemInner.chat;
+                                        LongSparseArray longSparseArray = page.changelog;
+                                        if (chat != null) {
+                                            long j = chat.id;
+                                            if (StoryPrivacyBottomSheet.access$9900(storyPrivacyBottomSheet, chat) > 200) {
+                                                try {
+                                                    page.performHapticFeedback(3, 1);
+                                                    break;
+                                                } catch (Throwable unused) {
+                                                }
+                                                ChatActivity$$ExternalSyntheticOutline0.m(R.string.OK, new AlertDialog.Builder(page.getContext(), 0, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).setTitle(LocaleController.getString(R.string.GroupTooLarge)).setMessage(LocaleController.getString(R.string.GroupTooLargeMessage)), null);
+                                            } else if (map.containsKey(Long.valueOf(j))) {
+                                                ArrayList arrayList4 = (ArrayList) map.get(Long.valueOf(j));
+                                                if (arrayList4 != null) {
+                                                    int size = arrayList4.size();
+                                                    while (i3 < size) {
+                                                        Object obj = arrayList4.get(i3);
+                                                        i3++;
+                                                        longSparseArray.put(Boolean.FALSE, ((Long) obj).longValue());
+                                                    }
+                                                }
+                                                map.remove(Long.valueOf(j));
+                                                page.updateSpans(true);
+                                            } else {
+                                                TLRPC.Chat chat2 = MessagesController.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).getChat(Long.valueOf(j));
+                                                TLRPC.ChatFull chatFull = MessagesController.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).getChatFull(j);
+                                                if (chatFull == null || (chatParticipants = chatFull.participants) == null || (arrayList = chatParticipants.participants) == null || arrayList.isEmpty() || chatFull.participants.participants.size() < chatFull.participants_count - 1) {
+                                                    AlertDialog alertDialog = page.progressDialog;
+                                                    if (alertDialog != null) {
+                                                        alertDialog.dismiss();
+                                                        page.progressDialog = null;
+                                                    }
+                                                    page.waitingForChatId = j;
+                                                    AlertDialog alertDialog2 = new AlertDialog(page.getContext(), 3, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider);
+                                                    page.progressDialog = alertDialog2;
+                                                    AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda1 = alertDialog2.showRunnable;
+                                                    AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda1);
+                                                    AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda1, 50L);
+                                                    MessagesStorage messagesStorage = MessagesStorage.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount);
+                                                    messagesStorage.getStorageQueue().postRunnable(new StarsController$$ExternalSyntheticLambda87(page, chat2, messagesStorage, j));
+                                                } else {
+                                                    page.selectChat(j, chatFull.participants);
+                                                }
+                                                if (!TextUtils.isEmpty(page.query)) {
+                                                    anonymousClass1.setText("");
+                                                    page.query = null;
+                                                    page.updateItems(false, true);
+                                                }
+                                            }
+                                        } else {
+                                            TLRPC.User user = itemInner.user;
+                                            if (user != null) {
+                                                if (page.pageType == 0) {
+                                                    storyPrivacyBottomSheet.selectedType = 0;
+                                                }
+                                                long j2 = user.id;
+                                                HashSet hashSet = new HashSet(arrayList3);
+                                                if (arrayList3.contains(Long.valueOf(j2))) {
+                                                    Iterator it = map.entrySet().iterator();
+                                                    while (it.hasNext()) {
+                                                        Map.Entry entry = (Map.Entry) it.next();
+                                                        if (((ArrayList) entry.getValue()).contains(Long.valueOf(j2))) {
+                                                            it.remove();
+                                                            hashSet.addAll((Collection) entry.getValue());
+                                                        }
+                                                    }
+                                                    hashSet.remove(Long.valueOf(j2));
+                                                    longSparseArray.put(Boolean.FALSE, j2);
+                                                } else {
+                                                    Iterator it2 = map.entrySet().iterator();
+                                                    while (it2.hasNext()) {
+                                                        Map.Entry entry2 = (Map.Entry) it2.next();
+                                                        if (((ArrayList) entry2.getValue()).contains(Long.valueOf(j2))) {
+                                                            it2.remove();
+                                                            hashSet.addAll((Collection) entry2.getValue());
+                                                        }
+                                                    }
+                                                    hashSet.add(Long.valueOf(j2));
+                                                    if (!TextUtils.isEmpty(page.query)) {
+                                                        anonymousClass1.setText("");
+                                                        page.query = null;
+                                                        page.updateItems(false, true);
+                                                    }
+                                                    longSparseArray.put(Boolean.TRUE, j2);
+                                                }
+                                                arrayList3.clear();
+                                                arrayList3.addAll(hashSet);
+                                                page.updateSpans(true);
+                                            }
+                                        }
+                                    }
+                                    page.updateCheckboxes$1(true);
+                                    page.updateButton(true);
+                                    anonymousClass1.scroll = true;
+                                } else {
+                                    if (storyPrivacyBottomSheet.selectedType == 4) {
+                                        storyPrivacyBottomSheet.activePage = 4;
+                                        storyPrivacyBottomSheet.viewPager.scrollToPosition(1);
+                                    }
+                                    storyPrivacyBottomSheet.selectedType = 4;
+                                    page.updateCheckboxes$1(true);
+                                }
+                            }
+                            break;
+                        } else if (i2 != 7) {
+                            if (i2 == 9) {
+                                int i5 = itemInner.id;
+                                if (i5 == 0) {
+                                    StoryRecorder$$ExternalSyntheticLambda5 storyRecorder$$ExternalSyntheticLambda5 = storyPrivacyBottomSheet.whenCoverClicked;
+                                    if (storyRecorder$$ExternalSyntheticLambda5 != null) {
+                                        storyRecorder$$ExternalSyntheticLambda5.run();
+                                    }
+                                } else if (i5 == 1) {
+                                    TLRPC.InputPeer inputPeer = storyPrivacyBottomSheet.selectedPeer;
+                                    long peerDialogId = inputPeer != null ? DialogObject.getPeerDialogId(inputPeer) : UserConfig.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).getClientUserId();
+                                    ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(page, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider, view);
+                                    itemOptionsMakeOptions.add(R.drawable.msg_addfolder, LocaleController.getString(R.string.StoriesAlbumNewAlbum), new RichEditor$$ExternalSyntheticLambda48(page, peerDialogId, 17));
+                                    itemOptionsMakeOptions.addGap();
+                                    ItemOptions.addAlbumsItemOptions(itemOptionsMakeOptions, storyPrivacyBottomSheet.getStoriesController().getStoryAlbumsList(peerDialogId, true), storyPrivacyBottomSheet.selectedAlbums, false, null, new GiftSheet$$ExternalSyntheticLambda4(20, page, itemOptionsMakeOptions));
+                                    itemOptionsMakeOptions.show();
+                                } else if (i5 == 5) {
+                                    final AlertDialog alertDialog3 = new AlertDialog(page.getContext(), 3, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider);
+                                    AlertDialog$$ExternalSyntheticLambda1 alertDialog$$ExternalSyntheticLambda2 = alertDialog3.showRunnable;
+                                    AndroidUtilities.cancelRunOnUIThread(alertDialog$$ExternalSyntheticLambda2);
+                                    AndroidUtilities.runOnUIThread(alertDialog$$ExternalSyntheticLambda2, 500L);
+                                    final TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
+                                    getgroupcallstreamrtmpurl.live_story = true;
+                                    TLRPC.InputPeer tL_inputPeerSelf = storyPrivacyBottomSheet.selectedPeer;
+                                    if (tL_inputPeerSelf == null) {
+                                        tL_inputPeerSelf = new TLRPC.TL_inputPeerSelf();
+                                    }
+                                    getgroupcallstreamrtmpurl.peer = tL_inputPeerSelf;
+                                    ConnectionsManager.getInstance(((BottomSheet) storyPrivacyBottomSheet).currentAccount).sendRequest(getgroupcallstreamrtmpurl, new RequestDelegate() {
+                                        @Override
+                                        public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                            StoryPrivacyBottomSheet.Page page2 = page;
+                                            page2.getClass();
+                                            AndroidUtilities.runOnUIThread(new SendGiftSheet$$ExternalSyntheticLambda16(page2, alertDialog3, tLObject, getgroupcallstreamrtmpurl, tL_error));
+                                        }
+                                    });
+                                } else if (i5 == 6) {
+                                    storyPrivacyBottomSheet.isRtmpStream = false;
+                                    page.updateItems(true, true);
+                                }
+                            }
+                            break;
+                        } else if (view instanceof TextCell) {
+                            TextCell textCell = (TextCell) view;
+                            textCell.setChecked(!textCell.isChecked());
+                            itemInner.checked = textCell.isChecked();
+                            int i6 = itemInner.resId;
+                            if (i6 == 0) {
+                                boolean zIsChecked = textCell.isChecked();
+                                storyPrivacyBottomSheet.allowScreenshots = zIsChecked;
+                                i3 = storyPrivacyBottomSheet.selectedType == 4 ? 1 : 0;
+                                if (!zIsChecked) {
+                                    BulletinFactory.of(storyPrivacyBottomSheet.container, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.passcode_lock_close, LocaleController.getString(i3 != 0 ? R.string.StoryDisabledScreenshotsShare : R.string.StoryDisabledScreenshots), 4).setDuration(5000).show(true);
+                                } else {
+                                    BulletinFactory.of(storyPrivacyBottomSheet.container, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.ic_save_to_gallery, LocaleController.getString(i3 != 0 ? R.string.StoryEnabledScreenshotsShare : R.string.StoryEnabledScreenshots), 4).setDuration(5000).show(true);
+                                }
+                            } else if (i6 == 1) {
+                                boolean zIsChecked2 = textCell.isChecked();
+                                storyPrivacyBottomSheet.keepOnMyPage = zIsChecked2;
+                                boolean z = storyPrivacyBottomSheet.selectedPeer instanceof TLRPC.TL_inputPeerChannel;
+                                if (zIsChecked2) {
+                                    BulletinFactory.of(storyPrivacyBottomSheet.container, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.msg_story_keep, LocaleController.getString(z ? R.string.StoryChannelEnableKeep : R.string.StoryEnableKeep), 4).setDuration(5000).show(true);
+                                } else {
+                                    BulletinFactory.of(storyPrivacyBottomSheet.container, ((BottomSheet) storyPrivacyBottomSheet).resourcesProvider).createSimpleBulletin(R.raw.fire_on, LocaleController.getString(z ? R.string.StoryChannelDisableKeep : R.string.StoryDisableKeep), 4).setDuration(5000).show(true);
+                                }
+                                page.updateItems(true, true);
+                            } else if (i6 == 2) {
+                                storyPrivacyBottomSheet.allowComments = textCell.isChecked();
+                                page.updateItems(true, true);
+                            }
+                            break;
+                        }
+                    }
+                }
                 break;
         }
-    }
-
-    @Override
-    public void onLongClickRelease() {
-    }
-
-    @Override
-    public void onMove(float f) {
     }
 
     @Override
@@ -340,87 +616,62 @@ public final class RateCallLayout$$ExternalSyntheticLambda1 implements ChatAttac
     }
 
     @Override
-    public void onSizeChanged() {
-        ChatScrimPopupContainerLayout chatScrimPopupContainerLayout = (ChatScrimPopupContainerLayout) this.f$0;
-        if (chatScrimPopupContainerLayout.bottomView != null) {
-            ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = (ActionBarPopupWindow.ActionBarPopupWindowLayout) this.f$1;
-            float visibleHeight = actionBarPopupWindowLayout.getVisibleHeight() - actionBarPopupWindowLayout.getMeasuredHeight();
-            chatScrimPopupContainerLayout.bottomViewYOffset = visibleHeight;
-            FrameLayout frameLayout = chatScrimPopupContainerLayout.bottomView;
-            if (frameLayout != null) {
-                frameLayout.setTranslationY(visibleHeight + chatScrimPopupContainerLayout.expandSize + chatScrimPopupContainerLayout.bottomViewReactionsOffset);
+    public void onSpansChanged() {
+        switch (this.$r8$classId) {
+            case 26:
+                ((RichCaptionController) this.f$0).persist();
+                ((RichCaptionController.Host) this.f$1).onCaptionSpansChanged();
+                break;
+            default:
+                RichTableCell richTableCell = (RichTableCell) this.f$0;
+                richTableCell.getClass();
+                RichTableCellHost richTableCellHost = (RichTableCellHost) this.f$1;
+                TL_iv.pageTableCell pagetablecell = richTableCellHost.cell;
+                if (pagetablecell != null) {
+                    TableModel.applyStyledText(pagetablecell, richTableCellHost.editText.getText());
+                }
+                RichEditorListView.AnonymousClass12 anonymousClass12 = richTableCell.delegate;
+                if (anonymousClass12 != null && richTableCell.currentRow != null) {
+                    RichEditorListView.access$3700(RichEditorListView.this);
+                    break;
+                }
+                break;
+        }
+    }
+
+    @Override
+    public void run(long j) {
+        TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
+        tL_inlineButtonTypeUserProfile.user_id = j;
+        ((RichEditorListView.BlockButtonEdit) this.f$0).apply((String) this.f$1, tL_inlineButtonTypeUserProfile);
+    }
+
+    @Override
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ProfileGiftsContainer.UnpinSheet unpinSheet = (ProfileGiftsContainer.UnpinSheet) this.f$0;
+        unpinSheet.getClass();
+        long j = ((TL_stars.SavedStarGift) ((UItem) obj).object).gift.id;
+        if (unpinSheet.selectedGift == j) {
+            unpinSheet.selectedGift = 0L;
+        } else {
+            unpinSheet.selectedGift = j;
+        }
+        ((ButtonWithCounterView) this.f$1).setEnabled(unpinSheet.selectedGift != 0);
+        if (view.getParent() instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) view.getParent();
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View childAt = viewGroup.getChildAt(i);
+                if (childAt instanceof PeerColorActivity.GiftCell) {
+                    PeerColorActivity.GiftCell giftCell = (PeerColorActivity.GiftCell) childAt;
+                    giftCell.setSelected(unpinSheet.selectedGift == giftCell.getGiftId(), true);
+                }
             }
         }
     }
 
     @Override
-    public void run(boolean z) {
-        SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;
-        sharedMediaLayout.profileActivity.finishFragment();
-        BaseFragment baseFragment = sharedMediaLayout.profileActivity;
-        if (baseFragment instanceof NotificationCenter.NotificationCenterDelegate) {
-            baseFragment.getNotificationCenter().removeObserver((NotificationCenter.NotificationCenterDelegate) baseFragment, NotificationCenter.closeChats);
-        }
-        baseFragment.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-        baseFragment.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(sharedMediaLayout.dialog_id), (TLRPC.User) this.f$1, null, Boolean.valueOf(z));
-        baseFragment.getMessagesController().setSavedViewAs(false);
-    }
-
-    public RateCallLayout$$ExternalSyntheticLambda1(Activity activity, File file) {
-        this.$r8$classId = 23;
-        this.f$1 = activity;
-        this.f$0 = file;
-    }
-
-    public RateCallLayout$$ExternalSyntheticLambda1(ContactsActivity contactsActivity, TLRPC.User user, String str) {
-        this.$r8$classId = 26;
-        this.f$0 = contactsActivity;
-        this.f$1 = user;
-    }
-
-    @Override
-    public boolean onItemClick(int i, View view) {
-        AnimatedEmojiSpan animatedEmojiSpan;
-        EmojiPacksAlert emojiPacksAlert = (EmojiPacksAlert) this.f$0;
-        if (!(view instanceof EmojiPacksAlert.EmojiImageView) || (animatedEmojiSpan = ((EmojiPacksAlert.EmojiImageView) view).span) == null) {
-            return false;
-        }
-        ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(0, emojiPacksAlert.getContext(), null, true, true);
-        actionBarMenuSubItem.setItemHeight(48);
-        actionBarMenuSubItem.setPadding(AndroidUtilities.dp(26.0f), 0, AndroidUtilities.dp(26.0f), 0);
-        actionBarMenuSubItem.setText(LocaleController.getString(R.string.Copy));
-        actionBarMenuSubItem.getTextView().setTextSize(1, 14.4f);
-        actionBarMenuSubItem.getTextView().setTypeface(AndroidUtilities.bold());
-        actionBarMenuSubItem.setOnClickListener(new ItemOptions$$ExternalSyntheticLambda7(23, emojiPacksAlert, animatedEmojiSpan));
-        LinearLayout linearLayout = new LinearLayout((Context) this.f$1);
-        Drawable drawableMutate = emojiPacksAlert.getContext().getDrawable(R.drawable.popup_fixed_alert).mutate();
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(emojiPacksAlert.getThemedColor(Theme.key_actionBarDefaultSubmenuBackground), PorterDuff.Mode.MULTIPLY));
-        linearLayout.setBackground(drawableMutate);
-        linearLayout.addView(actionBarMenuSubItem);
-        ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(linearLayout);
-        emojiPacksAlert.popupWindow = actionBarPopupWindow;
-        actionBarPopupWindow.setClippingEnabled(true);
-        emojiPacksAlert.popupWindow.setLayoutInScreen();
-        emojiPacksAlert.popupWindow.setInputMethodMode(2);
-        emojiPacksAlert.popupWindow.setSoftInputMode(0);
-        emojiPacksAlert.popupWindow.setOutsideTouchable(true);
-        emojiPacksAlert.popupWindow.setAnimationStyle(R.style.PopupAnimation);
-        int[] iArr = new int[2];
-        view.getLocationInWindow(iArr);
-        emojiPacksAlert.popupWindow.showAtLocation(view, 51, (view.getMeasuredWidth() / 2) + (iArr[0] - AndroidUtilities.dp(49.0f)), iArr[1] - AndroidUtilities.dp(52.0f));
-        try {
-            view.performHapticFeedback(0, 1);
-        } catch (Exception unused) {
-        }
-        return true;
-    }
-
-    @Override
-    public boolean mo1082onItemClick(View view, int i, float f, float f2) {
-        UItem item = ((UniversalRecyclerView) this.f$0).adapter.getItem(i);
-        if (item == null) {
-            return false;
-        }
-        return ((Boolean) ((Utilities.Callback5Return) this.f$1).run(item, view, Integer.valueOf(i), Float.valueOf(f), Float.valueOf(f2))).booleanValue();
+    public boolean onItemClick(View view, int i) {
+        return ((ChannelAffiliateProgramsFragment) this.f$0).lambda$createView$8((Context) this.f$1, view, i);
     }
 }

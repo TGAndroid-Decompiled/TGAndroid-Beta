@@ -7,8 +7,8 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.os.Build;
 import android.os.Process;
-import androidx.core.content.pm.ShortcutManagerCompat$$ExternalSyntheticApiModelOutline1;
 import androidx.recyclerview.widget.DiffUtil;
+import com.google.android.exoplayer2.util.Util$$ExternalSyntheticApiModelOutline0;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FileLog;
 import org.webrtc.Logging;
@@ -151,7 +151,7 @@ class WebRtcAudioTrack {
     private static AudioTrack createAudioTrackOnOreoOrHigher(int i, int i2, int i3, AudioAttributes audioAttributes) {
         Logging.d("WebRtcAudioTrackExternal", "createAudioTrackOnOreoOrHigher");
         logNativeOutputSampleRate(i);
-        return ShortcutManagerCompat$$ExternalSyntheticApiModelOutline1.m().setAudioAttributes(getAudioAttributes(audioAttributes)).setAudioFormat(new AudioFormat.Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build()).setBufferSizeInBytes(i3).setPerformanceMode(1).setTransferMode(1).setSessionId(0).build();
+        return Util$$ExternalSyntheticApiModelOutline0.m106m().setAudioAttributes(getAudioAttributes(audioAttributes)).setAudioFormat(new AudioFormat.Builder().setEncoding(2).setSampleRate(i).setChannelMask(i2).build()).setBufferSizeInBytes(i3).setPerformanceMode(1).setTransferMode(1).setSessionId(0).build();
     }
 
     public void doAudioTrackStateCallback(int i) {

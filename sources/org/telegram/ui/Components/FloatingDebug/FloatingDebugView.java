@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.FloatingDebug;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
@@ -9,7 +8,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.util.DisplayMetrics;
@@ -26,48 +24,36 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
+import androidx.core.view.GestureDetectorCompat;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.android.billingclient.api.zzcv;
-import com.stripe.android.Stripe;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.audioinfo.mp3.ID3v1Genre$EnumUnboxingLocalUtility;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.INavigationLayout;
-import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.BaseCell;
 import org.telegram.ui.Cells.HeaderCell;
-import org.telegram.ui.Cells.TextColorThemeCell;
-import org.telegram.ui.Cells.ThemesHorizontalListCell;
-import org.telegram.ui.Cells.ThemesHorizontalListCell.InnerThemeView;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda470;
-import org.telegram.ui.ChatLinkActivity$$ExternalSyntheticLambda4;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.RadioButton;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SeekBarView;
-import org.telegram.ui.Components.ViewPagerFixed;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda2;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.TON.TONIntroActivity$$ExternalSyntheticLambda3;
 
 public final class FloatingDebugView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public final LinearLayout bigLayout;
@@ -88,11 +74,11 @@ public final class FloatingDebugView extends FrameLayout implements Notification
     public int wasStatusBar;
 
     public final class AnonymousClass2 extends FrameLayout {
-        public final zzcv val$gestureDetector;
+        public final GestureDetectorCompat val$gestureDetector;
 
-        public AnonymousClass2(LaunchActivity launchActivity, zzcv zzcvVar) {
+        public AnonymousClass2(LaunchActivity launchActivity, GestureDetectorCompat gestureDetectorCompat) {
             super(launchActivity);
-            this.val$gestureDetector = zzcvVar;
+            this.val$gestureDetector = gestureDetectorCompat;
         }
 
         @Override
@@ -105,7 +91,7 @@ public final class FloatingDebugView extends FrameLayout implements Notification
         public final boolean onTouchEvent(MotionEvent motionEvent) {
             DisplayMetrics displayMetrics;
             float f;
-            boolean zOnTouchEvent = ((GestureDetector) this.val$gestureDetector.zza).onTouchEvent(motionEvent);
+            boolean zOnTouchEvent = this.val$gestureDetector.mDetector.onTouchEvent(motionEvent);
             int action = motionEvent.getAction();
             FloatingDebugView floatingDebugView = FloatingDebugView.this;
             if (action == 0) {
@@ -149,273 +135,8 @@ public final class FloatingDebugView extends FrameLayout implements Notification
         }
     }
 
-    public final class AnonymousClass3 extends RecyclerListView.SelectionAdapter {
-        public final int $r8$classId;
-        public final Object this$0;
-        public final Context val$context;
-
-        public AnonymousClass3(int i, Context context, ViewGroup viewGroup) {
-            this.$r8$classId = i;
-            this.this$0 = viewGroup;
-            this.val$context = context;
-        }
-
-        @Override
-        public final int getItemCount() {
-            switch (this.$r8$classId) {
-                case 0:
-                    return ((FloatingDebugView) this.this$0).debugItems.size();
-                case 1:
-                    ThemesHorizontalListCell themesHorizontalListCell = (ThemesHorizontalListCell) this.this$0;
-                    int size = themesHorizontalListCell.customThemes.size() + themesHorizontalListCell.defaultThemes.size();
-                    themesHorizontalListCell.prevCount = size;
-                    return size;
-                case 2:
-                    ArrayList arrayList = (ArrayList) this.this$0;
-                    if (arrayList.isEmpty()) {
-                        return 0;
-                    }
-                    return arrayList.size() + 1;
-                default:
-                    return ((ViewPagerFixed.AnonymousClass3) this.this$0).tabs.size();
-            }
-        }
-
-        @Override
-        public long getItemId(int i) {
-            switch (this.$r8$classId) {
-                case 3:
-                    return ((ViewPagerFixed.TabsView.Tab) ((ViewPagerFixed.AnonymousClass3) this.this$0).tabs.get(i)).id;
-                default:
-                    return super.getItemId(i);
-            }
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            switch (this.$r8$classId) {
-                case 0:
-                    return ID3v1Genre$EnumUnboxingLocalUtility.ordinal(((FloatingDebugController$DebugItem) ((FloatingDebugView) this.this$0).debugItems.get(i)).type);
-                case 1:
-                default:
-                    return super.getItemViewType(i);
-                case 2:
-                    return i == 0 ? 1 : 0;
-                case 3:
-                    return 0;
-            }
-        }
-
-        @Override
-        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            switch (this.$r8$classId) {
-                case 0:
-                    return ID3v1Genre$EnumUnboxingLocalUtility.values(3)[viewHolder.mItemViewType] == 1;
-                case 1:
-                    return false;
-                case 2:
-                    return true;
-                default:
-                    return true;
-            }
-        }
-
-        @Override
-        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            int i2;
-            Theme.ThemeInfo themeInfo;
-            TLRPC.TL_theme tL_theme;
-            ViewPagerFixed.TabsView.TabsViewDelegate tabsViewDelegate;
-            switch (this.$r8$classId) {
-                case 0:
-                    FloatingDebugController$DebugItem floatingDebugController$DebugItem = (FloatingDebugController$DebugItem) ((FloatingDebugView) this.this$0).debugItems.get(i);
-                    int iOrdinal = ID3v1Genre$EnumUnboxingLocalUtility.ordinal(floatingDebugController$DebugItem.type);
-                    View view = viewHolder.itemView;
-                    String str = floatingDebugController$DebugItem.title;
-                    if (iOrdinal == 0) {
-                        AlertDialog.AlertDialogCell alertDialogCell = (AlertDialog.AlertDialogCell) view;
-                        alertDialogCell.setTextColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
-                        alertDialogCell.setTextAndIcon(0, str);
-                        break;
-                    } else if (iOrdinal == 1) {
-                        HeaderCell headerCell = (HeaderCell) view;
-                        headerCell.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueHeader, false));
-                        headerCell.setText(str);
-                        break;
-                    } else if (iOrdinal == 2) {
-                        SeekBarCell seekBarCell = (SeekBarCell) view;
-                        seekBarCell.title = str.toString();
-                        AnimationProperties.IntProperty intProperty = floatingDebugController$DebugItem.floatProperty;
-                        seekBarCell.value = ((Float) intProperty.get(null)).floatValue();
-                        seekBarCell.min = floatingDebugController$DebugItem.from;
-                        seekBarCell.max = floatingDebugController$DebugItem.to;
-                        seekBarCell.callback = intProperty;
-                        seekBarCell.invalidate();
-                        break;
-                    }
-                    break;
-                case 1:
-                    ThemesHorizontalListCell.InnerThemeView innerThemeView = (ThemesHorizontalListCell.InnerThemeView) viewHolder.itemView;
-                    ThemesHorizontalListCell themesHorizontalListCell = (ThemesHorizontalListCell) this.this$0;
-                    ArrayList arrayList = themesHorizontalListCell.defaultThemes;
-                    if (i < arrayList.size()) {
-                        i2 = i;
-                    } else {
-                        ArrayList arrayList2 = themesHorizontalListCell.customThemes;
-                        int size = i - arrayList.size();
-                        arrayList = arrayList2;
-                        i2 = size;
-                    }
-                    Theme.ThemeInfo themeInfo2 = (Theme.ThemeInfo) arrayList.get(i2);
-                    boolean z = i == getItemCount() - 1;
-                    boolean z2 = i == 0;
-                    innerThemeView.themeInfo = themeInfo2;
-                    innerThemeView.isFirst = z2;
-                    innerThemeView.isLast = z;
-                    innerThemeView.accentId = themeInfo2.currentAccentId;
-                    RadioButton radioButton = innerThemeView.button;
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) radioButton.getLayoutParams();
-                    layoutParams.leftMargin = AndroidUtilities.dp(innerThemeView.isFirst ? 49.0f : 27.0f);
-                    radioButton.setLayoutParams(layoutParams);
-                    innerThemeView.placeholderAlpha = 0.0f;
-                    Theme.ThemeInfo themeInfo3 = innerThemeView.themeInfo;
-                    if (themeInfo3.pathToFile != null && !themeInfo3.previewParsed) {
-                        themeInfo3.previewInColor = Theme.getDefaultColor(Theme.key_chat_inBubble);
-                        innerThemeView.themeInfo.previewOutColor = Theme.getDefaultColor(Theme.key_chat_outBubble);
-                        boolean zExists = new File(innerThemeView.themeInfo.pathToFile).exists();
-                        if ((!zExists || !innerThemeView.parseTheme() || !zExists) && (tL_theme = (themeInfo = innerThemeView.themeInfo).info) != null) {
-                            if (tL_theme.document != null) {
-                                themeInfo.themeLoaded = false;
-                                innerThemeView.placeholderAlpha = 1.0f;
-                                Drawable drawableMutate = innerThemeView.getResources().getDrawable(R.drawable.msg_theme).mutate();
-                                innerThemeView.loadingDrawable = drawableMutate;
-                                int color = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText7, false);
-                                innerThemeView.loadingColor = color;
-                                Theme.setDrawableColor(color, drawableMutate);
-                                if (!zExists) {
-                                    String attachFileName = FileLoader.getAttachFileName(innerThemeView.themeInfo.info.document);
-                                    HashMap map = ThemesHorizontalListCell.this.loadingThemes;
-                                    if (!map.containsKey(attachFileName)) {
-                                        map.put(attachFileName, innerThemeView.themeInfo);
-                                        FileLoader fileLoader = FileLoader.getInstance(innerThemeView.themeInfo.account);
-                                        TLRPC.TL_theme tL_theme2 = innerThemeView.themeInfo.info;
-                                        fileLoader.loadFile(tL_theme2.document, tL_theme2, 1, 1);
-                                    }
-                                }
-                            } else {
-                                Drawable drawableMutate2 = innerThemeView.getResources().getDrawable(R.drawable.preview_custom).mutate();
-                                innerThemeView.loadingDrawable = drawableMutate2;
-                                int color2 = Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText7, false);
-                                innerThemeView.loadingColor = color2;
-                                Theme.setDrawableColor(color2, drawableMutate2);
-                            }
-                        }
-                    }
-                    innerThemeView.applyTheme();
-                    break;
-                case 2:
-                    if (viewHolder.mItemViewType == 0) {
-                        ThemeDescription themeDescription = (ThemeDescription) ((ArrayList) ((ArrayList) this.this$0).get(i - 1)).get(0);
-                        int setColor = themeDescription.currentKey == Theme.key_chat_wallpaper ? 0 : themeDescription.getSetColor();
-                        TextColorThemeCell textColorThemeCell = (TextColorThemeCell) viewHolder.itemView;
-                        if (OKLCH.colorKeysMap == null) {
-                            OKLCH.colorKeysMap = OKLCH.createColorKeysMap();
-                        }
-                        textColorThemeCell.textView.setText((String) OKLCH.colorKeysMap.get(themeDescription.currentKey));
-                        textColorThemeCell.currentColor = setColor;
-                        textColorThemeCell.setWillNotDraw(setColor == 0);
-                        textColorThemeCell.invalidate();
-                    }
-                    break;
-                default:
-                    ViewPagerFixed.TabsView.TabView tabView = (ViewPagerFixed.TabsView.TabView) viewHolder.itemView;
-                    ViewPagerFixed.AnonymousClass3 anonymousClass3 = (ViewPagerFixed.AnonymousClass3) this.this$0;
-                    ViewPagerFixed.TabsView.Tab tab = (ViewPagerFixed.TabsView.Tab) anonymousClass3.tabs.get(i);
-                    tabView.currentTab = tab;
-                    tabView.setContentDescription(tab.title);
-                    tabView.setAlpha(1.0f);
-                    tabView.requestLayout();
-                    boolean z3 = false;
-                    if (anonymousClass3.reordering && (tabsViewDelegate = anonymousClass3.delegate) != null) {
-                        ViewPagerFixed.Adapter adapter = ViewPagerFixed.this.adapter;
-                        if (adapter == null ? false : adapter.canReorder(i)) {
-                            z3 = true;
-                        }
-                    }
-                    tabView.setReordering(z3);
-                    break;
-            }
-        }
-
-        @Override
-        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View headerCell;
-            View textColorThemeCell;
-            switch (this.$r8$classId) {
-                case 0:
-                    int iOrdinal = ID3v1Genre$EnumUnboxingLocalUtility.ordinal(ID3v1Genre$EnumUnboxingLocalUtility.values(3)[i]);
-                    LaunchActivity launchActivity = (LaunchActivity) this.val$context;
-                    if (iOrdinal != 1) {
-                        headerCell = iOrdinal != 2 ? new AlertDialog.AlertDialogCell(launchActivity, null) : new SeekBarCell(launchActivity);
-                    } else {
-                        headerCell = new HeaderCell(launchActivity);
-                    }
-                    headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    return new RecyclerListView.Holder(headerCell);
-                case 1:
-                    return new RecyclerListView.Holder(((ThemesHorizontalListCell) this.this$0).new InnerThemeView(this.val$context));
-                case 2:
-                    Context context = this.val$context;
-                    if (i != 0) {
-                        textColorThemeCell = new View(context);
-                        textColorThemeCell.setLayoutParams(new RecyclerView.LayoutParams(-1, AndroidUtilities.dp(56.0f)));
-                    } else {
-                        textColorThemeCell = new TextColorThemeCell(context);
-                        textColorThemeCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                    }
-                    return new RecyclerListView.Holder(textColorThemeCell);
-                default:
-                    return new RecyclerListView.Holder(new ViewPagerFixed.TabsView.TabView((ViewPagerFixed.AnonymousClass3) this.this$0, this.val$context));
-            }
-        }
-
-        public AnonymousClass3(Context context, ArrayList arrayList) {
-            this.$r8$classId = 2;
-            this.this$0 = new ArrayList();
-            this.val$context = context;
-            HashMap map = new HashMap();
-            int size = arrayList.size();
-            for (int i = 0; i < size; i++) {
-                ThemeDescription themeDescription = (ThemeDescription) arrayList.get(i);
-                int i2 = themeDescription.currentKey;
-                ArrayList arrayList2 = (ArrayList) map.get(Integer.valueOf(i2));
-                if (arrayList2 == null) {
-                    arrayList2 = new ArrayList();
-                    map.put(Integer.valueOf(i2), arrayList2);
-                    ((ArrayList) this.this$0).add(arrayList2);
-                }
-                arrayList2.add(themeDescription);
-            }
-            if (Build.VERSION.SDK_INT >= 26) {
-                int i3 = Theme.key_windowBackgroundGray;
-                if (map.containsKey(Integer.valueOf(i3))) {
-                    return;
-                }
-                ArrayList arrayList3 = new ArrayList();
-                arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, i3));
-                ((ArrayList) this.this$0).add(arrayList3);
-            }
-        }
-
-        public AnonymousClass3(FloatingDebugView floatingDebugView, LaunchActivity launchActivity) {
-            this.$r8$classId = 0;
-            this.this$0 = floatingDebugView;
-            this.val$context = launchActivity;
-        }
-    }
-
     public final class SeekBarCell extends FrameLayout {
-        public AnimationProperties.IntProperty callback;
+        public AnimationProperties.FloatProperty callback;
         public int lastWidth;
         public float max;
         public float min;
@@ -430,10 +151,43 @@ public final class FloatingDebugView extends FrameLayout implements Notification
             TextPaint textPaint = new TextPaint(1);
             this.textPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(16.0f));
-            SeekBarView seekBarView = new SeekBarView(launchActivity, null, false);
+            SeekBarView seekBarView = new SeekBarView(launchActivity);
             this.seekBar = seekBarView;
             seekBarView.setReportChanges(true);
-            seekBarView.setDelegate(new Stripe(this, 22));
+            seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+                @Override
+                public final CharSequence getContentDescription() {
+                    SeekBarCell seekBarCell = SeekBarCell.this;
+                    float f = seekBarCell.min;
+                    return String.valueOf(Math.round((seekBarCell.seekBar.getProgress() * (seekBarCell.max - f)) + f));
+                }
+
+                @Override
+                public final int getStepsCount() {
+                    return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+                }
+
+                @Override
+                public final boolean needVisuallyDivideSteps() {
+                    return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+                }
+
+                @Override
+                public final void onSeekBarDrag(boolean z, float f) {
+                    SeekBarCell seekBarCell = SeekBarCell.this;
+                    float f2 = seekBarCell.min;
+                    float fM = DiffUtil.m(seekBarCell.max, f2, f, f2);
+                    seekBarCell.value = fM;
+                    if (z) {
+                        seekBarCell.callback.set((Object) null, Float.valueOf(fM));
+                    }
+                    seekBarCell.invalidate();
+                }
+
+                @Override
+                public final void onSeekBarPressed(boolean z) {
+                }
+            });
             seekBarView.setImportantForAccessibility(2);
             addView(seekBarView, LayoutHelper.createFrame(-1, 38.0f, 83, 5.0f, 29.0f, 47.0f, 0.0f));
         }
@@ -466,7 +220,7 @@ public final class FloatingDebugView extends FrameLayout implements Notification
             int size = View.MeasureSpec.getSize(i);
             if (this.lastWidth != size) {
                 SeekBarView seekBarView = this.seekBar;
-                float fFloatValue = ((Float) this.callback.get(null)).floatValue();
+                float fFloatValue = this.callback.get(null).floatValue();
                 float f = this.min;
                 seekBarView.setProgress((fFloatValue - f) / (this.max - f));
                 this.lastWidth = size;
@@ -479,7 +233,7 @@ public final class FloatingDebugView extends FrameLayout implements Notification
         }
     }
 
-    public FloatingDebugView(LaunchActivity launchActivity) {
+    public FloatingDebugView(final LaunchActivity launchActivity) {
         super(launchActivity);
         this.onLongPress = new FloatingDebugView$$ExternalSyntheticLambda2(this, 3);
         this.debugItems = new ArrayList();
@@ -552,16 +306,16 @@ public final class FloatingDebugView extends FrameLayout implements Notification
         };
         this.mPrefs = launchActivity.getSharedPreferences("floating_debug", 0);
         this.touchSlop = ViewConfiguration.get(launchActivity).getScaledTouchSlop();
-        zzcv zzcvVar = new zzcv(launchActivity, simpleOnGestureListener);
-        ((GestureDetector) zzcvVar.zza).setIsLongpressEnabled(false);
-        AnonymousClass2 anonymousClass2 = new AnonymousClass2(launchActivity, zzcvVar);
+        GestureDetectorCompat gestureDetectorCompat = new GestureDetectorCompat(launchActivity, simpleOnGestureListener);
+        gestureDetectorCompat.mDetector.setIsLongpressEnabled(false);
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2(launchActivity, gestureDetectorCompat);
         this.floatingButtonContainer = anonymousClass2;
         ImageView imageView = new ImageView(launchActivity);
         imageView.setImageResource(R.drawable.device_phone_android);
         imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_chats_actionIcon, false), PorterDuff.Mode.SRC_IN));
         anonymousClass2.addView(imageView);
         anonymousClass2.setVisibility(8);
-        addView(anonymousClass2, LayoutHelper.createFrame(56.0f, 56));
+        addView(anonymousClass2, LayoutHelper.createFrame(56, 56.0f));
         LinearLayout linearLayout = new LinearLayout(launchActivity);
         this.bigLayout = linearLayout;
         linearLayout.setOrientation(1);
@@ -573,12 +327,71 @@ public final class FloatingDebugView extends FrameLayout implements Notification
         textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(19.0f));
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2));
-        RecyclerListView recyclerListView = new RecyclerListView(launchActivity, null);
+        RecyclerListView recyclerListView = new RecyclerListView(launchActivity);
         this.listView = recyclerListView;
         recyclerListView.setLayoutManager(new LinearLayoutManager(1, false));
-        recyclerListView.setAdapter(new AnonymousClass3(this, launchActivity));
-        recyclerListView.setOnItemClickListener(new ChatLinkActivity$$ExternalSyntheticLambda4(this, 17));
-        linearLayout.addView(recyclerListView, LayoutHelper.createLinear(1.0f, -1, 0));
+        recyclerListView.setAdapter(new RecyclerListView.SelectionAdapter() {
+            @Override
+            public final int getItemCount() {
+                return FloatingDebugView.this.debugItems.size();
+            }
+
+            @Override
+            public final int getItemViewType(int i) {
+                return ID3v1Genre$EnumUnboxingLocalUtility.ordinal(((FloatingDebugController$DebugItem) FloatingDebugView.this.debugItems.get(i)).type);
+            }
+
+            @Override
+            public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+                return ID3v1Genre$EnumUnboxingLocalUtility.values(3)[viewHolder.getItemViewType()] == 1;
+            }
+
+            @Override
+            public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                FloatingDebugController$DebugItem floatingDebugController$DebugItem = (FloatingDebugController$DebugItem) FloatingDebugView.this.debugItems.get(i);
+                int iOrdinal = ID3v1Genre$EnumUnboxingLocalUtility.ordinal(floatingDebugController$DebugItem.type);
+                String str = floatingDebugController$DebugItem.title;
+                if (iOrdinal == 0) {
+                    AlertDialog.AlertDialogCell alertDialogCell = (AlertDialog.AlertDialogCell) viewHolder.itemView;
+                    alertDialogCell.setTextColor(Theme.getColor(null, Theme.key_dialogTextBlack, false));
+                    alertDialogCell.setTextAndIcon(str, 0);
+                    return;
+                }
+                if (iOrdinal == 1) {
+                    HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
+                    headerCell.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlueHeader, false));
+                    headerCell.setText(str);
+                } else {
+                    if (iOrdinal != 2) {
+                        return;
+                    }
+                    SeekBarCell seekBarCell = (SeekBarCell) viewHolder.itemView;
+                    seekBarCell.title = str.toString();
+                    AnimationProperties.FloatProperty floatProperty = floatingDebugController$DebugItem.floatProperty;
+                    seekBarCell.value = floatProperty.get(null).floatValue();
+                    seekBarCell.min = floatingDebugController$DebugItem.from;
+                    seekBarCell.max = floatingDebugController$DebugItem.to;
+                    seekBarCell.callback = floatProperty;
+                    seekBarCell.invalidate();
+                }
+            }
+
+            @Override
+            public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                View headerCell;
+                int iOrdinal = ID3v1Genre$EnumUnboxingLocalUtility.ordinal(ID3v1Genre$EnumUnboxingLocalUtility.values(3)[i]);
+                LaunchActivity launchActivity2 = launchActivity;
+                if (iOrdinal != 1) {
+                    headerCell = iOrdinal != 2 ? new AlertDialog.AlertDialogCell(launchActivity2, null) : new SeekBarCell(launchActivity2);
+                } else {
+                    headerCell = new HeaderCell(launchActivity2);
+                }
+                headerCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                return new RecyclerListView.Holder(headerCell);
+            }
+        });
+        recyclerListView.setOnItemClickListener(new TONIntroActivity$$ExternalSyntheticLambda3(this, 5));
+        linearLayout.addView(recyclerListView, LayoutHelper.createLinear(-1, 0, 1.0f));
         addView(linearLayout, LayoutHelper.createFrame(-1, -1.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
         updateDrawables();
         setFitsSystemWindows(true);
@@ -596,12 +409,12 @@ public final class FloatingDebugView extends FrameLayout implements Notification
     private List<FloatingDebugController$DebugItem> getBuiltInDebugItems() {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new FloatingDebugController$DebugItem("Theme"));
-        arrayList.add(new FloatingDebugController$DebugItem("Draw action bar shadow", new ChatActivity$$ExternalSyntheticLambda470(22)));
-        arrayList.add(new FloatingDebugController$DebugItem("Show blur settings", new FloatingDebugView$$ExternalSyntheticLambda2(this, 0)));
+        arrayList.add(new FloatingDebugController$DebugItem(new GiftSheet$$ExternalSyntheticLambda2(5), "Draw action bar shadow"));
+        arrayList.add(new FloatingDebugController$DebugItem(new FloatingDebugView$$ExternalSyntheticLambda2(this, 0), "Show blur settings"));
         arrayList.add(new FloatingDebugController$DebugItem(LocaleController.getString(R.string.DebugGeneral)));
-        arrayList.add(new FloatingDebugController$DebugItem(LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug), new FloatingDebugView$$ExternalSyntheticLambda2(this, 1)));
-        arrayList.add(new FloatingDebugController$DebugItem(Theme.currentTheme.isDark() ? "Switch to day theme" : "Switch to dark theme", new ChatActivity$$ExternalSyntheticLambda470(23)));
-        arrayList.add(new FloatingDebugController$DebugItem(LocaleController.getString(R.string.DebugSendLogs), new FloatingDebugView$$ExternalSyntheticLambda2(this, 2)));
+        arrayList.add(new FloatingDebugController$DebugItem(new FloatingDebugView$$ExternalSyntheticLambda2(this, 1), LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug)));
+        arrayList.add(new FloatingDebugController$DebugItem(new GiftSheet$$ExternalSyntheticLambda2(6), Theme.currentTheme.isDark() ? "Switch to day theme" : "Switch to dark theme"));
+        arrayList.add(new FloatingDebugController$DebugItem(new FloatingDebugView$$ExternalSyntheticLambda2(this, 2), LocaleController.getString(R.string.DebugSendLogs)));
         return arrayList;
     }
 
@@ -676,10 +489,7 @@ public final class FloatingDebugView extends FrameLayout implements Notification
         AnonymousClass2 anonymousClass2 = this.floatingButtonContainer;
         canvas.translate(anonymousClass2.getTranslationX(), anonymousClass2.getTranslationY());
         canvas.scale(anonymousClass2.getScaleX(), anonymousClass2.getScaleY(), anonymousClass2.getPivotX(), anonymousClass2.getPivotY());
-        CombinedDrawable combinedDrawable = this.floatingButtonBackground;
-        int alpha = (int) (anonymousClass2.getAlpha() * 255.0f);
-        combinedDrawable.icon.setAlpha(alpha);
-        combinedDrawable.background.setAlpha(alpha);
+        this.floatingButtonBackground.setAlpha((int) (anonymousClass2.getAlpha() * 255.0f));
         this.floatingButtonBackground.setBounds(anonymousClass2.getLeft(), anonymousClass2.getTop(), anonymousClass2.getRight(), anonymousClass2.getBottom());
         this.floatingButtonBackground.draw(canvas);
         canvas.restore();
@@ -704,13 +514,13 @@ public final class FloatingDebugView extends FrameLayout implements Notification
                 if (actionBarLayout instanceof FloatingDebugProvider) {
                     arrayList.addAll(((FloatingDebugProvider) actionBarLayout).onGetDebugItems());
                 }
-                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).rightActionBarLayout;
-                if (actionBarLayout2 != null) {
-                    arrayList.addAll(actionBarLayout2.onGetDebugItems());
+                INavigationLayout rightActionBarLayout = ((LaunchActivity) getContext()).getRightActionBarLayout();
+                if (rightActionBarLayout instanceof FloatingDebugProvider) {
+                    arrayList.addAll(((FloatingDebugProvider) rightActionBarLayout).onGetDebugItems());
                 }
-                ActionBarLayout actionBarLayout3 = ((LaunchActivity) getContext()).layersActionBarLayout;
-                if (actionBarLayout3 != null) {
-                    arrayList.addAll(actionBarLayout3.onGetDebugItems());
+                INavigationLayout layersActionBarLayout = ((LaunchActivity) getContext()).getLayersActionBarLayout();
+                if (layersActionBarLayout instanceof FloatingDebugProvider) {
+                    arrayList.addAll(((FloatingDebugProvider) layersActionBarLayout).onGetDebugItems());
                 }
             }
             arrayList.addAll(getBuiltInDebugItems());
@@ -780,10 +590,7 @@ public final class FloatingDebugView extends FrameLayout implements Notification
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         drawableMutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
         CombinedDrawable combinedDrawable = new CombinedDrawable(drawableMutate, rippleDrawableSafeCreateSimpleSelectorCircleDrawable, 0, 0);
-        int iDp = AndroidUtilities.dp(56.0f);
-        int iDp2 = AndroidUtilities.dp(56.0f);
-        combinedDrawable.iconWidth = iDp;
-        combinedDrawable.iconHeight = iDp2;
+        combinedDrawable.setIconSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
         this.floatingButtonBackground = combinedDrawable;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
         drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_dialogBackground, false), mode));

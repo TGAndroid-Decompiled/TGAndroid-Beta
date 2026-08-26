@@ -1,6 +1,6 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.widget.FrameLayout;
@@ -8,17 +8,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.blur3.drawable.BlurredBackgroundDrawable;
 
-public final class SearchTabsAndFiltersLayout extends FrameLayout implements Theme.Colorable {
-    public BlurredBackgroundDrawable blurredBackgroundDrawable;
-    public final Path clipPath;
+public class SearchTabsAndFiltersLayout extends FrameLayout implements Theme.Colorable {
+    private BlurredBackgroundDrawable blurredBackgroundDrawable;
+    private final Path clipPath;
 
-    public SearchTabsAndFiltersLayout(Activity activity) {
-        super(activity);
+    public SearchTabsAndFiltersLayout(Context context) {
+        super(context);
         this.clipPath = new Path();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         canvas.save();
         canvas.clipPath(this.clipPath);
         super.dispatchDraw(canvas);
@@ -30,11 +30,10 @@ public final class SearchTabsAndFiltersLayout extends FrameLayout implements The
     }
 
     @Override
-    public final void onSizeChanged(int i, int i2, int i3, int i4) {
+    public void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
-        Path path = this.clipPath;
-        path.rewind();
-        path.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i - AndroidUtilities.dp(9.0f), i2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+        this.clipPath.rewind();
+        this.clipPath.addRoundRect(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), i - AndroidUtilities.dp(9.0f), i2 - AndroidUtilities.dp(9.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
     }
 
     public void setBlurredBackground(BlurredBackgroundDrawable blurredBackgroundDrawable) {
@@ -43,7 +42,7 @@ public final class SearchTabsAndFiltersLayout extends FrameLayout implements The
     }
 
     @Override
-    public final void updateColors$1() {
+    public void updateColors() {
         BlurredBackgroundDrawable blurredBackgroundDrawable = this.blurredBackgroundDrawable;
         if (blurredBackgroundDrawable != null) {
             blurredBackgroundDrawable.updateColors();

@@ -38,12 +38,11 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessageObject$$ExternalSyntheticOutline0;
 import org.telegram.messenger.RichMessageLayout;
-import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline2;
+import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline1;
 import org.telegram.messenger.RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
@@ -89,7 +88,7 @@ public final class SharedLinkCell extends FrameLayout {
     public final AtomicReference patchedDescriptionLayout2;
     public final Path path;
     public zzr pendingCheckForLongPress;
-    public BubbleActivity.AnonymousClass1 pendingCheckForTap;
+    public SendLocationCell.AnonymousClass1 pendingCheckForTap;
     public int pressCount;
     public LinkSpanDrawable pressedLink;
     public int pressedLinkIndex;
@@ -147,11 +146,11 @@ public final class SharedLinkCell extends FrameLayout {
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.linkImageView = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(8.0f));
-        this.letterDrawable = new LetterDrawable(0, resourcesProvider);
+        this.letterDrawable = new LetterDrawable(resourcesProvider, 0);
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
         this.checkBox = checkBox2;
         checkBox2.setVisibility(4);
-        checkBox2.checkBoxBase.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
+        checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
         checkBox2.setDrawUnchecked(false);
         checkBox2.setDrawBackgroundAsArc(2);
         boolean z = LocaleController.isRTL;
@@ -367,7 +366,7 @@ public final class SharedLinkCell extends FrameLayout {
             sb.append(this.descriptionLayout2.getText());
         }
         accessibilityNodeInfo.setText(sb.toString());
-        if (this.checkBox.checkBoxBase.isChecked) {
+        if (this.checkBox.isChecked()) {
             accessibilityNodeInfo.setChecked(true);
             accessibilityNodeInfo.setCheckable(true);
         }
@@ -610,8 +609,9 @@ public final class SharedLinkCell extends FrameLayout {
                                 int i16 = messageEntity.offset;
                                 int i17 = messageEntity.length + i16;
                                 ArrayList<TLRPC.MessageEntity> arrayList3 = this.message.messageOwner.entities;
+                                int size2 = arrayList3.size();
                                 charSequence5 = charSequence5;
-                                for (int size2 = arrayList3.size(); i8 < size2; size2 = size2) {
+                                while (i8 < size2) {
                                     TLRPC.MessageEntity messageEntity2 = arrayList3.get(i8);
                                     i8++;
                                     spannableStringBuilder2 = spannableStringBuilder4;
@@ -625,42 +625,28 @@ public final class SharedLinkCell extends FrameLayout {
                                             if (!(messageEntity3 instanceof TLRPC.TL_messageEntitySpoiler) || i16 > i20 || i17 < i18) {
                                                 charSequence7 = charSequence5;
                                             } else {
+                                                TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
+                                                charSequence7 = charSequence5;
                                                 try {
-                                                    TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
-                                                    charSequence7 = charSequence5;
-                                                    try {
-                                                        textStyleRun.flags |= 256;
-                                                        spannableStringValueOf.setSpan(new TextStyleSpan(textStyleRun, 0), Math.max(i16, i18), Math.min(i17, i20) + i19, 33);
-                                                    } catch (Exception e2) {
-                                                        e = e2;
-                                                        string = str9;
-                                                        charSequence4 = charSequence7;
-                                                        FileLog.e(e);
-                                                        spannableStringBuilderValueOf2 = spannableStringBuilder2;
-                                                        charSequence3 = charSequence4;
-                                                        charSequence3 = charSequence8;
-                                                        i11++;
-                                                        i9 = 1;
-                                                        i10 = 46;
-                                                        i8 = 0;
-                                                        charSequence8 = charSequence3;
-                                                    }
-                                                } catch (Exception e3) {
-                                                    e = e3;
-                                                    charSequence7 = charSequence5;
+                                                    textStyleRun.flags |= 256;
+                                                    spannableStringValueOf.setSpan(new TextStyleSpan(textStyleRun), Math.max(i16, i18), Math.min(i17, i20) + i19, 33);
+                                                } catch (Exception e2) {
+                                                    e = e2;
+                                                    string = str9;
+                                                    charSequence4 = charSequence7;
                                                 }
                                             }
                                             string = str9;
                                             spannableStringBuilder4 = spannableStringBuilder2;
                                             i7 = i19;
                                             charSequence5 = charSequence7;
-                                        } catch (Exception e4) {
-                                            e = e4;
+                                        } catch (Exception e3) {
+                                            e = e3;
                                             string = str9;
                                             charSequence4 = charSequence5;
                                         }
-                                    } catch (Exception e5) {
-                                        e = e5;
+                                    } catch (Exception e4) {
+                                        e = e4;
                                         charSequence4 = charSequence5;
                                     }
                                 }
@@ -668,8 +654,8 @@ public final class SharedLinkCell extends FrameLayout {
                                 str3 = string;
                                 charSequence6 = charSequence5;
                                 arrayList2.add(spannableStringValueOf);
-                            } catch (Exception e6) {
-                                e = e6;
+                            } catch (Exception e5) {
+                                e = e5;
                                 spannableStringBuilder2 = spannableStringBuilder4;
                             }
                         } else {
@@ -680,8 +666,8 @@ public final class SharedLinkCell extends FrameLayout {
                         string = str3;
                         spannableStringBuilderValueOf2 = spannableStringBuilder3;
                         charSequence3 = charSequence6;
-                    } catch (Exception e7) {
-                        e = e7;
+                    } catch (Exception e6) {
+                        e = e6;
                     }
                 }
                 charSequence3 = charSequence8;
@@ -742,8 +728,8 @@ public final class SharedLinkCell extends FrameLayout {
                     StaticLayout staticLayout2 = this.titleLayout;
                     this.descriptionY = i23 + staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1) + AndroidUtilities.dp(4.0f);
                 }
-            } catch (Exception e8) {
-                FileLog.e(e8);
+            } catch (Exception e7) {
+                FileLog.e(e7);
             }
             letterDrawable.setTitle(string);
         }
@@ -773,8 +759,8 @@ public final class SharedLinkCell extends FrameLayout {
                 if (!this.message.isSpoilersRevealed) {
                     SpoilerEffect.addSpoilers(this, this.descriptionLayout, stack, arrayList4);
                 }
-            } catch (Exception e9) {
-                FileLog.e(e9);
+            } catch (Exception e8) {
+                FileLog.e(e8);
             }
         }
         if (spannableStringBuilder != null) {
@@ -791,12 +777,12 @@ public final class SharedLinkCell extends FrameLayout {
                     if (!this.message.isSpoilersRevealed) {
                         SpoilerEffect.addSpoilers(this, this.descriptionLayout2, stack, arrayList5);
                     }
-                } catch (Exception e10) {
-                    e = e10;
+                } catch (Exception e9) {
+                    e = e9;
                     FileLog.e(e);
                 }
-            } catch (Exception e11) {
-                e = e11;
+            } catch (Exception e10) {
+                e = e10;
                 i3 = iMax;
             }
         } else {
@@ -818,7 +804,7 @@ public final class SharedLinkCell extends FrameLayout {
         if (staticLayout5 != null) {
             int i25 = this.descriptionY;
             this.captionY = i25;
-            int iM2 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(staticLayout5.getLineBottom(staticLayout5.getLineCount() - 1), 5.0f, i25);
+            int iM2 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(5.0f, staticLayout5.getLineBottom(staticLayout5.getLineCount() - 1), i25);
             this.descriptionY = iM2;
             this.description2Y = iM2;
         }
@@ -855,8 +841,8 @@ public final class SharedLinkCell extends FrameLayout {
                                         StaticLayout staticLayout8 = this.descriptionLayout2;
                                         try {
                                             this.linkY = staticLayout8.getLineBottom(staticLayout8.getLineCount() - 1) + AndroidUtilities.dp(5.0f) + i29;
-                                        } catch (Exception e12) {
-                                            e = e12;
+                                        } catch (Exception e11) {
+                                            e = e11;
                                             letterDrawable = letterDrawable;
                                             stack = stack2;
                                             textPaint2 = textPaint4;
@@ -872,8 +858,8 @@ public final class SharedLinkCell extends FrameLayout {
                                             photoSize = photoSize2;
                                         }
                                     }
-                                } catch (Exception e13) {
-                                    e = e13;
+                                } catch (Exception e12) {
+                                    e = e12;
                                 }
                             }
                             if (this.message.isSpoilersRevealed) {
@@ -901,8 +887,8 @@ public final class SharedLinkCell extends FrameLayout {
                                         i5 = i30;
                                         try {
                                             SpoilerEffect.addSpoilers(this, staticLayout, -1, -1, (Spannable) charSequenceEllipsize, stack, arrayList6, null);
-                                        } catch (Exception e14) {
-                                            e = e14;
+                                        } catch (Exception e13) {
+                                            e = e13;
                                             FileLog.e(e);
                                         }
                                     } else {
@@ -916,8 +902,8 @@ public final class SharedLinkCell extends FrameLayout {
                                         letterDrawable = letterDrawable;
                                     }
                                     sparseArray2.put(i5, arrayList6);
-                                } catch (Exception e15) {
-                                    e = e15;
+                                } catch (Exception e14) {
+                                    e = e14;
                                     letterDrawable = letterDrawable;
                                     stack = stack2;
                                     arrayList2 = arrayList2;
@@ -928,8 +914,8 @@ public final class SharedLinkCell extends FrameLayout {
                                 }
                             }
                             arrayList.add(staticLayout);
-                        } catch (Exception e16) {
-                            e = e16;
+                        } catch (Exception e15) {
+                            e = e15;
                             letterDrawable = letterDrawable;
                             stack = stack2;
                             i5 = i27;
@@ -939,8 +925,8 @@ public final class SharedLinkCell extends FrameLayout {
                             arrayList2 = arrayList2;
                             sparseArray2 = sparseArray;
                         }
-                    } catch (Exception e17) {
-                        e = e17;
+                    } catch (Exception e16) {
+                        e = e16;
                         stack = stack2;
                         photoSize2 = photoSize;
                         textPaint2 = textPaint4;
@@ -954,8 +940,8 @@ public final class SharedLinkCell extends FrameLayout {
                         textPaint4 = textPaint2;
                         photoSize = photoSize2;
                     }
-                } catch (Exception e18) {
-                    e = e18;
+                } catch (Exception e17) {
+                    e = e17;
                 }
                 i27 = i5 + 1;
                 sparseArray = sparseArray2;
@@ -968,7 +954,7 @@ public final class SharedLinkCell extends FrameLayout {
         LetterDrawable letterDrawable2 = letterDrawable;
         TLRPC.PhotoSize photoSize3 = photoSize;
         int iDp2 = AndroidUtilities.dp(52.0f);
-        int iM3 = LocaleController.isRTL ? RichMessageLayout$$ExternalSyntheticOutline2.m(View.MeasureSpec.getSize(i), 10.0f, iDp2) : AndroidUtilities.dp(10.0f);
+        int iM3 = LocaleController.isRTL ? RichMessageLayout$$ExternalSyntheticOutline1.m(10.0f, View.MeasureSpec.getSize(i), iDp2) : AndroidUtilities.dp(10.0f);
         letterDrawable2.setBounds(iM3, AndroidUtilities.dp(11.0f), iM3 + iDp2, AndroidUtilities.dp(63.0f));
         if (z) {
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(this.message.photoThumbs, iDp2, true);
@@ -1009,22 +995,22 @@ public final class SharedLinkCell extends FrameLayout {
             iM = 0;
         } else {
             StaticLayout staticLayout10 = this.titleLayout;
-            iM = staticLayout10.getLineBottom(staticLayout10.getLineCount() - i4) + AndroidUtilities.dp(4.0f);
+            iM = AndroidUtilities.dp(4.0f) + staticLayout10.getLineBottom(staticLayout10.getLineCount() - i4);
         }
         StaticLayout staticLayout11 = this.captionLayout;
         if (staticLayout11 != null && staticLayout11.getLineCount() != 0) {
             StaticLayout staticLayout12 = this.captionLayout;
-            iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(staticLayout12.getLineBottom(staticLayout12.getLineCount() - i4), 5.0f, iM);
+            iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(5.0f, staticLayout12.getLineBottom(staticLayout12.getLineCount() - i4), iM);
         }
         StaticLayout staticLayout13 = this.descriptionLayout;
         if (staticLayout13 != null && staticLayout13.getLineCount() != 0) {
             StaticLayout staticLayout14 = this.descriptionLayout;
-            iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(staticLayout14.getLineBottom(staticLayout14.getLineCount() - i4), 5.0f, iM);
+            iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(5.0f, staticLayout14.getLineBottom(staticLayout14.getLineCount() - i4), iM);
         }
         StaticLayout staticLayout15 = this.descriptionLayout2;
         if (staticLayout15 != null && staticLayout15.getLineCount() != 0) {
             StaticLayout staticLayout16 = this.descriptionLayout2;
-            iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(staticLayout16.getLineBottom(staticLayout16.getLineCount() - i4), 5.0f, iM);
+            iM = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(5.0f, staticLayout16.getLineBottom(staticLayout16.getLineCount() - i4), iM);
             if (this.descriptionLayout != null) {
                 iM += AndroidUtilities.dp(10.0f);
             }
@@ -1039,10 +1025,10 @@ public final class SharedLinkCell extends FrameLayout {
         if (this.fromInfoLayout != null) {
             this.fromInfoLayoutY = AndroidUtilities.dp(5.0f) + this.linkY + lineBottom;
             StaticLayout staticLayout18 = this.fromInfoLayout;
-            iM4 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(staticLayout18.getLineBottom(staticLayout18.getLineCount() - i4), 5.0f, iM4);
+            iM4 = RichMessageLayout$RichDetailsEndBlock$$ExternalSyntheticOutline0.m(5.0f, staticLayout18.getLineBottom(staticLayout18.getLineCount() - i4), iM4);
         }
         this.checkBox.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
-        setMeasuredDimension(View.MeasureSpec.getSize(i), MessageObject$$ExternalSyntheticOutline0.m(iM4, 17.0f, AndroidUtilities.dp(76.0f)) + (this.needDivider ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i), MessageObject$$ExternalSyntheticOutline0.m(17.0f, iM4, AndroidUtilities.dp(76.0f)) + (this.needDivider ? 1 : 0));
     }
 
     @Override
@@ -1121,11 +1107,11 @@ public final class SharedLinkCell extends FrameLayout {
                                     this.pressedLink = linkSpanDrawable;
                                     LinkPath linkPathObtainNewPath = linkSpanDrawable.obtainNewPath();
                                     this.linkPreviewPressed = true;
-                                    this.linksCollector.addLink(this.pressedLink, null);
+                                    this.linksCollector.addLink(this.pressedLink);
                                     if (!this.checkingForLongPress) {
                                         this.checkingForLongPress = true;
                                         if (this.pendingCheckForTap == null) {
-                                            this.pendingCheckForTap = new BubbleActivity.AnonymousClass1(this, 7);
+                                            this.pendingCheckForTap = new SendLocationCell.AnonymousClass1(this, 2);
                                         }
                                         postDelayed(this.pendingCheckForTap, ViewConfiguration.getTapTimeout());
                                     }
@@ -1215,7 +1201,7 @@ public final class SharedLinkCell extends FrameLayout {
         if (zzrVar != null) {
             removeCallbacks(zzrVar);
         }
-        BubbleActivity.AnonymousClass1 anonymousClass1 = this.pendingCheckForTap;
+        SendLocationCell.AnonymousClass1 anonymousClass1 = this.pendingCheckForTap;
         if (anonymousClass1 != null) {
             removeCallbacks(anonymousClass1);
         }
@@ -1227,7 +1213,7 @@ public final class SharedLinkCell extends FrameLayout {
         if (checkBox2.getVisibility() != 0) {
             checkBox2.setVisibility(0);
         }
-        checkBox2.checkBoxBase.setChecked(-1, z, z2);
+        checkBox2.setChecked(z, z2);
     }
 
     public void setDelegate(SharedLinkCellDelegate sharedLinkCellDelegate) {

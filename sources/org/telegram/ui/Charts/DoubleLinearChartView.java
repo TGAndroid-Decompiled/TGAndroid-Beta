@@ -15,7 +15,6 @@ import org.telegram.ui.Charts.data.DoubleLinearChartData;
 import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.TransitionParams;
-import org.telegram.ui.ChatActivity;
 
 public final class DoubleLinearChartView extends BaseChartView {
     @Override
@@ -341,13 +340,13 @@ public final class DoubleLinearChartView extends BaseChartView {
         int i;
         TextPaint textPaint;
         int textSize;
+        int i2;
         CharSequence[] charSequenceArr;
         CharSequence[] charSequenceArr2;
         CharSequence[] charSequenceArr3;
         ChartHorizontalLinesData chartHorizontalLinesData2 = chartHorizontalLinesData;
         long[] jArr = chartHorizontalLinesData2.values;
         int length = jArr.length;
-        int i2 = 0;
         int i3 = ((DoubleLinearChartData) this.chartData).linesK[0] == 1.0f ? 1 : 0;
         int i4 = (i3 + 1) % 2;
         if (length > 2) {
@@ -373,6 +372,7 @@ public final class DoubleLinearChartView extends BaseChartView {
             i = measuredHeight - i6;
             textPaint = this.signaturePaint;
             textSize = (int) (i6 - textPaint.getTextSize());
+            i2 = 0;
             while (i2 < length) {
                 float measuredHeight2 = getMeasuredHeight() - this.chartBottom;
                 int i7 = i3;
@@ -393,14 +393,14 @@ public final class DoubleLinearChartView extends BaseChartView {
                         textPaint.setAlpha((int) MediaController$$ExternalSyntheticOutline0.m(chartHorizontalLinesData2.alpha, ((LineViewData) arrayList.get(i4)).alpha, f2, f));
                     }
                     charSequenceArr3 = charSequenceArr2;
-                    chartHorizontalLinesData2.drawText(canvas, 0, i2, BaseChartView.HORIZONTAL_PADDING, i8 - textSize, textPaint);
+                    chartHorizontalLinesData2.drawText(canvas, BaseChartView.HORIZONTAL_PADDING, 0, i2, i8 - textSize, textPaint);
                 }
                 TextPaint textPaint2 = textPaint;
                 if (charSequenceArr3 == null && arrayList.size() > 1) {
                     TextPaint textPaint3 = this.signaturePaint2;
                     textPaint3.setColor(((LineViewData) arrayList.get(i7)).lineColor);
                     textPaint3.setAlpha((int) MediaController$$ExternalSyntheticOutline0.m(chartHorizontalLinesData2.alpha, ((LineViewData) arrayList.get(i7)).alpha, f2, f));
-                    chartHorizontalLinesData2.drawText(canvas, 1, i2, getMeasuredWidth() - BaseChartView.HORIZONTAL_PADDING, i8 - textSize, textPaint3);
+                    chartHorizontalLinesData2.drawText(canvas, getMeasuredWidth() - BaseChartView.HORIZONTAL_PADDING, 1, i2, i8 - textSize, textPaint3);
                 }
                 i2++;
                 chartHorizontalLinesData2 = chartHorizontalLinesData;
@@ -417,6 +417,7 @@ public final class DoubleLinearChartView extends BaseChartView {
         i = measuredHeight3 - i9;
         textPaint = this.signaturePaint;
         textSize = (int) (i9 - textPaint.getTextSize());
+        i2 = 0;
         while (i2 < length) {
             float measuredHeight4 = getMeasuredHeight() - this.chartBottom;
             int i10 = i3;
@@ -515,7 +516,7 @@ public final class DoubleLinearChartView extends BaseChartView {
                     if (animator != null) {
                         animator.cancel();
                     }
-                    ValueAnimator valueAnimatorCreateAnimator = BaseChartView.createAnimator(this.pickerMaxHeight, this.animatedToPickerMaxHeight, new ChatActivity.AnonymousClass133(this, 4));
+                    ValueAnimator valueAnimatorCreateAnimator = BaseChartView.createAnimator(this.pickerMaxHeight, this.animatedToPickerMaxHeight, new StackBarChartView.AnonymousClass1(this, 1));
                     this.pickerAnimator = valueAnimatorCreateAnimator;
                     valueAnimatorCreateAnimator.start();
                 }

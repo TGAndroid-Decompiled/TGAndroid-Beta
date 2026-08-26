@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import android.os.Bundle;
 import android.text.TextUtils;
 import androidx.collection.LongSparseArray;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,8 +20,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda121;
-import org.telegram.ui.LocationActivity$$ExternalSyntheticLambda44;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda139;
 
 public class SavedMessagesController {
     private final int currentAccount;
@@ -489,7 +488,7 @@ public class SavedMessagesController {
     }
 
     public void lambda$loadDialogs$3(ArrayList arrayList, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(this, tLObject, arrayList, tL_error, 29));
+        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(29, this, tLObject, arrayList, tL_error));
     }
 
     public void lambda$saveCache$10() {
@@ -646,7 +645,7 @@ public class SavedMessagesController {
         this.loadingCache = true;
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(this, messagesStorage, clientUserId, runnable, 20));
+        messagesStorage.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(this, messagesStorage, clientUserId, runnable, 20));
     }
 
     public static void openSavedMessages() {
@@ -803,7 +802,7 @@ public class SavedMessagesController {
     private void updateDialogsLastMessage(ArrayList<SavedDialog> arrayList) {
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new LaunchActivity$$ExternalSyntheticLambda121(this, messagesStorage, arrayList, clientUserId, 19));
+        messagesStorage.getStorageQueue().postRunnable(new StarGiftSheet$$ExternalSyntheticLambda139(this, messagesStorage, arrayList, clientUserId, 19));
     }
 
     private void updatePinnedOrderToServer(ArrayList<Long> arrayList) {
@@ -947,7 +946,7 @@ public class SavedMessagesController {
         tL_messages_getSavedHistory.offset_id = Integer.MAX_VALUE;
         tL_messages_getSavedHistory.offset_date = Integer.MAX_VALUE;
         tL_messages_getSavedHistory.add_offset = -1;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSavedHistory, new LocationActivity$$ExternalSyntheticLambda44(this, j, 3));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getSavedHistory, new SecretChatHelper$$ExternalSyntheticLambda29(this, j, 3));
     }
 
     public boolean isLoading() {
@@ -968,7 +967,7 @@ public class SavedMessagesController {
         }
         this.dialogsLoading = true;
         TLRPC.TL_messages_getSavedDialogs tL_messages_getSavedDialogs = new TLRPC.TL_messages_getSavedDialogs();
-        SavedDialog savedDialog = this.loadedDialogs.isEmpty() ? null : (SavedDialog) zziq.m(1, this.loadedDialogs);
+        SavedDialog savedDialog = this.loadedDialogs.isEmpty() ? null : (SavedDialog) zzin.m(1, this.loadedDialogs);
         if (savedDialog != null) {
             tL_messages_getSavedDialogs.offset_id = savedDialog.top_message_id;
             tL_messages_getSavedDialogs.offset_date = savedDialog.getDate();

@@ -15,7 +15,7 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Gifts.AuctionBidSheet;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda149;
+import org.telegram.ui.Gifts.AuctionBidSheet$$ExternalSyntheticLambda18;
 import org.telegram.ui.Stars.StarsController;
 
 public class GiftAuctionController extends BaseController {
@@ -592,7 +592,7 @@ public class GiftAuctionController extends BaseController {
         tL_inputStarGiftAuction.gift_id = orCreateAuction.giftId;
         tL_getStarGiftAuctionState.auction = tL_inputStarGiftAuction;
         tL_getStarGiftAuctionState.version = orCreateAuction.getVersion();
-        getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new AiTonesController$$ExternalSyntheticLambda0(), new LaunchActivity$$ExternalSyntheticLambda149(this, j, 1));
+        getConnectionsManager().sendRequestTyped(tL_getStarGiftAuctionState, new AiTonesController$$ExternalSyntheticLambda0(), new AuctionBidSheet$$ExternalSyntheticLambda18(this, j, 1));
     }
 
     private void updateActiveAuctions() {
@@ -605,7 +605,7 @@ public class GiftAuctionController extends BaseController {
                 this.activeAuctions.add(auctionInternalValueAt.internalState);
             }
         }
-        j$.util.List.EL.sort(this.activeAuctions, Comparator$CC.comparingInt(new MessagesController$$ExternalSyntheticLambda335(1)));
+        j$.util.List.EL.sort(this.activeAuctions, Comparator$CC.comparingInt(new MessagesController$$ExternalSyntheticLambda337(1)));
         performUpdateActiveAuctions();
     }
 
@@ -693,7 +693,7 @@ public class GiftAuctionController extends BaseController {
             return;
         }
         if (!StarsController.getInstance(this.currentAccount, false).balanceLoaded) {
-            StarsController.getInstance(this.currentAccount, false).getBalance(true, false, new MediaController$$ExternalSyntheticLambda8(this, callback2, j, params, j2));
+            StarsController.getInstance(this.currentAccount, false).getBalance(new MediaController$$ExternalSyntheticLambda8(this, callback2, j, params, j2), true, false);
             return;
         }
         boolean zHasBid = auctionInternal.hasBid();

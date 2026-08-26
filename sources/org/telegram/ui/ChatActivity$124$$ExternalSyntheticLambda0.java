@@ -1,9 +1,5 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.Cells.BaseCell;
-import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 
@@ -32,18 +28,10 @@ public final class ChatActivity$124$$ExternalSyntheticLambda0 implements Runnabl
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                AndroidUtilities.runOnUIThread(new ChatActivity$124$$ExternalSyntheticLambda0(this.f$0, this.f$1, this.f$2, this.f$3, this.f$4, this.f$5, this.f$6, 1), 50L);
+                this.f$0.lambda$run$1(this.f$1, this.f$2, this.f$3, this.f$4, this.f$5, this.f$6);
                 break;
             default:
-                ChatActivity.AnonymousClass124 anonymousClass124 = this.f$0;
-                int i = this.f$1;
-                ChatActivity chatActivity = ChatActivity.this;
-                BaseCell baseCellFindMessageCell = chatActivity.findMessageCell(i, true);
-                if (this.f$2) {
-                    int i2 = ((BaseFragment) chatActivity).currentAccount;
-                    ReactionsEffectOverlay.show(chatActivity, this.f$3, baseCellFindMessageCell, null, this.f$4, this.f$5, this.f$6, i2, 1);
-                    ReactionsEffectOverlay.startAnimation();
-                }
+                this.f$0.lambda$run$0(this.f$1, this.f$2, this.f$3, this.f$4, this.f$5, this.f$6);
                 break;
         }
     }

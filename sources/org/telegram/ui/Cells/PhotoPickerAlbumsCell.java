@@ -9,14 +9,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkm;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
+import org.telegram.ui.ArticleViewer$10$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 
@@ -37,7 +35,7 @@ public final class PhotoPickerAlbumsCell extends FrameLayout {
             super(context);
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
-            addView(backupImageView, LayoutHelper.createFrame(-1.0f, -1));
+            addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
             linearLayout.setBackgroundResource(R.drawable.album_shadow);
@@ -51,7 +49,7 @@ public final class PhotoPickerAlbumsCell extends FrameLayout {
             textView.setEllipsize(truncateAt);
             textView.setMaxLines(1);
             textView.setGravity(80);
-            TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView, LayoutHelper.createLinear(1.0f, 0, -1, 8, 0, 5), context);
+            TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView, LayoutHelper.createLinear(0, -1, 1.0f, 8, 0, 0, 5), context);
             this.countTextView = textViewM;
             textViewM.setTextSize(1, 13.0f);
             textViewM.setTextColor(-1);
@@ -59,11 +57,11 @@ public final class PhotoPickerAlbumsCell extends FrameLayout {
             textViewM.setEllipsize(truncateAt);
             textViewM.setMaxLines(1);
             textViewM.setGravity(80);
-            linearLayout.addView(textViewM, LayoutHelper.createLinear(4.0f, 0.0f, 7.0f, 5.0f, -2, -1));
+            linearLayout.addView(textViewM, LayoutHelper.createLinear(-2, -1, 4.0f, 0.0f, 7.0f, 5.0f));
             View view = new View(context);
             this.selector = view;
             view.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-            addView(view, LayoutHelper.createFrame(-1.0f, -1));
+            addView(view, LayoutHelper.createFrame(-1, -1.0f));
         }
 
         @Override
@@ -97,7 +95,7 @@ public final class PhotoPickerAlbumsCell extends FrameLayout {
             addView(this.albumViews[i]);
             this.albumViews[i].setVisibility(4);
             this.albumViews[i].setTag(Integer.valueOf(i));
-            this.albumViews[i].setOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 27));
+            this.albumViews[i].setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 16));
         }
     }
 
@@ -114,10 +112,10 @@ public final class PhotoPickerAlbumsCell extends FrameLayout {
             layoutParams.gravity = 51;
             viewArr[i3].setLayoutParams(layoutParams);
         }
-        super.onMeasure(i, zzkm.m(4.0f, iM$3));
+        super.onMeasure(i, ArticleViewer$10$$ExternalSyntheticOutline0.m(4.0f, iM$3, 1073741824));
     }
 
-    public final void setAlbum(int i, MediaController.AlbumEntry albumEntry) {
+    public final void setAlbum(MediaController.AlbumEntry albumEntry, int i) {
         this.albumEntries[i] = albumEntry;
         AlbumView[] albumViewArr = this.albumViews;
         if (albumEntry == null) {
@@ -125,13 +123,13 @@ public final class PhotoPickerAlbumsCell extends FrameLayout {
             return;
         }
         AlbumView albumView = albumViewArr[i];
-        albumView.imageView.imageReceiver.setOrientation(0, true);
+        albumView.imageView.setOrientation(0, true);
         MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
         BackupImageView backupImageView = albumView.imageView;
         if (photoEntry == null || photoEntry.path == null) {
             backupImageView.setImageDrawable(Theme.chat_attachEmptyDrawable);
         } else {
-            backupImageView.imageReceiver.setOrientation(photoEntry.orientation, photoEntry.invert, true);
+            backupImageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
             if (albumEntry.coverPhoto.isVideo) {
                 backupImageView.setImage("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, Theme.chat_attachEmptyDrawable);
             } else {

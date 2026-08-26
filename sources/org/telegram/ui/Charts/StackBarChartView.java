@@ -15,12 +15,66 @@ import org.telegram.ui.Charts.view_data.ChartHorizontalLinesData;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.StackBarViewData;
 import org.telegram.ui.Charts.view_data.TransitionParams;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Components.Premium.PremiumAppIconsPreviewView;
+import org.telegram.ui.Components.Premium.PremiumButtonView;
 import org.telegram.ui.StatisticActivity;
-import org.telegram.ui.Stories.StoriesViewPager$$ExternalSyntheticLambda0;
+import org.telegram.ui.Stories.SelfStoriesPreviewView;
+import org.telegram.ui.Stories.recorder.CollageLayoutView2;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
 
 public final class StackBarChartView extends BaseChartView {
     public long[] yMaxPoints;
+
+    public final class AnonymousClass1 implements ValueAnimator.AnimatorUpdateListener {
+        public final int $r8$classId;
+        public final Object this$0;
+
+        public AnonymousClass1(Object obj, int i) {
+            this.$r8$classId = i;
+            this.this$0 = obj;
+        }
+
+        @Override
+        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+            switch (this.$r8$classId) {
+                case 0:
+                    float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    StackBarChartView stackBarChartView = (StackBarChartView) this.this$0;
+                    stackBarChartView.pickerMaxHeight = fFloatValue;
+                    stackBarChartView.invalidatePickerChart = true;
+                    stackBarChartView.invalidate();
+                    break;
+                case 1:
+                    float fFloatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    DoubleLinearChartView doubleLinearChartView = (DoubleLinearChartView) this.this$0;
+                    doubleLinearChartView.pickerMaxHeight = fFloatValue2;
+                    doubleLinearChartView.invalidatePickerChart = true;
+                    doubleLinearChartView.invalidate();
+                    break;
+                case 2:
+                    float fFloatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    PremiumButtonView premiumButtonView = (PremiumButtonView) this.this$0;
+                    premiumButtonView.overlayProgress = fFloatValue3;
+                    premiumButtonView.updateOverlayProgress();
+                    break;
+                case 3:
+                    ((PremiumAppIconsPreviewView) this.this$0).setOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                    break;
+                case 4:
+                    float fFloatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    SelfStoriesPreviewView selfStoriesPreviewView = (SelfStoriesPreviewView) this.this$0;
+                    selfStoriesPreviewView.scrollX = fFloatValue4;
+                    selfStoriesPreviewView.invalidate();
+                    break;
+                default:
+                    float fFloatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                    CollageLayoutView2.Part part = (CollageLayoutView2.Part) this.this$0;
+                    part.boundsTransition = fFloatValue5;
+                    CollageLayoutView2.this.invalidate();
+                    break;
+            }
+        }
+    }
 
     public StackBarChartView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context, resourcesProvider);
@@ -376,10 +430,7 @@ public final class StackBarChartView extends BaseChartView {
             moveLegend(f2);
             BaseChartView.DateSelectionListener dateSelectionListener = this.dateSelectionListener;
             if (dateSelectionListener != null) {
-                getSelectedDate();
-                StatisticActivity.BaseChartCell baseChartCell = (StatisticActivity.BaseChartCell) ((StoriesViewPager$$ExternalSyntheticLambda0) dateSelectionListener).f$0;
-                baseChartCell.zoomCanceled();
-                baseChartCell.chartView.legendSignatureView.showProgress(false, false);
+                ((StatisticActivity.BaseChartCell) ((TodoItemMenu$$ExternalSyntheticLambda3) dateSelectionListener).f$0).lambda$new$1(getSelectedDate());
             }
             invalidate();
             runSmoothHaptic();
@@ -413,7 +464,7 @@ public final class StackBarChartView extends BaseChartView {
                     if (animator != null) {
                         animator.cancel();
                     }
-                    ValueAnimator valueAnimatorCreateAnimator = BaseChartView.createAnimator(this.pickerMaxHeight, this.animatedToPickerMaxHeight, new ChatActivity.AnonymousClass133(this, 5));
+                    ValueAnimator valueAnimatorCreateAnimator = BaseChartView.createAnimator(this.pickerMaxHeight, this.animatedToPickerMaxHeight, new AnonymousClass1(this, 0));
                     this.pickerAnimator = valueAnimatorCreateAnimator;
                     valueAnimatorCreateAnimator.start();
                 }

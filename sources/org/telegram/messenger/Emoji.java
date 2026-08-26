@@ -17,8 +17,8 @@ import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import j$.util.Objects;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -221,7 +221,7 @@ public class Emoji {
         }
         if (num.intValue() == 0 && map.size() >= 48) {
             ArrayList<String> arrayList = recentEmoji;
-            map.remove((String) zziq.m(1, arrayList));
+            map.remove((String) zzin.m(1, arrayList));
             arrayList.set(arrayList.size() - 1, str);
         }
         map.put(str, Integer.valueOf(num.intValue() + 1));
@@ -671,7 +671,7 @@ public class Emoji {
             if (arrayList.size() <= 48) {
                 return;
             } else {
-                SurfaceContainer$$ExternalSyntheticOutline0.m5m(1, (ArrayList) arrayList);
+                Fragment$$ExternalSyntheticOutline0.m81m(1, (ArrayList) arrayList);
             }
         }
     }
@@ -1547,10 +1547,9 @@ public class Emoji {
                     document = document2;
                 } while (!MessageObject.findAnimatedEmojiEmoticon(document, null).contains(emojiSpanRange.code));
                 if (document != null) {
-                    animatedEmojiSpan = new AnimatedEmojiSpan(document.id, 1.2f, fontMetricsInt);
-                    animatedEmojiSpan.document = document;
+                    animatedEmojiSpan = new AnimatedEmojiSpan(document, fontMetricsInt);
                 } else {
-                    animatedEmojiSpan = new AnimatedEmojiSpan(0L, 1.2f, fontMetricsInt);
+                    animatedEmojiSpan = new AnimatedEmojiSpan(0L, fontMetricsInt);
                 }
                 animatedEmojiSpan.emoji = emojiSpanRange.code.toString();
             } catch (Exception e2) {

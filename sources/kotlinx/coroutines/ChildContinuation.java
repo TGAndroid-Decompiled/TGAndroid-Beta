@@ -1,11 +1,12 @@
 package kotlinx.coroutines;
 
+import com.google.common.base.Joiner;
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.coroutines.Continuation;
 import kotlin.jvm.internal.Intrinsics;
 import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.DispatchedContinuation;
-import kotlinx.coroutines.internal.Symbol;
 
 public final class ChildContinuation extends JobCancellingNode {
     public final CancellableContinuationImpl child;
@@ -15,7 +16,7 @@ public final class ChildContinuation extends JobCancellingNode {
     }
 
     @Override
-    public final void invoke(Throwable th) {
+    public final void invoke(Throwable th) throws IllegalAccessException, InvocationTargetException {
         JobSupport job = getJob();
         CancellableContinuationImpl cancellableContinuationImpl = this.child;
         Throwable continuationCancellationCause = cancellableContinuationImpl.getContinuationCancellationCause(job);
@@ -26,10 +27,10 @@ public final class ChildContinuation extends JobCancellingNode {
             loop0: while (true) {
                 AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = DispatchedContinuation._reusableCancellableContinuation$volatile$FU;
                 Object obj = atomicReferenceFieldUpdater.get(dispatchedContinuation);
-                Symbol symbol = AtomicKt.REUSABLE_CLAIMED;
-                if (Intrinsics.areEqual(obj, symbol)) {
-                    while (!atomicReferenceFieldUpdater.compareAndSet(dispatchedContinuation, symbol, continuationCancellationCause)) {
-                        if (atomicReferenceFieldUpdater.get(dispatchedContinuation) != symbol) {
+                Joiner joiner = AtomicKt.REUSABLE_CLAIMED;
+                if (Intrinsics.areEqual(obj, joiner)) {
+                    while (!atomicReferenceFieldUpdater.compareAndSet(dispatchedContinuation, joiner, continuationCancellationCause)) {
+                        if (atomicReferenceFieldUpdater.get(dispatchedContinuation) != joiner) {
                         }
                     }
                     return;

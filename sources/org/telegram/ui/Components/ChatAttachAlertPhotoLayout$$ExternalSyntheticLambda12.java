@@ -1,8 +1,5 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-import androidx.core.content.ContextCompat;
-
 public final class ChatAttachAlertPhotoLayout$$ExternalSyntheticLambda12 implements Runnable {
     public final int $r8$classId;
     public final ChatAttachAlertPhotoLayout f$0;
@@ -14,55 +11,27 @@ public final class ChatAttachAlertPhotoLayout$$ExternalSyntheticLambda12 impleme
 
     @Override
     public final void run() {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f$0;
         switch (this.$r8$classId) {
             case 0:
-                chatAttachAlertPhotoLayout.parentAlert.getContainer().removeView(chatAttachAlertPhotoLayout.cameraView);
-                chatAttachAlertPhotoLayout.cameraView = null;
+                this.f$0.lambda$hideCamera$16();
                 break;
             case 1:
-                chatAttachAlertPhotoLayout.showZoomControls(false);
-                chatAttachAlertPhotoLayout.zoomControlHideRunnable = null;
+                ChatAttachAlertPhotoLayout.access$6800(this.f$0);
                 break;
             case 2:
-                chatAttachAlertPhotoLayout.showZoomControls(false);
-                chatAttachAlertPhotoLayout.zoomControlHideRunnable = null;
+                ChatAttachAlertPhotoLayout.access$6700(this.f$0);
                 break;
             case 3:
-                chatAttachAlertPhotoLayout.dropDownContainer.setVisibility(8);
+                this.f$0.lambda$onPreMeasure$29();
                 break;
             case 4:
-                chatAttachAlertPhotoLayout.adapter.notifyDataSetChanged();
+                this.f$0.lambda$showZoomControls$14();
                 break;
             case 5:
-                boolean z = ChatAttachAlertPhotoLayout.mediaFromExternalCamera;
-                chatAttachAlertPhotoLayout.getClass();
-                if (Build.VERSION.SDK_INT >= 23) {
-                    ChatAttachAlert chatAttachAlert = chatAttachAlertPhotoLayout.parentAlert;
-                    if (ContextCompat.checkSelfPermission(chatAttachAlert.baseFragment.getParentActivity(), "android.permission.CAMERA") != 0) {
-                        try {
-                            chatAttachAlert.baseFragment.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
-                        } catch (Exception unused) {
-                            return;
-                        }
-                    }
-                }
-                chatAttachAlertPhotoLayout.openCameraByClick();
+                this.f$0.lambda$showZoomControls$15();
                 break;
             default:
-                boolean z2 = ChatAttachAlertPhotoLayout.mediaFromExternalCamera;
-                chatAttachAlertPhotoLayout.getClass();
-                try {
-                    int i = Build.VERSION.SDK_INT;
-                    ChatAttachAlert chatAttachAlert2 = chatAttachAlertPhotoLayout.parentAlert;
-                    if (i >= 33) {
-                        chatAttachAlert2.baseFragment.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);
-                    } else if (i >= 23) {
-                        chatAttachAlert2.baseFragment.getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                    }
-                } catch (Exception unused2) {
-                    return;
-                }
+                this.f$0.lambda$onHide$28();
                 break;
         }
     }

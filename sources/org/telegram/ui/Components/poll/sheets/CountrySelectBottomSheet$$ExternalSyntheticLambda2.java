@@ -5,7 +5,7 @@ import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.WindowInsetsCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.FragmentSpansContainer;
-import org.telegram.ui.Components.Tooltip$$ExternalSyntheticLambda0;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
 
 public final class CountrySelectBottomSheet$$ExternalSyntheticLambda2 implements FragmentSpansContainer.Delegate, OnApplyWindowInsetsListener {
     public final CountrySelectBottomSheet f$0;
@@ -25,7 +25,7 @@ public final class CountrySelectBottomSheet$$ExternalSyntheticLambda2 implements
         if (countrySelectBottomSheet.selectedCountriesHeight != iMin) {
             countrySelectBottomSheet.selectedCountriesHeight = iMin;
             countrySelectBottomSheet.animatorSelectorContainerHeight.animateTo(iMin);
-            countrySelectBottomSheet.spansContainer.postOnAnimation(new Tooltip$$ExternalSyntheticLambda0(countrySelectBottomSheet, 24));
+            countrySelectBottomSheet.spansContainer.postOnAnimation(new GiftSheet$$ExternalSyntheticLambda9(countrySelectBottomSheet, 15));
         }
     }
 

@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 
 public interface AttachableDrawable {
@@ -7,5 +8,10 @@ public interface AttachableDrawable {
 
     void onDetachedFromWindow(ImageReceiver imageReceiver);
 
-    void setParent(RLottieImageView rLottieImageView);
+    void setParent(View view);
+
+    public abstract class CC {
+        public static void $default$setParent(AttachableDrawable attachableDrawable, View view) {
+        }
+    }
 }

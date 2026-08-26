@@ -1,6 +1,6 @@
 package io.noties.markwon.inlineparser;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.regex.Pattern;
 import org.commonmark.internal.util.Parsing;
 import org.commonmark.node.Code;
@@ -25,12 +25,12 @@ public final class BackticksInlineProcessor extends InlineProcessor {
                 return text(strMatch2);
             }
         } while (!strMatch.equals(strMatch2));
-        Code code = new Code(0);
+        Code code = new Code();
         String strReplace = this.input.substring(i, this.index - strMatch2.length()).replace('\n', ' ');
         if (strReplace.length() >= 3 && strReplace.charAt(0) == ' ' && strReplace.charAt(strReplace.length() - 1) == ' ') {
             int length = strReplace.length();
             if (Parsing.skip(' ', strReplace, 0, length) != length) {
-                strReplace = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 1, strReplace);
+                strReplace = Fragment$$ExternalSyntheticOutline0.m(1, 1, strReplace);
             }
         }
         code.literal = strReplace;

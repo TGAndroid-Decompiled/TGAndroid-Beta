@@ -1,13 +1,13 @@
 package kotlinx.coroutines.scheduling;
 
-import org.telegram.ui.CastSync;
+import com.google.android.gms.dynamite.zzn;
 
 public abstract class Task implements Runnable {
     public long submissionTime;
-    public CastSync.AnonymousClass1 taskContext;
+    public zzn taskContext;
 
-    public Task(long j, CastSync.AnonymousClass1 anonymousClass1) {
+    public Task(long j, zzn zznVar) {
         this.submissionTime = j;
-        this.taskContext = anonymousClass1;
+        this.taskContext = zznVar;
     }
 }

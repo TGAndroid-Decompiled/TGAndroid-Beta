@@ -18,22 +18,10 @@ public final class SenderSelectPopup$$ExternalSyntheticLambda3 implements Dynami
     public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
         switch (this.$r8$classId) {
             case 0:
-                SenderSelectPopup senderSelectPopup = this.f$0;
-                if (!z) {
-                    senderSelectPopup.springAnimations.remove(this.f$1);
-                    dynamicAnimation.cancel();
-                } else {
-                    senderSelectPopup.getClass();
-                }
+                this.f$0.lambda$startDismissAnimation$9(this.f$1, dynamicAnimation, z, f, f2);
                 break;
             default:
-                SenderSelectPopup senderSelectPopup2 = this.f$0;
-                if (!z) {
-                    senderSelectPopup2.springAnimations.remove(this.f$1);
-                    dynamicAnimation.cancel();
-                } else {
-                    senderSelectPopup2.getClass();
-                }
+                this.f$0.lambda$startShowAnimation$5(this.f$1, dynamicAnimation, z, f, f2);
                 break;
         }
     }

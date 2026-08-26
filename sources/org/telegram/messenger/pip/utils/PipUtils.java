@@ -7,7 +7,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.util.Rational;
 import android.view.WindowManager;
-import com.google.zxing.BinaryBitmap;
+import com.stripe.android.Stripe;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticApiModelOutline1;
 import org.telegram.messenger.pip.PipSource;
@@ -25,10 +25,10 @@ public abstract class PipUtils {
                 AndroidUtilities.resetPictureInPictureParams(launchActivity);
                 return;
             }
-            BinaryBitmap binaryBitmap = pipSource.params;
-            binaryBitmap.getClass();
+            Stripe stripe = pipSource.params;
+            stripe.getClass();
             PictureInPictureParams.Builder builderM = AndroidUtilities$$ExternalSyntheticApiModelOutline1.m();
-            Point point = (Point) binaryBitmap.matrix;
+            Point point = (Point) stripe.defaultPublishableKey;
             int i3 = point.x;
             if (i3 <= 0 || (i = point.y) <= 0) {
                 builderM.setAspectRatio(null);
@@ -47,7 +47,7 @@ public abstract class PipUtils {
                     builderM.setExpandedAspectRatio(rational);
                 }
             }
-            Rect rect = (Rect) binaryBitmap.binarizer;
+            Rect rect = (Rect) stripe.tokenCreator;
             if (rect.isEmpty()) {
                 builderM.setSourceRectHint(null);
             } else {

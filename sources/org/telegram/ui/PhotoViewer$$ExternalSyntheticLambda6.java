@@ -1,99 +1,58 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.Crop.CropAreaView;
+import android.view.animation.DecelerateInterpolator;
+import me.vkryl.android.AnimatorUtils;
+import me.vkryl.android.animator.FactorAnimator;
+import org.telegram.ui.Components.voip.PrivateVideoPreviewDialogNew;
+import org.telegram.ui.Stories.recorder.StoryRecorder;
 
 public final class PhotoViewer$$ExternalSyntheticLambda6 implements ValueAnimator.AnimatorUpdateListener {
     public final int $r8$classId;
-    public final PhotoViewer f$0;
+    public final Object f$0;
+    public final float f$1;
+    public final float f$2;
 
-    public PhotoViewer$$ExternalSyntheticLambda6(PhotoViewer photoViewer, int i) {
+    public PhotoViewer$$ExternalSyntheticLambda6(Object obj, float f, float f2, int i) {
         this.$r8$classId = i;
-        this.f$0 = photoViewer;
+        this.f$0 = obj;
+        this.f$1 = f;
+        this.f$2 = f2;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float f = this.f$2;
+        float f2 = this.f$1;
+        Object obj = this.f$0;
         switch (this.$r8$classId) {
             case 0:
-                PhotoViewer photoViewer = this.f$0;
-                photoViewer.getClass();
-                photoViewer.videoPlayerControlFrameLayout.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((PhotoViewer) obj).lambda$cropRotate$100(f2, f, valueAnimator);
                 break;
             case 1:
-                this.f$0.photoProgressViews[0].setIndexedAlpha(1, ((Float) valueAnimator.getAnimatedValue()).floatValue(), false);
+                FactorAnimator factorAnimator = (FactorAnimator) obj;
+                if (factorAnimator.isAnimating) {
+                    DecelerateInterpolator decelerateInterpolator = AnimatorUtils.DECELERATE_INTERPOLATOR;
+                    float animatedFraction = valueAnimator.getAnimatedFraction();
+                    float f3 = (f * animatedFraction) + f2;
+                    if (factorAnimator.factor != f3) {
+                        factorAnimator.factor = f3;
+                        factorAnimator.target.onFactorChanged(factorAnimator.id, f3, animatedFraction, factorAnimator);
+                    }
+                }
                 break;
             case 2:
-                PhotoViewer photoViewer2 = this.f$0;
-                photoViewer2.getClass();
-                photoViewer2.clippingImageProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ((PrivateVideoPreviewDialogNew) obj).lambda$new$2(f2, f, valueAnimator);
                 break;
             case 3:
-                PhotoViewer photoViewer3 = this.f$0;
-                CropAreaView cropAreaView = photoViewer3.photoCropView.cropView.areaView;
-                float fLerp = AndroidUtilities.lerp(photoViewer3.scale, photoViewer3.animateToScale, photoViewer3.animationValue);
-                float fLerp2 = AndroidUtilities.lerp(photoViewer3.translationX, photoViewer3.animateToX, photoViewer3.animationValue);
-                float fLerp3 = AndroidUtilities.lerp(photoViewer3.translationY, photoViewer3.animateToY, photoViewer3.animationValue);
-                cropAreaView.rotate = 0.0f;
-                cropAreaView.scale = fLerp;
-                cropAreaView.tx = fLerp2;
-                cropAreaView.ty = fLerp3;
-                cropAreaView.invalidate();
-                break;
-            case 4:
-                this.f$0.photoPaintView.setOffsetTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                break;
-            case 5:
-                this.f$0.photoPaintView.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                break;
-            case 6:
-                PhotoViewer photoViewer4 = this.f$0;
-                photoViewer4.getClass();
-                photoViewer4.clippingImageProgress = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                break;
-            case 7:
-                PhotoViewer photoViewer5 = this.f$0;
-                photoViewer5.getClass();
-                photoViewer5.clippingImageProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                break;
-            case 8:
-                this.f$0.photoPaintView.setOffsetTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                break;
-            case 9:
-                this.f$0.photoPaintView.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                break;
-            case 10:
-                PhotoViewer.AnonymousClass67 anonymousClass67 = this.f$0.photoPaintView;
-                if (anonymousClass67 != null) {
-                    anonymousClass67.overlayLayout.invalidate();
-                }
-                break;
-            case 11:
-                PhotoViewer photoViewer6 = this.f$0;
-                photoViewer6.getClass();
-                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer6.translateY = fFloatValue;
-                PhotoViewer.AnonymousClass67 anonymousClass68 = photoViewer6.photoPaintView;
-                if (anonymousClass68 != null && Math.abs(fFloatValue - anonymousClass68.pany) > 0.1f) {
-                    anonymousClass68.pany = fFloatValue;
-                    anonymousClass68.setTransform(anonymousClass68.scale, anonymousClass68.inputTransformX, anonymousClass68.inputTransformY, anonymousClass68.imageWidth, anonymousClass68.imageHeight);
-                }
-                photoViewer6.containerView.invalidate();
-                break;
-            case 12:
-                this.f$0.updateActionBarTitlePadding();
-                break;
-            case 13:
-                PhotoViewer photoViewer7 = this.f$0;
-                photoViewer7.getClass();
-                photoViewer7.clippingImageProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer7.invalidateBlur$1();
+                ((PollCreateActivity) obj).lambda$animateEmojiViewTranslationY$3(f2, f, valueAnimator);
                 break;
             default:
-                PhotoViewer photoViewer8 = this.f$0;
-                photoViewer8.getClass();
-                photoViewer8.clippingImageProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                StoryRecorder storyRecorder = (StoryRecorder) obj;
+                storyRecorder.getClass();
+                float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                storyRecorder.containerView.setTranslationY(f2 * fFloatValue);
+                storyRecorder.containerView.setTranslationY2(f * fFloatValue);
                 break;
         }
     }

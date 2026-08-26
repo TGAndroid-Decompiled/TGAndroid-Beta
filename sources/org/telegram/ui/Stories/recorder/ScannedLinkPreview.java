@@ -34,7 +34,6 @@ import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Text;
-import org.telegram.ui.LinkManager$$ExternalSyntheticLambda13;
 import org.telegram.ui.ProfileActivity;
 
 public final class ScannedLinkPreview extends View {
@@ -45,7 +44,7 @@ public final class ScannedLinkPreview extends View {
     public StoryRecorder.AnonymousClass6 blurView;
     public final ButtonBounce bounce;
     public final RectF bounds;
-    public StoryRecorder$$ExternalSyntheticLambda19 clickListener;
+    public StoryRecorder$$ExternalSyntheticLambda14 clickListener;
     public final RectF clipBounds;
     public final Path clipPath;
     public final int currentAccount;
@@ -55,7 +54,7 @@ public final class ScannedLinkPreview extends View {
     public boolean hasResolved;
     public final ImageReceiver imageReceiver;
     public ResolvedLink resolved;
-    public final StoryRecorder$$ExternalSyntheticLambda7 resolvedListener;
+    public final StoryRecorder$$ExternalSyntheticLambda5 resolvedListener;
     public Text subtitle;
     public final int[] thisLocation;
     public Text title;
@@ -97,10 +96,9 @@ public final class ScannedLinkPreview extends View {
 
             @Override
             public final void setImage(ImageReceiver imageReceiver) {
-                AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-                int i = UserConfig.selectedAccount;
+                AvatarDrawable avatarDrawable = new AvatarDrawable();
                 TLRPC.User user = this.val$user;
-                avatarDrawable.setInfo(i, user);
+                avatarDrawable.setInfo(user);
                 imageReceiver.setForUserOrChat(user, avatarDrawable);
             }
         }
@@ -130,10 +128,9 @@ public final class ScannedLinkPreview extends View {
 
             @Override
             public final void setImage(ImageReceiver imageReceiver) {
-                AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-                int i = UserConfig.selectedAccount;
+                AvatarDrawable avatarDrawable = new AvatarDrawable();
                 TLRPC.Chat chat = this.val$chat;
-                avatarDrawable.setInfo(i, chat);
+                avatarDrawable.setInfo(chat);
                 imageReceiver.setForUserOrChat(chat, avatarDrawable);
             }
         }
@@ -151,7 +148,7 @@ public final class ScannedLinkPreview extends View {
         public abstract void setImage(ImageReceiver imageReceiver);
     }
 
-    public ScannedLinkPreview(Activity activity, int i, StoryRecorder$$ExternalSyntheticLambda7 storyRecorder$$ExternalSyntheticLambda7) {
+    public ScannedLinkPreview(Activity activity, int i, StoryRecorder$$ExternalSyntheticLambda5 storyRecorder$$ExternalSyntheticLambda5) {
         super(activity);
         this.animatedAlpha = new AnimatedFloat(this, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.bounds = new RectF();
@@ -159,11 +156,11 @@ public final class ScannedLinkPreview extends View {
         this.imageReceiver = new ImageReceiver(this);
         this.clipPath = new Path();
         this.backgroundPaint = new Paint(1);
-        this.bounce = new ButtonBounce(this, 1.0f, 5.0f);
+        this.bounce = new ButtonBounce(this);
         this.thisLocation = new int[2];
         this.blurLocation = new int[2];
         this.currentAccount = i;
-        this.resolvedListener = storyRecorder$$ExternalSyntheticLambda7;
+        this.resolvedListener = storyRecorder$$ExternalSyntheticLambda5;
     }
 
     @Override
@@ -174,15 +171,15 @@ public final class ScannedLinkPreview extends View {
         if (text == null || this.subtitle == null || f <= 0.0f) {
             return;
         }
-        text.ellipsizeWidth = getWidth() * 0.7f;
-        this.subtitle.ellipsizeWidth = getWidth() * 0.7f;
+        text.ellipsize(getWidth() * 0.7f);
+        this.subtitle.ellipsize(getWidth() * 0.7f);
         float fDp = AndroidUtilities.dp(5.0f);
         float fDp2 = AndroidUtilities.dp(10.0f);
         float fDp3 = AndroidUtilities.dp(32.0f);
         float fDp4 = AndroidUtilities.dp(2.0f);
         float fDp5 = AndroidUtilities.dp(11.0f);
-        float fMax = Math.max(Math.min(AndroidUtilities.dp(200.0f), getWidth() * 0.8f), Math.max(this.title.width, this.subtitle.width) + (this.hasImage ? fDp5 + fDp3 + fDp5 : 0.0f) + fDp + AndroidUtilities.dp(15.0f) + fDp);
-        float fMax2 = Math.max(this.hasImage ? fDp3 : 0.0f, this.title.layout.getHeight() + fDp4 + this.subtitle.layout.getHeight()) + fDp2 + fDp2;
+        float fMax = Math.max(Math.min(AndroidUtilities.dp(200.0f), getWidth() * 0.8f), Math.max(this.title.getCurrentWidth(), this.subtitle.getCurrentWidth()) + (this.hasImage ? fDp5 + fDp3 + fDp5 : 0.0f) + fDp + AndroidUtilities.dp(15.0f) + fDp);
+        float fMax2 = Math.max(this.hasImage ? fDp3 : 0.0f, this.subtitle.getHeight() + this.title.getHeight() + fDp4) + fDp2 + fDp2;
         float fLerp = AndroidUtilities.lerp(0.6f, 1.0f, f) * this.bounce.getScale(0.05f);
         float fDp6 = (1.0f - f) * AndroidUtilities.dp(15.0f);
         RectF rectF = this.bounds;
@@ -227,16 +224,16 @@ public final class ScannedLinkPreview extends View {
             imageReceiver.setAlpha(f);
             imageReceiver.draw(canvas);
         }
-        float fCenterY = rectF.centerY() - (((this.title.layout.getHeight() + fDp4) + this.subtitle.layout.getHeight()) / 2.0f);
+        float fCenterY = rectF.centerY() - ((this.subtitle.getHeight() + (this.title.getHeight() + fDp4)) / 2.0f);
         Text text2 = this.title;
-        text2.draw(rectF.left + (this.hasImage ? fDp5 + fDp3 + fDp5 : 0.0f) + fDp, (text2.layout.getHeight() / 2.0f) + fCenterY, f, -1, canvas);
-        this.subtitle.draw(rectF.left + (this.hasImage ? fDp3 + fDp5 + fDp5 : 0.0f) + fDp, (this.subtitle.layout.getHeight() / 2.0f) + fCenterY + this.title.layout.getHeight() + fDp4, f, Theme.blendOver(-16777216, -1610612737), canvas);
+        text2.draw(canvas, rectF.left + (this.hasImage ? fDp5 + fDp3 + fDp5 : 0.0f) + fDp, (text2.getHeight() / 2.0f) + fCenterY, -1, f);
+        this.subtitle.draw(canvas, rectF.left + (this.hasImage ? fDp3 + fDp5 + fDp5 : 0.0f) + fDp, (this.subtitle.getHeight() / 2.0f) + this.title.getHeight() + fCenterY + fDp4, Theme.blendOver(-16777216, -1610612737), f);
         canvas.restore();
     }
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        StoryRecorder$$ExternalSyntheticLambda19 storyRecorder$$ExternalSyntheticLambda19;
+        StoryRecorder$$ExternalSyntheticLambda14 storyRecorder$$ExternalSyntheticLambda14;
         boolean z = this.hasResolved;
         ButtonBounce buttonBounce = this.bounce;
         if (!z || this.resolved == null) {
@@ -252,12 +249,12 @@ public final class ScannedLinkPreview extends View {
                 buttonBounce.setPressed(true);
             }
         } else if (motionEvent.getAction() == 2) {
-            if (buttonBounce.isPressed && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+            if (buttonBounce.isPressed() && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                 buttonBounce.setPressed(false);
             }
         } else if (motionEvent.getAction() == 1) {
-            if (buttonBounce.isPressed && (storyRecorder$$ExternalSyntheticLambda19 = this.clickListener) != null && this.resolved != null) {
-                storyRecorder$$ExternalSyntheticLambda19.run(new ScannedLinkPreview$$ExternalSyntheticLambda0(this, 1));
+            if (buttonBounce.isPressed() && (storyRecorder$$ExternalSyntheticLambda14 = this.clickListener) != null && this.resolved != null) {
+                storyRecorder$$ExternalSyntheticLambda14.run(new ScannedLinkPreview$$ExternalSyntheticLambda0(this, 1));
             }
             buttonBounce.setPressed(false);
             this.touch = false;
@@ -265,7 +262,7 @@ public final class ScannedLinkPreview extends View {
             buttonBounce.setPressed(false);
             this.touch = false;
         }
-        return this.touch || buttonBounce.isPressed;
+        return this.touch || buttonBounce.isPressed();
     }
 
     @Override
@@ -282,7 +279,7 @@ public final class ScannedLinkPreview extends View {
 
     public void setLink(String str) {
         boolean zIsEmpty = TextUtils.isEmpty(str);
-        StoryRecorder$$ExternalSyntheticLambda7 storyRecorder$$ExternalSyntheticLambda7 = this.resolvedListener;
+        StoryRecorder$$ExternalSyntheticLambda5 storyRecorder$$ExternalSyntheticLambda5 = this.resolvedListener;
         Runnable runnableResolve = null;
         if (zIsEmpty) {
             Runnable runnable = this.currentCancel;
@@ -295,8 +292,8 @@ public final class ScannedLinkPreview extends View {
             }
             this.hasResolved = false;
             this.currentLink = null;
-            if (storyRecorder$$ExternalSyntheticLambda7 != null) {
-                storyRecorder$$ExternalSyntheticLambda7.run();
+            if (storyRecorder$$ExternalSyntheticLambda5 != null) {
+                storyRecorder$$ExternalSyntheticLambda5.run();
                 return;
             }
             return;
@@ -310,8 +307,8 @@ public final class ScannedLinkPreview extends View {
             this.hasResolved = true;
             setup();
             invalidate();
-            if (storyRecorder$$ExternalSyntheticLambda7 != null) {
-                storyRecorder$$ExternalSyntheticLambda7.run();
+            if (storyRecorder$$ExternalSyntheticLambda5 != null) {
+                storyRecorder$$ExternalSyntheticLambda5.run();
                 return;
             }
             return;
@@ -343,10 +340,10 @@ public final class ScannedLinkPreview extends View {
                             TLRPC.Chat chat = (TLRPC.Chat) userOrChat;
                             scannedLinkPreview$$ExternalSyntheticLambda0.run(chat == null ? null : new ResolvedLink.AnonymousClass2(str, chat));
                         } else {
-                            runnableResolve = messagesController.getUserNameResolver().resolve(str3, queryParameter, new LinkManager$$ExternalSyntheticLambda13(scannedLinkPreview$$ExternalSyntheticLambda0, messagesController, str, 5));
+                            runnableResolve = messagesController.getUserNameResolver().resolve(str3, queryParameter, new ScannedLinkPreview$ResolvedLink$$ExternalSyntheticLambda0(scannedLinkPreview$$ExternalSyntheticLambda0, messagesController, str, 0));
                         }
                     } else {
-                        runnableResolve = messagesController.getUserNameResolver().resolve(str3, queryParameter, new LinkManager$$ExternalSyntheticLambda13(scannedLinkPreview$$ExternalSyntheticLambda0, messagesController, str, 5));
+                        runnableResolve = messagesController.getUserNameResolver().resolve(str3, queryParameter, new ScannedLinkPreview$ResolvedLink$$ExternalSyntheticLambda0(scannedLinkPreview$$ExternalSyntheticLambda0, messagesController, str, 0));
                     }
                 }
             }
@@ -374,7 +371,7 @@ public final class ScannedLinkPreview extends View {
             coloredImageSpan.setScale(1.25f, 1.25f);
             spannableStringBuilder.setSpan(coloredImageSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         }
-        this.subtitle = new Text(spannableStringBuilder, 14.0f, null);
+        this.subtitle = new Text(spannableStringBuilder, 14.0f);
         this.resolved.setImage(this.imageReceiver);
         this.hasImage = true;
     }

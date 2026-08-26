@@ -24,26 +24,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticLambda120;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
+import org.telegram.ui.Cells.AboutLinkCell$$ExternalSyntheticLambda1;
 import org.telegram.ui.Cells.EmptyCell;
 import org.telegram.ui.Cells.FeaturedStickerSetInfoCell;
 import org.telegram.ui.Cells.StickerEmojiCell;
 import org.telegram.ui.Cells.StickerSetNameCell;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda208;
-import org.telegram.ui.Components.CloseProgressDrawable2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.TrendingStickersLayout;
-import org.telegram.ui.LoginActivity$$ExternalSyntheticLambda42;
-import org.telegram.ui.PassportActivity$$ExternalSyntheticLambda52;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda16;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda0;
 
 public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
     public boolean cleared;
     public final Context context;
-    public final TrendingStickersLayout.AnonymousClass1 delegate;
+    public final Delegate delegate;
     public int emojiSearchId;
     public ImageView emptyImageView;
     public TextView emptyTextView;
@@ -104,11 +102,8 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
             if (TextUtils.isEmpty(stickersSearchAdapter.searchQuery)) {
                 return;
             }
-            TrendingStickersLayout.AnonymousClass1 anonymousClass1 = stickersSearchAdapter.delegate;
-            CloseProgressDrawable2 progressDrawable = TrendingStickersLayout.this.searchView.getProgressDrawable();
-            progressDrawable.animating = true;
-            progressDrawable.lastFrameTime = System.currentTimeMillis();
-            progressDrawable.invalidateSelf();
+            Delegate delegate = stickersSearchAdapter.delegate;
+            delegate.onSearchStart();
             stickersSearchAdapter.cleared = false;
             int i2 = stickersSearchAdapter.emojiSearchId + 1;
             stickersSearchAdapter.emojiSearchId = i2;
@@ -188,11 +183,11 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
             }
             if (allStickers != null && !allStickers.isEmpty() && stickersSearchAdapter.searchQuery.length() > 1) {
                 String[] currentKeyboardLanguage = AndroidUtilities.getCurrentKeyboardLanguage();
-                if (!Arrays.equals(anonymousClass1.val$delegate.getLastSearchKeyboardLanguage(), currentKeyboardLanguage)) {
+                if (!Arrays.equals(delegate.getLastSearchKeyboardLanguage(), currentKeyboardLanguage)) {
                     MediaDataController.getInstance(i3).fetchNewEmojiKeywords(currentKeyboardLanguage);
                 }
-                anonymousClass1.val$delegate.setLastSearchKeyboardLanguage(currentKeyboardLanguage);
-                MediaDataController.getInstance(i3).getEmojiSuggestions(anonymousClass1.val$delegate.getLastSearchKeyboardLanguage(), stickersSearchAdapter.searchQuery, false, new PassportActivity$$ExternalSyntheticLambda52(this, i2, allStickers, 4), false);
+                delegate.setLastSearchKeyboardLanguage(currentKeyboardLanguage);
+                MediaDataController.getInstance(i3).getEmojiSuggestions(delegate.getLastSearchKeyboardLanguage(), stickersSearchAdapter.searchQuery, false, new VoIPService$$ExternalSyntheticLambda120(this, i2, allStickers, 4), false);
             }
             ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(i3).getStickerSets(0);
             int size2 = stickerSets.size();
@@ -255,51 +250,49 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
                 stickerSets2 = arrayList2;
             }
             if (!arrayList.isEmpty() || !map3.isEmpty()) {
-                anonymousClass1.setAdapterVisible(true);
+                delegate.setAdapterVisible(true);
             }
             TLRPC.TL_messages_searchStickerSets tL_messages_searchStickerSets = new TLRPC.TL_messages_searchStickerSets();
             tL_messages_searchStickerSets.q = stickersSearchAdapter.searchQuery;
-            stickersSearchAdapter.reqId = ConnectionsManager.getInstance(i3).sendRequest(tL_messages_searchStickerSets, new ChatActivity$$ExternalSyntheticLambda208(9, this, tL_messages_searchStickerSets));
+            stickersSearchAdapter.reqId = ConnectionsManager.getInstance(i3).sendRequest(tL_messages_searchStickerSets, new StarGiftSheet$$ExternalSyntheticLambda0(9, this, tL_messages_searchStickerSets));
             if (Emoji.isValidEmoji(stickersSearchAdapter.searchQuery)) {
                 TLRPC.TL_messages_getStickers tL_messages_getStickers = new TLRPC.TL_messages_getStickers();
                 tL_messages_getStickers.emoticon = stickersSearchAdapter.searchQuery;
                 tL_messages_getStickers.hash = 0L;
-                stickersSearchAdapter.reqId2 = ConnectionsManager.getInstance(i3).sendRequest(tL_messages_getStickers, new LoginActivity$$ExternalSyntheticLambda42(this, tL_messages_getStickers, arrayList3, longSparseArray, 2));
+                stickersSearchAdapter.reqId2 = ConnectionsManager.getInstance(i3).sendRequest(tL_messages_getStickers, new GiftSheet$$ExternalSyntheticLambda16(2, this, tL_messages_getStickers, arrayList3, longSparseArray));
             }
             stickersSearchAdapter.notifyDataSetChanged();
         }
     }
 
     public final class AnonymousClass2 extends StickerEmojiCell {
-        public final int $r8$classId;
-
-        public AnonymousClass2(int i, Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
-            super(context, resourcesProvider, z);
-            this.$r8$classId = i;
-        }
-
         @Override
         public final void onMeasure(int i, int i2) {
-            switch (this.$r8$classId) {
-                case 0:
-                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
-                    break;
-                case 1:
-                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
-                    break;
-                case 2:
-                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
-                    break;
-                default:
-                    super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
-                    break;
-            }
+            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(82.0f), 1073741824));
         }
     }
 
-    public StickersSearchAdapter(Context context, TrendingStickersLayout.AnonymousClass1 anonymousClass1, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, Theme.ResourcesProvider resourcesProvider) {
+    public interface Delegate {
+        String[] getLastSearchKeyboardLanguage();
+
+        int getStickersPerRow();
+
+        void onSearchStart();
+
+        void onSearchStop();
+
+        void onStickerSetAdd(TLRPC.StickerSetCovered stickerSetCovered, boolean z);
+
+        void onStickerSetRemove(TLRPC.StickerSetCovered stickerSetCovered);
+
+        void setAdapterVisible(boolean z);
+
+        void setLastSearchKeyboardLanguage(String[] strArr);
+    }
+
+    public StickersSearchAdapter(Context context, Delegate delegate, TLRPC.StickerSetCovered[] stickerSetCoveredArr, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, Theme.ResourcesProvider resourcesProvider) {
         this.context = context;
-        this.delegate = anonymousClass1;
+        this.delegate = delegate;
         this.primaryInstallingStickerSets = stickerSetCoveredArr;
         this.installingStickerSets = longSparseArray;
         this.removingStickerSets = longSparseArray2;
@@ -434,7 +427,7 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
         }
         this.installingStickerSets.put(stickerSetCovered.set.id, stickerSetCovered);
         if (featuredStickerSetInfoCell != null) {
-            this.delegate.val$delegate.onStickerSetAdd(featuredStickerSetInfoCell.getStickerSet(), z);
+            this.delegate.onStickerSetAdd(featuredStickerSetInfoCell.getStickerSet(), z);
             return;
         }
         SparseArray sparseArray = this.positionsToSets;
@@ -442,7 +435,7 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
         for (int i3 = 0; i3 < size; i3++) {
             TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) sparseArray.get(i3);
             if (stickerSetCovered2 != null && stickerSetCovered2.set.id == stickerSetCovered.set.id) {
-                this.mObservable.notifyItemRangeChanged(i3, 1, 0);
+                notifyItemChanged(i3, 0);
                 return;
             }
         }
@@ -455,7 +448,7 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
 
     @Override
     public final void notifyDataSetChanged() {
-        TrendingStickersLayout.AnonymousClass1 anonymousClass1;
+        Delegate delegate;
         int i;
         int i2;
         ArrayList<TLRPC.Document> arrayList;
@@ -482,16 +475,16 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
         int i5 = 0;
         while (i4 < size + size2 + i3) {
             SparseArray sparseArray5 = this.cacheParent;
-            TrendingStickersLayout.AnonymousClass1 anonymousClass2 = this.delegate;
+            Delegate delegate2 = this.delegate;
             if (i4 < size2) {
-                anonymousClass1 = anonymousClass2;
+                delegate = delegate2;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) arrayList4.get(i4);
                 i = size;
                 arrayList = tL_messages_stickerSet.documents;
                 i2 = i3;
                 obj = tL_messages_stickerSet;
             } else {
-                anonymousClass1 = anonymousClass2;
+                delegate = delegate2;
                 i = size;
                 int i6 = i4 - size2;
                 if (i6 < i3) {
@@ -517,7 +510,7 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
                             String str3 = str;
                             int i12 = this.totalItems + i8;
                             int i13 = size4;
-                            int stickersPerRow = (i8 / anonymousClass1.getStickersPerRow()) + i5;
+                            int stickersPerRow = (i8 / delegate.getStickersPerRow()) + i5;
                             int i14 = i11;
                             TLRPC.Document document = (TLRPC.Document) arrayList6.get(i11);
                             sparseArray2.put(i12, document);
@@ -540,11 +533,11 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
                     }
                     sparseArray4 = sparseArray4;
                     arrayList5 = arrayList5;
-                    int iCeil = (int) Math.ceil(i8 / anonymousClass1.getStickersPerRow());
+                    int iCeil = (int) Math.ceil(i8 / delegate.getStickersPerRow());
                     for (int i16 = 0; i16 < iCeil; i16++) {
                         sparseArray.put(i5 + i16, Integer.valueOf(i8));
                     }
-                    this.totalItems = (anonymousClass1.getStickersPerRow() * iCeil) + this.totalItems;
+                    this.totalItems = (delegate.getStickersPerRow() * iCeil) + this.totalItems;
                     i5 += iCeil;
                 } else {
                     i2 = i3;
@@ -564,7 +557,7 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
             if (arrayList.isEmpty()) {
                 arrayList2 = arrayList3;
             } else {
-                int iCeil2 = (int) Math.ceil(arrayList.size() / anonymousClass1.getStickersPerRow());
+                int iCeil2 = (int) Math.ceil(arrayList.size() / delegate.getStickersPerRow());
                 sparseArray2.put(this.totalItems, obj);
                 if (i4 >= size2 && (obj instanceof TLRPC.StickerSetCovered)) {
                     sparseArray3.put(this.totalItems, (TLRPC.StickerSetCovered) obj);
@@ -576,7 +569,7 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
                     int i18 = i17 + 1;
                     int i19 = iCeil2;
                     int i20 = this.totalItems + i18;
-                    int stickersPerRow2 = i17 / anonymousClass1.getStickersPerRow();
+                    int stickersPerRow2 = i17 / delegate.getStickersPerRow();
                     ArrayList arrayList8 = arrayList3;
                     sparseArray2.put(i20, arrayList.get(i17));
                     sparseArray5.put(i20, obj);
@@ -594,7 +587,7 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
                 for (int i23 = 0; i23 < i22; i23++) {
                     sparseArray.put(i5 + i23, obj);
                 }
-                this.totalItems = (anonymousClass1.getStickersPerRow() * i21) + 1 + this.totalItems;
+                this.totalItems = (delegate.getStickersPerRow() * i21) + 1 + this.totalItems;
                 i5 += i22;
             }
             i4++;
@@ -605,15 +598,46 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
             arrayList3 = arrayList2;
             arrayList5 = arrayList5;
         }
-        this.mObservable.notifyChanged();
+        super.notifyDataSetChanged();
     }
 
     @Override
-    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i, List list) {
-        if (list.contains(0) && viewHolder.mItemViewType == 3) {
-            bindFeaturedStickerSetInfoCell((FeaturedStickerSetInfoCell) viewHolder.itemView, i, true);
-        } else {
-            onBindViewHolder(viewHolder, i);
+    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        int itemViewType = viewHolder.getItemViewType();
+        SparseArray sparseArray = this.cache;
+        if (itemViewType == 0) {
+            ((StickerEmojiCell) viewHolder.itemView).setSticker((TLRPC.Document) sparseArray.get(i), null, this.cacheParent.get(i), (String) this.positionToEmoji.get(i), false);
+            return;
+        }
+        if (itemViewType == 1) {
+            ((EmptyCell) viewHolder.itemView).setHeight(0);
+            return;
+        }
+        if (itemViewType != 2) {
+            if (itemViewType != 3) {
+                return;
+            }
+            bindFeaturedStickerSetInfoCell((FeaturedStickerSetInfoCell) viewHolder.itemView, i, false);
+            return;
+        }
+        StickerSetNameCell stickerSetNameCell = (StickerSetNameCell) viewHolder.itemView;
+        Object obj = sparseArray.get(i);
+        if (obj instanceof TLRPC.TL_messages_stickerSet) {
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
+            if (!TextUtils.isEmpty(this.searchQuery) && this.localPacksByShortName.containsKey(tL_messages_stickerSet)) {
+                TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+                if (stickerSet != null) {
+                    stickerSetNameCell.setText(stickerSet.title, 0, null, 0, 0);
+                }
+                stickerSetNameCell.setUrl(this.searchQuery.length(), tL_messages_stickerSet.set.short_name);
+                return;
+            }
+            Integer num = (Integer) this.localPacksByName.get(tL_messages_stickerSet);
+            TLRPC.StickerSet stickerSet2 = tL_messages_stickerSet.set;
+            if (stickerSet2 != null && num != null) {
+                stickerSetNameCell.setText(stickerSet2.title, 0, null, num.intValue(), !TextUtils.isEmpty(this.searchQuery) ? this.searchQuery.length() : 0);
+            }
+            stickerSetNameCell.setUrl(0, null);
         }
     }
 
@@ -623,7 +647,7 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         Context context = this.context;
         if (i == 0) {
-            AnonymousClass2 anonymousClass2 = new AnonymousClass2(0, context, resourcesProvider, false);
+            AnonymousClass2 anonymousClass2 = new AnonymousClass2(context, false, resourcesProvider);
             anonymousClass2.getImageView().setLayerNum(3);
             stickerSetNameCell = anonymousClass2;
         } else if (i == 1) {
@@ -632,7 +656,7 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
             stickerSetNameCell = new StickerSetNameCell(this.context, false, true, this.resourcesProvider, false);
         } else if (i == 3) {
             FeaturedStickerSetInfoCell featuredStickerSetInfoCell = new FeaturedStickerSetInfoCell(17, this.context, this.resourcesProvider, true, true);
-            featuredStickerSetInfoCell.setAddOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 6));
+            featuredStickerSetInfoCell.setAddOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 5));
             stickerSetNameCell = featuredStickerSetInfoCell;
         } else if (i == 4) {
             stickerSetNameCell = new View(context);
@@ -658,50 +682,18 @@ public final class StickersSearchAdapter extends RecyclerListView.SelectionAdapt
             this.emptyTextView.setTextColor(Theme.getColor(i2, resourcesProvider));
             linearLayout.addView(this.emptyTextView, LayoutHelper.createLinear(-2, -2));
             linearLayout.setMinimumHeight(AndroidUtilities.dp(112.0f));
-            linearLayout.setLayoutParams(LayoutHelper.createFrame(-1.0f, -1));
+            linearLayout.setLayoutParams(LayoutHelper.createFrame(-1, -1.0f));
             stickerSetNameCell = linearLayout;
         }
         return new RecyclerListView.Holder(stickerSetNameCell);
     }
 
     @Override
-    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        int i2 = viewHolder.mItemViewType;
-        SparseArray sparseArray = this.cache;
-        View view = viewHolder.itemView;
-        if (i2 == 0) {
-            ((StickerEmojiCell) view).setSticker((TLRPC.Document) sparseArray.get(i), null, this.cacheParent.get(i), (String) this.positionToEmoji.get(i), false, false);
-            return;
-        }
-        if (i2 == 1) {
-            ((EmptyCell) view).setHeight(0);
-            return;
-        }
-        if (i2 != 2) {
-            if (i2 != 3) {
-                return;
-            }
-            bindFeaturedStickerSetInfoCell((FeaturedStickerSetInfoCell) view, i, false);
-            return;
-        }
-        StickerSetNameCell stickerSetNameCell = (StickerSetNameCell) view;
-        Object obj = sparseArray.get(i);
-        if (obj instanceof TLRPC.TL_messages_stickerSet) {
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-            if (!TextUtils.isEmpty(this.searchQuery) && this.localPacksByShortName.containsKey(tL_messages_stickerSet)) {
-                TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
-                if (stickerSet != null) {
-                    stickerSetNameCell.setText(stickerSet.title, 0, null, 0, 0);
-                }
-                stickerSetNameCell.setUrl(this.searchQuery.length(), tL_messages_stickerSet.set.short_name);
-                return;
-            }
-            Integer num = (Integer) this.localPacksByName.get(tL_messages_stickerSet);
-            TLRPC.StickerSet stickerSet2 = tL_messages_stickerSet.set;
-            if (stickerSet2 != null && num != null) {
-                stickerSetNameCell.setText(stickerSet2.title, 0, null, num.intValue(), !TextUtils.isEmpty(this.searchQuery) ? this.searchQuery.length() : 0);
-            }
-            stickerSetNameCell.setUrl(0, null);
+    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i, List list) {
+        if (list.contains(0) && viewHolder.getItemViewType() == 3) {
+            bindFeaturedStickerSetInfoCell((FeaturedStickerSetInfoCell) viewHolder.itemView, i, true);
+        } else {
+            super.onBindViewHolder(viewHolder, i, list);
         }
     }
 }

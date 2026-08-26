@@ -28,7 +28,7 @@ public final class BookmarksFragment$$ExternalSyntheticLambda1 implements Runnab
             case 0:
                 BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
                 if (safeLastFragment != null) {
-                    safeLastFragment.presentFragment(ChatActivity.of(this.f$1, this.f$0));
+                    safeLastFragment.presentFragment(ChatActivity.of(this.f$0, this.f$1));
                 }
                 break;
             case 1:
@@ -49,7 +49,7 @@ public final class BookmarksFragment$$ExternalSyntheticLambda1 implements Runnab
                             safeLastFragment2.presentFragment(new PostSuggestionsEditActivity(j2));
                         }
                     } else {
-                        safeLastFragment2.presentFragment(new PrivacyControlActivity(10, false));
+                        safeLastFragment2.presentFragment(new PrivacyControlActivity(10));
                     }
                 }
                 break;

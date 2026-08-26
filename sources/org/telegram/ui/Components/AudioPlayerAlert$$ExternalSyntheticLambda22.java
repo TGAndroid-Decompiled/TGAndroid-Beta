@@ -1,9 +1,6 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-
-public final class AudioPlayerAlert$$ExternalSyntheticLambda22 implements Utilities.Callback {
+public final class AudioPlayerAlert$$ExternalSyntheticLambda22 implements Runnable {
     public final int $r8$classId;
     public final AudioPlayerAlert f$0;
 
@@ -13,13 +10,13 @@ public final class AudioPlayerAlert$$ExternalSyntheticLambda22 implements Utilit
     }
 
     @Override
-    public final void run(Object obj) {
+    public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.lambda$onSubItemClick$19((MessageObject) obj);
+                this.f$0.lambda$saveToProfile$26();
                 break;
             default:
-                this.f$0.lambda$saveToMusic$52();
+                this.f$0.lambda$saveToProfile$23();
                 break;
         }
     }

@@ -1,13 +1,37 @@
 package org.telegram.ui.Components.ListView;
 
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.OpReorderer;
 import java.util.ArrayList;
-import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.GroupCallActivity;
 
 public abstract class AdapterWithDiffUtils extends RecyclerListView.SelectionAdapter {
-    public final DialogsAdapter.AnonymousClass1 callback = new DialogsAdapter.AnonymousClass1();
+    DiffUtilsCallback callback = new DiffUtilsCallback();
+
+    public final class DiffUtilsCallback extends DiffUtil.Callback {
+        public ArrayList newItems;
+        public ArrayList oldItems;
+
+        @Override
+        public final boolean areContentsTheSame(int i, int i2) {
+            return ((Item) this.oldItems.get(i)).compareContents((Item) this.newItems.get(i2));
+        }
+
+        @Override
+        public final boolean areItemsTheSame(int i, int i2) {
+            return ((Item) this.oldItems.get(i)).compare((Item) this.newItems.get(i2));
+        }
+
+        @Override
+        public final int getNewListSize() {
+            return this.newItems.size();
+        }
+
+        @Override
+        public final int getOldListSize() {
+            return this.oldItems.size();
+        }
+    }
 
     public abstract class Item {
         public boolean selectable;
@@ -18,18 +42,32 @@ public abstract class AdapterWithDiffUtils extends RecyclerListView.SelectionAda
             this.selectable = z;
         }
 
+        public boolean compare(Item item) {
+            if (this.viewType != item.viewType) {
+                return false;
+            }
+            return equals(item);
+        }
+
+        public boolean compareContents(Item item) {
+            if (this.viewType != item.viewType) {
+                return false;
+            }
+            return contentsEquals(item);
+        }
+
         public boolean contentsEquals(Item item) {
             return false;
         }
     }
 
-    public final void setItems(ArrayList arrayList, ArrayList arrayList2) {
+    public void setItems(ArrayList<? extends Item> arrayList, ArrayList<? extends Item> arrayList2) {
         if (arrayList2 == null) {
-            arrayList2 = new ArrayList();
+            arrayList2 = new ArrayList<>();
         }
-        DialogsAdapter.AnonymousClass1 anonymousClass1 = this.callback;
-        anonymousClass1.val$newItems = arrayList;
-        anonymousClass1.this$0 = arrayList2;
-        DiffUtil.calculateDiff(anonymousClass1, true).dispatchUpdatesTo(new GroupCallActivity.UpdateCallback(this, 1));
+        DiffUtilsCallback diffUtilsCallback = this.callback;
+        diffUtilsCallback.oldItems = arrayList;
+        diffUtilsCallback.newItems = arrayList2;
+        DiffUtil.calculateDiff(diffUtilsCallback, true).dispatchUpdatesTo(new OpReorderer(this));
     }
 }

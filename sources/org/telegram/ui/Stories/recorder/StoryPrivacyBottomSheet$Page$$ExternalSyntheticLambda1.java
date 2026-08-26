@@ -27,16 +27,16 @@ public final class StoryPrivacyBottomSheet$Page$$ExternalSyntheticLambda1 implem
                 page.button.setLoading(false);
                 StoryPrivacyBottomSheet storyPrivacyBottomSheet2 = StoryPrivacyBottomSheet.this;
                 storyPrivacyBottomSheet2.closeKeyboard();
-                storyPrivacyBottomSheet2.viewPager.scrollToPosition$1(0);
+                storyPrivacyBottomSheet2.viewPager.scrollToPosition(0);
                 break;
             case 3:
                 StoryPrivacyBottomSheet storyPrivacyBottomSheet3 = StoryPrivacyBottomSheet.this;
                 storyPrivacyBottomSheet3.activePage = 6;
-                storyPrivacyBottomSheet3.viewPager.scrollToPosition$1(1);
+                storyPrivacyBottomSheet3.viewPager.scrollToPosition(1);
                 break;
             case 4:
                 StoryPrivacyBottomSheet.Page page2 = this.f$0;
-                page2.adapter.notifyItemChanged(2);
+                page2.adapter.lambda$onBindViewHolder$31(2);
                 page2.listView.forceLayout();
                 page2.updateTops();
                 break;

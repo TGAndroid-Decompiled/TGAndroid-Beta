@@ -25,7 +25,7 @@ import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.graphics.Insets;
 import androidx.core.view.WindowInsetsCompat;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
@@ -46,7 +46,6 @@ import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
@@ -56,11 +55,11 @@ import org.telegram.ui.RightSlidingDialogContainer;
 import org.telegram.ui.Stories.LivePlayer;
 import org.telegram.ui.Stories.LiveStoryPipOverlay;
 import org.telegram.ui.Stories.StoriesIntro;
-import org.telegram.ui.Stories.StoriesViewPager$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.Stories.StoryViewer$$ExternalSyntheticLambda2;
 import org.telegram.ui.Stories.recorder.LivePlayerView;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda16;
+import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda3;
+import org.telegram.ui.bots.BotStorage$$ExternalSyntheticLambda5;
 
 public abstract class BaseFragment {
     protected ActionBar actionBar;
@@ -100,7 +99,7 @@ public abstract class BaseFragment {
 
         int getNavigationBarColor(int i);
 
-        View getWindowView();
+        View mo1107getWindowView();
 
         boolean isAttachedLightStatusBar();
 
@@ -135,20 +134,20 @@ public abstract class BaseFragment {
 
     public BaseFragment(Bundle bundle) {
         this.arguments = bundle;
-        setBulletinDelegate(new Bulletin.Delegate() {
+        Bulletin.addDelegate(this, new Bulletin.Delegate() {
             @Override
             public final boolean allowLayoutChanges() {
-                return true;
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
             }
 
             @Override
             public final boolean bottomOffsetAnimated() {
-                return true;
+                return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
             }
 
             @Override
             public final boolean clipWithGradient(int i) {
-                return false;
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
             }
 
             @Override
@@ -160,20 +159,33 @@ public abstract class BaseFragment {
             }
 
             @Override
-            public final int getTopOffset() {
-                return 0;
+            public final int getLeftPadding() {
+                return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+            }
+
+            @Override
+            public final int getRightPadding() {
+                return Bulletin.Delegate.CC.$default$getRightPadding(this);
+            }
+
+            @Override
+            public final int getTopOffset(int i) {
+                return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
             }
 
             @Override
             public final void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
             }
 
             @Override
             public final void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
             }
 
             @Override
             public final void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
             }
         });
     }
@@ -230,8 +242,8 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.getWindowView());
-                    layoutContainer.addView(attachedSheet.getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1107getWindowView());
+                    layoutContainer.addView(attachedSheet.mo1107getWindowView());
                 }
             }
         }
@@ -239,10 +251,6 @@ public abstract class BaseFragment {
 
     public boolean canBeginSlide() {
         return true;
-    }
-
-    public boolean canParentTabsSlide(MotionEvent motionEvent, boolean z) {
-        return isSwipeBackEnabled(motionEvent);
     }
 
     public void checkSystemBarColors() {
@@ -331,21 +339,20 @@ public abstract class BaseFragment {
         }
         if (!z) {
             if ((getLastSheet() instanceof ArticleViewer.Sheet) && getLastSheet().isShown()) {
-                return ArticleViewer.this;
+                return ((ArticleViewer.Sheet) getLastSheet()).getArticleViewer();
             }
             INavigationLayout iNavigationLayout = this.parentLayout;
             if ((iNavigationLayout instanceof ActionBarLayout) && ((ActionBarLayout) iNavigationLayout).getSheetFragment$1() != null && (((ActionBarLayout) this.parentLayout).getSheetFragment$1().getLastSheet() instanceof ArticleViewer.Sheet)) {
                 ArticleViewer.Sheet sheet = (ArticleViewer.Sheet) ((ActionBarLayout) this.parentLayout).getSheetFragment$1().getLastSheet();
                 if (sheet.isShown()) {
-                    return ArticleViewer.this;
+                    return sheet.getArticleViewer();
                 }
             }
         }
-        ArticleViewer articleViewer = new ArticleViewer(this);
-        ArticleViewer.Sheet sheet2 = articleViewer.sheet;
-        addSheet(sheet2);
-        BottomSheetTabDialog.checkSheet(sheet2);
-        return articleViewer;
+        ArticleViewer articleViewerMakeSheet = ArticleViewer.makeSheet(this);
+        addSheet(articleViewerMakeSheet.sheet);
+        BottomSheetTabDialog.checkSheet(articleViewerMakeSheet.sheet);
+        return articleViewerMakeSheet;
     }
 
     public StoryViewer createOverlayStoryViewer() {
@@ -371,7 +378,7 @@ public abstract class BaseFragment {
             for (int i = 0; i < this.sheetsStack.size(); i++) {
                 AttachedSheet attachedSheet = this.sheetsStack.get(i);
                 if (attachedSheet != null && attachedSheet.attachedToParent()) {
-                    AndroidUtilities.removeFromParent(attachedSheet.getWindowView());
+                    AndroidUtilities.removeFromParent(attachedSheet.mo1107getWindowView());
                 }
             }
         }
@@ -414,7 +421,7 @@ public abstract class BaseFragment {
         } else if (!this.inPreviewMode || (previewDelegate = this.previewDelegate) == null) {
             finishFragment(true);
         } else {
-            ((RightSlidingDialogContainer) ((StoriesViewPager$$ExternalSyntheticLambda0) previewDelegate).f$0).finishPreview();
+            ((RightSlidingDialogContainer) ((TodoItemMenu$$ExternalSyntheticLambda3) previewDelegate).f$0).lambda$presentFragment$1();
         }
     }
 
@@ -447,7 +454,7 @@ public abstract class BaseFragment {
 
     public ArticleViewer getArticleViewer() {
         if ((getLastSheet() instanceof ArticleViewer.Sheet) && getLastSheet().isShown()) {
-            return ArticleViewer.this;
+            return ((ArticleViewer.Sheet) getLastSheet()).getArticleViewer();
         }
         INavigationLayout iNavigationLayout = this.parentLayout;
         if (!(iNavigationLayout instanceof ActionBarLayout) || ((ActionBarLayout) iNavigationLayout).getSheetFragment$1() == null || !(((ActionBarLayout) this.parentLayout).getSheetFragment$1().getLastSheet() instanceof ArticleViewer.Sheet)) {
@@ -455,7 +462,7 @@ public abstract class BaseFragment {
         }
         ArticleViewer.Sheet sheet = (ArticleViewer.Sheet) ((ActionBarLayout) this.parentLayout).getSheetFragment$1().getLastSheet();
         if (sheet.isShown()) {
-            return ArticleViewer.this;
+            return sheet.getArticleViewer();
         }
         return null;
     }
@@ -629,7 +636,7 @@ public abstract class BaseFragment {
         if (this.sheetsStack == null) {
             this.sheetsStack = new ArrayList<>();
         }
-        StoryViewer storyViewer = (this.sheetsStack.isEmpty() || !(zziq.m(1, this.sheetsStack) instanceof StoryViewer)) ? null : (StoryViewer) zziq.m(1, this.sheetsStack);
+        StoryViewer storyViewer = (this.sheetsStack.isEmpty() || !(zzin.m(1, this.sheetsStack) instanceof StoryViewer)) ? null : (StoryViewer) zzin.m(1, this.sheetsStack);
         if (storyViewer == null) {
             storyViewer = new StoryViewer(this);
             INavigationLayout iNavigationLayout = this.parentLayout;
@@ -855,78 +862,6 @@ public abstract class BaseFragment {
         finishFragment();
     }
 
-    public void lambda$checkDiscard$10(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkDiscard$14(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkDiscard$2(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkDiscard$21(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkDiscard$27(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkDiscard$28(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkDiscard$31(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkDiscard$61(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkDiscard$63(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkDiscard$69(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$checkShowBlur$119(View view) {
-        finishPreviewFragment();
-    }
-
-    public void lambda$createView$1$12(View view) {
-        finishFragment();
-    }
-
-    public void lambda$createView$27(View view) {
-        finishPreviewFragment();
-    }
-
-    public void lambda$createView$42$1(View view) {
-        finishPreviewFragment();
-    }
-
-    public void lambda$createView$9$5(View view) {
-        finishPreviewFragment();
-    }
-
-    public void lambda$deleteFolder$14(Boolean bool) {
-        finishFragment();
-    }
-
-    public void lambda$discardEditor$2(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$finished$12(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
     public void lambda$onBackPressed$23(AlertDialog alertDialog, int i) {
         finishFragment();
     }
@@ -935,32 +870,12 @@ public abstract class BaseFragment {
         finishFragment();
     }
 
-    public void lambda$onBackPressed$4(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
     public void lambda$onBackPressed$4$1(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$onBackPressed$5$1(AlertDialog alertDialog, int i) {
         finishFragment();
     }
 
     public void lambda$onBackPressed$6(AlertDialog alertDialog, int i) {
         finishFragment();
-    }
-
-    public void lambda$onBackPressed$8$1(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$onFragmentCreate$16(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$onItemClick$5(TLRPC.WallPaper wallPaper) {
-        removeSelfFromStack();
     }
 
     public final void lambda$showDialog$0(DialogInterface.OnDismissListener onDismissListener, DialogInterface dialogInterface) {
@@ -971,26 +886,6 @@ public abstract class BaseFragment {
         if (dialogInterface == this.visibleDialog) {
             this.visibleDialog = null;
         }
-    }
-
-    public void lambda$showQuickRepliesRemoveAlert$362(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$showSetForcePasswordAlert$37(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$showSetForcePasswordAlert$51(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$showUnsavedAlert$14(AlertDialog alertDialog, int i) {
-        finishFragment();
-    }
-
-    public void lambda$showUnsavedAlert$3(AlertDialog alertDialog, int i) {
-        finishFragment();
     }
 
     public void movePreviewFragment(float f) {
@@ -1064,18 +959,7 @@ public abstract class BaseFragment {
         }
         ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
-            actionBar.resumed = false;
-            actionBar.updateAttachState$1();
-            ActionBarMenu actionBarMenu = actionBar.menu;
-            if (actionBarMenu != null) {
-                int childCount = actionBarMenu.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    View childAt = actionBarMenu.getChildAt(i);
-                    if (childAt instanceof ActionBarMenuItem) {
-                        ((ActionBarMenuItem) childAt).closeSubMenu();
-                    }
-                }
-            }
+            actionBar.onPause();
         }
     }
 
@@ -1148,18 +1032,7 @@ public abstract class BaseFragment {
     public void onPause() {
         ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
-            actionBar.resumed = false;
-            actionBar.updateAttachState$1();
-            ActionBarMenu actionBarMenu = actionBar.menu;
-            if (actionBarMenu != null) {
-                int childCount = actionBarMenu.getChildCount();
-                for (int i = 0; i < childCount; i++) {
-                    View childAt = actionBarMenu.getChildAt(i);
-                    if (childAt instanceof ActionBarMenuItem) {
-                        ((ActionBarMenuItem) childAt).closeSubMenu();
-                    }
-                }
-            }
+            actionBar.onPause();
         }
         this.isPaused = true;
         try {
@@ -1220,13 +1093,12 @@ public abstract class BaseFragment {
         this.isPaused = false;
         ActionBar actionBar = this.actionBar;
         if (actionBar != null) {
-            actionBar.resumed = true;
-            actionBar.updateAttachState$1();
+            actionBar.onResume();
         }
         if (getLastStoryViewer() != null) {
             StoryViewer lastStoryViewer = getLastStoryViewer();
             lastStoryViewer.paused = false;
-            if (!ArticleViewer.getInstance().isVisible && lastStoryViewer.getCurrentPeerView() != null) {
+            if (!ArticleViewer.getInstance().isVisible() && lastStoryViewer.getCurrentPeerView() != null) {
                 lastStoryViewer.getCurrentPeerView().updatePosition(false);
             }
             StoriesIntro storiesIntro = lastStoryViewer.storiesIntro;
@@ -1235,7 +1107,7 @@ public abstract class BaseFragment {
             }
             LiveStoryPipOverlay liveStoryPipOverlay = LiveStoryPipOverlay.instance;
             if (liveStoryPipOverlay.isVisible) {
-                liveStoryPipOverlay.dismissInternal$1(true);
+                liveStoryPipOverlay.dismissInternal(true);
             }
             getLastStoryViewer().updatePlayingMode();
         }
@@ -1405,12 +1277,7 @@ public abstract class BaseFragment {
         }
         Activity parentActivity = getParentActivity();
         if (parentActivity instanceof LaunchActivity) {
-            LaunchActivity launchActivity = (LaunchActivity) parentActivity;
-            launchActivity.drawerLayoutContainer.setInternalNavigationBarColor(i);
-            BottomSheetTabs bottomSheetTabs = launchActivity.getBottomSheetTabs();
-            if (bottomSheetTabs != null) {
-                bottomSheetTabs.setNavigationBarColor(i);
-            }
+            ((LaunchActivity) parentActivity).setNavigationBarColor(i);
         } else if (parentActivity != null) {
             Window window = parentActivity.getWindow();
             if (Build.VERSION.SDK_INT >= 26 && window != null) {
@@ -1464,8 +1331,7 @@ public abstract class BaseFragment {
                 if (iNavigationLayout3 != null && ((ActionBarLayout) iNavigationLayout3).getView().getContext() != this.actionBar.getContext()) {
                     z = true;
                 }
-                ActionBar actionBar = this.actionBar;
-                if ((actionBar.addToContainer || z) && (viewGroup = (ViewGroup) actionBar.getParent()) != null) {
+                if ((this.actionBar.shouldAddToContainer() || z) && (viewGroup = (ViewGroup) this.actionBar.getParent()) != null) {
                     try {
                         viewGroup.removeViewInLayout(this.actionBar);
                     } catch (Exception e2) {
@@ -1526,7 +1392,7 @@ public abstract class BaseFragment {
 
     public void setTitleOverlayTextIfActionBarAttached(String str, int i, Runnable runnable) {
         ActionBar actionBar = this.actionBar;
-        if (actionBar == null || !actionBar.addToContainer) {
+        if (actionBar == null || !actionBar.shouldAddToContainer()) {
             return;
         }
         setTitleOverlayText(str, i, runnable);
@@ -1608,12 +1474,19 @@ public abstract class BaseFragment {
         if (getParentActivity() == null) {
             return null;
         }
-        Activity parentActivity = getParentActivity();
-        final AlertDialog$$ExternalSyntheticLambda11 alertDialog$$ExternalSyntheticLambda11 = new AlertDialog$$ExternalSyntheticLambda11(bottomSheetArr, 5);
+        final Activity parentActivity = getParentActivity();
+        final AlertDialog$$ExternalSyntheticLambda13 alertDialog$$ExternalSyntheticLambda13 = new AlertDialog$$ExternalSyntheticLambda13(bottomSheetArr, 5);
         INavigationLayout[] iNavigationLayoutArr = {new ActionBarLayout(parentActivity) {
+            public final AlertDialog$$ExternalSyntheticLambda13 val$supplier;
+
+            public AnonymousClass1(final Activity parentActivity2) {
+                super(parentActivity2, false);
+                alertDialog$$ExternalSyntheticLambda13 = alertDialog$$ExternalSyntheticLambda13;
+            }
+
             @Override
             public final BottomSheet getBottomSheet() {
-                return BaseFragment.lambda$showAsSheet$1((BottomSheet[]) alertDialog$$ExternalSyntheticLambda11.f$0);
+                return BaseFragment.lambda$showAsSheet$1((BottomSheet[]) alertDialog$$ExternalSyntheticLambda13.f$0);
             }
         }};
         ((ActionBarLayout) iNavigationLayoutArr[0]).setIsSheet(true);
@@ -1643,7 +1516,7 @@ public abstract class BaseFragment {
                 view.setPadding(i, 0, i, 0);
                 this.containerView = ((ActionBarLayout) iNavigationLayoutArr[0]).getView();
                 setApplyBottomPadding(false);
-                setOnDismissListener(new VoIPFragment$$ExternalSyntheticLambda16(2, baseFragment, bottomSheetParams));
+                setOnDismissListener(new BotStorage$$ExternalSyntheticLambda5(2, baseFragment, bottomSheetParams));
             }
 
             @Override
@@ -1667,7 +1540,7 @@ public abstract class BaseFragment {
                     runnable.run();
                 }
                 super.lambda$showGiftOfferSheet$15();
-                ArrayList arrayList = LaunchActivity.instance.sheetFragmentsStack;
+                ArrayList<INavigationLayout> arrayList = LaunchActivity.instance.sheetFragmentsStack;
                 INavigationLayout[] iNavigationLayoutArr2 = this.val$actionBarLayout;
                 arrayList.remove(iNavigationLayoutArr2[0]);
                 iNavigationLayoutArr2[0] = null;
@@ -1775,7 +1648,7 @@ public abstract class BaseFragment {
                 try {
                     this.visibleDialog = dialog;
                     dialog.setCanceledOnTouchOutside(true);
-                    this.visibleDialog.setOnDismissListener(new VoIPFragment$$ExternalSyntheticLambda16(1, this, onDismissListener));
+                    this.visibleDialog.setOnDismissListener(new BotStorage$$ExternalSyntheticLambda5(1, this, onDismissListener));
                     this.visibleDialog.show();
                     return this.visibleDialog;
                 } catch (Exception e2) {
@@ -1817,7 +1690,7 @@ public abstract class BaseFragment {
             this.sheetsStack = new ArrayList<>();
         }
         StoryViewer storyViewer = null;
-        StoryViewer storyViewer2 = (this.sheetsStack.isEmpty() || !(zziq.m(1, this.sheetsStack) instanceof StoryViewer)) ? null : (StoryViewer) zziq.m(1, this.sheetsStack);
+        StoryViewer storyViewer2 = (this.sheetsStack.isEmpty() || !(zzin.m(1, this.sheetsStack) instanceof StoryViewer)) ? null : (StoryViewer) zzin.m(1, this.sheetsStack);
         if (storyViewer2 == null || storyViewer2.currentAccount == i) {
             storyViewer = storyViewer2;
         } else {

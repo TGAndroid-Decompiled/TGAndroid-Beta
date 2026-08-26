@@ -1,6 +1,8 @@
 package kotlinx.coroutines.sync;
 
-import com.google.android.gms.internal.mlkit_vision_common.zzjj;
+import com.google.android.gms.internal.mlkit_vision_common.zzjf;
+import com.google.common.base.Joiner;
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import kotlin.Unit;
@@ -13,7 +15,6 @@ import kotlinx.coroutines.CancellableContinuationImpl;
 import kotlinx.coroutines.JobKt;
 import kotlinx.coroutines.Waiter;
 import kotlinx.coroutines.internal.Segment;
-import kotlinx.coroutines.internal.Symbol;
 
 public final class MutexImpl extends SemaphoreImpl implements Mutex {
     public static final AtomicReferenceFieldUpdater owner$volatile$FU = AtomicReferenceFieldUpdater.newUpdater(MutexImpl.class, Object.class, "owner$volatile");
@@ -47,14 +48,14 @@ public final class MutexImpl extends SemaphoreImpl implements Mutex {
         }
 
         @Override
-        public final Symbol tryResume(Function1 function1, Object obj) {
+        public final Joiner tryResume(Function1 function1, Object obj) {
             MutexImpl mutexImpl = MutexImpl.this;
             MutexImpl$CancellableContinuationWithOwner$resume$2 mutexImpl$CancellableContinuationWithOwner$resume$2 = new MutexImpl$CancellableContinuationWithOwner$resume$2(mutexImpl, this, 1);
-            Symbol symbolTryResumeImpl = this.cont.tryResumeImpl(mutexImpl$CancellableContinuationWithOwner$resume$2, (Unit) obj);
-            if (symbolTryResumeImpl != null) {
+            Joiner joinerTryResumeImpl = this.cont.tryResumeImpl(mutexImpl$CancellableContinuationWithOwner$resume$2, (Unit) obj);
+            if (joinerTryResumeImpl != null) {
                 MutexImpl.owner$volatile$FU.set(mutexImpl, null);
             }
-            return symbolTryResumeImpl;
+            return joinerTryResumeImpl;
         }
     }
 
@@ -67,7 +68,7 @@ public final class MutexImpl extends SemaphoreImpl implements Mutex {
         return Math.max(SemaphoreImpl._availablePermits$volatile$FU.get(this), 0) == 0;
     }
 
-    public final Object lock(ContinuationImpl continuationImpl) {
+    public final Object lock(ContinuationImpl continuationImpl) throws IllegalAccessException, InvocationTargetException {
         int i;
         char c;
         while (true) {
@@ -100,7 +101,7 @@ public final class MutexImpl extends SemaphoreImpl implements Mutex {
                 }
                 throw new IllegalStateException("This mutex is already locked by the specified owner: null".toString());
             }
-            CancellableContinuationImpl orCreateCancellableContinuation = JobKt.getOrCreateCancellableContinuation(zzjj.intercepted(continuationImpl));
+            CancellableContinuationImpl orCreateCancellableContinuation = JobKt.getOrCreateCancellableContinuation(zzjf.intercepted(continuationImpl));
             try {
                 acquire(new CancellableContinuationWithOwner(orCreateCancellableContinuation));
                 Object result = orCreateCancellableContinuation.getResult();
@@ -127,13 +128,13 @@ public final class MutexImpl extends SemaphoreImpl implements Mutex {
         while (isLocked()) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = owner$volatile$FU;
             Object obj2 = atomicReferenceFieldUpdater.get(this);
-            Symbol symbol = MutexKt.NO_OWNER;
-            if (obj2 != symbol) {
+            Joiner joiner = MutexKt.NO_OWNER;
+            if (obj2 != joiner) {
                 if (obj2 != obj && obj != null) {
                     throw new IllegalStateException(("This mutex is locked by " + obj2 + ", but " + obj + " is expected").toString());
                 }
                 do {
-                    if (atomicReferenceFieldUpdater.compareAndSet(this, obj2, symbol)) {
+                    if (atomicReferenceFieldUpdater.compareAndSet(this, obj2, joiner)) {
                         release();
                         return;
                     }

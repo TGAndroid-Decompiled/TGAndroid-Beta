@@ -1,7 +1,5 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.UniversalFragment;
-
 public final class UserInfoActivity$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
     public final UserInfoActivity f$0;
@@ -15,25 +13,16 @@ public final class UserInfoActivity$$ExternalSyntheticLambda0 implements Runnabl
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                UserInfoActivity userInfoActivity = this.f$0;
-                userInfoActivity.getClass();
-                userInfoActivity.presentFragment(new PrivacyControlActivity(9, true));
+                this.f$0.openBioSettings();
                 break;
             case 1:
-                UniversalFragment.AnonymousClass3 anonymousClass3 = this.f$0.listView;
-                if (anonymousClass3 != null) {
-                    anonymousClass3.adapter.update(true);
-                }
+                this.f$0.lambda$fillItems$1();
                 break;
             case 2:
-                UserInfoActivity userInfoActivity2 = this.f$0;
-                userInfoActivity2.getClass();
-                userInfoActivity2.presentFragment(new PrivacyControlActivity(11, false));
+                this.f$0.lambda$fillItems$2();
                 break;
             default:
-                UserInfoActivity userInfoActivity3 = this.f$0;
-                userInfoActivity3.getClass();
-                userInfoActivity3.presentFragment(new PremiumPreviewFragment(0, "add_account"));
+                this.f$0.lambda$onResume$5();
                 break;
         }
     }

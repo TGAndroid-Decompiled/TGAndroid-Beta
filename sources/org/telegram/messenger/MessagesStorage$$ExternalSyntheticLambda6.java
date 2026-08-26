@@ -43,7 +43,7 @@ public final class MessagesStorage$$ExternalSyntheticLambda6 implements Runnable
                     Bitmap[] bitmapArr = (Bitmap[]) this.f$0;
                     if (i >= bitmapArr.length) {
                         Utilities.stackBlurBitmap(bitmapCreateBitmap, 1);
-                        AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(20, (Utilities.Callback) this.f$4, bitmapCreateBitmap));
+                        AndroidUtilities.runOnUIThread(new StoryViewer$5$$ExternalSyntheticLambda0(23, (Utilities.Callback) this.f$4, bitmapCreateBitmap));
                     } else {
                         if (bitmapArr[i] != null) {
                             canvas.save();

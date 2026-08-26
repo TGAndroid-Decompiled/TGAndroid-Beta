@@ -47,10 +47,10 @@ public final class Utilities$$ExternalSyntheticLambda1 implements Runnable {
                 ((MessagesController) this.f$0).lambda$requestIsUserContactBlocked$494((TLObject) this.f$1, (ArrayList) this.f$2);
                 break;
             case 7:
-                ((MessagesController) this.f$0).lambda$setUserAdminRole$104((TLRPC.TL_channels_editAdmin) this.f$1, (MessagesController$$ExternalSyntheticLambda214) this.f$2);
+                ((MessagesController) this.f$0).lambda$setUserAdminRole$104((TLRPC.TL_channels_editAdmin) this.f$1, (MessagesController$$ExternalSyntheticLambda216) this.f$2);
                 break;
             case 8:
-                ((MessagesController) this.f$0).lambda$setUserAdminRole$109((TLRPC.TL_messages_editChatAdmin) this.f$1, (MessagesController$$ExternalSyntheticLambda216) this.f$2);
+                ((MessagesController) this.f$0).lambda$setUserAdminRole$109((TLRPC.TL_messages_editChatAdmin) this.f$1, (MessagesController$$ExternalSyntheticLambda218) this.f$2);
                 break;
             case 9:
                 ((MessagesController) this.f$0).lambda$updateChatAbout$289((TLRPC.ChatFull) this.f$1, (String) this.f$2);

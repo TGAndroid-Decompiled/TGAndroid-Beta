@@ -6,8 +6,8 @@ import android.graphics.RectF;
 import android.graphics.RenderEffect;
 import android.os.Bundle;
 import androidx.core.math.MathUtils;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda5;
 
 public abstract class FBool {
@@ -29,20 +29,20 @@ public abstract class FBool {
         return bundle;
     }
 
-    public static int mergeOverlapping(ArrayList arrayList, int i, ArrayList arrayList2) {
+    public static int mergeOverlapping(List list, List list2, int i) {
         boolean z;
-        if (arrayList == null || i <= 0) {
+        if (list == null || i <= 0) {
             return 0;
         }
-        if (i > arrayList.size()) {
-            i = arrayList.size();
+        if (i > list.size()) {
+            i = list.size();
         }
-        for (int size = arrayList2.size(); size < i; size++) {
-            arrayList2.add(new RectF());
+        for (int size = list2.size(); size < i; size++) {
+            list2.add(new RectF());
         }
         for (int i2 = 0; i2 < i; i2++) {
-            RectF rectF = (RectF) arrayList.get(i2);
-            RectF rectF2 = (RectF) arrayList2.get(i2);
+            RectF rectF = (RectF) list.get(i2);
+            RectF rectF2 = (RectF) list2.get(i2);
             if (rectF != null) {
                 rectF2.set(rectF);
             } else {
@@ -56,10 +56,10 @@ public abstract class FBool {
                     z = false;
                     break;
                 }
-                RectF rectF3 = (RectF) arrayList2.get(i3);
+                RectF rectF3 = (RectF) list2.get(i3);
                 i3++;
                 for (int i4 = i3; i4 < i; i4++) {
-                    RectF rectF4 = (RectF) arrayList2.get(i4);
+                    RectF rectF4 = (RectF) list2.get(i4);
                     float f = rectF3.left;
                     float f2 = rectF4.right;
                     if (f <= f2 + 1.0E-4f) {
@@ -86,7 +86,7 @@ public abstract class FBool {
                                     }
                                     int i5 = i - 1;
                                     if (i4 != i5) {
-                                        ((RectF) arrayList2.get(i4)).set((RectF) arrayList2.get(i5));
+                                        ((RectF) list2.get(i4)).set((RectF) list2.get(i5));
                                     }
                                     i--;
                                     z = true;
@@ -98,12 +98,12 @@ public abstract class FBool {
                 }
             }
         } while (z);
-        for (int i6 = i; i6 < arrayList2.size(); i6++) {
-            RectF rectF5 = (RectF) arrayList2.get(i6);
+        for (int i6 = i; i6 < list2.size(); i6++) {
+            RectF rectF5 = (RectF) list2.get(i6);
             rectF5.top = Float.MAX_VALUE;
             rectF5.left = Float.MAX_VALUE;
         }
-        Collections.sort(arrayList2, RECT_COMPARATOR);
+        Collections.sort(list2, RECT_COMPARATOR);
         return i;
     }
 

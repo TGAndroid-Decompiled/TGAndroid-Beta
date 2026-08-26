@@ -1,67 +1,30 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.SlideChooseView;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 
-public final class LinkEditActivity$$ExternalSyntheticLambda3 implements AlertDialog.OnButtonClickListener, AlertsCreator.ScheduleDatePickerDelegate, SlideChooseView.Callback {
+public final class LinkEditActivity$$ExternalSyntheticLambda3 implements Runnable {
     public final int $r8$classId;
     public final LinkEditActivity f$0;
+    public final TLRPC.TL_error f$1;
+    public final TLObject f$2;
 
-    public LinkEditActivity$$ExternalSyntheticLambda3(LinkEditActivity linkEditActivity, int i) {
+    public LinkEditActivity$$ExternalSyntheticLambda3(LinkEditActivity linkEditActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i) {
         this.$r8$classId = i;
         this.f$0 = linkEditActivity;
-    }
-
-    private final void onTouchEnd$org$telegram$ui$LinkEditActivity$$ExternalSyntheticLambda3() {
-    }
-
-    private final void onTouchEnd$org$telegram$ui$LinkEditActivity$$ExternalSyntheticLambda4() {
+        this.f$1 = tL_error;
+        this.f$2 = tLObject;
     }
 
     @Override
-    public void didSelectDate(int i, int i2, boolean z) {
-        this.f$0.chooseDate(i);
-    }
-
-    @Override
-    public void onClick(AlertDialog alertDialog, int i) {
-        LinkEditActivity linkEditActivity = this.f$0;
-        linkEditActivity.callback.revokeLink(linkEditActivity.inviteToEdit);
-        linkEditActivity.finishFragment();
-    }
-
-    @Override
-    public void onOptionSelected(int i) {
+    public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                LinkEditActivity linkEditActivity = this.f$0;
-                ArrayList arrayList = linkEditActivity.dispalyedDates;
-                if (i >= arrayList.size()) {
-                    linkEditActivity.timeEditText.setText("");
-                } else {
-                    linkEditActivity.timeEditText.setText(LocaleController.formatDateAudio(linkEditActivity.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i)).intValue(), false));
-                }
+                this.f$0.lambda$onCreateClicked$12(this.f$1, this.f$2);
                 break;
             default:
-                LinkEditActivity linkEditActivity2 = this.f$0;
-                linkEditActivity2.usesEditText.clearFocus();
-                linkEditActivity2.ignoreSet = true;
-                ArrayList arrayList2 = linkEditActivity2.dispalyedUses;
-                if (i < arrayList2.size()) {
-                    linkEditActivity2.usesEditText.setText(((Integer) arrayList2.get(i)).toString());
-                } else {
-                    linkEditActivity2.usesEditText.setText("");
-                }
-                linkEditActivity2.ignoreSet = false;
+                this.f$0.lambda$onCreateClicked$14(this.f$1, this.f$2);
                 break;
         }
-    }
-
-    @Override
-    public void onTouchEnd() {
-        int i = this.$r8$classId;
     }
 }

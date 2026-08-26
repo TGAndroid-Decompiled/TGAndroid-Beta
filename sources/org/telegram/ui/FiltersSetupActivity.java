@@ -7,33 +7,35 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
 import android.text.Spannable;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticOutline2;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.OKLCH;
@@ -43,9 +45,11 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.TextCheckCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.GroupCallRecordAlert;
+import org.telegram.ui.Components.FolderBottomSheet;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.LoadingDrawable;
@@ -56,95 +60,65 @@ import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.UndoView;
 
-public final class FiltersSetupActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
-    public ListAdapter adapter;
-    public int filtersSectionEnd;
-    public int filtersSectionStart;
-    public int filtersStartPosition;
-    public int folderTagsPosition;
-    public boolean highlightTags;
-    public ItemTouchHelper itemTouchHelper;
-    public final ArrayList items;
-    public ChatActivity.AnonymousClass34 listView;
-    public boolean loadedColors;
-    public final ArrayList oldItems;
-    public boolean orderChanged;
-    public UndoView undoView;
+public class FiltersSetupActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    private static final int VIEW_TYPE_BUTTON = 4;
+    private static final int VIEW_TYPE_CHECK = 6;
+    private static final int VIEW_TYPE_FILTER = 2;
+    private static final int VIEW_TYPE_FILTER_SUGGESTION = 5;
+    private static final int VIEW_TYPE_HEADER = 0;
+    private static final int VIEW_TYPE_HINT = 1;
+    private static final int VIEW_TYPE_SHADOW = 3;
+    private ListAdapter adapter;
+    private int filtersSectionEnd;
+    private int filtersSectionStart;
+    private int filtersStartPosition;
+    private int folderTagsPosition;
+    private boolean highlightTags;
+    private boolean ignoreUpdates;
+    private ItemTouchHelper itemTouchHelper;
+    private ArrayList<ItemInner> items;
+    private RecyclerListView listView;
+    private boolean loadedColors;
+    private boolean loadingFiltersForColors;
+    private ArrayList<ItemInner> oldItems;
+    private boolean orderChanged;
+    private int shiftDp;
+    private int showTagsRow;
+    private UndoView undoView;
 
-    public final class FilterCell extends FrameLayout {
-        public final View colorImageView;
-        public MessagesController.DialogFilter currentFilter;
-        public int lastAppliedColor;
-        public int lastColor;
-        public final ImageView moveImageView;
-        public ValueAnimator moveImageViewAnimator;
-        public boolean needDivider;
-        public final ImageView optionsImageView;
-        public float progressToLock;
-        public final AnonymousClass1 shareImageView;
-        public boolean shareLoading;
-        public final LoadingDrawable shareLoadingDrawable;
-        public final SimpleTextView textView;
-        public final TextView valueTextView;
-
-        public final class AnonymousClass1 extends ImageView {
-            public final int $r8$classId;
-            public final Object this$1;
-            public final int val$stroke;
-
-            public AnonymousClass1(Object obj, Context context, int i, int i2) {
-                super(context);
-                this.$r8$classId = i2;
-                this.this$1 = obj;
-                this.val$stroke = i;
-            }
-
-            @Override
-            public void onDraw(Canvas canvas) {
-                switch (this.$r8$classId) {
-                    case 0:
-                        super.onDraw(canvas);
-                        FilterCell filterCell = (FilterCell) this.this$1;
-                        if (filterCell.shareLoading) {
-                            int i = this.val$stroke / 2;
-                            int width = getWidth() - i;
-                            int height = getHeight() - i;
-                            LoadingDrawable loadingDrawable = filterCell.shareLoadingDrawable;
-                            loadingDrawable.setBounds(i, i, width, height);
-                            loadingDrawable.draw(canvas);
-                        }
-                        break;
-                    default:
-                        super.onDraw(canvas);
-                        break;
-                }
-            }
-
-            @Override
-            public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-                switch (this.$r8$classId) {
-                    case 1:
-                        super.onInitializeAccessibilityEvent(accessibilityEvent);
-                        if (accessibilityEvent.getEventType() == 32768) {
-                            ((GroupCallRecordAlert.Adapter) this.this$1).this$0.viewPager.setCurrentItem(this.val$stroke, true);
-                        }
-                        break;
-                    default:
-                        super.onInitializeAccessibilityEvent(accessibilityEvent);
-                        break;
-                }
-            }
-
-            @Override
-            public boolean verifyDrawable(Drawable drawable) {
-                switch (this.$r8$classId) {
-                    case 0:
-                        return drawable == ((FilterCell) this.this$1).shareLoadingDrawable || super.verifyDrawable(drawable);
-                    default:
-                        return super.verifyDrawable(drawable);
-                }
-            }
+    public class AnonymousClass2 extends RecyclerListView {
+        public AnonymousClass2(Context context) {
+            super(context);
         }
+
+        public void lambda$onTouchEvent$0() {
+            FiltersSetupActivity.this.getMessagesController().lockFiltersInternal();
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                AndroidUtilities.runOnUIThread(new ChatActivity$21$$ExternalSyntheticLambda4(this, 23), 250L);
+            }
+            return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    public class FilterCell extends FrameLayout {
+        private final View colorImageView;
+        private MessagesController.DialogFilter currentFilter;
+        private int lastAppliedColor;
+        private int lastColor;
+        private final ImageView moveImageView;
+        private ValueAnimator moveImageViewAnimator;
+        private boolean needDivider;
+        private final ImageView optionsImageView;
+        float progressToLock;
+        private final ImageView shareImageView;
+        private boolean shareLoading;
+        private final LoadingDrawable shareLoadingDrawable;
+        private final SimpleTextView textView;
+        private final TextView valueTextView;
 
         public FilterCell(Context context) {
             super(context);
@@ -196,37 +170,82 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
             textView.setVisibility(8);
             LoadingDrawable loadingDrawable = new LoadingDrawable();
             this.shareLoadingDrawable = loadingDrawable;
-            loadingDrawable.appearByGradient = true;
-            loadingDrawable.gradientWidthScale = 2.0f;
+            loadingDrawable.setAppearByGradient(true);
+            loadingDrawable.setGradientScale(2.0f);
             int i2 = Theme.key_listSelector;
             int color2 = Theme.getColor(null, i2, false);
             loadingDrawable.setColors(Theme.multAlpha(0.4f, color2), Theme.multAlpha(1.0f, color2), Theme.multAlpha(0.9f, color2), Theme.multAlpha(1.7f, color2));
-            int iDp = AndroidUtilities.dp(1.0f);
+            final int iDp = AndroidUtilities.dp(1.0f);
             loadingDrawable.strokePaint.setStrokeWidth(iDp);
-            loadingDrawable.setRadii(AndroidUtilities.dp(40.0f));
-            AnonymousClass1 anonymousClass1 = new AnonymousClass1(this, context, iDp, 0);
-            this.shareImageView = anonymousClass1;
-            loadingDrawable.setCallback(anonymousClass1);
-            anonymousClass1.setFocusable(false);
-            anonymousClass1.setScaleType(scaleType);
-            anonymousClass1.setBackground(Theme.createSelectorDrawable(color2, 1, -1));
-            anonymousClass1.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), mode));
-            anonymousClass1.setContentDescription(LocaleController.getString(R.string.FilterShare));
-            anonymousClass1.setVisibility(8);
-            anonymousClass1.setImageResource(R.drawable.msg_link_folder);
-            anonymousClass1.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), mode));
-            boolean z3 = LocaleController.isRTL;
-            addView(anonymousClass1, LayoutHelper.createFrame(40, 40.0f, (z3 ? 3 : 5) | 16, z3 ? 52.0f : 6.0f, 0.0f, z3 ? 6.0f : 52.0f, 0.0f));
-            anonymousClass1.setOnClickListener(new GroupCallSheet$$ExternalSyntheticLambda5(this, 23));
-            ImageView imageView2 = new ImageView(context);
-            this.optionsImageView = imageView2;
+            loadingDrawable.setRadiiDp(40.0f);
+            ImageView imageView2 = new ImageView(context) {
+                @Override
+                public void onDraw(Canvas canvas) {
+                    super.onDraw(canvas);
+                    if (FilterCell.this.shareLoading) {
+                        LoadingDrawable loadingDrawable2 = FilterCell.this.shareLoadingDrawable;
+                        int i3 = iDp / 2;
+                        loadingDrawable2.setBounds(i3, i3, getWidth() - (iDp / 2), getHeight() - (iDp / 2));
+                        FilterCell.this.shareLoadingDrawable.draw(canvas);
+                    }
+                }
+
+                @Override
+                public boolean verifyDrawable(Drawable drawable2) {
+                    return drawable2 == FilterCell.this.shareLoadingDrawable || super.verifyDrawable(drawable2);
+                }
+            };
+            this.shareImageView = imageView2;
+            loadingDrawable.setCallback(imageView2);
             imageView2.setFocusable(false);
             imageView2.setScaleType(scaleType);
-            imageView2.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(null, i2, false), 1, -1));
+            imageView2.setBackground(Theme.createSelectorDrawable(color2, 1, -1));
             imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), mode));
-            imageView2.setImageResource(R.drawable.msg_actions);
-            imageView2.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
-            addView(imageView2, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
+            imageView2.setContentDescription(LocaleController.getString(R.string.FilterShare));
+            imageView2.setVisibility(8);
+            imageView2.setImageResource(R.drawable.msg_link_folder);
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), mode));
+            boolean z3 = LocaleController.isRTL;
+            addView(imageView2, LayoutHelper.createFrame(40, 40.0f, (z3 ? 3 : 5) | 16, z3 ? 52.0f : 6.0f, 0.0f, z3 ? 6.0f : 52.0f, 0.0f));
+            imageView2.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda11(this, 14));
+            ImageView imageView3 = new ImageView(context);
+            this.optionsImageView = imageView3;
+            imageView3.setFocusable(false);
+            imageView3.setScaleType(scaleType);
+            imageView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(null, i2, false), 1, -1));
+            imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i, false), mode));
+            imageView3.setImageResource(R.drawable.msg_actions);
+            imageView3.setContentDescription(LocaleController.getString(R.string.AccDescrMoreOptions));
+            addView(imageView3, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
+        }
+
+        public void lambda$new$0() {
+            this.shareLoadingDrawable.disappear();
+            this.shareImageView.invalidate();
+            FiltersSetupActivity.this.updateRows(true);
+        }
+
+        public void lambda$new$1(View view) {
+            if ((!this.shareLoading || this.shareLoadingDrawable.isDisappeared()) && this.currentFilter != null) {
+                this.shareLoading = true;
+                this.shareLoadingDrawable.reset();
+                this.shareLoadingDrawable.resetDisappear();
+                this.shareImageView.invalidate();
+                FilterCreateActivity.FilterInvitesBottomSheet.show(FiltersSetupActivity.this, this.currentFilter, new IntroActivity$$ExternalSyntheticLambda5(this, 25));
+            }
+        }
+
+        public void lambda$setFilter$2(ValueAnimator valueAnimator) {
+            float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            this.moveImageView.setAlpha(fFloatValue);
+            float f = (fFloatValue * 0.5f) + 0.5f;
+            this.moveImageView.setScaleX(f);
+            this.moveImageView.setScaleY(f);
+            float f2 = 1.0f - fFloatValue;
+            this.colorImageView.setAlpha(f2);
+            float f3 = (f2 * 0.5f) + 0.5f;
+            this.colorImageView.setScaleX(f3);
+            this.colorImageView.setScaleY(f3);
         }
 
         public MessagesController.DialogFilter getCurrentFilter() {
@@ -234,7 +253,7 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
         }
 
         @Override
-        public final void onDraw(Canvas canvas) {
+        public void onDraw(Canvas canvas) {
             float f;
             if (this.needDivider) {
                 canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(62.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
@@ -264,253 +283,66 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
             }
             float fClamp = Utilities.clamp(this.progressToLock, 1.0f, 0.0f);
             this.progressToLock = fClamp;
-            SimpleTextView simpleTextView = this.textView;
-            simpleTextView.setRightDrawableScale(fClamp);
-            simpleTextView.invalidate();
+            this.textView.setRightDrawableScale(fClamp);
+            this.textView.invalidate();
         }
 
         @Override
-        public final void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         }
 
-        public void setOnOptionsClick(View.OnClickListener onClickListener) {
-            this.optionsImageView.setOnClickListener(onClickListener);
-        }
-
-        public void setOnReorderButtonTouchListener(View.OnTouchListener onTouchListener) {
-            this.moveImageView.setOnTouchListener(onTouchListener);
-        }
-    }
-
-    public final class HintInnerCell extends FrameLayout {
-        public final RLottieImageView imageView;
-
-        public HintInnerCell(Context context, int i, SpannableStringBuilder spannableStringBuilder) {
-            super(context);
-            RLottieImageView rLottieImageView = new RLottieImageView(context);
-            this.imageView = rLottieImageView;
-            rLottieImageView.setAnimation(i, 90, 90, null);
-            rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-            rLottieImageView.playAnimation();
-            rLottieImageView.setImportantForAccessibility(2);
-            addView(rLottieImageView, LayoutHelper.createFrame(90, 90.0f, 49, 0.0f, 14.0f, 0.0f, 0.0f));
-            rLottieImageView.setOnClickListener(new GroupCallSheet$$ExternalSyntheticLambda5(this, 24));
-            TextView textView = new TextView(context);
-            textView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText4, false));
-            textView.setTextSize(1, 14.0f);
-            textView.setGravity(17);
-            textView.setText(spannableStringBuilder);
-            addView(textView, LayoutHelper.createFrame(-1, -2.0f, 49, 40.0f, 121.0f, 40.0f, 24.0f));
-        }
-
-        @Override
-        public final void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-        }
-    }
-
-    public final class ItemInner extends AdapterWithDiffUtils.Item {
-        public MessagesController.DialogFilter filter;
-        public TLRPC.TL_dialogFilterSuggested suggested;
-        public CharSequence text;
-
-        public final boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-            if (!(obj instanceof ItemInner)) {
-                return false;
-            }
-            ItemInner itemInner = (ItemInner) obj;
-            int i = itemInner.viewType;
-            int i2 = this.viewType;
-            if (i != i2) {
-                return false;
-            }
-            if ((i2 == 0 || i2 == 4 || i2 == 3 || i2 == 6) && !TextUtils.equals(this.text, itemInner.text)) {
-                return false;
-            }
-            int i3 = this.viewType;
-            if (i3 == 2) {
-                MessagesController.DialogFilter dialogFilter = this.filter;
-                boolean z = dialogFilter == null;
-                MessagesController.DialogFilter dialogFilter2 = itemInner.filter;
-                if (z != (dialogFilter2 == null)) {
-                    return false;
-                }
-                if (dialogFilter != null && dialogFilter.id != dialogFilter2.id) {
-                    return false;
-                }
-            }
-            if (i3 == 5) {
-                TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.suggested;
-                boolean z2 = tL_dialogFilterSuggested == null;
-                TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = itemInner.suggested;
-                if (z2 != (tL_dialogFilterSuggested2 == null)) {
-                    return false;
-                }
-                if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.id != tL_dialogFilterSuggested2.filter.id) {
-                    return false;
-                }
-            }
-            return true;
-        }
-    }
-
-    public final class ListAdapter extends AdapterWithDiffUtils {
-        public final Context mContext;
-
-        public ListAdapter(Context context) {
-            this.mContext = context;
-        }
-
-        @Override
-        public final int getItemCount() {
-            return FiltersSetupActivity.this.items.size();
-        }
-
-        @Override
-        public final int getItemViewType(int i) {
-            ItemInner itemInner;
-            if (i >= 0) {
-                FiltersSetupActivity filtersSetupActivity = FiltersSetupActivity.this;
-                if (i < filtersSetupActivity.items.size() && (itemInner = (ItemInner) filtersSetupActivity.items.get(i)) != null) {
-                    return itemInner.viewType;
-                }
-                return 3;
-            }
-            return 3;
-        }
-
-        @Override
-        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            int i = viewHolder.mItemViewType;
-            return (i == 3 || i == 0 || i == 5 || i == 1) ? false : true;
-        }
-
-        @Override
-        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            char c;
-            FiltersSetupActivity filtersSetupActivity = FiltersSetupActivity.this;
-            ArrayList arrayList = filtersSetupActivity.items;
-            ItemInner itemInner = (ItemInner) arrayList.get(i);
-            if (itemInner == null) {
-                return;
-            }
-            int i2 = i + 1;
-            boolean z = i2 < arrayList.size() && ((ItemInner) arrayList.get(i2)).viewType != 3;
-            boolean z2 = i2 >= arrayList.size();
-            int i3 = viewHolder.mItemViewType;
-            View view = viewHolder.itemView;
-            if (i3 == 0) {
-                ((HeaderCell) view).setText(itemInner.text);
-                return;
-            }
-            if (i3 != 2) {
-                if (i3 == 3) {
-                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) view;
-                    if (TextUtils.isEmpty(itemInner.text)) {
-                        textInfoPrivacyCell.setText(null);
-                        textInfoPrivacyCell.setFixedSize(12);
-                    } else {
-                        textInfoPrivacyCell.setFixedSize(0);
-                        textInfoPrivacyCell.setText(itemInner.text);
-                    }
-                    textInfoPrivacyCell.setBottomPadding(z2 ? 32 : 17);
-                    return;
-                }
-                if (i3 != 4) {
-                    if (i3 != 5) {
-                        if (i3 != 6) {
-                            return;
-                        }
-                        TextCheckCell textCheckCell = (TextCheckCell) view;
-                        textCheckCell.setTextAndCheck(itemInner.text, filtersSetupActivity.getMessagesController().folderTags, z);
-                        textCheckCell.setCheckBoxIcon(filtersSetupActivity.getUserConfig().isPremium() ? 0 : R.drawable.permission_locked);
-                        return;
-                    }
-                    SuggestedFilterCell suggestedFilterCell = (SuggestedFilterCell) view;
-                    TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = itemInner.suggested;
-                    suggestedFilterCell.needDivider = z;
-                    suggestedFilterCell.suggestedFilter = tL_dialogFilterSuggested;
-                    suggestedFilterCell.setWillNotDraw(!z);
-                    suggestedFilterCell.textView.setText(tL_dialogFilterSuggested.filter.title.text);
-                    suggestedFilterCell.valueTextView.setText(tL_dialogFilterSuggested.description);
-                    return;
-                }
-                TextCell textCell = (TextCell) view;
-                Context context = this.mContext;
-                Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
-                Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
-                int color = Theme.getColor(null, Theme.key_switchTrackChecked, false);
-                PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-                drawable.setColorFilter(new PorterDuffColorFilter(color, mode));
-                drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_checkboxCheck, false), mode));
-                CombinedDrawable combinedDrawable = new CombinedDrawable(drawable, drawable2);
-                textCell.textView.setText(((Object) itemInner.text) + "", false);
-                textCell.imageView.setImageDrawable(combinedDrawable);
-                return;
-            }
-            FilterCell filterCell = (FilterCell) view;
-            MessagesController.DialogFilter dialogFilter = itemInner.filter;
-            MessagesController.DialogFilter dialogFilter2 = filterCell.currentFilter;
-            int i4 = dialogFilter2 == null ? -1 : dialogFilter2.id;
-            filterCell.currentFilter = dialogFilter;
-            int i5 = dialogFilter == null ? -1 : dialogFilter.id;
-            boolean z3 = i4 != i5;
-            FiltersSetupActivity filtersSetupActivity2 = FiltersSetupActivity.this;
-            int i6 = filtersSetupActivity2.getMessagesController().folderTags ? dialogFilter.color : -1;
-            View view2 = filterCell.colorImageView;
-            if (i6 < 0 || dialogFilter.color == filterCell.lastAppliedColor) {
-                c = 1;
-            } else {
+        public void setFilter(MessagesController.DialogFilter dialogFilter, boolean z, int i) {
+            MessagesController.DialogFilter dialogFilter2 = this.currentFilter;
+            int i2 = dialogFilter2 == null ? -1 : dialogFilter2.id;
+            this.currentFilter = dialogFilter;
+            int i3 = dialogFilter == null ? -1 : dialogFilter.id;
+            boolean z2 = i2 != i3;
+            int i4 = FiltersSetupActivity.this.getMessagesController().folderTags ? dialogFilter.color : -1;
+            if (i4 >= 0 && dialogFilter.color != this.lastAppliedColor) {
+                View view = this.colorImageView;
                 int iDp = AndroidUtilities.dp(22.0f);
+                FiltersSetupActivity filtersSetupActivity = FiltersSetupActivity.this;
                 int[] iArr = Theme.keys_avatar_nameInMessage;
-                filterCell.lastAppliedColor = i6;
-                c = 1;
-                view2.setBackground(Theme.createCircleDrawable(iDp, filtersSetupActivity2.getThemedColor(iArr[i6 % iArr.length])));
+                this.lastAppliedColor = i4;
+                view.setBackground(Theme.createCircleDrawable(iDp, filtersSetupActivity.getThemedColor(iArr[i4 % iArr.length])));
             }
-            if (i6 != filterCell.lastColor) {
-                ValueAnimator valueAnimator = filterCell.moveImageViewAnimator;
+            if (i4 != this.lastColor) {
+                ValueAnimator valueAnimator = this.moveImageViewAnimator;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
-                ImageView imageView = filterCell.moveImageView;
-                if (i4 == i5) {
-                    float alpha = imageView.getAlpha();
-                    float f = i6 >= 0 ? 0.0f : 1.0f;
-                    float[] fArr = new float[2];
-                    fArr[0] = alpha;
-                    fArr[c] = f;
-                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(fArr);
-                    filterCell.moveImageViewAnimator = valueAnimatorOfFloat;
-                    valueAnimatorOfFloat.addUpdateListener(new PhotoViewer$73$$ExternalSyntheticLambda0(filterCell, 14));
-                    filterCell.moveImageViewAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-                    filterCell.moveImageViewAnimator.setDuration(340L);
-                    filterCell.moveImageViewAnimator.setStartDelay(i6 >= 0 ? ((long) Math.max(0, filtersSetupActivity2.filtersSectionEnd - i)) * 27 : ((long) Math.max(0, i - filtersSetupActivity2.filtersSectionStart)) * 27);
-                    filterCell.moveImageViewAnimator.start();
+                if (i2 == i3) {
+                    ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(this.moveImageView.getAlpha(), i4 >= 0 ? 0.0f : 1.0f);
+                    this.moveImageViewAnimator = valueAnimatorOfFloat;
+                    valueAnimatorOfFloat.addUpdateListener(new QrActivity$$ExternalSyntheticLambda8(this, 7));
+                    this.moveImageViewAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+                    this.moveImageViewAnimator.setDuration(340L);
+                    ValueAnimator valueAnimator2 = this.moveImageViewAnimator;
+                    FiltersSetupActivity filtersSetupActivity2 = FiltersSetupActivity.this;
+                    valueAnimator2.setStartDelay(((long) Math.max(0, i4 >= 0 ? filtersSetupActivity2.filtersSectionEnd - i : i - filtersSetupActivity2.filtersSectionStart)) * 27);
+                    this.moveImageViewAnimator.start();
                 } else {
-                    imageView.setScaleX(i6 >= 0 ? 0.5f : 1.0f);
-                    imageView.setScaleY(i6 >= 0 ? 0.5f : 1.0f);
-                    imageView.setAlpha(i6 >= 0 ? 0.0f : 1.0f);
-                    view2.setScaleX(i6 >= 0 ? 1.0f : 0.5f);
-                    view2.setScaleY(i6 >= 0 ? 1.0f : 0.5f);
-                    view2.setAlpha(i6 >= 0 ? 1.0f : 0.0f);
+                    this.moveImageView.setScaleX(i4 >= 0 ? 0.5f : 1.0f);
+                    this.moveImageView.setScaleY(i4 >= 0 ? 0.5f : 1.0f);
+                    this.moveImageView.setAlpha(i4 >= 0 ? 0.0f : 1.0f);
+                    this.colorImageView.setScaleX(i4 >= 0 ? 1.0f : 0.5f);
+                    this.colorImageView.setScaleY(i4 >= 0 ? 1.0f : 0.5f);
+                    this.colorImageView.setAlpha(i4 >= 0 ? 1.0f : 0.0f);
                 }
-                filterCell.lastColor = i6;
+                this.lastColor = i4;
             }
-            filterCell.shareImageView.setVisibility(dialogFilter.isChatlist() ? 0 : 8);
+            this.shareImageView.setVisibility(dialogFilter.isChatlist() ? 0 : 8);
             StringBuilder sb = new StringBuilder();
             if (dialogFilter.isDefault()) {
                 sb.append(LocaleController.getString(R.string.FilterAllChats));
             } else {
-                int i7 = dialogFilter.flags;
-                int i8 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
-                if ((i7 & i8) == i8) {
+                int i5 = dialogFilter.flags;
+                int i6 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
+                if ((i5 & i6) == i6) {
                     sb.append(LocaleController.getString(R.string.FilterAllChats));
                 } else {
-                    if ((i7 & MessagesController.DIALOG_FILTER_FLAG_CONTACTS) != 0) {
+                    if ((i5 & MessagesController.DIALOG_FILTER_FLAG_CONTACTS) != 0) {
                         if (sb.length() != 0) {
                             sb.append(", ");
                         }
@@ -555,85 +387,528 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
             if (dialogFilter.isDefault()) {
                 string = LocaleController.getString(R.string.FilterAllChats);
             }
-            if (!z3) {
-                filterCell.progressToLock = filterCell.currentFilter.locked ? 1.0f : 0.0f;
+            if (!z2) {
+                this.progressToLock = this.currentFilter.locked ? 1.0f : 0.0f;
             }
-            SimpleTextView simpleTextView = filterCell.textView;
-            Spannable spannableReplaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(string, simpleTextView.getPaint().getFontMetricsInt(), false), dialogFilter.entities, simpleTextView.getPaint().getFontMetricsInt());
-            simpleTextView.setEmojiCacheType(dialogFilter.title_noanimate ? 26 : 0);
-            simpleTextView.setText(spannableReplaceAnimatedEmoji, false);
-            filterCell.valueTextView.setText(sb);
-            filterCell.needDivider = z;
-            boolean zIsDefault = dialogFilter.isDefault();
-            ImageView imageView2 = filterCell.optionsImageView;
-            if (zIsDefault) {
-                imageView2.setVisibility(8);
+            Spannable spannableReplaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(string, this.textView.getPaint().getFontMetricsInt(), false), dialogFilter.entities, this.textView.getPaint().getFontMetricsInt());
+            this.textView.setEmojiCacheType(dialogFilter.title_noanimate ? 26 : 0);
+            this.textView.setText(spannableReplaceAnimatedEmoji);
+            this.valueTextView.setText(sb);
+            this.needDivider = z;
+            if (dialogFilter.isDefault()) {
+                this.optionsImageView.setVisibility(8);
             } else {
-                imageView2.setVisibility(0);
+                this.optionsImageView.setVisibility(0);
             }
-            filterCell.invalidate();
+            invalidate();
         }
 
-        @Override
-        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View headerCell;
-            Context context = this.mContext;
-            if (i == 0) {
-                headerCell = new HeaderCell(context);
-            } else if (i == 1) {
-                headerCell = new HintInnerCell(context, R.raw.filters, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.CreateNewFilterInfo, new Object[0])));
-            } else if (i == 2) {
-                FilterCell filterCell = FiltersSetupActivity.this.new FilterCell(context);
-                filterCell.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
-                filterCell.setOnReorderButtonTouchListener(new PassportActivity$$ExternalSyntheticLambda22(7, this, filterCell));
-                filterCell.setOnOptionsClick(new GroupCallSheet$$ExternalSyntheticLambda5(this, 25));
-                headerCell = filterCell;
-            } else if (i == 3) {
-                headerCell = new TextInfoPrivacyCell(context, 24, null);
-            } else if (i == 4) {
-                headerCell = new TextCell(context);
-            } else if (i != 6) {
-                SuggestedFilterCell suggestedFilterCell = new SuggestedFilterCell(context);
-                suggestedFilterCell.setAddOnClickListener(new IntroActivity$$ExternalSyntheticLambda1(8, this, suggestedFilterCell));
-                headerCell = suggestedFilterCell;
-            } else {
-                headerCell = new TextCheckCell(context);
-            }
-            return new RecyclerListView.Holder(headerCell);
+        public void setOnOptionsClick(View.OnClickListener onClickListener) {
+            this.optionsImageView.setOnClickListener(onClickListener);
+        }
+
+        public void setOnReorderButtonTouchListener(View.OnTouchListener onTouchListener) {
+            this.moveImageView.setOnTouchListener(onTouchListener);
         }
     }
 
-    public final class SuggestedFilterCell extends FrameLayout {
-        public final ProgressButton addButton;
-        public boolean needDivider;
-        public TLRPC.TL_dialogFilterSuggested suggestedFilter;
-        public final TextView textView;
-        public final TextView valueTextView;
+    public static class HintInnerCell extends FrameLayout {
+        private RLottieImageView imageView;
+        private TextView messageTextView;
+
+        public HintInnerCell(Context context, int i, CharSequence charSequence) {
+            super(context);
+            RLottieImageView rLottieImageView = new RLottieImageView(context);
+            this.imageView = rLottieImageView;
+            rLottieImageView.setAnimation(i, 90, 90);
+            this.imageView.setScaleType(ImageView.ScaleType.CENTER);
+            this.imageView.playAnimation();
+            this.imageView.setImportantForAccessibility(2);
+            addView(this.imageView, LayoutHelper.createFrame(90, 90.0f, 49, 0.0f, 14.0f, 0.0f, 0.0f));
+            this.imageView.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda11(this, 15));
+            TextView textView = new TextView(context);
+            this.messageTextView = textView;
+            textView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText4, false));
+            this.messageTextView.setTextSize(1, 14.0f);
+            this.messageTextView.setGravity(17);
+            this.messageTextView.setText(charSequence);
+            addView(this.messageTextView, LayoutHelper.createFrame(-1, -2.0f, 49, 40.0f, 121.0f, 40.0f, 24.0f));
+        }
+
+        public void lambda$new$0(View view) {
+            if (this.imageView.isPlaying()) {
+                return;
+            }
+            this.imageView.setProgress(0.0f);
+            this.imageView.playAnimation();
+        }
+
+        @Override
+        public void onMeasure(int i, int i2) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
+        }
+    }
+
+    public static class ItemInner extends AdapterWithDiffUtils.Item {
+        MessagesController.DialogFilter filter;
+        int filterColor;
+        TLRPC.TL_dialogFilterSuggested suggested;
+        CharSequence text;
+
+        public ItemInner(int i) {
+            super(i, false);
+        }
+
+        public static ItemInner asButton(CharSequence charSequence) {
+            ItemInner itemInner = new ItemInner(4);
+            itemInner.text = charSequence;
+            return itemInner;
+        }
+
+        public static ItemInner asCheck(CharSequence charSequence) {
+            ItemInner itemInner = new ItemInner(6);
+            itemInner.text = charSequence;
+            return itemInner;
+        }
+
+        public static ItemInner asFilter(MessagesController.DialogFilter dialogFilter) {
+            ItemInner itemInner = new ItemInner(2);
+            itemInner.filter = dialogFilter;
+            return itemInner;
+        }
+
+        public static ItemInner asHeader(CharSequence charSequence) {
+            ItemInner itemInner = new ItemInner(0);
+            itemInner.text = charSequence;
+            return itemInner;
+        }
+
+        public static ItemInner asHint() {
+            return new ItemInner(1);
+        }
+
+        public static ItemInner asShadow(CharSequence charSequence) {
+            ItemInner itemInner = new ItemInner(3);
+            itemInner.text = charSequence;
+            return itemInner;
+        }
+
+        public static ItemInner asSuggested(TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested) {
+            ItemInner itemInner = new ItemInner(5);
+            itemInner.suggested = tL_dialogFilterSuggested;
+            return itemInner;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof ItemInner)) {
+                return false;
+            }
+            ItemInner itemInner = (ItemInner) obj;
+            int i = itemInner.viewType;
+            int i2 = this.viewType;
+            if (i != i2) {
+                return false;
+            }
+            if ((i2 == 0 || i2 == 4 || i2 == 3 || i2 == 6) && !TextUtils.equals(this.text, itemInner.text)) {
+                return false;
+            }
+            int i3 = this.viewType;
+            if (i3 == 2) {
+                MessagesController.DialogFilter dialogFilter = this.filter;
+                boolean z = dialogFilter == null;
+                MessagesController.DialogFilter dialogFilter2 = itemInner.filter;
+                if (z != (dialogFilter2 == null)) {
+                    return false;
+                }
+                if (dialogFilter != null && dialogFilter.id != dialogFilter2.id) {
+                    return false;
+                }
+            }
+            if (i3 == 5) {
+                TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = this.suggested;
+                boolean z2 = tL_dialogFilterSuggested == null;
+                TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested2 = itemInner.suggested;
+                if (z2 != (tL_dialogFilterSuggested2 == null)) {
+                    return false;
+                }
+                if (tL_dialogFilterSuggested != null && tL_dialogFilterSuggested.filter.id != tL_dialogFilterSuggested2.filter.id) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
+
+    public class ListAdapter extends AdapterWithDiffUtils {
+        private Context mContext;
+
+        public ListAdapter(Context context) {
+            this.mContext = context;
+        }
+
+        public boolean lambda$onCreateViewHolder$0(FilterCell filterCell, View view, MotionEvent motionEvent) {
+            if (motionEvent.getAction() != 0) {
+                return false;
+            }
+            FiltersSetupActivity.this.itemTouchHelper.startDrag(FiltersSetupActivity.this.listView.getChildViewHolder(filterCell));
+            return false;
+        }
+
+        public void lambda$onCreateViewHolder$1(MessagesController.DialogFilter dialogFilter) {
+            if (!dialogFilter.locked) {
+                FiltersSetupActivity.this.presentFragment(new FilterCreateActivity(dialogFilter));
+                return;
+            }
+            FiltersSetupActivity filtersSetupActivity = FiltersSetupActivity.this;
+            FiltersSetupActivity filtersSetupActivity2 = FiltersSetupActivity.this;
+            filtersSetupActivity.showDialog(new LimitReachedBottomSheet(3, filtersSetupActivity2, this.mContext, ((BaseFragment) filtersSetupActivity2).currentAccount, null));
+        }
+
+        public void lambda$onCreateViewHolder$2(Boolean bool) {
+            FiltersSetupActivity.this.updateRows(true);
+        }
+
+        public void lambda$onCreateViewHolder$3(AlertDialog alertDialog, MessagesController.DialogFilter dialogFilter) {
+            if (alertDialog != null) {
+                try {
+                    alertDialog.dismiss();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            FiltersSetupActivity.this.getMessagesController().removeFilter(dialogFilter);
+            FiltersSetupActivity.this.getMessagesStorage().deleteDialogFilter(dialogFilter);
+        }
+
+        public void lambda$onCreateViewHolder$4(AlertDialog alertDialog, MessagesController.DialogFilter dialogFilter, TLObject tLObject, TLRPC.TL_error tL_error) {
+            AndroidUtilities.runOnUIThread(new PhotoViewer$86$$ExternalSyntheticLambda0(this, alertDialog, dialogFilter, 12));
+        }
+
+        public void lambda$onCreateViewHolder$5(MessagesController.DialogFilter dialogFilter, AlertDialog alertDialog, int i) {
+            AlertDialog alertDialog2 = null;
+            if (FiltersSetupActivity.this.getParentActivity() != null) {
+                AlertDialog alertDialog3 = new AlertDialog(FiltersSetupActivity.this.getParentActivity(), 3, null);
+                alertDialog3.canCacnel = false;
+                alertDialog3.show();
+                alertDialog2 = alertDialog3;
+            }
+            TLRPC.TL_messages_updateDialogFilter tL_messages_updateDialogFilter = new TLRPC.TL_messages_updateDialogFilter();
+            tL_messages_updateDialogFilter.id = dialogFilter.id;
+            FiltersSetupActivity.this.getConnectionsManager().sendRequest(tL_messages_updateDialogFilter, new LinkManager$$ExternalSyntheticLambda0(this, alertDialog2, dialogFilter, 1));
+        }
+
+        public void lambda$onCreateViewHolder$6(MessagesController.DialogFilter dialogFilter) {
+            if (dialogFilter.isChatlist()) {
+                FolderBottomSheet.showForDeletion(FiltersSetupActivity.this, dialogFilter.id, new PollItemMenu$$ExternalSyntheticLambda15(this, 3));
+                return;
+            }
+            AlertDialog.Builder builder = new AlertDialog.Builder(FiltersSetupActivity.this.getParentActivity(), 0, null);
+            builder.setTitle(LocaleController.getString(R.string.FilterDelete));
+            builder.setMessage(LocaleController.getString(R.string.FilterDeleteAlert));
+            builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
+            builder.setPositiveButton(LocaleController.getString(R.string.Delete), new WearAuthSheet$$ExternalSyntheticLambda3(8, this, dialogFilter));
+            AlertDialog alertDialogCreate = builder.create();
+            FiltersSetupActivity.this.showDialog(alertDialogCreate);
+            TextView textView = (TextView) alertDialogCreate.getButton(-1);
+            if (textView != null) {
+                textView.setTextColor(Theme.getColor(null, Theme.key_text_RedBold, false));
+            }
+        }
+
+        public void lambda$onCreateViewHolder$7(View view) {
+            FilterCell filterCell = (FilterCell) view.getParent();
+            final MessagesController.DialogFilter currentFilter = filterCell.getCurrentFilter();
+            ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(FiltersSetupActivity.this, filterCell);
+            final int i = 0;
+            itemOptionsMakeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.FilterEditItem), new Runnable(this) {
+                public final FiltersSetupActivity.ListAdapter f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (i) {
+                        case 0:
+                            this.f$0.lambda$onCreateViewHolder$1(currentFilter);
+                            break;
+                        default:
+                            this.f$0.lambda$onCreateViewHolder$6(currentFilter);
+                            break;
+                    }
+                }
+            });
+            final int i2 = 1;
+            itemOptionsMakeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString(R.string.FilterDeleteItem), true, new Runnable(this) {
+                public final FiltersSetupActivity.ListAdapter f$0;
+
+                {
+                    this.f$0 = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (i2) {
+                        case 0:
+                            this.f$0.lambda$onCreateViewHolder$1(currentFilter);
+                            break;
+                        default:
+                            this.f$0.lambda$onCreateViewHolder$6(currentFilter);
+                            break;
+                    }
+                }
+            });
+            if (LocaleController.isRTL) {
+                itemOptionsMakeOptions.setGravity(3);
+            }
+            itemOptionsMakeOptions.setScrimViewBackground(FiltersSetupActivity.this.listView.getClipBackground(filterCell));
+            itemOptionsMakeOptions.show();
+        }
+
+        public void lambda$onCreateViewHolder$8(TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested) {
+            FiltersSetupActivity.this.getMessagesController().suggestedFilters.remove(tL_dialogFilterSuggested);
+            FiltersSetupActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogFiltersUpdated, new Object[0]);
+        }
+
+        public void lambda$onCreateViewHolder$9(SuggestedFilterCell suggestedFilterCell, View view) {
+            TLRPC.TL_dialogFilterSuggested suggestedFilter = suggestedFilterCell.getSuggestedFilter();
+            MessagesController.DialogFilter dialogFilter = new MessagesController.DialogFilter();
+            TLRPC.TL_textWithEntities tL_textWithEntities = suggestedFilter.filter.title;
+            dialogFilter.name = tL_textWithEntities.text;
+            dialogFilter.entities = tL_textWithEntities.entities;
+            dialogFilter.id = 2;
+            while (FiltersSetupActivity.this.getMessagesController().dialogFiltersById.get(dialogFilter.id) != null) {
+                dialogFilter.id++;
+            }
+            dialogFilter.order = FiltersSetupActivity.this.getMessagesController().getDialogFilters().size();
+            dialogFilter.unreadCount = -1;
+            dialogFilter.pendingUnreadCount = -1;
+            int i = 0;
+            while (i < 2) {
+                ArrayList<TLRPC.InputPeer> arrayList = i == 0 ? suggestedFilter.filter.include_peers : suggestedFilter.filter.exclude_peers;
+                ArrayList<Long> arrayList2 = i == 0 ? dialogFilter.alwaysShow : dialogFilter.neverShow;
+                int size = arrayList.size();
+                int iM = 0;
+                while (iM < size) {
+                    TLRPC.InputPeer inputPeer = arrayList.get(iM);
+                    long j = inputPeer.user_id;
+                    if (j == 0) {
+                        long j2 = inputPeer.chat_id;
+                        j = j2 != 0 ? -j2 : -inputPeer.channel_id;
+                    }
+                    iM = MessagesController$$ExternalSyntheticOutline2.m(j, arrayList2, iM, 1);
+                }
+                i++;
+            }
+            TLRPC.DialogFilter dialogFilter2 = suggestedFilter.filter;
+            if (dialogFilter2.groups) {
+                dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_GROUPS;
+            }
+            if (dialogFilter2.bots) {
+                dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_BOTS;
+            }
+            if (dialogFilter2.contacts) {
+                dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
+            }
+            if (dialogFilter2.non_contacts) {
+                dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
+            }
+            if (dialogFilter2.broadcasts) {
+                dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
+            }
+            if (dialogFilter2.exclude_archived) {
+                dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED;
+            }
+            if (dialogFilter2.exclude_read) {
+                dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ;
+            }
+            if (dialogFilter2.exclude_muted) {
+                dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED;
+            }
+            FilterCreateActivity.saveFilterToServer(dialogFilter, dialogFilter.flags, dialogFilter.name, dialogFilter.entities, dialogFilter.title_noanimate, dialogFilter.color, dialogFilter.alwaysShow, dialogFilter.neverShow, dialogFilter.pinnedDialogs, true, true, true, true, true, FiltersSetupActivity.this, new PhotoViewer$44$$ExternalSyntheticLambda0(18, this, suggestedFilter));
+        }
+
+        @Override
+        public int getItemCount() {
+            return FiltersSetupActivity.this.items.size();
+        }
+
+        @Override
+        public int getItemViewType(int i) {
+            ItemInner itemInner;
+            if (i < 0 || i >= FiltersSetupActivity.this.items.size() || (itemInner = (ItemInner) FiltersSetupActivity.this.items.get(i)) == null) {
+                return 3;
+            }
+            return itemInner.viewType;
+        }
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            int itemViewType = viewHolder.getItemViewType();
+            return (itemViewType == 3 || itemViewType == 0 || itemViewType == 5 || itemViewType == 1) ? false : true;
+        }
+
+        public void moveElementToStart(int i) {
+            ArrayList<MessagesController.DialogFilter> arrayList = FiltersSetupActivity.this.getMessagesController().dialogFilters;
+            if (i < 0 || i >= arrayList.size()) {
+                return;
+            }
+            arrayList.add(0, arrayList.remove(i));
+            for (int i2 = 0; i2 <= i; i2++) {
+                arrayList.get(i2).order = i2;
+            }
+            FiltersSetupActivity.this.orderChanged = true;
+            FiltersSetupActivity.this.updateRows(true);
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            ItemInner itemInner = (ItemInner) FiltersSetupActivity.this.items.get(i);
+            if (itemInner == null) {
+                return;
+            }
+            int i2 = i + 1;
+            boolean z = i2 < FiltersSetupActivity.this.items.size() && ((ItemInner) FiltersSetupActivity.this.items.get(i2)).viewType != 3;
+            boolean z2 = i2 >= FiltersSetupActivity.this.items.size();
+            int itemViewType = viewHolder.getItemViewType();
+            if (itemViewType == 0) {
+                ((HeaderCell) viewHolder.itemView).setText(itemInner.text);
+                return;
+            }
+            if (itemViewType == 2) {
+                ((FilterCell) viewHolder.itemView).setFilter(itemInner.filter, z, i);
+                return;
+            }
+            if (itemViewType == 3) {
+                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                if (TextUtils.isEmpty(itemInner.text)) {
+                    textInfoPrivacyCell.setText(null);
+                    textInfoPrivacyCell.setFixedSize(12);
+                } else {
+                    textInfoPrivacyCell.setFixedSize(0);
+                    textInfoPrivacyCell.setText(itemInner.text);
+                }
+                textInfoPrivacyCell.setBottomPadding(z2 ? 32 : 17);
+                return;
+            }
+            if (itemViewType != 4) {
+                if (itemViewType == 5) {
+                    ((SuggestedFilterCell) viewHolder.itemView).setFilter(itemInner.suggested, z);
+                    return;
+                } else {
+                    if (itemViewType != 6) {
+                        return;
+                    }
+                    TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
+                    textCheckCell.setTextAndCheck(itemInner.text, FiltersSetupActivity.this.getMessagesController().folderTags, z);
+                    textCheckCell.setCheckBoxIcon(FiltersSetupActivity.this.getUserConfig().isPremium() ? 0 : R.drawable.permission_locked);
+                    return;
+                }
+            }
+            TextCell textCell = (TextCell) viewHolder.itemView;
+            Drawable drawable = this.mContext.getResources().getDrawable(R.drawable.poll_add_circle);
+            Drawable drawable2 = this.mContext.getResources().getDrawable(R.drawable.poll_add_plus);
+            int color = Theme.getColor(null, Theme.key_switchTrackChecked, false);
+            PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
+            drawable.setColorFilter(new PorterDuffColorFilter(color, mode));
+            drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_checkboxCheck, false), mode));
+            textCell.setTextAndIcon(((Object) itemInner.text) + "", new CombinedDrawable(drawable, drawable2), false);
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            View headerCell;
+            if (i == 0) {
+                headerCell = new HeaderCell(this.mContext);
+            } else if (i == 1) {
+                headerCell = new HintInnerCell(this.mContext, R.raw.filters, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.CreateNewFilterInfo, new Object[0])));
+            } else if (i == 2) {
+                FilterCell filterCell = FiltersSetupActivity.this.new FilterCell(this.mContext);
+                filterCell.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundWhite, false));
+                filterCell.setOnReorderButtonTouchListener(new PassportActivity$$ExternalSyntheticLambda33(2, this, filterCell));
+                filterCell.setOnOptionsClick(new PollItemMenu$4$$ExternalSyntheticLambda0(this, 12));
+                headerCell = filterCell;
+            } else if (i == 3) {
+                headerCell = new TextInfoPrivacyCell(this.mContext, 24, null);
+            } else if (i == 4) {
+                headerCell = new TextCell(this.mContext);
+            } else if (i != 6) {
+                SuggestedFilterCell suggestedFilterCell = new SuggestedFilterCell(this.mContext);
+                suggestedFilterCell.setAddOnClickListener(new ArticleViewer$$ExternalSyntheticLambda53(6, this, suggestedFilterCell));
+                headerCell = suggestedFilterCell;
+            } else {
+                headerCell = new TextCheckCell(this.mContext);
+            }
+            return new RecyclerListView.Holder(headerCell);
+        }
+
+        public void swapElements(int i, int i2) {
+            MessagesController.DialogFilter dialogFilter;
+            MessagesController.DialogFilter dialogFilter2;
+            if (i < FiltersSetupActivity.this.filtersStartPosition || i2 < FiltersSetupActivity.this.filtersStartPosition) {
+                return;
+            }
+            ItemInner itemInner = (ItemInner) FiltersSetupActivity.this.items.get(i);
+            ItemInner itemInner2 = (ItemInner) FiltersSetupActivity.this.items.get(i2);
+            if (itemInner == null || itemInner2 == null || (dialogFilter = itemInner.filter) == null || (dialogFilter2 = itemInner2.filter) == null) {
+                return;
+            }
+            int i3 = dialogFilter.order;
+            dialogFilter.order = dialogFilter2.order;
+            dialogFilter2.order = i3;
+            ArrayList<MessagesController.DialogFilter> arrayList = FiltersSetupActivity.this.getMessagesController().dialogFilters;
+            try {
+                arrayList.set(i - FiltersSetupActivity.this.filtersStartPosition, itemInner2.filter);
+                arrayList.set(i2 - FiltersSetupActivity.this.filtersStartPosition, itemInner.filter);
+            } catch (Exception unused) {
+            }
+            FiltersSetupActivity.this.orderChanged = true;
+            FiltersSetupActivity.this.updateRows(true);
+        }
+    }
+
+    public static class SuggestedFilterCell extends FrameLayout {
+        private ProgressButton addButton;
+        private boolean needDivider;
+        private TLRPC.TL_dialogFilterSuggested suggestedFilter;
+        private TextView textView;
+        private TextView valueTextView;
 
         public SuggestedFilterCell(Context context) {
             super(context);
             TextView textView = new TextView(context);
             this.textView = textView;
-            ArticleViewer.IBlock.CC.m(textView, Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false), 16.0f, 1, true);
+            textView.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteBlackText, false));
+            this.textView.setTextSize(1, 16.0f);
+            this.textView.setLines(1);
+            this.textView.setMaxLines(1);
+            this.textView.setSingleLine(true);
+            TextView textView2 = this.textView;
             TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-            textView.setEllipsize(truncateAt);
-            textView.setGravity(LocaleController.isRTL ? 5 : 3);
-            addView(textView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 22.0f, 10.0f, 22.0f, 0.0f));
-            TextView textView2 = new TextView(context);
-            this.valueTextView = textView2;
-            ArticleViewer.IBlock.CC.m(textView2, Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false), 13.0f, 1, true);
             textView2.setEllipsize(truncateAt);
-            textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-            addView(textView2, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 22.0f, 35.0f, 22.0f, 0.0f));
+            this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
+            addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 22.0f, 10.0f, 22.0f, 0.0f));
+            TextView textView3 = new TextView(context);
+            this.valueTextView = textView3;
+            textView3.setTextColor(Theme.getColor(null, Theme.key_windowBackgroundWhiteGrayText2, false));
+            this.valueTextView.setTextSize(1, 13.0f);
+            this.valueTextView.setLines(1);
+            this.valueTextView.setMaxLines(1);
+            this.valueTextView.setSingleLine(true);
+            this.valueTextView.setEllipsize(truncateAt);
+            this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+            addView(this.valueTextView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 22.0f, 35.0f, 22.0f, 0.0f));
             ProgressButton progressButton = new ProgressButton(context);
             this.addButton = progressButton;
             progressButton.setText(LocaleController.getString(R.string.Add));
-            progressButton.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
-            progressButton.setProgressColor(Theme.getColor(null, Theme.key_featuredStickers_buttonProgress, false));
-            int color = Theme.getColor(null, Theme.key_featuredStickers_addButton, false);
-            Theme.getColor(null, Theme.key_featuredStickers_addButtonPressed, false);
-            progressButton.setBackgroundRoundRect(14.0f, color);
-            addView(progressButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
+            this.addButton.setTextColor(Theme.getColor(null, Theme.key_featuredStickers_buttonText, false));
+            this.addButton.setProgressColor(Theme.getColor(null, Theme.key_featuredStickers_buttonProgress, false));
+            this.addButton.setBackgroundRoundRect(Theme.getColor(null, Theme.key_featuredStickers_addButton, false), Theme.getColor(null, Theme.key_featuredStickers_addButtonPressed, false));
+            addView(this.addButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
         }
 
         public TLRPC.TL_dialogFilterSuggested getSuggestedFilter() {
@@ -641,14 +916,14 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
         }
 
         @Override
-        public final void onDraw(Canvas canvas) {
+        public void onDraw(Canvas canvas) {
             if (this.needDivider) {
                 canvas.drawLine(0.0f, getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.dividerPaint);
             }
         }
 
         @Override
-        public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             accessibilityNodeInfo.setEnabled(true);
             accessibilityNodeInfo.setText(this.addButton.getText());
@@ -656,199 +931,319 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
         }
 
         @Override
-        public final void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             setMeasuredDimension(View.MeasureSpec.getSize(i), AndroidUtilities.dp(64.0f));
             measureChildWithMargins(this.addButton, i, 0, i2, 0);
-            TextView textView = this.textView;
-            ProgressButton progressButton = this.addButton;
-            measureChildWithMargins(textView, i, progressButton.getMeasuredWidth(), i2, 0);
-            measureChildWithMargins(this.valueTextView, i, progressButton.getMeasuredWidth(), i2, 0);
+            measureChildWithMargins(this.textView, i, this.addButton.getMeasuredWidth(), i2, 0);
+            measureChildWithMargins(this.valueTextView, i, this.addButton.getMeasuredWidth(), i2, 0);
         }
 
         public void setAddOnClickListener(View.OnClickListener onClickListener) {
             this.addButton.setOnClickListener(onClickListener);
         }
+
+        public void setFilter(TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested, boolean z) {
+            this.needDivider = z;
+            this.suggestedFilter = tL_dialogFilterSuggested;
+            setWillNotDraw(!z);
+            this.textView.setText(tL_dialogFilterSuggested.filter.title.text);
+            this.valueTextView.setText(tL_dialogFilterSuggested.description);
+        }
     }
 
-    public final class TextCell extends FrameLayout {
-        public final ImageView imageView;
-        public final SimpleTextView textView;
+    public static class TextCell extends FrameLayout {
+        private ImageView imageView;
+        private SimpleTextView textView;
 
         public TextCell(Context context) {
             super(context);
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.textView = simpleTextView;
             simpleTextView.setTextSize(16);
-            simpleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+            this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
+            SimpleTextView simpleTextView2 = this.textView;
             int i = Theme.key_windowBackgroundWhiteBlueText2;
-            simpleTextView.setTextColor(Theme.getColor(null, i, false));
-            simpleTextView.setTag(Integer.valueOf(i));
-            addView(simpleTextView);
+            simpleTextView2.setTextColor(Theme.getColor(null, i, false));
+            this.textView.setTag(Integer.valueOf(i));
+            addView(this.textView);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(imageView);
+            addView(this.imageView);
         }
 
         @Override
-        public final void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             int iDp;
             int i5 = i3 - i;
-            SimpleTextView simpleTextView = this.textView;
-            int textHeight = ((i4 - i2) - simpleTextView.getTextHeight()) / 2;
-            boolean z2 = LocaleController.isRTL;
-            ImageView imageView = this.imageView;
-            if (z2) {
-                iDp = (getMeasuredWidth() - simpleTextView.getMeasuredWidth()) - AndroidUtilities.dp(imageView.getVisibility() == 0 ? 64.0f : 23.0f);
+            int textHeight = ((i4 - i2) - this.textView.getTextHeight()) / 2;
+            if (LocaleController.isRTL) {
+                iDp = (getMeasuredWidth() - this.textView.getMeasuredWidth()) - AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 64.0f : 23.0f);
             } else {
-                iDp = AndroidUtilities.dp(imageView.getVisibility() == 0 ? 64.0f : 23.0f);
+                iDp = AndroidUtilities.dp(this.imageView.getVisibility() == 0 ? 64.0f : 23.0f);
             }
-            simpleTextView.layout(iDp, textHeight, simpleTextView.getMeasuredWidth() + iDp, simpleTextView.getMeasuredHeight() + textHeight);
-            int iDp2 = !LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : (i5 - imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
-            imageView.layout(iDp2, 0, imageView.getMeasuredWidth() + iDp2, imageView.getMeasuredHeight());
+            SimpleTextView simpleTextView = this.textView;
+            simpleTextView.layout(iDp, textHeight, simpleTextView.getMeasuredWidth() + iDp, this.textView.getMeasuredHeight() + textHeight);
+            int iDp2 = !LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : (i5 - this.imageView.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
+            ImageView imageView = this.imageView;
+            imageView.layout(iDp2, 0, imageView.getMeasuredWidth() + iDp2, this.imageView.getMeasuredHeight());
         }
 
         @Override
-        public final void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             int size = View.MeasureSpec.getSize(i);
             AndroidUtilities.dp(48.0f);
-            this.textView.measure(OKLCH.m(size, 94.0f, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+            this.textView.measure(OKLCH.m(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
             this.imageView.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
             setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
         }
+
+        public void setTextAndIcon(String str, Drawable drawable, boolean z) {
+            this.textView.setText(str);
+            this.imageView.setImageDrawable(drawable);
+        }
     }
 
-    public final class TouchHelperCallback extends ItemTouchHelper.Callback {
+    public class TouchHelperCallback extends ItemTouchHelper.Callback {
         public TouchHelperCallback() {
         }
 
-        @Override
-        public final void clearView(RecyclerView.ViewHolder viewHolder) {
-            View view = viewHolder.itemView;
-            Object tag = view.getTag();
-            if (tag instanceof Float) {
-                float fFloatValue = ((Float) tag).floatValue();
-                WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
-                ViewCompat.Api21Impl.setElevation(view, fFloatValue);
+        public void resetDefaultPosition() {
+            if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+                return;
             }
-            view.setTag(null);
-            view.setTranslationX(0.0f);
-            view.setTranslationY(0.0f);
-            View view2 = viewHolder.itemView;
-            view2.setPressed(false);
-            view2.setTag(R.id.dragging, null);
+            ArrayList<MessagesController.DialogFilter> dialogFilters = FiltersSetupActivity.this.getMessagesController().getDialogFilters();
+            for (int i = 0; i < dialogFilters.size(); i++) {
+                if (dialogFilters.get(i).isDefault() && i != 0) {
+                    FiltersSetupActivity.this.adapter.moveElementToStart(i);
+                    FiltersSetupActivity.this.listView.scrollToPosition(0);
+                    FiltersSetupActivity.this.onDefaultTabMoved();
+                    return;
+                }
+            }
         }
 
         @Override
-        public final int getMovementFlags(RecyclerListView recyclerListView, RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.mItemViewType != 2 ? ItemTouchHelper.Callback.makeMovementFlags(0, 0) : ItemTouchHelper.Callback.makeMovementFlags(3, 0);
+        public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+            super.clearView(recyclerView, viewHolder);
+            viewHolder.itemView.setPressed(false);
+            viewHolder.itemView.setTag(R.id.dragging, null);
         }
 
         @Override
-        public final boolean isLongPressDragEnabled() {
+        public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
+            return viewHolder.getItemViewType() != 2 ? ItemTouchHelper.Callback.makeMovementFlags(0, 0) : ItemTouchHelper.Callback.makeMovementFlags(3, 0);
+        }
+
+        @Override
+        public boolean isLongPressDragEnabled() {
             return true;
         }
 
         @Override
-        public final void onChildDraw(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float f, float f2, int i, boolean z) {
-            View view = viewHolder.itemView;
-            if (z && view.getTag() == null) {
-                WeakHashMap weakHashMap = ViewCompat.sViewPropertyAnimatorMap;
-                Float fValueOf = Float.valueOf(ViewCompat.Api21Impl.getElevation(view));
-                int childCount = recyclerView.getChildCount();
-                float f3 = 0.0f;
-                for (int i2 = 0; i2 < childCount; i2++) {
-                    View childAt = recyclerView.getChildAt(i2);
-                    if (childAt != view) {
-                        float elevation = ViewCompat.Api21Impl.getElevation(childAt);
-                        if (elevation > f3) {
-                            f3 = elevation;
-                        }
-                    }
-                }
-                ViewCompat.Api21Impl.setElevation(view, f3 + 1.0f);
-                view.setTag(fValueOf);
-            }
-            view.setTranslationX(f);
-            view.setTranslationY(f2);
+        public void onChildDraw(Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float f, float f2, int i, boolean z) {
+            super.onChildDraw(canvas, recyclerView, viewHolder, f, f2, i, z);
         }
 
         @Override
-        public final boolean onMove(RecyclerListView recyclerListView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
-            MessagesController.DialogFilter dialogFilter;
-            MessagesController.DialogFilter dialogFilter2;
-            if (viewHolder.mItemViewType != viewHolder2.mItemViewType) {
+        public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder2) {
+            if (viewHolder.getItemViewType() != viewHolder2.getItemViewType()) {
                 return false;
             }
-            ListAdapter listAdapter = FiltersSetupActivity.this.adapter;
-            int adapterPosition = viewHolder.getAdapterPosition();
-            int adapterPosition2 = viewHolder2.getAdapterPosition();
-            FiltersSetupActivity filtersSetupActivity = FiltersSetupActivity.this;
-            int i = filtersSetupActivity.filtersStartPosition;
-            if (adapterPosition >= i && adapterPosition2 >= i) {
-                ItemInner itemInner = (ItemInner) filtersSetupActivity.items.get(adapterPosition);
-                FiltersSetupActivity filtersSetupActivity2 = FiltersSetupActivity.this;
-                ItemInner itemInner2 = (ItemInner) filtersSetupActivity2.items.get(adapterPosition2);
-                if (itemInner != null && itemInner2 != null && (dialogFilter = itemInner.filter) != null && (dialogFilter2 = itemInner2.filter) != null) {
-                    int i2 = dialogFilter.order;
-                    dialogFilter.order = dialogFilter2.order;
-                    dialogFilter2.order = i2;
-                    ArrayList<MessagesController.DialogFilter> arrayList = filtersSetupActivity2.getMessagesController().dialogFilters;
-                    try {
-                        arrayList.set(adapterPosition - filtersSetupActivity2.filtersStartPosition, itemInner2.filter);
-                        arrayList.set(adapterPosition2 - filtersSetupActivity2.filtersStartPosition, itemInner.filter);
-                    } catch (Exception unused) {
-                    }
-                    filtersSetupActivity2.orderChanged = true;
-                    filtersSetupActivity2.updateRows$3(true);
-                }
-            }
+            FiltersSetupActivity.this.adapter.swapElements(viewHolder.getAdapterPosition(), viewHolder2.getAdapterPosition());
             return true;
         }
 
         @Override
-        public final void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
+        public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i) {
             if (i != 0) {
                 FiltersSetupActivity.this.listView.cancelClickRunnables(false);
                 viewHolder.itemView.setPressed(true);
             } else {
-                int i2 = 25;
-                AndroidUtilities.cancelRunOnUIThread(new ComposeDrawable$$ExternalSyntheticLambda0(this, i2));
-                AndroidUtilities.runOnUIThread(new ComposeDrawable$$ExternalSyntheticLambda0(this, i2), 320L);
+                int i2 = 26;
+                AndroidUtilities.cancelRunOnUIThread(new IntroActivity$$ExternalSyntheticLambda5(this, i2));
+                AndroidUtilities.runOnUIThread(new IntroActivity$$ExternalSyntheticLambda5(this, i2), 320L);
             }
+            super.onSelectedChanged(viewHolder, i);
             if (viewHolder != null) {
                 viewHolder.itemView.setTag(R.id.dragging, i == 2 ? Boolean.TRUE : null);
             }
         }
 
         @Override
-        public final void onSwiped(RecyclerView.ViewHolder viewHolder) {
+        public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
         }
     }
 
     public FiltersSetupActivity() {
         super(null);
-        this.oldItems = new ArrayList();
-        this.items = new ArrayList();
+        this.oldItems = new ArrayList<>();
+        this.items = new ArrayList<>();
         this.filtersSectionStart = -1;
         this.filtersSectionEnd = -1;
+        this.shiftDp = -4;
     }
 
-    public final void createFolder(INavigationLayout iNavigationLayout) {
+    public void lambda$createView$2(TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags) {
+        if (!tL_messages_toggleDialogFilterTags.enabled || this.loadedColors) {
+            return;
+        }
+        this.loadingFiltersForColors = true;
+        getMessagesController().loadRemoteFilters(true);
+        this.loadedColors = true;
+    }
+
+    public void lambda$createView$3(TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new LinkManager$$ExternalSyntheticLambda2(8, this, tL_messages_toggleDialogFilterTags));
+    }
+
+    public void lambda$createView$4(Context context, View view, int i, float f, float f2) {
+        ItemInner itemInner;
+        if (i < 0 || i >= this.items.size() || (itemInner = this.items.get(i)) == null) {
+            return;
+        }
+        int i2 = itemInner.viewType;
+        if (i2 == 6) {
+            if (!getUserConfig().isPremium()) {
+                showDialog(new PremiumFeatureBottomSheet(this, getContext(), getCurrentAccount(), false, 35, true, null));
+                return;
+            }
+            TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags = new TLRPC.TL_messages_toggleDialogFilterTags();
+            tL_messages_toggleDialogFilterTags.enabled = !getMessagesController().folderTags;
+            getMessagesController().setFolderTags(tL_messages_toggleDialogFilterTags.enabled);
+            getConnectionsManager().sendRequest(tL_messages_toggleDialogFilterTags, new IntroActivity$$ExternalSyntheticLambda6(27, this, tL_messages_toggleDialogFilterTags));
+            ((TextCheckCell) view).setChecked(getMessagesController().folderTags);
+            ListAdapter listAdapter = this.adapter;
+            int i3 = this.filtersSectionStart;
+            listAdapter.notifyItemRangeChanged(i3, this.filtersSectionEnd - i3);
+            return;
+        }
+        if (i2 != 2) {
+            if (i2 == 4) {
+                createFolder(getParentLayout());
+                return;
+            }
+            return;
+        }
+        MessagesController.DialogFilter dialogFilter = itemInner.filter;
+        if (dialogFilter == null || dialogFilter.isDefault()) {
+            return;
+        }
+        if (dialogFilter.locked) {
+            showDialog(new LimitReachedBottomSheet(3, this, context, this.currentAccount, null));
+        } else {
+            presentFragment(new FilterCreateActivity(dialogFilter));
+        }
+    }
+
+    public int lambda$createView$5() {
+        return this.folderTagsPosition;
+    }
+
+    public void lambda$createView$6() {
+        this.listView.highlightRow(new BoostsActivity$$ExternalSyntheticLambda4(this, 23));
+    }
+
+    public void lambda$onDefaultTabMoved$7() {
+        showDialog(new PremiumFeatureBottomSheet(this, getContext(), getCurrentAccount(), false, 9, true, null));
+    }
+
+    public static void lambda$onFragmentDestroy$1(TLObject tLObject, TLRPC.TL_error tL_error) {
+    }
+
+    public void lambda$updateRows$0() {
+        presentFragment(new PremiumPreviewFragment("settings"));
+    }
+
+    public void updateRows(boolean z) {
+        this.showTagsRow = -1;
+        RecyclerListView recyclerListView = this.listView;
+        if (recyclerListView != null) {
+            ArrayList<Long> arrayList = recyclerListView.forcedSections;
+            if (arrayList == null) {
+                recyclerListView.forcedSections = new ArrayList<>();
+            } else {
+                arrayList.clear();
+            }
+        }
+        this.oldItems.clear();
+        this.oldItems.addAll(this.items);
+        this.items.clear();
+        ArrayList<TLRPC.TL_dialogFilterSuggested> arrayList2 = getMessagesController().suggestedFilters;
+        ArrayList<MessagesController.DialogFilter> dialogFilters = getMessagesController().getDialogFilters();
+        this.items.add(ItemInner.asHint());
+        if (!arrayList2.isEmpty() && dialogFilters.size() < 10) {
+            int size = this.items.size();
+            this.items.add(ItemInner.asHeader(LocaleController.getString(R.string.FilterRecommended)));
+            for (int i = 0; i < arrayList2.size(); i++) {
+                this.items.add(ItemInner.asSuggested(arrayList2.get(i)));
+            }
+            RecyclerListView recyclerListView2 = this.listView;
+            if (recyclerListView2 != null) {
+                recyclerListView2.forcedSections.add(Long.valueOf(AndroidUtilities.pack(size, this.items.size() - 1)));
+            }
+            this.items.add(ItemInner.asShadow(null));
+        }
+        if (dialogFilters.isEmpty()) {
+            this.filtersSectionEnd = -1;
+            this.filtersSectionStart = -1;
+        } else {
+            this.filtersSectionStart = this.items.size();
+            this.items.add(ItemInner.asHeader(LocaleController.getString(R.string.Filters)));
+            this.filtersStartPosition = this.items.size();
+            for (int i2 = 0; i2 < dialogFilters.size(); i2++) {
+                this.items.add(ItemInner.asFilter(dialogFilters.get(i2)));
+                if (MessagesController.getInstance(this.currentAccount).folderTags && dialogFilters.get(i2).color >= 0) {
+                    this.loadedColors = true;
+                }
+            }
+            int size2 = this.items.size();
+            this.filtersSectionEnd = size2;
+            RecyclerListView recyclerListView3 = this.listView;
+            if (recyclerListView3 != null) {
+                recyclerListView3.forcedSections.add(Long.valueOf(AndroidUtilities.pack(this.filtersSectionStart, (size2 - 1) + (dialogFilters.size() >= getMessagesController().dialogFiltersLimitPremium ? 0 : 1))));
+            }
+        }
+        if (dialogFilters.size() < getMessagesController().dialogFiltersLimitPremium) {
+            this.items.add(ItemInner.asButton(LocaleController.getString(R.string.CreateNewFilter)));
+        }
+        this.items.add(ItemInner.asShadow(null));
+        this.folderTagsPosition = this.items.size();
+        this.showTagsRow = this.items.size();
+        this.items.add(ItemInner.asCheck(LocaleController.getString(R.string.FolderShowTags)));
+        this.items.add(ItemInner.asShadow(!getUserConfig().isPremium() ? AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FolderShowTagsInfoPremium), Theme.key_windowBackgroundWhiteBlueHeader, 2, new FiltersSetupActivity$$ExternalSyntheticLambda3(this, 1)) : LocaleController.getString(R.string.FolderShowTagsInfo)));
+        ListAdapter listAdapter = this.adapter;
+        if (listAdapter != null) {
+            if (z) {
+                listAdapter.setItems(this.oldItems, this.items);
+            } else {
+                listAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    public void createFolder(INavigationLayout iNavigationLayout) {
         int size = getMessagesController().getDialogFilters().size();
         if ((size - 1 >= getMessagesController().dialogFiltersLimitDefault && !getUserConfig().isPremium()) || size >= getMessagesController().dialogFiltersLimitPremium) {
-            showDialog(new LimitReachedBottomSheet(3, this.currentAccount, getParentActivity(), this, null));
+            showDialog(new LimitReachedBottomSheet(3, this, getContext(), this.currentAccount, null));
         } else if (iNavigationLayout != null) {
-            ((ActionBarLayout) iNavigationLayout).presentFragment(new INavigationLayout.NavigationParams(new FilterCreateActivity(null, null)));
+            ((ActionBarLayout) iNavigationLayout).presentFragment(new INavigationLayout.NavigationParams(new FilterCreateActivity()));
         }
     }
 
     @Override
-    public final View createView(Context context) {
+    public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.Filters));
-        this.actionBar.setActionBarMenuOnItemClick(new LoginActivity.AnonymousClass1(this, 18));
+        this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            @Override
+            public void onItemClick(int i) {
+                if (i == -1) {
+                    FiltersSetupActivity.this.finishFragment();
+                }
+            }
+        });
         INavigationLayout iNavigationLayout = this.parentLayout;
         if (iNavigationLayout != null && ((ActionBarLayout) iNavigationLayout).isRightLayout) {
             this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
@@ -856,53 +1251,52 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
-        ChatActivity.AnonymousClass34 anonymousClass34 = new ChatActivity.AnonymousClass34(this, context, 24);
-        this.listView = anonymousClass34;
-        anonymousClass34.setSections();
+        AnonymousClass2 anonymousClass2 = new AnonymousClass2(context);
+        this.listView = anonymousClass2;
+        anonymousClass2.setSections();
         this.actionBar.setAdaptiveBackground(this.listView);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.delayAnimations = false;
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        this.listView.setItemAnimator(defaultItemAnimator);
-        ((DefaultItemAnimator) this.listView.getItemAnimator()).delayAnimations = false;
-        this.listView.setLayoutManager(new LinearLayoutManager(1, false));
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        this.listView.lambda$onCellEnter$52(defaultItemAnimator);
+        ((DefaultItemAnimator) this.listView.getItemAnimator()).setDelayAnimations(false);
+        CacheChatsExceptionsFragment$$ExternalSyntheticOutline0.m(1, this.listView, false);
         this.listView.setVerticalScrollBarEnabled(false);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
         this.itemTouchHelper = itemTouchHelper;
         itemTouchHelper.attachToRecyclerView(this.listView);
-        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1.0f, -1));
-        ChatActivity.AnonymousClass34 anonymousClass35 = this.listView;
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        RecyclerListView recyclerListView = this.listView;
         ListAdapter listAdapter = new ListAdapter(context);
         this.adapter = listAdapter;
-        anonymousClass35.setAdapter(listAdapter);
-        this.listView.setOnItemClickListener(new DialogsActivity$$ExternalSyntheticLambda89(3, this, context));
+        recyclerListView.setAdapter(listAdapter);
+        this.listView.setOnItemClickListener(new DialogsActivity$$ExternalSyntheticLambda6(10, this, context));
         if (this.highlightTags) {
-            updateRows$3(false);
+            updateRows(false);
             this.highlightTags = false;
             this.listView.scrollToPosition(this.adapter.getItemCount() - 1);
-            AndroidUtilities.runOnUIThread(new FiltersSetupActivity$$ExternalSyntheticLambda1(this, 0), 200L);
+            AndroidUtilities.runOnUIThread(new FiltersSetupActivity$$ExternalSyntheticLambda3(this, 2), 200L);
         }
         return this.fragmentView;
     }
 
     @Override
-    public final void didReceivedNotification(int i, int i2, Object... objArr) {
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
         if (i == NotificationCenter.dialogFiltersUpdated) {
-            updateRows$3(true);
+            if (this.ignoreUpdates) {
+                return;
+            }
+            updateRows(true);
         } else if (i == NotificationCenter.suggestedFiltersLoaded) {
-            updateRows$3(true);
+            updateRows(true);
         }
     }
 
     @Override
-    public final ArrayList getThemeDescriptions() {
-        ArrayList arrayList = new ArrayList();
+    public ArrayList<ThemeDescription> getThemeDescriptions() {
+        ArrayList<ThemeDescription> arrayList = new ArrayList<>();
         arrayList.add(new ThemeDescription(this.listView, 16, new Class[]{HeaderCell.class, TextCell.class, FilterCell.class, SuggestedFilterCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
         arrayList.add(new ThemeDescription(this.fragmentView, 1, null, null, null, null, Theme.key_windowBackgroundGray));
         arrayList.add(new ThemeDescription(this.listView, 32768, null, null, null, null, Theme.key_actionBarDefault));
@@ -924,13 +1318,13 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
         return arrayList;
     }
 
-    public final UndoView getUndoView() {
-        if (getParentActivity() == null) {
+    public UndoView getUndoView() {
+        if (getContext() == null) {
             return null;
         }
         if (this.undoView == null) {
             FrameLayout frameLayout = (FrameLayout) this.fragmentView;
-            UndoView undoView = new UndoView(getParentActivity(), null, false, null);
+            UndoView undoView = new UndoView(getContext());
             this.undoView = undoView;
             frameLayout.addView(undoView, LayoutHelper.createFrame(-1, -2.0f, 83, 8.0f, 0.0f, 8.0f, 8.0f));
             this.undoView.setTranslationY(-getBottomInset());
@@ -938,55 +1332,28 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
         return this.undoView;
     }
 
+    public FiltersSetupActivity highlightTags() {
+        this.highlightTags = true;
+        return this;
+    }
+
     @Override
-    public final boolean isSupportEdgeToEdge() {
+    public boolean isSupportEdgeToEdge() {
         return true;
     }
 
-    public final void lambda$createView$4(Context context, View view, int i) {
-        ItemInner itemInner;
-        if (i >= 0) {
-            ArrayList arrayList = this.items;
-            if (i < arrayList.size() && (itemInner = (ItemInner) arrayList.get(i)) != null) {
-                int i2 = itemInner.viewType;
-                if (i2 == 6) {
-                    if (!getUserConfig().isPremium()) {
-                        showDialog(new PremiumFeatureBottomSheet(this, getParentActivity(), getCurrentAccount(), false, 35, true, null));
-                        return;
-                    }
-                    TLRPC.TL_messages_toggleDialogFilterTags tL_messages_toggleDialogFilterTags = new TLRPC.TL_messages_toggleDialogFilterTags();
-                    tL_messages_toggleDialogFilterTags.enabled = !getMessagesController().folderTags;
-                    getMessagesController().setFolderTags(tL_messages_toggleDialogFilterTags.enabled);
-                    getConnectionsManager().sendRequest(tL_messages_toggleDialogFilterTags, new LinkManager$$ExternalSyntheticLambda8(16, this, tL_messages_toggleDialogFilterTags));
-                    ((TextCheckCell) view).setChecked(getMessagesController().folderTags);
-                    ListAdapter listAdapter = this.adapter;
-                    int i3 = this.filtersSectionStart;
-                    listAdapter.mObservable.notifyItemRangeChanged(i3, this.filtersSectionEnd - i3, null);
-                    return;
-                }
-                if (i2 != 2) {
-                    if (i2 == 4) {
-                        createFolder(getParentLayout());
-                        return;
-                    }
-                    return;
-                }
-                MessagesController.DialogFilter dialogFilter = itemInner.filter;
-                if (dialogFilter == null || dialogFilter.isDefault()) {
-                    return;
-                }
-                if (dialogFilter.locked) {
-                    showDialog(new LimitReachedBottomSheet(3, this.currentAccount, context, this, null));
-                } else {
-                    presentFragment(new FilterCreateActivity(dialogFilter, null));
-                }
-            }
+    public void onDefaultTabMoved() {
+        int i = 0;
+        try {
+            this.fragmentView.performHapticFeedback(3, 1);
+        } catch (Exception unused) {
         }
+        BulletinFactory.of(this).createSimpleBulletin(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString("LimitReachedReorderFolder", R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), 5000, new FiltersSetupActivity$$ExternalSyntheticLambda3(this, i)).show();
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        updateRows$3(false);
+    public boolean onFragmentCreate() {
+        updateRows(false);
         getMessagesController().loadRemoteFilters(true);
         getNotificationCenter().addObserver(this, NotificationCenter.dialogFiltersUpdated);
         getNotificationCenter().addObserver(this, NotificationCenter.suggestedFiltersLoaded);
@@ -997,7 +1364,7 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
     }
 
     @Override
-    public final void onFragmentDestroy() {
+    public void onFragmentDestroy() {
         NotificationCenter notificationCenter = getNotificationCenter();
         int i = NotificationCenter.dialogFiltersUpdated;
         notificationCenter.removeObserver(this, i);
@@ -1013,13 +1380,13 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
                 MessagesController.DialogFilter dialogFilter = dialogFilters.get(iM);
                 iM = LocationController$$ExternalSyntheticOutline0.m(dialogFilter.id, iM, 1, tL_messages_updateDialogFiltersOrder.order);
             }
-            getConnectionsManager().sendRequest(tL_messages_updateDialogFiltersOrder, new PassportActivity$$ExternalSyntheticLambda1(1));
+            getConnectionsManager().sendRequest(tL_messages_updateDialogFiltersOrder, new PassportActivity$$ExternalSyntheticLambda3(10));
         }
         super.onFragmentDestroy();
     }
 
     @Override
-    public final void onInsets(int i, int i2, int i3, int i4) {
+    public void onInsets(int i, int i2, int i3, int i4) {
         this.listView.setPadding(0, 0, 0, i4);
         this.listView.setClipToPadding(false);
         UndoView undoView = this.undoView;
@@ -1029,104 +1396,11 @@ public final class FiltersSetupActivity extends BaseFragment implements Notifica
     }
 
     @Override
-    public final void onResume() {
+    public void onResume() {
         super.onResume();
         ListAdapter listAdapter = this.adapter;
         if (listAdapter != null) {
-            listAdapter.mObservable.notifyChanged();
-        }
-    }
-
-    public final void updateRows$3(boolean z) {
-        ChatActivity.AnonymousClass34 anonymousClass34 = this.listView;
-        if (anonymousClass34 != null) {
-            ArrayList arrayList = anonymousClass34.forcedSections;
-            if (arrayList == null) {
-                anonymousClass34.forcedSections = new ArrayList();
-            } else {
-                arrayList.clear();
-            }
-        }
-        ArrayList arrayList2 = this.oldItems;
-        arrayList2.clear();
-        ArrayList arrayList3 = this.items;
-        arrayList2.addAll(arrayList3);
-        arrayList3.clear();
-        ArrayList<TLRPC.TL_dialogFilterSuggested> arrayList4 = getMessagesController().suggestedFilters;
-        ArrayList<MessagesController.DialogFilter> dialogFilters = getMessagesController().getDialogFilters();
-        arrayList3.add(new ItemInner(1, false));
-        if (!arrayList4.isEmpty() && dialogFilters.size() < 10) {
-            int size = arrayList3.size();
-            String string = LocaleController.getString(R.string.FilterRecommended);
-            ItemInner itemInner = new ItemInner(0, false);
-            itemInner.text = string;
-            arrayList3.add(itemInner);
-            for (int i = 0; i < arrayList4.size(); i++) {
-                TLRPC.TL_dialogFilterSuggested tL_dialogFilterSuggested = arrayList4.get(i);
-                ItemInner itemInner2 = new ItemInner(5, false);
-                itemInner2.suggested = tL_dialogFilterSuggested;
-                arrayList3.add(itemInner2);
-            }
-            ChatActivity.AnonymousClass34 anonymousClass35 = this.listView;
-            if (anonymousClass35 != null) {
-                anonymousClass35.forcedSections.add(Long.valueOf(AndroidUtilities.pack(size, arrayList3.size() - 1)));
-            }
-            ItemInner itemInner3 = new ItemInner(3, false);
-            itemInner3.text = null;
-            arrayList3.add(itemInner3);
-        }
-        if (dialogFilters.isEmpty()) {
-            this.filtersSectionEnd = -1;
-            this.filtersSectionStart = -1;
-        } else {
-            this.filtersSectionStart = arrayList3.size();
-            String string2 = LocaleController.getString(R.string.Filters);
-            ItemInner itemInner4 = new ItemInner(0, false);
-            itemInner4.text = string2;
-            arrayList3.add(itemInner4);
-            this.filtersStartPosition = arrayList3.size();
-            for (int i2 = 0; i2 < dialogFilters.size(); i2++) {
-                MessagesController.DialogFilter dialogFilter = dialogFilters.get(i2);
-                ItemInner itemInner5 = new ItemInner(2, false);
-                itemInner5.filter = dialogFilter;
-                arrayList3.add(itemInner5);
-                if (MessagesController.getInstance(this.currentAccount).folderTags && dialogFilters.get(i2).color >= 0) {
-                    this.loadedColors = true;
-                }
-            }
-            int size2 = arrayList3.size();
-            this.filtersSectionEnd = size2;
-            ChatActivity.AnonymousClass34 anonymousClass36 = this.listView;
-            if (anonymousClass36 != null) {
-                anonymousClass36.forcedSections.add(Long.valueOf(AndroidUtilities.pack(this.filtersSectionStart, (size2 - 1) + (dialogFilters.size() >= getMessagesController().dialogFiltersLimitPremium ? 0 : 1))));
-            }
-        }
-        if (dialogFilters.size() < getMessagesController().dialogFiltersLimitPremium) {
-            String string3 = LocaleController.getString(R.string.CreateNewFilter);
-            ItemInner itemInner6 = new ItemInner(4, false);
-            itemInner6.text = string3;
-            arrayList3.add(itemInner6);
-        }
-        ItemInner itemInner7 = new ItemInner(3, false);
-        itemInner7.text = null;
-        arrayList3.add(itemInner7);
-        this.folderTagsPosition = arrayList3.size();
-        arrayList3.size();
-        String string4 = LocaleController.getString(R.string.FolderShowTags);
-        ItemInner itemInner8 = new ItemInner(6, false);
-        itemInner8.text = string4;
-        arrayList3.add(itemInner8);
-        CharSequence charSequenceReplaceSingleTag = !getUserConfig().isPremium() ? AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.FolderShowTagsInfoPremium), Theme.key_windowBackgroundWhiteBlueHeader, 2, new FiltersSetupActivity$$ExternalSyntheticLambda1(this, 1)) : LocaleController.getString(R.string.FolderShowTagsInfo);
-        ItemInner itemInner9 = new ItemInner(3, false);
-        itemInner9.text = charSequenceReplaceSingleTag;
-        arrayList3.add(itemInner9);
-        ListAdapter listAdapter = this.adapter;
-        if (listAdapter != null) {
-            if (z) {
-                listAdapter.setItems(arrayList2, arrayList3);
-            } else {
-                listAdapter.mObservable.notifyChanged();
-            }
+            listAdapter.notifyDataSetChanged();
         }
     }
 }

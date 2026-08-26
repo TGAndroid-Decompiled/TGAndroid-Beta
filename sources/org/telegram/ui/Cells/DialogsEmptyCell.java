@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 import androidx.core.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -17,16 +18,14 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda6;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda38;
 import org.telegram.ui.Components.BlurredRecyclerView;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.TextViewSwitcher;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda18;
 
 public final class DialogsEmptyCell extends LinearLayout {
     public static final int $r8$clinit = 0;
@@ -78,18 +77,18 @@ public final class DialogsEmptyCell extends LinearLayout {
         }
     }
 
-    public DialogsEmptyCell(Context context) {
+    public DialogsEmptyCell(final Context context) {
         super(context);
         this.currentType = -1;
         this.currentAccount = UserConfig.selectedAccount;
         setGravity(17);
         setOrientation(1);
-        setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(4));
+        setOnTouchListener(new BottomSheet$$ExternalSyntheticLambda6(2));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(rLottieImageView, LayoutHelper.createFrame(100, 100.0f, 17, 52.0f, 4.0f, 52.0f, 0.0f));
-        rLottieImageView.setOnClickListener(new CallLogActivity$$ExternalSyntheticLambda38(this, 21));
+        rLottieImageView.setOnClickListener(new AboutLinkCell$$ExternalSyntheticLambda1(this, 10));
         TextView textView = new TextView(context);
         this.titleView = textView;
         textView.setTextColor(Theme.getColor(null, Theme.key_chats_nameMessage_threeLines, false));
@@ -99,7 +98,17 @@ public final class DialogsEmptyCell extends LinearLayout {
         addView(textView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 10.0f, 52.0f, 0.0f));
         TextViewSwitcher textViewSwitcher = new TextViewSwitcher(context);
         this.subtitleView = textViewSwitcher;
-        textViewSwitcher.setFactory(new PhotoViewer$$ExternalSyntheticLambda18(context, 1));
+        textViewSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public final View makeView() {
+                TextView textView2 = new TextView(context);
+                textView2.setTextColor(Theme.getColor(null, Theme.key_chats_message, false));
+                textView2.setTextSize(1, 14.0f);
+                textView2.setGravity(17);
+                textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+                return textView2;
+            }
+        });
         textViewSwitcher.setInAnimation(context, R.anim.alpha_in);
         textViewSwitcher.setOutAnimation(context, R.anim.alpha_out);
         addView(textViewSwitcher, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 7.0f, 52.0f, 0.0f));
@@ -182,7 +191,7 @@ public final class DialogsEmptyCell extends LinearLayout {
             if (AndroidUtilities.isTablet() && !AndroidUtilities.isSmallTablet()) {
                 string = string.replace('\n', ' ');
             }
-            this.subtitleView.setText(string, true, false);
+            this.subtitleView.setText(string, true);
         }
         ValueAnimator duration = ValueAnimator.ofFloat(this.utyanCollapseProgress, 1.0f).setDuration(250L);
         this.utyanAnimator = duration;

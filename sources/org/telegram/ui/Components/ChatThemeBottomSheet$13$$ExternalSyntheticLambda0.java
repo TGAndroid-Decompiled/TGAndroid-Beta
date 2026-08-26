@@ -1,31 +1,41 @@
 package org.telegram.ui.Components;
 
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.ThemePreviewActivity;
 
-public final class ChatThemeBottomSheet$13$$ExternalSyntheticLambda0 implements ThemePreviewActivity.WallpaperActivityDelegate {
+public final class ChatThemeBottomSheet$13$$ExternalSyntheticLambda0 implements ThemePreviewActivity.WallpaperActivityDelegate, ChatAttachAlertAudioLayout.AudioSelectDelegate {
     public final int $r8$classId;
     public final ChatAttachAlert f$0;
-    public final DialogCell$$ExternalSyntheticLambda6 f$1;
+    public final Utilities.Callback f$1;
 
-    public ChatThemeBottomSheet$13$$ExternalSyntheticLambda0(ChatAttachAlert chatAttachAlert, DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda6, int i) {
-        this.$r8$classId = i;
+    public ChatThemeBottomSheet$13$$ExternalSyntheticLambda0(Utilities.Callback callback, ChatAttachAlert chatAttachAlert) {
+        this.$r8$classId = 2;
+        this.f$1 = callback;
         this.f$0 = chatAttachAlert;
-        this.f$1 = dialogCell$$ExternalSyntheticLambda6;
     }
 
     @Override
-    public final void didSetNewBackground(TLRPC.TL_wallPaper tL_wallPaper) {
+    public void didSelectAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+        ChatAttachAlertPollLayout.lambda$openPollAttachMenu$22(this.f$1, this.f$0, arrayList, charSequence, z, i, i2, j, z2, j2);
+    }
+
+    @Override
+    public void didSetNewBackground(TLRPC.WallPaper wallPaper) {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.dismissInternal();
-                this.f$1.run(tL_wallPaper);
+                ChatThemeBottomSheet.AnonymousClass13.lambda$didPressedButton$0(this.f$0, this.f$1, wallPaper);
                 break;
             default:
-                this.f$0.dismissInternal();
-                this.f$1.run(tL_wallPaper);
+                ChatThemeBottomSheet.AnonymousClass13.lambda$onWallpaperSelected$1(this.f$0, this.f$1, wallPaper);
                 break;
         }
+    }
+
+    public ChatThemeBottomSheet$13$$ExternalSyntheticLambda0(ChatAttachAlert chatAttachAlert, Utilities.Callback callback, int i) {
+        this.$r8$classId = i;
+        this.f$0 = chatAttachAlert;
+        this.f$1 = callback;
     }
 }

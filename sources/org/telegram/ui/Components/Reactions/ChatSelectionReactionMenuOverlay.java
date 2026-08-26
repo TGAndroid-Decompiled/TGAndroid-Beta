@@ -15,13 +15,16 @@ import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline1;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
 import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.ItemOptions;
+import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.ReactionsContainerLayout;
-import org.telegram.ui.Components.ScrimOptions$$ExternalSyntheticLambda2;
-import org.telegram.ui.LocationActivity;
+import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
+import org.telegram.ui.Stars.StarGiftSheet;
 
 public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
     public float currentOffsetY;
@@ -83,6 +86,48 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
         }
     }
 
+    public final class AnonymousClass3 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+        public AnonymousClass3() {
+        }
+
+        @Override
+        public final boolean allowLongPress() {
+            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$allowLongPress(this);
+        }
+
+        @Override
+        public final boolean drawBackground() {
+            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
+        }
+
+        @Override
+        public final void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
+            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f, f2, f3, i, z);
+        }
+
+        @Override
+        public final void hideMenu() {
+            ChatSelectionReactionMenuOverlay.this.parentFragment.clearSelectionMode(true);
+        }
+
+        @Override
+        public final boolean needEnterText() {
+            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$needEnterText(this);
+        }
+
+        @Override
+        public final void onEmojiWindowDismissed() {
+            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
+        }
+
+        @Override
+        public final void onReactionClicked(View view, ReactionsLayoutInBubble.VisibleReaction visibleReaction, boolean z, boolean z2) {
+            ChatSelectionReactionMenuOverlay chatSelectionReactionMenuOverlay = ChatSelectionReactionMenuOverlay.this;
+            chatSelectionReactionMenuOverlay.parentFragment.selectReaction(null, chatSelectionReactionMenuOverlay.currentPrimaryObject, chatSelectionReactionMenuOverlay.reactionsContainerLayout, view, 0.0f, 0.0f, visibleReaction, false, z, z2, false);
+            AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda9(this, 5));
+        }
+    }
+
     public ChatSelectionReactionMenuOverlay(ChatActivity chatActivity, Context context) {
         super(context);
         this.selectedMessages = Collections.EMPTY_LIST;
@@ -93,7 +138,7 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
         this.parentFragment = chatActivity;
         setClipToPadding(false);
         setClipChildren(false);
-        chatActivity.chatListView.addOnScrollListener(new LocationActivity.AnonymousClass10(this, 3));
+        chatActivity.getChatListView().addOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 7));
     }
 
     public final void animateVisible(boolean z) {
@@ -104,12 +149,13 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
         }
         this.messageSet = false;
         ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(150L);
-        duration.addUpdateListener(new ScrimOptions$$ExternalSyntheticLambda2(this, 5));
-        duration.addListener(new ItemOptions.AnonymousClass3(this, 24));
+        duration.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 19));
+        duration.addListener(new BaseChartView.AnonymousClass4(this, 12));
         duration.start();
     }
 
     public final MessageObject findPrimaryObject() {
+        MessageObject.GroupedMessages group;
         ArrayList<MessageObject> arrayList;
         TLRPC.TL_messageReactions tL_messageReactions;
         ArrayList<TLRPC.ReactionCount> arrayList2;
@@ -118,18 +164,15 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
         }
         int i = 0;
         MessageObject messageObject = (MessageObject) this.selectedMessages.get(0);
-        if (messageObject.getGroupId() != 0) {
-            MessageObject.GroupedMessages groupedMessages = (MessageObject.GroupedMessages) this.parentFragment.groupedMessagesMap.get(messageObject.getGroupId());
-            if (groupedMessages != null && (arrayList = groupedMessages.messages) != null) {
-                int size = arrayList.size();
-                while (i < size) {
-                    MessageObject messageObject2 = arrayList.get(i);
-                    i++;
-                    MessageObject messageObject3 = messageObject2;
-                    TLRPC.Message message = messageObject3.messageOwner;
-                    if (message != null && (tL_messageReactions = message.reactions) != null && (arrayList2 = tL_messageReactions.results) != null && !arrayList2.isEmpty()) {
-                        return messageObject3;
-                    }
+        if (messageObject.getGroupId() != 0 && (group = this.parentFragment.getGroup(messageObject.getGroupId())) != null && (arrayList = group.messages) != null) {
+            int size = arrayList.size();
+            while (i < size) {
+                MessageObject messageObject2 = arrayList.get(i);
+                i++;
+                MessageObject messageObject3 = messageObject2;
+                TLRPC.Message message = messageObject3.messageOwner;
+                if (message != null && (tL_messageReactions = message.reactions) != null && (arrayList2 = tL_messageReactions.results) != null && !arrayList2.isEmpty()) {
+                    return messageObject3;
                 }
             }
         }
@@ -164,16 +207,16 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
             AndroidUtilities.runOnUIThread(new ChatSelectionReactionMenuOverlay$$ExternalSyntheticLambda0(this, 0));
         }
         ChatActivity chatActivity = this.parentFragment;
-        ChatActivity.AnonymousClass21 anonymousClass21 = chatActivity.chatListView;
+        RecyclerListView chatListView = chatActivity.getChatListView();
         int[] iArr = this.pos;
-        anonymousClass21.getLocationInWindow(iArr);
+        chatListView.getLocationInWindow(iArr);
         boolean z4 = true;
         float f4 = iArr[1];
         getLocationInWindow(iArr);
-        float f5 = (f4 - iArr[1]) - chatActivity.pullingDownOffset;
+        float pullingDownOffset = (f4 - iArr[1]) - chatActivity.getPullingDownOffset();
         boolean z5 = false;
-        for (int i2 = 0; i2 < anonymousClass21.getChildCount(); i2++) {
-            View childAt = anonymousClass21.getChildAt(i2);
+        for (int i2 = 0; i2 < chatListView.getChildCount(); i2++) {
+            View childAt = chatListView.getChildAt(i2);
             if (childAt instanceof ChatMessageCell) {
                 ChatMessageCell chatMessageCell = (ChatMessageCell) childAt;
                 MessageObject messageObject = chatMessageCell.getMessageObject();
@@ -187,31 +230,31 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
                         boolean z6 = LocaleController.isRTL;
                         int i3 = this.mSidePadding;
                         int i4 = iDp2 + ((z6 || zIsOutOwner) ? 0 : i3);
-                        float f6 = this.mPadding;
-                        int iDp3 = AndroidUtilities.dp(f6);
+                        float f5 = this.mPadding;
+                        int iDp3 = AndroidUtilities.dp(f5);
                         int iDp4 = AndroidUtilities.dp(4.0f);
                         if (!LocaleController.isRTL && !zIsOutOwner) {
                             i3 = 0;
                         }
-                        anonymousClass4.setPadding(i4, iDp3, iDp4 + i3, AndroidUtilities.dp(f6));
+                        anonymousClass4.setPadding(i4, iDp3, iDp4 + i3, AndroidUtilities.dp(f5));
                     }
-                    int height2 = getHeight() != 0 ? getHeight() : anonymousClass21.getHeight();
+                    int height2 = getHeight() != 0 ? getHeight() : chatListView.getHeight();
                     if (chatMessageCell.getCurrentMessagesGroup() != null) {
                         MessageObject.GroupedMessages.TransitionParams transitionParams = chatMessageCell.getCurrentMessagesGroup().transitionParams;
                         height = transitionParams.bottom - transitionParams.top;
                     } else {
                         height = chatMessageCell.getHeight();
                     }
-                    float y = (chatMessageCell.getY() + f5) - AndroidUtilities.dp(74.0f);
+                    float y = (chatMessageCell.getY() + pullingDownOffset) - AndroidUtilities.dp(74.0f);
                     float fDp = AndroidUtilities.dp(14.0f);
                     float fDp2 = height2 - AndroidUtilities.dp(218.0f);
-                    ChatActivity.AnonymousClass33 anonymousClass33 = chatActivity.fragmentContextView;
-                    if (anonymousClass33 != null && anonymousClass33.getVisibility() == 0) {
-                        fDp += anonymousClass33.getHeight();
+                    FragmentContextView fragmentContextView = chatActivity.getFragmentContextView();
+                    if (fragmentContextView != null && fragmentContextView.getVisibility() == 0) {
+                        fDp += fragmentContextView.getHeight();
                     }
-                    float f7 = height;
-                    if (y <= fDp - (f7 / 2.0f) || y >= fDp2) {
-                        if (y < (fDp - f7) - AndroidUtilities.dp(92.0f) || y > fDp2) {
+                    float f6 = height;
+                    if (y <= fDp - (f6 / 2.0f) || y >= fDp2) {
+                        if (y < (fDp - f6) - AndroidUtilities.dp(92.0f) || y > fDp2) {
                             z2 = false;
                             z3 = false;
                         } else {
@@ -227,8 +270,8 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
                         if (anonymousClass2 == null) {
                             return;
                         }
-                        if (z2 != anonymousClass2.isFlippedVertically) {
-                            anonymousClass2.setFlippedVertically(z2);
+                        if (z2 != anonymousClass2.isFlippedVertically()) {
+                            this.reactionsContainerLayout.setFlippedVertically(z2);
                             AndroidUtilities.runOnUIThread(new ChatSelectionReactionMenuOverlay$$ExternalSyntheticLambda0(this, 0));
                         }
                         if (z3 != this.reactionsContainerLayout.isEnabled()) {
@@ -238,15 +281,15 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
                                 this.reactionsContainerLayout.setVisibility(0);
                                 if (!this.messageSet) {
                                     this.messageSet = true;
-                                    this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, chatActivity.chatInfo, true);
+                                    this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, chatActivity.getCurrentChatInfo(), true);
                                 }
                             }
                         }
                         this.reactionsContainerLayout.setTranslationY(MathUtils.clamp(interpolation, fDp, fDp2));
                         this.reactionsContainerLayout.setTranslationX(chatMessageCell.getNonAnimationTranslationX(true));
                         layoutParams = (FrameLayout.LayoutParams) this.reactionsContainerLayout.getLayoutParams();
-                        iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(chatMessageCell.getBackgroundDrawableLeft(), 32.0f, 0);
-                        iM2 = BotFullscreenButtons$$ExternalSyntheticOutline1.m(chatMessageCell.getWidth() - chatMessageCell.getBackgroundDrawableRight(), 32.0f, (int) chatMessageCell.getNonAnimationTranslationX(true));
+                        iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(32.0f, chatMessageCell.getBackgroundDrawableLeft(), 0);
+                        iM2 = BotFullscreenButtons$$ExternalSyntheticOutline1.m(32.0f, chatMessageCell.getWidth() - chatMessageCell.getBackgroundDrawableRight(), (int) chatMessageCell.getNonAnimationTranslationX(true));
                         iDp = AndroidUtilities.dp(40.0f) * 8;
                         if ((getWidth() - iM2) - iM < iDp) {
                             if (zIsOutOwner) {
@@ -292,8 +335,8 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
                     if (anonymousClass2 == null) {
                         return;
                     }
-                    if (z2 != anonymousClass2.isFlippedVertically) {
-                        anonymousClass2.setFlippedVertically(z2);
+                    if (z2 != anonymousClass2.isFlippedVertically()) {
+                        this.reactionsContainerLayout.setFlippedVertically(z2);
                         AndroidUtilities.runOnUIThread(new ChatSelectionReactionMenuOverlay$$ExternalSyntheticLambda0(this, 0));
                     }
                     if (z3 != this.reactionsContainerLayout.isEnabled()) {
@@ -303,15 +346,15 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
                             this.reactionsContainerLayout.setVisibility(0);
                             if (!this.messageSet) {
                                 this.messageSet = true;
-                                this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, chatActivity.chatInfo, true);
+                                this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, chatActivity.getCurrentChatInfo(), true);
                             }
                         }
                     }
                     this.reactionsContainerLayout.setTranslationY(MathUtils.clamp(interpolation, fDp, fDp2));
                     this.reactionsContainerLayout.setTranslationX(chatMessageCell.getNonAnimationTranslationX(true));
                     layoutParams = (FrameLayout.LayoutParams) this.reactionsContainerLayout.getLayoutParams();
-                    iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(chatMessageCell.getBackgroundDrawableLeft(), 32.0f, 0);
-                    iM2 = BotFullscreenButtons$$ExternalSyntheticOutline1.m(chatMessageCell.getWidth() - chatMessageCell.getBackgroundDrawableRight(), 32.0f, (int) chatMessageCell.getNonAnimationTranslationX(true));
+                    iM = BotFullscreenButtons$$ExternalSyntheticOutline1.m(32.0f, chatMessageCell.getBackgroundDrawableLeft(), 0);
+                    iM2 = BotFullscreenButtons$$ExternalSyntheticOutline1.m(32.0f, chatMessageCell.getWidth() - chatMessageCell.getBackgroundDrawableRight(), (int) chatMessageCell.getNonAnimationTranslationX(true));
                     iDp = AndroidUtilities.dp(40.0f) * 8;
                     if ((getWidth() - iM2) - iM < iDp) {
                         if (zIsOutOwner) {
@@ -363,13 +406,11 @@ public final class ChatSelectionReactionMenuOverlay extends FrameLayout {
     }
 
     public void setSelectedMessages(List<MessageObject> list) {
-        TLRPC.ChatFull chatFull;
         TLRPC.Message message;
         this.selectedMessages = list;
         ChatActivity chatActivity = this.parentFragment;
-        int i = chatActivity.chatMode;
         boolean z = true;
-        if (i == 1 || i == 5 || i == 6 || chatActivity.isReport() || chatActivity.isSecretChat() || (((chatFull = chatActivity.chatInfo) != null && (chatFull.available_reactions instanceof TLRPC.TL_chatReactionsNone)) || list.isEmpty())) {
+        if (chatActivity.getChatMode() == 1 || chatActivity.getChatMode() == 5 || chatActivity.getChatMode() == 6 || chatActivity.isReport() || chatActivity.isSecretChat() || ((chatActivity.getCurrentChatInfo() != null && (chatActivity.getCurrentChatInfo().available_reactions instanceof TLRPC.TL_chatReactionsNone)) || list.isEmpty())) {
             z = false;
             break;
         }

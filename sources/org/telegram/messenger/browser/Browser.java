@@ -16,9 +16,9 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import android.text.TextUtils;
 import com.android.billingclient.api.zzcc;
-import com.google.android.gms.dynamite.zzf;
-import com.google.android.gms.internal.mlkit_language_id_common.zziq;
-import com.google.zxing.BinaryBitmap;
+import com.android.billingclient.api.zzcs;
+import com.google.android.gms.internal.mlkit_language_id_common.zzin;
+import com.stripe.android.Stripe;
 import java.lang.ref.WeakReference;
 import java.net.IDN;
 import java.net.URLEncoder;
@@ -40,15 +40,18 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.support.customtabs.CustomTabsClient$2;
 import org.telegram.messenger.support.customtabs.ICustomTabsService;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheetTabs;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda19;
 import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda6;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda74;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda25;
 import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.EmptyBaseFragment;
 import org.telegram.ui.LaunchActivity;
@@ -56,26 +59,27 @@ import org.telegram.ui.web.BotWebViewContainer;
 
 public abstract class Browser {
     public static WeakReference currentCustomTabsActivity;
-    public static BinaryBitmap customTabsClient;
+    public static Stripe customTabsClient;
     public static String customTabsPackageToBind;
     public static zzcc customTabsServiceConnection;
-    public static BinaryBitmap customTabsSession;
+    public static Stripe customTabsSession;
     public static Pattern domainPattern;
 
     public final class AnonymousClass1 {
     }
 
     public class Progress {
-        public Runnable onCancelListener;
-        public Runnable onEndListener;
-        public Runnable onInitListener;
+        private Runnable onCancelListener;
+        private Runnable onEndListener;
+        private Runnable onInitListener;
 
-        public final void cancel(boolean z) {
-            Runnable runnable = this.onCancelListener;
-            if (runnable != null) {
-                runnable.run();
-            }
-            end(z);
+        public Progress(Runnable runnable, Runnable runnable2) {
+            this.onInitListener = runnable;
+            this.onEndListener = runnable2;
+        }
+
+        public void cancel() {
+            cancel(false);
         }
 
         public void end() {
@@ -90,8 +94,22 @@ public abstract class Browser {
             }
         }
 
-        public final void onCancel(Runnable runnable) {
+        public Progress onCancel(Runnable runnable) {
             this.onCancelListener = runnable;
+            return this;
+        }
+
+        public Progress onEnd(Runnable runnable) {
+            this.onEndListener = runnable;
+            return this;
+        }
+
+        public void cancel(boolean z) {
+            Runnable runnable = this.onCancelListener;
+            if (runnable != null) {
+                runnable.run();
+            }
+            end(z);
         }
 
         public void end(boolean z) {
@@ -152,21 +170,21 @@ public abstract class Browser {
         return null;
     }
 
-    public static BinaryBitmap getSession() {
-        BinaryBitmap binaryBitmap = customTabsClient;
-        BinaryBitmap binaryBitmap2 = null;
-        if (binaryBitmap == null) {
+    public static Stripe getSession() {
+        Stripe stripe = customTabsClient;
+        Stripe stripe2 = null;
+        if (stripe == null) {
             customTabsSession = null;
         } else if (customTabsSession == null) {
-            CustomTabsClient$2 customTabsClient$2 = new CustomTabsClient$2(new zzf(21));
+            CustomTabsClient$2 customTabsClient$2 = new CustomTabsClient$2(new zzcs(22));
             try {
-                if (((ICustomTabsService.Stub.Proxy) ((ICustomTabsService) binaryBitmap.binarizer)).newSession(customTabsClient$2)) {
-                    binaryBitmap2 = new BinaryBitmap(customTabsClient$2, (ComponentName) binaryBitmap.matrix, false, 19);
+                if (((ICustomTabsService.Stub.Proxy) ((ICustomTabsService) stripe.tokenCreator)).newSession(customTabsClient$2)) {
+                    stripe2 = new Stripe(14, customTabsClient$2, (ComponentName) stripe.defaultPublishableKey);
                 }
             } catch (RemoteException unused) {
             }
-            customTabsSession = binaryBitmap2;
-            new WeakReference(binaryBitmap2);
+            customTabsSession = stripe2;
+            new WeakReference(stripe2);
         }
         return customTabsSession;
     }
@@ -429,34 +447,27 @@ public abstract class Browser {
         }
     }
 
-    public static void openInTelegramBrowser(String str) {
+    public static void openInTelegramBrowser(String str, Progress progress) {
         BottomSheetTabs bottomSheetTabs;
-        BottomSheetTabs.WebTabData webTabData;
         String strSubstring;
         ArticleViewer.PageLayout[] pageLayoutArr;
         ArticleViewer.PageLayout pageLayout;
         LaunchActivity launchActivity = LaunchActivity.instance;
         if (launchActivity != null && (bottomSheetTabs = launchActivity.getBottomSheetTabs()) != null) {
+            BottomSheetTabs.WebTabData webTabData = null;
             if (!TextUtils.isEmpty(str)) {
                 ArrayList<BottomSheetTabs.WebTabData> tabs = bottomSheetTabs.getTabs();
-                int i = 0;
-                while (true) {
-                    if (i >= tabs.size()) {
-                        webTabData = null;
-                        break;
-                    }
-                    webTabData = tabs.get(i);
-                    ArticleViewer articleViewer = webTabData.articleViewer;
+                for (int i = 0; i < tabs.size(); i++) {
+                    BottomSheetTabs.WebTabData webTabData2 = tabs.get(i);
+                    ArticleViewer articleViewer = webTabData2.articleViewer;
                     if (articleViewer != null && !articleViewer.pagesStack.isEmpty()) {
-                        Object objM = zziq.m(1, webTabData.articleViewer.pagesStack);
+                        Object objM = zzin.m(1, webTabData2.articleViewer.pagesStack);
                         if (objM instanceof ArticleViewer.CachedWeb) {
                             BotWebViewContainer.MyWebView webView = ((ArticleViewer.CachedWeb) objM).webView;
-                            if (webView == null && (pageLayoutArr = webTabData.articleViewer.pages) != null && (pageLayout = pageLayoutArr[0]) != null) {
+                            if (webView == null && (pageLayoutArr = webTabData2.articleViewer.pages) != null && (pageLayout = pageLayoutArr[0]) != null) {
                                 webView = pageLayout.getWebView();
                             }
-                            if (webView == null) {
-                                continue;
-                            } else {
+                            if (webView != null) {
                                 String url = webView.canGoBack() ? webView.getUrl() : webView.getOpenURL();
                                 if (url == null) {
                                     url = null;
@@ -473,19 +484,18 @@ public abstract class Browser {
                                     strSubstring = iIndexOf2 >= 0 ? str.substring(0, iIndexOf2 + 1) : str;
                                 }
                                 if (TextUtils.equals(url, strSubstring)) {
-                                    bottomSheetTabs.openTab(webTabData);
+                                    bottomSheetTabs.openTab(webTabData2);
+                                    webTabData = webTabData2;
                                     break;
                                 }
+                            } else {
+                                continue;
                             }
                         } else {
                             continue;
                         }
                     }
-                    i++;
                 }
-            } else {
-                webTabData = null;
-                break;
             }
             if (webTabData != null) {
                 return;
@@ -493,7 +503,7 @@ public abstract class Browser {
         }
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (safeLastFragment != null && safeLastFragment.getArticleViewer() != null) {
-            safeLastFragment.getArticleViewer().open(null, null, null, str);
+            safeLastFragment.getArticleViewer().open(str, progress);
             return;
         }
         if (safeLastFragment != null && (safeLastFragment.getParentLayout() instanceof ActionBarLayout)) {
@@ -502,7 +512,7 @@ public abstract class Browser {
         if (safeLastFragment == null) {
             return;
         }
-        safeLastFragment.createArticleViewer(false).open(null, null, null, str);
+        safeLastFragment.createArticleViewer(false).open(str, progress);
     }
 
     public static void openUrl(Context context, String str) {
@@ -582,6 +592,13 @@ public abstract class Browser {
         customTabsSession = null;
     }
 
+    public static void openUrl(Activity activity, String str, boolean z) {
+        if (activity == null || str == null) {
+            return;
+        }
+        openUrl(activity, Uri.parse(str), z, true);
+    }
+
     public static void openUrl(LaunchActivity launchActivity, Uri uri) {
         openUrl(launchActivity, uri, true, true);
     }
@@ -594,13 +611,13 @@ public abstract class Browser {
         openUrl(context, uri, z, z2, false, progress, null, false, true, false);
     }
 
-    public static void openUrl(Context context, Uri uri, boolean z, boolean z2, boolean z3, Progress progress, String str, boolean z4, boolean z5, boolean z6) {
+    public static void openUrl(final Context context, final Uri uri, boolean z, boolean z2, boolean z3, Progress progress, String str, boolean z4, boolean z5, boolean z6) {
         String str2;
         boolean z7;
         boolean z8;
         char c;
-        Progress progress2;
-        boolean z9;
+        final Progress progress2;
+        final boolean z9;
         Uri uriNormalizeScheme;
         BaseFragment safeLastFragment;
         EmptyBaseFragment sheetFragment;
@@ -610,7 +627,7 @@ public abstract class Browser {
         String lowerCase;
         String hostAuthority;
         BaseFragment safeLastFragment2;
-        BinaryBitmap session;
+        Stripe session;
         Intent intent;
         CustomTabsClient$2 customTabsClient$2;
         EmptyBaseFragment sheetFragment2;
@@ -619,7 +636,7 @@ public abstract class Browser {
         if (context == null || uri == null) {
             return;
         }
-        int i2 = UserConfig.selectedAccount;
+        final int i2 = UserConfig.selectedAccount;
         boolean[] zArr = {false};
         boolean zIsInternalUri = isInternalUri(uri, false, zArr);
         if (str != null) {
@@ -712,19 +729,24 @@ public abstract class Browser {
                         } catch (Exception unused) {
                         }
                     }
-                    AlertDialog[] alertDialogArr = new AlertDialog[1];
+                    final AlertDialog[] alertDialogArr = new AlertDialog[1];
                     alertDialogArr[c] = new AlertDialog(context, 3, null);
                     TL_account.getWebPagePreview getwebpagepreview = new TL_account.getWebPagePreview();
                     getwebpagepreview.message = uri.toString();
                     progress2 = progress;
                     z9 = z7;
                     try {
-                        int iSendRequest = ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(getwebpagepreview, new ArticleViewer$$ExternalSyntheticLambda6(progress2, alertDialogArr, i2, uri, context, z9));
+                        int iSendRequest = ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(getwebpagepreview, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+                                AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda25(progress2, alertDialogArr, tLObject, i2, uri, context, z9));
+                            }
+                        });
                         if (progress2 != null) {
                             progress2.init();
                             return;
                         } else {
-                            AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda74(alertDialogArr, iSendRequest, i), 1000L);
+                            AndroidUtilities.runOnUIThread(new Theme$$ExternalSyntheticLambda19(alertDialogArr, iSendRequest, i), 1000L);
                             return;
                         }
                     } catch (Exception unused2) {
@@ -788,7 +810,7 @@ public abstract class Browser {
                                 uriNormalizeScheme = Uri.parse(stringExtra);
                             }
                         }
-                        openInTelegramBrowser(uriNormalizeScheme.toString());
+                        openInTelegramBrowser(uriNormalizeScheme.toString(), progress2);
                         return;
                     }
                     openInExternalBrowser(context, uriNormalizeScheme.toString(), z4, str2);
@@ -822,13 +844,13 @@ public abstract class Browser {
                                     session = getSession();
                                     intent = new Intent("android.intent.action.VIEW");
                                     if (session != null) {
-                                        intent.setPackage(((ComponentName) session.matrix).getPackageName());
+                                        intent.setPackage(((ComponentName) session.defaultPublishableKey).getPackageName());
                                     }
                                     Bundle bundle = new Bundle();
                                     if (session == null) {
                                         customTabsClient$2 = null;
                                     } else {
-                                        customTabsClient$2 = (CustomTabsClient$2) session.binarizer;
+                                        customTabsClient$2 = (CustomTabsClient$2) session.tokenCreator;
                                     }
                                     bundle.putBinder("android.support.customtabs.extra.SESSION", customTabsClient$2);
                                     intent.putExtras(bundle);
@@ -874,13 +896,13 @@ public abstract class Browser {
                                 session = getSession();
                                 intent = new Intent("android.intent.action.VIEW");
                                 if (session != null) {
-                                    intent.setPackage(((ComponentName) session.matrix).getPackageName());
+                                    intent.setPackage(((ComponentName) session.defaultPublishableKey).getPackageName());
                                 }
                                 Bundle bundle4 = new Bundle();
                                 if (session == null) {
                                     customTabsClient$2 = null;
                                 } else {
-                                    customTabsClient$2 = (CustomTabsClient$2) session.binarizer;
+                                    customTabsClient$2 = (CustomTabsClient$2) session.tokenCreator;
                                 }
                                 bundle4.putBinder("android.support.customtabs.extra.SESSION", customTabsClient$2);
                                 intent.putExtras(bundle4);
@@ -941,7 +963,7 @@ public abstract class Browser {
                                         uriNormalizeScheme = Uri.parse(stringExtra);
                                     }
                                 }
-                                openInTelegramBrowser(uriNormalizeScheme.toString());
+                                openInTelegramBrowser(uriNormalizeScheme.toString(), progress2);
                                 return;
                             }
                             return;
@@ -972,13 +994,13 @@ public abstract class Browser {
                                 session = getSession();
                                 intent = new Intent("android.intent.action.VIEW");
                                 if (session != null) {
-                                    intent.setPackage(((ComponentName) session.matrix).getPackageName());
+                                    intent.setPackage(((ComponentName) session.defaultPublishableKey).getPackageName());
                                 }
                                 Bundle bundle7 = new Bundle();
                                 if (session == null) {
                                     customTabsClient$2 = null;
                                 } else {
-                                    customTabsClient$2 = (CustomTabsClient$2) session.binarizer;
+                                    customTabsClient$2 = (CustomTabsClient$2) session.tokenCreator;
                                 }
                                 bundle7.putBinder("android.support.customtabs.extra.SESSION", customTabsClient$2);
                                 intent.putExtras(bundle7);
@@ -1047,7 +1069,7 @@ public abstract class Browser {
                                 uriNormalizeScheme = Uri.parse(stringExtra);
                             }
                         }
-                        openInTelegramBrowser(uriNormalizeScheme.toString());
+                        openInTelegramBrowser(uriNormalizeScheme.toString(), progress2);
                         return;
                     }
                     return;
@@ -1090,7 +1112,7 @@ public abstract class Browser {
                         uriNormalizeScheme = Uri.parse(stringExtra);
                     }
                 }
-                openInTelegramBrowser(uriNormalizeScheme.toString());
+                openInTelegramBrowser(uriNormalizeScheme.toString(), progress2);
                 return;
             }
             return;

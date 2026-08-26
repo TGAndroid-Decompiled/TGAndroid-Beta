@@ -17,15 +17,14 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticLambda99;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda7;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda206;
-import org.telegram.ui.PassportActivity$3$$ExternalSyntheticLambda3;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda75;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stars.StarsController$$ExternalSyntheticLambda119;
 import org.telegram.ui.bots.BotWebViewSheet;
 
 public abstract class BoostRepository {
@@ -38,7 +37,7 @@ public abstract class BoostRepository {
         tL_premium_applyBoost.peer = messagesController.getInputPeer(-j);
         tL_premium_applyBoost.flags |= 1;
         tL_premium_applyBoost.slots.addAll(list);
-        connectionsManager.sendRequest(tL_premium_applyBoost, new BoostsActivity$$ExternalSyntheticLambda7(callback2, messagesController, callback, 18), 66);
+        connectionsManager.sendRequest(tL_premium_applyBoost, new StarGiftSheet$$ExternalSyntheticLambda1(callback2, messagesController, callback, 4), 66);
     }
 
     public static int boostsPerSentGift() {
@@ -91,7 +90,7 @@ public abstract class BoostRepository {
         TLRPC.TL_payments_getGiveawayInfo tL_payments_getGiveawayInfo = new TLRPC.TL_payments_getGiveawayInfo();
         tL_payments_getGiveawayInfo.msg_id = messageObject.getId();
         tL_payments_getGiveawayInfo.peer = messagesController.getInputPeer(MessageObject.getPeerId(messageObject.messageOwner.peer_id));
-        connectionsManager.sendRequest(tL_payments_getGiveawayInfo, new BoostRepository$$ExternalSyntheticLambda6(callback2, callback, 0));
+        connectionsManager.sendRequest(tL_payments_getGiveawayInfo, new BoostRepository$$ExternalSyntheticLambda15(callback2, callback, 0));
     }
 
     public static ArrayList getMyChannels(long j) {
@@ -146,7 +145,7 @@ public abstract class BoostRepository {
             tL_payments_getPremiumGiftCodeOptions.flags = 1;
             tL_payments_getPremiumGiftCodeOptions.boost_peer = messagesController.getInputPeer(-chat.id);
         }
-        return connectionsManager.sendRequest(tL_payments_getPremiumGiftCodeOptions, new ProfileActivity$$ExternalSyntheticLambda75(chat, i, callback, 8));
+        return connectionsManager.sendRequest(tL_payments_getPremiumGiftCodeOptions, new VoIPService$$ExternalSyntheticLambda99(chat, i, callback, 3));
     }
 
     public static void payGiftCodeByGoogle(ArrayList arrayList, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, BaseFragment baseFragment, Utilities.Callback callback, Utilities.Callback callback2) {
@@ -175,7 +174,7 @@ public abstract class BoostRepository {
         AccountIdentifiers accountIdentifiers = new AccountIdentifiers();
         accountIdentifiers.zzb = "inapp";
         accountIdentifiers.zza = tL_premiumGiftCodeOption.store_product;
-        BillingController.getInstance().queryProductDetails(Arrays.asList(accountIdentifiers.build()), new PassportActivity$3$$ExternalSyntheticLambda3(tL_inputStorePaymentPremiumGiftCode, tL_premiumGiftCodeOption, connectionsManager, callback2, callback, baseFragment, 3));
+        BillingController.getInstance().queryProductDetails(Arrays.asList(accountIdentifiers.build()), new BoostRepository$$ExternalSyntheticLambda8(tL_inputStorePaymentPremiumGiftCode, tL_premiumGiftCodeOption, connectionsManager, callback2, callback, baseFragment, 1));
     }
 
     public static void payGiftCodeByInvoice(ArrayList arrayList, TLRPC.TL_premiumGiftCodeOption tL_premiumGiftCodeOption, TLRPC.Chat chat, TLRPC.TL_textWithEntities tL_textWithEntities, BaseFragment baseFragment, Utilities.Callback callback, Utilities.Callback callback2) {
@@ -215,6 +214,6 @@ public abstract class BoostRepository {
             tL_payments_getPaymentForm.flags |= 1;
         }
         tL_payments_getPaymentForm.invoice = tL_inputInvoicePremiumGiftCode;
-        connectionsManager.sendRequest(tL_payments_getPaymentForm, new ChatActivity$$ExternalSyntheticLambda206(callback2, messagesController, tL_inputInvoicePremiumGiftCode, baseFragment, callback, 6));
+        connectionsManager.sendRequest(tL_payments_getPaymentForm, new StarsController$$ExternalSyntheticLambda119(callback2, messagesController, tL_inputInvoicePremiumGiftCode, baseFragment, callback));
     }
 }

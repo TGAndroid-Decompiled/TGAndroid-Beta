@@ -13,16 +13,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.Premium.boosts.cells.BaseCell;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda9;
 
 public final class SelectorCountryCell extends BaseCell {
     public final CheckBox2 checkBox;
     public TLRPC.TL_help_country country;
     public final TextPaint paint;
-    public final PasscodeView$9$$ExternalSyntheticLambda0 setCountryRunnable;
+    public final GiftSheet$$ExternalSyntheticLambda9 setCountryRunnable;
 
     public final class SpaceDrawable extends ReplacementSpan {
         public final int size;
@@ -45,21 +44,17 @@ public final class SelectorCountryCell extends BaseCell {
         super(context, resourcesProvider);
         TextPaint textPaint = new TextPaint();
         this.paint = textPaint;
-        this.setCountryRunnable = new PasscodeView$9$$ExternalSyntheticLambda0(this, 25);
+        this.setCountryRunnable = new GiftSheet$$ExternalSyntheticLambda9(this, 3);
         textPaint.setTextSize(AndroidUtilities.dp(20.0f));
         this.radioButton.setVisibility(8);
         this.imageView.setVisibility(8);
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
         this.checkBox = checkBox2;
-        int i = Theme.key_dialogRoundCheckBox;
-        int i2 = Theme.key_checkboxDisabled;
-        int i3 = Theme.key_dialogRoundCheckBoxCheck;
-        CheckBoxBase checkBoxBase = checkBox2.checkBoxBase;
-        checkBoxBase.setColor(i, i2, i3);
+        checkBox2.setColor(Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
         checkBox2.setDrawUnchecked(true);
         checkBox2.setDrawBackgroundAsArc(10);
         addView(checkBox2);
-        checkBoxBase.setChecked(-1, false, false);
+        checkBox2.setChecked(false, false);
         checkBox2.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
     }
 
@@ -86,7 +81,7 @@ public final class SelectorCountryCell extends BaseCell {
     public final void setChecked(boolean z, boolean z2) {
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2.getVisibility() == 0) {
-            checkBox2.checkBoxBase.setChecked(-1, z, z2);
+            checkBox2.setChecked(z, z2);
         }
     }
 

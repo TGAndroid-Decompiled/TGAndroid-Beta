@@ -12,6 +12,6 @@ public abstract class SharedConfig$$ExternalSyntheticApiModelOutline0 {
         return new KeyGenParameterSpec.Builder("tmessages_passcode", 3);
     }
 
-    public static void m880m() {
+    public static void m882m() {
     }
 }

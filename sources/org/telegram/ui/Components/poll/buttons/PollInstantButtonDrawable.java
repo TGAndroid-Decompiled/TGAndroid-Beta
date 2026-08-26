@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.poll.buttons;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Rect;
 import me.vkryl.android.animator.BoolAnimator;
 import org.telegram.messenger.AndroidUtilities;
@@ -23,15 +22,15 @@ public final class PollInstantButtonDrawable extends PollButtonDrawableBase {
         RadialProgress radialProgress = new RadialProgress(chatMessageCell);
         this.radialProgress = radialProgress;
         radialProgress.setBackground(null, true, false);
-        radialProgress.rotationSpeed = 650.0f;
+        radialProgress.setRotationTime(650.0f);
         radialProgress.setProgress(0.69f, false);
-        radialProgress.progressPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        this.animatorProgressVisible = new BoolAnimator(260L, chatMessageCell, CubicBezierInterpolator.EASE_OUT_QUINT);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, false, false, false);
+        radialProgress.setStrokeWidth(AndroidUtilities.dp(1.5f));
+        this.animatorProgressVisible = new BoolAnimator(chatMessageCell, CubicBezierInterpolator.EASE_OUT_QUINT, 260L);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, false, false);
         this.buttonTextAnimatedDrawable = animatedTextDrawable;
-        animatedTextDrawable.textPaint.setTypeface(AndroidUtilities.bold());
+        animatedTextDrawable.setTypeface(AndroidUtilities.bold());
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(13.0f));
-        animatedTextDrawable.gravity = 17;
+        animatedTextDrawable.setGravity(17);
         int color = Theme.getColor(Theme.key_listSelector, resourcesProvider);
         if (this.selectorDrawableColor != color) {
             Theme.setSelectorDrawableColor(this.selectorDrawable, color, false);
@@ -62,7 +61,7 @@ public final class PollInstantButtonDrawable extends PollButtonDrawableBase {
     @Override
     public final void onAlphaChanged(int i) {
         this.selectorDrawable.setAlpha(i);
-        this.buttonTextAnimatedDrawable.alpha = i;
+        this.buttonTextAnimatedDrawable.setAlpha(i);
     }
 
     @Override
@@ -78,10 +77,8 @@ public final class PollInstantButtonDrawable extends PollButtonDrawableBase {
     }
 
     public final void setButtonTextColor(int i) {
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.buttonTextAnimatedDrawable;
-        animatedTextDrawable.textPaint.setColor(i);
-        animatedTextDrawable.alpha = Color.alpha(i);
-        this.radialProgress.progressColor = i;
+        this.buttonTextAnimatedDrawable.setTextColor(i);
+        this.radialProgress.setProgressColor(i);
     }
 
     public final void setTextOffsetY(float f) {

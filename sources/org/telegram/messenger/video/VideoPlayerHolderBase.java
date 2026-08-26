@@ -17,9 +17,9 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda34;
+import org.telegram.ui.Components.EmojiView$$ExternalSyntheticLambda10;
 import org.telegram.ui.Components.VideoPlayer;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda72;
+import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda138;
 
 public class VideoPlayerHolderBase {
     private boolean allowMultipleInstances;
@@ -93,7 +93,7 @@ public class VideoPlayerHolderBase {
             if (VideoPlayerHolderBase.this.released || (uri = (videoPlayerHolderBase = VideoPlayerHolderBase.this).uri) == null) {
                 return;
             }
-            videoPlayerHolderBase.videoPlayer.preparePlayer(uri, "other", 0L);
+            videoPlayerHolderBase.videoPlayer.preparePlayer(uri, "other");
             VideoPlayerHolderBase.this.videoPlayer.seekTo(j);
         }
 
@@ -132,15 +132,18 @@ public class VideoPlayerHolderBase {
         }
 
         @Override
-        public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+        public final void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
         }
 
         @Override
-        public void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+        public final void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
         }
 
         @Override
-        public void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+        public final void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
         }
 
         @Override
@@ -169,12 +172,13 @@ public class VideoPlayerHolderBase {
         }
 
         @Override
-        public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-            return false;
+        public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+            return VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceDestroyed(this, surfaceTexture);
         }
 
         @Override
-        public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceTextureUpdated(this, surfaceTexture);
         }
 
         @Override
@@ -204,13 +208,13 @@ public class VideoPlayerHolderBase {
     private void ensurePlayerCreated(boolean z) {
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer != null) {
-            videoPlayer.releasePlayer();
+            videoPlayer.releasePlayer(true);
         }
         VideoPlayer videoPlayer2 = new VideoPlayer(false, z);
         this.videoPlayer = videoPlayer2;
         videoPlayer2.allowMultipleInstances = this.allowMultipleInstances;
-        videoPlayer2.delegate = new AnonymousClass2();
-        this.videoPlayer.isStory = true;
+        videoPlayer2.setDelegate(new AnonymousClass2());
+        this.videoPlayer.setIsStory();
     }
 
     public void lambda$loopBack$9() {
@@ -305,12 +309,9 @@ public class VideoPlayerHolderBase {
         ensurePlayerCreated(z);
         this.videoPlayer.setPlaybackSpeed(f);
         FileLog.d("videoplayerholderbase.preparePlayer(): preparePlayer new player as preload uri=" + uri);
-        this.videoPlayer.preparePlayer(uri, "other", 0L);
+        this.videoPlayer.preparePlayer(uri, "other", 0, 0L);
         this.videoPlayer.setPlayWhenReady(false);
-        VideoPlayer videoPlayer = this.videoPlayer;
-        DispatchQueue dispatchQueue = this.dispatchQueue;
-        videoPlayer.workerQueue = dispatchQueue;
-        videoPlayer.player.workerQueue = dispatchQueue;
+        this.videoPlayer.setWorkerQueue(this.dispatchQueue);
     }
 
     public void lambda$release$3(TLRPC.Document document, Runnable runnable) {
@@ -319,7 +320,7 @@ public class VideoPlayerHolderBase {
             videoPlayer.setSurface(null);
             this.videoPlayer.setTextureView(null);
             this.videoPlayer.setSurfaceView(null);
-            this.videoPlayer.releasePlayer();
+            this.videoPlayer.releasePlayer(false);
         }
         if (document != null) {
             FileLoader.getInstance(this.currentAccount).cancelLoadFile(document);
@@ -355,50 +356,43 @@ public class VideoPlayerHolderBase {
             return;
         }
         boolean zIsPlaying = videoPlayer.isPlaying();
-        if (z) {
-            VideoPlayer videoPlayer2 = this.videoPlayer;
-            if (videoPlayer2.audioDisabled) {
-                videoPlayer2.pause();
-                long currentPosition = this.videoPlayer.getCurrentPosition();
-                this.videoPlayer.releasePlayer();
-                this.videoPlayer = null;
-                ensurePlayerCreated(this.audioDisabled);
-                Uri uri = this.uri;
-                if (uri == null) {
-                    uri = this.contentUri;
-                }
-                FileLog.d("videoplayerholderbase.setAudioEnabled(): repreparePlayer as audio track is enabled back uri=" + uri);
-                this.videoPlayer.preparePlayer(uri, "other", 0L);
-                VideoPlayer videoPlayer3 = this.videoPlayer;
-                DispatchQueue dispatchQueue = this.dispatchQueue;
-                videoPlayer3.workerQueue = dispatchQueue;
-                videoPlayer3.player.workerQueue = dispatchQueue;
-                if (!z2) {
-                    Surface surface = this.surface;
-                    if (surface != null) {
-                        videoPlayer3.setSurface(surface);
-                    } else {
-                        SurfaceView surfaceView = this.surfaceView;
-                        if (surfaceView != null) {
-                            videoPlayer3.setSurfaceView(surfaceView);
-                        } else {
-                            videoPlayer3.setTextureView(this.textureView);
-                        }
-                    }
-                }
-                this.videoPlayer.seekTo(currentPosition + 50);
-                if (!zIsPlaying || z2) {
-                    this.videoPlayer.setPlayWhenReady(false);
-                    this.videoPlayer.pause();
-                    return;
+        if (!z || this.videoPlayer.createdWithAudioTrack()) {
+            this.videoPlayer.setVolume(z ? 1.0f : 0.0f);
+            return;
+        }
+        this.videoPlayer.pause();
+        long currentPosition = this.videoPlayer.getCurrentPosition();
+        this.videoPlayer.releasePlayer(false);
+        this.videoPlayer = null;
+        ensurePlayerCreated(this.audioDisabled);
+        Uri uri = this.uri;
+        if (uri == null) {
+            uri = this.contentUri;
+        }
+        FileLog.d("videoplayerholderbase.setAudioEnabled(): repreparePlayer as audio track is enabled back uri=" + uri);
+        this.videoPlayer.preparePlayer(uri, "other");
+        this.videoPlayer.setWorkerQueue(this.dispatchQueue);
+        if (!z2) {
+            Surface surface = this.surface;
+            if (surface != null) {
+                this.videoPlayer.setSurface(surface);
+            } else {
+                SurfaceView surfaceView = this.surfaceView;
+                if (surfaceView != null) {
+                    this.videoPlayer.setSurfaceView(surfaceView);
                 } else {
-                    this.videoPlayer.setPlayWhenReady(true);
-                    this.videoPlayer.play();
-                    return;
+                    this.videoPlayer.setTextureView(this.textureView);
                 }
             }
         }
-        this.videoPlayer.setVolume(z ? 1.0f : 0.0f);
+        this.videoPlayer.seekTo(currentPosition + 50);
+        if (!zIsPlaying || z2) {
+            this.videoPlayer.setPlayWhenReady(false);
+            this.videoPlayer.pause();
+        } else {
+            this.videoPlayer.setPlayWhenReady(true);
+            this.videoPlayer.play();
+        }
     }
 
     public void lambda$setSpeed$5(float f) {
@@ -428,34 +422,31 @@ public class VideoPlayerHolderBase {
             ensurePlayerCreated(z);
             this.videoPlayer.setPlaybackSpeed(f);
             FileLog.d("videoplayerholderbase.start(): preparePlayer new player uri=" + uri);
-            this.videoPlayer.preparePlayer(uri, "other", 0L);
-            VideoPlayer videoPlayer = this.videoPlayer;
-            DispatchQueue dispatchQueue = this.dispatchQueue;
-            videoPlayer.workerQueue = dispatchQueue;
-            videoPlayer.player.workerQueue = dispatchQueue;
+            this.videoPlayer.preparePlayer(uri, "other");
+            this.videoPlayer.setWorkerQueue(this.dispatchQueue);
             if (!z2) {
                 Surface surface = this.surface;
                 if (surface != null) {
-                    videoPlayer.setSurface(surface);
+                    this.videoPlayer.setSurface(surface);
                 } else {
                     SurfaceView surfaceView = this.surfaceView;
                     if (surfaceView != null) {
-                        videoPlayer.setSurfaceView(surfaceView);
+                        this.videoPlayer.setSurfaceView(surfaceView);
                     } else {
-                        videoPlayer.setTextureView(this.textureView);
+                        this.videoPlayer.setTextureView(this.textureView);
                     }
                 }
                 this.videoPlayer.setPlayWhenReady(true);
             } else if (z3) {
                 Surface surface2 = this.surface;
                 if (surface2 != null) {
-                    videoPlayer.setSurface(surface2);
+                    this.videoPlayer.setSurface(surface2);
                 } else {
                     SurfaceView surfaceView2 = this.surfaceView;
                     if (surfaceView2 != null) {
-                        videoPlayer.setSurfaceView(surfaceView2);
+                        this.videoPlayer.setSurfaceView(surfaceView2);
                     } else {
-                        videoPlayer.setTextureView(this.textureView);
+                        this.videoPlayer.setTextureView(this.textureView);
                     }
                 }
                 this.videoPlayer.setPlayWhenReady(false);
@@ -615,7 +606,7 @@ public class VideoPlayerHolderBase {
         this.dispatchQueue.cancelRunnable(this.initRunnable);
         this.dispatchQueue.cancelRunnable(this.progressRunnable);
         this.initRunnable = null;
-        this.dispatchQueue.postRunnable(new RemoteUtils$$ExternalSyntheticLambda2(this, document, runnable, 10));
+        this.dispatchQueue.postRunnable(new RemoteUtils$$ExternalSyntheticLambda2(this, document, runnable, 14));
         Bitmap bitmap = this.playerStubBitmap;
         if (bitmap != null) {
             AndroidUtilities.recycleBitmap(bitmap);
@@ -648,7 +639,7 @@ public class VideoPlayerHolderBase {
         }
         this.audioDisabled = z3;
         this.triesCount = 3;
-        this.dispatchQueue.postRunnable(new EmojiView$$ExternalSyntheticLambda34(this, z, z2, 1));
+        this.dispatchQueue.postRunnable(new EmojiView$$ExternalSyntheticLambda10(this, z, z2, 1));
     }
 
     public void setOnErrorListener(Runnable runnable) {
@@ -712,7 +703,7 @@ public class VideoPlayerHolderBase {
     }
 
     public void seekTo(long j, boolean z, Runnable runnable) {
-        this.dispatchQueue.postRunnable(new ProfileActivity$$ExternalSyntheticLambda72(this, j, z, runnable));
+        this.dispatchQueue.postRunnable(new ProfileActivity$$ExternalSyntheticLambda138(this, j, z, runnable));
     }
 
     public VideoPlayerHolderBase with(TextureView textureView) {

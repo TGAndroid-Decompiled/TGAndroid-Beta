@@ -5,7 +5,7 @@ import com.google.android.exoplayer2.upstream.BaseDataSource;
 import com.google.android.exoplayer2.upstream.DataSourceException;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
-import com.google.android.gms.internal.mlkit_language_id_common.zzhr;
+import com.google.android.gms.internal.mlkit_language_id_common.zzhp;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
@@ -60,7 +60,7 @@ public final class EncryptedFileDataSource extends BaseDataSource {
         this.uri = uri;
         File file = new File(dataSpec.uri.getPath());
         try {
-            EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), zzhr.m(file.getName(), ".key")));
+            EncryptedFileInputStream encryptedFileInputStream = new EncryptedFileInputStream(file, new File(FileLoader.getInternalCacheDir(), zzhp.m(file.getName(), ".key")));
             this.fileInputStream = encryptedFileInputStream;
             encryptedFileInputStream.skip(j);
             int length = (int) file.length();

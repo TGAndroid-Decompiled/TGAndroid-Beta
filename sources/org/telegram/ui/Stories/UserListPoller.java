@@ -13,7 +13,7 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.BlurredRecyclerView;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda18;
+import org.telegram.ui.bots.BotBiometry$$ExternalSyntheticLambda10;
 
 public final class UserListPoller {
     public static final UserListPoller[] istances = new UserListPoller[4];
@@ -42,7 +42,7 @@ public final class UserListPoller {
                 int size = arrayList2.size();
                 int i2 = userListPoller.currentAccount;
                 if (i >= size) {
-                    ConnectionsManager.getInstance(i2).sendRequestTyped(tL_stories_getPeerMaxIDs, new AiTonesController$$ExternalSyntheticLambda0(), new OAuthSheet$$ExternalSyntheticLambda18(25, this, arrayList2));
+                    ConnectionsManager.getInstance(i2).sendRequestTyped(tL_stories_getPeerMaxIDs, new AiTonesController$$ExternalSyntheticLambda0(), new BotBiometry$$ExternalSyntheticLambda10(10, this, arrayList2));
                     return;
                 } else {
                     tL_stories_getPeerMaxIDs.id.add(MessagesController.getInstance(i2).getInputPeer(((Long) arrayList2.get(i)).longValue()));

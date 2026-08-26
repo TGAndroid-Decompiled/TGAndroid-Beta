@@ -1,5 +1,7 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,6 +17,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OpReorderer;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
@@ -26,163 +30,85 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChannelCreateActivity;
 import org.telegram.ui.Components.voip.GroupCallMiniTextureView;
+import org.telegram.ui.Components.voip.GroupCallRenderersContainer;
 import org.telegram.ui.Components.voip.GroupCallStatusIcon;
 import org.telegram.ui.Components.voip.GroupCallStatusIcon$$ExternalSyntheticLambda0;
 import org.telegram.ui.GroupCallActivity;
 import org.telegram.ui.Stars.StarsReactionsSheet$StarsSlider$$ExternalSyntheticLambda1;
-import org.telegram.ui.bots.BotWebViewSheet;
 
-public final class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapter {
-    public final GroupCallActivity activity;
-    public ArrayList attachedRenderers;
-    public final int currentAccount;
-    public ChatObject.Call groupCall;
-    public GroupCallActivity.AnonymousClass28 renderersContainer;
-    public final ArrayList videoParticipants = new ArrayList();
-    public final ArrayList participants = new ArrayList();
-    public boolean visible = false;
+public class GroupCallFullscreenAdapter extends RecyclerListView.SelectionAdapter {
+    private final GroupCallActivity activity;
+    private ArrayList<GroupCallMiniTextureView> attachedRenderers;
+    private final int currentAccount;
+    private ChatObject.Call groupCall;
+    private GroupCallRenderersContainer renderersContainer;
+    private final ArrayList<ChatObject.VideoParticipant> videoParticipants = new ArrayList<>();
+    private final ArrayList<TLRPC.GroupCallParticipant> participants = new ArrayList<>();
+    private boolean visible = false;
 
-    public final class GroupCallUserCell extends FrameLayout implements GroupCallStatusIcon.Callback {
-        public boolean attached;
-        public final AvatarDrawable avatarDrawable;
-        public final BackupImageView avatarImageView;
-        public final org.telegram.ui.Cells.GroupCallUserCell.AvatarWavesDrawable avatarWavesDrawable;
-        public final Paint backgroundPaint;
-        public ValueAnimator colorAnimator;
-        public TLRPC.Chat currentChat;
-        public TLRPC.User currentUser;
-        public String drawingName;
-        public int lastColor;
-        public int lastWavesColor;
-        public final ChannelCreateActivity.AnonymousClass5 muteButton;
-        public String name;
-        public int nameWidth;
-        public TLRPC.GroupCallParticipant participant;
-        public long peerId;
-        public float progress;
-        public GroupCallMiniTextureView renderer;
-        public boolean selected;
-        public final Paint selectionPaint;
-        public float selectionProgress;
-        public boolean skipInvalidate;
-        public GroupCallStatusIcon statusIcon;
-        public final TextPaint textPaint;
-        public ChatObject.VideoParticipant videoParticipant;
+    public class GroupCallUserCell extends FrameLayout implements GroupCallStatusIcon.Callback {
+        boolean attached;
+        AvatarDrawable avatarDrawable;
+        private BackupImageView avatarImageView;
+        org.telegram.ui.Cells.GroupCallUserCell.AvatarWavesDrawable avatarWavesDrawable;
+        Paint backgroundPaint;
+        ValueAnimator colorAnimator;
+        private TLRPC.Chat currentChat;
+        private TLRPC.User currentUser;
+        String drawingName;
+        boolean hasAvatar;
+        int lastColor;
+        private boolean lastMuted;
+        private boolean lastRaisedHand;
+        int lastWavesColor;
+        RLottieImageView muteButton;
+        String name;
+        int nameWidth;
+        TLRPC.GroupCallParticipant participant;
+        long peerId;
+        float progress;
+        GroupCallMiniTextureView renderer;
+        boolean selected;
+        Paint selectionPaint;
+        float selectionProgress;
+        boolean skipInvalidate;
+        GroupCallStatusIcon statusIcon;
+        TextPaint textPaint;
+        ChatObject.VideoParticipant videoParticipant;
 
         public GroupCallUserCell(Context context) {
             super(context);
-            AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-            this.avatarDrawable = avatarDrawable;
-            Paint paint = new Paint(1);
-            this.backgroundPaint = paint;
-            Paint paint2 = new Paint(1);
-            this.selectionPaint = paint2;
+            this.avatarDrawable = new AvatarDrawable();
+            this.backgroundPaint = new Paint(1);
+            this.selectionPaint = new Paint(1);
             this.progress = 1.0f;
-            TextPaint textPaint = new TextPaint(1);
-            this.textPaint = textPaint;
+            this.textPaint = new TextPaint(1);
             this.avatarWavesDrawable = new org.telegram.ui.Cells.GroupCallUserCell.AvatarWavesDrawable(AndroidUtilities.dp(26.0f), AndroidUtilities.dp(29.0f));
-            avatarDrawable.namePaint.setTextSize((int) (AndroidUtilities.dp(18.0f) / 1.15f));
+            this.avatarDrawable.setTextSize((int) (AndroidUtilities.dp(18.0f) / 1.15f));
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarImageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-            addView(backupImageView, LayoutHelper.createFrame(40, 40.0f, 1, 0.0f, 9.0f, 0.0f, 9.0f));
+            addView(this.avatarImageView, LayoutHelper.createFrame(40, 40.0f, 1, 0.0f, 9.0f, 0.0f, 9.0f));
             setWillNotDraw(false);
-            paint.setColor(Theme.getColor(null, Theme.key_voipgroup_listViewBackground, false));
-            paint2.setColor(Theme.getColor(null, Theme.key_voipgroup_speakingText, false));
-            paint2.setStyle(Paint.Style.STROKE);
-            paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
-            textPaint.setColor(-1);
-            ChannelCreateActivity.AnonymousClass5 anonymousClass5 = new ChannelCreateActivity.AnonymousClass5(this, context, 1);
-            this.muteButton = anonymousClass5;
-            anonymousClass5.setScaleType(ImageView.ScaleType.CENTER);
-            addView(anonymousClass5, LayoutHelper.createFrame(24.0f, 24));
-        }
-
-        private void setSelectedProgress(float f) {
-            if (this.selectionProgress != f) {
-                this.selectionProgress = f;
-                this.selectionPaint.setAlpha((int) (f * 255.0f));
-            }
-        }
-
-        public final void attachRenderer(boolean z) {
-            GroupCallFullscreenAdapter groupCallFullscreenAdapter = GroupCallFullscreenAdapter.this;
-            if (groupCallFullscreenAdapter.activity.isDismissed()) {
-                return;
-            }
-            if (z && this.renderer == null) {
-                this.renderer = GroupCallMiniTextureView.getOrCreate(groupCallFullscreenAdapter.attachedRenderers, groupCallFullscreenAdapter.renderersContainer, null, this, null, this.videoParticipant, groupCallFullscreenAdapter.groupCall, groupCallFullscreenAdapter.activity);
-            } else {
-                if (z) {
-                    return;
+            this.backgroundPaint.setColor(Theme.getColor(null, Theme.key_voipgroup_listViewBackground, false));
+            this.selectionPaint.setColor(Theme.getColor(null, Theme.key_voipgroup_speakingText, false));
+            this.selectionPaint.setStyle(Paint.Style.STROKE);
+            this.selectionPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+            this.textPaint.setColor(-1);
+            RLottieImageView rLottieImageView = new RLottieImageView(context) {
+                @Override
+                public void invalidate() {
+                    super.invalidate();
+                    GroupCallUserCell.this.invalidate();
                 }
-                GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
-                if (groupCallMiniTextureView != null) {
-                    groupCallMiniTextureView.setSecondaryView(null);
-                }
-                this.renderer = null;
-            }
+            };
+            this.muteButton = rLottieImageView;
+            rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
+            addView(this.muteButton, LayoutHelper.createFrame(24, 24.0f));
         }
 
-        @Override
-        public final void dispatchDraw(Canvas canvas) {
-            GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
-            if (groupCallMiniTextureView != null && !groupCallMiniTextureView.showingInFullscreen && !groupCallMiniTextureView.animateToFullscreen && groupCallMiniTextureView.attached && groupCallMiniTextureView.textureView.renderer.isFirstFrameRendered() && groupCallMiniTextureView.getAlpha() == 1.0f && !GroupCallFullscreenAdapter.this.activity.drawingForBlur) {
-                drawSelection(canvas);
-                return;
-            }
-            if (this.progress > 0.0f) {
-                float measuredWidth = (1.0f - this.progress) * (getMeasuredWidth() / 2.0f);
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(measuredWidth, measuredWidth, getMeasuredWidth() - measuredWidth, getMeasuredHeight() - measuredWidth);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.backgroundPaint);
-                drawSelection(canvas);
-            }
-            BackupImageView backupImageView = this.avatarImageView;
-            float x = backupImageView.getX() + (backupImageView.getMeasuredWidth() / 2);
-            float y = backupImageView.getY() + (backupImageView.getMeasuredHeight() / 2);
-            org.telegram.ui.Cells.GroupCallUserCell.AvatarWavesDrawable avatarWavesDrawable = this.avatarWavesDrawable;
-            avatarWavesDrawable.update();
-            avatarWavesDrawable.draw(canvas, x, y, this);
-            float fDp = AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f);
-            float f = this.progress;
-            float f2 = (f * 1.0f) + ((1.0f - f) * fDp);
-            backupImageView.setScaleX(avatarWavesDrawable.getAvatarScale() * f2);
-            backupImageView.setScaleY(avatarWavesDrawable.getAvatarScale() * f2);
-            super.dispatchDraw(canvas);
-        }
-
-        @Override
-        public final boolean drawChild(Canvas canvas, View view, long j) {
-            if (view == this.muteButton) {
-                return true;
-            }
-            return super.drawChild(canvas, view, j);
-        }
-
-        public final void drawOverlays(Canvas canvas) {
-            if (this.drawingName != null) {
-                canvas.save();
-                int iM$2 = OKLCH.m$2(24.0f, getMeasuredWidth() - this.nameWidth, 2);
-                TextPaint textPaint = this.textPaint;
-                textPaint.setAlpha((int) (getAlpha() * this.progress * 255.0f));
-                canvas.drawText(this.drawingName, AndroidUtilities.dp(22.0f) + iM$2, AndroidUtilities.dp(69.0f), textPaint);
-                canvas.restore();
-                canvas.save();
-                canvas.translate(iM$2, AndroidUtilities.dp(53.0f));
-                ChannelCreateActivity.AnonymousClass5 anonymousClass5 = this.muteButton;
-                if (anonymousClass5.getDrawable() != null) {
-                    anonymousClass5.getDrawable().setAlpha((int) (getAlpha() * this.progress * 255.0f));
-                    anonymousClass5.draw(canvas);
-                    anonymousClass5.getDrawable().setAlpha(255);
-                }
-                canvas.restore();
-            }
-        }
-
-        public final void drawSelection(Canvas canvas) {
+        private void drawSelection(Canvas canvas) {
             float f;
             float f2;
             boolean z = this.selected;
@@ -224,9 +150,95 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
                 float measuredWidth = (1.0f - this.progress) * (getMeasuredWidth() / 2.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(measuredWidth, measuredWidth, getMeasuredWidth() - measuredWidth, getMeasuredHeight() - measuredWidth);
-                Paint paint = this.selectionPaint;
-                rectF.inset(paint.getStrokeWidth() / 2.0f, paint.getStrokeWidth() / 2.0f);
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), paint);
+                rectF.inset(this.selectionPaint.getStrokeWidth() / 2.0f, this.selectionPaint.getStrokeWidth() / 2.0f);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.selectionPaint);
+            }
+        }
+
+        public void lambda$updateState$0(int i, int i2, int i3, int i4, ValueAnimator valueAnimator) {
+            this.lastColor = ColorUtils.blendARGB(((Float) valueAnimator.getAnimatedValue()).floatValue(), i, i2);
+            this.lastWavesColor = ColorUtils.blendARGB(((Float) valueAnimator.getAnimatedValue()).floatValue(), i3, i4);
+            this.muteButton.setColorFilter(new PorterDuffColorFilter(this.lastColor, PorterDuff.Mode.MULTIPLY));
+            this.textPaint.setColor(this.lastColor);
+            this.selectionPaint.setColor(this.lastWavesColor);
+            this.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(this.lastWavesColor, 38));
+            invalidate();
+        }
+
+        private void setSelectedProgress(float f) {
+            if (this.selectionProgress != f) {
+                this.selectionProgress = f;
+                this.selectionPaint.setAlpha((int) (f * 255.0f));
+            }
+        }
+
+        public void attachRenderer(boolean z) {
+            if (GroupCallFullscreenAdapter.this.activity.isDismissed()) {
+                return;
+            }
+            if (z && this.renderer == null) {
+                this.renderer = GroupCallMiniTextureView.getOrCreate(GroupCallFullscreenAdapter.this.attachedRenderers, GroupCallFullscreenAdapter.this.renderersContainer, null, this, null, this.videoParticipant, GroupCallFullscreenAdapter.this.groupCall, GroupCallFullscreenAdapter.this.activity);
+            } else {
+                if (z) {
+                    return;
+                }
+                GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
+                if (groupCallMiniTextureView != null) {
+                    groupCallMiniTextureView.setSecondaryView(null);
+                }
+                this.renderer = null;
+            }
+        }
+
+        @Override
+        public void dispatchDraw(Canvas canvas) {
+            GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
+            if (groupCallMiniTextureView != null && !groupCallMiniTextureView.showingInFullscreen && !groupCallMiniTextureView.animateToFullscreen && groupCallMiniTextureView.attached && groupCallMiniTextureView.textureView.renderer.isFirstFrameRendered() && groupCallMiniTextureView.getAlpha() == 1.0f && !GroupCallFullscreenAdapter.this.activity.drawingForBlur) {
+                drawSelection(canvas);
+                return;
+            }
+            if (this.progress > 0.0f) {
+                float measuredWidth = (1.0f - this.progress) * (getMeasuredWidth() / 2.0f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(measuredWidth, measuredWidth, getMeasuredWidth() - measuredWidth, getMeasuredHeight() - measuredWidth);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f), this.backgroundPaint);
+                drawSelection(canvas);
+            }
+            float x = this.avatarImageView.getX() + (this.avatarImageView.getMeasuredWidth() / 2);
+            float y = this.avatarImageView.getY() + (this.avatarImageView.getMeasuredHeight() / 2);
+            this.avatarWavesDrawable.update();
+            this.avatarWavesDrawable.draw(canvas, this, x, y);
+            float fDp = AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f);
+            float f = this.progress;
+            float f2 = (f * 1.0f) + ((1.0f - f) * fDp);
+            this.avatarImageView.setScaleX(this.avatarWavesDrawable.getAvatarScale() * f2);
+            this.avatarImageView.setScaleY(this.avatarWavesDrawable.getAvatarScale() * f2);
+            super.dispatchDraw(canvas);
+        }
+
+        @Override
+        public boolean drawChild(Canvas canvas, View view, long j) {
+            if (view == this.muteButton) {
+                return true;
+            }
+            return super.drawChild(canvas, view, j);
+        }
+
+        public void drawOverlays(Canvas canvas) {
+            if (this.drawingName != null) {
+                canvas.save();
+                int iM$2 = OKLCH.m$2(24.0f, getMeasuredWidth() - this.nameWidth, 2);
+                this.textPaint.setAlpha((int) (getAlpha() * this.progress * 255.0f));
+                canvas.drawText(this.drawingName, AndroidUtilities.dp(22.0f) + iM$2, AndroidUtilities.dp(69.0f), this.textPaint);
+                canvas.restore();
+                canvas.save();
+                canvas.translate(iM$2, AndroidUtilities.dp(53.0f));
+                if (this.muteButton.getDrawable() != null) {
+                    this.muteButton.getDrawable().setAlpha((int) (getAlpha() * this.progress * 255.0f));
+                    this.muteButton.draw(canvas);
+                    this.muteButton.getDrawable().setAlpha(255);
+                }
+                canvas.restore();
             }
         }
 
@@ -254,8 +266,13 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
             return this.videoParticipant;
         }
 
+        public boolean hasImage() {
+            GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
+            return groupCallMiniTextureView != null && groupCallMiniTextureView.textureView.stubVisibleProgress == 1.0f;
+        }
+
         @Override
-        public final void invalidate() {
+        public void invalidate() {
             if (this.skipInvalidate) {
                 return;
             }
@@ -270,17 +287,19 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
             this.skipInvalidate = false;
         }
 
+        public boolean isRemoving(RecyclerListView recyclerListView) {
+            return recyclerListView.getChildAdapterPosition(this) == -1;
+        }
+
         @Override
-        public final void onAttachedToWindow() {
+        public void onAttachedToWindow() {
             super.onAttachedToWindow();
-            GroupCallFullscreenAdapter groupCallFullscreenAdapter = GroupCallFullscreenAdapter.this;
-            if (groupCallFullscreenAdapter.visible && this.videoParticipant != null) {
+            if (GroupCallFullscreenAdapter.this.visible && this.videoParticipant != null) {
                 attachRenderer(true);
             }
             this.attached = true;
-            GroupCallActivity groupCallActivity = groupCallFullscreenAdapter.activity;
-            if (groupCallActivity.statusIconPool.size() > 0) {
-                this.statusIcon = (GroupCallStatusIcon) DiffUtil.m(groupCallActivity.statusIconPool);
+            if (GroupCallFullscreenAdapter.this.activity.statusIconPool.size() > 0) {
+                this.statusIcon = GroupCallFullscreenAdapter.this.activity.statusIconPool.remove(GroupCallFullscreenAdapter.this.activity.statusIconPool.size() - 1);
             } else {
                 this.statusIcon = new GroupCallStatusIcon();
             }
@@ -292,51 +311,47 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
             groupCallStatusIcon2.participant = this.participant;
             groupCallStatusIcon2.updateIcon(false);
             updateState(false);
-            boolean z = this.statusIcon.isSpeaking;
-            org.telegram.ui.Cells.GroupCallUserCell.AvatarWavesDrawable avatarWavesDrawable = this.avatarWavesDrawable;
-            avatarWavesDrawable.setShowWaves(this, z);
+            this.avatarWavesDrawable.setShowWaves(this, this.statusIcon.isSpeaking);
             if (this.statusIcon.isSpeaking) {
                 return;
             }
-            avatarWavesDrawable.setAmplitude(0.0d);
+            this.avatarWavesDrawable.setAmplitude(0.0d);
         }
 
         @Override
-        public final void onDetachedFromWindow() {
+        public void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             attachRenderer(false);
             this.attached = false;
-            GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
-            if (groupCallStatusIcon != null) {
-                GroupCallFullscreenAdapter.this.activity.statusIconPool.add(groupCallStatusIcon);
+            if (this.statusIcon != null) {
+                GroupCallFullscreenAdapter.this.activity.statusIconPool.add(this.statusIcon);
+                GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
+                groupCallStatusIcon.iconView = null;
+                groupCallStatusIcon.updateIcon(false);
                 GroupCallStatusIcon groupCallStatusIcon2 = this.statusIcon;
-                groupCallStatusIcon2.iconView = null;
-                groupCallStatusIcon2.updateIcon(false);
-                GroupCallStatusIcon groupCallStatusIcon3 = this.statusIcon;
-                groupCallStatusIcon3.callback = null;
-                groupCallStatusIcon3.isSpeaking = false;
-                AndroidUtilities.cancelRunOnUIThread(groupCallStatusIcon3.updateRunnable);
-                AndroidUtilities.cancelRunOnUIThread(groupCallStatusIcon3.raiseHandCallback);
-                AndroidUtilities.cancelRunOnUIThread(groupCallStatusIcon3.checkRaiseRunnable);
-                groupCallStatusIcon3.micDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+                groupCallStatusIcon2.callback = null;
+                groupCallStatusIcon2.isSpeaking = false;
+                AndroidUtilities.cancelRunOnUIThread(groupCallStatusIcon2.updateRunnable);
+                AndroidUtilities.cancelRunOnUIThread(groupCallStatusIcon2.raiseHandCallback);
+                AndroidUtilities.cancelRunOnUIThread(groupCallStatusIcon2.checkRaiseRunnable);
+                groupCallStatusIcon2.micDrawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
             }
             this.statusIcon = null;
         }
 
         @Override
-        public final void onMeasure(int i, int i2) {
-            TextPaint textPaint = this.textPaint;
-            textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        public void onMeasure(int i, int i2) {
+            this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             if (this.name != null) {
-                int iMin = (int) Math.min(AndroidUtilities.dp(46.0f), textPaint.measureText(this.name));
+                int iMin = (int) Math.min(AndroidUtilities.dp(46.0f), this.textPaint.measureText(this.name));
                 this.nameWidth = iMin;
-                this.drawingName = TextUtils.ellipsize(this.name, textPaint, iMin, TextUtils.TruncateAt.END).toString();
+                this.drawingName = TextUtils.ellipsize(this.name, this.textPaint, iMin, TextUtils.TruncateAt.END).toString();
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
         }
 
         @Override
-        public final void onStatusChanged() {
+        public void onStatusChanged() {
             this.avatarWavesDrawable.setShowWaves(this, this.statusIcon.isSpeaking);
             updateState(true);
         }
@@ -367,45 +382,41 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
             this.avatarWavesDrawable.setAmplitude(d);
         }
 
-        public final void setParticipant(ChatObject.VideoParticipant videoParticipant, TLRPC.GroupCallParticipant groupCallParticipant) {
+        public void setParticipant(ChatObject.VideoParticipant videoParticipant, TLRPC.GroupCallParticipant groupCallParticipant) {
             this.videoParticipant = videoParticipant;
             this.participant = groupCallParticipant;
             long j = this.peerId;
             long peerId = MessageObject.getPeerId(groupCallParticipant.peer);
             this.peerId = peerId;
-            BackupImageView backupImageView = this.avatarImageView;
-            AvatarDrawable avatarDrawable = this.avatarDrawable;
-            GroupCallFullscreenAdapter groupCallFullscreenAdapter = GroupCallFullscreenAdapter.this;
             if (peerId > 0) {
-                TLRPC.User user = AccountInstance.getInstance(groupCallFullscreenAdapter.currentAccount).getMessagesController().getUser(Long.valueOf(this.peerId));
-                this.currentUser = user;
+                this.currentUser = AccountInstance.getInstance(GroupCallFullscreenAdapter.this.currentAccount).getMessagesController().getUser(Long.valueOf(this.peerId));
                 this.currentChat = null;
-                avatarDrawable.setInfo(groupCallFullscreenAdapter.currentAccount, user);
+                this.avatarDrawable.setInfo(GroupCallFullscreenAdapter.this.currentAccount, this.currentUser);
                 this.name = UserObject.getFirstName(this.currentUser);
-                backupImageView.getImageReceiver().setCurrentAccount(groupCallFullscreenAdapter.currentAccount);
-                backupImageView.setImage(ImageLocation.getForUser(this.currentUser, 1), "50_50", avatarDrawable, this.currentUser);
+                this.avatarImageView.getImageReceiver().setCurrentAccount(GroupCallFullscreenAdapter.this.currentAccount);
+                ImageLocation forUser = ImageLocation.getForUser(this.currentUser, 1);
+                this.hasAvatar = forUser != null;
+                this.avatarImageView.setImage(forUser, "50_50", this.avatarDrawable, this.currentUser);
             } else {
-                TLRPC.Chat chat = AccountInstance.getInstance(groupCallFullscreenAdapter.currentAccount).getMessagesController().getChat(Long.valueOf(-this.peerId));
-                this.currentChat = chat;
+                this.currentChat = AccountInstance.getInstance(GroupCallFullscreenAdapter.this.currentAccount).getMessagesController().getChat(Long.valueOf(-this.peerId));
                 this.currentUser = null;
-                avatarDrawable.setInfo(groupCallFullscreenAdapter.currentAccount, chat);
-                TLRPC.Chat chat2 = this.currentChat;
-                if (chat2 != null) {
-                    this.name = chat2.title;
-                    backupImageView.getImageReceiver().setCurrentAccount(groupCallFullscreenAdapter.currentAccount);
-                    backupImageView.setImage(ImageLocation.getForChat(this.currentChat, 1), "50_50", avatarDrawable, this.currentChat);
+                this.avatarDrawable.setInfo(GroupCallFullscreenAdapter.this.currentAccount, this.currentChat);
+                TLRPC.Chat chat = this.currentChat;
+                if (chat != null) {
+                    this.name = chat.title;
+                    this.avatarImageView.getImageReceiver().setCurrentAccount(GroupCallFullscreenAdapter.this.currentAccount);
+                    ImageLocation forChat = ImageLocation.getForChat(this.currentChat, 1);
+                    this.hasAvatar = forChat != null;
+                    this.avatarImageView.setImage(forChat, "50_50", this.avatarDrawable, this.currentChat);
                 }
             }
             boolean z = j == this.peerId;
             if (videoParticipant == null) {
-                this.selected = groupCallFullscreenAdapter.renderersContainer.fullscreenPeerId == MessageObject.getPeerId(groupCallParticipant.peer);
+                this.selected = GroupCallFullscreenAdapter.this.renderersContainer.fullscreenPeerId == MessageObject.getPeerId(groupCallParticipant.peer);
+            } else if (GroupCallFullscreenAdapter.this.renderersContainer.fullscreenParticipant != null) {
+                this.selected = GroupCallFullscreenAdapter.this.renderersContainer.fullscreenParticipant.equals(videoParticipant);
             } else {
-                ChatObject.VideoParticipant videoParticipant2 = groupCallFullscreenAdapter.renderersContainer.fullscreenParticipant;
-                if (videoParticipant2 != null) {
-                    this.selected = videoParticipant2.equals(videoParticipant);
-                } else {
-                    this.selected = false;
-                }
+                this.selected = false;
             }
             if (!z) {
                 setSelectedProgress(this.selected ? 1.0f : 0.0f);
@@ -423,13 +434,11 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
                 return;
             }
             this.progress = f;
-            Paint paint = this.backgroundPaint;
-            BackupImageView backupImageView = this.avatarImageView;
             if (f == 1.0f) {
-                backupImageView.setTranslationY(0.0f);
-                backupImageView.setScaleX(1.0f);
-                backupImageView.setScaleY(1.0f);
-                paint.setAlpha(255);
+                this.avatarImageView.setTranslationY(0.0f);
+                this.avatarImageView.setScaleX(1.0f);
+                this.avatarImageView.setScaleY(1.0f);
+                this.backgroundPaint.setAlpha(255);
                 invalidate();
                 GroupCallMiniTextureView groupCallMiniTextureView = this.renderer;
                 if (groupCallMiniTextureView != null) {
@@ -438,13 +447,13 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
                 }
                 return;
             }
-            float measuredHeight = ((backupImageView.getMeasuredHeight() / 2.0f) + backupImageView.getTop()) - (getMeasuredHeight() / 2.0f);
+            float measuredHeight = ((this.avatarImageView.getMeasuredHeight() / 2.0f) + this.avatarImageView.getTop()) - (getMeasuredHeight() / 2.0f);
             float f2 = 1.0f - f;
             float fDp = (1.0f * f) + ((AndroidUtilities.dp(46.0f) / AndroidUtilities.dp(40.0f)) * f2);
-            backupImageView.setTranslationY((-measuredHeight) * f2);
-            backupImageView.setScaleX(fDp);
-            backupImageView.setScaleY(fDp);
-            paint.setAlpha((int) (f * 255.0f));
+            this.avatarImageView.setTranslationY((-measuredHeight) * f2);
+            this.avatarImageView.setScaleX(fDp);
+            this.avatarImageView.setScaleY(fDp);
+            this.backgroundPaint.setAlpha((int) (f * 255.0f));
             invalidate();
             GroupCallMiniTextureView groupCallMiniTextureView2 = this.renderer;
             if (groupCallMiniTextureView2 != null) {
@@ -456,9 +465,9 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
             this.renderer = groupCallMiniTextureView;
         }
 
-        public final void updateState(boolean z) {
-            int color;
-            int color2;
+        public void updateState(boolean z) {
+            final int color;
+            final int color2;
             int color3;
             ValueAnimator valueAnimator;
             GroupCallStatusIcon groupCallStatusIcon = this.statusIcon;
@@ -480,7 +489,21 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
                     ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                     this.colorAnimator = valueAnimatorOfFloat;
                     valueAnimatorOfFloat.addUpdateListener(new StarsReactionsSheet$StarsSlider$$ExternalSyntheticLambda1(this, i, color, i2, color2, 1));
-                    this.colorAnimator.addListener(new BotWebViewSheet.AnonymousClass16(this, color, color2, 1));
+                    this.colorAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            GroupCallUserCell groupCallUserCell = GroupCallUserCell.this;
+                            groupCallUserCell.lastColor = color;
+                            groupCallUserCell.lastWavesColor = color2;
+                            groupCallUserCell.muteButton.setColorFilter(new PorterDuffColorFilter(GroupCallUserCell.this.lastColor, PorterDuff.Mode.MULTIPLY));
+                            GroupCallUserCell groupCallUserCell2 = GroupCallUserCell.this;
+                            groupCallUserCell2.textPaint.setColor(groupCallUserCell2.lastColor);
+                            GroupCallUserCell groupCallUserCell3 = GroupCallUserCell.this;
+                            groupCallUserCell3.selectionPaint.setColor(groupCallUserCell3.lastWavesColor);
+                            GroupCallUserCell groupCallUserCell4 = GroupCallUserCell.this;
+                            groupCallUserCell4.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(groupCallUserCell4.lastWavesColor, 38));
+                        }
+                    });
                     this.colorAnimator.start();
                     return;
                 }
@@ -506,7 +529,21 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
                 ValueAnimator valueAnimatorOfFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
                 this.colorAnimator = valueAnimatorOfFloat2;
                 valueAnimatorOfFloat2.addUpdateListener(new StarsReactionsSheet$StarsSlider$$ExternalSyntheticLambda1(this, i3, color, i4, color2, 1));
-                this.colorAnimator.addListener(new BotWebViewSheet.AnonymousClass16(this, color, color2, 1));
+                this.colorAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        GroupCallUserCell groupCallUserCell = GroupCallUserCell.this;
+                        groupCallUserCell.lastColor = color;
+                        groupCallUserCell.lastWavesColor = color2;
+                        groupCallUserCell.muteButton.setColorFilter(new PorterDuffColorFilter(GroupCallUserCell.this.lastColor, PorterDuff.Mode.MULTIPLY));
+                        GroupCallUserCell groupCallUserCell2 = GroupCallUserCell.this;
+                        groupCallUserCell2.textPaint.setColor(groupCallUserCell2.lastColor);
+                        GroupCallUserCell groupCallUserCell3 = GroupCallUserCell.this;
+                        groupCallUserCell3.selectionPaint.setColor(groupCallUserCell3.lastWavesColor);
+                        GroupCallUserCell groupCallUserCell4 = GroupCallUserCell.this;
+                        groupCallUserCell4.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(groupCallUserCell4.lastWavesColor, 38));
+                    }
+                });
                 this.colorAnimator.start();
                 return;
             }
@@ -532,32 +569,29 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
     }
 
     @Override
-    public final int getItemCount() {
+    public int getItemCount() {
         return this.participants.size() + this.videoParticipants.size();
     }
 
     @Override
-    public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+    public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         return false;
     }
 
     @Override
-    public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         TLRPC.GroupCallParticipant groupCallParticipant;
         ChatObject.VideoParticipant videoParticipant;
         GroupCallUserCell groupCallUserCell = (GroupCallUserCell) viewHolder.itemView;
         ChatObject.VideoParticipant videoParticipant2 = groupCallUserCell.videoParticipant;
-        ArrayList arrayList = this.videoParticipants;
-        if (i < arrayList.size()) {
-            videoParticipant = (ChatObject.VideoParticipant) arrayList.get(i);
-            groupCallParticipant = ((ChatObject.VideoParticipant) arrayList.get(i)).participant;
+        if (i < this.videoParticipants.size()) {
+            videoParticipant = this.videoParticipants.get(i);
+            groupCallParticipant = this.videoParticipants.get(i).participant;
         } else {
-            int size = i - arrayList.size();
-            ArrayList arrayList2 = this.participants;
-            if (size >= arrayList2.size()) {
+            if (i - this.videoParticipants.size() >= this.participants.size()) {
                 return;
             }
-            groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(i - arrayList.size());
+            groupCallParticipant = this.participants.get(i - this.videoParticipants.size());
             videoParticipant = null;
         }
         groupCallUserCell.setParticipant(videoParticipant, groupCallParticipant);
@@ -582,19 +616,36 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
     }
 
     @Override
-    public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return new RecyclerListView.Holder(new GroupCallUserCell(viewGroup.getContext()));
     }
 
-    public final void setRenderersPool(ArrayList arrayList, GroupCallActivity.AnonymousClass28 anonymousClass28) {
-        this.attachedRenderers = arrayList;
-        this.renderersContainer = anonymousClass28;
+    public void scrollTo(ChatObject.VideoParticipant videoParticipant, RecyclerListView recyclerListView) {
+        LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerListView.getLayoutManager();
+        if (linearLayoutManager == null) {
+            return;
+        }
+        for (int i = 0; i < this.videoParticipants.size(); i++) {
+            if (this.videoParticipants.get(i).equals(videoParticipant)) {
+                linearLayoutManager.scrollToPositionWithOffset(i, AndroidUtilities.dp(13.0f));
+                return;
+            }
+        }
     }
 
-    public final void setVisibility(GroupCallActivity.AnonymousClass24 anonymousClass24, boolean z) {
+    public void setGroupCall(ChatObject.Call call) {
+        this.groupCall = call;
+    }
+
+    public void setRenderersPool(ArrayList<GroupCallMiniTextureView> arrayList, GroupCallRenderersContainer groupCallRenderersContainer) {
+        this.attachedRenderers = arrayList;
+        this.renderersContainer = groupCallRenderersContainer;
+    }
+
+    public void setVisibility(RecyclerListView recyclerListView, boolean z) {
         this.visible = z;
-        for (int i = 0; i < anonymousClass24.getChildCount(); i++) {
-            View childAt = anonymousClass24.getChildAt(i);
+        for (int i = 0; i < recyclerListView.getChildCount(); i++) {
+            View childAt = recyclerListView.getChildAt(i);
             if (childAt instanceof GroupCallUserCell) {
                 GroupCallUserCell groupCallUserCell = (GroupCallUserCell) childAt;
                 if (groupCallUserCell.getVideoParticipant() != null) {
@@ -604,72 +655,65 @@ public final class GroupCallFullscreenAdapter extends RecyclerListView.Selection
         }
     }
 
-    public final void update(RecyclerListView recyclerListView, boolean z) {
+    public void update(boolean z, RecyclerListView recyclerListView) {
         if (this.groupCall == null) {
             return;
         }
-        ArrayList arrayList = this.videoParticipants;
-        ArrayList arrayList2 = this.participants;
         if (!z) {
-            arrayList2.clear();
+            this.participants.clear();
             ChatObject.Call call = this.groupCall;
             if (!call.call.rtmp_stream) {
-                arrayList2.addAll(call.visibleParticipants);
+                this.participants.addAll(call.visibleParticipants);
             }
-            arrayList.clear();
+            this.videoParticipants.clear();
             ChatObject.Call call2 = this.groupCall;
             if (!call2.call.rtmp_stream) {
-                arrayList.addAll(call2.visibleVideoParticipants);
+                this.videoParticipants.addAll(call2.visibleVideoParticipants);
             }
-            this.mObservable.notifyChanged();
+            notifyDataSetChanged();
             return;
         }
-        final ArrayList arrayList3 = new ArrayList(arrayList2);
-        final ArrayList arrayList4 = new ArrayList(arrayList);
-        arrayList2.clear();
+        final ArrayList arrayList = new ArrayList(this.participants);
+        final ArrayList arrayList2 = new ArrayList(this.videoParticipants);
+        this.participants.clear();
         ChatObject.Call call3 = this.groupCall;
         if (!call3.call.rtmp_stream) {
-            arrayList2.addAll(call3.visibleParticipants);
+            this.participants.addAll(call3.visibleParticipants);
         }
-        arrayList.clear();
+        this.videoParticipants.clear();
         ChatObject.Call call4 = this.groupCall;
         if (!call4.call.rtmp_stream) {
-            arrayList.addAll(call4.visibleVideoParticipants);
+            this.videoParticipants.addAll(call4.visibleVideoParticipants);
         }
-        DiffUtil.calculateDiff(new DiffUtil() {
+        DiffUtil.calculateDiff(new DiffUtil.Callback() {
             @Override
-            public final boolean areContentsTheSame(int i, int i2) {
+            public boolean areContentsTheSame(int i, int i2) {
                 return true;
             }
 
             @Override
-            public final boolean areItemsTheSame(int i, int i2) {
-                ArrayList arrayList5 = arrayList4;
-                int size = arrayList5.size();
-                GroupCallFullscreenAdapter groupCallFullscreenAdapter = GroupCallFullscreenAdapter.this;
-                if (i < size && i2 < groupCallFullscreenAdapter.videoParticipants.size()) {
-                    return ((ChatObject.VideoParticipant) arrayList5.get(i)).equals(groupCallFullscreenAdapter.videoParticipants.get(i2));
+            public boolean areItemsTheSame(int i, int i2) {
+                if (i < arrayList2.size() && i2 < GroupCallFullscreenAdapter.this.videoParticipants.size()) {
+                    return ((ChatObject.VideoParticipant) arrayList2.get(i)).equals(GroupCallFullscreenAdapter.this.videoParticipants.get(i2));
                 }
-                int size2 = i - arrayList5.size();
-                int size3 = i2 - groupCallFullscreenAdapter.videoParticipants.size();
-                ArrayList arrayList6 = arrayList3;
-                if (size3 < 0 || size3 >= groupCallFullscreenAdapter.participants.size() || size2 < 0 || size2 >= arrayList6.size()) {
-                    return MessageObject.getPeerId((i < arrayList5.size() ? ((ChatObject.VideoParticipant) arrayList5.get(i)).participant : (TLRPC.GroupCallParticipant) arrayList6.get(size2)).peer) == MessageObject.getPeerId((i2 < groupCallFullscreenAdapter.videoParticipants.size() ? ((ChatObject.VideoParticipant) groupCallFullscreenAdapter.videoParticipants.get(i2)).participant : (TLRPC.GroupCallParticipant) groupCallFullscreenAdapter.participants.get(size3)).peer);
+                int size = i - arrayList2.size();
+                int size2 = i2 - GroupCallFullscreenAdapter.this.videoParticipants.size();
+                if (size2 < 0 || size2 >= GroupCallFullscreenAdapter.this.participants.size() || size < 0 || size >= arrayList.size()) {
+                    return MessageObject.getPeerId((i < arrayList2.size() ? ((ChatObject.VideoParticipant) arrayList2.get(i)).participant : (TLRPC.GroupCallParticipant) arrayList.get(size)).peer) == MessageObject.getPeerId((i2 < GroupCallFullscreenAdapter.this.videoParticipants.size() ? ((ChatObject.VideoParticipant) GroupCallFullscreenAdapter.this.videoParticipants.get(i2)).participant : (TLRPC.GroupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
                 }
-                return MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList6.get(size2)).peer) == MessageObject.getPeerId(((TLRPC.GroupCallParticipant) groupCallFullscreenAdapter.participants.get(size3)).peer);
+                return MessageObject.getPeerId(((TLRPC.GroupCallParticipant) arrayList.get(size)).peer) == MessageObject.getPeerId(((TLRPC.GroupCallParticipant) GroupCallFullscreenAdapter.this.participants.get(size2)).peer);
             }
 
             @Override
-            public final int getNewListSize() {
-                GroupCallFullscreenAdapter groupCallFullscreenAdapter = GroupCallFullscreenAdapter.this;
-                return groupCallFullscreenAdapter.participants.size() + groupCallFullscreenAdapter.videoParticipants.size();
+            public int getNewListSize() {
+                return GroupCallFullscreenAdapter.this.participants.size() + GroupCallFullscreenAdapter.this.videoParticipants.size();
             }
 
             @Override
-            public final int getOldListSize() {
-                return arrayList3.size() + arrayList4.size();
+            public int getOldListSize() {
+                return arrayList.size() + arrayList2.size();
             }
-        }, true).dispatchUpdatesTo(new GroupCallActivity.UpdateCallback(this, 1));
+        }, true).dispatchUpdatesTo(new OpReorderer(this));
         AndroidUtilities.updateVisibleRows(recyclerListView);
     }
 }

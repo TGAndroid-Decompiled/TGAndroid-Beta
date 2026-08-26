@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import androidx.recyclerview.widget.DiffUtil;
 import java.util.concurrent.Callable;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda26;
 
 public class SurfaceTextureHelper {
     private static final String TAG = "SurfaceTextureHelper";
@@ -199,7 +198,7 @@ public class SurfaceTextureHelper {
             throw new IllegalArgumentException(DiffUtil.m(i2, "Texture height must be positive, but was "));
         }
         this.surfaceTexture.setDefaultBufferSize(i, i2);
-        this.handler.post(new ArticleViewer$$ExternalSyntheticLambda26(this, i, i2, 12));
+        this.handler.post(new SurfaceViewRenderer$$ExternalSyntheticLambda0(this, i, i2, 8));
     }
 
     public void startListening(VideoSink videoSink) {

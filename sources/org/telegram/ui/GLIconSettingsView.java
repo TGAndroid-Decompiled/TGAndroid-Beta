@@ -1,229 +1,348 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColorPicker;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.GLIcon.Icon3D;
-import org.telegram.ui.Components.SectionsScrollView;
+import org.telegram.ui.Components.SeekBarView;
 
 public class GLIconSettingsView extends LinearLayout {
     public static float smallStarsSize = 1.0f;
-    public final int $r8$classId;
 
-    public final class AnonymousClass3 implements View.OnClickListener {
-        public final int $r8$classId;
-        public final Context val$context;
-        public final GLIconRenderer val$mRenderer;
-
-        public final class AnonymousClass2 extends ColorPicker {
-            public final int $r8$classId;
-
-            public AnonymousClass2(Context context, boolean z, ColorPicker.ColorPickerDelegate colorPickerDelegate, int i) {
-                super(context, z, colorPickerDelegate);
-                this.$r8$classId = i;
+    public GLIconSettingsView(final Context context, final GLIconRenderer gLIconRenderer) {
+        super(context);
+        setOrientation(1);
+        TextView textView = new TextView(context);
+        textView.setText("Spectral top ");
+        int i = Theme.key_dialogTextBlue2;
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView, Theme.getColor(null, i, false), 1, 16.0f, 1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
+        addView(textView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+        SeekBarView seekBarView = new SeekBarView(context);
+        seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+            @Override
+            public final CharSequence getContentDescription() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
             }
 
             @Override
-            public final void onMeasure(int i, int i2) {
-                switch (this.$r8$classId) {
-                    case 0:
-                        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
-                        break;
-                    case 1:
-                        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
-                        break;
-                    default:
-                        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
-                        break;
+            public final int getStepsCount() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            }
+
+            @Override
+            public final boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
+            public void onSeekBarDrag(boolean z, float f) {
+                Icon3D icon3D = gLIconRenderer.model;
+                if (icon3D != null) {
+                    icon3D.spec1 = f * 2.0f;
                 }
             }
-        }
 
-        public AnonymousClass3(Context context, GLIconRenderer gLIconRenderer, int i) {
-            this.$r8$classId = i;
-            this.val$context = context;
-            this.val$mRenderer = gLIconRenderer;
-        }
-
-        @Override
-        public final void onClick(View view) {
-            switch (this.$r8$classId) {
-                case 0:
-                    PhotoViewer.AnonymousClass49 anonymousClass49 = new PhotoViewer.AnonymousClass49(this, 5);
-                    Context context = this.val$context;
-                    AnonymousClass2 anonymousClass2 = new AnonymousClass2(context, false, anonymousClass49, 0);
-                    Icon3D icon3D = this.val$mRenderer.model;
-                    anonymousClass2.setColor(icon3D != null ? icon3D.specColor : 0, 0);
-                    anonymousClass2.setType(-1, 1, 1, false);
-                    BottomSheet bottomSheet = new BottomSheet(context, null, false, false);
-                    bottomSheet.setCustomView(anonymousClass2);
-                    bottomSheet.setDimBehind(false);
-                    bottomSheet.show();
-                    break;
-                default:
-                    ChatActivity.AnonymousClass1 anonymousClass1 = new ChatActivity.AnonymousClass1(this, 28);
-                    Context context2 = this.val$context;
-                    AnonymousClass2 anonymousClass3 = new AnonymousClass2(context2, false, anonymousClass1, 2);
-                    Icon3D icon3D2 = this.val$mRenderer.model;
-                    anonymousClass3.setColor(icon3D2 == null ? 0 : icon3D2.normalSpecColor, 0);
-                    anonymousClass3.setType(-1, 1, 1, false);
-                    BottomSheet bottomSheet2 = new BottomSheet(context2, null, false, false);
-                    bottomSheet2.setCustomView(anonymousClass3);
-                    bottomSheet2.setDimBehind(false);
-                    bottomSheet2.show();
-                    break;
+            @Override
+            public void onSeekBarPressed(boolean z) {
             }
-        }
-    }
+        });
+        Icon3D icon3D = gLIconRenderer.model;
+        seekBarView.setProgress(icon3D == null ? 0.0f : icon3D.spec1 / 2.0f);
+        seekBarView.setReportChanges(true);
+        addView(seekBarView, LayoutHelper.createFrame(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        textView2.setText("Spectral bottom ");
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView2, Theme.getColor(null, i, false), 1, 16.0f, 1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
+        addView(textView2, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+        SeekBarView seekBarView2 = new SeekBarView(context);
+        seekBarView2.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+            @Override
+            public final CharSequence getContentDescription() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
+            }
 
-    public GLIconSettingsView(Context context, int i) {
-        super(context);
-        this.$r8$classId = i;
-    }
+            @Override
+            public final int getStepsCount() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            }
 
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j) {
-        Path path;
-        switch (this.$r8$classId) {
-            case 6:
-                if (!(getParent() instanceof SectionsScrollView)) {
-                    return super.drawChild(canvas, view, j);
+            @Override
+            public final boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
+            public void onSeekBarDrag(boolean z, float f) {
+                Icon3D icon3D2 = gLIconRenderer.model;
+                if (icon3D2 != null) {
+                    icon3D2.spec2 = f * 2.0f;
                 }
-                SectionsScrollView sectionsScrollView = (SectionsScrollView) getParent();
-                canvas.save();
-                int i = SectionsScrollView.$r8$clinit;
-                sectionsScrollView.getClass();
-                if (view != null && SectionsScrollView.isSectionView(view)) {
-                    GLIconSettingsView gLIconSettingsView = sectionsScrollView.contentView;
-                    int iIndexOfChild = gLIconSettingsView.indexOfChild(view);
-                    int i2 = iIndexOfChild - 1;
-                    View childAt = i2 < 0 ? null : gLIconSettingsView.getChildAt(i2);
-                    int i3 = iIndexOfChild + 1;
-                    View childAt2 = i3 < gLIconSettingsView.getChildCount() ? gLIconSettingsView.getChildAt(i3) : null;
-                    boolean z = childAt != null && SectionsScrollView.isSectionView(childAt);
-                    boolean z2 = childAt2 != null && SectionsScrollView.isSectionView(childAt2);
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set(view.getX(), Math.max(sectionsScrollView.getScrollY() - AndroidUtilities.dp(16.0f), view.getY() + gLIconSettingsView.getY()), view.getX() + view.getWidth(), Math.min(AndroidUtilities.dp(16.0f) + sectionsScrollView.getScrollY() + sectionsScrollView.getHeight(), view.getY() + gLIconSettingsView.getY() + view.getHeight()));
-                    if (z && z2) {
-                        z = view.getY() >= rectF.top;
-                        boolean z3 = view.getY() + ((float) view.getHeight()) <= rectF.bottom;
-                        if (!z || !z3) {
-                            z2 = z3;
-                            path = sectionsScrollView.clipPath;
-                            if (!z) {
-                                if (!z) {
-                                    path.rewind();
-                                    path.addRoundRect(rectF, sectionsScrollView.sectionRadiusTop, Path.Direction.CW);
-                                    canvas.clipPath(path);
-                                } else if (!z2) {
-                                    path.rewind();
-                                    path.addRoundRect(rectF, sectionsScrollView.sectionRadiusBottom, Path.Direction.CW);
-                                    canvas.clipPath(path);
-                                }
-                            } else if (!z) {
-                                path.rewind();
-                                path.addRoundRect(rectF, sectionsScrollView.sectionRadiusTop, Path.Direction.CW);
-                                canvas.clipPath(path);
-                            } else if (!z2) {
-                                path.rewind();
-                                path.addRoundRect(rectF, sectionsScrollView.sectionRadiusBottom, Path.Direction.CW);
-                                canvas.clipPath(path);
-                            }
-                        }
-                    } else {
-                        path = sectionsScrollView.clipPath;
-                        if (!z && !z2) {
-                            path.rewind();
-                            float f = sectionsScrollView.sectionRadius;
-                            path.addRoundRect(rectF, f, f, Path.Direction.CW);
-                            canvas.clipPath(path);
-                        } else if (!z) {
-                            path.rewind();
-                            path.addRoundRect(rectF, sectionsScrollView.sectionRadiusTop, Path.Direction.CW);
-                            canvas.clipPath(path);
-                        } else if (!z2) {
-                            path.rewind();
-                            path.addRoundRect(rectF, sectionsScrollView.sectionRadiusBottom, Path.Direction.CW);
-                            canvas.clipPath(path);
+            }
+
+            @Override
+            public void onSeekBarPressed(boolean z) {
+            }
+        });
+        Icon3D icon3D2 = gLIconRenderer.model;
+        seekBarView2.setProgress(icon3D2 == null ? 0.0f : icon3D2.spec2 / 2.0f);
+        seekBarView2.setReportChanges(true);
+        addView(seekBarView2, LayoutHelper.createFrame(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+        TextView textView3 = new TextView(context);
+        textView3.setText("Setup spec color");
+        textView3.setTextSize(1, 16.0f);
+        textView3.setLines(1);
+        textView3.setGravity(17);
+        textView3.setMaxLines(1);
+        textView3.setSingleLine(true);
+        int i2 = Theme.key_featuredStickers_buttonText;
+        textView3.setTextColor(Theme.getColor(null, i2, false));
+        int i3 = Theme.key_featuredStickers_addButton;
+        int color = Theme.getColor(null, i3, false);
+        textView3.setBackground(Theme.AdaptiveRipple.createRect(new float[]{4.0f}, color, Theme.AdaptiveRipple.calcRippleColor(color)));
+        textView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ColorPicker colorPicker = new ColorPicker(context, false, new ColorPicker.ColorPickerDelegate() {
+                    @Override
+                    public final void deleteTheme() {
+                        ColorPicker.ColorPickerDelegate.CC.$default$deleteTheme(this);
+                    }
+
+                    @Override
+                    public final int getDefaultColor(int i4) {
+                        return ColorPicker.ColorPickerDelegate.CC.$default$getDefaultColor(this, i4);
+                    }
+
+                    @Override
+                    public final boolean hasChanges() {
+                        return ColorPicker.ColorPickerDelegate.CC.$default$hasChanges(this);
+                    }
+
+                    @Override
+                    public final void openThemeCreate(boolean z) {
+                        ColorPicker.ColorPickerDelegate.CC.$default$openThemeCreate(this, z);
+                    }
+
+                    @Override
+                    public final void rotateColors() {
+                        ColorPicker.ColorPickerDelegate.CC.$default$rotateColors(this);
+                    }
+
+                    @Override
+                    public void setColor(int i4, int i5, boolean z) {
+                        Icon3D icon3D3 = gLIconRenderer.model;
+                        if (icon3D3 != null) {
+                            icon3D3.specColor = i4;
                         }
                     }
+                }) {
+                    @Override
+                    public void onMeasure(int i4, int i5) {
+                        super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                    }
+                };
+                Icon3D icon3D3 = gLIconRenderer.model;
+                colorPicker.setColor(icon3D3 != null ? icon3D3.specColor : 0, 0);
+                colorPicker.setType(-1, true, 1, 1, false, 0, false);
+                BottomSheet bottomSheet = new BottomSheet(context, false, false, null);
+                bottomSheet.setCustomView(colorPicker);
+                bottomSheet.setDimBehind(false);
+                bottomSheet.show();
+            }
+        });
+        addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        TextView textView4 = new TextView(context);
+        textView4.setText("Diffuse ");
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView4, Theme.getColor(null, i, false), 1, 16.0f, 1);
+        textView4.setMaxLines(1);
+        textView4.setSingleLine(true);
+        textView4.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
+        addView(textView4, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+        SeekBarView seekBarView3 = new SeekBarView(context);
+        seekBarView3.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+            @Override
+            public final CharSequence getContentDescription() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
+            }
+
+            @Override
+            public final int getStepsCount() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            }
+
+            @Override
+            public final boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
+            public void onSeekBarDrag(boolean z, float f) {
+                Icon3D icon3D3 = gLIconRenderer.model;
+                if (icon3D3 != null) {
+                    icon3D3.diffuse = f;
                 }
-                boolean zDrawChild = super.drawChild(canvas, view, j);
-                canvas.restore();
-                return zDrawChild;
-            default:
-                return super.drawChild(canvas, view, j);
-        }
-    }
+            }
 
-    @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
-        switch (this.$r8$classId) {
-            case 3:
-                super.onLayout(z, i, i2, i3, i4);
-                setPivotX(getWidth());
-                break;
-            case 6:
-                super.onLayout(z, i, i2, i3, i4);
-                if (getParent() instanceof SectionsScrollView) {
-                    ((SectionsScrollView) getParent()).invalidate();
+            @Override
+            public void onSeekBarPressed(boolean z) {
+            }
+        });
+        Icon3D icon3D3 = gLIconRenderer.model;
+        seekBarView3.setProgress(icon3D3 == null ? 0.0f : icon3D3.diffuse);
+        seekBarView3.setReportChanges(true);
+        addView(seekBarView3, LayoutHelper.createFrame(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+        TextView textView5 = new TextView(context);
+        textView5.setText("Normal map spectral");
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView5, Theme.getColor(null, i, false), 1, 16.0f, 1);
+        textView5.setMaxLines(1);
+        textView5.setSingleLine(true);
+        textView5.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
+        addView(textView5, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+        SeekBarView seekBarView4 = new SeekBarView(context);
+        seekBarView4.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+            @Override
+            public final CharSequence getContentDescription() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
+            }
+
+            @Override
+            public final int getStepsCount() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            }
+
+            @Override
+            public final boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
+            public void onSeekBarDrag(boolean z, float f) {
+                Icon3D icon3D4 = gLIconRenderer.model;
+                if (icon3D4 != null) {
+                    icon3D4.normalSpec = f * 2.0f;
                 }
-                break;
-            default:
-                super.onLayout(z, i, i2, i3, i4);
-                break;
-        }
-    }
+            }
 
-    @Override
-    public void onMeasure(int i, int i2) {
-        switch (this.$r8$classId) {
-            case 1:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-                break;
-            case 2:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-                break;
-            case 3:
-            case 6:
-            default:
-                super.onMeasure(i, i2);
-                break;
-            case 4:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i), AndroidUtilities.dp(600.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i2), AndroidUtilities.dp(800.0f)), 1073741824));
-                break;
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i)), View.MeasureSpec.getMode(i)), i2);
-                break;
-            case 7:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-                break;
-            case 8:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), i2);
-                break;
-            case 9:
-                super.onMeasure(i, i2);
-                setPivotY(0.0f);
-                setPivotX(0.0f);
-                break;
-            case 10:
-                super.onMeasure(i, i2);
-                setPivotY(0.0f);
-                setPivotX(getMeasuredWidth());
-                break;
-        }
-    }
+            @Override
+            public void onSeekBarPressed(boolean z) {
+            }
+        });
+        Icon3D icon3D4 = gLIconRenderer.model;
+        seekBarView4.setProgress(icon3D4 != null ? icon3D4.normalSpec / 2.0f : 0.0f);
+        seekBarView4.setReportChanges(true);
+        addView(seekBarView4, LayoutHelper.createFrame(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+        TextView textView6 = new TextView(context);
+        textView6.setText("Setup normal spec color");
+        textView6.setTextSize(1, 16.0f);
+        textView6.setLines(1);
+        textView6.setGravity(17);
+        textView6.setMaxLines(1);
+        textView6.setSingleLine(true);
+        textView6.setTextColor(Theme.getColor(null, i2, false));
+        int color2 = Theme.getColor(null, i3, false);
+        textView6.setBackground(Theme.AdaptiveRipple.createRect(new float[]{4.0f}, color2, Theme.AdaptiveRipple.calcRippleColor(color2)));
+        textView6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ColorPicker colorPicker = new ColorPicker(context, false, new ColorPicker.ColorPickerDelegate() {
+                    @Override
+                    public final void deleteTheme() {
+                        ColorPicker.ColorPickerDelegate.CC.$default$deleteTheme(this);
+                    }
 
-    public GLIconSettingsView(Context context) {
-        super(context);
-        this.$r8$classId = 6;
-        setWillNotDraw(false);
+                    @Override
+                    public final int getDefaultColor(int i4) {
+                        return ColorPicker.ColorPickerDelegate.CC.$default$getDefaultColor(this, i4);
+                    }
+
+                    @Override
+                    public final boolean hasChanges() {
+                        return ColorPicker.ColorPickerDelegate.CC.$default$hasChanges(this);
+                    }
+
+                    @Override
+                    public final void openThemeCreate(boolean z) {
+                        ColorPicker.ColorPickerDelegate.CC.$default$openThemeCreate(this, z);
+                    }
+
+                    @Override
+                    public final void rotateColors() {
+                        ColorPicker.ColorPickerDelegate.CC.$default$rotateColors(this);
+                    }
+
+                    @Override
+                    public void setColor(int i4, int i5, boolean z) {
+                        Icon3D icon3D5;
+                        if (i5 != 0 || (icon3D5 = gLIconRenderer.model) == null) {
+                            return;
+                        }
+                        icon3D5.normalSpecColor = i4;
+                    }
+                }) {
+                    @Override
+                    public void onMeasure(int i4, int i5) {
+                        super.onMeasure(i4, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                    }
+                };
+                Icon3D icon3D5 = gLIconRenderer.model;
+                colorPicker.setColor(icon3D5 == null ? 0 : icon3D5.normalSpecColor, 0);
+                colorPicker.setType(-1, true, 1, 1, false, 0, false);
+                BottomSheet bottomSheet = new BottomSheet(context, false, false, null);
+                bottomSheet.setCustomView(colorPicker);
+                bottomSheet.setDimBehind(false);
+                bottomSheet.show();
+            }
+        });
+        addView(textView6, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        TextView textView7 = new TextView(context);
+        textView7.setText("Small starts size");
+        BlurSettingsBottomSheet$$ExternalSyntheticOutline0.m(textView7, Theme.getColor(null, i, false), 1, 16.0f, 1);
+        textView7.setMaxLines(1);
+        textView7.setSingleLine(true);
+        textView7.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
+        addView(textView7, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+        SeekBarView seekBarView5 = new SeekBarView(context);
+        seekBarView5.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+            @Override
+            public final CharSequence getContentDescription() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getContentDescription(this);
+            }
+
+            @Override
+            public final int getStepsCount() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$getStepsCount(this);
+            }
+
+            @Override
+            public final boolean needVisuallyDivideSteps() {
+                return SeekBarView.SeekBarViewDelegate.CC.$default$needVisuallyDivideSteps(this);
+            }
+
+            @Override
+            public void onSeekBarDrag(boolean z, float f) {
+                GLIconSettingsView.smallStarsSize = f * 2.0f;
+            }
+
+            @Override
+            public void onSeekBarPressed(boolean z) {
+            }
+        });
+        seekBarView5.setProgress(smallStarsSize / 2.0f);
+        seekBarView5.setReportChanges(true);
+        addView(seekBarView5, LayoutHelper.createFrame(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
     }
 }

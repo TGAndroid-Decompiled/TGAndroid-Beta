@@ -1,6 +1,6 @@
 package kotlinx.coroutines;
 
-import com.google.android.gms.internal.mlkit_vision_common.zzjj;
+import com.google.android.gms.internal.mlkit_vision_common.zzjf;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.ScopeCoroutine;
@@ -24,7 +24,7 @@ public final class DispatchedCoroutine extends ScopeCoroutine {
                 if (i != 1) {
                     throw new IllegalStateException("Already resumed");
                 }
-                AtomicKt.resumeCancellableWith(JobKt.recoverResult(obj), zzjj.intercepted(this.uCont));
+                AtomicKt.resumeCancellableWith(JobKt.recoverResult(obj), zzjf.intercepted(this.uCont));
                 return;
             }
         } while (!atomicIntegerFieldUpdater.compareAndSet(this, 0, 2));

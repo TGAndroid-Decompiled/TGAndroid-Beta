@@ -2,8 +2,6 @@ package org.telegram.ui.Stars;
 
 import android.animation.ValueAnimator;
 import android.graphics.LinearGradient;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.Shader;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
@@ -45,15 +43,7 @@ public final class StarsReactionsSheet$StarsSlider$$ExternalSyntheticLambda1 imp
                 starsSlider.invalidate();
                 break;
             case 1:
-                GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell = (GroupCallFullscreenAdapter.GroupCallUserCell) view;
-                groupCallUserCell.getClass();
-                groupCallUserCell.lastColor = ColorUtils.blendARGB(((Float) valueAnimator.getAnimatedValue()).floatValue(), i4, i3);
-                groupCallUserCell.lastWavesColor = ColorUtils.blendARGB(((Float) valueAnimator.getAnimatedValue()).floatValue(), i2, i);
-                groupCallUserCell.muteButton.setColorFilter(new PorterDuffColorFilter(groupCallUserCell.lastColor, PorterDuff.Mode.MULTIPLY));
-                groupCallUserCell.textPaint.setColor(groupCallUserCell.lastColor);
-                groupCallUserCell.selectionPaint.setColor(groupCallUserCell.lastWavesColor);
-                groupCallUserCell.avatarWavesDrawable.setColor(ColorUtils.setAlphaComponent(groupCallUserCell.lastWavesColor, 38));
-                groupCallUserCell.invalidate();
+                ((GroupCallFullscreenAdapter.GroupCallUserCell) view).lambda$updateState$0(this.f$1, this.f$2, this.f$3, this.f$4, valueAnimator);
                 break;
             default:
                 GroupCallMiniTextureView groupCallMiniTextureView = (GroupCallMiniTextureView) view;

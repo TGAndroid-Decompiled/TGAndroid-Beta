@@ -2,7 +2,7 @@ package org.telegram.messenger;
 
 import android.text.TextUtils;
 import com.google.android.exoplayer2.util.Consumer;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.ConnectionsManager;
@@ -67,11 +67,11 @@ public class UserNameResolver {
         if (str3 == null || !str3.contains("FLOOD_WAIT") || (lastFragment = LaunchActivity.getLastFragment()) == null) {
             return;
         }
-        UserNameResolver$$ExternalSyntheticOutline0.m(R.string.FloodWait, BulletinFactory.of(lastFragment), null);
+        UserNameResolver$$ExternalSyntheticOutline0.m(BulletinFactory.of(lastFragment), R.string.FloodWait);
     }
 
     public void lambda$resolve$1(String str, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new UserNameResolver$$ExternalSyntheticLambda2(this, str, tL_error, tLObject, 0), 2L);
+        AndroidUtilities.runOnUIThread(new UserNameResolver$$ExternalSyntheticLambda2(0, this, str, tL_error, tLObject), 2L);
     }
 
     public void lambda$resolve$2(String str, int i) {
@@ -108,7 +108,7 @@ public class UserNameResolver {
                 StringBuilder sb = new StringBuilder("resolve username from cache ");
                 sb.append(str);
                 sb.append(" ");
-                zzjj.m(sb, cachedPeer.peerId);
+                zzjg.m(sb, cachedPeer.peerId);
                 return null;
             }
             this.resolvedCache.remove(str);

@@ -1,13 +1,13 @@
 package org.telegram.ui.Stories.recorder;
 
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.TimeZone;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.ui.Components.PermissionRequest;
-import org.telegram.ui.ProfileActivity$6$$ExternalSyntheticLambda7;
+import org.telegram.ui.web.AddressBarList$$ExternalSyntheticLambda1;
 
 public abstract class Weather {
     public static String cacheKey;
@@ -21,7 +21,7 @@ public abstract class Weather {
 
         public final String getTemperature() {
             if (!Weather.isDefaultCelsius()) {
-                return SurfaceContainer$$ExternalSyntheticOutline0.m((int) Math.round(((((double) this.temperature) * 9.0d) / 5.0d) + 32.0d), "°F", new StringBuilder());
+                return Fragment$$ExternalSyntheticOutline0.m((int) Math.round(((((double) this.temperature) * 9.0d) / 5.0d) + 32.0d), "°F", new StringBuilder());
             }
             return Math.round(this.temperature) + "°C";
         }
@@ -36,7 +36,7 @@ public abstract class Weather {
     }
 
     public static void fetch(boolean z, Utilities.Callback callback) {
-        PermissionRequest.ensureEitherPermission(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new ProfileActivity$6$$ExternalSyntheticLambda7(4, new ProfileActivity$6$$ExternalSyntheticLambda7(3, callback, z), z));
+        PermissionRequest.ensureEitherPermission(R.raw.permission_request_location, R.string.PermissionNoLocationStory, new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, new AddressBarList$$ExternalSyntheticLambda1(new AddressBarList$$ExternalSyntheticLambda1(callback, z, 3), z, 4));
     }
 
     public static boolean isDefaultCelsius() {

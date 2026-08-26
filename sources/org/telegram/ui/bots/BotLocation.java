@@ -15,9 +15,9 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
-import android.text.SpannableStringBuilder;
 import android.util.Pair;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import android.view.View;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -39,12 +39,12 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AttachableDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.PermissionRequest;
-import org.telegram.ui.Components.RLottieImageView;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.QrActivity$$ExternalSyntheticLambda17;
-import org.telegram.ui.ThemeActivity$$ExternalSyntheticLambda19;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda42;
-import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda12;
+import org.telegram.ui.QrActivity$$ExternalSyntheticLambda5;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda60;
+import org.telegram.ui.iv.RichEditor$3$$ExternalSyntheticLambda0;
+import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda22;
 
 public final class BotLocation {
     public static final HashMap instances = new HashMap();
@@ -83,12 +83,12 @@ public final class BotLocation {
             Drawable drawableMutate = context.getResources().getDrawable(R.drawable.filled_location).mutate();
             this.locationDrawable = drawableMutate;
             drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, Theme.key_dialogTopBackground, false), PorterDuff.Mode.SRC_IN));
-            AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-            avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+            AvatarDrawable avatarDrawable = new AvatarDrawable();
+            avatarDrawable.setInfo(user);
             imageReceiver.setForUserOrChat(user, avatarDrawable);
             imageReceiver.setRoundRadius(AndroidUtilities.dp(25.0f));
-            AvatarDrawable avatarDrawable2 = new AvatarDrawable((Theme.ResourcesProvider) null);
-            avatarDrawable2.setInfo(UserConfig.selectedAccount, user2);
+            AvatarDrawable avatarDrawable2 = new AvatarDrawable();
+            avatarDrawable2.setInfo(user2);
             imageReceiver2.setForUserOrChat(user2, avatarDrawable2);
             imageReceiver2.setRoundRadius(AndroidUtilities.dp(25.0f));
         }
@@ -152,9 +152,9 @@ public final class BotLocation {
         }
 
         @Override
-        public final void setParent(RLottieImageView rLottieImageView) {
-            this.botImageReceiver.setParentView(rLottieImageView);
-            this.userImageReceiver.setParentView(rLottieImageView);
+        public final void setParent(View view) {
+            this.botImageReceiver.setParentView(view);
+            this.userImageReceiver.setParentView(view);
         }
     }
 
@@ -258,7 +258,7 @@ public final class BotLocation {
         return activityFindActivity == null ? AndroidUtilities.findActivity(ApplicationLoader.applicationContext) : activityFindActivity;
     }
 
-    public final void request(final BotWebViewContainer$$ExternalSyntheticLambda12 botWebViewContainer$$ExternalSyntheticLambda12) {
+    public final void request(final BotWebViewContainer$$ExternalSyntheticLambda22 botWebViewContainer$$ExternalSyntheticLambda22) {
         Activity activity;
         final int i = 1;
         final int i2 = 0;
@@ -268,24 +268,19 @@ public final class BotLocation {
         }
         if (!deviceHasLocation()) {
             Boolean bool = Boolean.FALSE;
-            botWebViewContainer$$ExternalSyntheticLambda12.run(bool, bool);
+            botWebViewContainer$$ExternalSyntheticLambda22.run(bool, bool);
             return;
         }
         if (appHasPermission() && (this.requested || this.granted)) {
-            botWebViewContainer$$ExternalSyntheticLambda12.run(Boolean.FALSE, Boolean.TRUE);
+            botWebViewContainer$$ExternalSyntheticLambda22.run(Boolean.FALSE, Boolean.TRUE);
             return;
         }
         final boolean[] zArr = new boolean[1];
         int i3 = this.currentAccount;
         TLRPC.User user = MessagesController.getInstance(i3).getUser(Long.valueOf(this.botId));
         AlertDialog.Builder builder = new AlertDialog.Builder(activity2, 0, null);
-        SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.message = spannableStringBuilderReplaceTags;
-        BotUserLocationDrawable botUserLocationDrawable = new BotUserLocationDrawable(this.context, UserConfig.getInstance(i3).getCurrentUser(), user);
-        int color = Theme.getColor(null, Theme.key_dialogTopBackground, false);
-        alertDialog.topDrawable = botUserLocationDrawable;
-        alertDialog.topBackgroundColor = color;
+        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user))));
+        builder.setTopImage(new BotUserLocationDrawable(this.context, UserConfig.getInstance(i3).getCurrentUser(), user), Theme.getColor(null, Theme.key_dialogTopBackground, false));
         if (appHasPermission() || Build.VERSION.SDK_INT < 23 || (activity = getActivity()) == null || (activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
             builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionAllow), new AlertDialog.OnButtonClickListener(this) {
                 public final BotLocation f$0;
@@ -295,16 +290,16 @@ public final class BotLocation {
                 }
 
                 @Override
-                public final void onClick(AlertDialog alertDialog2, int i4) {
+                public final void onClick(AlertDialog alertDialog, int i4) {
                     switch (i2) {
                         case 0:
                             BotLocation botLocation = this.f$0;
                             botLocation.getClass();
                             zArr[0] = true;
                             boolean zAppHasPermission = botLocation.appHasPermission();
-                            BotWebViewContainer$$ExternalSyntheticLambda12 botWebViewContainer$$ExternalSyntheticLambda13 = botWebViewContainer$$ExternalSyntheticLambda12;
+                            BotWebViewContainer$$ExternalSyntheticLambda22 botWebViewContainer$$ExternalSyntheticLambda23 = botWebViewContainer$$ExternalSyntheticLambda22;
                             if (!zAppHasPermission) {
-                                PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ThemeActivity$$ExternalSyntheticLambda19(10, botLocation, botWebViewContainer$$ExternalSyntheticLambda13));
+                                PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new GiftSheet$$ExternalSyntheticLambda4(24, botLocation, botWebViewContainer$$ExternalSyntheticLambda23));
                             } else {
                                 botLocation.requested = true;
                                 botLocation.granted = true;
@@ -314,7 +309,7 @@ public final class BotLocation {
                                     ((Runnable) it.next()).run();
                                 }
                                 Boolean bool2 = Boolean.TRUE;
-                                botWebViewContainer$$ExternalSyntheticLambda13.run(bool2, bool2);
+                                botWebViewContainer$$ExternalSyntheticLambda23.run(bool2, bool2);
                             }
                             break;
                         default:
@@ -330,7 +325,7 @@ public final class BotLocation {
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
-                                botWebViewContainer$$ExternalSyntheticLambda12.run(Boolean.TRUE, Boolean.FALSE);
+                                botWebViewContainer$$ExternalSyntheticLambda22.run(Boolean.TRUE, Boolean.FALSE);
                                 break;
                             }
                             break;
@@ -338,7 +333,7 @@ public final class BotLocation {
                 }
             });
         } else {
-            builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionSettings), new VoIPFragment$$ExternalSyntheticLambda42(activity2, zArr, botWebViewContainer$$ExternalSyntheticLambda12, 26));
+            builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionSettings), new RichEditor$$ExternalSyntheticLambda60(activity2, zArr, botWebViewContainer$$ExternalSyntheticLambda22, 14));
         }
         builder.setNegativeButton(LocaleController.getString(R.string.BotLocationPermissionDecline), new AlertDialog.OnButtonClickListener(this) {
             public final BotLocation f$0;
@@ -348,16 +343,16 @@ public final class BotLocation {
             }
 
             @Override
-            public final void onClick(AlertDialog alertDialog2, int i4) {
+            public final void onClick(AlertDialog alertDialog, int i4) {
                 switch (i) {
                     case 0:
                         BotLocation botLocation = this.f$0;
                         botLocation.getClass();
                         zArr[0] = true;
                         boolean zAppHasPermission = botLocation.appHasPermission();
-                        BotWebViewContainer$$ExternalSyntheticLambda12 botWebViewContainer$$ExternalSyntheticLambda13 = botWebViewContainer$$ExternalSyntheticLambda12;
+                        BotWebViewContainer$$ExternalSyntheticLambda22 botWebViewContainer$$ExternalSyntheticLambda23 = botWebViewContainer$$ExternalSyntheticLambda22;
                         if (!zAppHasPermission) {
-                            PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ThemeActivity$$ExternalSyntheticLambda19(10, botLocation, botWebViewContainer$$ExternalSyntheticLambda13));
+                            PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new GiftSheet$$ExternalSyntheticLambda4(24, botLocation, botWebViewContainer$$ExternalSyntheticLambda23));
                         } else {
                             botLocation.requested = true;
                             botLocation.granted = true;
@@ -367,7 +362,7 @@ public final class BotLocation {
                                 ((Runnable) it.next()).run();
                             }
                             Boolean bool2 = Boolean.TRUE;
-                            botWebViewContainer$$ExternalSyntheticLambda13.run(bool2, bool2);
+                            botWebViewContainer$$ExternalSyntheticLambda23.run(bool2, bool2);
                         }
                         break;
                     default:
@@ -383,14 +378,14 @@ public final class BotLocation {
                             while (it2.hasNext()) {
                                 ((Runnable) it2.next()).run();
                             }
-                            botWebViewContainer$$ExternalSyntheticLambda12.run(Boolean.TRUE, Boolean.FALSE);
+                            botWebViewContainer$$ExternalSyntheticLambda22.run(Boolean.TRUE, Boolean.FALSE);
                             break;
                         }
                         break;
                 }
             }
         });
-        alertDialog.setOnDismissListener(new BotLocation$$ExternalSyntheticLambda14(this, zArr, botWebViewContainer$$ExternalSyntheticLambda12, i2));
+        builder.setOnDismissListener(new BotLocation$$ExternalSyntheticLambda13(this, zArr, botWebViewContainer$$ExternalSyntheticLambda22, i2));
         builder.show();
     }
 
@@ -444,9 +439,9 @@ public final class BotLocation {
         if (context != null) {
             try {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, null);
-                builder.setTopAnimation(R.raw.permission_request_location, 72, Theme.getColor(null, Theme.key_dialogTopBackground, false), null);
-                builder.alertDialog.message = LocaleController.getString(R.string.GpsDisabledAlertText);
-                builder.setPositiveButton(LocaleController.getString(R.string.Enable), new BotLocation$$ExternalSyntheticLambda10(context, 0));
+                builder.setTopAnimation(R.raw.permission_request_location, 72, false, Theme.getColor(null, Theme.key_dialogTopBackground, false));
+                builder.setMessage(LocaleController.getString(R.string.GpsDisabledAlertText));
+                builder.setPositiveButton(LocaleController.getString(R.string.Enable), new RichEditor$3$$ExternalSyntheticLambda0(context, 6));
                 builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                 builder.show();
             } catch (Exception e3) {
@@ -460,12 +455,12 @@ public final class BotLocation {
         SharedPreferences.Editor editorEdit = this.context.getSharedPreferences("botlocation_" + this.currentAccount, 0).edit();
         StringBuilder sb = new StringBuilder();
         long j = this.botId;
-        editorEdit.putBoolean(SurfaceContainer$$ExternalSyntheticOutline0.m(sb, j, "_granted"), this.granted);
+        editorEdit.putBoolean(Fragment$$ExternalSyntheticOutline0.m(sb, j, "_granted"), this.granted);
         editorEdit.putBoolean(j + "_requested", this.requested);
         editorEdit.apply();
     }
 
-    public final void setGranted(final QrActivity$$ExternalSyntheticLambda17 qrActivity$$ExternalSyntheticLambda17, boolean z) {
+    public final void setGranted(boolean z, final QrActivity$$ExternalSyntheticLambda5 qrActivity$$ExternalSyntheticLambda5) {
         Activity activity;
         final int i = 0;
         final int i2 = 1;
@@ -476,8 +471,8 @@ public final class BotLocation {
             while (it.hasNext()) {
                 ((Runnable) it.next()).run();
             }
-            if (qrActivity$$ExternalSyntheticLambda17 != null) {
-                qrActivity$$ExternalSyntheticLambda17.run();
+            if (qrActivity$$ExternalSyntheticLambda5 != null) {
+                qrActivity$$ExternalSyntheticLambda5.run();
             }
         } else {
             Activity activity2 = getActivity();
@@ -487,13 +482,8 @@ public final class BotLocation {
             int i3 = this.currentAccount;
             TLRPC.User user = MessagesController.getInstance(i3).getUser(Long.valueOf(this.botId));
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(), 0, null);
-            SpannableStringBuilder spannableStringBuilderReplaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            AlertDialog alertDialog = builder.alertDialog;
-            alertDialog.message = spannableStringBuilderReplaceTags;
-            BotUserLocationDrawable botUserLocationDrawable = new BotUserLocationDrawable(this.context, UserConfig.getInstance(i3).getCurrentUser(), user);
-            int color = Theme.getColor(null, Theme.key_dialogTopBackground, false);
-            alertDialog.topDrawable = botUserLocationDrawable;
-            alertDialog.topBackgroundColor = color;
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user))));
+            builder.setTopImage(new BotUserLocationDrawable(this.context, UserConfig.getInstance(i3).getCurrentUser(), user), Theme.getColor(null, Theme.key_dialogTopBackground, false));
             if (Build.VERSION.SDK_INT < 23 || (activity = getActivity()) == null || (activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && activity.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionAllow), new AlertDialog.OnButtonClickListener(this) {
                     public final BotLocation f$0;
@@ -503,12 +493,12 @@ public final class BotLocation {
                     }
 
                     @Override
-                    public final void onClick(AlertDialog alertDialog2, int i4) {
+                    public final void onClick(AlertDialog alertDialog, int i4) {
                         switch (i) {
                             case 0:
                                 BotLocation botLocation = this.f$0;
                                 if (!botLocation.appHasPermission()) {
-                                    PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ThemeActivity$$ExternalSyntheticLambda19(11, botLocation, qrActivity$$ExternalSyntheticLambda17));
+                                    PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new GiftSheet$$ExternalSyntheticLambda4(25, botLocation, qrActivity$$ExternalSyntheticLambda5));
                                 } else {
                                     botLocation.requested = true;
                                     botLocation.granted = true;
@@ -528,16 +518,16 @@ public final class BotLocation {
                                 while (it3.hasNext()) {
                                     ((Runnable) it3.next()).run();
                                 }
-                                QrActivity$$ExternalSyntheticLambda17 qrActivity$$ExternalSyntheticLambda18 = qrActivity$$ExternalSyntheticLambda17;
-                                if (qrActivity$$ExternalSyntheticLambda18 != null) {
-                                    qrActivity$$ExternalSyntheticLambda18.run();
+                                QrActivity$$ExternalSyntheticLambda5 qrActivity$$ExternalSyntheticLambda6 = qrActivity$$ExternalSyntheticLambda5;
+                                if (qrActivity$$ExternalSyntheticLambda6 != null) {
+                                    qrActivity$$ExternalSyntheticLambda6.run();
                                 }
                                 break;
                         }
                     }
                 });
             } else {
-                builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionSettings), new BotLocation$$ExternalSyntheticLambda7(activity2, i));
+                builder.setPositiveButton(LocaleController.getString(R.string.BotLocationPermissionSettings), new BotLocation$$ExternalSyntheticLambda7(activity2, 0));
             }
             builder.setNegativeButton(LocaleController.getString(R.string.BotLocationPermissionDecline), new AlertDialog.OnButtonClickListener(this) {
                 public final BotLocation f$0;
@@ -547,12 +537,12 @@ public final class BotLocation {
                 }
 
                 @Override
-                public final void onClick(AlertDialog alertDialog2, int i4) {
+                public final void onClick(AlertDialog alertDialog, int i4) {
                     switch (i2) {
                         case 0:
                             BotLocation botLocation = this.f$0;
                             if (!botLocation.appHasPermission()) {
-                                PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ThemeActivity$$ExternalSyntheticLambda19(11, botLocation, qrActivity$$ExternalSyntheticLambda17));
+                                PermissionRequest.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new GiftSheet$$ExternalSyntheticLambda4(25, botLocation, qrActivity$$ExternalSyntheticLambda5));
                             } else {
                                 botLocation.requested = true;
                                 botLocation.granted = true;
@@ -572,9 +562,9 @@ public final class BotLocation {
                             while (it3.hasNext()) {
                                 ((Runnable) it3.next()).run();
                             }
-                            QrActivity$$ExternalSyntheticLambda17 qrActivity$$ExternalSyntheticLambda18 = qrActivity$$ExternalSyntheticLambda17;
-                            if (qrActivity$$ExternalSyntheticLambda18 != null) {
-                                qrActivity$$ExternalSyntheticLambda18.run();
+                            QrActivity$$ExternalSyntheticLambda5 qrActivity$$ExternalSyntheticLambda6 = qrActivity$$ExternalSyntheticLambda5;
+                            if (qrActivity$$ExternalSyntheticLambda6 != null) {
+                                qrActivity$$ExternalSyntheticLambda6.run();
                             }
                             break;
                     }

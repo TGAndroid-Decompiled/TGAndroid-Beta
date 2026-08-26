@@ -27,9 +27,9 @@ public final class RichMediaItem {
     public RichMediaItem(RichMediaCell richMediaCell, Theme.ResourcesProvider resourcesProvider) {
         this.imageReceiver = new ImageReceiver(richMediaCell);
         this.blurImageReceiver = new ImageReceiver(richMediaCell);
-        RadialProgress2 radialProgress2 = new RadialProgress2(resourcesProvider, richMediaCell);
+        RadialProgress2 radialProgress2 = new RadialProgress2(richMediaCell, resourcesProvider);
         this.radialProgress = radialProgress2;
-        radialProgress2.progressColor = -1;
+        radialProgress2.setProgressColor(-1);
         radialProgress2.setColors(1711276032, 2130706432, -1, -2500135);
         radialProgress2.setIcon(3, false, false);
     }

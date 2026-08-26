@@ -81,7 +81,7 @@ public final class RichMathCell extends RichBlockCell implements Theme.Colorable
         horizontalScrollView.setFillViewport(true);
         horizontalScrollView.addView(frameLayout, new FrameLayout.LayoutParams(-2, -2));
         addView(horizontalScrollView, LayoutHelper.createFrame(-1, -2, 16));
-        updateColors$1();
+        updateColors();
     }
 
     private String getSource() {
@@ -134,19 +134,16 @@ public final class RichMathCell extends RichBlockCell implements Theme.Colorable
     public final void onDraw(Canvas canvas) {
         RichEditorListView.AnonymousClass10 anonymousClass10;
         TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+        int childAdapterPosition;
         if (this.paintColor != Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider)) {
-            updateColors$1();
+            updateColors();
         }
-        if (this.bitmap == null || (anonymousClass10 = this.delegate) == null || (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) == null || !textSelectionHelper.isInSelectionMode() || !(getParent() instanceof RecyclerView)) {
+        if (this.bitmap == null || (anonymousClass10 = this.delegate) == null || (textSelectionHelper = RichEditorListView.this.getTextSelectionHelper()) == null || !textSelectionHelper.isInSelectionMode() || !(getParent() instanceof RecyclerView) || (childAdapterPosition = ((RecyclerView) getParent()).getChildAdapterPosition(this)) < 0 || childAdapterPosition < textSelectionHelper.startViewPosition || childAdapterPosition > textSelectionHelper.endViewPosition) {
             return;
         }
-        ((RecyclerView) getParent()).getClass();
-        int childAdapterPosition = RecyclerView.getChildAdapterPosition(this);
-        if (childAdapterPosition >= 0 && childAdapterPosition >= textSelectionHelper.startViewPosition && childAdapterPosition <= textSelectionHelper.endViewPosition) {
-            int[] iArr = this.rect;
-            selectionRect(iArr);
-            canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.selectionPaint);
-        }
+        int[] iArr = this.rect;
+        selectionRect(iArr);
+        canvas.drawRoundRect(iArr[0], iArr[1], iArr[2], iArr[3], AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.selectionPaint);
     }
 
     @Override
@@ -174,7 +171,7 @@ public final class RichMathCell extends RichBlockCell implements Theme.Colorable
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         int i = Theme.key_chat_inTextSelectionHighlight;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         this.selectionPaint.setColor(Theme.getColor(i, resourcesProvider));

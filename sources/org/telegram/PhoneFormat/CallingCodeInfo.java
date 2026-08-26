@@ -1,6 +1,6 @@
 package org.telegram.PhoneFormat;
 
-import com.google.android.gms.internal.mlkit_vision_common.zzkc;
+import com.google.android.gms.internal.mlkit_vision_common.zzjx;
 import java.util.ArrayList;
 
 public final class CallingCodeInfo {
@@ -61,6 +61,6 @@ public final class CallingCodeInfo {
                 return str6;
             }
         }
-        return (str3 == null || strSubstring.length() == 0) ? str : zzkc.m(str3, " ", strSubstring);
+        return (str3 == null || strSubstring.length() == 0) ? str : zzjx.m(str3, " ", strSubstring);
     }
 }

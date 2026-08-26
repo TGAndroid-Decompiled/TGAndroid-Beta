@@ -3,7 +3,7 @@ package org.webrtc;
 import android.hardware.Camera;
 import android.os.SystemClock;
 import androidx.recyclerview.widget.DiffUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzil;
+import com.google.android.gms.internal.mlkit_language_id_common.zzii;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,7 +89,7 @@ public class Camera1Enumerator implements CameraEnumerator {
                 return i;
             }
         }
-        throw new IllegalArgumentException(zzil.m("No such camera: ", str));
+        throw new IllegalArgumentException(zzii.m("No such camera: ", str));
     }
 
     private static Camera.CameraInfo getCameraInfo(int i) {

@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -7,6 +8,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.os.SystemClock;
+import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import java.util.ArrayList;
@@ -16,80 +18,152 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.OKLCH;
-import org.telegram.ui.Cells.ChatMessageCell;
 
-public final class SeekBarWaveform {
-    public static Paint paintInner;
-    public static Paint paintOuter;
-    public Path alphaPath;
-    public ChatMessageCell delegate;
+public class SeekBarWaveform {
+    private static Paint paintInner;
+    private static Paint paintOuter;
+    private Path alphaPath;
+    private ArrayList<Float> animatedValues;
+    private SeekBar.SeekBarDelegate delegate;
     public float explodeProgress;
     public float explosionRate;
-    public float[] fromHeights;
-    public int fromWidth;
-    public int height;
-    public float[] heights;
-    public int innerColor;
-    public boolean isUnread;
-    public boolean loading;
-    public Paint loadingPaint;
-    public int loadingPaintColor1;
-    public int loadingPaintColor2;
-    public float loadingPaintWidth;
-    public long loadingStart;
-    public MessageObject messageObject;
-    public int outerColor;
-    public ChatMessageCell parentView;
-    public Particles particles;
-    public Path path;
-    public float progress;
-    public boolean selected;
-    public int selectedColor;
-    public float startX;
-    public float[] toHeights;
-    public int toWidth;
-    public byte[] waveformBytes;
-    public int width;
-    public int thumbX = 0;
-    public int thumbDX = 0;
-    public boolean startDraging = false;
-    public boolean pressed = false;
-    public float alpha = 1.0f;
-    public float clearProgress = 1.0f;
-    public final AnimatedFloat appearFloat = new AnimatedFloat(125, 600, CubicBezierInterpolator.EASE_OUT_QUINT);
-    public final float waveScaling = 1.0f;
-    public final AnimatedFloat loadingFloat = new AnimatedFloat(150, CubicBezierInterpolator.DEFAULT);
-    public boolean exploding = false;
+    private float[] fromHeights;
+    private int fromWidth;
+    private int height;
+    private float[] heights;
+    private int innerColor;
+    private boolean isUnread;
+    private boolean loading;
+    private Paint loadingPaint;
+    private int loadingPaintColor1;
+    private int loadingPaintColor2;
+    private float loadingPaintWidth;
+    private long loadingStart;
+    private MessageObject messageObject;
+    private int outerColor;
+    private View parentView;
+    private Particles particles;
+    private Path path;
+    private float progress;
+    private boolean selected;
+    private int selectedColor;
+    private float startX;
+    private float[] toHeights;
+    private int toWidth;
+    private byte[] waveformBytes;
+    private int width;
+    private int thumbX = 0;
+    private int thumbDX = 0;
+    private boolean startDraging = false;
+    private boolean pressed = false;
+    private float alpha = 1.0f;
+    private float clearProgress = 1.0f;
+    private AnimatedFloat appearFloat = new AnimatedFloat(125, 600, CubicBezierInterpolator.EASE_OUT_QUINT);
+    private float waveScaling = 1.0f;
+    private AnimatedFloat loadingFloat = new AnimatedFloat(150, CubicBezierInterpolator.DEFAULT);
+    private boolean exploding = false;
 
-    public final class Particles {
-        public final int count;
-        public RectF emitArea;
-        public final SeekBarView$$ExternalSyntheticLambda1 invalidate;
-        public long lastTime;
-        public final Paint paint;
-        public final ArrayList particles = new ArrayList(50);
-        public final ArrayList deadParticles = new ArrayList(50);
+    public static class Particles {
+        private final int count;
+        private RectF emitArea;
+        private Runnable invalidate;
+        private long lastTime;
+        private final Paint paint;
+        private final ArrayList<Particle> particles = new ArrayList<>(50);
+        private final ArrayList<Particle> deadParticles = new ArrayList<>(50);
 
-        public final class Particle {
-            public float d;
-            public float t;
-            public float v;
-            public float vx;
-            public float vy;
-            public float x;
-            public float y;
+        public class Particle {
+            float d;
+            float t;
+            float v;
+            float vx;
+            float vy;
+            float x;
+            float y;
+
+            private Particle() {
+            }
         }
 
-        public Particles(SeekBarView$$ExternalSyntheticLambda1 seekBarView$$ExternalSyntheticLambda1) {
+        public Particles(int i, Runnable runnable) {
             Paint paint = new Paint(1);
             this.paint = paint;
-            this.count = 250;
-            this.invalidate = seekBarView$$ExternalSyntheticLambda1;
+            this.count = i;
+            this.invalidate = runnable;
             paint.setStrokeWidth(AndroidUtilities.dp(1.33f));
+        }
+
+        public void clear() {
+            this.deadParticles.addAll(this.particles);
+            this.particles.clear();
+        }
+
+        public void draw(Canvas canvas, float f) {
+            long jCurrentTimeMillis = System.currentTimeMillis();
+            long jMin = Math.min(20L, jCurrentTimeMillis - this.lastTime);
+            this.lastTime = jCurrentTimeMillis;
+            int i = 0;
+            while (i < this.particles.size()) {
+                Particle particle = this.particles.get(i);
+                float f2 = jMin;
+                float f3 = particle.t - (f2 / particle.d);
+                particle.t = f3;
+                if (f3 < 0.0f) {
+                    this.deadParticles.add(particle);
+                    this.particles.remove(i);
+                    i--;
+                } else {
+                    float f4 = particle.x;
+                    float f5 = particle.vx;
+                    float f6 = particle.v;
+                    particle.x = (((f5 * f6) * f2) / 500.0f) + f4;
+                    float f7 = particle.y;
+                    float f8 = particle.vy;
+                    particle.y = (((f6 * f8) * f2) / 500.0f) + f7;
+                    particle.vy = f8 - ((((long) AndroidUtilities.dp(0.33f)) * jMin) / 500.0f);
+                }
+                i++;
+            }
+            if (this.emitArea != null) {
+                int iMin = Math.min(4, this.count - this.particles.size());
+                for (int i2 = 0; i2 < iMin; i2++) {
+                    Particle particle2 = this.deadParticles.isEmpty() ? new Particle() : this.deadParticles.remove(0);
+                    RectF rectF = this.emitArea;
+                    particle2.x = (Utilities.random.nextFloat() * rectF.width()) + rectF.left;
+                    RectF rectF2 = this.emitArea;
+                    particle2.y = (Utilities.random.nextFloat() * rectF2.height()) + rectF2.top;
+                    double dNextInt = ((double) (Utilities.random.nextInt(200) - 125)) * 0.017453292519943295d;
+                    particle2.vx = ((float) (Math.cos(dNextInt) - Math.sin(dNextInt))) * 0.8f;
+                    particle2.vy = ((float) (Math.cos(dNextInt) + Math.sin(dNextInt))) - 0.2f;
+                    particle2.t = 1.0f;
+                    particle2.v = AndroidUtilities.dp((Utilities.random.nextFloat() * 7.0f) + 10.0f);
+                    particle2.d = AndroidUtilities.lerp(420, 550, Utilities.random.nextFloat());
+                    this.particles.add(particle2);
+                }
+            }
+            for (int i3 = 0; i3 < this.particles.size(); i3++) {
+                Particle particle3 = this.particles.get(i3);
+                this.paint.setAlpha((int) (255.0f * f * particle3.t));
+                canvas.drawPoint(particle3.x, particle3.y, this.paint);
+            }
+            Runnable runnable = this.invalidate;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+
+        public Particles setColor(int i) {
+            this.paint.setColor(i);
+            return this;
+        }
+
+        public Particles setEmitArea(RectF rectF) {
+            this.emitArea = rectF;
+            return this;
         }
     }
 
-    public SeekBarWaveform() {
+    public SeekBarWaveform(Context context) {
         if (paintInner == null) {
             paintInner = new Paint(1);
             paintOuter = new Paint(1);
@@ -100,7 +174,7 @@ public final class SeekBarWaveform {
         }
     }
 
-    public final void addBar(Path path, float f, float f2) {
+    private void addBar(Path path, float f, float f2) {
         float fDpf2 = AndroidUtilities.dpf2(2.0f);
         int iM$2 = OKLCH.m$2(14.0f, this.height, 2);
         float f3 = f2 * this.waveScaling;
@@ -110,7 +184,7 @@ public final class SeekBarWaveform {
         path.addRoundRect(rectF, fDpf2, fDpf2, Path.Direction.CW);
     }
 
-    public final float[] calculateHeights(int i) {
+    private float[] calculateHeights(int i) {
         byte[] bArr = this.waveformBytes;
         if (bArr == null || i <= 0) {
             return null;
@@ -162,216 +236,7 @@ public final class SeekBarWaveform {
         return fArr;
     }
 
-    public final void draw(Canvas canvas, ChatMessageCell chatMessageCell) {
-        int i;
-        float f;
-        float f2;
-        float f3;
-        float f4;
-        RectF rectF;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        float[] fArr;
-        float[] fArr2;
-        MessageObject messageObject;
-        if (this.waveformBytes == null || (i = this.width) == 0 || this.alpha <= 0.0f) {
-            return;
-        }
-        float fDpf2 = i / AndroidUtilities.dpf2(3.0f);
-        if (fDpf2 <= 0.1f) {
-            return;
-        }
-        float f5 = this.clearProgress;
-        if (f5 != 1.0f) {
-            float f6 = f5 + 0.10666667f;
-            this.clearProgress = f6;
-            if (f6 > 1.0f) {
-                this.clearProgress = 1.0f;
-            } else {
-                chatMessageCell.invalidate();
-            }
-        }
-        float f7 = this.appearFloat.set(1.0f, false);
-        Path path = this.path;
-        if (path == null) {
-            this.path = new Path();
-        } else {
-            path.reset();
-        }
-        Path path2 = this.alphaPath;
-        if (path2 == null) {
-            this.alphaPath = new Path();
-        } else {
-            path2.reset();
-        }
-        ChatMessageCell chatMessageCell2 = this.delegate;
-        boolean z = (chatMessageCell2 == null || (messageObject = chatMessageCell2.currentMessageObject) == null || !messageObject.isVoiceOnce()) ? false : true;
-        float[] fArr3 = this.fromHeights;
-        if (fArr3 == null || (fArr2 = this.toHeights) == null) {
-            f = fDpf2;
-            f2 = 3.0f;
-            if (this.heights != null) {
-                int i2 = 0;
-                while (true) {
-                    float f8 = i2;
-                    if (f8 >= f || i2 >= this.heights.length) {
-                        break;
-                    }
-                    float fDpf3 = AndroidUtilities.dpf2(3.0f) * f8;
-                    float fClamp = MathUtils.clamp((f7 * f) - f8, 0.0f, 1.0f);
-                    float[] fArr4 = this.heights;
-                    addBar(this.path, fDpf3, BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, fClamp, AndroidUtilities.dpf2(1.0f), AndroidUtilities.dpf2(fArr4[z ? (fArr4.length - 1) - i2 : i2]) * fClamp));
-                    i2++;
-                }
-            }
-            f3 = 0.0f;
-        } else {
-            int i3 = this.width;
-            int i4 = this.fromWidth;
-            float f9 = (i3 - i4) / (this.toWidth - i4);
-            int iMax = Math.max(fArr3.length, fArr2.length);
-            int iMin = Math.min(this.fromHeights.length, this.toHeights.length);
-            float[] fArr5 = this.fromHeights;
-            int length = fArr5.length;
-            float[] fArr6 = this.toHeights;
-            f2 = 3.0f;
-            float[] fArr7 = length < fArr6.length ? fArr5 : fArr6;
-            float[] fArr8 = fArr5.length < fArr6.length ? fArr6 : fArr5;
-            if (fArr5.length >= fArr6.length) {
-                f9 = 1.0f - f9;
-            }
-            int i5 = -1;
-            int i6 = 0;
-            f3 = 0.0f;
-            while (i6 < iMax) {
-                float f10 = i6;
-                float f11 = fDpf2;
-                int iClamp = MathUtils.clamp((int) Math.floor((f10 / iMax) * iMin), 0, iMin - 1);
-                if (i5 < iClamp) {
-                    addBar(this.path, AndroidUtilities.dpf2(3.0f) * AndroidUtilities.lerp(iClamp, f10, f9), AndroidUtilities.dpf2(AndroidUtilities.lerp(fArr7[z ? (fArr7.length - 1) - iClamp : iClamp], fArr8[z ? (fArr8.length - 1) - i6 : i6], f9)));
-                    i5 = iClamp;
-                } else {
-                    float fDpf4 = AndroidUtilities.dpf2(3.0f) * AndroidUtilities.lerp(iClamp, f10, f9);
-                    if (z) {
-                        iClamp = (fArr7.length - 1) - iClamp;
-                    }
-                    addBar(this.alphaPath, fDpf4, AndroidUtilities.dpf2(AndroidUtilities.lerp(fArr7[iClamp], fArr8[z ? (fArr8.length - 1) - i6 : i6], f9)));
-                    f3 = f9;
-                }
-                i6++;
-                fDpf2 = f11;
-            }
-            f = fDpf2;
-        }
-        if (this.exploding || this.explosionRate > 0.0f) {
-            canvas.save();
-            f4 = 0.0f;
-            canvas.clipRect(0.0f, 0.0f, (1.0f - (this.explodeProgress * this.explosionRate)) * AndroidUtilities.dpf2(f2) * f, this.height);
-        } else {
-            f4 = 0.0f;
-        }
-        if (f3 > f4) {
-            canvas.save();
-            canvas.clipPath(this.alphaPath);
-            drawFill(canvas, f3 * this.alpha);
-            canvas.restore();
-        }
-        canvas.save();
-        canvas.clipPath(this.path);
-        drawFill(canvas, this.alpha);
-        canvas.restore();
-        if (this.exploding || this.explosionRate > 0.0f) {
-            canvas.restore();
-            if (this.particles == null) {
-                this.particles = new Particles(new SeekBarView$$ExternalSyntheticLambda1(this, 11));
-            }
-            float f12 = this.explodeProgress;
-            if (f12 >= 0.99f || (fArr = this.heights) == null) {
-                rectF = null;
-            } else {
-                int i7 = (int) ((1.0f - f12) * f);
-                if (z) {
-                    i7 = (int) ((f - 1.0f) - i7);
-                }
-                if (i7 < 0 || i7 >= fArr.length) {
-                    rectF = null;
-                } else {
-                    float fDpf5 = AndroidUtilities.dpf2(this.heights[i7]) * MathUtils.clamp((f7 * f) - i7, 0.0f, 1.0f);
-                    rectF = AndroidUtilities.rectTmp;
-                    float fDpf6 = AndroidUtilities.dpf2(f2) * (1.0f - this.explodeProgress) * f;
-                    float fDpf7 = AndroidUtilities.dpf2(2.0f);
-                    int iM$2 = OKLCH.m$2(14.0f, this.height, 2);
-                    float f13 = fDpf5 * this.waveScaling;
-                    float f14 = fDpf7 / 2.0f;
-                    rectF.set((AndroidUtilities.dpf2(1.0f) + fDpf6) - f14, ((-f13) - f14) + AndroidUtilities.dp(7.0f) + iM$2, AndroidUtilities.dpf2(1.0f) + fDpf6 + f14, f13 + f14 + AndroidUtilities.dp(7.0f) + iM$2);
-                }
-            }
-            Particles particles = this.particles;
-            particles.paint.setColor(this.outerColor);
-            particles.emitArea = rectF;
-            float f15 = this.explosionRate;
-            long jCurrentTimeMillis = System.currentTimeMillis();
-            long jMin = Math.min(20L, jCurrentTimeMillis - particles.lastTime);
-            particles.lastTime = jCurrentTimeMillis;
-            int i8 = 0;
-            while (true) {
-                arrayList = particles.particles;
-                int size = arrayList.size();
-                arrayList2 = particles.deadParticles;
-                if (i8 >= size) {
-                    break;
-                }
-                Particles.Particle particle = (Particles.Particle) arrayList.get(i8);
-                float f16 = jMin;
-                float f17 = particle.t - (f16 / particle.d);
-                particle.t = f17;
-                if (f17 < 0.0f) {
-                    arrayList2.add(particle);
-                    arrayList.remove(i8);
-                    i8--;
-                } else {
-                    float f18 = particle.x;
-                    float f19 = particle.vx;
-                    float f20 = particle.v;
-                    particle.x = (((f19 * f20) * f16) / 500.0f) + f18;
-                    float f21 = particle.y;
-                    float f22 = particle.vy;
-                    particle.y = (((f20 * f22) * f16) / 500.0f) + f21;
-                    particle.vy = f22 - ((((long) AndroidUtilities.dp(0.33f)) * jMin) / 500.0f);
-                }
-                i8++;
-            }
-            if (particles.emitArea != null) {
-                int iMin2 = Math.min(4, particles.count - arrayList.size());
-                for (int i9 = 0; i9 < iMin2; i9++) {
-                    Particles.Particle particle2 = arrayList2.isEmpty() ? new Particles.Particle() : (Particles.Particle) arrayList2.remove(0);
-                    RectF rectF2 = particles.emitArea;
-                    particle2.x = (Utilities.random.nextFloat() * rectF2.width()) + rectF2.left;
-                    RectF rectF3 = particles.emitArea;
-                    particle2.y = (Utilities.random.nextFloat() * rectF3.height()) + rectF3.top;
-                    double dNextInt = ((double) (Utilities.random.nextInt(200) - 125)) * 0.017453292519943295d;
-                    particle2.vx = ((float) (Math.cos(dNextInt) - Math.sin(dNextInt))) * 0.8f;
-                    particle2.vy = ((float) (Math.cos(dNextInt) + Math.sin(dNextInt))) - 0.2f;
-                    particle2.t = 1.0f;
-                    particle2.v = AndroidUtilities.dp((Utilities.random.nextFloat() * 7.0f) + 10.0f);
-                    particle2.d = AndroidUtilities.lerp(420, 550, Utilities.random.nextFloat());
-                    arrayList.add(particle2);
-                }
-            }
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                Particles.Particle particle3 = (Particles.Particle) arrayList.get(i10);
-                Paint paint = particles.paint;
-                paint.setAlpha((int) (255.0f * f15 * particle3.t));
-                canvas.drawPoint(particle3.x, particle3.y, paint);
-            }
-            SeekBarView$$ExternalSyntheticLambda1 seekBarView$$ExternalSyntheticLambda1 = particles.invalidate;
-            if (seekBarView$$ExternalSyntheticLambda1 != null) {
-                seekBarView$$ExternalSyntheticLambda1.run();
-            }
-        }
-    }
-
-    public final void drawFill(Canvas canvas, float f) {
+    private void drawFill(Canvas canvas, float f) {
         int i;
         float fDpf2 = AndroidUtilities.dpf2(2.0f);
         MessageObject messageObject = this.messageObject;
@@ -385,10 +250,8 @@ public final class SeekBarWaveform {
         }
         paint.setColor(i);
         paintOuter.setColor(this.outerColor);
-        ChatMessageCell chatMessageCell = this.parentView;
-        AnimatedFloat animatedFloat = this.loadingFloat;
-        animatedFloat.parent = chatMessageCell;
-        float f2 = animatedFloat.set((!this.loading || MediaController.getInstance().isPlayingMessage(this.messageObject)) ? 0.0f : 1.0f, false);
+        this.loadingFloat.setParent(this.parentView);
+        float f2 = this.loadingFloat.set((!this.loading || MediaController.getInstance().isPlayingMessage(this.messageObject)) ? 0.0f : 1.0f);
         Paint paint2 = paintInner;
         paint2.setColor(ColorUtils.blendARGB(f2, paint2.getColor(), this.innerColor));
         Paint paint3 = paintOuter;
@@ -419,45 +282,328 @@ public final class SeekBarWaveform {
             canvas.translate(fPow, 0.0f);
             canvas.drawRect(-fPow, 0.0f, (this.width + 5) - fPow, this.height, this.loadingPaint);
             canvas.restore();
-            ChatMessageCell chatMessageCell2 = this.parentView;
-            if (chatMessageCell2 != null) {
-                chatMessageCell2.invalidate();
+            View view = this.parentView;
+            if (view != null) {
+                view.invalidate();
             }
         }
     }
 
-    public final void setAlpha(float f) {
+    public void draw(Canvas canvas, View view) {
+        int i;
+        float f;
+        float f2;
+        float f3;
+        float f4;
+        float f5;
+        RectF rectF;
+        float[] fArr;
+        float[] fArr2;
+        if (this.waveformBytes == null || (i = this.width) == 0 || this.alpha <= 0.0f) {
+            return;
+        }
+        float fDpf2 = i / AndroidUtilities.dpf2(3.0f);
+        if (fDpf2 <= 0.1f) {
+            return;
+        }
+        float f6 = this.clearProgress;
+        if (f6 != 1.0f) {
+            float f7 = f6 + 0.10666667f;
+            this.clearProgress = f7;
+            if (f7 > 1.0f) {
+                this.clearProgress = 1.0f;
+            } else {
+                view.invalidate();
+            }
+        }
+        float f8 = this.appearFloat.set(1.0f);
+        Path path = this.path;
+        if (path == null) {
+            this.path = new Path();
+        } else {
+            path.reset();
+        }
+        Path path2 = this.alphaPath;
+        if (path2 == null) {
+            this.alphaPath = new Path();
+        } else {
+            path2.reset();
+        }
+        SeekBar.SeekBarDelegate seekBarDelegate = this.delegate;
+        boolean z = seekBarDelegate != null && seekBarDelegate.reverseWaveform();
+        float[] fArr3 = this.fromHeights;
+        if (fArr3 == null || (fArr2 = this.toHeights) == null) {
+            f = fDpf2;
+            f2 = f8;
+            int i2 = 0;
+            f3 = 3.0f;
+            if (this.heights != null) {
+                while (true) {
+                    float f9 = i2;
+                    if (f9 >= f || i2 >= this.heights.length) {
+                        break;
+                    }
+                    float fDpf3 = AndroidUtilities.dpf2(3.0f) * f9;
+                    float fClamp = MathUtils.clamp((f2 * f) - f9, 0.0f, 1.0f);
+                    float[] fArr4 = this.heights;
+                    addBar(this.path, fDpf3, BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, fClamp, AndroidUtilities.dpf2(1.0f), AndroidUtilities.dpf2(fArr4[z ? (fArr4.length - 1) - i2 : i2]) * fClamp));
+                    i2++;
+                }
+            }
+            f4 = 0.0f;
+        } else {
+            int i3 = this.width;
+            int i4 = this.fromWidth;
+            float f10 = (i3 - i4) / (this.toWidth - i4);
+            int iMax = Math.max(fArr3.length, fArr2.length);
+            int iMin = Math.min(this.fromHeights.length, this.toHeights.length);
+            float[] fArr5 = this.fromHeights;
+            int length = fArr5.length;
+            float[] fArr6 = this.toHeights;
+            f3 = 3.0f;
+            float[] fArr7 = length < fArr6.length ? fArr5 : fArr6;
+            float[] fArr8 = fArr5.length < fArr6.length ? fArr6 : fArr5;
+            if (fArr5.length >= fArr6.length) {
+                f10 = 1.0f - f10;
+            }
+            int i5 = -1;
+            int i6 = 0;
+            f4 = 0.0f;
+            while (i6 < iMax) {
+                float f11 = i6;
+                float f12 = f8;
+                float f13 = fDpf2;
+                int iClamp = MathUtils.clamp((int) Math.floor((f11 / iMax) * iMin), 0, iMin - 1);
+                if (i5 < iClamp) {
+                    addBar(this.path, AndroidUtilities.dpf2(3.0f) * AndroidUtilities.lerp(iClamp, f11, f10), AndroidUtilities.dpf2(AndroidUtilities.lerp(fArr7[z ? (fArr7.length - 1) - iClamp : iClamp], fArr8[z ? (fArr8.length - 1) - i6 : i6], f10)));
+                    i5 = iClamp;
+                } else {
+                    float fDpf4 = AndroidUtilities.dpf2(3.0f) * AndroidUtilities.lerp(iClamp, f11, f10);
+                    if (z) {
+                        iClamp = (fArr7.length - 1) - iClamp;
+                    }
+                    addBar(this.alphaPath, fDpf4, AndroidUtilities.dpf2(AndroidUtilities.lerp(fArr7[iClamp], fArr8[z ? (fArr8.length - 1) - i6 : i6], f10)));
+                    f4 = f10;
+                }
+                i6++;
+                f8 = f12;
+                fDpf2 = f13;
+            }
+            f = fDpf2;
+            f2 = f8;
+        }
+        if (this.exploding || this.explosionRate > 0.0f) {
+            canvas.save();
+            f5 = 0.0f;
+            canvas.clipRect(0.0f, 0.0f, (1.0f - (this.explodeProgress * this.explosionRate)) * AndroidUtilities.dpf2(f3) * f, this.height);
+        } else {
+            f5 = 0.0f;
+        }
+        if (f4 > f5) {
+            canvas.save();
+            canvas.clipPath(this.alphaPath);
+            drawFill(canvas, f4 * this.alpha);
+            canvas.restore();
+        }
+        canvas.save();
+        canvas.clipPath(this.path);
+        drawFill(canvas, this.alpha);
+        canvas.restore();
+        if (this.exploding || this.explosionRate > 0.0f) {
+            canvas.restore();
+            if (this.particles == null) {
+                this.particles = new Particles(250, new Tooltip$$ExternalSyntheticLambda0(this, 12));
+            }
+            float f14 = this.explodeProgress;
+            if (f14 >= 0.99f || (fArr = this.heights) == null) {
+                rectF = null;
+            } else {
+                int i7 = (int) ((1.0f - f14) * f);
+                if (z) {
+                    i7 = (int) ((f - 1.0f) - i7);
+                }
+                if (i7 < 0 || i7 >= fArr.length) {
+                    rectF = null;
+                } else {
+                    float fDpf5 = AndroidUtilities.dpf2(this.heights[i7]) * MathUtils.clamp((f2 * f) - i7, 0.0f, 1.0f);
+                    rectF = AndroidUtilities.rectTmp;
+                    float fDpf6 = AndroidUtilities.dpf2(f3) * (1.0f - this.explodeProgress) * f;
+                    float fDpf7 = AndroidUtilities.dpf2(2.0f);
+                    int iM$2 = OKLCH.m$2(14.0f, this.height, 2);
+                    float f15 = fDpf5 * this.waveScaling;
+                    float f16 = fDpf7 / 2.0f;
+                    rectF.set((AndroidUtilities.dpf2(1.0f) + fDpf6) - f16, ((-f15) - f16) + AndroidUtilities.dp(7.0f) + iM$2, AndroidUtilities.dpf2(1.0f) + fDpf6 + f16, f15 + f16 + AndroidUtilities.dp(7.0f) + iM$2);
+                }
+            }
+            this.particles.setColor(this.outerColor).setEmitArea(rectF).draw(canvas, this.explosionRate);
+        }
+    }
+
+    public void explodeAt(float f) {
+        this.exploding = true;
+        this.explodeProgress = f;
+        invalidate();
+    }
+
+    public float getProgress() {
+        return this.thumbX / this.width;
+    }
+
+    public void invalidate() {
+        View view = this.parentView;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    public boolean isDragging() {
+        return this.pressed;
+    }
+
+    public boolean isStartDraging() {
+        return this.startDraging;
+    }
+
+    public boolean onTouch(int i, float f, float f2) {
+        SeekBar.SeekBarDelegate seekBarDelegate;
+        if (!this.delegate.isSeekBarDragAllowed()) {
+            this.progress = 1.0f;
+            return false;
+        }
+        if (i == 0) {
+            if (0.0f <= f && f <= this.width && f2 >= 0.0f && f2 <= this.height) {
+                this.startX = f;
+                this.pressed = true;
+                this.thumbDX = (int) (f - this.thumbX);
+                this.startDraging = false;
+                this.delegate.onSeekBarPressed();
+                return true;
+            }
+        } else if (i == 1 || i == 3) {
+            if (this.pressed) {
+                if (i == 1 && (seekBarDelegate = this.delegate) != null) {
+                    seekBarDelegate.onSeekBarDrag(this.thumbX / this.width);
+                }
+                this.pressed = false;
+                this.delegate.onSeekBarReleased();
+                return true;
+            }
+        } else if (i == 2 && this.pressed) {
+            if (this.startDraging) {
+                int i2 = (int) (f - this.thumbDX);
+                this.thumbX = i2;
+                if (i2 < 0) {
+                    this.thumbX = 0;
+                } else {
+                    int i3 = this.width;
+                    if (i2 > i3) {
+                        this.thumbX = i3;
+                    }
+                }
+                this.progress = this.thumbX / this.width;
+            }
+            float f3 = this.startX;
+            if (f3 != -1.0f && Math.abs(f - f3) > AndroidUtilities.getPixelsInCM(0.2f, true)) {
+                View view = this.parentView;
+                if (view != null && view.getParent() != null) {
+                    this.parentView.getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                this.startDraging = true;
+                this.startX = -1.0f;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public void setAlpha(float f) {
         this.alpha = f;
     }
 
-    public final void setProgress() {
-        setProgress(0.0f, false);
+    public void setColors(int i, int i2, int i3) {
+        this.innerColor = i;
+        this.outerColor = i2;
+        this.selectedColor = i3;
     }
 
-    public final void setSize(int i, int i2, int i3, int i4) {
-        this.width = i;
-        this.height = i2;
-        float[] fArr = this.heights;
-        if (fArr == null || fArr.length != ((int) (i / AndroidUtilities.dpf2(3.0f)))) {
-            this.heights = calculateHeights((int) (this.width / AndroidUtilities.dpf2(3.0f)));
+    public void setDelegate(SeekBar.SeekBarDelegate seekBarDelegate) {
+        this.delegate = seekBarDelegate;
+    }
+
+    public void setExplosionRate(float f) {
+        this.explosionRate = f;
+        invalidate();
+    }
+
+    public void setLoading(boolean z) {
+        if (!this.loading && z && this.loadingFloat.get() <= 0.0f) {
+            this.loadingStart = SystemClock.elapsedRealtime();
         }
-        if (i3 == i4 || (this.fromWidth == i3 && this.toWidth == i4)) {
-            if (i3 == i4) {
-                this.toHeights = null;
-                this.fromHeights = null;
-                return;
-            }
+        this.loading = z;
+        View view = this.parentView;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    public void setMessageObject(MessageObject messageObject) {
+        MessageObject messageObject2;
+        if (this.animatedValues != null && (messageObject2 = this.messageObject) != null && messageObject != null && messageObject2.getId() != messageObject.getId()) {
+            this.animatedValues.clear();
+        }
+        this.messageObject = messageObject;
+    }
+
+    public void setParentView(View view) {
+        this.parentView = view;
+        this.loadingFloat.setParent(view);
+        this.appearFloat.setParent(view);
+    }
+
+    public void setProgress(float f) {
+        setProgress(f, false);
+    }
+
+    public void setSelected(boolean z) {
+        this.selected = z;
+    }
+
+    public void setSent() {
+        this.appearFloat.set(0.0f, true);
+        View view = this.parentView;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    public void setSize(int i, int i2) {
+        setSize(i, i2, i, i);
+    }
+
+    public void setWaveScaling(float f) {
+        this.waveScaling = f;
+    }
+
+    public void setWaveform(byte[] bArr) {
+        this.waveformBytes = bArr;
+        this.heights = calculateHeights((int) (this.width / AndroidUtilities.dpf2(3.0f)));
+        if (this.delegate.isSeekBarDragAllowed()) {
             return;
         }
-        this.fromWidth = i3;
-        this.toWidth = i4;
-        this.fromHeights = calculateHeights((int) (i3 / AndroidUtilities.dpf2(3.0f)));
-        this.toHeights = calculateHeights((int) (this.toWidth / AndroidUtilities.dpf2(3.0f)));
+        this.progress = 1.0f;
     }
 
-    public final void setProgress(float f, boolean z) {
-        MessageObject messageObject = this.delegate.currentMessageObject;
-        if (!(messageObject == null || !messageObject.isVoiceOnce())) {
+    public void stopExploding() {
+        this.exploding = false;
+        Particles particles = this.particles;
+        if (particles != null) {
+            particles.clear();
+        }
+        invalidate();
+    }
+
+    public void setProgress(float f, boolean z) {
+        if (!this.delegate.isSeekBarDragAllowed()) {
             this.progress = 1.0f;
             return;
         }
@@ -479,5 +625,26 @@ public final class SeekBarWaveform {
         if (iCeil > i2) {
             this.thumbX = i2;
         }
+    }
+
+    public void setSize(int i, int i2, int i3, int i4) {
+        this.width = i;
+        this.height = i2;
+        float[] fArr = this.heights;
+        if (fArr == null || fArr.length != ((int) (i / AndroidUtilities.dpf2(3.0f)))) {
+            this.heights = calculateHeights((int) (this.width / AndroidUtilities.dpf2(3.0f)));
+        }
+        if (i3 == i4 || (this.fromWidth == i3 && this.toWidth == i4)) {
+            if (i3 == i4) {
+                this.toHeights = null;
+                this.fromHeights = null;
+                return;
+            }
+            return;
+        }
+        this.fromWidth = i3;
+        this.toWidth = i4;
+        this.fromHeights = calculateHeights((int) (i3 / AndroidUtilities.dpf2(3.0f)));
+        this.toHeights = calculateHeights((int) (this.toWidth / AndroidUtilities.dpf2(3.0f)));
     }
 }

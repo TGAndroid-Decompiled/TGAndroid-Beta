@@ -1,58 +1,60 @@
 package org.telegram.ui.Business;
 
-import android.animation.AnimatorSet;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.text.Editable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.internal.mlkit_vision_common.zzke;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda16;
-import org.telegram.ui.CallLogActivity;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
 import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
 import org.telegram.ui.Cells.EditTextCell;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Cells.PhotoEditToolCell$$ExternalSyntheticLambda0;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatGreetingsView;
-import org.telegram.ui.Components.ChatGreetingsView$$ExternalSyntheticLambda2;
 import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CrossfadeDrawable;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
+import org.telegram.ui.Components.UniversalRecyclerView;
 import org.telegram.ui.ContentPreviewViewer;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 import org.telegram.ui.Stories.recorder.KeyboardNotifier;
 import org.telegram.ui.Stories.recorder.PreviewView;
-import org.telegram.ui.VoIPFragment;
+import org.telegram.ui.iv.RichMediaUploader$$ExternalSyntheticLambda0;
+import org.telegram.ui.web.HistoryFragment;
 
 public final class BusinessIntroActivity extends UniversalFragment implements NotificationCenter.NotificationCenterDelegate {
-    public ChatActivity.AnonymousClass78 chatAttachAlert;
+    public PeerStoriesView.AnonymousClass23 chatAttachAlert;
     public String currentMessage;
     public long currentSticker;
     public String currentTitle;
@@ -64,10 +66,10 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
     public String inputStickerPath;
     public boolean keyboardVisible;
     public AnonymousClass4 messageEdit;
-    public ChatAttachAlert.AnonymousClass18 previewContainer;
+    public AnonymousClass2 previewContainer;
     public AnonymousClass4 titleEdit;
     public boolean valueSet;
-    public final BusinessIntroActivity$$ExternalSyntheticLambda3 updateRandomStickerRunnable = new BusinessIntroActivity$$ExternalSyntheticLambda3(this, 0);
+    public final BusinessIntroActivity$$ExternalSyntheticLambda2 updateRandomStickerRunnable = new BusinessIntroActivity$$ExternalSyntheticLambda2(this, 1);
     public boolean stickerRandom = true;
     public TLRPC.Document sticker = getMediaDataController().getGreetingsSticker();
     public boolean clearVisible = isEmpty();
@@ -78,6 +80,30 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
             super.onMeasure(i, i2);
             setPivotX(getMeasuredWidth() / 2.0f);
             setPivotY(getMeasuredHeight());
+        }
+    }
+
+    public final class AnonymousClass3 extends ImageView {
+        @Override
+        public final void onMeasure(int i, int i2) {
+            float f;
+            float f2;
+            super.onMeasure(i, i2);
+            Matrix imageMatrix = getImageMatrix();
+            int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+            int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
+            int intrinsicWidth = getDrawable().getIntrinsicWidth();
+            int intrinsicHeight = getDrawable().getIntrinsicHeight();
+            if (intrinsicWidth * measuredHeight > intrinsicHeight * measuredWidth) {
+                f = measuredHeight;
+                f2 = intrinsicHeight;
+            } else {
+                f = measuredWidth;
+                f2 = intrinsicWidth;
+            }
+            float f3 = f / f2;
+            imageMatrix.setScale(f3, f3);
+            setImageMatrix(imageMatrix);
         }
     }
 
@@ -106,58 +132,67 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
             this.doneButton.setScaleX(zHasChanges ? 1.0f : 0.0f);
             this.doneButton.setScaleY(zHasChanges ? 1.0f : 0.0f);
         }
-        UniversalFragment.AnonymousClass3 anonymousClass3 = this.listView;
-        if (anonymousClass3 == null || anonymousClass3.adapter == null || this.clearVisible == (!isEmpty())) {
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView == null || universalRecyclerView.adapter == null || this.clearVisible == (!isEmpty())) {
             return;
         }
-        UniversalFragment.AnonymousClass3 anonymousClass4 = this.listView;
-        if (anonymousClass4 != null && anonymousClass4.getChildCount() > 0) {
-            View view = null;
-            int top = Integer.MAX_VALUE;
-            int i = -1;
-            for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
-                int childAdapterPosition = RecyclerView.getChildAdapterPosition(this.listView.getChildAt(i2));
-                View childAt = this.listView.getChildAt(i2);
-                if (childAdapterPosition != -1 && childAt.getTop() < top) {
-                    top = childAt.getTop();
-                    i = childAdapterPosition;
-                    view = childAt;
-                }
-            }
-            if (view != null) {
-                this.savedScrollPosition = i;
-                int top2 = view.getTop();
-                this.savedScrollOffset = top2;
-                if (this.savedScrollPosition == 0 && top2 > AndroidUtilities.dp(88.0f)) {
-                    this.savedScrollOffset = AndroidUtilities.dp(88.0f);
-                }
-                this.listView.layoutManager.scrollToPositionWithOffset(i, view.getTop() - this.listView.getPaddingTop());
-            }
-        }
+        saveScrollPosition();
         this.listView.adapter.update(true);
-        int i3 = this.savedScrollPosition;
-        if (i3 >= 0) {
-            UniversalFragment.AnonymousClass3 anonymousClass5 = this.listView;
-            anonymousClass5.layoutManager.scrollToPositionWithOffset(i3, this.savedScrollOffset - anonymousClass5.getPaddingTop());
-        }
+        applyScrolledPosition();
     }
 
     @Override
     public final View createView(Context context) {
+        int i = 3;
         AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
-        getUserConfig().getCurrentUser();
-        this.greetingsView = new AnonymousClass1(context, this.currentAccount, this.sticker, getResourceProvider());
-        ChatAttachAlert.AnonymousClass18 anonymousClass18 = new ChatAttachAlert.AnonymousClass18(this, context);
-        this.previewContainer = anonymousClass18;
-        anonymousClass18.setWillNotDraw(false);
-        this.greetingsViewBackground = new Theme.AnonymousClass7(this.greetingsView, this.previewContainer, AndroidUtilities.dp(16.0f), getThemedPaint("paintChatActionBackground"));
+        this.greetingsView = new AnonymousClass1(context, getUserConfig().getCurrentUser(), this.currentAccount, this.sticker, getResourceProvider());
+        ?? r0 = new FrameLayout(context) {
+            public int minHeight = -1;
+            public final Rect bg = new Rect();
+            public final AnimatedFloat width = new AnimatedFloat(this, 220, CubicBezierInterpolator.EASE_OUT_QUINT);
+
+            @Override
+            public final boolean drawChild(Canvas canvas, View view, long j) {
+                float width = getWidth() / 2.0f;
+                BusinessIntroActivity businessIntroActivity = BusinessIntroActivity.this;
+                float f = this.width.set(businessIntroActivity.greetingsView.getWidth()) / 2.0f;
+                int scaleX = (int) (width - (businessIntroActivity.greetingsView.getScaleX() * f));
+                int scaleY = (int) (((1.0f - businessIntroActivity.greetingsView.getScaleY()) * businessIntroActivity.greetingsView.getHeight()) + businessIntroActivity.greetingsView.getY());
+                int scaleX2 = (int) ((businessIntroActivity.greetingsView.getScaleX() * f) + width);
+                int y = (int) (businessIntroActivity.greetingsView.getY() + businessIntroActivity.greetingsView.getHeight());
+                Rect rect = this.bg;
+                rect.set(scaleX, scaleY, scaleX2, y);
+                businessIntroActivity.greetingsViewBackground.setBounds(rect);
+                businessIntroActivity.greetingsViewBackground.draw(canvas);
+                return super.drawChild(canvas, view, j);
+            }
+
+            @Override
+            public final void onMeasure(int i2, int i3) {
+                BusinessIntroActivity businessIntroActivity = BusinessIntroActivity.this;
+                businessIntroActivity.greetingsView.measure(i2, i3);
+                invalidate();
+                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(Math.max(this.minHeight, AndroidUtilities.dp(36.0f) + businessIntroActivity.greetingsView.getMeasuredHeight()), 1073741824));
+                if (this.minHeight < 0) {
+                    this.minHeight = getMeasuredHeight();
+                }
+            }
+        };
+        this.previewContainer = r0;
+        r0.setWillNotDraw(false);
+        int iDp = AndroidUtilities.dp(16.0f);
+        AnonymousClass1 anonymousClass1 = this.greetingsView;
+        AnonymousClass2 anonymousClass2 = this.previewContainer;
+        Paint themedPaint = getThemedPaint("paintChatActionBackground");
+        int i2 = Theme.default_shadow_color;
+        this.greetingsViewBackground = new Theme.AnonymousClass7(anonymousClass1, anonymousClass2, iDp, themedPaint);
         this.greetingsView.setBackground(new ColorDrawable(0));
-        VoIPFragment.AnonymousClass9 anonymousClass9 = new VoIPFragment.AnonymousClass9(context, 1);
-        anonymousClass9.setScaleType(ImageView.ScaleType.MATRIX);
-        anonymousClass9.setImageDrawable(PreviewView.getBackgroundDrawable((Drawable) null, this.currentAccount, getUserConfig().getClientUserId(), Theme.currentTheme.isDark()));
-        this.previewContainer.addView(anonymousClass9, LayoutHelper.createFrame(-1, -1, 119));
-        this.previewContainer.addView(this.greetingsView, LayoutHelper.createFrame(-2, -2.0f, 17, 42.0f, 18.0f, 42.0f, 18.0f));
-        ?? r0 = new EditTextCell(this, context, LocaleController.getString(R.string.BusinessIntroTitleHint), getMessagesController().introTitleLengthLimit, this.resourceProvider, 0) {
+        AnonymousClass3 anonymousClass3 = new AnonymousClass3(context);
+        anonymousClass3.setScaleType(ImageView.ScaleType.MATRIX);
+        anonymousClass3.setImageDrawable(PreviewView.getBackgroundDrawable((Drawable) null, this.currentAccount, getUserConfig().getClientUserId(), Theme.currentTheme.isDark()));
+        addView(anonymousClass3, LayoutHelper.createFrame(-1, -1, 119));
+        addView(this.greetingsView, LayoutHelper.createFrame(-2, -2.0f, 17, 42.0f, 18.0f, 42.0f, 18.0f));
+        ?? r1 = new EditTextCell(this, context, LocaleController.getString(R.string.BusinessIntroTitleHint), getMessagesController().introTitleLengthLimit, this.resourceProvider, 0) {
             public final int $r8$classId;
             public final BusinessIntroActivity this$0;
 
@@ -177,18 +212,18 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
 
             @Override
             public final void onFocusChanged(boolean z) {
-                UniversalFragment.AnonymousClass3 anonymousClass3;
-                UniversalFragment.AnonymousClass3 anonymousClass4;
+                UniversalRecyclerView universalRecyclerView;
+                UniversalRecyclerView universalRecyclerView2;
                 switch (this.$r8$classId) {
                     case 0:
-                        if (z && (anonymousClass3 = this.this$0.listView) != null) {
-                            anonymousClass3.smoothScrollToPosition(2);
+                        if (z && (universalRecyclerView = this.this$0.listView) != null) {
+                            universalRecyclerView.smoothScrollToPosition(2);
                             break;
                         }
                         break;
                     default:
-                        if (z && (anonymousClass4 = this.this$0.listView) != null) {
-                            anonymousClass4.smoothScrollToPosition(3);
+                        if (z && (universalRecyclerView2 = this.this$0.listView) != null) {
+                            universalRecyclerView2.smoothScrollToPosition(3);
                             break;
                         }
                         break;
@@ -196,7 +231,7 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
             }
 
             @Override
-            public final void onTextChanged(Editable editable) {
+            public final void onTextChanged(CharSequence charSequence) {
                 switch (this.$r8$classId) {
                     case 0:
                         BusinessIntroActivity businessIntroActivity = this.this$0;
@@ -211,15 +246,15 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
                 }
             }
         };
-        this.titleEdit = r0;
-        r0.autofocused = true;
-        r0.setShowLimitOnFocus(true);
+        this.titleEdit = r1;
+        r1.autofocused = true;
+        r1.setShowLimitOnFocus(true);
         AnonymousClass4 anonymousClass4 = this.titleEdit;
-        int i = Theme.key_windowBackgroundWhite;
-        anonymousClass4.setBackgroundColor(getThemedColor(i));
+        int i3 = Theme.key_windowBackgroundWhite;
+        anonymousClass4.setBackgroundColor(getThemedColor(i3));
         setDivider(true);
         hideKeyboardOnEnter();
-        ?? r1 = new EditTextCell(this, context, LocaleController.getString(R.string.BusinessIntroMessageHint), getMessagesController().introDescriptionLengthLimit, this.resourceProvider, 1) {
+        ?? r2 = new EditTextCell(this, context, LocaleController.getString(R.string.BusinessIntroMessageHint), getMessagesController().introDescriptionLengthLimit, this.resourceProvider, 1) {
             public final int $r8$classId;
             public final BusinessIntroActivity this$0;
 
@@ -239,18 +274,18 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
 
             @Override
             public final void onFocusChanged(boolean z) {
-                UniversalFragment.AnonymousClass3 anonymousClass3;
-                UniversalFragment.AnonymousClass3 anonymousClass5;
+                UniversalRecyclerView universalRecyclerView;
+                UniversalRecyclerView universalRecyclerView2;
                 switch (this.$r8$classId) {
                     case 0:
-                        if (z && (anonymousClass3 = this.this$0.listView) != null) {
-                            anonymousClass3.smoothScrollToPosition(2);
+                        if (z && (universalRecyclerView = this.this$0.listView) != null) {
+                            universalRecyclerView.smoothScrollToPosition(2);
                             break;
                         }
                         break;
                     default:
-                        if (z && (anonymousClass5 = this.this$0.listView) != null) {
-                            anonymousClass5.smoothScrollToPosition(3);
+                        if (z && (universalRecyclerView2 = this.this$0.listView) != null) {
+                            universalRecyclerView2.smoothScrollToPosition(3);
                             break;
                         }
                         break;
@@ -258,7 +293,7 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
             }
 
             @Override
-            public final void onTextChanged(Editable editable) {
+            public final void onTextChanged(CharSequence charSequence) {
                 switch (this.$r8$classId) {
                     case 0:
                         BusinessIntroActivity businessIntroActivity = this.this$0;
@@ -273,35 +308,33 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
                 }
             }
         };
-        this.messageEdit = r1;
-        r1.setShowLimitOnFocus(true);
-        setBackgroundColor(getThemedColor(i));
+        this.messageEdit = r2;
+        r2.setShowLimitOnFocus(true);
+        setBackgroundColor(getThemedColor(i3));
         setDivider(true);
         hideKeyboardOnEnter();
         this.greetingsView.setPreview("", "");
         super.createView(context);
         this.listView.setSections();
-        UniversalFragment.AnonymousClass3 anonymousClass3 = this.listView;
-        anonymousClass3.adapter.applyBackground = false;
-        this.actionBar.setAdaptiveBackground(anonymousClass3);
-        this.actionBar.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 6));
+        this.listView.adapter.setApplyBackground(false);
+        this.actionBar.setAdaptiveBackground(this.listView);
+        this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 2));
         Drawable drawableMutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        int i2 = Theme.key_actionBarDefaultIcon;
-        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i2, false), PorterDuff.Mode.MULTIPLY));
-        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(null, i2, false)));
+        int i4 = Theme.key_actionBarDefaultIcon;
+        drawableMutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(null, i4, false), PorterDuff.Mode.MULTIPLY));
+        this.doneButtonDrawable = new CrossfadeDrawable(drawableMutate, new CircularProgressDrawable(Theme.getColor(null, i4, false)));
         this.doneButton = this.actionBar.createMenu().addItemWithWidth(AndroidUtilities.dp(56.0f), LocaleController.getString(R.string.Done), this.doneButtonDrawable);
         checkDone$1(false);
         this.listView.addOnLayoutChangeListener(new SearchView.AnonymousClass4(this, 1));
-        this.listView.addOnScrollListener(new ChatActivity.AnonymousClass53(this, 5));
-        UniversalFragment.AnonymousClass3 anonymousClass5 = this.listView;
-        anonymousClass5.doNotDetachViews = true;
-        anonymousClass5.setClipChildren(false);
+        this.listView.addOnScrollListener(new StarGiftSheet.AnonymousClass8(this, i));
+        this.listView.doNotDetachViews();
+        this.listView.setClipChildren(false);
         View view = this.fragmentView;
         if (view instanceof ViewGroup) {
             ((ViewGroup) view).setClipChildren(false);
         }
         setValue$1$1();
-        new KeyboardNotifier(this.fragmentView, false, new DialogCell$$ExternalSyntheticLambda6(this, 4));
+        new KeyboardNotifier(this.fragmentView, false, new DialogCell$$ExternalSyntheticLambda6(this, i));
         return this.fragmentView;
     }
 
@@ -313,50 +346,26 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
     }
 
     @Override
-    public final void fillItems$1(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    public final void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         arrayList.add(UItem.asCustom(this.previewContainer));
-        String string = LocaleController.getString(R.string.BusinessIntroHeader);
-        UItem uItem = new UItem(0);
-        uItem.text = string;
-        arrayList.add(uItem);
+        zzke.m(R.string.BusinessIntroHeader, arrayList);
         arrayList.add(UItem.asCustom(this.titleEdit));
         arrayList.add(UItem.asCustom(this.messageEdit));
         if (this.stickerRandom) {
-            arrayList.add(UItem.asButton(LocaleController.getString(R.string.BusinessIntroSticker), LocaleController.getString(R.string.BusinessIntroStickerRandom), 1));
+            arrayList.add(UItem.asButton(1, LocaleController.getString(R.string.BusinessIntroSticker), LocaleController.getString(R.string.BusinessIntroStickerRandom)));
         } else if (this.inputStickerPath != null) {
-            String string2 = LocaleController.getString(R.string.BusinessIntroSticker);
-            String str = this.inputStickerPath;
-            UItem uItem2 = new UItem(3);
-            uItem2.id = 1;
-            uItem2.text = string2;
-            uItem2.object = str;
-            arrayList.add(uItem2);
+            arrayList.add(UItem.asStickerButton(1, LocaleController.getString(R.string.BusinessIntroSticker), this.inputStickerPath));
         } else {
-            String string3 = LocaleController.getString(R.string.BusinessIntroSticker);
-            TLRPC.Document document = this.sticker;
-            UItem uItem3 = new UItem(3);
-            uItem3.id = 1;
-            uItem3.text = string3;
-            uItem3.object = document;
-            arrayList.add(uItem3);
+            arrayList.add(UItem.asStickerButton(1, LocaleController.getString(R.string.BusinessIntroSticker), this.sticker));
         }
-        String string4 = LocaleController.getString(R.string.BusinessIntroInfo);
-        UItem uItem4 = new UItem(7);
-        uItem4.text = string4;
-        arrayList.add(uItem4);
+        arrayList.add(UItem.asShadow(LocaleController.getString(R.string.BusinessIntroInfo)));
         boolean zIsEmpty = isEmpty();
         this.clearVisible = !zIsEmpty;
         if (!zIsEmpty) {
-            UItem uItem5 = new UItem(7);
-            uItem5.text = null;
-            arrayList.add(uItem5);
-            UItem uItemAsButton = UItem.asButton(2, LocaleController.getString(R.string.BusinessIntroReset));
-            uItemAsButton.red = true;
-            arrayList.add(uItemAsButton);
+            arrayList.add(UItem.asShadow(null));
+            arrayList.add(UItem.asButton(2, LocaleController.getString(R.string.BusinessIntroReset)).red());
         }
-        UItem uItem6 = new UItem(8);
-        uItem6.text = null;
-        arrayList.add(uItem6);
+        arrayList.add(UItem.asLargeShadow(null));
     }
 
     @Override
@@ -406,10 +415,8 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
         }
         if (z) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), 0, null);
-            String string = LocaleController.getString(R.string.UnsavedChanges);
-            AlertDialog alertDialog = builder.alertDialog;
-            alertDialog.title = string;
-            alertDialog.message = LocaleController.getString(R.string.BusinessIntroUnsavedChanges);
+            builder.setTitle(LocaleController.getString(R.string.UnsavedChanges));
+            builder.setMessage(LocaleController.getString(R.string.BusinessIntroUnsavedChanges));
             final int i = 0;
             builder.setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new AlertDialog.OnButtonClickListener(this) {
                 public final BusinessIntroActivity f$0;
@@ -419,13 +426,13 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
                 }
 
                 @Override
-                public final void onClick(AlertDialog alertDialog2, int i2) {
+                public final void onClick(AlertDialog alertDialog, int i2) {
                     switch (i) {
                         case 0:
                             this.f$0.processDone$1();
                             break;
                         default:
-                            this.f$0.lambda$onBackPressed$6(alertDialog2, i2);
+                            this.f$0.lambda$onBackPressed$6(alertDialog, i2);
                             break;
                     }
                 }
@@ -439,41 +446,45 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
                 }
 
                 @Override
-                public final void onClick(AlertDialog alertDialog2, int i3) {
+                public final void onClick(AlertDialog alertDialog, int i3) {
                     switch (i2) {
                         case 0:
                             this.f$0.processDone$1();
                             break;
                         default:
-                            this.f$0.lambda$onBackPressed$6(alertDialog2, i3);
+                            this.f$0.lambda$onBackPressed$6(alertDialog, i3);
                             break;
                     }
                 }
             });
-            showDialog(alertDialog);
+            showDialog(builder.create());
         }
         return false;
     }
 
     @Override
-    public final void onClick$1(UItem uItem, View view) {
-        int i = uItem.id;
-        if (i == 1) {
-            EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getParentActivity(), getResourceProvider(), true, true);
-            emojiBottomSheet.onDocumentSelected = new ArticleViewer$$ExternalSyntheticLambda16(20, this, view);
-            emojiBottomSheet.onPlusSelected = new BusinessIntroActivity$$ExternalSyntheticLambda3(this, 1);
-            for (View view2 : emojiBottomSheet.viewPager.getViewPages()) {
+    public final void onClick(UItem uItem, View view, int i, float f, float f2) {
+        int i2 = uItem.id;
+        if (i2 == 1) {
+            EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), true, true, getResourceProvider());
+            emojiBottomSheet.onDocumentSelected = new PhotoEditToolCell$$ExternalSyntheticLambda0(26, this, view);
+            int i3 = 0;
+            emojiBottomSheet.onPlusSelected = new BusinessIntroActivity$$ExternalSyntheticLambda2(this, i3);
+            View[] viewPages = emojiBottomSheet.viewPager.getViewPages();
+            while (i3 < viewPages.length) {
+                View view2 = viewPages[i3];
                 if (view2 instanceof EmojiBottomSheet.Page) {
                     EmojiBottomSheet.Page.Adapter adapter = ((EmojiBottomSheet.Page) view2).adapter;
                     if (adapter.query == null) {
                         adapter.updateItems$1(null);
                     }
                 }
+                i3++;
             }
             showDialog(emojiBottomSheet);
             return;
         }
-        if (i == 2) {
+        if (i2 == 2) {
             setText("");
             setText("");
             AndroidUtilities.hideKeyboard(this.titleEdit.editText);
@@ -484,9 +495,9 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
             TLRPC.Document greetingsSticker = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
             this.sticker = greetingsSticker;
             anonymousClass1.setSticker(greetingsSticker);
-            BusinessIntroActivity$$ExternalSyntheticLambda3 businessIntroActivity$$ExternalSyntheticLambda3 = this.updateRandomStickerRunnable;
-            AndroidUtilities.cancelRunOnUIThread(businessIntroActivity$$ExternalSyntheticLambda3);
-            AndroidUtilities.runOnUIThread(businessIntroActivity$$ExternalSyntheticLambda3, 5000L);
+            BusinessIntroActivity$$ExternalSyntheticLambda2 businessIntroActivity$$ExternalSyntheticLambda2 = this.updateRandomStickerRunnable;
+            AndroidUtilities.cancelRunOnUIThread(businessIntroActivity$$ExternalSyntheticLambda2);
+            AndroidUtilities.runOnUIThread(businessIntroActivity$$ExternalSyntheticLambda2, 5000L);
             checkDone$1(true);
         }
     }
@@ -513,46 +524,89 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
     }
 
     @Override
-    public final boolean onLongClick(UItem uItem, View view) {
+    public final boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         return false;
     }
 
     public final void openCustomStickerEditor() {
-        BusinessIntroActivity businessIntroActivity;
-        ContentPreviewViewer.getInstance().stickerSetForCustomSticker = null;
+        ContentPreviewViewer.getInstance().setStickerSetForCustomSticker(null);
         if (getParentActivity() == null) {
             return;
         }
-        if (getParentActivity() == null || getParentActivity() == null || this.chatAttachAlert != null) {
-            businessIntroActivity = this;
-        } else {
-            businessIntroActivity = this;
-            ChatActivity.AnonymousClass78 anonymousClass78 = new ChatActivity.AnonymousClass78(businessIntroActivity, getParentActivity(), this, this.resourceProvider, 1);
-            businessIntroActivity.chatAttachAlert = anonymousClass78;
-            ((ChatAttachAlert) anonymousClass78).delegate = new ChatActivity.AnonymousClass1(this, 18);
+        if (getParentActivity() != null && getContext() != null && this.chatAttachAlert == null) {
+            PeerStoriesView.AnonymousClass23 anonymousClass23 = new PeerStoriesView.AnonymousClass23(this, getParentActivity(), this, this.resourceProvider);
+            this.chatAttachAlert = anonymousClass23;
+            anonymousClass23.setDelegate(new ChatAttachAlert.ChatAttachViewDelegate() {
+                @Override
+                public final void didPressedButton(int i, boolean z, boolean z2, int i2, int i3, long j, boolean z3, boolean z4, long j2) {
+                }
+
+                @Override
+                public final void didSelectBot(TLRPC.User user) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$didSelectBot(this, user);
+                }
+
+                @Override
+                public final void doOnIdle(Runnable runnable) {
+                    NotificationCenter.getInstance(((BaseFragment) BusinessIntroActivity.this).currentAccount).doOnIdle(runnable);
+                }
+
+                @Override
+                public final View getRevealView() {
+                    return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$getRevealView(this);
+                }
+
+                @Override
+                public final boolean needEnterComment() {
+                    return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$needEnterComment(this);
+                }
+
+                @Override
+                public final void onCameraOpened() {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onCameraOpened(this);
+                }
+
+                @Override
+                public final void onWallpaperSelected(Object obj) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
+                }
+
+                @Override
+                public final void openAvatarsSearch() {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$openAvatarsSearch(this);
+                }
+
+                @Override
+                public final boolean selectItemOnClicking() {
+                    return ChatAttachAlert.ChatAttachViewDelegate.CC.$default$selectItemOnClicking(this);
+                }
+
+                @Override
+                public final void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i, int i2, long j, boolean z2, long j2) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i, i2, j, z2, j2);
+                }
+            });
         }
-        businessIntroActivity.chatAttachAlert.photoLayout.loadGalleryPhotos();
-        businessIntroActivity.chatAttachAlert.setMaxSelectedPhotos(1, false);
-        ChatActivity.AnonymousClass78 anonymousClass79 = businessIntroActivity.chatAttachAlert;
-        anonymousClass79.openWithFrontFaceCamera = true;
-        anonymousClass79.enableStickerMode(new CallLogActivity$$ExternalSyntheticLambda3(this, 4));
-        businessIntroActivity.chatAttachAlert.init();
-        ChatActivity.AnonymousClass78 anonymousClass710 = businessIntroActivity.chatAttachAlert;
-        anonymousClass710.parentThemeDelegate = null;
-        if (businessIntroActivity.visibleDialog != null) {
-            anonymousClass710.show();
+        this.chatAttachAlert.getPhotoLayout().loadGalleryPhotos();
+        this.chatAttachAlert.setMaxSelectedPhotos(1, false);
+        this.chatAttachAlert.setOpenWithFrontFaceCamera(true);
+        this.chatAttachAlert.enableStickerMode(new GiftSheet$$ExternalSyntheticLambda8(this, 3));
+        this.chatAttachAlert.init();
+        PeerStoriesView.AnonymousClass23 anonymousClass24 = this.chatAttachAlert;
+        anonymousClass24.parentThemeDelegate = null;
+        if (this.visibleDialog != null) {
+            anonymousClass24.show();
         } else {
-            showDialog(anonymousClass710);
+            showDialog(anonymousClass24);
         }
     }
 
     public final void processDone$1() {
         TLRPC.Document document;
-        CrossfadeDrawable crossfadeDrawable = this.doneButtonDrawable;
-        if (crossfadeDrawable.progress > 0.0f) {
+        if (this.doneButtonDrawable.getProgress() > 0.0f) {
             return;
         }
-        crossfadeDrawable.animateToProgress(1.0f);
+        this.doneButtonDrawable.animateToProgress(1.0f);
         TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
         TL_account.updateBusinessIntro updatebusinessintro = new TL_account.updateBusinessIntro();
         if (!isEmpty()) {
@@ -587,7 +641,7 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
             userFull.flags2 &= -17;
             userFull.business_intro = null;
         }
-        getConnectionsManager().sendRequest(updatebusinessintro, new CallLogActivity$$ExternalSyntheticLambda1(this, 8));
+        getConnectionsManager().sendRequest(updatebusinessintro, new RichMediaUploader$$ExternalSyntheticLambda0(this, 7));
         getMessagesStorage().updateUserInfo(userFull, false);
     }
 
@@ -636,12 +690,12 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
             anonymousClass2.setSticker(greetingsSticker);
         }
         if (this.stickerRandom) {
-            BusinessIntroActivity$$ExternalSyntheticLambda3 businessIntroActivity$$ExternalSyntheticLambda3 = this.updateRandomStickerRunnable;
-            AndroidUtilities.cancelRunOnUIThread(businessIntroActivity$$ExternalSyntheticLambda3);
-            AndroidUtilities.runOnUIThread(businessIntroActivity$$ExternalSyntheticLambda3, 5000L);
+            BusinessIntroActivity$$ExternalSyntheticLambda2 businessIntroActivity$$ExternalSyntheticLambda2 = this.updateRandomStickerRunnable;
+            AndroidUtilities.cancelRunOnUIThread(businessIntroActivity$$ExternalSyntheticLambda2);
+            AndroidUtilities.runOnUIThread(businessIntroActivity$$ExternalSyntheticLambda2, 5000L);
         }
-        UniversalFragment.AnonymousClass3 anonymousClass3 = this.listView;
-        if (anonymousClass3 != null && (universalAdapter = anonymousClass3.adapter) != null) {
+        UniversalRecyclerView universalRecyclerView = this.listView;
+        if (universalRecyclerView != null && (universalAdapter = universalRecyclerView.adapter) != null) {
             universalAdapter.update(true);
         }
         this.valueSet = true;
@@ -650,25 +704,7 @@ public final class BusinessIntroActivity extends UniversalFragment implements No
     public final void updateRandomSticker() {
         AnonymousClass1 anonymousClass1 = this.greetingsView;
         if (anonymousClass1 != null && anonymousClass1.isAttachedToWindow() && this.stickerRandom) {
-            AnonymousClass1 anonymousClass2 = this.greetingsView;
-            TLRPC.Document greetingsSticker = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
-            BusinessIntroActivity$$ExternalSyntheticLambda3 businessIntroActivity$$ExternalSyntheticLambda3 = new BusinessIntroActivity$$ExternalSyntheticLambda3(this, 2);
-            if (greetingsSticker == null) {
-                anonymousClass2.getClass();
-                return;
-            }
-            AnimatorSet animatorSet = anonymousClass2.togglingStickersAnimator;
-            if (animatorSet != null) {
-                animatorSet.cancel();
-            }
-            anonymousClass2.nextStickerToSendView.getImageReceiver().setDelegate(new ChatGreetingsView.AnonymousClass2(anonymousClass2, businessIntroActivity$$ExternalSyntheticLambda3));
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(greetingsSticker, Theme.key_chat_serviceBackground, 1.0f);
-            if (svgThumb != null) {
-                anonymousClass2.nextStickerToSendView.setImage$1(ImageLocation.getForDocument(greetingsSticker), ChatGreetingsView.createFilter(greetingsSticker), svgThumb, greetingsSticker);
-            } else {
-                anonymousClass2.nextStickerToSendView.setImage(ImageLocation.getForDocument(greetingsSticker), ChatGreetingsView.createFilter(greetingsSticker), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(greetingsSticker.thumbs, 90), greetingsSticker), null, null, null, 0, greetingsSticker);
-            }
-            anonymousClass2.nextStickerToSendView.setOnClickListener(new ChatGreetingsView$$ExternalSyntheticLambda2(anonymousClass2, greetingsSticker, 1));
+            this.greetingsView.setNextSticker(MediaDataController.getInstance(this.currentAccount).getGreetingsSticker(), new BusinessIntroActivity$$ExternalSyntheticLambda2(this, 2));
         }
     }
 }

@@ -17,7 +17,7 @@ public abstract class StackTraceRecoveryKt {
         } catch (Throwable th) {
             objCreateFailure = ResultKt.createFailure(th);
         }
-        if (Result.m139exceptionOrNullimpl(objCreateFailure) != null) {
+        if (Result.m144exceptionOrNullimpl(objCreateFailure) != null) {
             objCreateFailure = "kotlin.coroutines.jvm.internal.BaseContinuationImpl";
         }
         try {
@@ -25,7 +25,7 @@ public abstract class StackTraceRecoveryKt {
         } catch (Throwable th2) {
             objCreateFailure2 = ResultKt.createFailure(th2);
         }
-        if (Result.m139exceptionOrNullimpl(objCreateFailure2) != null) {
+        if (Result.m144exceptionOrNullimpl(objCreateFailure2) != null) {
             objCreateFailure2 = "kotlinx.coroutines.internal.StackTraceRecoveryKt";
         }
     }

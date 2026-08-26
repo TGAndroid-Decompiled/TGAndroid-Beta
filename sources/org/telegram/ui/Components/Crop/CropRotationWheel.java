@@ -18,7 +18,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda44;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda12;
 
 public final class CropRotationWheel extends FrameLayout {
     public final ImageView aspectRatioButton;
@@ -40,7 +40,7 @@ public final class CropRotationWheel extends FrameLayout {
 
         void onChange(float f);
 
-        void onEnd();
+        void onEnd(float f);
 
         void onStart();
 
@@ -103,7 +103,7 @@ public final class CropRotationWheel extends FrameLayout {
                 }
             }
         });
-        imageView.setOnLongClickListener(new PhotoViewer$$ExternalSyntheticLambda44(this, 5));
+        imageView.setOnLongClickListener(new RichEditor$$ExternalSyntheticLambda12(this, 2));
         imageView.setContentDescription(LocaleController.getString(R.string.AccDescrMirror));
         addView(imageView, LayoutHelper.createFrame(70, 64, 19));
         ImageView imageView2 = new ImageView(context);
@@ -276,7 +276,7 @@ public final class CropRotationWheel extends FrameLayout {
             if (actionMasked == 1 || actionMasked == 3) {
                 RotationWheelListener rotationWheelListener2 = this.rotationListener;
                 if (rotationWheelListener2 != null) {
-                    rotationWheelListener2.onEnd();
+                    rotationWheelListener2.onEnd(this.rotation);
                 }
                 AndroidUtilities.makeAccessibilityAnnouncement(String.format("%.1f°", Float.valueOf(this.rotation)));
                 return true;

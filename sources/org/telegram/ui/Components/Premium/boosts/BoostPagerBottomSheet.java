@@ -7,19 +7,18 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.MotionEvent;
+import android.view.View;
 import androidx.core.graphics.ColorUtils;
-import com.google.zxing.BinaryBitmap;
+import com.stripe.android.Stripe;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.Gifts.SendGiftSheet;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PollItemMenu;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 
 public final class BoostPagerBottomSheet extends BottomSheet {
@@ -38,8 +37,60 @@ public final class BoostPagerBottomSheet extends BottomSheet {
         }
     }
 
+    public final class AnonymousClass5 implements Bulletin.Delegate {
+        @Override
+        public final boolean allowLayoutChanges() {
+            return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+        }
+
+        @Override
+        public final boolean bottomOffsetAnimated() {
+            return Bulletin.Delegate.CC.$default$bottomOffsetAnimated(this);
+        }
+
+        @Override
+        public final boolean clipWithGradient(int i) {
+            return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+        }
+
+        @Override
+        public final int getBottomOffset(int i) {
+            return Bulletin.Delegate.CC.$default$getBottomOffset(this, i);
+        }
+
+        @Override
+        public final int getLeftPadding() {
+            return Bulletin.Delegate.CC.$default$getLeftPadding(this);
+        }
+
+        @Override
+        public final int getRightPadding() {
+            return Bulletin.Delegate.CC.$default$getRightPadding(this);
+        }
+
+        @Override
+        public final int getTopOffset(int i) {
+            return AndroidUtilities.statusBarHeight;
+        }
+
+        @Override
+        public final void onBottomOffsetChange(float f) {
+            Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+        }
+
+        @Override
+        public final void onHide(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+        }
+
+        @Override
+        public final void onShow(Bulletin bulletin) {
+            Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+        }
+    }
+
     public BoostPagerBottomSheet(Activity activity, final BoostViaGiftsBottomSheet boostViaGiftsBottomSheet, final SelectorBottomSheet selectorBottomSheet, final Theme.ResourcesProvider resourcesProvider, boolean z) {
-        super(activity, resourcesProvider, true, false);
+        super(activity, true, false, resourcesProvider);
         this.rightSheet = selectorBottomSheet;
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
@@ -62,7 +113,6 @@ public final class BoostPagerBottomSheet extends BottomSheet {
 
             @Override
             public final void dispatchDraw(Canvas canvas) {
-                int iDp;
                 float f;
                 Paint paint = this.backgroundPaint;
                 paint.setColor(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
@@ -75,31 +125,23 @@ public final class BoostPagerBottomSheet extends BottomSheet {
                     super.dispatchDraw(canvas);
                     return;
                 }
-                int i = -AndroidUtilities.dp(16.0f);
-                BoostViaGiftsBottomSheet boostViaGiftsBottomSheet2 = boostViaGiftsBottomSheet;
-                int i2 = boostViaGiftsBottomSheet2.top;
-                if (boostViaGiftsBottomSheet2.actionBar.getVisibility() == 0) {
-                    iDp = AndroidUtilities.dp(16.0f) + AndroidUtilities.statusBarHeight;
-                } else {
-                    iDp = 0;
-                }
-                int iDp2 = AndroidUtilities.dp(10.0f) + Math.max(i, i2 - iDp);
+                int iDp = AndroidUtilities.dp(10.0f) + boostViaGiftsBottomSheet.getTop();
                 SelectorBottomSheet selectorBottomSheet2 = selectorBottomSheet;
-                int iMax = Math.max(0, selectorBottomSheet2.top - (selectorBottomSheet2.statusBarT.value == 1.0f ? AndroidUtilities.statusBarHeight : 0));
-                int iAbs = Math.abs(iDp2 - iMax);
+                int iMax = Math.max(0, selectorBottomSheet2.top - (selectorBottomSheet2.statusBarT.get() == 1.0f ? AndroidUtilities.statusBarHeight : 0));
+                int iAbs = Math.abs(iDp - iMax);
                 int currentPosition = boostPagerBottomSheet.viewPager.getCurrentPosition();
                 AnonymousClass1 anonymousClass1 = boostPagerBottomSheet.viewPager;
                 if (currentPosition == 0) {
                     float positionAnimated = anonymousClass1.getPositionAnimated() * iAbs;
-                    f = iDp2 < iMax ? iDp2 + positionAnimated : iDp2 - positionAnimated;
+                    f = iDp < iMax ? iDp + positionAnimated : iDp - positionAnimated;
                 } else {
                     float positionAnimated2 = (1.0f - anonymousClass1.getPositionAnimated()) * iAbs;
-                    f = iMax < iDp2 ? iMax + positionAnimated2 : iMax - positionAnimated2;
+                    f = iMax < iDp ? iMax + positionAnimated2 : iMax - positionAnimated2;
                 }
-                int i3 = (int) f;
+                int i = (int) f;
                 float fDp = AndroidUtilities.dp(14.0f);
                 RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(0.0f, i3, getWidth(), AndroidUtilities.dp(8.0f) + getHeight());
+                rectF.set(0.0f, i, getWidth(), AndroidUtilities.dp(8.0f) + getHeight());
                 canvas.drawRoundRect(rectF, fDp, fDp, paint);
                 canvas.save();
                 Path path = this.path;
@@ -153,21 +195,36 @@ public final class BoostPagerBottomSheet extends BottomSheet {
         this.viewPager = r3;
         r3.setOverScrollMode(2);
         r3.setClipToPadding(false);
-        r3.setAdapter(new PollItemMenu.AnonymousClass4(boostViaGiftsBottomSheet, selectorBottomSheet));
+        r3.setAdapter(new ViewPagerFixed.Adapter() {
+            @Override
+            public final void bindView(View view, int i, int i2) {
+            }
+
+            @Override
+            public final View createView(int i) {
+                return i == 0 ? boostViaGiftsBottomSheet.getContainerView() : selectorBottomSheet.getContainerView();
+            }
+
+            @Override
+            public final int getItemCount() {
+                return 2;
+            }
+
+            @Override
+            public final int getItemViewType(int i) {
+                return i;
+            }
+        });
         r3.setPosition(0);
         setCustomView(r3);
         boostViaGiftsBottomSheet.onCloseClick = new BoostPagerBottomSheet$$ExternalSyntheticLambda0(this, 0);
-        boostViaGiftsBottomSheet.actionListener = new BinaryBitmap(28, this, selectorBottomSheet);
+        boostViaGiftsBottomSheet.actionListener = new Stripe(this, selectorBottomSheet, false, 19);
         selectorBottomSheet.selectedObjectsListener = new AnonymousClass4(boostViaGiftsBottomSheet, resourcesProvider);
         selectorBottomSheet.onCloseClick = new BoostPagerBottomSheet$$ExternalSyntheticLambda0(this, 1);
         if (!z) {
             MessagesController.getInstance(this.currentAccount).getStoriesController().loadSendAs();
         }
-        BottomSheet.ContainerView containerView = this.container;
-        LaunchActivity.AnonymousClass7 anonymousClass7 = new LaunchActivity.AnonymousClass7(5);
-        if (containerView != null) {
-            containerView.setTag(R.id.bulletin_delegate_tag, anonymousClass7);
-        }
+        Bulletin.addDelegate(this.container, new AnonymousClass5());
     }
 
     public static void show(BaseFragment baseFragment, Theme.ResourcesProvider resourcesProvider, long j, TL_stories.PrepaidGiveaway prepaidGiveaway) {
@@ -206,7 +263,7 @@ public final class BoostPagerBottomSheet extends BottomSheet {
         if (isKeyboardVisible()) {
             AndroidUtilities.hideKeyboard(selectorBottomSheet.getContainerView());
         }
-        anonymousClass1.scrollToPosition$1(0);
+        anonymousClass1.scrollToPosition(0);
     }
 
     @Override

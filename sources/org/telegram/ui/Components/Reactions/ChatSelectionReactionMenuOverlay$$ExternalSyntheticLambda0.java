@@ -1,10 +1,10 @@
 package org.telegram.ui.Components.Reactions;
 
-import com.stripe.android.Stripe;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Reactions.ChatSelectionReactionMenuOverlay.AnonymousClass3;
 
 public final class ChatSelectionReactionMenuOverlay$$ExternalSyntheticLambda0 implements Runnable {
     public final int $r8$classId;
@@ -27,7 +27,7 @@ public final class ChatSelectionReactionMenuOverlay$$ExternalSyntheticLambda0 im
                 ChatSelectionReactionMenuOverlay.AnonymousClass2 anonymousClass2 = chatSelectionReactionMenuOverlay.reactionsContainerLayout;
                 ChatActivity chatActivity = chatSelectionReactionMenuOverlay.parentFragment;
                 if (anonymousClass2 == null) {
-                    ChatSelectionReactionMenuOverlay.AnonymousClass2 anonymousClass3 = new ChatSelectionReactionMenuOverlay.AnonymousClass2((chatActivity.getUserConfig().getClientUserId() > chatActivity.getDialogId() ? 1 : (chatActivity.getUserConfig().getClientUserId() == chatActivity.getDialogId() ? 0 : -1)) == 0 ? 3 : 0, chatActivity.getCurrentAccount(), chatSelectionReactionMenuOverlay.getContext(), chatSelectionReactionMenuOverlay.parentFragment, chatActivity.getResourceProvider());
+                    ChatSelectionReactionMenuOverlay.AnonymousClass2 anonymousClass3 = new ChatSelectionReactionMenuOverlay.AnonymousClass2((chatActivity.getUserConfig().getClientUserId() > chatActivity.getDialogId() ? 1 : (chatActivity.getUserConfig().getClientUserId() == chatActivity.getDialogId() ? 0 : -1)) == 0 ? 3 : 0, chatSelectionReactionMenuOverlay.parentFragment, chatSelectionReactionMenuOverlay.getContext(), chatActivity.getCurrentAccount(), chatActivity.getResourceProvider());
                     anonymousClass3.enabledAlpha = 1.0f;
                     anonymousClass3.setWillNotDraw(false);
                     chatSelectionReactionMenuOverlay.reactionsContainerLayout = anonymousClass3;
@@ -43,7 +43,7 @@ public final class ChatSelectionReactionMenuOverlay$$ExternalSyntheticLambda0 im
                     int i3 = iDp3 + i;
                     int i4 = chatSelectionReactionMenuOverlay.mPadding;
                     anonymousClass3.setPadding(i2, iDp2, i3, AndroidUtilities.dp(i4));
-                    chatSelectionReactionMenuOverlay.reactionsContainerLayout.setDelegate(new Stripe.AnonymousClass1(chatSelectionReactionMenuOverlay, 29));
+                    chatSelectionReactionMenuOverlay.reactionsContainerLayout.setDelegate(chatSelectionReactionMenuOverlay.new AnonymousClass3());
                     chatSelectionReactionMenuOverlay.reactionsContainerLayout.setClipChildren(false);
                     chatSelectionReactionMenuOverlay.reactionsContainerLayout.setClipToPadding(false);
                     chatSelectionReactionMenuOverlay.addView(chatSelectionReactionMenuOverlay.reactionsContainerLayout, LayoutHelper.createFrame(-2, i4 + 70, 5));
@@ -54,7 +54,7 @@ public final class ChatSelectionReactionMenuOverlay$$ExternalSyntheticLambda0 im
                     chatSelectionReactionMenuOverlay.reactionsContainerLayout.setTransitionProgress(1.0f);
                 } else {
                     chatSelectionReactionMenuOverlay.messageSet = true;
-                    chatSelectionReactionMenuOverlay.reactionsContainerLayout.setMessage(chatSelectionReactionMenuOverlay.currentPrimaryObject, chatActivity.chatInfo, true);
+                    chatSelectionReactionMenuOverlay.reactionsContainerLayout.setMessage(chatSelectionReactionMenuOverlay.currentPrimaryObject, chatActivity.getCurrentChatInfo(), true);
                     chatSelectionReactionMenuOverlay.reactionsContainerLayout.startEnterAnimation(false);
                 }
                 break;

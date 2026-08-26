@@ -7,9 +7,13 @@ import android.util.Property;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 
-public abstract class ScaleStateListAnimator {
+public class ScaleStateListAnimator {
     public static void apply(View view) {
         apply(view, 0.1f, 1.5f);
+    }
+
+    public static void reset(View view) {
+        view.setStateListAnimator(null);
     }
 
     public static void apply(View view, float f, float f2) {

@@ -15,13 +15,13 @@ public final class ThanosEffect$DrawingThread$$ExternalSyntheticLambda0 implemen
     public final void run() {
         switch (this.$r8$classId) {
             case 0:
-                this.f$0.addAnimationInternal(this.f$1);
+                this.f$0.lambda$animateGroup$2(this.f$1);
                 break;
             case 1:
-                this.f$0.addAnimationInternal(this.f$1);
+                this.f$0.lambda$animate$5(this.f$1);
                 break;
             default:
-                this.f$0.addAnimationInternal(this.f$1);
+                this.f$0.lambda$animate$3(this.f$1);
                 break;
         }
     }

@@ -1,37 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.ConsumeResponseListener;
+import com.android.billingclient.api.Purchase;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.Components.RecyclerListView;
 
-public final class AndroidUtilities$$ExternalSyntheticLambda45 implements Runnable {
-    public final int $r8$classId;
-    public final ArrayList f$0;
+public final class AndroidUtilities$$ExternalSyntheticLambda45 implements RecyclerListView.IntReturnCallback, ConsumeResponseListener {
+    public final Object f$0;
+    public final Object f$1;
+    public final Object f$2;
 
-    public AndroidUtilities$$ExternalSyntheticLambda45(ArrayList arrayList, int i) {
-        this.$r8$classId = i;
-        this.f$0 = arrayList;
+    public AndroidUtilities$$ExternalSyntheticLambda45(Object obj, Object obj2, Object obj3) {
+        this.f$0 = obj;
+        this.f$1 = obj2;
+        this.f$2 = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.$r8$classId) {
-            case 0:
-                AndroidUtilities.lambda$recycleBitmaps$1(this.f$0);
-                break;
-            case 1:
-                AndroidUtilities.lambda$recycleBitmaps$0(this.f$0);
-                break;
-            case 2:
-                DispatchQueuePoolBackground.lambda$finishCollectUpdateRunnables$3(this.f$0);
-                break;
-            case 3:
-                DispatchQueuePoolBackground.lambda$finishCollectUpdateRunnables$2(this.f$0);
-                break;
-            case 4:
-                MessagesStorage.lambda$getWallpapers$80(this.f$0);
-                break;
-            default:
-                MessagesStorage.lambda$updateWidgets$165(this.f$0);
-                break;
-        }
+    public void onConsumeResponse(BillingResult billingResult, String str) {
+        BillingController.lambda$consumeGiftPurchase$12((TLRPC.InputStorePaymentPurpose) this.f$0, (Purchase) this.f$1, (Runnable) this.f$2, billingResult, str);
+    }
+
+    @Override
+    public int run() {
+        return AndroidUtilities.lambda$scrollToFragmentRow$24((BaseFragment) this.f$0, (String) this.f$1, (RecyclerListView) this.f$2);
     }
 }

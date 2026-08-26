@@ -5,12 +5,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableString;
 import android.util.DisplayMetrics;
-import android.util.SparseArray;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,44 +20,76 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import j$.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DownloadController;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController$$ExternalSyntheticOutline1;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CalendarActivity;
-import org.telegram.ui.CalendarActivity.MonthView;
-import org.telegram.ui.Components.AvatarConstructorFragment;
-import org.telegram.ui.Components.AvatarConstructorFragment.GradientSelectorView;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayoutPreview;
-import org.telegram.ui.Components.ChatAttachRestrictedLayout;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.boosts.SelectorBottomSheet;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LauncherIconController;
-import org.telegram.ui.MessageSeenView;
-import org.telegram.ui.QrActivity;
 import org.telegram.ui.Stories.LiveCommentsView$$ExternalSyntheticLambda6;
+import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 
 public final class AppIconsSelectorCell extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate {
     public final ArrayList availableIcons;
     public final int currentAccount;
     public final LinearLayoutManager linearLayoutManager;
+
+    public final class AnonymousClass2 extends RecyclerView.ItemDecoration {
+        public final int $r8$classId;
+        public final KeyEvent.Callback this$0;
+
+        public AnonymousClass2(KeyEvent.Callback callback, int i) {
+            this.$r8$classId = i;
+            this.this$0 = callback;
+        }
+
+        @Override
+        public final void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+            switch (this.$r8$classId) {
+                case 0:
+                    int adapterPosition = recyclerView.getChildViewHolder(view).getAdapterPosition();
+                    if (adapterPosition == 0) {
+                        rect.left = AndroidUtilities.dp(18.0f);
+                    }
+                    AppIconsSelectorCell appIconsSelectorCell = (AppIconsSelectorCell) this.this$0;
+                    if (adapterPosition != appIconsSelectorCell.getAdapter().getItemCount() - 1) {
+                        int itemCount = appIconsSelectorCell.getAdapter().getItemCount();
+                        if (itemCount != 4) {
+                            rect.right = AndroidUtilities.dp(24.0f);
+                        } else {
+                            rect.right = OKLCH.m$3(58.0f, itemCount, appIconsSelectorCell.getWidth() - AndroidUtilities.dp(36.0f)) / (itemCount - 1);
+                        }
+                    } else {
+                        rect.right = AndroidUtilities.dp(18.0f);
+                    }
+                    break;
+                case 1:
+                    super.getItemOffsets(rect, view, recyclerView, state);
+                    int childAdapterPosition = recyclerView.getChildAdapterPosition(view);
+                    SelectorBottomSheet selectorBottomSheet = (SelectorBottomSheet) this.this$0;
+                    if (childAdapterPosition == selectorBottomSheet.items.size()) {
+                        rect.bottom = selectorBottomSheet.listPaddingTop;
+                    }
+                    break;
+                default:
+                    rect.right = ((EmojiBottomSheet.GifPage) this.this$0).layoutManager.isLastInRow(recyclerView.getChildAdapterPosition(view)) ? 0 : AndroidUtilities.dp(4.0f);
+                    rect.bottom = AndroidUtilities.dp(4.0f);
+                    break;
+            }
+        }
+    }
 
     public final class AnonymousClass3 extends LinearSmoothScroller {
         @Override
@@ -181,6 +213,7 @@ public final class AppIconsSelectorCell extends RecyclerListView implements Noti
         }
 
         public final void setSelected(boolean z, boolean z2) {
+            int i = 2;
             float f = z ? 1.0f : 0.0f;
             float f2 = this.progress;
             if (f == f2 && z2) {
@@ -192,26 +225,61 @@ public final class AppIconsSelectorCell extends RecyclerListView implements Noti
             }
             ValueAnimator duration = ValueAnimator.ofFloat(f2, f).setDuration(250L);
             duration.setInterpolator(Easings.easeInOutQuad);
-            duration.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, 6));
+            duration.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(this, i));
             duration.start();
         }
     }
 
-    public AppIconsSelectorCell(int i, Context context, BaseFragment baseFragment) {
-        super(context, null);
+    public AppIconsSelectorCell(Context context, BaseFragment baseFragment, int i) {
+        super(context);
         this.availableIcons = new ArrayList();
         this.currentAccount = i;
         setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
         setFocusable(false);
-        setItemAnimator(null);
+        lambda$onCellEnter$52(null);
         setLayoutAnimation(null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(0, false);
         this.linearLayoutManager = linearLayoutManager;
         setLayoutManager(linearLayoutManager);
-        setAdapter(new AnonymousClass1(this, 0));
-        int i2 = 1;
-        addItemDecoration(new MessageSeenView.AnonymousClass2(this, i2));
-        setOnItemClickListener(new LiveCommentsView$$ExternalSyntheticLambda6(this, baseFragment, context, i2));
+        setAdapter(new RecyclerView.Adapter() {
+            @Override
+            public final int getItemCount() {
+                return AppIconsSelectorCell.this.availableIcons.size();
+            }
+
+            @Override
+            public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
+                IconHolderView iconHolderView = (IconHolderView) viewHolder.itemView;
+                LauncherIconController.LauncherIcon launcherIcon = (LauncherIconController.LauncherIcon) AppIconsSelectorCell.this.availableIcons.get(i2);
+                iconHolderView.iconView.setImageResource(launcherIcon.background);
+                TextView textView = iconHolderView.titleView;
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) textView.getLayoutParams();
+                if (!launcherIcon.premium || UserConfig.hasPremiumOnAccounts()) {
+                    marginLayoutParams.rightMargin = 0;
+                    textView.setText(LocaleController.getString(launcherIcon.title));
+                } else {
+                    SpannableString spannableString = new SpannableString(NotificationsController$$ExternalSyntheticOutline1.m(new StringBuilder("d "), launcherIcon.title));
+                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_premiumlock);
+                    coloredImageSpan.setTopOffset(1);
+                    coloredImageSpan.setSize(AndroidUtilities.dp(13.0f));
+                    spannableString.setSpan(coloredImageSpan, 0, 1, 33);
+                    marginLayoutParams.rightMargin = AndroidUtilities.dp(4.0f);
+                    textView.setText(spannableString);
+                }
+                iconHolderView.setSelected(LauncherIconController.isEnabled(launcherIcon), false);
+                AdaptiveIconImageView adaptiveIconImageView = iconHolderView.iconView;
+                int iDp = AndroidUtilities.dp(18.0f);
+                adaptiveIconImageView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, 0, Theme.getColor(null, Theme.key_listSelector, false), -16777216));
+                adaptiveIconImageView.setForeground(launcherIcon.foreground);
+            }
+
+            @Override
+            public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
+                return new RecyclerListView.Holder(new IconHolderView(viewGroup.getContext()));
+            }
+        });
+        addItemDecoration(new AnonymousClass2(this, 0));
+        setOnItemClickListener(new LiveCommentsView$$ExternalSyntheticLambda6(this, baseFragment, context, 1));
         updateIconsVisibility();
     }
 
@@ -263,264 +331,9 @@ public final class AppIconsSelectorCell extends RecyclerListView implements Noti
         invalidateItemDecorations();
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             if (LauncherIconController.isEnabled((LauncherIconController.LauncherIcon) arrayList.get(i2))) {
-                int iDp = AndroidUtilities.dp(16.0f);
-                LinearLayoutManager linearLayoutManager = this.linearLayoutManager;
-                linearLayoutManager.scrollToPositionWithOffset(i2, iDp, linearLayoutManager.mShouldReverseLayout);
+                this.linearLayoutManager.scrollToPositionWithOffset(i2, AndroidUtilities.dp(16.0f));
                 return;
             }
-        }
-    }
-
-    public final class AnonymousClass1 extends RecyclerView.Adapter {
-        public final int $r8$classId;
-        public final Object this$0;
-
-        public AnonymousClass1(Object obj, int i) {
-            this.$r8$classId = i;
-            this.this$0 = obj;
-        }
-
-        @Override
-        public final int getItemCount() {
-            switch (this.$r8$classId) {
-                case 0:
-                    return ((AppIconsSelectorCell) this.this$0).availableIcons.size();
-                case 1:
-                    return ((CalendarActivity) this.this$0).monthCount;
-                case 2:
-                    return ((AvatarConstructorFragment.BackgroundSelectView) this.this$0).gradients.size() + 1;
-                case 3:
-                    return 1;
-                default:
-                    return 1;
-            }
-        }
-
-        @Override
-        public long getItemId(int i) {
-            switch (this.$r8$classId) {
-                case 1:
-                    CalendarActivity calendarActivity = (CalendarActivity) this.this$0;
-                    return (((long) (calendarActivity.startFromYear - (i / 12))) * 100) + ((long) (calendarActivity.startFromMonth - (i % 12)));
-                case 2:
-                    AvatarConstructorFragment.BackgroundSelectView backgroundSelectView = (AvatarConstructorFragment.BackgroundSelectView) this.this$0;
-                    if (i >= backgroundSelectView.gradients.size()) {
-                        return 1L;
-                    }
-                    return ((AvatarConstructorFragment.BackgroundGradient) backgroundSelectView.gradients.get(i)).stableId;
-                default:
-                    return super.getItemId(i);
-            }
-        }
-
-        @Override
-        public int getItemViewType(int i) {
-            switch (this.$r8$classId) {
-                case 2:
-                    return i >= ((AvatarConstructorFragment.BackgroundSelectView) this.this$0).gradients.size() ? 1 : 0;
-                default:
-                    return super.getItemViewType(i);
-            }
-        }
-
-        @Override
-        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            boolean z;
-            switch (this.$r8$classId) {
-                case 0:
-                    IconHolderView iconHolderView = (IconHolderView) viewHolder.itemView;
-                    LauncherIconController.LauncherIcon launcherIcon = (LauncherIconController.LauncherIcon) ((AppIconsSelectorCell) this.this$0).availableIcons.get(i);
-                    iconHolderView.iconView.setImageResource(launcherIcon.background);
-                    TextView textView = iconHolderView.titleView;
-                    ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) textView.getLayoutParams();
-                    boolean z2 = launcherIcon.premium;
-                    int i2 = launcherIcon.title;
-                    if (!z2 || UserConfig.hasPremiumOnAccounts()) {
-                        marginLayoutParams.rightMargin = 0;
-                        textView.setText(LocaleController.getString(i2));
-                    } else {
-                        SpannableString spannableString = new SpannableString(NotificationsController$$ExternalSyntheticOutline1.m(new StringBuilder("d "), i2));
-                        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_premiumlock);
-                        coloredImageSpan.setTopOffset(1);
-                        coloredImageSpan.setSize(AndroidUtilities.dp(13.0f));
-                        spannableString.setSpan(coloredImageSpan, 0, 1, 33);
-                        marginLayoutParams.rightMargin = AndroidUtilities.dp(4.0f);
-                        textView.setText(spannableString);
-                    }
-                    iconHolderView.setSelected(LauncherIconController.isEnabled(launcherIcon), false);
-                    AdaptiveIconImageView adaptiveIconImageView = iconHolderView.iconView;
-                    int iDp = AndroidUtilities.dp(18.0f);
-                    adaptiveIconImageView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(iDp, iDp, iDp, iDp, 0, Theme.getColor(null, Theme.key_listSelector, false), -16777216));
-                    adaptiveIconImageView.setForeground(launcherIcon.foreground);
-                    break;
-                case 1:
-                    CalendarActivity.MonthView monthView = (CalendarActivity.MonthView) viewHolder.itemView;
-                    CalendarActivity calendarActivity = (CalendarActivity) this.this$0;
-                    int i3 = calendarActivity.startFromYear - (i / 12);
-                    int i4 = calendarActivity.startFromMonth - (i % 12);
-                    if (i4 < 0) {
-                        i4 += 12;
-                        i3--;
-                    }
-                    int i5 = monthView.currentYear;
-                    SparseArray sparseArray = (SparseArray) calendarActivity.messagesByYearMounth.get((i3 * 100) + i4);
-                    boolean z3 = (i3 == monthView.currentYear && i4 == monthView.currentMonthInYear) ? false : true;
-                    monthView.currentYear = i3;
-                    monthView.currentMonthInYear = i4;
-                    monthView.messagesByDays = sparseArray;
-                    boolean z4 = false;
-                    if (z3 && monthView.imagesByDays != null) {
-                        for (int i6 = 0; i6 < monthView.imagesByDays.size(); i6++) {
-                            ((ImageReceiver) monthView.imagesByDays.valueAt(i6)).onDetachedFromWindow();
-                            ((ImageReceiver) monthView.imagesByDays.valueAt(i6)).setParentView(null);
-                        }
-                        monthView.imagesByDays = null;
-                    }
-                    CalendarActivity calendarActivity2 = CalendarActivity.this;
-                    if (sparseArray != null) {
-                        if (monthView.imagesByDays == null) {
-                            monthView.imagesByDays = new SparseArray();
-                        }
-                        int i7 = 0;
-                        while (i7 < sparseArray.size()) {
-                            int iKeyAt = sparseArray.keyAt(i7);
-                            if (monthView.imagesByDays.get(iKeyAt, z4) == null && ((CalendarActivity.PeriodDay) sparseArray.get(iKeyAt)).hasImage) {
-                                ImageReceiver imageReceiver = new ImageReceiver();
-                                imageReceiver.setParentView(monthView);
-                                MessageObject messageObject = ((CalendarActivity.PeriodDay) sparseArray.get(iKeyAt)).messageObject;
-                                if (messageObject != null) {
-                                    boolean zHasMediaSpoilers = messageObject.hasMediaSpoilers();
-                                    if (messageObject.isVideo()) {
-                                        TLRPC.Document document = messageObject.getDocument();
-                                        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 50);
-                                        TLRPC.PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 320);
-                                        if (closestPhotoSizeWithSize == closestPhotoSizeWithSize2) {
-                                            closestPhotoSizeWithSize2 = null;
-                                        }
-                                        if (closestPhotoSizeWithSize != null) {
-                                            if (messageObject.strippedThumb != null) {
-                                                imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), zHasMediaSpoilers ? "5_5_b" : "44_44", messageObject.strippedThumb, null, messageObject, 0);
-                                            } else {
-                                                imageReceiver.setImage(ImageLocation.getForDocument(closestPhotoSizeWithSize2, document), zHasMediaSpoilers ? "5_5_b" : "44_44", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "b", (String) null, messageObject, 0);
-                                            }
-                                        }
-                                    } else {
-                                        TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
-                                        if ((messageMedia instanceof TLRPC.TL_messageMediaPhoto) && messageMedia.photo != null && !messageObject.photoThumbs.isEmpty()) {
-                                            TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 50);
-                                            TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 320, false, closestPhotoSizeWithSize3, false);
-                                            if (messageObject.mediaExists || DownloadController.getInstance(((BaseFragment) calendarActivity2).currentAccount).canDownloadMedia(messageObject)) {
-                                                if (closestPhotoSizeWithSize4 == closestPhotoSizeWithSize3) {
-                                                    closestPhotoSizeWithSize3 = null;
-                                                }
-                                                long j = 0;
-                                                if (messageObject.strippedThumb != null) {
-                                                    ImageLocation forObject = ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject);
-                                                    String str = zHasMediaSpoilers ? "5_5_b" : "44_44";
-                                                    BitmapDrawable bitmapDrawable = messageObject.strippedThumb;
-                                                    if (closestPhotoSizeWithSize4 != null) {
-                                                        j = closestPhotoSizeWithSize4.size;
-                                                    }
-                                                    imageReceiver.setImage(forObject, str, null, null, bitmapDrawable, j, null, messageObject, messageObject.shouldEncryptPhotoOrVideo() ? 2 : 1);
-                                                } else {
-                                                    ImageLocation forObject2 = ImageLocation.getForObject(closestPhotoSizeWithSize4, messageObject.photoThumbsObject);
-                                                    String str2 = zHasMediaSpoilers ? "5_5_b" : "44_44";
-                                                    ImageLocation forObject3 = ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject);
-                                                    if (closestPhotoSizeWithSize4 != null) {
-                                                        j = closestPhotoSizeWithSize4.size;
-                                                    }
-                                                    imageReceiver.setImage(forObject2, str2, forObject3, "b", j, null, messageObject, r8.shouldEncryptPhotoOrVideo() ? 2 : 1);
-                                                }
-                                            } else {
-                                                BitmapDrawable bitmapDrawable2 = messageObject.strippedThumb;
-                                                if (bitmapDrawable2 != null) {
-                                                    imageReceiver.setImage(null, null, bitmapDrawable2, null, messageObject, 0);
-                                                } else {
-                                                    imageReceiver.setImage((ImageLocation) null, (String) null, ImageLocation.getForObject(closestPhotoSizeWithSize3, messageObject.photoThumbsObject), "b", (String) null, messageObject, 0);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    imageReceiver.setRoundRadius(AndroidUtilities.dp(22.0f));
-                                    monthView.imagesByDays.put(iKeyAt, imageReceiver);
-                                }
-                            }
-                            i7++;
-                            z4 = false;
-                        }
-                    }
-                    int i8 = i4 + 1;
-                    monthView.daysInMonth = YearMonth.of(i3, i8).lengthOfMonth();
-                    Calendar calendar = Calendar.getInstance();
-                    calendar.set(i3, i4, 0);
-                    monthView.startDayOfWeek = (calendar.get(7) + 6) % 7;
-                    monthView.startMonthTime = (int) (calendar.getTimeInMillis() / 1000);
-                    int i9 = monthView.daysInMonth + monthView.startDayOfWeek;
-                    monthView.cellCount = ((int) (i9 / 7.0f)) + (i9 % 7 == 0 ? 0 : 1);
-                    calendar.set(i3, i8, 0);
-                    monthView.titleView.setText(LocaleController.formatYearMont(calendar.getTimeInMillis() / 1000, true), false);
-                    calendarActivity2.updateRowSelections(monthView, false);
-                    CalendarActivity.MonthView.access$1100(monthView, calendarActivity.dateSelectedStart, calendarActivity.dateSelectedEnd);
-                    CalendarActivity.MonthView.access$1200(monthView, 1.0f);
-                    calendarActivity.updateRowSelections(monthView, false);
-                    break;
-                case 2:
-                    AvatarConstructorFragment.GradientSelectorView gradientSelectorView = (AvatarConstructorFragment.GradientSelectorView) viewHolder.itemView;
-                    int i10 = viewHolder.mItemViewType;
-                    AvatarConstructorFragment.BackgroundSelectView backgroundSelectView = (AvatarConstructorFragment.BackgroundSelectView) this.this$0;
-                    if (i10 == 0) {
-                        gradientSelectorView.isCustom = false;
-                        AvatarConstructorFragment.BackgroundGradient backgroundGradient = (AvatarConstructorFragment.BackgroundGradient) backgroundSelectView.gradients.get(i);
-                        boolean z5 = backgroundGradient.premium && !UserConfig.getInstance(((BaseFragment) AvatarConstructorFragment.this).currentAccount).isPremium();
-                        if (gradientSelectorView.isLocked != z5) {
-                            gradientSelectorView.isLocked = z5;
-                            gradientSelectorView.invalidate();
-                        }
-                        gradientSelectorView.backgroundGradient = backgroundGradient;
-                        z = backgroundSelectView.selectedItemId == ((AvatarConstructorFragment.BackgroundGradient) backgroundSelectView.gradients.get(i)).stableId;
-                        if (gradientSelectorView.selected != z) {
-                            gradientSelectorView.selected = z;
-                            gradientSelectorView.invalidate();
-                        }
-                    } else {
-                        gradientSelectorView.isCustom = true;
-                        boolean z6 = !UserConfig.getInstance(((BaseFragment) AvatarConstructorFragment.this).currentAccount).isPremium();
-                        if (gradientSelectorView.isLocked != z6) {
-                            gradientSelectorView.isLocked = z6;
-                            gradientSelectorView.invalidate();
-                        }
-                        gradientSelectorView.backgroundGradient = backgroundSelectView.customSelectedGradient;
-                        z = backgroundSelectView.selectedItemId == 1;
-                        if (gradientSelectorView.selected != z) {
-                            gradientSelectorView.selected = z;
-                            gradientSelectorView.invalidate();
-                        }
-                    }
-                    break;
-            }
-        }
-
-        @Override
-        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            switch (this.$r8$classId) {
-                case 0:
-                    return new RecyclerListView.Holder(new IconHolderView(viewGroup.getContext()));
-                case 1:
-                    return new RecyclerListView.Holder(((CalendarActivity) this.this$0).new MonthView(viewGroup.getContext()));
-                case 2:
-                    AvatarConstructorFragment.BackgroundSelectView backgroundSelectView = (AvatarConstructorFragment.BackgroundSelectView) this.this$0;
-                    return new RecyclerListView.Holder(AvatarConstructorFragment.this.new GradientSelectorView(backgroundSelectView.getContext()));
-                case 3:
-                    return new RecyclerListView.Holder(((ChatAttachAlertPhotoLayoutPreview) this.this$0).groupsView);
-                default:
-                    return new RecyclerListView.Holder(new QrActivity.AnonymousClass2(this, ((ChatAttachRestrictedLayout) this.this$0).getContext(), 7));
-            }
-        }
-
-        private final void onBindViewHolder$org$telegram$ui$Components$ChatAttachAlertPhotoLayoutPreview$3(RecyclerView.ViewHolder viewHolder, int i) {
-        }
-
-        private final void onBindViewHolder$org$telegram$ui$Components$ChatAttachRestrictedLayout$1(RecyclerView.ViewHolder viewHolder, int i) {
         }
     }
 }

@@ -2,7 +2,6 @@ package org.telegram.ui.Stars;
 
 import android.animation.ValueAnimator;
 import android.widget.FrameLayout;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 
 public final class StarGiftSheet$TopView$$ExternalSyntheticLambda4 implements ValueAnimator.AnimatorUpdateListener {
     public final int $r8$classId;
@@ -26,10 +25,10 @@ public final class StarGiftSheet$TopView$$ExternalSyntheticLambda4 implements Va
                 StarGiftSheet.TopView topView2 = this.f$0;
                 topView2.getClass();
                 float fFloatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float fM = SurfaceContainer$$ExternalSyntheticOutline0.m((float) Math.pow((fFloatValue * 2.0f) - 2.0f, 2.0d), 0.075f, fFloatValue, 1.0f);
-                topView2.switchScale = fM;
+                float fPow = (((float) Math.pow((fFloatValue * 2.0f) - 2.0f, 2.0d)) * 0.075f * fFloatValue) + 1.0f;
+                topView2.switchScale = fPow;
                 FrameLayout frameLayout = topView2.imageLayout;
-                frameLayout.setScaleX(fM);
+                frameLayout.setScaleX(fPow);
                 frameLayout.setScaleY(topView2.switchScale);
                 topView2.invalidate();
                 break;

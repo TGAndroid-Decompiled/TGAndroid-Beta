@@ -7,7 +7,6 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stars.StarsController;
 
@@ -23,8 +22,6 @@ public final class PeerStoriesView$$ExternalSyntheticLambda21 implements View.On
     @Override
     public final void onClick(View view) throws Throwable {
         StoriesController.UploadingStory uploadingStory;
-        ActionBarPopupWindow actionBarPopupWindow;
-        ActionBarPopupWindow actionBarPopupWindow2;
         switch (this.$r8$classId) {
             case 0:
                 StoryViewer storyViewer = this.f$0.storyViewer;
@@ -41,7 +38,7 @@ public final class PeerStoriesView$$ExternalSyntheticLambda21 implements View.On
                 if (ApplicationLoader.isStandaloneBuild()) {
                     LaunchActivity launchActivity = LaunchActivity.instance;
                     if (launchActivity != null) {
-                        launchActivity.checkAppUpdate(true);
+                        launchActivity.checkAppUpdate(true, null);
                     }
                 } else if (!BuildVars.isHuaweiStoreApp()) {
                     Browser.openUrl(peerStoriesView.getContext(), BuildVars.PLAYSTORE_APP_URL);
@@ -112,9 +109,8 @@ public final class PeerStoriesView$$ExternalSyntheticLambda21 implements View.On
                     StoryViewer.this.showDialog(new StealthModeAlert(peerStoriesView5.getContext(), peerStoriesView5.storyContainer.getY() + peerStoriesView5.getY(), 0, peerStoriesView5.resourcesProvider));
                 }
                 PeerStoriesView.AnonymousClass8 anonymousClass8 = peerStoriesView5.popupMenu;
-                if (anonymousClass8 != null && (actionBarPopupWindow = anonymousClass8.popupWindow) != null) {
-                    actionBarPopupWindow.dismiss(true);
-                    break;
+                if (anonymousClass8 != null) {
+                    anonymousClass8.dismiss();
                 }
                 break;
             default:
@@ -122,9 +118,8 @@ public final class PeerStoriesView$$ExternalSyntheticLambda21 implements View.On
                 peerStoriesView6.getClass();
                 StoryViewer.this.showDialog(new StealthModeAlert(peerStoriesView6.getContext(), peerStoriesView6.storyContainer.getY() + peerStoriesView6.getY(), 0, peerStoriesView6.resourcesProvider));
                 PeerStoriesView.AnonymousClass8 anonymousClass9 = peerStoriesView6.popupMenu;
-                if (anonymousClass9 != null && (actionBarPopupWindow2 = anonymousClass9.popupWindow) != null) {
-                    actionBarPopupWindow2.dismiss(true);
-                    break;
+                if (anonymousClass9 != null) {
+                    anonymousClass9.dismiss();
                 }
                 break;
         }

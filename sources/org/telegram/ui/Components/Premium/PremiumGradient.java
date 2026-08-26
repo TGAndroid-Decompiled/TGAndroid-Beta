@@ -11,6 +11,8 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -54,23 +56,24 @@ public final class PremiumGradient {
     }
 
     public class PremiumGradientTools {
-        public final int colorKey1;
-        public final int colorKey2;
-        public final int colorKey3;
-        public final int colorKey4;
+        final int colorKey1;
+        final int colorKey2;
+        final int colorKey3;
+        final int colorKey4;
         public boolean darkColors;
         public boolean exactly;
-        public final Theme.ResourcesProvider resourcesProvider;
-        public LinearGradient shader;
+        private final Theme.ResourcesProvider resourcesProvider;
+        Shader shader;
         public float cx = 0.5f;
         public float cy = 0.5f;
-        public final Matrix matrix = new Matrix();
+        final Matrix matrix = new Matrix();
         public final Paint paint = new Paint(1);
-        public final int[] colors = new int[5];
+        final int[] colors = new int[5];
+        public float x1 = 0.0f;
         public float y1 = 1.0f;
         public float x2 = 1.5f;
         public float y2 = 0.0f;
-        public final int colorKey5 = -1;
+        final int colorKey5 = -1;
 
         public PremiumGradientTools(int i, int i2, int i3, int i4, Theme.ResourcesProvider resourcesProvider) {
             this.resourcesProvider = resourcesProvider;
@@ -89,24 +92,46 @@ public final class PremiumGradient {
             int color4 = i2 < 0 ? 0 : getColor(i2);
             int i3 = this.colorKey5;
             int color5 = i3 < 0 ? 0 : getColor(i3);
-            LinearGradient linearGradient = this.shader;
-            int[] iArr = this.colors;
-            if (linearGradient != null && iArr[0] == color && iArr[1] == color2 && iArr[2] == color3 && iArr[3] == color4 && iArr[4] == color5) {
-                return;
+            if (this.shader != null) {
+                int[] iArr = this.colors;
+                if (iArr[0] == color && iArr[1] == color2 && iArr[2] == color3 && iArr[3] == color4 && iArr[4] == color5) {
+                    return;
+                }
             }
-            iArr[0] = color;
-            iArr[1] = color2;
-            iArr[2] = color3;
-            iArr[3] = color4;
-            iArr[4] = color5;
+            int[] iArr2 = this.colors;
+            iArr2[0] = color;
+            iArr2[1] = color2;
+            iArr2[2] = color3;
+            iArr2[3] = color4;
+            iArr2[4] = color5;
             if (color3 == 0) {
-                this.shader = new LinearGradient(0.0f, this.y1 * 100.0f, this.x2 * 100.0f, this.y2 * 100.0f, new int[]{iArr[0], iArr[1]}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                float f = this.x1 * 100.0f;
+                float f2 = this.y1 * 100.0f;
+                float f3 = this.x2 * 100.0f;
+                float f4 = this.y2 * 100.0f;
+                int[] iArr3 = this.colors;
+                this.shader = new LinearGradient(f, f2, f3, f4, new int[]{iArr3[0], iArr3[1]}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
             } else if (color4 == 0) {
-                this.shader = new LinearGradient(0.0f, this.y1 * 100.0f, this.x2 * 100.0f, this.y2 * 100.0f, new int[]{iArr[0], iArr[1], iArr[2]}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP);
+                float f5 = this.x1 * 100.0f;
+                float f6 = this.y1 * 100.0f;
+                float f7 = this.x2 * 100.0f;
+                float f8 = this.y2 * 100.0f;
+                int[] iArr4 = this.colors;
+                this.shader = new LinearGradient(f5, f6, f7, f8, new int[]{iArr4[0], iArr4[1], iArr4[2]}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP);
             } else if (color5 == 0) {
-                this.shader = new LinearGradient(0.0f, this.y1 * 100.0f, this.x2 * 100.0f, this.y2 * 100.0f, new int[]{iArr[0], iArr[1], iArr[2], iArr[3]}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
+                float f9 = this.x1 * 100.0f;
+                float f10 = this.y1 * 100.0f;
+                float f11 = this.x2 * 100.0f;
+                float f12 = this.y2 * 100.0f;
+                int[] iArr5 = this.colors;
+                this.shader = new LinearGradient(f9, f10, f11, f12, new int[]{iArr5[0], iArr5[1], iArr5[2], iArr5[3]}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
             } else {
-                this.shader = new LinearGradient(0.0f, this.y1 * 100.0f, this.x2 * 100.0f, this.y2 * 100.0f, new int[]{iArr[0], iArr[1], iArr[2], iArr[3], iArr[4]}, new float[]{0.0f, 0.425f, 0.655f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
+                float f13 = this.x1 * 100.0f;
+                float f14 = this.y1 * 100.0f;
+                float f15 = this.x2 * 100.0f;
+                float f16 = this.y2 * 100.0f;
+                int[] iArr6 = this.colors;
+                this.shader = new LinearGradient(f13, f14, f15, f16, new int[]{iArr6[0], iArr6[1], iArr6[2], iArr6[3], iArr6[4]}, new float[]{0.0f, 0.425f, 0.655f, 0.78f, 1.0f}, Shader.TileMode.CLAMP);
             }
             this.shader.setLocalMatrix(this.matrix);
             this.paint.setShader(this.shader);
@@ -124,24 +149,38 @@ public final class PremiumGradient {
             return Theme.getColor(i, this.resourcesProvider);
         }
 
-        public final void gradientMatrix(int i, float f, int i2, int i3, float f2, int i4) {
+        public void gradientMatrix(Rect rect) {
+            gradientMatrix(rect.left, rect.top, rect.right, rect.bottom, 0.0f, 0.0f);
+        }
+
+        public void gradientMatrixLinear(float f, float f2) {
             chekColors();
-            boolean z = this.exactly;
-            Matrix matrix = this.matrix;
-            if (z) {
-                matrix.reset();
-                matrix.postScale((i3 - i) / 100.0f, (i4 - i2) / 100.0f, this.cx * 100.0f, this.cy * 100.0f);
-                matrix.postTranslate(f, f2);
-                this.shader.setLocalMatrix(matrix);
+            this.matrix.reset();
+            this.matrix.postScale(1.0f, f / 100.0f, 0.0f, 0.0f);
+            this.matrix.postTranslate(0.0f, f2);
+            this.shader.setLocalMatrix(this.matrix);
+        }
+
+        public void gradientMatrix(RectF rectF) {
+            gradientMatrix((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom, 0.0f, 0.0f);
+        }
+
+        public void gradientMatrix(int i, int i2, int i3, int i4, float f, float f2) {
+            chekColors();
+            if (this.exactly) {
+                this.matrix.reset();
+                this.matrix.postScale((i3 - i) / 100.0f, (i4 - i2) / 100.0f, this.cx * 100.0f, this.cy * 100.0f);
+                this.matrix.postTranslate(f, f2);
+                this.shader.setLocalMatrix(this.matrix);
                 return;
             }
             int i5 = i4 - i2;
             int i6 = i5 + i5;
             chekColors();
-            matrix.reset();
-            matrix.postScale((i3 - i) / 100.0f, i6 / 100.0f, 75.0f, 50.0f);
-            matrix.postTranslate(f, (-i6) + f2);
-            this.shader.setLocalMatrix(matrix);
+            this.matrix.reset();
+            this.matrix.postScale((i3 - i) / 100.0f, i6 / 100.0f, 75.0f, 50.0f);
+            this.matrix.postTranslate(f, (-i6) + f2);
+            this.shader.setLocalMatrix(this.matrix);
         }
     }
 
@@ -181,10 +220,9 @@ public final class PremiumGradient {
         drawable.setBounds(0, 0, intrinsicWidth, minimumHeight);
         drawable.draw(canvas);
         premiumGradientTools.paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        premiumGradientTools.gradientMatrix(0, -intrinsicWidth, 0, intrinsicWidth, 0.0f, minimumHeight);
-        Paint paint = premiumGradientTools.paint;
-        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, paint);
-        paint.setXfermode(null);
+        premiumGradientTools.gradientMatrix(0, 0, intrinsicWidth, minimumHeight, -intrinsicWidth, 0.0f);
+        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, premiumGradientTools.paint);
+        premiumGradientTools.paint.setXfermode(null);
         return new InternalDrawable(drawable, bitmapCreateBitmap, premiumGradientTools.colors);
     }
 

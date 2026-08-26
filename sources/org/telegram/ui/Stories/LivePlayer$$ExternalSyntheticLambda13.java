@@ -3,12 +3,9 @@ package org.telegram.ui.Stories;
 import j$.util.Objects;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.voip.VoIPService$1$$ExternalSyntheticLambda0;
-import org.telegram.ui.Components.PermissionRequest;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
 
 public final class LivePlayer$$ExternalSyntheticLambda13 implements Runnable {
     public final int $r8$classId;
@@ -75,16 +72,8 @@ public final class LivePlayer$$ExternalSyntheticLambda13 implements Runnable {
             case 10:
                 this.f$0.poll();
                 break;
-            case 11:
-                this.f$0.poll2();
-                break;
             default:
-                LivePlayer livePlayer4 = this.f$0;
-                if (!livePlayer4.outgoing) {
-                    String[] strArr = {"android.permission.CAMERA", "android.permission.RECORD_AUDIO"};
-                    PermissionRequest.ensureAllPermissions(R.raw.permission_request_camera, R.string.PermissionNoCameraMicVideo, strArr, strArr, new VoIPFragment$$ExternalSyntheticLambda7(livePlayer4, 6));
-                    break;
-                }
+                this.f$0.poll2();
                 break;
         }
     }

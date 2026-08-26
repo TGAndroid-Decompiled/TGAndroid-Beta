@@ -1,11 +1,11 @@
 package org.telegram.ui;
 
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.AlertDialog;
 
 public abstract class ChatActivity$$ExternalSyntheticOutline1 {
-    public static void m(int i, AlertDialog.Builder builder) {
-        builder.setPositiveButton(LocaleController.getString(i), null);
-        builder.show();
+    public static void m(int i, ArrayList arrayList, int i2, ArrayList arrayList2) {
+        arrayList.add(LocaleController.getString(i));
+        arrayList2.add(Integer.valueOf(i2));
     }
 }

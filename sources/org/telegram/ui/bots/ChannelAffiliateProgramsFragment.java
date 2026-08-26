@@ -18,37 +18,36 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzko;
+import com.google.android.gms.internal.mlkit_vision_common.zzke;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1;
+import org.telegram.messenger.FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.voip.VoIPService$$ExternalSyntheticOutline0;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.AlertDialog$$ExternalSyntheticLambda1;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda0;
+import org.telegram.ui.ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
@@ -62,28 +61,24 @@ import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
 import org.telegram.ui.FilterCreateActivity;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda15;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda18;
 import org.telegram.ui.GradientHeaderActivity;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda0;
-import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda7;
+import org.telegram.ui.OAuthSheet$$ExternalSyntheticLambda14;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.ProfileActivity$$ExternalSyntheticLambda149;
-import org.telegram.ui.QrActivity;
-import org.telegram.ui.SettingsActivity;
-import org.telegram.ui.SettingsActivity$$ExternalSyntheticLambda21;
 import org.telegram.ui.Stars.BotStarsController;
 import org.telegram.ui.Stars.MessageSuggestionOfferSheet$$ExternalSyntheticLambda5;
 import org.telegram.ui.Stars.StarsIntroActivity;
+import org.telegram.ui.Stories.SelfStoryViewsPage$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
-import org.telegram.ui.ThemeSetUrlActivity$$ExternalSyntheticLambda6;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda17;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda19;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda8;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda28;
-import org.telegram.ui.WearAuthSheet$$ExternalSyntheticLambda3;
+import org.telegram.ui.Stories.recorder.EmojiBottomSheet$$ExternalSyntheticLambda4;
+import org.telegram.ui.iv.RichEditor$$ExternalSyntheticLambda20;
 import org.telegram.ui.iv.RichTableCell$$ExternalSyntheticLambda3;
 import org.telegram.ui.web.AddressBarList;
+import org.webrtc.EglRenderer$$ExternalSyntheticLambda6;
 
 public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivity implements NotificationCenter.NotificationCenterDelegate {
     public FrameLayout aboveTitleView;
@@ -138,22 +133,16 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
                         TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
                         boolean z2 = uItem.red;
                         TLRPC.User user = MessagesController.getInstance(botCell.currentAccount).getUser(Long.valueOf(starrefprogram.bot_id));
-                        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-                        avatarDrawable.setInfo(UserConfig.selectedAccount, user);
-                        BackupImageView backupImageView = botCell.imageView;
-                        backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-                        backupImageView.onNewImageSet();
+                        AvatarDrawable avatarDrawable = new AvatarDrawable();
+                        avatarDrawable.setInfo(user);
+                        botCell.imageView.setForUserOrChat(user, avatarDrawable);
                         botCell.titleView.setText(UserObject.getUserName(user));
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                         if (starrefprogram.commission_permille > 0) {
                             spannableStringBuilder.append((CharSequence) " d");
-                            FilterCreateActivity.NewSpan newSpan = new FilterCreateActivity.NewSpan();
-                            newSpan.color = Theme.getColor(null, Theme.key_color_green, false);
-                            newSpan.text = AffiliateProgramFragment.percents(starrefprogram.commission_permille);
-                            if (newSpan.layout != null) {
-                                newSpan.layout = null;
-                                newSpan.makeLayout();
-                            }
+                            FilterCreateActivity.NewSpan newSpan = new FilterCreateActivity.NewSpan(10.0f);
+                            newSpan.setColor(Theme.getColor(null, Theme.key_color_green, false));
+                            newSpan.setText(AffiliateProgramFragment.percents(starrefprogram.commission_permille));
                             spannableStringBuilder.setSpan(newSpan, 1, 2, 33);
                         }
                         int i = starrefprogram.duration_months;
@@ -179,23 +168,17 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
                 boolean z3 = uItem.red;
                 TLRPC.User user2 = MessagesController.getInstance(botCell2.currentAccount).getUser(Long.valueOf(connectedbotstarref.bot_id));
-                AvatarDrawable avatarDrawable2 = new AvatarDrawable((Theme.ResourcesProvider) null);
-                avatarDrawable2.setInfo(UserConfig.selectedAccount, user2);
-                BackupImageView backupImageView2 = botCell2.imageView;
-                backupImageView2.imageReceiver.setForUserOrChat(user2, avatarDrawable2);
-                backupImageView2.onNewImageSet();
+                AvatarDrawable avatarDrawable2 = new AvatarDrawable();
+                avatarDrawable2.setInfo(user2);
+                botCell2.imageView.setForUserOrChat(user2, avatarDrawable2);
                 TextView textView = botCell2.titleView;
                 textView.setText(Emoji.replaceEmoji(UserObject.getUserName(user2), textView.getPaint().getFontMetricsInt(), false));
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
                 if (connectedbotstarref.commission_permille > 0) {
                     spannableStringBuilder2.append((CharSequence) " d");
-                    FilterCreateActivity.NewSpan newSpan2 = new FilterCreateActivity.NewSpan();
-                    newSpan2.color = Theme.getColor(null, Theme.key_color_green, false);
-                    newSpan2.text = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
-                    if (newSpan2.layout != null) {
-                        newSpan2.layout = null;
-                        newSpan2.makeLayout();
-                    }
+                    FilterCreateActivity.NewSpan newSpan2 = new FilterCreateActivity.NewSpan(10.0f);
+                    newSpan2.setColor(Theme.getColor(null, Theme.key_color_green, false));
+                    newSpan2.setText(AffiliateProgramFragment.percents(connectedbotstarref.commission_permille));
                     spannableStringBuilder2.setSpan(newSpan2, 1, 2, 33);
                 }
                 int i2 = connectedbotstarref.duration_months;
@@ -336,8 +319,17 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
 
     public ChannelAffiliateProgramsFragment(long j) {
         this.dialogId = j;
-        this.whiteBackground = true;
-        this.minusHeaderHeight = AndroidUtilities.dp(60.0f);
+        setWhiteBackground(true);
+        setMinusHeaderHeight(AndroidUtilities.dp(60.0f));
+    }
+
+    public static boolean access$000(ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment) {
+        for (int i = 0; i < channelAffiliateProgramsFragment.listView.getChildCount(); i++) {
+            if (channelAffiliateProgramsFragment.listView.getChildAt(i) instanceof FlickerLoadingView) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void showConnectAffiliateAlert(Context context, int i, final TL_payments.starRefProgram starrefprogram, long j, Theme.ResourcesProvider resourcesProvider, boolean z) {
@@ -346,15 +338,15 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         TextView textView;
         LinearLayout linearLayout;
         BackupImageView backupImageView;
-        WearAuthSheet$$ExternalSyntheticLambda3 wearAuthSheet$$ExternalSyntheticLambda3;
+        GiftSheet$$ExternalSyntheticLambda15 giftSheet$$ExternalSyntheticLambda15;
         Theme.ResourcesProvider resourcesProvider2;
         if (starrefprogram == null || context == null) {
             return;
         }
-        final BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context, resourcesProvider, false, false);
+        final BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context, false, false, resourcesProvider);
         long[] jArr = {j};
         TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(starrefprogram.bot_id));
-        LinearLayout linearLayoutM = zzkf.m(context, 1);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
         linearLayoutM.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
         linearLayoutM.setClipChildren(false);
         linearLayoutM.setClipToPadding(false);
@@ -367,11 +359,10 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         frameLayout.addView(frameLayout2, LayoutHelper.createFrame(60, 60.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
         BackupImageView backupImageView2 = new BackupImageView(context);
         backupImageView2.setRoundRadius(AndroidUtilities.dp(30.0f));
-        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-        avatarDrawable.setInfo(UserConfig.selectedAccount, user);
-        backupImageView2.imageReceiver.setForUserOrChat(user, avatarDrawable);
-        backupImageView2.onNewImageSet();
-        ScaleStateListAnimator.apply(backupImageView2, 0.1f, 1.5f);
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setInfo(user);
+        backupImageView2.setForUserOrChat(user, avatarDrawable);
+        ScaleStateListAnimator.apply(backupImageView2);
         frameLayout2.addView(backupImageView2, LayoutHelper.createFrame(60, 60, 119));
         if (starrefprogram.daily_revenue_per_user.positive()) {
             FrameLayout frameLayout3 = new FrameLayout(context);
@@ -385,7 +376,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             textView2.setTextColor(-1);
             textView2.setGravity(17);
             textView2.setText(StarsIntroActivity.replaceStars("⭐️ " + ((Object) StarsIntroActivity.formatStarsAmountShort(starrefprogram.daily_revenue_per_user, 1.0f, ',')), 0.75f, new ColoredImageSpan[1]));
-            frameLayout3.addView(textView2, LayoutHelper.createFrame(15.66f, -2));
+            frameLayout3.addView(textView2, LayoutHelper.createFrame(-2, 15.66f));
             frameLayout2.addView(frameLayout3, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, -4.0f));
         }
         ImageView imageView = new ImageView(context);
@@ -423,7 +414,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         coloredImageSpan.translate(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(0.0f));
         spannableString.setSpan(coloredImageSpan, 0, 1, 33);
         textView3.setText(spannableString);
-        frameLayout5.addView(textView3, LayoutHelper.createFrame(15.66f, -2));
+        frameLayout5.addView(textView3, LayoutHelper.createFrame(-2, 15.66f));
         frameLayout4.addView(frameLayout5, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, -4.0f));
         linearLayoutM.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 0));
         TextView textView4 = new TextView(context);
@@ -432,7 +423,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         textView4.setGravity(17);
         textView4.setText(LocaleController.getString(R.string.ChannelAffiliateProgramJoinTitle));
         textView4.setTypeface(AndroidUtilities.bold());
-        linearLayoutM.addView(textView4, LayoutHelper.createLinear(0.0f, 21.0f, 0.0f, 9.0f, -1, -2));
+        linearLayoutM.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 21.0f, 0.0f, 9.0f));
         LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(0);
         int iDp2 = AndroidUtilities.dp(28.0f);
@@ -452,7 +443,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         imageView2.setScaleY(1.2f);
         linearLayout2.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 5, 0, 8, 0));
         linearLayoutM.addView(linearLayout2, LayoutHelper.createLinear(-2, 28, 1, 4, 0, 4, 0));
-        ScaleStateListAnimator.apply(linearLayout2, 0.1f, 1.5f);
+        ScaleStateListAnimator.apply(linearLayout2);
         TextView textView6 = new TextView(context);
         OKLCH.m(i3, resourcesProvider, textView6, 14.0f);
         textView6.setGravity(17);
@@ -460,7 +451,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         SpannableString spannableString2 = new SpannableString(StarsIntroActivity.formatStarsAmountShort(starrefprogram.daily_revenue_per_user, 0.95f, ','));
         spannableString2.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableString2.length(), 33);
         textView6.setText(StarsIntroActivity.replaceStarsWithPlain(false, LocaleController.formatSpannable(R.string.ChannelAffiliateProgramJoinRevenue, spannableString2), 0.725f, null));
-        linearLayoutM.addView(textView6, LayoutHelper.createLinear(0.0f, 10.0f, 0.0f, 20.0f, -1, -2));
+        linearLayoutM.addView(textView6, LayoutHelper.createLinear(-1, -2, 0.0f, 10.0f, 0.0f, 20.0f));
         TextView textView7 = new TextView(context);
         OKLCH.m(i3, resourcesProvider, textView7, 14.0f);
         textView7.setGravity(17);
@@ -482,13 +473,13 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             objArr[1] = strPercents;
             objArr[2] = pluralString;
             textView7.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(i6, objArr)), textView7.getPaint().getFontMetricsInt(), false));
-            linearLayoutM.addView(textView7, LayoutHelper.createLinear(0.0f, 0.0f, 0.0f, 22.0f, -1, -2));
+            linearLayoutM.addView(textView7, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 22.0f));
             if (j >= 0) {
                 TextView textView8 = new TextView(context);
                 OKLCH.m(i3, resourcesProvider, textView8, 14.0f);
                 textView8.setGravity(17);
                 textView8.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkSendTo));
-                linearLayoutM.addView(textView8, LayoutHelper.createLinear(20.0f, 0.0f, 20.0f, 0.0f, -1, -2));
+                linearLayoutM.addView(textView8, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
                 linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(0);
                 linearLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider)));
@@ -516,11 +507,11 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
                 linearLayout = null;
                 backupImageView = null;
             }
-            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
-            buttonWithCounterView.setText(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButton), false, true);
+            ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
+            buttonWithCounterView.setText(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButton), false);
             linearLayoutM.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-            linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfo), new OAuthSheet$$ExternalSyntheticLambda0(context, 21)));
+            linksTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfo), new GiftSheet$$ExternalSyntheticLambda18(context, 12)));
             linksTextView.setGravity(17);
             linksTextView.setTextSize(1, 12.0f);
             linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
@@ -561,15 +552,15 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
                 }
             });
             buttonWithCounterView.setOnClickListener(new TagEditCell$$ExternalSyntheticLambda1(buttonWithCounterView, jArr, i, starrefprogram, bottomSheetM, j, z, context, resourcesProvider, user));
-            bottomSheetM.setOnDismissListener(new SettingsActivity$$ExternalSyntheticLambda21(i8));
-            wearAuthSheet$$ExternalSyntheticLambda3 = new WearAuthSheet$$ExternalSyntheticLambda3(jArr, i, backupImageView3, backupImageView, textView);
-            wearAuthSheet$$ExternalSyntheticLambda3.run();
+            bottomSheetM.setOnDismissListener(new EmojiBottomSheet$$ExternalSyntheticLambda4(2));
+            giftSheet$$ExternalSyntheticLambda15 = new GiftSheet$$ExternalSyntheticLambda15(jArr, i, backupImageView3, backupImageView, textView, 18);
+            giftSheet$$ExternalSyntheticLambda15.run();
             if (linearLayout != null) {
                 BotStarsController.getInstance(i).loadAdminedBots();
                 BotStarsController.getInstance(i).loadAdminedChannels();
                 LinearLayout linearLayout3 = linearLayout;
                 resourcesProvider2 = resourcesProvider;
-                linearLayout3.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda7(i, bottomSheetM, resourcesProvider, linearLayout3, jArr, wearAuthSheet$$ExternalSyntheticLambda3));
+                linearLayout3.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda14(i, bottomSheetM, resourcesProvider2, linearLayout3, jArr, giftSheet$$ExternalSyntheticLambda15));
             } else {
                 resourcesProvider2 = resourcesProvider;
             }
@@ -616,13 +607,13 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         objArr2[1] = strPercents;
         objArr2[2] = pluralString;
         textView7.setText(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString(i6, objArr2)), textView7.getPaint().getFontMetricsInt(), false));
-        linearLayoutM.addView(textView7, LayoutHelper.createLinear(0.0f, 0.0f, 0.0f, 22.0f, -1, -2));
+        linearLayoutM.addView(textView7, LayoutHelper.createLinear(-1, -2, 0.0f, 0.0f, 0.0f, 22.0f));
         if (j >= 0) {
             TextView textView10 = new TextView(context);
             OKLCH.m(i3, resourcesProvider, textView10, 14.0f);
             textView10.setGravity(17);
             textView10.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkSendTo));
-            linearLayoutM.addView(textView10, LayoutHelper.createLinear(20.0f, 0.0f, 20.0f, 0.0f, -1, -2));
+            linearLayoutM.addView(textView10, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
             linearLayout = new LinearLayout(context);
             linearLayout.setOrientation(0);
             linearLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i4, resourcesProvider)));
@@ -650,11 +641,11 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             linearLayout = null;
             backupImageView = null;
         }
-        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, resourcesProvider, true);
-        buttonWithCounterView2.setText(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButton), false, true);
+        ButtonWithCounterView buttonWithCounterView2 = new ButtonWithCounterView(context, true, resourcesProvider);
+        buttonWithCounterView2.setText(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButton), false);
         linearLayoutM.addView(buttonWithCounterView2, LayoutHelper.createLinear(-1, 48));
         LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
-        linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfo), new OAuthSheet$$ExternalSyntheticLambda0(context, 21)));
+        linksTextView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChannelAffiliateProgramJoinButtonInfo), new GiftSheet$$ExternalSyntheticLambda18(context, 12)));
         linksTextView2.setGravity(17);
         linksTextView2.setTextSize(1, 12.0f);
         linksTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
@@ -695,15 +686,15 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             }
         });
         buttonWithCounterView2.setOnClickListener(new TagEditCell$$ExternalSyntheticLambda1(buttonWithCounterView2, jArr, i, starrefprogram, bottomSheetM, j, z, context, resourcesProvider, user));
-        bottomSheetM.setOnDismissListener(new SettingsActivity$$ExternalSyntheticLambda21(i10));
-        wearAuthSheet$$ExternalSyntheticLambda3 = new WearAuthSheet$$ExternalSyntheticLambda3(jArr, i, backupImageView3, backupImageView, textView);
-        wearAuthSheet$$ExternalSyntheticLambda3.run();
+        bottomSheetM.setOnDismissListener(new EmojiBottomSheet$$ExternalSyntheticLambda4(2));
+        giftSheet$$ExternalSyntheticLambda15 = new GiftSheet$$ExternalSyntheticLambda15(jArr, i, backupImageView3, backupImageView, textView, 18);
+        giftSheet$$ExternalSyntheticLambda15.run();
         if (linearLayout != null) {
             BotStarsController.getInstance(i).loadAdminedBots();
             BotStarsController.getInstance(i).loadAdminedChannels();
             LinearLayout linearLayout4 = linearLayout;
             resourcesProvider2 = resourcesProvider;
-            linearLayout4.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda7(i, bottomSheetM, resourcesProvider, linearLayout4, jArr, wearAuthSheet$$ExternalSyntheticLambda3));
+            linearLayout4.setOnClickListener(new OAuthSheet$$ExternalSyntheticLambda14(i, bottomSheetM, resourcesProvider2, linearLayout4, jArr, giftSheet$$ExternalSyntheticLambda15));
         } else {
             resourcesProvider2 = resourcesProvider;
         }
@@ -752,7 +743,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         String pluralString2;
         int i3;
         long j2;
-        LinearLayout linearLayout;
+        ?? r10;
         int i4;
         String pluralString3;
         TL_payments.connectedBotStarRef connectedbotstarref2;
@@ -760,13 +751,13 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         if (connectedbotstarref == null || context == null) {
             return null;
         }
-        BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context, resourcesProvider, false, false);
+        BottomSheet bottomSheetM = VoIPService$$ExternalSyntheticOutline0.m(context, false, false, resourcesProvider);
         TLRPC.User user = MessagesController.getInstance(i).getUser(Long.valueOf(connectedbotstarref.bot_id));
-        LinearLayout linearLayoutM = zzkf.m(context, 1);
-        linearLayoutM.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
-        linearLayoutM.setClipChildren(false);
-        linearLayoutM.setClipToPadding(false);
-        FrameLayout frameLayout = new FrameLayout(context);
+        ?? M = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
+        M.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
+        M.setClipChildren(false);
+        M.setClipToPadding(false);
+        ?? frameLayout = new FrameLayout(context);
         View view = new View(context);
         view.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(40.0f), Theme.getColor(connectedbotstarref.revoked ? Theme.key_color_red : Theme.key_featuredStickers_addButton, resourcesProvider)));
         frameLayout.addView(view, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -778,10 +769,10 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         imageView.setScaleY(connectedbotstarref.revoked ? 2.0f : 1.8f);
         frameLayout.addView(imageView, LayoutHelper.createFrame(80, 80.0f, 49, 0.0f, 0.0f, 0.0f, 0.0f));
         if (connectedbotstarref.participants > 0) {
-            FrameLayout frameLayout2 = new FrameLayout(context);
+            ?? frameLayout2 = new FrameLayout(context);
             frameLayout2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(50.0f), Theme.getColor(Theme.key_dialogBackground, resourcesProvider)));
             frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-2, -2.0f, 49, 0.0f, 66.0f, 0.0f, 0.0f));
-            TextView textView = new TextView(context);
+            ?? textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.bold());
             textView.setTextSize(1, 12.0f);
             textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(9.5f), Theme.getColor(connectedbotstarref.revoked ? Theme.key_color_red : Theme.key_color_green, resourcesProvider)));
@@ -799,31 +790,30 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             textView.setGravity(17);
             frameLayout2.addView(textView, LayoutHelper.createFrame(-1, 19.0f, 119, 1.33f, 1.33f, 1.33f, 1.33f));
         }
-        linearLayoutM.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 0));
+        M.addView(frameLayout, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 0));
         TextView textView2 = new TextView(context);
         int i5 = Theme.key_windowBackgroundWhiteBlackText;
         OKLCH.m(i5, resourcesProvider, textView2, 20.0f);
         textView2.setGravity(17);
         textView2.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkTitle));
         textView2.setTypeface(AndroidUtilities.bold());
-        linearLayoutM.addView(textView2, LayoutHelper.createLinear(20.0f, 16.0f, 20.0f, 9.33f, -1, -2));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setOrientation(0);
+        M.addView(textView2, LayoutHelper.createLinear(-1, -2, 20.0f, 16.0f, 20.0f, 9.33f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
         int iDp = AndroidUtilities.dp(28.0f);
         int i6 = Theme.key_windowBackgroundGray;
-        linearLayout2.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i6, resourcesProvider)));
+        linearLayout.setBackground(Theme.createRoundRectDrawable(iDp, Theme.getColor(i6, resourcesProvider)));
         BackupImageView backupImageView = new BackupImageView(context);
         backupImageView.setRoundRadius(AndroidUtilities.dp(14.0f));
-        AvatarDrawable avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
-        linearLayout2.addView(backupImageView, LayoutHelper.createLinear(28, 28));
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        linearLayout.addView(backupImageView, LayoutHelper.createLinear(28, 28));
         TextView textView3 = new TextView(context);
         textView3.setTextSize(1, 13.0f);
         textView3.setTextColor(Theme.getColor(i5, resourcesProvider));
         textView3.setText(DialogObject.getName(i, connectedbotstarref.bot_id));
-        avatarDrawable.setInfo(UserConfig.selectedAccount, user);
-        backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-        backupImageView.onNewImageSet();
-        linearLayout2.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
+        avatarDrawable.setInfo(user);
+        backupImageView.setForUserOrChat(user, avatarDrawable);
+        linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(scaleType);
         int i7 = Theme.key_dialogTextGray3;
@@ -833,15 +823,15 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         imageView2.setImageResource(R.drawable.settings_arrow);
         imageView2.setScaleX(1.2f);
         imageView2.setScaleY(1.2f);
-        linearLayout2.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 5, 0, 8, 0));
-        linearLayoutM.addView(linearLayout2, LayoutHelper.createLinear(-2, 28, 1, 4, 0, 4, 0));
-        ScaleStateListAnimator.apply(linearLayout2, 0.1f, 1.5f);
+        linearLayout.addView(imageView2, LayoutHelper.createLinear(-2, -2, 16, 5, 0, 8, 0));
+        M.addView(linearLayout, LayoutHelper.createLinear(-2, 28, 1, 4, 0, 4, 0));
+        ScaleStateListAnimator.apply(linearLayout);
         TextView textView4 = new TextView(context);
         OKLCH.m(i5, resourcesProvider, textView4, 14.0f);
         textView4.setGravity(17);
         if (connectedbotstarref.revoked) {
-            FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline1.m(R.string.ChannelAffiliateProgramLinkTextRevoked, textView4);
-            user = user;
+            FilesMigrationService$FilesMigrationBottomSheet$$ExternalSyntheticOutline0.m(R.string.ChannelAffiliateProgramLinkTextRevoked, textView4);
+            linearLayout = linearLayout;
         } else if (j < 0) {
             int i8 = R.string.ChannelAffiliateProgramLinkTextChannel;
             String strPercents = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
@@ -865,9 +855,9 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             objArr[c2] = strPercents;
             objArr[1] = userName;
             objArr[2] = pluralString2;
-            zzko.m(i8, objArr, textView4);
+            ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0.m(i8, objArr, textView4);
         } else {
-            user = user;
+            linearLayout = linearLayout;
             int i10 = R.string.ChannelAffiliateProgramLinkTextUser;
             String strPercents2 = AffiliateProgramFragment.percents(connectedbotstarref.commission_permille);
             String userName2 = UserObject.getUserName(user);
@@ -890,53 +880,51 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             objArr2[c] = strPercents2;
             objArr2[1] = userName2;
             objArr2[2] = pluralString;
-            zzko.m(i10, objArr2, textView4);
+            ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0.m(i10, objArr2, textView4);
         }
-        linearLayoutM.addView(textView4, LayoutHelper.createLinear(20.0f, 19.0f, 20.0f, 18.0f, -1, -2));
+        M.addView(textView4, LayoutHelper.createLinear(-1, -2, 20.0f, 19.0f, 20.0f, 18.0f));
         if (connectedbotstarref.revoked) {
             i5 = i5;
-            linearLayout2 = linearLayout2;
+            user = user;
             j2 = j;
-            linearLayout = null;
+            r10 = 0;
         } else {
             TextView textView5 = new TextView(context);
             OKLCH.m(i5, resourcesProvider, textView5, 14.0f);
             textView5.setGravity(17);
             textView5.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkSendTo));
-            linearLayoutM.addView(textView5, LayoutHelper.createLinear(20.0f, 0.0f, 20.0f, 0.0f, -1, -2));
-            LinearLayout linearLayout3 = new LinearLayout(context);
-            linearLayout3.setOrientation(0);
-            linearLayout3.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i6, resourcesProvider)));
+            M.addView(textView5, LayoutHelper.createLinear(-1, -2, 20.0f, 0.0f, 20.0f, 0.0f));
+            ?? linearLayout2 = new LinearLayout(context);
+            linearLayout2.setOrientation(0);
+            linearLayout2.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(28.0f), Theme.getColor(i6, resourcesProvider)));
             BackupImageView backupImageView2 = new BackupImageView(context);
             backupImageView2.setRoundRadius(AndroidUtilities.dp(14.0f));
-            AvatarDrawable avatarDrawable2 = new AvatarDrawable((Theme.ResourcesProvider) null);
-            linearLayout3.addView(backupImageView2, LayoutHelper.createLinear(28, 28));
+            AvatarDrawable avatarDrawable2 = new AvatarDrawable();
+            linearLayout2.addView(backupImageView2, LayoutHelper.createLinear(28, 28));
             TextView textView6 = new TextView(context);
             textView6.setTextSize(1, 13.0f);
             textView6.setTextColor(Theme.getColor(i5, resourcesProvider));
             if (j >= 0) {
                 TLRPC.User user2 = MessagesController.getInstance(i).getUser(Long.valueOf(j));
-                avatarDrawable2.setInfo(UserConfig.selectedAccount, user2);
-                backupImageView2.imageReceiver.setForUserOrChat(user2, avatarDrawable2);
-                backupImageView2.onNewImageSet();
+                avatarDrawable2.setInfo(user2);
+                backupImageView2.setForUserOrChat(user2, avatarDrawable2);
                 textView6.setText(UserObject.getUserName(user2));
                 j2 = j;
             } else {
                 j2 = j;
                 TLRPC.Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j2));
-                avatarDrawable2.setInfo(UserConfig.selectedAccount, chat);
-                backupImageView2.imageReceiver.setForUserOrChat(chat, avatarDrawable2);
-                backupImageView2.onNewImageSet();
+                avatarDrawable2.setInfo(chat);
+                backupImageView2.setForUserOrChat(chat, avatarDrawable2);
                 textView6.setText(chat == null ? "" : chat.title);
             }
-            linearLayout3.addView(textView6, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
+            linearLayout2.addView(textView6, LayoutHelper.createLinear(-2, -2, 16, 6, 0, 0, 0));
             ImageView imageView3 = new ImageView(context);
             imageView3.setScaleType(scaleType);
             imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i7, resourcesProvider), mode));
             imageView3.setImageResource(R.drawable.arrows_select);
-            linearLayout3.addView(imageView3, LayoutHelper.createLinear(-2, -2, 16, 2, 0, 5, 0));
-            linearLayoutM.addView(linearLayout3, LayoutHelper.createLinear(-2, 28, 1, 0, 9, 0, 22));
-            linearLayout = linearLayout3;
+            linearLayout2.addView(imageView3, LayoutHelper.createLinear(-2, -2, 16, 2, 0, 5, 0));
+            M.addView(linearLayout2, LayoutHelper.createLinear(-2, 28, 1, 0, 9, 0, 22));
+            r10 = linearLayout2;
         }
         TextView textView7 = new TextView(context);
         textView7.setTextSize(1, 16.0f);
@@ -949,18 +937,18 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         textView7.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(14.66f));
         String str = connectedbotstarref.url;
         textView7.setText((str == null || !str.startsWith("https://")) ? connectedbotstarref.url : connectedbotstarref.url.substring(8));
-        linearLayoutM.addView(textView7, LayoutHelper.createFrame(-1, -2.0f, 7, 0.0f, 0.0f, 0.0f, 12.0f));
-        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, resourcesProvider, true);
+        M.addView(textView7, LayoutHelper.createFrame(-1, -2.0f, 7, 0.0f, 0.0f, 0.0f, 12.0f));
+        ButtonWithCounterView buttonWithCounterView = new ButtonWithCounterView(context, true, resourcesProvider);
         if (connectedbotstarref.revoked) {
-            buttonWithCounterView.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkRejoin), false, true);
+            buttonWithCounterView.setText(LocaleController.getString(R.string.ChannelAffiliateProgramLinkRejoin), false);
         } else {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             spannableStringBuilder2.append((CharSequence) "c ");
             spannableStringBuilder2.setSpan(new ColoredImageSpan(R.drawable.msg_copy_filled), 0, 1, 33);
             spannableStringBuilder2.append((CharSequence) LocaleController.getString(R.string.ChannelAffiliateProgramLinkCopy));
-            buttonWithCounterView.setText(spannableStringBuilder2, false, true);
+            buttonWithCounterView.setText(spannableStringBuilder2, false);
         }
-        linearLayoutM.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
+        M.addView(buttonWithCounterView, LayoutHelper.createLinear(-1, 48));
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
         long j3 = connectedbotstarref.participants;
         if (j3 <= 0) {
@@ -975,26 +963,26 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         linksTextView.setTextSize(i4, 12.0f);
         linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4, resourcesProvider));
         linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
-        linearLayoutM.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 12, 14, 2));
-        bottomSheetM.customView = linearLayoutM;
-        ProfileActivity$$ExternalSyntheticLambda149 profileActivity$$ExternalSyntheticLambda149 = new ProfileActivity$$ExternalSyntheticLambda149(connectedbotstarref, bottomSheetM, resourcesProvider, user, 28);
+        M.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 49, 14, 12, 14, 2));
+        bottomSheetM.customView = M;
+        BotVerifySheet$$ExternalSyntheticLambda7 botVerifySheet$$ExternalSyntheticLambda7 = new BotVerifySheet$$ExternalSyntheticLambda7(connectedbotstarref, bottomSheetM, resourcesProvider, user);
         if (!connectedbotstarref.revoked) {
-            textView7.setOnClickListener(new BotAdView$$ExternalSyntheticLambda1(profileActivity$$ExternalSyntheticLambda149, 5));
+            textView7.setOnClickListener(new BotAdView$$ExternalSyntheticLambda2(botVerifySheet$$ExternalSyntheticLambda7, 23));
         }
-        buttonWithCounterView.setOnClickListener(new MessageSuggestionOfferSheet$$ExternalSyntheticLambda5(connectedbotstarref, i, bottomSheetM, context, j2, resourcesProvider, profileActivity$$ExternalSyntheticLambda149));
-        bottomSheetM.setOnDismissListener(new SettingsActivity$$ExternalSyntheticLambda21(0));
-        if (linearLayout != null) {
+        buttonWithCounterView.setOnClickListener(new MessageSuggestionOfferSheet$$ExternalSyntheticLambda5(connectedbotstarref, i, bottomSheetM, context, j2, resourcesProvider, botVerifySheet$$ExternalSyntheticLambda7));
+        bottomSheetM.setOnDismissListener(new EmojiBottomSheet$$ExternalSyntheticLambda4(2));
+        if (r10 != 0) {
             BotStarsController.getInstance(i).loadAdminedBots();
             BotStarsController.getInstance(i).loadAdminedChannels();
-            LinearLayout linearLayout4 = linearLayout;
             resourcesProvider2 = resourcesProvider;
+            ?? r4 = r10;
             connectedbotstarref2 = connectedbotstarref;
-            linearLayout4.setOnClickListener(new MessageSuggestionOfferSheet$$ExternalSyntheticLambda5(i, bottomSheetM, resourcesProvider, linearLayout4, j, context, connectedbotstarref));
+            r4.setOnClickListener(new MessageSuggestionOfferSheet$$ExternalSyntheticLambda5(i, bottomSheetM, resourcesProvider2, (LinearLayout) r4, j, context, connectedbotstarref));
         } else {
             connectedbotstarref2 = connectedbotstarref;
             resourcesProvider2 = resourcesProvider;
         }
-        linearLayout2.setOnClickListener(new VoIPFragment$$ExternalSyntheticLambda28(6, bottomSheetM, connectedbotstarref2));
+        linearLayout.setOnClickListener(new RichEditor$$ExternalSyntheticLambda20(22, bottomSheetM, connectedbotstarref2));
         bottomSheetM.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider2));
         BaseFragment safeLastFragment = LaunchActivity.getSafeLastFragment();
         if (!AndroidUtilities.isTablet() && safeLastFragment != null && !AndroidUtilities.hasDialogOnTop(safeLastFragment)) {
@@ -1006,14 +994,14 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
 
     @Override
     public final RecyclerView.Adapter createAdapter() {
-        ?? r0 = new UniversalAdapter(this.listView, getParentActivity(), this.currentAccount, this.classGuid, new TodoItemMenu$$ExternalSyntheticLambda17(this, 13), getResourceProvider()) {
+        ?? r0 = new UniversalAdapter(this.listView, getContext(), this.currentAccount, this.classGuid, new BotDownloads$$ExternalSyntheticLambda0(this, 12), getResourceProvider()) {
             @Override
             public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 if (i != 42) {
                     return super.onCreateViewHolder(viewGroup, i);
                 }
                 ChannelAffiliateProgramsFragment channelAffiliateProgramsFragment = ChannelAffiliateProgramsFragment.this;
-                HeaderCell headerCell = new HeaderCell(channelAffiliateProgramsFragment.getParentActivity(), Theme.key_windowBackgroundWhiteBlueHeader, 21, 0, 0, false, false, ((BaseFragment) channelAffiliateProgramsFragment).resourceProvider);
+                HeaderCell headerCell = new HeaderCell(channelAffiliateProgramsFragment.getContext(), Theme.key_windowBackgroundWhiteBlueHeader, 21, 0, 0, false, false, ((BaseFragment) channelAffiliateProgramsFragment).resourceProvider);
                 headerCell.setHeight(25);
                 return new RecyclerListView.Holder(headerCell);
             }
@@ -1024,7 +1012,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
 
     @Override
     public final StarParticlesView createParticlesView() {
-        AnonymousClass5 anonymousClass5 = new AnonymousClass5(getParentActivity());
+        AnonymousClass5 anonymousClass5 = new AnonymousClass5(getContext());
         anonymousClass5.setClipWithGradient();
         return anonymousClass5;
     }
@@ -1033,7 +1021,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
     public final View createView(Context context) {
         this.useFillLastLayoutManager = false;
         this.particlesViewHeight = AndroidUtilities.dp(238.0f);
-        AddressBarList.AnonymousClass2 anonymousClass2 = new AddressBarList.AnonymousClass2(context, 1);
+        AddressBarList.AnonymousClass2 anonymousClass2 = new AddressBarList.AnonymousClass2(context, 10);
         this.emptyLayout = anonymousClass2;
         anonymousClass2.setBackgroundColor(Theme.getColor(null, Theme.key_dialogBackgroundGray, false));
         super.createView(context);
@@ -1048,19 +1036,15 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         this.iconTextureView.setStarParticlesView(this.particlesView);
         this.aboveTitleView.addView(this.iconTextureView, LayoutHelper.createFrame(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         configureHeader(LocaleController.getString(R.string.ChannelAffiliateProgramTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ChannelAffiliateProgramText)), this.aboveTitleView, null);
-        this.listView.setOnItemClickListener(new BoostsActivity$$ExternalSyntheticLambda0(24, this, context));
-        this.listView.setOnItemLongClickListener(new TodoItemMenu$$ExternalSyntheticLambda19(8, this, context));
+        this.listView.setOnItemClickListener(new SelfStoryViewsPage$$ExternalSyntheticLambda0(4, this, context));
+        this.listView.setOnItemLongClickListener(new RateCallLayout$$ExternalSyntheticLambda1(24, this, context));
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        defaultItemAnimator.delayAnimations = false;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         defaultItemAnimator.setDurations(350L);
-        this.listView.setItemAnimator(defaultItemAnimator);
-        this.listView.setOnScrollListener(new SettingsActivity.AnonymousClass5(this, 22));
+        this.listView.lambda$onCellEnter$52(defaultItemAnimator);
+        this.listView.setOnScrollListener(new BotCommandsMenuContainer.AnonymousClass2(this, 1));
         return this.fragmentView;
     }
 
@@ -1085,17 +1069,13 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         }
     }
 
-    public final void fillItems$1(ArrayList arrayList, UniversalAdapter universalAdapter) {
-        int i;
+    public final void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
         SpannableString spannableString;
-        if (getParentActivity() == null) {
+        int i;
+        if (getContext() == null) {
             return;
         }
-        QrActivity.AnonymousClass2 anonymousClass2 = new QrActivity.AnonymousClass2(this, getParentActivity(), 21);
-        anonymousClass2.setTag(-33024);
-        UItem uItem = new UItem(-2);
-        uItem.view = anonymousClass2;
-        arrayList.add(uItem);
+        arrayList.add(UItem.asFullyCustom(getHeader(getContext())));
         arrayList.add(AffiliateProgramFragment.FeatureCell.Factory.as(R.drawable.menu_feature_reliable, LocaleController.getString(R.string.ChannelAffiliateProgramFeature1Title), LocaleController.getString(R.string.ChannelAffiliateProgramFeature1)));
         arrayList.add(AffiliateProgramFragment.FeatureCell.Factory.as(R.drawable.menu_feature_transparent, LocaleController.getString(R.string.ChannelAffiliateProgramFeature2Title), LocaleController.getString(R.string.ChannelAffiliateProgramFeature2)));
         arrayList.add(AffiliateProgramFragment.FeatureCell.Factory.as(R.drawable.menu_feature_simple, LocaleController.getString(R.string.ChannelAffiliateProgramFeature3Title), LocaleController.getString(R.string.ChannelAffiliateProgramFeature3)));
@@ -1105,10 +1085,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         BotStarsController.ChannelConnectedBots channelConnectedBots = botStarsController.getChannelConnectedBots(j);
         ArrayList arrayList2 = channelConnectedBots.bots;
         if (!arrayList2.isEmpty() || channelConnectedBots.count > 0) {
-            String string = LocaleController.getString(R.string.ChannelAffiliateProgramMyPrograms);
-            UItem uItem2 = new UItem(0);
-            uItem2.text = string;
-            arrayList.add(uItem2);
+            zzke.m(R.string.ChannelAffiliateProgramMyPrograms, arrayList);
             for (int i2 = 0; i2 < arrayList2.size(); i2++) {
                 TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) arrayList2.get(i2);
                 int i3 = BotCell.Factory.$r8$clinit;
@@ -1118,20 +1095,16 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
                 arrayList.add(uItemOfFactory);
             }
             if (!channelConnectedBots.endReached || channelConnectedBots.loading) {
-                UItem uItem3 = new UItem(34);
-                uItem3.intValue = 29;
-                UItem uItemM = ArticleViewer.IBlock.CC.m(arrayList, uItem3, 34);
-                uItemM.intValue = 29;
-                UItem uItemM2 = ArticleViewer.IBlock.CC.m(arrayList, uItemM, 34);
-                uItemM2.intValue = 29;
-                arrayList.add(uItemM2);
+                arrayList.add(UItem.asFlicker(29));
+                arrayList.add(UItem.asFlicker(29));
+                arrayList.add(UItem.asFlicker(29));
             }
             arrayList.add(UItem.asShadow(2, null));
         }
         BotStarsController.ChannelSuggestedBots channelSuggestedBots = BotStarsController.getInstance(this.currentAccount).getChannelSuggestedBots(j);
         ArrayList arrayList3 = channelSuggestedBots.bots;
         if (!arrayList3.isEmpty() || channelSuggestedBots.count > 0) {
-            String string2 = LocaleController.getString(R.string.ChannelAffiliateProgramPrograms);
+            String string = LocaleController.getString(R.string.ChannelAffiliateProgramPrograms);
             final int i4 = channelSuggestedBots.sorting;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSort)).append((CharSequence) " ");
@@ -1142,31 +1115,24 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             } else {
                 if (i4 == 3) {
                     spannableString = new SpannableString(LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortDate) + "v");
-                } else {
-                    i = 0;
                 }
                 int i5 = HeaderSortCell.Factory.$r8$clinit;
                 UItem uItemOfFactory2 = UItem.ofFactory(HeaderSortCell.Factory.class);
-                uItemOfFactory2.text = string2;
+                uItemOfFactory2.text = string;
                 uItemOfFactory2.subtext = spannableStringBuilder;
                 arrayList.add(uItemOfFactory2);
-                while (i < arrayList3.size()) {
+                for (i = 0; i < arrayList3.size(); i++) {
                     Object obj = arrayList3.get(i);
                     int i6 = BotCell.Factory.$r8$clinit;
                     UItem uItemOfFactory3 = UItem.ofFactory(BotCell.Factory.class);
                     uItemOfFactory3.object = obj;
                     uItemOfFactory3.red = true;
                     arrayList.add(uItemOfFactory3);
-                    i++;
                 }
                 if (channelSuggestedBots.endReached || channelSuggestedBots.loading) {
-                    UItem uItem4 = new UItem(34);
-                    uItem4.intValue = 29;
-                    UItem uItemM3 = ArticleViewer.IBlock.CC.m(arrayList, uItem4, 34);
-                    uItemM3.intValue = 29;
-                    UItem uItemM4 = ArticleViewer.IBlock.CC.m(arrayList, uItemM3, 34);
-                    uItemM4.intValue = 29;
-                    arrayList.add(uItemM4);
+                    arrayList.add(UItem.asFlicker(29));
+                    arrayList.add(UItem.asFlicker(29));
+                    arrayList.add(UItem.asFlicker(29));
                 }
                 arrayList.add(UItem.asShadow(3, null));
             }
@@ -1175,17 +1141,16 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             coloredImageSpan.setScale(0.6f, 0.6f);
             spannableString.setSpan(coloredImageSpan, spannableString.length() - 1, spannableString.length(), 33);
             final BotStarsController.ChannelSuggestedBots channelSuggestedBots2 = BotStarsController.getInstance(this.currentAccount).getChannelSuggestedBots(j);
-            i = 0;
             spannableString.setSpan(new ClickableSpan() {
                 @Override
                 public final void onClick(View view) {
-                    ItemOptions itemOptions = new ItemOptions(ChannelAffiliateProgramsFragment.this, view, false, true);
+                    ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(ChannelAffiliateProgramsFragment.this, view);
                     int i7 = i4;
                     boolean z = i7 == 3;
-                    String string3 = LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortDate);
+                    String string2 = LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortDate);
                     final BotStarsController.ChannelSuggestedBots channelSuggestedBots3 = channelSuggestedBots2;
                     final int i8 = 0;
-                    itemOptions.addChecked(z, 0, null, string3, new Runnable() {
+                    ItemOptions itemOptionsAddChecked = itemOptionsMakeOptions.addChecked(z, string2, new Runnable() {
                         @Override
                         public final void run() {
                             switch (i8) {
@@ -1232,7 +1197,8 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
                         }
                     });
                     final int i9 = 1;
-                    itemOptions.addChecked(i7 == 2, 0, null, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortRevenue), new Runnable() {
+                    final int i10 = 2;
+                    itemOptionsAddChecked.addChecked(i7 == 2, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortRevenue), new Runnable() {
                         @Override
                         public final void run() {
                             switch (i9) {
@@ -1277,9 +1243,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
                                     break;
                             }
                         }
-                    });
-                    final int i10 = 2;
-                    itemOptions.addChecked(i7 == 1, 0, null, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortProfitability), new Runnable() {
+                    }).addChecked(i7 == 1, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortProfitability), new Runnable() {
                         @Override
                         public final void run() {
                             switch (i10) {
@@ -1324,12 +1288,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
                                     break;
                             }
                         }
-                    });
-                    itemOptions.setGravity(5);
-                    itemOptions.drawScrim = false;
-                    itemOptions.dimAlpha = 0;
-                    itemOptions.translate(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f));
-                    itemOptions.show();
+                    }).setGravity(5).setDrawScrim(false).setDimAlpha(0).translate(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f)).show();
                 }
 
                 @Override
@@ -1341,7 +1300,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
             spannableStringBuilder.append((CharSequence) spannableString);
             int i7 = HeaderSortCell.Factory.$r8$clinit;
             UItem uItemOfFactory4 = UItem.ofFactory(HeaderSortCell.Factory.class);
-            uItemOfFactory4.text = string2;
+            uItemOfFactory4.text = string;
             uItemOfFactory4.subtext = spannableStringBuilder;
             arrayList.add(uItemOfFactory4);
             while (i < arrayList3.size()) {
@@ -1351,31 +1310,22 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
                 uItemOfFactory5.object = obj2;
                 uItemOfFactory5.red = true;
                 arrayList.add(uItemOfFactory5);
-                i++;
             }
             if (channelSuggestedBots.endReached) {
-                UItem uItem5 = new UItem(34);
-                uItem5.intValue = 29;
-                UItem uItemM5 = ArticleViewer.IBlock.CC.m(arrayList, uItem5, 34);
-                uItemM5.intValue = 29;
-                UItem uItemM6 = ArticleViewer.IBlock.CC.m(arrayList, uItemM5, 34);
-                uItemM6.intValue = 29;
-                arrayList.add(uItemM6);
+                arrayList.add(UItem.asFlicker(29));
+                arrayList.add(UItem.asFlicker(29));
+                arrayList.add(UItem.asFlicker(29));
             } else {
-                UItem uItem6 = new UItem(34);
-                uItem6.intValue = 29;
-                UItem uItemM7 = ArticleViewer.IBlock.CC.m(arrayList, uItem6, 34);
-                uItemM7.intValue = 29;
-                UItem uItemM8 = ArticleViewer.IBlock.CC.m(arrayList, uItemM7, 34);
-                uItemM8.intValue = 29;
-                arrayList.add(uItemM8);
+                arrayList.add(UItem.asFlicker(29));
+                arrayList.add(UItem.asFlicker(29));
+                arrayList.add(UItem.asFlicker(29));
             }
             arrayList.add(UItem.asShadow(3, null));
         }
         arrayList.add(UItem.asCustom(this.emptyLayout));
     }
 
-    public final void lambda$createView$0(Context context, int i) {
+    public final void lambda$createView$0(int i, Context context) {
         AnonymousClass3 anonymousClass3 = this.adapter;
         if (anonymousClass3 == null) {
             return;
@@ -1388,7 +1338,7 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         }
     }
 
-    public final void lambda$createView$4(TLObject tLObject, AlertDialog alertDialog) {
+    public final void lambda$createView$4(AlertDialog alertDialog, TLObject tLObject) {
         if (tLObject instanceof TL_payments.connectedStarRefBots) {
             TL_payments.connectedStarRefBots connectedstarrefbots = (TL_payments.connectedStarRefBots) tLObject;
             BotStarsController botStarsController = BotStarsController.getInstance(this.currentAccount);
@@ -1441,47 +1391,29 @@ public final class ChannelAffiliateProgramsFragment extends GradientHeaderActivi
         editconnectedstarrefbot.link = connectedbotstarref.url;
         editconnectedstarrefbot.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
         editconnectedstarrefbot.revoked = true;
-        getConnectionsManager().sendRequest(editconnectedstarrefbot, new ThemeSetUrlActivity$$ExternalSyntheticLambda6(11, this, alertDialog));
+        getConnectionsManager().sendRequest(editconnectedstarrefbot, new BotVerifySheet$$ExternalSyntheticLambda6(2, this, alertDialog));
     }
 
     public final void lambda$createView$7(Context context, TLRPC.User user, TL_payments.connectedBotStarRef connectedbotstarref) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context, 0, this.resourceProvider);
-        String string = LocaleController.getString(R.string.LeaveAffiliateLink);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        alertDialog.message = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LeaveAffiliateLinkAlert, UserObject.getUserName(user)));
-        builder.setPositiveButton(LocaleController.getString(R.string.LeaveAffiliateLinkButton), new TodoItemMenu$$ExternalSyntheticLambda19(7, this, connectedbotstarref));
-        builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-        builder.makeRed(-1);
-        builder.show();
+        new AlertDialog.Builder(context, 0, this.resourceProvider).setTitle(LocaleController.getString(R.string.LeaveAffiliateLink)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LeaveAffiliateLinkAlert, UserObject.getUserName(user)))).setPositiveButton(LocaleController.getString(R.string.LeaveAffiliateLinkButton), new RateCallLayout$$ExternalSyntheticLambda1(23, this, connectedbotstarref)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
     }
 
     public final boolean lambda$createView$8(Context context, View view, int i) {
         AnonymousClass3 anonymousClass3 = this.adapter;
-        if (anonymousClass3 != null) {
-            Object obj = anonymousClass3.getItem(i).object;
-            if (obj instanceof TL_payments.connectedBotStarRef) {
-                TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-                TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(connectedbotstarref.bot_id));
-                ItemOptions itemOptions = new ItemOptions(this, view, false, true);
-                boolean z = user.bot_has_main_app;
-                int i2 = R.drawable.msg_bot;
-                itemOptions.addIf(i2, LocaleController.getString(R.string.ProfileBotOpenApp), new RichTableCell$$ExternalSyntheticLambda3(4, this, user), z);
-                itemOptions.addIf(i2, LocaleController.getString(R.string.BotWebViewOpenBot), new RichTableCell$$ExternalSyntheticLambda3(5, this, connectedbotstarref), !user.bot_has_main_app);
-                itemOptions.add(R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new TodoItemMenu$$ExternalSyntheticLambda8(this, connectedbotstarref, user, 27), false);
-                boolean z2 = connectedbotstarref.revoked;
-                int i3 = R.drawable.msg_leave;
-                String string = LocaleController.getString(R.string.LeaveAffiliateLinkButton);
-                ProfileActivity$$ExternalSyntheticLambda149 profileActivity$$ExternalSyntheticLambda149 = new ProfileActivity$$ExternalSyntheticLambda149(this, context, user, connectedbotstarref, 29);
-                if (!z2) {
-                    itemOptions.add(i3, string, profileActivity$$ExternalSyntheticLambda149, true);
-                }
-                itemOptions.setGravity(5);
-                itemOptions.show();
-                return true;
-            }
+        if (anonymousClass3 == null) {
+            return false;
         }
-        return false;
+        Object obj = anonymousClass3.getItem(i).object;
+        if (!(obj instanceof TL_payments.connectedBotStarRef)) {
+            return false;
+        }
+        TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
+        TLRPC.User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(connectedbotstarref.bot_id));
+        ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(this, view);
+        boolean z = user.bot_has_main_app;
+        int i2 = R.drawable.msg_bot;
+        itemOptionsMakeOptions.addIf(z, i2, LocaleController.getString(R.string.ProfileBotOpenApp), new RichTableCell$$ExternalSyntheticLambda3(15, this, user)).addIf(!user.bot_has_main_app, i2, LocaleController.getString(R.string.BotWebViewOpenBot), new RichTableCell$$ExternalSyntheticLambda3(16, this, connectedbotstarref)).add(R.drawable.msg_link2, LocaleController.getString(R.string.CopyLink), new EglRenderer$$ExternalSyntheticLambda6(this, connectedbotstarref, user, 8)).addIf(!connectedbotstarref.revoked, R.drawable.msg_leave, (CharSequence) LocaleController.getString(R.string.LeaveAffiliateLinkButton), true, (Runnable) new BotVerifySheet$$ExternalSyntheticLambda7(5, this, context, user, connectedbotstarref)).setGravity(5).show();
+        return true;
     }
 
     @Override

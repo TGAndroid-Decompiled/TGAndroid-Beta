@@ -27,6 +27,7 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
+import com.stripe.android.Stripe;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -42,13 +43,11 @@ import org.telegram.messenger.utils.Choreographer60FpsContent;
 import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda3;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.BaseCell;
-import org.telegram.ui.Components.CapsuleBlobDrawable$$ExternalSyntheticLambda0;
+import org.telegram.ui.Charts.BaseChartView;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.TextStyleSpan;
-import org.telegram.ui.Components.Tooltip;
-import org.telegram.ui.PhotoViewer;
 
 public final class SpoilerEffect extends Drawable {
     public static final float[] ALPHAS;
@@ -115,7 +114,7 @@ public final class SpoilerEffect extends Drawable {
         this.particles = new ArrayList();
         this.rippleProgress = -1.0f;
         this.mAlpha = 255;
-        this.rippleInterpolator = new CapsuleBlobDrawable$$ExternalSyntheticLambda0(1);
+        this.rippleInterpolator = new SpoilerEffect$$ExternalSyntheticLambda0();
         this.boundsFWithInset = new RectF();
         for (int i = 0; i < fArr.length; i++) {
             this.particlePaints[i] = new Paint();
@@ -140,14 +139,14 @@ public final class SpoilerEffect extends Drawable {
         }
     }
 
-    public static void clipOutCanvas(Canvas canvas, ArrayList arrayList) {
-        if (arrayList.isEmpty()) {
+    public static void clipOutCanvas(Canvas canvas, List list) {
+        if (list.isEmpty()) {
             return;
         }
         Path path = tempPath;
         path.rewind();
-        for (int i = 0; i < arrayList.size(); i++) {
-            Rect bounds = ((SpoilerEffect) arrayList.get(i)).getBounds();
+        for (int i = 0; i < list.size(); i++) {
+            Rect bounds = ((SpoilerEffect) list.get(i)).getBounds();
             path.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
         }
         canvas.clipPath(path, Region.Op.DIFFERENCE);
@@ -331,11 +330,11 @@ public final class SpoilerEffect extends Drawable {
             SpoilerEffectBitmapFactory.factory = new SpoilerEffectBitmapFactory();
         }
         SpoilerEffectBitmapFactory spoilerEffectBitmapFactory = SpoilerEffectBitmapFactory.factory;
-        PhotoViewer.AnonymousClass14[] anonymousClass14Arr = spoilerEffectBitmapFactory.bitmapBuffers;
-        PhotoViewer.AnonymousClass14 anonymousClass14 = anonymousClass14Arr[0];
+        Stripe[] stripeArr = spoilerEffectBitmapFactory.bitmapBuffers;
+        Stripe stripe = stripeArr[0];
         int i2 = spoilerEffectBitmapFactory.size;
-        if (anonymousClass14 == null) {
-            anonymousClass14Arr[0] = new PhotoViewer.AnonymousClass14(i2);
+        if (stripe == null) {
+            stripeArr[0] = new Stripe(i2);
             spoilerEffectBitmapFactory.shaderPaint = new Paint();
             spoilerEffectBitmapFactory.shaderSpoilerEffects = new ArrayList(100);
             float f = i2;
@@ -368,15 +367,15 @@ public final class SpoilerEffect extends Drawable {
                 i4++;
             }
             i = 128;
-            spoilerEffectBitmapFactory.doDraw(new Canvas((Bitmap) anonymousClass14Arr[0].blur), new Rect(0, 0, i2, i2));
-            spoilerEffectBitmapFactory.shaderPaint.setShader((BitmapShader) anonymousClass14Arr[0].this$0);
+            spoilerEffectBitmapFactory.doDraw(new Canvas((Bitmap) stripeArr[0].tokenCreator), new Rect(0, 0, i2, i2));
+            spoilerEffectBitmapFactory.shaderPaint.setShader((BitmapShader) stripeArr[0].defaultPublishableKey);
             spoilerEffectBitmapFactory.lastUpdateTime = System.currentTimeMillis();
         } else {
             i = 128;
             if (spoilerEffectBitmapFactory.isDrawnWithClipRegion && !LiteMode.isEnabled(128)) {
                 spoilerEffectBitmapFactory.currentBitmapBuffer = 0;
-                spoilerEffectBitmapFactory.doDraw(new Canvas((Bitmap) anonymousClass14Arr[0].blur), new Rect(0, 0, i2, i2));
-                spoilerEffectBitmapFactory.shaderPaint.setShader((BitmapShader) anonymousClass14Arr[0].this$0);
+                spoilerEffectBitmapFactory.doDraw(new Canvas((Bitmap) stripeArr[0].tokenCreator), new Rect(0, 0, i2, i2));
+                spoilerEffectBitmapFactory.shaderPaint.setShader((BitmapShader) stripeArr[0].defaultPublishableKey);
                 spoilerEffectBitmapFactory.lastUpdateTime = System.currentTimeMillis();
                 spoilerEffectBitmapFactory.isDrawnWithClipRegion = false;
             }
@@ -524,6 +523,7 @@ public final class SpoilerEffect extends Drawable {
     }
 
     public final void startRipple(float f, float f2, float f3, boolean z) {
+        int i = 2;
         this.rippleX = f;
         this.rippleY = f2;
         this.rippleMaxRadius = f3;
@@ -537,8 +537,8 @@ public final class SpoilerEffect extends Drawable {
         ValueAnimator duration = ValueAnimator.ofFloat(this.rippleProgress, z ? 0.0f : 1.0f).setDuration((long) MathUtils.clamp(this.rippleMaxRadius * 0.3f, 250.0f, 550.0f));
         this.rippleAnimator = duration;
         duration.setInterpolator(this.rippleInterpolator);
-        this.rippleAnimator.addUpdateListener(new BottomSheet$$ExternalSyntheticLambda3(this, alpha, 6));
-        this.rippleAnimator.addListener(new Tooltip.AnonymousClass1(this, 22));
+        this.rippleAnimator.addUpdateListener(new BottomSheet$$ExternalSyntheticLambda3(this, alpha, i));
+        this.rippleAnimator.addListener(new BaseChartView.AnonymousClass4(this, 14));
         this.rippleAnimator.start();
         invalidateSelf();
     }

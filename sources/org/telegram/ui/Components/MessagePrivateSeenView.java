@@ -10,54 +10,59 @@ import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.view.View;
+import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.android.gms.internal.mlkit_vision_common.zzkf;
-import com.google.android.gms.internal.mlkit_vision_common.zzko;
-import com.google.android.gms.internal.mlkit_vision_common.zzlp;
+import com.google.android.gms.internal.mlkit_vision_common.zzkg;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AppGlobalConfig;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.FactCheckController$$ExternalSyntheticOutline0;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.AccountFrozenAlert$$ExternalSyntheticOutline0;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer;
-import org.telegram.ui.BoostsActivity$$ExternalSyntheticLambda7;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda1;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda206;
+import org.telegram.ui.ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0;
 import org.telegram.ui.Components.Premium.PremiumButtonView;
-import org.telegram.ui.ContentPreviewViewer$1$$ExternalSyntheticLambda5;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda24;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 
-public final class MessagePrivateSeenView extends FrameLayout {
-    public final int currentAccount;
-    public final long dialogId;
-    public final Runnable dismiss;
-    public final int edit_date;
-    public final int fwd_date;
+public class MessagePrivateSeenView extends FrameLayout {
+    public static final int TYPE_EDIT = 1;
+    public static final int TYPE_FORWARD = 2;
+    public static final int TYPE_SEEN = 0;
+    private final int currentAccount;
+    private final long dialogId;
+    private final Runnable dismiss;
+    private final int edit_date;
+    private final int fwd_date;
     public boolean isPremiumLocked;
-    public final TextView loadingView;
-    public final int messageDiff;
-    public final int messageId;
-    public float minWidth;
-    public final TextView premiumTextView;
-    public final Theme.ResourcesProvider resourcesProvider;
-    public final int sent_date;
-    public final int type;
-    public final LinearLayout valueLayout;
-    public final TextView valueTextView;
+    private final TextView loadingView;
+    private final int messageDiff;
+    private final int messageId;
+    float minWidth;
+    private final TextView premiumTextView;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private final int sent_date;
+    private final int type;
+    private final LinearLayout valueLayout;
+    private final TextView valueTextView;
 
     public MessagePrivateSeenView(Context context, int i, MessageObject messageObject, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
         TLRPC.MessageFwdHeader messageFwdHeader;
@@ -84,7 +89,7 @@ public final class MessagePrivateSeenView extends FrameLayout {
         TextView textView = new TextView(context);
         this.loadingView = textView;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("loading text ");
-        spannableStringBuilder.setSpan(new LoadingSpan(AndroidUtilities.dp(96.0f), AndroidUtilities.dp(2.0f), textView, resourcesProvider), 0, spannableStringBuilder.length() - 1, 17);
+        spannableStringBuilder.setSpan(new LoadingSpan(textView, AndroidUtilities.dp(96.0f), AndroidUtilities.dp(2.0f), resourcesProvider), 0, spannableStringBuilder.length() - 1, 17);
         int i3 = Theme.key_dialogTextBlack;
         textView.setTextColor(Theme.multAlpha(0.7f, Theme.getColor(i3, resourcesProvider)));
         textView.setText(spannableStringBuilder);
@@ -98,7 +103,7 @@ public final class MessagePrivateSeenView extends FrameLayout {
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
         OKLCH.m(i3, resourcesProvider, textView2, 14.0f);
-        TextView textViewM = ArticleViewer.IBlock.CC.m(linearLayout, textView2, LayoutHelper.createLinear(-2, -2, 19, 0, -1, 0, 0), context);
+        TextView textViewM = Theme.ResourcesProvider.CC.m(linearLayout, textView2, LayoutHelper.createLinear(-2, -2, 19, 0, -1, 0, 0), context);
         this.premiumTextView = textViewM;
         textViewM.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(20.0f), Theme.multAlpha(0.75f, Theme.getColor(Theme.key_divider, resourcesProvider))));
         OKLCH.m(i3, resourcesProvider, textViewM, 11.0f);
@@ -107,16 +112,145 @@ public final class MessagePrivateSeenView extends FrameLayout {
         request();
     }
 
+    public void lambda$request$0(View view) {
+        showSheet(getContext(), this.currentAccount, this.dialogId, false, this.dismiss, new GroupCallPip$$ExternalSyntheticLambda2(this, 20), this.resourcesProvider);
+    }
+
+    public void lambda$request$1(TLRPC.TL_error tL_error, TLObject tLObject) {
+        if (tL_error != null) {
+            if ("USER_PRIVACY_RESTRICTED".equals(tL_error.text)) {
+                this.valueTextView.setText(LocaleController.getString(R.string.PmReadUnknown));
+                this.premiumTextView.setVisibility(8);
+            } else if ("YOUR_PRIVACY_RESTRICTED".equals(tL_error.text)) {
+                this.isPremiumLocked = true;
+                this.valueTextView.setText(LocaleController.getString(R.string.PmRead));
+                this.premiumTextView.setText(LocaleController.getString(R.string.PmReadShowWhen));
+            } else {
+                this.valueTextView.setText(LocaleController.getString("UnknownError"));
+                this.premiumTextView.setVisibility(8);
+                BulletinFactory.of(Bulletin.BulletinWindow.make(getContext()), this.resourcesProvider).showForError(tL_error);
+            }
+        } else if (tLObject instanceof TLRPC.TL_outboxReadDate) {
+            this.valueTextView.setText(LocaleController.formatPmSeenDate(((TLRPC.TL_outboxReadDate) tLObject).date));
+            this.premiumTextView.setVisibility(8);
+        }
+        ViewPropertyAnimator viewPropertyAnimatorAlpha = this.valueLayout.animate().alpha(1.0f);
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        OKLCH.m(viewPropertyAnimatorAlpha, cubicBezierInterpolator, 320L);
+        this.loadingView.animate().alpha(0.0f).setInterpolator(cubicBezierInterpolator).setDuration(320L).start();
+        if (this.isPremiumLocked) {
+            setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), 6, 0));
+            setOnClickListener(new SearchField$$ExternalSyntheticLambda0(this, 5));
+        } else {
+            setBackground(null);
+            setOnClickListener(null);
+        }
+    }
+
+    public void lambda$request$2(TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new ImageUpdater$$ExternalSyntheticLambda1(this, tL_error, tLObject, 28));
+    }
+
+    public static void lambda$showSheet$3(TLRPC.TL_error tL_error, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
+        if (tL_error != null) {
+            BulletinFactory.global().showForError(tL_error);
+            return;
+        }
+        buttonWithCounterView.setLoading(false);
+        bottomSheet.lambda$showGiftOfferSheet$15();
+        FactCheckController$$ExternalSyntheticOutline0.m(R.string.PremiumLastSeenSet, BulletinFactory.global(), R.raw.chats_infotip);
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public static void lambda$showSheet$4(ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new ShareAlert$$ExternalSyntheticLambda1(15, tL_error, buttonWithCounterView, bottomSheet, runnable));
+    }
+
+    public static void lambda$showSheet$5(TLRPC.TL_error tL_error, Context context, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable) {
+        if (tL_error != null) {
+            BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider).showForError(tL_error);
+            return;
+        }
+        buttonWithCounterView.setLoading(false);
+        bottomSheet.lambda$showGiftOfferSheet$15();
+        FactCheckController$$ExternalSyntheticOutline0.m(R.string.PremiumReadSet, BulletinFactory.of(Bulletin.BulletinWindow.make(context), resourcesProvider), R.raw.chats_infotip);
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public static void lambda$showSheet$6(Context context, Theme.ResourcesProvider resourcesProvider, ButtonWithCounterView buttonWithCounterView, BottomSheet bottomSheet, Runnable runnable, TLObject tLObject, TLRPC.TL_error tL_error) {
+        AndroidUtilities.runOnUIThread(new GiftSheet$$ExternalSyntheticLambda24(tL_error, context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable));
+    }
+
+    public static void lambda$showSheet$7(ButtonWithCounterView buttonWithCounterView, boolean z, int i, BottomSheet bottomSheet, Runnable runnable, Context context, Theme.ResourcesProvider resourcesProvider, View view) {
+        buttonWithCounterView.setLoading(true);
+        if (z) {
+            TL_account.setPrivacy setprivacy = new TL_account.setPrivacy();
+            setprivacy.key = new TLRPC.TL_inputPrivacyKeyStatusTimestamp();
+            setprivacy.rules.add(new TLRPC.TL_inputPrivacyValueAllowAll());
+            ConnectionsManager.getInstance(i).sendRequest(setprivacy, new StickersAlert$$ExternalSyntheticLambda28(buttonWithCounterView, bottomSheet, runnable, 4));
+            return;
+        }
+        TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i).getGlobalPrivacySettings();
+        setglobalprivacysettings.settings = globalPrivacySettings;
+        if (globalPrivacySettings == null) {
+            setglobalprivacysettings.settings = new TLRPC.TL_globalPrivacySettings();
+        }
+        setglobalprivacysettings.settings.hide_read_marks = false;
+        ConnectionsManager.getInstance(i).sendRequest(setglobalprivacysettings, new StickersAlert$$ExternalSyntheticLambda19(context, resourcesProvider, buttonWithCounterView, bottomSheet, runnable, 1));
+    }
+
+    public static void lambda$showSheet$8(boolean z, BottomSheet bottomSheet, Runnable runnable, View view) {
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment != null) {
+            lastFragment.presentFragment(new PremiumPreviewFragment(z ? "lastseen" : "readtime"));
+            bottomSheet.lambda$showGiftOfferSheet$15();
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+    }
+
+    public void request() {
+        int i = this.type;
+        if (i == 1) {
+            this.valueLayout.setAlpha(1.0f);
+            this.loadingView.setAlpha(0.0f);
+            this.premiumTextView.setVisibility(8);
+            this.valueTextView.setText(AppGlobalConfig.getInstance(this.currentAccount).messagePrimaryEditedDate.get() ? LocaleController.formatPmSentDate(this.sent_date) : LocaleController.formatPmEditedDate(this.edit_date));
+            return;
+        }
+        if (i == 2) {
+            this.valueLayout.setAlpha(1.0f);
+            this.loadingView.setAlpha(0.0f);
+            this.premiumTextView.setVisibility(8);
+            this.valueTextView.setText(LocaleController.formatPmFwdDate(this.fwd_date));
+            return;
+        }
+        setOnClickListener(null);
+        this.valueLayout.setAlpha(0.0f);
+        this.loadingView.setAlpha(1.0f);
+        this.premiumTextView.setVisibility(0);
+        TLRPC.TL_messages_getOutboxReadDate tL_messages_getOutboxReadDate = new TLRPC.TL_messages_getOutboxReadDate();
+        tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+        tL_messages_getOutboxReadDate.msg_id = this.messageId;
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_getOutboxReadDate, new UndoView$$ExternalSyntheticLambda0(this, 11));
+    }
+
     public static void showSheet(final Context context, final int i, long j, final boolean z, Runnable runnable, final Runnable runnable2, final Theme.ResourcesProvider resourcesProvider) {
         int i2;
-        final BottomSheet bottomSheet = new BottomSheet(context, resourcesProvider, false, false);
+        final BottomSheet bottomSheet = new BottomSheet(context, false, false, resourcesProvider);
         bottomSheet.fixNavigationBar(Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
         boolean zPremiumFeaturesBlocked = MessagesController.getInstance(i).premiumFeaturesBlocked();
-        LinearLayout linearLayoutM = zzkf.m(context, 1);
+        LinearLayout linearLayoutM = AccountFrozenAlert$$ExternalSyntheticOutline0.m(1, context);
         linearLayoutM.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        rLottieImageView.setAnimation(z ? R.raw.large_lastseen : R.raw.large_readtime, 70, 70, null);
+        rLottieImageView.setAnimation(z ? R.raw.large_lastseen : R.raw.large_readtime, 70, 70);
         rLottieImageView.playAnimation();
         rLottieImageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         rLottieImageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(80.0f), Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider)));
@@ -137,57 +271,37 @@ public final class MessagePrivateSeenView extends FrameLayout {
         } else {
             i2 = zPremiumFeaturesBlocked ? R.string.PremiumReadText1Locked : R.string.PremiumReadText1;
         }
-        zzko.m(i2, new Object[]{firstName}, textView2);
+        ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0.m(i2, new Object[]{firstName}, textView2);
         linearLayoutM.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
-        final ButtonWithCounterView buttonWithCounterViewM = zzlp.m(context, resourcesProvider, true);
-        buttonWithCounterViewM.setText(LocaleController.getString(z ? R.string.PremiumLastSeenButton1 : R.string.PremiumReadButton1), false, true);
+        final ButtonWithCounterView buttonWithCounterViewM = zzkg.m(context, resourcesProvider, true);
+        buttonWithCounterViewM.setText(LocaleController.getString(z ? R.string.PremiumLastSeenButton1 : R.string.PremiumReadButton1), false);
         linearLayoutM.addView(buttonWithCounterViewM, LayoutHelper.createLinear(-1, 48, 1));
         buttonWithCounterViewM.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                ButtonWithCounterView buttonWithCounterView = buttonWithCounterViewM;
-                buttonWithCounterView.setLoading(true);
-                BottomSheet bottomSheet2 = bottomSheet;
-                Runnable runnable3 = runnable2;
-                boolean z2 = z;
-                int i4 = i;
-                if (z2) {
-                    TL_account.setPrivacy setprivacy = new TL_account.setPrivacy();
-                    setprivacy.key = new TLRPC.TL_inputPrivacyKeyStatusTimestamp();
-                    setprivacy.rules.add(new TLRPC.TL_inputPrivacyValueAllowAll());
-                    ConnectionsManager.getInstance(i4).sendRequest(setprivacy, new BoostsActivity$$ExternalSyntheticLambda7(buttonWithCounterView, bottomSheet2, runnable3, 17));
-                    return;
-                }
-                TL_account.setGlobalPrivacySettings setglobalprivacysettings = new TL_account.setGlobalPrivacySettings();
-                TLRPC.GlobalPrivacySettings globalPrivacySettings = ContactsController.getInstance(i4).getGlobalPrivacySettings();
-                setglobalprivacysettings.settings = globalPrivacySettings;
-                if (globalPrivacySettings == null) {
-                    setglobalprivacysettings.settings = new TLRPC.TL_globalPrivacySettings();
-                }
-                setglobalprivacysettings.settings.hide_read_marks = false;
-                ConnectionsManager.getInstance(i4).sendRequest(setglobalprivacysettings, new ChatActivity$$ExternalSyntheticLambda206(context, resourcesProvider, buttonWithCounterView, bottomSheet2, runnable3, 4));
+                Context context2 = context;
+                MessagePrivateSeenView.lambda$showSheet$7(buttonWithCounterViewM, z, i, bottomSheet, runnable2, context2, resourcesProvider, view);
             }
         });
         if (!zPremiumFeaturesBlocked) {
             SimpleTextView simpleTextView = new SimpleTextView(context) {
-                public final Paint paint = new Paint(1);
+                private final Paint paint = new Paint(1);
 
                 @Override
-                public final void dispatchDraw(Canvas canvas) {
-                    Paint paint = this.paint;
-                    paint.setColor(Theme.getColor(Theme.key_dialogGrayLine, resourcesProvider));
-                    paint.setStyle(Paint.Style.STROKE);
-                    paint.setStrokeWidth(1.0f);
+                public void dispatchDraw(Canvas canvas) {
+                    this.paint.setColor(Theme.getColor(Theme.key_dialogGrayLine, resourcesProvider));
+                    this.paint.setStyle(Paint.Style.STROKE);
+                    this.paint.setStrokeWidth(1.0f);
                     float height = getHeight() / 2.0f;
-                    canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - (getTextWidth() / 2.0f)) - AndroidUtilities.dp(8.0f), height, paint);
-                    canvas.drawLine((getTextWidth() / 2.0f) + (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), height, getWidth(), height, paint);
+                    canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - (getTextWidth() / 2.0f)) - AndroidUtilities.dp(8.0f), height, this.paint);
+                    canvas.drawLine((getTextWidth() / 2.0f) + (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), height, getWidth(), height, this.paint);
                     super.dispatchDraw(canvas);
                 }
             };
             simpleTextView.setGravity(17);
             simpleTextView.setAlignment(Layout.Alignment.ALIGN_CENTER);
             simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-            simpleTextView.setText(" " + LocaleController.getString(R.string.PremiumOr) + " ", false);
+            simpleTextView.setText(" " + LocaleController.getString(R.string.PremiumOr) + " ");
             simpleTextView.setTextSize(14);
             linearLayoutM.addView(simpleTextView, LayoutHelper.createLinear(270, -2, 1, 12, 17, 12, 17));
             TextView textView3 = new TextView(context);
@@ -200,10 +314,10 @@ public final class MessagePrivateSeenView extends FrameLayout {
             TextView textView4 = new TextView(context);
             textView4.setGravity(17);
             OKLCH.m(i3, resourcesProvider, textView4, 14.0f);
-            zzko.m(z ? R.string.PremiumLastSeenText2 : R.string.PremiumReadText2, new Object[]{firstName}, textView4);
+            ArticleViewer$ErrorContainer$$ExternalSyntheticOutline0.m(z ? R.string.PremiumLastSeenText2 : R.string.PremiumReadText2, new Object[]{firstName}, textView4);
             linearLayoutM.addView(textView4, LayoutHelper.createLinear(-1, -2, 1, 32, 9, 32, 19));
-            PremiumButtonView premiumButtonView = new PremiumButtonView(AndroidUtilities.dp(8.0f), context, resourcesProvider, true);
-            premiumButtonView.setOnClickListener(new ContentPreviewViewer$1$$ExternalSyntheticLambda5(z, bottomSheet, runnable));
+            PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(8.0f), true, resourcesProvider);
+            premiumButtonView.setOnClickListener(new AIEditorAlert$$ExternalSyntheticLambda33(z, bottomSheet, runnable));
             premiumButtonView.setOverlayText(LocaleController.getString(z ? R.string.PremiumLastSeenButton2 : R.string.PremiumReadButton2), false, false);
             linearLayoutM.addView(premiumButtonView, LayoutHelper.createLinear(-1, 48, 1, 0, 0, 0, 4));
         }
@@ -212,98 +326,62 @@ public final class MessagePrivateSeenView extends FrameLayout {
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        Bulletin.Layout layout;
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        Bulletin bulletin = Bulletin.visibleBulletin;
-        if (bulletin == null || (layout = bulletin.layout) == null || layout.getParent() == null || !(layout.getParent().getParent() instanceof Bulletin.BulletinWindow.BulletinWindowLayout)) {
-            return;
+        if (Bulletin.getVisibleBulletin() != null) {
+            Bulletin visibleBulletin = Bulletin.getVisibleBulletin();
+            if (visibleBulletin.getLayout() == null || visibleBulletin.getLayout().getParent() == null || !(visibleBulletin.getLayout().getParent().getParent() instanceof Bulletin.BulletinWindow.BulletinWindowLayout)) {
+                return;
+            }
+            visibleBulletin.hide();
         }
-        bulletin.hide();
     }
 
     @Override
-    public final void onMeasure(int i, int i2) {
-        float f;
+    public void onMeasure(int i, int i2) {
         View view = (View) getParent();
         int size = View.MeasureSpec.getSize(i);
         int mode = View.MeasureSpec.getMode(i);
         if (this.minWidth < 0.0f) {
             this.minWidth = 0.0f;
-            TextView textView = this.valueTextView;
             if (this.type == 0) {
                 long jCurrentTimeMillis = System.currentTimeMillis();
                 float fMax = Math.max(this.minWidth, AndroidUtilities.dp(144.0f));
                 this.minWidth = fMax;
-                float fMax2 = Math.max(fMax, textView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)) + AndroidUtilities.dp(48.0f));
+                float fMax2 = Math.max(fMax, this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadUnknown)) + AndroidUtilities.dp(48.0f));
                 this.minWidth = fMax2;
-                float fMax3 = Math.max(fMax2, textView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.premiumTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
+                float fMax3 = Math.max(fMax2, this.valueTextView.getPaint().measureText(LocaleController.getString(R.string.PmRead) + this.premiumTextView.getPaint().measureText(LocaleController.getString(R.string.PmReadShowWhen))) + AndroidUtilities.dp(64.0f));
                 this.minWidth = fMax3;
-                float fMax4 = Math.max(fMax3, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))) + ((float) AndroidUtilities.dp(48.0f)));
+                float fMax4 = Math.max(fMax3, this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadTodayAt, LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))) + ((float) AndroidUtilities.dp(48.0f)));
                 this.minWidth = fMax4;
-                int i3 = this.messageDiff;
-                if (i3 > 86400) {
-                    f = 48.0f;
-                    this.minWidth = Math.max(fMax4, textView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))) + AndroidUtilities.dp(48.0f));
-                } else {
-                    f = 48.0f;
+                if (this.messageDiff > 86400) {
+                    this.minWidth = Math.max(fMax4, this.valueTextView.getPaint().measureText(LocaleController.formatString(R.string.PmReadYesterdayAt, LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))) + AndroidUtilities.dp(48.0f));
                 }
-                if (i3 > 172800) {
-                    float f2 = this.minWidth;
-                    float fDp = AndroidUtilities.dp(f);
-                    TextPaint paint = textView.getPaint();
-                    int i4 = R.string.PmReadDateTimeAt;
-                    float fMax5 = Math.max(f2, paint.measureText(LocaleController.formatString(i4, LocaleController.getInstance().getFormatterDayMonth().format(new Date(jCurrentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))) + fDp);
+                if (this.messageDiff > 172800) {
+                    float f = this.minWidth;
+                    float fDp = AndroidUtilities.dp(48.0f);
+                    TextPaint paint = this.valueTextView.getPaint();
+                    int i3 = R.string.PmReadDateTimeAt;
+                    float fMax5 = Math.max(f, paint.measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterDayMonth().format(new Date(jCurrentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))) + fDp);
                     this.minWidth = fMax5;
-                    this.minWidth = Math.max(fMax5, textView.getPaint().measureText(LocaleController.formatString(i4, LocaleController.getInstance().getFormatterYear().format(new Date(jCurrentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))) + AndroidUtilities.dp(f));
+                    this.minWidth = Math.max(fMax5, this.valueTextView.getPaint().measureText(LocaleController.formatString(i3, LocaleController.getInstance().getFormatterYear().format(new Date(jCurrentTimeMillis)), LocaleController.getInstance().getFormatterDay().format(new Date(jCurrentTimeMillis)))) + AndroidUtilities.dp(48.0f));
                 }
             } else {
-                this.minWidth = textView.getPaint().measureText(textView.getText().toString()) + AndroidUtilities.dp(48.0f);
+                this.minWidth = this.valueTextView.getPaint().measureText(this.valueTextView.getText().toString()) + AndroidUtilities.dp(48.0f);
             }
         }
-        int i5 = 1073741824;
+        int i4 = 1073741824;
         if (view != null && view.getWidth() > 0) {
             size = view.getWidth();
             mode = 1073741824;
         }
-        float f3 = size;
-        float f4 = this.minWidth;
-        if (f3 < f4 || mode == Integer.MIN_VALUE) {
-            size = (int) f4;
+        float f2 = size;
+        float f3 = this.minWidth;
+        if (f2 < f3 || mode == Integer.MIN_VALUE) {
+            size = (int) f3;
         } else {
-            i5 = mode;
+            i4 = mode;
         }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, i5), i2);
-    }
-
-    public final void request() {
-        TextView textView = this.valueTextView;
-        TextView textView2 = this.premiumTextView;
-        TextView textView3 = this.loadingView;
-        LinearLayout linearLayout = this.valueLayout;
-        int i = this.currentAccount;
-        int i2 = this.type;
-        if (i2 == 1) {
-            linearLayout.setAlpha(1.0f);
-            textView3.setAlpha(0.0f);
-            textView2.setVisibility(8);
-            textView.setText(AppGlobalConfig.getInstance(i).messagePrimaryEditedDate.get() ? LocaleController.formatPmSentDate(this.sent_date) : LocaleController.formatPmEditedDate(this.edit_date));
-            return;
-        }
-        if (i2 == 2) {
-            linearLayout.setAlpha(1.0f);
-            textView3.setAlpha(0.0f);
-            textView2.setVisibility(8);
-            textView.setText(LocaleController.formatPmFwdDate(this.fwd_date));
-            return;
-        }
-        setOnClickListener(null);
-        linearLayout.setAlpha(0.0f);
-        textView3.setAlpha(1.0f);
-        textView2.setVisibility(0);
-        TLRPC.TL_messages_getOutboxReadDate tL_messages_getOutboxReadDate = new TLRPC.TL_messages_getOutboxReadDate();
-        tL_messages_getOutboxReadDate.peer = MessagesController.getInstance(i).getInputPeer(this.dialogId);
-        tL_messages_getOutboxReadDate.msg_id = this.messageId;
-        ConnectionsManager.getInstance(i).sendRequest(tL_messages_getOutboxReadDate, new CallLogActivity$$ExternalSyntheticLambda1(this, 24));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, i4), i2);
     }
 }

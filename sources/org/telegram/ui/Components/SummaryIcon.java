@@ -2,31 +2,28 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.R;
-import org.telegram.ui.Cells.ChatMessageCell;
 
-public final class SummaryIcon extends Drawable {
-    public int alpha = 255;
-    public final Drawable arrow;
-    public boolean on;
-    public final AnimatedFloat progress;
-    public final Drawable stars;
+public class SummaryIcon extends Drawable {
+    private int alpha = 255;
+    private final Drawable arrow;
+    private boolean on;
+    private final AnimatedFloat progress;
+    private final Drawable stars;
 
-    public SummaryIcon(ChatMessageCell chatMessageCell) {
-        this.progress = new AnimatedFloat(420L, chatMessageCell, CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.arrow = chatMessageCell.getContext().getResources().getDrawable(R.drawable.summary_arrow);
-        this.stars = chatMessageCell.getContext().getResources().getDrawable(R.drawable.summary_stars);
+    public SummaryIcon(View view) {
+        this.progress = new AnimatedFloat(view, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.arrow = view.getContext().getResources().getDrawable(R.drawable.summary_arrow);
+        this.stars = view.getContext().getResources().getDrawable(R.drawable.summary_stars);
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        Drawable drawable = this.stars;
-        drawable.setBounds(bounds);
-        drawable.setAlpha(this.alpha);
-        drawable.draw(canvas);
+    public void draw(Canvas canvas) {
+        this.stars.setBounds(getBounds());
+        this.stars.setAlpha(this.alpha);
+        this.stars.draw(canvas);
         float f = this.progress.set(this.on);
         float fCenterX = getBounds().centerX();
         float fCenterY = getBounds().centerY();
@@ -45,11 +42,9 @@ public final class SummaryIcon extends Drawable {
             float f4 = 1.0f - fAbs2;
             canvas.translate((-fWidth) * f4 * 0.4f, f4 * fWidth * 0.4f);
         }
-        Rect bounds2 = getBounds();
-        Drawable drawable2 = this.arrow;
-        drawable2.setBounds(bounds2);
-        drawable2.setAlpha(this.alpha);
-        drawable2.draw(canvas);
+        this.arrow.setBounds(getBounds());
+        this.arrow.setAlpha(this.alpha);
+        this.arrow.draw(canvas);
         canvas.restore();
         canvas.save();
         if (f > 0.5f) {
@@ -62,36 +57,48 @@ public final class SummaryIcon extends Drawable {
             float fAbs3 = 1.0f - (Math.abs(f - 0.5f) + 0.5f);
             canvas.translate((-fWidth) * fAbs3 * 0.4f, fWidth * fAbs3 * 0.4f);
         }
-        drawable2.setBounds(getBounds());
-        drawable2.setAlpha(this.alpha);
-        drawable2.draw(canvas);
+        this.arrow.setBounds(getBounds());
+        this.arrow.setAlpha(this.alpha);
+        this.arrow.draw(canvas);
         canvas.restore();
         canvas.restore();
     }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return this.arrow.getIntrinsicHeight();
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return this.arrow.getIntrinsicWidth();
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
+    public void set(boolean z) {
+        set(z, true);
+    }
+
     @Override
-    public final void setAlpha(int i) {
+    public void setAlpha(int i) {
         this.alpha = i;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setColorFilter(ColorFilter colorFilter) {
         this.arrow.setColorFilter(colorFilter);
         this.stars.setColorFilter(colorFilter);
+    }
+
+    public void set(boolean z, boolean z2) {
+        this.on = z;
+        if (z2) {
+            return;
+        }
+        this.progress.set(z);
     }
 }

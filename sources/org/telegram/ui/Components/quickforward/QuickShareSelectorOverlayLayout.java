@@ -1,6 +1,6 @@
 package org.telegram.ui.Components.quickforward;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -19,8 +19,8 @@ public final class QuickShareSelectorOverlayLayout extends View {
     public final HashMap drawableHashMap;
     public final ArrayList drawablesForRemove;
 
-    public QuickShareSelectorOverlayLayout(Activity activity) {
-        super(activity);
+    public QuickShareSelectorOverlayLayout(Context context) {
+        super(context);
         this.drawableHashMap = new HashMap();
         this.drawablesForRemove = new ArrayList();
         this.dialogs = new ArrayList();

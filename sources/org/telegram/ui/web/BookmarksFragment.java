@@ -3,6 +3,7 @@ package org.telegram.ui.web;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.exoplayer2.util.Consumer;
@@ -18,15 +19,14 @@ import org.telegram.messenger.SavedMessagesController$$ExternalSyntheticOutline0
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ActionBar.OKLCH;
+import org.telegram.ui.ActionBar.BottomSheet$$ExternalSyntheticLambda6;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda0;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda10;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda23;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda151;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda28;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda9;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberTextView;
@@ -34,24 +34,24 @@ import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalFragment;
-import org.telegram.ui.SettingsActivity;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda19;
-import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
+import org.telegram.ui.Components.UniversalRecyclerView;
+import org.telegram.ui.Components.voip.RateCallLayout$$ExternalSyntheticLambda1;
+import org.telegram.ui.Stars.StarGiftSheet;
 
 public final class BookmarksFragment extends UniversalFragment {
-    public final ArticleViewer$$ExternalSyntheticLambda0 closeToTabs;
+    public final ArticleViewer$$ExternalSyntheticLambda9 closeToTabs;
     public ActionBarMenuItem gotoItem;
     public String query;
     public ActionBarMenuItem searchItem;
     public AddressBarList.BookmarksList searchList;
     public NumberTextView selectedCount;
-    public final ArticleViewer$$ExternalSyntheticLambda10 whenClicked;
+    public final ArticleViewer$$ExternalSyntheticLambda28 whenClicked;
     public final AddressBarList.BookmarksList list = new AddressBarList.BookmarksList(null, this.currentAccount, new BookmarksFragment$$ExternalSyntheticLambda0(this, 0));
     public final HashSet selected = new HashSet();
     public final HashSet addedUrls = new HashSet();
 
-    public final class AnonymousClass2 extends OKLCH {
-        public final VoIPFragment$8$$ExternalSyntheticLambda1 applySearch = new VoIPFragment$8$$ExternalSyntheticLambda1(this, 20);
+    public final class AnonymousClass2 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
+        public final AddressBarList$$ExternalSyntheticLambda4 applySearch = new AddressBarList$$ExternalSyntheticLambda4(this, 2);
 
         public AnonymousClass2() {
         }
@@ -66,9 +66,9 @@ public final class BookmarksFragment extends UniversalFragment {
                 bookmarksList.detach();
                 bookmarksFragment.searchList = null;
             }
-            UniversalFragment.AnonymousClass3 anonymousClass3 = bookmarksFragment.listView;
-            if (anonymousClass3 != null) {
-                anonymousClass3.adapter.update(true);
+            UniversalRecyclerView universalRecyclerView = bookmarksFragment.listView;
+            if (universalRecyclerView != null) {
+                universalRecyclerView.adapter.update(true);
                 bookmarksFragment.listView.layoutManager.scrollToPositionWithOffset(0, 0);
             }
         }
@@ -78,10 +78,10 @@ public final class BookmarksFragment extends UniversalFragment {
         }
 
         @Override
-        public final void onTextChanged(EditTextBoldCursor editTextBoldCursor) {
+        public final void onTextChanged(EditText editText) {
             BookmarksFragment bookmarksFragment = BookmarksFragment.this;
             boolean z = !TextUtils.isEmpty(bookmarksFragment.query);
-            String string = editTextBoldCursor.getText().toString();
+            String string = editText.getText().toString();
             if (!TextUtils.equals(bookmarksFragment.query, string)) {
                 bookmarksFragment.query = string;
                 AddressBarList.BookmarksList bookmarksList = bookmarksFragment.searchList;
@@ -91,13 +91,13 @@ public final class BookmarksFragment extends UniversalFragment {
                 AddressBarList.BookmarksList bookmarksList2 = new AddressBarList.BookmarksList(string, ((BaseFragment) bookmarksFragment).currentAccount, new BookmarksFragment$$ExternalSyntheticLambda0(bookmarksFragment, 1));
                 bookmarksFragment.searchList = bookmarksList2;
                 bookmarksList2.attach();
-                VoIPFragment$8$$ExternalSyntheticLambda1 voIPFragment$8$$ExternalSyntheticLambda1 = this.applySearch;
-                AndroidUtilities.cancelRunOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1);
-                AndroidUtilities.runOnUIThread(voIPFragment$8$$ExternalSyntheticLambda1, 500L);
+                AddressBarList$$ExternalSyntheticLambda4 addressBarList$$ExternalSyntheticLambda4 = this.applySearch;
+                AndroidUtilities.cancelRunOnUIThread(addressBarList$$ExternalSyntheticLambda4);
+                AndroidUtilities.runOnUIThread(addressBarList$$ExternalSyntheticLambda4, 500L);
             }
-            UniversalFragment.AnonymousClass3 anonymousClass3 = bookmarksFragment.listView;
-            if (anonymousClass3 != null) {
-                anonymousClass3.adapter.update(true);
+            UniversalRecyclerView universalRecyclerView = bookmarksFragment.listView;
+            if (universalRecyclerView != null) {
+                universalRecyclerView.adapter.update(true);
                 if (z != (!TextUtils.isEmpty(string))) {
                     bookmarksFragment.listView.layoutManager.scrollToPositionWithOffset(0, 0);
                 }
@@ -105,9 +105,9 @@ public final class BookmarksFragment extends UniversalFragment {
         }
     }
 
-    public BookmarksFragment(ArticleViewer$$ExternalSyntheticLambda10 articleViewer$$ExternalSyntheticLambda10, ArticleViewer$$ExternalSyntheticLambda0 articleViewer$$ExternalSyntheticLambda0) {
-        this.closeToTabs = articleViewer$$ExternalSyntheticLambda0;
-        this.whenClicked = articleViewer$$ExternalSyntheticLambda10;
+    public BookmarksFragment(ArticleViewer$$ExternalSyntheticLambda28 articleViewer$$ExternalSyntheticLambda28, ArticleViewer$$ExternalSyntheticLambda9 articleViewer$$ExternalSyntheticLambda9) {
+        this.closeToTabs = articleViewer$$ExternalSyntheticLambda9;
+        this.whenClicked = articleViewer$$ExternalSyntheticLambda28;
     }
 
     public static boolean matches(String str, String str2) {
@@ -141,9 +141,9 @@ public final class BookmarksFragment extends UniversalFragment {
         }
         this.selectedCount.setNumber(hashSet.size(), true);
         if (hashSet.isEmpty()) {
-            this.actionBar.hideActionMode$1();
+            this.actionBar.hideActionMode();
         } else {
-            this.actionBar.showActionMode(null, null);
+            this.actionBar.showActionMode();
         }
         AndroidUtilities.updateViewShow(this.gotoItem, hashSet.size() == 1, true, true);
     }
@@ -173,9 +173,9 @@ public final class BookmarksFragment extends UniversalFragment {
                         bookmarksFragment.finishFragment();
                         return;
                     }
-                    ((BaseFragment) bookmarksFragment).actionBar.hideActionMode$1();
+                    ((BaseFragment) bookmarksFragment).actionBar.hideActionMode();
                     hashSet.clear();
-                    AndroidUtilities.forEachViews((RecyclerView) bookmarksFragment.listView, (Consumer) new ChatActivity$$ExternalSyntheticLambda151(16));
+                    AndroidUtilities.forEachViews((RecyclerView) bookmarksFragment.listView, (Consumer) new HistoryFragment$1$$ExternalSyntheticLambda0(8));
                     return;
                 }
                 if (i3 != R.id.menu_delete) {
@@ -228,51 +228,42 @@ public final class BookmarksFragment extends UniversalFragment {
                         hashSet2.add(AddressBarList.getLink(messageObject));
                     }
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(bookmarksFragment.getParentActivity(), 0, bookmarksFragment.getResourceProvider());
-                String pluralString = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
-                AlertDialog alertDialog = builder.alertDialog;
-                alertDialog.title = pluralString;
-                alertDialog.message = LocaleController.getString(hashSet3.size() == 1 ? "AreYouSureUnsaveSingleMessage" : "AreYouSureUnsaveFewMessages");
-                builder.setPositiveButton(LocaleController.getString(R.string.Delete), new TodoItemMenu$$ExternalSyntheticLambda19(13, bookmarksFragment, hashSet3));
-                builder.setNegativeButton(LocaleController.getString(R.string.Cancel), null);
-                builder.makeRed(-1);
-                builder.show();
+                new AlertDialog.Builder(bookmarksFragment.getContext(), 0, bookmarksFragment.getResourceProvider()).setTitle(LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0])).setMessage(LocaleController.getString(hashSet3.size() == 1 ? "AreYouSureUnsaveSingleMessage" : "AreYouSureUnsaveFewMessages")).setPositiveButton(LocaleController.getString(R.string.Delete), new RateCallLayout$$ExternalSyntheticLambda1(29, bookmarksFragment, hashSet3)).setNegativeButton(LocaleController.getString(R.string.Cancel), null).makeRed(-1).show();
             }
         });
-        ActionBar.AnonymousClass1 anonymousClass1CreateActionMode = this.actionBar.createActionMode(null);
-        NumberTextView numberTextView = new NumberTextView(anonymousClass1CreateActionMode.getContext());
+        ActionBarMenu actionBarMenuCreateActionMode = this.actionBar.createActionMode();
+        NumberTextView numberTextView = new NumberTextView(actionBarMenuCreateActionMode.getContext());
         this.selectedCount = numberTextView;
         numberTextView.setTextSize(18);
         this.selectedCount.setTypeface(AndroidUtilities.bold());
         this.selectedCount.setTextColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon));
-        this.selectedCount.setOnTouchListener(new ArticleViewer$$ExternalSyntheticLambda23(2));
-        anonymousClass1CreateActionMode.addView(this.selectedCount, LayoutHelper.createLinear(1.0f, 0, -1, 65, 0, 0));
-        this.gotoItem = anonymousClass1CreateActionMode.addItemWithWidth(R.id.menu_link, R.drawable.msg_message, LocaleController.getString(R.string.AccDescrGoToMessage), AndroidUtilities.dp(54.0f));
-        anonymousClass1CreateActionMode.addItemWithWidth(R.id.menu_delete, R.drawable.msg_delete, LocaleController.getString(R.string.Delete), AndroidUtilities.dp(54.0f));
-        ActionBarMenuItem actionBarMenuItemAddItem = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search, getResourceProvider());
-        actionBarMenuItemAddItem.setIsSearchField$1();
-        actionBarMenuItemAddItem.listener = new AnonymousClass2();
-        this.searchItem = actionBarMenuItemAddItem;
+        this.selectedCount.setOnTouchListener(new BottomSheet$$ExternalSyntheticLambda6(1));
+        actionBarMenuCreateActionMode.addView(this.selectedCount, LayoutHelper.createLinear(0, -1, 1.0f, 65, 0, 0, 0));
+        this.gotoItem = actionBarMenuCreateActionMode.addItemWithWidth(R.id.menu_link, R.drawable.msg_message, LocaleController.getString(R.string.AccDescrGoToMessage), AndroidUtilities.dp(54.0f));
+        actionBarMenuCreateActionMode.addItemWithWidth(R.id.menu_delete, R.drawable.msg_delete, LocaleController.getString(R.string.Delete), AndroidUtilities.dp(54.0f));
+        ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.outline_header_search, getResourceProvider()).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass2());
+        this.searchItem = actionBarMenuItemSearchListener;
         int i3 = R.string.Search;
-        actionBarMenuItemAddItem.setSearchFieldHint(LocaleController.getString(i3));
+        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString(i3));
         this.searchItem.setContentDescription(LocaleController.getString(i3));
         EditTextBoldCursor searchField = this.searchItem.getSearchField();
         searchField.setTextColor(getThemedColor(i2));
         searchField.setHintTextColor(getThemedColor(Theme.key_player_time));
         searchField.setCursorColor(getThemedColor(i2));
-        this.listView.addOnScrollListener(new SettingsActivity.AnonymousClass5(this, 26));
-        StickerEmptyView stickerEmptyView = new StickerEmptyView(1, null, context, null);
+        this.listView.addOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 22));
+        StickerEmptyView stickerEmptyView = new StickerEmptyView(context, null, 1);
         stickerEmptyView.title.setText(LocaleController.getString(R.string.WebNoBookmarks));
         stickerEmptyView.subtitle.setVisibility(8);
         stickerEmptyView.showProgress(false, false);
         stickerEmptyView.setAnimateLayoutChange(true);
-        ((FrameLayout) this.fragmentView).addView(stickerEmptyView, LayoutHelper.createFrame(-1.0f, -1));
+        ((FrameLayout) this.fragmentView).addView(stickerEmptyView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setEmptyView(stickerEmptyView);
         return this.fragmentView;
     }
 
     @Override
-    public final void fillItems$1(ArrayList arrayList, UniversalAdapter universalAdapter) {
+    public final void fillItems(ArrayList arrayList, UniversalAdapter universalAdapter) {
+        CharSequence charSequence;
         HashSet hashSet;
         String str;
         TLRPC.MessageMedia messageMedia;
@@ -286,6 +277,7 @@ public final class BookmarksFragment extends UniversalFragment {
         if (zIsEmpty) {
             ArrayList arrayList2 = bookmarksList.links;
             int size = arrayList2.size();
+            charSequence = null;
             int i2 = 0;
             while (i2 < size) {
                 Object obj = arrayList2.get(i2);
@@ -299,8 +291,7 @@ public final class BookmarksFragment extends UniversalFragment {
                     uItemOfFactory.intValue = 3;
                     uItemOfFactory.accent = false;
                     uItemOfFactory.object2 = messageObject;
-                    uItemOfFactory.setChecked(hashSet3.contains(Integer.valueOf(messageObject.getId())));
-                    arrayList.add(uItemOfFactory);
+                    arrayList.add(uItemOfFactory.setChecked(hashSet3.contains(Integer.valueOf(messageObject.getId()))));
                 }
                 i = 1;
             }
@@ -310,6 +301,7 @@ public final class BookmarksFragment extends UniversalFragment {
                 arrayList.add(UItem.asFlicker(arrayList.size(), 32));
             }
         } else {
+            charSequence = null;
             ArrayList arrayList3 = bookmarksList.links;
             int size2 = arrayList3.size();
             int i4 = 0;
@@ -353,8 +345,7 @@ public final class BookmarksFragment extends UniversalFragment {
                         uItemOfFactory2.accent = false;
                         uItemOfFactory2.object2 = messageObject2;
                         uItemOfFactory2.subtext = str3;
-                        uItemOfFactory2.setChecked(hashSet3.contains(Integer.valueOf(messageObject2.getId())));
-                        arrayList.add(uItemOfFactory2);
+                        arrayList.add(uItemOfFactory2.setChecked(hashSet3.contains(Integer.valueOf(messageObject2.getId()))));
                     }
                 }
                 cls = cls;
@@ -383,8 +374,7 @@ public final class BookmarksFragment extends UniversalFragment {
                     uItemOfFactory3.accent = false;
                     uItemOfFactory3.object2 = messageObject3;
                     uItemOfFactory3.subtext = str4;
-                    uItemOfFactory3.setChecked(hashSet3.contains(Integer.valueOf(messageObject3.getId())));
-                    arrayList.add(uItemOfFactory3);
+                    arrayList.add(uItemOfFactory3.setChecked(hashSet3.contains(Integer.valueOf(messageObject3.getId()))));
                 }
                 hashSet4 = hashSet;
             }
@@ -397,9 +387,7 @@ public final class BookmarksFragment extends UniversalFragment {
         if (arrayList.isEmpty()) {
             return;
         }
-        UItem uItem = new UItem(7);
-        uItem.text = null;
-        arrayList.add(uItem);
+        arrayList.add(UItem.asShadow(charSequence));
     }
 
     @Override
@@ -415,9 +403,9 @@ public final class BookmarksFragment extends UniversalFragment {
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         int iIntValue = ((Integer) hashSet.iterator().next()).intValue();
         finishFragment();
-        ArticleViewer$$ExternalSyntheticLambda0 articleViewer$$ExternalSyntheticLambda0 = this.closeToTabs;
-        if (articleViewer$$ExternalSyntheticLambda0 != null) {
-            articleViewer$$ExternalSyntheticLambda0.run();
+        ArticleViewer$$ExternalSyntheticLambda9 articleViewer$$ExternalSyntheticLambda9 = this.closeToTabs;
+        if (articleViewer$$ExternalSyntheticLambda9 != null) {
+            articleViewer$$ExternalSyntheticLambda9.run();
         }
         AndroidUtilities.runOnUIThread(new BookmarksFragment$$ExternalSyntheticLambda1(clientUserId, iIntValue, 0), 80L);
     }
@@ -460,12 +448,12 @@ public final class BookmarksFragment extends UniversalFragment {
             }
         }
         this.selected.clear();
-        this.actionBar.hideActionMode$1();
+        this.actionBar.hideActionMode();
         this.listView.adapter.update(true);
     }
 
     @Override
-    public final void onClick$1(UItem uItem, View view) {
+    public final void onClick(UItem uItem, View view, int i, float f, float f2) {
         if (uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             if (this.actionBar.isActionModeShowed()) {
                 clickSelect(uItem, view);
@@ -489,7 +477,7 @@ public final class BookmarksFragment extends UniversalFragment {
     }
 
     @Override
-    public final boolean onLongClick(UItem uItem, View view) {
+    public final boolean onLongClick(UItem uItem, View view, int i, float f, float f2) {
         if (!uItem.instanceOf(AddressBarList.BookmarkView.Factory.class)) {
             return false;
         }
@@ -507,8 +495,7 @@ public final class BookmarksFragment extends UniversalFragment {
                 break;
             }
             View childAt = this.listView.getChildAt(i2);
-            this.listView.getClass();
-            int childAdapterPosition = RecyclerView.getChildAdapterPosition(childAt);
+            int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
             if (childAdapterPosition >= 0) {
                 top = childAt.getTop();
                 i = childAdapterPosition;

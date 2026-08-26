@@ -1,17 +1,22 @@
 package org.telegram.ui.Adapters;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.android.billingclient.api.zzcn;
 import java.text.SimpleDateFormat;
@@ -31,19 +36,15 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
-import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.MessageSeenView;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.StickersActivity;
 
 public final class FiltersView extends RecyclerListView {
     public final AnonymousClass4 diffUtilsCallback;
     public boolean drawDivider;
-    public final StickersActivity.AnonymousClass2 layoutManager;
+    public final AnonymousClass1 layoutManager;
     public final ArrayList oldItems;
     public final ArrayList usersFilters;
     public static final MediaFilterData[] filters = {new MediaFilterData(R.drawable.search_media_filled, R.string.SharedMediaTab2, new TLRPC.TL_inputMessagesFilterPhotoVideo(), 0), new MediaFilterData(R.drawable.search_links_filled, R.string.SharedLinksTab2, new TLRPC.TL_inputMessagesFilterUrl(), 2), new MediaFilterData(R.drawable.search_files_filled, R.string.SharedFilesTab2, new TLRPC.TL_inputMessagesFilterDocument(), 1), new MediaFilterData(R.drawable.search_music_filled, R.string.SharedMusicTab2, new TLRPC.TL_inputMessagesFilterMusic(), 3), new MediaFilterData(R.drawable.search_voice_filled, R.string.SharedVoiceTab2, new TLRPC.TL_inputMessagesFilterRoundVoice(), 5)};
@@ -66,8 +67,7 @@ public final class FiltersView extends RecyclerListView {
             switch (this.$r8$classId) {
                 case 0:
                     super.getItemOffsets(rect, view, recyclerView, state);
-                    recyclerView.getClass();
-                    int childAdapterPosition = RecyclerView.getChildAdapterPosition(view);
+                    int childAdapterPosition = recyclerView.getChildAdapterPosition(view);
                     rect.left = AndroidUtilities.dp(8.0f);
                     if (childAdapterPosition == state.getItemCount() - 1) {
                         rect.right = AndroidUtilities.dp(10.0f);
@@ -77,59 +77,10 @@ public final class FiltersView extends RecyclerListView {
                     }
                     break;
                 case 1:
-                    rect.right = AndroidUtilities.dp(2.0f);
-                    break;
-                case 2:
-                    rect.right = AndroidUtilities.dp(2.0f);
-                    break;
-                case 3:
-                    RecyclerListView.Holder holder = (RecyclerListView.Holder) recyclerView.getChildViewHolder(view);
-                    if (holder == null) {
-                        rect.left = AndroidUtilities.dp(4.0f);
-                        rect.right = AndroidUtilities.dp(4.0f);
-                    } else {
-                        int adapterPosition = holder.getAdapterPosition() % 4;
-                        rect.left = adapterPosition == 0 ? 0 : AndroidUtilities.dp(4.0f);
-                        rect.right = adapterPosition != 3 ? AndroidUtilities.dp(4.0f) : 0;
-                    }
-                    break;
-                case 4:
-                    RecyclerListView.Holder holder2 = (RecyclerListView.Holder) recyclerView.getChildViewHolder(view);
-                    if (holder2 == null) {
-                        rect.left = AndroidUtilities.dp(4.0f);
-                        rect.right = AndroidUtilities.dp(4.0f);
-                    } else {
-                        int adapterPosition2 = holder2.getAdapterPosition() % 4;
-                        rect.left = adapterPosition2 == 0 ? 0 : AndroidUtilities.dp(4.0f);
-                        rect.right = adapterPosition2 != 3 ? AndroidUtilities.dp(4.0f) : 0;
-                    }
-                    break;
-                case 5:
-                    RecyclerListView.Holder holder3 = (RecyclerListView.Holder) recyclerView.getChildViewHolder(view);
-                    if (holder3 == null) {
-                        rect.left = AndroidUtilities.dp(4.0f);
-                        rect.right = AndroidUtilities.dp(4.0f);
-                    } else if (holder3.mItemViewType == 5) {
-                        int adapterPosition3 = holder3.getAdapterPosition() % 4;
-                        rect.left = adapterPosition3 == 0 ? 0 : AndroidUtilities.dp(4.0f);
-                        rect.right = adapterPosition3 != 3 ? AndroidUtilities.dp(4.0f) : 0;
-                    } else {
-                        rect.right = 0;
-                        rect.left = 0;
-                    }
-                    break;
-                case 6:
-                    rect.left = 0;
-                    rect.right = 0;
-                    rect.bottom = 0;
-                    rect.top = 0;
-                    break;
-                case 7:
                     rect.top = AndroidUtilities.dp(6.0f);
                     break;
-                case 8:
-                    recyclerView.getClass();
-                    int childLayoutPosition = RecyclerView.getChildLayoutPosition(view);
+                default:
+                    int childLayoutPosition = recyclerView.getChildLayoutPosition(view);
                     rect.setEmpty();
                     if (childLayoutPosition == 1) {
                         rect.left = AndroidUtilities.dp(31.0f) + (-AndroidUtilities.dp(85.0f));
@@ -137,52 +88,96 @@ public final class FiltersView extends RecyclerListView {
                         rect.left = AndroidUtilities.dp(31.0f) + (-AndroidUtilities.dp(85.0f));
                     }
                     break;
-                case 9:
-                    recyclerView.getClass();
-                    int childAdapterPosition2 = RecyclerView.getChildAdapterPosition(view);
-                    rect.left = AndroidUtilities.dp(12.0f);
-                    rect.top = 0;
-                    rect.bottom = 0;
-                    if (childAdapterPosition2 == state.getItemCount() - 1) {
-                        rect.right = AndroidUtilities.dp(12.0f);
-                    }
-                    break;
-                default:
-                    super.getItemOffsets(rect, view, recyclerView, state);
-                    rect.top = 1;
-                    break;
-            }
-        }
-
-        @Override
-        public void onDraw(Canvas canvas, RecyclerView recyclerView) {
-            switch (this.$r8$classId) {
-                case 10:
-                    int width = recyclerView.getWidth();
-                    int childCount = recyclerView.getChildCount();
-                    int i = childCount - 1;
-                    int i2 = 0;
-                    while (i2 < i) {
-                        View childAt = recyclerView.getChildAt(i2);
-                        View childAt2 = i2 < childCount + (-2) ? recyclerView.getChildAt(i2 + 1) : null;
-                        if (RecyclerView.getChildAdapterPosition(childAt) >= 0 && !(childAt instanceof GraySectionCell) && !(childAt2 instanceof GraySectionCell)) {
-                            float bottom = childAt.getBottom();
-                            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(72.0f), bottom, width - (LocaleController.isRTL ? AndroidUtilities.dp(72.0f) : 0), bottom, Theme.dividerPaint);
-                        }
-                        i2++;
-                    }
-                    break;
             }
         }
     }
 
     public final class AnonymousClass3 extends DefaultItemAnimator {
+
+        public final class AnonymousClass1 extends AnimatorListenerAdapter {
+            public final int $r8$classId;
+            public final AnonymousClass3 this$1;
+            public final ViewPropertyAnimator val$animation;
+            public final RecyclerView.ViewHolder val$holder;
+            public final View val$view;
+
+            public AnonymousClass1(View view, ViewPropertyAnimator viewPropertyAnimator, RecyclerView.ViewHolder viewHolder, AnonymousClass3 anonymousClass3, int i) {
+                this.$r8$classId = i;
+                this.this$1 = anonymousClass3;
+                this.val$holder = viewHolder;
+                this.val$view = view;
+                this.val$animation = viewPropertyAnimator;
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animator) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        this.val$view.setAlpha(1.0f);
+                        break;
+                    default:
+                        super.onAnimationCancel(animator);
+                        break;
+                }
+            }
+
+            @Override
+            public final void onAnimationEnd(Animator animator) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        this.val$animation.setListener(null);
+                        AnonymousClass3 anonymousClass3 = this.this$1;
+                        RecyclerView.ViewHolder viewHolder = this.val$holder;
+                        anonymousClass3.dispatchAddFinished(viewHolder);
+                        ((DefaultItemAnimator) anonymousClass3).mAddAnimations.remove(viewHolder);
+                        anonymousClass3.dispatchFinishedWhenDone();
+                        break;
+                    default:
+                        this.val$animation.setListener(null);
+                        View view = this.val$view;
+                        view.setAlpha(1.0f);
+                        view.setTranslationX(0.0f);
+                        view.setTranslationY(0.0f);
+                        view.setScaleX(1.0f);
+                        view.setScaleY(1.0f);
+                        AnonymousClass3 anonymousClass4 = this.this$1;
+                        RecyclerView.ViewHolder viewHolder2 = this.val$holder;
+                        anonymousClass4.dispatchRemoveFinished(viewHolder2);
+                        ((DefaultItemAnimator) anonymousClass4).mRemoveAnimations.remove(viewHolder2);
+                        anonymousClass4.dispatchFinishedWhenDone();
+                        break;
+                }
+            }
+
+            @Override
+            public final void onAnimationStart(Animator animator) {
+                switch (this.$r8$classId) {
+                    case 0:
+                        this.this$1.dispatchAddStarting(this.val$holder);
+                        break;
+                    default:
+                        this.this$1.dispatchRemoveStarting(this.val$holder);
+                        break;
+                }
+            }
+        }
+
         @Override
-        public final void animateAdd(RecyclerView.ViewHolder viewHolder) {
-            super.animateAdd(viewHolder);
+        public final boolean animateAdd(RecyclerView.ViewHolder viewHolder) {
+            boolean zAnimateAdd = super.animateAdd(viewHolder);
+            if (zAnimateAdd) {
+                viewHolder.itemView.setScaleX(0.0f);
+                viewHolder.itemView.setScaleY(0.0f);
+            }
+            return zAnimateAdd;
+        }
+
+        @Override
+        public final void animateAddImpl(RecyclerView.ViewHolder viewHolder) {
             View view = viewHolder.itemView;
-            view.setScaleX(0.0f);
-            view.setScaleY(0.0f);
+            ViewPropertyAnimator viewPropertyAnimatorAnimate = view.animate();
+            this.mAddAnimations.add(viewHolder);
+            viewPropertyAnimatorAnimate.alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(220L).setListener(new AnonymousClass1(view, viewPropertyAnimatorAnimate, viewHolder, this, 0)).start();
         }
 
         @Override
@@ -190,7 +185,7 @@ public final class FiltersView extends RecyclerListView {
             View view = viewHolder.itemView;
             ViewPropertyAnimator viewPropertyAnimatorAnimate = view.animate();
             this.mRemoveAnimations.add(viewHolder);
-            viewPropertyAnimatorAnimate.setDuration(this.mRemoveDuration).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new ProfileActivity.AnonymousClass47(this, viewHolder, viewPropertyAnimatorAnimate, view, 1)).start();
+            viewPropertyAnimatorAnimate.setDuration(getRemoveDuration()).alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setListener(new AnonymousClass1(view, viewPropertyAnimatorAnimate, viewHolder, this, 1)).start();
         }
 
         @Override
@@ -211,6 +206,33 @@ public final class FiltersView extends RecyclerListView {
         @Override
         public final long getMoveDuration() {
             return 220L;
+        }
+    }
+
+    public final class Adapter extends RecyclerListView.SelectionAdapter {
+        public Adapter() {
+        }
+
+        @Override
+        public final int getItemCount() {
+            return FiltersView.this.usersFilters.size();
+        }
+
+        @Override
+        public final boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return true;
+        }
+
+        @Override
+        public final void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            ((ViewHolder) viewHolder).filterView.setData((MediaFilterData) FiltersView.this.usersFilters.get(i));
+        }
+
+        @Override
+        public final RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            ViewHolder viewHolder = new ViewHolder(new FilterView(viewGroup.getContext(), ((RecyclerListView) FiltersView.this).resourcesProvider));
+            viewHolder.itemView.setLayoutParams(new RecyclerView.LayoutParams(-2, AndroidUtilities.dp(30.0f)));
+            return viewHolder;
         }
     }
 
@@ -239,7 +261,7 @@ public final class FiltersView extends RecyclerListView {
             this.resourcesProvider = resourcesProvider;
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarImageView = backupImageView;
-            addView(backupImageView, LayoutHelper.createFrame(30.0f, 30));
+            addView(backupImageView, LayoutHelper.createFrame(30, 30.0f));
             TextView textView = new TextView(context);
             this.titleView = textView;
             textView.setTextSize(1, 14.0f);
@@ -259,10 +281,7 @@ public final class FiltersView extends RecyclerListView {
             if (i == 7) {
                 CombinedDrawable combinedDrawableCreateCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
                 this.thumbDrawable = combinedDrawableCreateCircleDrawableWithIcon;
-                int iDp = AndroidUtilities.dp(16.0f);
-                int iDp2 = AndroidUtilities.dp(16.0f);
-                combinedDrawableCreateCircleDrawableWithIcon.iconWidth = iDp;
-                combinedDrawableCreateCircleDrawableWithIcon.iconHeight = iDp2;
+                combinedDrawableCreateCircleDrawableWithIcon.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
                 Theme.setCombinedDrawableColor(this.thumbDrawable, Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider), false);
                 Theme.setCombinedDrawableColor(this.thumbDrawable, Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider), true);
                 backupImageView.setImageDrawable(this.thumbDrawable);
@@ -283,10 +302,7 @@ public final class FiltersView extends RecyclerListView {
                     str = str2;
                     if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == user.id) {
                         CombinedDrawable combinedDrawableCreateCircleDrawableWithIcon3 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
-                        int iDp3 = AndroidUtilities.dp(16.0f);
-                        int iDp4 = AndroidUtilities.dp(16.0f);
-                        combinedDrawableCreateCircleDrawableWithIcon3.iconWidth = iDp3;
-                        combinedDrawableCreateCircleDrawableWithIcon3.iconHeight = iDp4;
+                        combinedDrawableCreateCircleDrawableWithIcon3.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
                         Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon3, Theme.getColor(i2, resourcesProvider), false);
                         Theme.setCombinedDrawableColor(combinedDrawableCreateCircleDrawableWithIcon3, Theme.getColor(i3, resourcesProvider), true);
                         backupImageView.setImageDrawable(combinedDrawableCreateCircleDrawableWithIcon3);
@@ -342,7 +358,7 @@ public final class FiltersView extends RecyclerListView {
         this.usersFilters = new ArrayList();
         this.oldItems = new ArrayList();
         this.drawDivider = true;
-        this.diffUtilsCallback = new DiffUtil() {
+        this.diffUtilsCallback = new DiffUtil.Callback() {
             @Override
             public final boolean areContentsTheSame(int i, int i2) {
                 return true;
@@ -387,17 +403,31 @@ public final class FiltersView extends RecyclerListView {
                 return FiltersView.this.oldItems.size();
             }
         };
-        StickersActivity.AnonymousClass2 anonymousClass2 = new StickersActivity.AnonymousClass2((Object) this, 1);
-        this.layoutManager = anonymousClass2;
-        anonymousClass2.setOrientation(0);
-        setLayoutManager(anonymousClass2);
-        setAdapter(new MessageSeenView.AnonymousClass3(this, 1));
+        ?? r2 = new LinearLayoutManager() {
+            @Override
+            public final void onInitializeAccessibilityNodeInfo(RecyclerView.Recycler recycler, RecyclerView.State state, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+                super.onInitializeAccessibilityNodeInfo(recycler, state, accessibilityNodeInfoCompat);
+                if (FiltersView.this.isEnabled()) {
+                    return;
+                }
+                accessibilityNodeInfoCompat.setVisibleToUser(false);
+            }
+
+            @Override
+            public final boolean supportsPredictiveItemAnimations() {
+                return false;
+            }
+        };
+        this.layoutManager = r2;
+        r2.setOrientation(0);
+        setLayoutManager(r2);
+        setAdapter(new Adapter());
         addItemDecoration(new AnonymousClass2(0));
-        setItemAnimator(new AnonymousClass3());
+        lambda$onCellEnter$52(new AnonymousClass3());
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(AndroidUtilities.dp(28.0f));
-        setSelectorDrawableColor(Theme.getColor(Theme.key_listSelector, this.resourcesProvider));
+        setSelectorDrawableColor(getThemedColor(Theme.key_listSelector));
     }
 
     public static void createForDayMonth(int i, int i2, ArrayList arrayList) {
@@ -703,7 +733,7 @@ public final class FiltersView extends RecyclerListView {
                     TLRPC.Chat chat = (TLRPC.Chat) obj;
                     String strM$1 = chat.title;
                     if (strM$1.length() > 12) {
-                        strM$1 = SurfaceContainer$$ExternalSyntheticOutline0.m$1(strM$1.substring(0, 10), "...");
+                        strM$1 = Fragment$$ExternalSyntheticOutline0.m$1(strM$1.substring(0, 10), "...");
                     }
                     MediaFilterData mediaFilterData2 = new MediaFilterData(R.drawable.search_users_filled, 4, strM$1);
                     mediaFilterData2.chat = chat;
@@ -728,12 +758,11 @@ public final class FiltersView extends RecyclerListView {
             if (arrayList4.isEmpty() || !zzcnVar.zza) {
                 return;
             }
-            StickersActivity.AnonymousClass2 anonymousClass2 = this.layoutManager;
-            anonymousClass2.scrollToPositionWithOffset(0, 0, anonymousClass2.mShouldReverseLayout);
+            scrollToPositionWithOffset(0, 0);
         }
     }
 
-    public final void updateColors$1() {
+    public final void updateColors() {
         getRecycledViewPool().clear();
         for (int i = 0; i < getChildCount(); i++) {
             View childAt = getChildAt(i);
@@ -756,7 +785,7 @@ public final class FiltersView extends RecyclerListView {
                 ((FilterView) attachedScrapChildAt).updateColors();
             }
         }
-        setSelectorDrawableColor(Theme.getColor(Theme.key_listSelector, this.resourcesProvider));
+        setSelectorDrawableColor(getThemedColor(Theme.key_listSelector));
     }
 
     public final class MediaFilterData {

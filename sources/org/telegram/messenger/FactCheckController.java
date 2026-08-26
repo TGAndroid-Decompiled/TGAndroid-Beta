@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Editable;
@@ -30,10 +29,9 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.BaseFragment;
+import org.telegram.ui.ActionBar.DarkAlertDialog;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda488;
 import org.telegram.ui.Components.AnimatedColor;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.BulletinFactory;
@@ -42,9 +40,9 @@ import org.telegram.ui.Components.EditTextCaption;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.TypefaceSpan;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda11;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda174;
-import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda16;
+import org.telegram.ui.web.BotWebViewContainer$$ExternalSyntheticLambda34;
 
 public class FactCheckController {
     private static AlertDialog currentDialog;
@@ -146,7 +144,7 @@ public class FactCheckController {
             if (safeLastFragment != null) {
                 boolean z2 = tL_textWithEntities == null || TextUtils.isEmpty(tL_textWithEntities.text);
                 if (z2 || !z) {
-                    FactCheckController$$ExternalSyntheticOutline0.m(z2 ? R.string.FactCheckDeleted : R.string.FactCheckEdited, BulletinFactory.of(safeLastFragment), z2 ? R.raw.ic_delete : R.raw.contact_check, 36);
+                    FactCheckController$$ExternalSyntheticOutline0.m(z2 ? R.string.FactCheckDeleted : R.string.FactCheckEdited, BulletinFactory.of(safeLastFragment), z2 ? R.raw.ic_delete : R.raw.contact_check);
                 }
             }
         }
@@ -154,7 +152,7 @@ public class FactCheckController {
     }
 
     public void lambda$applyFactCheck$16(TLRPC.TL_textWithEntities tL_textWithEntities, boolean z, AlertDialog alertDialog, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new ChatActivity$$ExternalSyntheticLambda488(this, tLObject, tL_textWithEntities, z, alertDialog));
+        AndroidUtilities.runOnUIThread(new MessagesStorage$$ExternalSyntheticLambda112(this, tLObject, tL_textWithEntities, z, alertDialog, 1));
     }
 
     public static void lambda$clearExpiredInDatabase$7(MessagesStorage messagesStorage) {
@@ -285,7 +283,7 @@ public class FactCheckController {
         if (tL_getFactCheck.msg_id.isEmpty()) {
             return;
         }
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getFactCheck, new SecretChatHelper$$ExternalSyntheticLambda9(this, tL_getFactCheck, arrayList3, map, 1));
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_getFactCheck, new SecretChatHelper$$ExternalSyntheticLambda9(1, this, tL_getFactCheck, arrayList3, map));
     }
 
     public static void lambda$openFactCheckEditor$10(View view, DialogInterface dialogInterface) {
@@ -351,7 +349,7 @@ public class FactCheckController {
             this.toload.removeAt(0);
             ArrayList<Key> arrayList = new ArrayList<>(mapValueAt.keySet());
             this.loading.addAll(arrayList);
-            getFromDatabase(arrayList, new PhotoViewer$$ExternalSyntheticLambda174(this, jKeyAt, arrayList, mapValueAt, 1));
+            getFromDatabase(arrayList, new GiftSheet$$ExternalSyntheticLambda11(this, jKeyAt, arrayList, mapValueAt, 1));
         }
         this.toload.clear();
     }
@@ -450,48 +448,40 @@ public class FactCheckController {
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         Activity activityFindActivity = AndroidUtilities.findActivity(context);
         final View currentFocus = activityFindActivity != null ? activityFindActivity.getCurrentFocus() : null;
+        int i = 0;
         boolean z2 = lastFragment != null && (lastFragment.getFragmentView() instanceof SizeNotifierFrameLayout) && ((SizeNotifierFrameLayout) lastFragment.getFragmentView()).measureKeyboardHeight() > AndroidUtilities.dp(20.0f) && !z;
         final AlertDialog[] alertDialogArr = new AlertDialog[1];
-        AlertDialog.Builder builder = z2 ? new AlertDialogDecor.Builder(context, 0, resourcesProvider) : new AlertDialog.Builder(context, 0, resourcesProvider);
+        AlertDialog.Builder builder = z2 ? new DarkAlertDialog.Builder(context, i, resourcesProvider) : new AlertDialog.Builder(context, 0, resourcesProvider);
         final TextView[] textViewArr = new TextView[1];
         boolean z3 = messageObject == null || (message = messageObject.messageOwner) == null || message.factcheck == null;
-        String string = LocaleController.getString(R.string.FactCheckDialog);
-        AlertDialog alertDialog = builder.alertDialog;
-        alertDialog.title = string;
-        final int i = MessagesController.getInstance(this.currentAccount).factcheckLengthLimit;
+        builder.setTitle(LocaleController.getString(R.string.FactCheckDialog));
+        final int i2 = MessagesController.getInstance(this.currentAccount).factcheckLengthLimit;
         final EditTextCaption editTextCaption = new EditTextCaption(context, resourcesProvider) {
             AnimatedTextView.AnimatedTextDrawable limit;
             AnimatedColor limitColor = new AnimatedColor(this);
             private int limitCount;
 
             {
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true, false);
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
                 this.limit = animatedTextDrawable;
-                CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-                animatedTextDrawable.moveAmplitude = 0.2f;
-                animatedTextDrawable.animateDuration = 160L;
-                animatedTextDrawable.animateWave = 1.0f;
-                animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
-                animatedTextDrawable.setTextSize(AndroidUtilities.dp(15.33f));
+                animatedTextDrawable.setAnimationProperties(0.2f, 0L, 160L, CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.limit.setTextSize(AndroidUtilities.dp(15.33f));
                 this.limit.setCallback(this);
-                this.limit.gravity = 5;
+                this.limit.setGravity(5);
             }
 
             @Override
             public void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
-                int i2 = this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider), false);
-                animatedTextDrawable.textPaint.setColor(i2);
-                animatedTextDrawable.alpha = Color.alpha(i2);
+                this.limit.setTextColor(this.limitColor.set(Theme.getColor(this.limitCount < 0 ? Theme.key_text_RedRegular : Theme.key_dialogSearchHint, resourcesProvider)));
                 this.limit.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
                 this.limit.draw(canvas);
             }
 
             @Override
             public void extendActionMode(ActionMode actionMode, Menu menu) {
-                int i2 = R.id.menu_bold;
-                if (menu.findItem(i2) != null) {
+                int i3 = R.id.menu_bold;
+                if (menu.findItem(i3) != null) {
                     return;
                 }
                 if (Build.VERSION.SDK_INT >= 23) {
@@ -499,27 +489,27 @@ public class FactCheckController {
                 }
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.Bold));
                 spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.bold()), 0, spannableStringBuilder.length(), 33);
-                int i3 = R.id.menu_groupbolditalic;
-                menu.add(i3, i2, 6, spannableStringBuilder);
+                int i4 = R.id.menu_groupbolditalic;
+                menu.add(i4, i3, 6, spannableStringBuilder);
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(LocaleController.getString(R.string.Italic));
                 spannableStringBuilder2.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
-                menu.add(i3, R.id.menu_italic, 7, spannableStringBuilder2);
-                menu.add(i3, R.id.menu_link, 8, LocaleController.getString(R.string.CreateLink));
-                menu.add(i3, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
+                menu.add(i4, R.id.menu_italic, 7, spannableStringBuilder2);
+                menu.add(i4, R.id.menu_link, 8, LocaleController.getString(R.string.CreateLink));
+                menu.add(i4, R.id.menu_regular, 9, LocaleController.getString(R.string.Regular));
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
-                super.onTextChanged(charSequence, i2, i3, i4);
+            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
+                super.onTextChanged(charSequence, i3, i4, i5);
                 if (this.limit != null) {
-                    this.limitCount = i - charSequence.length();
+                    this.limitCount = i2 - charSequence.length();
                     this.limit.cancelAnimation();
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.limit;
                     String str = "";
                     if (this.limitCount <= 4) {
                         str = "" + this.limitCount;
                     }
-                    animatedTextDrawable.setText(str, true, true);
+                    animatedTextDrawable.setText(str);
                 }
             }
 
@@ -532,11 +522,11 @@ public class FactCheckController {
         final boolean z4 = z3;
         editTextCaption.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
-                if (i2 != 6) {
+            public boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
+                if (i3 != 6) {
                     return false;
                 }
-                if (editTextCaption.getText().toString().length() > i) {
+                if (editTextCaption.getText().toString().length() > i2) {
                     AndroidUtilities.shakeView(editTextCaption);
                     return true;
                 }
@@ -546,9 +536,9 @@ public class FactCheckController {
                 CharSequence charSequence = charSequenceArr[0];
                 tL_textWithEntities2.text = charSequence == null ? "" : charSequence.toString();
                 FactCheckController.this.applyFactCheck(messageObject, tL_textWithEntities2, z4);
-                AlertDialog alertDialog2 = alertDialogArr[0];
-                if (alertDialog2 != null) {
-                    alertDialog2.dismiss();
+                AlertDialog alertDialog = alertDialogArr[0];
+                if (alertDialog != null) {
+                    alertDialog.dismiss();
                 }
                 if (alertDialogArr[0] == FactCheckController.currentDialog) {
                     AlertDialog unused = FactCheckController.currentDialog = null;
@@ -586,11 +576,11 @@ public class FactCheckController {
                     return;
                 }
                 int length = editable.length();
-                int i2 = i;
+                int i3 = i2;
                 boolean z5 = true;
-                if (length > i2) {
+                if (length > i3) {
                     this.ignoreTextChange = true;
-                    editable.delete(i2, editable.length());
+                    editable.delete(i3, editable.length());
                     AndroidUtilities.shakeView(editTextCaption);
                     try {
                         editTextCaption.performHapticFeedback(3, 2);
@@ -608,29 +598,30 @@ public class FactCheckController {
             }
 
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            public void beforeTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
+            public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
             }
         });
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        linearLayout.addView(editTextCaption, LayoutHelper.createLinear(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
+        linearLayout.addView(editTextCaption, LayoutHelper.createLinear(-1, -2, 24.0f, 0.0f, 24.0f, 10.0f));
         builder.makeCustomMaxHeight();
         builder.setView(linearLayout);
-        alertDialog.customWidth = AndroidUtilities.dp(292.0f);
-        builder.setPositiveButton(LocaleController.getString(R.string.Done), new BotWebViewContainer$$ExternalSyntheticLambda16(this, editTextCaption, i, messageObject, z4));
+        builder.setWidth(AndroidUtilities.dp(292.0f));
+        builder.setPositiveButton(LocaleController.getString(R.string.Done), new BotWebViewContainer$$ExternalSyntheticLambda34(this, editTextCaption, i2, messageObject, z4));
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new SharedConfig$$ExternalSyntheticLambda5(4));
         if (z2) {
-            currentDialog = alertDialog;
-            alertDialogArr[0] = alertDialog;
-            final int i2 = 0;
-            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            AlertDialog alertDialogCreate = builder.create();
+            currentDialog = alertDialogCreate;
+            alertDialogArr[0] = alertDialogCreate;
+            final int i3 = 0;
+            alertDialogCreate.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
-                    switch (i2) {
+                    switch (i3) {
                         case 0:
                             FactCheckController.lambda$openFactCheckEditor$10(currentFocus, dialogInterface);
                             break;
@@ -640,7 +631,6 @@ public class FactCheckController {
                     }
                 }
             });
-            final int i3 = 0;
             currentDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
@@ -656,9 +646,10 @@ public class FactCheckController {
             });
             currentDialog.showDelayed(250L);
         } else {
-            alertDialogArr[0] = alertDialog;
+            AlertDialog alertDialogCreate2 = builder.create();
+            alertDialogArr[0] = alertDialogCreate2;
             final int i4 = 1;
-            alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            alertDialogCreate2.setOnDismissListener(new DialogInterface.OnDismissListener() {
                 @Override
                 public final void onDismiss(DialogInterface dialogInterface) {
                     switch (i4) {
@@ -671,11 +662,10 @@ public class FactCheckController {
                     }
                 }
             });
-            final int i5 = 1;
             alertDialogArr[0].setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public final void onShow(DialogInterface dialogInterface) {
-                    switch (i5) {
+                    switch (i4) {
                         case 0:
                             FactCheckController.lambda$openFactCheckEditor$11(editTextCaption, dialogInterface);
                             break;
@@ -687,9 +677,9 @@ public class FactCheckController {
             });
             alertDialogArr[0].show();
         }
-        AlertDialog alertDialog2 = alertDialogArr[0];
-        alertDialog2.dismissDialogByButtons = false;
-        View button = alertDialog2.getButton(-1);
+        AlertDialog alertDialog = alertDialogArr[0];
+        alertDialog.dismissDialogByButtons = false;
+        View button = alertDialog.getButton(-1);
         if (button instanceof TextView) {
             textViewArr[0] = (TextView) button;
         }

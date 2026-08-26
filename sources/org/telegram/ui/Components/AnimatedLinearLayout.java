@@ -13,58 +13,72 @@ import java.util.HashMap;
 import me.vkryl.android.animator.ListAnimator;
 import me.vkryl.core.lambda.Destroyable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.iv.TableModel$$ExternalSyntheticLambda1;
 
-public abstract class AnimatedLinearLayout extends LinearLayout {
-    public static final Comparator comparator = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new TableModel$$ExternalSyntheticLambda1(6)), new TableModel$$ExternalSyntheticLambda1(7));
-    public float lastAnimatedHeight;
-    public final ListAnimator listAnimator;
-    public Runnable onAnimatedHeightChanged;
-    public boolean skipNextAnimation;
-    public int totalHeight;
-    public int totalWidth;
-    public final HashMap viewHolders;
-    public final ArrayList visibleHolders;
+public class AnimatedLinearLayout extends LinearLayout {
+    private static final Comparator<Holder> comparator = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new MarkdownParser$$ExternalSyntheticLambda0(1)), new MarkdownParser$$ExternalSyntheticLambda0(2));
+    private final ListAnimator.Callback callback;
+    private float lastAnimatedHeight;
+    private final ListAnimator listAnimator;
+    private Runnable onAnimatedHeightChanged;
+    private boolean skipNextAnimation;
+    private int totalHeight;
+    private int totalWidth;
+    private final HashMap<View, Holder> viewHolders;
+    private final ArrayList<Holder> visibleHolders;
 
-    public final class Holder implements ListAnimator.Measurable, Destroyable {
-        public boolean hasInAnimator;
-        public boolean isVisible;
-        public int order;
-        public int priority;
+    public static class Holder implements ListAnimator.Measurable, Destroyable {
+        private boolean hasInAnimator;
+        private boolean isVisible;
+        private int order;
+        private int priority;
+        private String tag;
         public final View view;
 
         public Holder(View view) {
             this.view = view;
         }
 
-        public final boolean equals(Object obj) {
-            if (!(obj instanceof Holder)) {
-                return false;
+        public static int access$100(Holder holder) {
+            return holder.priority;
+        }
+
+        public static int access$400(Holder holder) {
+            return holder.order;
+        }
+
+        public boolean equals(Object obj) {
+            if (obj instanceof Holder) {
+                return this.view.equals(((Holder) obj).view);
             }
-            return this.view.equals(((Holder) obj).view);
+            return false;
         }
 
         @Override
-        public final int getHeight() {
+        public int getHeight() {
             return this.view.getMeasuredHeight();
         }
 
         @Override
-        public final int getSpacingStart(boolean z) {
+        public int getSpacingEnd(boolean z) {
             return 0;
         }
 
         @Override
-        public final int getWidth() {
+        public int getSpacingStart(boolean z) {
+            return 0;
+        }
+
+        @Override
+        public int getWidth() {
             return this.view.getMeasuredWidth();
         }
 
-        public final int hashCode() {
+        public int hashCode() {
             return this.view.hashCode();
         }
 
         @Override
-        public final void performDestroy() {
+        public void performDestroy() {
             if (!this.isVisible) {
                 this.view.setVisibility(8);
             }
@@ -74,26 +88,14 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
 
     public AnimatedLinearLayout(Context context) {
         super(context);
-        this.viewHolders = new HashMap();
-        this.visibleHolders = new ArrayList();
-        this.listAnimator = new ListAnimator(new ColorPicker$$ExternalSyntheticLambda6(this, 5), CubicBezierInterpolator.EASE_OUT_QUINT, 420L);
+        this.viewHolders = new HashMap<>();
+        this.visibleHolders = new ArrayList<>();
+        EmojiView$$ExternalSyntheticLambda21 emojiView$$ExternalSyntheticLambda21 = new EmojiView$$ExternalSyntheticLambda21(this, 23);
+        this.callback = emojiView$$ExternalSyntheticLambda21;
+        this.listAnimator = new ListAnimator(emojiView$$ExternalSyntheticLambda21, CubicBezierInterpolator.EASE_OUT_QUINT, 420L);
     }
 
-    public final void calculateTotalSizesAfterMeasure() {
-        this.totalHeight = 0;
-        this.totalWidth = 0;
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childAt = getChildAt(i);
-            Holder holder = (Holder) this.viewHolders.get(childAt);
-            if (childAt.getVisibility() == 0 && holder != null && holder.isVisible) {
-                this.totalWidth = childAt.getMeasuredWidth() + this.totalWidth;
-                this.totalHeight = childAt.getMeasuredHeight() + this.totalHeight;
-            }
-        }
-    }
-
-    public final void checkViewsVisibility() {
+    private void checkViewsVisibility() {
         ArrayList arrayList = this.listAnimator.entries;
         int size = arrayList.size();
         int i = 0;
@@ -120,12 +122,35 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
         }
     }
 
-    public final float getAnimatedHeightWithPadding(float f) {
+    public void lambda$new$0(ListAnimator listAnimator) {
+        checkViewsVisibility();
+        onItemsChanged();
+    }
+
+    public final void calculateTotalSizesAfterMeasure() {
+        this.totalHeight = 0;
+        this.totalWidth = 0;
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childAt = getChildAt(i);
+            Holder holder = this.viewHolders.get(childAt);
+            if (childAt.getVisibility() == 0 && holder != null && holder.isVisible) {
+                this.totalWidth = childAt.getMeasuredWidth() + this.totalWidth;
+                this.totalHeight = childAt.getMeasuredHeight() + this.totalHeight;
+            }
+        }
+    }
+
+    public float getAnimatedHeightWithPadding(float f) {
         return (f * getMetadata().totalVisibility.now) + getMetadata().totalHeight.now;
     }
 
     public int getEntriesCount() {
         return this.listAnimator.entries.size();
+    }
+
+    public ListAnimator.Entry getEntry(int i) {
+        return (ListAnimator.Entry) this.listAnimator.entries.get(i);
     }
 
     public ListAnimator.Metadata getMetadata() {
@@ -140,37 +165,38 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
         return this.totalWidth;
     }
 
-    public final boolean isViewVisible(View view) {
-        Holder holder = (Holder) this.viewHolders.get(view);
+    public boolean isViewVisible(View view) {
+        Holder holder = this.viewHolders.get(view);
         return holder != null && holder.isVisible;
     }
 
-    public abstract void onItemsChanged();
+    public void onItemsChanged() {
+    }
 
     @Override
     public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        ArrayList arrayList = this.visibleHolders;
-        arrayList.clear();
+        this.visibleHolders.clear();
         int childCount = getChildCount();
         for (int i5 = 0; i5 < childCount; i5++) {
             View childAt = getChildAt(i5);
-            Holder holder = (Holder) this.viewHolders.get(childAt);
+            Holder holder = this.viewHolders.get(childAt);
             if (holder != null) {
                 holder.order = i5;
                 if (childAt.getVisibility() == 0 && holder.isVisible) {
-                    arrayList.add(holder);
+                    this.visibleHolders.add(holder);
                 }
             }
         }
-        Collections.sort(arrayList, comparator);
-        this.listAnimator.reset(arrayList, !this.skipNextAnimation);
+        Collections.sort(this.visibleHolders, comparator);
+        this.listAnimator.reset(this.visibleHolders, !this.skipNextAnimation);
+        ArrayList<Holder> arrayList = this.visibleHolders;
         int size = arrayList.size();
         int i6 = 0;
         while (i6 < size) {
-            Object obj = arrayList.get(i6);
+            Holder holder2 = arrayList.get(i6);
             i6++;
-            ((Holder) obj).hasInAnimator = true;
+            holder2.hasInAnimator = true;
         }
         this.skipNextAnimation = false;
         checkViewsVisibility();
@@ -183,14 +209,14 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
     }
 
     @Override
-    public final void onViewAdded(View view) {
+    public void onViewAdded(View view) {
         super.onViewAdded(view);
         view.setVisibility(8);
         this.viewHolders.put(view, new Holder(view));
     }
 
     @Override
-    public final void onViewRemoved(View view) {
+    public void onViewRemoved(View view) {
         super.onViewRemoved(view);
         this.viewHolders.remove(view);
     }
@@ -202,32 +228,39 @@ public abstract class AnimatedLinearLayout extends LinearLayout {
         view.setScaleY(fLerp);
     }
 
-    public final void setDebugName(View view) {
+    public void setDebugName(View view, String str) {
+        Holder holder = this.viewHolders.get(view);
+        if (holder != null) {
+            holder.tag = str;
+        }
     }
 
     public void setOnAnimatedHeightChangedListener(Runnable runnable) {
         this.onAnimatedHeightChanged = runnable;
     }
 
-    public final void setPriority(int i, View view) {
-        Holder holder = (Holder) this.viewHolders.get(view);
+    public void setPriority(View view, int i) {
+        Holder holder = this.viewHolders.get(view);
         if (holder != null) {
             holder.priority = i;
         }
     }
 
-    public final void setViewVisible(View view, boolean z, boolean z2) {
+    public void setViewVisible(View view, boolean z) {
+        setViewVisible(view, z, true);
+    }
+
+    public void setViewVisible(View view, boolean z, boolean z2) {
         Holder holder;
-        if (view == null || (holder = (Holder) this.viewHolders.get(view)) == null || holder.isVisible == z) {
+        if (view == null || (holder = this.viewHolders.get(view)) == null || holder.isVisible == z) {
             return;
         }
         holder.isVisible = z;
-        View view2 = holder.view;
         if (z) {
-            view2.setVisibility(0);
+            holder.view.setVisibility(0);
         }
         if (!z && !holder.hasInAnimator) {
-            view2.setVisibility(8);
+            holder.view.setVisibility(8);
         }
         if (!z2) {
             this.skipNextAnimation = true;

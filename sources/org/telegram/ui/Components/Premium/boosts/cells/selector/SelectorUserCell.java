@@ -24,7 +24,6 @@ import org.telegram.ui.Cells.UserCell2;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
-import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.boosts.cells.BaseCell;
 import org.telegram.ui.Components.RecyclerListView;
@@ -72,13 +71,13 @@ public final class SelectorUserCell extends BaseCell {
         super(context, resourcesProvider);
         this.isOnline = new boolean[1];
         this.showCallButtons = true;
-        this.statusBadgeComponent = new StatusBadgeComponent(18, this);
+        this.statusBadgeComponent = new StatusBadgeComponent(this);
         this.titleTextView.setTypeface(AndroidUtilities.bold());
         this.radioButton.setVisibility(8);
         if (z2) {
             CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox2;
-            checkBox2.checkBoxBase.setColor(Theme.key_dialogRoundCheckBox, Theme.key_dialogBackground, Theme.key_checkboxCheck);
+            checkBox2.setColor(Theme.key_dialogRoundCheckBox, Theme.key_dialogBackground, Theme.key_checkboxCheck);
             checkBox2.setDrawUnchecked(false);
             checkBox2.setDrawBackgroundAsArc(3);
             boolean z4 = LocaleController.isRTL;
@@ -87,16 +86,15 @@ public final class SelectorUserCell extends BaseCell {
         } else if (z) {
             CheckBox2 checkBox3 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox3;
-            CheckBoxBase checkBoxBase = checkBox3.checkBoxBase;
             if (z3) {
-                checkBoxBase.setColor(Theme.key_checkbox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
+                checkBox3.setColor(Theme.key_checkbox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
             } else {
-                checkBoxBase.setColor(Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
+                checkBox3.setColor(Theme.key_dialogRoundCheckBox, Theme.key_checkboxDisabled, Theme.key_dialogRoundCheckBoxCheck);
             }
             checkBox3.setDrawUnchecked(true);
             checkBox3.setDrawBackgroundAsArc(10);
             addView(checkBox3);
-            checkBoxBase.setChecked(-1, false, false);
+            checkBox3.setChecked(false, false);
             checkBox3.setLayoutParams(LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 13.0f, 0.0f, 14.0f, 0.0f));
             updateLayouts();
         } else {
@@ -166,13 +164,13 @@ public final class SelectorUserCell extends BaseCell {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.statusBadgeComponent.statusDrawable.attach();
+        this.statusBadgeComponent.onAttachedToWindow();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.statusBadgeComponent.statusDrawable.detach();
+        this.statusBadgeComponent.onDetachedFromWindow();
     }
 
     public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
@@ -181,11 +179,10 @@ public final class SelectorUserCell extends BaseCell {
         TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_myBoost.peer)));
         this.chat = chat;
         AvatarDrawable avatarDrawable = this.avatarDrawable;
-        avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
+        avatarDrawable.setInfo(chat);
         BackupImageView backupImageView = this.imageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-        backupImageView.imageReceiver.setForUserOrChat(this.chat, avatarDrawable);
-        backupImageView.onNewImageSet();
+        backupImageView.setForUserOrChat(this.chat, avatarDrawable);
         String str = this.chat.title;
         UserCell2.AnonymousClass1 anonymousClass1 = this.titleTextView;
         anonymousClass1.setText(str);
@@ -291,11 +288,10 @@ public final class SelectorUserCell extends BaseCell {
         this.chat = chat;
         this.user = null;
         AvatarDrawable avatarDrawable = this.avatarDrawable;
-        avatarDrawable.setInfo(UserConfig.selectedAccount, chat);
+        avatarDrawable.setInfo(chat);
         BackupImageView backupImageView = this.imageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(chat) ? 12.0f : 20.0f));
-        backupImageView.imageReceiver.setForUserOrChat(chat, avatarDrawable);
-        backupImageView.onNewImageSet();
+        backupImageView.setForUserOrChat(chat, avatarDrawable);
         String str = chat.title;
         UserCell2.AnonymousClass1 anonymousClass1 = this.titleTextView;
         anonymousClass1.setText(str);
@@ -332,7 +328,7 @@ public final class SelectorUserCell extends BaseCell {
     public final void setChecked(boolean z, boolean z2) {
         CheckBox2 checkBox2 = this.checkBox;
         if (checkBox2 != null && checkBox2.getVisibility() == 0) {
-            checkBox2.checkBoxBase.setChecked(-1, z, z2);
+            checkBox2.setChecked(z, z2);
         }
     }
 
@@ -351,11 +347,10 @@ public final class SelectorUserCell extends BaseCell {
         this.user = user;
         this.chat = null;
         AvatarDrawable avatarDrawable = this.avatarDrawable;
-        avatarDrawable.setInfo(UserConfig.selectedAccount, user);
+        avatarDrawable.setInfo(user);
         BackupImageView backupImageView = this.imageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
-        backupImageView.imageReceiver.setForUserOrChat(user, avatarDrawable);
-        backupImageView.onNewImageSet();
+        backupImageView.setForUserOrChat(user, avatarDrawable);
         String userName = UserObject.getUserName(user);
         UserCell2.AnonymousClass1 anonymousClass1 = this.titleTextView;
         anonymousClass1.setText(userName);
@@ -376,9 +371,6 @@ public final class SelectorUserCell extends BaseCell {
         if (checkBox2 != null) {
             checkBox2.setAlpha(1.0f);
         }
-        int color = Theme.getColor(null, Theme.key_chats_verifiedBackground, false);
-        StatusBadgeComponent statusBadgeComponent = this.statusBadgeComponent;
-        statusBadgeComponent.getClass();
-        anonymousClass1.setRightDrawable(user != null ? statusBadgeComponent.updateDrawable(user, null, color, false) : statusBadgeComponent.updateDrawable(null, null, color, false));
+        anonymousClass1.setRightDrawable(this.statusBadgeComponent.updateDrawable(user, Theme.getColor(null, Theme.key_chats_verifiedBackground, false), false));
     }
 }

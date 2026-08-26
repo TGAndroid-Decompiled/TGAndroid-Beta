@@ -3,6 +3,7 @@ package org.commonmark.internal.inline;
 import org.commonmark.internal.Delimiter;
 import org.commonmark.node.Emphasis;
 import org.commonmark.node.Node;
+import org.commonmark.node.StrongEmphasis;
 import org.commonmark.node.Text;
 import org.commonmark.parser.delimiter.DelimiterProcessor;
 
@@ -49,24 +50,24 @@ public final class AsteriskDelimiterProcessor implements DelimiterProcessor {
     @Override
     public final void process(Text text, Text text2, int i) {
         String.valueOf(this.delimiterChar);
-        Emphasis emphasis = i == 1 ? new Emphasis(0) : new Emphasis(3);
-        Node node = (Node) text.next;
+        Node emphasis = i == 1 ? new Emphasis() : new StrongEmphasis();
+        Node node = text.next;
         while (node != null && node != text2) {
-            Node node2 = (Node) node.next;
+            Node node2 = node.next;
             emphasis.appendChild(node);
             node = node2;
         }
         emphasis.unlink();
-        Node node3 = (Node) text.next;
+        Node node3 = text.next;
         emphasis.next = node3;
         if (node3 != null) {
             node3.prev = emphasis;
         }
         emphasis.prev = text;
         text.next = emphasis;
-        Node node4 = (Node) text.parent;
+        Node node4 = text.parent;
         emphasis.parent = node4;
-        if (((Node) emphasis.next) == null) {
+        if (emphasis.next == null) {
             node4.lastChild = emphasis;
         }
     }

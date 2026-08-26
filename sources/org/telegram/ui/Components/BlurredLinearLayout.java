@@ -8,13 +8,15 @@ import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.SharedConfig;
 
-public final class BlurredLinearLayout extends LinearLayout {
+public class BlurredLinearLayout extends LinearLayout {
     public int backgroundColor;
-    public Paint backgroundPaint;
-    public final Rect blurBounds;
-    public final boolean drawBlur;
-    public final boolean isTopView;
-    public final SizeNotifierFrameLayout sizeNotifierFrameLayout;
+    public int backgroundPaddingBottom;
+    public int backgroundPaddingTop;
+    protected Paint backgroundPaint;
+    private Rect blurBounds;
+    public boolean drawBlur;
+    public boolean isTopView;
+    private final SizeNotifierFrameLayout sizeNotifierFrameLayout;
 
     public BlurredLinearLayout(Context context, SizeNotifierFrameLayout sizeNotifierFrameLayout) {
         super(context);
@@ -26,7 +28,7 @@ public final class BlurredLinearLayout extends LinearLayout {
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
+    public void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
         if (!SharedConfig.chatBlurEnabled() || this.sizeNotifierFrameLayout == null || !this.drawBlur || this.backgroundColor == 0) {
@@ -36,7 +38,7 @@ public final class BlurredLinearLayout extends LinearLayout {
                 this.backgroundPaint = new Paint();
             }
             this.backgroundPaint.setColor(this.backgroundColor);
-            this.blurBounds.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            this.blurBounds.set(0, this.backgroundPaddingTop, getMeasuredWidth(), getMeasuredHeight() - this.backgroundPaddingBottom);
             float y = 0.0f;
             View view = this;
             while (true) {
@@ -54,7 +56,7 @@ public final class BlurredLinearLayout extends LinearLayout {
     }
 
     @Override
-    public final void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
         if (SharedConfig.chatBlurEnabled() && (sizeNotifierFrameLayout = this.sizeNotifierFrameLayout) != null) {
             sizeNotifierFrameLayout.blurBehindViews.add(this);
@@ -63,7 +65,7 @@ public final class BlurredLinearLayout extends LinearLayout {
     }
 
     @Override
-    public final void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
         if (sizeNotifierFrameLayout != null) {
             sizeNotifierFrameLayout.blurBehindViews.remove(this);

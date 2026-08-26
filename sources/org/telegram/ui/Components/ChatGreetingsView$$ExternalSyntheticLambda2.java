@@ -18,16 +18,10 @@ public final class ChatGreetingsView$$ExternalSyntheticLambda2 implements View.O
     public final void onClick(View view) {
         switch (this.$r8$classId) {
             case 0:
-                ChatGreetingsView.Listener listener = this.f$0.listener;
-                if (listener != null) {
-                    listener.onGreetings(this.f$1);
-                }
+                this.f$0.lambda$setNextSticker$2(this.f$1, view);
                 break;
             default:
-                ChatGreetingsView.Listener listener2 = this.f$0.listener;
-                if (listener2 != null) {
-                    listener2.onGreetings(this.f$1);
-                }
+                this.f$0.lambda$setSticker$1(this.f$1, view);
                 break;
         }
     }

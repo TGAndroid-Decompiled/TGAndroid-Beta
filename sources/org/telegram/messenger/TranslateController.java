@@ -10,7 +10,7 @@ import android.util.Pair;
 import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.InputMethodSubtype;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import j$.util.Comparator$CC;
 import j$.util.Objects;
 import java.util.ArrayList;
@@ -32,12 +32,11 @@ import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda48;
-import org.telegram.ui.Components.Bulletin;
+import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.TranslateAlert2;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda11;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer$$ExternalSyntheticLambda174;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 
@@ -319,7 +318,7 @@ public class TranslateController extends BaseController {
                         if (locale != null && locale.contains("_")) {
                             locale = locale.split("_")[0];
                         }
-                        if (TranslateAlert2.languageName(locale, null, null) != null) {
+                        if (TranslateAlert2.languageName(locale) != null) {
                             linkedHashSet.add(locale);
                         }
                     }
@@ -436,7 +435,7 @@ public class TranslateController extends BaseController {
             if ("no".equals(str)) {
                 language.code = "nb";
             }
-            language.displayName = TranslateAlert2.capitalFirst(TranslateAlert2.languageName(language.code, null, null));
+            language.displayName = TranslateAlert2.capitalFirst(TranslateAlert2.languageName(language.code));
             language.ownDisplayName = TranslateAlert2.capitalFirst(TranslateAlert2.systemLanguageName(language.code, true));
             if (language.displayName != null) {
                 StringBuilder sb = new StringBuilder();
@@ -456,7 +455,7 @@ public class TranslateController extends BaseController {
             Collections.sort(arrayList, new TelegramMediaSession$$ExternalSyntheticLambda0(Collator.getInstance(Locale.getDefault()), 2));
             return arrayList;
         }
-        Collections.sort(arrayList, Comparator$CC.comparing(new MessagesController$$ExternalSyntheticLambda92(4)));
+        Collections.sort(arrayList, Comparator$CC.comparing(new MessagesController$$ExternalSyntheticLambda94(4)));
         return arrayList;
     }
 
@@ -489,7 +488,7 @@ public class TranslateController extends BaseController {
                             if ("no".equals(str2)) {
                                 language.code = "nb";
                             }
-                            language.displayName = TranslateAlert2.capitalFirst(TranslateAlert2.languageName(language.code, null, null));
+                            language.displayName = TranslateAlert2.capitalFirst(TranslateAlert2.languageName(language.code));
                             language.ownDisplayName = TranslateAlert2.capitalFirst(TranslateAlert2.systemLanguageName(language.code, true));
                             if (language.displayName != null) {
                                 language.q = (language.displayName + " " + language.ownDisplayName).toLowerCase();
@@ -638,7 +637,7 @@ public class TranslateController extends BaseController {
     }
 
     public void lambda$checkLanguage$15(MessageObject messageObject, long j, int i, Exception exc) {
-        AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda48(this, messageObject, j, i, 11));
+        AndroidUtilities.runOnUIThread(new ArticleViewer$$ExternalSyntheticLambda0(this, messageObject, j, i, 11));
     }
 
     public void lambda$checkLanguage$16(String str, MessageObject messageObject, long j, int i) {
@@ -797,7 +796,7 @@ public class TranslateController extends BaseController {
     }
 
     public void lambda$detectPhotoLanguage$42(MessageObject messageObject, MessageKey messageKey, Utilities.Callback callback, Exception exc) {
-        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(this, messageObject, messageKey, callback, 3));
+        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(3, this, messageObject, messageKey, callback));
     }
 
     public void lambda$detectStoryLanguage$31(TL_stories.StoryItem storyItem, String str, StoryKey storyKey) {
@@ -807,7 +806,7 @@ public class TranslateController extends BaseController {
     }
 
     public void lambda$detectStoryLanguage$32(TL_stories.StoryItem storyItem, StoryKey storyKey, String str) {
-        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10((BaseController) this, (Object) storyItem, str, (Object) storyKey, 4));
+        AndroidUtilities.runOnUIThread(new ImageLoader$$ExternalSyntheticLambda10(this, storyItem, str, storyKey, 4));
     }
 
     public void lambda$detectStoryLanguage$33(TL_stories.StoryItem storyItem, StoryKey storyKey) {
@@ -1105,7 +1104,7 @@ public class TranslateController extends BaseController {
     }
 
     public static void lambda$pushToSummarize$18(BaseFragment baseFragment) {
-        baseFragment.presentFragment(new PremiumPreviewFragment(0, "summarize_limit"));
+        baseFragment.presentFragment(new PremiumPreviewFragment("summarize_limit"));
     }
 
     public void lambda$pushToSummarize$19(int i, Utilities.Callback callback, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_error tL_error) {
@@ -1115,9 +1114,7 @@ public class TranslateController extends BaseController {
             callback.run(tL_textWithEntities);
         } else if (tL_error != null) {
             if ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error.text) && (safeLastFragment = LaunchActivity.getSafeLastFragment()) != null) {
-                Bulletin bulletinCreateSimpleBulletin = BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.star_premium_2, LocaleController.getString(R.string.SummaryLimit), new SendMessagesHelper$$ExternalSyntheticLambda65(3, safeLastFragment), LocaleController.getString(R.string.SummaryLimitUpgrade));
-                bulletinCreateSimpleBulletin.duration = 5000;
-                bulletinCreateSimpleBulletin.show(true);
+                BulletinFactory.of(safeLastFragment).createSimpleBulletin(R.raw.star_premium_2, LocaleController.getString(R.string.SummaryLimit), LocaleController.getString(R.string.SummaryLimitUpgrade), new SendMessagesHelper$$ExternalSyntheticLambda65(safeLastFragment, 3)).setDuration(5000).show(true);
             }
             this.loadingSummarizations.remove(Integer.valueOf(i));
             callback.run(null);
@@ -1173,7 +1170,7 @@ public class TranslateController extends BaseController {
         if ("alternative".equals(str) || "system".equals(str)) {
             String str2 = pendingTranslation.language;
             for (int i = 0; i < pendingTranslation.messageIds.size(); i++) {
-                TranslateAlert2.alternativeTranslate(pendingTranslation.messageTexts.get(i).text, null, new TranslateController$$ExternalSyntheticLambda13(this, pendingTranslation.callbacks.get(i), z, pendingTranslation.messageIds.get(i).intValue(), str2, j, 1), str2);
+                TranslateAlert2.alternativeTranslate(pendingTranslation.messageTexts.get(i).text, null, str2, new TranslateController$$ExternalSyntheticLambda13(this, pendingTranslation.callbacks.get(i), z, pendingTranslation.messageIds.get(i).intValue(), str2, j, 1));
             }
             return;
         }
@@ -1315,7 +1312,7 @@ public class TranslateController extends BaseController {
         }
         ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
         if (arrayList.size() > 0) {
-            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda42(this, storyItem, str, tL_textWithEntities, arrayList.get(0), storyKey, runnable, 1));
+            AndroidUtilities.runOnUIThread(new AndroidUtilities$$ExternalSyntheticLambda41(this, storyItem, str, tL_textWithEntities, arrayList.get(0), storyKey, runnable, 1));
         } else {
             final int i2 = 0;
             AndroidUtilities.runOnUIThread(new Runnable(this) {
@@ -1357,7 +1354,7 @@ public class TranslateController extends BaseController {
                     if (strM.length() <= 0 || strM.charAt(strM.length() - 1) != '!') {
                         z = false;
                     } else {
-                        strM = SurfaceContainer$$ExternalSyntheticOutline0.m(1, 0, strM);
+                        strM = Fragment$$ExternalSyntheticOutline0.m(1, 0, strM);
                         z = true;
                     }
                     if ("null".equals(str2)) {
@@ -2236,7 +2233,7 @@ public class TranslateController extends BaseController {
         }
         tL_messages_translateText.text.add(tL_textWithEntities);
         tL_messages_translateText.to_lang = normalizeLanguage(toLanguage);
-        getConnectionsManager().sendRequest(tL_messages_translateText, new MessagesController$$ExternalSyntheticLambda77(this, messageObject, toLanguage, messageKey, runnable, System.currentTimeMillis(), tL_textWithEntities));
+        getConnectionsManager().sendRequest(tL_messages_translateText, new MessagesController$$ExternalSyntheticLambda79(this, messageObject, toLanguage, messageKey, runnable, System.currentTimeMillis(), tL_textWithEntities));
     }
 
     public void translateStory(TL_stories.StoryItem storyItem, Runnable runnable) {
@@ -2344,7 +2341,7 @@ public class TranslateController extends BaseController {
                                 TLRPC.Message message5 = messageObject2.messageOwner;
                                 if (message5.summarizedOpen) {
                                     if (message5.translatedSummaryText == null || !dialogTranslateTo.equals(message5.translatedSummaryLanguage)) {
-                                        pushToSummarize(messageObject2, dialogTranslateTo, new PhotoViewer$$ExternalSyntheticLambda174(this, messageObject2, dialogTranslateTo, dialogId));
+                                        pushToSummarize(messageObject2, dialogTranslateTo, new GiftSheet$$ExternalSyntheticLambda11(this, messageObject2, dialogTranslateTo, dialogId));
                                         return;
                                     }
                                     return;

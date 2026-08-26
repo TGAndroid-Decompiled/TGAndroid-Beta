@@ -5,7 +5,7 @@ import android.media.MediaCrypto;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.view.Surface;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import org.telegram.messenger.FileLog;
@@ -264,7 +264,7 @@ public class AudioDecoder {
             StringBuilder sb = new StringBuilder("StartTimeUs(");
             sb.append(this.startTimeUs);
             sb.append(") must be less than or equal to EndTimeUs(");
-            throw new RuntimeException(SurfaceContainer$$ExternalSyntheticOutline0.m(sb, this.endTimeUs, ")"));
+            throw new RuntimeException(Fragment$$ExternalSyntheticOutline0.m(sb, this.endTimeUs, ")"));
         }
         this.extractor.seekTo(j, 0);
         this.decoder.start();

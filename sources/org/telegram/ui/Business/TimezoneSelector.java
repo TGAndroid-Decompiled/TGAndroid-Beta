@@ -3,9 +3,11 @@ package org.telegram.ui.Business;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.google.android.gms.internal.mlkit_vision_common.zzke;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -19,17 +21,16 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.OKLCH;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.ArticleViewer$$ExternalSyntheticLambda21;
-import org.telegram.ui.CallLogActivity;
-import org.telegram.ui.CallLogActivity$$ExternalSyntheticLambda3;
 import org.telegram.ui.Cells.TextCheckCell;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.UItem;
 import org.telegram.ui.Components.UniversalAdapter;
 import org.telegram.ui.Components.UniversalRecyclerView;
-import org.telegram.ui.TopicsFragment;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda4;
+import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
+import org.telegram.ui.Stars.StarGiftSheet;
+import org.telegram.ui.web.HistoryFragment;
 
 public final class TimezoneSelector extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     public String currentTimezone;
@@ -39,26 +40,49 @@ public final class TimezoneSelector extends BaseFragment implements Notification
     public boolean searching;
     public String systemTimezone;
     public boolean useSystem;
-    public ArticleViewer$$ExternalSyntheticLambda21 whenTimezoneSelected;
+    public GiftSheet$$ExternalSyntheticLambda4 whenTimezoneSelected;
 
     @Override
     public final View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString(R.string.TimezoneTitle));
-        this.actionBar.setActionBarMenuOnItemClick(new CallLogActivity.AnonymousClass1(this, 12));
-        ActionBarMenuItem actionBarMenuItemAddItem = this.actionBar.createMenu().addItem(1, R.drawable.outline_header_search);
-        actionBarMenuItemAddItem.setIsSearchField$1();
-        actionBarMenuItemAddItem.listener = new TopicsFragment.AnonymousClass3(this, 1);
-        actionBarMenuItemAddItem.setSearchFieldHint(LocaleController.getString(R.string.Search));
+        this.actionBar.setActionBarMenuOnItemClick(new HistoryFragment.AnonymousClass1(this, 8));
+        this.actionBar.createMenu().addItem(1, R.drawable.outline_header_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
+            @Override
+            public final void onSearchCollapse() {
+                TimezoneSelector timezoneSelector = TimezoneSelector.this;
+                timezoneSelector.searching = false;
+                timezoneSelector.query = null;
+                timezoneSelector.listView.adapter.update(true);
+                timezoneSelector.listView.scrollToPosition(0);
+            }
+
+            @Override
+            public final void onSearchExpand() {
+                TimezoneSelector timezoneSelector = TimezoneSelector.this;
+                timezoneSelector.searching = true;
+                timezoneSelector.listView.adapter.update(true);
+                timezoneSelector.listView.scrollToPosition(0);
+            }
+
+            @Override
+            public final void onTextChanged(EditText editText) {
+                String string = editText.getText().toString();
+                TimezoneSelector timezoneSelector = TimezoneSelector.this;
+                timezoneSelector.query = string;
+                timezoneSelector.listView.adapter.update(true);
+                timezoneSelector.listView.scrollToPosition(0);
+            }
+        }).setSearchFieldHint(LocaleController.getString(R.string.Search));
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setBackgroundColor(Theme.getColor(null, Theme.key_windowBackgroundGray, false));
-        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(getParentActivity(), getCurrentAccount(), getClassGuid(), new CallLogActivity$$ExternalSyntheticLambda3(this, 11), new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 24), null, getResourceProvider());
+        UniversalRecyclerView universalRecyclerView = new UniversalRecyclerView(this, new GiftSheet$$ExternalSyntheticLambda8(this, 10), new WindowVisibilityManager$$ExternalSyntheticLambda0(this, 15), null);
         this.listView = universalRecyclerView;
         universalRecyclerView.setSections();
         this.actionBar.setAdaptiveBackground(this.listView);
-        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1.0f, -1));
-        this.listView.setOnScrollListener(new ChatActivity.AnonymousClass53(this, 7));
+        frameLayout.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
+        this.listView.setOnScrollListener(new StarGiftSheet.AnonymousClass8(this, 4));
         LinearLayout linearLayout = new LinearLayout(context);
         this.emptyView = linearLayout;
         linearLayout.setOrientation(1);
@@ -91,24 +115,13 @@ public final class TimezoneSelector extends BaseFragment implements Notification
         TimezonesController timezonesController = TimezonesController.getInstance(this.currentAccount);
         if (!z2) {
             universalAdapter.whiteSectionStart();
-            String string = LocaleController.getString(R.string.TimezoneDetectAutomatically);
-            UItem uItem = new UItem(9);
-            uItem.id = -1;
-            uItem.text = string;
-            uItem.setChecked(this.useSystem);
-            arrayList.add(uItem);
+            arrayList.add(UItem.asRippleCheck(-1, LocaleController.getString(R.string.TimezoneDetectAutomatically)).setChecked(this.useSystem));
             universalAdapter.whiteSectionEnd();
-            String string2 = LocaleController.formatString(R.string.TimezoneDetectAutomaticallyInfo, timezonesController.getTimezoneName(this.currentTimezone, true));
-            UItem uItem2 = new UItem(7);
-            uItem2.text = string2;
-            arrayList.add(uItem2);
+            arrayList.add(UItem.asShadow(LocaleController.formatString(R.string.TimezoneDetectAutomaticallyInfo, timezonesController.getTimezoneName(this.currentTimezone, true))));
         }
         universalAdapter.whiteSectionStart();
         if (!z2) {
-            String string3 = LocaleController.getString(R.string.TimezoneHeader);
-            UItem uItem3 = new UItem(0);
-            uItem3.text = string3;
-            arrayList.add(uItem3);
+            zzke.m(R.string.TimezoneHeader, arrayList);
         }
         int i = 0;
         boolean z3 = true;
@@ -120,41 +133,29 @@ public final class TimezoneSelector extends BaseFragment implements Notification
             }
             timezonesController.load();
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList2.get(i);
-            CharSequence charSequenceHighlightText = tL_timezone != null ? tL_timezone.name : null;
+            CharSequence timezoneName = TimezonesController.getTimezoneName(tL_timezone, false);
             if (z2) {
                 String strReplace = AndroidUtilities.translitSafe(tL_timezone.name).toLowerCase().replace("/", " ");
                 String lowerCase = AndroidUtilities.translitSafe(this.query).toLowerCase();
                 if (SavedMessagesController$$ExternalSyntheticOutline0.m(" ", lowerCase, strReplace) || strReplace.startsWith(lowerCase)) {
-                    charSequenceHighlightText = AndroidUtilities.highlightText(charSequenceHighlightText, this.query, this.resourceProvider);
-                    String timezoneOffsetName = TimezonesController.getTimezoneOffsetName(tL_timezone);
-                    UItem uItem4 = new UItem(10);
-                    uItem4.id = i;
-                    uItem4.text = charSequenceHighlightText;
-                    uItem4.textValue = timezoneOffsetName;
-                    uItem4.setChecked(TextUtils.equals(tL_timezone.id, this.currentTimezone));
+                    timezoneName = AndroidUtilities.highlightText(timezoneName, this.query, this.resourceProvider);
+                    UItem checked = UItem.asRadio(i, timezoneName, TimezonesController.getTimezoneOffsetName(tL_timezone)).setChecked(TextUtils.equals(tL_timezone.id, this.currentTimezone));
                     if (this.useSystem || z2) {
                         z = true;
                     } else {
                         z = false;
                     }
-                    uItem4.enabled = z;
-                    arrayList.add(uItem4);
+                    arrayList.add(checked.setEnabled(z));
                     z3 = false;
                 }
             } else {
-                String timezoneOffsetName2 = TimezonesController.getTimezoneOffsetName(tL_timezone);
-                UItem uItem5 = new UItem(10);
-                uItem5.id = i;
-                uItem5.text = charSequenceHighlightText;
-                uItem5.textValue = timezoneOffsetName2;
-                uItem5.setChecked(TextUtils.equals(tL_timezone.id, this.currentTimezone));
+                UItem checked2 = UItem.asRadio(i, timezoneName, TimezonesController.getTimezoneOffsetName(tL_timezone)).setChecked(TextUtils.equals(tL_timezone.id, this.currentTimezone));
                 if (this.useSystem) {
                     z = true;
                 } else {
                     z = true;
                 }
-                uItem5.enabled = z;
-                arrayList.add(uItem5);
+                arrayList.add(checked2.setEnabled(z));
                 z3 = false;
             }
             i++;
@@ -162,11 +163,9 @@ public final class TimezoneSelector extends BaseFragment implements Notification
         universalAdapter.whiteSectionEnd();
         if (z3) {
             arrayList.add(UItem.asCustomShadow(this.emptyView));
-            return;
+        } else {
+            arrayList.add(UItem.asShadow(null));
         }
-        UItem uItem6 = new UItem(7);
-        uItem6.text = null;
-        arrayList.add(uItem6);
     }
 
     @Override
@@ -181,9 +180,9 @@ public final class TimezoneSelector extends BaseFragment implements Notification
             if (!z) {
                 String str = this.systemTimezone;
                 this.currentTimezone = str;
-                ArticleViewer$$ExternalSyntheticLambda21 articleViewer$$ExternalSyntheticLambda21 = this.whenTimezoneSelected;
-                if (articleViewer$$ExternalSyntheticLambda21 != null) {
-                    articleViewer$$ExternalSyntheticLambda21.run(str);
+                GiftSheet$$ExternalSyntheticLambda4 giftSheet$$ExternalSyntheticLambda4 = this.whenTimezoneSelected;
+                if (giftSheet$$ExternalSyntheticLambda4 != null) {
+                    giftSheet$$ExternalSyntheticLambda4.run(str);
                 }
             }
             ((TextCheckCell) view).setChecked(this.useSystem);
@@ -204,9 +203,9 @@ public final class TimezoneSelector extends BaseFragment implements Notification
                 this.useSystem = false;
                 String str2 = tL_timezone.id;
                 this.currentTimezone = str2;
-                ArticleViewer$$ExternalSyntheticLambda21 articleViewer$$ExternalSyntheticLambda22 = this.whenTimezoneSelected;
-                if (articleViewer$$ExternalSyntheticLambda22 != null) {
-                    articleViewer$$ExternalSyntheticLambda22.run(str2);
+                GiftSheet$$ExternalSyntheticLambda4 giftSheet$$ExternalSyntheticLambda5 = this.whenTimezoneSelected;
+                if (giftSheet$$ExternalSyntheticLambda5 != null) {
+                    giftSheet$$ExternalSyntheticLambda5.run(str2);
                 }
                 if (this.searching) {
                     this.actionBar.closeSearchField(true);

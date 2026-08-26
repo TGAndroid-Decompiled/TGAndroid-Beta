@@ -17,7 +17,6 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
-import com.google.android.gms.internal.mlkit_vision_label.zzdq;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ImageLocation;
@@ -26,10 +25,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.utils.DrawableUtils;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.blur3.utils.NinePatchBuilder;
 
 public final class GiftMessageDrawable extends Drawable {
     public final AvatarDrawable avatarDrawable;
@@ -59,7 +58,7 @@ public final class GiftMessageDrawable extends Drawable {
         this.textPaint = textPaint;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.avatarReceiver = imageReceiver;
-        this.avatarDrawable = new AvatarDrawable((Theme.ResourcesProvider) null);
+        this.avatarDrawable = new AvatarDrawable();
         int iDp = AndroidUtilities.dp(10.66f);
         this.avatarSize = iDp * 2;
         this.avatarLeftPadding = AndroidUtilities.dp(4.0f);
@@ -142,7 +141,7 @@ public final class GiftMessageDrawable extends Drawable {
             drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
             drawable.draw(canvas);
             int i = (intrinsicHeight * 4) / 144;
-            this.bubble = zzdq.createNinePatch(bitmapCreateBitmap, new Rect((intrinsicWidth * 27) / 168, i, (intrinsicWidth * 5) / 168, i), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
+            this.bubble = NinePatchBuilder.createNinePatch(bitmapCreateBitmap, new Rect((intrinsicWidth * 27) / 168, i, (intrinsicWidth * 5) / 168, i), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
         }
         if (this.bubbleBorder == null) {
             Drawable drawable2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_border_24);
@@ -159,7 +158,7 @@ public final class GiftMessageDrawable extends Drawable {
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
             canvas2.drawRect(0.0f, 0.0f, f, f2, paint);
             int i2 = (intrinsicHeight2 * 4) / 144;
-            this.bubbleBorder = zzdq.createNinePatch(bitmapCreateBitmap2, new Rect((intrinsicWidth2 * 27) / 168, i2, (intrinsicWidth2 * 5) / 168, i2), (intrinsicWidth2 * 94) / 168, (intrinsicHeight2 * 71) / 144);
+            this.bubbleBorder = NinePatchBuilder.createNinePatch(bitmapCreateBitmap2, new Rect((intrinsicWidth2 * 27) / 168, i2, (intrinsicWidth2 * 5) / 168, i2), (intrinsicWidth2 * 94) / 168, (intrinsicHeight2 * 71) / 144);
         }
     }
 

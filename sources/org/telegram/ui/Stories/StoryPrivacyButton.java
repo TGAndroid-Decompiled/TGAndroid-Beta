@@ -14,7 +14,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import com.google.android.exoplayer2.audio.AacUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjd;
+import com.google.android.gms.internal.mlkit_language_id_common.zzir;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline0;
@@ -66,7 +66,6 @@ public final class StoryPrivacyButton extends View {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        char c;
         float f;
         float f2;
         float fCenterX;
@@ -80,7 +79,7 @@ public final class StoryPrivacyButton extends View {
             float scale = this.bounce.getScale(0.075f);
             canvas.save();
             canvas.scale(scale, scale, rectF.centerX(), rectF.centerY());
-            float f3 = this.crossfadeT.set(0.0f, false);
+            float f3 = this.crossfadeT.set(0.0f);
             Paint[] paintArr = this.backgroundPaint;
             if (f3 > 0.0f) {
                 paintArr[1].setAlpha(255);
@@ -95,7 +94,6 @@ public final class StoryPrivacyButton extends View {
             Drawable drawable = drawableArr[1];
             float[] fArr = this.iconSize;
             if (drawable == null || f3 <= 0.5f) {
-                c = 0;
                 f = 12.0f;
                 f2 = 0.5f;
             } else {
@@ -109,23 +107,22 @@ public final class StoryPrivacyButton extends View {
                 float fCenterY = rectF.centerY();
                 float f4 = (fArr[1] / 2.0f) * fAbs;
                 f2 = 0.5f;
-                c = 0;
                 f = 12.0f;
-                drawable2.setBounds(iM, (int) (fCenterY - f4), (int) (f4 + fCenterX2), (int) zzjd.m(fArr[1], 2.0f, fAbs, rectF.centerY()));
+                drawable2.setBounds(iM, (int) (fCenterY - f4), (int) (f4 + fCenterX2), (int) zzir.m(fArr[1], 2.0f, fAbs, rectF.centerY()));
                 drawableArr[1].draw(canvas);
             }
-            if (drawableArr[c] != null && f3 <= f2) {
+            if (drawableArr[0] != null && f3 <= f2) {
                 if (this.drawArrow) {
                     fCenterX = AndroidUtilities.dpf2(14.66f) + rectF.left;
                 } else {
                     fCenterX = rectF.centerX();
                 }
-                Drawable drawable3 = drawableArr[c];
-                int iM2 = (int) TextureRenderer$$ExternalSyntheticOutline0.m(fArr[c], 2.0f, fAbs, fCenterX);
+                Drawable drawable3 = drawableArr[0];
+                int iM2 = (int) TextureRenderer$$ExternalSyntheticOutline0.m(fArr[0], 2.0f, fAbs, fCenterX);
                 float fCenterY2 = rectF.centerY();
-                float f5 = (fArr[c] / 2.0f) * fAbs;
-                drawable3.setBounds(iM2, (int) (fCenterY2 - f5), (int) (f5 + fCenterX), (int) zzjd.m(fArr[c], 2.0f, fAbs, rectF.centerY()));
-                drawableArr[c].draw(canvas);
+                float f5 = (fArr[0] / 2.0f) * fAbs;
+                drawable3.setBounds(iM2, (int) (fCenterY2 - f5), (int) (f5 + fCenterX), (int) zzir.m(fArr[0], 2.0f, fAbs, rectF.centerY()));
+                drawableArr[0].draw(canvas);
             }
             if (this.drawArrow) {
                 Path path = this.arrowPath;

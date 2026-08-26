@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.util.SparseArray;
 import android.util.SparseIntArray;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector$DefaultMediaMetadataProvider$$ExternalSyntheticOutline0;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.RandomAccessFile;
@@ -16,7 +16,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity$$ExternalSyntheticLambda37;
+import org.telegram.ui.Stars.StarGiftSheet$$ExternalSyntheticLambda199;
 
 public class FileUploadOperation {
     private static final int initialRequestsCount = 8;
@@ -704,7 +704,7 @@ public class FileUploadOperation {
                     sb2.append(" isBig=");
                     sb2.append(this.isBigFile);
                     sb2.append(" file_id=");
-                    zzjj.m(sb2, this.currentFileId);
+                    zzjg.m(sb2, this.currentFileId);
                 }
                 this.requestTokens.put(i19, iArr[0]);
                 AndroidUtilities.runOnUIThread(new FileUploadOperation$$ExternalSyntheticLambda3(this, iArr, 1));
@@ -743,7 +743,7 @@ public class FileUploadOperation {
     }
 
     public void checkNewDataAvailable(long j, long j2, Float f) {
-        Utilities.stageQueue.postRunnable(new LaunchActivity$$ExternalSyntheticLambda37(this, f, j2, j));
+        Utilities.stageQueue.postRunnable(new StarGiftSheet$$ExternalSyntheticLambda199(this, f, j2, j, 3));
     }
 
     public long getTotalFileSize() {
@@ -754,7 +754,7 @@ public class FileUploadOperation {
         if (this.state != 1) {
             return;
         }
-        Utilities.stageQueue.postRunnable(new FileLoader$$ExternalSyntheticLambda1(2, this, z));
+        Utilities.stageQueue.postRunnable(new FileLoader$$ExternalSyntheticLambda1(this, z, 2));
         AndroidUtilities.runOnUIThread(new FileUploadOperation$$ExternalSyntheticLambda1(this, 3));
     }
 

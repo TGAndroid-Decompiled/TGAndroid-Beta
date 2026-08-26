@@ -8,8 +8,8 @@ import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AndroidUtilities$$ExternalSyntheticOutline1;
-import org.telegram.ui.ChatActivity$$ExternalSyntheticLambda17;
 import org.telegram.ui.Components.Size;
+import org.telegram.ui.iv.RichTextCell$2$$ExternalSyntheticLambda1;
 
 public final class ShapeInput {
     public final ArrayList allPoints;
@@ -334,7 +334,7 @@ public final class ShapeInput {
         if (shape2 == null) {
             painting.getClass();
         } else if (painting.shaders != null) {
-            painting.renderView.performInContext(new ChatActivity$$ExternalSyntheticLambda17(painting, shape2, currentColor, 25));
+            painting.renderView.performInContext(new RichTextCell$2$$ExternalSyntheticLambda1(painting, shape2, currentColor, 8));
         }
         this.allPoints.clear();
         this.movingPoints.clear();

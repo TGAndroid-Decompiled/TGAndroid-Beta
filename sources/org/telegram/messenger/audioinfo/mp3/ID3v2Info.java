@@ -56,12 +56,12 @@ public final class ID3v2Info extends AudioInfo {
                     } else {
                         iD3v2FrameBody.readZeroTerminatedString(20, ID3v2Encoding.ISO_8859_1);
                     }
-                    Stripe stripe = iD3v2FrameBody.data;
-                    byte b = stripe.readByte();
+                    Stripe.AnonymousClass1 anonymousClass1 = iD3v2FrameBody.data;
+                    byte b = anonymousClass1.readByte();
                     iD3v2FrameBody.readZeroTerminatedString(200, encoding2);
                     int remainingLength = (int) rangeInputStream.getRemainingLength();
                     byte[] bArr = new byte[remainingLength];
-                    stripe.readFully(remainingLength, bArr);
+                    anonymousClass1.readFully(remainingLength, bArr);
                     if (this.cover == null || b == 3 || b == 0) {
                         try {
                             BitmapFactory.Options options = new BitmapFactory.Options();

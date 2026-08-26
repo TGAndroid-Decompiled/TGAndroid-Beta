@@ -3,18 +3,17 @@ package org.telegram.ui.Components.voip;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.util.Property;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LiteMode;
+import org.telegram.ui.Cells.BotButton$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
-import org.telegram.ui.PhotoViewer$73$$ExternalSyntheticLambda0;
 
 public final class ImageWithWavesView extends FrameLayout {
     public final boolean allowAnimations;
@@ -48,15 +47,13 @@ public final class ImageWithWavesView extends FrameLayout {
             voipBlobDrawable2.maxRadius = i2 - i3;
             voipBlobDrawable.generateBlob();
             voipBlobDrawable2.generateBlob();
-            Paint paint = voipBlobDrawable.paint;
-            paint.setColor(-1);
-            paint.setAlpha(20);
-            Paint paint2 = voipBlobDrawable2.paint;
-            paint2.setColor(-1);
-            paint2.setAlpha(36);
+            voipBlobDrawable.paint.setColor(-1);
+            voipBlobDrawable.paint.setAlpha(20);
+            voipBlobDrawable2.paint.setColor(-1);
+            voipBlobDrawable2.paint.setAlpha(36);
         }
 
-        public final void draw(Canvas canvas, float f, float f2, View view) {
+        public final void draw(Canvas canvas, View view, float f, float f2) {
             float f3 = (this.amplitude * 0.4f) + 0.8f;
             if (this.showWaves || this.wavesEnter != 0.0f) {
                 canvas.save();
@@ -66,13 +63,12 @@ public final class ImageWithWavesView extends FrameLayout {
                 float f5 = this.muteToStaticProgress;
                 VoipBlobDrawable voipBlobDrawable = this.blobDrawable;
                 voipBlobDrawable.update$1(f4, f5);
-                Paint paint = voipBlobDrawable.paint;
-                voipBlobDrawable.draw(f, f2, canvas, paint);
+                voipBlobDrawable.draw(f, f2, canvas, voipBlobDrawable.paint);
                 float f6 = this.amplitude;
                 float f7 = this.muteToStaticProgress;
                 VoipBlobDrawable voipBlobDrawable2 = this.blobDrawable2;
                 voipBlobDrawable2.update$1(f6, f7);
-                voipBlobDrawable2.draw(f, f2, canvas, paint);
+                voipBlobDrawable2.draw(f, f2, canvas, voipBlobDrawable.paint);
                 canvas.restore();
             }
             if (this.muteToStatic && this.muteToStaticInvalidationCount == 0) {
@@ -144,8 +140,8 @@ public final class ImageWithWavesView extends FrameLayout {
         }
     }
 
-    public ImageWithWavesView(Activity activity) {
-        super(activity);
+    public ImageWithWavesView(Context context) {
+        super(context);
         AvatarWavesDrawable avatarWavesDrawable = new AvatarWavesDrawable(AndroidUtilities.dp(104.0f), AndroidUtilities.dp(111.0f), AndroidUtilities.dp(12.0f), 8);
         this.avatarWavesDrawable = avatarWavesDrawable;
         avatarWavesDrawable.setAmplitude(3.0d);
@@ -153,7 +149,7 @@ public final class ImageWithWavesView extends FrameLayout {
             invalidate();
         }
         avatarWavesDrawable.showWaves = true;
-        BackupImageView backupImageView = new BackupImageView(activity);
+        BackupImageView backupImageView = new BackupImageView(context);
         this.backupImageView = backupImageView;
         addView(backupImageView, LayoutHelper.createFrame(135, 135, 17));
         setWillNotDraw(false);
@@ -192,7 +188,7 @@ public final class ImageWithWavesView extends FrameLayout {
         if (this.allowAnimations) {
             AvatarWavesDrawable avatarWavesDrawable = this.avatarWavesDrawable;
             avatarWavesDrawable.update();
-            avatarWavesDrawable.draw(canvas, getWidth() / 2, getHeight() / 2, this);
+            avatarWavesDrawable.draw(canvas, this, getWidth() / 2, getHeight() / 2);
         }
         super.onDraw(canvas);
     }
@@ -230,7 +226,7 @@ public final class ImageWithWavesView extends FrameLayout {
                     avatarWavesDrawable.muteToStaticInvalidationCount = 0;
                     avatarWavesDrawable.animator = ValueAnimator.ofFloat(avatarWavesDrawable.muteToStaticProgress, 1.0f);
                 }
-                avatarWavesDrawable.animator.addUpdateListener(new PhotoViewer$73$$ExternalSyntheticLambda0(avatarWavesDrawable, 5));
+                avatarWavesDrawable.animator.addUpdateListener(new BotButton$$ExternalSyntheticLambda0(avatarWavesDrawable, 20));
                 if (z2) {
                     avatarWavesDrawable.animator.setDuration(150L);
                 } else {

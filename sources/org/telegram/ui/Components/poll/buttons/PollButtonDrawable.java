@@ -1,20 +1,16 @@
 package org.telegram.ui.Components.poll.buttons;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import androidx.core.graphics.ColorUtils;
-import com.google.common.base.Splitter;
 import java.util.ArrayList;
 import me.vkryl.android.animator.BoolAnimator;
-import me.vkryl.android.animator.ListAnimator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.DocumentObject;
@@ -25,7 +21,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
-import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline2;
+import org.telegram.messenger.RichMessageLayout$$ExternalSyntheticOutline1;
 import org.telegram.messenger.WebFile;
 import org.telegram.messenger.utils.DrawableUtils;
 import org.telegram.tgnet.TLRPC;
@@ -34,6 +30,7 @@ import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarsListDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.PorterDuffColorFilterState;
 import org.telegram.ui.Components.RadialProgress2;
 
 public final class PollButtonDrawable extends Drawable implements DownloadController.FileDownloadProgressListener {
@@ -58,19 +55,19 @@ public final class PollButtonDrawable extends Drawable implements DownloadContro
     public final AnimatedTextView.AnimatedTextDrawable votersCountDrawable;
     public final Paint webPageBgPaint;
     public Drawable webPageDrawable;
-    public final Splitter webPageLinkColorFilter;
+    public final PorterDuffColorFilterState webPageLinkColorFilter;
 
     public PollButtonDrawable(int i, ChatMessageCell chatMessageCell) {
         Paint paint = new Paint(1);
         this.darkenPaint = paint;
         this.webPageBgPaint = new Paint(1);
-        this.webPageLinkColorFilter = new Splitter((char) 0, 21);
+        this.webPageLinkColorFilter = new PorterDuffColorFilterState();
         this.currentAccount = i;
         this.parent = chatMessageCell;
-        this.animatorShowVoters = new BoolAnimator(380L, chatMessageCell, CubicBezierInterpolator.EASE_OUT_QUINT);
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, false, false, false);
+        this.animatorShowVoters = new BoolAnimator(chatMessageCell, CubicBezierInterpolator.EASE_OUT_QUINT, 380L);
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
         this.votersCountDrawable = animatedTextDrawable;
-        animatedTextDrawable.gravity = 21;
+        animatedTextDrawable.setGravity(21);
         animatedTextDrawable.setTextSize(AndroidUtilities.dp(11.0f));
         animatedTextDrawable.setCallback(chatMessageCell);
         this.lastVotersDrawable = new AvatarsListDrawable(i, chatMessageCell, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(8.33f), AndroidUtilities.dpf2(1.0f));
@@ -78,107 +75,16 @@ public final class PollButtonDrawable extends Drawable implements DownloadContro
         this.imageReceiver = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(5.0f));
         paint.setColor(1073741824);
-        RadialProgress2 radialProgress2 = new RadialProgress2(null, chatMessageCell);
+        RadialProgress2 radialProgress2 = new RadialProgress2(chatMessageCell);
         this.radialProgress = radialProgress2;
         radialProgress2.setCircleRadius(AndroidUtilities.dp(18.0f));
-        radialProgress2.progressColor = -1;
+        radialProgress2.setProgressColor(-1);
         this.TAG = DownloadController.getInstance(i).generateObserverTag();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        draw$1(canvas);
-    }
-
-    public final void draw$1(Canvas canvas) {
-        int color;
-        Rect bounds = getBounds();
-        int iDp = AndroidUtilities.dp(this.hasMediaPadding ? 56.33f : 19.0f);
-        if (this.animatorShowVoters.floatValue > 0.0f) {
-            ListAnimator.Metadata metadata = this.lastVotersDrawable.animator.metadata;
-            float f = metadata.totalVisibility.now;
-            int i = (int) metadata.totalWidth.now;
-            int iLerp = (bounds.right - iDp) - AndroidUtilities.lerp(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f) + i, f);
-            if (f > 0.0f) {
-                AvatarsListDrawable avatarsListDrawable = this.lastVotersDrawable;
-                avatarsListDrawable.alpha = (int) (this.animatorShowVoters.floatValue * 255.0f);
-                avatarsListDrawable.setBounds((bounds.right - iDp) - i, bounds.bottom - AndroidUtilities.dp(31.33f), bounds.right - iDp, bounds.bottom);
-                this.lastVotersDrawable.draw$1(canvas);
-            }
-            int iDp2 = bounds.bottom - AndroidUtilities.dp(21.33f);
-            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.votersCountDrawable;
-            animatedTextDrawable.alpha = (int) (this.animatorShowVoters.floatValue * 255.0f);
-            animatedTextDrawable.setBounds(bounds.left, AndroidUtilities.dp(15.0f) + iDp2, iLerp, iDp2 - AndroidUtilities.dp(15.0f));
-            this.votersCountDrawable.draw(canvas);
-        }
-        if (this.hasMedia) {
-            int iDp3 = AndroidUtilities.dp(36.0f);
-            Rect rect = AndroidUtilities.rectTmp2;
-            rect.set(RichMessageLayout$$ExternalSyntheticOutline2.m(bounds.right, 9.0f, iDp3), RichMessageLayout$$ExternalSyntheticOutline2.m(bounds.bottom, 4.0f, iDp3), bounds.right - AndroidUtilities.dp(9.0f), bounds.bottom - AndroidUtilities.dp(4.0f));
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(rect);
-            this.radialProgress.progressRect.set(rectF.left, rectF.top, rectF.right, rectF.bottom);
-            this.imageReceiver.setImageCoords(rect);
-            if (!this.isWebPage || this.isWebPageWithPreview) {
-                this.imageReceiver.draw(canvas);
-            }
-            if (this.isVideo || this.isWebPage) {
-                if (!this.isWebPage || this.isWebPageWithPreview) {
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.darkenPaint);
-                } else {
-                    this.webPageBgPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(null, this.messageObject.isOutOwner() ? Theme.key_chat_messageTextOut : Theme.key_chat_messageTextIn, false), 16));
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.webPageBgPaint);
-                }
-            }
-            if (this.isWebPage) {
-                if (this.webPageDrawable == null) {
-                    this.webPageDrawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
-                }
-                Drawable drawable = this.webPageDrawable;
-                Splitter splitter = this.webPageLinkColorFilter;
-                if (this.isWebPageWithPreview) {
-                    color = -1;
-                } else {
-                    color = Theme.getColor(null, this.messageObject.isOutOwner() ? Theme.key_chat_outTimeText : Theme.key_chat_inTimeText, false);
-                }
-                PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-                splitter.getClass();
-                if (((PorterDuffColorFilter) splitter.trimmer) == null || splitter.limit != color || ((PorterDuff.Mode) splitter.strategy) != mode) {
-                    splitter.trimmer = new PorterDuffColorFilter(color, mode);
-                    splitter.limit = color;
-                    splitter.strategy = mode;
-                }
-                drawable.setColorFilter((PorterDuffColorFilter) splitter.trimmer);
-                Drawable drawable2 = this.webPageDrawable;
-                float fCenterX = rectF.centerX();
-                float fCenterY = rectF.centerY();
-                int iDp4 = AndroidUtilities.dp(24.0f);
-                int iDp5 = AndroidUtilities.dp(24.0f);
-                if (drawable2 != null) {
-                    Rect rect2 = DrawableUtils.tmpRect;
-                    DrawableUtils.setBounds(rect2, fCenterX, fCenterY, iDp4, iDp5, 17);
-                    drawable2.setBounds(rect2);
-                } else {
-                    Rect rect3 = DrawableUtils.tmpRect;
-                }
-                this.webPageDrawable.draw(canvas);
-            }
-            if (!this.messageObject.isSending() && !this.messageObject.isEditing()) {
-                if (TextUtils.isEmpty(this.attachFileName) || !FileLoader.getInstance(this.currentAccount).isLoadingFile(this.attachFileName)) {
-                    int i2 = this.isVideo ? 0 : 4;
-                    if (this.lastIcon != i2) {
-                        this.lastIcon = i2;
-                        this.radialProgress.setIcon(i2, true, true);
-                    }
-                } else if (this.lastIcon != 3) {
-                    this.lastIcon = 3;
-                    this.radialProgress.setIcon(3, true, true);
-                }
-            }
-            if (this.needDrawProgress) {
-                this.radialProgress.draw(canvas);
-            }
-        }
+        draw(canvas, null);
     }
 
     @Override
@@ -193,16 +99,16 @@ public final class PollButtonDrawable extends Drawable implements DownloadContro
 
     public final float getVotersCountAnimatedWidth(float f) {
         AvatarsListDrawable avatarsListDrawable = this.lastVotersDrawable;
-        float currentWidth = this.votersCountDrawable.getCurrentWidth() + avatarsListDrawable.animator.metadata.totalWidth.now;
-        float fDp = avatarsListDrawable.animator.metadata.totalVisibility.now * AndroidUtilities.dp(4.0f);
+        float currentWidth = this.votersCountDrawable.getCurrentWidth() + avatarsListDrawable.getAnimatedWidth();
+        float totalVisibility = avatarsListDrawable.getTotalVisibility() * AndroidUtilities.dp(4.0f);
         float f2 = this.animatorShowVoters.floatValue;
-        return (f * f2) + (fDp * f2) + currentWidth;
+        return (f * f2) + (totalVisibility * f2) + currentWidth;
     }
 
     public final float getVotersCountTargetWidth() {
-        float f = this.votersCountDrawable.currentWidth;
+        float animateToWidth = this.votersCountDrawable.getAnimateToWidth();
         int i = this.recentVotersCount;
-        return f + (i > 0 ? AndroidUtilities.dp((i * 9.34f) + 8.66f) : 0);
+        return animateToWidth + (i > 0 ? AndroidUtilities.dp((i * 9.34f) + 8.66f) : 0);
     }
 
     @Override
@@ -374,12 +280,91 @@ public final class PollButtonDrawable extends Drawable implements DownloadContro
     }
 
     public final void setVotersCount(int i, boolean z) {
-        this.votersCountDrawable.setText(i > 0 ? LocaleController.formatShortNumber(i, null) : null, z, true);
+        this.votersCountDrawable.setText(i > 0 ? LocaleController.formatShortNumber(i, null) : null, z);
     }
 
     public final void setVotersCountTextColor(int i) {
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.votersCountDrawable;
-        animatedTextDrawable.textPaint.setColor(i);
-        animatedTextDrawable.alpha = Color.alpha(i);
+        this.votersCountDrawable.setTextColor(i);
+    }
+
+    public final void draw(Canvas canvas, Paint paint) {
+        int color;
+        Rect bounds = getBounds();
+        int iDp = AndroidUtilities.dp(this.hasMediaPadding ? 56.33f : 19.0f);
+        if (this.animatorShowVoters.floatValue > 0.0f) {
+            float totalVisibility = this.lastVotersDrawable.getTotalVisibility();
+            int animatedWidth = (int) this.lastVotersDrawable.getAnimatedWidth();
+            int iLerp = (bounds.right - iDp) - AndroidUtilities.lerp(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f) + animatedWidth, totalVisibility);
+            if (totalVisibility > 0.0f) {
+                this.lastVotersDrawable.setAlpha((int) (this.animatorShowVoters.floatValue * 255.0f));
+                this.lastVotersDrawable.setBounds((bounds.right - iDp) - animatedWidth, bounds.bottom - AndroidUtilities.dp(31.33f), bounds.right - iDp, bounds.bottom);
+                this.lastVotersDrawable.draw(canvas, paint);
+            }
+            int iDp2 = bounds.bottom - AndroidUtilities.dp(21.33f);
+            this.votersCountDrawable.setAlpha((int) (this.animatorShowVoters.floatValue * 255.0f));
+            this.votersCountDrawable.setBounds(bounds.left, AndroidUtilities.dp(15.0f) + iDp2, iLerp, iDp2 - AndroidUtilities.dp(15.0f));
+            this.votersCountDrawable.draw(canvas);
+        }
+        if (this.hasMedia) {
+            int iDp3 = AndroidUtilities.dp(36.0f);
+            Rect rect = AndroidUtilities.rectTmp2;
+            rect.set(RichMessageLayout$$ExternalSyntheticOutline1.m(9.0f, bounds.right, iDp3), RichMessageLayout$$ExternalSyntheticOutline1.m(4.0f, bounds.bottom, iDp3), bounds.right - AndroidUtilities.dp(9.0f), bounds.bottom - AndroidUtilities.dp(4.0f));
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(rect);
+            this.radialProgress.setProgressRect(rectF.left, rectF.top, rectF.right, rectF.bottom);
+            this.imageReceiver.setImageCoords(rect);
+            if (!this.isWebPage || this.isWebPageWithPreview) {
+                this.imageReceiver.draw(canvas);
+            }
+            if (this.isVideo || this.isWebPage) {
+                if (!this.isWebPage || this.isWebPageWithPreview) {
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.darkenPaint);
+                } else {
+                    this.webPageBgPaint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(null, this.messageObject.isOutOwner() ? Theme.key_chat_messageTextOut : Theme.key_chat_messageTextIn, false), 16));
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f), this.webPageBgPaint);
+                }
+            }
+            if (this.isWebPage) {
+                if (this.webPageDrawable == null) {
+                    this.webPageDrawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
+                }
+                Drawable drawable = this.webPageDrawable;
+                PorterDuffColorFilterState porterDuffColorFilterState = this.webPageLinkColorFilter;
+                if (this.isWebPageWithPreview) {
+                    color = -1;
+                } else {
+                    color = Theme.getColor(null, this.messageObject.isOutOwner() ? Theme.key_chat_outTimeText : Theme.key_chat_inTimeText, false);
+                }
+                drawable.setColorFilter(porterDuffColorFilterState.get(color, PorterDuff.Mode.SRC_IN));
+                Drawable drawable2 = this.webPageDrawable;
+                float fCenterX = rectF.centerX();
+                float fCenterY = rectF.centerY();
+                int iDp4 = AndroidUtilities.dp(24.0f);
+                int iDp5 = AndroidUtilities.dp(24.0f);
+                if (drawable2 != null) {
+                    Rect rect2 = DrawableUtils.tmpRect;
+                    DrawableUtils.setBounds(rect2, fCenterX, fCenterY, iDp4, iDp5, 17);
+                    drawable2.setBounds(rect2);
+                } else {
+                    Rect rect3 = DrawableUtils.tmpRect;
+                }
+                this.webPageDrawable.draw(canvas);
+            }
+            if (!this.messageObject.isSending() && !this.messageObject.isEditing()) {
+                if (TextUtils.isEmpty(this.attachFileName) || !FileLoader.getInstance(this.currentAccount).isLoadingFile(this.attachFileName)) {
+                    int i = this.isVideo ? 0 : 4;
+                    if (this.lastIcon != i) {
+                        this.lastIcon = i;
+                        this.radialProgress.setIcon(i, true, true);
+                    }
+                } else if (this.lastIcon != 3) {
+                    this.lastIcon = 3;
+                    this.radialProgress.setIcon(3, true, true);
+                }
+            }
+            if (this.needDrawProgress) {
+                this.radialProgress.draw(canvas);
+            }
+        }
     }
 }

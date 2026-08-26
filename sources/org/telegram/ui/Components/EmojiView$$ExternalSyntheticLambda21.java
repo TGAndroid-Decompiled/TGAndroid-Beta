@@ -1,243 +1,241 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import androidx.recyclerview.widget.DiffUtil;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.regex.Pattern;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.view.View;
+import androidx.collection.LongSparseArray;
+import androidx.core.view.OnApplyWindowInsetsListener;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.inputmethod.InputConnectionCompat$OnCommitContentListener;
+import androidx.core.view.inputmethod.InputContentInfoCompat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import me.vkryl.android.animator.ListAnimator;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
-import org.telegram.ui.Components.blur3.utils.BitmapMemoizedMetadata$Provider;
+import org.telegram.ui.Adapters.SearchAdapterHelper;
+import org.telegram.ui.Cells.PhotoAttachPhotoCell;
+import org.telegram.ui.Components.blur3.ViewGroupPartRenderer;
+import org.telegram.ui.Components.quickforward.BlurVisibilityDrawable;
+import org.telegram.ui.Stories.StoryViewer;
+import org.telegram.ui.Stories.StoryViewer$$ExternalSyntheticLambda2;
 
-public final class EmojiView$$ExternalSyntheticLambda21 implements NumberPicker.Formatter, AlertDialog.OnButtonClickListener, AlertsCreator.ScheduleDatePickerDelegate, ImageReceiver.ImageReceiverDelegate, GenericProvider, BitmapMemoizedMetadata$Provider, SimpleFloatPropertyCompat.Getter {
+public final class EmojiView$$ExternalSyntheticLambda21 implements AlertDialog.OnButtonClickListener, InputConnectionCompat$OnCommitContentListener, CameraController.VideoTakeCallback, PhotoAttachPhotoCell.ParentFastScrollDelegate, StoryViewer.PlaceProvider, ActionBarMenuItem.ActionBarMenuItemDelegate, ViewGroupPartRenderer.DrawChildMethod, Utilities.Callback5, SearchAdapterHelper.SearchAdapterHelperDelegate, ProfileGooeyView.Drawer, MessagesStorage.StringCallback, RecyclerListView.OnItemClickListenerExtended, NumberPicker.OnScrollListener, NumberPicker.OnValueChangeListener, NumberPicker.Formatter, ListAnimator.Callback, AlertsCreator.ScheduleDatePickerDelegate, OnApplyWindowInsetsListener, BlurVisibilityDrawable.DrawRunnable, RecyclerListView.OnItemLongClickListener {
     public final int $r8$classId;
+    public final Object f$0;
 
-    public EmojiView$$ExternalSyntheticLambda21(int i) {
+    public EmojiView$$ExternalSyntheticLambda21(Object obj, int i) {
         this.$r8$classId = i;
+        this.f$0 = obj;
     }
 
     @Override
-    public void didSelectDate(int i, int i2, boolean z) {
-        switch (this.$r8$classId) {
-            case 23:
-                MediaController.getInstance().stopRecording(1, z, i, false, 0L);
-                break;
-            default:
-                MediaController.getInstance().stopRecording(1, z, i, false, 0L);
-                break;
-        }
+    public boolean canApplySearchResults(int i) {
+        return true;
     }
 
     @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
-        Drawable drawable = imageReceiver.getDrawable();
-        if (drawable instanceof RLottieDrawable) {
-            RLottieDrawable rLottieDrawable = (RLottieDrawable) drawable;
-            rLottieDrawable.setCustomEndFrame(0);
-            rLottieDrawable.isRunning = false;
-            rLottieDrawable.checkChoreographer$1();
-            rLottieDrawable.setProgress(0.0f, false);
-        }
+    public void didSelectDate(boolean z, int i, int i2) {
+        AutoDeletePopupWrapper.lambda$new$4((AutoDeletePopupWrapper.Callback) this.f$0, z, i, i2);
     }
 
     @Override
-    public void didSetImageBitmap(int i, String str, Drawable drawable) {
-        ImageReceiver.ImageReceiverDelegate.CC.$default$didSetImageBitmap(this, i, str, drawable);
+    public void draw(Canvas canvas) {
+        ((ProfileGooeyView) this.f$0).lambda$draw$0(canvas);
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j) {
+        return ((EmojiView.EmojiGridView) this.f$0).drawChild(canvas, view, j);
+    }
+
+    @Override
+    public boolean findView(long j, int i, int i2, int i3, StoryViewer.TransitionViewHolder transitionViewHolder) {
+        return ((ChatAvatarContainer.AnonymousClass1.C00161) this.f$0).lambda$openStory$0(j, i, i2, i3, transitionViewHolder);
     }
 
     @Override
     public String format(int i) {
-        switch (this.$r8$classId) {
-            case 1:
-                if (i == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                Calendar calendar = Calendar.getInstance();
-                int i2 = calendar.get(1);
-                calendar.add(6, i);
-                long timeInMillis = calendar.getTimeInMillis();
-                return calendar.get(1) == i2 ? LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis) : LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis);
-            case 2:
-                return String.format("%02d", Integer.valueOf(i));
-            case 3:
-                return String.format("%02d", Integer.valueOf(i));
-            case 4:
-            case 9:
-            case 16:
-            default:
-                return DiffUtil.m(i, "");
-            case 5:
-                Calendar calendar2 = Calendar.getInstance();
-                calendar2.set(5, 1);
-                calendar2.set(2, i);
-                return calendar2.getDisplayName(2, 1, Locale.getDefault());
-            case 6:
-                if (i == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                Calendar calendar3 = Calendar.getInstance();
-                int i3 = calendar3.get(1);
-                calendar3.add(6, i);
-                long timeInMillis2 = calendar3.getTimeInMillis();
-                if (calendar3.get(1) != i3) {
-                    return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis2);
-                }
-                return LocaleController.getInstance().getFormatterWeek().format(timeInMillis2) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis2);
-            case 7:
-                return String.format("%02d", Integer.valueOf(i));
-            case 8:
-                return String.format("%02d", Integer.valueOf(i));
-            case 10:
-                boolean z = LocaleController.is24HourFormat;
-                String str = String.format("%02d", Integer.valueOf((i % 12 != 0 || z) ? i % (z ? 24 : 12) : 12));
-                return i >= 24 ? LocaleController.formatString(R.string.BusinessHoursNextDayPicker, str) : str;
-            case 11:
-                return String.format("%02d", Integer.valueOf(i));
-            case 12:
-                if (i == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                Calendar calendar4 = Calendar.getInstance();
-                int i4 = calendar4.get(1);
-                calendar4.add(6, i);
-                long timeInMillis3 = calendar4.getTimeInMillis();
-                if (calendar4.get(1) != i4) {
-                    return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis3);
-                }
-                return LocaleController.getInstance().getFormatterWeek().format(timeInMillis3) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis3);
-            case 13:
-                return String.format("%02d", Integer.valueOf(i));
-            case 14:
-                return String.format("%02d", Integer.valueOf(i));
-            case 15:
-                if (i == 0) {
-                    return LocaleController.getString(R.string.ShortMessageLifetimeForever);
-                }
-                if (i >= 1 && i < 16) {
-                    return LocaleController.formatTTLString(i);
-                }
-                if (i == 16) {
-                    return LocaleController.formatTTLString(30);
-                }
-                if (i == 17) {
-                    return LocaleController.formatTTLString(60);
-                }
-                if (i == 18) {
-                    return LocaleController.formatTTLString(3600);
-                }
-                if (i == 19) {
-                    return LocaleController.formatTTLString(86400);
-                }
-                return i == 20 ? LocaleController.formatTTLString(604800) : "";
-            case 17:
-                return DiffUtil.m(i, "");
-            case 18:
-                switch (i) {
-                    case 0:
-                        return LocaleController.getString(R.string.January);
-                    case 1:
-                        return LocaleController.getString(R.string.February);
-                    case 2:
-                        return LocaleController.getString(R.string.March);
-                    case 3:
-                        return LocaleController.getString(R.string.April);
-                    case 4:
-                        return LocaleController.getString(R.string.May);
-                    case 5:
-                        return LocaleController.getString(R.string.June);
-                    case 6:
-                        return LocaleController.getString(R.string.July);
-                    case 7:
-                        return LocaleController.getString(R.string.August);
-                    case 8:
-                        return LocaleController.getString(R.string.September);
-                    case 9:
-                        return LocaleController.getString(R.string.October);
-                    case 10:
-                        return LocaleController.getString(R.string.November);
-                    default:
-                        return LocaleController.getString(R.string.December);
-                }
-            case 19:
-                return DiffUtil.m(i, "");
-            case 20:
-                switch (i) {
-                    case 0:
-                        return LocaleController.getString(R.string.January);
-                    case 1:
-                        return LocaleController.getString(R.string.February);
-                    case 2:
-                        return LocaleController.getString(R.string.March);
-                    case 3:
-                        return LocaleController.getString(R.string.April);
-                    case 4:
-                        return LocaleController.getString(R.string.May);
-                    case 5:
-                        return LocaleController.getString(R.string.June);
-                    case 6:
-                        return LocaleController.getString(R.string.July);
-                    case 7:
-                        return LocaleController.getString(R.string.August);
-                    case 8:
-                        return LocaleController.getString(R.string.September);
-                    case 9:
-                        return LocaleController.getString(R.string.October);
-                    case 10:
-                        return LocaleController.getString(R.string.November);
-                    default:
-                        return LocaleController.getString(R.string.December);
-                }
-            case 21:
-                return String.format("%02d", Integer.valueOf(i));
-        }
+        return AlertsCreator.lambda$createCustomPicker$263((String[]) this.f$0, i);
     }
 
     @Override
-    public float get(Object obj) {
-        return ((OutlineTextContainerView) obj).selectionProgress;
+    public LongSparseArray getExcludeCallParticipants() {
+        return null;
     }
 
     @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
+    public LongSparseArray getExcludeUsers() {
+        return null;
+    }
+
+    @Override
+    public boolean hasChanges(ListAnimator listAnimator) {
+        return false;
+    }
+
+    @Override
+    public boolean hasDoubleTap(View view, int i) {
+        return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
+    }
+
+    public boolean isInFastScroll() {
+        return ((ChatAttachAlertPhotoLayout.PhotoAttachAdapter) this.f$0).isInFastScroll();
+    }
+
+    @Override
+    public void loadNext(boolean z) {
+    }
+
+    @Override
+    public boolean onApplyMetadataAnimation(ListAnimator listAnimator, float f) {
+        return false;
+    }
+
+    @Override
+    public WindowInsetsCompat onApplyWindowInsets(View view, WindowInsetsCompat windowInsetsCompat) {
+        return ((Bulletin.BulletinWindow) this.f$0).lambda$new$0(view, windowInsetsCompat);
     }
 
     @Override
     public void onClick(AlertDialog alertDialog, int i) {
         switch (this.$r8$classId) {
-            case 4:
-                alertDialog.dismiss();
+            case 1:
+                ((ChatActivityEnterView.AnonymousClass79) this.f$0).lambda$onClearEmojiRecent$4(alertDialog, i);
                 break;
-            case 9:
-                alertDialog.dismiss();
+            case 5:
+                ((ChatAttachAlertPollLayout.AnonymousClass10) this.f$0).lambda$onClearEmojiRecent$0(alertDialog, i);
+                break;
+            case 7:
+                ((EditTextEmoji.AnonymousClass7) this.f$0).lambda$onClearEmojiRecent$0(alertDialog, i);
+                break;
+            case 10:
+                ((EmojiView.StickersGridAdapter) this.f$0).lambda$onCreateViewHolder$0(alertDialog, i);
                 break;
             case 16:
-                Pattern pattern = AlertsCreator.URL_PATTERN;
+                ((AIEditorAlert.CreateAiStyleAlert) this.f$0).lambda$new$4(alertDialog, i);
+                break;
+            case 21:
+                ((AlertsCreator$$ExternalSyntheticLambda254) this.f$0).run();
+                break;
+            case 22:
+                ((ShareAlert$$ExternalSyntheticLambda1) this.f$0).run();
+                break;
+            case 27:
+                ChatActivityEnterView.ControlsView.lambda$onTouchEvent$6((FilterGLThread$$ExternalSyntheticLambda7) this.f$0, alertDialog, i);
                 break;
             default:
-                alertDialog.dismiss();
+                ((ChatAttachAlertPollLayout) this.f$0).lambda$checkDiscard$9(alertDialog, i);
                 break;
         }
     }
 
     @Override
-    public Object provide(Object obj) {
+    public boolean onCommitContent(InputContentInfoCompat inputContentInfoCompat, int i, Bundle bundle) {
+        return ((ChatActivityEnterView.ChatActivityEditTextCaption) this.f$0).lambda$onCreateInputConnection$1(inputContentInfoCompat, i, bundle);
+    }
+
+    @Override
+    public void onDataSetChanged(int i) {
+        ((InviteMembersBottomSheet.SearchAdapter) this.f$0).lambda$new$0(i);
+    }
+
+    @Override
+    public void onDoubleTap(View view, int i, float f, float f2) {
+        RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
+    }
+
+    @Override
+    public void onFinishMetadataAnimation(ListAnimator listAnimator, boolean z) {
+    }
+
+    @Override
+    public void onFinishVideoRecording(String str, long j) {
+        ((ChatAttachAlertPhotoLayout.AnonymousClass10) this.f$0).lambda$shutterLongPressed$1(str, j);
+    }
+
+    @Override
+    public void onForceApplyChanges(ListAnimator listAnimator) {
+    }
+
+    @Override
+    public void onItemClick(int i) {
+        EmojiPacksAlert.access$6500((EmojiPacksAlert) this.f$0, i);
+    }
+
+    @Override
+    public void onItemsChanged(ListAnimator listAnimator) {
+        ((AnimatedLinearLayout) this.f$0).lambda$new$0(listAnimator);
+    }
+
+    @Override
+    public void onPrepareMetadataAnimation(ListAnimator listAnimator) {
+    }
+
+    @Override
+    public void onScrollStateChange(NumberPicker numberPicker, int i) {
+        AlertsCreator.lambda$createBirthdayPickerDialog$145((AlertsCreator$$ExternalSyntheticLambda127) this.f$0, numberPicker, i);
+    }
+
+    @Override
+    public void onSetHashtags(ArrayList arrayList, HashMap map) {
+    }
+
+    @Override
+    public void onValueChange(NumberPicker numberPicker, int i, int i2) {
+        AlertsCreator.lambda$createAutoDeleteDatePickerDialog$179((AnimatedTextView) this.f$0, numberPicker, i, i2);
+    }
+
+    @Override
+    public void preLayout(long j, int i, Runnable runnable) {
+        ((StoryViewer$$ExternalSyntheticLambda2) runnable).run();
+    }
+
+    @Override
+    public void mo1122run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         switch (this.$r8$classId) {
-            case 0:
-                int i = EmojiView.$r8$clinit;
-                return 0;
+            case 9:
+                int iIntValue = ((Integer) obj3).intValue();
+                float fFloatValue = ((Float) obj4).floatValue();
+                float fFloatValue2 = ((Float) obj5).floatValue();
+                ((EmojiView.EmojiSearchAdapter) this.f$0).foundPackListOnClickItem((UItem) obj, (View) obj2, iIntValue, fFloatValue, fFloatValue2);
+                break;
             default:
-                return CheckBoxBase.paint;
+                int iIntValue2 = ((Integer) obj3).intValue();
+                float fFloatValue3 = ((Float) obj4).floatValue();
+                float fFloatValue4 = ((Float) obj5).floatValue();
+                ((EmojiView.StickersSearchGridAdapter) this.f$0).foundPackListOnClickItem((UItem) obj, (View) obj2, iIntValue2, fFloatValue3, fFloatValue4);
+                break;
         }
     }
 
     @Override
-    public Object get(Bitmap bitmap) {
-        return bitmap.getConfig() == Bitmap.Config.ALPHA_8 ? bitmap : bitmap.extractAlpha();
+    public void draw(Canvas canvas, int i) {
+        ((Bulletin.Layout) this.f$0).dispatchDrawImplBlur(canvas, i);
+    }
+
+    @Override
+    public void onItemClick(View view, int i, float f, float f2) {
+        ((AdminLogFilterAlert2) this.f$0).lambda$new$0(view, i, f, f2);
+    }
+
+    @Override
+    public void run(String str) {
+        switch (this.$r8$classId) {
+            case 14:
+                ((SharedMediaLayout.AnonymousClass14) this.f$0).lambda$onTabAlbumCreateCollection$1(str);
+                break;
+            default:
+                ((SharedMediaLayout.AnonymousClass5) this.f$0).lambda$onClick$13(str);
+                break;
+        }
+    }
+
+    @Override
+    public boolean onItemClick(View view, int i) {
+        return ((ChatAttachAlertDocumentLayout) this.f$0).lambda$new$2(view, i);
     }
 }

@@ -64,7 +64,7 @@ public final class RoundView extends EntityView {
         }
         TextureView textureView = new TextureView(context);
         this.textureView = textureView;
-        addView(textureView, LayoutHelper.createFrame(-1.0f, -1));
+        addView(textureView, LayoutHelper.createFrame(-1, -1.0f));
         this.mirrorT = new AnimatedFloat(this, 0L, 500L, cubicBezierInterpolator);
         updatePosition();
         setWillNotDraw(false);

@@ -35,14 +35,13 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticApiModelOutline3;
-import org.telegram.ui.ChatActivity;
+import org.telegram.ui.Charts.StackBarChartView;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.VideoScreenPreview;
-import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 
 public abstract class CollageLayoutView2 extends FrameLayout implements ItemOptions.ScrimView {
@@ -227,8 +226,8 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                 this.boundsTransition = 0.0f;
                 ValueAnimator valueAnimatorOfFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 this.animator = valueAnimatorOfFloat;
-                valueAnimatorOfFloat.addUpdateListener(new ChatActivity.AnonymousClass133(this, 15));
-                this.animator.addListener(new PhotoViewer.AnonymousClass78.AnonymousClass1(this, 28));
+                valueAnimatorOfFloat.addUpdateListener(new StackBarChartView.AnonymousClass1(this, 5));
+                this.animator.addListener(new HintView2.AnonymousClass2(this, 3));
                 this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.animator.setDuration(360L);
                 this.animator.start();
@@ -361,7 +360,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         return true;
     }
 
-    public final void clear$2() {
+    public final void clear() {
         ArrayList arrayList = this.parts;
         int size = arrayList.size();
         int i = 0;
@@ -378,9 +377,9 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         Canvas canvasBeginRecording;
         double d;
         float[] fArr;
-        float f;
         float[] fArr2;
         ArrayList arrayList;
+        float f;
         RectF rectF;
         float f2;
         BlurringShader.BlurManager blurManager;
@@ -399,44 +398,39 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         boolean zHasLayout = hasLayout();
         AnimatedFloat animatedFloat = this.animatedRows;
         AnimatedFloat[] animatedFloatArr = this.animatedColumns;
-        if (!zHasLayout && !this.reordering && !this.reorderingTouch) {
-            float f3 = animatedFloat.value;
-            CollageLayout collageLayout = this.currentLayout;
-            if (f3 == collageLayout.h && animatedFloatArr[0].value == collageLayout.columns[0]) {
-                QRScanner.QrRegionDrawer qrRegionDrawer = this.qrDrawer;
-                if (!qrRegionDrawer.hasQrResult && qrRegionDrawer.animatedQr.value <= 0.0f) {
-                    setCameraNeedsBlur(false);
-                    if (this.renderNode == null || Build.VERSION.SDK_INT < 29 || !canvas.isHardwareAccelerated()) {
-                        return;
-                    }
-                    RenderNode renderNodeM2 = AndroidUtilities$$ExternalSyntheticApiModelOutline5.m(this.renderNode);
-                    renderNodeM2.endRecording();
-                    canvas.drawRenderNode(renderNodeM2);
-                    Object obj = this.blurRenderNode;
-                    if (obj != null) {
-                        RenderNode renderNodeM3 = AndroidUtilities$$ExternalSyntheticApiModelOutline5.m(obj);
-                        renderNodeM3.setPosition(0, 0, getWidth(), getHeight());
-                        renderNodeM3.beginRecording().drawRenderNode(renderNodeM2);
-                        renderNodeM3.endRecording();
-                        return;
-                    }
+        if (!zHasLayout && !this.reordering && !this.reorderingTouch && animatedFloat.get() == this.currentLayout.h && animatedFloatArr[0].get() == this.currentLayout.columns[0]) {
+            QRScanner.QrRegionDrawer qrRegionDrawer = this.qrDrawer;
+            if (!qrRegionDrawer.hasQrResult && qrRegionDrawer.animatedQr.get() <= 0.0f) {
+                setCameraNeedsBlur(false);
+                if (this.renderNode == null || Build.VERSION.SDK_INT < 29 || !canvas.isHardwareAccelerated()) {
                     return;
                 }
+                RenderNode renderNodeM2 = AndroidUtilities$$ExternalSyntheticApiModelOutline5.m(this.renderNode);
+                renderNodeM2.endRecording();
+                canvas.drawRenderNode(renderNodeM2);
+                Object obj = this.blurRenderNode;
+                if (obj != null) {
+                    RenderNode renderNodeM3 = AndroidUtilities$$ExternalSyntheticApiModelOutline5.m(obj);
+                    renderNodeM3.setPosition(0, 0, getWidth(), getHeight());
+                    renderNodeM3.beginRecording().drawRenderNode(renderNodeM2);
+                    renderNodeM3.endRecording();
+                    return;
+                }
+                return;
             }
         }
         if (this.preview) {
             setCameraNeedsBlur(false);
         }
         canvasBeginRecording.drawColor(-14737633);
-        float f4 = this.animatedReordering.set(this.reorderingTouch);
-        float f5 = animatedFloat.set(this.currentLayout.h, false);
+        float f3 = this.animatedReordering.set(this.reorderingTouch);
+        float f4 = animatedFloat.set(this.currentLayout.h);
         int i2 = 0;
         while (true) {
             double d2 = i2;
-            d = f5;
+            d = f4;
             double dCeil = Math.ceil(d);
             fArr = this.rights;
-            f = 0.0f;
             fArr2 = this.lefts;
             if (d2 >= dCeil) {
                 break;
@@ -446,55 +440,55 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             i2++;
         }
         for (int i3 = this.currentLayout.h; i3 < animatedFloatArr.length; i3++) {
-            animatedFloatArr[i3].set(1.0f, false);
+            animatedFloatArr[i3].set(1.0f);
         }
-        float fMax = 0.0f;
         int i4 = 0;
+        float fMax = 0.0f;
         boolean z = false;
         while (true) {
             arrayList = this.parts;
             int size = arrayList.size();
+            f = 0.0f;
             rectF = this.rect;
             if (i4 >= size) {
                 break;
             }
             Part part2 = (Part) arrayList.get(i4);
             CollageLayout.Part part3 = part2.part;
-            float[] fArr3 = fArr;
+            float[] fArr3 = fArr2;
             int i5 = part3.y;
-            float f6 = f4;
-            float f7 = f5;
-            float f8 = animatedFloatArr[i5].set(part3.layout.columns[i5], false);
+            float f5 = f3;
+            float f6 = animatedFloatArr[i5].set(part3.layout.columns[i5]);
             boolean z2 = this.reordering;
             int i6 = part3.y;
             if (z2 || this.reorderingTouch) {
                 i = i6;
                 AndroidUtilities.lerp(part2.fromBounds, part2.bounds, part2.boundsTransition, rectF);
             } else {
-                float measuredWidth = getMeasuredWidth() / f8;
+                float measuredWidth = getMeasuredWidth() / f6;
                 int i7 = part3.x;
                 i = i6;
-                rectF.set(measuredWidth * i7, i6 * (getMeasuredHeight() / f7), (getMeasuredWidth() / f8) * (i7 + 1), (getMeasuredHeight() / f7) * (i + 1));
+                rectF.set(i7 * measuredWidth, i6 * (getMeasuredHeight() / f4), (getMeasuredWidth() / f6) * (i7 + 1), (getMeasuredHeight() / f4) * (i + 1));
             }
-            fArr2[i] = Math.min(fArr2[i], rectF.left);
-            fArr3[i] = Math.max(fArr3[i], rectF.right);
+            fArr3[i] = Math.min(fArr3[i], rectF.left);
+            fArr[i] = Math.max(fArr[i], rectF.right);
             fMax = Math.max(fMax, rectF.bottom);
-            if (f6 <= 0.0f || part2 != this.reorderingPart) {
+            if (f5 <= 0.0f || part2 != this.reorderingPart) {
                 if (this.preview && part2.videoPlayer != null) {
                     z = true;
                 }
                 drawPart(canvasBeginRecording, rectF, part2);
             }
             i4++;
-            fArr = fArr3;
-            f5 = f7;
-            f4 = f6;
-            animatedFloatArr = animatedFloatArr;
+            fArr2 = fArr3;
+            f4 = f4;
+            f3 = f5;
+            fArr = fArr;
         }
-        float[] fArr4 = fArr;
-        float f9 = f4;
-        float f10 = f5;
-        AnimatedFloat[] animatedFloatArr2 = animatedFloatArr;
+        float[] fArr4 = fArr2;
+        float f7 = f3;
+        float[] fArr5 = fArr;
+        float f8 = f4;
         int i8 = 0;
         while (true) {
             ArrayList arrayList2 = this.removingParts;
@@ -504,17 +498,17 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             Part part4 = (Part) arrayList2.get(i8);
             CollageLayout.Part part5 = part4.part;
             int i9 = part5.y;
-            AnimatedFloat animatedFloat2 = animatedFloatArr2[i9];
+            AnimatedFloat animatedFloat2 = animatedFloatArr[i9];
             int[] iArr = this.currentLayout.columns;
             int i10 = i8;
-            float f11 = animatedFloat2.set(i9 >= iArr.length ? 1.0f : iArr[i9], false);
-            float measuredWidth2 = getMeasuredWidth() / f11;
+            float f9 = animatedFloat2.set(i9 >= iArr.length ? 1.0f : iArr[i9]);
+            float measuredWidth2 = getMeasuredWidth() / f9;
             int i11 = part5.x;
-            float measuredHeight = getMeasuredHeight() / f10;
+            float measuredHeight = getMeasuredHeight() / f8;
             int i12 = part5.y;
-            rectF.set(measuredWidth2 * i11, measuredHeight * i12, (getMeasuredWidth() / f11) * (i11 + 1), (getMeasuredHeight() / f10) * (i12 + 1));
-            fArr2[i12] = Math.min(fArr2[i12], rectF.left);
-            fArr4[i12] = Math.max(fArr4[i12], rectF.right);
+            rectF.set(measuredWidth2 * i11, measuredHeight * i12, (getMeasuredWidth() / f9) * (i11 + 1), (getMeasuredHeight() / f8) * (i12 + 1));
+            fArr4[i12] = Math.min(fArr4[i12], rectF.left);
+            fArr5[i12] = Math.max(fArr5[i12], rectF.right);
             fMax = Math.max(fMax, rectF.bottom);
             if (this.preview && part4.videoPlayer != null) {
                 z = true;
@@ -527,12 +521,12 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         } else {
             int i13 = 0;
             while (i13 < Math.ceil(d)) {
-                if (fArr2[i13] >= f) {
-                    rectF.set(0.0f, (getMeasuredHeight() / f10) * i13, fArr2[i13], (getMeasuredHeight() / f10) * (i13 + 1));
+                if (fArr4[i13] >= f) {
+                    rectF.set(0.0f, (getMeasuredHeight() / f8) * i13, fArr4[i13], (getMeasuredHeight() / f8) * (i13 + 1));
                     drawPart(canvasBeginRecording, rectF, null);
                 }
-                if (fArr4[i13] < getMeasuredWidth()) {
-                    rectF.set(fArr4[i13], (getMeasuredHeight() / f10) * i13, getMeasuredWidth(), (getMeasuredHeight() / f10) * (i13 + 1));
+                if (fArr5[i13] < getMeasuredWidth()) {
+                    rectF.set(fArr5[i13], (getMeasuredHeight() / f8) * i13, getMeasuredWidth(), (getMeasuredHeight() / f8) * (i13 + 1));
                     drawPart(canvasBeginRecording, rectF, null);
                 }
                 i13++;
@@ -546,49 +540,49 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                 f2 = 0.0f;
             }
         }
-        if (f9 > f2 && (part = this.reorderingPart) != null) {
+        if (f7 > f2 && (part = this.reorderingPart) != null) {
             CollageLayout.Part part6 = part.part;
             int i14 = part6.y;
-            float f12 = animatedFloatArr2[i14].set(this.currentLayout.columns[i14], false);
+            float f10 = animatedFloatArr[i14].set(this.currentLayout.columns[i14]);
             if (this.reorderingTouch) {
                 AndroidUtilities.lerp(part.fromBounds, part.bounds, part.boundsTransition, rectF);
             } else {
-                float measuredWidth3 = getMeasuredWidth() / f12;
+                float measuredWidth3 = getMeasuredWidth() / f10;
                 int i15 = part6.x;
-                float measuredHeight2 = getMeasuredHeight() / f10;
+                float measuredHeight2 = getMeasuredHeight() / f8;
                 int i16 = part6.y;
-                rectF.set(measuredWidth3 * i15, measuredHeight2 * i16, (getMeasuredWidth() / f12) * (i15 + 1), (getMeasuredHeight() / f10) * (i16 + 1));
+                rectF.set(measuredWidth3 * i15, measuredHeight2 * i16, (getMeasuredWidth() / f10) * (i15 + 1), (getMeasuredHeight() / f8) * (i16 + 1));
             }
             canvasBeginRecording.save();
-            canvasBeginRecording.translate(AndroidUtilities.lerp(this.ldx, this.dx, part.boundsTransition) * f9, AndroidUtilities.lerp(this.ldy, this.dy, part.boundsTransition) * f9);
+            canvasBeginRecording.translate(AndroidUtilities.lerp(this.ldx, this.dx, part.boundsTransition) * f7, AndroidUtilities.lerp(this.ldy, this.dy, part.boundsTransition) * f7);
             drawPart(canvasBeginRecording, rectF, part);
             canvasBeginRecording.restore();
         }
         for (int i17 = 0; i17 < arrayList.size(); i17++) {
             Part part7 = (Part) arrayList.get(i17);
             CollageLayout.Part part8 = part7.part;
-            float f13 = part7.highlightAnimated.set(0.0f, false);
-            if (f13 > 0.0f) {
+            float f11 = part7.highlightAnimated.set(0.0f);
+            if (f11 > 0.0f) {
                 int i18 = part8.y;
-                float f14 = animatedFloatArr2[i18].set(part8.layout.columns[i18], false);
+                float f12 = animatedFloatArr[i18].set(part8.layout.columns[i18]);
                 if (this.reordering || this.reorderingTouch) {
                     AndroidUtilities.lerp(part7.fromBounds, part7.bounds, part7.boundsTransition, rectF);
                 } else {
-                    float measuredWidth4 = getMeasuredWidth() / f14;
+                    float measuredWidth4 = getMeasuredWidth() / f12;
                     int i19 = part8.x;
-                    float measuredHeight3 = getMeasuredHeight() / f10;
+                    float measuredHeight3 = getMeasuredHeight() / f8;
                     int i20 = part8.y;
-                    rectF.set(measuredWidth4 * i19, measuredHeight3 * i20, (getMeasuredWidth() / f14) * (i19 + 1), (getMeasuredHeight() / f10) * (i20 + 1));
+                    rectF.set(measuredWidth4 * i19, measuredHeight3 * i20, (getMeasuredWidth() / f12) * (i19 + 1), (getMeasuredHeight() / f8) * (i20 + 1));
                 }
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(rectF);
                 rectF2.inset(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
                 Matrix matrix = this.gradientMatrix;
                 matrix.reset();
-                float f15 = rectF.left;
+                float f13 = rectF.left;
                 int i21 = this.gradientWidth;
                 int i22 = i21 * i21;
-                matrix.postTranslate(AndroidUtilities.lerp(((float) Math.sqrt(i22 + i22)) * (-1.4f), (float) Math.sqrt((rectF.height() * rectF.height()) + (rectF.width() * rectF.width())), 1.0f - f13) + f15, 0.0f);
+                matrix.postTranslate(AndroidUtilities.lerp(((float) Math.sqrt(i22 + i22)) * (-1.4f), (float) Math.sqrt((rectF.height() * rectF.height()) + (rectF.width() * rectF.width())), 1.0f - f11) + f13, 0.0f);
                 matrix.postRotate(-25.0f);
                 this.gradient.setLocalMatrix(matrix);
                 Paint paint = this.highlightPaint;
@@ -597,25 +591,25 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                 path.rewind();
                 CollageLayout.Part part9 = part7.part;
                 float fDp3 = (part9.x == 0 && part9.y == 0) ? AndroidUtilities.dp(8.0f) : 0.0f;
-                float[] fArr5 = this.radii;
-                fArr5[1] = fDp3;
-                fArr5[0] = fDp3;
+                float[] fArr6 = this.radii;
+                fArr6[1] = fDp3;
+                fArr6[0] = fDp3;
                 CollageLayout.Part part10 = part7.part;
                 float fDp4 = (part10.x == part10.layout.w + (-1) && part10.y == 0) ? AndroidUtilities.dp(8.0f) : 0.0f;
-                fArr5[2] = fDp4;
-                fArr5[1] = fDp4;
+                fArr6[2] = fDp4;
+                fArr6[1] = fDp4;
                 CollageLayout.Part part11 = part7.part;
                 int i23 = part11.x;
-                CollageLayout collageLayout2 = part11.layout;
-                if (i23 != collageLayout2.w - 1) {
+                CollageLayout collageLayout = part11.layout;
+                if (i23 != collageLayout.w - 1) {
                     fDp = 0.0f;
-                } else if (part11.y == collageLayout2.h - 1) {
+                } else if (part11.y == collageLayout.h - 1) {
                     fDp = AndroidUtilities.dp(8.0f);
                 } else {
                     fDp = 0.0f;
                 }
-                fArr5[4] = fDp;
-                fArr5[3] = fDp;
+                fArr6[4] = fDp;
+                fArr6[3] = fDp;
                 CollageLayout.Part part12 = part7.part;
                 if (part12.x != 0) {
                     fDp2 = 0.0f;
@@ -624,9 +618,9 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                 } else {
                     fDp2 = 0.0f;
                 }
-                fArr5[6] = fDp2;
-                fArr5[5] = fDp2;
-                path.addRoundRect(rectF2, fArr5, Path.Direction.CW);
+                fArr6[6] = fDp2;
+                fArr6[5] = fDp2;
+                path.addRoundRect(rectF2, fArr6, Path.Direction.CW);
                 canvasBeginRecording.drawPath(path, paint);
             }
         }
@@ -666,7 +660,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         float x = motionEvent.getX();
         float y = motionEvent.getY();
         AnimatedFloat animatedFloat = this.animatedRows;
-        float f = animatedFloat.value;
+        float f = animatedFloat.get();
         int i = 0;
         while (true) {
             arrayList = this.parts;
@@ -679,7 +673,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             }
             part = (Part) arrayList.get(i);
             CollageLayout.Part part2 = part.part;
-            float f2 = animatedFloatArr[part2.y].value;
+            float f2 = animatedFloatArr[part2.y].get();
             float measuredWidth = getMeasuredWidth() / f2;
             int i2 = part2.x;
             float measuredHeight = getMeasuredHeight() / f;
@@ -725,7 +719,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             } else if (this.reorderingTouch && this.reorderingPart != null) {
                 float x2 = motionEvent.getX();
                 float y2 = motionEvent.getY();
-                float f3 = animatedFloat.value;
+                float f3 = animatedFloat.get();
                 int i4 = 0;
                 while (true) {
                     if (i4 >= arrayList.size()) {
@@ -733,7 +727,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                         break;
                     }
                     CollageLayout.Part part3 = ((Part) arrayList.get(i4)).part;
-                    float f4 = animatedFloatArr[part3.y].value;
+                    float f4 = animatedFloatArr[part3.y].get();
                     float measuredWidth2 = getMeasuredWidth() / f4;
                     int i5 = part3.x;
                     float measuredHeight2 = getMeasuredHeight() / f3;
@@ -752,7 +746,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                     invalidate();
                     float f5 = this.currentLayout.h;
                     CollageLayout.Part part4 = this.reorderingPart.part;
-                    float f6 = animatedFloatArr[part4.y].value;
+                    float f6 = animatedFloatArr[part4.y].get();
                     float measuredWidth3 = getMeasuredWidth() / f6;
                     int i7 = part4.x;
                     float measuredHeight3 = getMeasuredHeight() / f5;
@@ -811,14 +805,14 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         }
         if (part == this.reorderingPart) {
             AnimatedFloat animatedFloat = this.animatedReordering;
-            if (animatedFloat.value > 0.0f) {
+            if (animatedFloat.get() > 0.0f) {
                 canvas.save();
                 Path path = this.clipPath;
                 path.rewind();
                 RectF rectF2 = AndroidUtilities.rectTmp;
                 rectF2.set(rectF);
-                rectF2.inset(AndroidUtilities.dp(10.0f) * animatedFloat.value, AndroidUtilities.dp(10.0f) * animatedFloat.value);
-                float fDp = AndroidUtilities.dp(12.0f) * animatedFloat.value;
+                rectF2.inset(animatedFloat.get() * AndroidUtilities.dp(10.0f), animatedFloat.get() * AndroidUtilities.dp(10.0f));
+                float fDp = animatedFloat.get() * AndroidUtilities.dp(12.0f);
                 path.addRoundRect(rectF2, fDp, fDp, Path.Direction.CW);
                 canvas.clipPath(path);
                 z = true;
@@ -838,16 +832,16 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                     if (cameraView == null && this.cameraThumbVisible) {
                         drawDrawable(canvas, this.cameraThumbDrawable, rectF, 0.0f);
                     } else {
-                        drawView(0.0f, canvas, rectF, cameraView);
+                        drawView(cameraView, canvas, rectF, 0.0f);
                     }
                 }
             } else {
-                drawView(0.0f, canvas, rectF, textureView);
+                drawView(textureView, canvas, rectF, 0.0f);
             }
         } else if ((part == null || !part.current) && !AndroidUtilities.makingGlobalBlurBitmap) {
             setCameraNeedsBlur(!this.preview);
             if (this.cameraViewBlurRenderNode == null || Build.VERSION.SDK_INT < 29 || !canvas.isHardwareAccelerated()) {
-                drawView(0.75f, canvas, rectF, this.cameraView);
+                drawView(this.cameraView, canvas, rectF, 0.75f);
             } else {
                 RenderNode renderNodeM = AndroidUtilities$$ExternalSyntheticApiModelOutline5.m(this.cameraViewBlurRenderNode);
                 float fMax = Math.max(rectF.width() / renderNodeM.getWidth(), rectF.height() / renderNodeM.getHeight());
@@ -861,14 +855,14 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             }
             CameraView cameraView2 = this.cameraView;
             if (cameraView2 != null && (imageView = cameraView2.blurredStubView) != null && imageView.getVisibility() == 0 && this.cameraView.blurredStubView.getAlpha() > 0.0f) {
-                drawView(0.4f, canvas, rectF, this.cameraView.blurredStubView);
+                drawView(this.cameraView.blurredStubView, canvas, rectF, 0.4f);
             }
         } else {
             CameraView cameraView3 = this.cameraView;
             if (cameraView3 == null && this.cameraThumbVisible) {
                 drawDrawable(canvas, this.cameraThumbDrawable, rectF, (part == null || !part.current) ? 0.4f : 0.0f);
             } else {
-                drawView((part == null || !part.current) ? 0.4f : 0.0f, canvas, rectF, cameraView3);
+                drawView(cameraView3, canvas, rectF, (part == null || !part.current) ? 0.4f : 0.0f);
             }
         }
         if (z) {
@@ -885,7 +879,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             float f2 = collageLayout.h;
             AnimatedFloat[] animatedFloatArr = this.animatedColumns;
             int i = part2.y;
-            float f3 = animatedFloatArr[i].set(collageLayout.columns[i], false);
+            float f3 = animatedFloatArr[i].set(collageLayout.columns[i]);
             RectF rectF = this.rect;
             float measuredWidth = getMeasuredWidth() / f3;
             int i2 = part2.x;
@@ -894,7 +888,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         }
     }
 
-    public final void drawView(float f, Canvas canvas, RectF rectF, View view) {
+    public final void drawView(View view, Canvas canvas, RectF rectF, float f) {
         QRScanner.QrRegionDrawer qrRegionDrawer;
         QRScanner.Detected detected;
         TextureView textureView;
@@ -929,9 +923,9 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             return;
         }
         float f2 = qrRegionDrawer.animatedQr.set(qrRegionDrawer.hasQrResult);
-        float f3 = qrRegionDrawer.animatedQrCX.set(qrRegionDrawer.qrResult.cx, false);
+        float f3 = qrRegionDrawer.animatedQrCX.set(qrRegionDrawer.qrResult.cx);
         float fWidth = (rectF.width() * f3) + rectF.left;
-        float f4 = qrRegionDrawer.animatedQrCY.set(qrRegionDrawer.qrResult.cy, false);
+        float f4 = qrRegionDrawer.animatedQrCY.set(qrRegionDrawer.qrResult.cy);
         float fHeight = (rectF.height() * f4) + rectF.top;
         float fLerp = AndroidUtilities.lerp(0.5f, 1.1f, f2);
         canvas.save();
@@ -957,22 +951,20 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
                 float f6 = rectF.left;
                 AnimatedFloat[] animatedFloatArr = qrRegionDrawer.animatedQPX;
                 float f7 = f3;
-                float fWidth2 = (rectF.width() * (animatedFloatArr[i2].set(pointF.x - detected2.cx, false) + f7)) + f6;
+                float fWidth2 = (rectF.width() * (animatedFloatArr[i2].set(pointF.x - detected2.cx) + f7)) + f6;
                 float f8 = rectF.top;
                 AnimatedFloat[] animatedFloatArr2 = qrRegionDrawer.animatedQPY;
-                float fHeight2 = (rectF.height() * (animatedFloatArr2[i2].set(pointF.y - qrRegionDrawer.qrResult.cy, false) + f4)) + f8;
-                float f9 = f4;
-                float fWidth3 = (rectF.width() * (animatedFloatArr[i].set(pointF2.x - qrRegionDrawer.qrResult.cx, false) + f7)) + rectF.left;
-                float fHeight3 = (rectF.height() * (animatedFloatArr2[i].set(pointF2.y - qrRegionDrawer.qrResult.cy, false) + f9)) + rectF.top;
-                float fWidth4 = (rectF.width() * (animatedFloatArr[i4].set(pointF3.x - qrRegionDrawer.qrResult.cx, false) + f7)) + rectF.left;
-                float fHeight4 = (rectF.height() * (animatedFloatArr2[i4].set(pointF3.y - qrRegionDrawer.qrResult.cy, false) + f9)) + rectF.top;
+                float fHeight2 = (rectF.height() * (animatedFloatArr2[i2].set(pointF.y - qrRegionDrawer.qrResult.cy) + f4)) + f8;
+                float fWidth3 = (rectF.width() * (animatedFloatArr[i].set(pointF2.x - qrRegionDrawer.qrResult.cx) + f7)) + rectF.left;
+                float fHeight3 = (rectF.height() * (animatedFloatArr2[i].set(pointF2.y - qrRegionDrawer.qrResult.cy) + f4)) + rectF.top;
+                float fWidth4 = (rectF.width() * (animatedFloatArr[i4].set(pointF3.x - qrRegionDrawer.qrResult.cx) + f7)) + rectF.left;
+                float fHeight4 = ((rectF.height() * (animatedFloatArr2[i4].set(pointF3.y - qrRegionDrawer.qrResult.cy) + f4)) + rectF.top) - fHeight3;
                 path.moveTo(((fWidth2 - fWidth3) * 0.18f) + fWidth3, ((fHeight2 - fHeight3) * 0.18f) + fHeight3);
                 path.lineTo(fWidth3, fHeight3);
-                path.lineTo(((fWidth4 - fWidth3) * 0.18f) + fWidth3, ((fHeight4 - fHeight3) * 0.18f) + fHeight3);
+                path.lineTo(((fWidth4 - fWidth3) * 0.18f) + fWidth3, (fHeight4 * 0.18f) + fHeight3);
                 f2 = f5;
                 i = i3;
                 f3 = f7;
-                f4 = f9;
             }
             Paint paint = qrRegionDrawer.qrPaint;
             paint.setAlpha((int) (f2 * 255.0f));
@@ -986,7 +978,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
             this.renderNode = Theme$$ExternalSyntheticApiModelOutline3.m$1();
             RenderNode renderNodeM$2 = Theme$$ExternalSyntheticApiModelOutline3.m$2();
             this.blurRenderNode = renderNodeM$2;
-            Theme$$ExternalSyntheticApiModelOutline3.m1062m((Object) renderNodeM$2);
+            Theme$$ExternalSyntheticApiModelOutline3.m1069m((Object) renderNodeM$2);
             float fDp = AndroidUtilities.dp(32.0f);
             float fDp2 = AndroidUtilities.dp(32.0f);
             Shader.TileMode unused = Shader.TileMode.DECAL;
@@ -1007,7 +999,7 @@ public abstract class CollageLayoutView2 extends FrameLayout implements ItemOpti
         float f = collageLayout.h;
         AnimatedFloat[] animatedFloatArr = this.animatedColumns;
         int i = part2.y;
-        float f2 = animatedFloatArr[i].set(collageLayout.columns[i], false);
+        float f2 = animatedFloatArr[i].set(collageLayout.columns[i]);
         float measuredWidth = getMeasuredWidth() / f2;
         int i2 = part2.x;
         rectF.set(measuredWidth * i2, (getMeasuredHeight() / f) * i, (getMeasuredWidth() / f2) * (i2 + 1), (getMeasuredHeight() / f) * (i + 1));

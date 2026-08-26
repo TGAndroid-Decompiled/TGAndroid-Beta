@@ -1,5 +1,6 @@
 package org.telegram.ui.Components.conference.message;
 
+import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -16,18 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.components.Component;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.BottomSheet;
+import org.telegram.ui.Adapters.DialogsSearchAdapter;
 import org.telegram.ui.Adapters.FiltersView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.Reactions.ReactionsEffectOverlay;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
-import org.telegram.ui.GroupCallActivity;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
 
 public final class GroupCallMessagesListView extends RecyclerView {
     public final AnonymousClass3 adapter;
@@ -42,18 +38,19 @@ public final class GroupCallMessagesListView extends RecyclerView {
     public int visibleHeight;
 
     public interface Delegate {
+        void showReaction(GroupCallMessageCell groupCallMessageCell, ReactionsLayoutInBubble.VisibleReaction visibleReaction);
     }
 
-    public GroupCallMessagesListView(LaunchActivity launchActivity) {
-        super(launchActivity);
+    public GroupCallMessagesListView(Activity activity) {
+        super(activity);
         Paint paint = new Paint(1);
         this.maskPaint = paint;
         this.clipTop = Integer.MIN_VALUE;
         this.clipBottom = Integer.MIN_VALUE;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), 0, -16777216, Shader.TileMode.CLAMP));
-        setLayoutManager(new PhotoViewer.AnonymousClass36(1, 11, 1 == true ? 1 : 0));
-        addItemDecoration(new FiltersView.AnonymousClass2(7));
+        setLayoutManager(new DialogsSearchAdapter.AnonymousClass5(1, 2, true));
+        addItemDecoration(new FiltersView.AnonymousClass2(1));
         ?? r12 = new GroupCallMessagesAdapter() {
             {
                 this.currentAccount = -1;
@@ -88,6 +85,7 @@ public final class GroupCallMessagesListView extends RecyclerView {
             public final void onAddFinished(RecyclerView.ViewHolder viewHolder) {
                 ReactionsLayoutInBubble.VisibleReaction visibleReaction;
                 Delegate delegate;
+                super.onAddFinished(viewHolder);
                 GroupCallMessagesListView groupCallMessagesListView = GroupCallMessagesListView.this;
                 AnonymousClass3 anonymousClass3 = groupCallMessagesListView.adapter;
                 int adapterPosition = viewHolder.getAdapterPosition();
@@ -100,27 +98,14 @@ public final class GroupCallMessagesListView extends RecyclerView {
                 if (!(view instanceof GroupCallMessageCell) || (delegate = groupCallMessagesListView.delegate) == null) {
                     return;
                 }
-                GroupCallMessageCell groupCallMessageCell = (GroupCallMessageCell) view;
-                GroupCallActivity groupCallActivity = GroupCallActivity.this;
-                ReactionsEffectOverlay reactionsEffectOverlay = new ReactionsEffectOverlay(groupCallActivity.getContext(), null, groupCallActivity.reactionsContainerLayout, groupCallMessageCell, null, 0.0f, 0.0f, visibleReaction, ((BottomSheet) groupCallActivity).currentAccount, 1, false);
-                ReactionsEffectOverlay.currentOverlay = reactionsEffectOverlay;
-                int i = R.id.parent_tag;
-                ReactionsEffectOverlay.AnonymousClass1 anonymousClass1 = reactionsEffectOverlay.windowView;
-                anonymousClass1.setTag(i, 1);
-                groupCallActivity.container.addView(anonymousClass1);
-                reactionsEffectOverlay.started = true;
-                reactionsEffectOverlay.startTime = System.currentTimeMillis();
+                delegate.showReaction((GroupCallMessageCell) view, visibleReaction);
             }
         };
-        defaultItemAnimator.mSupportsChangeAnimations = false;
-        defaultItemAnimator.delayAnimations = false;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        defaultItemAnimator.mAddInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mMoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mRemoveInterpolator = cubicBezierInterpolator;
-        defaultItemAnimator.mChangeInterpolator = cubicBezierInterpolator;
+        defaultItemAnimator.setSupportsChangeAnimations(false);
+        defaultItemAnimator.setDelayAnimations(false);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         defaultItemAnimator.setDurations(320L);
-        setItemAnimator(defaultItemAnimator);
+        lambda$onCellEnter$52(defaultItemAnimator);
     }
 
     private float getMinChildY() {
@@ -228,7 +213,7 @@ public final class GroupCallMessagesListView extends RecyclerView {
             return;
         }
         anonymousClass3.messages = GroupCallMessagesController.getInstance(i).getCallMessages(anonymousClass3.inputGroupCall.id);
-        anonymousClass3.mObservable.notifyChanged();
+        anonymousClass3.notifyDataSetChanged();
         GroupCallMessagesController.getInstance(anonymousClass3.currentAccount).subscribeToCallMessages(anonymousClass3.inputGroupCall.id, anonymousClass3);
     }
 
@@ -266,7 +251,7 @@ public final class GroupCallMessagesListView extends RecyclerView {
         anonymousClass3.inputGroupCall = inputGroupCall;
         if (anonymousClass3.isAttachedToRecyclerView) {
             anonymousClass3.messages = GroupCallMessagesController.getInstance(i).getCallMessages(anonymousClass3.inputGroupCall.id);
-            anonymousClass3.mObservable.notifyChanged();
+            anonymousClass3.notifyDataSetChanged();
             GroupCallMessagesController.getInstance(i).subscribeToCallMessages(anonymousClass3.inputGroupCall.id, anonymousClass3);
         }
     }

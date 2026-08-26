@@ -62,7 +62,7 @@ public final class RichDividerCell extends RichBlockCell implements Theme.Colora
         this.selectionPaint = new Paint(1);
         this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
-        updateColors$1();
+        updateColors();
     }
 
     @Override
@@ -92,21 +92,16 @@ public final class RichDividerCell extends RichBlockCell implements Theme.Colora
     @Override
     public final void onDraw(Canvas canvas) {
         TextSelectionHelper.ArticleTextSelectionHelper textSelectionHelper;
+        int childAdapterPosition;
         Canvas canvas2;
         int i = this.blockRtl ? 0 : this.blockInset;
         int measuredWidth = ((getMeasuredWidth() - (this.blockRtl ? this.blockInset : 0)) - i) / 4;
         int i2 = i + measuredWidth;
         int measuredWidth2 = (getMeasuredWidth() - (this.blockRtl ? this.blockInset : 0)) - measuredWidth;
         RichEditorListView$$ExternalSyntheticLambda36 richEditorListView$$ExternalSyntheticLambda36 = this.delegate;
-        if (richEditorListView$$ExternalSyntheticLambda36 != null && (textSelectionHelper = richEditorListView$$ExternalSyntheticLambda36.f$0.getTextSelectionHelper()) != null && textSelectionHelper.isInSelectionMode() && (getParent() instanceof RecyclerView)) {
-            ((RecyclerView) getParent()).getClass();
-            int childAdapterPosition = RecyclerView.getChildAdapterPosition(this);
-            if (childAdapterPosition >= 0 && childAdapterPosition >= textSelectionHelper.startViewPosition && childAdapterPosition <= textSelectionHelper.endViewPosition) {
-                canvas2 = canvas;
-                canvas2.drawRoundRect(i2 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + measuredWidth2, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.selectionPaint);
-            } else {
-                canvas2 = canvas;
-            }
+        if (richEditorListView$$ExternalSyntheticLambda36 != null && (textSelectionHelper = richEditorListView$$ExternalSyntheticLambda36.f$0.getTextSelectionHelper()) != null && textSelectionHelper.isInSelectionMode() && (getParent() instanceof RecyclerView) && (childAdapterPosition = ((RecyclerView) getParent()).getChildAdapterPosition(this)) >= 0 && childAdapterPosition >= textSelectionHelper.startViewPosition && childAdapterPosition <= textSelectionHelper.endViewPosition) {
+            canvas2 = canvas;
+            canvas2.drawRoundRect(i2 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + measuredWidth2, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.selectionPaint);
         } else {
             canvas2 = canvas;
         }
@@ -122,7 +117,7 @@ public final class RichDividerCell extends RichBlockCell implements Theme.Colora
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         int i = Theme.key_chat_inDivider;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         this.paint.setColor(Theme.getColor(i, resourcesProvider));

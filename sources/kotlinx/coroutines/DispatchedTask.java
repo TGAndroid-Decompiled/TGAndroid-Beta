@@ -1,5 +1,6 @@
 package kotlinx.coroutines;
 
+import com.google.android.gms.dynamite.zzn;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.CancellationException;
 import kotlin.ExceptionsKt;
@@ -14,7 +15,6 @@ import kotlinx.coroutines.internal.AtomicKt;
 import kotlinx.coroutines.internal.DispatchedContinuation;
 import kotlinx.coroutines.scheduling.Task;
 import kotlinx.coroutines.scheduling.TasksKt;
-import org.telegram.ui.CastSync;
 
 public abstract class DispatchedTask extends Task {
     public int resumeMode;
@@ -58,7 +58,7 @@ public abstract class DispatchedTask extends Task {
     public final void run() throws IllegalAccessException, InvocationTargetException {
         Job job;
         Object objCreateFailure = Unit.INSTANCE;
-        CastSync.AnonymousClass1 anonymousClass1 = this.taskContext;
+        zzn zznVar = this.taskContext;
         try {
             Continuation delegate$kotlinx_coroutines_core = getDelegate$kotlinx_coroutines_core();
             Intrinsics.checkNotNull(delegate$kotlinx_coroutines_core, "null cannot be cast to non-null type kotlinx.coroutines.internal.DispatchedContinuation<T of kotlinx.coroutines.DispatchedTask>");
@@ -99,11 +99,11 @@ public abstract class DispatchedTask extends Task {
                     AtomicKt.restoreThreadContext(context, objUpdateThreadContext);
                 }
                 try {
-                    anonymousClass1.getClass();
+                    zznVar.getClass();
                 } catch (Throwable th) {
                     objCreateFailure = ResultKt.createFailure(th);
                 }
-                handleFatalException$kotlinx_coroutines_core(null, Result.m139exceptionOrNullimpl(objCreateFailure));
+                handleFatalException$kotlinx_coroutines_core(null, Result.m144exceptionOrNullimpl(objCreateFailure));
             } catch (Throwable th2) {
                 if (undispatchedCoroutineUpdateUndispatchedCompletion == null || undispatchedCoroutineUpdateUndispatchedCompletion.clearThreadContext()) {
                     AtomicKt.restoreThreadContext(context, objUpdateThreadContext);
@@ -112,11 +112,11 @@ public abstract class DispatchedTask extends Task {
             }
         } catch (Throwable th3) {
             try {
-                anonymousClass1.getClass();
+                zznVar.getClass();
             } catch (Throwable th4) {
                 objCreateFailure = ResultKt.createFailure(th4);
             }
-            handleFatalException$kotlinx_coroutines_core(th3, Result.m139exceptionOrNullimpl(objCreateFailure));
+            handleFatalException$kotlinx_coroutines_core(th3, Result.m144exceptionOrNullimpl(objCreateFailure));
         }
     }
 

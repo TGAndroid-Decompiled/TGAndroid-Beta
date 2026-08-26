@@ -22,12 +22,7 @@ public final class PeerStoriesView$$ExternalSyntheticLambda2 implements View.OnL
                 if (peerStoriesView.disabledPaidFeatures(true)) {
                     return false;
                 }
-                ItemOptions itemOptionsMakeOptions = ItemOptions.makeOptions(peerStoriesView.storyViewer.containerView, peerStoriesView.resourcesProvider, view);
-                itemOptionsMakeOptions.add(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new PeerStoriesView$$ExternalSyntheticLambda3(peerStoriesView, 3), false);
-                itemOptionsMakeOptions.addIf(R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new PeerStoriesView$$ExternalSyntheticLambda3(peerStoriesView, 4), peerStoriesView.messageStars > 0);
-                itemOptionsMakeOptions.setGravity(5);
-                itemOptionsMakeOptions.forceTop = true;
-                itemOptionsMakeOptions.show();
+                ItemOptions.makeOptions(peerStoriesView.storyViewer.containerView, peerStoriesView.resourcesProvider, view).add(R.drawable.msg_edit, LocaleController.getString(R.string.LiveStoryMessageEditStars), new PeerStoriesView$$ExternalSyntheticLambda3(peerStoriesView, 3)).addIf(peerStoriesView.messageStars > 0, R.drawable.menu_delete_paid, LocaleController.getString(R.string.LiveStoryMessageRemoveStars), new PeerStoriesView$$ExternalSyntheticLambda3(peerStoriesView, 4)).setGravity(5).forceTop(true).show();
                 return true;
             default:
                 PeerStoriesView peerStoriesView2 = this.f$0;

@@ -14,8 +14,8 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
-import androidx.car.app.SurfaceContainer$$ExternalSyntheticOutline0;
 import androidx.core.graphics.ColorUtils;
+import androidx.fragment.app.Fragment$$ExternalSyntheticOutline0;
 import androidx.recyclerview.widget.DiffUtil;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotFullscreenButtons$$ExternalSyntheticOutline0;
@@ -198,8 +198,8 @@ public class LinkPreview extends View {
         Text text2;
         Canvas canvas2 = canvas;
         setupLayout();
-        float f6 = this.width.set(this.w, false);
-        float f7 = this.height.set(this.h, false);
+        float f6 = this.width.set(this.w);
+        float f7 = this.height.set(this.h);
         float f8 = this.previewTheme.set(this.previewType == 0);
         float f9 = this.previewProgress.set(withPreview());
         float f10 = this.density;
@@ -230,11 +230,11 @@ public class LinkPreview extends View {
             } else {
                 f2 = f13;
                 f3 = 2.0f;
-                text3.draw(f10 * 10.0f, BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, f13, (f10 * 15.0f) + this.messageText.layout.getHeight(), (text3.layout.getHeight() / 2.0f) + height), f9, -15033089, canvas2);
-                height = (((f10 * 7.0f) + this.messageText.layout.getHeight()) * f2) + height;
+                text3.draw(canvas2, f10 * 10.0f, BotFullscreenButtons$$ExternalSyntheticOutline0.m(1.0f, f13, (f10 * 15.0f) + this.messageText.getHeight(), (text3.getHeight() / 2.0f) + height), -15033089, f9);
+                height = (((f10 * 7.0f) + this.messageText.getHeight()) * f2) + height;
             }
             float f14 = height;
-            float f15 = this.previewHeightProgress.set(this.previewHeight, false);
+            float f15 = this.previewHeightProgress.set(this.previewHeight);
             Paint paint2 = this.previewPaint;
             paint2.setAlpha(25);
             RectF rectF2 = this.rect;
@@ -244,7 +244,7 @@ public class LinkPreview extends View {
             rectF2.set(f16, f14, f6 - f16, f17);
             Path path2 = this.path;
             path2.rewind();
-            float f18 = 5.0f * f10;
+            float f18 = f10 * 5.0f;
             path2.addRoundRect(rectF2, f18, f18, direction);
             canvas2.drawPath(path2, paint2);
             canvas2.save();
@@ -259,18 +259,20 @@ public class LinkPreview extends View {
                 f4 = 2.0f;
                 f5 = 2.66f;
             } else {
+                float height2 = (text2.getHeight() / f3) + f19;
+                int color = paint2.getColor();
                 f9 = f9;
                 f4 = 2.0f;
                 f5 = 2.66f;
-                text2.draw(f10 * 20.0f, (text2.layout.getHeight() / f3) + f19, f9, paint2.getColor(), canvas);
-                fM = OKLCH.m(f10, 2.66f, this.siteNameText.layout.getHeight(), f19);
+                text2.draw(canvas, f10 * 20.0f, height2, color, f9);
+                fM = OKLCH.m(f10, 2.66f, this.siteNameText.getHeight(), f19);
             }
             if (!this.hasTitle || (text = this.titleText) == null) {
                 canvas2 = canvas;
             } else {
                 canvas2 = canvas;
-                text.draw(f10 * 20.0f, (text.layout.getHeight() / f4) + fM, f9, ColorUtils.blendARGB(f8, -13421773, -1), canvas2);
-                fM = OKLCH.m(f10, f5, this.titleText.layout.getHeight(), fM);
+                text.draw(canvas2, f10 * 20.0f, (text.getHeight() / f4) + fM, ColorUtils.blendARGB(f8, -13421773, -1), f9);
+                fM = OKLCH.m(f10, f5, this.titleText.getHeight(), fM);
             }
             if (this.hasDescription && this.descriptionLayout != null) {
                 canvas2.save();
@@ -299,11 +301,11 @@ public class LinkPreview extends View {
                 imageReceiver.draw(canvas2);
                 fM += ((f10 * 2.66f) + this.photoHeight) * (1.0f - f21);
             }
-            float f28 = (5.0f * f10) + (7.0f * f10) + fM;
+            float f28 = (f10 * 5.0f) + (7.0f * f10) + fM;
             Text text4 = this.messageText;
             if (text4 != null && 1.0f - f2 > 0.0f) {
-                text4.draw(10.0f * f10, (((15.0f * f10) + this.messageText.layout.getHeight()) * f2) + (text4.layout.getHeight() / f4) + f28, f9, -15033089, canvas2);
-                this.messageText.layout.getHeight();
+                text4.draw(canvas2, f10 * 10.0f, (((15.0f * f10) + this.messageText.getHeight()) * f2) + (text4.getHeight() / f4) + f28, -15033089, f9);
+                this.messageText.getHeight();
             }
             canvas2.restore();
         } else {
@@ -311,9 +313,9 @@ public class LinkPreview extends View {
         }
         if (f9 < f) {
             float f29 = this.padding.left;
-            int iM$1 = ((int) SurfaceContainer$$ExternalSyntheticOutline0.m$1(f10, 30.0f, f7, 2.0f)) + i2;
+            int iM = ((int) Fragment$$ExternalSyntheticOutline0.m(f10, 30.0f, f7, 2.0f)) + i2;
             Drawable drawable = this.icon;
-            drawable.setBounds(((int) (f29 * f10)) + i, ((int) SvgHelper$SvgDrawable$$ExternalSyntheticOutline0.m(f10, 30.0f, f7, 2.0f)) + i2, ((int) ((f29 + 30.0f) * f10)) + i, iM$1);
+            drawable.setBounds(((int) (f29 * f10)) + i, ((int) SvgHelper$SvgDrawable$$ExternalSyntheticOutline0.m(f10, 30.0f, f7, 2.0f)) + i2, ((int) ((f29 + 30.0f) * f10)) + i, iM);
             int i3 = (int) ((f - f9) * 255.0f);
             drawable.setAlpha(i3);
             drawable.draw(canvas2);
@@ -471,15 +473,12 @@ public class LinkPreview extends View {
             paint.setColor(color1);
             this.h = (7.33f * f4) + this.h;
             this.messageAbove = this.webpage.captionAbove;
-            Text text = new Text(str, 16.0f, null);
-            text.paint.setTextSize(16.0f * f4);
             float f6 = 20.0f * f4;
-            text.maxWidth = f5 - f6;
-            text.setText(text.layout.getText());
-            this.messageText = text;
-            this.w = Math.max(this.w, Math.min(f6 + text.width, f5));
+            Text maxWidth = new Text(str, 16.0f).setTextSizePx(16.0f * f4).setMaxWidth(f5 - f6);
+            this.messageText = maxWidth;
+            this.w = Math.max(this.w, Math.min(maxWidth.getCurrentWidth() + f6, f5));
             float f7 = 7.0f * f4;
-            this.h = this.h + this.messageText.layout.getHeight() + f7;
+            this.h = this.messageText.getHeight() + this.h + f7;
             this.hasPhoto = webPage.photo != null || MessageObject.isVideoDocument(webPage.document);
             WebPagePreview webPagePreview = this.webpage;
             boolean z = webPagePreview.largePhoto;
@@ -507,9 +506,8 @@ public class LinkPreview extends View {
                     TLRPC.PhotoSize closestPhotoSizeWithSize3 = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 1, false, null, false);
                     TLRPC.PhotoSize closestPhotoSizeWithSize4 = FileLoader.getClosestPhotoSizeWithSize(webPage.document.thumbs, (int) (i4 * f4), false, closestPhotoSizeWithSize3, false);
                     if (closestPhotoSizeWithSize4 != null) {
-                        int i5 = closestPhotoSizeWithSize4.w;
+                        i2 = closestPhotoSizeWithSize4.w;
                         i = closestPhotoSizeWithSize4.h;
-                        i2 = i5;
                     } else {
                         i = 0;
                         i2 = 0;
@@ -526,15 +524,12 @@ public class LinkPreview extends View {
             if (zIsEmpty) {
                 lineCount = 0;
             } else {
-                Text text2 = new Text(webPage.site_name, 14.0f, AndroidUtilities.bold());
-                text2.paint.setTextSize(f4 * 14.0f);
                 float f8 = f4 * 40.0f;
-                text2.maxWidth = (int) Math.ceil((f5 - f8) - ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f));
-                text2.setText(text2.layout.getText());
-                this.siteNameText = text2;
-                this.w = Math.max(this.w, Math.min(f8 + text2.width + ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f), f5));
-                this.previewHeight = (f4 * 2.66f) + this.previewHeight + this.siteNameText.layout.getHeight();
-                lineCount = this.siteNameText.layout.getLineCount();
+                Text maxWidth2 = new Text(webPage.site_name, 14.0f, AndroidUtilities.bold()).setTextSizePx(f4 * 14.0f).setMaxWidth((int) Math.ceil((f5 - f8) - ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f)));
+                this.siteNameText = maxWidth2;
+                this.w = Math.max(this.w, Math.min(maxWidth2.getCurrentWidth() + f8 + ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f), f5));
+                this.previewHeight = (f4 * 2.66f) + this.siteNameText.getHeight() + this.previewHeight;
+                lineCount = this.siteNameText.getLineCount();
             }
             boolean zIsEmpty2 = TextUtils.isEmpty(webPage.title);
             this.hasTitle = !zIsEmpty2;
@@ -542,17 +537,14 @@ public class LinkPreview extends View {
                 f2 = f4;
                 f3 = 2.66f;
             } else {
-                Text text3 = new Text(webPage.title, 14.0f, AndroidUtilities.bold());
-                text3.paint.setTextSize(f4 * 14.0f);
                 float f9 = f4 * 40.0f;
                 f3 = 2.66f;
                 f2 = f4;
-                text3.maxWidth = (int) Math.ceil((f5 - f9) - ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f));
-                text3.setText(text3.layout.getText());
-                this.titleText = text3;
-                this.w = Math.max(this.w, Math.min(f9 + text3.width + ((this.hasPhoto && this.smallPhoto) ? 60.0f * f2 : 0.0f), f5));
-                this.previewHeight = (f2 * 2.66f) + this.previewHeight + this.titleText.layout.getHeight();
-                lineCount += this.titleText.layout.getLineCount();
+                Text maxWidth3 = new Text(webPage.title, 14.0f, AndroidUtilities.bold()).setTextSizePx(f4 * 14.0f).setMaxWidth((int) Math.ceil((f5 - f9) - ((this.hasPhoto && this.smallPhoto) ? f4 * 60.0f : 0.0f)));
+                this.titleText = maxWidth3;
+                this.w = Math.max(this.w, Math.min(maxWidth3.getCurrentWidth() + f9 + ((this.hasPhoto && this.smallPhoto) ? 60.0f * f2 : 0.0f), f5));
+                this.previewHeight = (f2 * 2.66f) + this.titleText.getHeight() + this.previewHeight;
+                lineCount += this.titleText.getLineCount();
             }
             boolean zIsEmpty3 = TextUtils.isEmpty(webPage.description);
             this.hasDescription = !zIsEmpty3;
@@ -560,15 +552,15 @@ public class LinkPreview extends View {
                 TextPaint textPaint = this.descriptionPaint;
                 textPaint.setTextSize(f2 * 14.0f);
                 float f10 = f2 * 40.0f;
-                int i6 = 3 - lineCount;
-                this.descriptionLayout = ChatMessageCell.generateStaticLayout(webPage.description, textPaint, (int) Math.ceil(Math.max(1.0f, f5 - f10)), (int) Math.ceil(Math.max(1.0f, f5 - ((40 + ((this.hasPhoto && this.smallPhoto) ? 60 : 0)) * f2))), i6, 4);
+                int i5 = 3 - lineCount;
+                this.descriptionLayout = ChatMessageCell.generateStaticLayout(webPage.description, textPaint, (int) Math.ceil(Math.max(1.0f, f5 - f10)), (int) Math.ceil(Math.max(1.0f, f5 - ((40 + ((this.hasPhoto && this.smallPhoto) ? 60 : 0)) * f2))), i5, 4);
                 this.descriptionLayoutWidth = 0.0f;
                 this.descriptionLayoutLeft = Float.MAX_VALUE;
-                int i7 = 0;
-                while (i7 < this.descriptionLayout.getLineCount()) {
-                    this.descriptionLayoutWidth = Math.max(this.descriptionLayoutWidth, this.descriptionLayout.getLineWidth(i7) + (this.hasPhoto && this.smallPhoto && i7 < i6 ? f2 * f : 0.0f));
-                    this.descriptionLayoutLeft = Math.min(this.descriptionLayoutLeft, this.descriptionLayout.getLineLeft(i7));
-                    i7++;
+                int i6 = 0;
+                while (i6 < this.descriptionLayout.getLineCount()) {
+                    this.descriptionLayoutWidth = Math.max(this.descriptionLayoutWidth, this.descriptionLayout.getLineWidth(i6) + (this.hasPhoto && this.smallPhoto && i6 < i5 ? f2 * f : 0.0f));
+                    this.descriptionLayoutLeft = Math.min(this.descriptionLayoutLeft, this.descriptionLayout.getLineLeft(i6));
+                    i6++;
                 }
                 this.w = Math.max(this.w, Math.min(f10 + this.descriptionLayoutWidth, f5));
                 this.previewHeight = (f2 * f3) + this.previewHeight + this.descriptionLayout.getHeight();
@@ -603,9 +595,9 @@ public class LinkPreview extends View {
             this.layout = new StaticLayout(TextUtils.ellipsize(upperCase, textPaint2, (int) Math.ceil(d), TextUtils.TruncateAt.END), textPaint2, (int) Math.ceil(d), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.layoutWidth = 0.0f;
             this.layoutLeft = Float.MAX_VALUE;
-            for (int i8 = 0; i8 < this.layout.getLineCount(); i8++) {
-                this.layoutWidth = Math.max(this.layoutWidth, this.layout.getLineWidth(i8));
-                this.layoutLeft = Math.min(this.layoutLeft, this.layout.getLineLeft(i8));
+            for (int i7 = 0; i7 < this.layout.getLineCount(); i7++) {
+                this.layoutWidth = Math.max(this.layoutWidth, this.layout.getLineWidth(i7));
+                this.layoutLeft = Math.min(this.layoutLeft, this.layout.getLineLeft(i7));
             }
             if (this.layout.getLineCount() > 2) {
                 this.textScale = 0.3f;

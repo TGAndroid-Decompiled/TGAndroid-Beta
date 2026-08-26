@@ -11,45 +11,39 @@ import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver$$ExternalSyntheticOutline1;
 
-public abstract class CloseProgressDrawable2 extends Drawable {
-    public float angle;
-    public boolean animating;
-    public int globalColorAlpha;
-    public long lastFrameTime;
-    public final Paint paint;
-    public final RectF rect;
-    public int side;
+public class CloseProgressDrawable2 extends Drawable {
+    private float angle;
+    private boolean animating;
+    private int currentColor;
+    private int globalColorAlpha;
+    private DecelerateInterpolator interpolator;
+    private long lastFrameTime;
+    private Paint paint;
+    private RectF rect;
+    private int side;
 
-    public CloseProgressDrawable2(float f) {
-        Paint paint = new Paint(1);
-        this.paint = paint;
-        new DecelerateInterpolator();
-        this.rect = new RectF();
-        this.globalColorAlpha = 255;
-        paint.setColor(-1);
-        paint.setStrokeWidth(AndroidUtilities.dp(f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStyle(Paint.Style.STROKE);
-        this.side = AndroidUtilities.dp(8.0f);
+    public CloseProgressDrawable2() {
+        this(2.0f);
+    }
+
+    private void setColor(int i) {
+        if (this.currentColor != i) {
+            this.globalColorAlpha = Color.alpha(i);
+            this.paint.setColor(ColorUtils.setAlphaComponent(i, 255));
+        }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
+    public void draw(Canvas canvas) {
         Canvas canvas2;
         float f;
         float fM;
         float fM2;
         float fM3;
         float f2;
-        Paint paint;
         float f3;
         long jCurrentTimeMillis = System.currentTimeMillis();
-        int currentColor = getCurrentColor();
-        Paint paint2 = this.paint;
-        if (currentColor != 0) {
-            this.globalColorAlpha = Color.alpha(currentColor);
-            paint2.setColor(ColorUtils.setAlphaComponent(currentColor, 255));
-        }
+        setColor(getCurrentColor());
         long j = this.lastFrameTime;
         if (j != 0) {
             long j2 = jCurrentTimeMillis - j;
@@ -72,7 +66,7 @@ public abstract class CloseProgressDrawable2 extends Drawable {
             canvas2 = canvas;
             canvas2.saveLayerAlpha(getBounds().left, getBounds().top, getBounds().right, getBounds().bottom, this.globalColorAlpha, 31);
         }
-        canvas2.translate(AndroidUtilities.dp(24.0f) / 2, AndroidUtilities.dp(24.0f) / 2);
+        canvas2.translate(getIntrinsicWidth() / 2, getIntrinsicHeight() / 2);
         canvas2.rotate(-45.0f);
         float f5 = this.angle;
         if (f5 < 0.0f || f5 >= 90.0f) {
@@ -115,20 +109,17 @@ public abstract class CloseProgressDrawable2 extends Drawable {
                 f2 = 0.0f;
             }
             if (f != 0.0f) {
-                paint = paint2;
-                canvas2.drawLine(0.0f, 0.0f, 0.0f, this.side * f, paint);
-            } else {
-                paint = paint2;
+                canvas2.drawLine(0.0f, 0.0f, 0.0f, this.side * f, this.paint);
             }
             if (fM2 != 0.0f) {
-                canvas.drawLine((-this.side) * fM2, 0.0f, 0.0f, 0.0f, paint);
+                canvas.drawLine((-this.side) * fM2, 0.0f, 0.0f, 0.0f, this.paint);
             }
             if (fM != 0.0f) {
-                canvas.drawLine(0.0f, (-this.side) * fM, 0.0f, 0.0f, paint);
+                canvas.drawLine(0.0f, (-this.side) * fM, 0.0f, 0.0f, this.paint);
             }
             if (f2 != 1.0f) {
                 float f6 = this.side;
-                canvas.drawLine(f6 * f2, 0.0f, f6, 0.0f, paint);
+                canvas.drawLine(f6 * f2, 0.0f, f6, 0.0f, this.paint);
             }
             canvas.restore();
             int iCenterX = getBounds().centerX();
@@ -136,12 +127,13 @@ public abstract class CloseProgressDrawable2 extends Drawable {
             RectF rectF = this.rect;
             int i = this.side;
             rectF.set(iCenterX - i, iCenterY - i, iCenterX + i, iCenterY + i);
+            RectF rectF2 = this.rect;
             f3 = this.angle;
             float f7 = (f3 >= 360.0f ? f3 - 360.0f : 0.0f) - 45.0f;
             if (f3 >= 360.0f) {
                 f3 = 720.0f - f3;
             }
-            canvas.drawArc(rectF, f7, f3, false, paint);
+            canvas.drawArc(rectF2, f7, f3, false, this.paint);
             this.lastFrameTime = jCurrentTimeMillis;
         }
         f = 1.0f - (f5 / 90.0f);
@@ -149,58 +141,88 @@ public abstract class CloseProgressDrawable2 extends Drawable {
         fM = 1.0f;
         f2 = 0.0f;
         if (f != 0.0f) {
-            paint = paint2;
-            canvas2.drawLine(0.0f, 0.0f, 0.0f, this.side * f, paint);
-        } else {
-            paint = paint2;
+            canvas2.drawLine(0.0f, 0.0f, 0.0f, this.side * f, this.paint);
         }
         if (fM2 != 0.0f) {
-            canvas.drawLine((-this.side) * fM2, 0.0f, 0.0f, 0.0f, paint);
+            canvas.drawLine((-this.side) * fM2, 0.0f, 0.0f, 0.0f, this.paint);
         }
         if (fM != 0.0f) {
-            canvas.drawLine(0.0f, (-this.side) * fM, 0.0f, 0.0f, paint);
+            canvas.drawLine(0.0f, (-this.side) * fM, 0.0f, 0.0f, this.paint);
         }
         if (f2 != 1.0f) {
             float f8 = this.side;
-            canvas.drawLine(f8 * f2, 0.0f, f8, 0.0f, paint);
+            canvas.drawLine(f8 * f2, 0.0f, f8, 0.0f, this.paint);
         }
         canvas.restore();
         int iCenterX2 = getBounds().centerX();
         int iCenterY2 = getBounds().centerY();
-        RectF rectF2 = this.rect;
+        RectF rectF3 = this.rect;
         int i2 = this.side;
-        rectF2.set(iCenterX2 - i2, iCenterY2 - i2, iCenterX2 + i2, iCenterY2 + i2);
+        rectF3.set(iCenterX2 - i2, iCenterY2 - i2, iCenterX2 + i2, iCenterY2 + i2);
+        RectF rectF4 = this.rect;
         f3 = this.angle;
         float f9 = (f3 >= 360.0f ? f3 - 360.0f : 0.0f) - 45.0f;
         if (f3 >= 360.0f) {
             f3 = 720.0f - f3;
         }
-        canvas.drawArc(rectF2, f9, f3, false, paint);
+        canvas.drawArc(rectF4, f9, f3, false, this.paint);
         this.lastFrameTime = jCurrentTimeMillis;
     }
 
-    public abstract int getCurrentColor();
+    public int getCurrentColor() {
+        return -1;
+    }
 
     @Override
-    public final int getIntrinsicHeight() {
+    public int getIntrinsicHeight() {
         return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public final int getIntrinsicWidth() {
+    public int getIntrinsicWidth() {
         return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public final int getOpacity() {
+    public int getOpacity() {
         return -2;
     }
 
-    @Override
-    public final void setAlpha(int i) {
+    public boolean isAnimating() {
+        return this.animating;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public void setAlpha(int i) {
+    }
+
+    @Override
+    public void setColorFilter(ColorFilter colorFilter) {
+    }
+
+    public void setSide(int i) {
+        this.side = i;
+    }
+
+    public void startAnimation() {
+        this.animating = true;
+        this.lastFrameTime = System.currentTimeMillis();
+        invalidateSelf();
+    }
+
+    public void stopAnimation() {
+        this.animating = false;
+    }
+
+    public CloseProgressDrawable2(float f) {
+        this.paint = new Paint(1);
+        this.interpolator = new DecelerateInterpolator();
+        this.rect = new RectF();
+        this.globalColorAlpha = 255;
+        this.paint.setColor(-1);
+        this.paint.setStrokeWidth(AndroidUtilities.dp(f));
+        this.paint.setStrokeCap(Paint.Cap.ROUND);
+        this.paint.setStyle(Paint.Style.STROKE);
+        this.side = AndroidUtilities.dp(8.0f);
     }
 }

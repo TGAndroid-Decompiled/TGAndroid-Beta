@@ -15,41 +15,29 @@ public abstract class AbstractVisitor {
 
     public abstract void visit(Paragraph paragraph);
 
-    public void visit$1(Emphasis emphasis) {
-        visitChildren(emphasis);
-    }
-
-    public void visit$2(Emphasis emphasis) {
-        visitChildren(emphasis);
-    }
-
-    public void visit$3(Emphasis emphasis) {
-        visitChildren(emphasis);
-    }
-
     public void visitChildren(Node node) {
-        Node node2 = (Node) node.firstChild;
+        Node node2 = node.firstChild;
         while (node2 != null) {
-            Node node3 = (Node) node2.next;
+            Node node3 = node2.next;
             node2.accept(this);
             node2 = node3;
         }
+    }
+
+    public void visit(Document document) {
+        visitChildren(document);
     }
 
     public void visit(Emphasis emphasis) {
         visitChildren(emphasis);
     }
 
-    public void visit$1(Code code) {
-        visitChildren(code);
-    }
-
     public void visit(FencedCodeBlock fencedCodeBlock) {
         visitChildren(fencedCodeBlock);
     }
 
-    public void visit$1(Link link) {
-        visitChildren(link);
+    public void visit(HardLineBreak hardLineBreak) {
+        visitChildren(hardLineBreak);
     }
 
     public void visit(Heading heading) {
@@ -60,8 +48,16 @@ public abstract class AbstractVisitor {
         visitChildren(thematicBreak);
     }
 
+    public void visit(HtmlInline htmlInline) {
+        visitChildren(htmlInline);
+    }
+
     public void visit(HtmlBlock htmlBlock) {
         visitChildren(htmlBlock);
+    }
+
+    public void visit(Image image) {
+        visitChildren(image);
     }
 
     public void visit(IndentedCodeBlock indentedCodeBlock) {
@@ -76,8 +72,20 @@ public abstract class AbstractVisitor {
         visitChildren(listItem);
     }
 
+    public void visit(SoftLineBreak softLineBreak) {
+        visitChildren(softLineBreak);
+    }
+
+    public void visit(StrongEmphasis strongEmphasis) {
+        visitChildren(strongEmphasis);
+    }
+
     public void visit(Text text) {
         visitChildren(text);
+    }
+
+    public void visit(LinkReferenceDefinition linkReferenceDefinition) {
+        visitChildren(linkReferenceDefinition);
     }
 
     public void visit(CustomNode customNode) {

@@ -18,7 +18,7 @@ public final class RecurrentPaymentsAcceptCell extends FrameLayout {
 
     public RecurrentPaymentsAcceptCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
-        CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
+        CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, false);
         this.checkBox = checkBoxSquare;
         checkBoxSquare.setDuplicateParentStateEnabled(false);
         checkBoxSquare.setFocusable(false);

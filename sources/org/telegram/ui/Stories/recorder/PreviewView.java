@@ -12,6 +12,7 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.SurfaceTexture;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -30,6 +31,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.FrameLayout;
+import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.zxing.common.detector.MathUtils;
 import java.io.File;
 import java.util.ArrayList;
@@ -43,7 +45,6 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage$$ExternalSyntheticLambda6;
-import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.wallpaper.WallpaperBitmapHolder;
 import org.telegram.tgnet.ResultCallback;
@@ -52,27 +53,21 @@ import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.theme.ThemeKey;
 import org.telegram.ui.Cells.DialogCell$$ExternalSyntheticLambda6;
-import org.telegram.ui.ChatActivity;
 import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-import org.telegram.ui.Components.FilterGLThread;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.Paint.Views.RoundView;
-import org.telegram.ui.Components.PasscodeView$9$$ExternalSyntheticLambda0;
 import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.VideoEditTextureView;
 import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.Gifts.GiftSheet$$ExternalSyntheticLambda8;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PollItemMenu;
 import org.telegram.ui.Stories.StoryViewer$5$$ExternalSyntheticLambda0;
-import org.telegram.ui.TodoItemMenu$$ExternalSyntheticLambda9;
-import org.telegram.ui.VoIPFragment$$ExternalSyntheticLambda7;
-import org.telegram.ui.VoIPFragment$12$$ExternalSyntheticLambda0;
+import org.telegram.ui.iv.RichEditor;
+import org.telegram.ui.iv.RichTableCell$$ExternalSyntheticLambda3;
 import org.telegram.ui.web.MHTML;
 
 public abstract class PreviewView extends FrameLayout {
@@ -99,7 +94,7 @@ public abstract class PreviewView extends FrameLayout {
     public int gradientBottom;
     public final Paint gradientPaint;
     public int gradientTop;
-    public StoryRecorder$$ExternalSyntheticLambda7 invalidateBlur;
+    public StoryRecorder$$ExternalSyntheticLambda5 invalidateBlur;
     public final Matrix invertMatrix;
     public boolean isMuted;
     public long lastPos;
@@ -110,7 +105,7 @@ public abstract class PreviewView extends FrameLayout {
     public final Matrix matrix;
     public boolean moving;
     public boolean multitouch;
-    public StoryRecorder$$ExternalSyntheticLambda7 onErrorListener;
+    public StoryRecorder$$ExternalSyntheticLambda5 onErrorListener;
     public Runnable onTap;
     public final HashSet pauseLinks;
     public PhotoFilterView photoFilterView;
@@ -137,6 +132,135 @@ public abstract class PreviewView extends FrameLayout {
     public int videoWidth;
     public Drawable wallpaperDrawable;
     public final AnimatedFloat wallpaperDrawableCrossfade;
+
+    public final class AnonymousClass3 implements VideoPlayer.VideoPlayerDelegate {
+        public final StoryEntry val$entry;
+        public final Runnable[] val$whenReadyFinal;
+
+        public AnonymousClass3(StoryEntry storyEntry, Runnable[] runnableArr) {
+            this.val$entry = storyEntry;
+            this.val$whenReadyFinal = runnableArr;
+        }
+
+        @Override
+        public final void onError(VideoPlayer videoPlayer, Exception exc) {
+            StoryRecorder$$ExternalSyntheticLambda5 storyRecorder$$ExternalSyntheticLambda5 = PreviewView.this.onErrorListener;
+            if (storyRecorder$$ExternalSyntheticLambda5 != null) {
+                storyRecorder$$ExternalSyntheticLambda5.run();
+            }
+        }
+
+        @Override
+        public final void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
+        }
+
+        @Override
+        public final void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
+        }
+
+        @Override
+        public final void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+            VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
+        }
+
+        @Override
+        public final void onStateChanged(boolean z, int i) {
+            PreviewView previewView = PreviewView.this;
+            VideoPlayer videoPlayer = previewView.videoPlayer;
+            if (videoPlayer == null) {
+                return;
+            }
+            boolean zIsPlaying = videoPlayer.isPlaying();
+            PreviewView$$ExternalSyntheticLambda1 previewView$$ExternalSyntheticLambda1 = previewView.updateProgressRunnable;
+            if (zIsPlaying) {
+                AndroidUtilities.runOnUIThread(previewView$$ExternalSyntheticLambda1);
+            } else {
+                AndroidUtilities.cancelRunOnUIThread(previewView$$ExternalSyntheticLambda1);
+            }
+        }
+
+        @Override
+        public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+            return VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceDestroyed(this, surfaceTexture);
+        }
+
+        @Override
+        public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+            PreviewView.this.invalidateTextureViewHolder();
+        }
+
+        @Override
+        public final void onVideoSizeChanged(int i, int i2, int i3, float f) {
+            PreviewView previewView = PreviewView.this;
+            StoryEntry storyEntry = this.val$entry;
+            if (storyEntry != null) {
+                storyEntry.hdrInfo = previewView.videoPlayer.getHDRStaticInfo(storyEntry.hdrInfo);
+                VideoEditTextureView videoEditTextureView = previewView.textureView;
+                if (videoEditTextureView != null) {
+                    videoEditTextureView.setHDRInfo(storyEntry.hdrInfo);
+                }
+            }
+            int i4 = (int) (i * f);
+            previewView.videoWidth = i4;
+            int i5 = (int) (i2 * f);
+            previewView.videoHeight = i5;
+            if (storyEntry != null && (storyEntry.width != i4 || storyEntry.height != i5)) {
+                storyEntry.width = i4;
+                storyEntry.height = i5;
+                storyEntry.setupMatrix();
+            }
+            previewView.applyMatrix();
+            VideoEditTextureView videoEditTextureView2 = previewView.textureView;
+            if (videoEditTextureView2 != null) {
+                videoEditTextureView2.setVideoSize(previewView.videoWidth, previewView.videoHeight);
+            }
+        }
+
+        @Override
+        public final void onRenderedFirstFrame() {
+            PreviewView previewView = PreviewView.this;
+            TextureViewHolder textureViewHolder = previewView.textureViewHolder;
+            if (textureViewHolder != null && textureViewHolder.active) {
+                int i = previewView.videoWidth;
+                int i2 = previewView.videoHeight;
+                textureViewHolder.textureViewActive = true;
+                textureViewHolder.videoWidth = i;
+                textureViewHolder.videoHeight = i2;
+                GiftSheet$$ExternalSyntheticLambda8 giftSheet$$ExternalSyntheticLambda8 = textureViewHolder.whenTextureViewActive;
+                if (giftSheet$$ExternalSyntheticLambda8 != null) {
+                    giftSheet$$ExternalSyntheticLambda8.run(Integer.valueOf(i), Integer.valueOf(textureViewHolder.videoHeight));
+                }
+            }
+            Runnable[] runnableArr = this.val$whenReadyFinal;
+            Runnable runnable = runnableArr[0];
+            StoryEntry storyEntry = this.val$entry;
+            if (runnable == null) {
+                VideoEditTextureView videoEditTextureView = previewView.textureView;
+                if (videoEditTextureView != null) {
+                    TextureViewHolder textureViewHolder2 = previewView.textureViewHolder;
+                    if (textureViewHolder2 == null || !textureViewHolder2.active) {
+                        videoEditTextureView.animate().alpha(1.0f).setDuration(180L).withEndAction(new StoryViewer$5$$ExternalSyntheticLambda0(25, this, storyEntry)).start();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            }
+            previewView.post(runnable);
+            runnableArr[0] = null;
+            Bitmap bitmap = previewView.bitmap;
+            if (bitmap != null) {
+                bitmap.recycle();
+                if (storyEntry.blurredVideoThumb == previewView.bitmap) {
+                    storyEntry.blurredVideoThumb = null;
+                }
+                previewView.bitmap = null;
+                previewView.invalidate();
+            }
+        }
+    }
 
     public final class TextureViewHolder {
         public boolean active;
@@ -200,7 +324,7 @@ public abstract class PreviewView extends FrameLayout {
         return getBackgroundDrawable(drawable, i, wallPaper, z);
     }
 
-    public static Drawable getBackgroundDrawableFromTheme(int i, final EmojiThemes emojiThemes, final boolean z) {
+    public static Drawable getBackgroundDrawableFromTheme(final EmojiThemes emojiThemes, int i, final boolean z) {
         if (emojiThemes.isAnyStub()) {
             Theme.createBackgroundDrawable(EmojiThemes.getDefaultThemeInfo(z), emojiThemes.getPreviewColors(i, z ? 1 : 0), ((EmojiThemes.ThemeItem) emojiThemes.items.get(z ? 1 : 0)).wallpaperLink, 0, false);
             return new ColorDrawable(-16777216);
@@ -216,7 +340,7 @@ public abstract class PreviewView extends FrameLayout {
         int i9 = previewColors.get(i8, Theme.getColor(null, i8, false));
         final MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
         motionBackgroundDrawable.isPreview = false;
-        motionBackgroundDrawable.setPatternBitmap(motionBackgroundDrawable.patternBitmap, emojiThemes.getWallpaper(z ? 1 : 0).settings.intensity);
+        motionBackgroundDrawable.setPatternBitmap(emojiThemes.getWallpaper(z ? 1 : 0).settings.intensity);
         motionBackgroundDrawable.setColors(i3, i5, i7, i9, 0, true);
         motionBackgroundDrawable.setPhase(0);
         final int patternColor = motionBackgroundDrawable.getPatternColor();
@@ -235,10 +359,9 @@ public abstract class PreviewView extends FrameLayout {
                 }
                 int i10 = emojiThemes2.getWallpaper(z ? 1 : 0).settings.intensity;
                 MotionBackgroundDrawable motionBackgroundDrawable2 = motionBackgroundDrawable;
-                motionBackgroundDrawable2.setPatternBitmap(bitmap, i10);
+                motionBackgroundDrawable2.setPatternBitmap(i10, bitmap);
                 motionBackgroundDrawable2.setPatternColorFilter(patternColor);
-                motionBackgroundDrawable2.patternAlpha = 1.0f;
-                motionBackgroundDrawable2.invalidateParent();
+                motionBackgroundDrawable2.setPatternAlpha(1.0f);
             }
 
             @Override
@@ -262,7 +385,7 @@ public abstract class PreviewView extends FrameLayout {
     }
 
     private void setupImage(StoryEntry storyEntry) {
-        Utilities.searchQueue.postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(21, this, storyEntry));
+        Utilities.searchQueue.postRunnable(new StoryViewer$5$$ExternalSyntheticLambda0(24, this, storyEntry));
     }
 
     public abstract void applyMatrix();
@@ -318,7 +441,7 @@ public abstract class PreviewView extends FrameLayout {
                 canvas.clipPath(path);
             }
             Drawable drawable = this.wallpaperDrawable;
-            float f = ((drawable instanceof MotionBackgroundDrawable) && ((MotionBackgroundDrawable) drawable).patternBitmap == null) ? 0.0f : this.wallpaperDrawableCrossfade.set(1.0f, false);
+            float f = ((drawable instanceof MotionBackgroundDrawable) && ((MotionBackgroundDrawable) drawable).getPatternBitmap() == null) ? 0.0f : this.wallpaperDrawableCrossfade.set(1.0f);
             Drawable drawable2 = this.lastWallpaperDrawable;
             if (drawable2 != null && f < 1.0f) {
                 drawable2.setAlpha((int) ((1.0f - f) * 255.0f));
@@ -394,93 +517,11 @@ public abstract class PreviewView extends FrameLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        boolean z;
         Runnable runnable;
-        boolean z2 = touchEvent(motionEvent);
+        boolean z = touchEvent(motionEvent);
         StoryRecorder storyRecorder = StoryRecorder.this;
         StoryRecorder.AnonymousClass8 anonymousClass8 = storyRecorder.captionEdit;
-        if (anonymousClass8 == null || !anonymousClass8.recording) {
-            PhotoFilterView.EnhanceView enhanceView = storyRecorder.photoFilterEnhanceView;
-            if (enhanceView.allowTouch && motionEvent.getPointerCount() == 1) {
-                int action = motionEvent.getAction();
-                if (action == 0) {
-                    enhanceView.tracking = false;
-                    enhanceView.downTime = System.currentTimeMillis();
-                    enhanceView.lastTouchX = motionEvent.getX();
-                    enhanceView.lastTouchY = motionEvent.getY();
-                    PhotoFilterView photoFilterView = enhanceView.filterView;
-                    if (photoFilterView != null) {
-                        enhanceView.lastVibrateValue = photoFilterView.getEnhanceValue();
-                    }
-                } else {
-                    PasscodeView$9$$ExternalSyntheticLambda0 passcodeView$9$$ExternalSyntheticLambda0 = enhanceView.hide;
-                    if (action == 2) {
-                        float x = motionEvent.getX();
-                        float y = motionEvent.getY();
-                        if (!enhanceView.tracking && System.currentTimeMillis() - enhanceView.downTime <= ViewConfiguration.getLongPressTimeout() && Math.abs(enhanceView.lastTouchY - y) < Math.abs(enhanceView.lastTouchX - x) && Math.abs(enhanceView.lastTouchX - x) > AndroidUtilities.touchSlop) {
-                            enhanceView.tracking = true;
-                            AndroidUtilities.cancelRunOnUIThread(passcodeView$9$$ExternalSyntheticLambda0);
-                            enhanceView.shown = true;
-                            enhanceView.invalidate();
-                        }
-                        if (enhanceView.tracking) {
-                            float f = x - enhanceView.lastTouchX;
-                            if (enhanceView.filterView == null) {
-                                enhanceView.requestFilterView.run();
-                            }
-                            PhotoFilterView photoFilterView2 = enhanceView.filterView;
-                            if (photoFilterView2 == null) {
-                                enhanceView.tracking = false;
-                            } else {
-                                float f2 = AndroidUtilities.displaySize.x * 0.8f;
-                                float enhanceValue = photoFilterView2.getEnhanceValue();
-                                float fClamp = Utilities.clamp((f / f2) + enhanceValue, 1.0f, 0.0f);
-                                int iRound = Math.round(fClamp * 100.0f);
-                                int iRound2 = Math.round(enhanceValue * 100.0f);
-                                int iRound3 = Math.round(enhanceView.lastVibrateValue * 100.0f);
-                                if (iRound == iRound2 || !(iRound == 100 || iRound == 0)) {
-                                    if (Math.abs(iRound - iRound3) > (SharedConfig.getDevicePerformanceClass() == 2 ? 5 : 10)) {
-                                        AndroidUtilities.vibrateCursor(enhanceView);
-                                        enhanceView.lastVibrateValue = fClamp;
-                                    }
-                                } else {
-                                    try {
-                                        enhanceView.performHapticFeedback(3, 1);
-                                    } catch (Exception unused) {
-                                    }
-                                    enhanceView.lastVibrateValue = fClamp;
-                                }
-                                enhanceView.filterView.setEnhanceValue(fClamp);
-                                PhotoFilterView photoFilterView3 = enhanceView.filterView;
-                                StaticLayout staticLayout = new StaticLayout("" + Math.round((photoFilterView3 == null ? 0.0f : photoFilterView3.getEnhanceValue()) * 100.0f), enhanceView.bottomTextPaint, enhanceView.getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                                enhanceView.bottomText = staticLayout;
-                                enhanceView.bottomTextWidth = staticLayout.getLineCount() > 0 ? enhanceView.bottomText.getLineWidth(0) : 0.0f;
-                                enhanceView.bottomTextLeft = enhanceView.bottomText.getLineCount() > 0 ? enhanceView.bottomText.getLineLeft(0) : 0.0f;
-                                enhanceView.invalidate();
-                                enhanceView.lastTouchX = x;
-                                enhanceView.lastTouchY = y;
-                            }
-                        } else {
-                            enhanceView.lastTouchX = x;
-                            enhanceView.lastTouchY = y;
-                        }
-                    } else if (action == 1 || action == 3) {
-                        enhanceView.tracking = false;
-                        enhanceView.downTime = -1L;
-                        PhotoFilterView photoFilterView4 = enhanceView.filterView;
-                        if (photoFilterView4 != null) {
-                            enhanceView.lastVibrateValue = photoFilterView4.getEnhanceValue();
-                        }
-                        AndroidUtilities.runOnUIThread(passcodeView$9$$ExternalSyntheticLambda0, 600L);
-                    }
-                }
-            } else if (enhanceView.shown) {
-                enhanceView.shown = false;
-                enhanceView.invalidate();
-            }
-            z = z2;
-        } else if (z2) {
-        }
+        boolean z2 = ((anonymousClass8 == null || !anonymousClass8.recording) ? storyRecorder.photoFilterEnhanceView.onTouch(motionEvent) : false) || z;
         if (motionEvent.getAction() == 0) {
             this.tapTime = System.currentTimeMillis();
         } else if (motionEvent.getAction() == 1) {
@@ -491,7 +532,7 @@ public abstract class PreviewView extends FrameLayout {
         } else if (motionEvent.getAction() == 3) {
             this.tapTime = 0L;
         }
-        if (!z) {
+        if (!z2) {
             return super.dispatchTouchEvent(motionEvent);
         }
         if (motionEvent.getPointerCount() <= 1) {
@@ -690,7 +731,7 @@ public abstract class PreviewView extends FrameLayout {
         if (storyEntry.isVideo) {
             setupImage(storyEntry);
             if (storyEntry.gradientTopColor == 0 && storyEntry.gradientBottomColor == 0) {
-                storyEntry.setupGradient(new VoIPFragment$12$$ExternalSyntheticLambda0((StoryRecorder.AnonymousClass7) this, 13));
+                storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda12((StoryRecorder.AnonymousClass7) this, 0));
             } else {
                 setupGradient();
             }
@@ -756,7 +797,7 @@ public abstract class PreviewView extends FrameLayout {
     public void setVideoTimelineView(TimelineView timelineView) {
         this.timelineView = timelineView;
         if (timelineView != null) {
-            timelineView.setDelegate(new PhotoViewer.AnonymousClass18(this, 28));
+            timelineView.setDelegate(new RichEditor.AnonymousClass3(this));
         }
     }
 
@@ -773,7 +814,7 @@ public abstract class PreviewView extends FrameLayout {
         VideoPlayer videoPlayer = this.audioPlayer;
         if (videoPlayer != null) {
             videoPlayer.pause();
-            this.audioPlayer.releasePlayer();
+            this.audioPlayer.releasePlayer(true);
             this.audioPlayer = null;
         }
         if (storyEntry == null) {
@@ -847,15 +888,63 @@ public abstract class PreviewView extends FrameLayout {
             z2 = true;
         }
         if (storyEntry.audioPath != null) {
-            VideoPlayer videoPlayer2 = new VideoPlayer(z2, false);
+            VideoPlayer videoPlayer2 = new VideoPlayer();
             this.audioPlayer = videoPlayer2;
             videoPlayer2.allowMultipleInstances = z2;
-            videoPlayer2.delegate = new PollItemMenu.AnonymousClass6(this, 8);
-            videoPlayer2.preparePlayer(Uri.fromFile(new File(storyEntry.audioPath)), "other", 0L);
+            videoPlayer2.setDelegate(new VideoPlayer.VideoPlayerDelegate() {
+                @Override
+                public final void onError(VideoPlayer videoPlayer3, Exception exc) {
+                }
+
+                @Override
+                public final void onRenderedFirstFrame() {
+                }
+
+                @Override
+                public final void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+                    VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
+                }
+
+                @Override
+                public final void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+                    VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
+                }
+
+                @Override
+                public final void onStateChanged(boolean z3, int i) {
+                    PreviewView previewView = PreviewView.this;
+                    AndroidUtilities.cancelRunOnUIThread(previewView.updateAudioProgressRunnable);
+                    VideoPlayer videoPlayer3 = previewView.audioPlayer;
+                    if (videoPlayer3 == null || !videoPlayer3.isPlaying()) {
+                        return;
+                    }
+                    AndroidUtilities.runOnUIThread(previewView.updateAudioProgressRunnable);
+                }
+
+                @Override
+                public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+                    return VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceDestroyed(this, surfaceTexture);
+                }
+
+                @Override
+                public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+                    PreviewView.this.invalidateTextureViewHolder();
+                }
+
+                @Override
+                public final void onVideoSizeChanged(int i, int i2, int i3, float f4) {
+                }
+
+                @Override
+                public final void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+                    VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
+                }
+            });
+            this.audioPlayer.preparePlayer(Uri.fromFile(new File(storyEntry.audioPath)), "other");
             checkVolumes();
             if (this.videoPlayer != null && getDuration() > 0) {
                 long duration = (long) (storyEntry.left * getDuration());
-                this.videoPlayer.seekTo(duration, false);
+                this.videoPlayer.seekTo(duration);
                 this.timelineView.setProgress(duration);
             }
             updateAudioPlayer(true);
@@ -893,27 +982,11 @@ public abstract class PreviewView extends FrameLayout {
             paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, f, new int[]{i2, i3}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             VideoEditTextureView videoEditTextureView = this.textureView;
             if (videoEditTextureView != null) {
-                int i4 = this.gradientTop;
-                int i5 = this.gradientBottom;
-                FilterGLThread filterGLThread = videoEditTextureView.eglThread;
-                if (filterGLThread == null) {
-                    videoEditTextureView.gradientTop = i4;
-                    videoEditTextureView.gradientBottom = i5;
-                } else {
-                    filterGLThread.updateUiBlurGradient(i4, i5);
-                }
+                videoEditTextureView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
             }
             PhotoFilterView photoFilterView = this.photoFilterView;
             if (photoFilterView != null) {
-                int i6 = this.gradientTop;
-                int i7 = this.gradientBottom;
-                FilterGLThread filterGLThread2 = photoFilterView.eglThread;
-                if (filterGLThread2 != null) {
-                    filterGLThread2.updateUiBlurGradient(i6, i7);
-                } else {
-                    photoFilterView.gradientTop = i6;
-                    photoFilterView.gradientBottom = i7;
-                }
+                photoFilterView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
             }
         }
         invalidate();
@@ -925,7 +998,7 @@ public abstract class PreviewView extends FrameLayout {
             VideoPlayer videoPlayer2 = this.roundPlayer;
             if (videoPlayer2 != null) {
                 videoPlayer2.pause();
-                this.roundPlayer.releasePlayer();
+                this.roundPlayer.releasePlayer(true);
                 this.roundPlayer = null;
             }
             TimelineView timelineView = this.timelineView;
@@ -938,14 +1011,78 @@ public abstract class PreviewView extends FrameLayout {
         }
         VideoPlayer videoPlayer3 = this.roundPlayer;
         if (videoPlayer3 != null) {
-            videoPlayer3.releasePlayer();
+            videoPlayer3.releasePlayer(true);
             this.roundPlayer = null;
         }
-        VideoPlayer videoPlayer4 = new VideoPlayer(true, false);
+        VideoPlayer videoPlayer4 = new VideoPlayer();
         this.roundPlayer = videoPlayer4;
         videoPlayer4.allowMultipleInstances = true;
-        videoPlayer4.delegate = new PhotoViewer.AnonymousClass24(this, 7);
-        this.roundPlayer.preparePlayer(Uri.fromFile(storyEntry.round), "other", 0L);
+        videoPlayer4.setDelegate(new VideoPlayer.VideoPlayerDelegate() {
+            @Override
+            public final void onError(VideoPlayer videoPlayer5, Exception exc) {
+            }
+
+            @Override
+            public final void onRenderedFirstFrame() {
+            }
+
+            @Override
+            public final void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+                VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
+            }
+
+            @Override
+            public final void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+                VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
+            }
+
+            @Override
+            public final void onStateChanged(boolean z2, int i) {
+                PreviewView previewView = PreviewView.this;
+                VideoPlayer videoPlayer5 = previewView.roundPlayer;
+                if (videoPlayer5 == null) {
+                    return;
+                }
+                boolean zIsPlaying = videoPlayer5.isPlaying();
+                PreviewView$$ExternalSyntheticLambda1 previewView$$ExternalSyntheticLambda1 = previewView.updateRoundProgressRunnable;
+                if (zIsPlaying) {
+                    AndroidUtilities.runOnUIThread(previewView$$ExternalSyntheticLambda1);
+                } else {
+                    AndroidUtilities.cancelRunOnUIThread(previewView$$ExternalSyntheticLambda1);
+                }
+            }
+
+            @Override
+            public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+                return VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceDestroyed(this, surfaceTexture);
+            }
+
+            @Override
+            public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+                VideoPlayer.VideoPlayerDelegate.CC.$default$onSurfaceTextureUpdated(this, surfaceTexture);
+            }
+
+            @Override
+            public final void onVideoSizeChanged(int i, int i2, int i3, float f) {
+                PreviewView previewView = PreviewView.this;
+                previewView.getClass();
+                previewView.getClass();
+                RoundView roundView2 = previewView.roundView;
+                if (roundView2 != null) {
+                    float f2 = i / i2;
+                    if (Math.abs(roundView2.a - f2) >= 1.0E-4f) {
+                        roundView2.a = f2;
+                        roundView2.requestLayout();
+                    }
+                }
+            }
+
+            @Override
+            public final void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+                VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
+            }
+        });
+        this.roundPlayer.preparePlayer(Uri.fromFile(storyEntry.round), "other");
         checkVolumes();
         this.roundView = roundView;
         if (roundView != null && (videoPlayer = this.roundPlayer) != null) {
@@ -955,15 +1092,14 @@ public abstract class PreviewView extends FrameLayout {
         updateRoundPlayer(true);
     }
 
-    public final void setupVideoPlayer(StoryEntry storyEntry, TodoItemMenu$$ExternalSyntheticLambda9 todoItemMenu$$ExternalSyntheticLambda9, long j) {
+    public final void setupVideoPlayer(StoryEntry storyEntry, RichTableCell$$ExternalSyntheticLambda3 richTableCell$$ExternalSyntheticLambda3, long j) {
         ArrayList arrayList;
-        BlurringShader blurringShader;
         int i = 0;
         if (storyEntry == null || storyEntry.isCollage()) {
             VideoPlayer videoPlayer = this.videoPlayer;
             if (videoPlayer != null) {
                 videoPlayer.pause();
-                this.videoPlayer.releasePlayer();
+                this.videoPlayer.releasePlayer(true);
                 this.videoPlayer = null;
             }
             TextureViewHolder textureViewHolder = this.textureViewHolder;
@@ -993,90 +1129,79 @@ public abstract class PreviewView extends FrameLayout {
                 timelineView.setVideo(false, null, 1L, 0.0f);
             }
             AndroidUtilities.cancelRunOnUIThread(this.updateProgressRunnable);
-            if (todoItemMenu$$ExternalSyntheticLambda9 != null) {
-                AndroidUtilities.runOnUIThread(todoItemMenu$$ExternalSyntheticLambda9);
+            if (richTableCell$$ExternalSyntheticLambda3 != null) {
+                AndroidUtilities.runOnUIThread(richTableCell$$ExternalSyntheticLambda3);
                 return;
             }
             return;
         }
         VideoPlayer videoPlayer2 = this.videoPlayer;
         if (videoPlayer2 != null) {
-            videoPlayer2.releasePlayer();
+            videoPlayer2.releasePlayer(true);
             this.videoPlayer = null;
         }
-        VideoPlayer videoPlayer3 = new VideoPlayer(true, false);
+        VideoPlayer videoPlayer3 = new VideoPlayer();
         this.videoPlayer = videoPlayer3;
         videoPlayer3.allowMultipleInstances = true;
-        videoPlayer3.delegate = new ChatActivity.AnonymousClass117(this, storyEntry, new Runnable[]{todoItemMenu$$ExternalSyntheticLambda9});
+        videoPlayer3.setDelegate(new AnonymousClass3(storyEntry, new Runnable[]{richTableCell$$ExternalSyntheticLambda3}));
         VideoEditTextureView videoEditTextureView3 = this.textureView;
         if (videoEditTextureView3 != null) {
             videoEditTextureView3.clearAnimation();
-            VideoEditTextureView videoEditTextureView4 = this.textureView;
-            FilterGLThread filterGLThread = videoEditTextureView4.eglThread;
-            if (filterGLThread != null) {
-                filterGLThread.shutdown();
-            }
-            videoEditTextureView4.currentVideoPlayer = null;
+            this.textureView.release();
             removeView(this.textureView);
             this.textureView = null;
         }
         this.textureView = new VideoEditTextureView(getContext(), this.videoPlayer);
         this.blurManager.resetBitmap();
-        VideoEditTextureView videoEditTextureView5 = this.textureView;
-        BlurringShader.BlurManager blurManager = storyEntry.isRepostMessage ? null : this.blurManager;
-        videoEditTextureView5.uiBlurManager = blurManager;
-        FilterGLThread filterGLThread2 = videoEditTextureView5.eglThread;
-        if (filterGLThread2 != null && (blurringShader = filterGLThread2.uiBlur) != null) {
-            blurringShader.setBlurManager(blurManager);
-        }
+        this.textureView.updateUiBlurManager(storyEntry.isRepostMessage ? null : this.blurManager);
         this.textureView.setOpaque(false);
         applyMatrix();
         TextureViewHolder textureViewHolder2 = this.textureViewHolder;
         if (textureViewHolder2 == null || !textureViewHolder2.active) {
-            this.textureView.setAlpha(todoItemMenu$$ExternalSyntheticLambda9 != null ? 1.0f : 0.0f);
+            this.textureView.setAlpha(richTableCell$$ExternalSyntheticLambda3 != null ? 1.0f : 0.0f);
             addView(this.textureView, LayoutHelper.createFrame(-2, -2, 51));
         } else {
-            VideoEditTextureView videoEditTextureView6 = this.textureView;
-            VideoEditTextureView videoEditTextureView7 = textureViewHolder2.textureView;
-            if (videoEditTextureView7 != videoEditTextureView6) {
-                if (videoEditTextureView7 != null) {
-                    ViewParent parent2 = videoEditTextureView7.getParent();
+            VideoEditTextureView videoEditTextureView4 = this.textureView;
+            VideoEditTextureView videoEditTextureView5 = textureViewHolder2.textureView;
+            if (videoEditTextureView5 != videoEditTextureView4) {
+                if (videoEditTextureView5 != null) {
+                    ViewParent parent2 = videoEditTextureView5.getParent();
                     if (parent2 instanceof ViewGroup) {
                         ((ViewGroup) parent2).removeView(textureViewHolder2.textureView);
                     }
                     textureViewHolder2.textureView = null;
                 }
                 textureViewHolder2.textureViewActive = false;
-                textureViewHolder2.textureView = videoEditTextureView6;
+                textureViewHolder2.textureView = videoEditTextureView4;
                 DialogCell$$ExternalSyntheticLambda6 dialogCell$$ExternalSyntheticLambda7 = textureViewHolder2.whenTextureViewReceived;
                 if (dialogCell$$ExternalSyntheticLambda7 != null) {
-                    dialogCell$$ExternalSyntheticLambda7.run(videoEditTextureView6);
+                    dialogCell$$ExternalSyntheticLambda7.run(videoEditTextureView4);
                 }
             }
         }
-        VoIPFragment$$ExternalSyntheticLambda7 voIPFragment$$ExternalSyntheticLambda7 = new VoIPFragment$$ExternalSyntheticLambda7(this, 17);
+        HintView2$$ExternalSyntheticLambda0 hintView2$$ExternalSyntheticLambda0 = new HintView2$$ExternalSyntheticLambda0(this, 7);
         StoryEntry.HDRInfo hDRInfo = storyEntry.hdrInfo;
         if (hDRInfo != null) {
-            voIPFragment$$ExternalSyntheticLambda7.run(hDRInfo);
+            hintView2$$ExternalSyntheticLambda0.run(hDRInfo);
         } else if (!storyEntry.isVideo || Build.VERSION.SDK_INT < 24) {
             StoryEntry.HDRInfo hDRInfo2 = new StoryEntry.HDRInfo();
             storyEntry.hdrInfo = hDRInfo2;
-            voIPFragment$$ExternalSyntheticLambda7.run(hDRInfo2);
+            hintView2$$ExternalSyntheticLambda0.run(hDRInfo2);
         } else {
-            Utilities.globalQueue.postRunnable(new StoryEntry$$ExternalSyntheticLambda1(storyEntry, voIPFragment$$ExternalSyntheticLambda7, i));
+            Utilities.globalQueue.postRunnable(new StoryEntry$$ExternalSyntheticLambda1(storyEntry, hintView2$$ExternalSyntheticLambda0, i));
         }
         File file = storyEntry.filterFile;
         if (file == null) {
             file = storyEntry.file;
         }
-        this.videoPlayer.preparePlayer(Uri.fromFile(file), "other", 0L);
+        this.videoPlayer.preparePlayer(Uri.fromFile(file), "other");
         this.videoPlayer.setPlayWhenReady(this.pauseLinks.isEmpty());
         this.videoPlayer.setLooping(true);
         if (storyEntry.isEditSaved) {
             j = (long) ((storyEntry.left * storyEntry.duration) + j);
         }
         if (j > 0) {
-            this.videoPlayer.seekTo(j, false);
+            this.videoPlayer.seekTo(j);
         }
         checkVolumes();
         updateAudioPlayer(true);
@@ -1124,9 +1249,9 @@ public abstract class PreviewView extends FrameLayout {
         if (blurManager != null) {
             Drawable drawable2 = this.wallpaperDrawable;
             if (drawable2 == null) {
-                blurManager.setFallbackBlur(null, false);
+                blurManager.setFallbackBlur(null, 0);
             } else if (drawable2 instanceof BitmapDrawable) {
-                blurManager.setFallbackBlur(((BitmapDrawable) drawable2).getBitmap(), false);
+                blurManager.setFallbackBlur(((BitmapDrawable) drawable2).getBitmap(), 0);
             } else {
                 int intrinsicWidth = drawable2.getIntrinsicWidth();
                 int intrinsicHeight = this.wallpaperDrawable.getIntrinsicHeight();
@@ -1144,7 +1269,7 @@ public abstract class PreviewView extends FrameLayout {
                 Bitmap bitmapCreateBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
                 this.wallpaperDrawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
                 this.wallpaperDrawable.draw(new Canvas(bitmapCreateBitmap));
-                blurManager.setFallbackBlur(bitmapCreateBitmap, true);
+                blurManager.setFallbackBlur(bitmapCreateBitmap, 0, true);
             }
         }
         invalidate();
@@ -1368,7 +1493,7 @@ public abstract class PreviewView extends FrameLayout {
             StoryEntry storyEntry = this.entry;
             if ((duration < storyEntry.roundLeft || duration > storyEntry.roundRight) && System.currentTimeMillis() - this.seekedLastTime > 500) {
                 this.seekedLastTime = System.currentTimeMillis();
-                this.roundPlayer.seekTo(-this.entry.roundOffset, false);
+                this.roundPlayer.seekTo(-this.entry.roundOffset);
                 return;
             }
             return;
@@ -1396,10 +1521,10 @@ public abstract class PreviewView extends FrameLayout {
         }
         if (this.roundPlayer.isPlaying() != z3) {
             this.roundPlayer.setPlayWhenReady(z3);
-            this.roundPlayer.seekTo(j3, false);
+            this.roundPlayer.seekTo(j3);
         } else if (z) {
             if (Math.abs(this.roundPlayer.getCurrentPosition() - j3) > (isCollage() ? 300 : 120)) {
-                this.roundPlayer.seekTo(j3, false);
+                this.roundPlayer.seekTo(j3);
             }
         }
     }
@@ -1409,10 +1534,10 @@ public abstract class PreviewView extends FrameLayout {
         return this.wallpaperDrawable == drawable || super.verifyDrawable(drawable);
     }
 
-    public final void set(StoryEntry storyEntry, TodoItemMenu$$ExternalSyntheticLambda9 todoItemMenu$$ExternalSyntheticLambda9, long j) {
+    public final void set(StoryEntry storyEntry, RichTableCell$$ExternalSyntheticLambda3 richTableCell$$ExternalSyntheticLambda3, long j) {
         this.entry = storyEntry;
         if (storyEntry == null) {
-            setupVideoPlayer(null, todoItemMenu$$ExternalSyntheticLambda9, j);
+            setupVideoPlayer(null, richTableCell$$ExternalSyntheticLambda3, j);
             setupImage(null);
             setupCollage(null);
             setupWallpaper(null);
@@ -1423,12 +1548,12 @@ public abstract class PreviewView extends FrameLayout {
         }
         if (storyEntry.isCollage()) {
             setupImage(null);
-            setupVideoPlayer(null, todoItemMenu$$ExternalSyntheticLambda9, j);
+            setupVideoPlayer(null, richTableCell$$ExternalSyntheticLambda3, j);
             setupCollage(storyEntry);
         } else if (storyEntry.isVideo) {
             setupImage(storyEntry);
             setupCollage(null);
-            setupVideoPlayer(storyEntry, todoItemMenu$$ExternalSyntheticLambda9, j);
+            setupVideoPlayer(storyEntry, richTableCell$$ExternalSyntheticLambda3, j);
             if (storyEntry.gradientTopColor == 0 && storyEntry.gradientBottomColor == 0) {
                 storyEntry.setupGradient(new PreviewView$$ExternalSyntheticLambda1(this, 0));
             } else {
@@ -1436,7 +1561,7 @@ public abstract class PreviewView extends FrameLayout {
             }
         } else {
             setupCollage(null);
-            setupVideoPlayer(null, todoItemMenu$$ExternalSyntheticLambda9, 0L);
+            setupVideoPlayer(null, richTableCell$$ExternalSyntheticLambda3, 0L);
             setupImage(storyEntry);
             setupGradient();
         }
@@ -1463,7 +1588,7 @@ public abstract class PreviewView extends FrameLayout {
         }
         EmojiThemes theme = (wallPaper == null || wallPaper.settings == null) ? null : ChatThemeController.getInstance(i).getTheme(new ThemeKey(wallPaper.settings.emoticon, null));
         if (theme != null) {
-            return getBackgroundDrawableFromTheme(i, theme, z);
+            return getBackgroundDrawableFromTheme(theme, i, z);
         }
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
         String str2 = "Blue";

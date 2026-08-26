@@ -17,9 +17,7 @@ import org.telegram.messenger.BetaUpdaterController$$ExternalSyntheticLambda2;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.PhotoViewer$6$$ExternalSyntheticLambda0;
 import org.telegram.ui.Stories.recorder.StoryEntry;
-import org.telegram.ui.VoIPFragment$8$$ExternalSyntheticLambda1;
 
 public final class HttpGetFileTask extends AsyncTask {
     public final Utilities.Callback doneCallback;
@@ -37,7 +35,6 @@ public final class HttpGetFileTask extends AsyncTask {
     @Override
     public final Object doInBackground(Object[] objArr) throws Throwable {
         long j;
-        long j2;
         String str;
         BufferedInputStream bufferedInputStream;
         Throwable th;
@@ -48,8 +45,8 @@ public final class HttpGetFileTask extends AsyncTask {
         int i;
         int i2 = 0;
         String str2 = ((String[]) objArr)[0];
+        long j2 = 0;
         long j3 = 0;
-        long j4 = 0;
         int i3 = 0;
         while (true) {
             if (i3 >= 5) {
@@ -61,15 +58,15 @@ public final class HttpGetFileTask extends AsyncTask {
                 HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str2).openConnection();
                 httpURLConnection.setRequestMethod("GET");
                 if (z) {
-                    httpURLConnection.setRequestProperty("Range", "bytes=" + j4 + "-");
+                    httpURLConnection.setRequestProperty("Range", "bytes=" + j3 + "-");
                 }
                 httpURLConnection.setDoInput(true);
                 int responseCode = httpURLConnection.getResponseCode();
                 InputStream errorStream = (responseCode < 200 || responseCode >= 300) ? httpURLConnection.getErrorStream() : httpURLConnection.getInputStream();
                 int responseCode2 = httpURLConnection.getResponseCode();
-                j2 = j4;
+                j3 = j3;
                 if (z && responseCode2 != 206) {
-                    j2 = j4;
+                    j3 = j3;
                     FileLog.d("failed to resume, server doesn't support partial content. downloading from the beginning");
                     try {
                         File file = this.file;
@@ -80,38 +77,28 @@ public final class HttpGetFileTask extends AsyncTask {
                             }
                             this.file = null;
                         }
-                        j2 = j3;
+                        j3 = j2;
                         z = false;
                     } catch (Exception e) {
                         e = e;
-                        long j5 = j3;
-                        j = j5;
-                        j2 = j5;
+                        long j4 = j2;
+                        j = j4;
+                        j3 = j4;
                         str = str2;
-                        if (e instanceof ProtocolException) {
-                            this.exception = e;
-                            FileLog.e(e);
-                            return null;
-                        }
-                        FileLog.d("got unexpected end of stream, lets try to resume");
-                        i3++;
-                        str2 = str;
-                        j3 = j;
-                        i2 = 0;
-                        j4 = j2;
                     }
                 }
-                j2 = j4;
+                j3 = j3;
                 long contentLengthLong = Build.VERSION.SDK_INT >= 24 ? httpURLConnection.getContentLengthLong() : httpURLConnection.getContentLength();
-                long j6 = this.max_size;
-                int i4 = (j6 > j3 ? 1 : (j6 == j3 ? 0 : -1));
+                long j5 = this.max_size;
+                int i4 = (j5 > j2 ? 1 : (j5 == j2 ? 0 : -1));
                 j = i4;
-                if (i4 > 0 && contentLengthLong > j6) {
-                    j = i;
+                if (i4 > 0 && contentLengthLong > j5) {
                     errorStream.close();
                     if (this.file == null) {
+                        j = i;
                         return null;
                     }
+                    j = i;
                     this.file = null;
                     return null;
                 }
@@ -133,15 +120,15 @@ public final class HttpGetFileTask extends AsyncTask {
                                     channel = fileOutputStream.getChannel();
                                     try {
                                         byte[] bArr = new byte[16384];
-                                        j3 = j3;
                                         j2 = j2;
+                                        j3 = j3;
                                         while (true) {
                                             int i5 = bufferedInputStream.read(bArr);
-                                            j = j3;
+                                            j = j2;
                                             BetaUpdaterController$$ExternalSyntheticLambda2 betaUpdaterController$$ExternalSyntheticLambda2 = this.progressCallback;
                                             if (i5 == -1) {
                                                 if (betaUpdaterController$$ExternalSyntheticLambda2 != null) {
-                                                    AndroidUtilities.runOnUIThread(new VoIPFragment$8$$ExternalSyntheticLambda1(this, 24));
+                                                    AndroidUtilities.runOnUIThread(new AddressBarList$$ExternalSyntheticLambda4(this, 6));
                                                 }
                                                 if (channel != null) {
                                                     channel.close();
@@ -156,7 +143,7 @@ public final class HttpGetFileTask extends AsyncTask {
                                             try {
                                                 channel.write(ByteBuffer.wrap(bArr, i2, i5));
                                                 str = str2;
-                                                j2 += (long) i5;
+                                                j3 += (long) i5;
                                                 try {
                                                     if (isCancelled()) {
                                                         try {
@@ -167,15 +154,15 @@ public final class HttpGetFileTask extends AsyncTask {
                                                         }
                                                     } else {
                                                         if (contentLengthLong > j) {
-                                                            float fClamp01 = Utilities.clamp01(j2 / contentLengthLong);
+                                                            float fClamp01 = Utilities.clamp01(j3 / contentLengthLong);
                                                             if (betaUpdaterController$$ExternalSyntheticLambda2 != null) {
-                                                                AndroidUtilities.runOnUIThread(new PhotoViewer$6$$ExternalSyntheticLambda0(this, fClamp01, 5));
+                                                                AndroidUtilities.runOnUIThread(new HttpGetFileTask$$ExternalSyntheticLambda0(this, fClamp01, 0));
                                                             }
                                                         }
                                                         str2 = str;
-                                                        j3 = j;
+                                                        j2 = j;
                                                         i2 = 0;
-                                                        j2 = j2;
+                                                        j3 = j3;
                                                     }
                                                 } catch (Throwable th4) {
                                                     th = th4;
@@ -204,11 +191,11 @@ public final class HttpGetFileTask extends AsyncTask {
                                         }
                                     } catch (Throwable th7) {
                                         th = th7;
-                                        j = j3;
+                                        j = j2;
                                     }
                                 } catch (Throwable th8) {
                                     th = th8;
-                                    j = j3;
+                                    j = j2;
                                     str = str2;
                                     th2 = th;
                                     try {
@@ -238,7 +225,7 @@ public final class HttpGetFileTask extends AsyncTask {
                         }
                     } catch (Throwable th13) {
                         th = th13;
-                        j = j3;
+                        j = j2;
                         str = str2;
                         th = th;
                         bufferedInputStream.close();
@@ -246,29 +233,24 @@ public final class HttpGetFileTask extends AsyncTask {
                     }
                 } catch (Exception e3) {
                     e = e3;
-                    if (e instanceof ProtocolException) {
-                        this.exception = e;
-                        FileLog.e(e);
-                        return null;
-                    }
-                    FileLog.d("got unexpected end of stream, lets try to resume");
-                    i3++;
-                    str2 = str;
-                    j3 = j;
-                    i2 = 0;
-                    j4 = j2;
                 }
             } catch (Exception e4) {
                 e = e4;
-                j = j3;
-                j2 = j4;
+                j = j2;
+                j3 = j3;
+            }
+            str = str2;
+            if (!(e instanceof ProtocolException)) {
+                this.exception = e;
+                FileLog.e(e);
+                return null;
             }
             FileLog.d("got unexpected end of stream, lets try to resume");
             i3++;
             str2 = str;
-            j3 = j;
+            j2 = j;
             i2 = 0;
-            j4 = j2;
+            j3 = j3;
         }
         channel.close();
         fileOutputStream.close();

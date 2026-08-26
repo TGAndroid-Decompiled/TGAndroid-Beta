@@ -27,7 +27,7 @@ import com.google.android.gms.internal.maps.zzk;
 import com.google.android.gms.internal.maps.zzl;
 import com.google.android.gms.internal.maps.zzy;
 import com.google.android.gms.internal.maps.zzz;
-import com.google.android.gms.internal.mlkit_vision_common.zzhi;
+import com.google.android.gms.internal.mlkit_vision_common.zzhf;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -353,7 +353,7 @@ public class GoogleMapsProvider implements IMapsProvider {
 
             @Override
             public void setIcon(Bitmap bitmap) {
-                this.marker.setIcon(zzhi.fromBitmap(bitmap));
+                this.marker.setIcon(zzhf.fromBitmap(bitmap));
             }
 
             @Override
@@ -408,7 +408,7 @@ public class GoogleMapsProvider implements IMapsProvider {
 
             @Override
             public void setIcon(int i) {
-                this.marker.setIcon(zzhi.fromResource(i));
+                this.marker.setIcon(zzhf.fromResource(i));
             }
         }
 
@@ -995,7 +995,7 @@ public class GoogleMapsProvider implements IMapsProvider {
 
         @Override
         public IMapsProvider.IMarkerOptions icon(Bitmap bitmap) {
-            this.markerOptions.zzd = zzhi.fromBitmap(bitmap);
+            this.markerOptions.zzd = zzhf.fromBitmap(bitmap);
             return this;
         }
 
@@ -1032,7 +1032,7 @@ public class GoogleMapsProvider implements IMapsProvider {
 
         @Override
         public IMapsProvider.IMarkerOptions icon(int i) {
-            this.markerOptions.zzd = zzhi.fromResource(i);
+            this.markerOptions.zzd = zzhf.fromResource(i);
             return this;
         }
     }

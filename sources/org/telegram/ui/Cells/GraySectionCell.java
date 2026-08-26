@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.view.ViewCompat;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -50,12 +50,7 @@ public final class GraySectionCell extends FrameLayout implements Theme.Colorabl
         AnonymousClass1 anonymousClass1 = new AnonymousClass1(getContext(), true, true, true);
         this.rightTextView = anonymousClass1;
         anonymousClass1.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
-        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = anonymousClass1.drawable;
-        animatedTextDrawable.moveAmplitude = 0.9f;
-        animatedTextDrawable.animateDuration = 420L;
-        animatedTextDrawable.animateWave = 1.0f;
-        animatedTextDrawable.animateInterpolator = cubicBezierInterpolator;
+        anonymousClass1.setAnimationProperties(0.9f, 0L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
         anonymousClass1.setTextSize(AndroidUtilities.dp(14.0f));
         anonymousClass1.setTextColor(Theme.getColor(i2, resourcesProvider));
         anonymousClass1.setGravity(LocaleController.isRTL ? 3 : 5);
@@ -66,11 +61,11 @@ public final class GraySectionCell extends FrameLayout implements Theme.Colorabl
         new ViewCompat.AnonymousClass1(2131296684, Boolean.class, 0, 28, 2).set(this, Boolean.TRUE);
     }
 
-    public static void createThemeDescriptions(ArrayList arrayList, RecyclerListView recyclerListView) {
+    public static void createThemeDescriptions(List list, RecyclerListView recyclerListView) {
         int i = Theme.key_graySectionText;
-        arrayList.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"textView"}, null, null, -1, null, i));
-        arrayList.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"rightTextView"}, null, null, -1, null, i));
-        arrayList.add(new ThemeDescription(recyclerListView, 16, new Class[]{GraySectionCell.class}, null, null, null, Theme.key_graySection));
+        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"textView"}, null, null, -1, null, i));
+        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"rightTextView"}, null, null, -1, null, i));
+        list.add(new ThemeDescription(recyclerListView, 16, new Class[]{GraySectionCell.class}, null, null, null, Theme.key_graySection));
     }
 
     public int[] getColorKeys() {
@@ -97,7 +92,7 @@ public final class GraySectionCell extends FrameLayout implements Theme.Colorabl
 
     public void setNoBackground(boolean z) {
         this.noBackground = z;
-        updateColors$1();
+        updateColors();
     }
 
     public void setRightText(CharSequence charSequence) {
@@ -107,9 +102,10 @@ public final class GraySectionCell extends FrameLayout implements Theme.Colorabl
     }
 
     public void setRightTextMargin(int i) {
-        FrameLayout.LayoutParams layoutParams = this.rightTextViewLayoutParams;
         float f = i;
-        layoutParams.leftMargin = AndroidUtilities.dp(f);
+        int iDp = AndroidUtilities.dp(f);
+        FrameLayout.LayoutParams layoutParams = this.rightTextViewLayoutParams;
+        layoutParams.leftMargin = iDp;
         layoutParams.rightMargin = AndroidUtilities.dp(f);
         this.rightTextView.setLayoutParams(layoutParams);
     }
@@ -128,7 +124,7 @@ public final class GraySectionCell extends FrameLayout implements Theme.Colorabl
     }
 
     @Override
-    public final void updateColors$1() {
+    public final void updateColors() {
         boolean z = this.noBackground;
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
         setBackgroundColor(z ? 0 : Theme.getColor(Theme.key_graySection, resourcesProvider));
@@ -148,7 +144,7 @@ public final class GraySectionCell extends FrameLayout implements Theme.Colorabl
     public final void setText(CharSequence charSequence, CharSequence charSequence2, View.OnClickListener onClickListener) {
         this.textView.setText(charSequence);
         AnonymousClass1 anonymousClass1 = this.rightTextView;
-        anonymousClass1.setText(charSequence2, false, true);
+        anonymousClass1.setText(charSequence2, false);
         anonymousClass1.setOnClickListener(onClickListener);
         anonymousClass1.setVisibility(0);
     }

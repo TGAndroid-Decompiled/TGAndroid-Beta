@@ -3,13 +3,11 @@ package org.telegram.messenger;
 import android.app.Activity;
 import android.app.Application;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.Network;
@@ -21,7 +19,7 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.view.ViewGroup;
 import com.google.android.gms.common.GooglePlayServicesUtil;
-import com.google.android.gms.internal.mlkit_language_id_common.zzjj;
+import com.google.android.gms.internal.mlkit_language_id_common.zzjg;
 import java.io.File;
 import java.util.Locale;
 import org.json.JSONObject;
@@ -478,7 +476,7 @@ public class ApplicationLoader extends Application {
             StringBuilder sb = new StringBuilder("app start time = ");
             long jElapsedRealtime = SystemClock.elapsedRealtime();
             startTime = jElapsedRealtime;
-            zzjj.m(sb, jElapsedRealtime);
+            zzjg.m(sb, jElapsedRealtime);
             try {
                 PackageInfo packageInfo = applicationContext.getPackageManager().getPackageInfo(applicationContext.getPackageName(), 0);
                 int i = packageInfo.versionCode % 10;
@@ -527,23 +525,7 @@ public class ApplicationLoader extends Application {
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
             AndroidUtilities.runOnUIThread(new Emoji$$ExternalSyntheticLambda1(5));
-            for (LauncherIconController.LauncherIcon launcherIcon : LauncherIconController.LauncherIcon.values()) {
-                if (LauncherIconController.isEnabled(launcherIcon)) {
-                    ProxyRotationController.init();
-                }
-            }
-            LauncherIconController.LauncherIcon launcherIcon2 = LauncherIconController.LauncherIcon.DEFAULT;
-            Context context = applicationContext;
-            PackageManager packageManager = context.getPackageManager();
-            LauncherIconController.LauncherIcon[] launcherIconArrValues = LauncherIconController.LauncherIcon.values();
-            int length = launcherIconArrValues.length;
-            for (int i3 = 0; i3 < length; i3++) {
-                LauncherIconController.LauncherIcon launcherIcon3 = launcherIconArrValues[i3];
-                if (launcherIcon3.componentName == null) {
-                    launcherIcon3.componentName = new ComponentName(context.getPackageName(), "org.telegram.messenger." + launcherIcon3.key);
-                }
-                packageManager.setComponentEnabledSetting(launcherIcon3.componentName, launcherIcon3 == launcherIcon2 ? 1 : 2, 1);
-            }
+            LauncherIconController.tryFixLauncherIconIfNeeded();
             ProxyRotationController.init();
         } catch (UnsatisfiedLinkError unused2) {
             throw new RuntimeException("can't load native libraries " + Build.CPU_ABI + " lookup folder " + NativeLoader.getAbiFolder());

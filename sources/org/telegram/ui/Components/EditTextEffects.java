@@ -13,9 +13,7 @@ import android.os.Looper;
 import android.text.Editable;
 import android.text.Layout;
 import android.text.Spannable;
-import android.text.SpannableStringBuilder;
 import android.text.Spanned;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -29,7 +27,7 @@ import org.telegram.messenger.R;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilersClickDetector;
 
-public abstract class EditTextEffects extends EditText {
+public class EditTextEffects extends EditText {
     private static final int SPOILER_TIMEOUT = 10000;
     private static Boolean allowHackingTextCanvasCache;
     private ColorFilter animatedEmojiColorFilter;
@@ -74,11 +72,11 @@ public abstract class EditTextEffects extends EditText {
         this.path = new Path();
         this.drawAnimatedEmojiDrawables = true;
         this.lastLayout = null;
-        this.spoilerTimeout = new EditTextEffects$$ExternalSyntheticLambda0(this, 4);
+        this.spoilerTimeout = new EditTextEffects$$ExternalSyntheticLambda0(this, 3);
         this.rect = new Rect();
         this.wrapCanvasToFixClipping = allowHackingTextCanvas();
         if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-            this.clickDetector = new SpoilersClickDetector(this, this.spoilers, new ColorPicker$$ExternalSyntheticLambda6(this, 21));
+            this.clickDetector = new SpoilersClickDetector(this, this.spoilers, new ColorPicker$$ExternalSyntheticLambda5(this, 2));
         }
     }
 
@@ -91,7 +89,7 @@ public abstract class EditTextEffects extends EditText {
         return allowHackingTextCanvasCache.booleanValue();
     }
 
-    public final void checkSpoilerTimeout() {
+    private void checkSpoilerTimeout() {
         int i;
         int i2;
         CharSequence text = getLayout() != null ? getLayout().getText() : null;
@@ -116,71 +114,79 @@ public abstract class EditTextEffects extends EditText {
         postDelayed(this.spoilerTimeout, 10000L);
     }
 
+    public void lambda$dispatchTouchEvent$5() {
+        invalidateQuotes(true);
+    }
+
+    public void lambda$new$0() {
+        setSpoilersRevealed(false, true);
+    }
+
+    public void lambda$new$1() {
+        post(new EditTextEffects$$ExternalSyntheticLambda0(this, 0));
+    }
+
+    public void lambda$new$2() {
+        this.postedSpoilerTimeout = false;
+        this.isSpoilersRevealed = false;
+        invalidateSpoilers();
+        if (this.spoilers.isEmpty()) {
+            return;
+        }
+        this.spoilers.get(0).onRippleEndCallback = new EditTextEffects$$ExternalSyntheticLambda0(this, 1);
+        float fSqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
+        Iterator<SpoilerEffect> it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            it.next().startRipple(this.lastRippleX, this.lastRippleY, fSqrt, true);
+        }
+    }
+
+    public void lambda$onSpoilerClicked$3() {
+        invalidateSpoilers();
+        checkSpoilerTimeout();
+    }
+
+    public void lambda$onSpoilerClicked$4() {
+        post(new EditTextEffects$$ExternalSyntheticLambda0(this, 2));
+    }
+
+    public void onSpoilerClicked(SpoilerEffect spoilerEffect, float f, float f2) {
+        if (this.isSpoilersRevealed) {
+            return;
+        }
+        this.lastRippleX = f;
+        this.lastRippleY = f2;
+        this.postedSpoilerTimeout = false;
+        removeCallbacks(this.spoilerTimeout);
+        setSpoilersRevealed(true, false);
+        spoilerEffect.onRippleEndCallback = new EditTextEffects$$ExternalSyntheticLambda0(this, 5);
+        float fSqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
+        Iterator<SpoilerEffect> it = this.spoilers.iterator();
+        while (it.hasNext()) {
+            it.next().startRipple(f, f2, fSqrt, false);
+        }
+    }
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         boolean z;
-        boolean z2;
         SpoilersClickDetector spoilersClickDetector;
-        int paddingTop = getPaddingTop() - getScrollY();
-        ArrayList<QuoteSpan.Block> arrayList = this.quoteBlocks;
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i = 0;
-            loop0: while (true) {
-                z = false;
-                while (true) {
-                    if (i >= size) {
-                        break loop0;
-                    }
-                    QuoteSpan.Block block = arrayList.get(i);
-                    i++;
-                    QuoteSpan.Block block2 = block;
-                    QuoteCollapseButton quoteCollapseButton = block2.span.collapseButton;
-                    boolean z3 = block2.hasButton() && block2.collapseButtonBounds.contains(motionEvent.getX(), motionEvent.getY() - ((float) paddingTop));
-                    if (motionEvent.getAction() == 0) {
-                        if (quoteCollapseButton != null) {
-                            quoteCollapseButton.pressed = z3;
-                            quoteCollapseButton.bounce.setPressed(z3);
-                        }
-                    } else if (motionEvent.getAction() == 1) {
-                        if (quoteCollapseButton != null && quoteCollapseButton.pressed && z3) {
-                            QuoteSpan quoteSpan = block2.span;
-                            quoteSpan.isCollapsing = !quoteSpan.isCollapsing;
-                            lambda$dispatchTouchEvent$5();
-                            z = true;
-                        }
-                        if (quoteCollapseButton != null) {
-                            quoteCollapseButton.pressed = false;
-                            quoteCollapseButton.bounce.setPressed(false);
-                        }
-                    } else if (motionEvent.getAction() == 3 && quoteCollapseButton != null) {
-                        quoteCollapseButton.pressed = false;
-                        quoteCollapseButton.bounce.setPressed(false);
-                    }
-                    if (quoteCollapseButton == null || !quoteCollapseButton.pressed) {
-                        if (z) {
-                        }
-                    }
-                    z = true;
+        if (!QuoteSpan.onTouch(motionEvent, getPaddingTop() - getScrollY(), this.quoteBlocks, new EditTextEffects$$ExternalSyntheticLambda0(this, 4))) {
+            if (this.shouldRevealSpoilersByTouch && (spoilersClickDetector = this.clickDetector) != null && spoilersClickDetector.gestureDetector.mDetector.onTouchEvent(motionEvent)) {
+                if (motionEvent.getActionMasked() == 1) {
+                    MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                    super.dispatchTouchEvent(motionEventObtain);
+                    motionEventObtain.recycle();
                 }
+                z = true;
+            } else {
+                z = false;
             }
-        } else {
-            z = false;
-        }
-        if (z) {
-            return true;
-        }
-        if (this.shouldRevealSpoilersByTouch && (spoilersClickDetector = this.clickDetector) != null && ((GestureDetector) spoilersClickDetector.gestureDetector.zza).onTouchEvent(motionEvent)) {
-            if (motionEvent.getActionMasked() == 1) {
-                MotionEvent motionEventObtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
-                super.dispatchTouchEvent(motionEventObtain);
-                motionEventObtain.recycle();
+            if (!super.dispatchTouchEvent(motionEvent) && !z) {
+                return false;
             }
-            z2 = true;
-        } else {
-            z2 = false;
         }
-        return super.dispatchTouchEvent(motionEvent) || z2;
+        return true;
     }
 
     public int emojiCacheType() {
@@ -192,20 +198,7 @@ public abstract class EditTextEffects extends EditText {
     }
 
     public CharSequence getTextToUse() {
-        Editable text = getText();
-        if (text == null) {
-            return null;
-        }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
-        QuoteSpan.QuoteButtonNewLineSpan[] quoteButtonNewLineSpanArr = (QuoteSpan.QuoteButtonNewLineSpan[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), QuoteSpan.QuoteButtonNewLineSpan.class);
-        for (int length = quoteButtonNewLineSpanArr.length - 1; length >= 0; length--) {
-            QuoteSpan.QuoteButtonNewLineSpan quoteButtonNewLineSpan = quoteButtonNewLineSpanArr[length];
-            int spanStart = spannableStringBuilder.getSpanStart(quoteButtonNewLineSpan);
-            int spanEnd = spannableStringBuilder.getSpanEnd(quoteButtonNewLineSpan);
-            spannableStringBuilder.removeSpan(quoteButtonNewLineSpan);
-            spannableStringBuilder.delete(spanStart, spanEnd);
-        }
-        return spannableStringBuilder;
+        return QuoteSpan.stripNewlineHacks(getText());
     }
 
     public void invalidateEffects() {
@@ -213,13 +206,7 @@ public abstract class EditTextEffects extends EditText {
         if (text != null) {
             for (TextStyleSpan textStyleSpan : (TextStyleSpan[]) text.getSpans(0, text.length(), TextStyleSpan.class)) {
                 if (textStyleSpan.isSpoiler()) {
-                    boolean z = this.isSpoilersRevealed;
-                    TextStyleSpan.TextStyleRun textStyleRun = textStyleSpan.style;
-                    if (z) {
-                        textStyleRun.flags |= 512;
-                    } else {
-                        textStyleRun.flags &= -513;
-                    }
+                    textStyleSpan.setSpoilerRevealed(this.isSpoilersRevealed);
                 }
             }
         }
@@ -276,76 +263,20 @@ public abstract class EditTextEffects extends EditText {
         }
         Layout layout = getLayout();
         if (layout != null && (layout.getText() instanceof Spannable)) {
-            int i = 0;
             if (this.drawAnimatedEmojiDrawables && (emojiGroupedSpans2 = this.animatedEmojiDrawables) != null) {
-                int i2 = 0;
-                while (true) {
-                    ArrayList arrayList = emojiGroupedSpans2.holders;
-                    if (i2 >= arrayList.size()) {
-                        break;
-                    }
-                    ((AnimatedEmojiSpan.AnimatedEmojiHolder) arrayList.get(i2)).span.recordPositions = false;
-                    i2++;
-                }
+                emojiGroupedSpans2.recordPositions(false);
             }
             Stack<SpoilerEffect> stack = this.spoilersPool;
             List<SpoilerEffect> list2 = this.spoilers;
-            ArrayList<QuoteSpan.Block> arrayList2 = this.quoteBlocks;
-            int i3 = SpoilerEffect.MAX_PARTICLES_PER_ENTITY;
+            ArrayList<QuoteSpan.Block> arrayList = this.quoteBlocks;
+            int i = SpoilerEffect.MAX_PARTICLES_PER_ENTITY;
             int measuredWidth = getMeasuredWidth();
-            SpoilerEffect.addSpoilers(this, getLayout(), 0, measuredWidth > 0 ? measuredWidth : -2, (Spanned) getText(), stack, list2, arrayList2);
+            SpoilerEffect.addSpoilers(this, getLayout(), 0, measuredWidth > 0 ? measuredWidth : -2, (Spanned) getText(), stack, list2, arrayList);
             if (this.drawAnimatedEmojiDrawables && (emojiGroupedSpans = this.animatedEmojiDrawables) != null) {
-                while (true) {
-                    ArrayList arrayList3 = emojiGroupedSpans.holders;
-                    if (i >= arrayList3.size()) {
-                        break;
-                    }
-                    ((AnimatedEmojiSpan.AnimatedEmojiHolder) arrayList3.get(i)).span.recordPositions = true;
-                    i++;
-                }
+                emojiGroupedSpans.recordPositions(true);
             }
         }
         invalidate();
-    }
-
-    public final void lambda$dispatchTouchEvent$5() {
-        invalidateQuotes(true);
-    }
-
-    public final void lambda$new$0() {
-        setSpoilersRevealed(false, true);
-    }
-
-    public final void lambda$new$1() {
-        post(new EditTextEffects$$ExternalSyntheticLambda0(this, 0));
-    }
-
-    public final void lambda$new$2() {
-        this.postedSpoilerTimeout = false;
-        this.isSpoilersRevealed = false;
-        invalidateSpoilers();
-        if (this.spoilers.isEmpty()) {
-            return;
-        }
-        this.spoilers.get(0).onRippleEndCallback = new EditTextEffects$$ExternalSyntheticLambda0(this, 1);
-        float fSqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
-        Iterator<SpoilerEffect> it = this.spoilers.iterator();
-        while (it.hasNext()) {
-            it.next().startRipple(this.lastRippleX, this.lastRippleY, fSqrt, true);
-        }
-    }
-
-    public final void lambda$onSpoilerClicked$3() {
-        invalidateSpoilers();
-        checkSpoilerTimeout();
-    }
-
-    public final void lambda$onSpoilerClicked$4() {
-        post(new EditTextEffects$$ExternalSyntheticLambda0(this, 2));
-    }
-
-    public void lambda$onTouchEvent$0() {
-        requestFocus();
     }
 
     @Override
@@ -364,7 +295,7 @@ public abstract class EditTextEffects extends EditText {
 
     @Override
     public void onDraw(Canvas canvas) {
-        Canvas canvas2;
+        Canvas canvas2 = canvas;
         canvas.save();
         if (this.clipToPadding && getScrollY() != 0) {
             canvas.clipRect(-AndroidUtilities.dp(3.0f), (getScrollY() - super.getExtendedPaddingTop()) - this.offsetY, getMeasuredWidth(), ((getScrollY() + getMeasuredHeight()) + super.getExtendedPaddingBottom()) - this.offsetY);
@@ -381,11 +312,9 @@ public abstract class EditTextEffects extends EditText {
         }
         invalidateQuotes(false);
         for (int i = 0; i < this.quoteBlocks.size(); i++) {
-            QuoteSpan.Block block = this.quoteBlocks.get(i);
-            int width = getWidth();
-            int i2 = this.quoteColor;
-            getPaint();
-            block.draw(canvas, width, i2);
+            Canvas canvas3 = canvas2;
+            this.quoteBlocks.get(i).draw(canvas3, 0.0f, getWidth(), this.quoteColor, 1.0f, getPaint());
+            canvas2 = canvas3;
         }
         updateAnimatedEmoji(false);
         if (this.wrapCanvasToFixClipping) {
@@ -393,32 +322,29 @@ public abstract class EditTextEffects extends EditText {
                 this.wrappedCanvas = new NoClipCanvas();
             }
             NoClipCanvas noClipCanvas = this.wrappedCanvas;
-            noClipCanvas.canvas = canvas;
+            noClipCanvas.canvas = canvas2;
             super.onDraw(noClipCanvas);
         } else {
             super.onDraw(canvas);
         }
-        if (!this.drawAnimatedEmojiDrawables || this.animatedEmojiDrawables == null) {
-            canvas2 = canvas;
-        } else {
+        if (this.drawAnimatedEmojiDrawables && this.animatedEmojiDrawables != null) {
             canvas.save();
             canvas.translate(getPaddingLeft(), 0.0f);
-            canvas2 = canvas;
             AnimatedEmojiSpan.drawAnimatedEmojis(canvas2, getLayout(), this.animatedEmojiDrawables, 0.0f, this.spoilers, computeVerticalScrollOffset() - AndroidUtilities.dp(6.0f), computeVerticalScrollOffset() + computeVerticalScrollExtent(), 0.0f, 1.0f, this.animatedEmojiColorFilter);
-            canvas2.restore();
+            canvas.restore();
         }
-        canvas2.restore();
+        canvas.restore();
         if (this.spoilers.isEmpty()) {
             return;
         }
         SpoilerEffect spoilerEffect = this.spoilers.get(0);
         if (spoilerEffect.rippleMaxRadius > 0.0f && spoilerEffect.rippleProgress > 0.0f) {
-            canvas2.save();
-            canvas2.clipPath(this.path);
+            canvas.save();
+            canvas.clipPath(this.path);
             this.path.rewind();
             this.spoilers.get(0).getRipplePath(this.path);
-            canvas2.clipPath(this.path);
-            canvas2.translate(0.0f, -getPaddingTop());
+            canvas.clipPath(this.path);
+            canvas.translate(0.0f, -getPaddingTop());
             if (this.wrapCanvasToFixClipping) {
                 if (this.wrappedCanvas == null) {
                     this.wrappedCanvas = new NoClipCanvas();
@@ -427,25 +353,25 @@ public abstract class EditTextEffects extends EditText {
                 noClipCanvas2.canvas = canvas2;
                 super.onDraw(noClipCanvas2);
             } else {
-                super.onDraw(canvas2);
+                super.onDraw(canvas);
             }
-            canvas2.restore();
+            canvas.restore();
         }
         this.rect.set(0, (int) ((getScrollY() - super.getExtendedPaddingTop()) - this.offsetY), getWidth(), (int) (((getScrollY() + getMeasuredHeight()) + super.getExtendedPaddingBottom()) - this.offsetY));
-        canvas2.save();
-        canvas2.clipRect(this.rect);
-        canvas2.translate(paddingLeft, 0.0f);
+        canvas.save();
+        canvas.clipRect(this.rect);
+        canvas.translate(paddingLeft, 0.0f);
         for (SpoilerEffect spoilerEffect2 : this.spoilers) {
             Rect bounds2 = spoilerEffect2.getBounds();
             Rect rect = this.rect;
-            int i3 = rect.top;
-            int i4 = bounds2.bottom;
-            if ((i3 <= i4 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i4 >= i3)) {
+            int i2 = rect.top;
+            int i3 = bounds2.bottom;
+            if ((i2 <= i3 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i3 >= i2)) {
                 spoilerEffect2.setColor(spoilerEffect2.insideQuote ? this.quoteColor : getPaint().getColor());
-                spoilerEffect2.draw(canvas2);
+                spoilerEffect2.draw(canvas);
             }
         }
-        canvas2.restore();
+        canvas.restore();
     }
 
     @Override
@@ -469,23 +395,6 @@ public abstract class EditTextEffects extends EditText {
     public void onSizeChanged(int i, int i2, int i3, int i4) {
         super.onSizeChanged(i, i2, i3, i4);
         invalidateEffects();
-    }
-
-    public final void onSpoilerClicked(SpoilerEffect spoilerEffect, float f, float f2) {
-        if (this.isSpoilersRevealed) {
-            return;
-        }
-        this.lastRippleX = f;
-        this.lastRippleY = f2;
-        this.postedSpoilerTimeout = false;
-        removeCallbacks(this.spoilerTimeout);
-        setSpoilersRevealed(true, false);
-        spoilerEffect.onRippleEndCallback = new EditTextEffects$$ExternalSyntheticLambda0(this, 3);
-        float fSqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
-        Iterator<SpoilerEffect> it = this.spoilers.iterator();
-        while (it.hasNext()) {
-            it.next().startRipple(f, f2, fSqrt, false);
-        }
     }
 
     @Override
@@ -553,12 +462,7 @@ public abstract class EditTextEffects extends EditText {
         if (text != null) {
             for (TextStyleSpan textStyleSpan : (TextStyleSpan[]) text.getSpans(0, text.length(), TextStyleSpan.class)) {
                 if (textStyleSpan.isSpoiler()) {
-                    TextStyleSpan.TextStyleRun textStyleRun = textStyleSpan.style;
-                    if (z) {
-                        textStyleRun.flags |= 512;
-                    } else {
-                        textStyleRun.flags &= -513;
-                    }
+                    textStyleSpan.setSpoilerRevealed(z);
                 }
             }
         }
@@ -604,9 +508,5 @@ public abstract class EditTextEffects extends EditText {
             this.lastLayout = getLayout();
             this.lastTextLength = length;
         }
-    }
-
-    public void lambda$new$0(long j) {
-        invalidate();
     }
 }
